@@ -2,6 +2,9 @@
   "functions": {
     "api/generate-itinerary.js": {
       "includeFiles": "src/data/destinations/**,prompts/**,src/services/**"
+    },
+    "api/refine-itinerary.js": {
+      "includeFiles": "prompts/**"
     }
   }
 }

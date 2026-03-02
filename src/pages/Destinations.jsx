@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { Nav, Footer, FadeIn, PageHeader } from '@components';
 import { C } from '@data/brand';
 import { destinations } from '@data/destinations';
+import { trackEvent } from '@utils/analytics';
 
 // ─── Immersive Cell (styled to match homepage carousel) ──────────────────
 function DestCell({ dest, textAlign = "left" }) {
@@ -17,6 +18,7 @@ function DestCell({ dest, textAlign = "left" }) {
     <Link
       to={`/destinations/${dest.slug}`}
       style={{ display: "block", textDecoration: "none", height: "100%" }}
+      onClick={() => trackEvent('destination_selected', { destination: dest.slug })}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >

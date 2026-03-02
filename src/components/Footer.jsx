@@ -4,6 +4,7 @@
 
 import { Link } from 'react-router-dom';
 import { C } from '@data/brand';
+import { trackEvent } from '@utils/analytics';
 
 export default function Footer() {
   const links = [
@@ -40,7 +41,9 @@ export default function Footer() {
 
         <div style={{ display: "flex", gap: 32, flexWrap: "wrap" }}>
           {links.map(link => (
-            <Link key={link.label} to={link.to} style={{
+            <Link key={link.label} to={link.to}
+              onClick={() => trackEvent('footer_link_clicked', { label: link.label.toLowerCase(), to: link.to })}
+              style={{
               fontFamily: "'Quicksand'", fontSize: 10, fontWeight: 600,
               letterSpacing: "0.18em", textTransform: "uppercase",
               color: "rgba(255,255,255,0.28)", transition: "color 0.25s",

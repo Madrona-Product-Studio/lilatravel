@@ -5,6 +5,7 @@
 import { Link } from 'react-router-dom';
 import { Nav, Footer, FadeIn, PageHeader } from '@components';
 import { C } from '@data/brand';
+import { trackEvent } from '@utils/analytics';
 
 // ─── The Braid: Three Threads ────────────────────────────────────────────────
 const threads = [
@@ -98,6 +99,7 @@ const offerings = [
     cta: "Explore Guides Free",
     ctaLink: "/destinations",
     detail: "Free · No account needed",
+    offeringType: "diy",
   },
   {
     icon: "◎",
@@ -108,6 +110,7 @@ const offerings = [
     cta: "Unlock — $39",
     ctaLink: "/plan",
     detail: "One-time purchase · Offline access",
+    offeringType: "trip_planner",
   },
   {
     icon: "☾",
@@ -118,6 +121,7 @@ const offerings = [
     cta: "View Trips",
     ctaLink: "#upcoming",
     detail: "From $895 per person",
+    offeringType: "group_trips",
   },
   {
     icon: "△",
@@ -128,6 +132,7 @@ const offerings = [
     cta: "Start — From $199",
     ctaLink: "/contact",
     detail: "Personalized · Human-crafted",
+    offeringType: "custom",
   },
 ];
 
@@ -476,6 +481,7 @@ export default function OfferingsPage() {
                         color: o.color, textDecoration: "none",
                         transition: "all 0.3s ease",
                       }}
+                      onClick={() => trackEvent('offering_cta_clicked', { offering: o.offeringType, destination_url: o.ctaLink })}
                       onMouseEnter={e => {
                         e.target.style.background = o.color;
                         e.target.style.color = "white";
@@ -645,7 +651,7 @@ export default function OfferingsPage() {
                 fontFamily: "'Quicksand', sans-serif",
                 fontSize: "clamp(22px, 3vw, 32px)", fontWeight: 300, color: "white", marginBottom: 20,
               }}>Pick a destination. The guide is free.</h3>
-              <Link to="/destinations" className="underline-link underline-link-light">Explore Destinations</Link>
+              <Link to="/destinations" className="underline-link underline-link-light" onClick={() => trackEvent('offering_cta_clicked', { offering: 'explore_destinations' })}>Explore Destinations</Link>
             </div>
           </FadeIn>
         </div>

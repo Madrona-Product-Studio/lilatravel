@@ -16,6 +16,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { C } from '@data/brand';
+import { trackEvent } from '@utils/analytics';
 
 export default function TripCard({ trip, delay = 0 }) {
   const [hover, setHover] = useState(false);
@@ -24,6 +25,7 @@ export default function TripCard({ trip, delay = 0 }) {
     <Link
       to={`/trips/${trip.slug}`}
       style={{ textDecoration: "none", display: "block", height: "100%" }}
+      onClick={() => trackEvent('trip_card_clicked', { trip_slug: trip.slug })}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >

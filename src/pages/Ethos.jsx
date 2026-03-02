@@ -16,6 +16,7 @@ import { Link } from 'react-router-dom';
 import { Nav, Footer, FadeIn, PageHeader } from '@components';
 import { C } from '@data/brand';
 import { ritualsPillars, traditions, ritualsIntro } from '@data/rituals';
+import { trackEvent } from '@utils/analytics';
 
 // ─── Section Data ───────────────────────────────────────────────────────────
 
@@ -202,6 +203,7 @@ export default function EthosPage() {
                         paddingBottom: 4, borderBottom: `1px solid ${b.color}`,
                         transition: "gap 0.3s, opacity 0.3s",
                       }}
+                      onClick={() => trackEvent('ethos_cta_clicked', { action: 'explore_destinations' })}
                       onMouseEnter={e => { e.currentTarget.style.gap = "14px"; e.currentTarget.style.opacity = "0.7"; }}
                       onMouseLeave={e => { e.currentTarget.style.gap = "10px"; e.currentTarget.style.opacity = "1"; }}
                       >
@@ -350,6 +352,7 @@ export default function EthosPage() {
                         paddingBottom: 4, borderBottom: "1px solid #D4A853",
                         transition: "gap 0.3s, opacity 0.3s",
                       }}
+                      onClick={() => trackEvent('ethos_cta_clicked', { action: 'explore_philosophy' })}
                       onMouseEnter={e => { e.currentTarget.style.gap = "14px"; e.currentTarget.style.opacity = "0.7"; }}
                       onMouseLeave={e => { e.currentTarget.style.gap = "10px"; e.currentTarget.style.opacity = "1"; }}
                       >
@@ -398,8 +401,8 @@ export default function EthosPage() {
               We handle the logistics so you can cross it.
             </p>
             <div style={{ display: "flex", gap: 24, justifyContent: "center", flexWrap: "wrap" }}>
-              <Link to="/how-it-works" className="underline-link">See How It Works</Link>
-              <Link to="/destinations" className="underline-link">Explore Destinations</Link>
+              <Link to="/how-it-works" className="underline-link" onClick={() => trackEvent('ethos_cta_clicked', { action: 'see_how_it_works' })}>See How It Works</Link>
+              <Link to="/destinations" className="underline-link" onClick={() => trackEvent('ethos_cta_clicked', { action: 'explore_destinations' })}>Explore Destinations</Link>
             </div>
           </FadeIn>
         </div>

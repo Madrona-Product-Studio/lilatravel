@@ -5,6 +5,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { C } from '@data/brand';
+import { trackEvent } from '@utils/analytics';
 
 // ─── Animated Hamburger Icon ─────────────────────────────────────────────────
 function HamburgerIcon({ open, color }) {
@@ -83,7 +84,7 @@ function MobileMenu({ open, links, onClose }) {
             <Link
               key={link.label}
               to={link.to}
-              onClick={onClose}
+              onClick={() => { trackEvent('nav_clicked', { label: link.label.toLowerCase(), to: link.to, page: window.location.pathname }); onClose(); }}
               style={{
                 fontFamily: "'Quicksand', sans-serif",
                 fontSize: 20, fontWeight: 500,
@@ -109,7 +110,7 @@ function MobileMenu({ open, links, onClose }) {
           transform: open ? "translateY(0)" : "translateY(12px)",
           transition: `opacity 0.4s ease ${0.15 + links.length * 0.06}s, transform 0.4s ease ${0.15 + links.length * 0.06}s`,
         }}>
-          <Link to="/plan" onClick={onClose} style={{
+          <Link to="/plan" onClick={() => { trackEvent('nav_clicked', { label: 'plan_a_trip', to: '/plan', page: window.location.pathname }); onClose(); }} style={{
             display: "block",
             fontFamily: "'Quicksand', sans-serif",
             fontSize: 11, fontWeight: 700,
@@ -176,31 +177,35 @@ export default function Nav({ transparent = false }) {
         {/* Desktop links */}
         <div className="nav-links" style={{ display: "flex", gap: 34, alignItems: "center" }}>
           {links.map(link => (
-            <Link key={link.label} to={link.to} style={{
-              fontFamily: "'Quicksand'", fontSize: 11, fontWeight: 600,
-              letterSpacing: "0.18em", textTransform: "uppercase",
-              color: showSolid ? C.darkInk : "rgba(255,255,255,0.75)",
-              transition: "opacity 0.2s", textDecoration: "none",
-              opacity: location.pathname.startsWith(link.to) ? 1 : 0.75,
-              padding: "10px 6px",
-            }}
-            onMouseEnter={e => e.currentTarget.style.opacity = "0.55"}
-            onMouseLeave={e => e.currentTarget.style.opacity = location.pathname.startsWith(link.to) ? "1" : "0.75"}
+            <Link key={link.label} to={link.to}
+              onClick={() => trackEvent('nav_clicked', { label: link.label.toLowerCase(), to: link.to, page: location.pathname })}
+              style={{
+                fontFamily: "'Quicksand'", fontSize: 11, fontWeight: 600,
+                letterSpacing: "0.18em", textTransform: "uppercase",
+                color: showSolid ? C.darkInk : "rgba(255,255,255,0.75)",
+                transition: "opacity 0.2s", textDecoration: "none",
+                opacity: location.pathname.startsWith(link.to) ? 1 : 0.75,
+                padding: "10px 6px",
+              }}
+              onMouseEnter={e => e.currentTarget.style.opacity = "0.55"}
+              onMouseLeave={e => e.currentTarget.style.opacity = location.pathname.startsWith(link.to) ? "1" : "0.75"}
             >
               {link.label}
             </Link>
           ))}
 
-          <Link to="/plan" style={{
-            fontFamily: "'Quicksand'", fontSize: 10, fontWeight: 700,
-            letterSpacing: "0.2em", textTransform: "uppercase",
-            color: showSolid ? C.darkInk : "white",
-            padding: "9px 20px", textDecoration: "none",
-            border: showSolid ? `1px solid ${C.darkInk}` : "1px solid rgba(255,255,255,0.55)",
-            transition: "all 0.3s",
-          }}
-          onMouseEnter={e => { e.currentTarget.style.background = C.darkInk; e.currentTarget.style.color = "white"; e.currentTarget.style.borderColor = C.darkInk; }}
-          onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = showSolid ? C.darkInk : "white"; e.currentTarget.style.borderColor = showSolid ? C.darkInk : "rgba(255,255,255,0.55)"; }}
+          <Link to="/plan"
+            onClick={() => trackEvent('nav_clicked', { label: 'plan_a_trip', to: '/plan', page: location.pathname })}
+            style={{
+              fontFamily: "'Quicksand'", fontSize: 10, fontWeight: 700,
+              letterSpacing: "0.2em", textTransform: "uppercase",
+              color: showSolid ? C.darkInk : "white",
+              padding: "9px 20px", textDecoration: "none",
+              border: showSolid ? `1px solid ${C.darkInk}` : "1px solid rgba(255,255,255,0.55)",
+              transition: "all 0.3s",
+            }}
+            onMouseEnter={e => { e.currentTarget.style.background = C.darkInk; e.currentTarget.style.color = "white"; e.currentTarget.style.borderColor = C.darkInk; }}
+            onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = showSolid ? C.darkInk : "white"; e.currentTarget.style.borderColor = showSolid ? C.darkInk : "rgba(255,255,255,0.55)"; }}
           >
             Plan a Trip
           </Link>

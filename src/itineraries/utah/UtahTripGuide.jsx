@@ -193,7 +193,7 @@ const UtahTripGuide = () => {
               }
             }
           } catch (err) {
-            console.log(`Could not fetch live weather for ${location.name}, using fallback`);
+            // silently fall back to default weather data
           }
         });
 
@@ -201,10 +201,9 @@ const UtahTripGuide = () => {
         
         if (successCount > 0) {
           setWeather(prev => ({ ...prev, ...weatherData }));
-          console.log(`✅ Live weather loaded for ${successCount} location(s)`);
         }
       } catch (error) {
-        console.log('Using fallback weather data');
+        // silently fall back to default weather data
       }
     };
 

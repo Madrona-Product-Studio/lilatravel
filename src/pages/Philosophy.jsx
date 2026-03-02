@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Nav, Footer, FadeIn } from '@components';
 import { C } from '@data/brand';
 import { traditions } from '@data/rituals';
+import { trackEvent } from '@utils/analytics';
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 const principles = [
@@ -559,8 +560,8 @@ export default function PhilosophyPage() {
             </p>
 
             <div style={{ display: "flex", gap: 24, justifyContent: "center", flexWrap: "wrap" }}>
-              <Link to="/ethos" className="underline-link">Back to Our Ethos</Link>
-              <Link to="/destinations" className="underline-link">Explore Destinations</Link>
+              <Link to="/ethos" className="underline-link" onClick={() => trackEvent('philosophy_cta_clicked', { action: 'back_to_ethos' })}>Back to Our Ethos</Link>
+              <Link to="/destinations" className="underline-link" onClick={() => trackEvent('philosophy_cta_clicked', { action: 'explore_destinations' })}>Explore Destinations</Link>
             </div>
 
             {/* ── Practices Explorer CTA ── */}
@@ -616,6 +617,7 @@ export default function PhilosophyPage() {
                   textDecoration: "none",
                   transition: "opacity 0.2s",
                 }}
+                onClick={() => trackEvent('philosophy_cta_clicked', { action: 'open_practices_explorer' })}
                 onMouseEnter={e => e.currentTarget.style.opacity = "0.85"}
                 onMouseLeave={e => e.currentTarget.style.opacity = "1"}
                 >

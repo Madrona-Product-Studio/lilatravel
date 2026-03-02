@@ -10,6 +10,7 @@ import { P } from '@data/photos';
 import { destinations } from '@data/destinations';
 import { heroCallouts, magicMoments } from '@data/journey';
 import { useDayCycle, interpolatePhase, useHorizontalSwipe } from '@utils/hooks';
+import { trackEvent } from '@utils/analytics';
 
 
 // ─── Shooting Stars ────────────────────────────────────────────────────────
@@ -475,11 +476,31 @@ function ApproachSectionHome() {
 export default function HomePage() {
   const [scrollY, setScrollY] = useState(0);
   const dayProgress = useDayCycle(28);
+  const offeringsRef = useRef(null);
+  const offeringsViewedRef = useRef(false);
 
   useEffect(() => {
     const h = () => setScrollY(window.scrollY);
     window.addEventListener("scroll", h, { passive: true });
     return () => window.removeEventListener("scroll", h);
+  }, []);
+
+  // Fire offerings_viewed once when "Travel Your Way" scrolls into view
+  useEffect(() => {
+    const node = offeringsRef.current;
+    if (!node) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !offeringsViewedRef.current) {
+          offeringsViewedRef.current = true;
+          trackEvent('offerings_viewed', { section: 'travel_your_way' });
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.25 }
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
   }, []);
 
   const heroOpacity  = Math.max(0, 1 - scrollY / 680);
@@ -604,6 +625,7 @@ export default function HomePage() {
                 color: "white", paddingBottom: 3, borderBottom: "1px solid rgba(255,255,255,0.5)",
                 display: "inline-block", transition: "opacity 0.2s", textDecoration: "none",
               }}
+              onClick={() => trackEvent('plan_trip_clicked', { source: 'hero' })}
               onMouseEnter={e => e.currentTarget.style.opacity = "0.65"}
               onMouseLeave={e => e.currentTarget.style.opacity = "1"}
               >Plan a Trip</Link>
@@ -869,7 +891,7 @@ export default function HomePage() {
       <ApproachSectionHome />
 
       {/* ══ 5. TRAVEL YOUR WAY ═════════════════════════════════════════ */}
-      <section style={{ padding: "80px 0", background: C.cream }}>
+      <section ref={offeringsRef} style={{ padding: "80px 0", background: C.cream }}>
         <div className="section-padded" style={{ maxWidth: 1100, margin: "0 auto", padding: "0 52px" }}>
           <FadeIn>
             <div style={{ textAlign: "center", marginBottom: 56 }}>
@@ -973,6 +995,11 @@ export default function HomePage() {
                         color: o.color, textDecoration: "none",
                         transition: "all 0.3s ease",
                       }}
+                      onClick={() => {
+                        if (o.ctaLink === '/plan') {
+                          trackEvent('plan_trip_clicked', { source: 'travel_your_way' });
+                        }
+                      }}
                       onMouseEnter={e => {
                         e.target.style.background = o.color;
                         e.target.style.color = "white";
@@ -1031,7 +1058,7 @@ export default function HomePage() {
               }}>We'll show you the way.</p>
               <div style={{ display: "flex", gap: 24, justifyContent: "center", flexWrap: "wrap" }}>
                 <Link to="/destinations" className="underline-link underline-link-light">Explore Destinations</Link>
-                <Link to="/ways-to-travel" className="underline-link underline-link-light">Plan a Custom Trip</Link>
+                <Link to="/ways-to-travel" className="underline-link underline-link-light" onClick={() => trackEvent('plan_trip_clicked', { source: 'bottom' })}>Plan a Custom Trip</Link>
                 <Link to="/contact" className="underline-link underline-link-light">Contact Our Experts</Link>
               </div>
             </div>

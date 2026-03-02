@@ -16,6 +16,7 @@ import TripCard from '@components/TripCard';
 import { C } from '@data/brand';
 import { P } from '@data/photos';
 import { getTripsByDestination } from '@data/trips';
+import { trackEvent } from '@utils/analytics';
 
 
 // ─── Guide-Specific Components ───────────────────────────────────────────────
@@ -143,6 +144,7 @@ function AddToTripButton({ name }) {
   const handleClick = (e) => {
     e.stopPropagation();
     if (added) { setAdded(false); return; }
+    trackEvent('guide_cta_clicked', { action: 'add_to_trip', destination: 'zion' });
     setAdded(true);
     setTimeout(() => setShowPrompt(true), 400);
   };
@@ -212,7 +214,7 @@ function AddToTripButton({ name }) {
               color: "#5a7080", lineHeight: 1.65, marginBottom: 28,
             }}>Unlock the Zion Trip Planner to save your picks, build a day-by-day itinerary, and access everything offline.</div>
             <button
-              onClick={() => { setShowPrompt(false); navigate('/plan'); }}
+              onClick={() => { trackEvent('guide_cta_clicked', { action: 'unlock_trip_planner', destination: 'zion' }); setShowPrompt(false); navigate('/plan'); }}
               style={{
                 width: "100%", padding: "13px 28px",
                 background: C.darkInk, color: "#fff", border: "none",
@@ -1374,6 +1376,7 @@ export default function ZionGuide() {
                   transition: "all 0.25s",
                   display: "inline-block",
                 }}
+                onClick={() => trackEvent('guide_cta_clicked', { action: 'view_group_trips', destination: 'zion' })}
                 onMouseEnter={e => { e.currentTarget.style.background = C.sunSalmon; e.currentTarget.style.color = "#fff"; }}
                 onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = C.sunSalmon; }}
                 >View All Group Trips</Link>
@@ -1423,6 +1426,7 @@ export default function ZionGuide() {
                   cursor: "pointer", transition: "opacity 0.2s",
                   textDecoration: "none",
                 }}
+                onClick={() => trackEvent('guide_cta_clicked', { action: 'unlock_trip_planner', destination: 'zion' })}
                 onMouseEnter={e => e.currentTarget.style.opacity = "0.85"}
                 onMouseLeave={e => e.currentTarget.style.opacity = "1"}
                 >{"Unlock Trip Planner — $39"}</Link>
@@ -1437,6 +1441,7 @@ export default function ZionGuide() {
                   cursor: "pointer", transition: "all 0.2s",
                   textDecoration: "none",
                 }}
+                onClick={() => trackEvent('guide_cta_clicked', { action: 'request_custom', destination: 'zion' })}
                 onMouseEnter={e => { e.currentTarget.style.background = C.darkInk; e.currentTarget.style.color = "#fff"; }}
                 onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = C.darkInk; }}
                 >{"Request Custom Itinerary →"}</Link>

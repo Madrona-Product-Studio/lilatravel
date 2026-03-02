@@ -4,6 +4,7 @@
 
 import { Nav, Footer, FadeIn, PageHero } from '@components';
 import { C } from '@data/brand';
+import { trackEvent } from '@utils/analytics';
 
 export default function ContactPage() {
   return (
@@ -36,6 +37,7 @@ export default function ContactPage() {
               letterSpacing: "0.18em", textTransform: "uppercase",
               cursor: "pointer", transition: "opacity 0.2s", textDecoration: "none",
             }}
+            onClick={() => trackEvent('contact_email_clicked', {})}
             onMouseEnter={e => e.currentTarget.style.opacity = "0.85"}
             onMouseLeave={e => e.currentTarget.style.opacity = "1"}
             >

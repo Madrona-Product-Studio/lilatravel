@@ -12,6 +12,7 @@ import { Nav, Footer, FadeIn, PageHeader } from '@components';
 import TripCard from '@components/TripCard';
 import { C } from '@data/brand';
 import { allTrips } from '@data/trips';
+import { trackEvent } from '@utils/analytics';
 
 export default function GroupTrips() {
   return (
@@ -69,6 +70,7 @@ export default function GroupTrips() {
             border: "1px solid rgba(255,255,255,0.35)",
             textDecoration: "none", transition: "all 0.3s",
           }}
+          onClick={() => trackEvent('group_trip_contact_clicked', {})}
           onMouseEnter={e => { e.target.style.background = "rgba(255,255,255,0.1)"; e.target.style.borderColor = "rgba(255,255,255,0.6)"; }}
           onMouseLeave={e => { e.target.style.background = "transparent"; e.target.style.borderColor = "rgba(255,255,255,0.35)"; }}
           >

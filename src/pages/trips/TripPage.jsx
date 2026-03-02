@@ -5,6 +5,7 @@
 import { useParams, Link } from 'react-router-dom';
 import { Nav, Footer, FadeIn } from '@components';
 import { C } from '@data/brand';
+import { trackEvent } from '@utils/analytics';
 
 // ─── Trip Data ───────────────────────────────────────────────────────────────
 const trips = {
@@ -244,13 +245,13 @@ export default function TripPage() {
                 fontFamily: "'Quicksand'", fontSize: 14, color: "rgba(255,255,255,0.5)",
                 marginBottom: 24,
               }}>Booking opens soon. Check back or explore our guides in the meantime.</p>
-              <Link to="/destinations" className="underline-link underline-link-light">Explore Destinations</Link>
+              <Link to="/destinations" className="underline-link underline-link-light" onClick={() => trackEvent('trip_cta_clicked', { action: 'explore_destinations', trip_slug: slug })}>Explore Destinations</Link>
             </div>
           </FadeIn>
 
           {/* Back link */}
           <div style={{ textAlign: "center", marginTop: 48 }}>
-            <Link to="/offerings" className="underline-link">← Back to Offerings</Link>
+            <Link to="/offerings" className="underline-link" onClick={() => trackEvent('trip_cta_clicked', { action: 'back_to_offerings', trip_slug: slug })}>← Back to Offerings</Link>
           </div>
         </div>
       </section>

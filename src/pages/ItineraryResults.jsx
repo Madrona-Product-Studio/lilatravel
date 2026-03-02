@@ -1,8 +1,9 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { C as BrandC } from '@data/brand';
 import { lookupUrl } from '@data/destinations/zion-urls';
 import JSON5 from 'json5';
+import { trackEvent } from '@utils/analytics';
 
 /*
  * ItineraryResults — Merged V3
@@ -134,14 +135,16 @@ function Collapsible({ open, children }) {
 
 /* ── linked name (with lookupUrl fallback) ─────────────────────────────── */
 
-function LinkedName({ name, url, style = {} }) {
+function LinkedName({ name, url, style = {}, linkType = 'activity' }) {
   const resolvedUrl = url || lookupUrl(name);
   if (resolvedUrl) {
     return (
-      <a href={resolvedUrl} target="_blank" rel="noopener noreferrer" style={{
-        ...style, textDecoration: 'none', borderBottom: `1px solid ${C.oceanTeal}25`,
-        color: 'inherit', transition: 'border-color 0.2s',
-      }}>
+      <a href={resolvedUrl} target="_blank" rel="noopener noreferrer"
+        onClick={() => trackEvent('external_link_clicked', { name, url: resolvedUrl, link_type: linkType })}
+        style={{
+          ...style, textDecoration: 'none', borderBottom: `1px solid ${C.oceanTeal}25`,
+          color: 'inherit', transition: 'border-color 0.2s',
+        }}>
         {name}
       </a>
     );
@@ -253,7 +256,7 @@ function TripOverview({ days, onDayClick, dayFeedback = {} }) {
           const color = DAY_COLORS[i % DAY_COLORS.length];
           const fb = dayFeedback[i];
           return (
-            <button key={i} onClick={() => onDayClick(i)} style={{
+            <button key={i} onClick={() => { trackEvent('trip_overview_day_clicked', { day_index: i }); onDayClick(i); }} style={{
               display: 'flex', alignItems: 'center', gap: 14, width: '100%',
               padding: '10px 0', background: 'none', border: 'none', cursor: 'pointer',
               textAlign: 'left', WebkitTapHighlightColor: 'transparent', position: 'relative',
@@ -283,10 +286,16 @@ function TripOverview({ days, onDayClick, dayFeedback = {} }) {
 
 /* ── timeline block ────────────────────────────────────────────────────── */
 
-function TimelineBlock({ time, title, summary, details, timeOfDay = 'morning', url, isLast = false }) {
+function TimelineBlock({ time, title, summary, details, timeOfDay = 'morning', url, isLast = false, dayIndex = 0 }) {
   const [open, setOpen] = useState(false);
   const dot = TIME_COLORS[timeOfDay] || TIME_COLORS.morning;
   const resolvedUrl = url || lookupUrl(title);
+
+  const handleToggle = () => {
+    if (!details) return;
+    if (!open) trackEvent('timeline_detail_expanded', { day_index: dayIndex, activity_title: title });
+    setOpen(!open);
+  };
 
   return (
     <div style={{ display: 'flex', gap: 14, minHeight: 44 }}>
@@ -295,7 +304,7 @@ function TimelineBlock({ time, title, summary, details, timeOfDay = 'morning', u
         {!isLast && <div style={{ width: 1, flex: 1, minHeight: 20, background: `linear-gradient(180deg, ${dot}25, ${C.sage}08)` }} />}
       </div>
       <div style={{ flex: 1, paddingBottom: isLast ? 0 : 14 }}>
-        <button onClick={() => details && setOpen(!open)} style={{
+        <button onClick={handleToggle} style={{
           display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', width: '100%',
           background: 'none', border: 'none', cursor: details ? 'pointer' : 'default',
           textAlign: 'left', padding: 0, gap: 8, WebkitTapHighlightColor: 'transparent',
@@ -312,14 +321,16 @@ function TimelineBlock({ time, title, summary, details, timeOfDay = 'morning', u
             <div style={{ fontFamily: F, fontSize: 13, color: `${C.slate}85`, lineHeight: 1.7, padding: '6px 0' }}>
               {renderInlineBlock(details)}
               {resolvedUrl && (
-                <a href={resolvedUrl} target="_blank" rel="noopener noreferrer" style={{
-                  display: 'inline-flex', alignItems: 'center', gap: 5,
-                  fontFamily: F, fontSize: 12, fontWeight: 600,
-                  color: C.oceanTeal, textDecoration: 'none',
-                  marginTop: 8, padding: '6px 12px',
-                  background: `${C.oceanTeal}08`, borderRadius: 8,
-                  border: `1px solid ${C.oceanTeal}15`,
-                }}>
+                <a href={resolvedUrl} target="_blank" rel="noopener noreferrer"
+                  onClick={() => trackEvent('external_link_clicked', { name: title, url: resolvedUrl, link_type: 'activity' })}
+                  style={{
+                    display: 'inline-flex', alignItems: 'center', gap: 5,
+                    fontFamily: F, fontSize: 12, fontWeight: 600,
+                    color: C.oceanTeal, textDecoration: 'none',
+                    marginTop: 8, padding: '6px 12px',
+                    background: `${C.oceanTeal}08`, borderRadius: 8,
+                    border: `1px solid ${C.oceanTeal}15`,
+                  }}>
                   Learn more <ExternalLinkIcon size={10} color={C.oceanTeal} />
                 </a>
               )}
@@ -333,7 +344,7 @@ function TimelineBlock({ time, title, summary, details, timeOfDay = 'morning', u
 
 /* ── inline pick ───────────────────────────────────────────────────────── */
 
-function InlinePick({ category, pick, alternatives = [], isLast = false }) {
+function InlinePick({ category, pick, alternatives = [], isLast = false, dayIndex = 0 }) {
   const [showAlts, setShowAlts] = useState(false);
   const styles = {
     stay: { label: 'Where to Stay', color: C.goldenAmber },
@@ -365,7 +376,7 @@ function InlinePick({ category, pick, alternatives = [], isLast = false }) {
           {/* Content */}
           <div style={{ padding: '12px 14px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginBottom: 3 }}>
-              <LinkedName name={pick.name} url={pick.url} style={{ fontFamily: F, fontSize: 16, fontWeight: 600, color: C.slate }} />
+              <LinkedName name={pick.name} url={pick.url} linkType="pick" style={{ fontFamily: F, fontSize: 16, fontWeight: 600, color: C.slate }} />
               {(pick.url || lookupUrl(pick.name)) && <ExternalLinkIcon size={10} color={`${C.sage}40`} />}
             </div>
             <div style={{ fontFamily: F, fontSize: 13, color: `${C.slate}65`, lineHeight: 1.6 }}>{pick.why}</div>
@@ -373,7 +384,7 @@ function InlinePick({ category, pick, alternatives = [], isLast = false }) {
           {/* Alternatives */}
           {alternatives.length > 0 && (
             <>
-              <button onClick={() => setShowAlts(!showAlts)} style={{
+              <button onClick={() => { if (!showAlts) trackEvent('lila_pick_alternatives_viewed', { day_index: dayIndex, category, pick_name: pick.name }); setShowAlts(!showAlts); }} style={{
                 width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 5,
                 padding: '8px 14px', background: `${s.color}04`, border: 'none',
                 borderTop: `1px solid ${s.color}0c`, cursor: 'pointer', WebkitTapHighlightColor: 'transparent',
@@ -388,7 +399,7 @@ function InlinePick({ category, pick, alternatives = [], isLast = false }) {
                   {alternatives.map((alt, i) => (
                     <div key={i} style={{ padding: '8px 0', borderBottom: i < alternatives.length - 1 ? `1px solid ${C.sage}06` : 'none' }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: 4, marginBottom: 2 }}>
-                        <LinkedName name={alt.name} url={alt.url} style={{ fontFamily: F, fontSize: 14, fontWeight: 600, color: C.slate }} />
+                        <LinkedName name={alt.name} url={alt.url} linkType="alternative" style={{ fontFamily: F, fontSize: 14, fontWeight: 600, color: C.slate }} />
                         {(alt.url || lookupUrl(alt.name)) && <ExternalLinkIcon size={9} color={`${C.sage}35`} />}
                       </div>
                       <div style={{ fontFamily: F, fontSize: 12, color: `${C.slate}55`, lineHeight: 1.55 }}>{alt.why}</div>
@@ -515,7 +526,7 @@ function DayCard({ day, dayIndex = 0, feedback, onFeedback }) {
       boxShadow: open ? `0 2px 12px ${color}06` : `0 1px 8px ${C.sage}04`,
       overflow: 'hidden', transition: 'border-color 0.3s, box-shadow 0.3s',
     }}>
-      <button onClick={() => setOpen(!open)} style={{
+      <button onClick={() => { const next = !open; trackEvent('day_card_toggled', { day_index: dayIndex, action: next ? 'expanded' : 'collapsed' }); setOpen(next); }} style={{
         width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         padding: '18px 20px', background: open ? `${color}03` : 'transparent',
         border: 'none', cursor: 'pointer', textAlign: 'left',
@@ -548,11 +559,11 @@ function DayCard({ day, dayIndex = 0, feedback, onFeedback }) {
           {day.intro && <p style={{ fontFamily: F, fontSize: 13, color: `${C.slate}70`, lineHeight: 1.7, margin: '0 0 18px', fontStyle: 'italic' }}>{day.intro}</p>}
           {day.timeline && day.timeline.map((b, i) => (
             <TimelineBlock key={i} time={b.time} title={b.title} summary={b.summary}
-              details={b.details} timeOfDay={b.timeOfDay} url={b.url}
+              details={b.details} timeOfDay={b.timeOfDay} url={b.url} dayIndex={dayIndex}
               isLast={i === day.timeline.length - 1 && (!day.picks || day.picks.length === 0)} />
           ))}
           {day.picks && day.picks.map((p, i) => (
-            <InlinePick key={i} category={p.category} pick={p.pick}
+            <InlinePick key={i} category={p.category} pick={p.pick} dayIndex={dayIndex}
               alternatives={p.alternatives || []} isLast={i === day.picks.length - 1} />
           ))}
           <DayFeedback dayIndex={dayIndex} feedback={feedback} onFeedback={onFeedback} />
@@ -564,7 +575,7 @@ function DayCard({ day, dayIndex = 0, feedback, onFeedback }) {
 
 /* ── trip pulse ─────────────────────────────────────────────────────────── */
 
-function TripPulse({ overallNote, setOverallNote, pulse, setPulse }) {
+function TripPulse({ overallNote, setOverallNote, pulse, setPulse, onPulseSelect, iteration }) {
   const options = [
     { key: 'love', label: 'Love it', sub: 'Lock it in', color: C.seaGlass, icon: <CheckIcon size={15} color={C.seaGlass} /> },
     { key: 'close', label: 'Almost there', sub: 'A few tweaks', color: C.goldenAmber, icon: <PencilIcon size={15} color={C.goldenAmber} /> },
@@ -580,7 +591,7 @@ function TripPulse({ overallNote, setOverallNote, pulse, setPulse }) {
         {options.map(o => {
           const active = pulse === o.key;
           return (
-            <button key={o.key} onClick={() => setPulse(active ? null : o.key)} style={{
+            <button key={o.key} onClick={() => { const val = active ? null : o.key; setPulse(val); if (val) { onPulseSelect?.(val); if (val === 'love') trackEvent('trip_locked_in', { iteration }); } }} style={{
               flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4,
               padding: '12px 8px', borderRadius: 12,
               background: active ? `${o.color}10` : `${C.sage}04`,
@@ -598,6 +609,7 @@ function TripPulse({ overallNote, setOverallNote, pulse, setPulse }) {
       {(pulse === 'close' || pulse === 'rethink') && (
         <div style={{ marginTop: 14 }}>
           <textarea value={overallNote} onChange={e => setOverallNote(e.target.value)}
+            onBlur={e => { if (e.target.value.trim()) trackEvent('overall_note_entered', { pulse, note_length: e.target.value.trim().length }); }}
             placeholder={pulse === 'close' ? 'What\'s close but not quite right?' : 'What direction would feel better?'}
             style={{ width: '100%', minHeight: 72, padding: '10px 12px', fontFamily: F, fontSize: 13, fontWeight: 400, color: C.slate, background: C.white, border: `1px solid ${C.sage}15`, borderRadius: 10, resize: 'vertical', lineHeight: 1.55, outline: 'none', boxSizing: 'border-box' }}
           />
@@ -609,10 +621,40 @@ function TripPulse({ overallNote, setOverallNote, pulse, setPulse }) {
 
 /* ── refine CTA + premium gate ─────────────────────────────────────────── */
 
-function RefineCTA({ iteration, hasFeedback, onRefine, pulse }) {
+function RefineCTA({ iteration, hasFeedback, onRefine, pulse, onGateShown, onUpgradeClick }) {
   const maxFree = 2;
   const remaining = maxFree - iteration;
   const isPremiumGated = iteration >= maxFree;
+  const featuresRef = useRef(null);
+  const featuresTracked = useRef(false);
+  const gateShownRef = useRef(false);
+
+  useEffect(() => {
+    if (isPremiumGated && !gateShownRef.current) {
+      gateShownRef.current = true;
+      onGateShown?.();
+    }
+  }, [isPremiumGated, onGateShown]);
+
+  // Track when features list scrolls into view
+  useEffect(() => {
+    if (!isPremiumGated || !featuresRef.current || featuresTracked.current) return;
+    const obs = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting && !featuresTracked.current) {
+        featuresTracked.current = true;
+        trackEvent('premium_features_viewed', { scroll_to_features: true });
+        obs.disconnect();
+      }
+    }, { threshold: 0.5 });
+    obs.observe(featuresRef.current);
+    return () => obs.disconnect();
+  }, [isPremiumGated]);
+
+  // Track dismissal — user navigates away while gate was visible
+  useEffect(() => {
+    if (!isPremiumGated) return;
+    return () => { trackEvent('premium_upgrade_dismissed', { iteration }); };
+  }, [isPremiumGated, iteration]);
 
   if (pulse === 'love') {
     return (
@@ -637,7 +679,7 @@ function RefineCTA({ iteration, hasFeedback, onRefine, pulse }) {
         <p style={{ fontFamily: F, fontSize: 13, color: `${C.slate}55`, lineHeight: 1.6, maxWidth: 380, margin: '0 auto 18px' }}>
           You've used your {maxFree} free refinements. Upgrade to continue iterating and unlock the full trip planning toolkit.
         </p>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 8, maxWidth: 300, margin: '0 auto 20px', textAlign: 'left' }}>
+        <div ref={featuresRef} style={{ display: 'flex', flexDirection: 'column', gap: 8, maxWidth: 300, margin: '0 auto 20px', textAlign: 'left' }}>
           {[
             { icon: <RefreshIcon size={13} color={C.oceanTeal} />, text: 'Unlimited refinements' },
             { icon: <PlaneIcon size={13} color={C.oceanTeal} />, text: 'Add flights & arrival times' },
@@ -651,7 +693,7 @@ function RefineCTA({ iteration, hasFeedback, onRefine, pulse }) {
           ))}
         </div>
         {/* TODO: Connect to payment/upgrade flow */}
-        <button style={{ fontFamily: F, fontSize: 13, fontWeight: 600, color: C.white, background: C.oceanTeal, border: 'none', borderRadius: 24, padding: '12px 28px', cursor: 'pointer', WebkitTapHighlightColor: 'transparent', boxShadow: `0 2px 12px ${C.oceanTeal}25`, transition: 'all 0.2s' }}>
+        <button onClick={onUpgradeClick} style={{ fontFamily: F, fontSize: 13, fontWeight: 600, color: C.white, background: C.oceanTeal, border: 'none', borderRadius: 24, padding: '12px 28px', cursor: 'pointer', WebkitTapHighlightColor: 'transparent', boxShadow: `0 2px 12px ${C.oceanTeal}25`, transition: 'all 0.2s' }}>
           Upgrade to Lila Pro
         </button>
         <div style={{ fontFamily: F, fontSize: 11, color: `${C.slate}35`, marginTop: 8 }}>Starting at $9/trip</div>
@@ -775,6 +817,33 @@ function MarkdownContent({ content }) {
   return <>{elements}</>;
 }
 
+/* ── session key for iteration persistence ─────────────────────────────── */
+
+function tripSessionKey(rawItinerary, formData) {
+  // Build a short stable string from the trip title + dates/month
+  let seed = '';
+  try {
+    let cleaned = rawItinerary || '';
+    const firstBrace = cleaned.indexOf('{');
+    const lastBrace = cleaned.lastIndexOf('}');
+    if (firstBrace !== -1 && lastBrace !== -1) {
+      cleaned = cleaned.slice(firstBrace, lastBrace + 1);
+    }
+    const parsed = JSON5.parse(cleaned);
+    seed += parsed.title || '';
+  } catch { /* use whatever seed we have */ }
+  if (formData?.dates?.start) seed += `|${formData.dates.start}`;
+  if (formData?.dates?.end) seed += `|${formData.dates.end}`;
+  if (formData?.month) seed += `|${formData.month}`;
+  if (formData?.destination) seed += `|${formData.destination}`;
+  // Simple djb2 hash → compact numeric key
+  let hash = 5381;
+  for (let i = 0; i < seed.length; i++) {
+    hash = ((hash << 5) + hash + seed.charCodeAt(i)) >>> 0;
+  }
+  return `lila_iter_${hash}`;
+}
+
 /* ═══════════════════════════════════════════════════════════════════════ */
 /* ── MAIN PAGE ─────────────────────────────────────────────────────────── */
 /* ═══════════════════════════════════════════════════════════════════════ */
@@ -783,15 +852,33 @@ export default function ItineraryResults() {
   const location = useLocation();
   const navigate = useNavigate();
   const [visible, setVisible] = useState(false);
-  const [iteration, setIteration] = useState(0);
   const [refining, setRefining] = useState(false);
-  const { itinerary: rawItinerary, metadata, formData } = location.state || {};
+
+  // Seed from router state once, then own locally so refinement can update in-place
+  const [rawItinerary, setRawItinerary] = useState(() => location.state?.itinerary || null);
+  const [metadata] = useState(() => location.state?.metadata || null);
+  const [formData] = useState(() => location.state?.formData || null);
+
+  // Iteration counter — persisted in sessionStorage keyed to this trip
+  const sessionKey = useMemo(
+    () => tripSessionKey(location.state?.itinerary || rawItinerary, location.state?.formData || formData),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []  // stable across the lifetime of this page; only computed once
+  );
+  const [iteration, setIteration] = useState(() => {
+    try { return Number(sessionStorage.getItem(sessionKey)) || 0; } catch { return 0; }
+  });
+  useEffect(() => {
+    try { sessionStorage.setItem(sessionKey, String(iteration)); } catch { /* storage full / unavailable */ }
+  }, [sessionKey, iteration]);
+
   const dayRefs = useRef([]);
 
   // Feedback state
   const [dayFeedback, setDayFeedback] = useState({});
   const [pulse, setPulse] = useState(null);
   const [overallNote, setOverallNote] = useState('');
+  const [refineError, setRefineError] = useState(null);
 
   useEffect(() => {
     if (!rawItinerary) { navigate('/plan'); return; }
@@ -800,22 +887,87 @@ export default function ItineraryResults() {
 
   if (!rawItinerary) return null;
 
-  // Parse itinerary
-  let itinerary = null;
-  try {
-    let cleaned = rawItinerary;
-    const firstBrace = cleaned.indexOf('{');
-    const lastBrace = cleaned.lastIndexOf('}');
-    if (firstBrace !== -1 && lastBrace !== -1) {
-      cleaned = cleaned.slice(firstBrace, lastBrace + 1);
+  // Parse itinerary — re-parses only when rawItinerary changes (i.e. after refinement)
+  const itinerary = useMemo(() => {
+    if (!rawItinerary) return null;
+    try {
+      let cleaned = rawItinerary;
+      const firstBrace = cleaned.indexOf('{');
+      const lastBrace = cleaned.lastIndexOf('}');
+      if (firstBrace !== -1 && lastBrace !== -1) {
+        cleaned = cleaned.slice(firstBrace, lastBrace + 1);
+      }
+      return JSON5.parse(cleaned);
+    } catch (e) {
+      console.error('JSON parse failed, using markdown fallback:', e.message);
+      return null;
     }
-    itinerary = JSON5.parse(cleaned);
-  } catch (e) {
-    console.error('JSON parse failed, using markdown fallback:', e.message);
-    itinerary = null;
-  }
+  }, [rawItinerary]);
 
   const isStructured = itinerary && itinerary.days;
+  const beforeYouGoRef = useRef(null);
+  const scrollSentinels = useRef({});
+  const pageLoadTime = useRef(performance.now());
+
+  // Fire once on initial load when a structured itinerary renders successfully
+  const hasTrackedGeneration = useRef(false);
+  useEffect(() => {
+    if (isStructured && !hasTrackedGeneration.current) {
+      hasTrackedGeneration.current = true;
+      trackEvent('itinerary_generation_completed', {
+        destination: formData?.destination || undefined,
+        duration_ms: Math.round(performance.now() - pageLoadTime.current),
+        day_count: itinerary.days.length,
+      });
+    }
+  }, [isStructured, itinerary, formData]);
+
+  // time_on_itinerary — fire on page unload
+  useEffect(() => {
+    const t0 = performance.now();
+    const handleUnload = () => {
+      trackEvent('time_on_itinerary', { duration_seconds: Math.round((performance.now() - t0) / 1000) });
+    };
+    window.addEventListener('beforeunload', handleUnload);
+    return () => window.removeEventListener('beforeunload', handleUnload);
+  }, []);
+
+  // scroll_depth — fire at 25/50/75/100% milestones
+  useEffect(() => {
+    const fired = new Set();
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (docHeight <= 0) return;
+      const pct = (scrollTop / docHeight) * 100;
+      for (const milestone of [25, 50, 75, 100]) {
+        if (pct >= milestone && !fired.has(milestone)) {
+          fired.add(milestone);
+          trackEvent('scroll_depth', { depth: milestone });
+        }
+      }
+    };
+    let ticking = false;
+    const throttled = () => { if (!ticking) { ticking = true; requestAnimationFrame(() => { handleScroll(); ticking = false; }); } };
+    window.addEventListener('scroll', throttled, { passive: true });
+    return () => window.removeEventListener('scroll', throttled);
+  }, []);
+
+  // before_you_go_reached — IntersectionObserver
+  useEffect(() => {
+    const el = beforeYouGoRef.current;
+    if (!el) return;
+    let tracked = false;
+    const obs = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting && !tracked) {
+        tracked = true;
+        trackEvent('before_you_go_reached', {});
+        obs.disconnect();
+      }
+    }, { threshold: 0.3 });
+    obs.observe(el);
+    return () => obs.disconnect();
+  });
 
   const scrollToDay = (index) => {
     if (dayRefs.current[index]) {
@@ -824,6 +976,18 @@ export default function ItineraryResults() {
   };
 
   const handleDayFeedback = (dayIndex, feedback) => {
+    if (feedback) {
+      const prev = dayFeedback[dayIndex];
+      if (prev) {
+        trackEvent('day_feedback_changed', { day_index: dayIndex, from_status: prev.status, to_status: feedback.status });
+      }
+      trackEvent('day_feedback_given', {
+        day_index: dayIndex,
+        status: feedback.status,
+        has_note: Boolean(feedback.note),
+        note_length: feedback.note ? feedback.note.length : 0,
+      });
+    }
     setDayFeedback(prev => {
       const next = { ...prev };
       if (feedback === null) { delete next[dayIndex]; } else { next[dayIndex] = feedback; }
@@ -833,19 +997,44 @@ export default function ItineraryResults() {
 
   const hasFeedback = Object.keys(dayFeedback).length > 0 || pulse === 'close' || pulse === 'rethink';
 
-  const handleRefine = () => {
-    // TODO: Connect to refinement API
-    // Should send: original itinerary, dayFeedback, pulse, overallNote, formData
-    // and receive a new itinerary to replace rawItinerary
+  const handleRefine = async () => {
+    const nextIteration = iteration + 1;
+    const daysApproved = Object.values(dayFeedback).filter(f => f.status === 'approved').length;
+    const daysAdjusted = Object.values(dayFeedback).filter(f => f.status === 'adjust').length;
+    trackEvent('refinement_requested', { iteration: nextIteration, days_approved: daysApproved, days_adjusted: daysAdjusted, pulse: pulse || 'none' });
+    const t0 = performance.now();
     setRefining(true);
-    setTimeout(() => {
-      setRefining(false);
+    setRefineError(null);
+    try {
+      const response = await fetch('/api/refine-itinerary', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          itinerary: rawItinerary,
+          dayFeedback,
+          pulse,
+          overallNote,
+          formData,
+        }),
+      });
+      const result = await response.json();
+      if (!response.ok || !result.success) {
+        throw new Error(result.error || 'Refinement failed');
+      }
+      setRawItinerary(result.itinerary);
       setIteration(prev => prev + 1);
       setDayFeedback({});
       setPulse(null);
       setOverallNote('');
+      trackEvent('refinement_completed', { iteration: nextIteration, duration_ms: Math.round(performance.now() - t0) });
       window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, 2200);
+    } catch (err) {
+      console.error('Refinement failed:', err);
+      trackEvent('refinement_failed', { iteration: nextIteration, error_type: err.message || 'unknown' });
+      setRefineError('Something went wrong refining your trip. Please try again.');
+    } finally {
+      setRefining(false);
+    }
   };
 
   return (
@@ -862,7 +1051,7 @@ export default function ItineraryResults() {
         borderBottom: `1px solid ${C.sage}06`,
       }}>
         <Link to="/" style={{ fontFamily: F, fontSize: 16, fontWeight: 500, letterSpacing: '0.1em', color: C.slate, textDecoration: 'none' }}>Lila Trips</Link>
-        <button onClick={() => navigate('/plan')} style={{
+        <button onClick={() => { trackEvent('new_trip_clicked', { source: 'header' }); navigate('/plan'); }} style={{
           fontFamily: F, fontSize: 10, fontWeight: 600,
           color: C.sage, background: `${C.white}70`,
           border: `1px solid ${C.sage}15`, borderRadius: 20,
@@ -907,7 +1096,7 @@ export default function ItineraryResults() {
 
             {/* Before You Go */}
             {itinerary.beforeYouGo && (
-              <div style={{ background: C.white, borderRadius: 16, border: `1px solid ${C.sage}0c`, padding: '18px 20px', marginTop: 6, boxShadow: `0 1px 8px ${C.sage}04` }}>
+              <div ref={beforeYouGoRef} style={{ background: C.white, borderRadius: 16, border: `1px solid ${C.sage}0c`, padding: '18px 20px', marginTop: 6, boxShadow: `0 1px 8px ${C.sage}04` }}>
                 <div style={{ fontFamily: F, fontSize: 9, fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: C.sage, marginBottom: 12 }}>Before You Go</div>
                 {itinerary.beforeYouGo.map((item, i) => (
                   <div key={i} style={{ display: 'flex', gap: 8, padding: '5px 0', borderBottom: i < itinerary.beforeYouGo.length - 1 ? `1px solid ${C.sage}06` : 'none' }}>
@@ -919,7 +1108,8 @@ export default function ItineraryResults() {
             )}
 
             {/* Trip Pulse */}
-            <TripPulse pulse={pulse} setPulse={setPulse} overallNote={overallNote} setOverallNote={setOverallNote} />
+            <TripPulse pulse={pulse} setPulse={setPulse} overallNote={overallNote} setOverallNote={setOverallNote}
+              iteration={iteration} onPulseSelect={(val) => trackEvent('trip_pulse_selected', { pulse: val })} />
 
             {/* Closing Note */}
             {itinerary.closingNote && (
@@ -928,8 +1118,18 @@ export default function ItineraryResults() {
               </div>
             )}
 
+            {/* Refinement error */}
+            {refineError && (
+              <div style={{ background: `${C.sunSalmon}10`, border: `1px solid ${C.sunSalmon}25`, borderRadius: 12, padding: '12px 16px', marginTop: 16, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10 }}>
+                <span style={{ fontFamily: F, fontSize: 13, fontWeight: 500, color: C.sunSalmon, lineHeight: 1.4 }}>{refineError}</span>
+                <button onClick={() => setRefineError(null)} style={{ fontFamily: F, fontSize: 11, fontWeight: 600, color: `${C.sunSalmon}80`, background: 'none', border: 'none', cursor: 'pointer', padding: '4px 8px', flexShrink: 0, WebkitTapHighlightColor: 'transparent' }}>Dismiss</button>
+              </div>
+            )}
+
             {/* Refine CTA / Premium Gate */}
-            <RefineCTA iteration={iteration} hasFeedback={hasFeedback} onRefine={handleRefine} pulse={pulse} />
+            <RefineCTA iteration={iteration} hasFeedback={hasFeedback} onRefine={handleRefine} pulse={pulse}
+              onGateShown={() => trackEvent('premium_gate_shown', { iteration })}
+              onUpgradeClick={() => trackEvent('premium_upgrade_clicked', { iteration })} />
           </>
         ) : (
           <div style={{ background: C.white, borderRadius: 16, padding: '24px 22px', border: `1px solid ${C.sage}0c`, boxShadow: `0 1px 8px ${C.sage}04` }}>
@@ -939,7 +1139,7 @@ export default function ItineraryResults() {
 
         {/* Bottom nav */}
         <div style={{ textAlign: 'center', marginTop: 24, paddingBottom: 16 }}>
-          <button onClick={() => navigate('/plan')} style={{
+          <button onClick={() => { trackEvent('new_trip_clicked', { source: 'start_over' }); navigate('/plan'); }} style={{
             fontFamily: F, fontSize: 11, fontWeight: 500,
             color: `${C.sage}60`, background: 'none',
             border: 'none', cursor: 'pointer', padding: '8px 16px',

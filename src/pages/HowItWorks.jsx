@@ -16,6 +16,7 @@ import { Nav, Footer, FadeIn, PageHeader } from '@components';
 import TripCard from '@components/TripCard';
 import { C } from '@data/brand';
 import { allTrips } from '@data/trips';
+import { trackEvent } from '@utils/analytics';
 
 // ─── Sample Itinerary ───────────────────────────────────────────────────────
 const sampleItinerary = [
@@ -40,6 +41,7 @@ const offerings = [
     cta: "Explore Guides Free",
     ctaLink: "/destinations",
     detail: "Free · No account needed",
+    offeringType: "diy",
   },
   {
     icon: "◎",
@@ -50,6 +52,7 @@ const offerings = [
     cta: "Unlock — $39",
     ctaLink: "/plan",
     detail: "One-time purchase · Offline access",
+    offeringType: "trip_planner",
   },
   {
     icon: "☾",
@@ -60,6 +63,7 @@ const offerings = [
     cta: "View Trips",
     ctaLink: "/group-trips",
     detail: "From $895 per person",
+    offeringType: "group_trips",
   },
   {
     icon: "△",
@@ -70,6 +74,7 @@ const offerings = [
     cta: "Start — From $199",
     ctaLink: "/contact",
     detail: "Personalized · Human-crafted",
+    offeringType: "custom",
   },
 ];
 
@@ -311,6 +316,7 @@ export default function HowItWorksPage() {
                         color: o.color, textDecoration: "none",
                         transition: "all 0.3s ease",
                       }}
+                      onClick={() => trackEvent('offering_cta_clicked', { offering: o.offeringType, destination_url: o.ctaLink })}
                       onMouseEnter={e => {
                         e.target.style.background = o.color;
                         e.target.style.color = "white";
@@ -372,7 +378,7 @@ export default function HowItWorksPage() {
 
           <FadeIn delay={0.3}>
             <div style={{ marginTop: 36 }}>
-              <Link to="/group-trips" className="underline-link">View All Trips</Link>
+              <Link to="/group-trips" className="underline-link" onClick={() => trackEvent('offering_cta_clicked', { offering: 'view_all_trips' })}>View All Trips</Link>
             </div>
           </FadeIn>
         </div>
@@ -391,7 +397,7 @@ export default function HowItWorksPage() {
                 fontFamily: "'Quicksand', sans-serif",
                 fontSize: "clamp(22px, 3vw, 32px)", fontWeight: 300, color: "white", marginBottom: 20,
               }}>Pick a destination. The guide is free.</h3>
-              <Link to="/destinations" className="underline-link underline-link-light">Explore Destinations</Link>
+              <Link to="/destinations" className="underline-link underline-link-light" onClick={() => trackEvent('offering_cta_clicked', { offering: 'explore_destinations' })}>Explore Destinations</Link>
             </div>
           </FadeIn>
         </div>

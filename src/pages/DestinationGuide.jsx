@@ -14,6 +14,7 @@ import { useParams, Link, Navigate } from 'react-router-dom';
 import { Nav, Footer, FadeIn, PageHero, Breadcrumb } from '@components';
 import { C } from '@data/brand';
 import { destinations } from '@data/destinations';
+import { trackEvent } from '@utils/analytics';
 
 export default function DestinationGuide() {
   const { slug } = useParams();
@@ -134,6 +135,7 @@ export default function DestinationGuide() {
                     letterSpacing: "0.18em", textTransform: "uppercase",
                     cursor: "pointer", transition: "opacity 0.2s",
                   }}
+                  onClick={() => trackEvent('guide_notify_clicked', { destination: dest.slug })}
                   onMouseEnter={e => e.currentTarget.style.opacity = "0.85"}
                   onMouseLeave={e => e.currentTarget.style.opacity = "1"}
                   >Get Notified</div>

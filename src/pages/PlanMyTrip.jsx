@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { useNavigate, Link } from 'react-router-dom';
 import { C as BrandC } from '@data/brand';
 import { translateFormToApi } from "../services/form-to-api";
+import { trackEvent } from '@utils/analytics';
 
 // ─── Brand Tokens (extended from site brand system) ─────────────────────────
 const C = {
@@ -1574,6 +1575,12 @@ function GeneratingScreen({ destination }) {
 // MAIN
 // ═══════════════════════════════════════════════════════════════════════════════
 
+const STEP_NAMES = [
+  'welcome', 'destination', 'month', 'duration', 'budget',
+  'intention', 'range', 'movement', 'pacing', 'practice_level',
+  'practice_interests', 'profile',
+];
+
 export default function PlanMyTrip() {
   const navigate = useNavigate();
   const [step, setStep] = useState(0);
@@ -1585,6 +1592,26 @@ export default function PlanMyTrip() {
   const [transitioning, setTransitioning] = useState(false);
   const [generating, setGenerating] = useState(false);
   const containerRef = useRef(null);
+  const questionnaireCompleted = useRef(false);
+
+  // questionnaire_started — fire once on mount
+  useEffect(() => {
+    trackEvent('questionnaire_started', { destination: data.destination || undefined });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // questionnaire_abandoned — fire on unmount if not completed
+  useEffect(() => {
+    return () => {
+      if (!questionnaireCompleted.current) {
+        trackEvent('questionnaire_abandoned', {
+          last_step: STEP_NAMES[step] || step,
+          steps_completed: step,
+          destination: data.destination || undefined,
+        });
+      }
+    };
+  });
 
   const updateData = (patch) => setData(prev => ({ ...prev, ...patch }));
   const handleClose = () => {
@@ -1592,14 +1619,32 @@ export default function PlanMyTrip() {
     navigate('/');
   };
   const goNext = () => {
+    trackEvent('questionnaire_step_completed', {
+      step_number: step,
+      step_name: STEP_NAMES[step] || String(step),
+      destination: data.destination || undefined,
+    });
     setTransitioning(true);
     setTimeout(() => { setStep(s => s + 1); setTransitioning(false); if (containerRef.current) containerRef.current.scrollTop = 0; }, 300);
   };
   const goBack = () => {
+    trackEvent('questionnaire_step_back', {
+      from_step: STEP_NAMES[step] || String(step),
+      to_step: STEP_NAMES[step - 1] || String(step - 1),
+    });
     setTransitioning(true);
     setTimeout(() => { setStep(s => s - 1); setTransitioning(false); if (containerRef.current) containerRef.current.scrollTop = 0; }, 300);
   };
   const handleUnlock = async () => {
+    questionnaireCompleted.current = true;
+    trackEvent('questionnaire_completed', {
+      destination: data.destination || undefined,
+      trip_duration: data.duration,
+      party_size: 1,
+      interests: data.practices?.join(',') || '',
+    });
+    trackEvent('itinerary_generation_started', { destination: data.destination || undefined });
+    const t0 = performance.now();
     setGenerating(true);
     try {
       const apiBody = translateFormToApi(data);
@@ -1618,10 +1663,12 @@ export default function PlanMyTrip() {
           }
         });
       } else {
+        trackEvent('itinerary_generation_failed', { destination: data.destination || undefined, error_type: 'api_error' });
         alert('Something went wrong generating your itinerary. Please try again.');
       }
     } catch (err) {
       console.error('Itinerary generation failed:', err);
+      trackEvent('itinerary_generation_failed', { destination: data.destination || undefined, error_type: err.message || 'network_error' });
       alert('Something went wrong. Please try again.');
     } finally {
       setGenerating(false);
