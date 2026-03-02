@@ -242,18 +242,18 @@ export const traditions = [
     symbol: "☸",
   },
   {
-    name: "Shinto",
-    origin: "Japan",
-    age: "~2,500+ years",
-    color: "#7DB8A0",
-    symbol: "⛩",
-  },
-  {
     name: "Taoism",
     origin: "China",
     age: "~2,500 years",
     color: "#6BA4B8",
     symbol: "☯",
+  },
+  {
+    name: "Shinto",
+    origin: "Japan",
+    age: "~2,500+ years",
+    color: "#7DB8A0",
+    symbol: "⛩",
   },
   {
     name: "Stoicism",

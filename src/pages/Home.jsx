@@ -221,7 +221,7 @@ function DestCarousel() {
                   Golden Windows
                 </span>
               </div>
-              {d.guideAvailable && (
+              {d.guideAvailable ? (
                 <div style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
                   <div style={{ width: 8, height: 8, borderRadius: "50%", background: C.seaGlass || "#7DB8A0" }} />
                   <span style={{
@@ -230,6 +230,17 @@ function DestCarousel() {
                     color: C.seaGlass || "#7DB8A0",
                   }}>
                     Guide Available
+                  </span>
+                </div>
+              ) : (
+                <div style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
+                  <div style={{ width: 8, height: 8, borderRadius: "50%", background: C.stone || "#B0BEC5" }} />
+                  <span style={{
+                    fontFamily: "'Quicksand'", fontSize: 13, fontWeight: 600,
+                    letterSpacing: "0.06em",
+                    color: C.stone || "#B0BEC5",
+                  }}>
+                    Guide Coming Soon
                   </span>
                 </div>
               )}
@@ -336,187 +347,125 @@ const approachBraids = [
     icon: "△",
     color: "#7DB8A0",
     headline: "The landscape is the teacher.",
-    body: "We choose destinations for their capacity to dissolve the ordinary. Places where canyon walls hold millions of years of silence. Where ancient forests hum with something older than language. Where the horizon line rearranges something inside you. These aren't backdrops — they're the main event.",
-    details: [
-      "Destinations chosen for transformative capacity, not popularity",
-      "Trips timed to natural crescendos — solstices, blooms, migrations",
-      "Terrain that invites awe: desert, alpine, coastal, old-growth",
-    ],
+    tags: ["Iconic Destinations", "Threshold Timing", "Canyon & Desert", "Old-Growth Forest", "Wild Coastline"],
   },
   {
     label: "Ancient Practices",
     icon: "◎",
     color: "#D4A853",
-    headline: "Ancient wisdom shapes our path.",
-    body: "Across centuries and continents, wisdom traditions have arrived at remarkably similar truths about how to live well. We draw from principles shared by Buddhist, Hindu, Taoist, Shinto, and Stoic philosophy — oneness, flow, presence, and reverence — and weave them into every journey through yoga, breathwork, meditation, and mindful movement.",
-    details: [
-      "Four guiding principles: Oneness, Flow, Presence, Reverence",
-      "Practices include yoga, breathwork, meditation, cold plunges",
-      "Drawing from five wisdom traditions spanning 5,000 years",
-    ],
+    headline: "Steeped in living tradition.",
+    tags: ["Yoga", "Breathwork", "Meditation", "Cold Immersion", "Mindful Movement", "Journaling"],
   },
   {
     label: "Elemental Encounters",
     icon: "✦",
     color: "#6BA4B8",
-    headline: "The raw materials of being alive.",
-    body: "Sunlight on red rock at golden hour. Cold river water that shocks you back into your body. Starry skies so vast they reframe your place in the universe. Ancient stone that holds the memory of deep time. These are the real teachers — we just put you in the room.",
-    details: [
-      "Dark sky stargazing and sunrise rituals",
-      "Cold water immersion and natural hot springs",
-      "Golden hour on ancient terrain",
-      "Silence deep enough to hear yourself think",
-    ],
+    headline: "Where the senses take over.",
+    tags: ["Sunlight", "Cold Water", "Starry Skies", "Ancient Stone", "Silence", "Firelight"],
   },
 ];
 
 function ApproachSectionHome() {
-  const [active, setActive] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth <= 860);
-    check();
-    window.addEventListener("resize", check);
-    return () => window.removeEventListener("resize", check);
-  }, []);
-
-  const braid = approachBraids[active];
-
   return (
-    <section style={{ padding: "100px 0", background: C.darkInk }}>
+    <section style={{ padding: "72px 0 64px", background: C.darkInk }}>
       <div className="section-padded" style={{ maxWidth: 1100, margin: "0 auto", padding: "0 52px" }}>
         <FadeIn>
-          <span className="eyebrow" style={{ color: C.skyBlue }}>Ethos</span>
-          <h2 style={{
-            fontFamily: "'Quicksand', sans-serif",
-            fontSize: "clamp(26px, 4vw, 44px)", fontWeight: 300,
-            color: "white", lineHeight: 1.2, marginBottom: 12,
-          }}>
-            More than a trip.
-          </h2>
-          <p style={{
-            fontFamily: "'Quicksand', sans-serif",
-            fontSize: "clamp(13px, 1.5vw, 16px)", fontWeight: 400,
-            color: "rgba(255,255,255,0.45)", lineHeight: 1.8, maxWidth: 520,
-          }}>
-            Three braids woven into every Lila journey — sacred places, ancient wisdom, and raw elemental experience.
-          </p>
+          <div style={{ marginBottom: 40 }}>
+            <span className="eyebrow" style={{ color: C.skyBlue }}>Ethos</span>
+            <h2 style={{
+              fontFamily: "'Quicksand', sans-serif",
+              fontSize: "clamp(24px, 3.5vw, 38px)", fontWeight: 300,
+              color: "white", lineHeight: 1.25, margin: 0,
+            }}>
+              What makes a Lila trip.
+            </h2>
+          </div>
         </FadeIn>
 
-        {/* Tab selectors */}
-        <div style={{
-          display: "flex", gap: isMobile ? 0 : 8,
-          marginTop: 48, marginBottom: 0,
-          borderBottom: "1px solid rgba(255,255,255,0.08)",
-          flexDirection: isMobile ? "column" : "row",
+        <div className="approach-braids-grid" style={{
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr 1fr",
+          gap: 0,
         }}>
-          {approachBraids.map((b, i) => {
-            const isActive = active === i;
-            return (
-              <button
-                key={b.label}
-                onClick={() => setActive(i)}
-                style={{
-                  flex: isMobile ? "none" : 1,
-                  padding: isMobile ? "18px 4px" : "20px 24px",
-                  background: "transparent",
-                  border: "none",
-                  borderBottom: isMobile ? "none" : `2px solid ${isActive ? b.color : "transparent"}`,
-                  borderLeft: isMobile ? `2px solid ${isActive ? b.color : "transparent"}` : "none",
-                  cursor: "pointer",
-                  display: "flex", alignItems: "center", gap: 12,
-                  transition: "all 0.3s ease",
-                  WebkitTapHighlightColor: "transparent",
-                }}
-              >
-                <span style={{
-                  fontSize: 18, color: b.color,
-                  opacity: isActive ? 1 : 0.4, transition: "opacity 0.3s",
-                }}>{b.icon}</span>
-                <span style={{
-                  fontFamily: "'Quicksand', sans-serif",
-                  fontSize: isMobile ? 13 : 12, fontWeight: 700,
-                  letterSpacing: "0.16em", textTransform: "uppercase",
-                  color: isActive ? b.color : "rgba(255,255,255,0.35)",
-                  transition: "color 0.3s",
-                }}>{b.label}</span>
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Active content panel */}
-        <div
-          key={braid.label}
-          style={{
-            padding: isMobile ? "36px 0" : "48px 0",
-            animation: "fadeUp 0.4s ease",
-          }}
-        >
-          <style>{`
-            @keyframes fadeUp {
-              from { opacity: 0; transform: translateY(12px); }
-              to   { opacity: 1; transform: translateY(0); }
-            }
-          `}</style>
-
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
-            gap: isMobile ? 32 : 56,
-            alignItems: "start",
-          }}>
-            {/* Left: headline + body */}
-            <div>
-              <h3 style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontSize: "clamp(22px, 3vw, 32px)", fontWeight: 300, fontStyle: "italic",
-                color: braid.color, lineHeight: 1.3, marginBottom: 20,
+          {approachBraids.map((b, i) => (
+            <FadeIn key={b.label} delay={i * 0.07}>
+              <div style={{
+                padding: "32px 28px 36px",
+                borderRight: i < 2 ? "1px solid rgba(255,255,255,0.06)" : "none",
               }}>
-                {braid.headline}
-              </h3>
-              <p style={{
-                fontFamily: "'Quicksand', sans-serif",
-                fontSize: "clamp(13px, 1.4vw, 15px)", fontWeight: 400,
-                color: "rgba(255,255,255,0.55)", lineHeight: 2.0,
-                letterSpacing: "0.02em",
-              }}>
-                {braid.body}
-              </p>
-            </div>
-
-            {/* Right: detail points */}
-            <div style={{ paddingTop: isMobile ? 0 : 8 }}>
-              {braid.details.map((d, j) => (
-                <div key={j} style={{
-                  display: "flex", alignItems: "flex-start", gap: 14,
-                  padding: "16px 0",
-                  borderBottom: j < braid.details.length - 1 ? "1px solid rgba(255,255,255,0.06)" : "none",
-                }}>
-                  <div style={{
-                    width: 6, height: 6, borderRadius: "50%",
-                    background: braid.color, opacity: 0.5,
-                    flexShrink: 0, marginTop: 7,
-                  }} />
+                {/* Icon + Label */}
+                <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 20 }}>
+                  <span style={{ fontSize: 18, color: b.color, lineHeight: 1 }}>{b.icon}</span>
                   <span style={{
                     fontFamily: "'Quicksand', sans-serif",
-                    fontSize: 13, fontWeight: 500,
-                    color: "rgba(255,255,255,0.4)",
-                    letterSpacing: "0.03em", lineHeight: 1.7,
-                  }}>{d}</span>
+                    fontSize: 10, fontWeight: 700,
+                    letterSpacing: "0.18em", textTransform: "uppercase",
+                    color: b.color,
+                  }}>{b.label}</span>
                 </div>
-              ))}
-            </div>
-          </div>
+
+                {/* Headline */}
+                <h3 style={{
+                  fontFamily: "'Quicksand', sans-serif",
+                  fontSize: "clamp(15px, 1.6vw, 18px)", fontWeight: 400,
+                  color: "rgba(255,255,255,0.65)", lineHeight: 1.5,
+                  marginBottom: 24, marginTop: 0, letterSpacing: "0.01em",
+                }}>{b.headline}</h3>
+
+                {/* Tag chips */}
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+                  {b.tags.map((tag, j) => (
+                    <span key={j} style={{
+                      fontFamily: "'Quicksand', sans-serif",
+                      fontSize: 11, fontWeight: 600, letterSpacing: "0.06em",
+                      color: `${b.color}cc`,
+                      padding: "8px 16px",
+                      border: `1px solid ${b.color}25`,
+                      background: `${b.color}08`,
+                      transition: "all 0.25s ease",
+                    }}
+                    onMouseEnter={e => {
+                      e.currentTarget.style.background = `${b.color}18`;
+                      e.currentTarget.style.borderColor = `${b.color}40`;
+                      e.currentTarget.style.color = b.color;
+                    }}
+                    onMouseLeave={e => {
+                      e.currentTarget.style.background = `${b.color}08`;
+                      e.currentTarget.style.borderColor = `${b.color}25`;
+                      e.currentTarget.style.color = `${b.color}cc`;
+                    }}
+                    >{tag}</span>
+                  ))}
+                </div>
+              </div>
+            </FadeIn>
+          ))}
         </div>
 
-        <FadeIn delay={0.2}>
-          <div style={{ paddingTop: 16 }}>
+        <FadeIn delay={0.25}>
+          <div style={{
+            borderTop: "1px solid rgba(255,255,255,0.06)",
+            paddingTop: 32, marginTop: 4,
+          }}>
             <Link to="/ethos" className="underline-link underline-link-light">Explore Our Ethos</Link>
           </div>
         </FadeIn>
       </div>
+
+      <style>{`
+        @media (max-width: 860px) {
+          .approach-braids-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .approach-braids-grid > div > div {
+            border-right: none !important;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+          }
+          .approach-braids-grid > div:last-child > div {
+            border-bottom: none;
+          }
+        }
+      `}</style>
     </section>
   );
 }
@@ -838,13 +787,15 @@ export default function HomePage() {
                       <div style={{ marginBottom: 10 }}>
                         <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 6, flexWrap: "wrap" }}>
                           <div style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
-                            <div style={{ width: 16, height: 1, background: d.accent }} />
+                            <div style={{ width: 16, height: 1, background: d.accent, boxShadow: "0 0 4px rgba(0,0,0,0.3)" }} />
                             <span style={{
                               fontFamily: "'Quicksand'", fontSize: 9, fontWeight: 700,
-                              letterSpacing: "0.22em", textTransform: "uppercase", color: d.accent,
+                              letterSpacing: "0.22em", textTransform: "uppercase",
+                              color: "rgba(255,255,255,0.92)",
+                              textShadow: "0 1px 6px rgba(0,0,0,0.5), 0 0 2px rgba(0,0,0,0.3)",
                             }}>Golden Windows</span>
                           </div>
-                          {d.guideAvailable && (
+                          {d.guideAvailable ? (
                             <div style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
                               <div style={{ width: 7, height: 7, borderRadius: "50%", background: "#7DB8A0" }} />
                               <span style={{
@@ -853,6 +804,18 @@ export default function HomePage() {
                                 color: "rgba(255,255,255,0.9)",
                               }}>
                                 Guide Available
+                              </span>
+                            </div>
+                          ) : (
+                            <div style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
+                              <div style={{ width: 7, height: 7, borderRadius: "50%", background: "rgba(255,255,255,0.45)", boxShadow: "0 0 4px rgba(0,0,0,0.3)" }} />
+                              <span style={{
+                                fontFamily: "'Quicksand'", fontSize: 11, fontWeight: 600,
+                                letterSpacing: "0.06em",
+                                color: "rgba(255,255,255,0.6)",
+                                textShadow: "0 1px 6px rgba(0,0,0,0.5), 0 0 2px rgba(0,0,0,0.3)",
+                              }}>
+                                Guide Coming Soon
                               </span>
                             </div>
                           )}

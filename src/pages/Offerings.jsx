@@ -3,7 +3,7 @@
 // ═══════════════════════════════════════════════════════════════════════════════
 
 import { Link } from 'react-router-dom';
-import { Nav, Footer, FadeIn } from '@components';
+import { Nav, Footer, FadeIn, PageHeader } from '@components';
 import { C } from '@data/brand';
 
 // ─── The Braid: Three Threads ────────────────────────────────────────────────
@@ -135,31 +135,44 @@ export default function OfferingsPage() {
   return (
     <>
       <Nav />
-      {/* ══════════════════════════════════════════════════════════════════════
-          ACT 1 — THE COMPOSITION: Three Threads
-      ══════════════════════════════════════════════════════════════════════ */}
-      <section style={{ padding: "120px 52px 80px", background: C.cream }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <FadeIn>
-            <div style={{ textAlign: "center", marginBottom: 64 }}>
-              <span style={{
-                fontFamily: "'Quicksand'", fontSize: 10, fontWeight: 700,
-                letterSpacing: "0.22em", textTransform: "uppercase",
-                color: C.oceanTeal, display: "block", marginBottom: 16,
-              }}>The Composition</span>
-              <h2 style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontSize: "clamp(30px, 4.5vw, 48px)", fontWeight: 300,
-                color: C.darkInk, lineHeight: 1.3,
-                maxWidth: 680, margin: "0 auto",
-              }}>
-                Sacred terrain. Ancient practice. Intentional ritual.<br />
-                <span style={{ fontStyle: "italic", color: "#5a6a78" }}>
-                  Braided into something that changes you.
-                </span>
-              </h2>
+      <PageHeader
+        eyebrow="Our Approach"
+        title="More Than a Trip"
+        subtitle="Three braids woven into every Lila journey — sacred places, ancient wisdom, and raw elemental experience."
+        accentColor={C.goldenAmber}
+      >
+        {/* Three braid labels */}
+        <div style={{
+          display: "flex", gap: 48, marginTop: 36,
+        }}>
+          {[
+            { icon: "△", label: "Sacred Terrain", color: "#7DB8A0", desc: "The landscape is the teacher" },
+            { icon: "◎", label: "Ancient Practices", color: "#D4A853", desc: "Wisdom traditions woven in" },
+            { icon: "✦", label: "Elemental Encounters", color: "#6BA4B8", desc: "The raw materials of being alive" },
+          ].map(b => (
+            <div key={b.label} style={{ display: "flex", alignItems: "center", gap: 10 }}>
+              <span style={{ fontSize: 14, color: b.color, opacity: 0.7 }}>{b.icon}</span>
+              <div>
+                <span style={{
+                  fontFamily: "'Quicksand', sans-serif",
+                  fontSize: 10, fontWeight: 700,
+                  letterSpacing: "0.16em", textTransform: "uppercase",
+                  color: b.color, display: "block",
+                }}>{b.label}</span>
+                <span style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontSize: 14, fontStyle: "italic",
+                  color: "#8a9baa",
+                }}>{b.desc}</span>
+              </div>
             </div>
-          </FadeIn>
+          ))}
+        </div>
+      </PageHeader>
+
+      {/* ══ THREE THREADS — Detail Cards ══════════════════════════════════════ */}
+      <section style={{ padding: "48px 52px 80px", background: C.cream }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
 
           {/* Three thread cards */}
           <div style={{
