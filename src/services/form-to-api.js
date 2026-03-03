@@ -13,7 +13,9 @@
  * Form data shape (from PlanMyTrip.jsx):
  * {
  *   destination: 'zion',
- *   month: 'october',           // NEW — from month selector step
+ *   groupType: 'solo',          // solo | couple | friends | family
+ *   groupSize: 1,               // 1-8
+ *   month: 'october',           // from month selector step
  *   intentions: ['reconnect'],
  *   movement: 50,               // slider 0-100
  *   pacing: 50,                 // slider 0-100
@@ -142,8 +144,8 @@ export function translateFormToApi(formData, userName = 'Traveler') {
         end: null,
         flexible: true,
       },
-      groupType: 'solo', // Default for now — add group step later
-      groupSize: 1,
+      groupType: formData.groupType || 'solo',
+      groupSize: formData.groupSize || 1,
       interests: practicesToInterests(
         formData.practices,
         formData.intentions,

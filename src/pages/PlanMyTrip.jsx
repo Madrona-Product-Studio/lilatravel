@@ -275,6 +275,13 @@ const BUDGET_TIERS = [
   { id: "noLimits", label: "No Limits", desc: "The extraordinary", range: "$$$$", color: C.sunSalmon },
 ];
 
+const GROUP_TYPES = [
+  { id: "solo",    label: "Solo",    desc: "Just me",               icon: IconUnalome,     color: C.oceanTeal },
+  { id: "couple",  label: "Couple",  desc: "Two of us",             icon: IconYinYang,     color: C.sunSalmon },
+  { id: "friends", label: "Friends", desc: "A group trip",          icon: IconDharmaWheel, color: C.goldenAmber },
+  { id: "family",  label: "Family",  desc: "With kids or family",   icon: IconBodhiLeaf,   color: C.seaGlass },
+];
+
 const MONTHS = [
   { id: 'january',   label: 'January',   window: 'The Longest Shadow',   color: '#8BA4B8' },
   { id: 'february',  label: 'February',  window: 'Quiet Awakening',      color: '#9BAFBF' },
@@ -1260,6 +1267,91 @@ function StepDuration({ data, onChange, onNext, onBack }) {
   );
 }
 
+// ─── Step: Group (travel party) ───────────────────────────────────────────
+
+function StepGroup({ data, onChange, onNext, onBack }) {
+  const selected = data.groupType;
+  const groupSize = data.groupSize || 1;
+  const showCounter = selected === 'friends' || selected === 'family';
+
+  const handleSelect = (id) => {
+    const patch = { groupType: id };
+    if (id === 'solo') patch.groupSize = 1;
+    else if (id === 'couple') patch.groupSize = 2;
+    else if (selected !== id) patch.groupSize = 2; // default when first selecting friends/family
+    onChange(patch);
+  };
+
+  return (
+    <div>
+      <StepTitle eyebrow="Travel Party" title="Who's coming?" subtitle="This shapes everything — pace, dining, activities, lodging." />
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, maxWidth: 480, margin: "0 auto", padding: "0 20px" }}>
+        {GROUP_TYPES.map(item => {
+          const active = selected === item.id;
+          const Ic = item.icon;
+          return (
+            <button key={item.id} onClick={() => handleSelect(item.id)} style={{
+              background: active ? `${item.color}12` : C.white,
+              border: `2px solid ${active ? item.color : `${C.sage}18`}`,
+              borderRadius: 16, padding: "24px 16px",
+              cursor: "pointer", transition: "all 0.35s",
+              textAlign: "center", minHeight: 140,
+              boxShadow: active ? `0 4px 20px ${item.color}20` : "0 1px 4px rgba(0,0,0,0.04)",
+              WebkitTapHighlightColor: "transparent",
+            }}>
+              <div style={{ display: "flex", justifyContent: "center", marginBottom: 10, transition: "opacity 0.3s", opacity: active ? 1 : 0.4 }}>
+                <Ic size={30} color={active ? item.color : C.sage} />
+              </div>
+              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(16px, 4vw, 18px)", fontWeight: 600, color: C.slate, marginBottom: 3 }}>{item.label}</div>
+              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, color: `${C.slate}70`, lineHeight: 1.3 }}>{item.desc}</div>
+            </button>
+          );
+        })}
+      </div>
+      {showCounter && (
+        <div style={{
+          maxWidth: 480, margin: "20px auto 0", padding: "0 20px",
+          animation: "fadeScale 0.35s cubic-bezier(0.4, 0, 0.2, 1)",
+        }}>
+          <div style={{
+            background: C.white, borderRadius: 18, padding: "28px 24px",
+            border: `1px solid ${C.sage}12`,
+          }}>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 28 }}>
+              <button onClick={() => onChange({ groupSize: Math.max(2, groupSize - 1) })} style={{
+                width: 48, height: 48, borderRadius: "50%",
+                background: "transparent", border: `2px solid ${C.sage}25`,
+                cursor: "pointer", fontSize: 20, color: C.sage,
+                display: "flex", alignItems: "center", justifyContent: "center",
+                fontFamily: "'Quicksand', sans-serif", WebkitTapHighlightColor: "transparent",
+              }}>−</button>
+              <div style={{ textAlign: "center", minWidth: 60 }}>
+                <div style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontSize: "clamp(48px, 12vw, 60px)", fontWeight: 300, color: C.slate, lineHeight: 1,
+                }}>{groupSize}</div>
+                <div style={{
+                  fontFamily: "'Quicksand', sans-serif",
+                  fontSize: 11, fontWeight: 600, letterSpacing: "0.15em", textTransform: "uppercase",
+                  color: `${C.sage}80`, marginTop: 2,
+                }}>travelers</div>
+              </div>
+              <button onClick={() => onChange({ groupSize: Math.min(8, groupSize + 1) })} style={{
+                width: 48, height: 48, borderRadius: "50%",
+                background: "transparent", border: `2px solid ${C.sage}25`,
+                cursor: "pointer", fontSize: 20, color: C.sage,
+                display: "flex", alignItems: "center", justifyContent: "center",
+                fontFamily: "'Quicksand', sans-serif", WebkitTapHighlightColor: "transparent",
+              }}>+</button>
+            </div>
+          </div>
+        </div>
+      )}
+      <NavButtons onBack={onBack} onNext={onNext} nextDisabled={!selected} />
+    </div>
+  );
+}
+
 // ─── Step: Budget (standalone) ────────────────────────────────────────────
 
 function StepBudget({ data, onChange, onNext, onBack }) {
@@ -1598,7 +1690,7 @@ function DotAnimation() {
 // ═══════════════════════════════════════════════════════════════════════════════
 
 const STEP_NAMES = [
-  'welcome', 'destination', 'month', 'duration', 'budget',
+  'welcome', 'destination', 'group', 'month', 'duration', 'budget',
   'intention', 'range', 'movement', 'pacing', 'practice_level',
   'practice_interests', 'profile',
 ];
@@ -1607,7 +1699,8 @@ export default function PlanMyTrip() {
   const navigate = useNavigate();
   const [step, setStep] = useState(0);
   const [data, setData] = useState({
-    destination: null, month: null, intentions: [], movement: 30,
+    destination: null, groupType: null, groupSize: 1,
+    month: null, intentions: [], movement: 30,
     pacing: 50, range: 35, duration: 4, budget: null,
     practiceLevel: 1, practices: [],
   });
@@ -1647,8 +1740,8 @@ export default function PlanMyTrip() {
       destination: data.destination || undefined,
     });
 
-    // After intention step (step 5), nudge slider defaults based on selections
-    if (step === 5 && data.intentions?.length > 0) {
+    // After intention step (step 6), nudge slider defaults based on selections
+    if (step === 6 && data.intentions?.length > 0) {
       const intents = data.intentions;
       let movementNudge = 30; // default
       let pacingNudge = 50;   // default
@@ -1681,7 +1774,7 @@ export default function PlanMyTrip() {
     trackEvent('questionnaire_completed', {
       destination: data.destination || undefined,
       trip_duration: data.duration,
-      party_size: 1,
+      party_size: data.groupSize || 1,
       interests: data.practices?.join(',') || '',
     });
     trackEvent('itinerary_generation_started', { destination: data.destination || undefined });
@@ -1716,22 +1809,23 @@ export default function PlanMyTrip() {
     }
   };
 
-  // 12 screens: welcome → destination → month → duration → budget → intention → territory → movement → pacing → practiceLevel → practiceInterests → profile
-  const TOTAL_INNER_STEPS = 10; // steps shown in indicator (excludes welcome + profile)
+  // 13 screens: welcome → destination → group → month → duration → budget → intention → territory → movement → pacing → practiceLevel → practiceInterests → profile
+  const TOTAL_INNER_STEPS = 11; // steps shown in indicator (excludes welcome + profile)
   const renderStep = () => {
     switch (step) {
       case 0: return <StepWelcome onNext={goNext} />;
       case 1: return <StepDestination data={data} onChange={updateData} onNext={goNext} onBack={goBack} />;
-      case 2: return <StepMonth data={data} onChange={updateData} onNext={goNext} onBack={goBack} />;
-      case 3: return <StepDuration data={data} onChange={updateData} onNext={goNext} onBack={goBack} />;
-      case 4: return <StepBudget data={data} onChange={updateData} onNext={goNext} onBack={goBack} />;
-      case 5: return <StepIntention data={data} onChange={updateData} onNext={goNext} onBack={goBack} />;
-      case 6: return <StepRange data={data} onChange={updateData} onNext={goNext} onBack={goBack} />;
-      case 7: return <StepMovement data={data} onChange={updateData} onNext={goNext} onBack={goBack} />;
-      case 8: return <StepPacing data={data} onChange={updateData} onNext={goNext} onBack={goBack} />;
-      case 9: return <StepPracticeLevel data={data} onChange={updateData} onNext={goNext} onBack={goBack} />;
-      case 10: return <StepPracticeInterests data={data} onChange={updateData} onNext={goNext} onBack={goBack} />;
-      case 11: return <StepProfile data={data} onBack={goBack} onUnlock={handleUnlock} generating={generating} />;
+      case 2: return <StepGroup data={data} onChange={updateData} onNext={goNext} onBack={goBack} />;
+      case 3: return <StepMonth data={data} onChange={updateData} onNext={goNext} onBack={goBack} />;
+      case 4: return <StepDuration data={data} onChange={updateData} onNext={goNext} onBack={goBack} />;
+      case 5: return <StepBudget data={data} onChange={updateData} onNext={goNext} onBack={goBack} />;
+      case 6: return <StepIntention data={data} onChange={updateData} onNext={goNext} onBack={goBack} />;
+      case 7: return <StepRange data={data} onChange={updateData} onNext={goNext} onBack={goBack} />;
+      case 8: return <StepMovement data={data} onChange={updateData} onNext={goNext} onBack={goBack} />;
+      case 9: return <StepPacing data={data} onChange={updateData} onNext={goNext} onBack={goBack} />;
+      case 10: return <StepPracticeLevel data={data} onChange={updateData} onNext={goNext} onBack={goBack} />;
+      case 11: return <StepPracticeInterests data={data} onChange={updateData} onNext={goNext} onBack={goBack} />;
+      case 12: return <StepProfile data={data} onBack={goBack} onUnlock={handleUnlock} generating={generating} />;
       default: return null;
     }
   };
@@ -1796,7 +1890,7 @@ export default function PlanMyTrip() {
         transform: transitioning ? "translateY(12px)" : "translateY(0)",
         transition: "opacity 0.3s, transform 0.3s",
       }}>
-        {step > 0 && step < 11 && <StepIndicator current={step - 1} total={TOTAL_INNER_STEPS} />}
+        {step > 0 && step < 12 && <StepIndicator current={step - 1} total={TOTAL_INNER_STEPS} />}
         {renderStep()}
       </div>
     </div>
