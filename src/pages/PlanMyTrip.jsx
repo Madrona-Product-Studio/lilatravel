@@ -1408,48 +1408,36 @@ function StepProfile({ data, onBack, onUnlock, generating }) {
 // GENERATING SCREEN — meditative loading experience
 // ═══════════════════════════════════════════════════════════════════════════════
 
-const GENERATING_MESSAGES = [
-  { text: "Reading the landscape...", icon: IconMountain },
-  { text: "Listening for the right rhythm...", icon: IconWave },
-  { text: "Weaving in your practices...", icon: IconLotus },
-  { text: "Finding the golden hours...", icon: IconFlame },
-  { text: "Mapping the sacred terrain...", icon: IconEnso },
-  { text: "Aligning with the season...", icon: IconBodhiLeaf },
-  { text: "Crafting your threshold moments...", icon: IconUnalome },
+const GENERATING_STEPS = [
+  { text: "Studying the terrain", icon: IconMountain },
+  { text: "Reading the season", icon: IconBodhiLeaf },
+  { text: "Setting your pace", icon: IconWave },
+  { text: "Weaving in your practices", icon: IconLotus },
+  { text: "Curating your stays", icon: IconTorii },
+  { text: "Finding the golden hours", icon: IconFlame },
+  { text: "Assembling your journey", icon: IconEnso },
 ];
 
 function GeneratingScreen({ destination }) {
-  const [msgIndex, setMsgIndex] = useState(0);
-  const [msgVisible, setMsgVisible] = useState(true);
-  const [breathPhase, setBreathPhase] = useState(0); // 0-1 continuous
+  const [completedIndex, setCompletedIndex] = useState(-1);
+  const [breathPhase, setBreathPhase] = useState(0);
+  const allDone = completedIndex >= GENERATING_STEPS.length - 1;
+  const activeIndex = completedIndex + 1;
 
-  // Single pass through messages (~20s total, ~2.85s each)
   useEffect(() => {
-    const perMessage = 2850; // ~20s / 7 messages
-    let i = 0;
-    const interval = setInterval(() => {
-      if (i >= GENERATING_MESSAGES.length - 1) {
-        clearInterval(interval);
-        return;
-      }
-      setMsgVisible(false);
-      setTimeout(() => {
-        i++;
-        setMsgIndex(i);
-        setMsgVisible(true);
-      }, 400);
-    }, perMessage);
-    return () => clearInterval(interval);
+    const timings = [3000, 8000, 16000, 28000, 44000, 64000, 90000];
+    const timeouts = timings.map((delay, i) =>
+      setTimeout(() => setCompletedIndex(i), delay)
+    );
+    return () => timeouts.forEach(clearTimeout);
   }, []);
 
-  // Breathing animation (continuous)
   useEffect(() => {
     let frame;
     const start = Date.now();
-    const cycle = 4000; // 4s per breath
+    const cycle = 4000;
     function tick() {
       const t = ((Date.now() - start) % cycle) / cycle;
-      // Smooth sine wave: 0→1→0
       setBreathPhase(Math.sin(t * Math.PI));
       frame = requestAnimationFrame(tick);
     }
@@ -1457,14 +1445,8 @@ function GeneratingScreen({ destination }) {
     return () => cancelAnimationFrame(frame);
   }, []);
 
-  const current = GENERATING_MESSAGES[msgIndex];
-  const MsgIcon = current.icon;
   const destName = DESTINATIONS.find(d => d.id === destination)?.name || "your destination";
-
-  // Ensō ring scale and opacity follow breath
-  const ringScale = 0.85 + breathPhase * 0.15;
-  const ringOpacity = 0.15 + breathPhase * 0.25;
-  const glowRadius = 40 + breathPhase * 30;
+  const ringScale = 0.9 + breathPhase * 0.1;
 
   return (
     <div style={{
@@ -1475,98 +1457,140 @@ function GeneratingScreen({ destination }) {
     }}>
       {/* Breathing Ensō */}
       <div style={{
-        position: "relative", width: 140, height: 140,
+        position: "relative", width: 80, height: 80,
         display: "flex", alignItems: "center", justifyContent: "center",
-        marginBottom: 48,
+        marginBottom: 24,
       }}>
-        {/* Outer glow */}
         <div style={{
-          position: "absolute", inset: -20,
+          position: "absolute", inset: -12,
           borderRadius: "50%",
-          background: `radial-gradient(circle, ${C.oceanTeal}${Math.round(ringOpacity * 40).toString(16).padStart(2, '0')} 0%, transparent 70%)`,
+          background: `radial-gradient(circle, ${C.oceanTeal}${Math.round((0.06 + breathPhase * 0.1) * 255).toString(16).padStart(2, '0')} 0%, transparent 70%)`,
           transform: `scale(${ringScale})`,
-          transition: "none",
         }} />
-        {/* Ensō ring */}
-        <svg width="140" height="140" viewBox="0 0 140 140" style={{
-          transform: `scale(${ringScale})`,
-        }}>
-          {/* Background circle (subtle) */}
-          <circle cx="70" cy="70" r="55" fill="none"
-            stroke={`${C.sage}12`} strokeWidth="2" />
-          {/* Animated stroke */}
-          <circle cx="70" cy="70" r="55" fill="none"
-            stroke={C.oceanTeal}
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            strokeDasharray={`${Math.PI * 110}`}
-            strokeDashoffset={`${Math.PI * 110 * (1 - (0.7 + breathPhase * 0.28))}`}
+        <svg width="80" height="80" viewBox="0 0 80 80" style={{ transform: `scale(${ringScale})` }}>
+          <circle cx="40" cy="40" r="32" fill="none" stroke={`${C.sage}20`} strokeWidth="1.5" />
+          <circle cx="40" cy="40" r="32" fill="none"
+            stroke={C.oceanTeal} strokeWidth="2" strokeLinecap="round"
+            strokeDasharray={`${Math.PI * 64}`}
+            strokeDashoffset={`${Math.PI * 64 * (1 - (0.7 + breathPhase * 0.28))}`}
             opacity={0.5 + breathPhase * 0.5}
             style={{ transform: "rotate(-90deg)", transformOrigin: "center" }}
           />
-          {/* Small gap in the ensō (the traditional opening) */}
-          <circle cx="70" cy="70" r="55" fill="none"
-            stroke={C.cream}
-            strokeWidth="4"
-            strokeDasharray={`${Math.PI * 110 * 0.05} ${Math.PI * 110 * 0.95}`}
-            strokeDashoffset={`${Math.PI * 110 * 0.12}`}
-            style={{ transform: "rotate(-90deg)", transformOrigin: "center" }}
-          />
         </svg>
-        {/* Center icon (current step) */}
-        <div style={{
-          position: "absolute",
-          opacity: msgVisible ? (0.4 + breathPhase * 0.4) : 0,
-          transition: "opacity 0.4s",
-          transform: `scale(${0.9 + breathPhase * 0.1})`,
-        }}>
-          <MsgIcon size={32} color={C.oceanTeal} />
-        </div>
       </div>
 
-      {/* Status text */}
+      {/* Title */}
       <div style={{
-        textAlign: "center",
-        opacity: msgVisible ? 1 : 0,
-        transform: msgVisible ? "translateY(0)" : "translateY(8px)",
-        transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
+        fontFamily: "'Cormorant Garamond', serif",
+        fontSize: "clamp(22px, 5.5vw, 28px)", fontWeight: 300,
+        color: C.slate, marginBottom: 6, textAlign: "center",
+      }}>Crafting your {destName} trip</div>
+
+      <div style={{
+        fontFamily: "'Quicksand', sans-serif",
+        fontSize: "clamp(11px, 3vw, 13px)", fontWeight: 400,
+        color: C.sage, opacity: 0.75,
+        marginBottom: 28, textAlign: "center",
+        lineHeight: 1.6,
+      }}>This can take between one and two minutes.<br/>Sit tight — it's worth the wait.</div>
+
+      {/* Checklist — compact with collapsing completed items */}
+      <div style={{
+        display: "flex", flexDirection: "column",
+        alignItems: "center",
+        width: "100%", maxWidth: 300,
       }}>
-        <div style={{
-          fontFamily: "'Cormorant Garamond', serif",
-          fontSize: "clamp(20px, 5vw, 24px)", fontWeight: 300,
-          color: C.slate, marginBottom: 8,
-        }}>{current.text}</div>
+        {GENERATING_STEPS.map((step, i) => {
+          const StepIcon = step.icon;
+          const isComplete = i <= completedIndex;
+          const isActive = i === activeIndex && !allDone;
+          const isFuture = i > activeIndex;
+
+          return (
+            <div key={i} style={{
+              display: "flex", alignItems: "center",
+              gap: isComplete ? 6 : 10,
+              justifyContent: "center",
+              height: isComplete ? 20 : isActive ? 38 : 26,
+              opacity: isComplete ? 0.35 : isFuture ? 0.22 : 1,
+              transition: "all 0.7s cubic-bezier(0.4, 0, 0.2, 1)",
+              overflow: "hidden",
+            }}>
+              <div style={{
+                width: isComplete ? 16 : isActive ? 30 : 20,
+                height: isComplete ? 16 : isActive ? 30 : 20,
+                borderRadius: "50%",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                background: isComplete ? "transparent" : isActive ? `${C.oceanTeal}10` : "transparent",
+                border: isComplete ? "none" : isActive ? `1.5px solid ${C.oceanTeal}40` : `1px solid ${C.sage}20`,
+                transition: "all 0.6s",
+                flexShrink: 0,
+              }}>
+                {isComplete ? (
+                  <svg width="10" height="10" viewBox="0 0 14 14" fill="none">
+                    <path d="M3 7.5L5.5 10L11 4" stroke={C.sage} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                ) : (
+                  <StepIcon size={isActive ? 15 : 11} color={isActive ? C.oceanTeal : `${C.sage}50`} />
+                )}
+              </div>
+
+              <div style={{
+                fontFamily: "'Quicksand', sans-serif",
+                fontSize: isComplete ? 10 : isActive ? 13.5 : 11.5,
+                fontWeight: isActive ? 600 : 400,
+                color: isComplete ? C.sage : isActive ? C.slate : C.sage,
+                letterSpacing: isActive ? "0.03em" : "0.01em",
+                transition: "all 0.6s",
+                whiteSpace: "nowrap",
+              }}>
+                {step.text}
+                {isActive && <span style={{ opacity: 0.4 }}><DotAnimation /></span>}
+              </div>
+            </div>
+          );
+        })}
       </div>
 
-      {/* Destination context */}
+      {/* Thin progress bar */}
       <div style={{
-        marginTop: 48, textAlign: "center",
+        width: "100%", maxWidth: 200,
+        height: 2, borderRadius: 1,
+        background: `${C.sage}12`,
+        marginTop: 24,
+        overflow: "hidden",
       }}>
         <div style={{
-          fontFamily: "'Quicksand', sans-serif",
-          fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase",
-          color: `${C.sage}60`,
-        }}>Crafting your {destName} journey</div>
-        <div style={{
-          fontFamily: "'Quicksand', sans-serif",
-          fontSize: 11, color: `${C.sage}40`, marginTop: 8,
-        }}>This can take up to a minute</div>
+          height: "100%", borderRadius: 1,
+          background: C.oceanTeal,
+          width: `${Math.min(100, ((completedIndex + 1) / GENERATING_STEPS.length) * 100)}%`,
+          transition: "width 1.2s cubic-bezier(0.4, 0, 0.2, 1)",
+        }} />
       </div>
 
-      {/* Subtle progress dots */}
+      {/* Step count */}
       <div style={{
-        display: "flex", gap: 8, marginTop: 20,
+        fontFamily: "'Quicksand', sans-serif",
+        fontSize: 10, fontWeight: 500,
+        letterSpacing: "0.12em", textTransform: "uppercase",
+        color: `${C.sage}50`,
+        marginTop: 8,
       }}>
-        {GENERATING_MESSAGES.slice(0, 5).map((_, i) => (
-          <div key={i} style={{
-            width: 4, height: 4, borderRadius: "50%",
-            background: i <= msgIndex ? C.oceanTeal : `${C.sage}25`,
-            transition: "background 0.5s",
-          }} />
-        ))}
+        {allDone ? "Finalizing..." : `${Math.max(0, completedIndex + 1)} of ${GENERATING_STEPS.length}`}
       </div>
     </div>
   );
+}
+
+function DotAnimation() {
+  const [dots, setDots] = useState("");
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setDots(prev => prev.length >= 3 ? "" : prev + ".");
+    }, 500);
+    return () => clearInterval(interval);
+  }, []);
+  return <span style={{ display: "inline-block", width: 16, textAlign: "left" }}>{dots}</span>;
 }
 
 // ═══════════════════════════════════════════════════════════════════════════════
@@ -1622,6 +1646,25 @@ export default function PlanMyTrip() {
       step_name: STEP_NAMES[step] || String(step),
       destination: data.destination || undefined,
     });
+
+    // After intention step (step 5), nudge slider defaults based on selections
+    if (step === 5 && data.intentions?.length > 0) {
+      const intents = data.intentions;
+      let movementNudge = 30; // default
+      let pacingNudge = 50;   // default
+
+      if (intents.includes("slow_down")) { movementNudge = 20; pacingNudge = 25; }
+      if (intents.includes("tune_in"))   { movementNudge = Math.min(movementNudge, 25); pacingNudge = Math.min(pacingNudge, 35); }
+      if (intents.includes("light_up"))  { movementNudge = Math.max(movementNudge, 65); pacingNudge = Math.max(pacingNudge, 70); }
+      if (intents.includes("reconnect")) { movementNudge = Math.max(movementNudge, 40); pacingNudge = Math.max(pacingNudge, 50); }
+
+      // Only nudge if user hasn't already manually adjusted from defaults
+      const patch = {};
+      if (data.movement === 30) patch.movement = movementNudge;
+      if (data.pacing === 50) patch.pacing = pacingNudge;
+      if (Object.keys(patch).length > 0) setData(prev => ({ ...prev, ...patch }));
+    }
+
     setTransitioning(true);
     setTimeout(() => { setStep(s => s + 1); setTransitioning(false); if (containerRef.current) containerRef.current.scrollTop = 0; }, 300);
   };

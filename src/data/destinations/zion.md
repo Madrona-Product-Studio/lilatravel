@@ -166,65 +166,283 @@ A paved, flat, riverside trail connecting the Visitor Center to Canyon Junction.
 ## Living Practice — Wellness & Mindfulness
 
 ### Yoga & Movement
-- **Zion Canyon Yoga** (Springdale) — Drop-in classes, often morning flow sessions. Check seasonal schedule. Small studio with views.
-- **Desert Yoga** — Self-guided sunrise practice at Pa'rus Trail or Canyon Junction. Bring your own mat. The flat, quiet riverside setting is ideal.
-- **Cliffrose Lodge lawn** — If staying at Cliffrose, the riverside lawn is a natural yoga space.
+
+#### Zion Canyon Yoga
+Drop-in classes in Springdale, often morning flow sessions. Check seasonal schedule. Small studio with views.
+- **Energy**: gentle, moderate
+- **Group**: solo, couple, friends
+- **Budget**: balanced
+- **Time**: morning
+- **Interests**: yoga
+- **Months**: all (check seasonal schedule)
+
+#### Desert Yoga (Self-Guided)
+Self-guided sunrise practice at Pa'rus Trail or Canyon Junction. Bring your own mat. The flat, quiet riverside setting is ideal.
+- **Energy**: gentle
+- **Group**: solo, couple
+- **Budget**: mindful
+- **Time**: sunrise, morning
+- **Interests**: yoga, mindfulness
+- **Months**: Mar–Nov (comfortable outdoor temps; possible year-round on mild days)
+
+#### Cliffrose Lodge Lawn
+If staying at Cliffrose, the riverside lawn is a natural yoga space.
+- **Energy**: gentle
+- **Group**: solo, couple
+- **Budget**: open (guest amenity)
+- **Time**: sunrise, morning
+- **Interests**: yoga
+- **Months**: all (year-round, weather permitting)
 
 ### Breathwork & Meditation
-- **Canyon floor morning meditation** — The amphitheater acoustics of the canyon create natural resonance. Temple of Sinawava (shuttle stop 9) at dawn, before crowds arrive, is profoundly still.
-- **Sunrise breathwork** — Watchman Trail overlook or Canyon Overlook are ideal for guided breathwork with panoramic views.
+
+#### Canyon Floor Morning Meditation
+The amphitheater acoustics of the canyon create natural resonance. Temple of Sinawava (shuttle stop 9) at dawn, before crowds arrive, is profoundly still.
+- **Energy**: gentle
+- **Group**: solo, couple
+- **Budget**: mindful
+- **Time**: sunrise
+- **Interests**: breathwork, mindfulness
+- **Months**: all (shuttle access Mar–Nov; drive in winter)
+
+#### Sunrise Breathwork
+Watchman Trail overlook or Canyon Overlook are ideal for guided breathwork with panoramic views.
+- **Energy**: gentle, moderate
+- **Group**: solo, couple
+- **Budget**: mindful
+- **Time**: sunrise
+- **Interests**: breathwork
+- **Months**: all (year-round; layer up in winter)
 
 ### Mindful Movement
-- **Walking meditation on Pa'rus Trail** — Flat, paved, riverside. No competition for space. Early morning.
-- **River grounding** — Wade into the Virgin River at various accessible points along the canyon floor. The cold water and river sounds create natural sensory grounding.
+
+#### Walking Meditation on Pa'rus Trail
+Flat, paved, riverside. No competition for space. Early morning.
+- **Energy**: gentle
+- **Group**: solo, couple
+- **Budget**: mindful
+- **Time**: morning
+- **Interests**: mindfulness
+- **Months**: all (year-round; paved and accessible every season)
+
+#### River Grounding
+Wade into the Virgin River at various accessible points along the canyon floor. The cold water and river sounds create natural sensory grounding.
+- **Energy**: gentle
+- **Group**: solo, couple, friends
+- **Budget**: mindful
+- **Time**: morning, afternoon
+- **Interests**: mindfulness, water
+- **Months**: Apr–Oct (comfortable water temps)
 
 ### Recovery & Restoration
-- **Deep Creek Coffee** (Springdale) — Good post-hike recovery spot. Coffee, smoothies, light fare.
-- **Hot tub / spa at lodging** — Cable Mountain Lodge and Cliffrose Lodge both have hot tubs available to guests.
+
+#### Deep Creek Coffee (Recovery Stop)
+Good post-hike recovery spot. Coffee, smoothies, light fare. Springdale.
+- **Energy**: gentle
+- **Group**: solo, couple, friends, family
+- **Budget**: mindful, balanced
+- **Time**: morning, afternoon
+- **Interests**: coffee
+- **Months**: all (year-round)
+
+#### Hot Tub / Spa at Lodging
+Cable Mountain Lodge and Cliffrose Lodge both have hot tubs available to guests.
+- **Energy**: gentle
+- **Group**: solo, couple
+- **Budget**: balanced, open (guest amenity at rooted/premium lodging)
+- **Time**: afternoon, evening
+- **Interests**: spa
+- **Months**: all (year-round)
 
 ---
 
 ## Nourish — Where to Eat
 
 ### Springdale (Gateway Town)
-- **Oscar's Cafe** — Beloved local breakfast and lunch spot. Hearty portions, outdoor seating. Known for huevos rancheros and burgers. Expect a wait on weekends.
-- **Whiptail Grill** — Mexican-inspired with creative dishes. Good vegetarian options. Covered patio dining.
-- **MeMe's Cafe** — Cozy breakfast/brunch. Locally sourced when possible. Smoothies and lighter fare.
-- **Bit & Spur** — Dinner destination. Southwest-inspired with a creative cocktail program. Reservations recommended, especially in peak season.
-- **Deep Creek Coffee** — Best coffee in Springdale. Good pastries. Opens early for pre-hike fuel.
-- **King's Landing Bistro** — Upscale option at Driftwood Lodge. Good for a nicer dinner out.
+
+#### Oscar's Cafe
+Beloved local breakfast and lunch spot. Hearty portions, outdoor seating. Known for huevos rancheros and burgers. Expect a wait on weekends.
+- **Energy**: gentle
+- **Group**: solo, couple, friends, family
+- **Budget**: mindful, balanced
+- **Time**: morning, midday
+- **Interests**: dining
+- **Months**: all (year-round; may have reduced winter hours)
+
+#### Whiptail Grill
+Mexican-inspired with creative dishes. Good vegetarian options. Covered patio dining.
+- **Energy**: gentle
+- **Group**: solo, couple, friends, family
+- **Budget**: mindful, balanced
+- **Time**: midday, afternoon
+- **Interests**: dining
+- **Months**: all (check winter hours)
+
+#### MeMe's Cafe
+Cozy breakfast/brunch. Locally sourced when possible. Smoothies and lighter fare.
+- **Energy**: gentle
+- **Group**: solo, couple, friends, family
+- **Budget**: mindful, balanced
+- **Time**: morning
+- **Interests**: dining, coffee
+- **Months**: all (check winter hours)
+
+#### Bit & Spur
+Dinner destination. Southwest-inspired with a creative cocktail program. Reservations recommended, especially in peak season.
+- **Energy**: gentle
+- **Group**: couple, friends
+- **Budget**: balanced, open
+- **Time**: evening
+- **Interests**: dining
+- **Months**: all (year-round; reservations recommended peak season)
+
+#### Deep Creek Coffee
+Best coffee in Springdale. Good pastries. Opens early for pre-hike fuel.
+- **Energy**: gentle
+- **Group**: solo, couple, friends, family
+- **Budget**: mindful
+- **Time**: sunrise, morning
+- **Interests**: coffee
+- **Months**: all (year-round)
+
+#### King's Landing Bistro
+Upscale option at Driftwood Lodge. Good for a nicer dinner out.
+- **Energy**: gentle
+- **Group**: couple, friends
+- **Budget**: open
+- **Time**: evening
+- **Interests**: dining
+- **Months**: all (check winter hours)
 
 ### On the Way (Regional)
-- **Hell's Backbone Grill** (Boulder, UT — ~2.5 hrs from Zion) — James Beard-recognized. Farm-to-table with ingredients from their own farm. Worth the drive if you're heading toward Capitol Reef/Bryce. Reservations essential.
-- **Switchback Grille** (Springdale) — Steaks and American fare. Reliable.
+
+#### Hell's Backbone Grill
+Boulder, UT — ~2.5 hrs from Zion. James Beard-recognized. Farm-to-table with ingredients from their own farm. Worth the drive if you're heading toward Capitol Reef/Bryce. Reservations essential.
+- **Energy**: gentle
+- **Group**: couple, friends
+- **Budget**: open
+- **Time**: evening
+- **Interests**: dining, farmMarkets
+- **Months**: Apr–Nov (seasonal; closed in winter)
+
+#### Switchback Grille
+Springdale. Steaks and American fare. Reliable.
+- **Energy**: gentle
+- **Group**: solo, couple, friends, family
+- **Budget**: balanced
+- **Time**: evening
+- **Interests**: dining
+- **Months**: all (year-round)
 
 ### Provisions & Markets
-- **Sol Foods Market** (Springdale) — Small but well-stocked. Good for trail snacks, sandwiches, basic groceries.
-- **Springdale Fruit Company** — Seasonal smoothies, fresh fruit, snacks. Quick and refreshing.
+
+#### Sol Foods Market
+Springdale. Small but well-stocked. Good for trail snacks, sandwiches, basic groceries.
+- **Energy**: gentle
+- **Group**: solo, couple, friends, family
+- **Budget**: mindful
+- **Time**: morning, midday, anytime
+- **Interests**: farmMarkets
+- **Months**: all (year-round)
+
+#### Springdale Fruit Company
+Seasonal smoothies, fresh fruit, snacks. Quick and refreshing.
+- **Energy**: gentle
+- **Group**: solo, couple, friends, family
+- **Budget**: mindful
+- **Time**: morning, midday, afternoon
+- **Interests**: farmMarkets
+- **Months**: Mar–Nov (seasonal; check hours)
 
 ---
 
 ## Unique Stays — Accommodation Spectrum
 
 ### Elemental (Camping & Close to Earth)
-*Stay Style: elemental | Budget: mindful | Group: solo, couple, friends, family*
 
-- **Watchman Campground** (Inside park) — 190 sites, some riverside. Reservations required at recreation.gov. The most immersive option — you wake up in the canyon.
-- **South Campground** (Inside park) — Walk-in, first-come-first-served. Smaller, quieter. No reservations.
-- **Zion Canyon Campground & RV Resort** (Springdale) — Private campground just outside the park entrance. Showers, laundry, store.
+#### Watchman Campground
+Inside park. 190 sites, some riverside. Reservations required at recreation.gov. The most immersive option — you wake up in the canyon.
+- **StayStyle**: elemental
+- **Energy**: gentle, moderate, adventurous
+- **Group**: solo, couple, friends, family
+- **Budget**: mindful
+- **Time**: anytime
+- **Interests**: stargazing
+- **Months**: all (year-round; cold winter nights — gear accordingly)
+
+#### South Campground
+Inside park. Walk-in, first-come-first-served. Smaller, quieter. No reservations.
+- **StayStyle**: elemental
+- **Energy**: gentle, moderate, adventurous
+- **Group**: solo, couple, friends
+- **Budget**: mindful
+- **Time**: anytime
+- **Interests**: stargazing
+- **Months**: all (year-round; first-come first-served, arrive early in peak season)
+
+#### Zion Canyon Campground & RV Resort
+Springdale. Private campground just outside the park entrance. Showers, laundry, store.
+- **StayStyle**: elemental
+- **Energy**: gentle, moderate, adventurous
+- **Group**: solo, couple, friends, family
+- **Budget**: mindful
+- **Time**: anytime
+- **Interests**: —
+- **Months**: all (year-round)
 
 ### Rooted (Mid-Range Comfort)
-*Stay Style: rooted | Budget: balanced | Group: solo, couple, friends, family*
 
-- **Cable Mountain Lodge** (Springdale) — Excellent location, pool, hot tub. Walking distance to park entrance and shuttle. Good value.
-- **Cliffrose Lodge** (Springdale) — Riverside setting, beautiful grounds. Walking distance to everything. Slightly more premium.
-- **Driftwood Lodge** (Springdale) — Clean, well-located. Home to King's Landing Bistro.
+#### Cable Mountain Lodge
+Springdale. Excellent location, pool, hot tub. Walking distance to park entrance and shuttle. Good value.
+- **StayStyle**: rooted
+- **Energy**: gentle, moderate, adventurous
+- **Group**: solo, couple, friends, family
+- **Budget**: balanced
+- **Time**: anytime
+- **Interests**: spa
+- **Months**: all (year-round)
+
+#### Cliffrose Lodge
+Springdale. Riverside setting, beautiful grounds. Walking distance to everything. Slightly more premium.
+- **StayStyle**: rooted
+- **Energy**: gentle, moderate, adventurous
+- **Group**: solo, couple, friends, family
+- **Budget**: balanced, open
+- **Time**: anytime
+- **Interests**: yoga, spa
+- **Months**: all (year-round)
+
+#### Driftwood Lodge
+Springdale. Clean, well-located. Home to King's Landing Bistro.
+- **StayStyle**: rooted
+- **Energy**: gentle, moderate, adventurous
+- **Group**: solo, couple, friends, family
+- **Budget**: balanced
+- **Time**: anytime
+- **Interests**: dining
+- **Months**: all (year-round)
 
 ### Premium (Elevated Experience)
-*Stay Style: premium | Budget: open | Group: solo, couple*
 
-- **Under Canvas Zion** — Glamping with safari-style tents. Outside the park but designed for immersive experiences. **Seasonal: typically March–November. Closed in winter.**
-- **Zion Lodge** (Inside park) — The only lodge inside the park. Historic. Book far in advance. Limited availability.
+#### Under Canvas Zion
+Glamping with safari-style tents. Outside the park but designed for immersive experiences.
+- **StayStyle**: premium
+- **Energy**: gentle, moderate, adventurous
+- **Group**: solo, couple, friends
+- **Budget**: open
+- **Time**: anytime
+- **Interests**: stargazing
+- **Months**: Mar–Nov (seasonal; closed in winter)
+
+#### Zion Lodge
+Inside park. The only lodge inside the park. Historic. Book far in advance. Limited availability.
+- **StayStyle**: premium
+- **Energy**: gentle, moderate, adventurous
+- **Group**: solo, couple, friends, family
+- **Budget**: open
+- **Time**: anytime
+- **Interests**: history
+- **Months**: all (year-round; book well in advance)
 
 ### Beyond the Canyon
 - **Torrey & Capitol Reef area** — If extending your trip, this is where the magic deepens. Quiet, dark skies, fewer crowds.
@@ -233,10 +451,41 @@ A paved, flat, riverside trail connecting the Visitor Center to Canyon Junction.
 
 ## Discover — Galleries, Shops & Hidden Gems
 
-- **Worthington Gallery** (Springdale) — Fine art inspired by the canyon landscape. Worth a browse.
-- **David J. West Gallery** (Springdale) — Photography of Zion and the Southwest. Beautiful prints.
-- **Bumbleberry Inn Gift Shop** — Kitsch and charm. Bumbleberry pie is the move.
-- **Zion Human History Museum** (Inside park, shuttle stop 2) — Small but thoughtful museum on the cultural history of the canyon, including Paiute heritage and early settler history.
+#### Worthington Gallery
+Springdale. Fine art inspired by the canyon landscape. Worth a browse.
+- **Energy**: gentle
+- **Group**: solo, couple, friends
+- **Budget**: balanced, open
+- **Time**: midday, afternoon
+- **Interests**: galleries
+- **Months**: all (check winter hours)
+
+#### David J. West Gallery
+Springdale. Photography of Zion and the Southwest. Beautiful prints.
+- **Energy**: gentle
+- **Group**: solo, couple, friends
+- **Budget**: balanced, open
+- **Time**: midday, afternoon
+- **Interests**: galleries
+- **Months**: all (check winter hours)
+
+#### Bumbleberry Inn Gift Shop
+Kitsch and charm. Bumbleberry pie is the move.
+- **Energy**: gentle
+- **Group**: solo, couple, friends, family
+- **Budget**: mindful, balanced
+- **Time**: midday, afternoon
+- **Interests**: shopping
+- **Months**: all (year-round)
+
+#### Zion Human History Museum
+Inside park, shuttle stop 2. Small but thoughtful museum on the cultural history of the canyon, including Paiute heritage and early settler history.
+- **Energy**: gentle
+- **Group**: solo, couple, friends, family
+- **Budget**: mindful
+- **Time**: midday, afternoon
+- **Interests**: history
+- **Months**: all (year-round; shuttle access Mar–Nov, drive in winter)
 
 ---
 
@@ -244,14 +493,50 @@ A paved, flat, riverside trail connecting the Visitor Center to Canyon Junction.
 
 ### Stargazing
 Zion has excellent dark skies, especially in winter and shoulder seasons. Best spots: Watchman Campground area, Pa'rus Trail, or drive to Kolob Terrace Road for minimal light pollution. No special equipment needed — the Milky Way is visible to the naked eye on clear, moonless nights.
+- **Energy**: gentle
+- **Group**: solo, couple, friends, family
+- **Budget**: mindful
+- **Time**: evening
+- **Interests**: stargazing
+- **Months**: all (year-round; best in winter and shoulder seasons on moonless nights)
 
 ### Scenic Drives
-- **Zion-Mt. Carmel Highway** — The tunnel, the switchbacks, the checkerboard mesa. Drive it both directions for different light.
-- **Kolob Terrace Road** — The quiet side of Zion. Lava Point overlook. Far fewer people. An entirely different character.
-- **Kolob Canyons** (northwest section) — A separate entrance with red finger canyons. 5-mile scenic drive. Timber Creek Overlook trail (1 mile) for quick views.
+
+#### Zion-Mt. Carmel Highway
+The tunnel, the switchbacks, the checkerboard mesa. Drive it both directions for different light.
+- **Energy**: gentle
+- **Group**: solo, couple, friends, family
+- **Budget**: mindful
+- **Time**: morning, afternoon, sunset
+- **Interests**: scenicDrives
+- **Months**: all (year-round; rare winter closures in extreme weather)
+
+#### Kolob Terrace Road
+The quiet side of Zion. Lava Point overlook. Far fewer people. An entirely different character.
+- **Energy**: gentle
+- **Group**: solo, couple, friends
+- **Budget**: mindful
+- **Time**: morning, afternoon
+- **Interests**: scenicDrives, stargazing
+- **Months**: Apr–Nov (road may be impassable Dec–Mar)
+
+#### Kolob Canyons
+Northwest section. A separate entrance with red finger canyons. 5-mile scenic drive. Timber Creek Overlook trail (1 mile) for quick views.
+- **Energy**: gentle, moderate
+- **Group**: solo, couple, friends, family
+- **Budget**: mindful
+- **Time**: morning, afternoon
+- **Interests**: scenicDrives, hiking
+- **Months**: all (year-round; separate entrance)
 
 ### River Time
 Wade, sit, listen. The Virgin River is accessible at multiple points along the canyon floor. Not a destination — a practice. Bring water shoes.
+- **Energy**: gentle
+- **Group**: solo, couple, friends, family
+- **Budget**: mindful
+- **Time**: morning, afternoon
+- **Interests**: water, mindfulness
+- **Months**: Apr–Oct (comfortable water temps)
 
 ---
 
@@ -265,6 +550,12 @@ Timed to the moment when light and shadow reach perfect balance in the canyon. T
 Includes: Guided canyon hikes, sunrise yoga, evening breathwork, shared meals at curated restaurants, stargazing, and the space to simply be present in one of the most powerful landscapes on Earth.
 
 **Status**: Coming soon. Join the waitlist.
+- **Energy**: moderate, adventurous
+- **Group**: friends
+- **Budget**: open
+- **Time**: anytime (multi-day experience)
+- **Interests**: hiking, yoga, breathwork, stargazing, dining
+- **Months**: Sep
 
 ---
 
