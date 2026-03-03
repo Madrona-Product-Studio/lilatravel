@@ -874,6 +874,29 @@ function StepDestination({ data, onChange, onNext, onBack }) {
 }
 
 function StepMonth({ data, onChange, onNext, onBack }) {
+  const hasExactDates = !!(data.dateStart && data.dateEnd);
+  const [showDates, setShowDates] = useState(hasExactDates);
+
+  // Derive month from start date when exact dates change
+  const handleDateChange = (patch) => {
+    const next = { ...patch };
+    const startVal = patch.dateStart ?? data.dateStart;
+    if (startVal) {
+      const d = new Date(startVal + 'T12:00:00'); // noon to avoid timezone issues
+      const monthId = MONTHS[d.getMonth()]?.id;
+      if (monthId) next.month = monthId;
+    }
+    onChange(next);
+  };
+
+  const toggleDates = () => {
+    if (showDates) {
+      // Turning off exact dates — clear them
+      onChange({ dateStart: null, dateEnd: null });
+    }
+    setShowDates(!showDates);
+  };
+
   return (
     <div>
       <StepTitle
@@ -888,7 +911,7 @@ function StepMonth({ data, onChange, onNext, onBack }) {
         {MONTHS.map(m => {
           const sel = data.month === m.id;
           return (
-            <button key={m.id} onClick={() => onChange({ month: m.id })} style={{
+            <button key={m.id} onClick={() => { onChange({ month: m.id }); if (showDates) { onChange({ month: m.id, dateStart: null, dateEnd: null }); setShowDates(false); } }} style={{
               background: sel ? `${m.color}18` : C.white,
               border: `2px solid ${sel ? m.color : `${C.sage}18`}`,
               borderRadius: 14, padding: '16px 10px',
@@ -913,6 +936,87 @@ function StepMonth({ data, onChange, onNext, onBack }) {
           );
         })}
       </div>
+
+      {/* Exact dates toggle */}
+      {data.month && (
+        <div style={{ maxWidth: 480, margin: '20px auto 0', padding: '0 20px' }}>
+          <button onClick={toggleDates} style={{
+            display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+            width: '100%', padding: '12px 16px',
+            background: 'none', border: 'none', cursor: 'pointer',
+            fontFamily: "'Quicksand', sans-serif",
+            fontSize: 12, fontWeight: 600, letterSpacing: '0.06em',
+            color: showDates ? C.oceanTeal : `${C.sage}70`,
+            WebkitTapHighlightColor: 'transparent',
+          }}>
+            <div style={{
+              width: 16, height: 16, borderRadius: 4,
+              border: `1.5px solid ${showDates ? C.oceanTeal : `${C.sage}40`}`,
+              background: showDates ? C.oceanTeal : 'transparent',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              transition: 'all 0.2s',
+              flexShrink: 0,
+            }}>
+              {showDates && (
+                <svg width="10" height="10" viewBox="0 0 14 14" fill="none">
+                  <path d="M3 7.5L5.5 10L11 4" stroke={C.white} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              )}
+            </div>
+            I have exact dates
+          </button>
+
+          {showDates && (
+            <div style={{
+              display: 'flex', gap: 12, marginTop: 12,
+              animation: 'fadeScale 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+            }}>
+              <div style={{ flex: 1 }}>
+                <label style={{
+                  display: 'block', marginBottom: 6,
+                  fontFamily: "'Quicksand', sans-serif",
+                  fontSize: 10, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase',
+                  color: `${C.sage}80`,
+                }}>Start date</label>
+                <input
+                  type="date"
+                  value={data.dateStart || ''}
+                  onChange={e => handleDateChange({ dateStart: e.target.value })}
+                  style={{
+                    width: '100%', padding: '14px 14px',
+                    fontFamily: "'Quicksand', sans-serif", fontSize: 14, color: C.slate,
+                    background: C.white, border: `1.5px solid ${C.sage}20`, borderRadius: 12,
+                    outline: 'none', boxSizing: 'border-box',
+                    WebkitAppearance: 'none',
+                  }}
+                />
+              </div>
+              <div style={{ flex: 1 }}>
+                <label style={{
+                  display: 'block', marginBottom: 6,
+                  fontFamily: "'Quicksand', sans-serif",
+                  fontSize: 10, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase',
+                  color: `${C.sage}80`,
+                }}>End date</label>
+                <input
+                  type="date"
+                  value={data.dateEnd || ''}
+                  min={data.dateStart || ''}
+                  onChange={e => handleDateChange({ dateEnd: e.target.value })}
+                  style={{
+                    width: '100%', padding: '14px 14px',
+                    fontFamily: "'Quicksand', sans-serif", fontSize: 14, color: C.slate,
+                    background: C.white, border: `1.5px solid ${C.sage}20`, borderRadius: 12,
+                    outline: 'none', boxSizing: 'border-box',
+                    WebkitAppearance: 'none',
+                  }}
+                />
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+
       <NavButtons onBack={onBack} onNext={onNext} nextDisabled={!data.month} />
     </div>
   );
@@ -1760,7 +1864,8 @@ export default function PlanMyTrip() {
   const [step, setStep] = useState(0);
   const [data, setData] = useState({
     destination: null, groupType: null, groupSize: 1,
-    month: null, intentions: [], movement: 30,
+    month: null, dateStart: null, dateEnd: null,
+    intentions: [], movement: 30,
     pacing: 50, range: 35, duration: 4, budget: null, stayStyle: null,
     practiceLevel: 1, practices: [],
   });

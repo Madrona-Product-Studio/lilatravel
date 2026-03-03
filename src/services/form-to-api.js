@@ -16,6 +16,8 @@
  *   groupType: 'solo',          // solo | couple | friends | family
  *   groupSize: 1,               // 1-8
  *   month: 'october',           // from month selector step
+ *   dateStart: '2026-10-15',    // optional — exact dates
+ *   dateEnd: '2026-10-19',      // optional — exact dates
  *   intentions: ['reconnect'],
  *   movement: 50,               // slider 0-100
  *   pacing: 50,                 // slider 0-100
@@ -140,9 +142,9 @@ export function translateFormToApi(formData, userName = 'Traveler') {
       name: userName,
       month: formData.month || null,
       dates: {
-        start: null, // Will be added when we have a date picker
-        end: null,
-        flexible: true,
+        start: formData.dateStart || null,
+        end: formData.dateEnd || null,
+        flexible: !formData.dateStart,
       },
       groupType: formData.groupType || 'solo',
       groupSize: formData.groupSize || 1,
