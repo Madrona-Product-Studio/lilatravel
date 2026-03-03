@@ -351,6 +351,93 @@ function formatCelestialForPrompt(celestialData) {
 
 
 // ============================================================
+// LIVE DATA — Tides (NOAA CO-OPS, free, no API key needed)
+// ============================================================
+
+// NOAA tide stations for coastal destinations (null = no tides relevant)
+const TIDE_STATIONS = {
+  zion: null,
+  'joshua-tree': null,
+  'big-sur': { id: '9413450', name: 'Monterey, CA' },
+  'olympic-peninsula': { id: '9444900', name: 'Port Townsend, WA' },
+  kauai: { id: '1611400', name: 'Nawiliwili Harbor, HI' },
+};
+
+/**
+ * Fetch tide predictions from NOAA CO-OPS API for the travel dates.
+ * Returns high/low tide times or null if not a coastal destination.
+ *
+ * API docs: https://api.tidesandcurrents.noaa.gov/api/prod/
+ */
+async function fetchTideData(destination, startDate, endDate) {
+  const station = TIDE_STATIONS[destination];
+  if (!station) return null;
+
+  // NOAA date format: YYYYMMDD
+  const fmtDate = (iso) => iso.replace(/-/g, '');
+
+  try {
+    const response = await fetch(
+      `https://api.tidesandcurrents.noaa.gov/api/prod/datagetter` +
+      `?begin_date=${fmtDate(startDate)}&end_date=${fmtDate(endDate)}` +
+      `&station=${station.id}` +
+      `&product=predictions&datum=MLLW&units=english` +
+      `&time_zone=lst_ldt&interval=hilo&format=json`
+    );
+
+    if (!response.ok) return null;
+
+    const data = await response.json();
+
+    if (!data.predictions || data.predictions.length === 0) return null;
+
+    return {
+      station: station.name,
+      predictions: data.predictions.map(p => ({
+        time: p.t,       // "YYYY-MM-DD HH:MM"
+        height: parseFloat(p.v),  // feet above MLLW
+        type: p.type === 'H' ? 'high' : 'low',
+      })),
+    };
+  } catch (error) {
+    console.error('Tide fetch failed:', error);
+    return null;
+  }
+}
+
+/**
+ * Format tide data into a readable summary for the Claude prompt.
+ * Groups by day and shows high/low times.
+ */
+function formatTidesForPrompt(tideData) {
+  if (!tideData) return null;
+
+  const byDay = {};
+  for (const p of tideData.predictions) {
+    const day = p.time.slice(0, 10); // "YYYY-MM-DD"
+    if (!byDay[day]) byDay[day] = [];
+    // Format time: "2026-03-15 14:32" → "2:32 PM"
+    const [, timePart] = p.time.split(' ');
+    const [h, m] = timePart.split(':').map(Number);
+    const period = h >= 12 ? 'PM' : 'AM';
+    const h12 = h === 0 ? 12 : h > 12 ? h - 12 : h;
+    const timeStr = `${h12}:${String(m).padStart(2, '0')} ${period}`;
+    byDay[day].push(`${p.type === 'high' ? 'High' : 'Low'} ${timeStr} (${p.height.toFixed(1)} ft)`);
+  }
+
+  const lines = [`Station: ${tideData.station}`];
+  for (const [day, tides] of Object.entries(byDay)) {
+    lines.push(`${day}: ${tides.join(' · ')}`);
+  }
+
+  lines.push('');
+  lines.push('USE THIS DATA: When recommending beach activities, tidepooling, coastal hikes, or kayaking, mention the tide conditions. Suggest low tide windows for tidepooling and beach exploration. Warn about high tide timing for coastal trail sections that may be impassable. If a very low tide coincides with the trip, highlight it as a special opportunity.');
+
+  return lines.join('\n');
+}
+
+
+// ============================================================
 // NIGHT SKY SERVICE — Milky Way, Meteor Showers, Dark Sky Data
 // ============================================================
 
@@ -691,14 +778,17 @@ export async function assembleContext(destination, userPreferences) {
   // 2. Fetch live data in parallel
   const hasExactDates = userPreferences.dates?.start && userPreferences.dates?.end;
   
-  const [alerts, weather, campgrounds, celestial] = await Promise.all([
+  const [alerts, weather, campgrounds, celestial, tides] = await Promise.all([
     fetchNPSAlerts(destination),
-    hasExactDates 
+    hasExactDates
       ? fetchWeather(destination, userPreferences.dates.start, userPreferences.dates.end)
       : Promise.resolve(null), // No weather fetch if only month selected
     fetchNPSCampgrounds(destination),
     hasExactDates
       ? fetchCelestial(destination, userPreferences.dates.start, userPreferences.dates.end)
+      : Promise.resolve(null),
+    hasExactDates
+      ? fetchTideData(destination, userPreferences.dates.start, userPreferences.dates.end)
       : Promise.resolve(null),
   ]);
 
@@ -719,6 +809,7 @@ export async function assembleContext(destination, userPreferences) {
     guide,
     permits: formatPermitsForPrompt(permits),
     nightSky: formatNightSkyForPrompt(nightSky),
+    tides: formatTidesForPrompt(tides),
     liveData: {
       alerts: alerts || 'No alert data available.',
       weather: formatWeatherForPrompt(weather),
@@ -766,6 +857,8 @@ ${context.liveData.campgrounds ? `### Campground Data\n${context.liveData.campgr
 ${context.permits ? `### Permits & Reservations\nThe following activities require permits or advance reservations. When recommending any of these, ALWAYS mention the permit requirement, where to get it, and advise the traveler to book in advance.\n\n${context.permits}` : ''}
 
 ${context.nightSky ? `### Night Sky Conditions\n${context.nightSky}` : ''}
+
+${context.tides ? `### Tide Predictions\n${context.tides}` : ''}
 
 ---
 
