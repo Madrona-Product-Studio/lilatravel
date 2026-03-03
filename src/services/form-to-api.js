@@ -152,7 +152,7 @@ export function translateFormToApi(formData, userName = 'Traveler') {
         formData.movement
       ),
       energy: movementToEnergy(formData.movement),
-      stayStyle: 'rooted', // No accommodation step yet — default for single-destination guides
+      stayStyle: formData.stayStyle || 'rooted',
       territory: rangeToTerritory(formData.range),
       budget: budgetToApi(formData.budget),
       intention: intentionsToString(formData.intentions),

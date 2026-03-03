@@ -275,6 +275,12 @@ const BUDGET_TIERS = [
   { id: "noLimits", label: "No Limits", desc: "The extraordinary", range: "$$$$", color: C.sunSalmon },
 ];
 
+const STAY_STYLES = [
+  { id: "elemental", label: "Elemental", desc: "Camping, glamping, under the stars — immersed in the landscape", icon: IconStars, color: C.goldenAmber },
+  { id: "rooted",    label: "Rooted",    desc: "Boutique lodges, locally-owned inns — comfortable and connected", icon: IconTorii, color: C.oceanTeal },
+  { id: "premium",   label: "Premium",   desc: "Design properties, luxury resorts — elevated experiences", icon: IconLotus, color: C.sunSalmon },
+];
+
 const GROUP_TYPES = [
   { id: "solo",    label: "Solo",    desc: "Just me",               icon: IconUnalome,     color: C.oceanTeal },
   { id: "couple",  label: "Couple",  desc: "Two of us",             icon: IconYinYang,     color: C.sunSalmon },
@@ -1408,6 +1414,60 @@ function StepBudget({ data, onChange, onNext, onBack }) {
   );
 }
 
+// ─── Step: Stay Style ─────────────────────────────────────────────────────
+
+function StepStay({ data, onChange, onNext, onBack }) {
+  return (
+    <div>
+      <StepTitle
+        eyebrow="Accommodation"
+        title="How do you want to stay?"
+        subtitle="From sleeping under the stars to design-forward retreats — we'll match your lodging to your vibe."
+      />
+      <div style={{ maxWidth: 480, margin: "0 auto", padding: "0 20px" }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+          {STAY_STYLES.map(style => {
+            const active = data.stayStyle === style.id;
+            const Ic = style.icon;
+            return (
+              <button key={style.id} onClick={() => onChange({ stayStyle: style.id })} style={{
+                display: "flex", alignItems: "center", gap: 14,
+                background: active ? `${style.color}08` : C.white,
+                border: `1.5px solid ${active ? style.color : `${C.sage}18`}`,
+                borderRadius: 14, padding: "18px 20px",
+                cursor: "pointer", transition: "all 0.25s",
+                minHeight: 60, WebkitTapHighlightColor: "transparent",
+                boxShadow: active ? `0 3px 16px ${style.color}15` : "0 1px 4px rgba(0,0,0,0.04)",
+                textAlign: "left",
+              }}>
+                <div style={{
+                  width: 40, height: 40, borderRadius: 12,
+                  background: active ? `${style.color}12` : `${C.sage}08`,
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  flexShrink: 0, transition: "background 0.25s",
+                }}>
+                  <Ic size={20} color={active ? style.color : `${C.sage}60`} />
+                </div>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <span style={{
+                    fontFamily: "'Cormorant Garamond', serif",
+                    fontSize: "clamp(16px, 4vw, 18px)", fontWeight: 600, color: C.slate,
+                  }}>{style.label}</span>
+                  <div style={{
+                    fontFamily: "'Quicksand', sans-serif",
+                    fontSize: 12, color: `${C.slate}60`, lineHeight: 1.4, marginTop: 2,
+                  }}>{style.desc}</div>
+                </div>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+      <NavButtons onBack={onBack} onNext={onNext} nextDisabled={!data.stayStyle} />
+    </div>
+  );
+}
+
 // ─── Profile ─────────────────────────────────────────────────────────────────
 function StepProfile({ data, onBack, onUnlock, generating }) {
   const [visible, setVisible] = useState(false);
@@ -1690,7 +1750,7 @@ function DotAnimation() {
 // ═══════════════════════════════════════════════════════════════════════════════
 
 const STEP_NAMES = [
-  'welcome', 'destination', 'group', 'month', 'duration', 'budget',
+  'welcome', 'destination', 'group', 'month', 'duration', 'budget', 'stay',
   'intention', 'range', 'movement', 'pacing', 'practice_level',
   'practice_interests', 'profile',
 ];
@@ -1701,7 +1761,7 @@ export default function PlanMyTrip() {
   const [data, setData] = useState({
     destination: null, groupType: null, groupSize: 1,
     month: null, intentions: [], movement: 30,
-    pacing: 50, range: 35, duration: 4, budget: null,
+    pacing: 50, range: 35, duration: 4, budget: null, stayStyle: null,
     practiceLevel: 1, practices: [],
   });
   const [transitioning, setTransitioning] = useState(false);
@@ -1740,8 +1800,8 @@ export default function PlanMyTrip() {
       destination: data.destination || undefined,
     });
 
-    // After intention step (step 6), nudge slider defaults based on selections
-    if (step === 6 && data.intentions?.length > 0) {
+    // After intention step (step 7), nudge slider defaults based on selections
+    if (step === 7 && data.intentions?.length > 0) {
       const intents = data.intentions;
       let movementNudge = 30; // default
       let pacingNudge = 50;   // default
@@ -1809,8 +1869,8 @@ export default function PlanMyTrip() {
     }
   };
 
-  // 13 screens: welcome → destination → group → month → duration → budget → intention → territory → movement → pacing → practiceLevel → practiceInterests → profile
-  const TOTAL_INNER_STEPS = 11; // steps shown in indicator (excludes welcome + profile)
+  // 14 screens: welcome → destination → group → month → duration → budget → stay → intention → territory → movement → pacing → practiceLevel → practiceInterests → profile
+  const TOTAL_INNER_STEPS = 12; // steps shown in indicator (excludes welcome + profile)
   const renderStep = () => {
     switch (step) {
       case 0: return <StepWelcome onNext={goNext} />;
@@ -1819,13 +1879,14 @@ export default function PlanMyTrip() {
       case 3: return <StepMonth data={data} onChange={updateData} onNext={goNext} onBack={goBack} />;
       case 4: return <StepDuration data={data} onChange={updateData} onNext={goNext} onBack={goBack} />;
       case 5: return <StepBudget data={data} onChange={updateData} onNext={goNext} onBack={goBack} />;
-      case 6: return <StepIntention data={data} onChange={updateData} onNext={goNext} onBack={goBack} />;
-      case 7: return <StepRange data={data} onChange={updateData} onNext={goNext} onBack={goBack} />;
-      case 8: return <StepMovement data={data} onChange={updateData} onNext={goNext} onBack={goBack} />;
-      case 9: return <StepPacing data={data} onChange={updateData} onNext={goNext} onBack={goBack} />;
-      case 10: return <StepPracticeLevel data={data} onChange={updateData} onNext={goNext} onBack={goBack} />;
-      case 11: return <StepPracticeInterests data={data} onChange={updateData} onNext={goNext} onBack={goBack} />;
-      case 12: return <StepProfile data={data} onBack={goBack} onUnlock={handleUnlock} generating={generating} />;
+      case 6: return <StepStay data={data} onChange={updateData} onNext={goNext} onBack={goBack} />;
+      case 7: return <StepIntention data={data} onChange={updateData} onNext={goNext} onBack={goBack} />;
+      case 8: return <StepRange data={data} onChange={updateData} onNext={goNext} onBack={goBack} />;
+      case 9: return <StepMovement data={data} onChange={updateData} onNext={goNext} onBack={goBack} />;
+      case 10: return <StepPacing data={data} onChange={updateData} onNext={goNext} onBack={goBack} />;
+      case 11: return <StepPracticeLevel data={data} onChange={updateData} onNext={goNext} onBack={goBack} />;
+      case 12: return <StepPracticeInterests data={data} onChange={updateData} onNext={goNext} onBack={goBack} />;
+      case 13: return <StepProfile data={data} onBack={goBack} onUnlock={handleUnlock} generating={generating} />;
       default: return null;
     }
   };
@@ -1890,7 +1951,7 @@ export default function PlanMyTrip() {
         transform: transitioning ? "translateY(12px)" : "translateY(0)",
         transition: "opacity 0.3s, transform 0.3s",
       }}>
-        {step > 0 && step < 12 && <StepIndicator current={step - 1} total={TOTAL_INNER_STEPS} />}
+        {step > 0 && step < 13 && <StepIndicator current={step - 1} total={TOTAL_INNER_STEPS} />}
         {renderStep()}
       </div>
     </div>
