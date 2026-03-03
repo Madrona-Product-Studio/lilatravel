@@ -54,7 +54,7 @@ export const TravelerProfileSchema = {
   stayStyle: '',               // 'elemental' | 'rooted' | 'premium'
 
   // Step 8: What's your budget range?
-  budget: '',                  // 'mindful' | 'balanced' | 'open'
+  budget: '',                  // 'mindful' | 'balanced' | 'premium' | 'noLimits'
 
   // Step 9: What's your intention? (free text)
   intention: '',               // string — "I want to disconnect and find stillness"
@@ -199,11 +199,12 @@ export const ContentTags = {
     premium:   'Luxury resorts, design properties, elevated experiences',
   },
 
-  // Budget — matches Step 8
+  // Budget — matches Step 8 (synced with BUDGET_TIERS in PlanMyTrip.jsx)
   budget: {
     mindful:  'Free/low-cost options: camping, free trails, picnic provisions, self-guided',
     balanced: 'Mid-range: boutique lodging, sit-down restaurants, some guided experiences',
-    open:     'Premium: luxury stays, fine dining, private guides, full spa treatments',
+    premium:  'Elevated: luxury stays, fine dining, private guides, full spa treatments',
+    noLimits: 'The extraordinary: top-tier resorts, private chefs, helicopter access, bespoke experiences',
   },
 
   // Group Type — matches Step 4
@@ -464,7 +465,7 @@ export function generateMatchingInstructions(profile) {
  *   - **Tags**: [strenuous, permit-required, signature-experience, morning-start]
  *   - **Energy**: adventurous
  *   - **Group**: solo, couple, friends
- *   - **Budget**: mindful, balanced, open (free activity)
+ *   - **Budget**: mindful, balanced, premium, noLimits (free activity)
  *   - **Time**: sunrise, morning
  *   - **Interests**: hiking
  */
@@ -474,7 +475,7 @@ export const GuideItemTemplate = {
   description: '',       // Editorial description
   energy: [],            // ['gentle'] | ['moderate'] | ['adventurous'] | combo
   stayStyle: null,       // Only for accommodations: 'elemental' | 'rooted' | 'premium'
-  budget: [],            // ['mindful'] | ['balanced'] | ['open'] | combo
+  budget: [],            // ['mindful'] | ['balanced'] | ['premium'] | ['noLimits'] | combo
   groupType: [],         // ['solo', 'couple'] | ['family'] | etc.
   timeOfDay: [],         // ['sunrise', 'morning'] | ['evening'] | etc.
   interests: [],         // ['hiking'] | ['yoga', 'mindfulness'] | etc.

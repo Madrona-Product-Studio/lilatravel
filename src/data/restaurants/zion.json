@@ -1,0 +1,300 @@
+[
+  {
+    "id": "oscars-cafe",
+    "name": "Oscar's Cafe",
+    "cuisine": "American breakfast & lunch",
+    "location": "Springdale",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "lively",
+    "highlights": [
+      "Huevos rancheros",
+      "Burgers",
+      "Hearty portions",
+      "Outdoor seating"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": false,
+      "notes": null
+    },
+    "hours": "Breakfast & lunch daily; may have reduced winter hours",
+    "reservations": "walk-in",
+    "links": {
+      "website": "https://www.oscarscafe.com/",
+      "maps": null
+    },
+    "tags": ["breakfast", "lunch", "outdoor-seating", "local-favorite", "weekend-wait"],
+    "months": "all"
+  },
+  {
+    "id": "whiptail-grill",
+    "name": "Whiptail Grill",
+    "cuisine": "Mexican-inspired",
+    "location": "Springdale",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "relaxed",
+    "highlights": [
+      "Creative Mexican-inspired dishes",
+      "Good vegetarian options",
+      "Covered patio dining"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": false,
+      "notes": "Strong vegetarian menu"
+    },
+    "hours": "Lunch & dinner; check winter hours",
+    "reservations": "walk-in",
+    "links": {
+      "website": "https://www.whiptailgrillzion.com/",
+      "maps": null
+    },
+    "tags": ["lunch", "dinner", "patio", "vegetarian-friendly"],
+    "months": "all"
+  },
+  {
+    "id": "memes-cafe",
+    "name": "MeMe's Cafe",
+    "cuisine": "Breakfast & brunch",
+    "location": "Springdale",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "relaxed",
+    "highlights": [
+      "Locally sourced ingredients",
+      "Smoothies",
+      "Lighter fare",
+      "Cozy atmosphere"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": false,
+      "notes": "Lighter, health-conscious options available"
+    },
+    "hours": "Breakfast & brunch; check winter hours",
+    "reservations": "walk-in",
+    "links": {
+      "website": null,
+      "maps": null
+    },
+    "tags": ["breakfast", "brunch", "smoothies", "locally-sourced", "cozy"],
+    "months": "all"
+  },
+  {
+    "id": "bit-and-spur",
+    "name": "Bit & Spur",
+    "cuisine": "Southwest-American",
+    "location": "Springdale",
+    "priceRange": "$$",
+    "budgetTier": "balanced",
+    "groupFit": ["couple", "friends"],
+    "energy": "intimate",
+    "highlights": [
+      "Creative cocktail program",
+      "Southwest-inspired dinner menu",
+      "Date-night atmosphere",
+      "Local institution"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": false,
+      "notes": null
+    },
+    "hours": "Dinner nightly; year-round",
+    "reservations": "recommended",
+    "links": {
+      "website": "https://bitandspur.com/",
+      "maps": null
+    },
+    "tags": ["dinner", "cocktails", "date-night", "southwest", "reservations-recommended"],
+    "months": "all"
+  },
+  {
+    "id": "deep-creek-coffee",
+    "name": "Deep Creek Coffee",
+    "cuisine": "Coffee & light fare",
+    "location": "Springdale",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "relaxed",
+    "highlights": [
+      "Best coffee in Springdale",
+      "Good pastries",
+      "Opens early for pre-hike fuel",
+      "Post-hike recovery spot",
+      "Smoothies"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": false,
+      "notes": "Light fare; smoothies and pastries"
+    },
+    "hours": "Opens early morning; year-round",
+    "reservations": "walk-in",
+    "links": {
+      "website": null,
+      "maps": null
+    },
+    "tags": ["coffee", "pastries", "pre-hike", "post-hike", "early-open", "recovery"],
+    "months": "all"
+  },
+  {
+    "id": "kings-landing-bistro",
+    "name": "King's Landing Bistro",
+    "cuisine": "Upscale American",
+    "location": "Springdale (at Driftwood Lodge)",
+    "priceRange": "$$$",
+    "budgetTier": "premium",
+    "groupFit": ["couple", "friends"],
+    "energy": "intimate",
+    "highlights": [
+      "Nicest dinner in Springdale",
+      "Upscale atmosphere",
+      "Located at Driftwood Lodge"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": false,
+      "notes": null
+    },
+    "hours": "Dinner; check winter hours",
+    "reservations": "recommended",
+    "links": {
+      "website": "https://www.kingslanding-zion.com/",
+      "maps": null
+    },
+    "tags": ["dinner", "upscale", "date-night", "hotel-restaurant"],
+    "months": "all"
+  },
+  {
+    "id": "hells-backbone-grill",
+    "name": "Hell's Backbone Grill",
+    "cuisine": "Farm-to-table American",
+    "location": "Boulder, UT (~2.5 hrs from Zion)",
+    "priceRange": "$$$",
+    "budgetTier": "premium",
+    "groupFit": ["couple", "friends"],
+    "energy": "intimate",
+    "highlights": [
+      "James Beard-recognized",
+      "Ingredients from their own farm",
+      "Worth the drive toward Capitol Reef/Bryce",
+      "One of the best meals in southern Utah"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": true,
+      "glutenFree": true,
+      "notes": "Farm-sourced; accommodates most dietary needs — call ahead"
+    },
+    "hours": "Dinner; seasonal (Apr–Nov)",
+    "reservations": "required",
+    "links": {
+      "website": null,
+      "maps": null
+    },
+    "tags": ["dinner", "farm-to-table", "james-beard", "destination-dining", "regional", "seasonal"],
+    "months": "Apr–Nov"
+  },
+  {
+    "id": "switchback-grille",
+    "name": "Switchback Grille",
+    "cuisine": "Steaks & American",
+    "location": "Springdale",
+    "priceRange": "$$",
+    "budgetTier": "balanced",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "relaxed",
+    "highlights": [
+      "Steaks",
+      "Reliable American fare",
+      "Solid fallback option"
+    ],
+    "dietary": {
+      "vegetarian": false,
+      "vegan": false,
+      "glutenFree": false,
+      "notes": null
+    },
+    "hours": "Dinner; year-round",
+    "reservations": "walk-in",
+    "links": {
+      "website": null,
+      "maps": null
+    },
+    "tags": ["dinner", "steaks", "american", "reliable"],
+    "months": "all"
+  },
+  {
+    "id": "sol-foods-market",
+    "name": "Sol Foods Market",
+    "cuisine": "Market & provisions",
+    "location": "Springdale",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "relaxed",
+    "highlights": [
+      "Trail snacks",
+      "Sandwiches",
+      "Basic groceries",
+      "Small but well-stocked"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": true,
+      "glutenFree": true,
+      "notes": "Grocery store — wide range of options available"
+    },
+    "hours": "Daytime; year-round",
+    "reservations": "walk-in",
+    "links": {
+      "website": null,
+      "maps": null
+    },
+    "tags": ["market", "provisions", "trail-snacks", "groceries", "self-catering"],
+    "months": "all"
+  },
+  {
+    "id": "springdale-fruit-company",
+    "name": "Springdale Fruit Company",
+    "cuisine": "Smoothies & fresh fruit",
+    "location": "Springdale",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "lively",
+    "highlights": [
+      "Seasonal smoothies",
+      "Fresh fruit",
+      "Quick and refreshing",
+      "Great post-hike stop"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": true,
+      "glutenFree": true,
+      "notes": "Fruit-based — naturally accommodates most diets"
+    },
+    "hours": "Daytime; seasonal (Mar–Nov typically)",
+    "reservations": "walk-in",
+    "links": {
+      "website": null,
+      "maps": null
+    },
+    "tags": ["smoothies", "fruit", "snacks", "quick-stop", "post-hike", "seasonal"],
+    "months": "Mar–Nov"
+  }
+]

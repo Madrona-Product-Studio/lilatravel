@@ -64,7 +64,7 @@ The trail that defines Zion. A knife-edge ridge 1,488 feet above the canyon floo
 - **Tags**: [strenuous, permit-required, signature-experience, morning-start]
 - **Energy**: adventurous
 - **Group**: solo, couple, friends
-- **Budget**: mindful, balanced, open
+- **Budget**: mindful, balanced, premium, noLimits
 - **Time**: sunrise, morning
 - **Interests**: hiking
 - **Months**: all (Jan-Dec, but use microspikes Nov-Mar; not recommended in wet/icy conditions)
@@ -81,7 +81,7 @@ Walk upstream through the Virgin River as thousand-foot walls close in around yo
 - **Tags**: [moderate-to-strenuous, seasonal, water-hike, gear-rental, half-day-to-full-day]
 - **Energy**: moderate, adventurous
 - **Group**: solo, couple, friends
-- **Budget**: balanced, open (gear rental ~$30-50)
+- **Budget**: balanced, premium, noLimits (gear rental ~$30-50)
 - **Time**: morning
 - **Interests**: hiking, water
 - **Months**: May-Oct (varies by water conditions; closed Nov-Apr due to cold water temps and flash flood risk)
@@ -97,7 +97,7 @@ One mile of trail, a lifetime of perspective. The best effort-to-awe ratio in th
 - **Tags**: [easy, family-friendly, sunset-spot, quick-win, no-shuttle-needed]
 - **Energy**: gentle, moderate
 - **Group**: solo, couple, friends, family
-- **Budget**: mindful, balanced, open
+- **Budget**: mindful, balanced, premium, noLimits
 - **Time**: sunset, anytime
 - **Interests**: hiking, scenicDrives
 - **Months**: all (year-round; may be icy Dec-Feb, use caution)
@@ -113,7 +113,7 @@ A gentle trail with a powerful payoff. Views of Watchman Peak, the Towers of the
 - **Tags**: [moderate, sunrise-spot, morning-start, near-visitor-center]
 - **Energy**: moderate
 - **Group**: solo, couple, friends, family
-- **Budget**: mindful, balanced, open
+- **Budget**: mindful, balanced, premium, noLimits
 - **Time**: sunrise
 - **Interests**: hiking
 - **Months**: all (year-round; beautiful in every season)
@@ -128,7 +128,7 @@ The view that makes Angels Landing look small. At 6,521 feet, this is the highes
 - **Tags**: [moderate, panoramic, east-side, car-required]
 - **Energy**: moderate, adventurous
 - **Group**: solo, couple, friends
-- **Budget**: mindful, balanced, open
+- **Budget**: mindful, balanced, premium, noLimits
 - **Time**: morning, anytime
 - **Interests**: hiking, scenicDrives
 - **Months**: Apr-Nov (East Mesa dirt road typically impassable Dec-Mar)
@@ -142,7 +142,7 @@ A series of three pools fed by waterfalls cascading down red rock walls. The low
 - **Tags**: [easy-to-moderate, waterfall, family-friendly, afternoon-option]
 - **Energy**: gentle, moderate
 - **Group**: solo, couple, friends, family
-- **Budget**: mindful, balanced, open
+- **Budget**: mindful, balanced, premium, noLimits
 - **Time**: afternoon, anytime
 - **Interests**: hiking, water
 - **Months**: all (lower year-round; upper may be icy Dec-Feb)
@@ -156,7 +156,7 @@ A paved, flat, riverside trail connecting the Visitor Center to Canyon Junction.
 - **Tags**: [easy, paved, bikes-ok, dogs-ok, riverside, morning-walk, gentle-movement]
 - **Energy**: gentle
 - **Group**: solo, couple, friends, family
-- **Budget**: mindful, balanced, open
+- **Budget**: mindful, balanced, premium, noLimits
 - **Time**: morning, anytime
 - **Interests**: hiking, mindfulness
 - **Months**: all (year-round; paved and accessible in every season)
@@ -189,7 +189,7 @@ Self-guided sunrise practice at Pa'rus Trail or Canyon Junction. Bring your own 
 If staying at Cliffrose, the riverside lawn is a natural yoga space.
 - **Energy**: gentle
 - **Group**: solo, couple
-- **Budget**: open (guest amenity)
+- **Budget**: premium, noLimits (guest amenity)
 - **Time**: sunrise, morning
 - **Interests**: yoga
 - **Months**: all (year-round, weather permitting)
@@ -249,7 +249,7 @@ Good post-hike recovery spot. Coffee, smoothies, light fare. Springdale.
 Cable Mountain Lodge and Cliffrose Lodge both have hot tubs available to guests.
 - **Energy**: gentle
 - **Group**: solo, couple
-- **Budget**: balanced, open (guest amenity at rooted/premium lodging)
+- **Budget**: balanced, premium, noLimits (guest amenity at rooted/premium lodging)
 - **Time**: afternoon, evening
 - **Interests**: spa
 - **Months**: all (year-round)
@@ -291,7 +291,7 @@ Cozy breakfast/brunch. Locally sourced when possible. Smoothies and lighter fare
 Dinner destination. Southwest-inspired with a creative cocktail program. Reservations recommended, especially in peak season.
 - **Energy**: gentle
 - **Group**: couple, friends
-- **Budget**: balanced, open
+- **Budget**: balanced, premium, noLimits
 - **Time**: evening
 - **Interests**: dining
 - **Months**: all (year-round; reservations recommended peak season)
@@ -309,7 +309,7 @@ Best coffee in Springdale. Good pastries. Opens early for pre-hike fuel.
 Upscale option at Driftwood Lodge. Good for a nicer dinner out.
 - **Energy**: gentle
 - **Group**: couple, friends
-- **Budget**: open
+- **Budget**: premium, noLimits
 - **Time**: evening
 - **Interests**: dining
 - **Months**: all (check winter hours)
@@ -320,7 +320,7 @@ Upscale option at Driftwood Lodge. Good for a nicer dinner out.
 Boulder, UT — ~2.5 hrs from Zion. James Beard-recognized. Farm-to-table with ingredients from their own farm. Worth the drive if you're heading toward Capitol Reef/Bryce. Reservations essential.
 - **Energy**: gentle
 - **Group**: couple, friends
-- **Budget**: open
+- **Budget**: premium, noLimits
 - **Time**: evening
 - **Interests**: dining, farmMarkets
 - **Months**: Apr–Nov (seasonal; closed in winter)
@@ -407,7 +407,7 @@ Springdale. Riverside setting, beautiful grounds. Walking distance to everything
 - **StayStyle**: rooted
 - **Energy**: gentle, moderate, adventurous
 - **Group**: solo, couple, friends, family
-- **Budget**: balanced, open
+- **Budget**: balanced, premium, noLimits
 - **Time**: anytime
 - **Interests**: yoga, spa
 - **Months**: all (year-round)
@@ -429,7 +429,7 @@ Glamping with safari-style tents. Outside the park but designed for immersive ex
 - **StayStyle**: premium
 - **Energy**: gentle, moderate, adventurous
 - **Group**: solo, couple, friends
-- **Budget**: open
+- **Budget**: premium, noLimits
 - **Time**: anytime
 - **Interests**: stargazing
 - **Months**: Mar–Nov (seasonal; closed in winter)
@@ -439,7 +439,7 @@ Inside park. The only lodge inside the park. Historic. Book far in advance. Limi
 - **StayStyle**: premium
 - **Energy**: gentle, moderate, adventurous
 - **Group**: solo, couple, friends, family
-- **Budget**: open
+- **Budget**: premium, noLimits
 - **Time**: anytime
 - **Interests**: history
 - **Months**: all (year-round; book well in advance)
@@ -455,7 +455,7 @@ Inside park. The only lodge inside the park. Historic. Book far in advance. Limi
 Springdale. Fine art inspired by the canyon landscape. Worth a browse.
 - **Energy**: gentle
 - **Group**: solo, couple, friends
-- **Budget**: balanced, open
+- **Budget**: balanced, premium, noLimits
 - **Time**: midday, afternoon
 - **Interests**: galleries
 - **Months**: all (check winter hours)
@@ -464,7 +464,7 @@ Springdale. Fine art inspired by the canyon landscape. Worth a browse.
 Springdale. Photography of Zion and the Southwest. Beautiful prints.
 - **Energy**: gentle
 - **Group**: solo, couple, friends
-- **Budget**: balanced, open
+- **Budget**: balanced, premium, noLimits
 - **Time**: midday, afternoon
 - **Interests**: galleries
 - **Months**: all (check winter hours)
@@ -552,7 +552,7 @@ Includes: Guided canyon hikes, sunrise yoga, evening breathwork, shared meals at
 **Status**: Coming soon. Join the waitlist.
 - **Energy**: moderate, adventurous
 - **Group**: friends
-- **Budget**: open
+- **Budget**: premium, noLimits
 - **Time**: anytime (multi-day experience)
 - **Interests**: hiking, yoga, breathwork, stargazing, dining
 - **Months**: Sep
