@@ -351,6 +351,321 @@ function formatCelestialForPrompt(celestialData) {
 
 
 // ============================================================
+// NIGHT SKY SERVICE — Milky Way, Meteor Showers, Dark Sky Data
+// ============================================================
+
+// ─── Dark Sky Data (static per destination) ─────────────────
+
+const DARK_SKY_DATA = {
+  zion: {
+    bortle: 2,
+    designation: 'International Dark Sky Park',
+    bestSpots: ['Kolob Terrace Road', 'Lava Point overlook', 'Pa\'rus Trail (after dark)', 'Watchman Campground amphitheater'],
+    notes: 'Designated Dark Sky Park since 2021. Canyon floor has some light from Springdale; drive up Kolob Terrace Road for the darkest skies. Lava Point (7,890 ft) offers 360° unobstructed views. Rangers lead night sky programs spring through fall.',
+  },
+  'joshua-tree': {
+    bortle: 2,
+    designation: 'International Dark Sky Park',
+    bestSpots: ['Keys View', 'Jumbo Rocks campground', 'Cap Rock', 'Skull Rock area'],
+    notes: 'One of the best dark sky parks in the lower 48. Low humidity and high elevation (4,000+ ft) create exceptional transparency. Keys View faces south — ideal for Milky Way core. Avoid full moon weekends; the park gets crowded with astrophotographers on new moon.',
+  },
+  'big-sur': {
+    bortle: 3,
+    designation: null,
+    bestSpots: ['Pfeiffer Beach', 'Andrew Molera State Park', 'Nacimiento-Fergusson Road pullouts', 'Kirk Creek Campground bluff'],
+    notes: 'No official designation but genuinely dark. Ocean horizon to the west is pitch black. Fog can roll in and ruin visibility — check marine layer forecast. Best months are August-October when fog is least frequent. South-facing beaches are best for Milky Way core.',
+  },
+  'olympic-peninsula': {
+    bortle: 2,
+    designation: null,
+    bestSpots: ['Hurricane Ridge', 'Kalaloch Beach', 'Rialto Beach', 'Second Beach at La Push'],
+    notes: 'Some of the darkest skies in the contiguous US. Hurricane Ridge (5,242 ft) rises above low clouds. Coastal beaches offer unobstructed ocean horizons. Cloud cover is the main challenge — check forecasts carefully. July-September has the best chance of clear skies.',
+  },
+  kauai: {
+    bortle: 3,
+    designation: null,
+    bestSpots: ['Polihale State Park', 'Waimea Canyon lookout', 'Kalalau Trail overlook', 'Salt Pond Beach Park'],
+    notes: 'Polihale on the west side is the darkest — no development for miles. Waimea Canyon at 3,400 ft gets above some atmospheric moisture. Trade wind clouds are common; leeward (west/south) side clears more often. Southern latitude (22°N) gives better Milky Way core visibility than mainland US.',
+  },
+};
+
+// ─── Meteor Shower Calendar (static) ────────────────────────
+
+const METEOR_SHOWERS = [
+  { name: 'Quadrantids',   peakMonth: 0,  peakDay: 3,  endDay: 4,  rate: 120, radiant: 'NE sky',    parent: 'Asteroid 2003 EH1', notes: 'Sharp peak — only ~6 hours of strong activity. Best after midnight. Often missed due to narrow window and winter weather.' },
+  { name: 'Lyrids',        peakMonth: 3,  peakDay: 22, endDay: 23, rate: 20,  radiant: 'E sky',     parent: 'Comet Thatcher', notes: 'Reliable spring shower. Occasional surprise outbursts of 100+/hr. Best after midnight when Vega is high.' },
+  { name: 'Eta Aquariids',  peakMonth: 4,  peakDay: 5,  endDay: 6,  rate: 50,  radiant: 'SE sky',    parent: 'Comet Halley', notes: 'Better from southern latitudes. In the northern hemisphere, best in the pre-dawn hour. Fast meteors that leave persistent trains.' },
+  { name: 'Perseids',      peakMonth: 7,  peakDay: 12, endDay: 13, rate: 100, radiant: 'NE sky',    parent: 'Comet Swift-Tuttle', notes: 'The most popular meteor shower. Warm summer nights, high rates, bright fireballs. Active Jul 17 – Aug 24 with broad peak. Best after midnight but visible from 10 PM.' },
+  { name: 'Orionids',      peakMonth: 9,  peakDay: 21, endDay: 22, rate: 20,  radiant: 'SE sky',    parent: 'Comet Halley', notes: 'Fast meteors (66 km/s) that often leave glowing trains. Broad peak over several nights. Best after midnight.' },
+  { name: 'Leonids',       peakMonth: 10, peakDay: 17, endDay: 18, rate: 15,  radiant: 'E sky',     parent: 'Comet Tempel-Tuttle', notes: 'Usually modest but produces legendary storms every ~33 years (next potential: 2031-2032). Best after midnight.' },
+  { name: 'Geminids',      peakMonth: 11, peakDay: 13, endDay: 14, rate: 150, radiant: 'overhead',  parent: 'Asteroid Phaethon', notes: 'King of meteor showers. Highest rates of any annual shower. Visible from 9-10 PM — no need to stay up late. Bright, slow meteors. Bundle up.' },
+  { name: 'Ursids',        peakMonth: 11, peakDay: 22, endDay: 23, rate: 10,  radiant: 'N sky',     parent: 'Comet Tuttle', notes: 'Minor shower near winter solstice. Low rates but occasionally surprises. Best after midnight.' },
+];
+
+/**
+ * Get meteor showers that overlap with the trip dates.
+ * Returns showers active within ±5 days of peak, with closeness to peak.
+ */
+function getActiveShowers(startDate, endDate) {
+  if (!startDate || !endDate) return [];
+
+  const start = new Date(startDate);
+  const end = new Date(endDate);
+  const year = start.getFullYear();
+  const results = [];
+
+  for (const shower of METEOR_SHOWERS) {
+    // Build the peak date for the trip year
+    const peakStart = new Date(year, shower.peakMonth, shower.peakDay);
+    const peakEnd = new Date(year, shower.peakMonth, shower.endDay);
+
+    // Active window: ±5 days around peak
+    const windowStart = new Date(peakStart);
+    windowStart.setDate(windowStart.getDate() - 5);
+    const windowEnd = new Date(peakEnd);
+    windowEnd.setDate(windowEnd.getDate() + 5);
+
+    // Check overlap with trip dates
+    if (start <= windowEnd && end >= windowStart) {
+      // Calculate how close to peak the trip is
+      const tripMid = new Date((start.getTime() + end.getTime()) / 2);
+      const peakMid = new Date((peakStart.getTime() + peakEnd.getTime()) / 2);
+      const daysFromPeak = Math.abs((tripMid - peakMid) / (1000 * 60 * 60 * 24));
+
+      // Does the trip include the actual peak night?
+      const includesPeak = start <= peakEnd && end >= peakStart;
+
+      // Moon interference on peak night
+      const moonOnPeak = getMoonPhase(peakStart);
+
+      results.push({
+        name: shower.name,
+        peakDate: `${peakStart.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}–${peakEnd.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}`,
+        rate: shower.rate,
+        radiant: shower.radiant,
+        notes: shower.notes,
+        daysFromPeak: Math.round(daysFromPeak),
+        includesPeak,
+        moonInterference: moonOnPeak.illumination > 60 ? 'significant' : moonOnPeak.illumination > 30 ? 'moderate' : 'minimal',
+        moonIllumination: moonOnPeak.illumination,
+      });
+    }
+  }
+
+  return results;
+}
+
+// ─── Milky Way Visibility ───────────────────────────────────
+
+/**
+ * Calculate Milky Way galactic core visibility for a given latitude and date.
+ *
+ * The galactic center sits at roughly RA 17h 46m, Dec -29°.
+ * Visibility depends on:
+ *   1. Whether the core rises above the horizon at this latitude
+ *   2. Whether it's above the horizon during dark hours
+ *   3. How high it gets (higher = better contrast)
+ *
+ * @param {number} latitude — degrees N (e.g., 37.3 for Zion)
+ * @param {Date} date
+ * @returns {{ visible, quality, bestViewingStart, bestViewingEnd, coreAltitude }}
+ */
+function getMilkyWayWindow(latitude, date) {
+  const GC_RA = 17.767;   // hours (galactic center right ascension)
+  const GC_DEC = -29.0;   // degrees (galactic center declination)
+  const DEG = Math.PI / 180;
+
+  // 1. Check if the core ever rises at this latitude
+  //    Object rises if: -tan(lat) * tan(dec) is between -1 and 1
+  const cosH = -Math.tan(latitude * DEG) * Math.tan(GC_DEC * DEG);
+
+  if (cosH >= 1) {
+    // Core never rises at this latitude
+    return { visible: false, quality: 'not visible', bestViewingStart: null, bestViewingEnd: null, coreMaxAltitude: 0 };
+  }
+
+  // Half the time the core is above the horizon, in hours
+  const H_rad = cosH <= -1 ? Math.PI : Math.acos(cosH);
+  const H_hours = (H_rad / Math.PI) * 12;
+
+  // Max altitude of galactic center
+  const coreMaxAltitude = 90 - Math.abs(latitude - GC_DEC);
+
+  // 2. Approximate Local Sidereal Time at midnight for this date
+  const jan1 = new Date(date.getFullYear(), 0, 1);
+  const dayOfYear = Math.floor((date - jan1) / (1000 * 60 * 60 * 24));
+  const lstMidnight = (dayOfYear * (24 / 365.25) + 6.6) % 24;
+
+  // 3. Transit time of galactic center in local clock time
+  let transitHour = ((GC_RA - lstMidnight) % 24 + 24) % 24;
+
+  // Rise and set times (local clock hours, 0 = midnight)
+  let riseHour = ((transitHour - H_hours) % 24 + 24) % 24;
+  let setHour = ((transitHour + H_hours) % 24 + 24) % 24;
+
+  // 4. Dark hours: approximate astronomical twilight
+  //    Calibrated: summer ~10:20 PM – 3:35 AM, winter ~6:40 PM – 5:25 AM (at ~37°N)
+  const dayAngle = ((dayOfYear - 172) / 365.25) * 2 * Math.PI; // 0 at summer solstice
+  const darkStart = 20.5 + 2.0 * Math.cos(dayAngle);
+  const darkEnd = 4.5 - 1.0 * Math.cos(dayAngle);
+
+  // 5. Compute overlap of two circular intervals on a 24h clock
+  //    Both "core above horizon" and "dark hours" may wrap around midnight.
+  //    Unwrap each into a linear duration, then test offsets.
+  const coreDur = ((setHour - riseHour) % 24 + 24) % 24 || 24;
+  const darkDur = ((darkEnd - darkStart) % 24 + 24) % 24 || 24;
+
+  let bestOverlap = 0;
+  let bestOvStart = 0;
+  let bestOvEnd = 0;
+
+  for (const offset of [0, 24, -24]) {
+    const cS = riseHour + offset;
+    const cE = cS + coreDur;
+    const dS = darkStart;
+    const dE = darkStart + darkDur;
+
+    const ovStart = Math.max(cS, dS);
+    const ovEnd = Math.min(cE, dE);
+
+    if (ovEnd > ovStart && (ovEnd - ovStart) > bestOverlap) {
+      bestOverlap = ovEnd - ovStart;
+      bestOvStart = ovStart;
+      bestOvEnd = ovEnd;
+    }
+  }
+
+  if (bestOverlap < 0.25) {
+    return { visible: false, quality: 'not visible', bestViewingStart: null, bestViewingEnd: null, coreMaxAltitude: Math.round(coreMaxAltitude) };
+  }
+
+  const clockStart = ((bestOvStart % 24) + 24) % 24;
+  const clockEnd = ((bestOvEnd % 24) + 24) % 24;
+
+  // 6. Quality rating based on viewing window length and altitude
+  let quality;
+  if (bestOverlap >= 4 && coreMaxAltitude > 20) quality = 'peak';
+  else if (bestOverlap >= 2 && coreMaxAltitude > 15) quality = 'good';
+  else if (bestOverlap >= 0.5) quality = 'marginal';
+  else quality = 'not visible';
+
+  return {
+    visible: true,
+    quality,
+    bestViewingStart: formatClockHour(clockStart),
+    bestViewingEnd: formatClockHour(clockEnd),
+    viewingHours: Math.round(bestOverlap * 10) / 10,
+    coreMaxAltitude: Math.round(coreMaxAltitude),
+  };
+}
+
+/** Format a decimal hour (0-24) as a clock string like "10:30 PM" */
+function formatClockHour(h) {
+  const hour24 = Math.floor(((h % 24) + 24) % 24);
+  const minutes = Math.round((h % 1) * 60);
+  const period = hour24 >= 12 ? 'PM' : 'AM';
+  const hour12 = hour24 === 0 ? 12 : hour24 > 12 ? hour24 - 12 : hour24;
+  return `${hour12}:${String(minutes).padStart(2, '0')} ${period}`;
+}
+
+// ─── Combined Night Sky Conditions ──────────────────────────
+
+/**
+ * Assemble all night sky data for a destination and date range.
+ * Combines dark sky data, moon phase, Milky Way, and meteor showers.
+ */
+function getNightSkyConditions(destination, startDate, endDate, moonPhase) {
+  const darkSky = DARK_SKY_DATA[destination] || null;
+  const coords = DESTINATION_COORDS[destination];
+
+  // Milky Way — calculate for the middle of the trip
+  let milkyWay = null;
+  if (coords && startDate) {
+    const tripStart = new Date(startDate);
+    const tripEnd = endDate ? new Date(endDate) : tripStart;
+    const midDate = new Date((tripStart.getTime() + tripEnd.getTime()) / 2);
+    milkyWay = getMilkyWayWindow(coords.lat, midDate);
+
+    // Factor in moon: if moon is bright, downgrade the Milky Way quality
+    if (milkyWay.visible && moonPhase) {
+      if (moonPhase.illumination > 70) {
+        milkyWay.moonNote = 'Bright moon will wash out the Milky Way. Best viewing when moon is below horizon or in the hour before moonrise.';
+        if (milkyWay.quality === 'peak') milkyWay.quality = 'good';
+        else if (milkyWay.quality === 'good') milkyWay.quality = 'marginal';
+      } else if (moonPhase.illumination > 40) {
+        milkyWay.moonNote = 'Moderate moonlight — Milky Way visible but less dramatic. Wait for moon to set for best contrast.';
+      }
+    }
+  }
+
+  // Meteor showers
+  const showers = getActiveShowers(startDate, endDate);
+
+  return { darkSky, milkyWay, showers, moonPhase };
+}
+
+/**
+ * Format night sky conditions into the Claude prompt block.
+ */
+function formatNightSkyForPrompt(nightSky) {
+  if (!nightSky) return null;
+
+  const lines = [];
+
+  // Dark sky quality
+  if (nightSky.darkSky) {
+    const ds = nightSky.darkSky;
+    const bortleDesc = ds.bortle <= 2 ? 'exceptional' : ds.bortle <= 3 ? 'excellent' : ds.bortle <= 4 ? 'good' : 'moderate';
+    lines.push(`Dark sky quality: Bortle ${ds.bortle} (${bortleDesc})${ds.designation ? ` — ${ds.designation}` : ''}`);
+    lines.push(`Best stargazing spots: ${ds.bestSpots.join(', ')}`);
+    if (ds.notes) lines.push(`Notes: ${ds.notes}`);
+  }
+
+  // Moon (from existing celestial data)
+  if (nightSky.moonPhase) {
+    const m = nightSky.moonPhase;
+    lines.push(`Moon: ${m.emoji} ${m.name}, ${m.illumination}% illumination — ${m.stargazing} stargazing conditions`);
+  }
+
+  // Milky Way
+  if (nightSky.milkyWay) {
+    const mw = nightSky.milkyWay;
+    if (mw.visible) {
+      lines.push(`Milky Way: Core visible, ${mw.quality} season. Best viewing ${mw.bestViewingStart} – ${mw.bestViewingEnd} (~${mw.viewingHours} hrs). Core reaches ${mw.coreMaxAltitude}° altitude.`);
+      if (mw.moonNote) lines.push(`  ${mw.moonNote}`);
+    } else {
+      lines.push('Milky Way: Galactic core not visible during this period. Focus on constellations, planets, and any active meteor showers.');
+    }
+  }
+
+  // Meteor showers
+  if (nightSky.showers && nightSky.showers.length > 0) {
+    for (const s of nightSky.showers) {
+      let line = `Meteor shower: ${s.name} active (peak ${s.peakDate}).`;
+      if (s.includesPeak) {
+        line += ` Peak night falls during the trip! ~${s.rate} meteors/hr after midnight.`;
+      } else {
+        line += ` ~${Math.round(s.rate * 0.3)}-${Math.round(s.rate * 0.6)} meteors/hr (${s.daysFromPeak} days from peak).`;
+      }
+      line += ` Moon interference: ${s.moonInterference} (${s.moonIllumination}%). Best viewing: ${s.radiant}, after midnight.`;
+      if (s.notes) line += ` ${s.notes}`;
+      lines.push(line);
+    }
+  } else if (nightSky.milkyWay?.visible) {
+    lines.push('Meteor showers: No major showers active during these dates.');
+  }
+
+  if (lines.length === 0) return null;
+
+  // Add the instruction block
+  lines.push('');
+  lines.push('USE THIS DATA: When night sky conditions are good, suggest evening stargazing as an activity. Mention specific phenomena (Milky Way, meteor showers) by name. Reference the best spots from the list above. If moon is bright (>60% illumination), suggest moonlit activities instead (moonlit canyon walk, night photography of illuminated formations). If a meteor shower peaks during the trip, make it a highlight event.');
+
+  return lines.join('\n');
+}
+
+
+// ============================================================
 // MAIN: Assemble Full Context for Claude API Call
 // ============================================================
 
@@ -390,10 +705,20 @@ export async function assembleContext(destination, userPreferences) {
   // 3. Generate matching instructions from preferences
   const matchingInstructions = generateMatchingInstructions(userPreferences);
 
-  // 4. Assemble the context block that goes into the Claude prompt
+  // 4. Compute night sky conditions (uses moon phase from celestial + static dark sky data)
+  const moonPhase = celestial?.moonPhase || (hasExactDates ? null : getMoonPhase(new Date()));
+  const nightSky = getNightSkyConditions(
+    destination,
+    hasExactDates ? userPreferences.dates.start : null,
+    hasExactDates ? userPreferences.dates.end : null,
+    moonPhase,
+  );
+
+  // 5. Assemble the context block that goes into the Claude prompt
   const context = {
     guide,
     permits: formatPermitsForPrompt(permits),
+    nightSky: formatNightSkyForPrompt(nightSky),
     liveData: {
       alerts: alerts || 'No alert data available.',
       weather: formatWeatherForPrompt(weather),
@@ -439,6 +764,8 @@ ${context.liveData.celestial}
 ${context.liveData.campgrounds ? `### Campground Data\n${context.liveData.campgrounds}` : ''}
 
 ${context.permits ? `### Permits & Reservations\nThe following activities require permits or advance reservations. When recommending any of these, ALWAYS mention the permit requirement, where to get it, and advise the traveler to book in advance.\n\n${context.permits}` : ''}
+
+${context.nightSky ? `### Night Sky Conditions\n${context.nightSky}` : ''}
 
 ---
 
