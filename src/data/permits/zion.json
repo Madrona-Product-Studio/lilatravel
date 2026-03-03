@@ -1,0 +1,108 @@
+[
+  {
+    "id": "angels-landing",
+    "activity": "Angels Landing",
+    "permitType": "lottery",
+    "required": true,
+    "description": "All hikers past Scout Lookout must hold a permit. No exceptions, year-round.",
+    "where": "recreation.gov",
+    "url": "https://www.recreation.gov/permits/4675309",
+    "cost": "$6 per person (lottery application) + $3 per person (if selected)",
+    "seasonalWindow": {
+      "required": "year-round",
+      "notes": "Permits required every day of the year, including winter."
+    },
+    "tips": [
+      "Two lottery windows: seasonal lottery (opens ~3 months ahead, results ~2 months before trip) and day-before lottery (applications accepted 2 days before, results by 6pm the day before).",
+      "Seasonal lottery has better odds — apply as early as possible.",
+      "Day-before lottery is competitive but a real backup option, especially on weekdays.",
+      "Apply for multiple dates to improve your chances.",
+      "Permits are non-transferable and checked at Scout Lookout.",
+      "Winter permits are easier to win — fewer applicants."
+    ]
+  },
+  {
+    "id": "the-subway",
+    "activity": "The Subway (Left Fork)",
+    "permitType": "lottery",
+    "required": true,
+    "description": "Technical canyoneering route through a tube-shaped canyon. Both top-down (canyoneering) and bottom-up (hiking) routes require permits.",
+    "where": "recreation.gov",
+    "url": "https://www.recreation.gov/permits/4675310",
+    "cost": "$5 per person (lottery application) + $3 per person (if selected)",
+    "seasonalWindow": {
+      "required": "year-round",
+      "notes": "Limited to 80 people per day. Top-down requires canyoneering experience and gear."
+    },
+    "tips": [
+      "Same two-window lottery system as Angels Landing: seasonal (3 months ahead) and day-before.",
+      "Bottom-up route is a strenuous hike (9 miles); top-down requires rappelling and route-finding.",
+      "Top-down groups should carry canyoneering gear: harness, rappel device, ropes, wetsuit in spring/fall.",
+      "Apply early in the seasonal window for best odds.",
+      "Weekday permits are significantly easier to win."
+    ]
+  },
+  {
+    "id": "narrows-top-down",
+    "activity": "The Narrows (Top-Down Overnight)",
+    "permitType": "lottery",
+    "required": true,
+    "description": "The full top-down through-hike of The Narrows (16 miles, starting from Chamberlain's Ranch) requires a wilderness permit. The popular bottom-up day hike does NOT require a permit.",
+    "where": "recreation.gov",
+    "url": "https://www.recreation.gov/permits/4675308",
+    "cost": "$5 per person (lottery application) + $3 per person (if selected)",
+    "seasonalWindow": {
+      "required": "when route is open (typically late May – October)",
+      "notes": "Route closed during high water and cold water temps. NPS posts flow rates daily."
+    },
+    "tips": [
+      "Same lottery system: seasonal and day-before windows.",
+      "Top-down is a point-to-point route — arrange shuttle to Chamberlain's Ranch trailhead.",
+      "Check NPS Virgin River flow rates before committing. Route closes above ~120 cfs.",
+      "Dry suits or wetsuits recommended in spring and fall when water is cold.",
+      "Bottom-up day hike (from Temple of Sinawava) is free and permit-free — most travelers do this version."
+    ]
+  },
+  {
+    "id": "backcountry-camping",
+    "activity": "Backcountry Camping",
+    "permitType": "advance",
+    "required": true,
+    "description": "All overnight stays outside developed campgrounds require a backcountry permit. This includes backpacking trips on the West Rim Trail, La Verkin Creek, Hop Valley, and other wilderness zones.",
+    "where": "Zion Wilderness Desk (Visitor Center) or recreation.gov",
+    "url": "https://www.recreation.gov/permits/233077",
+    "cost": "$15 per permit (covers group up to 12)",
+    "seasonalWindow": {
+      "required": "year-round",
+      "notes": "Popular routes (West Rim, La Verkin Creek to Kolob Arch) fill up fast in spring and fall."
+    },
+    "tips": [
+      "Online reservations available up to 2 weeks in advance at recreation.gov.",
+      "Walk-up permits sometimes available at the Wilderness Desk, but not guaranteed in peak season.",
+      "Designated campsites only — no dispersed camping allowed in Zion.",
+      "Bear canisters not required but hang food or use provided poles at backcountry sites.",
+      "West Rim Trail (top-down) is the most popular overnight route — book the moment permits open."
+    ]
+  },
+  {
+    "id": "watchman-campground",
+    "activity": "Watchman Campground",
+    "permitType": "advance",
+    "required": true,
+    "description": "The largest campground inside the park (190 sites, some riverside). Reservations required — does not accept walk-ups.",
+    "where": "recreation.gov",
+    "url": "https://www.recreation.gov/camping/campgrounds/232445",
+    "cost": "$30/night (standard) or $50/night (electric/riverside)",
+    "seasonalWindow": {
+      "required": "year-round",
+      "notes": "Open year-round. Electric sites and riverside sites are most popular."
+    },
+    "tips": [
+      "Reservations open 6 months in advance and sell out fast for spring and fall.",
+      "Set a calendar reminder for your 6-month booking window.",
+      "Riverside sites (loops A and B) are the most desirable — book the second they open.",
+      "Electric sites available for RVs and those wanting to charge devices.",
+      "Free shuttle stop right at the campground entrance."
+    ]
+  }
+]

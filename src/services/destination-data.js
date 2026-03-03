@@ -47,12 +47,48 @@ const DESTINATION_COORDS = {
  */
 function loadGuide(destination) {
   const guidePath = path.join(process.cwd(), 'src', 'data', 'destinations', `${destination}.md`);
-  
+
   if (!fs.existsSync(guidePath)) {
     throw new Error(`No guide found for destination: ${destination}`);
   }
-  
+
   return fs.readFileSync(guidePath, 'utf-8');
+}
+
+/**
+ * Load permit/reservation data for a destination (JSON file).
+ * Returns null if no permit data exists for the destination.
+ */
+function loadPermits(destination) {
+  const permitPath = path.join(process.cwd(), 'src', 'data', 'permits', `${destination}.json`);
+
+  if (!fs.existsSync(permitPath)) return null;
+
+  try {
+    return JSON.parse(fs.readFileSync(permitPath, 'utf-8'));
+  } catch {
+    console.error(`Failed to parse permits for ${destination}`);
+    return null;
+  }
+}
+
+/**
+ * Format permit data into a readable block for the Claude prompt.
+ */
+function formatPermitsForPrompt(permits) {
+  if (!permits || permits.length === 0) return null;
+
+  return permits.map(p => {
+    let block = `**${p.activity}** (${p.permitType} permit)\n`;
+    block += `- ${p.description}\n`;
+    block += `- Where: ${p.where}${p.url ? ` — ${p.url}` : ''}\n`;
+    block += `- Cost: ${p.cost}\n`;
+    block += `- When required: ${p.seasonalWindow.required}`;
+    if (p.seasonalWindow.notes) block += ` (${p.seasonalWindow.notes})`;
+    block += '\n';
+    block += `- Tips: ${p.tips.slice(0, 3).join(' ')}`;
+    return block;
+  }).join('\n\n');
 }
 
 
@@ -335,6 +371,7 @@ function formatCelestialForPrompt(celestialData) {
 export async function assembleContext(destination, userPreferences) {
   // 1. Load static curated content
   const guide = loadGuide(destination);
+  const permits = loadPermits(destination);
 
   // 2. Fetch live data in parallel
   const hasExactDates = userPreferences.dates?.start && userPreferences.dates?.end;
@@ -356,6 +393,7 @@ export async function assembleContext(destination, userPreferences) {
   // 4. Assemble the context block that goes into the Claude prompt
   const context = {
     guide,
+    permits: formatPermitsForPrompt(permits),
     liveData: {
       alerts: alerts || 'No alert data available.',
       weather: formatWeatherForPrompt(weather),
@@ -399,6 +437,8 @@ ${context.liveData.weather}
 ${context.liveData.celestial}
 
 ${context.liveData.campgrounds ? `### Campground Data\n${context.liveData.campgrounds}` : ''}
+
+${context.permits ? `### Permits & Reservations\nThe following activities require permits or advance reservations. When recommending any of these, ALWAYS mention the permit requirement, where to get it, and advise the traveler to book in advance.\n\n${context.permits}` : ''}
 
 ---
 
