@@ -860,7 +860,7 @@ function GuideNav({ isMobile }) {
                   borderBottom: `2px solid ${isActive ? C.oceanTeal : "transparent"}`,
                   cursor: "pointer",
                   fontFamily: "'Quicksand', sans-serif",
-                  fontSize: isMobile ? 10 : 10,
+                  fontSize: 11,
                   fontWeight: isActive ? 700 : 600,
                   letterSpacing: "0.14em",
                   textTransform: "uppercase",
@@ -870,10 +870,25 @@ function GuideNav({ isMobile }) {
                   transition: "color 0.25s ease, border-color 0.25s ease",
                   position: "relative",
                 }}
-                onMouseEnter={e => { if (!isActive) e.currentTarget.style.color = C.darkInk; }}
-                onMouseLeave={e => { if (!isActive) e.currentTarget.style.color = "#7A857E"; }}
+                onMouseEnter={e => {
+                  if (!isActive) {
+                    e.currentTarget.style.color = C.darkInk;
+                    e.currentTarget.style.borderBottomColor = C.stone;
+                  }
+                }}
+                onMouseLeave={e => {
+                  if (!isActive) {
+                    e.currentTarget.style.color = "#7A857E";
+                    e.currentTarget.style.borderBottomColor = "transparent";
+                  }
+                }}
               >
                 {section.label}
+                <span style={{
+                  display: "inline-block", marginLeft: 4,
+                  fontSize: 7, opacity: isActive ? 1 : 0.5,
+                  transition: "opacity 0.25s",
+                }}>{"↓"}</span>
               </button>
             );
           })}
@@ -1033,6 +1048,9 @@ export default function ZionGuide() {
         </div>
       </section>
 
+      {/* ══ GUIDE SECTION NAV ═══════════════════════════════════════════════ */}
+      <GuideNav isMobile={isMobile} />
+
       {/* ══ IMAGE STRIP ════════════════════════════════════════════════════ */}
       <section style={{ position: "relative" }}>
         <div style={{
@@ -1077,9 +1095,6 @@ export default function ZionGuide() {
           <FadeIn><CelestialSnapshot destination="zion" /></FadeIn>
         </div>
       </section>
-
-      {/* ══ GUIDE SECTION NAV ═══════════════════════════════════════════════ */}
-      <GuideNav isMobile={isMobile} />
 
       {/* ══ GUIDE CONTENT ═══════════════════════════════════════════════════ */}
       <section style={{ padding: isMobile ? "32px 20px 60px" : "48px 52px 80px", background: C.cream }}>
