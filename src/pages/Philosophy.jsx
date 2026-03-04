@@ -416,13 +416,20 @@ export default function PhilosophyPage() {
                   {p.word} across five traditions
                 </span>
 
-                <div style={{ display: "flex", flexDirection: "column" }}>
+                <div style={{
+                  display: "grid",
+                  gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
+                  gap: "0 1px",
+                }}>
                   {p.traditions.map((t, ti) => (
                     <div
                       key={ti}
                       style={{
-                        paddingTop: 20, paddingBottom: 20,
+                        paddingTop: 24, paddingBottom: 24,
                         borderBottom: `1px solid ${isDark ? "rgba(255,255,255,0.07)" : C.stone}`,
+                        ...(ti === p.traditions.length - 1 && p.traditions.length % 2 !== 0 && !isMobile
+                          ? { gridColumn: "1 / -1" }
+                          : {}),
                       }}
                     >
                       {/* Line 1: symbol + source + concept */}
@@ -449,17 +456,17 @@ export default function PhilosophyPage() {
                       <p style={{
                         fontFamily: "'Cormorant Garamond', serif",
                         fontSize: 17, fontWeight: 400, fontStyle: "italic",
-                        color: isDark ? `${p.color}d9` : p.color,
+                        color: isDark ? `${p.color}e6` : p.color,
                         marginBottom: 6, marginTop: 0,
                         paddingLeft: 28,
                       }}>{t.metaphor}</p>
 
                       {/* Line 3: quote */}
                       <p style={{
-                        fontFamily: "'Cormorant Garamond', serif",
-                        fontSize: 14, fontWeight: 400, fontStyle: "italic",
-                        color: isDark ? "rgba(255,255,255,0.4)" : "#7a8a9a",
-                        lineHeight: 1.65, margin: 0,
+                        fontFamily: "'Quicksand', sans-serif",
+                        fontSize: 13, fontWeight: 400,
+                        color: isDark ? "rgba(255,255,255,0.55)" : "#5a6a78",
+                        lineHeight: 1.7, margin: 0,
                         paddingLeft: 28,
                       }}>"{t.quote}"</p>
                     </div>
