@@ -190,17 +190,6 @@ export default function PhilosophyPage() {
       <Nav />
 
       <style>{`
-        .tradition-card {
-          padding: 20px 24px;
-          background: white;
-          border: 1px solid ${C.stone};
-          transition: all 0.3s ease;
-        }
-        .tradition-card:hover {
-          background: #f5f3f0;
-          border-color: #c5c0b8;
-        }
-
         .principle-nav-link {
           display: flex;
           align-items: center;
@@ -427,29 +416,17 @@ export default function PhilosophyPage() {
                   {p.word} across five traditions
                 </span>
 
-                <div className="tradition-grid" style={{
-                  display: "grid",
-                  gridTemplateColumns: "1fr 1fr",
-                  gap: isDark ? 1 : 8,
-                  ...(isDark ? { background: "rgba(255,255,255,0.06)" } : {}),
-                }}>
+                <div style={{ display: "flex", flexDirection: "column" }}>
                   {p.traditions.map((t, ti) => (
                     <div
                       key={ti}
                       style={{
-                        padding: isMobile ? "16px 18px" : "20px 24px",
-                        background: isDark ? C.darkInk : "white",
-                        border: isDark ? "none" : `1px solid ${C.stone}`,
-                        transition: "background 0.3s ease",
-                        ...(ti === p.traditions.length - 1 && p.traditions.length % 2 !== 0 && !isMobile
-                          ? { gridColumn: "1 / -1" }
-                          : {}),
+                        paddingTop: 20, paddingBottom: 20,
+                        borderBottom: `1px solid ${isDark ? "rgba(255,255,255,0.07)" : C.stone}`,
                       }}
-                      onMouseEnter={e => e.currentTarget.style.background = isDark ? "#162838" : "#f5f3f0"}
-                      onMouseLeave={e => e.currentTarget.style.background = isDark ? C.darkInk : "white"}
                     >
-                      {/* Header: symbol + concept + source + metaphor — single line */}
-                      <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10, flexWrap: "wrap" }}>
+                      {/* Line 1: symbol + source + concept */}
+                      <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 6 }}>
                         <span style={{
                           fontSize: 16, color: p.color, opacity: 0.5,
                           fontFamily: "serif", lineHeight: 1,
@@ -458,34 +435,33 @@ export default function PhilosophyPage() {
                           fontFamily: "'Quicksand', sans-serif",
                           fontSize: 10, fontWeight: 700,
                           letterSpacing: "0.1em", textTransform: "uppercase",
-                          color: isDark ? "rgba(255,255,255,0.8)" : C.darkInk,
-                        }}>{t.concept}</span>
+                          color: isDark ? "rgba(255,255,255,0.3)" : "#9aabba",
+                        }}>{t.source}</span>
                         <span style={{
                           fontFamily: "'Quicksand', sans-serif",
-                          fontSize: 10, fontWeight: 400,
-                          color: isDark ? "rgba(255,255,255,0.3)" : "#9aabba",
-                        }}>·  {t.source}  ·  {t.metaphor}</span>
+                          fontSize: 11, fontWeight: 700,
+                          letterSpacing: "0.08em", textTransform: "uppercase",
+                          color: isDark ? "rgba(255,255,255,0.8)" : C.darkInk,
+                        }}>{t.concept}</span>
                       </div>
 
-                      {/* Quote */}
+                      {/* Line 2: metaphor */}
                       <p style={{
                         fontFamily: "'Cormorant Garamond', serif",
-                        fontSize: "clamp(14px, 1.4vw, 16.5px)",
-                        fontWeight: 300, fontStyle: "italic",
-                        color: isDark ? "rgba(255,255,255,0.45)" : "#5a6a78",
-                        lineHeight: 1.75,
-                        marginBottom: 8, marginTop: 0,
-                        paddingLeft: 30,
-                      }}>
-                        "{t.quote}"
-                      </p>
-                      <span style={{
-                        fontFamily: "'Quicksand', sans-serif",
-                        fontSize: 9, fontWeight: 600,
-                        letterSpacing: "0.06em",
-                        color: isDark ? "rgba(255,255,255,0.2)" : "#b0b8c0",
-                        paddingLeft: 30,
-                      }}>— {t.quoteSource}</span>
+                        fontSize: 17, fontWeight: 400, fontStyle: "italic",
+                        color: isDark ? `${p.color}d9` : p.color,
+                        marginBottom: 6, marginTop: 0,
+                        paddingLeft: 28,
+                      }}>{t.metaphor}</p>
+
+                      {/* Line 3: quote */}
+                      <p style={{
+                        fontFamily: "'Cormorant Garamond', serif",
+                        fontSize: 14, fontWeight: 400, fontStyle: "italic",
+                        color: isDark ? "rgba(255,255,255,0.4)" : "#7a8a9a",
+                        lineHeight: 1.65, margin: 0,
+                        paddingLeft: 28,
+                      }}>"{t.quote}"</p>
                     </div>
                   ))}
                 </div>
