@@ -1329,7 +1329,7 @@ export default function ZionGuide() {
               <SectionSub isMobile={isMobile}>{"Slow down. The canyon holds space for stillness just as powerfully as it holds space for adventure."}</SectionSub>
             </FadeIn>
             <FadeIn delay={0.08}>
-              <ExpandableList initialCount={4} label="wellness options">
+              <ExpandableList initialCount={6} label="wellness options">
                 <ListItem isMobile={isMobile} name={"Hillside Yoga at Flanigan's"} featured
                   url="https://flanigans.com/spa/"
                   detail={"Gentle yoga with sound bath on a terrace overlooking Zion. The vibration carries differently at this elevation. All levels welcome — come for the practice, stay for the view."}
@@ -1347,6 +1347,38 @@ export default function ZionGuide() {
                   url="https://www.openskyzion.com/"
                   detail="Immersive yoga, meditation, and sound healing in an off-grid desert setting. Multi-day programs available."
                   tags={["Multi-Day", "Off-Grid", "Immersive"]} />
+                <ListItem isMobile={isMobile} name="Zion Canyon Hot Springs" featured
+                  url="https://www.zioncanyonhotsprings.com/"
+                  detail="32 geothermal hot springs, globally-inspired mineral pools, Finnish barrel saunas, and cold plunges in La Verkin — 30 minutes from the park. The 21+ Premier area has cocktails by the firepit and its own saunas. This is your post-hike recovery circuit."
+                  tags={["Hot Springs", "Sauna", "Cold Plunge", "21+ Area"]} />
+                <ListItem isMobile={isMobile} name="True North Float" featured
+                  url="https://www.tnfloat.com/"
+                  detail="Sensory deprivation float tanks, fire & ice suite (sauna + cold plunge), vibroacoustic therapy, and massage in St. George — 45 minutes from Zion. Founded by a wellness seeker who left corporate life. The real deal."
+                  tags={["Float Tank", "Sauna", "Cold Plunge", "St. George"]} />
+                <ListItem isMobile={isMobile} name="Cable Mountain Spa"
+                  url="https://cablemountainspa.com/"
+                  detail="Full-service spa with sauna at the park entrance. Massage, facials, and body treatments. Walk-in friendly."
+                  tags={["Full Spa", "Sauna", "Springdale"]} />
+                <ListItem isMobile={isMobile} name="Homebody Healing"
+                  url="https://www.homebodyhealing.love/"
+                  detail="Weekly yoga classes at Cable Mountain Spa — vinyasa, hatha, yin, restorative, breathwork, and meditation. Private somatic sessions available. A deeply rooted local teacher."
+                  tags={["Yoga", "Breathwork", "Meditation", "Weekly Classes"]} />
+                <ListItem isMobile={isMobile} name="Cosmic Flow Yoga"
+                  url="https://www.yogainzion.com/"
+                  detail="Yoga, meditation, and sound healing with sessions across Springdale, Kanab, and St. George. Riverside location in Springdale next to the Virgin River. Private group sessions available."
+                  tags={["Yoga", "Sound Healing", "Multiple Locations"]} />
+                <ListItem isMobile={isMobile} name="Zion Yogis"
+                  url="https://www.zionyogis.com/"
+                  detail="Outdoor yoga sessions in and around Zion National Park. Calming flow classes designed as the perfect cool-down after a day on the trails."
+                  tags={["Yoga", "Outdoor", "Post-Hike"]} />
+                <ListItem isMobile={isMobile} name="Amangiri Spa" featured
+                  url="https://www.aman.com/hotels/amangiri"
+                  detail="Aman's desert spa draws from Navajo healing traditions. Flotation therapy, desert clay wraps, and a water pavilion carved into the mesa. A pilgrimage in itself — 90 minutes from Springdale at Canyon Point."
+                  tags={["Ultra-Luxury", "Navajo Traditions", "Float", "Canyon Point"]} />
+                <ListItem isMobile={isMobile} name="Elite Float Spa"
+                  detail="Southern Utah's first float spa in St. George. Floatation therapy, infrared sauna, and massage. Small family-owned operation with deep expertise."
+                  note="St. George, UT — find them on Yelp or TripAdvisor"
+                  tags={["Float Tank", "Infrared Sauna", "St. George"]} />
                 <ListItem isMobile={isMobile} name="Five Petals Spa at the Cliffrose"
                   url="https://www.cliffroselodge.com/"
                   detail="Riverfront spa steps from the park. Deep-tissue, hot stone, and custom facials."

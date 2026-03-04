@@ -47,6 +47,14 @@ export const ZION_URLS = {
   // ── Wellness ───────────────────────────────────────────────────────────────
   "Deep Canyon Spa":          "https://flanigans.com/spa/",
   "Zion Guru":                "https://www.zionguru.com/",
+  "Zion Canyon Hot Springs":  "https://www.zioncanyonhotsprings.com/",
+  "True North Float":         "https://www.tnfloat.com/",
+  "Cable Mountain Spa":       "https://cablemountainspa.com/",
+  "Homebody Healing":         "https://www.homebodyhealing.love/",
+  "Cosmic Flow Yoga":         "https://www.yogainzion.com/",
+  "Zion Yogis":               "https://www.zionyogis.com/",
+  "Amangiri Spa":             "https://www.aman.com/hotels/amangiri",
+  "Elite Float Spa":          "",
 
   // ── Parks & Resources ──────────────────────────────────────────────────────
   "Zion National Park":       "https://www.nps.gov/zion/",
@@ -87,6 +95,15 @@ export const ZION_ALIASES = {
   "Whiptail":                 "Whiptail Grill",
   "Inn at Entrada":           "Inn at Entrada",
   "Skyview":                  "Skyview Hotel",
+  "Zion Hot Springs":         "Zion Canyon Hot Springs",
+  "Hot Springs Zion":         "Zion Canyon Hot Springs",
+  "True North":               "True North Float",
+  "Homebody":                 "Homebody Healing",
+  "Cosmic Flow":              "Cosmic Flow Yoga",
+  "Yoga in Zion":             "Cosmic Flow Yoga",
+  "Zion Yogis yoga":          "Zion Yogis",
+  "Amangiri Spa":             "Amangiri Spa",
+  "Elite Float":              "Elite Float Spa",
 };
 
 /**
