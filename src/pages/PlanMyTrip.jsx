@@ -570,7 +570,7 @@ function WelcomePathCard({ icon: IconComp, title, subtitle, description, buttonL
         position: "relative",
         background: C.white,
         border: isPrimary ? `2px solid ${C.sage}30` : `1px solid ${C.sage}15`,
-        borderRadius: 20,
+        borderRadius: 2,
         padding: isPrimary ? "32px 28px 28px" : "24px 24px 22px",
         cursor: "pointer",
         transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
@@ -730,7 +730,7 @@ function StepWelcome({ onNext }) {
                 style={{
                   background: C.white,
                   border: `1px solid ${C.sage}15`,
-                  borderRadius: 18,
+                  borderRadius: 2,
                   padding: "22px 20px",
                   cursor: "pointer",
                   transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
@@ -763,7 +763,7 @@ function StepWelcome({ onNext }) {
                 <p style={{
                   fontFamily: "'Quicksand', sans-serif",
                   fontSize: 12, fontWeight: 400,
-                  color: `${C.slate}60`, lineHeight: 1.5,
+                  color: `${C.slate}70`, lineHeight: 1.5,
                   margin: "8px 0 0",
                 }}>{card.desc}</p>
                 <div style={{
@@ -791,7 +791,7 @@ function StepWelcome({ onNext }) {
         <div style={{
           fontFamily: "'Quicksand', sans-serif",
           fontSize: 10, fontWeight: 600, letterSpacing: "0.18em", textTransform: "uppercase",
-          color: `${C.sage}45`, marginBottom: 12,
+          color: `${C.sage}70`, marginBottom: 12,
         }}>Powered by</div>
         <div style={{
           display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "6px 16px",
@@ -804,7 +804,7 @@ function StepWelcome({ onNext }) {
           ].map(item => (
             <span key={item} style={{
               fontFamily: "'Quicksand', sans-serif",
-              fontSize: 11, fontWeight: 500, color: `${C.slate}45`,
+              fontSize: 11, fontWeight: 500, color: `${C.slate}70`,
               display: "flex", alignItems: "center", gap: 5,
             }}>
               <span style={{ width: 3, height: 3, borderRadius: "50%", background: `${C.oceanTeal}40`, flexShrink: 0 }} />
@@ -1340,7 +1340,7 @@ function StepDuration({ data, onChange, onNext, onBack }) {
       />
       <div style={{ maxWidth: 480, margin: "0 auto", padding: "0 20px" }}>
         <div style={{
-          background: C.white, borderRadius: 18, padding: "36px 24px",
+          background: C.white, borderRadius: 2, padding: "36px 24px",
           border: `1px solid ${C.sage}12`,
         }}>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 28 }}>
@@ -1424,7 +1424,7 @@ function StepGroup({ data, onChange, onNext, onBack }) {
           animation: "fadeScale 0.35s cubic-bezier(0.4, 0, 0.2, 1)",
         }}>
           <div style={{
-            background: C.white, borderRadius: 18, padding: "28px 24px",
+            background: C.white, borderRadius: 2, padding: "28px 24px",
             border: `1px solid ${C.sage}12`,
           }}>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 28 }}>
@@ -1499,7 +1499,7 @@ function StepBudget({ data, onChange, onNext, onBack }) {
                     }}>{tier.label}</span>
                     <span style={{
                       fontFamily: "'Quicksand', sans-serif",
-                      fontSize: 12, color: `${C.slate}60`, marginLeft: 8,
+                      fontSize: 12, color: `${C.slate}70`, marginLeft: 8,
                     }}>{tier.desc}</span>
                   </div>
                 </div>
@@ -1559,7 +1559,7 @@ function StepStay({ data, onChange, onNext, onBack }) {
                   }}>{style.label}</span>
                   <div style={{
                     fontFamily: "'Quicksand', sans-serif",
-                    fontSize: 12, color: `${C.slate}60`, lineHeight: 1.4, marginTop: 2,
+                    fontSize: 12, color: `${C.slate}70`, lineHeight: 1.4, marginTop: 2,
                   }}>{style.desc}</div>
                 </div>
               </button>
@@ -1606,7 +1606,7 @@ function StepProfile({ data, onBack, onUnlock, generating }) {
       {/* Persona card */}
       <div style={{ maxWidth: 480, margin: "0 auto 28px", padding: "0 20px" }}>
         <div style={{
-          background: C.white, borderRadius: 18, padding: "28px 24px",
+          background: C.white, borderRadius: 2, padding: "28px 24px",
           border: `2px solid ${persona.color}25`, boxShadow: `0 4px 24px ${persona.color}12`,
           textAlign: "center",
         }}>
@@ -1646,7 +1646,7 @@ function StepProfile({ data, onBack, onUnlock, generating }) {
           minHeight: 56, WebkitTapHighlightColor: "transparent",
           opacity: generating ? 0.8 : 1,
         }}>{generating ? 'Creating your journey...' : 'Build My Itinerary'}</button>
-        <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, color: `${C.sage}60`, marginTop: 16 }}>Fully customizable · Powered by Lila Trips</div>
+        <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, color: `${C.sage}80`, marginTop: 16 }}>Fully customizable · Powered by Lila Trips</div>
         <div style={{ marginTop: 20 }}>
           <button onClick={onBack} style={{
             fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 500, color: `${C.sage}80`,
@@ -1829,7 +1829,7 @@ function GeneratingScreen({ destination }) {
         fontFamily: "'Quicksand', sans-serif",
         fontSize: 10, fontWeight: 500,
         letterSpacing: "0.12em", textTransform: "uppercase",
-        color: `${C.sage}50`,
+        color: `${C.sage}70`,
         marginTop: 8,
       }}>
         {allDone ? "Finalizing..." : `${Math.max(0, completedIndex + 1)} of ${GENERATING_STEPS.length}`}
