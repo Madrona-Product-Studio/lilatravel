@@ -665,9 +665,9 @@ export default function HomePage() {
                 <p style={{ marginBottom: 28 }}>Moments when we find our truest and lightest selves.<br />Not weighed down by the past or an imagined future.<br />Connected to the entire universe through right now.</p>
                 <p style={{ marginBottom: 32 }}>We're reminded of a truth we know, but often forget.<br />That life is not about conquering the mystery.<br />It's about learning to dance with it.</p>
                 <p style={{ marginBottom: 6 }}>
-                  <span style={{ fontStyle: "italic", color: C.skyBlue }}>Līlā</span>
-                  {" "}<span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(18px, 2vw, 24px)", fontWeight: 300, fontStyle: "italic", color: "rgba(90,106,120,0.55)" }}>लीला</span>
-                  {" "}<span style={{ color: "rgba(90,106,120,0.5)", fontSize: "clamp(12px, 1.4vw, 14px)" }}>/lee·lah/</span>
+                  <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(28px, 3.2vw, 38px)", fontWeight: 400, fontStyle: "italic", color: C.darkInk }}>Līlā</span>
+                  {" "}<span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(20px, 2.2vw, 26px)", fontWeight: 300, fontStyle: "italic", color: "rgba(90,106,120,0.65)" }}>लीला</span>
+                  {" "}<span style={{ color: "rgba(90,106,120,0.6)", fontSize: "clamp(13px, 1.5vw, 15px)" }}>/lee·lah/</span>
                 </p>
                 <p style={{ marginBottom: 0, color: "#5a6a78" }}>
                   A Hindu concept meaning <span style={{ color: C.skyBlue }}>"divine or cosmic play"</span>.<br />It suggests life is like a dance — joyous and light.<br />Learning to live this way is our living practice.
