@@ -41,7 +41,23 @@ export default function GroupTrips() {
           }}>
             {allTrips.map((trip, i) => (
               <FadeIn key={trip.slug} delay={i * 0.08}>
-                <TripCard trip={trip} />
+                <div style={{ position: "relative", height: "100%" }}>
+                  {/* Disable click-through by intercepting pointer events */}
+                  <div style={{ pointerEvents: "none", opacity: 0.75, height: "100%" }}>
+                    <TripCard trip={trip} />
+                  </div>
+                  {/* Coming Soon badge */}
+                  <div style={{
+                    position: "absolute", top: 14, right: 14, zIndex: 2,
+                    fontFamily: "'Quicksand', sans-serif",
+                    fontSize: 9, fontWeight: 700,
+                    letterSpacing: "0.18em", textTransform: "uppercase",
+                    color: C.darkInk,
+                    background: "rgba(255,255,255,0.92)",
+                    backdropFilter: "blur(8px)",
+                    padding: "5px 12px",
+                  }}>Coming Soon</div>
+                </div>
               </FadeIn>
             ))}
           </div>

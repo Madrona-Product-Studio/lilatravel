@@ -22,7 +22,7 @@ export default function ContactPage() {
       <section className="page-content" style={{ padding: "80px 52px", background: C.cream }}>
         <div style={{ maxWidth: 600, margin: "0 auto", textAlign: "center" }}>
           <FadeIn>
-            <span style={{ fontSize: 32, display: "block", marginBottom: 24, opacity: 0.4 }}>{"△"}</span>
+            <span style={{ fontSize: 32, display: "block", marginBottom: 24, opacity: 0.4 }}>{"△\uFE0E"}</span>
             <p style={{
               fontFamily: "'Quicksand', sans-serif",
               fontSize: 16, fontWeight: 400, color: "#5a6a78",

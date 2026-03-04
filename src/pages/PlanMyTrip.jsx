@@ -650,11 +650,11 @@ function WelcomePathCard({ icon: IconComp, title, subtitle, description, buttonL
               fontFamily: "'Quicksand', sans-serif",
               fontSize: 12, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase",
               ...(isPrimary ? {
-                background: `${C.sage}cc`,
+                background: C.oceanTeal,
                 color: C.white,
                 padding: "12px 28px",
                 borderRadius: 30,
-                boxShadow: `0 4px 16px ${C.sage}18`,
+                boxShadow: `0 4px 20px ${C.oceanTeal}25`,
               } : {
                 background: "none",
                 color: C.sage,

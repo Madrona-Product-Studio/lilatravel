@@ -345,21 +345,21 @@ function DestCarousel() {
 const approachBraids = [
   {
     label: "Sacred Terrain",
-    icon: "△",
+    icon: "△\uFE0E",
     color: "#7DB8A0",
     headline: "The landscape is the teacher.",
     tags: ["Outdoor Meccas", "Seasonal Rhythms", "Canyon & Desert", "Old-Growth Forest", "Wild Coastline", "Alpine Peaks"],
   },
   {
     label: "Ancient Practices",
-    icon: "◎",
+    icon: "◎\uFE0E",
     color: "#D4A853",
     headline: "Steeped in living tradition.",
     tags: ["Yoga Asana", "Meditation", "Breathwork", "Mindful Movement", "Personal Reflection", "Ceremonies"],
   },
   {
     label: "Elemental Encounters",
-    icon: "✦",
+    icon: "✦\uFE0E",
     color: "#6BA4B8",
     headline: "Where the senses take over.",
     tags: [
@@ -713,9 +713,9 @@ export default function HomePage() {
                 fontWeight: 400, color: "rgba(255,255,255,0.55)", lineHeight: 2.1, letterSpacing: "0.03em",
               }}>
                 {[
-                  { label: "Sacred Terrain", icon: "△", color: "#7DB8A0" },
-                  { label: "Ancient Practices", icon: "◎", color: "#D4A853" },
-                  { label: "Elemental Encounters", icon: "✦", color: "#6BA4B8" },
+                  { label: "Sacred Terrain", icon: "△\uFE0E", color: "#7DB8A0" },
+                  { label: "Ancient Practices", icon: "◎\uFE0E", color: "#D4A853" },
+                  { label: "Elemental Encounters", icon: "✦\uFE0E", color: "#6BA4B8" },
                 ].map((callout, i) => (
                   <div key={i} style={{
                     display: "flex", alignItems: "center", gap: 10,
@@ -959,28 +959,28 @@ export default function HomePage() {
           }}>
             {[
               {
-                icon: "☐", label: "DIY", color: C.skyBlue,
+                icon: "☐\uFE0E", label: "DIY", color: C.skyBlue,
                 title: "Explore the Guide",
                 desc: "Browse our curated picks for free — where to stay, what to hike, where to eat, and when the light is best.",
                 cta: "Explore Free", ctaLink: "/destinations",
                 detail: "Free · No account needed",
               },
               {
-                icon: "◎", label: "Plan a Trip", color: C.oceanTeal,
+                icon: "◎\uFE0E", label: "Plan a Trip", color: C.oceanTeal,
                 title: "Trip Planner",
                 desc: "Turn your favorites into a day-by-day itinerary with booking links, permit timing, and offline access.",
                 cta: "Unlock — $39", ctaLink: "/plan",
                 detail: "One-time purchase · Offline access",
               },
               {
-                icon: "☾", label: "Join a Group", color: C.sunSalmon,
+                icon: "☾\uFE0E", label: "Join a Group", color: C.sunSalmon,
                 title: "Threshold Trips",
                 desc: "Small group journeys timed to equinoxes, solstices, and natural crescendos. Guided, curated, eight travelers maximum.",
                 cta: "View Trips", ctaLink: "/group-trips",
                 detail: "From $895 per person",
               },
               {
-                icon: "△", label: "Designed for You", color: C.goldenAmber,
+                icon: "△\uFE0E", label: "Designed for You", color: C.goldenAmber,
                 title: "Custom Itinerary",
                 desc: "Tell us your dates, group, and vibe. A real person builds a complete itinerary around your trip.",
                 cta: "Start — From $199", ctaLink: "/contact",

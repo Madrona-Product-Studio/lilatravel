@@ -23,7 +23,7 @@ import { trackEvent } from '@utils/analytics';
 const approachBraids = [
   {
     id: "sacred-terrain",
-    icon: "△",
+    icon: "△\uFE0E",
     label: "Sacred Terrain",
     color: "#7DB8A0",
     headline: "The landscape is the teacher.",
@@ -34,7 +34,7 @@ const approachBraids = [
   },
   {
     id: "ancient-practices",
-    icon: "◎",
+    icon: "◎\uFE0E",
     label: "Ancient Practices",
     color: "#D4A853",
     headline: "Steeped in living tradition.",
@@ -45,7 +45,7 @@ const approachBraids = [
   },
   {
     id: "elemental-encounters",
-    icon: "✦",
+    icon: "✦\uFE0E",
     label: "Elemental Encounters",
     color: "#6BA4B8",
     headline: "Where the senses take over.",
@@ -69,7 +69,7 @@ const approachPrinciples = [
     desc: "The boundaries between self and world soften. You stop observing the landscape and become part of it.",
   },
   {
-    word: "Flow", icon: "≈", color: "#7DB8A0",
+    word: "Flow", icon: "≈\uFE0E", color: "#7DB8A0",
     desc: "When effort dissolves and everything moves. The trail carries you. The river thinks for you. Time reshapes itself.",
   },
   {

@@ -10,7 +10,7 @@ export const ritualsPillars = [
   {
     slug: "oneness",
     word: "Oneness",
-    icon: "◎",
+    icon: "◎\uFE0E",
     color: "#6BA4B8",        // Ocean Teal
     quote: "You are not a drop in the ocean. You are the entire ocean in a drop.",
     quoteAuthor: "Rumi",
@@ -64,7 +64,7 @@ export const ritualsPillars = [
   {
     slug: "flow",
     word: "Flow",
-    icon: "〰",
+    icon: "〰\uFE0E",
     color: "#E8956A",        // Sun Salmon
     quote: "Flow with whatever may happen, and let your mind be free.",
     quoteAuthor: "Zhuangzi",
@@ -118,7 +118,7 @@ export const ritualsPillars = [
   {
     slug: "presence",
     word: "Presence",
-    icon: "●",
+    icon: "●\uFE0E",
     color: "#D4A853",        // Golden Amber
     quote: "The quieter you become, the more you can hear.",
     quoteAuthor: "Ram Dass",
@@ -172,7 +172,7 @@ export const ritualsPillars = [
   {
     slug: "reverence",
     word: "Reverence",
-    icon: "△",
+    icon: "△\uFE0E",
     color: "#7DB8A0",        // Sea Glass Green
     quote: "Walk as if you are kissing the Earth with your feet.",
     quoteAuthor: "Thich Nhat Hanh",
@@ -232,28 +232,28 @@ export const traditions = [
     origin: "Indian Subcontinent",
     age: "~5,000 years",
     color: "#E8956A",
-    symbol: "ॐ",
+    symbol: "ॐ\uFE0E",
   },
   {
     name: "Buddhism",
     origin: "India → East Asia",
     age: "~2,500 years",
     color: "#D4A853",
-    symbol: "☸",
+    symbol: "☸\uFE0E",
   },
   {
     name: "Taoism",
     origin: "China",
     age: "~2,500 years",
     color: "#6BA4B8",
-    symbol: "☯",
+    symbol: "☯\uFE0E",
   },
   {
     name: "Shinto",
     origin: "Japan",
     age: "~2,500+ years",
     color: "#7DB8A0",
-    symbol: "⛩",
+    symbol: "⛩\uFE0E",
   },
   {
     name: "Stoicism",

@@ -33,7 +33,7 @@ const sampleItinerary = [
 // ─── Four Ways In ───────────────────────────────────────────────────────────
 const offerings = [
   {
-    icon: "☐",
+    icon: "☐\uFE0E",
     label: "DIY",
     color: C.skyBlue,
     title: "Explore the Guide",
@@ -44,7 +44,7 @@ const offerings = [
     offeringType: "diy",
   },
   {
-    icon: "◎",
+    icon: "◎\uFE0E",
     label: "Plan a Trip",
     color: C.oceanTeal,
     title: "Trip Planner",
@@ -55,7 +55,7 @@ const offerings = [
     offeringType: "trip_planner",
   },
   {
-    icon: "☾",
+    icon: "☾\uFE0E",
     label: "Join a Group",
     color: C.sunSalmon,
     title: "Threshold Trips",
@@ -66,7 +66,7 @@ const offerings = [
     offeringType: "group_trips",
   },
   {
-    icon: "△",
+    icon: "△\uFE0E",
     label: "Designed for You",
     color: C.goldenAmber,
     title: "Custom Itinerary",

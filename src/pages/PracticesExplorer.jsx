@@ -93,11 +93,11 @@ function TypeBadge({ type }) {
 
 // ─── Tradition glyphs (matches Philosophy page) ────────────────────────────
 const TRADITION_GLYPHS = {
-  hinduism: "ॐ",
-  buddhism: "✿",
-  taoism: "☯",
-  shinto: "⛩",
-  stoicism: "△",
+  hinduism: "ॐ\uFE0E",
+  buddhism: "✿\uFE0E",
+  taoism: "☯\uFE0E",
+  shinto: "⛩\uFE0E",
+  stoicism: "△\uFE0E",
 };
 
 

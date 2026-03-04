@@ -1683,7 +1683,7 @@ export default function ItineraryResults() {
                 <div style={{ fontFamily: F, fontSize: 9, fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: C.sage, marginBottom: 12 }}>Before You Go</div>
                 {itinerary.beforeYouGo.map((item, i) => (
                   <div key={i} style={{ display: 'flex', gap: 8, padding: '5px 0', borderBottom: i < itinerary.beforeYouGo.length - 1 ? `1px solid ${C.sage}06` : 'none' }}>
-                    <span style={{ color: `${C.sage}50`, flexShrink: 0, fontSize: 10, marginTop: 2 }}>●</span>
+                    <span style={{ color: `${C.sage}50`, flexShrink: 0, fontSize: 10, marginTop: 2 }}>{"●\uFE0E"}</span>
                     <span style={{ fontFamily: F, fontSize: 13, color: `${C.slate}85`, lineHeight: 1.65 }}>{renderInline(item)}</span>
                   </div>
                 ))}

@@ -91,7 +91,7 @@ const upcomingTrips = [
 // ─── Four Ways / Offerings Data ──────────────────────────────────────────────
 const offerings = [
   {
-    icon: "☐",
+    icon: "☐\uFE0E",
     label: "DIY",
     color: C.skyBlue,
     title: "Explore the Guide",
@@ -102,7 +102,7 @@ const offerings = [
     offeringType: "diy",
   },
   {
-    icon: "◎",
+    icon: "◎\uFE0E",
     label: "Plan a Trip",
     color: C.oceanTeal,
     title: "Trip Planner",
@@ -113,7 +113,7 @@ const offerings = [
     offeringType: "trip_planner",
   },
   {
-    icon: "☾",
+    icon: "☾\uFE0E",
     label: "Join a Group",
     color: C.sunSalmon,
     title: "Threshold Trips",
@@ -124,7 +124,7 @@ const offerings = [
     offeringType: "group_trips",
   },
   {
-    icon: "△",
+    icon: "△\uFE0E",
     label: "Designed for You",
     color: C.goldenAmber,
     title: "Custom Itinerary",
@@ -145,120 +145,7 @@ export default function OfferingsPage() {
         title="More Than a Trip"
         subtitle="Three braids woven into every Lila journey — sacred places, ancient wisdom, and raw elemental experience."
         accentColor={C.goldenAmber}
-      >
-        {/* Three braid labels */}
-        <div style={{
-          display: "flex", gap: 48, marginTop: 36,
-        }}>
-          {[
-            { icon: "△", label: "Sacred Terrain", color: "#7DB8A0", desc: "The landscape is the teacher" },
-            { icon: "◎", label: "Ancient Practices", color: "#D4A853", desc: "Wisdom traditions woven in" },
-            { icon: "✦", label: "Elemental Encounters", color: "#6BA4B8", desc: "The raw materials of being alive" },
-          ].map(b => (
-            <div key={b.label} style={{ display: "flex", alignItems: "center", gap: 10 }}>
-              <span style={{ fontSize: 14, color: b.color, opacity: 0.7 }}>{b.icon}</span>
-              <div>
-                <span style={{
-                  fontFamily: "'Quicksand', sans-serif",
-                  fontSize: 10, fontWeight: 700,
-                  letterSpacing: "0.16em", textTransform: "uppercase",
-                  color: b.color, display: "block",
-                }}>{b.label}</span>
-                <span style={{
-                  fontFamily: "'Cormorant Garamond', serif",
-                  fontSize: 14, fontStyle: "normal",
-                  color: "#8a9baa",
-                }}>{b.desc}</span>
-              </div>
-            </div>
-          ))}
-        </div>
-      </PageHeader>
-
-      {/* ══ THREE THREADS — Detail Cards ══════════════════════════════════════ */}
-      <section style={{ padding: "48px 52px 80px", background: C.cream }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-
-          {/* Three thread cards */}
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-            gap: 24,
-          }}>
-            {threads.map((thread, i) => (
-              <FadeIn key={thread.name} delay={i * 0.1}>
-                <div style={{
-                  background: "white",
-                  overflow: "hidden",
-                  transition: "transform 0.4s ease, box-shadow 0.4s ease",
-                  display: "flex", flexDirection: "column",
-                }}
-                onMouseEnter={e => {
-                  e.currentTarget.style.transform = "translateY(-4px)";
-                  e.currentTarget.style.boxShadow = "0 12px 40px rgba(0,0,0,0.06)";
-                }}
-                onMouseLeave={e => {
-                  e.currentTarget.style.transform = "translateY(0)";
-                  e.currentTarget.style.boxShadow = "none";
-                }}
-                >
-                  {/* Image / gradient placeholder */}
-                  <div style={{
-                    height: 240,
-                    background: thread.photo
-                      ? `url(${thread.photo}) center/cover`
-                      : thread.gradient,
-                    position: "relative",
-                  }}>
-                    <div style={{
-                      position: "absolute", bottom: 0, left: 0, right: 0, height: 80,
-                      background: "linear-gradient(to top, white 0%, transparent 100%)",
-                    }} />
-                  </div>
-
-                  {/* Content */}
-                  <div style={{ padding: "16px 28px 32px", flex: 1, display: "flex", flexDirection: "column" }}>
-                    <span style={{
-                      fontFamily: "'Quicksand'", fontSize: 10, fontWeight: 700,
-                      letterSpacing: "0.22em", textTransform: "uppercase",
-                      color: thread.color, display: "block", marginBottom: 10,
-                    }}>{thread.eyebrow}</span>
-
-                    <h3 style={{
-                      fontFamily: "'Cormorant Garamond', serif",
-                      fontSize: 28, fontWeight: 400, color: C.darkInk,
-                      lineHeight: 1.2, marginBottom: 14,
-                    }}>{thread.name}</h3>
-
-                    <p style={{
-                      fontFamily: "'Cormorant Garamond', serif",
-                      fontSize: 15, fontStyle: "normal",
-                      color: "#5a6a78", lineHeight: 1.8,
-                      marginBottom: 24, flex: 1,
-                    }}>{thread.description}</p>
-
-                    {/* Ingredient tags */}
-                    <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-                      {thread.ingredients.map(ing => (
-                        <span key={ing} style={{
-                          fontFamily: "'Quicksand'",
-                          fontSize: 10, fontWeight: 600,
-                          letterSpacing: "0.04em",
-                          color: thread.color,
-                          background: `${thread.color}12`,
-                          padding: "5px 12px",
-                        }}>
-                          {ing}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
-        </div>
-      </section>
+      />
 
       {/* ══════════════════════════════════════════════════════════════════════
           CONVERGENCE — A Day With Lila
