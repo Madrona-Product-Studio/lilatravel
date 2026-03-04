@@ -9,7 +9,7 @@
 // Route: /destinations/zion-canyon
 //
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Nav, Footer, FadeIn, Breadcrumb } from '@components';
 import TripCard from '@components/TripCard';
@@ -728,6 +728,165 @@ function TimingAlertCapture() {
 }
 
 
+// ─── Guide Section Navigation (sticky anchor bar) ───────────────────────────
+
+const GUIDE_SECTIONS = [
+  { id: "sense-of-place", label: "Sense of Place" },
+  { id: "when-to-go",     label: "When to Go" },
+  { id: "where-to-stay",  label: "Stay" },
+  { id: "trails",         label: "Trails" },
+  { id: "wellness",       label: "Wellness" },
+  { id: "light-sky",      label: "Light & Sky" },
+  { id: "food-culture",   label: "Food & Culture" },
+  { id: "group-trips",    label: "Group Trips" },
+];
+
+function GuideNav({ isMobile }) {
+  const [activeId, setActiveId] = useState(null);
+  const [isSticky, setIsSticky] = useState(false);
+  const navRef = useRef(null);
+  const sentinelRef = useRef(null);
+  const activeItemRef = useRef(null);
+  const scrollContainerRef = useRef(null);
+
+  // Observe which section is in view
+  useEffect(() => {
+    const ids = GUIDE_SECTIONS.map(s => s.id);
+    const elements = ids.map(id => document.getElementById(id)).filter(Boolean);
+    if (elements.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        // Find the topmost visible section
+        const visible = entries
+          .filter(e => e.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+        if (visible.length > 0) {
+          setActiveId(visible[0].target.id);
+        }
+      },
+      { rootMargin: "-80px 0px -60% 0px", threshold: 0 }
+    );
+
+    elements.forEach(el => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
+  // Sentinel observer for sticky state
+  useEffect(() => {
+    const sentinel = sentinelRef.current;
+    if (!sentinel) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsSticky(!entry.isIntersecting),
+      { threshold: 0 }
+    );
+    observer.observe(sentinel);
+    return () => observer.disconnect();
+  }, []);
+
+  // Auto-scroll the active nav item into view on mobile
+  useEffect(() => {
+    if (isMobile && activeItemRef.current && scrollContainerRef.current) {
+      const container = scrollContainerRef.current;
+      const item = activeItemRef.current;
+      const offset = item.offsetLeft - container.offsetWidth / 2 + item.offsetWidth / 2;
+      container.scrollTo({ left: offset, behavior: "smooth" });
+    }
+  }, [activeId, isMobile]);
+
+  const handleClick = useCallback((id) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const navHeight = navRef.current?.offsetHeight || 52;
+    const y = el.getBoundingClientRect().top + window.scrollY - navHeight - 16;
+    window.scrollTo({ top: y, behavior: "smooth" });
+  }, []);
+
+  return (
+    <>
+      {/* Invisible sentinel — when it scrolls out of view, nav becomes sticky */}
+      <div ref={sentinelRef} style={{ height: 1, width: "100%", pointerEvents: "none" }} />
+
+      <nav
+        ref={navRef}
+        style={{
+          position: isSticky ? "fixed" : "relative",
+          top: isSticky ? 0 : "auto",
+          left: 0,
+          right: 0,
+          zIndex: 900,
+          background: isSticky ? "rgba(250, 247, 243, 0.92)" : C.cream,
+          backdropFilter: isSticky ? "blur(12px)" : "none",
+          WebkitBackdropFilter: isSticky ? "blur(12px)" : "none",
+          borderBottom: `1px solid ${isSticky ? C.stone : "transparent"}`,
+          transition: "border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease",
+          boxShadow: isSticky ? "0 1px 8px rgba(0,0,0,0.04)" : "none",
+        }}
+      >
+        <div
+          ref={scrollContainerRef}
+          className="guide-nav-scroll"
+          style={{
+            maxWidth: 920,
+            margin: "0 auto",
+            padding: isMobile ? "0 16px" : "0 52px",
+            display: "flex",
+            alignItems: "center",
+            gap: isMobile ? 4 : 0,
+            overflowX: "auto",
+            scrollbarWidth: "none",
+            msOverflowStyle: "none",
+            WebkitOverflowScrolling: "touch",
+          }}
+        >
+          {/* Hide scrollbar via style tag */}
+          <style>{`
+            .guide-nav-scroll::-webkit-scrollbar { display: none; }
+          `}</style>
+
+          {GUIDE_SECTIONS.map((section, i) => {
+            const isActive = activeId === section.id;
+            return (
+              <button
+                key={section.id}
+                ref={isActive ? activeItemRef : null}
+                onClick={() => handleClick(section.id)}
+                className="guide-nav-scroll"
+                style={{
+                  padding: isMobile ? "14px 14px" : "16px 18px",
+                  background: "none",
+                  border: "none",
+                  borderBottom: `2px solid ${isActive ? C.oceanTeal : "transparent"}`,
+                  cursor: "pointer",
+                  fontFamily: "'Quicksand', sans-serif",
+                  fontSize: isMobile ? 10 : 10,
+                  fontWeight: isActive ? 700 : 600,
+                  letterSpacing: "0.14em",
+                  textTransform: "uppercase",
+                  color: isActive ? C.oceanTeal : "#7A857E",
+                  whiteSpace: "nowrap",
+                  flexShrink: 0,
+                  transition: "color 0.25s ease, border-color 0.25s ease",
+                  position: "relative",
+                }}
+                onMouseEnter={e => { if (!isActive) e.currentTarget.style.color = C.darkInk; }}
+                onMouseLeave={e => { if (!isActive) e.currentTarget.style.color = "#7A857E"; }}
+              >
+                {section.label}
+              </button>
+            );
+          })}
+        </div>
+      </nav>
+
+      {/* Spacer when sticky so content doesn't jump */}
+      {isSticky && <div style={{ height: navRef.current?.offsetHeight || 52 }} />}
+    </>
+  );
+}
+
+
 // ─── Main Page ───────────────────────────────────────────────────────────────
 
 export default function ZionGuide() {
@@ -860,36 +1019,6 @@ export default function ZionGuide() {
                   ))}
                 </div>
 
-                {/* Inside this guide */}
-                <div style={{ marginBottom: 16 }}>
-                  <div style={{
-                    fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700,
-                    letterSpacing: "0.2em", textTransform: "uppercase",
-                    color: C.skyBlue, marginBottom: 10,
-                  }}>Inside this guide</div>
-                  <div style={{ display: "flex", gap: 5, flexWrap: "wrap" }}>
-                    {[
-                      "Trails & Canyon Routes",
-                      "Places to Eat",
-                      "Where to Stay",
-                      "Yoga & Breathwork",
-                      "Scenic Drives",
-                      "Stargazing",
-                      "Local Culture",
-                      "Community Connection",
-                      "Seasonal Timing",
-                      "Group Trips",
-                    ].map((tag, i) => (
-                      <span key={i} style={{
-                        fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 600,
-                        letterSpacing: "0.04em", color: "#7A857E",
-                        padding: "3px 9px", border: `1px solid ${C.stone}`,
-                        lineHeight: 1.4,
-                      }}>{tag}</span>
-                    ))}
-                  </div>
-                </div>
-
                 {/* Updated */}
                 <div style={{
                   fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 500,
@@ -949,6 +1078,9 @@ export default function ZionGuide() {
         </div>
       </section>
 
+      {/* ══ GUIDE SECTION NAV ═══════════════════════════════════════════════ */}
+      <GuideNav isMobile={isMobile} />
+
       {/* ══ GUIDE CONTENT ═══════════════════════════════════════════════════ */}
       <section style={{ padding: isMobile ? "32px 20px 60px" : "48px 52px 80px", background: C.cream }}>
         <div style={{ maxWidth: 680, margin: "0 auto" }}>
@@ -957,7 +1089,7 @@ export default function ZionGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* SENSE OF PLACE                                                */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="guide-start" style={{ padding: "44px 0" }}>
+          <section id="sense-of-place" style={{ padding: "44px 0" }}>
             <FadeIn>
               <SectionLabel>Sense of Place</SectionLabel>
               <p style={{
@@ -1003,7 +1135,7 @@ export default function ZionGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* MAGIC WINDOWS                                                 */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section style={{ padding: "44px 0" }}>
+          <section id="when-to-go" style={{ padding: "44px 0" }}>
             <FadeIn>
               <SectionIcon type="windows" />
               <SectionLabel>Magic Windows</SectionLabel>
@@ -1034,7 +1166,7 @@ export default function ZionGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* STAY                                                          */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section style={{ padding: "44px 0" }}>
+          <section id="where-to-stay" style={{ padding: "44px 0" }}>
             <FadeIn>
               <SectionIcon type="stay" />
               <SectionLabel>Stay</SectionLabel>
@@ -1109,7 +1241,7 @@ export default function ZionGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* MOVE                                                          */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section style={{ padding: "44px 0" }}>
+          <section id="trails" style={{ padding: "44px 0" }}>
             <FadeIn>
               <SectionIcon type="move" />
               <SectionLabel>Move</SectionLabel>
@@ -1174,7 +1306,7 @@ export default function ZionGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* BREATHE                                                       */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section style={{ padding: "44px 0" }}>
+          <section id="wellness" style={{ padding: "44px 0" }}>
             <FadeIn>
               <SectionIcon type="breathe" />
               <SectionLabel>Breathe</SectionLabel>
@@ -1223,7 +1355,7 @@ export default function ZionGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* AWAKEN                                                        */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section style={{ padding: "44px 0" }}>
+          <section id="light-sky" style={{ padding: "44px 0" }}>
             <FadeIn>
               <SectionIcon type="awaken" />
               <SectionLabel>Awaken</SectionLabel>
@@ -1264,7 +1396,7 @@ export default function ZionGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* CONNECT                                                       */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section style={{ padding: "44px 0" }}>
+          <section id="food-culture" style={{ padding: "44px 0" }}>
             <FadeIn>
               <SectionIcon type="connect" />
               <SectionLabel>Connect</SectionLabel>
@@ -1344,7 +1476,7 @@ export default function ZionGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* GROUP TRIPS — ZION                                             */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="threshold-trips" style={{ padding: "48px 0" }}>
+          <section id="group-trips" style={{ padding: "48px 0" }}>
             <FadeIn>
               <SectionIcon type="threshold" />
               <SectionLabel>Group Trips</SectionLabel>
