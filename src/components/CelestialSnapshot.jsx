@@ -71,31 +71,55 @@ function SunArc({ progress }) {
   );
 }
 
+let moonClipId = 0;
+
 function MoonDisc({ illumination, phaseName, r = 14 }) {
-  // Simplified moon disc — dark circle with illuminated portion
+  const [clipId] = useState(() => `moonClip-${++moonClipId}`);
   const size = r * 2 + 4;
   const cx = r + 2, cy = r + 2;
 
-  // Waxing = right side lit, waning = left side lit
   const isWaning = phaseName.includes("Waning") || phaseName === "Last Quarter";
   const fraction = illumination / 100;
 
-  // Terminator x-offset from center (ellipse width)
-  const termX = r * (1 - 2 * fraction);
+  // Full moon or new moon — simple circle
+  if (fraction >= 0.98) {
+    return (
+      <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
+        <circle cx={cx} cy={cy} r={r} fill="#e8e4d8" />
+      </svg>
+    );
+  }
+  if (fraction <= 0.02) {
+    return (
+      <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
+        <circle cx={cx} cy={cy} r={r} fill="#2a3040" />
+      </svg>
+    );
+  }
+
+  // Terminator as an ellipse: rx shrinks from r → 0 as fraction goes 0 → 0.5,
+  // then grows 0 → r as fraction goes 0.5 → 1
+  const termRx = Math.abs(1 - 2 * fraction) * r;
+  // Before half-lit the dark side bulges past center; after, the lit side does
+  const litHalf = fraction > 0.5;
+
+  // Build two-half path: lit half is always a semicircle, terminator is an elliptical arc
+  // For waxing, right side is lit; for waning, left side is lit
+  const flip = isWaning ? -1 : 1;
+
+  // Semicircle arc on the lit side
+  const litPath = `M ${cx} ${cy - r} A ${r} ${r} 0 0 ${isWaning ? 0 : 1} ${cx} ${cy + r}`;
+  // Terminator arc curving back
+  const sweepBack = litHalf ? (isWaning ? 1 : 0) : (isWaning ? 0 : 1);
+  const termPath = `A ${termRx} ${r} 0 0 ${sweepBack} ${cx} ${cy - r}`;
 
   return (
     <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
-      {/* Dark base */}
       <circle cx={cx} cy={cy} r={r} fill="#2a3040" />
-      {/* Illuminated portion */}
-      <clipPath id="moonClip">
+      <clipPath id={clipId}>
         <circle cx={cx} cy={cy} r={r} />
       </clipPath>
-      <ellipse
-        cx={cx + (isWaning ? termX : -termX) / 2}
-        cy={cy} rx={r - Math.abs(termX) / 2} ry={r}
-        fill="#e8e4d8" clipPath="url(#moonClip)"
-      />
+      <path d={`${litPath} ${termPath} Z`} fill="#e8e4d8" clipPath={`url(#${clipId})`} />
     </svg>
   );
 }
