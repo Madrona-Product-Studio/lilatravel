@@ -146,20 +146,47 @@ function RiverDot({ level }) {
 function CollapsedView({ data, onExpand }) {
   const { weather, moon, sky, river } = data;
 
+  const CELL_LABEL = {
+    fontFamily: "'Quicksand', sans-serif",
+    fontSize: 9, fontWeight: 700,
+    letterSpacing: "0.18em", textTransform: "uppercase",
+    color: "#b8b0a8", marginTop: 6,
+  };
+
+  const riverColors = { low: C.seaGlass, moderate: C.skyBlue, high: C.goldenAmber, dangerous: C.sunSalmon };
+  const riverLabels = { low: "Low", moderate: "OK", high: "High", dangerous: "High" };
+
   const cells = [];
   if (weather) cells.push({ key: "temp", content: (
-    <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 22, fontWeight: 300, color: C.darkInk, lineHeight: 1 }}>
-      {weather.temp}°
-    </span>
+    <>
+      <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 28, fontWeight: 300, color: C.darkInk, lineHeight: 1 }}>
+        {weather.temp}°
+      </span>
+      <span style={CELL_LABEL}>{weather.condition}</span>
+    </>
   )});
   if (moon) cells.push({ key: "moon", content: (
-    <MoonDisc illumination={moon.phase} phaseName={moon.name} r={10} />
+    <>
+      <MoonDisc illumination={moon.phase} phaseName={moon.name} r={10} />
+      <span style={CELL_LABEL}>{moon.name.split(" ")[0]}</span>
+    </>
   )});
   if (sky) cells.push({ key: "sky", content: (
-    <QualityDots rating={sky.quality} />
+    <>
+      <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 15, fontWeight: 600, color: C.goldenAmber }}>{sky.label}</span>
+      <span style={CELL_LABEL}>Sky</span>
+    </>
   )});
   if (river) cells.push({ key: "river", content: (
-    <RiverDot level={river.level} />
+    <>
+      <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+        <RiverDot level={river.level} />
+        <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600, color: riverColors[river.level] || C.stone }}>
+          {riverLabels[river.level] || river.label}
+        </span>
+      </div>
+      <span style={CELL_LABEL}>River</span>
+    </>
   )});
 
   return (
@@ -189,8 +216,8 @@ function CollapsedView({ data, onExpand }) {
           {cells.map((cell, i) => (
             <div key={cell.key} style={{
               flex: "1 1 auto", minWidth: 60,
-              display: "flex", alignItems: "center", justifyContent: "center",
-              padding: "8px 0",
+              display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
+              padding: "14px 12px 12px",
               borderRight: i < cells.length - 1 ? `1px solid ${C.stone}` : "none",
             }}>
               {cell.content}
