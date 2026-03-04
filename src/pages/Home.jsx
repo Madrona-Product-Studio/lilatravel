@@ -348,27 +348,34 @@ const approachBraids = [
     icon: "△",
     color: "#7DB8A0",
     headline: "The landscape is the teacher.",
-    tags: ["Iconic Destinations", "Threshold Timing", "Canyon & Desert", "Old-Growth Forest", "Wild Coastline"],
+    tags: ["Outdoor Meccas", "Seasonal Rhythms", "Canyon & Desert", "Old-Growth Forest", "Wild Coastline", "Alpine Peaks"],
   },
   {
     label: "Ancient Practices",
     icon: "◎",
     color: "#D4A853",
     headline: "Steeped in living tradition.",
-    tags: ["Yoga", "Breathwork", "Meditation", "Cold Immersion", "Mindful Movement", "Journaling"],
+    tags: ["Yoga Asana", "Meditation", "Breathwork", "Mindful Movement", "Personal Reflection", "Ceremonies"],
   },
   {
     label: "Elemental Encounters",
     icon: "✦",
     color: "#6BA4B8",
     headline: "Where the senses take over.",
-    tags: ["Sunlight", "Cold Water", "Starry Skies", "Ancient Stone", "Silence", "Firelight"],
+    tags: [
+      { text: "Sunlight", color: "#D4A853" },
+      { text: "Cold Water", color: "#6BA4B8" },
+      { text: "Hot Saunas", color: "#E8956A" },
+      { text: "Starry Skies", color: "#7DB8A0" },
+      { text: "Ancient Stone", color: "#A89080" },
+      { text: "Firelight", color: "#D4A853" },
+    ],
   },
 ];
 
 function ApproachSectionHome() {
   return (
-    <section style={{ padding: "72px 0 64px", background: C.darkInk }}>
+    <section className="approach-braids-section-mobile" style={{ padding: "72px 0 64px", background: C.darkInk }}>
       <div className="section-padded" style={{ maxWidth: 1100, margin: "0 auto", padding: "0 52px" }}>
         <FadeIn>
           <div style={{ marginBottom: 40 }}>
@@ -415,28 +422,33 @@ function ApproachSectionHome() {
 
                 {/* Tag chips */}
                 <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-                  {b.tags.map((tag, j) => (
-                    <span key={j} style={{
-                      fontFamily: "'Quicksand', sans-serif",
-                      fontSize: 11, fontWeight: 600, letterSpacing: "0.06em",
-                      color: `${b.color}cc`,
-                      padding: "8px 16px",
-                      border: `1px solid ${b.color}25`,
-                      background: `${b.color}08`,
-                      transition: "all 0.25s ease",
-                    }}
-                    onMouseEnter={e => {
-                      e.currentTarget.style.background = `${b.color}18`;
-                      e.currentTarget.style.borderColor = `${b.color}40`;
-                      e.currentTarget.style.color = b.color;
-                    }}
-                    onMouseLeave={e => {
-                      e.currentTarget.style.background = `${b.color}08`;
-                      e.currentTarget.style.borderColor = `${b.color}25`;
-                      e.currentTarget.style.color = `${b.color}cc`;
-                    }}
-                    >{tag}</span>
-                  ))}
+                  {b.tags.map((tag, j) => {
+                    const isObj = typeof tag === "object";
+                    const text = isObj ? tag.text : tag;
+                    const tagColor = isObj ? tag.color : b.color;
+                    return (
+                      <span key={j} style={{
+                        fontFamily: "'Quicksand', sans-serif",
+                        fontSize: 11, fontWeight: 600, letterSpacing: "0.06em",
+                        color: `${tagColor}cc`,
+                        padding: "8px 16px",
+                        border: `1px solid ${tagColor}25`,
+                        background: `${tagColor}08`,
+                        transition: "all 0.25s ease",
+                      }}
+                      onMouseEnter={e => {
+                        e.currentTarget.style.background = `${tagColor}18`;
+                        e.currentTarget.style.borderColor = `${tagColor}40`;
+                        e.currentTarget.style.color = tagColor;
+                      }}
+                      onMouseLeave={e => {
+                        e.currentTarget.style.background = `${tagColor}08`;
+                        e.currentTarget.style.borderColor = `${tagColor}25`;
+                        e.currentTarget.style.color = `${tagColor}cc`;
+                      }}
+                      >{text}</span>
+                    );
+                  })}
                 </div>
               </div>
             </FadeIn>
@@ -461,9 +473,17 @@ function ApproachSectionHome() {
           .approach-braids-grid > div > div {
             border-right: none !important;
             border-bottom: 1px solid rgba(255,255,255,0.06);
+            padding: 24px 20px 28px !important;
           }
           .approach-braids-grid > div:last-child > div {
             border-bottom: none;
+          }
+          .approach-braids-section-mobile {
+            padding-top: 48px !important;
+            padding-bottom: 40px !important;
+          }
+          .approach-braids-grid span[style*="padding: 8px 16px"] {
+            padding: 6px 12px !important;
           }
         }
       `}</style>
@@ -531,7 +551,7 @@ export default function HomePage() {
           display: flex;
           align-items: center;
           justify-content: center;
-          margin-bottom: 28px;
+          margin-bottom: 40px;
         }
         .hero-subtitle {
           font-family: 'Quicksand', sans-serif;
@@ -551,7 +571,7 @@ export default function HomePage() {
           }
           .hero-moment-wrap {
             height: 70px;
-            margin-bottom: 20px;
+            margin-bottom: 32px;
           }
           .hero-subtitle {
             font-size: 11.5px;
@@ -618,8 +638,8 @@ export default function HomePage() {
             </div>
           </FadeIn>
           <FadeIn from="bottom" delay={0.45}>
-            <div style={{ fontFamily: "'Quicksand'", fontSize: 13, fontWeight: 400, color: "rgba(255,255,255,0.7)", letterSpacing: "0.04em", marginBottom: 18 }}>Ready to drop in?</div>
-            <div style={{ display: "flex", gap: 24, justifyContent: "center", flexWrap: "wrap" }}>
+            <div style={{ fontFamily: "'Quicksand'", fontSize: 13, fontWeight: 400, color: "rgba(255,255,255,0.7)", letterSpacing: "0.04em", marginBottom: 24 }}>Ready to drop in?</div>
+            <div style={{ display: "flex", gap: 28, justifyContent: "center", flexWrap: "wrap" }}>
               <Link to="/destinations" style={{
                 fontFamily: "'Quicksand'", fontSize: 11, fontWeight: 700,
                 letterSpacing: "0.2em", textTransform: "uppercase",
@@ -665,7 +685,7 @@ export default function HomePage() {
                 <p style={{ marginBottom: 28 }}>Moments when we find our truest and lightest selves.<br />Not weighed down by the past or an imagined future.<br />Connected to the entire universe through right now.</p>
                 <p style={{ marginBottom: 32 }}>We're reminded of a truth we know, but often forget.<br />That life is not about conquering the mystery.<br />It's about learning to dance with it.</p>
                 <p style={{ marginBottom: 6 }}>
-                  <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(28px, 3.2vw, 38px)", fontWeight: 400, fontStyle: "italic", color: C.darkInk }}>Līlā</span>
+                  <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(28px, 3.2vw, 38px)", fontWeight: 400, fontStyle: "italic", color: C.skyBlue }}>Līlā</span>
                   {" "}<span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(20px, 2.2vw, 26px)", fontWeight: 300, fontStyle: "italic", color: "rgba(90,106,120,0.65)" }}>लीला</span>
                   {" "}<span style={{ color: "rgba(90,106,120,0.6)", fontSize: "clamp(13px, 1.5vw, 15px)" }}>/lee·lah/</span>
                 </p>
@@ -693,18 +713,21 @@ export default function HomePage() {
                 fontWeight: 400, color: "rgba(255,255,255,0.55)", lineHeight: 2.1, letterSpacing: "0.03em",
               }}>
                 {[
-                  { text: "Sacred Terrain — iconic landscapes that dissolve the ordinary.", icon: "△", color: "#7DB8A0" },
-                  { text: "Ancient Practices — wisdom traditions woven into every journey.", icon: "◎", color: "#D4A853" },
-                  { text: "Elemental Encounters — sunlight, cold water, starry skies, ancient stone.", icon: "✦", color: "#6BA4B8" },
+                  { label: "Sacred Terrain", icon: "△", color: "#7DB8A0" },
+                  { label: "Ancient Practices", icon: "◎", color: "#D4A853" },
+                  { label: "Elemental Encounters", icon: "✦", color: "#6BA4B8" },
                 ].map((callout, i) => (
                   <div key={i} style={{
-                    display: "flex", alignItems: "flex-start", gap: 14,
+                    display: "flex", alignItems: "center", gap: 10,
                     marginBottom: i < 2 ? 20 : 0, paddingLeft: 16,
                   }}>
-                    <span style={{ color: callout.color, fontSize: 14, lineHeight: 1, marginTop: 3, flexShrink: 0 }}>{callout.icon}</span>
-                    <p style={{
-                      color: "rgba(255,255,255,0.7)", fontStyle: "italic", margin: 0,
-                    }}>{callout.text}</p>
+                    <span style={{ color: callout.color, fontSize: 18, lineHeight: 1, flexShrink: 0 }}>{callout.icon}</span>
+                    <span style={{
+                      fontFamily: "'Quicksand', sans-serif",
+                      fontSize: 10, fontWeight: 700,
+                      letterSpacing: "0.18em", textTransform: "uppercase",
+                      color: callout.color,
+                    }}>{callout.label}</span>
                   </div>
                 ))}
                 <p style={{ marginTop: 36, marginBottom: 0, color: "rgba(255,255,255,0.7)" }}>
@@ -892,6 +915,17 @@ export default function HomePage() {
       <ApproachSectionHome />
 
       {/* ══ 5. TRAVEL YOUR WAY ═════════════════════════════════════════ */}
+      <style>{`
+        @media (max-width: 768px) {
+          .offering-card {
+            min-height: auto !important;
+            padding: 28px 24px 24px !important;
+          }
+          .offering-card .offering-desc {
+            flex: 0 !important;
+          }
+        }
+      `}</style>
       <section ref={offeringsRef} style={{ padding: "80px 0", background: C.cream }}>
         <div className="section-padded" style={{ maxWidth: 1100, margin: "0 auto", padding: "0 52px" }}>
           <FadeIn>
@@ -954,7 +988,7 @@ export default function HomePage() {
               },
             ].map((o, i) => (
               <FadeIn key={o.label} delay={i * 0.08}>
-                <div style={{
+                <div className="offering-card" style={{
                   background: "white",
                   padding: "36px 28px 32px",
                   display: "flex", flexDirection: "column",
@@ -977,9 +1011,9 @@ export default function HomePage() {
                     lineHeight: 1.2, marginBottom: 16,
                   }}>{o.title}</h3>
 
-                  <p style={{
-                    fontFamily: "'Cormorant Garamond', serif",
-                    fontSize: 15, fontStyle: "italic",
+                  <p className="offering-desc" style={{
+                    fontFamily: "'Quicksand', sans-serif",
+                    fontSize: 15, fontWeight: 400,
                     color: "#5a6a78", lineHeight: 1.8,
                     flex: 1,
                   }}>{o.desc}</p>
@@ -1059,8 +1093,8 @@ export default function HomePage() {
               }}>We'll show you the way.</p>
               <div style={{ display: "flex", gap: 24, justifyContent: "center", flexWrap: "wrap" }}>
                 <Link to="/destinations" className="underline-link underline-link-light">Explore Destinations</Link>
-                <Link to="/ways-to-travel" className="underline-link underline-link-light" onClick={() => trackEvent('plan_trip_clicked', { source: 'bottom' })}>Plan a Custom Trip</Link>
-                <Link to="/contact" className="underline-link underline-link-light">Contact Our Experts</Link>
+                <Link to="/plan" className="underline-link underline-link-light" onClick={() => trackEvent('plan_trip_clicked', { source: 'bottom' })}>Plan a Trip</Link>
+                <Link to="/group-trips" className="underline-link underline-link-light">Join a Group Trip</Link>
               </div>
             </div>
           </FadeIn>
