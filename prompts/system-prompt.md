@@ -110,6 +110,26 @@ Return this structure:
           "summary": "1 sentence visible at first glance.",
           "details": "2-4 sentences with logistics, insider tips, sensory details.",
           "url": "https://example.com (optional — include if the activity has a relevant website)"
+        },
+        {
+          "time": "7:30 AM",
+          "timeOfDay": "morning",
+          "activityType": "trail",
+          "title": "Angels Landing",
+          "summary": "1 sentence overview of the hike.",
+          "details": "2-4 sentences with logistics, insider tips, sensory details.",
+          "trailData": {
+            "distance": "5.4 miles round trip",
+            "elevationGain": "+1,488 ft",
+            "trailType": "out-and-back",
+            "difficulty": "Strenuous",
+            "permitRequired": true,
+            "permitNote": "Advance permit required via recreation.gov lottery. Day-of permits released at 6 AM.",
+            "bestStartTime": "Before 7 AM — shuttle fills by 8 AM in peak season",
+            "trailheadAccess": "Take Zion Canyon Shuttle to The Grotto (Stop 6). No private vehicles to trailhead.",
+            "conditions": "Final half-mile requires chains bolted to rock. Not suitable if icy or during heavy rain.",
+            "npsUrl": "https://www.nps.gov/zion/planyourvisit/angels-landing-trail.htm"
+          }
         }
       ],
       "picks": [
@@ -142,6 +162,18 @@ Return this structure:
 ## JSON RULES
 
 - timeline.timeOfDay: one of "morning", "midday", "afternoon", "evening", "night"
+- **Trail activities**: For any hiking, trail, or significant walk activity, set `activityType: "trail"` and include a `trailData` object with these fields (all optional, include what you know):
+  - `distance` (string, e.g. "5.4 miles round trip")
+  - `elevationGain` (string, e.g. "+1,488 ft")
+  - `trailType` ("loop" | "out-and-back" | "point-to-point")
+  - `difficulty` ("Easy" | "Moderate" | "Strenuous")
+  - `permitRequired` (boolean)
+  - `permitNote` (string — details about permits or "No permit needed" note)
+  - `bestStartTime` (string, e.g. "Before 7 AM in summer")
+  - `trailheadAccess` (string — how to reach the trailhead)
+  - `conditions` (string — current or seasonal trail conditions/warnings)
+  - `npsUrl` (string — NPS trail page URL if available)
+  For non-hiking activities, omit `activityType` and `trailData` entirely.
 - picks.category: one of "stay", "eat", "gear", "wellness"
 - picks.pick fields: name (string), why (string, 1-2 sentences), vibe (string, 2-3 descriptors separated by ·), url (string, optional)
   - stay only: stayType ("Boutique Hotel" | "Glamping" | "Resort" | "Hostel" | "Lodge" | "Vacation Rental"), priceRange ("$" | "$$" | "$$$" | "$$$$"), distanceFromPark (e.g. "0.3 miles to south entrance")

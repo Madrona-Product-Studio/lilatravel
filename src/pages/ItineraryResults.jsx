@@ -161,6 +161,33 @@ const BackIcon = ({ size = 14, color = C.sage }) => (
   </svg>
 );
 
+const MountainIcon = ({ size = 14, color = C.sage }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M8 19L14.5 7L21 19H3L8.5 10L12 16" />
+  </svg>
+);
+
+const RouteIcon = ({ size = 14, color = C.sage }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="6" cy="19" r="3" /><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15" /><circle cx="18" cy="5" r="3" />
+  </svg>
+);
+
+const PermitIcon = ({ size = 14, color = C.sage }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="4" y="11" width="16" height="10" rx="2" />
+    <path d="M8 11V7a4 4 0 0 1 8 0v4" />
+    <circle cx="12" cy="16" r="1" fill={color} />
+  </svg>
+);
+
+const TrailheadIcon = ({ size = 14, color = C.sage }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
+    <circle cx="12" cy="9" r="2.5" />
+  </svg>
+);
+
 const CloseIcon = ({ size = 14, color = C.sage }) => (
   <svg width={size} height={size} viewBox="0 0 16 16" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
     <path d="M4 4l8 8" /><path d="M12 4l-8 8" />
@@ -524,6 +551,217 @@ function TimelineBlock({ time, title, summary, details, timeOfDay = 'morning', u
             <div style={{ fontFamily: F, fontSize: 13, color: C.body, lineHeight: 1.6, marginTop: 4 }}>{summary}</div>
           </div>
           {interactive && <ArrowRightIcon size={10} color={`${C.sage}50`} />}
+        </button>
+      </div>
+    </div>
+  );
+}
+
+/* ── trail components ─────────────────────────────────────────────────── */
+
+const DIFFICULTY_CONFIG = {
+  easy:      { label: 'Easy',      color: C.seaGlass,    segments: 1 },
+  moderate:  { label: 'Moderate',  color: C.goldenAmber, segments: 2 },
+  strenuous: { label: 'Strenuous', color: C.sunSalmon,   segments: 3 },
+};
+
+function DifficultyBar({ difficulty = 'moderate' }) {
+  const key = difficulty.toLowerCase();
+  const cfg = DIFFICULTY_CONFIG[key] || DIFFICULTY_CONFIG.moderate;
+
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+      <div style={{ display: 'flex', gap: 2 }}>
+        {[1, 2, 3].map(i => (
+          <div key={i} style={{
+            width: 18, height: 5,
+            borderRadius: 2,
+            background: i <= cfg.segments ? cfg.color : `${C.sage}15`,
+            transition: 'background 0.2s',
+          }} />
+        ))}
+      </div>
+      <span style={{
+        fontFamily: F, fontSize: 10, fontWeight: 700,
+        letterSpacing: '0.06em',
+        color: cfg.color,
+        textTransform: 'capitalize',
+      }}>
+        {cfg.label}
+      </span>
+    </div>
+  );
+}
+
+function TrailStatChip({ icon, label, value, accent }) {
+  return (
+    <div style={{
+      display: 'flex', alignItems: 'center', gap: 5,
+      padding: '5px 10px',
+      background: accent ? `${accent}0a` : `${C.sage}06`,
+      border: `1px solid ${accent ? `${accent}18` : `${C.sage}12`}`,
+      borderRadius: 2,
+      flexShrink: 0,
+    }}>
+      {icon}
+      <div>
+        <div style={{
+          fontFamily: F, fontSize: 9, fontWeight: 700,
+          letterSpacing: '0.1em', textTransform: 'uppercase',
+          color: `${C.sage}70`, lineHeight: 1,
+          marginBottom: 2,
+        }}>
+          {label}
+        </div>
+        <div style={{
+          fontFamily: F, fontSize: 12, fontWeight: 700,
+          color: accent || C.ink, lineHeight: 1,
+        }}>
+          {value}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function TrailCard({ time, title, summary, details, trailData = {}, url, isLast = false, dayIndex = 0, itemIndex = 0, onOpenPanel }) {
+  const dot = WARM_DOT;
+  const resolvedUrl = url || trailData.npsUrl || lookupUrl(title);
+
+  const handleClick = () => {
+    onOpenPanel({
+      type: 'trail',
+      data: { time, title, summary, details, trailData, url: resolvedUrl },
+      thumbId: `day_${dayIndex}_timeline_${itemIndex}`,
+    });
+  };
+
+  const difficulty = trailData.difficulty;
+  const diffKey = difficulty?.toLowerCase();
+
+  return (
+    <div style={{ display: 'flex', gap: 14, minHeight: 44 }}>
+      {/* Timeline spine */}
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: 20, flexShrink: 0 }}>
+        <div style={{
+          width: 10, height: 10, borderRadius: '50%', background: dot,
+          boxShadow: `0 0 0 3px ${dot}15, 0 0 12px ${dot}15`,
+          flexShrink: 0, marginTop: 5,
+        }} />
+        {!isLast && <div style={{ width: 1.5, flex: 1, minHeight: 20, background: `linear-gradient(180deg, ${dot}30, ${C.sage}06)` }} />}
+      </div>
+
+      {/* Card body */}
+      <div style={{ flex: 1, paddingBottom: isLast ? 0 : 16 }}>
+        {/* Time */}
+        {time && (
+          <div style={{ fontFamily: F, fontSize: 10.5, fontWeight: 700, letterSpacing: '0.08em', color: dot, marginBottom: 4 }}>
+            {time}
+          </div>
+        )}
+
+        <button onClick={handleClick} style={{
+          display: 'block', width: '100%', textAlign: 'left',
+          background: C.white,
+          border: `1.5px solid ${C.sage}12`,
+          borderRadius: 2,
+          overflow: 'hidden',
+          cursor: 'pointer',
+          WebkitTapHighlightColor: 'transparent',
+          padding: 0,
+          boxShadow: `0 2px 10px ${C.amber}06`,
+        }}>
+
+          {/* Card header: trail name + NPS label */}
+          <div style={{
+            display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+            padding: '10px 14px 8px',
+            background: `${C.sage}04`,
+            borderBottom: `1px solid ${C.sage}09`,
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 7 }}>
+              <MountainIcon size={13} color={C.sage} />
+              <span style={{ fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: C.sage }}>
+                Trail
+              </span>
+            </div>
+            {(trailData.npsUrl || resolvedUrl) && (
+              <div style={{ display: 'flex', alignItems: 'center', gap: 4, padding: '2px 7px', borderRadius: 3, background: `${C.oceanTeal}08`, border: `1px solid ${C.oceanTeal}18` }}>
+                <span style={{ fontFamily: F, fontSize: 8, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: C.oceanTeal }}>NPS Guide</span>
+                <ExternalLinkIcon size={8} color={C.oceanTeal} />
+              </div>
+            )}
+          </div>
+
+          {/* Trail name + summary */}
+          <div style={{ padding: '11px 14px 12px' }}>
+            <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 8, marginBottom: 8 }}>
+              <div style={{ flex: 1 }}>
+                <div style={{ fontFamily: F, fontSize: 16, fontWeight: 700, color: C.ink, lineHeight: 1.25, marginBottom: 4 }}>
+                  {title}
+                </div>
+                <div style={{ fontFamily: F, fontSize: 12.5, color: C.body, lineHeight: 1.6 }}>
+                  {summary && summary.length > 110 ? summary.slice(0, 110).trimEnd() + '…' : summary}
+                </div>
+              </div>
+              <ArrowRightIcon size={10} color={`${C.sage}50`} />
+            </div>
+
+            {/* Stats row */}
+            {(trailData.distance || trailData.elevationGain || trailData.trailType) && (
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginTop: 10 }}>
+                {trailData.distance && (
+                  <TrailStatChip
+                    icon={<RouteIcon size={11} color={C.sage} />}
+                    label="Distance"
+                    value={trailData.distance}
+                  />
+                )}
+                {trailData.elevationGain && (
+                  <TrailStatChip
+                    icon={<MountainIcon size={11} color={C.sage} />}
+                    label="Elevation"
+                    value={trailData.elevationGain}
+                  />
+                )}
+                {trailData.trailType && (
+                  <TrailStatChip
+                    icon={<RouteIcon size={11} color={C.sage} />}
+                    label="Type"
+                    value={trailData.trailType}
+                  />
+                )}
+              </div>
+            )}
+
+            {/* Difficulty + permit row */}
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 10, flexWrap: 'wrap', gap: 6 }}>
+              {difficulty && <DifficultyBar difficulty={difficulty} />}
+              {trailData.permitRequired && (
+                <div style={{ display: 'flex', alignItems: 'center', gap: 4, padding: '3px 8px', borderRadius: 3, background: `${C.goldenAmber}0c`, border: `1px solid ${C.goldenAmber}22` }}>
+                  <PermitIcon size={10} color={C.goldenAmber} />
+                  <span style={{ fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.05em', textTransform: 'uppercase', color: C.goldenAmber }}>
+                    Permit Required
+                  </span>
+                </div>
+              )}
+            </div>
+
+            {/* Best start time note */}
+            {trailData.bestStartTime && (
+              <div style={{
+                marginTop: 10, padding: '7px 10px',
+                background: `${dot}08`, borderRadius: 2,
+                borderLeft: `2px solid ${dot}30`,
+                display: 'flex', alignItems: 'flex-start', gap: 6,
+              }}>
+                <ClockIcon size={10} color={dot} />
+                <span style={{ fontFamily: F, fontSize: 11, fontWeight: 500, color: `${C.slate}80`, lineHeight: 1.5 }}>
+                  {trailData.bestStartTime}
+                </span>
+              </div>
+            )}
+          </div>
         </button>
       </div>
     </div>
@@ -1007,6 +1245,212 @@ function CompanionPanelContent({ type, data, id, feedback, onFeedback }) {
   );
 }
 
+/* ── trail detail content ──────────────────────────────────────────────── */
+
+function TrailDetailContent({ data, thumbId, activityFeedback, onActivityFeedback }) {
+  const { title, time, summary, details, trailData = {}, url } = data;
+  const dot = WARM_DOT;
+  const resolvedUrl = url || trailData.npsUrl || lookupUrl(title);
+
+  return (
+    <div style={{ maxWidth: 500, margin: '0 auto', padding: '26px 20px 60px' }}>
+
+      {/* Trail badge + time */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 14 }}>
+        <div style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '4px 11px', borderRadius: 7, background: `${C.sage}0a`, border: `1px solid ${C.sage}18` }}>
+          <MountainIcon size={12} color={C.sage} />
+          <span style={{ fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: C.sage }}>Trail</span>
+        </div>
+        {time && (
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '4px 11px', borderRadius: 7, background: `${dot}0e`, border: `1px solid ${dot}18` }}>
+            <ClockIcon size={10} color={dot} />
+            <span style={{ fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.08em', color: dot }}>{time}</span>
+          </div>
+        )}
+      </div>
+
+      {/* Title */}
+      <h1 style={{ fontFamily: F, fontSize: 'clamp(22px, 6vw, 28px)', fontWeight: 700, color: C.slate, lineHeight: 1.2, marginBottom: 10 }}>
+        {resolvedUrl ? (
+          <a href={resolvedUrl} target="_blank" rel="noopener noreferrer"
+            style={{ color: 'inherit', textDecoration: 'none', borderBottom: `2px solid ${C.oceanTeal}20` }}>
+            {title}
+          </a>
+        ) : title}
+      </h1>
+
+      {/* Summary */}
+      <p style={{ fontFamily: F, fontSize: 14.5, color: `${C.slate}6a`, lineHeight: 1.75, marginBottom: 12 }}>{summary}</p>
+
+      {/* NPS disclaimer (Step G) */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginBottom: 24 }}>
+        <ExternalLinkIcon size={9} color={`${C.sage}50`} />
+        <span style={{ fontFamily: F, fontSize: 11, fontWeight: 500, color: `${C.sage}60`, lineHeight: 1.4 }}>
+          Trail info sourced from NPS documentation. Verify conditions before your visit.
+        </span>
+      </div>
+
+      {/* STAT GRID */}
+      {(trailData.distance || trailData.elevationGain || trailData.trailType || trailData.difficulty) && (
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(2, 1fr)',
+          gap: 8,
+          marginBottom: 22,
+        }}>
+          {trailData.distance && (
+            <div style={{ padding: '12px 14px', background: C.white, border: `1px solid ${C.sage}12`, borderRadius: 2 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginBottom: 5 }}>
+                <RouteIcon size={12} color={C.sage} />
+                <span style={{ fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: `${C.sage}70` }}>Distance</span>
+              </div>
+              <div style={{ fontFamily: F, fontSize: 16, fontWeight: 700, color: C.ink }}>{trailData.distance}</div>
+            </div>
+          )}
+          {trailData.elevationGain && (
+            <div style={{ padding: '12px 14px', background: C.white, border: `1px solid ${C.sage}12`, borderRadius: 2 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginBottom: 5 }}>
+                <MountainIcon size={12} color={C.sage} />
+                <span style={{ fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: `${C.sage}70` }}>Elevation Gain</span>
+              </div>
+              <div style={{ fontFamily: F, fontSize: 16, fontWeight: 700, color: C.ink }}>{trailData.elevationGain}</div>
+            </div>
+          )}
+          {trailData.trailType && (
+            <div style={{ padding: '12px 14px', background: C.white, border: `1px solid ${C.sage}12`, borderRadius: 2 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginBottom: 5 }}>
+                <RouteIcon size={12} color={C.sage} />
+                <span style={{ fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: `${C.sage}70` }}>Route Type</span>
+              </div>
+              <div style={{ fontFamily: F, fontSize: 14, fontWeight: 600, color: C.ink, textTransform: 'capitalize' }}>{trailData.trailType}</div>
+            </div>
+          )}
+          {trailData.difficulty && (
+            <div style={{ padding: '12px 14px', background: C.white, border: `1px solid ${C.sage}12`, borderRadius: 2 }}>
+              <div style={{ fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: `${C.sage}70`, marginBottom: 7 }}>Difficulty</div>
+              <DifficultyBar difficulty={trailData.difficulty} />
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* PERMIT BLOCK */}
+      {trailData.permitRequired && (
+        <div style={{
+          marginBottom: 20, padding: '13px 15px',
+          background: `${C.goldenAmber}07`,
+          border: `1.5px solid ${C.goldenAmber}22`,
+          borderRadius: 2,
+          display: 'flex', alignItems: 'flex-start', gap: 10,
+        }}>
+          <PermitIcon size={15} color={C.goldenAmber} />
+          <div>
+            <div style={{ fontFamily: F, fontSize: 10, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: C.goldenAmber, marginBottom: 4 }}>Permit Required</div>
+            {trailData.permitNote && (
+              <div style={{ fontFamily: F, fontSize: 13, color: `${C.slate}70`, lineHeight: 1.55 }}>{trailData.permitNote}</div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* No-permit note */}
+      {trailData.permitRequired === false && trailData.permitNote && (
+        <div style={{
+          marginBottom: 20, padding: '10px 14px',
+          background: `${C.seaGlass}08`,
+          border: `1px solid ${C.seaGlass}18`,
+          borderRadius: 2,
+          display: 'flex', alignItems: 'flex-start', gap: 9,
+        }}>
+          <CheckIcon size={13} color={C.seaGlass} />
+          <span style={{ fontFamily: F, fontSize: 12.5, color: `${C.slate}70`, lineHeight: 1.55 }}>{trailData.permitNote}</span>
+        </div>
+      )}
+
+      {/* TRAILHEAD ACCESS */}
+      {trailData.trailheadAccess && (
+        <div style={{ marginBottom: 20 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 8 }}>
+            <TrailheadIcon size={13} color={C.sage} />
+            <div style={{ fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: `${C.sage}70` }}>Trailhead Access</div>
+          </div>
+          <div style={{
+            fontFamily: F, fontSize: 13, color: `${C.slate}70`, lineHeight: 1.65,
+            paddingLeft: 12, borderLeft: `2px solid ${C.sage}18`,
+          }}>
+            {trailData.trailheadAccess}
+          </div>
+        </div>
+      )}
+
+      {/* BEST START TIME */}
+      {trailData.bestStartTime && (
+        <div style={{
+          marginBottom: 20, padding: '11px 14px',
+          background: `${dot}08`, borderRadius: 2,
+          borderLeft: `2px solid ${dot}35`,
+          display: 'flex', alignItems: 'flex-start', gap: 8,
+        }}>
+          <ClockIcon size={12} color={dot} />
+          <div>
+            <div style={{ fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: `${dot}90`, marginBottom: 3 }}>Best Start Time</div>
+            <div style={{ fontFamily: F, fontSize: 13, color: `${C.slate}70`, lineHeight: 1.55 }}>{trailData.bestStartTime}</div>
+          </div>
+        </div>
+      )}
+
+      {/* CONDITIONS */}
+      {trailData.conditions && (
+        <div style={{ marginBottom: 20 }}>
+          <div style={{ fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: `${C.sage}70`, marginBottom: 8 }}>Trail Conditions</div>
+          <div style={{
+            fontFamily: F, fontSize: 13, color: `${C.slate}70`, lineHeight: 1.65,
+            paddingLeft: 12, borderLeft: `2px solid ${C.sunSalmon}28`,
+          }}>
+            {trailData.conditions}
+          </div>
+        </div>
+      )}
+
+      {/* Freeform details */}
+      {details && (
+        <div style={{
+          fontFamily: F, fontSize: 13, color: `${C.ink}a8`, lineHeight: 1.7,
+          padding: '6px 0', paddingLeft: 13,
+          borderLeft: `2px solid ${dot}22`, marginBottom: 20,
+        }}>
+          {renderInlineBlock(details)}
+        </div>
+      )}
+
+      {/* NPS CTA */}
+      {resolvedUrl && (
+        <a href={resolvedUrl} target="_blank" rel="noopener noreferrer"
+          onClick={() => trackEvent('external_link_clicked', { name: title, url: resolvedUrl, link_type: 'trail_nps' })}
+          style={{
+            display: 'inline-flex', alignItems: 'center', gap: 7,
+            fontFamily: F, fontSize: 12, fontWeight: 700,
+            color: C.oceanTeal, textDecoration: 'none',
+            padding: '9px 18px',
+            border: `1.5px solid ${C.oceanTeal}35`,
+            background: `${C.oceanTeal}08`,
+            borderRadius: 2,
+            letterSpacing: '0.05em',
+            marginBottom: 24,
+          }}>
+          View NPS Trail Guide
+          <ExternalLinkIcon size={11} color={C.oceanTeal} />
+        </a>
+      )}
+
+      {/* Activity feedback */}
+      <div style={{ marginTop: 16 }}>
+        <ActivityThumbs id={thumbId} feedback={activityFeedback} onFeedback={onActivityFeedback} />
+      </div>
+    </div>
+  );
+}
+
 /* ── DetailPanel (unified side panel / bottom sheet) ───────────────────── */
 
 function DetailBlock({ category, pick, color }) {
@@ -1068,6 +1512,18 @@ function DetailPanelContent({ item, activityFeedback, onActivityFeedback }) {
   // Companion content (teaching / practice)
   if (type === 'teaching' || type === 'practice') {
     return <CompanionPanelContent type={type} data={data} id={thumbId} feedback={activityFeedback} onFeedback={onActivityFeedback} />;
+  }
+
+  // Trail content
+  if (type === 'trail') {
+    return (
+      <TrailDetailContent
+        data={data}
+        thumbId={thumbId}
+        activityFeedback={activityFeedback}
+        onActivityFeedback={onActivityFeedback}
+      />
+    );
   }
 
   // Activity content
@@ -1414,12 +1870,24 @@ function DayCard({ day, dayIndex = 0, feedback, onFeedback, onOpenPanel, activit
 
           {/* ZONE 1: The Flow — timeline activities */}
           <div style={{ paddingTop: day.intro ? 16 : 0 }}>
-            {day.timeline && day.timeline.map((b, i) => (
-              <TimelineBlock key={i} time={b.time} title={b.title} summary={b.summary}
-                details={b.details} timeOfDay={b.timeOfDay} url={b.url} dayIndex={dayIndex}
-                itemIndex={i} isLast={i === day.timeline.length - 1}
-                onOpenPanel={onOpenPanel} />
-            ))}
+            {day.timeline && day.timeline.map((b, i) => {
+              const isTrail = !!(b.trailData) || b.activityType === 'trail';
+              const isLast = i === day.timeline.length - 1;
+              if (isTrail) {
+                return (
+                  <TrailCard key={i} time={b.time} title={b.title} summary={b.summary}
+                    details={b.details} trailData={b.trailData || {}} url={b.url}
+                    dayIndex={dayIndex} itemIndex={i} isLast={isLast}
+                    onOpenPanel={onOpenPanel} />
+                );
+              }
+              return (
+                <TimelineBlock key={i} time={b.time} title={b.title} summary={b.summary}
+                  details={b.details} timeOfDay={b.timeOfDay} url={b.url} dayIndex={dayIndex}
+                  itemIndex={i} isLast={isLast}
+                  onOpenPanel={onOpenPanel} />
+              );
+            })}
           </div>
 
           {/* ZONE 2: Recommendations — companion + picks */}
