@@ -294,6 +294,21 @@ function ExpandableList({ children, initialCount = 5, label = "more" }) {
   );
 }
 
+function WildlifeEntry({ name, season, detail, accent, isMobile }) {
+  return (
+    <div style={{
+      display: "flex", flexDirection: "column", gap: 4,
+      padding: "16px 0", borderBottom: `1px solid ${C.stone}`,
+    }}>
+      <div style={{ display: "flex", alignItems: "baseline", gap: 10, flexWrap: "wrap" }}>
+        <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 14, fontWeight: 600, color: C.darkInk }}>{name}</span>
+        <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: accent }}>{season}</span>
+      </div>
+      <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: "clamp(12px, 1.5vw, 13px)", fontWeight: 400, color: "#4A5650", lineHeight: 1.7, margin: 0 }}>{detail}</p>
+    </div>
+  );
+}
+
 
 // ─── Offering Cards (new) ────────────────────────────────────────────────────
 
@@ -772,7 +787,7 @@ function GuideNav({ isMobile }) {
                   onClick={() => handleClick(section.id)}
                   className="guide-nav-scroll"
                   style={{
-                    padding: isMobile ? "14px 14px" : "16px 18px",
+                    padding: isMobile ? "16px 14px" : "20px 18px",
                     background: "none",
                     border: "none",
                     borderBottom: `2px solid ${isActive ? C.oceanTeal : "transparent"}`,
@@ -836,7 +851,7 @@ function GuideNav({ isMobile }) {
       </nav>
 
       {/* Spacer when sticky so content doesn't jump */}
-      {isSticky && <div style={{ height: navRef.current?.offsetHeight || 52 }} />}
+      {isSticky && <div style={{ height: (navRef.current?.offsetHeight || 52) + 16 }} />}
     </>
   );
 }
@@ -1293,6 +1308,28 @@ export default function ZionGuide() {
               }}>
                 This guide covers the full orbit — not just the park, but the surrounding area that makes a trip here extraordinary. From yoga studios in Springdale to the hoodoos of Bryce Canyon and the starlit mesas of Capitol Reef, drawn from the lived experience of locals, guides, and travelers who return again and again.
               </p>
+            </FadeIn>
+            <FadeIn delay={0.08}>
+              <div style={{ margin: "28px 0 0" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 18 }}>
+                  <div style={{ flex: 1, height: 1, background: C.stone }} />
+                  <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "0.24em", textTransform: "uppercase", color: "#7A857E", whiteSpace: "nowrap" }}>Plants &amp; Wildlife</span>
+                  <div style={{ flex: 1, height: 1, background: C.stone }} />
+                </div>
+                <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: "clamp(13px, 1.6vw, 14px)", fontWeight: 400, color: "#4A5650", lineHeight: 1.75, margin: "0 0 20px" }}>
+                  Zion sits at the crossroads of four ecological zones — Colorado Plateau, Great Basin, Mojave Desert, and Basin and Range. The result is a landscape improbably alive: 78 species of mammals, 291 birds, and a plant life that shifts from cottonwood groves along the river floor to ancient ponderosa pines on the high plateaus.
+                </p>
+                <div>
+                  <WildlifeEntry isMobile={isMobile} name="California Condor" season="Year-round" accent={C.sunSalmon}
+                    detail="One of the rarest birds on earth. With a wingspan over nine feet, condors ride thermal columns above the canyon walls — often spotted near Angels Landing and the Court of the Patriarchs. There are roughly 95 flying free in Arizona and Utah. Seeing one is not incidental." />
+                  <WildlifeEntry isMobile={isMobile} name="Mule Deer" season="Year-round" accent={C.seaGlass}
+                    detail="The canyon's most visible mammals. They gather along the Virgin River at dusk, moving unhurried through the meadows near the Zion Lodge and Emerald Pools trails. Early morning is when the light finds them best." />
+                  <WildlifeEntry isMobile={isMobile} name="Desert Wildflowers" season="Mar – Apr" accent={C.goldenAmber}
+                    detail="After a wet winter, the canyon floor erupts — sacred datura, cliffrose, scarlet gilia, and prickly pear in bloom. The timing is unpredictable, which is part of the magic. In good years, the color rivals anything in the American Southwest." />
+                  <WildlifeEntry isMobile={isMobile} name="Cottonwoods" season="Late Sep – Oct" accent={C.oceanTeal}
+                    detail="The Fremont cottonwoods lining the Virgin River turn gold in late September — a transformation that lasts only a few weeks. The canyon amplifies it: warm amber light off sandstone walls, golden canopy below. This is the quiet crescendo most visitors don't know to look for." />
+                </div>
+              </div>
             </FadeIn>
             <FadeIn delay={0.1}>
               <div style={{
