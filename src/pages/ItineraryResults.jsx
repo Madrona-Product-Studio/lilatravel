@@ -1476,110 +1476,109 @@ function tripSessionKey(rawItinerary, formData) {
 
 /* ── FirstDraftModal — shown once on iteration 0 ──────────────────────── */
 
-function FirstDraftModal({ onClose }) {
+function FirstDraftModal({ onDismiss }) {
   const [show, setShow] = useState(false);
   useEffect(() => { const t = setTimeout(() => setShow(true), 120); return () => clearTimeout(t); }, []);
 
-  const instructions = [
-    { icon: FlameIcon, color: C.goldenAmber, text: 'Flame an activity you absolutely must do' },
-    { icon: ThumbUp, color: C.seaGlass, text: 'Thumb up activities you\'re excited about' },
-    { icon: ThumbDown, color: C.sunSalmon, text: 'Thumb down what doesn\'t feel right — add a note if you want' },
+  const reactions = [
+    { icon: FlameIcon, color: C.goldenAmber, label: 'Must do', desc: 'So stoked for this one',
+      bg: `${C.goldenAmber}12`, border: `${C.goldenAmber}28` },
+    { icon: ThumbUp, color: C.seaGlass, label: 'Love it', desc: 'Keep this — it feels right',
+      bg: `${C.seaGlass}12`, border: `${C.seaGlass}28` },
+    { icon: ThumbDown, color: C.sunSalmon, label: 'Not for me', desc: 'Flag it, add a note if you want',
+      bg: `${C.sunSalmon}10`, border: `${C.sunSalmon}25` },
   ];
 
   return (
     <div style={{
       position: 'fixed', inset: 0, zIndex: 300,
-      background: `${C.ink}60`,
-      backdropFilter: 'blur(6px)', WebkitBackdropFilter: 'blur(6px)',
+      background: `${C.ink}50`,
+      backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)',
       display: 'flex', alignItems: 'center', justifyContent: 'center',
       padding: 20,
     }}>
       <div style={{
         position: 'relative',
-        width: '100%', maxWidth: 400,
+        width: '100%', maxWidth: 390,
         background: C.cream, borderRadius: 2,
-        padding: '36px 32px 32px',
-        boxShadow: `0 20px 60px ${C.ink}30, 0 4px 16px ${C.ink}15`,
+        padding: '40px 32px 32px',
+        boxShadow: `0 24px 64px ${C.ink}22`,
         opacity: show ? 1 : 0,
-        transform: show ? 'translateY(0)' : 'translateY(12px)',
+        transform: show ? 'translateY(0)' : 'translateY(20px)',
         transition: 'opacity 0.35s ease, transform 0.35s ease',
       }}>
         {/* Close button */}
-        <button onClick={onClose} style={{
-          position: 'absolute', top: 12, right: 12,
-          width: 30, height: 30, borderRadius: '50%',
-          background: `${C.sage}08`, border: `1px solid ${C.sage}14`,
+        <button onClick={onDismiss} style={{
+          position: 'absolute', top: 16, right: 16,
+          width: 28, height: 28, borderRadius: '50%',
+          background: 'none', border: `1px solid ${C.sage}18`,
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           cursor: 'pointer', WebkitTapHighlightColor: 'transparent',
-          transition: 'background 0.2s',
-        }}>
-          <CloseIcon size={12} color={C.sage} />
+          transition: 'background 0.2s, border-color 0.2s',
+        }}
+        onMouseEnter={e => { e.currentTarget.style.background = `${C.sage}06`; e.currentTarget.style.borderColor = `${C.sage}30`; }}
+        onMouseLeave={e => { e.currentTarget.style.background = 'none'; e.currentTarget.style.borderColor = `${C.sage}18`; }}
+        >
+          <CloseIcon size={11} color={C.sage} />
         </button>
 
         {/* Wordmark */}
-        <div style={{ fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: C.sage, marginBottom: 14 }}>Lila Trips</div>
+        <div style={{ fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.22em', textTransform: 'uppercase', color: `${C.sage}75`, marginBottom: 22 }}>Lila Trips</div>
 
         {/* Headline */}
-        <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 28, fontWeight: 400, color: C.slate, lineHeight: 1.25, marginBottom: 16, whiteSpace: 'pre-line' }}>{"Your first draft\nis ready."}</h2>
+        <h2 style={{ fontFamily: F, fontSize: 26, fontWeight: 700, color: C.ink, lineHeight: 1.25, letterSpacing: '-0.02em', marginBottom: 12 }}>Your itinerary is ready to explore.</h2>
 
-        {/* Subhead */}
-        <p style={{ fontFamily: F, fontSize: 13, fontWeight: 400, color: `${C.slate}70`, lineHeight: 1.65, marginBottom: 22 }}>React as you read — thumbs up what excites you, flag what doesn't fit. When you're done, we'll reshape the whole trip around your signals.</p>
+        {/* Body */}
+        <p style={{ fontFamily: F, fontSize: 13, fontWeight: 400, color: `${C.slate}D9`, lineHeight: 1.75, marginBottom: 28 }}>We built this around what you shared with us. Read through it, react to what stands out, and we'll keep shaping it until it's yours.</p>
 
-        {/* Instruction rows */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 16 }}>
-          {instructions.map((item, i) => {
-            const Ic = item.icon;
+        {/* Divider */}
+        <div style={{ height: 1, background: `${C.sage}10`, marginBottom: 24 }} />
+
+        {/* Section header */}
+        <div style={{ fontFamily: F, fontSize: 15, fontWeight: 700, color: C.ink, marginBottom: 4 }}>As you read, tell us how it's landing.</div>
+        <div style={{ fontFamily: F, fontSize: 12, fontWeight: 400, color: `${C.slate}99`, lineHeight: 1.6, marginBottom: 16 }}>Each activity has three reactions — use them as you go.</div>
+
+        {/* Reaction rows */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 0 }}>
+          {reactions.map((r, i) => {
+            const Ic = r.icon;
             return (
               <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
                 <div style={{
-                  width: 32, height: 32, borderRadius: 8,
-                  background: `${item.color}12`, border: `1px solid ${item.color}20`,
-                  display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
+                  display: 'flex', alignItems: 'center', gap: 5,
+                  padding: '5px 12px', borderRadius: 20,
+                  background: r.bg, border: `1px solid ${r.border}`,
+                  flexShrink: 0,
                 }}>
-                  <Ic size={16} color={item.color} active />
+                  <Ic size={13} color={r.color} active />
+                  <span style={{ fontFamily: F, fontSize: 10, fontWeight: 600, color: r.color }}>{r.label}</span>
                 </div>
-                <span style={{ fontFamily: F, fontSize: 13, fontWeight: 500, color: `${C.slate}80`, lineHeight: 1.45 }}>{item.text}</span>
+                <span style={{ fontFamily: F, fontSize: 12.5, fontWeight: 500, color: `${C.slate}CC` }}>{r.desc}</span>
               </div>
             );
           })}
-          {/* Fourth note — no icon box */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-            <div style={{ width: 32, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-              <div style={{ width: 5, height: 5, borderRadius: '50%', background: `${C.sage}40` }} />
-            </div>
-            <span style={{ fontFamily: F, fontSize: 12.5, fontWeight: 400, fontStyle: 'normal', color: `${C.slate}55`, lineHeight: 1.45 }}>When you're done, scroll to the bottom and refine your trip.</span>
-          </div>
         </div>
 
-        {/* Free refinements callout */}
-        <div style={{
-          display: 'flex', alignItems: 'center', gap: 12,
-          padding: '12px 14px', borderRadius: 2,
-          background: `${C.goldenAmber}08`, border: `1px solid ${C.goldenAmber}18`,
-          marginBottom: 22,
-        }}>
-          <div style={{
-            width: 30, height: 30, borderRadius: 7,
-            background: `${C.goldenAmber}15`,
-            display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
-          }}>
-            <LockIcon size={13} color={C.goldenAmber} />
-          </div>
-          <div>
-            <div style={{ fontFamily: F, fontSize: 13, fontWeight: 700, color: C.slate }}>2 free refinements included</div>
-            <div style={{ fontFamily: F, fontSize: 11, fontWeight: 400, color: `${C.slate}60`, marginTop: 1 }}>After that, upgrade to Lila Pro to keep going.</div>
-          </div>
-        </div>
+        {/* Divider */}
+        <div style={{ height: 1, background: `${C.sage}10`, marginTop: 28, marginBottom: 20 }} />
+
+        {/* Freemium note */}
+        <p style={{ fontFamily: F, fontSize: 11.5, fontWeight: 400, color: `${C.slate}80`, lineHeight: 1.65, textAlign: 'center', marginBottom: 24 }}>
+          You have <span style={{ fontWeight: 700, color: `${C.slate}A6` }}>2 free refinements</span> — shape it until it feels right, then upgrade to Lila Pro for unlimited.
+        </p>
 
         {/* CTA */}
-        <button onClick={onClose} style={{
-          width: '100%', padding: '14px 24px',
-          fontFamily: F, fontSize: 13, fontWeight: 600, letterSpacing: '0.04em',
-          color: C.white, background: C.slate,
+        <button onClick={onDismiss} style={{
+          width: '100%', padding: '14px 0',
+          fontFamily: F, fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase',
+          color: C.cream, background: C.slate,
           border: 'none', borderRadius: 2,
           cursor: 'pointer', WebkitTapHighlightColor: 'transparent',
           transition: 'opacity 0.2s',
-        }}>Start exploring →</button>
+        }}
+        onMouseEnter={e => e.currentTarget.style.opacity = '0.85'}
+        onMouseLeave={e => e.currentTarget.style.opacity = '1'}
+        >Start exploring →</button>
       </div>
     </div>
   );
@@ -1623,7 +1622,7 @@ export default function ItineraryResults() {
   const [refineError, setRefineError] = useState(null);
 
   // First draft modal state
-  const [hasSeenDraftModal, setHasSeenDraftModal] = useState(false);
+  const [showDraftModal, setShowDraftModal] = useState(true);
 
   // Detail panel state — unified for activities, picks, and companion cards
   const [activePanel, setActivePanel] = useState(null); // { type, data, thumbId }
@@ -1813,8 +1812,8 @@ export default function ItineraryResults() {
       <RefiningOverlay visible={refining} />
 
       {/* First draft modal */}
-      {iteration === 0 && !hasSeenDraftModal && isStructured && (
-        <FirstDraftModal onClose={() => setHasSeenDraftModal(true)} />
+      {iteration === 0 && showDraftModal && isStructured && (
+        <FirstDraftModal onDismiss={() => setShowDraftModal(false)} />
       )}
 
       {/* Detail panel */}
