@@ -6,6 +6,8 @@ import JSON5 from 'json5';
 import { trackEvent } from '@utils/analytics';
 import { getPracticesForItinerary, TRADITIONS } from '@services/practicesService';
 import { assignCompanions } from '@services/companionAssigner';
+import { saveItinerary, saveFeedback } from '@services/feedbackService';
+import { clearSession } from '@services/sessionManager';
 // CelestialMonthStrip consolidated into CelestialSnapshot below
 
 /*
@@ -2418,6 +2420,14 @@ export default function ItineraryResults() {
         duration_ms: Math.round(performance.now() - pageLoadTime.current),
         day_count: itinerary.days.length,
       });
+      saveItinerary({
+        formData,
+        rawItinerary,
+        destination: formData?.destination,
+        iteration: 0,
+      }).then(id => {
+        if (id) sessionStorage.setItem('lila_itinerary_id', id);
+      });
     }
   }, [isStructured, itinerary, formData]);
 
@@ -2525,6 +2535,29 @@ export default function ItineraryResults() {
       }
       setRawItinerary(result.itinerary);
       setIteration(prev => prev + 1);
+
+      // Save feedback for this refinement
+      const itineraryId = sessionStorage.getItem('lila_itinerary_id');
+      saveFeedback({
+        formData,
+        itineraryId,
+        activityFeedback,
+        dayFeedback,
+        pulse,
+        overallNote,
+        iteration,
+      });
+
+      // Save the newly refined itinerary
+      saveItinerary({
+        formData,
+        rawItinerary: result.itinerary,
+        destination: formData?.destination,
+        iteration: nextIteration,
+      }).then(id => {
+        if (id) sessionStorage.setItem('lila_itinerary_id', id);
+      });
+
       setDayFeedback({});
       setActivityFeedback({});
       setPulse(null);
@@ -2664,7 +2697,7 @@ export default function ItineraryResults() {
 
         {/* Bottom nav */}
         <div style={{ textAlign: 'center', marginTop: 24, paddingBottom: 16 }}>
-          <button onClick={() => { trackEvent('new_trip_clicked', { source: 'start_over' }); navigate('/plan'); }} style={{
+          <button onClick={() => { clearSession(); trackEvent('new_trip_clicked', { source: 'start_over' }); navigate('/plan'); }} style={{
             fontFamily: F, fontSize: 11, fontWeight: 500,
             color: `${C.sage}60`, background: 'none',
             border: 'none', cursor: 'pointer', padding: '8px 16px',
