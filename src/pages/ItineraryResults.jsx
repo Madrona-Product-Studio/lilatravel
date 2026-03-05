@@ -261,12 +261,12 @@ function CelestialSnapshot({ snapshot, celestial, weather, month }) {
   // Don't render if truly nothing
   if (!sky && !snapshot?.seasonalNote) return null;
 
-  const DARK_BG   = '#111B22';       // same deep navy as ZionGuide celestial drawer
+  const DARK_BG   = '#2A3C46';       // Twilight Slate
   const CARD_BG   = 'rgba(255,255,255,0.045)';
   const CARD_BORDER = 'rgba(255,255,255,0.09)';
-  const LABEL_COL = '#7A9A8E';       // muted teal
+  const LABEL_COL = '#93B5AE';       // muted teal
   const VAL_COL   = '#E8E2D8';       // warm off-white
-  const SUB_COL   = '#8A9A94';       // soft muted
+  const SUB_COL   = '#A3BAB4';       // soft muted
   const GOLD      = C.goldenAmber;
   const SERIF     = "'Cormorant Garamond', serif";
 
@@ -452,7 +452,7 @@ function TripProfileSummary({ formData }) {
 
 function TripOverview({ days, onDayClick, dayFeedback = {} }) {
   return (
-    <div style={{ background: C.white, borderRadius: 2, border: `1px solid ${C.sage}12`, boxShadow: `0 2px 12px ${C.amber}06`, padding: '20px 20px', marginBottom: 20 }}>
+    <div style={{ background: C.white, borderRadius: 2, border: `1px solid ${C.sage}15`, boxShadow: `0 3px 16px ${C.amber}08`, padding: '20px 20px', marginBottom: 20 }}>
       <div style={{ fontFamily: F, fontSize: 9, fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: `${C.sage}90`, marginBottom: 2, paddingLeft: 1 }}>Trip at a Glance</div>
       <div style={{ fontFamily: F, fontSize: 14, fontWeight: 400, fontStyle: 'normal', color: `${C.slate}65`, marginBottom: 18, paddingLeft: 1 }}>Your day-by-day overview</div>
 
@@ -1361,14 +1361,14 @@ function DayCard({ day, dayIndex = 0, feedback, onFeedback, onOpenPanel, activit
   return (
     <div style={{
       marginBottom: 16, borderRadius: 2, background: C.white,
-      border: `1px solid ${open ? `${color}18` : `${C.sage}10`}`,
-      boxShadow: open ? `0 4px 24px ${C.amber}0a, 0 1px 3px ${C.ink}05` : `0 1px 6px ${C.sage}06`,
+      border: `1px solid ${open ? `${color}28` : `${C.sage}10`}`,
+      boxShadow: open ? `0 6px 28px ${C.amber}12, 0 2px 6px ${C.ink}08` : `0 1px 6px ${C.sage}06`,
       overflow: 'hidden', transition: 'border-color 0.3s, box-shadow 0.3s',
       backgroundImage: open ? `linear-gradient(180deg, ${C.cream}40 0%, ${C.white} 60%)` : 'none',
     }}>
       <button onClick={() => { const next = !open; trackEvent('day_card_toggled', { day_index: dayIndex, action: next ? 'expanded' : 'collapsed' }); setOpen(next); }} style={{
         width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-        padding: '22px 22px 18px', background: open ? `linear-gradient(160deg, ${color}08, ${C.amber}04, transparent)` : 'transparent',
+        padding: '22px 22px 18px', background: open ? `linear-gradient(160deg, ${color}13, ${C.amber}06, transparent)` : 'transparent',
         border: 'none', cursor: 'pointer', textAlign: 'left',
         borderBottom: open ? `1px solid ${color}15` : 'none',
         transition: 'background 0.3s', WebkitTapHighlightColor: 'transparent', gap: 14,
@@ -1427,15 +1427,16 @@ function DayCard({ day, dayIndex = 0, feedback, onFeedback, onOpenPanel, activit
             <>
               {/* Zone transition divider */}
               <div style={{ marginTop: 22, position: 'relative', display: 'flex', alignItems: 'center', gap: 14, padding: '0 4px' }}>
-                <div style={{ flex: 1, height: '1px', background: `linear-gradient(90deg, transparent, ${C.warm}30, ${C.warm}18)` }} />
-                <div style={{ width: 5, height: 5, borderRadius: '50%', background: `${C.warm}35`, boxShadow: `0 0 6px ${C.warm}20` }} />
-                <div style={{ flex: 1, height: '1px', background: `linear-gradient(90deg, ${C.warm}18, ${C.warm}30, transparent)` }} />
+                <div style={{ flex: 1, height: '1.5px', background: `linear-gradient(90deg, transparent, ${C.warm}45, ${C.warm}25)` }} />
+                <div style={{ width: 5, height: 5, borderRadius: '50%', background: `${C.warm}50`, boxShadow: `0 0 8px ${C.warm}30` }} />
+                <div style={{ flex: 1, height: '1.5px', background: `linear-gradient(90deg, ${C.warm}25, ${C.warm}45, transparent)` }} />
               </div>
 
               <div style={{
                 marginTop: 16, paddingTop: 16,
                 marginLeft: -22, marginRight: -22, paddingLeft: 22, paddingRight: 22, paddingBottom: 4,
-                background: `linear-gradient(180deg, ${C.amber}04, ${C.cream}20, transparent)`,
+                background: `linear-gradient(180deg, ${C.amber}0a, ${C.cream}40, transparent)`,
+                borderTop: `1px solid ${C.amber}0c`,
               }}>
                 <div style={{ fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: C.sage, marginBottom: 14 }}>Recommendations</div>
 
@@ -1471,7 +1472,7 @@ function TripPulse({ overallNote, setOverallNote, pulse, setPulse, onPulseSelect
   ];
 
   return (
-    <div style={{ background: C.white, borderRadius: 2, border: `1px solid ${C.sage}12`, boxShadow: `0 2px 12px ${C.amber}06`, padding: '22px 20px', marginTop: 20 }}>
+    <div style={{ background: C.white, borderRadius: 2, border: `1.5px solid ${C.sage}14`, boxShadow: `0 4px 20px ${C.amber}0a`, padding: '22px 20px', marginTop: 20 }}>
       <div style={{ fontFamily: F, fontSize: 9, fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: `${C.sage}90`, marginBottom: 4 }}>Overall Feeling</div>
       <div style={{ fontFamily: F, fontSize: 14, fontWeight: 400, fontStyle: 'normal', color: `${C.slate}65`, marginBottom: 16 }}>How's this trip shaping up?</div>
 
@@ -2146,7 +2147,7 @@ export default function ItineraryResults() {
 
             {/* Before You Go */}
             {itinerary.beforeYouGo && (
-              <div ref={beforeYouGoRef} style={{ background: C.white, borderRadius: 2, border: `1px solid ${C.sage}12`, padding: '18px 20px', marginTop: 6, boxShadow: `0 2px 10px ${C.amber}05` }}>
+              <div ref={beforeYouGoRef} style={{ background: `linear-gradient(180deg, ${C.white}, ${C.cream}30)`, borderRadius: 2, border: `1px solid ${C.sage}18`, padding: '18px 20px', marginTop: 6, boxShadow: `0 1px 8px ${C.sage}08` }}>
                 <div style={{ fontFamily: F, fontSize: 9, fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: C.sage, marginBottom: 12 }}>Before You Go</div>
                 {itinerary.beforeYouGo.map((item, i) => (
                   <div key={i} style={{ display: 'flex', gap: 8, padding: '5px 0', borderBottom: i < itinerary.beforeYouGo.length - 1 ? `1px solid ${C.sage}06` : 'none' }}>
