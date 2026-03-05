@@ -1728,17 +1728,22 @@ function DetailPanel({ item, onClose, activityFeedback, onActivityFeedback }) {
           animation: 'sidePanelSlideIn 0.3s ease',
           boxShadow: '-4px 0 24px rgba(0,0,0,0.08)',
         }}>
-          {/* Close button */}
-          <button onClick={onClose} style={{
-            position: 'sticky', top: 0, zIndex: 1,
-            float: 'right', margin: '12px 14px 0 0',
-            width: 32, height: 32,
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            background: `${C.white}90`, border: `1px solid ${C.sage}15`,
-            borderRadius: '50%', cursor: 'pointer',
-            fontFamily: F, fontSize: 15, color: C.sage, lineHeight: 1,
-            WebkitTapHighlightColor: 'transparent',
-          }} aria-label="Close">✕</button>
+          {/* Close button — sticky bar so it never gets covered by content */}
+          <div style={{
+            position: 'sticky', top: 0, zIndex: 10,
+            display: 'flex', justifyContent: 'flex-end',
+            padding: '12px 14px 0 0',
+          }}>
+            <button onClick={onClose} style={{
+              width: 32, height: 32,
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              background: `${C.white}e0`, border: `1px solid ${C.sage}15`,
+              borderRadius: '50%', cursor: 'pointer',
+              fontFamily: F, fontSize: 15, color: C.sage, lineHeight: 1,
+              WebkitTapHighlightColor: 'transparent',
+              boxShadow: `0 2px 8px ${C.ink}08`,
+            }} aria-label="Close">✕</button>
+          </div>
 
           <DetailPanelContent item={item} activityFeedback={activityFeedback} onActivityFeedback={onActivityFeedback} />
         </div>
@@ -1776,7 +1781,7 @@ function DetailPanel({ item, onClose, activityFeedback, onActivityFeedback }) {
           onTouchStart={onTouchStart}
           onTouchMove={onTouchMove}
           onTouchEnd={onTouchEnd}
-          style={{ padding: '10px 14px 0', flexShrink: 0, position: 'relative' }}
+          style={{ padding: '10px 14px 6px', flexShrink: 0, position: 'relative', zIndex: 10 }}
         >
           {/* Pill handle */}
           <div style={{
@@ -1785,14 +1790,15 @@ function DetailPanel({ item, onClose, activityFeedback, onActivityFeedback }) {
           }} />
 
           {/* Close button */}
-          <button onClick={onClose} style={{
+          <button onClick={(e) => { e.stopPropagation(); onClose(); }} style={{
             position: 'absolute', top: 8, right: 14,
-            width: 32, height: 32,
+            width: 36, height: 36,
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            background: `${C.white}90`, border: `1px solid ${C.sage}15`,
+            background: `${C.white}e0`, border: `1px solid ${C.sage}15`,
             borderRadius: '50%', cursor: 'pointer',
             fontFamily: F, fontSize: 15, color: C.sage, lineHeight: 1,
             WebkitTapHighlightColor: 'transparent',
+            boxShadow: `0 2px 8px ${C.ink}08`,
           }} aria-label="Close">✕</button>
         </div>
 
