@@ -616,7 +616,7 @@ export default function HomePage() {
           textAlign: "center", padding: "0 24px", opacity: heroOpacity,
         }}>
           <FadeIn from="none" delay={0.15}>
-            <span className="eyebrow" style={{ color: C.skyBlue }}>Adventure Travel with a Wellness Lens</span>
+            <span className="eyebrow" style={{ color: C.skyBlue }}>Wellness-Infused Adventure Travel</span>
           </FadeIn>
           <FadeIn from="bottom" delay={0.25}>
             <div className="hero-moment-wrap">
