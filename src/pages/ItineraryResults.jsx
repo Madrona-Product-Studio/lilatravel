@@ -503,7 +503,9 @@ function TripOverview({ days, onDayClick, dayFeedback = {} }) {
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
                   <span style={{ fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color, marginBottom: 2 }}>{day.label}</span>
-                  {fb && fb.note && <PencilIcon size={11} color={C.sage} />}
+                  {fb?.reaction === 'spot-on' && <CheckIcon size={11} color={C.seaGlass} />}
+                  {fb?.reaction === 'needs-work' && <PencilIcon size={11} color={C.goldenAmber} />}
+                  {!fb?.reaction && fb?.note && <PencilIcon size={11} color={C.sage} />}
                 </div>
                 <div style={{ fontFamily: F, fontSize: 16, fontWeight: 600, color: C.slate, lineHeight: 1.3 }}>{day.title}</div>
                 {day.snapshot && (
@@ -1006,50 +1008,74 @@ function ActivityThumbs({ id, feedback, onFeedback }) {
 
 /* ── DayNote — conditional per-day note ───────────────────────────────── */
 
-function DayNote({ dayIndex, feedback, onFeedback, hasActivitySignals }) {
+function DayFeedbackStrip({ dayIndex, feedback, onFeedback }) {
+  const reaction = feedback?.reaction || null; // 'spot-on' | 'needs-work' | null
   const noteText = feedback?.note || '';
-  const [editing, setEditing] = useState(false);
   const [text, setText] = useState(noteText);
+  const [noteFocused, setNoteFocused] = useState(false);
+  const textareaRef = useRef(null);
 
-  // Collapsed link mode when activity signals exist
-  if (hasActivitySignals && !editing && !noteText) {
-    return (
-      <div style={{ marginTop: 14, paddingTop: 10, borderTop: `1px solid ${C.sage}0c` }}>
-        <button onClick={() => setEditing(true)} style={{ fontFamily: F, fontSize: 11, fontWeight: 500, color: `${C.sage}60`, background: 'none', border: 'none', cursor: 'pointer', padding: '4px 0', WebkitTapHighlightColor: 'transparent' }}>+ Add a note about this day</button>
-      </div>
-    );
-  }
+  // Sync local text when external feedback changes (e.g. after refinement reset)
+  useEffect(() => { setText(feedback?.note || ''); }, [feedback?.note]);
 
-  // Show saved note in compact form
-  if (hasActivitySignals && !editing && noteText) {
-    return (
-      <div style={{ marginTop: 14, paddingTop: 10, borderTop: `1px solid ${C.sage}0c` }}>
-        <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 8 }}>
-          <div style={{ fontFamily: F, fontSize: 12, fontStyle: 'normal', color: `${C.slate}60`, lineHeight: 1.5 }}>"{noteText}"</div>
-          <button onClick={() => { setText(noteText); setEditing(true); }} style={{ fontFamily: F, fontSize: 10, fontWeight: 500, color: `${C.sage}60`, background: 'none', border: 'none', cursor: 'pointer', padding: '2px 6px', flexShrink: 0 }}>Edit</button>
-        </div>
-      </div>
-    );
-  }
+  const setReaction = (key) => {
+    const next = reaction === key ? null : key;
+    trackEvent('day_reaction', { day_index: dayIndex, reaction: next || 'cleared' });
+    onFeedback(dayIndex, { ...feedback, reaction: next });
+  };
 
-  // Full textarea mode
+  const commitNote = () => {
+    const trimmed = text.trim();
+    if (trimmed !== noteText) {
+      onFeedback(dayIndex, { ...feedback, note: trimmed || undefined });
+      if (trimmed) trackEvent('day_note_saved', { day_index: dayIndex, note_length: trimmed.length });
+    }
+    setNoteFocused(false);
+  };
+
+  const reactions = [
+    { key: 'spot-on', label: 'Spot On', color: C.seaGlass, icon: <CheckIcon size={12} color={reaction === 'spot-on' ? C.seaGlass : `${C.sage}50`} /> },
+    { key: 'needs-work', label: 'Needs Work', color: C.goldenAmber, icon: <PencilIcon size={12} color={reaction === 'needs-work' ? C.goldenAmber : `${C.sage}50`} /> },
+  ];
+
   return (
-    <div style={{ marginTop: 14, padding: '14px 0 4px', borderTop: `1.5px solid ${C.sage}14` }}>
-      <div style={{ fontFamily: F, fontSize: 9.5, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: C.muted, marginBottom: 10 }}>
-        How does this day feel?
+    <div style={{ marginTop: 16, paddingTop: 12, borderTop: `1px solid ${C.sage}0c` }}>
+      {/* Reaction buttons */}
+      <div style={{ display: 'flex', gap: 8 }}>
+        {reactions.map(r => {
+          const active = reaction === r.key;
+          return (
+            <button key={r.key} onClick={() => setReaction(r.key)} style={{
+              display: 'inline-flex', alignItems: 'center', gap: 5,
+              padding: '5px 12px', borderRadius: 20,
+              background: active ? `${r.color}10` : 'transparent',
+              border: `1px solid ${active ? `${r.color}30` : `${C.sage}12`}`,
+              cursor: 'pointer', WebkitTapHighlightColor: 'transparent',
+              transition: 'all 0.2s',
+            }}>
+              {r.icon}
+              <span style={{ fontFamily: F, fontSize: 11, fontWeight: active ? 600 : 500, color: active ? r.color : `${C.sage}70` }}>{r.label}</span>
+            </button>
+          );
+        })}
       </div>
-      <textarea value={editing ? text : noteText} onChange={e => setText(e.target.value)}
-        placeholder="Any thoughts on this day? E.g. 'less hiking, more time in town'"
-        style={{ width: '100%', minHeight: 64, padding: '10px 12px', fontFamily: F, fontSize: 13, fontWeight: 400, color: C.slate, background: C.white, border: `1px solid ${C.sage}18`, borderRadius: 10, resize: 'vertical', lineHeight: 1.55, outline: 'none', boxSizing: 'border-box' }}
-        onFocus={(e) => { e.target.style.borderColor = `${C.sage}40`; if (!editing) { setText(noteText); setEditing(true); } }}
-        onBlur={e => e.target.style.borderColor = `${C.sage}18`}
+
+      {/* Inline note */}
+      <textarea ref={textareaRef} value={text}
+        onChange={e => { setText(e.target.value); e.target.style.height = 'auto'; e.target.style.height = e.target.scrollHeight + 'px'; }}
+        onFocus={() => setNoteFocused(true)}
+        onBlur={commitNote}
+        placeholder="Add a note..."
+        rows={1}
+        style={{
+          width: '100%', marginTop: 8, padding: '7px 0',
+          fontFamily: F, fontSize: 12, fontWeight: 400, color: C.body,
+          background: 'transparent', border: 'none', borderBottom: `1px solid ${noteFocused ? `${C.sage}30` : `${C.sage}0c`}`,
+          resize: 'none', overflow: 'hidden', lineHeight: 1.5,
+          outline: 'none', boxSizing: 'border-box',
+          transition: 'border-color 0.2s',
+        }}
       />
-      {(editing || text !== noteText) && (
-        <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 8, marginTop: 6 }}>
-          <button onClick={() => { setEditing(false); setText(noteText); }} style={{ fontFamily: F, fontSize: 11, fontWeight: 500, color: `${C.sage}70`, background: 'none', border: 'none', cursor: 'pointer', padding: '4px 8px' }}>Cancel</button>
-          <button onClick={() => { onFeedback(dayIndex, { note: text.trim() }); setEditing(false); }} style={{ fontFamily: F, fontSize: 11, fontWeight: 600, color: C.white, background: C.sage, border: 'none', borderRadius: 8, padding: '5px 14px', cursor: 'pointer', transition: 'all 0.2s' }}>Save</button>
-        </div>
-      )}
     </div>
   );
 }
@@ -1858,7 +1884,9 @@ function DayCard({ day, dayIndex = 0, feedback, onFeedback, onOpenPanel, activit
         <div style={{ flex: 1, position: 'relative' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
             <span style={{ fontFamily: F, fontSize: 10, fontWeight: 700, letterSpacing: '0.16em', textTransform: 'uppercase', color: open ? color : C.sage, transition: 'color 0.3s', marginBottom: 4 }}>{day.label}</span>
-            {feedback?.note && <PencilIcon size={11} color={C.sage} />}
+            {feedback?.reaction === 'spot-on' && <CheckIcon size={11} color={C.seaGlass} />}
+            {feedback?.reaction === 'needs-work' && <PencilIcon size={11} color={C.goldenAmber} />}
+            {!feedback?.reaction && feedback?.note && <PencilIcon size={11} color={C.sage} />}
           </div>
           <div style={{ fontFamily: F, fontSize: 19, fontWeight: 700, color: C.ink, lineHeight: 1.25 }}>{day.title}</div>
           {!open && day.snapshot && (
@@ -1929,9 +1957,8 @@ function DayCard({ day, dayIndex = 0, feedback, onFeedback, onOpenPanel, activit
             </>
           )}
 
-          {/* ZONE 3: Day note */}
-          <DayNote dayIndex={dayIndex} feedback={feedback} onFeedback={onFeedback}
-            hasActivitySignals={activityFeedback && Object.keys(activityFeedback).some(k => k.startsWith(`day_${dayIndex}_`))} />
+          {/* ZONE 3: Day feedback strip */}
+          <DayFeedbackStrip dayIndex={dayIndex} feedback={feedback} onFeedback={onFeedback} />
         </div>
       </Collapsible>
     </div>
@@ -2495,13 +2522,15 @@ export default function ItineraryResults() {
     if (feedback) {
       trackEvent('day_feedback_given', {
         day_index: dayIndex,
+        reaction: feedback.reaction || null,
         has_note: Boolean(feedback.note),
         note_length: feedback.note ? feedback.note.length : 0,
       });
     }
     setDayFeedback(prev => {
       const next = { ...prev };
-      if (feedback === null || (feedback.note !== undefined && !feedback.note)) { delete next[dayIndex]; } else { next[dayIndex] = feedback; }
+      const isEmpty = feedback === null || (!feedback.reaction && !feedback.note);
+      if (isEmpty) { delete next[dayIndex]; } else { next[dayIndex] = feedback; }
       return next;
     });
   };
@@ -2513,13 +2542,13 @@ export default function ItineraryResults() {
     });
   };
 
-  const hasFeedback = Object.keys(activityFeedback).length > 0 || Object.values(dayFeedback).some(f => f?.note) || pulse === 'close' || pulse === 'rethink';
+  const hasFeedback = Object.keys(activityFeedback).length > 0 || Object.values(dayFeedback).some(f => f?.note || f?.reaction) || pulse === 'close' || pulse === 'rethink';
 
   const handleRefine = async () => {
     const nextIteration = iteration + 1;
-    const daysApproved = Object.values(dayFeedback).filter(f => f.status === 'approved').length;
-    const daysAdjusted = Object.values(dayFeedback).filter(f => f.status === 'adjust').length;
-    trackEvent('refinement_requested', { iteration: nextIteration, days_approved: daysApproved, days_adjusted: daysAdjusted, pulse: pulse || 'none' });
+    const daysSpotOn = Object.values(dayFeedback).filter(f => f.reaction === 'spot-on').length;
+    const daysNeedsWork = Object.values(dayFeedback).filter(f => f.reaction === 'needs-work').length;
+    trackEvent('refinement_requested', { iteration: nextIteration, days_spot_on: daysSpotOn, days_needs_work: daysNeedsWork, pulse: pulse || 'none' });
     const t0 = performance.now();
     setRefining(true);
     setRefineError(null);
