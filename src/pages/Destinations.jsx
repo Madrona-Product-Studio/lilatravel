@@ -2,7 +2,6 @@
 // PAGE: DESTINATIONS LANDING
 // ═══════════════════════════════════════════════════════════════════════════════
 
-import { Link } from 'react-router-dom';
 import { Nav, Footer, FadeIn, PageHeader } from '@components';
 import { C } from '@data/brand';
 import { destinations } from '@data/destinations';
@@ -25,8 +24,7 @@ export default function DestinationsPage() {
           position: relative;
           overflow: hidden;
           display: block;
-          text-decoration: none;
-          cursor: pointer;
+          cursor: default;
         }
         .bento-tile img {
           width: 100%;
@@ -85,16 +83,14 @@ export default function DestinationsPage() {
               const isHero = i === 0;
               return (
                 <FadeIn key={d.slug} delay={i * 0.06}>
-                  <Link
-                    to={`/destinations/${d.slug}`}
+                  <div
                     className="bento-tile"
-                    onClick={() => trackEvent('destination_selected', { destination: d.slug })}
                     style={{ height: '100%' }}
                   >
                     {d.photo ? (
                       <img src={d.photo} alt={d.name} />
                     ) : (
-                      <div style={{ width: "100%", height: "100%", background: d.gradient }} />
+                      <div style={{ width: "100%", height: "100%", background: d.gradient, filter: "brightness(0.65) saturate(1.3)" }} />
                     )}
                     <div className="bento-overlay" />
                     <div style={{
@@ -160,7 +156,7 @@ export default function DestinationsPage() {
                         fontFamily: "'Cormorant Garamond', serif",
                         fontSize: isHero ? "clamp(28px, 4vw, 42px)" : "clamp(22px, 3vw, 30px)",
                         fontWeight: 300, color: "white", lineHeight: 1.1, marginBottom: 4,
-                      }}>{d.name}</h3>
+                      }}>{d.slug === 'zion-canyon' ? 'Zion & Orbit' : d.name}</h3>
 
                       {/* Location */}
                       <p style={{
@@ -178,7 +174,7 @@ export default function DestinationsPage() {
                         }}>{d.description}</p>
                       </div>
                     </div>
-                  </Link>
+                  </div>
                 </FadeIn>
               );
             })}
