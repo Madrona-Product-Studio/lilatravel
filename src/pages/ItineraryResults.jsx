@@ -8,6 +8,7 @@ import { getPracticesForItinerary, TRADITIONS, ENTRIES } from '@services/practic
 import { assignCompanions } from '@services/companionAssigner';
 import { saveItinerary, saveFeedback } from '@services/feedbackService';
 import { clearSession } from '@services/sessionManager';
+import SavePill from '@components/SavePill';
 // CelestialMonthStrip consolidated into CelestialSnapshot below
 
 /*
@@ -2797,6 +2798,11 @@ export default function ItineraryResults() {
   // First draft modal state
   const [showDraftModal, setShowDraftModal] = useState(true);
 
+  // Itinerary ID for save/share
+  const [itineraryId, setItineraryId] = useState(() =>
+    sessionStorage.getItem('lila_itinerary_id') || null
+  );
+
   // Detail panel state — unified for activities, picks, and companion cards
   const [activePanel, setActivePanel] = useState(null); // { type, data, thumbId }
 
@@ -2869,7 +2875,10 @@ export default function ItineraryResults() {
         destination: formData?.destination,
         iteration: 0,
       }).then(id => {
-        if (id) sessionStorage.setItem('lila_itinerary_id', id);
+        if (id) {
+          sessionStorage.setItem('lila_itinerary_id', id);
+          setItineraryId(id);
+        }
       });
     }
   }, [isStructured, itinerary, formData]);
@@ -3000,7 +3009,10 @@ export default function ItineraryResults() {
         destination: formData?.destination,
         iteration: nextIteration,
       }).then(id => {
-        if (id) sessionStorage.setItem('lila_itinerary_id', id);
+        if (id) {
+          sessionStorage.setItem('lila_itinerary_id', id);
+          setItineraryId(id);
+        }
       });
 
       setDayFeedback({});
@@ -3150,6 +3162,16 @@ export default function ItineraryResults() {
           }}>Start over with a new trip</button>
         </div>
       </div>
+
+      {/* Save / Share pill */}
+      {isStructured && (
+        <SavePill
+          itineraryId={itineraryId}
+          rawItinerary={rawItinerary}
+          formData={formData}
+          itineraryTitle={itinerary?.title}
+        />
+      )}
     </div>
   );
 }
