@@ -2189,11 +2189,13 @@ function tripSessionKey(rawItinerary, formData) {
   let seed = '';
   try {
     let cleaned = rawItinerary || '';
+    cleaned = cleaned.replace(/```(?:json)?\s*/gi, '');
     const firstBrace = cleaned.indexOf('{');
     const lastBrace = cleaned.lastIndexOf('}');
     if (firstBrace !== -1 && lastBrace !== -1) {
       cleaned = cleaned.slice(firstBrace, lastBrace + 1);
     }
+    cleaned = cleaned.replace(/,\s*([}\]])/g, '$1');
     const parsed = JSON5.parse(cleaned);
     seed += parsed.title || '';
   } catch { /* use whatever seed we have */ }
@@ -2381,11 +2383,16 @@ export default function ItineraryResults() {
     if (!rawItinerary) return null;
     try {
       let cleaned = rawItinerary;
+      // Strip markdown code fences (```json, ```)
+      cleaned = cleaned.replace(/```(?:json)?\s*/gi, '');
+      // Extract JSON object
       const firstBrace = cleaned.indexOf('{');
       const lastBrace = cleaned.lastIndexOf('}');
       if (firstBrace !== -1 && lastBrace !== -1) {
         cleaned = cleaned.slice(firstBrace, lastBrace + 1);
       }
+      // Remove trailing commas before } or ]
+      cleaned = cleaned.replace(/,\s*([}\]])/g, '$1');
       return JSON5.parse(cleaned);
     } catch (e) {
       console.error('JSON parse failed, using markdown fallback:', e.message);
