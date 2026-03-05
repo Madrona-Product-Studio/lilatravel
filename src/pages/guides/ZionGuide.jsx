@@ -886,53 +886,91 @@ function CelestialDrawer({ isMobile }) {
   const riverColors = { low: C.seaGlass, moderate: C.skyBlue, high: C.goldenAmber, dangerous: C.sunSalmon };
 
   const NAV_HEIGHT = isMobile ? 58 : 64;
+  const LABEL_STYLE = {
+    fontFamily: "'Quicksand', sans-serif",
+    fontSize: 8, fontWeight: 700,
+    letterSpacing: "0.2em", textTransform: "uppercase",
+    color: "#b8b0a8", marginBottom: 6,
+  };
+  const VAL_STYLE = {
+    fontFamily: "'Quicksand', sans-serif",
+    fontSize: 14, fontWeight: 600,
+    color: C.darkInk, lineHeight: 1.3,
+  };
+  const SUB_STYLE = {
+    fontFamily: "'Quicksand', sans-serif",
+    fontSize: 11, fontWeight: 400,
+    color: "#8a9098", marginTop: 4,
+  };
+
+  // Build teaser chips for collapsed bar
+  const teasers = [];
+  if (weather) teasers.push(`${weather.temp}° ${weather.condition}`);
+  if (moon) teasers.push(moon.name);
+  if (sky) teasers.push(`Sky: ${sky.label}`);
+  if (sun) teasers.push(`☀ ${sun.rise} – ${sun.set}`);
+  if (river) teasers.push(`River: ${river.label.split("—")[0].trim()}`);
 
   return (
-    <div style={{ background: C.darkInk, paddingTop: NAV_HEIGHT }}>
+    <div style={{
+      background: C.warmWhite,
+      borderBottom: `1px solid ${C.stone}`,
+    }}>
+      {/* Spacer to clear fixed nav */}
+      <div style={{ height: NAV_HEIGHT + 14 }} />
       {/* Trigger bar */}
       <button
         onClick={() => setOpen(!open)}
         style={{
           width: "100%", border: "none", cursor: "pointer",
           background: "transparent",
-          padding: isMobile ? "12px 20px" : "12px 52px",
+          padding: isMobile ? "14px 20px" : "14px 52px",
           display: "flex", alignItems: "center", justifyContent: "center",
-          gap: 10,
+          gap: 8,
           transition: "background 0.2s",
         }}
-        onMouseEnter={e => e.currentTarget.style.background = "rgba(255,255,255,0.04)"}
+        onMouseEnter={e => e.currentTarget.style.background = `${C.stone}40`}
         onMouseLeave={e => e.currentTarget.style.background = "transparent"}
       >
         <span style={{
-          width: 6, height: 6, borderRadius: "50%",
+          width: 5, height: 5, borderRadius: "50%",
           background: C.seaGlass,
           animation: "celestialPulse 2s ease-in-out infinite",
+          flexShrink: 0,
         }} />
         <span style={{
           fontFamily: "'Quicksand', sans-serif",
           fontSize: 10, fontWeight: 700,
-          letterSpacing: "0.2em", textTransform: "uppercase",
-          color: "rgba(255,255,255,0.6)",
+          letterSpacing: "0.18em", textTransform: "uppercase",
+          color: "#7A857E", flexShrink: 0,
         }}>
-          Celestial Snapshot
+          Zion Right Now
         </span>
-        {weather && (
+        {!isMobile && teasers.length > 0 && (
           <span style={{
             fontFamily: "'Quicksand', sans-serif",
             fontSize: 10, fontWeight: 500,
-            color: "rgba(255,255,255,0.35)",
-            letterSpacing: "0.06em",
+            color: "#b8b0a8", letterSpacing: "0.04em",
           }}>
-            · {weather.temp}° {weather.condition}
+            — {teasers.join("  ·  ")}
+          </span>
+        )}
+        {isMobile && weather && (
+          <span style={{
+            fontFamily: "'Quicksand', sans-serif",
+            fontSize: 10, fontWeight: 500,
+            color: "#b8b0a8", letterSpacing: "0.04em",
+          }}>
+            · {weather.temp}° · {moon?.name}
           </span>
         )}
         <span style={{
           fontFamily: "'Quicksand', sans-serif",
-          fontSize: 11, fontWeight: 400,
-          color: "rgba(255,255,255,0.35)",
+          fontSize: 10, fontWeight: 400,
+          color: "#b8b0a8",
           transition: "transform 0.3s ease",
           transform: open ? "rotate(180deg)" : "rotate(0deg)",
-          marginLeft: 2,
+          marginLeft: 2, flexShrink: 0,
         }}>{"▾"}</span>
       </button>
 
@@ -943,7 +981,7 @@ function CelestialDrawer({ isMobile }) {
         transition: "max-height 0.5s ease",
       }}>
         <div ref={contentRef} style={{
-          padding: isMobile ? "0 20px 28px" : "0 52px 36px",
+          padding: isMobile ? "0 20px 24px" : "0 52px 32px",
           maxWidth: 920, margin: "0 auto",
         }}>
           {/* Data grid */}
@@ -951,110 +989,61 @@ function CelestialDrawer({ isMobile }) {
             display: "grid",
             gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : "repeat(4, 1fr)",
             gap: 0,
-            borderTop: "1px solid rgba(255,255,255,0.08)",
+            border: `1px solid ${C.stone}`,
+            background: "white",
           }}>
             {/* Conditions */}
             {weather && (
               <div style={{
-                padding: isMobile ? "18px 14px" : "20px 20px",
-                borderBottom: "1px solid rgba(255,255,255,0.08)",
-                borderRight: "1px solid rgba(255,255,255,0.08)",
+                padding: isMobile ? "16px 14px" : "18px 18px",
+                borderBottom: `1px solid ${C.stone}`,
+                borderRight: `1px solid ${C.stone}`,
               }}>
-                <div style={{
-                  fontFamily: "'Quicksand', sans-serif",
-                  fontSize: 8, fontWeight: 700,
-                  letterSpacing: "0.2em", textTransform: "uppercase",
-                  color: "rgba(255,255,255,0.35)", marginBottom: 8,
-                }}>Conditions</div>
-                <div style={{ display: "flex", alignItems: "baseline", gap: 6 }}>
-                  <span style={{
-                    fontFamily: "'Cormorant Garamond', serif",
-                    fontSize: 30, fontWeight: 300,
-                    color: "rgba(255,255,255,0.9)", lineHeight: 1,
-                  }}>{weather.temp}°</span>
-                </div>
-                <div style={{
-                  fontFamily: "'Quicksand', sans-serif",
-                  fontSize: 11, fontWeight: 500,
-                  color: "rgba(255,255,255,0.5)", marginTop: 4,
-                }}>H {weather.high}° / L {weather.low}°</div>
+                <div style={LABEL_STYLE}>Conditions</div>
+                <span style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontSize: 28, fontWeight: 300,
+                  color: C.darkInk, lineHeight: 1,
+                }}>{weather.temp}°</span>
+                <div style={SUB_STYLE}>H {weather.high}° / L {weather.low}° · {weather.condition}</div>
               </div>
             )}
 
             {/* Daylight */}
             {sun && (
               <div style={{
-                padding: isMobile ? "18px 14px" : "20px 20px",
-                borderBottom: "1px solid rgba(255,255,255,0.08)",
-                borderRight: isMobile ? "none" : "1px solid rgba(255,255,255,0.08)",
+                padding: isMobile ? "16px 14px" : "18px 18px",
+                borderBottom: `1px solid ${C.stone}`,
+                borderRight: isMobile ? "none" : `1px solid ${C.stone}`,
               }}>
-                <div style={{
-                  fontFamily: "'Quicksand', sans-serif",
-                  fontSize: 8, fontWeight: 700,
-                  letterSpacing: "0.2em", textTransform: "uppercase",
-                  color: "rgba(255,255,255,0.35)", marginBottom: 8,
-                }}>Daylight</div>
-                <div style={{
-                  fontFamily: "'Quicksand', sans-serif",
-                  fontSize: 15, fontWeight: 600,
-                  color: C.goldenAmber, lineHeight: 1,
-                }}>{sun.daylight}</div>
-                <div style={{
-                  fontFamily: "'Quicksand', sans-serif",
-                  fontSize: 11, fontWeight: 500,
-                  color: "rgba(255,255,255,0.5)", marginTop: 6,
-                }}>{sun.rise} – {sun.set}</div>
+                <div style={LABEL_STYLE}>Daylight</div>
+                <div style={{ ...VAL_STYLE, color: C.goldenAmber }}>{sun.daylight}</div>
+                <div style={SUB_STYLE}>{sun.rise} – {sun.set}</div>
               </div>
             )}
 
             {/* Moon */}
             {moon && (
               <div style={{
-                padding: isMobile ? "18px 14px" : "20px 20px",
-                borderBottom: "1px solid rgba(255,255,255,0.08)",
-                borderRight: "1px solid rgba(255,255,255,0.08)",
+                padding: isMobile ? "16px 14px" : "18px 18px",
+                borderBottom: `1px solid ${C.stone}`,
+                borderRight: `1px solid ${C.stone}`,
               }}>
-                <div style={{
-                  fontFamily: "'Quicksand', sans-serif",
-                  fontSize: 8, fontWeight: 700,
-                  letterSpacing: "0.2em", textTransform: "uppercase",
-                  color: "rgba(255,255,255,0.35)", marginBottom: 8,
-                }}>Moon</div>
-                <div style={{
-                  fontFamily: "'Quicksand', sans-serif",
-                  fontSize: 15, fontWeight: 600,
-                  color: "rgba(255,255,255,0.85)", lineHeight: 1,
-                }}>{moon.name}</div>
-                <div style={{
-                  fontFamily: "'Quicksand', sans-serif",
-                  fontSize: 11, fontWeight: 500,
-                  color: "rgba(255,255,255,0.5)", marginTop: 6,
-                }}>{moon.phase}% illuminated</div>
+                <div style={LABEL_STYLE}>Moon</div>
+                <div style={VAL_STYLE}>{moon.name}</div>
+                <div style={SUB_STYLE}>{moon.phase}% illuminated</div>
               </div>
             )}
 
             {/* Night Sky */}
             {sky && (
               <div style={{
-                padding: isMobile ? "18px 14px" : "20px 20px",
-                borderBottom: "1px solid rgba(255,255,255,0.08)",
+                padding: isMobile ? "16px 14px" : "18px 18px",
+                borderBottom: `1px solid ${C.stone}`,
               }}>
-                <div style={{
-                  fontFamily: "'Quicksand', sans-serif",
-                  fontSize: 8, fontWeight: 700,
-                  letterSpacing: "0.2em", textTransform: "uppercase",
-                  color: "rgba(255,255,255,0.35)", marginBottom: 8,
-                }}>Tonight's Sky</div>
-                <div style={{
-                  fontFamily: "'Quicksand', sans-serif",
-                  fontSize: 15, fontWeight: 600,
-                  color: C.goldenAmber, lineHeight: 1,
-                }}>{sky.label}</div>
-                <div style={{
-                  fontFamily: "'Quicksand', sans-serif",
-                  fontSize: 11, fontWeight: 500,
-                  color: "rgba(255,255,255,0.5)", marginTop: 6,
-                }}>
+                <div style={LABEL_STYLE}>Tonight's Sky</div>
+                <div style={{ ...VAL_STYLE, color: C.goldenAmber }}>{sky.label}</div>
+                <div style={SUB_STYLE}>
                   Bortle {sky.bortle}
                   {sky.milkyWayVisible && sky.milkyWayWindow && <> · MW {sky.milkyWayWindow}</>}
                 </div>
@@ -1067,59 +1056,35 @@ function CelestialDrawer({ isMobile }) {
             display: "grid",
             gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
             gap: 0,
+            border: `1px solid ${C.stone}`,
+            borderTop: "none",
+            background: "white",
           }}>
             {river && (
               <div style={{
-                padding: isMobile ? "18px 14px" : "20px 20px",
-                borderBottom: "1px solid rgba(255,255,255,0.08)",
-                borderRight: isMobile ? "none" : "1px solid rgba(255,255,255,0.08)",
+                padding: isMobile ? "16px 14px" : "18px 18px",
+                borderRight: isMobile ? "none" : `1px solid ${C.stone}`,
+                borderBottom: isMobile ? `1px solid ${C.stone}` : "none",
               }}>
-                <div style={{
-                  fontFamily: "'Quicksand', sans-serif",
-                  fontSize: 8, fontWeight: 700,
-                  letterSpacing: "0.2em", textTransform: "uppercase",
-                  color: "rgba(255,255,255,0.35)", marginBottom: 8,
-                }}>Virgin River</div>
+                <div style={LABEL_STYLE}>Virgin River</div>
                 <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
                   <span style={{
-                    width: 8, height: 8, borderRadius: "50%",
+                    width: 7, height: 7, borderRadius: "50%",
                     background: riverColors[river.level] || C.stone,
                   }} />
-                  <span style={{
-                    fontFamily: "'Quicksand', sans-serif",
-                    fontSize: 13, fontWeight: 600,
-                    color: "rgba(255,255,255,0.85)",
-                  }}>{river.label}</span>
+                  <span style={VAL_STYLE}>{river.label}</span>
                 </div>
-                <div style={{
-                  fontFamily: "'Quicksand', sans-serif",
-                  fontSize: 11, fontWeight: 500,
-                  color: "rgba(255,255,255,0.4)", marginTop: 4,
-                }}>{river.cfs} cfs · {river.tempF}°F water</div>
+                <div style={SUB_STYLE}>{river.cfs} cfs · {river.tempF}°F water</div>
               </div>
             )}
 
             {nextEvent && (
               <div style={{
-                padding: isMobile ? "18px 14px" : "20px 20px",
-                borderBottom: "1px solid rgba(255,255,255,0.08)",
+                padding: isMobile ? "16px 14px" : "18px 18px",
               }}>
-                <div style={{
-                  fontFamily: "'Quicksand', sans-serif",
-                  fontSize: 8, fontWeight: 700,
-                  letterSpacing: "0.2em", textTransform: "uppercase",
-                  color: "rgba(255,255,255,0.35)", marginBottom: 8,
-                }}>Next Celestial Event</div>
-                <div style={{
-                  fontFamily: "'Quicksand', sans-serif",
-                  fontSize: 13, fontWeight: 600,
-                  color: "rgba(255,255,255,0.85)",
-                }}>{nextEvent.name}</div>
-                <div style={{
-                  fontFamily: "'Quicksand', sans-serif",
-                  fontSize: 11, fontWeight: 500,
-                  color: "rgba(255,255,255,0.4)", marginTop: 4,
-                }}>{nextEvent.date} · {nextEvent.daysAway}d away</div>
+                <div style={LABEL_STYLE}>Next Celestial Event</div>
+                <div style={VAL_STYLE}>{nextEvent.name}</div>
+                <div style={SUB_STYLE}>{nextEvent.date} · {nextEvent.daysAway}d away</div>
               </div>
             )}
           </div>
@@ -1127,9 +1092,9 @@ function CelestialDrawer({ isMobile }) {
           {/* NPS Alerts */}
           {alerts && alerts.length > 0 && (
             <div style={{
-              padding: "12px 14px", marginTop: 12,
-              background: `${C.sunSalmon}15`,
-              border: `1px solid ${C.sunSalmon}25`,
+              padding: "10px 14px", marginTop: 8,
+              background: `${C.sunSalmon}08`,
+              border: `1px solid ${C.sunSalmon}20`,
             }}>
               {alerts.map((alert, i) => (
                 <div key={i} style={{
@@ -1143,7 +1108,7 @@ function CelestialDrawer({ isMobile }) {
                   <span style={{
                     fontFamily: "'Quicksand', sans-serif",
                     fontSize: 11, fontWeight: 500,
-                    color: "rgba(255,255,255,0.6)",
+                    color: "#5a6a78",
                   }}>{alert}</span>
                 </div>
               ))}
