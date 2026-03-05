@@ -533,10 +533,12 @@ function TripOverview({ days, onDayClick, dayFeedback = {} }) {
 
 /* ── timeline block ────────────────────────────────────────────────────── */
 
-function TimelineBlock({ time, title, summary, details, timeOfDay = 'morning', url, isLast = false, dayIndex = 0, itemIndex = 0, onOpenPanel }) {
+function TimelineBlock({ time, title, summary, details, timeOfDay = 'morning', url, isLast = false, dayIndex = 0, itemIndex = 0, onOpenPanel, activityFeedback, onActivityFeedback }) {
   const dot = WARM_DOT;
   const resolvedUrl = url || lookupUrl(title);
   const interactive = !!(details || resolvedUrl);
+  const thumbId = `day_${dayIndex}_timeline_${itemIndex}`;
+  const tint = reactionTint(activityFeedback?.[thumbId]);
 
   const handleClick = () => {
     if (!interactive) return;
@@ -553,7 +555,7 @@ function TimelineBlock({ time, title, summary, details, timeOfDay = 'morning', u
         }} />
         {!isLast && <div style={{ width: 1.5, flex: 1, minHeight: 20, background: `linear-gradient(180deg, ${dot}30, ${C.sage}06)` }} />}
       </div>
-      <div style={{ flex: 1, paddingBottom: isLast ? 0 : 16 }}>
+      <div style={{ flex: 1, paddingBottom: isLast ? 0 : 16, background: tint || 'transparent', borderRadius: tint ? 6 : 0, transition: 'background 0.3s' }}>
         <button onClick={handleClick} style={{
           display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', width: '100%',
           background: 'none', border: 'none', cursor: interactive ? 'pointer' : 'default',
@@ -566,6 +568,7 @@ function TimelineBlock({ time, title, summary, details, timeOfDay = 'morning', u
           </div>
           {interactive && <ArrowRightIcon size={10} color={`${C.sage}50`} />}
         </button>
+        <InlineReactions id={thumbId} feedback={activityFeedback} onFeedback={onActivityFeedback} />
       </div>
     </div>
   );
@@ -638,9 +641,11 @@ function TrailStatChip({ icon, label, value, accent }) {
   );
 }
 
-function TrailCard({ time, title, summary, details, trailData = {}, url, isLast = false, dayIndex = 0, itemIndex = 0, onOpenPanel }) {
+function TrailCard({ time, title, summary, details, trailData = {}, url, isLast = false, dayIndex = 0, itemIndex = 0, onOpenPanel, activityFeedback, onActivityFeedback }) {
   const dot = WARM_DOT;
   const resolvedUrl = url || trailData.npsUrl || lookupUrl(title);
+  const thumbId = `day_${dayIndex}_timeline_${itemIndex}`;
+  const tint = reactionTint(activityFeedback?.[thumbId]);
 
   const handleClick = () => {
     onOpenPanel({
@@ -676,7 +681,7 @@ function TrailCard({ time, title, summary, details, trailData = {}, url, isLast 
 
         <button onClick={handleClick} style={{
           display: 'block', width: '100%', textAlign: 'left',
-          background: C.white,
+          background: tint || C.white,
           border: `1.5px solid ${C.sage}12`,
           borderRadius: 2,
           overflow: 'hidden',
@@ -684,6 +689,7 @@ function TrailCard({ time, title, summary, details, trailData = {}, url, isLast 
           WebkitTapHighlightColor: 'transparent',
           padding: 0,
           boxShadow: `0 2px 10px ${C.amber}06`,
+          transition: 'background 0.3s',
         }}>
 
           {/* Card header: trail name + NPS label */}
@@ -777,6 +783,7 @@ function TrailCard({ time, title, summary, details, trailData = {}, url, isLast 
             )}
           </div>
         </button>
+        <InlineReactions id={thumbId} feedback={activityFeedback} onFeedback={onActivityFeedback} />
       </div>
     </div>
   );
@@ -832,7 +839,7 @@ function MetaStrip({ category, pick, color }) {
   );
 }
 
-function InlinePick({ category, pick, alternatives = [], isLast = false, dayIndex = 0, pickIndex = 0, onOpenPanel, activityFeedback = {} }) {
+function InlinePick({ category, pick, alternatives = [], isLast = false, dayIndex = 0, pickIndex = 0, onOpenPanel, activityFeedback = {}, onActivityFeedback }) {
   const s = PICK_STYLES[category] || PICK_STYLES.stay;
 
   const handleClick = () => {
@@ -844,12 +851,13 @@ function InlinePick({ category, pick, alternatives = [], isLast = false, dayInde
   const currentReaction = typeof currentFeedback === 'string'
     ? currentFeedback
     : currentFeedback?.reaction || null;
+  const tint = reactionTint(currentFeedback);
 
   return (
     <div style={{ marginBottom: isLast ? 0 : 10 }}>
       <button onClick={handleClick} style={{
         display: 'block', width: '100%', textAlign: 'left',
-        background: C.white, border: `1.5px solid ${s.color}20`, borderRadius: 2,
+        background: tint || C.white, border: `1.5px solid ${s.color}20`, borderRadius: 2,
         overflow: 'hidden', boxShadow: `0 2px 10px ${s.color}08`,
         cursor: 'pointer', WebkitTapHighlightColor: 'transparent', padding: 0,
       }}>
@@ -893,31 +901,12 @@ function InlinePick({ category, pick, alternatives = [], isLast = false, dayInde
                     +{alternatives.length} alternative{alternatives.length > 1 ? 's' : ''}
                   </div>
                 )}
-                {/* Reaction indicator */}
-                {currentReaction && (
-                  <div style={{
-                    display: 'inline-flex', alignItems: 'center', gap: 4,
-                    marginTop: 9, padding: '3px 8px', borderRadius: 4,
-                    background: currentReaction === 'fire' ? `${C.goldenAmber}12` : currentReaction === 'up' ? `${C.seaGlass}12` : `${C.sunSalmon}12`,
-                    border: `1px solid ${currentReaction === 'fire' ? `${C.goldenAmber}28` : currentReaction === 'up' ? `${C.seaGlass}28` : `${C.sunSalmon}28`}`,
-                  }}>
-                    <span style={{ fontSize: 11 }}>
-                      {currentReaction === 'fire' ? '🔥' : currentReaction === 'up' ? '👍' : '👎'}
-                    </span>
-                    <span style={{
-                      fontFamily: F, fontSize: 9, fontWeight: 600,
-                      color: currentReaction === 'fire' ? C.goldenAmber : currentReaction === 'up' ? C.seaGlass : C.sunSalmon,
-                      letterSpacing: '0.04em',
-                    }}>
-                      {currentReaction === 'fire' ? 'Must do' : currentReaction === 'up' ? 'Love it' : 'Not for me'}
-                    </span>
-                  </div>
-                )}
               </div>
               <ArrowRightIcon size={10} color={`${C.sage}50`} />
             </div>
           </div>
         </button>
+        <InlineReactions id={thumbId} feedback={activityFeedback} onFeedback={onActivityFeedback} />
     </div>
   );
 }
@@ -1012,6 +1001,70 @@ function ActivityThumbs({ id, feedback, onFeedback }) {
           )}
         </div>
       )}
+    </div>
+  );
+}
+
+/* ── InlineReactions — compact always-visible reaction pills ──────────── */
+
+function reactionTint(feedback) {
+  if (!feedback) return null;
+  const reaction = typeof feedback === 'string' ? feedback : feedback?.reaction || null;
+  if (reaction === 'fire' || reaction === 'up') return `${C.goldenAmber}08`;
+  if (reaction === 'down') return `${C.sage}08`;
+  return null;
+}
+
+function InlineReactions({ id, feedback, onFeedback }) {
+  const current = feedback?.[id] || null;
+  const currentReaction = typeof current === 'string' ? current : current?.reaction || null;
+
+  const toggle = (reaction, e) => {
+    e.stopPropagation();
+    if (currentReaction === reaction) {
+      onFeedback(id, null);
+    } else {
+      if (reaction === 'down') {
+        const existingNote = typeof current === 'object' ? current?.note || '' : '';
+        onFeedback(id, { reaction: 'down', note: existingNote });
+      } else {
+        onFeedback(id, reaction);
+      }
+    }
+  };
+
+  const reactions = [
+    { key: 'fire', icon: FlameIcon, color: C.goldenAmber, label: 'Must do',
+      restBg: `${C.goldenAmber}10`, restBorder: `${C.goldenAmber}30`,
+      activeBg: `${C.goldenAmber}1c`, activeBorder: `${C.goldenAmber}50` },
+    { key: 'up', icon: ThumbUp, color: C.seaGlass, label: 'Love it',
+      restBg: `${C.seaGlass}10`, restBorder: `${C.seaGlass}30`,
+      activeBg: `${C.seaGlass}1c`, activeBorder: `${C.seaGlass}50` },
+    { key: 'down', icon: ThumbDown, color: C.sunSalmon, label: 'Not for me',
+      restBg: `${C.sunSalmon}10`, restBorder: `${C.sunSalmon}30`,
+      activeBg: `${C.sunSalmon}1c`, activeBorder: `${C.sunSalmon}50` },
+  ];
+
+  return (
+    <div onClick={e => e.stopPropagation()} style={{ display: 'flex', gap: 5, marginTop: 6 }}>
+      {reactions.map(r => {
+        const active = currentReaction === r.key;
+        const Ic = r.icon;
+        return (
+          <button key={r.key} onClick={e => toggle(r.key, e)} style={{
+            display: 'flex', alignItems: 'center', gap: 4,
+            padding: '3px 8px',
+            borderRadius: 7,
+            background: active ? r.activeBg : r.restBg,
+            border: `1px solid ${active ? r.activeBorder : r.restBorder}`,
+            cursor: 'pointer', transition: 'all 0.2s',
+            WebkitTapHighlightColor: 'transparent',
+          }}>
+            <Ic size={11} color={r.color} active={active} />
+            <span style={{ fontFamily: F, fontSize: 9, fontWeight: 600, color: active ? r.color : `${r.color}90` }}>{r.label}</span>
+          </button>
+        );
+      })}
     </div>
   );
 }
@@ -1350,6 +1403,9 @@ function TrailDetailContent({ data, thumbId, activityFeedback, onActivityFeedbac
         )}
       </div>
 
+      {/* Activity feedback */}
+      <ActivityThumbs id={thumbId} feedback={activityFeedback} onFeedback={onActivityFeedback} />
+
       {/* Title */}
       <h1 style={{ fontFamily: F, fontSize: 'clamp(22px, 6vw, 28px)', fontWeight: 700, color: C.slate, lineHeight: 1.2, marginBottom: 10 }}>
         {resolvedUrl ? (
@@ -1524,10 +1580,6 @@ function TrailDetailContent({ data, thumbId, activityFeedback, onActivityFeedbac
         </a>
       )}
 
-      {/* Activity feedback */}
-      <div style={{ marginTop: 16 }}>
-        <ActivityThumbs id={thumbId} feedback={activityFeedback} onFeedback={onActivityFeedback} />
-      </div>
     </div>
   );
 }
@@ -1733,6 +1785,9 @@ function DetailPanelContent({ item, activityFeedback, onActivityFeedback }) {
           </div>
         )}
 
+        {/* Activity feedback */}
+        <ActivityThumbs id={thumbId} feedback={activityFeedback} onFeedback={onActivityFeedback} />
+
         {/* Title */}
         <h1 style={{ fontFamily: F, fontSize: 'clamp(21px, 6vw, 27px)', fontWeight: 600, color: C.slate, lineHeight: 1.25, marginBottom: 12 }}>{data.title}</h1>
 
@@ -1763,10 +1818,6 @@ function DetailPanelContent({ item, activityFeedback, onActivityFeedback }) {
           </a>
         )}
 
-        {/* Activity feedback */}
-        <div style={{ marginTop: 16 }}>
-          <ActivityThumbs id={thumbId} feedback={activityFeedback} onFeedback={onActivityFeedback} />
-        </div>
       </div>
     );
   }
@@ -1788,6 +1839,9 @@ function DetailPanelContent({ item, activityFeedback, onActivityFeedback }) {
           <span style={{ fontFamily: F, fontSize: 8, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: s.color }}>Lila Pick</span>
         </div>
       </div>
+
+      {/* Activity feedback */}
+      <ActivityThumbs id={thumbId} feedback={activityFeedback} onFeedback={onActivityFeedback} />
 
       {/* Pick name */}
       <h1 style={{ fontFamily: F, fontSize: 'clamp(21px, 6vw, 27px)', fontWeight: 600, color: C.slate, lineHeight: 1.25, marginBottom: 6 }}>
@@ -1860,10 +1914,6 @@ function DetailPanelContent({ item, activityFeedback, onActivityFeedback }) {
         </div>
       )}
 
-      {/* Activity feedback */}
-      <div style={{ marginTop: 16 }}>
-        <ActivityThumbs id={thumbId} feedback={activityFeedback} onFeedback={onActivityFeedback} />
-      </div>
     </div>
   );
 }
@@ -2092,14 +2142,16 @@ function DayCard({ day, dayIndex = 0, feedback, onFeedback, onOpenPanel, activit
                   <TrailCard key={i} time={b.time} title={b.title} summary={b.summary}
                     details={b.details} trailData={b.trailData || {}} url={b.url}
                     dayIndex={dayIndex} itemIndex={i} isLast={isLast}
-                    onOpenPanel={onOpenPanel} />
+                    onOpenPanel={onOpenPanel}
+                    activityFeedback={activityFeedback} onActivityFeedback={onActivityFeedback} />
                 );
               }
               return (
                 <TimelineBlock key={i} time={b.time} title={b.title} summary={b.summary}
                   details={b.details} timeOfDay={b.timeOfDay} url={b.url} dayIndex={dayIndex}
                   itemIndex={i} isLast={isLast}
-                  onOpenPanel={onOpenPanel} />
+                  onOpenPanel={onOpenPanel}
+                  activityFeedback={activityFeedback} onActivityFeedback={onActivityFeedback} />
               );
             })}
           </div>
@@ -2129,7 +2181,8 @@ function DayCard({ day, dayIndex = 0, feedback, onFeedback, onOpenPanel, activit
                 {day.picks && day.picks.map((p, i) => (
                   <InlinePick key={i} category={p.category} pick={p.pick} dayIndex={dayIndex}
                     pickIndex={i} alternatives={p.alternatives || []} isLast={i === day.picks.length - 1}
-                    onOpenPanel={onOpenPanel} activityFeedback={activityFeedback} />
+                    onOpenPanel={onOpenPanel} activityFeedback={activityFeedback}
+                    onActivityFeedback={onActivityFeedback} />
                 ))}
               </div>
             </>
@@ -2301,14 +2354,169 @@ function RefineCTA({ iteration, hasFeedback, onRefine, pulse, onGateShown, onUpg
 
 /* ── refining overlay ──────────────────────────────────────────────────── */
 
-function RefiningOverlay({ visible }) {
+const REFINING_STEPS = [
+  'Reviewing your feedback',
+  'Reshaping the itinerary',
+  'Polishing the details',
+  'Finalizing your revision',
+];
+
+function RefiningOverlay({ visible, iteration = 0 }) {
+  const [completedIndex, setCompletedIndex] = useState(-1);
+  const [breathPhase, setBreathPhase] = useState(0);
+  const allDone = completedIndex >= REFINING_STEPS.length - 1;
+
+  // Reset state when overlay becomes visible
+  useEffect(() => {
+    if (visible) {
+      setCompletedIndex(-1);
+      setBreathPhase(0);
+    }
+  }, [visible]);
+
+  // Step timings
+  useEffect(() => {
+    if (!visible) return;
+    const timings = [5000, 18000, 40000, 65000];
+    const timeouts = timings.map((delay, i) =>
+      setTimeout(() => setCompletedIndex(i), delay)
+    );
+    return () => timeouts.forEach(clearTimeout);
+  }, [visible]);
+
+  // Breathing animation
+  useEffect(() => {
+    if (!visible) return;
+    let frame;
+    const start = Date.now();
+    const cycle = 4000;
+    function tick() {
+      const t = ((Date.now() - start) % cycle) / cycle;
+      setBreathPhase(Math.sin(t * Math.PI));
+      frame = requestAnimationFrame(tick);
+    }
+    frame = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frame);
+  }, [visible]);
+
   if (!visible) return null;
+
+  const ringScale = 0.9 + breathPhase * 0.1;
+  const maxFree = 2;
+  const remaining = maxFree - iteration;
+
   return (
-    <div style={{ position: 'fixed', inset: 0, zIndex: 200, background: `${C.cream}f5`, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)' }}>
-      <div style={{ width: 40, height: 40, borderRadius: '50%', border: `2px solid ${C.sage}15`, borderTopColor: C.oceanTeal, animation: 'lilaSpin 0.9s linear infinite' }} />
-      <style>{`@keyframes lilaSpin { to { transform: rotate(360deg); } }`}</style>
-      <p style={{ fontFamily: F, fontSize: 14, fontWeight: 500, color: `${C.slate}70`, marginTop: 20 }}>Refining your trip...</p>
-      <p style={{ fontFamily: F, fontSize: 12, fontWeight: 400, color: `${C.slate}65`, marginTop: 4 }}>Incorporating your feedback</p>
+    <div style={{
+      position: 'fixed', inset: 0, zIndex: 200,
+      display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+      background: `linear-gradient(180deg, ${C.cream} 0%, ${C.white} 40%, ${C.cream} 100%)`,
+      padding: '40px 28px',
+    }}>
+      {/* Breathing Ensō ring */}
+      <div style={{
+        position: 'relative', width: 80, height: 80,
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        marginBottom: 24,
+      }}>
+        <div style={{
+          position: 'absolute', inset: -12,
+          borderRadius: '50%',
+          background: `radial-gradient(circle, ${C.oceanTeal}${Math.round((0.06 + breathPhase * 0.1) * 255).toString(16).padStart(2, '0')} 0%, transparent 70%)`,
+          transform: `scale(${ringScale})`,
+        }} />
+        <svg width="80" height="80" viewBox="0 0 80 80" style={{ transform: `scale(${ringScale})` }}>
+          <circle cx="40" cy="40" r="32" fill="none" stroke={`${C.sage}20`} strokeWidth="1.5" />
+          <circle cx="40" cy="40" r="32" fill="none"
+            stroke={C.oceanTeal} strokeWidth="2" strokeLinecap="round"
+            strokeDasharray={`${Math.PI * 64}`}
+            strokeDashoffset={`${Math.PI * 64 * (1 - (0.7 + breathPhase * 0.28))}`}
+            opacity={0.5 + breathPhase * 0.5}
+            style={{ transform: 'rotate(-90deg)', transformOrigin: 'center' }}
+          />
+        </svg>
+      </div>
+
+      {/* Headline */}
+      <div style={{
+        fontFamily: F_SERIF,
+        fontSize: 'clamp(22px, 5.5vw, 28px)', fontWeight: 300,
+        color: C.slate, marginBottom: 6, textAlign: 'center',
+      }}>Refining your trip</div>
+
+      {/* Subtitle */}
+      <div style={{
+        fontFamily: F,
+        fontSize: 13, fontWeight: 400,
+        color: C.sage, opacity: 0.75,
+        marginBottom: 28, textAlign: 'center',
+      }}>Incorporating your feedback into a new draft.</div>
+
+      {/* Step indicators — dots + labels */}
+      <div style={{
+        display: 'flex', flexDirection: 'column', alignItems: 'center',
+        gap: 10, width: '100%', maxWidth: 260, marginBottom: 20,
+      }}>
+        {REFINING_STEPS.map((step, i) => {
+          const isComplete = i <= completedIndex;
+          const isActive = i === completedIndex + 1 && !allDone;
+          return (
+            <div key={i} style={{
+              display: 'flex', alignItems: 'center', gap: 10,
+              opacity: isComplete ? 0.4 : isActive ? 1 : 0.25,
+              transition: 'opacity 0.7s ease',
+            }}>
+              <div style={{
+                width: 8, height: 8, borderRadius: '50%', flexShrink: 0,
+                background: isComplete ? C.oceanTeal : isActive ? C.oceanTeal : `${C.sage}30`,
+                transition: 'background 0.5s',
+              }} />
+              <span style={{
+                fontFamily: F, fontSize: 12, fontWeight: isActive ? 600 : 400,
+                color: isActive ? C.slate : C.sage,
+                transition: 'all 0.5s',
+              }}>{step}</span>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Progress bar */}
+      <div style={{
+        width: '100%', maxWidth: 200,
+        height: 2, borderRadius: 1,
+        background: `${C.sage}12`,
+        overflow: 'hidden',
+      }}>
+        <div style={{
+          height: '100%', borderRadius: 1,
+          background: C.oceanTeal,
+          width: `${Math.min(100, ((completedIndex + 1) / REFINING_STEPS.length) * 100)}%`,
+          transition: 'width 1.2s cubic-bezier(0.4, 0, 0.2, 1)',
+        }} />
+      </div>
+
+      {/* Step counter */}
+      <div style={{
+        fontFamily: F,
+        fontSize: 10, fontWeight: 500,
+        letterSpacing: '0.12em', textTransform: 'uppercase',
+        color: `${C.sage}70`,
+        marginTop: 8,
+      }}>
+        {allDone ? 'Finalizing...' : `${Math.max(0, completedIndex + 1)} of ${REFINING_STEPS.length}`}
+      </div>
+
+      {/* Refinement quota callout */}
+      <div style={{
+        fontFamily: F,
+        fontSize: 11, fontWeight: 400,
+        color: C.muted,
+        marginTop: 20, textAlign: 'center',
+      }}>
+        {remaining > 0
+          ? `You have ${remaining} free refinement${remaining !== 1 ? 's' : ''} remaining after this`
+          : 'This is your last free refinement'}
+      </div>
     </div>
   );
 }
@@ -2434,7 +2642,7 @@ function FirstDraftModal({ onDismiss }) {
   return (
     <div style={{
       position: 'fixed', inset: 0, zIndex: 300,
-      background: `${C.ink}50`,
+      background: 'rgba(0,0,0,0.15)',
       backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)',
       display: 'flex', alignItems: 'center', justifyContent: 'center',
       padding: 20,
@@ -2444,10 +2652,9 @@ function FirstDraftModal({ onDismiss }) {
         width: '100%', maxWidth: 390,
         background: C.cream, borderRadius: 2,
         padding: '40px 32px 32px',
-        boxShadow: `0 24px 64px ${C.ink}22`,
+        boxShadow: 'none',
         opacity: show ? 1 : 0,
-        transform: show ? 'translateY(0)' : 'translateY(20px)',
-        transition: 'opacity 0.35s ease, transform 0.35s ease',
+        transition: 'opacity 0.5s ease',
       }}>
         {/* Close button */}
         <button onClick={onDismiss} style={{
@@ -2468,7 +2675,7 @@ function FirstDraftModal({ onDismiss }) {
         <div style={{ fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.22em', textTransform: 'uppercase', color: `${C.sage}75`, marginBottom: 22 }}>Lila Trips</div>
 
         {/* Headline */}
-        <h2 style={{ fontFamily: F, fontSize: 26, fontWeight: 700, color: C.ink, lineHeight: 1.25, letterSpacing: '-0.02em', marginBottom: 12 }}>Your itinerary is ready to explore.</h2>
+        <h2 style={{ fontFamily: F_SERIF, fontSize: 'clamp(22px, 5.5vw, 28px)', fontWeight: 300, color: C.ink, lineHeight: 1.25, letterSpacing: '-0.02em', marginBottom: 12 }}>Your itinerary is ready to explore.</h2>
 
         {/* Body */}
         <p style={{ fontFamily: F, fontSize: 13, fontWeight: 400, color: `${C.slate}D9`, lineHeight: 1.75, marginBottom: 28 }}>We built this around what you shared with us. Read through it, react to what stands out, and we'll keep shaping it until it's yours.</p>
@@ -2789,7 +2996,7 @@ export default function ItineraryResults() {
 
   return (
     <div style={{ fontFamily: F, background: C.cream, minHeight: '100vh' }}>
-      <RefiningOverlay visible={refining} />
+      <RefiningOverlay visible={refining} iteration={iteration} />
 
       {/* First draft modal */}
       {iteration === 0 && showDraftModal && isStructured && (
