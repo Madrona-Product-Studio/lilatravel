@@ -17,7 +17,7 @@ import { C } from '@data/brand';
 import { P } from '@data/photos';
 import { getTripsByDestination } from '@data/trips';
 import { trackEvent } from '@utils/analytics';
-import CelestialSnapshot from '@components/CelestialSnapshot';
+import { getCelestialSnapshot } from '@services/celestialService';
 
 
 // ─── Guide-Specific Components ───────────────────────────────────────────────
@@ -842,6 +842,318 @@ function GuideNav({ isMobile }) {
 }
 
 
+// ─── Celestial Drawer ────────────────────────────────────────────────────────
+
+function CelestialDrawer({ isMobile }) {
+  const [open, setOpen] = useState(false);
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const contentRef = useRef(null);
+  const [contentHeight, setContentHeight] = useState(0);
+
+  useEffect(() => {
+    getCelestialSnapshot("zion")
+      .then(setData)
+      .catch(() => {})
+      .finally(() => setLoading(false));
+  }, []);
+
+  // Measure content for smooth animation
+  useEffect(() => {
+    if (contentRef.current) {
+      setContentHeight(contentRef.current.scrollHeight);
+    }
+  }, [data, open, isMobile]);
+
+  // Inject pulse animation
+  useEffect(() => {
+    if (document.getElementById("celestial-pulse-style")) return;
+    const style = document.createElement("style");
+    style.id = "celestial-pulse-style";
+    style.textContent = `
+      @keyframes celestialPulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.4; }
+      }
+    `;
+    document.head.appendChild(style);
+    return () => { style.remove(); };
+  }, []);
+
+  if (loading || !data) return null;
+
+  const { weather, sun, moon, sky, river, nextEvent, alerts } = data;
+  const riverColors = { low: C.seaGlass, moderate: C.skyBlue, high: C.goldenAmber, dangerous: C.sunSalmon };
+
+  return (
+    <div style={{ background: C.darkInk }}>
+      {/* Trigger bar */}
+      <button
+        onClick={() => setOpen(!open)}
+        style={{
+          width: "100%", border: "none", cursor: "pointer",
+          background: "transparent",
+          padding: isMobile ? "12px 20px" : "12px 52px",
+          display: "flex", alignItems: "center", justifyContent: "center",
+          gap: 10,
+          transition: "background 0.2s",
+        }}
+        onMouseEnter={e => e.currentTarget.style.background = "rgba(255,255,255,0.04)"}
+        onMouseLeave={e => e.currentTarget.style.background = "transparent"}
+      >
+        <span style={{
+          width: 6, height: 6, borderRadius: "50%",
+          background: C.seaGlass,
+          animation: "celestialPulse 2s ease-in-out infinite",
+        }} />
+        <span style={{
+          fontFamily: "'Quicksand', sans-serif",
+          fontSize: 10, fontWeight: 700,
+          letterSpacing: "0.2em", textTransform: "uppercase",
+          color: "rgba(255,255,255,0.6)",
+        }}>
+          Celestial Snapshot
+        </span>
+        {weather && (
+          <span style={{
+            fontFamily: "'Quicksand', sans-serif",
+            fontSize: 10, fontWeight: 500,
+            color: "rgba(255,255,255,0.35)",
+            letterSpacing: "0.06em",
+          }}>
+            · {weather.temp}° {weather.condition}
+          </span>
+        )}
+        <span style={{
+          fontFamily: "'Quicksand', sans-serif",
+          fontSize: 11, fontWeight: 400,
+          color: "rgba(255,255,255,0.35)",
+          transition: "transform 0.3s ease",
+          transform: open ? "rotate(180deg)" : "rotate(0deg)",
+          marginLeft: 2,
+        }}>{"▾"}</span>
+      </button>
+
+      {/* Expandable content */}
+      <div style={{
+        maxHeight: open ? contentHeight : 0,
+        overflow: "hidden",
+        transition: "max-height 0.5s ease",
+      }}>
+        <div ref={contentRef} style={{
+          padding: isMobile ? "0 20px 28px" : "0 52px 36px",
+          maxWidth: 920, margin: "0 auto",
+        }}>
+          {/* Data grid */}
+          <div style={{
+            display: "grid",
+            gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : "repeat(4, 1fr)",
+            gap: 0,
+            borderTop: "1px solid rgba(255,255,255,0.08)",
+          }}>
+            {/* Conditions */}
+            {weather && (
+              <div style={{
+                padding: isMobile ? "18px 14px" : "20px 20px",
+                borderBottom: "1px solid rgba(255,255,255,0.08)",
+                borderRight: "1px solid rgba(255,255,255,0.08)",
+              }}>
+                <div style={{
+                  fontFamily: "'Quicksand', sans-serif",
+                  fontSize: 8, fontWeight: 700,
+                  letterSpacing: "0.2em", textTransform: "uppercase",
+                  color: "rgba(255,255,255,0.35)", marginBottom: 8,
+                }}>Conditions</div>
+                <div style={{ display: "flex", alignItems: "baseline", gap: 6 }}>
+                  <span style={{
+                    fontFamily: "'Cormorant Garamond', serif",
+                    fontSize: 30, fontWeight: 300,
+                    color: "rgba(255,255,255,0.9)", lineHeight: 1,
+                  }}>{weather.temp}°</span>
+                </div>
+                <div style={{
+                  fontFamily: "'Quicksand', sans-serif",
+                  fontSize: 11, fontWeight: 500,
+                  color: "rgba(255,255,255,0.5)", marginTop: 4,
+                }}>H {weather.high}° / L {weather.low}°</div>
+              </div>
+            )}
+
+            {/* Daylight */}
+            {sun && (
+              <div style={{
+                padding: isMobile ? "18px 14px" : "20px 20px",
+                borderBottom: "1px solid rgba(255,255,255,0.08)",
+                borderRight: isMobile ? "none" : "1px solid rgba(255,255,255,0.08)",
+              }}>
+                <div style={{
+                  fontFamily: "'Quicksand', sans-serif",
+                  fontSize: 8, fontWeight: 700,
+                  letterSpacing: "0.2em", textTransform: "uppercase",
+                  color: "rgba(255,255,255,0.35)", marginBottom: 8,
+                }}>Daylight</div>
+                <div style={{
+                  fontFamily: "'Quicksand', sans-serif",
+                  fontSize: 15, fontWeight: 600,
+                  color: C.goldenAmber, lineHeight: 1,
+                }}>{sun.daylight}</div>
+                <div style={{
+                  fontFamily: "'Quicksand', sans-serif",
+                  fontSize: 11, fontWeight: 500,
+                  color: "rgba(255,255,255,0.5)", marginTop: 6,
+                }}>{sun.rise} – {sun.set}</div>
+              </div>
+            )}
+
+            {/* Moon */}
+            {moon && (
+              <div style={{
+                padding: isMobile ? "18px 14px" : "20px 20px",
+                borderBottom: "1px solid rgba(255,255,255,0.08)",
+                borderRight: "1px solid rgba(255,255,255,0.08)",
+              }}>
+                <div style={{
+                  fontFamily: "'Quicksand', sans-serif",
+                  fontSize: 8, fontWeight: 700,
+                  letterSpacing: "0.2em", textTransform: "uppercase",
+                  color: "rgba(255,255,255,0.35)", marginBottom: 8,
+                }}>Moon</div>
+                <div style={{
+                  fontFamily: "'Quicksand', sans-serif",
+                  fontSize: 15, fontWeight: 600,
+                  color: "rgba(255,255,255,0.85)", lineHeight: 1,
+                }}>{moon.name}</div>
+                <div style={{
+                  fontFamily: "'Quicksand', sans-serif",
+                  fontSize: 11, fontWeight: 500,
+                  color: "rgba(255,255,255,0.5)", marginTop: 6,
+                }}>{moon.phase}% illuminated</div>
+              </div>
+            )}
+
+            {/* Night Sky */}
+            {sky && (
+              <div style={{
+                padding: isMobile ? "18px 14px" : "20px 20px",
+                borderBottom: "1px solid rgba(255,255,255,0.08)",
+              }}>
+                <div style={{
+                  fontFamily: "'Quicksand', sans-serif",
+                  fontSize: 8, fontWeight: 700,
+                  letterSpacing: "0.2em", textTransform: "uppercase",
+                  color: "rgba(255,255,255,0.35)", marginBottom: 8,
+                }}>Tonight's Sky</div>
+                <div style={{
+                  fontFamily: "'Quicksand', sans-serif",
+                  fontSize: 15, fontWeight: 600,
+                  color: C.goldenAmber, lineHeight: 1,
+                }}>{sky.label}</div>
+                <div style={{
+                  fontFamily: "'Quicksand', sans-serif",
+                  fontSize: 11, fontWeight: 500,
+                  color: "rgba(255,255,255,0.5)", marginTop: 6,
+                }}>
+                  Bortle {sky.bortle}
+                  {sky.milkyWayVisible && sky.milkyWayWindow && <> · MW {sky.milkyWayWindow}</>}
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Bottom row: River + Next Event */}
+          <div style={{
+            display: "grid",
+            gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
+            gap: 0,
+          }}>
+            {river && (
+              <div style={{
+                padding: isMobile ? "18px 14px" : "20px 20px",
+                borderBottom: "1px solid rgba(255,255,255,0.08)",
+                borderRight: isMobile ? "none" : "1px solid rgba(255,255,255,0.08)",
+              }}>
+                <div style={{
+                  fontFamily: "'Quicksand', sans-serif",
+                  fontSize: 8, fontWeight: 700,
+                  letterSpacing: "0.2em", textTransform: "uppercase",
+                  color: "rgba(255,255,255,0.35)", marginBottom: 8,
+                }}>Virgin River</div>
+                <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                  <span style={{
+                    width: 8, height: 8, borderRadius: "50%",
+                    background: riverColors[river.level] || C.stone,
+                  }} />
+                  <span style={{
+                    fontFamily: "'Quicksand', sans-serif",
+                    fontSize: 13, fontWeight: 600,
+                    color: "rgba(255,255,255,0.85)",
+                  }}>{river.label}</span>
+                </div>
+                <div style={{
+                  fontFamily: "'Quicksand', sans-serif",
+                  fontSize: 11, fontWeight: 500,
+                  color: "rgba(255,255,255,0.4)", marginTop: 4,
+                }}>{river.cfs} cfs · {river.tempF}°F water</div>
+              </div>
+            )}
+
+            {nextEvent && (
+              <div style={{
+                padding: isMobile ? "18px 14px" : "20px 20px",
+                borderBottom: "1px solid rgba(255,255,255,0.08)",
+              }}>
+                <div style={{
+                  fontFamily: "'Quicksand', sans-serif",
+                  fontSize: 8, fontWeight: 700,
+                  letterSpacing: "0.2em", textTransform: "uppercase",
+                  color: "rgba(255,255,255,0.35)", marginBottom: 8,
+                }}>Next Celestial Event</div>
+                <div style={{
+                  fontFamily: "'Quicksand', sans-serif",
+                  fontSize: 13, fontWeight: 600,
+                  color: "rgba(255,255,255,0.85)",
+                }}>{nextEvent.name}</div>
+                <div style={{
+                  fontFamily: "'Quicksand', sans-serif",
+                  fontSize: 11, fontWeight: 500,
+                  color: "rgba(255,255,255,0.4)", marginTop: 4,
+                }}>{nextEvent.date} · {nextEvent.daysAway}d away</div>
+              </div>
+            )}
+          </div>
+
+          {/* NPS Alerts */}
+          {alerts && alerts.length > 0 && (
+            <div style={{
+              padding: "12px 14px", marginTop: 12,
+              background: `${C.sunSalmon}15`,
+              border: `1px solid ${C.sunSalmon}25`,
+            }}>
+              {alerts.map((alert, i) => (
+                <div key={i} style={{
+                  display: "flex", gap: 8, alignItems: "flex-start",
+                  marginBottom: i < alerts.length - 1 ? 6 : 0,
+                }}>
+                  <span style={{
+                    width: 5, height: 5, borderRadius: "50%",
+                    background: C.sunSalmon, marginTop: 4, flexShrink: 0,
+                  }} />
+                  <span style={{
+                    fontFamily: "'Quicksand', sans-serif",
+                    fontSize: 11, fontWeight: 500,
+                    color: "rgba(255,255,255,0.6)",
+                  }}>{alert}</span>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
 // ─── Main Page ───────────────────────────────────────────────────────────────
 
 export default function ZionGuide() {
@@ -856,6 +1168,9 @@ export default function ZionGuide() {
   return (
     <>
       <Nav />
+
+      {/* ══ CELESTIAL DRAWER ═══════════════════════════════════════════════ */}
+      <CelestialDrawer isMobile={isMobile} />
 
       {/* ══ TITLE MASTHEAD ═══════════════════════════════════════════════════ */}
       <section style={{ background: C.cream, paddingTop: 24 }}>
@@ -1026,13 +1341,6 @@ export default function ZionGuide() {
               </div>
             </div>
           ))}
-        </div>
-      </section>
-
-      {/* ══ CELESTIAL SNAPSHOT (inline card) ═════════════════════════════ */}
-      <section style={{ padding: isMobile ? "24px 20px" : "32px 52px", background: C.cream }}>
-        <div style={{ maxWidth: 680, margin: "0 auto" }}>
-          <FadeIn><CelestialSnapshot destination="zion" /></FadeIn>
         </div>
       </section>
 
