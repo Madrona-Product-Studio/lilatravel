@@ -14,18 +14,14 @@
 // ═══════════════════════════════════════════════════════════════════════════════
 
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { C } from '@data/brand';
-import { trackEvent } from '@utils/analytics';
 
 export default function TripCard({ trip, delay = 0 }) {
   const [hover, setHover] = useState(false);
 
   return (
-    <Link
-      to={`/trips/${trip.slug}`}
-      style={{ textDecoration: "none", display: "block", height: "100%" }}
-      onClick={() => trackEvent('trip_card_clicked', { trip_slug: trip.slug })}
+    <div
+      style={{ textDecoration: "none", display: "block", height: "100%", cursor: "default" }}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >
@@ -33,8 +29,8 @@ export default function TripCard({ trip, delay = 0 }) {
         background: "white",
         overflow: "hidden",
         transition: "transform 0.4s ease, box-shadow 0.4s ease",
-        transform: hover ? "translateY(-3px)" : "none",
-        boxShadow: hover ? "0 8px 32px rgba(0,0,0,0.07)" : "0 1px 8px rgba(0,0,0,0.03)",
+        transform: "none",
+        boxShadow: "0 1px 8px rgba(0,0,0,0.03)",
         borderTop: `2px solid ${trip.color}`,
         height: "100%",
         display: "flex",
@@ -45,7 +41,7 @@ export default function TripCard({ trip, delay = 0 }) {
           height: 220,
           background: trip.photo
             ? `url(${trip.photo}) center/cover no-repeat`
-            : `linear-gradient(135deg, ${trip.color}12 0%, ${C.stone}18 100%)`,
+            : `linear-gradient(135deg, ${trip.color}30 0%, ${trip.color}15 50%, ${C.stone}35 100%)`,
           position: "relative",
           overflow: "hidden",
           flexShrink: 0,
@@ -58,13 +54,13 @@ export default function TripCard({ trip, delay = 0 }) {
             }}>
               <div style={{
                 width: 56, height: 56,
-                border: `1px solid ${trip.color}35`,
+                border: `1.5px solid ${trip.color}50`,
                 borderRadius: "50%",
               }} />
               <div style={{
                 position: "absolute",
                 width: 32, height: 32,
-                border: `1px solid ${trip.color}25`,
+                border: `1.5px solid ${trip.color}40`,
                 transform: "rotate(45deg)",
               }} />
             </div>
@@ -190,6 +186,6 @@ export default function TripCard({ trip, delay = 0 }) {
           </div>
         </div>
       </div>
-    </Link>
+    </div>
   );
 }
