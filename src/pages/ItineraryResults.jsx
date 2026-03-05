@@ -44,6 +44,13 @@ const DAY_COLORS = [
   C.seaGlass, '#8B7EC8', C.goldenAmber, C.oceanTeal,
 ];
 
+const PICK_STYLES = {
+  stay: { label: 'Where to Stay', color: C.goldenAmber },
+  eat:  { label: 'Where to Eat',  color: C.sunSalmon },
+  gear: { label: 'Gear',          color: C.oceanTeal },
+  wellness: { label: 'Wellness',  color: C.seaGlass },
+};
+
 const F = "'Quicksand', sans-serif";
 
 /* ── SVG icons ─────────────────────────────────────────────────────────── */
@@ -416,15 +423,14 @@ function TripOverview({ days, onDayClick, dayFeedback = {} }) {
 
 /* ── timeline block ────────────────────────────────────────────────────── */
 
-function TimelineBlock({ time, title, summary, details, timeOfDay = 'morning', url, isLast = false, dayIndex = 0, itemIndex = 0, activityFeedback, onActivityFeedback }) {
-  const [open, setOpen] = useState(false);
+function TimelineBlock({ time, title, summary, details, timeOfDay = 'morning', url, isLast = false, dayIndex = 0, itemIndex = 0, onOpenPanel }) {
   const dot = WARM_DOT;
   const resolvedUrl = url || lookupUrl(title);
+  const interactive = !!(details || resolvedUrl);
 
-  const handleToggle = () => {
-    if (!details) return;
-    if (!open) trackEvent('timeline_detail_expanded', { day_index: dayIndex, activity_title: title });
-    setOpen(!open);
+  const handleClick = () => {
+    if (!interactive) return;
+    onOpenPanel({ type: 'activity', data: { time, title, summary, details, url: resolvedUrl, timeOfDay }, thumbId: `day_${dayIndex}_timeline_${itemIndex}` });
   };
 
   return (
@@ -438,9 +444,9 @@ function TimelineBlock({ time, title, summary, details, timeOfDay = 'morning', u
         {!isLast && <div style={{ width: 1.5, flex: 1, minHeight: 20, background: `linear-gradient(180deg, ${dot}30, ${C.sage}06)` }} />}
       </div>
       <div style={{ flex: 1, paddingBottom: isLast ? 0 : 16 }}>
-        <button onClick={handleToggle} style={{
+        <button onClick={handleClick} style={{
           display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', width: '100%',
-          background: 'none', border: 'none', cursor: details ? 'pointer' : 'default',
+          background: 'none', border: 'none', cursor: interactive ? 'pointer' : 'default',
           textAlign: 'left', padding: 0, gap: 8, WebkitTapHighlightColor: 'transparent',
         }}>
           <div>
@@ -448,32 +454,8 @@ function TimelineBlock({ time, title, summary, details, timeOfDay = 'morning', u
             <div style={{ fontFamily: F, fontSize: 16, fontWeight: 700, color: C.ink, lineHeight: 1.3 }}>{title}</div>
             <div style={{ fontFamily: F, fontSize: 13, color: C.body, lineHeight: 1.6, marginTop: 4 }}>{summary}</div>
           </div>
-          {details && <Chevron open={open} color={`${C.sage}50`} />}
+          {interactive && <ArrowRightIcon size={10} color={`${C.sage}50`} />}
         </button>
-        {details && (
-          <Collapsible open={open}>
-            <div style={{ fontFamily: F, fontSize: 13, color: `${C.ink}a8`, lineHeight: 1.7, padding: '6px 0', paddingLeft: 13, borderLeft: `2px solid ${dot}22` }}>
-              {renderInlineBlock(details)}
-              {resolvedUrl && (
-                <a href={resolvedUrl} target="_blank" rel="noopener noreferrer"
-                  onClick={() => trackEvent('external_link_clicked', { name: title, url: resolvedUrl, link_type: 'activity' })}
-                  style={{
-                    display: 'inline-flex', alignItems: 'center', gap: 5,
-                    fontFamily: F, fontSize: 12, fontWeight: 600,
-                    color: C.oceanTeal, textDecoration: 'none',
-                    marginTop: 8, padding: '6px 12px',
-                    background: `${C.oceanTeal}08`, borderRadius: 8,
-                    border: `1px solid ${C.oceanTeal}15`,
-                  }}>
-                  Learn more <ExternalLinkIcon size={10} color={C.oceanTeal} />
-                </a>
-              )}
-            </div>
-          </Collapsible>
-        )}
-        {onActivityFeedback && (
-          <ActivityThumbs id={`day_${dayIndex}_timeline_${itemIndex}`} feedback={activityFeedback} onFeedback={onActivityFeedback} />
-        )}
       </div>
     </div>
   );
@@ -481,19 +463,21 @@ function TimelineBlock({ time, title, summary, details, timeOfDay = 'morning', u
 
 /* ── inline pick ───────────────────────────────────────────────────────── */
 
-function InlinePick({ category, pick, alternatives = [], isLast = false, dayIndex = 0, pickIndex = 0, activityFeedback, onActivityFeedback }) {
-  const [showAlts, setShowAlts] = useState(false);
-  const styles = {
-    stay: { label: 'Where to Stay', color: C.goldenAmber },
-    eat:  { label: 'Where to Eat', color: C.sunSalmon },
-    gear: { label: 'Gear', color: C.oceanTeal },
-    wellness: { label: 'Wellness', color: C.seaGlass },
+function InlinePick({ category, pick, alternatives = [], isLast = false, dayIndex = 0, pickIndex = 0, onOpenPanel }) {
+  const s = PICK_STYLES[category] || PICK_STYLES.stay;
+
+  const handleClick = () => {
+    onOpenPanel({ type: category, data: { ...pick, alternatives }, thumbId: `day_${dayIndex}_pick_${pickIndex}` });
   };
-  const s = styles[category] || styles.stay;
 
   return (
     <div style={{ marginBottom: isLast ? 0 : 10 }}>
-      <div style={{ background: C.white, border: `1.5px solid ${s.color}20`, borderRadius: 2, overflow: 'hidden', boxShadow: `0 2px 10px ${s.color}08` }}>
+      <button onClick={handleClick} style={{
+        display: 'block', width: '100%', textAlign: 'left',
+        background: C.white, border: `1.5px solid ${s.color}20`, borderRadius: 2,
+        overflow: 'hidden', boxShadow: `0 2px 10px ${s.color}08`,
+        cursor: 'pointer', WebkitTapHighlightColor: 'transparent', padding: 0,
+      }}>
           {/* Header */}
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 14px', background: `${s.color}05`, borderBottom: `1px solid ${s.color}10` }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 7 }}>
@@ -506,47 +490,22 @@ function InlinePick({ category, pick, alternatives = [], isLast = false, dayInde
             </div>
           </div>
           {/* Content */}
-          <div style={{ padding: '12px 14px' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginBottom: 4 }}>
-              <LinkedName name={pick.name} url={pick.url} linkType="pick" style={{ fontFamily: F, fontSize: 15, fontWeight: 700, color: C.ink }} />
-              {(pick.url || lookupUrl(pick.name)) && <ExternalLinkIcon size={10} color={`${C.sage}40`} />}
-            </div>
-            <div style={{ fontFamily: F, fontSize: 12.5, color: C.body, lineHeight: 1.6 }}>{pick.why}</div>
-          </div>
-          {/* Alternatives */}
-          {alternatives.length > 0 && (
-            <>
-              <button onClick={() => { if (!showAlts) trackEvent('lila_pick_alternatives_viewed', { day_index: dayIndex, category, pick_name: pick.name }); setShowAlts(!showAlts); }} style={{
-                width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 5,
-                padding: '8px 14px', background: `${s.color}04`, border: 'none',
-                borderTop: `1px solid ${s.color}0c`, cursor: 'pointer', WebkitTapHighlightColor: 'transparent',
-              }}>
-                <span style={{ fontFamily: F, fontSize: 10, fontWeight: 600, color: s.color }}>
-                  {showAlts ? 'Hide options' : `${alternatives.length} other option${alternatives.length > 1 ? 's' : ''}`}
-                </span>
-                <Chevron open={showAlts} color={s.color} />
-              </button>
-              <Collapsible open={showAlts}>
-                <div style={{ padding: '0 14px 10px' }}>
-                  {alternatives.map((alt, i) => (
-                    <div key={i} style={{ padding: '8px 0', borderBottom: i < alternatives.length - 1 ? `1px solid ${C.sage}06` : 'none' }}>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: 4, marginBottom: 2 }}>
-                        <LinkedName name={alt.name} url={alt.url} linkType="alternative" style={{ fontFamily: F, fontSize: 14, fontWeight: 600, color: C.slate }} />
-                        {(alt.url || lookupUrl(alt.name)) && <ExternalLinkIcon size={9} color={`${C.sage}35`} />}
-                      </div>
-                      <div style={{ fontFamily: F, fontSize: 12, color: `${C.slate}70`, lineHeight: 1.55 }}>{alt.why}</div>
-                    </div>
-                  ))}
+          <div style={{ padding: '12px 14px', display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 8 }}>
+            <div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginBottom: 4 }}>
+                <span style={{ fontFamily: F, fontSize: 15, fontWeight: 700, color: C.ink }}>{pick.name}</span>
+                {(pick.url || lookupUrl(pick.name)) && <ExternalLinkIcon size={10} color={`${C.sage}40`} />}
+              </div>
+              <div style={{ fontFamily: F, fontSize: 12.5, color: C.body, lineHeight: 1.6 }}>{pick.why}</div>
+              {alternatives.length > 0 && (
+                <div style={{ fontFamily: F, fontSize: 10, fontWeight: 600, color: s.color, marginTop: 8 }}>
+                  +{alternatives.length} other option{alternatives.length > 1 ? 's' : ''}
                 </div>
-              </Collapsible>
-            </>
-          )}
-          {onActivityFeedback && (
-            <div style={{ padding: '6px 14px 10px' }}>
-              <ActivityThumbs id={`day_${dayIndex}_pick_${pickIndex}`} feedback={activityFeedback} onFeedback={onActivityFeedback} />
+              )}
             </div>
-          )}
-        </div>
+            <ArrowRightIcon size={10} color={`${C.sage}50`} />
+          </div>
+        </button>
     </div>
   );
 }
@@ -696,7 +655,7 @@ function DayNote({ dayIndex, feedback, onFeedback, hasActivitySignals }) {
 
 /* ── companion card (teaching + practice recommendations) ──────────────── */
 
-function CompanionCard({ companion, onOpenDetail }) {
+function CompanionCard({ companion, onOpenPanel }) {
   if (!companion) return null;
   const { teaching, practice } = companion;
   if (!teaching && !practice) return null;
@@ -722,7 +681,7 @@ function CompanionCard({ companion, onOpenDetail }) {
 
       {/* Teaching */}
       {teaching && (
-        <button onClick={() => onOpenDetail('teaching', teaching)} style={{
+        <button onClick={() => onOpenPanel({ type: 'teaching', data: teaching, thumbId: 'companion_teaching' })} style={{
           display: 'flex', alignItems: 'flex-start', gap: 11, width: '100%', textAlign: 'left',
           background: 'none', border: 'none', cursor: 'pointer',
           padding: practice ? '0 0 14px' : 0,
@@ -750,7 +709,7 @@ function CompanionCard({ companion, onOpenDetail }) {
 
       {/* Practice */}
       {practice && (
-        <button onClick={() => onOpenDetail('practice', practice)} style={{
+        <button onClick={() => onOpenPanel({ type: 'practice', data: practice, thumbId: 'companion_practice' })} style={{
           display: 'flex', alignItems: 'flex-start', gap: 11, width: '100%', textAlign: 'left',
           background: 'none', border: 'none', cursor: 'pointer',
           padding: teaching ? '14px 0 0' : 0,
@@ -887,60 +846,126 @@ function CompanionPanelContent({ type, data, id, feedback, onFeedback }) {
   );
 }
 
-/* ── SidePanel (desktop ≥ 768px) ──────────────────────────────────────── */
+/* ── DetailPanel (unified side panel / bottom sheet) ───────────────────── */
 
-function SidePanel({ item, onClose, feedback, onFeedback }) {
-  const { type, data } = item;
-  const panelId = `companion_${type}`;
+function DetailPanelContent({ item, activityFeedback, onActivityFeedback }) {
+  if (!item) return null;
+  const { type, data, thumbId } = item;
+
+  // Companion content (teaching / practice)
+  if (type === 'teaching' || type === 'practice') {
+    return <CompanionPanelContent type={type} data={data} id={thumbId} feedback={activityFeedback} onFeedback={onActivityFeedback} />;
+  }
+
+  // Activity content
+  if (type === 'activity') {
+    const dot = WARM_DOT;
+    return (
+      <div style={{ maxWidth: 500, margin: '0 auto', padding: '26px 20px 60px' }}>
+        {/* Time badge */}
+        {data.time && (
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '4px 11px', borderRadius: 7, background: `${dot}0e`, border: `1px solid ${dot}18`, marginBottom: 14 }}>
+            <ClockIcon size={10} color={dot} />
+            <span style={{ fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.08em', color: dot }}>{data.time}</span>
+          </div>
+        )}
+
+        {/* Title */}
+        <h1 style={{ fontFamily: F, fontSize: 'clamp(21px, 6vw, 27px)', fontWeight: 600, color: C.slate, lineHeight: 1.25, marginBottom: 12 }}>{data.title}</h1>
+
+        {/* Summary */}
+        <p style={{ fontFamily: F, fontSize: 14.5, color: `${C.slate}6a`, lineHeight: 1.7, marginBottom: 20 }}>{data.summary}</p>
+
+        {/* Details */}
+        {data.details && (
+          <div style={{ fontFamily: F, fontSize: 13, color: `${C.ink}a8`, lineHeight: 1.7, padding: '6px 0', paddingLeft: 13, borderLeft: `2px solid ${dot}22`, marginBottom: 20 }}>
+            {renderInlineBlock(data.details)}
+          </div>
+        )}
+
+        {/* Learn more link */}
+        {data.url && (
+          <a href={data.url} target="_blank" rel="noopener noreferrer"
+            onClick={() => trackEvent('external_link_clicked', { name: data.title, url: data.url, link_type: 'activity' })}
+            style={{
+              display: 'inline-flex', alignItems: 'center', gap: 5,
+              fontFamily: F, fontSize: 12, fontWeight: 600,
+              color: C.oceanTeal, textDecoration: 'none',
+              padding: '6px 12px',
+              background: `${C.oceanTeal}08`, borderRadius: 8,
+              border: `1px solid ${C.oceanTeal}15`,
+              marginBottom: 20,
+            }}>
+            Learn more <ExternalLinkIcon size={10} color={C.oceanTeal} />
+          </a>
+        )}
+
+        {/* Activity feedback */}
+        <div style={{ marginTop: 16 }}>
+          <ActivityThumbs id={thumbId} feedback={activityFeedback} onFeedback={onActivityFeedback} />
+        </div>
+      </div>
+    );
+  }
+
+  // Pick content (stay / eat / gear / wellness)
+  const s = PICK_STYLES[type] || PICK_STYLES.stay;
+  const alternatives = data.alternatives || [];
 
   return (
-    <>
-      <style>{`
-        @keyframes sidePanelSlideIn { from { transform: translateX(100%); } to { transform: translateX(0); } }
-        @keyframes sidePanelBackdropIn { from { opacity: 0; } to { opacity: 1; } }
-      `}</style>
-
-      {/* Backdrop */}
-      <div onClick={onClose} style={{
-        position: 'fixed', inset: 0, zIndex: 249,
-        background: 'rgba(0,0,0,0.3)',
-        animation: 'sidePanelBackdropIn 0.25s ease',
-      }} />
-
-      {/* Panel */}
-      <div style={{
-        position: 'fixed', top: 0, right: 0, bottom: 0,
-        width: 440, zIndex: 250,
-        background: C.cream, overflowY: 'auto',
-        animation: 'sidePanelSlideIn 0.3s ease',
-        boxShadow: '-4px 0 24px rgba(0,0,0,0.08)',
-      }}>
-        {/* Close button */}
-        <button onClick={onClose} style={{
-          position: 'sticky', top: 0, zIndex: 1,
-          float: 'right', margin: '12px 14px 0 0',
-          width: 32, height: 32,
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          background: `${C.white}90`, border: `1px solid ${C.sage}15`,
-          borderRadius: '50%', cursor: 'pointer',
-          fontFamily: F, fontSize: 15, color: C.sage, lineHeight: 1,
-          WebkitTapHighlightColor: 'transparent',
-        }} aria-label="Close">✕</button>
-
-        <CompanionPanelContent type={type} data={data} id={panelId} feedback={feedback} onFeedback={onFeedback} />
+    <div style={{ maxWidth: 500, margin: '0 auto', padding: '26px 20px 60px' }}>
+      {/* Category badge */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 14 }}>
+        <div style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '4px 11px', borderRadius: 7, background: `${s.color}0e`, border: `1px solid ${s.color}18` }}>
+          <CategoryIcon category={type} color={s.color} size={12} />
+          <span style={{ fontFamily: F, fontSize: 9, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: s.color }}>{s.label}</span>
+        </div>
+        <div style={{ display: 'inline-flex', alignItems: 'center', gap: 4, padding: '3px 8px', borderRadius: 5, border: `1px solid ${s.color}20`, background: `${s.color}04` }}>
+          <LilaStar size={9} color={s.color} />
+          <span style={{ fontFamily: F, fontSize: 8, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: s.color }}>Lila Pick</span>
+        </div>
       </div>
-    </>
+
+      {/* Pick name */}
+      <h1 style={{ fontFamily: F, fontSize: 'clamp(21px, 6vw, 27px)', fontWeight: 600, color: C.slate, lineHeight: 1.25, marginBottom: 6 }}>
+        <LinkedName name={data.name} url={data.url} linkType="pick" style={{ fontFamily: F, fontSize: 'inherit', fontWeight: 'inherit', color: 'inherit' }} />
+        {(data.url || lookupUrl(data.name)) && <> <ExternalLinkIcon size={12} color={`${C.sage}40`} /></>}
+      </h1>
+
+      {/* Why */}
+      <p style={{ fontFamily: F, fontSize: 14.5, color: `${C.slate}6a`, lineHeight: 1.7, marginBottom: 20 }}>{data.why}</p>
+
+      {/* Alternatives listed flat */}
+      {alternatives.length > 0 && (
+        <div style={{ marginBottom: 20 }}>
+          <div style={{ fontFamily: F, fontSize: 9, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: `${C.sage}55`, marginBottom: 10 }}>Other Options</div>
+          {alternatives.map((alt, i) => (
+            <div key={i} style={{ padding: '10px 0', borderBottom: i < alternatives.length - 1 ? `1px solid ${C.sage}08` : 'none' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 4, marginBottom: 2 }}>
+                <LinkedName name={alt.name} url={alt.url} linkType="alternative" style={{ fontFamily: F, fontSize: 14, fontWeight: 600, color: C.slate }} />
+                {(alt.url || lookupUrl(alt.name)) && <ExternalLinkIcon size={9} color={`${C.sage}35`} />}
+              </div>
+              <div style={{ fontFamily: F, fontSize: 12, color: `${C.slate}70`, lineHeight: 1.55 }}>{alt.why}</div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* Activity feedback */}
+      <div style={{ marginTop: 16 }}>
+        <ActivityThumbs id={thumbId} feedback={activityFeedback} onFeedback={onActivityFeedback} />
+      </div>
+    </div>
   );
 }
 
-/* ── BottomSheet (mobile < 768px) ─────────────────────────────────────── */
-
-function BottomSheet({ item, onClose, feedback, onFeedback }) {
-  const { type, data } = item;
-  const panelId = `companion_${type}`;
+function DetailPanel({ item, onClose, activityFeedback, onActivityFeedback }) {
+  const isDesktop = useIsDesktop();
   const sheetRef = useRef(null);
   const dragStartY = useRef(null);
   const dragCurrentY = useRef(0);
+
+  if (!item) return null;
 
   const onTouchStart = (e) => {
     dragStartY.current = e.touches[0].clientY;
@@ -965,6 +990,48 @@ function BottomSheet({ item, onClose, feedback, onFeedback }) {
     dragCurrentY.current = 0;
   };
 
+  if (isDesktop) {
+    return (
+      <>
+        <style>{`
+          @keyframes sidePanelSlideIn { from { transform: translateX(100%); } to { transform: translateX(0); } }
+          @keyframes sidePanelBackdropIn { from { opacity: 0; } to { opacity: 1; } }
+        `}</style>
+
+        {/* Backdrop */}
+        <div onClick={onClose} style={{
+          position: 'fixed', inset: 0, zIndex: 249,
+          background: 'rgba(0,0,0,0.3)',
+          animation: 'sidePanelBackdropIn 0.25s ease',
+        }} />
+
+        {/* Panel */}
+        <div style={{
+          position: 'fixed', top: 0, right: 0, bottom: 0,
+          width: 440, zIndex: 250,
+          background: C.cream, overflowY: 'auto',
+          animation: 'sidePanelSlideIn 0.3s ease',
+          boxShadow: '-4px 0 24px rgba(0,0,0,0.08)',
+        }}>
+          {/* Close button */}
+          <button onClick={onClose} style={{
+            position: 'sticky', top: 0, zIndex: 1,
+            float: 'right', margin: '12px 14px 0 0',
+            width: 32, height: 32,
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            background: `${C.white}90`, border: `1px solid ${C.sage}15`,
+            borderRadius: '50%', cursor: 'pointer',
+            fontFamily: F, fontSize: 15, color: C.sage, lineHeight: 1,
+            WebkitTapHighlightColor: 'transparent',
+          }} aria-label="Close">✕</button>
+
+          <DetailPanelContent item={item} activityFeedback={activityFeedback} onActivityFeedback={onActivityFeedback} />
+        </div>
+      </>
+    );
+  }
+
+  // Mobile: bottom sheet
   return (
     <>
       <style>{`
@@ -1016,7 +1083,7 @@ function BottomSheet({ item, onClose, feedback, onFeedback }) {
 
         {/* Scrollable content */}
         <div style={{ overflowY: 'auto', flex: 1, WebkitOverflowScrolling: 'touch' }}>
-          <CompanionPanelContent type={type} data={data} id={panelId} feedback={feedback} onFeedback={onFeedback} />
+          <DetailPanelContent item={item} activityFeedback={activityFeedback} onActivityFeedback={onActivityFeedback} />
         </div>
       </div>
     </>
@@ -1025,7 +1092,7 @@ function BottomSheet({ item, onClose, feedback, onFeedback }) {
 
 /* ── day card ──────────────────────────────────────────────────────────── */
 
-function DayCard({ day, dayIndex = 0, feedback, onFeedback, onOpenCompanionDetail, activityFeedback, onActivityFeedback }) {
+function DayCard({ day, dayIndex = 0, feedback, onFeedback, onOpenPanel, activityFeedback, onActivityFeedback }) {
   const [open, setOpen] = useState(true);
   const color = DAY_COLORS[dayIndex % DAY_COLORS.length];
   const hasCompanion = day.companion && (day.companion.teaching || day.companion.practice);
@@ -1092,7 +1159,7 @@ function DayCard({ day, dayIndex = 0, feedback, onFeedback, onOpenCompanionDetai
               <TimelineBlock key={i} time={b.time} title={b.title} summary={b.summary}
                 details={b.details} timeOfDay={b.timeOfDay} url={b.url} dayIndex={dayIndex}
                 itemIndex={i} isLast={i === day.timeline.length - 1}
-                activityFeedback={activityFeedback} onActivityFeedback={onActivityFeedback} />
+                onOpenPanel={onOpenPanel} />
             ))}
           </div>
 
@@ -1114,13 +1181,13 @@ function DayCard({ day, dayIndex = 0, feedback, onFeedback, onOpenCompanionDetai
                 <div style={{ fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: C.sage, marginBottom: 14 }}>Recommendations</div>
 
                 {hasCompanion && (
-                  <CompanionCard companion={day.companion} onOpenDetail={onOpenCompanionDetail} />
+                  <CompanionCard companion={day.companion} onOpenPanel={onOpenPanel} />
                 )}
 
                 {day.picks && day.picks.map((p, i) => (
                   <InlinePick key={i} category={p.category} pick={p.pick} dayIndex={dayIndex}
                     pickIndex={i} alternatives={p.alternatives || []} isLast={i === day.picks.length - 1}
-                    activityFeedback={activityFeedback} onActivityFeedback={onActivityFeedback} />
+                    onOpenPanel={onOpenPanel} />
                 ))}
               </div>
             </>
@@ -1557,16 +1624,15 @@ export default function ItineraryResults() {
   // First draft modal state
   const [hasSeenDraftModal, setHasSeenDraftModal] = useState(false);
 
-  // Companion detail overlay state
-  const [companionDetail, setCompanionDetail] = useState(null); // { type, data }
-  const isDesktop = useIsDesktop();
+  // Detail panel state — unified for activities, picks, and companion cards
+  const [activePanel, setActivePanel] = useState(null); // { type, data, thumbId }
 
-  // Lock body scroll when companion panel is open
+  // Lock body scroll when panel is open
   useEffect(() => {
-    if (companionDetail) document.body.style.overflow = 'hidden';
+    if (activePanel) document.body.style.overflow = 'hidden';
     else document.body.style.overflow = '';
     return () => { document.body.style.overflow = ''; };
-  }, [companionDetail]);
+  }, [activePanel]);
 
   useEffect(() => {
     if (!rawItinerary) { navigate('/plan'); return; }
@@ -1750,11 +1816,9 @@ export default function ItineraryResults() {
         <FirstDraftModal onClose={() => setHasSeenDraftModal(true)} />
       )}
 
-      {/* Companion detail panel */}
-      {companionDetail && (isDesktop
-        ? <SidePanel item={companionDetail} onClose={() => setCompanionDetail(null)} feedback={activityFeedback} onFeedback={handleActivityFeedback} />
-        : <BottomSheet item={companionDetail} onClose={() => setCompanionDetail(null)} feedback={activityFeedback} onFeedback={handleActivityFeedback} />
-      )}
+      {/* Detail panel */}
+      <DetailPanel item={activePanel} onClose={() => setActivePanel(null)}
+        activityFeedback={activityFeedback} onActivityFeedback={handleActivityFeedback} />
 
       {/* Header */}
       <div style={{
@@ -1815,9 +1879,9 @@ export default function ItineraryResults() {
               <div key={i} ref={el => dayRefs.current[i] = el} style={{ scrollMarginTop: 60 }}>
                 <DayCard day={day} dayIndex={i} feedback={dayFeedback[i]} onFeedback={handleDayFeedback}
                   activityFeedback={activityFeedback} onActivityFeedback={handleActivityFeedback}
-                  onOpenCompanionDetail={(type, data) => {
-                    trackEvent('companion_detail_opened', { type, title: data?.title, day_index: i });
-                    setCompanionDetail({ type, data });
+                  onOpenPanel={(panelItem) => {
+                    trackEvent('panel_opened', { type: panelItem.type, title: panelItem.data?.title || panelItem.data?.name });
+                    setActivePanel(panelItem);
                   }} />
               </div>
             ))}
