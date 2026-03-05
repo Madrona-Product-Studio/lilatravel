@@ -1745,14 +1745,34 @@ export default function ZionGuide() {
                   url="https://flanigans.com/"
                   detail="Park lodge with Deep Canyon Spa, Spotted Dog restaurant, and hillside yoga. Best wellness integration in town."
                   tags={["Spa", "Restaurant", "Yoga"]} />
-                <StayItem isMobile={isMobile} tier="rooted" name="Skyview Hotel" location="Torrey, UT"
-                  url="https://skyviewhotel.com/"
-                  detail={"14 rooms and 6 glamping domes near Capitol Reef. Rooftop stargazing in Utah's first Dark Sky community."}
-                  tags={["Dark Sky", "Glamping Domes", "Boutique"]} />
                 <StayItem isMobile={isMobile} tier="premium" name="The Inn at Entrada" location="St. George, UT"
                   url="https://www.innatentrada.com/"
                   detail="Luxury casitas near Snow Canyon. Red rock panoramas, championship golf, full-service spa."
                   tags={["Casitas", "Golf", "Spa"]} />
+
+                {/* ── Bryce Canyon Stay ──────────────────────────── */}
+                <StayItem isMobile={isMobile} tier="rooted" name="The Lodge at Bryce Canyon" location="Inside Bryce Canyon NP" featured
+                  url="https://www.visitbrycecanyon.com/lodging/the-lodge-at-bryce-canyon"
+                  detail="The only lodging inside the park. Historic 1920s lodge with western cabins (gas fireplaces, private porches), motel rooms with canyon balconies, and no TV or WiFi by design. Steps from the rim and the trailheads."
+                  tags={["Inside the Park", "Historic Lodge", "Cabins", "Rim Access"]} />
+                <StayItem isMobile={isMobile} tier="premium" name="Clear Sky Resorts" location="Cannonville, UT" featured
+                  url="https://brycecanyon.clearskyresorts.com/"
+                  detail="Geodesic Sky Domes with panoramic glass walls for unobstructed stargazing from your bed. Private canyon on Scenic Byway 12, 15 minutes from the park. One of the best astrotourism stays in the country."
+                  tags={["Dark Sky", "Geodesic Domes", "Byway 12", "Stargazing"]} />
+                <StayItem isMobile={isMobile} tier="rooted" name="Stone Canyon Inn" location="Tropic, UT"
+                  url="https://www.stonecanyoninn.com/"
+                  detail="Boutique lodge 6 miles from Bryce with sweeping canyon views from every cottage. Award-winning service, no two rooms alike. A quiet, beautifully situated base."
+                  tags={["Boutique", "Canyon Views", "Cottages"]} />
+
+                {/* ── Capitol Reef Stay ──────────────────────────── */}
+                <StayItem isMobile={isMobile} tier="premium" name="Capitol Reef Resort" location="Torrey, UT" featured
+                  url="https://capitolreefresort.com/"
+                  detail="58 acres one mile from the park entrance. Luxury cabins with red cliff views, spa bathrooms, and private verandas. Glamping options include teepees and Conestoga wagons. On-site restaurant, pool, and llama hikes."
+                  tags={["1 Mile to Park", "Luxury Cabins", "Glamping", "Pool"]} />
+                <StayItem isMobile={isMobile} tier="rooted" name="Skyview Hotel" location="Torrey, UT"
+                  url="https://skyviewhotel.com/"
+                  detail="14 rooms and 6 glamping domes in Utah's first Dark Sky designated community. Rooftop stargazing, minimalist design, and a genuinely remote feel. The best boutique option in Torrey."
+                  tags={["Dark Sky", "Glamping Domes", "Boutique", "Rooftop Stargazing"]} />
               </ExpandableList>
             </FadeIn>
           </section>
@@ -1818,6 +1838,42 @@ export default function ZionGuide() {
                 <ListItem isMobile={isMobile} name="Scenic Drive to Capitol Reef"
                   detail="The 2.5-hour drive via Highway 12 is one of the most beautiful roads in America. Make it the journey, not the commute."
                   tags={["Scenic Drive", "Half Day", "Highway 12"]} />
+
+                {/* ── Bryce Canyon Trails ──────────────────────────── */}
+                <ListItem isMobile={isMobile} name="Navajo Loop Trail" location="Bryce Canyon NP" featured
+                  url="https://www.nps.gov/brca/planyourvisit/navajo-loop-trail.htm"
+                  detail="Drops you into the amphitheater via Wall Street — a narrow slot between hoodoos that blocks the sky. The most visceral way to enter Bryce. Combine with Queen's Garden for the best loop in the park."
+                  tags={["1.4 mi RT", "Moderate", "Hoodoos", "1.5 hrs from Zion"]} />
+                <ListItem isMobile={isMobile} name="Fairyland Loop" location="Bryce Canyon NP" featured
+                  url="https://www.nps.gov/brca/planyourvisit/fairyland-loop-trail.htm"
+                  detail="The park's most rewarding full-day hike. Ridge walks, dense hoodoo forests, Tower Bridge arch, and views of the surrounding valley in every direction. Far fewer people than the main amphitheater trails."
+                  tags={["7.8 mi Loop", "Strenuous", "1,545 ft gain", "Full Day"]} />
+                <ListItem isMobile={isMobile} name="Bristlecone Loop" location="Bryce Canyon NP"
+                  url="https://www.nps.gov/brca/planyourvisit/bristlecone-loop-trail.htm"
+                  detail="High-elevation loop through ancient bristlecone pines — some over 1,600 years old. Quiet, meditative, otherworldly. Best panoramic views in the park from Rainbow Point at 9,115 feet."
+                  tags={["1 mi Loop", "Easy", "9,115 ft", "Rainbow Point"]} />
+                <ListItem isMobile={isMobile} name="Mossy Cave Trail" location="Bryce Canyon NP"
+                  url="https://www.nps.gov/brca/planyourvisit/mossycave.htm"
+                  detail="Off the beaten path on the east side of the park. Follows Water Canyon past hoodoos and arches to a small waterfall and ice-filled grotto. Outside the fee station — no park pass needed."
+                  tags={["1 mi RT", "Easy", "Waterfall", "No Fee"]} />
+
+                {/* ── Capitol Reef Trails ──────────────────────────── */}
+                <ListItem isMobile={isMobile} name="Hickman Bridge Trail" location="Capitol Reef NP" featured
+                  url="https://www.nps.gov/care/planyourvisit/hickman-bridge.htm"
+                  detail="The park's signature hike. Follows the Fremont River then climbs to a 133-foot natural bridge with a 360-foot drop to the canyon below. Passes ancient Fremont granaries and a pit house ruin on the way up."
+                  tags={["1.8 mi RT", "Moderate", "Natural Bridge", "Fremont Ruins"]} />
+                <ListItem isMobile={isMobile} name="Navajo Knobs Trail" location="Capitol Reef NP" featured
+                  url="https://www.nps.gov/care/planyourvisit/navajoknobbstrail.htm"
+                  detail="The park's finest dayhike. Starts at the Hickman Bridge trailhead and climbs to 360-degree views at 6,979 feet — the Waterpocket Fold, the Henry Mountains, and formations like Pectols Pyramid spread out below. Almost no one does it."
+                  tags={["9.4 mi RT", "Strenuous", "1,620 ft gain", "Best Views"]} />
+                <ListItem isMobile={isMobile} name="Cohab Canyon Trail" location="Capitol Reef NP"
+                  url="https://www.nps.gov/care/planyourvisit/cohabcanyontrail.htm"
+                  detail="Steep switchbacks climb to sweeping aerial views over Fruita, the orchard, and the Waterpocket Fold. The hidden slot canyons tucked into the walls reward anyone who wanders off the main path."
+                  tags={["3.4 mi RT", "Moderate", "Canyon Views", "Fruita Overlook"]} />
+                <ListItem isMobile={isMobile} name="Grand Wash Trail" location="Capitol Reef NP"
+                  url="https://www.nps.gov/care/planyourvisit/grandwash.htm"
+                  detail="A flat walk through the Waterpocket Fold between canyon walls that press to shoulder-width at the Narrows. Connects to the Cassidy Arch Trail for a longer loop. The easiest way to feel the scale of Capitol Reef."
+                  tags={["4.5 mi RT", "Easy", "Slot Canyon", "Connects to Cassidy Arch"]} />
               </ExpandableList>
             </FadeIn>
           </section>
@@ -1833,7 +1889,7 @@ export default function ZionGuide() {
               <SectionIcon type="breathe" />
               <SectionLabel>Breathe</SectionLabel>
               <SectionTitle>{"Yoga, spa & wellness"}</SectionTitle>
-              <SectionSub isMobile={isMobile}>{"Slow down. The canyon holds space for stillness just as powerfully as it holds space for adventure."}</SectionSub>
+              <SectionSub isMobile={isMobile}>{"Slow down. The canyon holds space for stillness just as powerfully as it holds space for adventure. As you move through the corridor, Bryce's high-plateau silence and Capitol Reef's near-total solitude become their own practice — no studio required."}</SectionSub>
             </FadeIn>
             <FadeIn delay={0.08}>
               <ExpandableList initialCount={6} label="wellness options">
@@ -2020,6 +2076,26 @@ export default function ZionGuide() {
                 <ListItem isMobile={isMobile} name="Parowan Gap Petroglyphs"
                   detail={"A free, open-air gallery of ancient rock art attributed to the Fremont people, near Cedar City. Hundreds of petroglyphs etched into the canyon walls — a contemplative stop that asks nothing but attention."}
                   tags={["Free", "Ancient Rock Art", "Self-Guided", "Cedar City"]} />
+
+                {/* ── Bryce Canyon Area Food ──────────────────────── */}
+                <ListItem isMobile={isMobile} name="The Lodge at Bryce Canyon Restaurant" location="Inside Bryce Canyon NP" featured
+                  url="https://www.visitbrycecanyon.com/dining"
+                  detail="High-beam ceilings, stone fireplace, towering pines outside the windows. Elk chili, buffalo sirloin, almond-crusted trout using organic and sustainable ingredients. Open April–November. The most atmospheric dining room in the corridor."
+                  tags={["Dinner", "Inside the Park", "Sustainable", "Apr–Nov", "$–$$"]} />
+                <ListItem isMobile={isMobile} name="Bryce Canyon Pines Restaurant" location="Hwy 12, near Bryce"
+                  url="https://www.brycecanyonmotel.com/"
+                  detail="A beloved Utah roadside institution. Hearty breakfasts, elk burgers, rib-eyes, rainbow trout — and homemade pie in more flavors than you can count. The top draw for a reason."
+                  tags={["Breakfast", "Dinner", "Pie", "Classic", "$–$"]} />
+
+                {/* ── Capitol Reef / Torrey Food ──────────────────── */}
+                <ListItem isMobile={isMobile} name="Hell's Backbone Grill & Farm" location="Boulder, UT" featured
+                  url="https://www.hellsbackbonegrill.com/"
+                  detail="The most celebrated restaurant between Zion and Moab, on Scenic Byway 12 in Boulder. Chef-owners Jen Castle and Blake Spalding follow Buddhist principles of sustainability — organic farm on-site, James Beard semifinalist since 2017. Worth the detour. Seasonal: mid-March through November."
+                  tags={["Farm-to-Table", "James Beard", "Boulder", "Byway 12", "Seasonal", "$–$$"]} />
+                <ListItem isMobile={isMobile} name="Fruita Orchards at Capitol Reef" location="Capitol Reef NP" featured
+                  url="https://www.nps.gov/care/planyourvisit/fruita.htm"
+                  detail="The park's historic orchard — apricot, cherry, peach, pear, apple — is still harvested by visitors in season. Walk in, pick fruit off the tree, pay by the pound. One of the most quietly extraordinary things you can do in any national park."
+                  tags={["Free to Enter", "U-Pick", "In-Season", "Historic"]} />
               </ExpandableList>
             </FadeIn>
           </section>
