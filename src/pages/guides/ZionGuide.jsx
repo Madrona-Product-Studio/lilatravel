@@ -965,13 +965,13 @@ function CelestialDrawer({ isMobile }) {
           </span>
         )}
         <span style={{
-          fontFamily: "'Quicksand', sans-serif",
-          fontSize: 10, fontWeight: 600,
-          color: open ? C.oceanTeal : "#b8b0a8",
-          letterSpacing: "0.1em",
-          transition: "color 0.3s ease",
-          marginLeft: 4, flexShrink: 0,
-        }}>{open ? "▲ Close" : "▾"}</span>
+          fontSize: 14,
+          color: "#b8b0a8",
+          transition: "color 0.3s ease, transform 0.35s ease",
+          marginLeft: 6, flexShrink: 0,
+          display: "inline-block",
+          lineHeight: 1,
+        }}>{open ? "✕" : "▾"}</span>
       </button>
 
       {/* Expandable content */}
@@ -989,8 +989,7 @@ function CelestialDrawer({ isMobile }) {
             display: "grid",
             gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : "repeat(3, 1fr)",
             gap: isMobile ? "20px 24px" : "24px 40px",
-            paddingBottom: 20,
-            borderBottom: `1px solid ${C.stone}`,
+            paddingBottom: 0,
           }}>
             {weather && (
               <div>
