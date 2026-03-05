@@ -885,8 +885,10 @@ function CelestialDrawer({ isMobile }) {
   const { weather, sun, moon, sky, river, nextEvent, alerts } = data;
   const riverColors = { low: C.seaGlass, moderate: C.skyBlue, high: C.goldenAmber, dangerous: C.sunSalmon };
 
+  const NAV_HEIGHT = isMobile ? 58 : 64;
+
   return (
-    <div style={{ background: C.darkInk }}>
+    <div style={{ background: C.darkInk, paddingTop: NAV_HEIGHT }}>
       {/* Trigger bar */}
       <button
         onClick={() => setOpen(!open)}
@@ -1173,7 +1175,7 @@ export default function ZionGuide() {
       <CelestialDrawer isMobile={isMobile} />
 
       {/* ══ TITLE MASTHEAD ═══════════════════════════════════════════════════ */}
-      <section style={{ background: C.cream, paddingTop: 24 }}>
+      <section style={{ background: C.cream }}>
         <div style={{ padding: isMobile ? "28px 20px 24px" : "44px 52px 40px", maxWidth: 920, margin: "0 auto" }}>
           <FadeIn from="bottom" delay={0.1}>
 
