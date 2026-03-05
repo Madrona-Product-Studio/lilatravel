@@ -195,7 +195,7 @@ function DestCarousel() {
           {d.photo ? (
             <img src={d.photo} alt={d.name} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }} />
           ) : (
-            <div style={{ width: "100%", height: "100%", minHeight: 200, background: d.gradient }} />
+            <div style={{ width: "100%", height: "100%", minHeight: 200, background: d.gradient, filter: "brightness(0.65)" }} />
           )}
           <div style={{ position: "absolute", bottom: 16, left: 0, right: 0, display: "flex", justifyContent: "center", gap: 8, zIndex: 2 }}>
             {destinations.map((_, i) => (
@@ -748,8 +748,7 @@ export default function HomePage() {
           position: relative;
           overflow: hidden;
           display: block;
-          text-decoration: none;
-          cursor: pointer;
+          cursor: default;
         }
         .bento-tile img {
           width: 100%;
@@ -811,9 +810,8 @@ export default function HomePage() {
               }).map((d, i) => {
                 const isHero = i < 2; // first two after sort are the hero tiles
                 return (
-                  <Link
+                  <div
                     key={d.slug}
-                    to={`/destinations/${d.slug}`}
                     className="bento-tile"
                     style={{
                       gridColumn: isHero ? "span 1" : "span 1",
@@ -823,7 +821,7 @@ export default function HomePage() {
                     {d.photo ? (
                       <img src={d.photo} alt={d.name} />
                     ) : (
-                      <div style={{ width: "100%", height: "100%", background: d.gradient }} />
+                      <div style={{ width: "100%", height: "100%", background: d.gradient, filter: "brightness(0.65)" }} />
                     )}
                     <div className="bento-overlay" />
                     <div style={{
@@ -889,7 +887,7 @@ export default function HomePage() {
                         fontFamily: "'Cormorant Garamond', serif",
                         fontSize: isHero ? "clamp(28px, 4vw, 42px)" : "clamp(22px, 3vw, 30px)",
                         fontWeight: 300, color: "white", lineHeight: 1.1, marginBottom: 4,
-                      }}>{d.name}</h3>
+                      }}>{d.slug === 'zion-canyon' ? 'Zion & Orbit' : d.name}</h3>
                       <p style={{
                         fontFamily: "'Quicksand'", fontSize: 10, fontWeight: 600,
                         letterSpacing: "0.18em", textTransform: "uppercase",
@@ -903,7 +901,7 @@ export default function HomePage() {
                         }}>{d.description}</p>
                       </div>
                     </div>
-                  </Link>
+                  </div>
                 );
               })}
             </div>
@@ -969,7 +967,7 @@ export default function HomePage() {
                 icon: "◎\uFE0E", label: "Plan a Trip", color: C.oceanTeal,
                 title: "Trip Planner",
                 desc: "Turn your favorites into a day-by-day itinerary with booking links, permit timing, and offline access.",
-                cta: "Unlock — $39", ctaLink: "/plan",
+                cta: "Start Free", ctaLink: "/plan",
                 detail: "One-time purchase · Offline access",
               },
               {
@@ -978,6 +976,7 @@ export default function HomePage() {
                 desc: "Small group journeys timed to equinoxes, solstices, and natural crescendos. Guided, curated, eight travelers maximum.",
                 cta: "View Trips", ctaLink: "/group-trips",
                 detail: "From $895 per person",
+                comingSoon: true,
               },
               {
                 icon: "△\uFE0E", label: "Designed for You", color: C.goldenAmber,
@@ -985,6 +984,7 @@ export default function HomePage() {
                 desc: "Tell us your dates, group, and vibe. A real person builds a complete itinerary around your trip.",
                 cta: "Start — From $199", ctaLink: "/contact",
                 detail: "Personalized · Human-crafted",
+                comingSoon: true,
               },
             ].map((o, i) => (
               <FadeIn key={o.label} delay={i * 0.08}>
@@ -1005,11 +1005,21 @@ export default function HomePage() {
                     color: o.color, display: "block", marginBottom: 12,
                   }}>{o.label}</span>
 
-                  <h3 style={{
-                    fontFamily: "'Cormorant Garamond', serif",
-                    fontSize: 26, fontWeight: 400, color: C.darkInk,
-                    lineHeight: 1.2, marginBottom: 16,
-                  }}>{o.title}</h3>
+                  <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
+                    <h3 style={{
+                      fontFamily: "'Cormorant Garamond', serif",
+                      fontSize: 26, fontWeight: 400, color: C.darkInk,
+                      lineHeight: 1.2, margin: 0,
+                    }}>{o.title}</h3>
+                    {o.comingSoon && (
+                      <span style={{
+                        fontFamily: "'Quicksand'", fontSize: 9, fontWeight: 700,
+                        letterSpacing: "0.12em", textTransform: "uppercase",
+                        color: C.sage, background: `${C.sage}12`,
+                        padding: "4px 10px", borderRadius: 2, whiteSpace: "nowrap",
+                      }}>Coming Soon</span>
+                    )}
+                  </div>
 
                   <p className="offering-desc" style={{
                     fontFamily: "'Quicksand', sans-serif",
