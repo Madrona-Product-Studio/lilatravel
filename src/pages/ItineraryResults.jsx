@@ -84,7 +84,7 @@ const TRADITION_GLYPHS = {
 const Chevron = ({ open, color = C.sage }) => (
   <svg width="14" height="14" viewBox="0 0 16 16" fill="none"
     stroke={color} strokeWidth="1.5" strokeLinecap="round"
-    style={{ transform: open ? 'rotate(180deg)' : 'rotate(0)', transition: 'transform 0.35s ease', flexShrink: 0 }}>
+    style={{ transform: open ? 'rotate(180deg)' : 'rotate(-90deg)', transition: 'transform 0.35s ease', flexShrink: 0 }}>
     <polyline points="4.5,6 8,9.5 11.5,6" />
   </svg>
 );
@@ -1979,7 +1979,6 @@ function DayCard({ day, dayIndex = 0, onOpenPanel, activityFeedback, onActivityF
         fontFamily: F, fontSize: 9, fontWeight: 600,
         letterSpacing: '0.12em', textTransform: 'uppercase',
         color: C.teal, padding: '10px 18px 0',
-        borderTop: `1px solid ${C.border}`,
       }}>Mindfulness Practice</div>}
       {day.companion && (day.companion.teaching || day.companion.practice) && [
         day.companion.teaching && { type: 'teaching', data: day.companion.teaching, Icon: TeachingIcon, label: 'Teaching', title: day.companion.teaching.title },
@@ -1998,7 +1997,6 @@ function DayCard({ day, dayIndex = 0, onOpenPanel, activityFeedback, onActivityF
           style={{
             display: 'flex', alignItems: 'flex-start', gap: 10,
             padding: '9px 18px 5px',
-            borderTop: `1px solid ${C.border}`,
             cursor: 'pointer',
             background: `${C.teal}06`,
             transition: 'background 0.2s',
