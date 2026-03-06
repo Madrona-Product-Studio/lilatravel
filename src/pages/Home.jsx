@@ -14,6 +14,72 @@ import { trackEvent } from '@utils/analytics';
 
 
 // ─── Shooting Stars ────────────────────────────────────────────────────────
+
+function FeatureStar({ s }) {
+  const canvasRef = useRef(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+
+    const grad = ctx.createLinearGradient(
+      s.ox + s.tip.x, s.oy + s.tip.y,
+      s.ox + s.tx,    s.oy + s.ty
+    );
+    grad.addColorStop(0,    'rgba(255,255,253,0.95)');
+    grad.addColorStop(0.15, 'rgba(245,248,255,0.75)');
+    grad.addColorStop(0.45, 'rgba(230,238,255,0.28)');
+    grad.addColorStop(0.80, 'rgba(215,230,255,0.07)');
+    grad.addColorStop(1,    'rgba(200,220,255,0.00)');
+
+    ctx.beginPath();
+    ctx.moveTo(s.ox + s.tip.x,   s.oy + s.tip.y);
+    ctx.lineTo(s.ox + s.baseA.x, s.oy + s.baseA.y);
+    ctx.lineTo(s.ox + s.baseB.x, s.oy + s.baseB.y);
+    ctx.closePath();
+    ctx.fillStyle = grad;
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.arc(s.ox + s.tip.x, s.oy + s.tip.y, 1.5, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(255,255,255,0.98)';
+    ctx.fill();
+  }, [s]);
+
+  const kf = `shoot-move-${s.id}`;
+
+  return (
+    <div style={{
+      position: 'absolute',
+      top: `${s.top}%`,
+      left: `${s.left}%`,
+      animation: `${kf} ${s.duration}s cubic-bezier(0.15, 0.05, 0.45, 1) forwards`,
+    }}>
+      <style>{`
+        @keyframes ${kf} {
+          0%   { transform: translate(0,0); opacity: 0; }
+          5%   { opacity: 1; }
+          72%  { opacity: 0.85; }
+          92%  { opacity: 0; }
+          100% { transform: translate(${s.dx}px, ${s.dy}px); opacity: 0; }
+        }
+      `}</style>
+      <canvas
+        ref={canvasRef}
+        width={s.cw}
+        height={s.ch}
+        style={{
+          position: 'absolute',
+          top: `${s.oy * -1 + s.tip.y}px`,
+          left: `${s.ox * -1 + s.tip.x}px`,
+          pointerEvents: 'none',
+        }}
+      />
+    </div>
+  );
+}
+
 function ShootingStars({ opacity }) {
   const [stars, setStars] = useState([]);
   const idRef = useRef(0);
@@ -25,26 +91,45 @@ function ShootingStars({ opacity }) {
     const id = idRef.current++;
 
     if (feature) {
-      // Classic long-arc shooting star — sweeps across a huge portion of the sky
       const goRight = Math.random() > 0.5;
-      const baseAngle = (-15 + Math.random() * 30) * (Math.PI / 180); // very shallow
+      const baseAngle = (-12 + Math.random() * 24) * (Math.PI / 180);
       const angle = (goRight ? 0 : Math.PI) + baseAngle;
-      const speed = 600 + Math.random() * 300; // much farther
+      const speed = 560 + Math.random() * 260;
       const dx = Math.cos(angle) * speed;
-      const dy = Math.sin(angle) * speed + Math.abs(speed * 0.08);
-      const duration = 1.4 + Math.random() * 0.6; // longer, more dramatic
-      const trailAngle = Math.atan2(dy, dx) * (180 / Math.PI) + 180;
+      const dy = Math.sin(angle) * speed + Math.abs(speed * 0.07);
+      const duration = (1.5 + Math.random() * 0.7) * 0.72;
+      const travelAngle = Math.atan2(dy, dx) * (180 / Math.PI);
+      const top = 8 + Math.random() * 22;
+      const left = goRight ? (Math.random() * 23 + 5) : (Math.random() * 23 + 55);
+
+      const tailAngle = (travelAngle + 180) * (Math.PI / 180);
+      const trailLen = 85;
+      const spread = 1.8;
+      const tx = Math.cos(tailAngle) * trailLen;
+      const ty = Math.sin(tailAngle) * trailLen;
+      const perpAngle = tailAngle + Math.PI / 2;
+      const px = Math.cos(perpAngle) * spread;
+      const py = Math.sin(perpAngle) * spread;
+
+      const tip   = { x: 0,       y: 0       };
+      const baseA = { x: tx + px, y: ty + py };
+      const baseB = { x: tx - px, y: ty - py };
+
+      const allX = [tip.x, baseA.x, baseB.x];
+      const allY = [tip.y, baseA.y, baseB.y];
+      const minX = Math.min(...allX) - 4;
+      const minY = Math.min(...allY) - 4;
+      const maxX = Math.max(...allX) + 4;
+      const maxY = Math.max(...allY) + 4;
+      const cw = Math.ceil(maxX - minX);
+      const ch = Math.ceil(maxY - minY);
+      const ox = -minX;
+      const oy = -minY;
 
       setStars(prev => [...prev, {
-        id,
-        top: 8 + Math.random() * 25,
-        left: goRight ? (Math.random() * 30 + 5) : (Math.random() * 30 + 55),
-        dx, dy, duration,
-        size: 2.5,
-        peak: 1,
-        trailAngle,
-        trailLength: 70,
-        intensity: 1,
+        id, top, left, dx, dy, duration,
+        cw, ch, ox, oy,
+        tip, baseA, baseB, tx, ty,
         isFeature: true,
       }]);
 
@@ -116,50 +201,53 @@ function ShootingStars({ opacity }) {
 
   return (
     <div style={{ position: "absolute", inset: 0, overflow: "hidden", opacity: Math.min(opacity * 4, 1), pointerEvents: "none", zIndex: 1 }}>
-      {stars.map(s => (
-        <div key={s.id} style={{
-          position: "absolute",
-          top: `${s.top}%`,
-          left: `${s.left}%`,
-          animation: `shoot-move-${s.id} ${s.duration}s ease-out forwards`,
-        }}>
-          <style>{`
-            @keyframes shoot-move-${s.id} {
-              0% { transform: translate(0,0); opacity: 0; }
-              5% { opacity: ${s.peak * 0.5}; }
-              15% { opacity: ${s.peak}; }
-              50% { opacity: ${s.peak * 0.6}; }
-              85% { opacity: ${s.peak * 0.15}; }
-              100% { transform: translate(${s.dx}px, ${s.dy}px); opacity: 0; }
-            }
-          `}</style>
-          {/* Head */}
-          <div style={{
-            width: s.isFeature ? 3 : s.size,
-            height: s.isFeature ? 3 : s.size,
-            borderRadius: "50%",
-            background: "white",
-            boxShadow: s.isFeature
-              ? "0 0 8px 3px rgba(255,255,255,0.7)"
-              : s.intensity > 0.8
-              ? "0 0 4px 1px rgba(255,255,255,0.5)"
-              : "0 0 2px rgba(255,255,255,0.3)",
-          }} />
-          {/* Trail */}
-          <div style={{
+      {stars.map(s => {
+        if (s.isFeature) {
+          return (
+            <FeatureStar key={s.id} s={s} />
+          );
+        }
+        return (
+          <div key={s.id} style={{
             position: "absolute",
-            top: (s.isFeature ? 3 : s.size) / 2,
-            left: (s.isFeature ? 3 : s.size) / 2,
-            width: s.trailLength,
-            height: s.isFeature ? 1.5 : 1,
-            background: s.isFeature
-              ? "linear-gradient(to left, rgba(255,255,255,0.7), rgba(255,255,255,0.2) 60%, transparent)"
-              : "linear-gradient(to left, rgba(255,255,255,0.5), transparent)",
-            transformOrigin: "0 0",
-            transform: `rotate(${s.trailAngle}deg)`,
-          }} />
-        </div>
-      ))}
+            top: `${s.top}%`,
+            left: `${s.left}%`,
+            animation: `shoot-move-${s.id} ${s.duration}s ease-out forwards`,
+          }}>
+            <style>{`
+              @keyframes shoot-move-${s.id} {
+                0% { transform: translate(0,0); opacity: 0; }
+                5% { opacity: ${s.peak * 0.5}; }
+                15% { opacity: ${s.peak}; }
+                50% { opacity: ${s.peak * 0.6}; }
+                85% { opacity: ${s.peak * 0.15}; }
+                100% { transform: translate(${s.dx}px, ${s.dy}px); opacity: 0; }
+              }
+            `}</style>
+            {/* Head */}
+            <div style={{
+              width: s.size,
+              height: s.size,
+              borderRadius: "50%",
+              background: "white",
+              boxShadow: s.intensity > 0.8
+                ? "0 0 4px 1px rgba(255,255,255,0.5)"
+                : "0 0 2px rgba(255,255,255,0.3)",
+            }} />
+            {/* Trail */}
+            <div style={{
+              position: "absolute",
+              top: s.size / 2,
+              left: s.size / 2,
+              width: s.trailLength,
+              height: 1,
+              background: "linear-gradient(to left, rgba(255,255,255,0.5), transparent)",
+              transformOrigin: "0 0",
+              transform: `rotate(${s.trailAngle}deg)`,
+            }} />
+          </div>
+        );
+      })}
     </div>
   );
 }
