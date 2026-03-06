@@ -2690,6 +2690,7 @@ export default function ItineraryResults() {
 
   // Hydrate from Supabase when accessed via a share link (/trip/:token)
   useEffect(() => {
+    console.log('[SharedTrip] effect fired', { shareToken, rawItinerary: !!rawItinerary });
     if (!shareToken || rawItinerary) return;
     (async () => {
       try {
@@ -2698,11 +2699,13 @@ export default function ItineraryResults() {
           .select('id, raw_itinerary, destination, session_id, sessions(form_data)')
           .eq('share_token', shareToken)
           .single();
-        if (error || !data) { navigate('/plan'); return; }
+        console.log('[SharedTrip] supabase result', { data, error });
+        if (error || !data) { console.log('[SharedTrip] redirecting to /plan — error or no data'); navigate('/plan'); return; }
         setRawItinerary(data.raw_itinerary);
         setFormData(data.sessions?.form_data || null);
         setItineraryId(data.id);
-      } catch {
+      } catch (e) {
+        console.log('[SharedTrip] redirecting to /plan — caught exception', e);
         navigate('/plan');
       } finally {
         setLoadingShared(false);
