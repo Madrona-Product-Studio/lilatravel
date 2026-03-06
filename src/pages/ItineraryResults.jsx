@@ -1609,9 +1609,77 @@ function LogisticsPanel({ destination, sticky = true }) {
   );
 }
 
+/* ── day feedback strip ────────────────────────────────────────────────── */
+
+function DayFeedbackStrip({ dayIndex, feedback, onFeedback }) {
+  const reaction = feedback?.reaction || null;
+  const noteText = feedback?.note || '';
+  const [text, setText] = useState(noteText);
+  const [noteFocused, setNoteFocused] = useState(false);
+
+  useEffect(() => { setText(feedback?.note || ''); }, [feedback?.note]);
+
+  const setReaction = (key) => {
+    const next = reaction === key ? null : key;
+    trackEvent('day_reaction', { day_index: dayIndex, reaction: next || 'cleared' });
+    onFeedback(dayIndex, { ...feedback, reaction: next });
+  };
+
+  const commitNote = () => {
+    const trimmed = text.trim();
+    if (trimmed !== noteText) {
+      onFeedback(dayIndex, { ...feedback, note: trimmed || undefined });
+      if (trimmed) trackEvent('day_note_saved', { day_index: dayIndex, note_length: trimmed.length });
+    }
+    setNoteFocused(false);
+  };
+
+  return (
+    <div style={{ padding: '10px 18px 14px', borderTop: `1px solid ${C.border}` }}>
+      <div style={{ display: 'flex', gap: 8 }}>
+        {[
+          { key: 'spot-on', label: 'Spot On', color: C.sea, icon: <CheckIcon size={11} color={reaction === 'spot-on' ? C.sea : C.muted} /> },
+          { key: 'needs-work', label: 'Needs Work', color: C.amber, icon: <PencilIcon size={11} color={reaction === 'needs-work' ? C.amber : C.muted} /> },
+        ].map(r => {
+          const active = reaction === r.key;
+          return (
+            <button key={r.key} onClick={() => setReaction(r.key)} style={{
+              display: 'inline-flex', alignItems: 'center', gap: 5,
+              padding: '4px 12px', borderRadius: 20,
+              background: active ? `${r.color}10` : 'none',
+              border: `1px solid ${active ? `${r.color}30` : C.border}`,
+              cursor: 'pointer', WebkitTapHighlightColor: 'transparent',
+              transition: 'all 0.2s',
+            }}>
+              {r.icon}
+              <span style={{ fontFamily: F, fontSize: 10, fontWeight: active ? 600 : 500, color: active ? r.color : C.muted }}>{r.label}</span>
+            </button>
+          );
+        })}
+      </div>
+      <textarea value={text}
+        onChange={e => { setText(e.target.value); e.target.style.height = 'auto'; e.target.style.height = e.target.scrollHeight + 'px'; }}
+        onFocus={() => setNoteFocused(true)}
+        onBlur={commitNote}
+        placeholder="Add a note for this day..."
+        rows={1}
+        style={{
+          width: '100%', marginTop: 8, padding: '7px 0',
+          fontFamily: F, fontSize: 12, fontWeight: 400, color: C.body,
+          background: 'transparent', border: 'none',
+          borderBottom: `1px solid ${noteFocused ? `${C.sage}30` : C.border}`,
+          resize: 'none', overflow: 'hidden', lineHeight: 1.5,
+          outline: 'none', boxSizing: 'border-box',
+          transition: 'border-color 0.2s',
+        }}
+      />
+    </div>
+  );
+}
+
 /* ── day card (V2 flat) ────────────────────────────────────────────────── */
 
-function DayCard({ day, dayIndex = 0, onOpenPanel, activityFeedback, onActivityFeedback, dimmed }) {
+function DayCard({ day, dayIndex = 0, onOpenPanel, activityFeedback, onActivityFeedback, dimmed, feedback, onFeedback }) {
   const color = DAY_COLORS[dayIndex % DAY_COLORS.length];
 
   return (
@@ -1698,6 +1766,9 @@ function DayCard({ day, dayIndex = 0, onOpenPanel, activityFeedback, onActivityF
           </div>
         );
       })}
+
+      {/* Day feedback */}
+      <DayFeedbackStrip dayIndex={dayIndex} feedback={feedback} onFeedback={onFeedback} />
     </div>
   );
 }
@@ -2630,6 +2701,7 @@ export default function ItineraryResults() {
                 {enrichedDays.map((day, i) => (
                   <div key={i} ref={el => dayRefs.current[i] = el} style={{ scrollMarginTop: 60 }}>
                     <DayCard day={day} dayIndex={i} dimmed={i >= 2}
+                      feedback={dayFeedback[i]} onFeedback={handleDayFeedback}
                       activityFeedback={activityFeedback} onActivityFeedback={handleActivityFeedback}
                       onOpenPanel={(panelItem) => {
                         setActivePanel(panelItem);
