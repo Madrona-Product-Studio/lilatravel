@@ -769,57 +769,57 @@ function CompanionPanelContent({ type, data, id, feedback, onFeedback }) {
   return (
     <div style={{ maxWidth: 500, margin: '0 auto', padding: '26px 20px 60px' }}>
       {/* Type badge */}
-      <div style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '4px 11px', borderRadius: 7, background: `${accent}0e`, border: `1px solid ${accent}18`, marginBottom: 14 }}>
+      <div style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '4px 11px', borderRadius: 20, background: `${accent}0e`, border: `1px solid ${accent}18`, marginBottom: 14 }}>
         {isTeaching ? <TeachingIcon size={11} color={accent} /> : <PracticeIcon size={11} color={accent} />}
         <span style={{ fontFamily: F, fontSize: 9, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: accent }}>{isTeaching ? "Today's Teaching" : "Today's Practice"}</span>
       </div>
 
       {/* Tradition */}
       {data.tradition && (
-        <div style={{ fontFamily: F, fontSize: 10, fontWeight: 500, color: `${C.sage}70`, marginBottom: 6 }}>{data.tradition} tradition</div>
+        <div style={{ fontFamily: F, fontSize: 10, fontWeight: 500, color: C.muted, marginBottom: 6 }}>{data.tradition} tradition</div>
       )}
 
       {/* Title */}
-      <h1 style={{ fontFamily: F, fontSize: 'clamp(21px, 6vw, 27px)', fontWeight: 600, color: C.slate, lineHeight: 1.25, marginBottom: 12 }}>{data.title}</h1>
+      <h1 style={{ fontFamily: F_SERIF, fontSize: 'clamp(21px, 6vw, 27px)', fontWeight: 300, color: C.ink, lineHeight: 1.25, marginBottom: 12 }}>{data.title}</h1>
 
       {/* Summary / essence */}
-      <p style={{ fontFamily: F, fontSize: 14.5, color: `${C.slate}6a`, lineHeight: 1.7, marginBottom: 20 }}>{isTeaching ? data.essence : data.description}</p>
+      <p style={{ fontFamily: F, fontSize: 14.5, color: C.body, lineHeight: 1.7, marginBottom: 20 }}>{isTeaching ? data.essence : data.description}</p>
 
       {/* Deeper content */}
       {data.deeper && (
-        <p style={{ fontFamily: F, fontSize: 14, color: `${C.slate}70`, lineHeight: 1.7, marginBottom: 20 }}>{data.deeper}</p>
+        <p style={{ fontFamily: F, fontSize: 14, color: C.body, lineHeight: 1.7, marginBottom: 20 }}>{data.deeper}</p>
       )}
 
       {/* Quote */}
       {data.quote && (
         <div style={{ padding: '14px 16px', borderLeft: `3px solid ${accent}30`, background: `${accent}05`, borderRadius: '0 8px 8px 0', marginBottom: 20 }}>
-          <p style={{ fontFamily: F, fontSize: 14, fontStyle: 'normal', color: `${C.slate}70`, lineHeight: 1.6, margin: 0 }}>"{data.quote.text}"</p>
-          {data.quote.source && <p style={{ fontFamily: F, fontSize: 11, color: `${C.sage}60`, marginTop: 6, margin: '6px 0 0' }}>— {data.quote.source}</p>}
+          <p style={{ fontFamily: F, fontSize: 14, fontStyle: 'normal', color: C.body, lineHeight: 1.6, margin: 0 }}>"{data.quote.text}"</p>
+          {data.quote.source && <p style={{ fontFamily: F, fontSize: 11, color: C.muted, marginTop: 6, margin: '6px 0 0' }}>— {data.quote.source}</p>}
         </div>
       )}
 
       {/* Practice-specific: duration, when, howTo */}
       {!isTeaching && (data.duration || data.when || data.howTo) && (
-        <div style={{ background: C.white, borderRadius: 2, border: `1px solid ${C.sage}12`, padding: '13px 15px', marginBottom: 20 }}>
+        <div style={{ background: C.white, borderRadius: 8, border: `1px solid ${C.sage}12`, padding: '13px 15px', marginBottom: 20 }}>
           {data.duration && (
             <div style={{ display: 'flex', alignItems: 'center', gap: 7, marginBottom: (data.when || data.howTo) ? 10 : 0 }}>
               <ClockIcon size={12} color={C.seaGlass} />
               <div>
-                <div style={{ fontFamily: F, fontSize: 9, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: `${C.sage}60`, marginBottom: 1 }}>Duration</div>
-                <div style={{ fontFamily: F, fontSize: 13.5, fontWeight: 500, color: C.slate }}>{data.duration}</div>
+                <div style={{ fontFamily: F, fontSize: 9, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: C.muted, marginBottom: 1 }}>Duration</div>
+                <div style={{ fontFamily: F, fontSize: 13.5, fontWeight: 500, color: C.ink }}>{data.duration}</div>
               </div>
             </div>
           )}
           {data.when && (
             <div style={{ borderTop: data.duration ? `1px solid ${C.sage}08` : 'none', paddingTop: data.duration ? 10 : 0, marginBottom: data.howTo ? 10 : 0 }}>
-              <div style={{ fontFamily: F, fontSize: 9, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: `${C.sage}60`, marginBottom: 1 }}>When</div>
-              <div style={{ fontFamily: F, fontSize: 13.5, fontWeight: 500, color: `${C.slate}70`, lineHeight: 1.45 }}>{data.when}</div>
+              <div style={{ fontFamily: F, fontSize: 9, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: C.muted, marginBottom: 1 }}>When</div>
+              <div style={{ fontFamily: F, fontSize: 13.5, fontWeight: 500, color: C.body, lineHeight: 1.45 }}>{data.when}</div>
             </div>
           )}
           {data.howTo && (
             <div style={{ borderTop: (data.duration || data.when) ? `1px solid ${C.sage}08` : 'none', paddingTop: (data.duration || data.when) ? 10 : 0 }}>
-              <div style={{ fontFamily: F, fontSize: 9, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: `${C.sage}60`, marginBottom: 3 }}>How To</div>
-              <div style={{ fontFamily: F, fontSize: 13, fontWeight: 400, color: `${C.slate}70`, lineHeight: 1.6 }}>{data.howTo}</div>
+              <div style={{ fontFamily: F, fontSize: 9, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: C.muted, marginBottom: 3 }}>How To</div>
+              <div style={{ fontFamily: F, fontSize: 13, fontWeight: 400, color: C.body, lineHeight: 1.6 }}>{data.howTo}</div>
             </div>
           )}
         </div>
@@ -828,9 +828,9 @@ function CompanionPanelContent({ type, data, id, feedback, onFeedback }) {
       {/* Sources */}
       {data.sources && data.sources.length > 0 && (
         <div style={{ marginBottom: 20 }}>
-          <div style={{ fontFamily: F, fontSize: 9, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: `${C.sage}55`, marginBottom: 8 }}>Sources</div>
+          <div style={{ fontFamily: F, fontSize: 9, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: C.muted, marginBottom: 8 }}>Sources</div>
           {data.sources.map((s, i) => (
-            <div key={i} style={{ fontFamily: F, fontSize: 12, color: `${C.slate}70`, lineHeight: 1.5, marginBottom: 4 }}>
+            <div key={i} style={{ fontFamily: F, fontSize: 12, color: C.body, lineHeight: 1.5, marginBottom: 4 }}>
               {s.author && <span style={{ fontWeight: 600 }}>{s.author}</span>}
               {s.author && s.text && ', '}
               {s.text && <em>{s.text}</em>}
@@ -842,7 +842,7 @@ function CompanionPanelContent({ type, data, id, feedback, onFeedback }) {
 
       {/* Activity feedback */}
       <div style={{ marginTop: 16 }}>
-        <ActivityThumbs id={id} feedback={feedback} onFeedback={onFeedback} />
+        <InlineReactions id={id} feedback={feedback} onFeedback={onFeedback} />
       </div>
     </div>
   );
@@ -860,12 +860,12 @@ function TrailDetailContent({ data, thumbId, activityFeedback, onActivityFeedbac
 
       {/* Trail badge + time */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 14 }}>
-        <div style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '4px 11px', borderRadius: 7, background: `${C.sage}0a`, border: `1px solid ${C.sage}18` }}>
+        <div style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '4px 11px', borderRadius: 20, background: `${C.sage}0a`, border: `1px solid ${C.sage}18` }}>
           <MountainIcon size={12} color={C.sage} />
           <span style={{ fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: C.sage }}>Trail</span>
         </div>
         {time && (
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '4px 11px', borderRadius: 7, background: `${dot}0e`, border: `1px solid ${dot}18` }}>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '4px 11px', borderRadius: 20, background: `${dot}0e`, border: `1px solid ${dot}18` }}>
             <ClockIcon size={10} color={dot} />
             <span style={{ fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.08em', color: dot }}>{time}</span>
           </div>
@@ -873,25 +873,25 @@ function TrailDetailContent({ data, thumbId, activityFeedback, onActivityFeedbac
       </div>
 
       {/* Activity feedback */}
-      <ActivityThumbs id={thumbId} feedback={activityFeedback} onFeedback={onActivityFeedback} />
+      <InlineReactions id={thumbId} feedback={activityFeedback} onFeedback={onActivityFeedback} />
 
       {/* Title */}
-      <h1 style={{ fontFamily: F, fontSize: 'clamp(22px, 6vw, 28px)', fontWeight: 700, color: C.slate, lineHeight: 1.2, marginBottom: 10 }}>
+      <h1 style={{ fontFamily: F_SERIF, fontSize: 'clamp(22px, 6vw, 28px)', fontWeight: 300, color: C.ink, lineHeight: 1.2, marginBottom: 10 }}>
         {resolvedUrl ? (
           <a href={resolvedUrl} target="_blank" rel="noopener noreferrer"
-            style={{ color: 'inherit', textDecoration: 'none', borderBottom: `2px solid ${C.oceanTeal}20` }}>
+            style={{ color: 'inherit', textDecoration: 'none', borderBottom: `2px solid ${C.teal}20` }}>
             {title}
           </a>
         ) : title}
       </h1>
 
       {/* Summary */}
-      <p style={{ fontFamily: F, fontSize: 14.5, color: `${C.slate}6a`, lineHeight: 1.75, marginBottom: 12 }}>{summary}</p>
+      <p style={{ fontFamily: F, fontSize: 14.5, color: C.body, lineHeight: 1.75, marginBottom: 12 }}>{summary}</p>
 
       {/* NPS disclaimer (Step G) */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginBottom: 24 }}>
-        <ExternalLinkIcon size={9} color={`${C.sage}50`} />
-        <span style={{ fontFamily: F, fontSize: 11, fontWeight: 500, color: `${C.sage}60`, lineHeight: 1.4 }}>
+        <ExternalLinkIcon size={9} color={C.muted} />
+        <span style={{ fontFamily: F, fontSize: 11, fontWeight: 500, color: C.muted, lineHeight: 1.4 }}>
           Trail info sourced from NPS documentation. Verify conditions before your visit.
         </span>
       </div>
@@ -905,35 +905,35 @@ function TrailDetailContent({ data, thumbId, activityFeedback, onActivityFeedbac
           marginBottom: 22,
         }}>
           {trailData.distance && (
-            <div style={{ padding: '12px 14px', background: C.white, border: `1px solid ${C.sage}12`, borderRadius: 2 }}>
+            <div style={{ padding: '12px 14px', background: C.white, border: `1px solid ${C.border}`, borderRadius: 8 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginBottom: 5 }}>
                 <RouteIcon size={12} color={C.sage} />
-                <span style={{ fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: `${C.sage}70` }}>Distance</span>
+                <span style={{ fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: C.muted }}>Distance</span>
               </div>
               <div style={{ fontFamily: F, fontSize: 16, fontWeight: 700, color: C.ink }}>{trailData.distance}</div>
             </div>
           )}
           {trailData.elevationGain && (
-            <div style={{ padding: '12px 14px', background: C.white, border: `1px solid ${C.sage}12`, borderRadius: 2 }}>
+            <div style={{ padding: '12px 14px', background: C.white, border: `1px solid ${C.border}`, borderRadius: 8 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginBottom: 5 }}>
                 <MountainIcon size={12} color={C.sage} />
-                <span style={{ fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: `${C.sage}70` }}>Elevation Gain</span>
+                <span style={{ fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: C.muted }}>Elevation Gain</span>
               </div>
               <div style={{ fontFamily: F, fontSize: 16, fontWeight: 700, color: C.ink }}>{trailData.elevationGain}</div>
             </div>
           )}
           {trailData.trailType && (
-            <div style={{ padding: '12px 14px', background: C.white, border: `1px solid ${C.sage}12`, borderRadius: 2 }}>
+            <div style={{ padding: '12px 14px', background: C.white, border: `1px solid ${C.border}`, borderRadius: 8 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginBottom: 5 }}>
                 <RouteIcon size={12} color={C.sage} />
-                <span style={{ fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: `${C.sage}70` }}>Route Type</span>
+                <span style={{ fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: C.muted }}>Route Type</span>
               </div>
               <div style={{ fontFamily: F, fontSize: 14, fontWeight: 600, color: C.ink, textTransform: 'capitalize' }}>{trailData.trailType}</div>
             </div>
           )}
           {trailData.difficulty && (
-            <div style={{ padding: '12px 14px', background: C.white, border: `1px solid ${C.sage}12`, borderRadius: 2 }}>
-              <div style={{ fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: `${C.sage}70`, marginBottom: 7 }}>Difficulty</div>
+            <div style={{ padding: '12px 14px', background: C.white, border: `1px solid ${C.border}`, borderRadius: 8 }}>
+              <div style={{ fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: C.muted, marginBottom: 7 }}>Difficulty</div>
               <DifficultyBar difficulty={trailData.difficulty} />
             </div>
           )}
@@ -946,14 +946,14 @@ function TrailDetailContent({ data, thumbId, activityFeedback, onActivityFeedbac
           marginBottom: 20, padding: '13px 15px',
           background: `${C.goldenAmber}07`,
           border: `1.5px solid ${C.goldenAmber}22`,
-          borderRadius: 2,
+          borderRadius: 8,
           display: 'flex', alignItems: 'flex-start', gap: 10,
         }}>
           <PermitIcon size={15} color={C.goldenAmber} />
           <div>
             <div style={{ fontFamily: F, fontSize: 10, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: C.goldenAmber, marginBottom: 4 }}>Permit Required</div>
             {trailData.permitNote && (
-              <div style={{ fontFamily: F, fontSize: 13, color: `${C.slate}70`, lineHeight: 1.55 }}>{trailData.permitNote}</div>
+              <div style={{ fontFamily: F, fontSize: 13, color: C.body, lineHeight: 1.55 }}>{trailData.permitNote}</div>
             )}
           </div>
         </div>
@@ -965,11 +965,11 @@ function TrailDetailContent({ data, thumbId, activityFeedback, onActivityFeedbac
           marginBottom: 20, padding: '10px 14px',
           background: `${C.seaGlass}08`,
           border: `1px solid ${C.seaGlass}18`,
-          borderRadius: 2,
+          borderRadius: 8,
           display: 'flex', alignItems: 'flex-start', gap: 9,
         }}>
           <CheckIcon size={13} color={C.seaGlass} />
-          <span style={{ fontFamily: F, fontSize: 12.5, color: `${C.slate}70`, lineHeight: 1.55 }}>{trailData.permitNote}</span>
+          <span style={{ fontFamily: F, fontSize: 12.5, color: C.body, lineHeight: 1.55 }}>{trailData.permitNote}</span>
         </div>
       )}
 
@@ -978,10 +978,10 @@ function TrailDetailContent({ data, thumbId, activityFeedback, onActivityFeedbac
         <div style={{ marginBottom: 20 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 8 }}>
             <TrailheadIcon size={13} color={C.sage} />
-            <div style={{ fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: `${C.sage}70` }}>Trailhead Access</div>
+            <div style={{ fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: C.muted }}>Trailhead Access</div>
           </div>
           <div style={{
-            fontFamily: F, fontSize: 13, color: `${C.slate}70`, lineHeight: 1.65,
+            fontFamily: F, fontSize: 13, color: C.body, lineHeight: 1.65,
             paddingLeft: 12, borderLeft: `2px solid ${C.sage}18`,
           }}>
             {trailData.trailheadAccess}
@@ -993,14 +993,14 @@ function TrailDetailContent({ data, thumbId, activityFeedback, onActivityFeedbac
       {trailData.bestStartTime && (
         <div style={{
           marginBottom: 20, padding: '11px 14px',
-          background: `${dot}08`, borderRadius: 2,
+          background: `${dot}08`, borderRadius: 8,
           borderLeft: `2px solid ${dot}35`,
           display: 'flex', alignItems: 'flex-start', gap: 8,
         }}>
           <ClockIcon size={12} color={dot} />
           <div>
             <div style={{ fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: `${dot}90`, marginBottom: 3 }}>Best Start Time</div>
-            <div style={{ fontFamily: F, fontSize: 13, color: `${C.slate}70`, lineHeight: 1.55 }}>{trailData.bestStartTime}</div>
+            <div style={{ fontFamily: F, fontSize: 13, color: C.body, lineHeight: 1.55 }}>{trailData.bestStartTime}</div>
           </div>
         </div>
       )}
@@ -1008,9 +1008,9 @@ function TrailDetailContent({ data, thumbId, activityFeedback, onActivityFeedbac
       {/* CONDITIONS */}
       {trailData.conditions && (
         <div style={{ marginBottom: 20 }}>
-          <div style={{ fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: `${C.sage}70`, marginBottom: 8 }}>Trail Conditions</div>
+          <div style={{ fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: C.muted, marginBottom: 8 }}>Trail Conditions</div>
           <div style={{
-            fontFamily: F, fontSize: 13, color: `${C.slate}70`, lineHeight: 1.65,
+            fontFamily: F, fontSize: 13, color: C.body, lineHeight: 1.65,
             paddingLeft: 12, borderLeft: `2px solid ${C.sunSalmon}28`,
           }}>
             {trailData.conditions}
@@ -1021,7 +1021,7 @@ function TrailDetailContent({ data, thumbId, activityFeedback, onActivityFeedbac
       {/* Freeform details */}
       {details && (
         <div style={{
-          fontFamily: F, fontSize: 13, color: `${C.ink}a8`, lineHeight: 1.7,
+          fontFamily: F, fontSize: 13, color: C.body, lineHeight: 1.7,
           padding: '6px 0', paddingLeft: 13,
           borderLeft: `2px solid ${dot}22`, marginBottom: 20,
         }}>
@@ -1040,7 +1040,7 @@ function TrailDetailContent({ data, thumbId, activityFeedback, onActivityFeedbac
             padding: '9px 18px',
             border: `1.5px solid ${C.oceanTeal}35`,
             background: `${C.oceanTeal}08`,
-            borderRadius: 2,
+            borderRadius: 8,
             letterSpacing: '0.05em',
             marginBottom: 24,
           }}>
@@ -1080,7 +1080,7 @@ function DetailBlock({ category, pick, color }) {
   return (
     <div style={{
       border: `1px solid ${color}18`,
-      borderRadius: 2,
+      borderRadius: 8,
       overflow: 'hidden',
       marginBottom: 20,
       background: `${color}04`,
@@ -1094,7 +1094,7 @@ function DetailBlock({ category, pick, color }) {
           <span style={{
             fontFamily: F, fontSize: 10, fontWeight: 700,
             letterSpacing: '0.1em', textTransform: 'uppercase',
-            color: `${C.sage}70`, minWidth: 90, flexShrink: 0,
+            color: C.muted, minWidth: 90, flexShrink: 0,
           }}>
             {label}
           </span>
@@ -1136,7 +1136,7 @@ function WisdomDetailContent({ entry }) {
         {/* Type pill */}
         <div style={{
           display: 'inline-flex', alignItems: 'center', gap: 5,
-          padding: '4px 11px', borderRadius: 7,
+          padding: '4px 11px', borderRadius: 20,
           background: `${accent}14`, border: `1px solid ${accent}25`,
           marginBottom: 12,
         }}>
@@ -1144,20 +1144,20 @@ function WisdomDetailContent({ entry }) {
         </div>
 
         {/* Tradition subtitle */}
-        <div style={{ fontFamily: F, fontSize: 10, fontWeight: 500, color: `${accent}90`, marginBottom: 6 }}>{tradition?.name || entry.tradition}</div>
+        <div style={{ fontFamily: F, fontSize: 10, fontWeight: 500, color: C.muted, marginBottom: 6 }}>{tradition?.name || entry.tradition}</div>
 
         {/* Title */}
-        <h1 style={{ fontFamily: F, fontSize: 'clamp(21px, 6vw, 27px)', fontWeight: 600, color: C.slate, lineHeight: 1.25, margin: 0 }}>{entry.name}</h1>
+        <h1 style={{ fontFamily: F_SERIF, fontSize: 'clamp(21px, 6vw, 27px)', fontWeight: 300, color: C.ink, lineHeight: 1.25, margin: 0 }}>{entry.name}</h1>
       </div>
 
       {/* Body */}
       <div style={{ padding: '20px 20px 60px' }}>
         {/* Summary */}
-        <p style={{ fontFamily: F, fontSize: 14.5, color: `${C.slate}6a`, lineHeight: 1.7, marginBottom: 20 }}>{entry.summary}</p>
+        <p style={{ fontFamily: F, fontSize: 14.5, color: C.body, lineHeight: 1.7, marginBottom: 20 }}>{entry.summary}</p>
 
         {/* Deeper */}
         {entry.deeper && (
-          <p style={{ fontFamily: F, fontSize: 14, color: `${C.slate}70`, lineHeight: 1.7, marginBottom: 20 }}>{entry.deeper}</p>
+          <p style={{ fontFamily: F, fontSize: 14, color: C.body, lineHeight: 1.7, marginBottom: 20 }}>{entry.deeper}</p>
         )}
 
         {/* Quote block */}
@@ -1169,33 +1169,33 @@ function WisdomDetailContent({ entry }) {
           }}>
             <p style={{
               fontFamily: F_SERIF, fontSize: 16, fontStyle: 'italic', fontWeight: 400,
-              color: `${C.slate}80`, lineHeight: 1.6, margin: 0,
+              color: C.body, lineHeight: 1.6, margin: 0,
             }}>"{entry.quote.text}"</p>
             {entry.quote.source && (
-              <p style={{ fontFamily: F, fontSize: 11, color: `${C.sage}60`, margin: '8px 0 0' }}>— {entry.quote.source}</p>
+              <p style={{ fontFamily: F, fontSize: 11, color: C.muted, margin: '8px 0 0' }}>— {entry.quote.source}</p>
             )}
           </div>
         )}
 
         {/* Practice-specific fields */}
         {entry.type !== 'teaching' && (entry.duration || entry.when || entry.howTo) && (
-          <div style={{ background: C.white, borderRadius: 2, border: `1px solid ${C.sage}12`, padding: '13px 15px', marginBottom: 20 }}>
+          <div style={{ background: C.white, borderRadius: 8, border: `1px solid ${C.sage}12`, padding: '13px 15px', marginBottom: 20 }}>
             {entry.duration && (
               <div style={{ marginBottom: (entry.when || entry.howTo) ? 10 : 0 }}>
-                <div style={{ fontFamily: F, fontSize: 9, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: `${C.sage}60`, marginBottom: 1 }}>Duration</div>
-                <div style={{ fontFamily: F, fontSize: 13.5, fontWeight: 500, color: C.slate }}>{entry.duration}</div>
+                <div style={{ fontFamily: F, fontSize: 9, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: C.muted, marginBottom: 1 }}>Duration</div>
+                <div style={{ fontFamily: F, fontSize: 13.5, fontWeight: 500, color: C.ink }}>{entry.duration}</div>
               </div>
             )}
             {entry.when && (
               <div style={{ borderTop: entry.duration ? `1px solid ${C.sage}08` : 'none', paddingTop: entry.duration ? 10 : 0, marginBottom: entry.howTo ? 10 : 0 }}>
-                <div style={{ fontFamily: F, fontSize: 9, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: `${C.sage}60`, marginBottom: 1 }}>When</div>
-                <div style={{ fontFamily: F, fontSize: 13.5, fontWeight: 500, color: `${C.slate}70`, lineHeight: 1.45 }}>{entry.when}</div>
+                <div style={{ fontFamily: F, fontSize: 9, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: C.muted, marginBottom: 1 }}>When</div>
+                <div style={{ fontFamily: F, fontSize: 13.5, fontWeight: 500, color: C.body, lineHeight: 1.45 }}>{entry.when}</div>
               </div>
             )}
             {entry.howTo && (
               <div style={{ borderTop: (entry.duration || entry.when) ? `1px solid ${C.sage}08` : 'none', paddingTop: (entry.duration || entry.when) ? 10 : 0 }}>
-                <div style={{ fontFamily: F, fontSize: 9, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: `${C.sage}60`, marginBottom: 3 }}>How To</div>
-                <div style={{ fontFamily: F, fontSize: 13, fontWeight: 400, color: `${C.slate}70`, lineHeight: 1.6 }}>{entry.howTo}</div>
+                <div style={{ fontFamily: F, fontSize: 9, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: C.muted, marginBottom: 3 }}>How To</div>
+                <div style={{ fontFamily: F, fontSize: 13, fontWeight: 400, color: C.body, lineHeight: 1.6 }}>{entry.howTo}</div>
               </div>
             )}
           </div>
@@ -1203,7 +1203,7 @@ function WisdomDetailContent({ entry }) {
 
         {/* Attribution */}
         {entry.sources?.[0] && (
-          <div style={{ fontFamily: F, fontSize: 11, color: `${C.sage}60`, lineHeight: 1.5 }}>
+          <div style={{ fontFamily: F, fontSize: 11, color: C.muted, lineHeight: 1.5 }}>
             — {entry.sources[0].author && <span style={{ fontWeight: 600 }}>{entry.sources[0].author}</span>}
             {entry.sources[0].author && entry.sources[0].text && ', '}
             {entry.sources[0].text && <em>{entry.sources[0].text}</em>}
@@ -1255,17 +1255,17 @@ function DetailPanelContent({ item, activityFeedback, onActivityFeedback }) {
         )}
 
         {/* Activity feedback */}
-        <ActivityThumbs id={thumbId} feedback={activityFeedback} onFeedback={onActivityFeedback} />
+        <InlineReactions id={thumbId} feedback={activityFeedback} onFeedback={onActivityFeedback} />
 
         {/* Title */}
-        <h1 style={{ fontFamily: F, fontSize: 'clamp(21px, 6vw, 27px)', fontWeight: 600, color: C.slate, lineHeight: 1.25, marginBottom: 12 }}>{data.title}</h1>
+        <h1 style={{ fontFamily: F_SERIF, fontSize: 'clamp(21px, 6vw, 27px)', fontWeight: 300, color: C.ink, lineHeight: 1.25, marginBottom: 12 }}>{data.title}</h1>
 
         {/* Summary */}
-        <p style={{ fontFamily: F, fontSize: 14.5, color: `${C.slate}6a`, lineHeight: 1.7, marginBottom: 20 }}>{data.summary}</p>
+        <p style={{ fontFamily: F, fontSize: 14.5, color: C.body, lineHeight: 1.7, marginBottom: 20 }}>{data.summary}</p>
 
         {/* Details */}
         {data.details && (
-          <div style={{ fontFamily: F, fontSize: 13, color: `${C.ink}a8`, lineHeight: 1.7, padding: '6px 0', paddingLeft: 13, borderLeft: `2px solid ${dot}22`, marginBottom: 20 }}>
+          <div style={{ fontFamily: F, fontSize: 13, color: C.body, lineHeight: 1.7, padding: '6px 0', paddingLeft: 13, borderLeft: `2px solid ${dot}22`, marginBottom: 20 }}>
             {renderInlineBlock(data.details)}
           </div>
         )}
@@ -1299,21 +1299,21 @@ function DetailPanelContent({ item, activityFeedback, onActivityFeedback }) {
     <div style={{ maxWidth: 500, margin: '0 auto', padding: '26px 20px 60px' }}>
       {/* Category badge */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 14 }}>
-        <div style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '4px 11px', borderRadius: 7, background: `${s.color}0e`, border: `1px solid ${s.color}18` }}>
+        <div style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '4px 11px', borderRadius: 20, background: `${s.color}0e`, border: `1px solid ${s.color}18` }}>
           <CategoryIcon category={type} color={s.color} size={12} />
           <span style={{ fontFamily: F, fontSize: 9, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: s.color }}>{s.label}</span>
         </div>
-        <div style={{ display: 'inline-flex', alignItems: 'center', gap: 4, padding: '3px 8px', borderRadius: 5, border: `1px solid ${s.color}20`, background: `${s.color}04` }}>
+        <div style={{ display: 'inline-flex', alignItems: 'center', gap: 4, padding: '3px 8px', borderRadius: 20, border: `1px solid ${s.color}20`, background: `${s.color}04` }}>
           <LilaStar size={9} color={s.color} />
           <span style={{ fontFamily: F, fontSize: 8, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: s.color }}>Lila Pick</span>
         </div>
       </div>
 
       {/* Activity feedback */}
-      <ActivityThumbs id={thumbId} feedback={activityFeedback} onFeedback={onActivityFeedback} />
+      <InlineReactions id={thumbId} feedback={activityFeedback} onFeedback={onActivityFeedback} />
 
       {/* Pick name */}
-      <h1 style={{ fontFamily: F, fontSize: 'clamp(21px, 6vw, 27px)', fontWeight: 600, color: C.slate, lineHeight: 1.25, marginBottom: 6 }}>
+      <h1 style={{ fontFamily: F_SERIF, fontSize: 'clamp(21px, 6vw, 27px)', fontWeight: 300, color: C.ink, lineHeight: 1.25, marginBottom: 6 }}>
         <LinkedName name={data.name} url={data.url} linkType="pick" style={{ fontFamily: F, fontSize: 'inherit', fontWeight: 'inherit', color: 'inherit' }} />
         {(data.url || lookupUrl(data.name)) && <> <ExternalLinkIcon size={12} color={`${C.sage}40`} /></>}
       </h1>
@@ -1329,7 +1329,7 @@ function DetailPanelContent({ item, activityFeedback, onActivityFeedback }) {
       )}
 
       {/* Why */}
-      <p style={{ fontFamily: F, fontSize: 14.5, color: `${C.slate}6a`, lineHeight: 1.7, marginBottom: 20 }}>{data.why}</p>
+      <p style={{ fontFamily: F, fontSize: 14.5, color: C.body, lineHeight: 1.7, marginBottom: 20 }}>{data.why}</p>
 
       {/* Structured detail block */}
       <DetailBlock category={type} pick={data} color={s.color} />
@@ -1348,7 +1348,7 @@ function DetailPanelContent({ item, activityFeedback, onActivityFeedback }) {
             padding: '9px 18px',
             border: `1.5px solid ${s.color}35`,
             background: `${s.color}08`,
-            borderRadius: 2,
+            borderRadius: 8,
             letterSpacing: '0.05em',
             marginBottom: 24,
           }}
@@ -1361,9 +1361,9 @@ function DetailPanelContent({ item, activityFeedback, onActivityFeedback }) {
       {/* Alternatives listed flat */}
       {alternatives.length > 0 && (
         <div style={{ marginBottom: 20 }}>
-          <div style={{ fontFamily: F, fontSize: 9, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: `${C.sage}55`, marginBottom: 10 }}>Other Options</div>
+          <div style={{ fontFamily: F, fontSize: 9, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: C.muted, marginBottom: 10 }}>Other Options</div>
           {alternatives.map((alt, i) => (
-            <div key={i} style={{ padding: '12px 14px', borderRadius: 2, background: `${s.color}05`, border: `1px solid ${s.color}15`, marginBottom: 8 }}>
+            <div key={i} style={{ padding: '12px 14px', borderRadius: 8, background: `${s.color}05`, border: `1px solid ${s.color}15`, marginBottom: 8 }}>
               <div style={{ fontFamily: F, fontSize: 13.5, fontWeight: 700, color: C.ink, marginBottom: 4 }}>
                 {alt.name}
               </div>
@@ -1372,7 +1372,7 @@ function DetailPanelContent({ item, activityFeedback, onActivityFeedback }) {
                   {alt.vibe}
                 </div>
               )}
-              <div style={{ fontFamily: F, fontSize: 12, color: `${C.slate}70`, lineHeight: 1.55 }}>{alt.why}</div>
+              <div style={{ fontFamily: F, fontSize: 12, color: C.body, lineHeight: 1.55 }}>{alt.why}</div>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: 5, marginTop: 7 }}>
                 {alt.priceRange && <MetaChip label={alt.priceRange} />}
                 {alt.duration && <MetaChip label={alt.duration} />}
@@ -1429,7 +1429,7 @@ function DetailPanel({ item, onClose, activityFeedback, onActivityFeedback }) {
         {/* Backdrop */}
         <div onClick={onClose} style={{
           position: 'fixed', inset: 0, zIndex: 249,
-          background: 'rgba(0,0,0,0.3)',
+          background: 'rgba(0,0,0,0.15)',
           animation: 'sidePanelBackdropIn 0.25s ease',
         }} />
 
@@ -1437,7 +1437,7 @@ function DetailPanel({ item, onClose, activityFeedback, onActivityFeedback }) {
         <div style={{
           position: 'fixed', top: 0, right: 0, bottom: 0,
           width: 440, zIndex: 250,
-          background: C.cream, overflowY: 'auto',
+          background: C.warm, overflowY: 'auto',
           animation: 'sidePanelSlideIn 0.3s ease',
           boxShadow: '-4px 0 24px rgba(0,0,0,0.08)',
         }}>
@@ -1475,7 +1475,7 @@ function DetailPanel({ item, onClose, activityFeedback, onActivityFeedback }) {
       {/* Backdrop */}
       <div onClick={onClose} style={{
         position: 'fixed', inset: 0, zIndex: 249,
-        background: 'rgba(0,0,0,0.3)',
+        background: 'rgba(0,0,0,0.15)',
         animation: 'bottomSheetBackdropIn 0.25s ease',
       }} />
 
@@ -1483,7 +1483,7 @@ function DetailPanel({ item, onClose, activityFeedback, onActivityFeedback }) {
       <div ref={sheetRef} style={{
         position: 'fixed', bottom: 0, left: 0, right: 0,
         height: '82vh', zIndex: 250,
-        background: C.cream,
+        background: C.warm,
         borderRadius: '16px 16px 0 0',
         animation: 'bottomSheetSlideIn 0.3s ease',
         boxShadow: '0 -4px 24px rgba(0,0,0,0.1)',
