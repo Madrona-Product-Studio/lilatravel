@@ -2764,8 +2764,6 @@ export default function ItineraryResults() {
     setTimeout(() => setVisible(true), 100);
   }, [rawItinerary, navigate, loadingShared]);
 
-  if (loadingShared || !rawItinerary) return null;
-
   // Parse itinerary — re-parses only when rawItinerary changes (i.e. after refinement)
   const itinerary = useMemo(() => {
     if (!rawItinerary) return null;
@@ -2975,6 +2973,9 @@ export default function ItineraryResults() {
       setRefining(false);
     }
   };
+
+  // Render nothing while loading a shared trip or if no itinerary data yet
+  if (loadingShared || !rawItinerary) return null;
 
   return (
     <div style={{ fontFamily: F, background: C.warm, minHeight: '100vh' }}>
