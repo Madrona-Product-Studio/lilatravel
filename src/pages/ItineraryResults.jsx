@@ -698,16 +698,16 @@ function InlineReactions({ id, feedback, onFeedback }) {
   const pills = [
     { key: 'fire', label: 'Must do',
       icon: (active, color) => <FlameIcon size={12} color={color} active={active} />,
-      activeColor: C.amber, activeBg: 'rgba(200,148,26,0.06)', activeBorder: C.amber,
-      restColor: 'rgba(200,148,26,0.55)', restBg: 'rgba(200,148,26,0.03)', restBorder: 'rgba(200,148,26,0.18)' },
+      activeColor: C.amber, activeBg: 'rgba(200,148,26,0.10)', activeBorder: C.amber,
+      restColor: 'rgba(200,148,26,0.85)', restBg: 'rgba(200,148,26,0.06)', restBorder: 'rgba(200,148,26,0.30)' },
     { key: 'up', label: 'Love it',
       icon: (active, color) => <ThumbUp size={12} color={color} active={active} />,
-      activeColor: C.sea, activeBg: 'rgba(127,181,160,0.06)', activeBorder: C.sea,
-      restColor: 'rgba(127,181,160,0.6)', restBg: 'rgba(127,181,160,0.03)', restBorder: 'rgba(127,181,160,0.18)' },
+      activeColor: C.sea, activeBg: 'rgba(127,181,160,0.10)', activeBorder: C.sea,
+      restColor: 'rgba(127,181,160,0.85)', restBg: 'rgba(127,181,160,0.06)', restBorder: 'rgba(127,181,160,0.30)' },
     { key: 'down', label: 'Not for me',
       icon: (active, color) => <ThumbDown size={12} color={color} active={active} />,
-      activeColor: C.salmon, activeBg: 'rgba(228,119,93,0.06)', activeBorder: C.salmon,
-      restColor: 'rgba(228,119,93,0.55)', restBg: 'rgba(228,119,93,0.03)', restBorder: 'rgba(228,119,93,0.18)' },
+      activeColor: C.salmon, activeBg: 'rgba(228,119,93,0.10)', activeBorder: C.salmon,
+      restColor: 'rgba(228,119,93,0.85)', restBg: 'rgba(228,119,93,0.06)', restBorder: 'rgba(228,119,93,0.30)' },
   ];
 
   return (
@@ -718,13 +718,13 @@ function InlineReactions({ id, feedback, onFeedback }) {
         return (
           <button key={p.key} onClick={e => toggle(p.key, e)} style={{
             display: 'flex', alignItems: 'center', gap: 4,
-            padding: '3px 9px',
+            padding: '4px 10px',
             borderRadius: 20,
             background: active ? p.activeBg : p.restBg,
             border: `1px solid ${active ? p.activeBorder : p.restBorder}`,
             cursor: 'pointer', transition: 'all 0.2s',
             WebkitTapHighlightColor: 'transparent',
-            fontFamily: F, fontSize: 10, fontWeight: 600,
+            fontFamily: F, fontSize: 11, fontWeight: 600,
             color: color,
           }}>
             {p.icon(active, color)}
@@ -2570,11 +2570,11 @@ function FirstDraftModal({ onDismiss }) {
 
   const reactions = [
     { icon: FlameIcon, color: C.goldenAmber, label: 'Must do', desc: 'So stoked for this one',
-      bg: `${C.goldenAmber}12`, border: `${C.goldenAmber}28` },
+      bg: `${C.goldenAmber}18`, border: `${C.goldenAmber}40` },
     { icon: ThumbUp, color: C.seaGlass, label: 'Love it', desc: 'Keep this — it feels right',
-      bg: `${C.seaGlass}12`, border: `${C.seaGlass}28` },
+      bg: `${C.seaGlass}18`, border: `${C.seaGlass}40` },
     { icon: ThumbDown, color: C.sunSalmon, label: 'Not for me', desc: 'Flag it, add a note if you want',
-      bg: `${C.sunSalmon}10`, border: `${C.sunSalmon}25` },
+      bg: `${C.sunSalmon}15`, border: `${C.sunSalmon}38` },
   ];
 
   return (
