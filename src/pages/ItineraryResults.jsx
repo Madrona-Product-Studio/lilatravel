@@ -1214,33 +1214,69 @@ function DetailPanelContent({ item, activityFeedback, onActivityFeedback }) {
     const accom = data;
     const s = PICK_STYLES.stay;
     const alts = item.alternatives || [];
+    const accomLabel = { fontFamily: F, fontSize: 9, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: C.muted };
     return (
       <div style={{ maxWidth: 500, margin: '0 auto', padding: '20px 20px 60px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10 }}>
+        {/* Badges */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap', marginBottom: 10 }}>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '4px 11px', borderRadius: 20, background: `${s.color}0e`, border: `1px solid ${s.color}18` }}>
             <CategoryIcon category="stay" color={s.color} size={12} />
-            <span style={{ fontFamily: F, fontSize: 9, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: s.color }}>{s.label}</span>
+            <span style={{ ...accomLabel, color: s.color }}>{s.label}</span>
           </div>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: 4, padding: '3px 8px', borderRadius: 20, border: `1px solid ${s.color}20`, background: `${s.color}04` }}>
             <LilaStar size={9} color={s.color} />
             <span style={{ fontFamily: F, fontSize: 8, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: s.color }}>Lila Pick</span>
           </div>
         </div>
-        <h1 style={{ fontFamily: F_SERIF, fontSize: 'clamp(20px, 5vw, 24px)', fontWeight: 300, color: C.ink, lineHeight: 1.25, marginBottom: 4 }}>{accom.name}</h1>
-        {accom.vibe && <div style={{ fontFamily: F, fontSize: 12, fontWeight: 500, color: C.muted, lineHeight: 1.4, marginBottom: 14 }}>{accom.vibe}</div>}
-        <p style={{ fontFamily: F, fontSize: 13, color: C.body, lineHeight: 1.7, marginBottom: 20 }}>{accom.why}</p>
-        <DetailBlock category="stay" pick={accom} color={s.color} />
+
+        {/* Title + location */}
+        <h1 style={{ fontFamily: F_SERIF, fontSize: 'clamp(20px, 5vw, 24px)', fontWeight: 300, color: C.ink, lineHeight: 1.2, marginBottom: 4 }}>{accom.name}</h1>
+        {accom.location && (
+          <div style={{ fontFamily: F, fontSize: 11, fontWeight: 500, color: C.muted, marginBottom: 6 }}>{accom.location}</div>
+        )}
+        {accom.vibe && <div style={{ fontFamily: F, fontSize: 12, fontWeight: 500, fontStyle: 'italic', color: C.sage, lineHeight: 1.4, marginBottom: 14 }}>{accom.vibe}</div>}
+
+        {/* Why */}
+        <p style={{ fontFamily: F, fontSize: 13, color: C.body, lineHeight: 1.7, marginBottom: 16 }}>{accom.why}</p>
+
+        {/* Stat grid — matches trail panel style */}
+        {(accom.stayType || accom.priceRange || accom.distanceFromPark) && (
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 8, marginBottom: 16 }}>
+            {accom.stayType && (
+              <div style={{ padding: '10px 12px', background: C.white, border: `1px solid ${C.border}`, borderRadius: 8 }}>
+                <div style={{ ...accomLabel, marginBottom: 4 }}>Type</div>
+                <div style={{ fontFamily: F, fontSize: 13, fontWeight: 500, color: C.ink }}>{accom.stayType}</div>
+              </div>
+            )}
+            {accom.priceRange && (
+              <div style={{ padding: '10px 12px', background: C.white, border: `1px solid ${C.border}`, borderRadius: 8 }}>
+                <div style={{ ...accomLabel, marginBottom: 4 }}>Price</div>
+                <div style={{ fontFamily: F, fontSize: 13, fontWeight: 500, color: C.ink }}>{accom.priceRange}</div>
+              </div>
+            )}
+            {accom.distanceFromPark && (
+              <div style={{ padding: '10px 12px', background: C.white, border: `1px solid ${C.border}`, borderRadius: 8, gridColumn: 'span 2' }}>
+                <div style={{ ...accomLabel, marginBottom: 4 }}>Distance from Park</div>
+                <div style={{ fontFamily: F, fontSize: 13, fontWeight: 500, color: C.ink }}>{accom.distanceFromPark}</div>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Alternatives */}
         {alts.length > 0 && (
           <div style={{ marginBottom: 20 }}>
-            <div style={{ fontFamily: F, fontSize: 9, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: C.muted, marginBottom: 10 }}>Other Options</div>
+            <div style={{ ...accomLabel, marginBottom: 10 }}>Other Options</div>
             {alts.map((alt, i) => (
-              <div key={i} style={{ padding: '12px 14px', borderRadius: 8, background: `${s.color}05`, border: `1px solid ${s.color}15`, marginBottom: 8 }}>
-                <div style={{ fontFamily: F, fontSize: 13, fontWeight: 600, color: C.ink, marginBottom: 4 }}>{alt.name}</div>
-                {alt.vibe && <div style={{ fontFamily: F, fontSize: 11, fontWeight: 500, color: C.muted, marginBottom: 4 }}>{alt.vibe}</div>}
-                <div style={{ fontFamily: F, fontSize: 12, color: C.body, lineHeight: 1.55 }}>{alt.why}</div>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 5, marginTop: 7 }}>
-                  {alt.priceRange && <MetaChip label={alt.priceRange} />}
+              <div key={i} style={{ padding: '14px 16px', borderRadius: 8, background: C.white, border: `1px solid ${C.border}`, marginBottom: 8 }}>
+                <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 8, marginBottom: 4 }}>
+                  <div style={{ fontFamily: F, fontSize: 13, fontWeight: 600, color: C.ink }}>{alt.name}</div>
+                  {alt.priceRange && (
+                    <span style={{ fontFamily: F, fontSize: 10, fontWeight: 600, color: s.color, letterSpacing: '0.02em', flexShrink: 0 }}>{alt.priceRange}</span>
+                  )}
                 </div>
+                {alt.vibe && <div style={{ fontFamily: F, fontSize: 11, fontWeight: 500, fontStyle: 'italic', color: C.sage, marginBottom: 6 }}>{alt.vibe}</div>}
+                <div style={{ fontFamily: F, fontSize: 12, color: C.body, lineHeight: 1.55 }}>{alt.why}</div>
               </div>
             ))}
           </div>
@@ -1694,7 +1730,8 @@ function LogisticsPanel({ destination, sticky = true, tripLogistics, onOpenPanel
   const logistics = getLogistics(destination);
   const savedFlight = tripLogistics?.flights;
   const savedRental = tripLogistics?.rental;
-  const accomName = typeof logistics.accommodation === 'object' ? logistics.accommodation.name : logistics.accommodation;
+  const accom = typeof logistics.accommodation === 'object' ? logistics.accommodation : { name: logistics.accommodation };
+  const accomName = accom.name;
 
   const openFlights = () => onOpenPanel && onOpenPanel({
     type: 'flights', savedData: savedFlight, logistics,
@@ -1773,18 +1810,32 @@ function LogisticsPanel({ destination, sticky = true, tripLogistics, onOpenPanel
 
       {/* Accommodations */}
       <div style={{ padding: '13px 16px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 8 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 10 }}>
           <CategoryIcon category="stay" color={C.muted} size={12} />
           <span style={{ fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: C.muted }}>Accommodations</span>
         </div>
         <div onClick={openAccommodation} style={{
-          background: 'rgba(61,139,139,0.06)',
-          borderRadius: 5, padding: '6px 9px', marginBottom: 8, cursor: 'pointer',
+          background: `${PICK_STYLES.stay.color}06`,
+          border: `1px solid ${PICK_STYLES.stay.color}15`,
+          borderRadius: 8, padding: '10px 12px', marginBottom: 10, cursor: 'pointer',
+          transition: 'background 0.15s',
         }}>
-          <div style={{ fontFamily: F, fontSize: 8, fontWeight: 700, color: C.teal, marginBottom: 2 }}>LILA PICK</div>
-          <div style={{ fontFamily: F, fontSize: 12, fontWeight: 500, color: C.body }}>{accomName}</div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginBottom: 5 }}>
+            <LilaStar size={8} color={PICK_STYLES.stay.color} />
+            <span style={{ fontFamily: F, fontSize: 8, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: PICK_STYLES.stay.color }}>Lila Pick</span>
+          </div>
+          <div style={{ fontFamily: F, fontSize: 12, fontWeight: 600, color: C.ink, marginBottom: 2 }}>{accomName}</div>
+          {accom.location && (
+            <div style={{ fontFamily: F, fontSize: 10, fontWeight: 500, color: C.muted, marginBottom: 3 }}>{accom.location}</div>
+          )}
+          {accom.vibe && (
+            <div style={{ fontFamily: F, fontSize: 10, fontWeight: 500, fontStyle: 'italic', color: C.sage, lineHeight: 1.4 }}>{accom.vibe}</div>
+          )}
+          {accom.priceRange && (
+            <div style={{ fontFamily: F, fontSize: 9, fontWeight: 600, color: PICK_STYLES.stay.color, marginTop: 5 }}>{accom.priceRange}</div>
+          )}
         </div>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
           <button onClick={openAccommodation} style={{ fontFamily: F, fontSize: 11, fontWeight: 600, color: C.teal, background: 'none', border: 'none', cursor: 'pointer', padding: 0, textAlign: 'left' }}>
             See other options →
           </button>
