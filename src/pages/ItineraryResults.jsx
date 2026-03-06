@@ -1705,10 +1705,13 @@ function DayCard({ day, dayIndex = 0, onOpenPanel, activityFeedback, onActivityF
 
       {/* Companion strip — teaching + practice teasers */}
       {day.companion && (day.companion.teaching || day.companion.practice) && (
-        <div style={{
-          display: 'flex', gap: 8,
-          padding: '0 18px 6px',
-        }}>
+        <div style={{ padding: '0 18px 6px' }}>
+          <div style={{
+            fontFamily: F, fontSize: 9, fontWeight: 600,
+            letterSpacing: '0.12em', textTransform: 'uppercase',
+            color: C.muted, marginBottom: 6,
+          }}>Today's Mindfulness</div>
+          <div style={{ display: 'flex', gap: 8 }}>
           {[
             day.companion.teaching && { type: 'teaching', data: day.companion.teaching, icon: TeachingIcon, accent: C.amber, label: 'Teaching', teaser: day.companion.teaching.title },
             day.companion.practice && { type: 'practice', data: day.companion.practice, icon: PracticeIcon, accent: C.sea, label: 'Practice', teaser: day.companion.practice.title },
@@ -1751,6 +1754,7 @@ function DayCard({ day, dayIndex = 0, onOpenPanel, activityFeedback, onActivityF
               }}>{item.teaser}</div>
             </button>
           ))}
+          </div>
         </div>
       )}
 
