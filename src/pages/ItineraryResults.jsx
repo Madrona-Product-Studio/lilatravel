@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
-import { useLocation, useNavigate, Link } from 'react-router-dom';
+import { useLocation, useNavigate, useParams, Link } from 'react-router-dom';
 import { C as BrandC } from '@data/brand';
 import { lookupUrl } from '@data/destinations/zion-urls';
 import JSON5 from 'json5';
@@ -7,6 +7,7 @@ import { trackEvent } from '@utils/analytics';
 import { getPracticesForItinerary, TRADITIONS, ENTRIES } from '@services/practicesService';
 import { assignCompanions } from '@services/companionAssigner';
 import { saveItinerary, saveFeedback } from '@services/feedbackService';
+import { supabase } from '@services/supabaseClient';
 import { clearSession } from '@services/sessionManager';
 import SavePill from '@components/SavePill';
 // CelestialMonthStrip consolidated into CelestialSnapshot below
@@ -2677,14 +2678,38 @@ function FirstDraftModal({ onDismiss }) {
 export default function ItineraryResults() {
   const location = useLocation();
   const navigate = useNavigate();
+  const { token: shareToken } = useParams(); // present when loaded via /trip/:token
   const isMobile = useIsMobile();
   const [visible, setVisible] = useState(false);
   const [refining, setRefining] = useState(false);
+  const [loadingShared, setLoadingShared] = useState(!!shareToken);
 
   // Seed from router state once, then own locally so refinement can update in-place
   const [rawItinerary, setRawItinerary] = useState(() => location.state?.itinerary || null);
   const [metadata] = useState(() => location.state?.metadata || null);
-  const [formData] = useState(() => location.state?.formData || null);
+  const [formData, setFormData] = useState(() => location.state?.formData || null);
+
+  // Hydrate from Supabase when accessed via a share link (/trip/:token)
+  useEffect(() => {
+    if (!shareToken || rawItinerary) return;
+    (async () => {
+      try {
+        const { data, error } = await supabase
+          .from('itineraries')
+          .select('id, raw_itinerary, destination, session_id, sessions(form_data)')
+          .eq('share_token', shareToken)
+          .single();
+        if (error || !data) { navigate('/plan'); return; }
+        setRawItinerary(data.raw_itinerary);
+        setFormData(data.sessions?.form_data || null);
+        setItineraryId(data.id);
+      } catch {
+        navigate('/plan');
+      } finally {
+        setLoadingShared(false);
+      }
+    })();
+  }, [shareToken]);
 
   // Iteration counter — persisted in sessionStorage keyed to this trip
   const sessionKey = useMemo(
@@ -2733,11 +2758,13 @@ export default function ItineraryResults() {
   }, [activePanel]);
 
   useEffect(() => {
+    // Don't redirect while still loading a shared trip
+    if (loadingShared) return;
     if (!rawItinerary) { navigate('/plan'); return; }
     setTimeout(() => setVisible(true), 100);
-  }, [rawItinerary, navigate]);
+  }, [rawItinerary, navigate, loadingShared]);
 
-  if (!rawItinerary) return null;
+  if (loadingShared || !rawItinerary) return null;
 
   // Parse itinerary — re-parses only when rawItinerary changes (i.e. after refinement)
   const itinerary = useMemo(() => {

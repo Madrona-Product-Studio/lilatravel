@@ -16,6 +16,7 @@
 //   /ethos/practices                → Practices Explorer (interactive wisdom layer browser)
 //   /ways-to-travel                → Ways to Travel (how to get started)
 //   /trips/:slug                   → Individual Threshold Trip detail
+//   /trip/:token                   → Saved/shared itinerary (loaded via share token)
 //   /itineraries/utah              → Utah National Parks itinerary (PWA trip guide)
 //   /contact                       → Contact page
 //   *                              → 404
@@ -127,6 +128,9 @@ export default function App() {
 
           {/* Trips (Threshold Trip detail pages) */}
           <Route path="/trips/:slug" element={<TripPage />} />
+
+          {/* Saved/shared itinerary via share token */}
+          <Route path="/trip/:token" element={<ItineraryResults />} />
 
           {/* Itineraries (self-contained trip guides) */}
           <Route path="/itineraries/utah" element={<UtahTripGuide />} />
