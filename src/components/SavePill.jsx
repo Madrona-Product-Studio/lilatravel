@@ -54,6 +54,7 @@ export default function SavePill({ itineraryId, rawItinerary, formData, itinerar
   const [email, setEmail] = useState('');
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
+  const [sendError, setSendError] = useState(false);
   const [copied, setCopied] = useState(false);
   const [shareUrl, setShareUrl] = useState('');
 
@@ -73,12 +74,14 @@ export default function SavePill({ itineraryId, rawItinerary, formData, itinerar
   const handleClose = () => {
     setOpen(false);
     setSent(false);
+    setSendError(false);
     setEmail('');
   };
 
   const handleSend = async () => {
     if (!email.includes('@')) return;
     setSending(true);
+    setSendError(false);
     try {
       await sendTripEmail({
         email,
@@ -89,7 +92,7 @@ export default function SavePill({ itineraryId, rawItinerary, formData, itinerar
       setSent(true);
     } catch (e) {
       console.error('Send failed:', e);
-      setSent(true); // still show confirmation — don't punish the user
+      setSendError(true);
     } finally {
       setSending(false);
     }
@@ -161,7 +164,7 @@ export default function SavePill({ itineraryId, rawItinerary, formData, itinerar
           { key: 'save', label: 'Save for me', icon: <SaveIcon size={11} color={mode === 'save' ? C.oceanTeal : `${C.sage}60`} /> },
           { key: 'share', label: 'Share with someone', icon: <ShareIcon size={11} color={mode === 'share' ? C.oceanTeal : `${C.sage}60`} /> },
         ].map(tab => (
-          <button key={tab.key} onClick={() => { setMode(tab.key); setSent(false); setEmail(''); }} style={{
+          <button key={tab.key} onClick={() => { setMode(tab.key); setSent(false); setSendError(false); setEmail(''); }} style={{
             flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 5,
             padding: '7px 0', borderRadius: 6,
             background: mode === tab.key ? `${C.oceanTeal}0c` : 'transparent',
@@ -231,6 +234,11 @@ export default function SavePill({ itineraryId, rawItinerary, formData, itinerar
                 {sending ? 'Sending...' : (mode === 'save' ? 'Send my link' : 'Send itinerary')}
               </button>
             </div>
+            {sendError && (
+              <div style={{ fontFamily: F, fontSize: 11, color: '#B06A5A', marginTop: 8, lineHeight: 1.5 }}>
+                Hmm, that didn't go through. Try again?
+              </div>
+            )}
           </>
         )}
 

@@ -49,7 +49,7 @@ export default async function handler(req, res) {
 
   try {
     await resend.emails.send({
-      from: 'onboarding@resend.dev',
+      from: 'Lila Trips <trips@lilatrips.com>',
       to: email,
       subject,
       html,
