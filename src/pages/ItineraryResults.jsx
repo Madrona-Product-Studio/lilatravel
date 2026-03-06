@@ -2580,14 +2580,15 @@ function FirstDraftModal({ onDismiss }) {
   return (
     <div style={{
       position: 'fixed', inset: 0, zIndex: 300,
-      background: `linear-gradient(180deg, ${C.cream} 0%, ${C.white} 40%, ${C.cream} 100%)`,
+      background: 'rgba(0,0,0,0.45)',
+      backdropFilter: 'blur(4px)', WebkitBackdropFilter: 'blur(4px)',
       display: 'flex', alignItems: 'center', justifyContent: 'center',
       padding: 20,
     }}>
       <div style={{
         position: 'relative',
-        width: '100%', maxWidth: 390,
-        background: 'transparent', borderRadius: 2,
+        maxWidth: 480, margin: '0 auto',
+        background: C.cream, borderRadius: 2,
         padding: '40px 32px 32px',
         opacity: show ? 1 : 0,
         transition: 'opacity 0.5s ease',
@@ -2738,7 +2739,7 @@ export default function ItineraryResults() {
   const [refineError, setRefineError] = useState(null);
 
   // First draft modal state
-  const [showDraftModal, setShowDraftModal] = useState(true);
+  const [showDraftModal, setShowDraftModal] = useState(() => !shareToken);
 
   // Itinerary ID for save/share
   const [itineraryId, setItineraryId] = useState(() =>
