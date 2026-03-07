@@ -2003,14 +2003,17 @@ function DayCard({ day, dayIndex = 0, onOpenPanel, activityFeedback, onActivityF
             {/* Breathing overlay — fades a cool sage gradient in and out */}
             <style>{`
               @keyframes practiceBreath {
-                0%, 100% { opacity: 0; }
-                50%      { opacity: 0.45; }
+                0%   { opacity: 0; }
+                8%   { opacity: 0.5; }
+                35%  { opacity: 0.15; }
+                55%  { opacity: 0; }
+                100% { opacity: 0; }
               }
             `}</style>
             <div aria-hidden style={{
               position: 'absolute', inset: 0,
               background: 'linear-gradient(150deg, #edf5f3 0%, #e2eeeb 100%)',
-              animation: 'practiceBreath 10s ease-in-out infinite',
+              animation: 'practiceBreath 12s cubic-bezier(0.4, 0, 0.2, 1) infinite',
               pointerEvents: 'none',
             }} />
             <div style={{ position: 'relative' }}>
