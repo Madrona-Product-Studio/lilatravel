@@ -2104,9 +2104,9 @@ function DayCard({ day, dayIndex = 0, onOpenPanel, activityFeedback, onActivityF
                 }}>"</span>
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <p style={{
-                    fontFamily: F, fontSize: 19, fontWeight: 300,
+                    fontFamily: F, fontSize: 14, fontWeight: 400,
                     fontStyle: 'italic',
-                    color: '#1a2530', opacity: 0.65, lineHeight: 1.45,
+                    color: '#1a2530', opacity: 0.65, lineHeight: 1.6,
                     margin: 0,
                   }}>{typeof quoteEntry.data.quote === 'string' ? quoteEntry.data.quote : quoteEntry.data.quote.text}</p>
                   {(quoteEntry.data.quote?.source || quoteEntry.data.sources?.[0]) && (
