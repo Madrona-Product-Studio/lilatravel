@@ -2423,48 +2423,20 @@ export default function ZionGuide() {
                 Choose your path — build it yourself with our Trip Planner, or let us craft something personalized for you.
               </p>
 
-              {/* Dual CTA buttons */}
-              <div style={{
-                display: "flex", flexDirection: isMobile ? "column" : "row", gap: 16, justifyContent: "center",
-                alignItems: isMobile ? "stretch" : "center",
-                flexWrap: "wrap", marginBottom: 16,
-              }}>
-                <Link to="/plan" style={{
-                  padding: "14px 36px", border: "none",
-                  background: C.darkInk, color: "#fff",
-                  textAlign: "center",
-                  fontFamily: "'Quicksand', sans-serif",
-                  fontSize: 11, fontWeight: 700,
-                  letterSpacing: "0.2em", textTransform: "uppercase",
-                  cursor: "pointer", transition: "opacity 0.2s",
-                  textDecoration: "none",
-                }}
-                onClick={() => trackEvent('guide_cta_clicked', { action: 'unlock_trip_planner', destination: 'zion' })}
-                onMouseEnter={e => e.currentTarget.style.opacity = "0.85"}
-                onMouseLeave={e => e.currentTarget.style.opacity = "1"}
-                >{"Unlock Trip Planner — $39"}</Link>
-
-                <Link to="/contact" style={{
-                  padding: "14px 36px",
-                  border: `1.5px solid ${C.darkInk}`, background: "transparent",
-                  color: C.darkInk, textAlign: "center",
-                  fontFamily: "'Quicksand', sans-serif",
-                  fontSize: 11, fontWeight: 700,
-                  letterSpacing: "0.2em", textTransform: "uppercase",
-                  cursor: "pointer", transition: "all 0.2s",
-                  textDecoration: "none",
-                }}
-                onClick={() => trackEvent('guide_cta_clicked', { action: 'request_custom', destination: 'zion' })}
-                onMouseEnter={e => { e.currentTarget.style.background = C.darkInk; e.currentTarget.style.color = "#fff"; }}
-                onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = C.darkInk; }}
-                >{"Request Custom Itinerary →"}</Link>
-              </div>
-
-              <div style={{
+              <Link to="/plan" style={{
+                padding: "14px 36px", border: "none",
+                background: C.darkInk, color: "#fff",
+                textAlign: "center", display: "inline-block",
                 fontFamily: "'Quicksand', sans-serif",
-                fontSize: 11, fontWeight: 400, color: "#7A857E", marginTop: 12,
-                letterSpacing: "0.04em",
-              }}>{"Trip Planner: one-time purchase · Custom Itinerary: from $199"}</div>
+                fontSize: 11, fontWeight: 700,
+                letterSpacing: "0.2em", textTransform: "uppercase",
+                cursor: "pointer", transition: "opacity 0.2s",
+                textDecoration: "none",
+              }}
+              onClick={() => trackEvent('guide_cta_clicked', { action: 'plan_a_trip', destination: 'zion' })}
+              onMouseEnter={e => e.currentTarget.style.opacity = "0.85"}
+              onMouseLeave={e => e.currentTarget.style.opacity = "1"}
+              >{"Plan a Trip"}</Link>
             </FadeIn>
           </section>
 
