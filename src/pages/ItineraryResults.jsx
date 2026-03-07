@@ -2004,13 +2004,13 @@ function DayCard({ day, dayIndex = 0, onOpenPanel, activityFeedback, onActivityF
             <style>{`
               @keyframes practiceBreath {
                 0%, 100% { opacity: 0; }
-                50%      { opacity: 1; }
+                50%      { opacity: 0.45; }
               }
             `}</style>
             <div aria-hidden style={{
               position: 'absolute', inset: 0,
               background: 'linear-gradient(150deg, #edf5f3 0%, #e2eeeb 100%)',
-              animation: 'practiceBreath 6s ease-in-out infinite',
+              animation: 'practiceBreath 10s ease-in-out infinite',
               pointerEvents: 'none',
             }} />
             <div style={{ position: 'relative' }}>
