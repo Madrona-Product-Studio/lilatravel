@@ -2065,13 +2065,13 @@ function DayCard({ day, dayIndex = 0, onOpenPanel, activityFeedback, onActivityF
                   fontFamily: F_SERIF, fontSize: 14, fontStyle: 'italic',
                   color: '#1a2530', opacity: 0.65, lineHeight: 1.65,
                   margin: '-8px 0 0',
-                }}>{quoteEntry.data.quote}</p>
-                {quoteEntry.data.sources?.[0] && (
+                }}>{typeof quoteEntry.data.quote === 'string' ? quoteEntry.data.quote : quoteEntry.data.quote.text}</p>
+                {(quoteEntry.data.quote?.source || quoteEntry.data.sources?.[0]) && (
                   <div style={{
                     fontFamily: F, fontSize: 9, fontWeight: 600,
                     letterSpacing: '0.14em', textTransform: 'uppercase',
                     color: '#1a2530', opacity: 0.35, marginTop: 6,
-                  }}>{quoteEntry.data.sources[0]}</div>
+                  }}>{quoteEntry.data.quote?.source || quoteEntry.data.sources[0]}</div>
                 )}
               </div>
             )}

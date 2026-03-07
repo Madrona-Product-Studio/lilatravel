@@ -520,7 +520,8 @@ function StepTitle({ eyebrow, title, subtitle }) {
 
 // ─── Radar Chart ─────────────────────────────────────────────────────────────
 function RadarChart({ values, size = 260 }) {
-  const cx = size / 2, cy = size / 2, r = size * 0.36;
+  const pad = 32;
+  const cx = size / 2 + pad, cy = size / 2 + pad, r = size * 0.36;
   const n = DIMENSIONS.length;
   const angleStep = (Math.PI * 2) / n;
   const [animProgress, setAnimProgress] = useState(0);
@@ -548,7 +549,7 @@ function RadarChart({ values, size = 260 }) {
   const colors = [C.oceanTeal, C.skyBlue, C.sunSalmon, C.goldenAmber, C.seaGlass, C.sage];
 
   return (
-    <svg width="100%" viewBox={`0 0 ${size} ${size}`} style={{ maxWidth: size }}>
+    <svg width="100%" viewBox={`0 0 ${size + pad * 2} ${size + pad * 2}`} style={{ maxWidth: size + pad * 2 }}>
       {gridLevels.map((level, li) => (
         <polygon key={li}
           points={Array.from({ length: n }, (_, i) => {
