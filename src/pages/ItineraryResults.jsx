@@ -1994,12 +1994,9 @@ function DayCard({ day, dayIndex = 0, onOpenPanel, activityFeedback, onActivityF
         const quoteEntry = entries.find(e => e.data.quote);
         return (
           <div style={{
-            margin: '0 18px 6px',
-            border: '1.5px solid #4A9B9F',
-            borderRadius: 14,
-            boxShadow: '0 2px 16px rgba(74,155,159,0.15)',
             background: 'linear-gradient(150deg, #f5f1ea 0%, #ede9e0 100%)',
-            padding: '18px 18px 0',
+            borderBottom: '1px solid rgba(74,155,159,0.2)',
+            padding: '20px 24px 0',
           }}>
             {/* Header */}
             <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 6 }}>
