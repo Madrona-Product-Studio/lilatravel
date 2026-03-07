@@ -1994,25 +1994,26 @@ function DayCard({ day, dayIndex = 0, onOpenPanel, activityFeedback, onActivityF
         const quoteEntry = entries.find(e => e.data.quote);
         return (
           <div style={{
-            position: 'relative',
+            position: 'relative', overflow: 'hidden',
             background: 'linear-gradient(150deg, #f5f1ea 0%, #ede9e0 100%)',
             borderTop: '1.5px solid rgba(74,155,159,0.35)',
             borderBottom: '1.5px solid rgba(74,155,159,0.35)',
             padding: '20px 24px 0',
           }}>
-            {/* Breathing overlay — fades a cool sage gradient in and out */}
+            {/* Breathing overlay — sweeps sage color left-to-right like a breeze */}
             <style>{`
               @keyframes practiceBreath {
-                0%   { opacity: 0; }
+                0%   { opacity: 0; transform: translateX(-60%); }
                 8%   { opacity: 0.5; }
-                35%  { opacity: 0.15; }
-                55%  { opacity: 0; }
-                100% { opacity: 0; }
+                40%  { opacity: 0.3; transform: translateX(20%); }
+                60%  { opacity: 0; transform: translateX(60%); }
+                100% { opacity: 0; transform: translateX(60%); }
               }
             `}</style>
             <div aria-hidden style={{
-              position: 'absolute', inset: 0,
-              background: 'linear-gradient(150deg, #edf5f3 0%, #e2eeeb 100%)',
+              position: 'absolute', top: 0, bottom: 0,
+              left: '-40%', width: '180%',
+              background: 'linear-gradient(to right, transparent 0%, #e2eeeb 30%, #edf5f3 50%, transparent 100%)',
               animation: 'practiceBreath 12s cubic-bezier(0.4, 0, 0.2, 1) infinite',
               pointerEvents: 'none',
             }} />
