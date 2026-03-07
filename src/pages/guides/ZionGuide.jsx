@@ -2340,7 +2340,7 @@ export default function ZionGuide() {
             <FadeIn>
               <SectionIcon type="threshold" />
               <SectionLabel>Group Trips</SectionLabel>
-              <SectionTitle>Tuned to Earth Rhythms</SectionTitle>
+              <SectionTitle>Tuned to Cosmic Rhythms</SectionTitle>
               <SectionSub isMobile={isMobile}>Small group trips timed to natural crescendos. Expert guides, meaningful connection, transformative terrain. Eight travelers maximum.</SectionSub>
             </FadeIn>
 

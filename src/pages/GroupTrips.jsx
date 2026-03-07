@@ -21,7 +21,7 @@ export default function GroupTrips() {
 
       <PageHeader
         eyebrow="Group Trips"
-        title="Tuned to Earth Rhythms"
+        title="Tuned to Cosmic Rhythms"
         subtitle="Small group experiences timed to equinoxes, solstices, and celestial events. Eight travelers maximum."
         accentColor={C.seaGlass}
       />
