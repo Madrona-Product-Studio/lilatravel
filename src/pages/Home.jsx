@@ -801,9 +801,9 @@ export default function HomePage() {
                 fontFamily: "'Quicksand', sans-serif", fontSize: "clamp(13px, 1.4vw, 15px)",
                 fontWeight: 400, color: "rgba(255,255,255,0.55)", lineHeight: 2.1, letterSpacing: "0.03em",
               }}>
-                <p style={{ marginBottom: 20, color: "rgba(255,255,255,0.7)" }}>We put people, place and practice together.</p>
-                <p style={{ marginBottom: 20, color: "rgba(255,255,255,0.7)" }}>Built around the terrain, the elements, and the wisdom traditions that have understood these places for centuries.</p>
-                <p style={{ marginBottom: 20, color: "rgba(255,255,255,0.7)" }}>Custom itineraries built around your intention. We cut everything that isn't worth your time.</p>
+                <p style={{ marginBottom: 20, color: "rgba(255,255,255,0.7)" }}>Our mission is simple and important: put you in the best possible position to have an experience that stays with you.</p>
+                <p style={{ marginBottom: 20, color: "rgba(255,255,255,0.7)" }}>We weave together the terrain, the elements, and the ancient wisdom traditions that have understood these places for centuries.</p>
+                <p style={{ marginBottom: 20, color: "rgba(255,255,255,0.7)" }}>Custom itineraries built around your intention. Everything not worth your time, gone.</p>
                 <p style={{ marginBottom: 0, color: "rgba(255,255,255,0.7)" }}>DIY or full service. Solo or group. Your trip, your way.</p>
 
                 <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: 28, marginTop: 36 }}>
