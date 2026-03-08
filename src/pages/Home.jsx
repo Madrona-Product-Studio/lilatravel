@@ -770,9 +770,9 @@ export default function HomePage() {
                 fontSize: "clamp(13px, 1.4vw, 15px)", fontWeight: 400,
                 color: "#5a6a78", lineHeight: 2.1, letterSpacing: "0.03em",
               }}>
-                <p style={{ marginBottom: 20 }}>Traveling there is about finding the moments of magic that light up your soul — moments where we discover our truest and lightest selves.</p>
-                <p style={{ marginBottom: 20 }}>Not weighed down by the past or an imagined future. Connected to something larger than ourselves — right now.</p>
-                <p style={{ marginBottom: 32 }}>We're reminded of a truth we know but often forget. That life isn't about conquering the mystery. It's about learning to dance with it.</p>
+                <p style={{ marginBottom: 20 }}>We go because something in us knows these places hold something we need.</p>
+                <p style={{ marginBottom: 20 }}>What we find there resists description. A stillness. A vastness. A sense that we're part of something much older and larger than our daily lives.</p>
+                <p style={{ marginBottom: 32 }}>That's where we meet our truest selves — not weighed down by the past or an imagined future, but here, right now, fully alive.</p>
                 <p style={{ marginBottom: 6 }}>
                   <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(28px, 3.2vw, 38px)", fontWeight: 400, fontStyle: "normal", color: C.skyBlue }}>Līlā</span>
                   {" "}<span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(20px, 2.2vw, 26px)", fontWeight: 300, fontStyle: "normal", color: "rgba(90,106,120,0.65)" }}>लीला</span>
