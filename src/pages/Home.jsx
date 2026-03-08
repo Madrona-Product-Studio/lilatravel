@@ -813,13 +813,13 @@ export default function HomePage() {
                     { label: "Elemental Encounters", icon: "✦\uFE0E", color: "#6BA4B8" },
                   ].map((callout, i) => (
                     <div key={i} style={{
-                      display: "flex", alignItems: "center", gap: 10,
-                      marginBottom: i < 2 ? 20 : 0, paddingLeft: 16,
+                      display: "flex", alignItems: "center", gap: 14,
+                      marginBottom: i < 2 ? 24 : 0, paddingLeft: 16,
                     }}>
-                      <span style={{ color: callout.color, fontSize: 18, lineHeight: 1, flexShrink: 0 }}>{callout.icon}</span>
+                      <span style={{ color: callout.color, fontSize: 22, lineHeight: 1, flexShrink: 0 }}>{callout.icon}</span>
                       <span style={{
                         fontFamily: "'Quicksand', sans-serif",
-                        fontSize: 10, fontWeight: 700,
+                        fontSize: 12, fontWeight: 700,
                         letterSpacing: "0.18em", textTransform: "uppercase",
                         color: callout.color,
                       }}>{callout.label}</span>
