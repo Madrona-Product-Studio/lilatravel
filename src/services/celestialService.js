@@ -56,7 +56,7 @@ const MW_WINDOWS = {
 
 // ─── Weather (Open-Meteo) ────────────────────────────────────────────────────
 
-async function fetchWeather(lat, lon) {
+async function fetchWeather(lat, lon, timezone = "America/Denver") {
   const params = new URLSearchParams({
     latitude: lat,
     longitude: lon,
@@ -64,7 +64,7 @@ async function fetchWeather(lat, lon) {
     daily: "temperature_2m_max,temperature_2m_min,precipitation_probability_max,sunrise,sunset",
     temperature_unit: "fahrenheit",
     wind_speed_unit: "mph",
-    timezone: "America/Denver",
+    timezone,
     forecast_days: 1,
   });
   const res = await fetch(`https://api.open-meteo.com/v1/forecast?${params}`);
@@ -75,25 +75,38 @@ async function fetchWeather(lat, lon) {
 
 // ─── Sun (extracted from Open-Meteo response) ───────────────────────────────
 
-function extractSunData(weatherResult, now) {
+function extractSunData(weatherResult, now, timezone = "America/Denver") {
   if (weatherResult.status !== "fulfilled") return null;
   const d = weatherResult.value.daily;
-  const rise = new Date(d.sunrise[0]);
-  const set = new Date(d.sunset[0]);
+  const riseISO = d.sunrise[0]; // e.g. "2026-03-08T06:52"
+  const setISO = d.sunset[0];   // e.g. "2026-03-08T18:25"
 
-  const fmt = (date) => date.toLocaleTimeString("en-US", {
-    hour: "numeric", minute: "2-digit", hour12: true, timeZone: "America/Denver",
-  });
+  // Parse directly — Open-Meteo already returns local times in the requested timezone
+  const fmtDirect = (iso) => {
+    const [, time] = iso.split("T");
+    const [h, m] = time.split(":").map(Number);
+    const period = h >= 12 ? "PM" : "AM";
+    const h12 = h === 0 ? 12 : h > 12 ? h - 12 : h;
+    return `${h12}:${String(m).padStart(2, "0")} ${period}`;
+  };
 
-  const diffMs = set - rise;
-  const hours = Math.floor(diffMs / 3600000);
-  const mins = Math.round((diffMs % 3600000) / 60000);
+  // Daylight duration from raw hour/minute values
+  const [rH, rM] = riseISO.split("T")[1].split(":").map(Number);
+  const [sH, sM] = setISO.split("T")[1].split(":").map(Number);
+  const diffMin = (sH * 60 + sM) - (rH * 60 + rM);
+  const hours = Math.floor(diffMin / 60);
+  const mins = diffMin % 60;
 
-  const progress = Math.max(0, Math.min(1, (now - rise) / (set - rise)));
+  // Progress through the day using current time in the destination timezone
+  const nowLocal = new Date(now.toLocaleString("en-US", { timeZone: timezone }));
+  const nowMinutes = nowLocal.getHours() * 60 + nowLocal.getMinutes();
+  const riseMinutes = rH * 60 + rM;
+  const setMinutes = sH * 60 + sM;
+  const progress = Math.max(0, Math.min(1, (nowMinutes - riseMinutes) / (setMinutes - riseMinutes)));
 
   return {
-    rise: fmt(rise),
-    set: fmt(set),
+    rise: fmtDirect(riseISO),
+    set: fmtDirect(setISO),
     daylight: `${hours}h ${mins}m`,
     progress,
   };
@@ -285,13 +298,13 @@ export async function getCelestialSnapshot(destinationKey = "zion") {
   const now = new Date();
 
   const [weatherData, riverData, alertsData] = await Promise.allSettled([
-    fetchWeather(config.lat, config.lon),
+    fetchWeather(config.lat, config.lon, config.timezone),
     getRiverLevel(config.usgsSiteId),
     fetchNPSAlerts(config.parkCode),
   ]);
 
   const moonData = getMoonPhase(now);
-  const sunData = extractSunData(weatherData, now);
+  const sunData = extractSunData(weatherData, now, config.timezone);
   const skyData = getSkyQuality(config.bortleClass, moonData.phase, now.getMonth() + 1);
   const nextEvent = getNextCelestialEvent();
 
