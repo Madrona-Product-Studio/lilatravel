@@ -772,7 +772,7 @@ export default function HomePage() {
               }}>
                 <p style={{ marginBottom: 20 }}>We go because something in us knows these places hold something we need.</p>
                 <p style={{ marginBottom: 20 }}>What we find there resists description. A stillness. A vastness. A sense that we're part of something much older and larger than our daily lives.</p>
-                <p style={{ marginBottom: 32 }}>That's where we meet our truest selves — not weighed down by the past or an imagined future, but here, right now, fully alive.</p>
+                <p style={{ marginBottom: 32 }}>That's where we meet our truest selves — not weighed down by the past or an imagined future, but here, right now, fully alive, like a dance.</p>
                 <p style={{ marginBottom: 6 }}>
                   <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(28px, 3.2vw, 38px)", fontWeight: 400, fontStyle: "normal", color: C.skyBlue }}>Līlā</span>
                   {" "}<span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(20px, 2.2vw, 26px)", fontWeight: 300, fontStyle: "normal", color: "rgba(90,106,120,0.65)" }}>लीला</span>
