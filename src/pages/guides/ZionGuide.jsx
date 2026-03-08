@@ -18,6 +18,7 @@ import { P } from '@data/photos';
 import { getTripsByDestination } from '@data/trips';
 import { trackEvent } from '@utils/analytics';
 import { getCelestialSnapshot } from '@services/celestialService';
+import { getNPSData, buildNPSLookup, findNPSMatch } from '@services/npsService';
 
 
 // ─── Guide-Specific Components ───────────────────────────────────────────────
@@ -137,7 +138,16 @@ function SectionIcon({ type }) {
   );
 }
 
-function ListItem({ name, detail, note, tags, featured, url, isMobile, onOpenSheet, location }) {
+function NPSArrowhead({ size = 14, color = "#2D5F2B" }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <path d="M12 2L4 22h3l5-11 5 11h3L12 2z" fill={color} opacity="0.85" />
+      <circle cx="12" cy="16" r="2.5" fill={color} opacity="0.6" />
+    </svg>
+  );
+}
+
+function ListItem({ name, detail, note, tags, featured, url, isMobile, onOpenSheet, location, hasNPS }) {
   const nameEl = onOpenSheet ? (
     <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 15, fontWeight: 600, color: C.darkInk }}>{name}</span>
   ) : url ? (
@@ -173,6 +183,16 @@ function ListItem({ name, detail, note, tags, featured, url, isMobile, onOpenShe
               fontFamily: "'Quicksand', sans-serif", fontSize: 9, fontWeight: 700,
               letterSpacing: "0.18em", textTransform: "uppercase", color: C.sunSalmon,
             }}>{"Lila Pick"}</span>
+          )}
+          {hasNPS && (
+            <span style={{
+              display: "inline-flex", alignItems: "center", gap: 4,
+              padding: "2px 8px", background: "#2D5F2B10",
+              fontFamily: "'Quicksand', sans-serif", fontSize: 8, fontWeight: 700,
+              letterSpacing: "0.14em", textTransform: "uppercase", color: "#2D5F2B",
+            }}>
+              <NPSArrowhead size={10} />NPS
+            </span>
           )}
         </div>
         <div style={{
@@ -341,6 +361,37 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
     premium: { color: C.goldenAmber, label: "Premium", bg: `${C.goldenAmber}15` },
   };
 
+  const nps = item.nps;
+  const npsImages = nps?.images?.filter(img => img.url) || [];
+  const npsPrimaryImage = npsImages[0];
+
+  // Helper to strip HTML tags for clean display
+  const stripHTML = (html) => {
+    if (!html) return '';
+    return html.replace(/<[^>]*>/g, '').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&nbsp;/g, ' ').trim();
+  };
+
+  // NPS info grid rows
+  const npsInfoRows = [];
+  if (nps) {
+    if (nps.duration) npsInfoRows.push({ label: 'Duration', value: nps.duration });
+    if (nps.season?.length) npsInfoRows.push({ label: 'Best Seasons', value: Array.isArray(nps.season) ? nps.season.join(', ') : nps.season });
+    if (nps.location || nps.locationDescription) npsInfoRows.push({ label: 'Location', value: stripHTML(nps.locationDescription || nps.location || '') });
+    // Accessibility is rendered separately below the grid
+    const petsAllowed = nps.arePetsPermitted === 'true' || nps.arePetsPermitted === true;
+    if (nps.petsDescription || nps.arePetsPermitted !== undefined) {
+      npsInfoRows.push({ label: 'Pets', value: nps.petsDescription ? stripHTML(nps.petsDescription) : (petsAllowed ? 'Pets allowed' : 'No pets') });
+    }
+    const hasFees = nps.doFeesApply === 'true' || nps.doFeesApply === true;
+    if (nps.feeDescription || nps.doFeesApply !== undefined) {
+      npsInfoRows.push({ label: 'Fees', value: nps.feeDescription ? stripHTML(nps.feeDescription) : (hasFees ? 'Fees apply' : 'Free') });
+    }
+    const needsReservation = nps.isReservationRequired === 'true' || nps.isReservationRequired === true;
+    if (nps.isReservationRequired !== undefined) {
+      npsInfoRows.push({ label: 'Reservation', value: needsReservation ? 'Required' : 'Not required' });
+    }
+  }
+
   const content = (
     <div style={{ maxWidth: 500, margin: '0 auto', padding: '26px 20px 60px' }}>
       {/* Badge row */}
@@ -380,36 +431,291 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
         }}>Lila Pick</span>
       )}
 
-      {/* Detail */}
-      {item.detail && (
-        <p style={{
-          fontFamily: "'Quicksand', sans-serif", fontSize: 14, fontWeight: 400,
-          color: '#4A5650', lineHeight: 1.7, margin: '0 0 14px',
-        }}>{item.detail}</p>
+      {/* ═══ NPS ENRICHMENT (when available) ═══ */}
+      {nps && (
+        <>
+          {/* NPS Photo */}
+          {npsPrimaryImage && (
+            <div style={{ margin: '0 -20px 18px', position: 'relative' }}>
+              <img
+                src={npsPrimaryImage.url}
+                alt={npsPrimaryImage.altText || item.name}
+                style={{ width: '100%', height: 220, objectFit: 'cover', display: 'block' }}
+              />
+              {(npsPrimaryImage.caption || npsPrimaryImage.credit) && (
+                <div style={{
+                  padding: '6px 20px',
+                  fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 400,
+                  color: '#7A857E', lineHeight: 1.5,
+                }}>
+                  {npsPrimaryImage.caption && <span>{npsPrimaryImage.caption}</span>}
+                  {npsPrimaryImage.credit && (
+                    <span style={{ fontStyle: 'italic' }}>{npsPrimaryImage.caption ? ' · ' : ''}Photo: {npsPrimaryImage.credit}</span>
+                  )}
+                </div>
+              )}
+              {/* Thumbnail strip */}
+              {npsImages.length > 1 && (
+                <div style={{
+                  display: 'flex', gap: 3, padding: '0 20px', overflowX: 'auto',
+                  scrollbarWidth: 'none', msOverflowStyle: 'none',
+                }}>
+                  {npsImages.slice(1, 5).map((img, i) => (
+                    <img key={i} src={img.url} alt={img.altText || ''} style={{
+                      width: 60, height: 42, objectFit: 'cover', opacity: 0.8,
+                    }} />
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* NPS Attribution */}
+          <a
+            href={nps.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: 'flex', alignItems: 'center', gap: 10,
+              padding: '10px 14px', marginBottom: 18,
+              background: '#2D5F2B0D',
+              border: '1px solid #2D5F2B18',
+              textDecoration: 'none',
+              transition: 'background 0.2s',
+            }}
+            onMouseEnter={e => e.currentTarget.style.background = '#2D5F2B18'}
+            onMouseLeave={e => e.currentTarget.style.background = '#2D5F2B0D'}
+          >
+            <NPSArrowhead size={20} color="#2D5F2B" />
+            <div>
+              <div style={{
+                fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 500,
+                color: '#2D5F2B', lineHeight: 1.5,
+              }}>
+                Trail information provided by the <strong>National Park Service</strong>
+              </div>
+              <div style={{
+                fontFamily: "'Quicksand', sans-serif", fontSize: 9, fontWeight: 600,
+                letterSpacing: '0.12em', textTransform: 'uppercase',
+                color: '#2D5F2B', opacity: 0.6, marginTop: 2,
+              }}>View on NPS.gov ↗</div>
+            </div>
+          </a>
+
+          {/* NPS Description */}
+          {(nps.longDescription || nps.shortDescription) && (
+            <div style={{ marginBottom: 18 }}>
+              <div style={{
+                fontFamily: "'Quicksand', sans-serif", fontSize: 9, fontWeight: 700,
+                letterSpacing: '0.2em', textTransform: 'uppercase',
+                color: '#2D5F2B', marginBottom: 8,
+              }}>NPS Description</div>
+              <p style={{
+                fontFamily: "'Quicksand', sans-serif", fontSize: 14, fontWeight: 400,
+                color: '#4A5650', lineHeight: 1.75, margin: 0,
+              }}>{stripHTML(nps.longDescription || nps.shortDescription)}</p>
+            </div>
+          )}
+
+          {/* NPS Info Grid */}
+          {npsInfoRows.length > 0 && (
+            <div style={{
+              display: 'grid', gridTemplateColumns: '1fr 1fr',
+              gap: '10px 16px', marginBottom: 20,
+              padding: '14px 0',
+              borderTop: `1px solid ${C.stone}`,
+              borderBottom: `1px solid ${C.stone}`,
+            }}>
+              {npsInfoRows.map((row, i) => (
+                <div key={i} style={row.label === 'Location' ? { gridColumn: '1 / -1' } : {}}>
+                  <div style={{
+                    fontFamily: "'Quicksand', sans-serif", fontSize: 9, fontWeight: 700,
+                    letterSpacing: '0.18em', textTransform: 'uppercase',
+                    color: '#7A857E', marginBottom: 3,
+                  }}>{row.label}</div>
+                  <div style={{
+                    fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 500,
+                    color: C.darkInk, lineHeight: 1.5,
+                  }}>{row.value}</div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* NPS Trail Accessibility — structured breakdown */}
+          {nps.accessibilityInformation && (() => {
+            const html = nps.accessibilityInformation;
+            const clean = (s) => s.replace(/&amp;/g, '&').replace(/&nbsp;/g, ' ').replace(/\xa0/g, ' ').replace(/<[^>]*>/g, '').trim();
+
+            // Check if it's the structured <ul><li><b>Label | </b>Value format
+            const liMatches = html.match(/<li>([\s\S]*?)<\/li>/gi);
+            if (!liMatches || liMatches.length === 0) {
+              // Simple plain-text accessibility note (e.g. "Strenuous trail with...")
+              const text = clean(html);
+              if (!text) return null;
+              return (
+                <div style={{ marginBottom: 20 }}>
+                  <div style={{
+                    fontFamily: "'Quicksand', sans-serif", fontSize: 9, fontWeight: 700,
+                    letterSpacing: '0.2em', textTransform: 'uppercase',
+                    color: '#7A857E', marginBottom: 8,
+                  }}>Accessibility</div>
+                  <p style={{
+                    fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 400,
+                    color: '#4A5650', lineHeight: 1.6, margin: 0,
+                  }}>{text}</p>
+                </div>
+              );
+            }
+
+            // Parse structured <li> items: <b>Label  |  </b>Value  |  Value2
+            const rows = liMatches.map(li => {
+              const inner = li.replace(/<\/?li>/gi, '');
+              // Extract the bold label
+              const boldMatch = inner.match(/<b>([\s\S]*?)<\/b>/);
+              const label = boldMatch
+                ? clean(boldMatch[1]).replace(/\s*\|\s*$/, '').trim()
+                : '';
+              // Everything after the first </b> is the value (may contain more <b>|</b> separators)
+              const valueHtml = boldMatch
+                ? inner.slice(inner.indexOf('</b>') + 4)
+                : inner;
+              // Split on bold pipe separators: <b> | </b> or <b>|</b>
+              const valueParts = valueHtml
+                .split(/<b>\s*\|?\s*<\/b>|<b>\s*\|\s*<\/b>/)
+                .map(clean)
+                .filter(Boolean);
+              // Also split remaining plain-text pipe separators within each part
+              const finalParts = [];
+              for (const part of valueParts) {
+                // Don't split on | inside measurements like "12 in | 30 cm" — only split on spaced pipes
+                part.split(/\s+\|\s+/).forEach(p => { if (p.trim()) finalParts.push(p.trim()); });
+              }
+              return { label, values: finalParts };
+            });
+
+            // Check for a footnote paragraph after the list
+            const footnoteMatch = html.match(/<p>([\s\S]*?)<\/p>/i);
+            const footnote = footnoteMatch ? clean(footnoteMatch[1]) : null;
+
+            return (
+              <div style={{ marginBottom: 20 }}>
+                <div style={{
+                  fontFamily: "'Quicksand', sans-serif", fontSize: 9, fontWeight: 700,
+                  letterSpacing: '0.2em', textTransform: 'uppercase',
+                  color: '#7A857E', marginBottom: 10,
+                }}>Trail Accessibility</div>
+                <div style={{
+                  border: `1px solid ${C.stone}`,
+                  background: `${C.stone}18`,
+                }}>
+                  {rows.map((row, i) => (
+                    <div key={i} style={{
+                      padding: '9px 14px',
+                      borderBottom: `1px solid ${C.stone}`,
+                    }}>
+                      {row.label && (
+                        <div style={{
+                          fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700,
+                          color: C.darkInk, marginBottom: 3,
+                        }}>{row.label}</div>
+                      )}
+                      {row.values.map((val, j) => (
+                        <div key={j} style={{
+                          fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 400,
+                          color: '#4A5650', lineHeight: 1.6,
+                        }}>{val}</div>
+                      ))}
+                    </div>
+                  ))}
+                  {footnote && (
+                    <div style={{
+                      padding: '8px 14px',
+                      fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 400,
+                      fontStyle: 'italic', color: '#7A857E', lineHeight: 1.5,
+                    }}>{footnote}</div>
+                  )}
+                </div>
+              </div>
+            );
+          })()}
+
+          {/* Lila's Take — editorial content below NPS */}
+          {(item.detail || item.note) && (
+            <div style={{
+              padding: '14px 16px', marginBottom: 18,
+              background: `${C.goldenAmber}08`,
+              borderLeft: `3px solid ${C.goldenAmber}40`,
+            }}>
+              <div style={{
+                fontFamily: "'Quicksand', sans-serif", fontSize: 9, fontWeight: 700,
+                letterSpacing: '0.2em', textTransform: 'uppercase',
+                color: C.goldenAmber, marginBottom: 8,
+              }}>Our Take</div>
+              {item.detail && (
+                <p style={{
+                  fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 400,
+                  color: '#4A5650', lineHeight: 1.7, margin: '0 0 6px',
+                }}>{item.detail}</p>
+              )}
+              {item.note && (
+                <div style={{
+                  fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600,
+                  color: C.oceanTeal,
+                }}>{item.note}</div>
+              )}
+            </div>
+          )}
+
+          {/* Tags */}
+          {item.tags && item.tags.length > 0 && (
+            <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 20 }}>
+              {item.tags.map((t, i) => (
+                <span key={i} style={{
+                  padding: '3px 10px', background: C.stone + '60',
+                  fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600, color: '#7A857E',
+                }}>{t}</span>
+              ))}
+            </div>
+          )}
+        </>
       )}
 
-      {/* Note */}
-      {item.note && (
-        <div style={{
-          fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 600,
-          color: C.oceanTeal, marginBottom: 14,
-        }}>{item.note}</div>
-      )}
+      {/* ═══ STANDARD CONTENT (no NPS, or items without NPS data) ═══ */}
+      {!nps && (
+        <>
+          {/* Detail */}
+          {item.detail && (
+            <p style={{
+              fontFamily: "'Quicksand', sans-serif", fontSize: 14, fontWeight: 400,
+              color: '#4A5650', lineHeight: 1.7, margin: '0 0 14px',
+            }}>{item.detail}</p>
+          )}
 
-      {/* Tags */}
-      {item.tags && item.tags.length > 0 && (
-        <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 20 }}>
-          {item.tags.map((t, i) => (
-            <span key={i} style={{
-              padding: '3px 10px', background: C.stone + '60',
-              fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600, color: '#7A857E',
-            }}>{t}</span>
-          ))}
-        </div>
+          {/* Note */}
+          {item.note && (
+            <div style={{
+              fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 600,
+              color: C.oceanTeal, marginBottom: 14,
+            }}>{item.note}</div>
+          )}
+
+          {/* Tags */}
+          {item.tags && item.tags.length > 0 && (
+            <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 20 }}>
+              {item.tags.map((t, i) => (
+                <span key={i} style={{
+                  padding: '3px 10px', background: C.stone + '60',
+                  fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600, color: '#7A857E',
+                }}>{t}</span>
+              ))}
+            </div>
+          )}
+        </>
       )}
 
       {/* Visit Website link */}
-      {item.url && (
+      {item.url && !nps && (
         <a href={item.url} target="_blank" rel="noopener noreferrer" style={{
           display: 'inline-flex', alignItems: 'center', gap: 6,
           padding: '10px 20px', border: `1.5px solid ${C.oceanTeal}`,
@@ -1405,12 +1711,17 @@ function CelestialDrawer({ isMobile }) {
     return () => { style.remove(); };
   }, []);
 
-  if (loading || !data) return null;
-
-  const { weather, sun, moon, sky, river, nextEvent, alerts } = data;
-  const riverColors = { low: C.seaGlass, moderate: C.skyBlue, high: C.goldenAmber, dangerous: C.sunSalmon };
-
   const NAV_HEIGHT = isMobile ? 58 : 64;
+
+  if (loading || !data) return (
+    <div style={{ position: "relative", background: C.warmWhite, borderBottom: `1px solid ${C.stone}` }}>
+      <div style={{ height: NAV_HEIGHT + 14 }} />
+      <div style={{ height: 44 }} />
+    </div>
+  );
+
+  const { weather, sun, moon, sky, river, nextEvent } = data;
+  const riverColors = { low: C.seaGlass, moderate: C.skyBlue, high: C.goldenAmber, dangerous: C.sunSalmon };
   const LABEL_STYLE = {
     fontFamily: "'Quicksand', sans-serif",
     fontSize: 8, fontWeight: 700,
@@ -1439,6 +1750,7 @@ function CelestialDrawer({ isMobile }) {
   return (
     <div style={{
       position: "relative",
+      zIndex: open ? 95 : "auto",
       background: C.warmWhite,
       borderBottom: `1px solid ${C.stone}`,
     }}>
@@ -1502,7 +1814,7 @@ function CelestialDrawer({ isMobile }) {
 
       {/* Expandable content */}
       <div style={{
-        position: "relative", zIndex: 90,
+        position: "relative", zIndex: 95,
         maxHeight: open ? contentHeight : 0,
         overflow: "hidden",
         transition: "max-height 0.5s ease",
@@ -1576,29 +1888,6 @@ function CelestialDrawer({ isMobile }) {
             )}
           </div>
 
-          {/* NPS Alerts */}
-          {alerts && alerts.length > 0 && (
-            <div style={{
-              padding: "10px 0", marginTop: 12,
-            }}>
-              {alerts.map((alert, i) => (
-                <div key={i} style={{
-                  display: "flex", gap: 8, alignItems: "flex-start",
-                  marginBottom: i < alerts.length - 1 ? 6 : 0,
-                }}>
-                  <span style={{
-                    width: 5, height: 5, borderRadius: "50%",
-                    background: C.sunSalmon, marginTop: 4, flexShrink: 0,
-                  }} />
-                  <span style={{
-                    fontFamily: "'Quicksand', sans-serif",
-                    fontSize: 11, fontWeight: 500,
-                    color: "#5a6a78",
-                  }}>{alert}</span>
-                </div>
-              ))}
-            </div>
-          )}
         </div>
       </div>
     </div>
@@ -1623,7 +1912,22 @@ export default function ZionGuide() {
     else document.body.style.overflow = '';
     return () => { document.body.style.overflow = ''; };
   }, [activeSheet]);
-  const openSheet = (section) => (item) => setActiveSheet({ ...item, section });
+
+  // ── NPS Data ──
+  const [npsLookup, setNpsLookup] = useState(null);
+  useEffect(() => {
+    getNPSData(['zion', 'brca', 'care'])
+      .then(data => {
+        setNpsLookup(buildNPSLookup(data.thingsToDo));
+      })
+      .catch(() => {});
+  }, []);
+
+  const openSheet = (section) => (item) => {
+    const npsMatch = npsLookup ? findNPSMatch(item.name, npsLookup) : null;
+    setActiveSheet({ ...item, section, nps: npsMatch || undefined });
+  };
+  const checkNPS = useCallback((name) => npsLookup ? !!findNPSMatch(name, npsLookup) : false, [npsLookup]);
 
   return (
     <>
@@ -2023,43 +2327,57 @@ export default function ZionGuide() {
             <FadeIn delay={0.08}>
               <ExpandableList initialCount={5} label="trails & adventures">
                 <ListItem isMobile={isMobile} onOpenSheet={openSheet('Trails')} name="Angels Landing" featured
+                  hasNPS={checkNPS("Angels Landing")}
                   url="https://www.nps.gov/zion/planyourvisit/zion-canyon-trail-descriptions.htm"
                   detail={"The iconic chain-assisted ridgeline summit. Exposure, adrenaline, and views that justify every step. Permit required — book 3 months out."}
                   note="Permit required — recreation.gov · Seasonal lottery"
                   tags={["5.4 mi RT", "Strenuous", "1,488 ft gain", "Permit"]} />
                 <ListItem isMobile={isMobile} onOpenSheet={openSheet('Trails')} name="The Narrows" featured
+                  hasNPS={checkNPS("The Narrows")}
                   url="https://www.nps.gov/zion/planyourvisit/thenarrows.htm"
                   detail="Hiking through the Virgin River between thousand-foot walls. Water levels dictate access — check conditions daily. Rent gear in Springdale."
                   note="River-level dependent — check NPS morning reports"
                   tags={["Up to 10 mi", "Moderate–Strenuous", "Water Hiking"]} />
                 <ListItem isMobile={isMobile} onOpenSheet={openSheet('Trails')} name="The Subway" featured
+                  hasNPS={checkNPS("The Subway")}
                   url="https://www.nps.gov/zion/planyourvisit/the-subway.htm"
                   detail="A tunnel-shaped canyon carved by flowing water. Technical bottom-up route or wilderness top-down. Unforgettable geology."
                   tags={["9 mi RT", "Technical", "Permit Required"]} />
                 <ListItem isMobile={isMobile} onOpenSheet={openSheet('Trails')} name="Canyon Overlook Trail"
+                  hasNPS={checkNPS("Canyon Overlook Trail")}
                   url="https://www.nps.gov/zion/planyourvisit/zion-canyon-trail-descriptions.htm"
                   detail="Short, punchy, with one of the best views in the park. East side of the tunnel. Arrive early or at sunset."
                   tags={["1 mi RT", "Easy–Moderate", "Sunset", "Family Friendly"]} />
                 <ListItem isMobile={isMobile} onOpenSheet={openSheet('Trails')} name="Observation Point"
+                  hasNPS={checkNPS("Observation Point")}
                   url="https://www.nps.gov/zion/planyourvisit/zion-canyon-trail-descriptions.htm"
                   detail="Higher than Angels Landing, quieter, arguably more stunning. Full panorama of Zion Canyon."
                   tags={["8 mi RT", "Strenuous", "2,150 ft gain"]} />
                 <ListItem isMobile={isMobile} onOpenSheet={openSheet('Trails')} name="Kolob Canyons"
+                  hasNPS={checkNPS("Kolob Canyons")}
                   url="https://www.nps.gov/zion/planyourvisit/kolob-canyons-wilderness-hiking-trails.htm"
                   detail={"Zion's quiet northern section. Fewer visitors, deeper solitude. Finger canyons of red Navajo sandstone."}
                   tags={["Multiple Trails", "Remote", "Separate Entrance"]} />
                 <ListItem isMobile={isMobile} onOpenSheet={openSheet('Trails')} name="Hidden Canyon"
+                  hasNPS={checkNPS("Hidden Canyon")}
                   url="https://www.nps.gov/zion/planyourvisit/zion-canyon-trail-descriptions.htm"
                   detail="A narrow slot canyon reached by a chain-assisted trail. Small, intimate, often overlooked."
                   tags={["2.4 mi RT", "Moderate–Strenuous", "Chains"]} />
                 <ListItem isMobile={isMobile} onOpenSheet={openSheet('Trails')} name="Emerald Pools"
+                  hasNPS={checkNPS("Emerald Pools")}
                   url="https://www.nps.gov/zion/planyourvisit/zion-canyon-trail-descriptions.htm"
                   detail="Three tiers of pools and waterfalls, increasingly beautiful as you climb. Upper pool is the reward."
                   tags={["1–3 mi RT", "Easy–Moderate", "Family Friendly"]} />
                 <ListItem isMobile={isMobile} onOpenSheet={openSheet('Trails')} name={"Pa'rus Trail"}
+                  hasNPS={checkNPS("Pa'rus Trail")}
                   url="https://www.nps.gov/zion/planyourvisit/zion-canyon-trail-descriptions.htm"
                   detail="Flat, paved riverside trail. Bikes allowed. Perfect for decompression, morning walks, or families."
                   tags={["3.5 mi RT", "Easy", "Paved", "Bikes OK"]} />
+                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Trails')} name="Watchman Trail"
+                  hasNPS={checkNPS("Watchman Trail")}
+                  url="https://www.nps.gov/zion/planyourvisit/zion-canyon-trail-descriptions.htm"
+                  detail="A moderate loop to a viewpoint overlooking the town of Springdale, the Towers of the Virgin, and lower Zion Canyon. Best at sunset when the Watchman ignites."
+                  tags={["3.3 mi RT", "Moderate", "Views", "Sunset"]} />
                 <ListItem isMobile={isMobile} onOpenSheet={openSheet('Trails')} name="Snow Canyon State Park"
                   url="https://stateparks.utah.gov/parks/snow-canyon/"
                   detail="Red and white sandstone, lava flows, and sand dunes 45 min from Zion. Far fewer crowds."
@@ -2071,39 +2389,82 @@ export default function ZionGuide() {
 
                 {/* ── Bryce Canyon Trails ──────────────────────────── */}
                 <ListItem isMobile={isMobile} onOpenSheet={openSheet('Trails')} name="Navajo Loop Trail" location="Bryce Canyon NP" featured
+                  hasNPS={checkNPS("Navajo Loop Trail")}
                   url="https://www.nps.gov/brca/planyourvisit/navajo-loop-trail.htm"
                   detail="Drops you into the amphitheater via Wall Street — a narrow slot between hoodoos that blocks the sky. The most visceral way to enter Bryce. Combine with Queen's Garden for the best loop in the park."
                   tags={["1.4 mi RT", "Moderate", "Hoodoos", "1.5 hrs from Zion"]} />
+                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Trails')} name="Queen's Garden Trail" location="Bryce Canyon NP" featured
+                  hasNPS={checkNPS("Queen's Garden Trail")}
+                  url="https://www.nps.gov/brca/planyourvisit/queens-garden-trail.htm"
+                  detail="The easiest route below the rim. Descends into a garden of hoodoos and connects to the Navajo Loop for the park's most popular combination hike. Queen Victoria stands guard."
+                  tags={["1.8 mi RT", "Moderate", "Hoodoos", "Best Combined with Navajo"]} />
+                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Trails')} name="Peek-a-Boo Loop Trail" location="Bryce Canyon NP"
+                  hasNPS={checkNPS("Peek-a-Boo Loop Trail")}
+                  url="https://www.nps.gov/brca/planyourvisit/peek-a-boo-loop-trail.htm"
+                  detail="The most strenuous of Bryce's amphitheater trails. Weaves through towering hoodoos, natural arches, and the Wall of Windows. Horse traffic shares the trail. Worth every step of elevation gain."
+                  tags={["5.5 mi Loop", "Strenuous", "1,555 ft gain", "Wall of Windows"]} />
                 <ListItem isMobile={isMobile} onOpenSheet={openSheet('Trails')} name="Fairyland Loop" location="Bryce Canyon NP" featured
+                  hasNPS={checkNPS("Fairyland Loop")}
                   url="https://www.nps.gov/brca/planyourvisit/fairyland-loop-trail.htm"
                   detail="The park's most rewarding full-day hike. Ridge walks, dense hoodoo forests, Tower Bridge arch, and views of the surrounding valley in every direction. Far fewer people than the main amphitheater trails."
                   tags={["7.8 mi Loop", "Strenuous", "1,545 ft gain", "Full Day"]} />
                 <ListItem isMobile={isMobile} onOpenSheet={openSheet('Trails')} name="Bristlecone Loop" location="Bryce Canyon NP"
+                  hasNPS={checkNPS("Bristlecone Loop")}
                   url="https://www.nps.gov/brca/planyourvisit/bristlecone-loop-trail.htm"
                   detail="High-elevation loop through ancient bristlecone pines — some over 1,600 years old. Quiet, meditative, otherworldly. Best panoramic views in the park from Rainbow Point at 9,115 feet."
                   tags={["1 mi Loop", "Easy", "9,115 ft", "Rainbow Point"]} />
                 <ListItem isMobile={isMobile} onOpenSheet={openSheet('Trails')} name="Mossy Cave Trail" location="Bryce Canyon NP"
+                  hasNPS={checkNPS("Mossy Cave Trail")}
                   url="https://www.nps.gov/brca/planyourvisit/mossycave.htm"
                   detail="Off the beaten path on the east side of the park. Follows Water Canyon past hoodoos and arches to a small waterfall and ice-filled grotto. Outside the fee station — no park pass needed."
                   tags={["1 mi RT", "Easy", "Waterfall", "No Fee"]} />
+                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Trails')} name="Rim Trail" location="Bryce Canyon NP"
+                  hasNPS={checkNPS("Rim Trail")}
+                  url="https://www.nps.gov/brca/planyourvisit/rimtrail.htm"
+                  detail="A flat walk along the canyon rim connecting all the major viewpoints — Sunrise, Sunset, Inspiration, and Bryce Point. Do segments or all 5.5 miles. Shuttle-assisted for one-way hikes."
+                  tags={["Up to 5.5 mi", "Easy", "Viewpoints", "Shuttle Access"]} />
 
                 {/* ── Capitol Reef Trails ──────────────────────────── */}
                 <ListItem isMobile={isMobile} onOpenSheet={openSheet('Trails')} name="Hickman Bridge Trail" location="Capitol Reef NP" featured
+                  hasNPS={checkNPS("Hickman Bridge Trail")}
                   url="https://www.nps.gov/care/planyourvisit/hickman-bridge.htm"
                   detail="The park's signature hike. Follows the Fremont River then climbs to a 133-foot natural bridge with a 360-foot drop to the canyon below. Passes ancient Fremont granaries and a pit house ruin on the way up."
                   tags={["1.8 mi RT", "Moderate", "Natural Bridge", "Fremont Ruins"]} />
+                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Trails')} name="Cassidy Arch Trail" location="Capitol Reef NP" featured
+                  hasNPS={checkNPS("Cassidy Arch Trail")}
+                  url="https://www.nps.gov/care/planyourvisit/cassidy-arch.htm"
+                  detail="Named for Butch Cassidy, who hid in these canyons. Climbs steeply from the Grand Wash floor to stand on top of a massive natural arch with vertigo-inducing drop-offs on both sides. The reward-to-effort ratio is exceptional."
+                  tags={["3.4 mi RT", "Strenuous", "870 ft gain", "Arch"]} />
+                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Trails')} name="Capitol Gorge Trail" location="Capitol Reef NP"
+                  hasNPS={checkNPS("Capitol Gorge Trail")}
+                  url="https://www.nps.gov/care/planyourvisit/capitol-gorge.htm"
+                  detail="Walks between canyon walls carved with pioneer inscriptions from the 1870s and ancient Fremont petroglyphs. The 'Pioneer Register' and natural water tanks (potholes) are highlights. Flat and easy."
+                  tags={["2.4 mi RT", "Easy", "Petroglyphs", "Pioneer Register"]} />
                 <ListItem isMobile={isMobile} onOpenSheet={openSheet('Trails')} name="Navajo Knobs Trail" location="Capitol Reef NP" featured
+                  hasNPS={checkNPS("Navajo Knobs Trail")}
                   url="https://www.nps.gov/care/planyourvisit/navajoknobbstrail.htm"
                   detail="The park's finest dayhike. Starts at the Hickman Bridge trailhead and climbs to 360-degree views at 6,979 feet — the Waterpocket Fold, the Henry Mountains, and formations like Pectols Pyramid spread out below. Almost no one does it."
                   tags={["9.4 mi RT", "Strenuous", "1,620 ft gain", "Best Views"]} />
                 <ListItem isMobile={isMobile} onOpenSheet={openSheet('Trails')} name="Cohab Canyon Trail" location="Capitol Reef NP"
+                  hasNPS={checkNPS("Cohab Canyon Trail")}
                   url="https://www.nps.gov/care/planyourvisit/cohabcanyontrail.htm"
                   detail="Steep switchbacks climb to sweeping aerial views over Fruita, the orchard, and the Waterpocket Fold. The hidden slot canyons tucked into the walls reward anyone who wanders off the main path."
                   tags={["3.4 mi RT", "Moderate", "Canyon Views", "Fruita Overlook"]} />
                 <ListItem isMobile={isMobile} onOpenSheet={openSheet('Trails')} name="Grand Wash Trail" location="Capitol Reef NP"
+                  hasNPS={checkNPS("Grand Wash Trail")}
                   url="https://www.nps.gov/care/planyourvisit/grandwash.htm"
                   detail="A flat walk through the Waterpocket Fold between canyon walls that press to shoulder-width at the Narrows. Connects to the Cassidy Arch Trail for a longer loop. The easiest way to feel the scale of Capitol Reef."
                   tags={["4.5 mi RT", "Easy", "Slot Canyon", "Connects to Cassidy Arch"]} />
+                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Trails')} name="Chimney Rock Trail" location="Capitol Reef NP"
+                  hasNPS={checkNPS("Chimney Rock Trail")}
+                  url="https://www.nps.gov/care/planyourvisit/chimney-rock.htm"
+                  detail="A loop trail circling beneath the park's most recognizable formation. Views of the Waterpocket Fold, Capitol Reef, and the distant Henry Mountains. Excellent wildflowers in spring."
+                  tags={["3.6 mi Loop", "Moderate", "590 ft gain", "Wildflowers"]} />
+                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Trails')} name="Sunset Point Trail" location="Capitol Reef NP"
+                  hasNPS={checkNPS("Sunset Point Trail")}
+                  url="https://www.nps.gov/care/planyourvisit/sunset-point.htm"
+                  detail="A short walk to one of the most dramatic viewpoints in the park. The Waterpocket Fold stretches endlessly south. Best in late afternoon when the cliffs glow. Combine with Goosenecks Overlook."
+                  tags={["0.8 mi RT", "Easy", "Sunset Views", "Waterpocket Fold"]} />
               </ExpandableList>
             </FadeIn>
           </section>
@@ -2205,6 +2566,7 @@ export default function ZionGuide() {
             <FadeIn delay={0.08}>
               <ExpandableList initialCount={4} label="experiences">
                 <ListItem isMobile={isMobile} onOpenSheet={openSheet('Light & Sky')} name="Stargazing from the Canyon Floor" featured
+                  hasNPS={checkNPS("Stargazing")}
                   url="https://www.nps.gov/thingstodo/stargazing-in-zion.htm"
                   detail={"Zion is a certified International Dark Sky Park. On a moonless night, the Milky Way arcs directly overhead between the canyon walls. Bring a blanket, lie down, and give yourself an hour."}
                   tags={["Free", "Night", "Dark Sky Park"]} />
