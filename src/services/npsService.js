@@ -3,6 +3,7 @@
 // ═══════════════════════════════════════════════════════════════════════════════
 //
 // Fetches and caches NPS "Things to Do" and Events data for trail enrichment.
+// Uses VITE_NPS_API_KEY environment variable for authentication.
 // Uses Promise.allSettled for graceful degradation (matches celestialService).
 // If no API key is set or fetches fail, returns empty arrays — the guide
 // works exactly as before.
