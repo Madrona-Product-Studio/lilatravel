@@ -24,6 +24,7 @@ export default function GroupTrips() {
         title="Tuned to Cosmic Rhythms"
         subtitle="Small group experiences timed to equinoxes, solstices, and celestial events. Eight travelers maximum."
         accentColor={C.seaGlass}
+        tag="In Dev"
       />
 
       {/* Trip Grid */}

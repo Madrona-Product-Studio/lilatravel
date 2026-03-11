@@ -21,6 +21,7 @@ export default function PageHeader({
   subtitle,
   accentColor = C.oceanTeal,
   align = "left",
+  tag,
   children,
 }) {
   const isCenter = align === "center";
@@ -60,6 +61,18 @@ export default function PageHeader({
             }}>
               {eyebrow}
             </span>
+            {tag && (
+              <span style={{
+                fontFamily: "'Quicksand', sans-serif",
+                fontSize: 10,
+                fontWeight: 700,
+                letterSpacing: "0.14em",
+                textTransform: "uppercase",
+                color: "#7a8a9a",
+                border: "1.5px solid #b0b8c0",
+                padding: "4px 10px",
+              }}>{tag}</span>
+            )}
           </div>
 
           {/* Title */}
