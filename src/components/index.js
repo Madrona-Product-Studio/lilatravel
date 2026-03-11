@@ -6,3 +6,4 @@ export { default as PageHero } from './PageHero';
 export { default as PageHeader } from './PageHeader';
 export { default as Breadcrumb } from './Breadcrumb';
 export { default as LilaModal } from './LilaModal';
+export { default as TravelYourWay } from './TravelYourWay';

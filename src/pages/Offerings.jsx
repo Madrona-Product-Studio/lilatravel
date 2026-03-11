@@ -3,7 +3,7 @@
 // ═══════════════════════════════════════════════════════════════════════════════
 
 import { Link } from 'react-router-dom';
-import { Nav, Footer, FadeIn, PageHeader } from '@components';
+import { Nav, Footer, FadeIn, PageHeader, TravelYourWay } from '@components';
 import { C } from '@data/brand';
 import { trackEvent } from '@utils/analytics';
 
@@ -85,54 +85,6 @@ const upcomingTrips = [
     gradient: "linear-gradient(165deg, #c17f43, #8b4513, #d4855a)",
     accent: C.goldenAmber,
     spots: 8,
-  },
-];
-
-// ─── Four Ways / Offerings Data ──────────────────────────────────────────────
-const offerings = [
-  {
-    icon: "☐\uFE0E",
-    label: "DIY",
-    color: C.skyBlue,
-    title: "Explore the Guide",
-    desc: "Browse our curated picks for free — where to stay, what to hike, where to eat, and when the light is best.",
-    cta: "Explore Guides Free",
-    ctaLink: "/destinations",
-    detail: "Free · No account needed",
-    offeringType: "diy",
-  },
-  {
-    icon: "◎\uFE0E",
-    label: "Plan a Trip",
-    color: C.oceanTeal,
-    title: "Trip Planner",
-    desc: "Turn your favorites into a day-by-day itinerary with booking links, permit timing, and offline access.",
-    cta: "Unlock — $39",
-    ctaLink: "/plan",
-    detail: "One-time purchase · Offline access",
-    offeringType: "trip_planner",
-  },
-  {
-    icon: "☾\uFE0E",
-    label: "Join a Group",
-    color: C.sunSalmon,
-    title: "Threshold Trips",
-    desc: "Small group journeys timed to equinoxes, solstices, and natural crescendos. Guided, curated, eight travelers maximum.",
-    cta: "View Trips",
-    ctaLink: "#upcoming",
-    detail: "From $895 per person",
-    offeringType: "group_trips",
-  },
-  {
-    icon: "△\uFE0E",
-    label: "Designed for You",
-    color: C.goldenAmber,
-    title: "Custom Itinerary",
-    desc: "Tell us your dates, group, and vibe. A real person builds a complete itinerary around your trip.",
-    cta: "Start — From $199",
-    ctaLink: "/contact",
-    detail: "Personalized · Human-crafted",
-    offeringType: "custom",
   },
 ];
 
@@ -288,109 +240,7 @@ export default function OfferingsPage() {
       {/* ══════════════════════════════════════════════════════════════════════
           ACT 2 — TRAVEL YOUR WAY
       ══════════════════════════════════════════════════════════════════════ */}
-      <section style={{ padding: "80px 52px", background: C.cream }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <FadeIn>
-            <div style={{ textAlign: "center", marginBottom: 56 }}>
-              <span style={{
-                fontFamily: "'Quicksand'", fontSize: 10, fontWeight: 700,
-                letterSpacing: "0.22em", textTransform: "uppercase",
-                color: C.sunSalmon, display: "block", marginBottom: 12,
-              }}>Your Path</span>
-              <h2 style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontSize: "clamp(28px, 4vw, 42px)", fontWeight: 300,
-                color: C.darkInk, marginBottom: 16,
-              }}>Travel your way</h2>
-              <p style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontSize: 18, fontStyle: "normal", color: "#5a6a78",
-                maxWidth: 560, margin: "0 auto",
-              }}>
-                However you like to move through the world, there's a way in.
-              </p>
-            </div>
-          </FadeIn>
-
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
-            gap: 1,
-            background: C.stone,
-            border: `1px solid ${C.stone}`,
-          }}>
-            {offerings.map((o, i) => (
-              <FadeIn key={o.label} delay={i * 0.08}>
-                <div style={{
-                  background: "white",
-                  padding: "36px 28px 32px",
-                  display: "flex", flexDirection: "column",
-                  minHeight: 420,
-                }}>
-                  {/* Icon */}
-                  <div style={{
-                    fontFamily: "serif", fontSize: 28, color: o.color,
-                    marginBottom: 24, lineHeight: 1,
-                  }}>{o.icon}</div>
-
-                  {/* Label */}
-                  <span style={{
-                    fontFamily: "'Quicksand'", fontSize: 10, fontWeight: 700,
-                    letterSpacing: "0.22em", textTransform: "uppercase",
-                    color: o.color, display: "block", marginBottom: 12,
-                  }}>{o.label}</span>
-
-                  {/* Title */}
-                  <h3 style={{
-                    fontFamily: "'Cormorant Garamond', serif",
-                    fontSize: 26, fontWeight: 400, color: C.darkInk,
-                    lineHeight: 1.2, marginBottom: 16,
-                  }}>{o.title}</h3>
-
-                  {/* Description */}
-                  <p style={{
-                    fontFamily: "'Cormorant Garamond', serif",
-                    fontSize: 15, fontStyle: "normal",
-                    color: "#5a6a78", lineHeight: 1.8,
-                    flex: 1,
-                  }}>{o.desc}</p>
-
-                  {/* CTA Button */}
-                  <div style={{ marginTop: 24 }}>
-                    <Link
-                      to={o.ctaLink}
-                      style={{
-                        display: "inline-block",
-                        padding: "12px 24px",
-                        border: `1.5px solid ${o.color}`,
-                        fontFamily: "'Quicksand'", fontSize: 10, fontWeight: 700,
-                        letterSpacing: "0.18em", textTransform: "uppercase",
-                        color: o.color, textDecoration: "none",
-                        transition: "all 0.3s ease",
-                      }}
-                      onClick={() => trackEvent('offering_cta_clicked', { offering: o.offeringType, destination_url: o.ctaLink })}
-                      onMouseEnter={e => {
-                        e.target.style.background = o.color;
-                        e.target.style.color = "white";
-                      }}
-                      onMouseLeave={e => {
-                        e.target.style.background = "transparent";
-                        e.target.style.color = o.color;
-                      }}
-                    >{o.cta}</Link>
-                  </div>
-
-                  {/* Detail line */}
-                  <p style={{
-                    fontFamily: "'Quicksand'", fontSize: 11,
-                    color: "#8a96a3", marginTop: 12,
-                  }}>{o.detail}</p>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
-        </div>
-      </section>
+      <TravelYourWay />
 
       {/* ══════════════════════════════════════════════════════════════════════
           UPCOMING THRESHOLD TRIPS

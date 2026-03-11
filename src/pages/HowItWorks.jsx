@@ -12,7 +12,7 @@
 // ═══════════════════════════════════════════════════════════════════════════════
 
 import { Link } from 'react-router-dom';
-import { Nav, Footer, FadeIn, PageHeader } from '@components';
+import { Nav, Footer, FadeIn, PageHeader, TravelYourWay } from '@components';
 import TripCard from '@components/TripCard';
 import { C } from '@data/brand';
 import { allTrips } from '@data/trips';
@@ -28,56 +28,6 @@ const sampleItinerary = [
   { time: "5:30 PM",  title: "Golden hour walk with a local steward",         thread: "terrain",  color: "#7DB8A0" },
   { time: "7:30 PM",  title: "Farm dinner under open sky in Torrey",          thread: "terrain",  color: "#7DB8A0" },
   { time: "9:30 PM",  title: "Stargazing from Under Canvas",                  thread: "element",  color: "#6BA4B8" },
-];
-
-// ─── Four Ways In ───────────────────────────────────────────────────────────
-const offerings = [
-  {
-    icon: "☐\uFE0E",
-    label: "DIY",
-    color: C.skyBlue,
-    title: "Explore the Guide",
-    desc: "Browse our curated picks for free — where to stay, what to hike, where to eat, and when the light is best.",
-    cta: "Explore Guides Free",
-    ctaLink: "/destinations",
-    detail: "Free · No account needed",
-    offeringType: "diy",
-  },
-  {
-    icon: "◎\uFE0E",
-    label: "Plan a Trip",
-    color: C.oceanTeal,
-    title: "Trip Planner",
-    desc: "Turn your favorites into a day-by-day itinerary with booking links, permit timing, and offline access.",
-    cta: "Start Free",
-    ctaLink: "/plan",
-    detail: "One-time purchase · Offline access",
-    offeringType: "trip_planner",
-  },
-  {
-    icon: "☾\uFE0E",
-    label: "Join a Group",
-    color: C.sunSalmon,
-    title: "Threshold Trips",
-    desc: "Small group journeys timed to equinoxes, solstices, and natural crescendos. Guided, curated, eight travelers maximum.",
-    cta: "View Trips",
-    ctaLink: "/group-trips",
-    detail: "From $895 per person",
-    comingSoon: true,
-    offeringType: "group_trips",
-  },
-  {
-    icon: "△\uFE0E",
-    label: "Designed for You",
-    color: C.goldenAmber,
-    title: "Custom Itinerary",
-    desc: "Tell us your dates, group, and vibe. A real person builds a complete itinerary around your trip.",
-    cta: "Start — From $199",
-    ctaLink: "/contact",
-    detail: "Personalized · Human-crafted",
-    comingSoon: true,
-    offeringType: "custom",
-  },
 ];
 
 // (Trip data now imported from @data/trips)
@@ -97,113 +47,7 @@ export default function HowItWorksPage() {
       />
 
       {/* ══ FOUR WAYS IN ═════════════════════════════════════════════════════ */}
-      <section style={{ padding: "80px 52px", background: C.cream }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <FadeIn>
-            <div style={{ textAlign: "center", marginBottom: 56 }}>
-              <span style={{
-                fontFamily: "'Quicksand'", fontSize: 10, fontWeight: 700,
-                letterSpacing: "0.22em", textTransform: "uppercase",
-                color: C.sunSalmon, display: "block", marginBottom: 12,
-              }}>Your Path</span>
-              <h2 style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontSize: "clamp(28px, 4vw, 42px)", fontWeight: 300,
-                color: C.darkInk, marginBottom: 16,
-              }}>Travel your way</h2>
-              <p style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontSize: 18, fontStyle: "normal", color: "#5a6a78",
-                maxWidth: 560, margin: "0 auto",
-              }}>
-                From free guides to fully custom itineraries — pick the level that fits.
-              </p>
-            </div>
-          </FadeIn>
-
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
-            gap: 1,
-            background: C.stone,
-            border: `1px solid ${C.stone}`,
-          }}>
-            {offerings.map((o, i) => (
-              <FadeIn key={o.label} delay={i * 0.08}>
-                <div style={{
-                  background: "white",
-                  padding: "36px 28px 32px",
-                  display: "flex", flexDirection: "column",
-                  minHeight: 420,
-                }}>
-                  <div style={{
-                    fontFamily: "serif", fontSize: 28, color: o.color,
-                    marginBottom: 24, lineHeight: 1,
-                  }}>{o.icon}</div>
-
-                  <span style={{
-                    fontFamily: "'Quicksand'", fontSize: 10, fontWeight: 700,
-                    letterSpacing: "0.22em", textTransform: "uppercase",
-                    color: o.color, display: "block", marginBottom: 12,
-                  }}>{o.label}</span>
-
-                  <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
-                    <h3 style={{
-                      fontFamily: "'Cormorant Garamond', serif",
-                      fontSize: 26, fontWeight: 400, color: C.darkInk,
-                      lineHeight: 1.2, margin: 0,
-                    }}>{o.title}</h3>
-                    {o.comingSoon && (
-                      <span style={{
-                        fontFamily: "'Quicksand'", fontSize: 9, fontWeight: 700,
-                        letterSpacing: "0.12em", textTransform: "uppercase",
-                        color: C.sage, background: `${C.sage}12`,
-                        padding: "4px 10px", borderRadius: 2, whiteSpace: "nowrap",
-                      }}>Coming Soon</span>
-                    )}
-                  </div>
-
-                  <p style={{
-                    fontFamily: "'Cormorant Garamond', serif",
-                    fontSize: 15, fontStyle: "normal",
-                    color: "#5a6a78", lineHeight: 1.8,
-                    flex: 1,
-                  }}>{o.desc}</p>
-
-                  <div style={{ marginTop: 24 }}>
-                    <Link
-                      to={o.ctaLink}
-                      style={{
-                        display: "inline-block",
-                        padding: "12px 24px",
-                        border: `1.5px solid ${o.color}`,
-                        fontFamily: "'Quicksand'", fontSize: 10, fontWeight: 700,
-                        letterSpacing: "0.18em", textTransform: "uppercase",
-                        color: o.color, textDecoration: "none",
-                        transition: "all 0.3s ease",
-                      }}
-                      onClick={() => trackEvent('offering_cta_clicked', { offering: o.offeringType, destination_url: o.ctaLink })}
-                      onMouseEnter={e => {
-                        e.target.style.background = o.color;
-                        e.target.style.color = "white";
-                      }}
-                      onMouseLeave={e => {
-                        e.target.style.background = "transparent";
-                        e.target.style.color = o.color;
-                      }}
-                    >{o.cta}</Link>
-                  </div>
-
-                  <p style={{
-                    fontFamily: "'Quicksand'", fontSize: 11,
-                    color: "#8a96a3", marginTop: 12,
-                  }}>{o.detail}</p>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
-        </div>
-      </section>
+      <TravelYourWay />
 
       {/* ══ A DAY WITH LILA ══════════════════════════════════════════════════ */}
       <section style={{ padding: "48px 52px 80px", background: C.cream }}>
