@@ -1,0 +1,437 @@
+[
+  {
+    "id": "la-copine",
+    "name": "La Copine",
+    "cuisine": "Farm-sourced California",
+    "location": "Joshua Tree town",
+    "priceRange": "$$$",
+    "budgetTier": "premium",
+    "groupFit": ["couple", "friends"],
+    "energy": "intimate",
+    "highlights": [
+      "The destination restaurant — converted house in the high desert",
+      "Farm-sourced, frequently changing menu",
+      "Written about in every major food publication",
+      "Reservations essential and often difficult"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": true,
+      "glutenFree": true,
+      "notes": "Seasonal menu accommodates most dietary needs — mention when booking"
+    },
+    "hours": "Brunch & lunch; limited dinner seatings. Closed Mon–Tue. Check current schedule.",
+    "reservations": "required",
+    "links": {
+      "website": "https://www.lacopinekitchen.com/",
+      "maps": null
+    },
+    "tags": ["brunch", "lunch", "farm-sourced", "destination-dining", "reservations-essential", "featured"],
+    "months": "all"
+  },
+  {
+    "id": "crossroads-cafe",
+    "name": "Crossroads Cafe",
+    "cuisine": "American breakfast & lunch",
+    "location": "Joshua Tree town",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "lively",
+    "highlights": [
+      "The local gathering spot",
+      "Good coffee, eggs, benedicts, fresh-squeezed juice",
+      "Community bulletin board that tells you more about the town than any guidebook"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": false,
+      "notes": null
+    },
+    "hours": "Breakfast & lunch daily",
+    "reservations": "walk-in",
+    "links": {
+      "website": null,
+      "maps": null
+    },
+    "tags": ["breakfast", "lunch", "local-favorite", "community-hub"],
+    "months": "all"
+  },
+  {
+    "id": "natural-sisters-cafe",
+    "name": "Natural Sisters Cafe",
+    "cuisine": "Vegetarian & vegan",
+    "location": "Joshua Tree town",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "relaxed",
+    "highlights": [
+      "Vegetarian and vegan-friendly",
+      "Smoothies, bowls, wraps",
+      "A reliable healthy option near the west entrance"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": true,
+      "glutenFree": true,
+      "notes": "Fully vegetarian menu; many vegan and gluten-free options"
+    },
+    "hours": "Breakfast & lunch daily",
+    "reservations": "walk-in",
+    "links": {
+      "website": null,
+      "maps": null
+    },
+    "tags": ["breakfast", "lunch", "vegetarian", "vegan", "smoothies", "healthy"],
+    "months": "all"
+  },
+  {
+    "id": "joshua-tree-coffee-company",
+    "name": "Joshua Tree Coffee Company",
+    "cuisine": "Coffee & pastries",
+    "location": "Joshua Tree town",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "relaxed",
+    "highlights": [
+      "The pre-hike stop",
+      "Good espresso, pastries from local bakers",
+      "Community hub"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": false,
+      "notes": "Light fare — pastries and baked goods"
+    },
+    "hours": "Opens early morning daily",
+    "reservations": "walk-in",
+    "links": {
+      "website": null,
+      "maps": null
+    },
+    "tags": ["coffee", "pastries", "pre-hike", "early-open", "community"],
+    "months": "all"
+  },
+  {
+    "id": "pie-for-the-people",
+    "name": "Pie for the People",
+    "cuisine": "Pizza",
+    "location": "Joshua Tree town",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "lively",
+    "highlights": [
+      "Pizza by the slice, unpretentious, good",
+      "A late-afternoon hiker staple",
+      "Outdoor seating"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": false,
+      "notes": "Vegetarian slices usually available"
+    },
+    "hours": "Lunch & dinner daily",
+    "reservations": "walk-in",
+    "links": {
+      "website": null,
+      "maps": null
+    },
+    "tags": ["pizza", "casual", "by-the-slice", "hiker-fuel", "outdoor-seating"],
+    "months": "all"
+  },
+  {
+    "id": "29-palms-inn-restaurant",
+    "name": "29 Palms Inn Restaurant",
+    "cuisine": "Farm-to-table American",
+    "location": "Twentynine Palms",
+    "priceRange": "$$",
+    "budgetTier": "balanced",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "relaxed",
+    "highlights": [
+      "On the grounds of the historic inn near the north entrance",
+      "Farm-to-table — uses their own garden produce",
+      "Sit outside if weather permits"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": true,
+      "notes": "Garden-sourced; can accommodate most dietary needs"
+    },
+    "hours": "Breakfast and dinner; check seasonal hours",
+    "reservations": "recommended",
+    "links": {
+      "website": "https://29palmsinn.com/",
+      "maps": null
+    },
+    "tags": ["breakfast", "dinner", "farm-to-table", "garden", "outdoor-seating", "historic"],
+    "months": "all"
+  },
+  {
+    "id": "sunburst-cafe",
+    "name": "Sunburst Cafe",
+    "cuisine": "American breakfast & lunch",
+    "location": "Twentynine Palms",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "lively",
+    "highlights": [
+      "Generous portions, reasonable prices",
+      "Loved by locals and marines alike",
+      "Hearty breakfast"
+    ],
+    "dietary": {
+      "vegetarian": false,
+      "vegan": false,
+      "glutenFree": false,
+      "notes": null
+    },
+    "hours": "Breakfast & lunch daily",
+    "reservations": "walk-in",
+    "links": {
+      "website": null,
+      "maps": null
+    },
+    "tags": ["breakfast", "lunch", "local-favorite", "hearty", "affordable"],
+    "months": "all"
+  },
+  {
+    "id": "ricochet-grill",
+    "name": "Ricochet Grill",
+    "cuisine": "American bar & grill",
+    "location": "Twentynine Palms",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "lively",
+    "highlights": [
+      "The local bar and grill",
+      "Casual, community, cold drinks after a long day"
+    ],
+    "dietary": {
+      "vegetarian": false,
+      "vegan": false,
+      "glutenFree": false,
+      "notes": null
+    },
+    "hours": "Lunch & dinner daily",
+    "reservations": "walk-in",
+    "links": {
+      "website": null,
+      "maps": null
+    },
+    "tags": ["bar", "grill", "casual", "cold-drinks", "post-hike"],
+    "months": "all"
+  },
+  {
+    "id": "pappy-and-harriets",
+    "name": "Pappy & Harriet's Pioneertown Palace",
+    "cuisine": "BBQ & American",
+    "location": "Pioneertown",
+    "priceRange": "$$",
+    "budgetTier": "balanced",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "lively",
+    "highlights": [
+      "Legendary roadhouse — part BBQ joint, part honky-tonk, part live music venue",
+      "Red-checkered tablecloths, mesquite-smoked meats",
+      "Touring artists of serious caliber play here regularly",
+      "Don't miss it"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": false,
+      "notes": "Primarily BBQ; some vegetarian options available"
+    },
+    "hours": "Dinner Thu–Sun; check music calendar for special events",
+    "reservations": "walk-in",
+    "links": {
+      "website": "https://www.pappyandharriets.com/",
+      "maps": null
+    },
+    "tags": ["bbq", "live-music", "honky-tonk", "pioneertown", "iconic", "destination-dining", "featured"],
+    "months": "all"
+  },
+  {
+    "id": "pioneertown-motel-bar",
+    "name": "Pioneertown Motel Bar",
+    "cuisine": "Bar & cocktails",
+    "location": "Pioneertown",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "intimate",
+    "highlights": [
+      "Small, atmospheric bar connected to the motel",
+      "Good drinks, desert art on the walls",
+      "An entirely different vibe from Pappy's"
+    ],
+    "dietary": {
+      "vegetarian": false,
+      "vegan": false,
+      "glutenFree": false,
+      "notes": "Drinks only — limited snacks"
+    },
+    "hours": "Evenings; check current hours",
+    "reservations": "walk-in",
+    "links": {
+      "website": "https://www.pioneertownmotel.com/",
+      "maps": null
+    },
+    "tags": ["bar", "cocktails", "atmospheric", "pioneertown", "evening"],
+    "months": "all"
+  },
+  {
+    "id": "workshop-kitchen-bar",
+    "name": "Workshop Kitchen + Bar",
+    "cuisine": "Farm-to-table California",
+    "location": "Palm Springs",
+    "priceRange": "$$$",
+    "budgetTier": "premium",
+    "groupFit": ["couple", "friends"],
+    "energy": "intimate",
+    "highlights": [
+      "Downtown PS, design-forward, farm-to-table",
+      "The kind of restaurant that rewards a nicer dinner out",
+      "Beautiful industrial-chic space"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": true,
+      "glutenFree": true,
+      "notes": "Accommodates most dietary needs — mention when booking"
+    },
+    "hours": "Dinner nightly; weekend brunch",
+    "reservations": "recommended",
+    "links": {
+      "website": "https://www.workshoppalmsprings.com/",
+      "maps": null
+    },
+    "tags": ["dinner", "farm-to-table", "design-forward", "palm-springs", "date-night"],
+    "months": "all"
+  },
+  {
+    "id": "cheekys",
+    "name": "Cheeky's",
+    "cuisine": "Brunch",
+    "location": "Palm Springs",
+    "priceRange": "$$",
+    "budgetTier": "balanced",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "lively",
+    "highlights": [
+      "Weekend brunch institution",
+      "Seasonal, rotating menu",
+      "Long waits — worth it"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": true,
+      "glutenFree": true,
+      "notes": "Rotating menu; usually strong options for all diets"
+    },
+    "hours": "Breakfast & brunch; closed Mon–Tue",
+    "reservations": "walk-in",
+    "links": {
+      "website": null,
+      "maps": null
+    },
+    "tags": ["brunch", "seasonal-menu", "palm-springs", "weekend-wait", "rotating"],
+    "months": "all"
+  },
+  {
+    "id": "koffi",
+    "name": "Koffi",
+    "cuisine": "Coffee & light fare",
+    "location": "Palm Springs (multiple locations)",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "relaxed",
+    "highlights": [
+      "Local coffee mini-chain",
+      "Better than any chain you'd find elsewhere",
+      "Multiple locations in Palm Springs"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": true,
+      "glutenFree": false,
+      "notes": "Coffee and light fare; dairy alternatives available"
+    },
+    "hours": "Opens early morning; daily",
+    "reservations": "walk-in",
+    "links": {
+      "website": null,
+      "maps": null
+    },
+    "tags": ["coffee", "local-chain", "palm-springs", "early-open", "multiple-locations"],
+    "months": "all"
+  },
+  {
+    "id": "joshua-tree-health-foods",
+    "name": "Joshua Tree Health Foods",
+    "cuisine": "Market & provisions",
+    "location": "Joshua Tree town",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "relaxed",
+    "highlights": [
+      "Small grocery near the west entrance",
+      "Good for stocking up on real food before heading into the park",
+      "Natural and organic provisions"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": true,
+      "glutenFree": true,
+      "notes": "Grocery store — wide range of natural and organic options"
+    },
+    "hours": "Daytime; daily",
+    "reservations": "walk-in",
+    "links": {
+      "website": null,
+      "maps": null
+    },
+    "tags": ["market", "provisions", "natural", "organic", "trail-snacks", "self-catering"],
+    "months": "all"
+  },
+  {
+    "id": "stater-bros",
+    "name": "Stater Bros.",
+    "cuisine": "Grocery",
+    "location": "Twentynine Palms",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "relaxed",
+    "highlights": [
+      "Largest grocery option near the north entrance",
+      "Full supermarket for serious provisioning"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": true,
+      "glutenFree": true,
+      "notes": "Full grocery store"
+    },
+    "hours": "Daytime; daily",
+    "reservations": "walk-in",
+    "links": {
+      "website": null,
+      "maps": null
+    },
+    "tags": ["grocery", "supermarket", "provisions", "north-entrance"],
+    "months": "all"
+  }
+]

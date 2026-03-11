@@ -1,0 +1,240 @@
+[
+  {
+    "id": "perseid-meteor-shower",
+    "name": "Perseid Meteor Shower",
+    "type": "astronomy",
+    "description": "One of the year's most reliable meteor showers. Joshua Tree's Bortle Class 2–3 skies make it one of the best accessible viewing locations in Southern California. Best viewed from the backcountry or Pinto Basin Road pullouts after midnight. Up to 100 meteors per hour at peak.",
+    "timing": {
+      "months": ["july", "august"],
+      "approximate_dates": "July 17 – August 24, peak around August 12–13",
+      "recurring": true
+    },
+    "location": "Throughout Joshua Tree NP — Pinto Basin Road, Cholla Cactus Garden, backcountry",
+    "cost": "free",
+    "links": {
+      "website": "https://www.nps.gov/jotr/planyourvisit/stargazing.htm"
+    },
+    "tags": ["meteor-shower", "dark-sky", "summer", "night-sky", "photography"]
+  },
+  {
+    "id": "geminid-meteor-shower",
+    "name": "Geminid Meteor Shower",
+    "type": "astronomy",
+    "description": "Often the best meteor shower of the year — up to 150 multicolored meteors per hour at peak. December's cold, dry desert air provides exceptional visibility. The Geminids are visible earlier in the evening than most showers, making them more accessible. Bring warm layers — temps can drop below freezing.",
+    "timing": {
+      "months": ["december"],
+      "approximate_dates": "December 4–17, peak around December 13–14",
+      "recurring": true
+    },
+    "location": "Throughout Joshua Tree NP — Cap Rock, Jumbo Rocks, Pinto Basin Road",
+    "cost": "free",
+    "links": {
+      "website": "https://www.nps.gov/jotr/planyourvisit/stargazing.htm"
+    },
+    "tags": ["meteor-shower", "dark-sky", "winter", "night-sky", "cold-weather"]
+  },
+  {
+    "id": "milky-way-season",
+    "name": "Milky Way Core Season",
+    "type": "astronomy",
+    "description": "The Milky Way's galactic core is visible from late February through October, with the best overhead viewing May–August. Joshua Tree's certified Dark Sky Park status (Bortle 2–3 in the backcountry) makes the core vivid to the naked eye. Pair with new moon windows for optimal conditions.",
+    "timing": {
+      "months": ["february", "march", "april", "may", "june", "july", "august", "september", "october"],
+      "approximate_dates": "Late February through October; best May–August after midnight",
+      "recurring": true
+    },
+    "location": "Best from Pinto Basin Road, Cholla Cactus Garden, Cap Rock",
+    "cost": "free",
+    "links": {
+      "website": "https://www.nps.gov/jotr/planyourvisit/stargazing.htm"
+    },
+    "tags": ["milky-way", "dark-sky", "astrophotography", "night-sky"]
+  },
+  {
+    "id": "nps-night-sky-programs",
+    "name": "NPS Night Sky Programs",
+    "type": "astronomy",
+    "description": "Free ranger-led stargazing programs at Joshua Tree, a certified International Dark Sky Park. Rangers set up telescopes and guide visitors through the night sky. Programs often held at Cottonwood Campground or the Oasis Visitor Center. Check the NPS calendar for scheduled dates.",
+    "timing": {
+      "months": ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"],
+      "approximate_dates": "Year-round on select clear evenings; check NPS schedule",
+      "recurring": true
+    },
+    "location": "Cottonwood Campground or Oasis Visitor Center, Joshua Tree NP",
+    "cost": "free",
+    "links": {
+      "website": "https://www.nps.gov/jotr/planyourvisit/stargazing.htm"
+    },
+    "tags": ["stargazing", "dark-sky", "ranger-led", "family-friendly", "free"]
+  },
+  {
+    "id": "wildflower-bloom",
+    "name": "Desert Wildflower Bloom",
+    "type": "seasonal",
+    "description": "After wet winters, the desert erupts with color — desert marigold, poppies, lupine, desert lilies, chuparosa, and creosote. Intensity varies dramatically year to year based on winter rainfall. Lower Colorado Desert blooms first (late Feb), high desert follows (Mar–Apr). Super bloom years are unpredictable and unforgettable.",
+    "timing": {
+      "months": ["february", "march", "april"],
+      "approximate_dates": "Late February through April, peak in March",
+      "recurring": true
+    },
+    "location": "Throughout Joshua Tree NP — especially Cottonwood area, Bajada Nature Trail, and park roads",
+    "cost": "free",
+    "links": {
+      "website": "https://www.nps.gov/jotr/learn/nature/wildflowers.htm"
+    },
+    "tags": ["natural-phenomenon", "photography", "spring", "weather-dependent", "magic-window"]
+  },
+  {
+    "id": "dark-sky-season",
+    "name": "Dark Sky Season",
+    "type": "seasonal",
+    "description": "Winter's long nights and dry, stable air create the park's best stargazing conditions. Combined with fewer visitors, December through February offers the most reliable dark sky experience. The winter solstice provides the longest dark window of the year.",
+    "timing": {
+      "months": ["november", "december", "january", "february"],
+      "approximate_dates": "November through February — longest nights, clearest skies",
+      "recurring": true
+    },
+    "location": "Throughout Joshua Tree NP backcountry",
+    "cost": "free",
+    "links": {
+      "website": "https://www.nps.gov/jotr/planyourvisit/stargazing.htm"
+    },
+    "tags": ["dark-sky", "winter", "solstice", "stargazing", "uncrowded"]
+  },
+  {
+    "id": "pappys-live-music",
+    "name": "Live Music at Pappy & Harriet's",
+    "type": "cultural",
+    "description": "Pappy & Harriet's Pioneertown Palace books touring artists of serious caliber year-round — indie, country, folk, blues, rock. Past performers include Paul McCartney, Arctic Monkeys, Robert Plant, and Vampire Weekend. Check the calendar and plan around it. The venue is small, intimate, and loud in the best way.",
+    "timing": {
+      "months": ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"],
+      "approximate_dates": "Year-round; shows typically Thu–Sun evenings",
+      "recurring": true
+    },
+    "location": "Pappy & Harriet's Pioneertown Palace, 53688 Pioneertown Rd, Pioneertown",
+    "cost": "$–$$",
+    "links": {
+      "website": "https://www.pappyandharriets.com/"
+    },
+    "tags": ["live-music", "honky-tonk", "pioneertown", "year-round", "iconic"]
+  },
+  {
+    "id": "desert-stars-festival",
+    "name": "Desert Stars Festival",
+    "type": "festival",
+    "description": "Annual music festival in Pioneertown. Intimate setting, curated lineup of indie and folk acts. Camping and community. The kind of festival that still feels like a discovery.",
+    "timing": {
+      "months": ["october"],
+      "approximate_dates": "October (check annual schedule for exact dates)",
+      "recurring": true
+    },
+    "location": "Pioneertown area",
+    "cost": "$$",
+    "links": {
+      "website": null
+    },
+    "tags": ["music-festival", "indie", "folk", "pioneertown", "camping", "intimate"]
+  },
+  {
+    "id": "modernism-week",
+    "name": "Modernism Week",
+    "type": "cultural",
+    "description": "The largest celebration of mid-century modern architecture and design in the world. Home tours, lectures, parties, double-decker bus tours, and access to iconic private residences normally closed to the public. Two events per year: the main festival in February and a smaller fall preview in October.",
+    "timing": {
+      "months": ["february"],
+      "approximate_dates": "Mid-to-late February (11 days)",
+      "recurring": true
+    },
+    "location": "Palm Springs and throughout the Coachella Valley",
+    "cost": "$–$$$",
+    "links": {
+      "website": "https://www.modernismweek.com/"
+    },
+    "tags": ["architecture", "mid-century", "palm-springs", "home-tours", "design", "winter"]
+  },
+  {
+    "id": "high-desert-test-sites",
+    "name": "High Desert Test Sites",
+    "type": "cultural",
+    "description": "An ongoing art initiative founded in 2002 by Andrea Zittel. Site-specific works scattered across the high desert landscape. HDTS has seeded a generation of artists coming to the desert to make work. Various installations are accessible year-round; organized events and open days happen periodically.",
+    "timing": {
+      "months": ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"],
+      "approximate_dates": "Installations year-round; organized events vary — check website",
+      "recurring": true
+    },
+    "location": "Various sites across the high desert, Joshua Tree area",
+    "cost": "free",
+    "links": {
+      "website": "https://www.highdeserttestsites.com/"
+    },
+    "tags": ["art", "site-specific", "desert", "contemporary", "andrea-zittel", "free"]
+  },
+  {
+    "id": "rancho-mirage-farmers-market",
+    "name": "Rancho Mirage Farmers Market",
+    "type": "market",
+    "description": "One of the best farmers markets in the Coachella Valley. Fresh produce, artisan food, flowers, and prepared food from local vendors. A good Wednesday morning activity if you're spending time in the Palm Springs orbit.",
+    "timing": {
+      "months": ["november", "december", "january", "february", "march", "april", "may"],
+      "approximate_dates": "Wednesdays, November through May, 9:00 AM – 1:00 PM",
+      "recurring": true
+    },
+    "location": "Rancho Mirage, CA (Coachella Valley)",
+    "cost": "free",
+    "links": {
+      "website": null
+    },
+    "tags": ["farmers-market", "local-produce", "wednesday", "coachella-valley", "seasonal"]
+  },
+  {
+    "id": "coachella-festival",
+    "name": "Coachella Valley Music and Arts Festival",
+    "type": "festival",
+    "description": "The world's most famous music festival is about an hour from Joshua Tree. Not a Lila-core experience, but worth noting for trip timing — if your dates overlap, accommodation prices across the valley spike and the park gets busier. Alternatively, arrive a few days early and combine park time with the festival.",
+    "timing": {
+      "months": ["april"],
+      "approximate_dates": "Two weekends in mid-April",
+      "recurring": true
+    },
+    "location": "Empire Polo Club, Indio, CA (~1 hr from Joshua Tree)",
+    "cost": "$$$",
+    "links": {
+      "website": "https://www.coachella.com/"
+    },
+    "tags": ["music-festival", "mega-event", "indio", "spring", "timing-context", "price-impact"]
+  },
+  {
+    "id": "desert-institute-programs",
+    "name": "Desert Institute at Joshua Tree Programs",
+    "type": "cultural",
+    "description": "The park's field institute offering educational programs, natural history classes, night sky programs, and guided experiences inside the park. Led by expert naturalists and educators. Proceeds support the park. A deeper way to understand the landscape.",
+    "timing": {
+      "months": ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"],
+      "approximate_dates": "Year-round programming; most classes in spring and fall",
+      "recurring": true
+    },
+    "location": "Joshua Tree National Park",
+    "cost": "$–$$",
+    "links": {
+      "website": "https://www.joshuatree.org/"
+    },
+    "tags": ["educational", "naturalist", "night-sky", "guided", "nonprofit", "year-round"]
+  },
+  {
+    "id": "nps-ranger-programs",
+    "name": "NPS Ranger Programs",
+    "type": "cultural",
+    "description": "Free ranger-led talks, walks, and programs on Joshua Tree's geology, ecology, cultural history, and night sky. Offered at various locations throughout the park. No reservation needed — just show up. A grounding way to connect with the place.",
+    "timing": {
+      "months": ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"],
+      "approximate_dates": "Year-round; check NPS schedule for specific programs and times",
+      "recurring": true
+    },
+    "location": "Joshua Tree NP Visitor Centers and trailheads",
+    "cost": "free",
+    "links": {
+      "website": "https://www.nps.gov/jotr/planyourvisit/ranger-programs.htm"
+    },
+    "tags": ["ranger-led", "educational", "free", "family-friendly", "drop-in"]
+  }
+]

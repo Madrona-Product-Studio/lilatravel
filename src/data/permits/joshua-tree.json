@@ -1,0 +1,62 @@
+[
+  {
+    "id": "park-entrance-fee",
+    "activity": "Park Entrance Fee",
+    "permitType": "fee",
+    "required": true,
+    "description": "All vehicles entering Joshua Tree National Park must pay an entrance fee or hold an America the Beautiful pass. No day-use permits are currently required.",
+    "where": "Pay at entrance stations or purchase online",
+    "url": "https://www.nps.gov/jotr/planyourvisit/fees.htm",
+    "cost": "$30 per vehicle (7-day pass) · $55 annual park pass · $80 America the Beautiful annual pass",
+    "seasonalWindow": {
+      "required": "year-round",
+      "notes": "Fee applies year-round at all three entrance stations (West, North, South)."
+    },
+    "tips": [
+      "The America the Beautiful pass ($80/year) covers all national parks and is worth it if you visit two or more parks.",
+      "Fee-free days occur several times a year — check NPS calendar.",
+      "Self-service fee stations at the west entrance can have long lines on spring weekends — arrive early.",
+      "The north entrance at Twentynine Palms is typically less crowded."
+    ]
+  },
+  {
+    "id": "camping-reservations",
+    "activity": "Campground Reservations",
+    "permitType": "advance",
+    "required": true,
+    "description": "Some campgrounds (Black Rock, Indian Cove, Cottonwood) accept or require reservations via recreation.gov. Others (Jumbo Rocks, Hidden Valley, White Tank, Ryan, Belle) are first-come first-served only.",
+    "where": "recreation.gov",
+    "url": "https://www.recreation.gov/camping/gateways/2554",
+    "cost": "$15–25/night depending on campground",
+    "seasonalWindow": {
+      "required": "year-round",
+      "notes": "Peak demand in spring (Mar–May) and fall (Oct–Nov). First-come sites fill by late morning on weekends."
+    },
+    "tips": [
+      "Black Rock and Indian Cove are reservable up to 6 months ahead — book early for peak weekends.",
+      "First-come campgrounds (Jumbo Rocks, Hidden Valley, White Tank) require arriving early — by 10 AM on spring/fall weekends.",
+      "Most campgrounds have no water — fill up at the Oasis Visitor Center in Twentynine Palms or Black Rock.",
+      "Generator hours are limited in all campgrounds — quiet hours are enforced."
+    ]
+  },
+  {
+    "id": "climbing-registration",
+    "activity": "Climbing Registration",
+    "permitType": "registration",
+    "required": true,
+    "description": "All climbers and boulderers should register at the park entrance. Chalk use is regulated in some zones. Leave No Trace standards apply to all climbing.",
+    "where": "Park entrance station or visitor center",
+    "url": "https://www.nps.gov/jotr/planyourvisit/rockclimbing.htm",
+    "cost": "Free (included with park entrance fee)",
+    "seasonalWindow": {
+      "required": "year-round",
+      "notes": "Registration required year-round. Fixed anchors and bolt placement regulated."
+    },
+    "tips": [
+      "Register at the entrance station — it helps search and rescue locate you if needed.",
+      "Chalk must be earth-toned or neutral in many areas. Check current NPS regulations.",
+      "Fixed anchor and bolt placement is strictly regulated — review NPS climbing regulations before placing hardware.",
+      "Popular climbing areas (Intersection Rock, Hidden Valley) get crowded on weekends — arrive early."
+    ]
+  }
+]
