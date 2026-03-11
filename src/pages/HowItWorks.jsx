@@ -47,7 +47,7 @@ export default function HowItWorksPage() {
       />
 
       {/* ══ FOUR WAYS IN ═════════════════════════════════════════════════════ */}
-      <TravelYourWay />
+      <TravelYourWay showHeading={false} />
 
       {/* ══ A DAY WITH LILA ══════════════════════════════════════════════════ */}
       <section style={{ padding: "48px 52px 80px", background: C.cream }}>
