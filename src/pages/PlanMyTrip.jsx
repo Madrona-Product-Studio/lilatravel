@@ -757,7 +757,7 @@ function StepWelcome({ onNext }) {
           description="Answer a few questions about what you're seeking and we'll craft a personalized itinerary — complete with trails, wellness practices, timing, and local picks."
           buttonLabel="Start Planning — Free"
           isPrimary={true}
-          tag="Most Popular"
+          tag="Beta"
           tagColor={C.oceanTeal}
           delay={200}
           visible={visible}
@@ -788,6 +788,7 @@ function StepWelcome({ onNext }) {
               <div key={card.eyebrow}
                 onClick={card.onClick}
                 style={{
+                  position: "relative",
                   background: C.white,
                   border: `1px solid ${C.sage}15`,
                   borderRadius: 2,
@@ -802,6 +803,15 @@ function StepWelcome({ onNext }) {
                   WebkitTapHighlightColor: "transparent",
                 }}
               >
+                <div style={{
+                  position: "absolute", top: -9, left: "50%", transform: "translateX(-50%)",
+                  fontFamily: "'Quicksand', sans-serif",
+                  fontSize: 8, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase",
+                  color: "#aab0b8",
+                  border: "1px solid #d0d5d9",
+                  background: C.white,
+                  padding: "3px 7px",
+                }}>In Dev</div>
                 <div style={{
                   width: 44, height: 44, borderRadius: 12,
                   background: `${card.color}10`,
