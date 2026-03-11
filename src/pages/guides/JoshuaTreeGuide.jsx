@@ -1111,6 +1111,44 @@ export default function JoshuaTreeGuide() {
       {/* ══ GUIDE SECTION NAV ═══════════════════════════════════════════════ */}
       <GuideNav isMobile={isMobile} />
 
+      {/* ══ IMAGE STRIP ════════════════════════════════════════════════════ */}
+      <section style={{ position: "relative" }}>
+        <div style={{
+          display: "flex", gap: 2,
+          overflowX: "auto", scrollSnapType: "x mandatory",
+          WebkitOverflowScrolling: "touch",
+          scrollbarWidth: "none",
+        }}>
+          {[
+            { src: P.joshuaTreeDawn,     alt: "Joshua Tree at dawn",            caption: "First light in the high desert",     width: 420 },
+            { src: P.joshuaTreeCholla,    alt: "Cholla Cactus Garden",           caption: "Cholla Cactus Garden at golden hour", width: 280 },
+            { src: P.joshuaTreeBoulders,  alt: "Joshua Tree boulder formations", caption: "Jumbo Rocks — ancient granite",       width: 420 },
+            { src: P.joshuaTreeNightSky,  alt: "Night sky over Joshua Tree",     caption: "Bortle Class 2 darkness",            width: 360 },
+          ].map((img, i) => (
+            <div key={i} style={{
+              flex: "0 0 auto", width: isMobile ? "85vw" : img.width,
+              scrollSnapAlign: "start", position: "relative", overflow: "hidden",
+            }}>
+              <img src={img.src} alt={img.alt} style={{
+                width: "100%", height: 320, objectFit: "cover", display: "block",
+              }} />
+              <div style={{
+                position: "absolute", bottom: 0, left: 0, right: 0,
+                padding: "32px 16px 14px",
+                background: "linear-gradient(to top, rgba(10,18,26,0.7), transparent)",
+              }}>
+                <span style={{
+                  fontFamily: "'Quicksand', sans-serif",
+                  fontSize: 10, fontWeight: 600,
+                  letterSpacing: "0.08em",
+                  color: "rgba(255,255,255,0.8)",
+                }}>{img.caption}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* ══ GUIDE CONTENT ═══════════════════════════════════════════════════ */}
       <section style={{ padding: isMobile ? "32px 20px 60px" : "48px 52px 80px", background: C.cream }}>
         <div style={{ maxWidth: 680, margin: "0 auto" }}>

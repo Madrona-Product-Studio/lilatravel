@@ -15,4 +15,8 @@ export const P = {
   zionNarrows: "/images/zionNarrows.jpg",
   bryceCanyon: "/images/bryceCanyon.jpg",
   capitolReef: "/images/capitolReef.jpg",
+  joshuaTreeCholla: "/images/joshuaTreeCholla.jpg",
+  joshuaTreeNightSky: "/images/joshuaTreeNightSky.jpg",
+  joshuaTreeBoulders: "/images/joshuaTreeBoulders.jpg",
+  joshuaTreeDawn: "/images/joshuaTreeDawn.jpg",
 };
