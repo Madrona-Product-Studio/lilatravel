@@ -1,7 +1,7 @@
 // ─── TravelYourWay.jsx ────────────────────────────────────────────────────────
 // "Travel Your Way" four-card grid used on Homepage and HowItWorks page.
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { C } from "@data/brand";
 import { trackEvent } from "@utils/analytics";
@@ -60,9 +60,17 @@ const offerings = [
 
 export default function TravelYourWay({ showHeading = true }) {
   const [hovered, setHovered] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth <= 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   return (
-    <section style={{ padding: "96px 48px", background: C.cream }}>
+    <section style={{ padding: isMobile ? "64px 20px" : "96px 48px", background: C.cream }}>
       <div style={{ maxWidth: 1080, margin: "0 auto" }}>
 
         {showHeading && (
@@ -94,8 +102,8 @@ export default function TravelYourWay({ showHeading = true }) {
         {/* Cards */}
         <div style={{
           display: "grid",
-          gridTemplateColumns: "repeat(4, 1fr)",
-          gap: 16,
+          gridTemplateColumns: isMobile ? "1fr" : "repeat(4, 1fr)",
+          gap: isMobile ? 14 : 16,
         }}>
           {offerings.map((o, i) => {
             const isHov = hovered === i;
