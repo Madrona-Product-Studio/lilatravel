@@ -233,6 +233,7 @@ Return this structure:
   - `summary` (string, 1-2 sentences) — describes the alternative
   - `timeOfDay` (same enum as the parent: "morning" | "midday" | "afternoon" | "evening" | "night")
   - Alternatives should fit the same time slot and energy level but differ in character (e.g. strenuous ↔ restorative, solitary ↔ social).
+  - For early morning activities (before 9 AM), always include a "Sleep in" alternative with a summary like "Rest is part of the journey. Skip the early start and ease into the day on your own schedule." This gives travelers permission to prioritize rest.
   - Must pass the Lila content filter — sacred terrain, craft/intention. No chains or tourist traps.
   - Must match the traveler's profile the same way the primary activity does.
   - Do NOT include alternatives on logistics items (check-in, drive, transit, "ground" activities).
