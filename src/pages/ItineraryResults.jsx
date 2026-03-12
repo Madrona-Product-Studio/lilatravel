@@ -62,6 +62,7 @@ const CARD_STYLE = {
 };
 
 const PICK_STYLES = {
+  mindfulness: { label: 'Mindfulness', color: C.seaGlass },
   stay: { label: 'Where to Stay', color: C.goldenAmber },
   eat:  { label: 'Where to Eat',  color: C.sunSalmon },
   gear: { label: 'Gear',          color: C.oceanTeal },
@@ -746,6 +747,53 @@ function InlineReactions({ id, feedback, onFeedback }) {
 }
 
 
+/* ── MindfulnessReactions — Lock it in + Want it only (no "Swap this out") ── */
+
+function MindfulnessReactions({ id, feedback, onFeedback }) {
+  const current = feedback?.[id] || null;
+  const currentReaction = typeof current === 'string' ? current : current?.reaction || null;
+
+  const toggle = (reaction, e) => {
+    e.stopPropagation();
+    onFeedback(id, currentReaction === reaction ? null : reaction);
+  };
+
+  const pills = [
+    { key: 'fire', label: 'Lock it in',
+      icon: (active, color) => <FlameIcon size={12} color={color} active={active} />,
+      activeColor: C.amber, activeBg: 'rgba(200,148,26,0.10)', activeBorder: C.amber,
+      restColor: 'rgba(200,148,26,0.85)', restBg: 'rgba(200,148,26,0.06)', restBorder: 'rgba(200,148,26,0.30)' },
+    { key: 'up', label: 'Want it',
+      icon: (active, color) => <ThumbUp size={12} color={color} active={active} />,
+      activeColor: C.sea, activeBg: 'rgba(127,181,160,0.10)', activeBorder: C.sea,
+      restColor: 'rgba(127,181,160,0.85)', restBg: 'rgba(127,181,160,0.06)', restBorder: 'rgba(127,181,160,0.30)' },
+  ];
+
+  return (
+    <div onClick={e => e.stopPropagation()} style={{ display: 'flex', gap: 5, marginTop: 12, paddingBottom: 16 }}>
+      {pills.map(p => {
+        const active = currentReaction === p.key;
+        const color = active ? p.activeColor : p.restColor;
+        return (
+          <button key={p.key} onClick={e => toggle(p.key, e)} style={{
+            display: 'flex', alignItems: 'center', gap: 4,
+            padding: '4px 10px',
+            borderRadius: 20,
+            background: active ? p.activeBg : p.restBg,
+            border: `1px solid ${active ? p.activeBorder : p.restBorder}`,
+            cursor: 'pointer', transition: 'all 0.2s',
+            WebkitTapHighlightColor: 'transparent',
+            fontFamily: F, fontSize: 12, fontWeight: 600,
+            color: color,
+          }}>
+            {p.icon(active, color)}
+            <span>{p.label}</span>
+          </button>
+        );
+      })}
+    </div>
+  );
+}
 
 
 /* ── useIsDesktop hook ─────────────────────────────────────────────────── */
@@ -2010,6 +2058,7 @@ function DayFeedbackStrip({ dayIndex, feedback, onFeedback }) {
 function DayCard({ day, dayIndex = 0, onOpenPanel, activityFeedback, onActivityFeedback, feedback, onFeedback }) {
   const color = DAY_COLORS[dayIndex % DAY_COLORS.length];
   const [mindfulnessOpen, setMindfulnessOpen] = useState(true);
+  const [howToOpen, setHowToOpen] = useState(false);
 
   return (
     <div style={{
@@ -2030,22 +2079,206 @@ function DayCard({ day, dayIndex = 0, onOpenPanel, activityFeedback, onActivityF
       </div>
 
       {/* Mindfulness Practice card */}
-      {day.companion && (day.companion.teaching || day.companion.practice) && (() => {
+      {(() => {
+        // New: check for mindfulness pick from Claude's response
+        const mindfulnessPick = day.picks?.find(p => p.category === 'mindfulness')?.pick;
+
+        // Legacy fallback: companion system
+        const hasCompanion = day.companion && (day.companion.teaching || day.companion.practice);
+
+        if (!mindfulnessPick && !hasCompanion) return null;
+
+        // Shared wrapper: breathing animation background
+        const wrapperStyle = {
+          position: 'relative', overflow: 'hidden',
+          background: 'linear-gradient(150deg, #f5f1ea 0%, #ede9e0 100%)',
+          borderTop: '1.5px solid rgba(74,155,159,0.35)',
+          borderBottom: '1.5px solid rgba(74,155,159,0.35)',
+          padding: '20px 24px 0',
+        };
+
+        // ── New mindfulness pick rendering ──
+        if (mindfulnessPick) {
+          const tradition = TRADITIONS[mindfulnessPick.tradition];
+          const accent = tradition?.color || C.sage;
+          const glyph = TRADITION_GLYPHS[mindfulnessPick.tradition] || '◈';
+          const typeLabel = mindfulnessPick.type === 'practice' ? 'Practice' : 'Teaching';
+
+          return (
+            <div style={wrapperStyle}>
+              <style>{`
+                @keyframes practiceBreath {
+                  0%   { opacity: 0; transform: translateX(-80%); }
+                  12%  { opacity: 0.7; transform: translateX(0%); }
+                  45%  { opacity: 0.6; transform: translateX(5%); }
+                  60%  { opacity: 0.7; transform: translateX(0%); }
+                  75%  { opacity: 0; transform: translateX(-80%); }
+                  100% { opacity: 0; transform: translateX(-80%); }
+                }
+              `}</style>
+              <div aria-hidden style={{
+                position: 'absolute', top: 0, bottom: 0,
+                left: '-40%', width: '180%',
+                background: 'linear-gradient(to right, transparent 0%, #dceee9 25%, #e2eeeb 50%, #dceee9 75%, transparent 100%)',
+                animation: 'practiceBreath 16s ease-in-out infinite',
+                pointerEvents: 'none',
+              }} />
+              <div style={{ position: 'relative' }}>
+                {/* Header — clickable to toggle */}
+                <div
+                  onClick={() => setMindfulnessOpen(prev => !prev)}
+                  style={{
+                    display: 'flex', alignItems: 'center', gap: 14,
+                    paddingBottom: mindfulnessOpen ? 6 : 14,
+                    cursor: 'pointer', WebkitTapHighlightColor: 'transparent',
+                  }}
+                >
+                  <IconLotus size={38} color="#4A9B9F" />
+                  <span style={{
+                    fontFamily: F, fontSize: 10, fontWeight: 700,
+                    letterSpacing: '0.22em', textTransform: 'uppercase',
+                    color: '#4A9B9F', flex: 1,
+                  }}>Mindfulness Practice</span>
+                  <span style={{
+                    color: '#4A9B9F', opacity: 0.7, fontSize: 18, flexShrink: 0,
+                    fontWeight: 600,
+                    transition: 'transform 0.3s ease',
+                    transform: mindfulnessOpen ? 'rotate(90deg)' : 'rotate(0deg)',
+                  }}>›</span>
+                </div>
+
+                {/* Collapsible body */}
+                <div style={{
+                  maxHeight: mindfulnessOpen ? 900 : 0,
+                  overflow: 'hidden',
+                  transition: 'max-height 0.35s ease',
+                }}>
+
+                  {/* Tradition badge + type pill */}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap', marginBottom: 10 }}>
+                    <div style={{
+                      display: 'inline-flex', alignItems: 'center', gap: 5,
+                      padding: '3px 10px', borderRadius: 20,
+                      background: `${accent}10`, border: `1px solid ${accent}20`,
+                    }}>
+                      <span style={{ fontSize: 12, lineHeight: 1 }}>{glyph}</span>
+                      <span style={{
+                        fontFamily: F, fontSize: 10, fontWeight: 600,
+                        letterSpacing: '0.08em', textTransform: 'uppercase',
+                        color: accent,
+                      }}>{tradition?.name || mindfulnessPick.tradition}</span>
+                    </div>
+                    <div style={{
+                      display: 'inline-flex', alignItems: 'center', gap: 4,
+                      padding: '3px 9px', borderRadius: 20,
+                      background: `${accent}08`, border: `1px solid ${accent}15`,
+                    }}>
+                      {mindfulnessPick.type === 'teaching'
+                        ? <TeachingIcon size={10} color={accent} />
+                        : <PracticeIcon size={10} color={accent} />}
+                      <span style={{
+                        fontFamily: F, fontSize: 10, fontWeight: 600,
+                        letterSpacing: '0.08em', textTransform: 'uppercase',
+                        color: accent,
+                      }}>{typeLabel}</span>
+                    </div>
+                  </div>
+
+                  {/* Title — serif */}
+                  <div style={{
+                    fontFamily: F_SERIF, fontSize: 19, fontWeight: 300,
+                    color: '#1a2530', lineHeight: 1.3, marginBottom: 10,
+                  }}>{mindfulnessPick.name}</div>
+
+                  {/* Essence — body text */}
+                  <p style={{
+                    fontFamily: F, fontSize: 14, fontWeight: 400,
+                    color: C.body, lineHeight: 1.65, margin: '0 0 10px',
+                  }}>{mindfulnessPick.essence}</p>
+
+                  {/* Connection — italic */}
+                  {mindfulnessPick.connection && (
+                    <p style={{
+                      fontFamily: F, fontSize: 13, fontWeight: 400,
+                      fontStyle: 'italic', color: '#3D5A6B', opacity: 0.75,
+                      lineHeight: 1.55, margin: '0 0 12px',
+                    }}>{mindfulnessPick.connection}</p>
+                  )}
+
+                  {/* Quote — pull quote with left border accent */}
+                  {mindfulnessPick.quote?.text && (
+                    <div style={{
+                      padding: '12px 16px', marginBottom: 12,
+                      borderLeft: `3px solid ${accent}35`,
+                      background: `${accent}06`, borderRadius: '0 6px 6px 0',
+                    }}>
+                      <p style={{
+                        fontFamily: F_SERIF, fontSize: 15, fontStyle: 'italic', fontWeight: 400,
+                        color: C.body, lineHeight: 1.6, margin: 0,
+                      }}>"{mindfulnessPick.quote.text}"</p>
+                      {mindfulnessPick.quote.source && (
+                        <p style={{
+                          fontFamily: F, fontSize: 11, color: C.muted,
+                          margin: '6px 0 0',
+                        }}>— {mindfulnessPick.quote.source}</p>
+                      )}
+                    </div>
+                  )}
+
+                  {/* HowTo — disclosure link */}
+                  {mindfulnessPick.howTo && (
+                    <div style={{ marginBottom: 4 }}>
+                      <button
+                        onClick={(e) => { e.stopPropagation(); setHowToOpen(prev => !prev); }}
+                        style={{
+                          fontFamily: F, fontSize: 12, fontWeight: 600,
+                          color: `${accent}cc`, background: 'none', border: 'none',
+                          cursor: 'pointer', padding: '4px 0',
+                          WebkitTapHighlightColor: 'transparent',
+                          display: 'flex', alignItems: 'center', gap: 5,
+                        }}
+                      >
+                        <span style={{
+                          fontSize: 14, transition: 'transform 0.2s',
+                          transform: howToOpen ? 'rotate(90deg)' : 'rotate(0deg)',
+                        }}>›</span>
+                        How to practice
+                      </button>
+                      <div style={{
+                        maxHeight: howToOpen ? 200 : 0,
+                        overflow: 'hidden',
+                        transition: 'max-height 0.25s ease',
+                      }}>
+                        <p style={{
+                          fontFamily: F, fontSize: 13, fontWeight: 400,
+                          color: C.body, lineHeight: 1.6,
+                          margin: '6px 0 0', paddingLeft: 2,
+                        }}>{mindfulnessPick.howTo}</p>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Reactions — Lock it in + Want it only */}
+                  <MindfulnessReactions
+                    id={`day_${dayIndex}_mindfulness`}
+                    feedback={activityFeedback}
+                    onFeedback={onActivityFeedback}
+                  />
+                </div>{/* end collapsible body */}
+              </div>{/* end relative content wrapper */}
+            </div>
+          );
+        }
+
+        // ── Legacy companion rendering (for itineraries without mindfulness picks) ──
         const entries = [
           day.companion.teaching && { type: 'teaching', data: day.companion.teaching },
           day.companion.practice && { type: 'practice', data: day.companion.practice },
         ].filter(Boolean);
-        // Use the first entry's quote for the card
         const quoteEntry = entries.find(e => e.data.quote);
+
         return (
-          <div style={{
-            position: 'relative', overflow: 'hidden',
-            background: 'linear-gradient(150deg, #f5f1ea 0%, #ede9e0 100%)',
-            borderTop: '1.5px solid rgba(74,155,159,0.35)',
-            borderBottom: '1.5px solid rgba(74,155,159,0.35)',
-            padding: '20px 24px 0',
-          }}>
-            {/* Breathing overlay — sage sweeps in, holds, then sweeps back */}
+          <div style={wrapperStyle}>
             <style>{`
               @keyframes practiceBreath {
                 0%   { opacity: 0; transform: translateX(-80%); }
@@ -2064,106 +2297,102 @@ function DayCard({ day, dayIndex = 0, onOpenPanel, activityFeedback, onActivityF
               pointerEvents: 'none',
             }} />
             <div style={{ position: 'relative' }}>
-            {/* Header — clickable to toggle */}
-            <div
-              onClick={() => setMindfulnessOpen(prev => !prev)}
-              style={{
-                display: 'flex', alignItems: 'center', gap: 14,
-                paddingBottom: mindfulnessOpen ? 6 : 14,
-                cursor: 'pointer', WebkitTapHighlightColor: 'transparent',
-              }}
-            >
-              <IconLotus size={38} color="#4A9B9F" />
-              <span style={{
-                fontFamily: F, fontSize: 10, fontWeight: 700,
-                letterSpacing: '0.22em', textTransform: 'uppercase',
-                color: '#4A9B9F', flex: 1,
-              }}>Mindfulness Practice</span>
-              <span style={{
-                color: '#4A9B9F', opacity: 0.7, fontSize: 18, flexShrink: 0,
-                fontWeight: 600,
-                transition: 'transform 0.3s ease',
-                transform: mindfulnessOpen ? 'rotate(90deg)' : 'rotate(0deg)',
-              }}>›</span>
-            </div>
-
-            {/* Collapsible body */}
-            <div style={{
-              maxHeight: mindfulnessOpen ? 600 : 0,
-              overflow: 'hidden',
-              transition: 'max-height 0.35s ease',
-            }}>
-
-            {/* Entries */}
-            {entries.map((item, idx) => (
+              {/* Header — clickable to toggle */}
               <div
-                key={item.type}
-                onClick={() => {
-                  trackEvent('companion_opened', { type: item.type, title: item.data.title, day_index: dayIndex });
-                  onOpenPanel({ type: item.type, data: item.data, thumbId: `day_${dayIndex}_${item.type}` });
-                }}
+                onClick={() => setMindfulnessOpen(prev => !prev)}
                 style={{
-                  display: 'flex', alignItems: 'center', gap: 12,
-                  padding: '12px 0',
-                  borderTop: idx > 0 ? '1px solid rgba(61,90,107,0.1)' : 'none',
-                  cursor: 'pointer',
-                  WebkitTapHighlightColor: 'transparent',
+                  display: 'flex', alignItems: 'center', gap: 14,
+                  paddingBottom: mindfulnessOpen ? 6 : 14,
+                  cursor: 'pointer', WebkitTapHighlightColor: 'transparent',
                 }}
               >
-                {item.type === 'teaching'
-                  ? <TeachingIcon size={16} color="#4A9B9F" />
-                  : <PracticeIcon size={16} color="#4A9B9F" />}
-                <div style={{ flex: 1, minWidth: 0 }}>
-                  <div style={{
-                    fontFamily: F, fontSize: 9, fontWeight: 700,
-                    letterSpacing: '0.2em', textTransform: 'uppercase',
-                    color: '#4A9B9F', marginBottom: 2,
-                  }}>{item.type === 'teaching' ? 'Teaching' : 'Practice'}</div>
-                  <div style={{
-                    fontFamily: F_SERIF, fontSize: 19, fontWeight: 300,
-                    color: '#1a2530', lineHeight: 1.3,
-                  }}>{item.data.title}</div>
-                  {item.data.tradition && (
-                    <div style={{
-                      fontFamily: F, fontSize: 12, color: '#3D5A6B',
-                      opacity: 0.55, marginTop: 2,
-                    }}>{item.data.tradition}</div>
-                  )}
-                </div>
-                <span style={{ color: '#3D5A6B', opacity: 0.3, fontSize: 16, flexShrink: 0 }}>›</span>
-              </div>
-            ))}
-
-            {/* Quote */}
-            {quoteEntry && quoteEntry.data.quote && (
-              <div style={{
-                display: 'flex', alignItems: 'flex-start', gap: 12,
-                borderTop: '1px solid rgba(61,90,107,0.08)',
-                padding: '14px 0 18px',
-              }}>
+                <IconLotus size={38} color="#4A9B9F" />
                 <span style={{
-                  fontFamily: F_SERIF, fontSize: 28, color: '#D4A853',
-                  opacity: 0.6, lineHeight: 1, flexShrink: 0,
-                  width: 16, textAlign: 'center',
-                }}>"</span>
-                <div style={{ flex: 1, minWidth: 0 }}>
-                  <p style={{
-                    fontFamily: F, fontSize: 14, fontWeight: 400,
-                    fontStyle: 'italic',
-                    color: '#1a2530', opacity: 0.65, lineHeight: 1.6,
-                    margin: 0,
-                  }}>{typeof quoteEntry.data.quote === 'string' ? quoteEntry.data.quote : quoteEntry.data.quote.text}</p>
-                  {(quoteEntry.data.quote?.source || quoteEntry.data.sources?.[0]) && (
-                    <div style={{
-                      fontFamily: F, fontSize: 10, fontWeight: 600,
-                      letterSpacing: '0.14em', textTransform: 'uppercase',
-                      color: '#1a2530', opacity: 0.35, marginTop: 6,
-                    }}>{quoteEntry.data.quote?.source || quoteEntry.data.sources[0]}</div>
-                  )}
-                </div>
+                  fontFamily: F, fontSize: 10, fontWeight: 700,
+                  letterSpacing: '0.22em', textTransform: 'uppercase',
+                  color: '#4A9B9F', flex: 1,
+                }}>Mindfulness Practice</span>
+                <span style={{
+                  color: '#4A9B9F', opacity: 0.7, fontSize: 18, flexShrink: 0,
+                  fontWeight: 600,
+                  transition: 'transform 0.3s ease',
+                  transform: mindfulnessOpen ? 'rotate(90deg)' : 'rotate(0deg)',
+                }}>›</span>
               </div>
-            )}
-            </div>{/* end collapsible body */}
+
+              {/* Collapsible body */}
+              <div style={{
+                maxHeight: mindfulnessOpen ? 600 : 0,
+                overflow: 'hidden',
+                transition: 'max-height 0.35s ease',
+              }}>
+                {entries.map((item, idx) => (
+                  <div
+                    key={item.type}
+                    onClick={() => {
+                      trackEvent('companion_opened', { type: item.type, title: item.data.title, day_index: dayIndex });
+                      onOpenPanel({ type: item.type, data: item.data, thumbId: `day_${dayIndex}_${item.type}` });
+                    }}
+                    style={{
+                      display: 'flex', alignItems: 'center', gap: 12,
+                      padding: '12px 0',
+                      borderTop: idx > 0 ? '1px solid rgba(61,90,107,0.1)' : 'none',
+                      cursor: 'pointer', WebkitTapHighlightColor: 'transparent',
+                    }}
+                  >
+                    {item.type === 'teaching'
+                      ? <TeachingIcon size={16} color="#4A9B9F" />
+                      : <PracticeIcon size={16} color="#4A9B9F" />}
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <div style={{
+                        fontFamily: F, fontSize: 9, fontWeight: 700,
+                        letterSpacing: '0.2em', textTransform: 'uppercase',
+                        color: '#4A9B9F', marginBottom: 2,
+                      }}>{item.type === 'teaching' ? 'Teaching' : 'Practice'}</div>
+                      <div style={{
+                        fontFamily: F_SERIF, fontSize: 19, fontWeight: 300,
+                        color: '#1a2530', lineHeight: 1.3,
+                      }}>{item.data.title}</div>
+                      {item.data.tradition && (
+                        <div style={{
+                          fontFamily: F, fontSize: 12, color: '#3D5A6B',
+                          opacity: 0.55, marginTop: 2,
+                        }}>{item.data.tradition}</div>
+                      )}
+                    </div>
+                    <span style={{ color: '#3D5A6B', opacity: 0.3, fontSize: 16, flexShrink: 0 }}>›</span>
+                  </div>
+                ))}
+
+                {quoteEntry && quoteEntry.data.quote && (
+                  <div style={{
+                    display: 'flex', alignItems: 'flex-start', gap: 12,
+                    borderTop: '1px solid rgba(61,90,107,0.08)',
+                    padding: '14px 0 18px',
+                  }}>
+                    <span style={{
+                      fontFamily: F_SERIF, fontSize: 28, color: '#D4A853',
+                      opacity: 0.6, lineHeight: 1, flexShrink: 0,
+                      width: 16, textAlign: 'center',
+                    }}>"</span>
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <p style={{
+                        fontFamily: F, fontSize: 14, fontWeight: 400,
+                        fontStyle: 'italic',
+                        color: '#1a2530', opacity: 0.65, lineHeight: 1.6,
+                        margin: 0,
+                      }}>{typeof quoteEntry.data.quote === 'string' ? quoteEntry.data.quote : quoteEntry.data.quote.text}</p>
+                      {(quoteEntry.data.quote?.source || quoteEntry.data.sources?.[0]) && (
+                        <div style={{
+                          fontFamily: F, fontSize: 10, fontWeight: 600,
+                          letterSpacing: '0.14em', textTransform: 'uppercase',
+                          color: '#1a2530', opacity: 0.35, marginTop: 6,
+                        }}>{quoteEntry.data.quote?.source || quoteEntry.data.sources[0]}</div>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </div>{/* end collapsible body */}
             </div>{/* end relative content wrapper */}
           </div>
         );

@@ -150,6 +150,22 @@ Return this structure:
       ],
       "picks": [
         {
+          "category": "mindfulness",
+          "pick": {
+            "type": "teaching",
+            "tradition": "taoism",
+            "name": "Wu Wei — The Way of Water",
+            "essence": "The river doesn't force its way through the canyon — it follows the path of least resistance and shapes stone over millennia. Effortless action isn't passivity; it's alignment with the natural flow.",
+            "quote": {
+              "text": "Nothing in the world is as soft and yielding as water. Yet for dissolving the hard and inflexible, nothing can surpass it.",
+              "source": "Tao Te Ching, Chapter 78 (Lao Tzu)"
+            },
+            "howTo": "On today's river walk, let the water set the pace. Don't plan when to stop — pause when the current pauses. Notice where the river has carved the stone and consider what yields accomplishes that force cannot.",
+            "duration": "Woven into the day",
+            "connection": "You'll spend today alongside the Virgin River, watching water that has shaped these canyon walls for millions of years. Wu Wei is not a concept here — it's the geology."
+          }
+        },
+        {
           "category": "eat",
           "pick": {
             "name": "Bit & Spur",
@@ -190,8 +206,16 @@ Return this structure:
   - `conditions` (string — current or seasonal trail conditions/warnings)
   - `npsUrl` (string — NPS trail page URL if available)
   For non-hiking activities, omit `activityType` and `trailData` entirely.
-- picks.category: one of "stay", "eat", "gear", "wellness"
-- picks.pick fields: name (string), why (string, 1-2 sentences), vibe (string, 2-3 descriptors separated by ·), url (string, optional)
+- picks.category: one of "mindfulness", "stay", "eat", "gear", "wellness"
+- **Mindfulness picks — REQUIRED on every day, always FIRST in the picks array:**
+  - Choose ONE teaching OR practice per day (not both). Vary traditions across days — never repeat the same tradition two days in a row.
+  - pick fields: type ("teaching" | "practice"), tradition ("hinduism" | "buddhism" | "taoism" | "shinto" | "stoicism" | "crossCultural"), name (string), essence (string — 1-2 sentences, the core insight in accessible language), connection (string — 1 sentence tying this wisdom to what the traveler will experience on THIS specific day)
+  - Optional fields: quote ({ text, source }), howTo (string — brief instruction if it's a practice), duration (string — e.g. "10–15 minutes" for practices)
+  - The **connection** field is the most important — it must reference the specific terrain, activity, or emotional arc of that day. Generic connections like "be present today" are not acceptable.
+  - Draw on your knowledge of these traditions to generate entries consistent with their source texts. You don't need to match an exact entry from a database, but entries should be authentic to the tradition.
+  - No "url" field on mindfulness picks — they are self-contained wisdom cards.
+  - No "alternatives" array on mindfulness picks.
+- picks.pick fields (for stay, eat, gear, wellness): name (string), why (string, 1-2 sentences), vibe (string, 2-3 descriptors separated by ·), url (string, optional)
   - stay only: stayType ("Boutique Hotel" | "Glamping" | "Resort" | "Hostel" | "Lodge" | "Vacation Rental"), priceRange ("$" | "$$" | "$$$" | "$$$$"), distanceFromPark (e.g. "0.3 miles to south entrance")
   - eat only: cuisine (e.g. "American / Southwest"), priceRange, bestFor (e.g. "Post-hike fuel" | "Slow dinner" | "Quick breakfast")
   - wellness only: duration (e.g. "75 min"), difficulty ("All levels" | "Intermediate"), bestTimeOfDay (e.g. "Early morning · 7–8:30 AM")
@@ -208,7 +232,7 @@ Return this structure:
   - **packingHint**: 1 short sentence listing essential gear for this season
 - **url fields**: Include a "url" on picks and timeline items when the place has a known website. Use URLs from the destination guide's URL Registry section if provided. If no URL is known, omit the field — do NOT invent URLs.
 - Keep ALL text concise — summaries are 1 sentence, details are 2-4 sentences max
-- Include a "stay" pick on day 1, "eat" picks each day, "gear" if relevant on day 1
+- Include a "mindfulness" pick on EVERY day (always first in picks array), a "stay" pick on day 1, "eat" picks each day, "gear" if relevant on day 1
 - Every name MUST come from the destination guide
 - DO NOT wrap the JSON in code fences or backticks
 - The response must be ONLY the JSON object — nothing else

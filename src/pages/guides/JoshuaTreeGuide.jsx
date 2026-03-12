@@ -208,7 +208,7 @@ function ListItem({ name, detail, note, tags, featured, url, isMobile, onOpenShe
         </div>
         <div style={{
           fontFamily: "'Quicksand', sans-serif",
-          fontSize: isMobile ? 14 : "clamp(13px, 1.5vw, 14px)", fontWeight: 400,
+          fontSize: isMobile ? 14 : "clamp(14px, 1.5vw, 14px)", fontWeight: 400,
           color: "#4A5650", lineHeight: 1.65,
         }}>{detail}</div>
         {note && (
@@ -287,7 +287,7 @@ function StayItem({ name, location, tier, detail, tags, url, featured, isMobile,
         <div style={{ marginBottom: 3 }}>{nameEl}</div>
         <div style={{
           fontFamily: "'Quicksand', sans-serif",
-          fontSize: isMobile ? 14 : "clamp(13px, 1.5vw, 14px)", fontWeight: 400,
+          fontSize: isMobile ? 14 : "clamp(14px, 1.5vw, 14px)", fontWeight: 400,
           color: "#4A5650", lineHeight: 1.65,
         }}>{detail}</div>
         {tags && (
@@ -631,7 +631,7 @@ function WildlifeEntry({ name, season, detail, isMobile }) {
         <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 14, fontWeight: 600, color: C.darkInk }}>{name}</span>
         <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: C.goldenAmber }}>{season}</span>
       </div>
-      <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: "clamp(13px, 1.5vw, 14px)", fontWeight: 400, color: "#4A5650", lineHeight: 1.7, margin: 0 }}>{detail}</p>
+      <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: "clamp(14px, 1.5vw, 14px)", fontWeight: 400, color: "#4A5650", lineHeight: 1.7, margin: 0 }}>{detail}</p>
     </div>
   );
 }
