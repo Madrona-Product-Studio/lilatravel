@@ -126,13 +126,13 @@ export default function TripPage() {
             marginBottom: 20,
           }}>
             <span style={{
-              fontFamily: "'Quicksand'", fontSize: 10, fontWeight: 700,
+              fontFamily: "'Quicksand'", fontSize: 11, fontWeight: 700,
               letterSpacing: "0.2em", textTransform: "uppercase",
               color: C.darkInk,
             }}>Coming Soon · {trip.threshold}</span>
           </div>
           <p style={{
-            fontFamily: "'Quicksand'", fontSize: 11, fontWeight: 600,
+            fontFamily: "'Quicksand'", fontSize: 12, fontWeight: 600,
             letterSpacing: "0.18em", textTransform: "uppercase",
             color: "rgba(255,255,255,0.6)", marginBottom: 8,
           }}>{trip.location}</p>
@@ -164,7 +164,7 @@ export default function TripPage() {
             }}>
               <div>
                 <span style={{
-                  fontFamily: "'Quicksand'", fontSize: 10, fontWeight: 700,
+                  fontFamily: "'Quicksand'", fontSize: 11, fontWeight: 700,
                   letterSpacing: "0.2em", textTransform: "uppercase",
                   color: trip.accent, display: "block", marginBottom: 6,
                 }}>Threshold · {trip.threshold}</span>
@@ -175,7 +175,7 @@ export default function TripPage() {
               </div>
               <div style={{ textAlign: "right" }}>
                 <span style={{
-                  fontFamily: "'Quicksand'", fontSize: 10, fontWeight: 700,
+                  fontFamily: "'Quicksand'", fontSize: 11, fontWeight: 700,
                   letterSpacing: "0.2em", textTransform: "uppercase",
                   color: trip.accent, display: "block", marginBottom: 6,
                 }}>Price</span>
@@ -199,7 +199,7 @@ export default function TripPage() {
           <FadeIn delay={0.15}>
             <div style={{ marginBottom: 56 }}>
               <span style={{
-                fontFamily: "'Quicksand'", fontSize: 10, fontWeight: 700,
+                fontFamily: "'Quicksand'", fontSize: 11, fontWeight: 700,
                 letterSpacing: "0.22em", textTransform: "uppercase",
                 color: trip.accent, display: "block", marginBottom: 20,
               }}>What's Included</span>
@@ -232,7 +232,7 @@ export default function TripPage() {
               background: C.darkInk, textAlign: "center",
             }}>
               <span style={{
-                fontFamily: "'Quicksand'", fontSize: 10, fontWeight: 700,
+                fontFamily: "'Quicksand'", fontSize: 11, fontWeight: 700,
                 letterSpacing: "0.22em", textTransform: "uppercase",
                 color: trip.accent, display: "block", marginBottom: 12,
               }}>Coming Soon · {trip.threshold}</span>

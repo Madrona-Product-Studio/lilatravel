@@ -53,7 +53,7 @@ export default function PageHeader({
             }} />
             <span style={{
               fontFamily: "'Quicksand', sans-serif",
-              fontSize: 10,
+              fontSize: 11,
               fontWeight: 700,
               letterSpacing: "0.22em",
               textTransform: "uppercase",
@@ -64,7 +64,7 @@ export default function PageHeader({
             {tag && (
               <span style={{
                 fontFamily: "'Quicksand', sans-serif",
-                fontSize: 10,
+                fontSize: 11,
                 fontWeight: 700,
                 letterSpacing: "0.14em",
                 textTransform: "uppercase",

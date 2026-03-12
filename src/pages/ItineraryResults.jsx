@@ -321,7 +321,7 @@ function CelestialSnapshot({ snapshot, celestial, weather, month }) {
       {/* Header */}
       <div style={{ padding: '16px 20px 14px', borderBottom: `1px solid ${C.border}` }}>
         <div style={{
-          fontFamily: F, fontSize: 9, fontWeight: 700,
+          fontFamily: F, fontSize: 10, fontWeight: 700,
           letterSpacing: '0.2em', textTransform: 'uppercase',
           color: C.muted, marginBottom: 6,
         }}>Celestial Snapshot</div>
@@ -331,7 +331,7 @@ function CelestialSnapshot({ snapshot, celestial, weather, month }) {
         }}>{sky}</div>
         {snapshot?.seasonalNote && (
           <div style={{
-            fontFamily: F, fontSize: 12, fontWeight: 400,
+            fontFamily: F, fontSize: 13, fontWeight: 400,
             color: C.body, lineHeight: 1.6,
           }}>{snapshot.seasonalNote}</div>
         )}
@@ -350,15 +350,15 @@ function CelestialSnapshot({ snapshot, celestial, weather, month }) {
           }}>
             <div style={{ fontSize: 18, marginBottom: 6 }}>{ev.icon}</div>
             <div style={{
-              fontFamily: F, fontSize: 13, fontWeight: 600,
+              fontFamily: F, fontSize: 14, fontWeight: 600,
               color: C.ink, marginBottom: 2,
             }}>{ev.name}</div>
             <div style={{
-              fontFamily: F, fontSize: 10, fontWeight: 700,
+              fontFamily: F, fontSize: 11, fontWeight: 700,
               letterSpacing: '0.06em', color: C.amber, marginBottom: 5,
             }}>{ev.date}</div>
             <div style={{
-              fontFamily: F, fontSize: 11, fontWeight: 400,
+              fontFamily: F, fontSize: 12, fontWeight: 400,
               color: C.body, lineHeight: 1.5,
             }}>{ev.note}</div>
           </div>
@@ -374,32 +374,32 @@ function CelestialSnapshot({ snapshot, celestial, weather, month }) {
         }}>
           {avgHigh !== null && (
             <div style={{ padding: '12px 18px', borderRight: `1px solid ${C.border}` }}>
-              <div style={{ fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: C.muted, marginBottom: 5 }}>Avg High</div>
+              <div style={{ fontFamily: F, fontSize: 10, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: C.muted, marginBottom: 5 }}>Avg High</div>
               <div style={{ fontSize: 18, fontWeight: 600, color: C.ink }}>
                 {avgHigh}°
-                {avgLow !== null && <span style={{ fontSize: 12, color: C.muted, fontWeight: 400 }}> /{avgLow}°</span>}
+                {avgLow !== null && <span style={{ fontSize: 13, color: C.muted, fontWeight: 400 }}> /{avgLow}°</span>}
               </div>
             </div>
           )}
           {sunrise && (
             <div style={{ padding: '12px 18px', borderRight: `1px solid ${C.border}` }}>
-              <div style={{ fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: C.muted, marginBottom: 5 }}>Sunrise</div>
+              <div style={{ fontFamily: F, fontSize: 10, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: C.muted, marginBottom: 5 }}>Sunrise</div>
               <div style={{ fontSize: 16, fontWeight: 600, color: C.ink }}>{sunrise}</div>
             </div>
           )}
           {sunset && (
             <div style={{ padding: '12px 18px', borderRight: `1px solid ${C.border}` }}>
-              <div style={{ fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: C.muted, marginBottom: 5 }}>Sunset</div>
+              <div style={{ fontFamily: F, fontSize: 10, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: C.muted, marginBottom: 5 }}>Sunset</div>
               <div style={{ fontSize: 16, fontWeight: 600, color: C.ink }}>{sunset}</div>
             </div>
           )}
           {moonName && (
             <div style={{ padding: '12px 18px' }}>
-              <div style={{ fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: C.muted, marginBottom: 5 }}>Moon</div>
-              <div style={{ fontSize: 13, fontWeight: 600, color: C.ink, lineHeight: 1.3 }}>
+              <div style={{ fontFamily: F, fontSize: 10, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: C.muted, marginBottom: 5 }}>Moon</div>
+              <div style={{ fontSize: 14, fontWeight: 600, color: C.ink, lineHeight: 1.3 }}>
                 {MOON_EMOJI[moonName] ?? '🌙'} {moonName}
               </div>
-              {stargazing && <div style={{ fontFamily: F, fontSize: 10, color: C.muted, marginTop: 2 }}>{stargazing}</div>}
+              {stargazing && <div style={{ fontFamily: F, fontSize: 11, color: C.muted, marginTop: 2 }}>{stargazing}</div>}
             </div>
           )}
         </div>
@@ -408,8 +408,8 @@ function CelestialSnapshot({ snapshot, celestial, weather, month }) {
       {/* Pack note */}
       {snapshot?.packingHint && (
         <div style={{ padding: '12px 20px', display: 'flex', gap: 10, alignItems: 'baseline' }}>
-          <span style={{ fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: C.muted, flexShrink: 0 }}>Pack</span>
-          <span style={{ fontFamily: F, fontSize: 12, color: C.body, lineHeight: 1.6 }}>{snapshot.packingHint}</span>
+          <span style={{ fontFamily: F, fontSize: 10, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: C.muted, flexShrink: 0 }}>Pack</span>
+          <span style={{ fontFamily: F, fontSize: 13, color: C.body, lineHeight: 1.6 }}>{snapshot.packingHint}</span>
         </div>
       )}
     </div>
@@ -448,10 +448,10 @@ function TripProfileSummary({ formData }) {
 
   return (
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: 7, alignItems: 'center', paddingBottom: 20, marginBottom: 20, borderBottom: `1px solid ${C.border}` }}>
-      <span style={{ fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: C.muted, marginRight: 4 }}>Built for you</span>
+      <span style={{ fontFamily: F, fontSize: 10, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: C.muted, marginRight: 4 }}>Built for you</span>
       {chips.map((chip, i) => (
         <span key={i} style={{
-          fontFamily: F, fontSize: 11, fontWeight: 500, color: C.body,
+          fontFamily: F, fontSize: 12, fontWeight: 500, color: C.body,
           background: C.white, border: `1px solid ${C.border}`,
           borderRadius: 20, padding: '4px 12px', whiteSpace: 'nowrap',
         }}>{chip}</span>
@@ -487,7 +487,7 @@ function DifficultyBar({ difficulty = 'moderate' }) {
         ))}
       </div>
       <span style={{
-        fontFamily: F, fontSize: 10, fontWeight: 700,
+        fontFamily: F, fontSize: 11, fontWeight: 700,
         letterSpacing: '0.06em',
         color: cfg.color,
         textTransform: 'capitalize',
@@ -511,7 +511,7 @@ function TrailStatChip({ icon, label, value, accent }) {
       {icon}
       <div>
         <div style={{
-          fontFamily: F, fontSize: 9, fontWeight: 700,
+          fontFamily: F, fontSize: 10, fontWeight: 700,
           letterSpacing: '0.1em', textTransform: 'uppercase',
           color: `${C.sage}99`, lineHeight: 1,
           marginBottom: 2,
@@ -519,7 +519,7 @@ function TrailStatChip({ icon, label, value, accent }) {
           {label}
         </div>
         <div style={{
-          fontFamily: F, fontSize: 12, fontWeight: 700,
+          fontFamily: F, fontSize: 13, fontWeight: 700,
           color: accent || C.ink, lineHeight: 1,
         }}>
           {value}
@@ -535,7 +535,7 @@ function TrailStatChip({ icon, label, value, accent }) {
 function MetaChip({ label, color }) {
   return (
     <span style={{
-      fontFamily: F, fontSize: 10, fontWeight: 600,
+      fontFamily: F, fontSize: 11, fontWeight: 600,
       color: color || C.muted,
       background: color ? `${color}12` : `${C.sage}0c`,
       border: `1px solid ${color ? `${color}25` : `${C.sage}18`}`,
@@ -624,7 +624,7 @@ function ActivityThumbs({ id, feedback, onFeedback }) {
 
   return (
     <div style={{ marginTop: 14, paddingTop: 14, borderTop: `1px solid ${C.sage}0c` }}>
-      <div style={{ fontFamily: F, fontSize: 9, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: `${C.sage}90`, marginBottom: 8 }}>How does this feel?</div>
+      <div style={{ fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: `${C.sage}90`, marginBottom: 8 }}>How does this feel?</div>
       <div style={{ display: 'flex', gap: 7 }}>
         {reactions.map(r => {
           const active = currentReaction === r.key;
@@ -640,7 +640,7 @@ function ActivityThumbs({ id, feedback, onFeedback }) {
               WebkitTapHighlightColor: 'transparent',
             }}>
               <Ic size={14} color={active ? r.color : r.restIcon} active={active} />
-              <span style={{ fontFamily: F, fontSize: 10, fontWeight: 600, color: active ? r.color : `${r.color}90` }}>{r.label}</span>
+              <span style={{ fontFamily: F, fontSize: 11, fontWeight: 600, color: active ? r.color : `${r.color}90` }}>{r.label}</span>
             </button>
           );
         })}
@@ -649,10 +649,10 @@ function ActivityThumbs({ id, feedback, onFeedback }) {
       {currentReaction === 'down' && (
         <div style={{ marginTop: 6 }}>
           {!noteOpen && !currentNote && (
-            <button onClick={() => setNoteOpen(true)} style={{ fontFamily: F, fontSize: 11, fontWeight: 500, color: `${C.sunSalmon}90`, background: 'none', border: 'none', cursor: 'pointer', padding: '2px 0', WebkitTapHighlightColor: 'transparent' }}>+ add note</button>
+            <button onClick={() => setNoteOpen(true)} style={{ fontFamily: F, fontSize: 12, fontWeight: 500, color: `${C.sunSalmon}90`, background: 'none', border: 'none', cursor: 'pointer', padding: '2px 0', WebkitTapHighlightColor: 'transparent' }}>+ add note</button>
           )}
           {!noteOpen && currentNote && (
-            <button onClick={() => setNoteOpen(true)} style={{ fontFamily: F, fontSize: 11, fontWeight: 500, fontStyle: 'normal', color: `${C.slate}90`, background: 'none', border: 'none', cursor: 'pointer', padding: '2px 0', textAlign: 'left', WebkitTapHighlightColor: 'transparent', maxWidth: '100%', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', display: 'block' }}>
+            <button onClick={() => setNoteOpen(true)} style={{ fontFamily: F, fontSize: 12, fontWeight: 500, fontStyle: 'normal', color: `${C.slate}90`, background: 'none', border: 'none', cursor: 'pointer', padding: '2px 0', textAlign: 'left', WebkitTapHighlightColor: 'transparent', maxWidth: '100%', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', display: 'block' }}>
               "{currentNote.length > 60 ? currentNote.slice(0, 60) + '…' : currentNote}" <span style={{ fontStyle: 'normal', color: `${C.sunSalmon}80` }}>edit</span>
             </button>
           )}
@@ -661,11 +661,11 @@ function ActivityThumbs({ id, feedback, onFeedback }) {
               <textarea value={noteText} onChange={e => setNoteText(e.target.value)}
                 placeholder="What doesn't feel right?"
                 rows={2}
-                style={{ width: '100%', padding: '8px 10px', fontFamily: F, fontSize: 12, fontWeight: 400, color: C.slate, background: C.white, border: `1px solid ${C.sunSalmon}25`, borderRadius: 8, resize: 'vertical', lineHeight: 1.5, outline: 'none', boxSizing: 'border-box' }}
+                style={{ width: '100%', padding: '8px 10px', fontFamily: F, fontSize: 13, fontWeight: 400, color: C.slate, background: C.white, border: `1px solid ${C.sunSalmon}25`, borderRadius: 8, resize: 'vertical', lineHeight: 1.5, outline: 'none', boxSizing: 'border-box' }}
               />
               <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 6, marginTop: 4 }}>
-                <button onClick={() => setNoteOpen(false)} style={{ fontFamily: F, fontSize: 10, fontWeight: 500, color: `${C.sage}99`, background: 'none', border: 'none', cursor: 'pointer', padding: '4px 8px' }}>Cancel</button>
-                <button onClick={() => { saveNote(noteText); setNoteOpen(false); }} style={{ fontFamily: F, fontSize: 10, fontWeight: 600, color: C.white, background: C.sunSalmon, border: 'none', borderRadius: 6, padding: '4px 12px', cursor: 'pointer' }}>Save</button>
+                <button onClick={() => setNoteOpen(false)} style={{ fontFamily: F, fontSize: 11, fontWeight: 500, color: `${C.sage}99`, background: 'none', border: 'none', cursor: 'pointer', padding: '4px 8px' }}>Cancel</button>
+                <button onClick={() => { saveNote(noteText); setNoteOpen(false); }} style={{ fontFamily: F, fontSize: 11, fontWeight: 600, color: C.white, background: C.sunSalmon, border: 'none', borderRadius: 6, padding: '4px 12px', cursor: 'pointer' }}>Save</button>
               </div>
             </div>
           )}
@@ -733,7 +733,7 @@ function InlineReactions({ id, feedback, onFeedback }) {
             border: `1px solid ${active ? p.activeBorder : p.restBorder}`,
             cursor: 'pointer', transition: 'all 0.2s',
             WebkitTapHighlightColor: 'transparent',
-            fontFamily: F, fontSize: 11, fontWeight: 600,
+            fontFamily: F, fontSize: 12, fontWeight: 600,
             color: color,
           }}>
             {p.icon(active, color)}
@@ -784,12 +784,12 @@ function CompanionPanelContent({ type, data, id, feedback, onFeedback }) {
       {/* Type badge */}
       <div style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '4px 11px', borderRadius: 20, background: `${accent}0e`, border: `1px solid ${accent}18`, marginBottom: 10 }}>
         {isTeaching ? <TeachingIcon size={11} color={accent} /> : <PracticeIcon size={11} color={accent} />}
-        <span style={{ fontFamily: F, fontSize: 9, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: accent }}>{isTeaching ? "Today's Teaching" : "Today's Practice"}</span>
+        <span style={{ fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: accent }}>{isTeaching ? "Today's Teaching" : "Today's Practice"}</span>
       </div>
 
       {/* Tradition */}
       {data.tradition && (
-        <div style={{ fontFamily: F, fontSize: 10, fontWeight: 500, color: C.muted, marginBottom: 6 }}>{data.tradition} tradition</div>
+        <div style={{ fontFamily: F, fontSize: 11, fontWeight: 500, color: C.muted, marginBottom: 6 }}>{data.tradition} tradition</div>
       )}
 
       {/* Title */}
@@ -798,18 +798,18 @@ function CompanionPanelContent({ type, data, id, feedback, onFeedback }) {
       <InlineReactions id={id} feedback={feedback} onFeedback={onFeedback} />
 
       {/* Summary / essence */}
-      <p style={{ fontFamily: F, fontSize: 13, color: C.body, lineHeight: 1.7, marginBottom: 20 }}>{isTeaching ? data.essence : data.description}</p>
+      <p style={{ fontFamily: F, fontSize: 14, color: C.body, lineHeight: 1.7, marginBottom: 20 }}>{isTeaching ? data.essence : data.description}</p>
 
       {/* Deeper content */}
       {data.deeper && (
-        <p style={{ fontFamily: F, fontSize: 13, color: C.body, lineHeight: 1.7, marginBottom: 20 }}>{data.deeper}</p>
+        <p style={{ fontFamily: F, fontSize: 14, color: C.body, lineHeight: 1.7, marginBottom: 20 }}>{data.deeper}</p>
       )}
 
       {/* Quote */}
       {data.quote && (
         <div style={{ padding: '14px 16px', borderLeft: `3px solid ${accent}30`, background: `${accent}05`, borderRadius: '0 8px 8px 0', marginBottom: 20 }}>
-          <p style={{ fontFamily: F, fontSize: 13, fontStyle: 'normal', color: C.body, lineHeight: 1.6, margin: 0 }}>"{data.quote.text}"</p>
-          {data.quote.source && <p style={{ fontFamily: F, fontSize: 11, color: C.muted, marginTop: 6, margin: '6px 0 0' }}>— {data.quote.source}</p>}
+          <p style={{ fontFamily: F, fontSize: 14, fontStyle: 'normal', color: C.body, lineHeight: 1.6, margin: 0 }}>"{data.quote.text}"</p>
+          {data.quote.source && <p style={{ fontFamily: F, fontSize: 12, color: C.muted, marginTop: 6, margin: '6px 0 0' }}>— {data.quote.source}</p>}
         </div>
       )}
 
@@ -820,21 +820,21 @@ function CompanionPanelContent({ type, data, id, feedback, onFeedback }) {
             <div style={{ display: 'flex', alignItems: 'center', gap: 7, marginBottom: (data.when || data.howTo) ? 10 : 0 }}>
               <ClockIcon size={12} color={C.seaGlass} />
               <div>
-                <div style={{ fontFamily: F, fontSize: 9, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: C.muted, marginBottom: 1 }}>Duration</div>
-                <div style={{ fontFamily: F, fontSize: 13.5, fontWeight: 500, color: C.ink }}>{data.duration}</div>
+                <div style={{ fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: C.muted, marginBottom: 1 }}>Duration</div>
+                <div style={{ fontFamily: F, fontSize: 14, fontWeight: 500, color: C.ink }}>{data.duration}</div>
               </div>
             </div>
           )}
           {data.when && (
             <div style={{ borderTop: data.duration ? `1px solid ${C.sage}08` : 'none', paddingTop: data.duration ? 10 : 0, marginBottom: data.howTo ? 10 : 0 }}>
-              <div style={{ fontFamily: F, fontSize: 9, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: C.muted, marginBottom: 1 }}>When</div>
-              <div style={{ fontFamily: F, fontSize: 13.5, fontWeight: 500, color: C.body, lineHeight: 1.45 }}>{data.when}</div>
+              <div style={{ fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: C.muted, marginBottom: 1 }}>When</div>
+              <div style={{ fontFamily: F, fontSize: 14, fontWeight: 500, color: C.body, lineHeight: 1.45 }}>{data.when}</div>
             </div>
           )}
           {data.howTo && (
             <div style={{ borderTop: (data.duration || data.when) ? `1px solid ${C.sage}08` : 'none', paddingTop: (data.duration || data.when) ? 10 : 0 }}>
-              <div style={{ fontFamily: F, fontSize: 9, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: C.muted, marginBottom: 3 }}>How To</div>
-              <div style={{ fontFamily: F, fontSize: 13, fontWeight: 400, color: C.body, lineHeight: 1.6 }}>{data.howTo}</div>
+              <div style={{ fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: C.muted, marginBottom: 3 }}>How To</div>
+              <div style={{ fontFamily: F, fontSize: 14, fontWeight: 400, color: C.body, lineHeight: 1.6 }}>{data.howTo}</div>
             </div>
           )}
         </div>
@@ -843,9 +843,9 @@ function CompanionPanelContent({ type, data, id, feedback, onFeedback }) {
       {/* Sources */}
       {data.sources && data.sources.length > 0 && (
         <div style={{ marginBottom: 20 }}>
-          <div style={{ fontFamily: F, fontSize: 9, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: C.muted, marginBottom: 8 }}>Sources</div>
+          <div style={{ fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: C.muted, marginBottom: 8 }}>Sources</div>
           {data.sources.map((s, i) => (
-            <div key={i} style={{ fontFamily: F, fontSize: 12, color: C.body, lineHeight: 1.5, marginBottom: 4 }}>
+            <div key={i} style={{ fontFamily: F, fontSize: 13, color: C.body, lineHeight: 1.5, marginBottom: 4 }}>
               {s.author && <span style={{ fontWeight: 600 }}>{s.author}</span>}
               {s.author && s.text && ', '}
               {s.text && <em>{s.text}</em>}
@@ -867,7 +867,7 @@ function TrailDetailContent({ data, thumbId, activityFeedback, onActivityFeedbac
 
   // Consistent label style used throughout
   const labelStyle = {
-    fontFamily: F, fontSize: 9, fontWeight: 600,
+    fontFamily: F, fontSize: 10, fontWeight: 600,
     letterSpacing: '0.1em', textTransform: 'uppercase',
     color: C.muted,
   };
@@ -884,7 +884,7 @@ function TrailDetailContent({ data, thumbId, activityFeedback, onActivityFeedbac
         {time && (
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '4px 11px', borderRadius: 20, background: `${C.teal}06`, border: `1px solid ${C.teal}12` }}>
             <ClockIcon size={10} color={C.muted} />
-            <span style={{ fontFamily: F, fontSize: 10, fontWeight: 500, color: C.body }}>{time}</span>
+            <span style={{ fontFamily: F, fontSize: 11, fontWeight: 500, color: C.body }}>{time}</span>
           </div>
         )}
       </div>
@@ -903,7 +903,7 @@ function TrailDetailContent({ data, thumbId, activityFeedback, onActivityFeedbac
       <InlineReactions id={thumbId} feedback={activityFeedback} onFeedback={onActivityFeedback} />
 
       {/* Summary */}
-      <p style={{ fontFamily: F, fontSize: 13, color: C.body, lineHeight: 1.7, marginBottom: 16 }}>{summary}</p>
+      <p style={{ fontFamily: F, fontSize: 14, color: C.body, lineHeight: 1.7, marginBottom: 16 }}>{summary}</p>
 
       {/* STAT GRID */}
       {(trailData.distance || trailData.elevationGain || trailData.trailType || trailData.difficulty) && (
@@ -916,19 +916,19 @@ function TrailDetailContent({ data, thumbId, activityFeedback, onActivityFeedbac
           {trailData.distance && (
             <div style={{ padding: '10px 12px', background: C.white, border: `1px solid ${C.border}`, borderRadius: 8 }}>
               <div style={{ ...labelStyle, marginBottom: 4 }}>Distance</div>
-              <div style={{ fontFamily: F, fontSize: 13, fontWeight: 500, color: C.ink }}>{trailData.distance}</div>
+              <div style={{ fontFamily: F, fontSize: 14, fontWeight: 500, color: C.ink }}>{trailData.distance}</div>
             </div>
           )}
           {trailData.elevationGain && (
             <div style={{ padding: '10px 12px', background: C.white, border: `1px solid ${C.border}`, borderRadius: 8 }}>
               <div style={{ ...labelStyle, marginBottom: 4 }}>Elevation</div>
-              <div style={{ fontFamily: F, fontSize: 13, fontWeight: 500, color: C.ink }}>{trailData.elevationGain}</div>
+              <div style={{ fontFamily: F, fontSize: 14, fontWeight: 500, color: C.ink }}>{trailData.elevationGain}</div>
             </div>
           )}
           {trailData.trailType && (
             <div style={{ padding: '10px 12px', background: C.white, border: `1px solid ${C.border}`, borderRadius: 8 }}>
               <div style={{ ...labelStyle, marginBottom: 4 }}>Route Type</div>
-              <div style={{ fontFamily: F, fontSize: 13, fontWeight: 500, color: C.ink, textTransform: 'capitalize' }}>{trailData.trailType}</div>
+              <div style={{ fontFamily: F, fontSize: 14, fontWeight: 500, color: C.ink, textTransform: 'capitalize' }}>{trailData.trailType}</div>
             </div>
           )}
           {trailData.difficulty && (
@@ -957,7 +957,7 @@ function TrailDetailContent({ data, thumbId, activityFeedback, onActivityFeedbac
               <div>
                 <div style={{ ...labelStyle, color: C.amber, marginBottom: 2 }}>Permit Required</div>
                 {trailData.permitNote && (
-                  <div style={{ fontFamily: F, fontSize: 12, color: C.body, lineHeight: 1.5 }}>{trailData.permitNote}</div>
+                  <div style={{ fontFamily: F, fontSize: 13, color: C.body, lineHeight: 1.5 }}>{trailData.permitNote}</div>
                 )}
               </div>
             </div>
@@ -971,7 +971,7 @@ function TrailDetailContent({ data, thumbId, activityFeedback, onActivityFeedbac
               display: 'flex', alignItems: 'center', gap: 8,
             }}>
               <CheckIcon size={12} color={C.sea} />
-              <span style={{ fontFamily: F, fontSize: 12, color: C.body, lineHeight: 1.5 }}>{trailData.permitNote}</span>
+              <span style={{ fontFamily: F, fontSize: 13, color: C.body, lineHeight: 1.5 }}>{trailData.permitNote}</span>
             </div>
           )}
 
@@ -982,7 +982,7 @@ function TrailDetailContent({ data, thumbId, activityFeedback, onActivityFeedbac
               borderBottom: (trailData.bestStartTime || trailData.conditions) ? `1px solid ${C.border}` : 'none',
             }}>
               <div style={{ ...labelStyle, marginBottom: 3 }}>Trailhead Access</div>
-              <div style={{ fontFamily: F, fontSize: 12, color: C.body, lineHeight: 1.5 }}>{trailData.trailheadAccess}</div>
+              <div style={{ fontFamily: F, fontSize: 13, color: C.body, lineHeight: 1.5 }}>{trailData.trailheadAccess}</div>
             </div>
           )}
 
@@ -993,7 +993,7 @@ function TrailDetailContent({ data, thumbId, activityFeedback, onActivityFeedbac
               borderBottom: trailData.conditions ? `1px solid ${C.border}` : 'none',
             }}>
               <div style={{ ...labelStyle, marginBottom: 3 }}>Best Start Time</div>
-              <div style={{ fontFamily: F, fontSize: 12, color: C.body, lineHeight: 1.5 }}>{trailData.bestStartTime}</div>
+              <div style={{ fontFamily: F, fontSize: 13, color: C.body, lineHeight: 1.5 }}>{trailData.bestStartTime}</div>
             </div>
           )}
 
@@ -1001,7 +1001,7 @@ function TrailDetailContent({ data, thumbId, activityFeedback, onActivityFeedbac
           {trailData.conditions && (
             <div style={{ padding: '10px 14px' }}>
               <div style={{ ...labelStyle, marginBottom: 3 }}>Trail Conditions</div>
-              <div style={{ fontFamily: F, fontSize: 12, color: C.body, lineHeight: 1.5 }}>{trailData.conditions}</div>
+              <div style={{ fontFamily: F, fontSize: 13, color: C.body, lineHeight: 1.5 }}>{trailData.conditions}</div>
             </div>
           )}
         </div>
@@ -1010,7 +1010,7 @@ function TrailDetailContent({ data, thumbId, activityFeedback, onActivityFeedbac
       {/* Freeform details */}
       {details && (
         <div style={{
-          fontFamily: F, fontSize: 13, color: C.body, lineHeight: 1.7,
+          fontFamily: F, fontSize: 14, color: C.body, lineHeight: 1.7,
           marginBottom: 16,
         }}>
           {renderInlineBlock(details)}
@@ -1022,7 +1022,7 @@ function TrailDetailContent({ data, thumbId, activityFeedback, onActivityFeedbac
         <div style={{ marginBottom: 16 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginBottom: 10 }}>
             <ExternalLinkIcon size={9} color={C.muted} />
-            <span style={{ fontFamily: F, fontSize: 10, fontWeight: 500, color: C.muted, lineHeight: 1.4 }}>
+            <span style={{ fontFamily: F, fontSize: 11, fontWeight: 500, color: C.muted, lineHeight: 1.4 }}>
               Trail info sourced from NPS. Verify conditions before your visit.
             </span>
           </div>
@@ -1030,7 +1030,7 @@ function TrailDetailContent({ data, thumbId, activityFeedback, onActivityFeedbac
             onClick={() => trackEvent('external_link_clicked', { name: title, url: resolvedUrl, link_type: 'trail_nps' })}
             style={{
               display: 'inline-flex', alignItems: 'center', gap: 6,
-              fontFamily: F, fontSize: 11, fontWeight: 600,
+              fontFamily: F, fontSize: 12, fontWeight: 600,
               color: C.teal, textDecoration: 'none',
               padding: '7px 14px',
               border: `1px solid ${C.teal}25`,
@@ -1086,13 +1086,13 @@ function DetailBlock({ category, pick, color }) {
           borderBottom: i < rows.length - 1 ? `1px solid ${color}10` : 'none',
         }}>
           <span style={{
-            fontFamily: F, fontSize: 10, fontWeight: 700,
+            fontFamily: F, fontSize: 11, fontWeight: 700,
             letterSpacing: '0.1em', textTransform: 'uppercase',
             color: C.muted, minWidth: 90, flexShrink: 0,
           }}>
             {label}
           </span>
-          <span style={{ fontFamily: F, fontSize: 13, fontWeight: 500, color: C.ink }}>
+          <span style={{ fontFamily: F, fontSize: 14, fontWeight: 500, color: C.ink }}>
             {value}
           </span>
         </div>
@@ -1134,11 +1134,11 @@ function WisdomDetailContent({ entry }) {
           background: `${accent}14`, border: `1px solid ${accent}25`,
           marginBottom: 12,
         }}>
-          <span style={{ fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: accent }}>{typeLabel}</span>
+          <span style={{ fontFamily: F, fontSize: 10, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: accent }}>{typeLabel}</span>
         </div>
 
         {/* Tradition subtitle */}
-        <div style={{ fontFamily: F, fontSize: 10, fontWeight: 500, color: C.muted, marginBottom: 6 }}>{tradition?.name || entry.tradition}</div>
+        <div style={{ fontFamily: F, fontSize: 11, fontWeight: 500, color: C.muted, marginBottom: 6 }}>{tradition?.name || entry.tradition}</div>
 
         {/* Title */}
         <h1 style={{ fontFamily: F_SERIF, fontSize: 'clamp(20px, 5vw, 24px)', fontWeight: 300, color: C.ink, lineHeight: 1.25, margin: 0 }}>{entry.name}</h1>
@@ -1147,11 +1147,11 @@ function WisdomDetailContent({ entry }) {
       {/* Body */}
       <div style={{ padding: '20px 20px 60px' }}>
         {/* Summary */}
-        <p style={{ fontFamily: F, fontSize: 13, color: C.body, lineHeight: 1.7, marginBottom: 20 }}>{entry.summary}</p>
+        <p style={{ fontFamily: F, fontSize: 14, color: C.body, lineHeight: 1.7, marginBottom: 20 }}>{entry.summary}</p>
 
         {/* Deeper */}
         {entry.deeper && (
-          <p style={{ fontFamily: F, fontSize: 13, color: C.body, lineHeight: 1.7, marginBottom: 20 }}>{entry.deeper}</p>
+          <p style={{ fontFamily: F, fontSize: 14, color: C.body, lineHeight: 1.7, marginBottom: 20 }}>{entry.deeper}</p>
         )}
 
         {/* Quote block */}
@@ -1166,7 +1166,7 @@ function WisdomDetailContent({ entry }) {
               color: C.body, lineHeight: 1.6, margin: 0,
             }}>"{entry.quote.text}"</p>
             {entry.quote.source && (
-              <p style={{ fontFamily: F, fontSize: 11, color: C.muted, margin: '8px 0 0' }}>— {entry.quote.source}</p>
+              <p style={{ fontFamily: F, fontSize: 12, color: C.muted, margin: '8px 0 0' }}>— {entry.quote.source}</p>
             )}
           </div>
         )}
@@ -1176,20 +1176,20 @@ function WisdomDetailContent({ entry }) {
           <div style={{ background: C.white, borderRadius: 8, border: `1px solid ${C.sage}12`, padding: '13px 15px', marginBottom: 20 }}>
             {entry.duration && (
               <div style={{ marginBottom: (entry.when || entry.howTo) ? 10 : 0 }}>
-                <div style={{ fontFamily: F, fontSize: 9, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: C.muted, marginBottom: 1 }}>Duration</div>
-                <div style={{ fontFamily: F, fontSize: 13.5, fontWeight: 500, color: C.ink }}>{entry.duration}</div>
+                <div style={{ fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: C.muted, marginBottom: 1 }}>Duration</div>
+                <div style={{ fontFamily: F, fontSize: 14, fontWeight: 500, color: C.ink }}>{entry.duration}</div>
               </div>
             )}
             {entry.when && (
               <div style={{ borderTop: entry.duration ? `1px solid ${C.sage}08` : 'none', paddingTop: entry.duration ? 10 : 0, marginBottom: entry.howTo ? 10 : 0 }}>
-                <div style={{ fontFamily: F, fontSize: 9, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: C.muted, marginBottom: 1 }}>When</div>
-                <div style={{ fontFamily: F, fontSize: 13.5, fontWeight: 500, color: C.body, lineHeight: 1.45 }}>{entry.when}</div>
+                <div style={{ fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: C.muted, marginBottom: 1 }}>When</div>
+                <div style={{ fontFamily: F, fontSize: 14, fontWeight: 500, color: C.body, lineHeight: 1.45 }}>{entry.when}</div>
               </div>
             )}
             {entry.howTo && (
               <div style={{ borderTop: (entry.duration || entry.when) ? `1px solid ${C.sage}08` : 'none', paddingTop: (entry.duration || entry.when) ? 10 : 0 }}>
-                <div style={{ fontFamily: F, fontSize: 9, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: C.muted, marginBottom: 3 }}>How To</div>
-                <div style={{ fontFamily: F, fontSize: 13, fontWeight: 400, color: C.body, lineHeight: 1.6 }}>{entry.howTo}</div>
+                <div style={{ fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: C.muted, marginBottom: 3 }}>How To</div>
+                <div style={{ fontFamily: F, fontSize: 14, fontWeight: 400, color: C.body, lineHeight: 1.6 }}>{entry.howTo}</div>
               </div>
             )}
           </div>
@@ -1197,7 +1197,7 @@ function WisdomDetailContent({ entry }) {
 
         {/* Attribution */}
         {entry.sources?.[0] && (
-          <div style={{ fontFamily: F, fontSize: 11, color: C.muted, lineHeight: 1.5 }}>
+          <div style={{ fontFamily: F, fontSize: 12, color: C.muted, lineHeight: 1.5 }}>
             — {entry.sources[0].author && <span style={{ fontWeight: 600 }}>{entry.sources[0].author}</span>}
             {entry.sources[0].author && entry.sources[0].text && ', '}
             {entry.sources[0].text && <em>{entry.sources[0].text}</em>}
@@ -1224,7 +1224,7 @@ function DetailPanelContent({ item, activityFeedback, onActivityFeedback }) {
     const accom = data;
     const s = PICK_STYLES.stay;
     const alts = item.alternatives || [];
-    const accomLabel = { fontFamily: F, fontSize: 9, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: C.muted };
+    const accomLabel = { fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: C.muted };
     return (
       <div style={{ maxWidth: 500, margin: '0 auto', padding: '20px 20px 60px' }}>
         {/* Badges */}
@@ -1235,19 +1235,19 @@ function DetailPanelContent({ item, activityFeedback, onActivityFeedback }) {
           </div>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: 4, padding: '3px 8px', borderRadius: 20, border: `1px solid ${s.color}20`, background: `${s.color}04` }}>
             <LilaStar size={9} color={s.color} />
-            <span style={{ fontFamily: F, fontSize: 8, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: s.color }}>Lila Pick</span>
+            <span style={{ fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: s.color }}>Lila Pick</span>
           </div>
         </div>
 
         {/* Title + location */}
         <h1 style={{ fontFamily: F_SERIF, fontSize: 'clamp(20px, 5vw, 24px)', fontWeight: 300, color: C.ink, lineHeight: 1.2, marginBottom: 4 }}>{accom.name}</h1>
         {accom.location && (
-          <div style={{ fontFamily: F, fontSize: 11, fontWeight: 500, color: C.muted, marginBottom: 6 }}>{accom.location}</div>
+          <div style={{ fontFamily: F, fontSize: 12, fontWeight: 500, color: C.muted, marginBottom: 6 }}>{accom.location}</div>
         )}
-        {accom.vibe && <div style={{ fontFamily: F, fontSize: 12, fontWeight: 500, fontStyle: 'italic', color: C.sage, lineHeight: 1.4, marginBottom: 14 }}>{accom.vibe}</div>}
+        {accom.vibe && <div style={{ fontFamily: F, fontSize: 13, fontWeight: 500, fontStyle: 'italic', color: C.sage, lineHeight: 1.4, marginBottom: 14 }}>{accom.vibe}</div>}
 
         {/* Why */}
-        <p style={{ fontFamily: F, fontSize: 13, color: C.body, lineHeight: 1.7, marginBottom: 16 }}>{accom.why}</p>
+        <p style={{ fontFamily: F, fontSize: 14, color: C.body, lineHeight: 1.7, marginBottom: 16 }}>{accom.why}</p>
 
         {/* Stat grid — matches trail panel style */}
         {(accom.stayType || accom.priceRange || accom.distanceFromPark) && (
@@ -1255,19 +1255,19 @@ function DetailPanelContent({ item, activityFeedback, onActivityFeedback }) {
             {accom.stayType && (
               <div style={{ padding: '10px 12px', background: C.white, border: `1px solid ${C.border}`, borderRadius: 8 }}>
                 <div style={{ ...accomLabel, marginBottom: 4 }}>Type</div>
-                <div style={{ fontFamily: F, fontSize: 13, fontWeight: 500, color: C.ink }}>{accom.stayType}</div>
+                <div style={{ fontFamily: F, fontSize: 14, fontWeight: 500, color: C.ink }}>{accom.stayType}</div>
               </div>
             )}
             {accom.priceRange && (
               <div style={{ padding: '10px 12px', background: C.white, border: `1px solid ${C.border}`, borderRadius: 8 }}>
                 <div style={{ ...accomLabel, marginBottom: 4 }}>Price</div>
-                <div style={{ fontFamily: F, fontSize: 13, fontWeight: 500, color: C.ink }}>{accom.priceRange}</div>
+                <div style={{ fontFamily: F, fontSize: 14, fontWeight: 500, color: C.ink }}>{accom.priceRange}</div>
               </div>
             )}
             {accom.distanceFromPark && (
               <div style={{ padding: '10px 12px', background: C.white, border: `1px solid ${C.border}`, borderRadius: 8, gridColumn: 'span 2' }}>
                 <div style={{ ...accomLabel, marginBottom: 4 }}>Distance from Park</div>
-                <div style={{ fontFamily: F, fontSize: 13, fontWeight: 500, color: C.ink }}>{accom.distanceFromPark}</div>
+                <div style={{ fontFamily: F, fontSize: 14, fontWeight: 500, color: C.ink }}>{accom.distanceFromPark}</div>
               </div>
             )}
           </div>
@@ -1280,13 +1280,13 @@ function DetailPanelContent({ item, activityFeedback, onActivityFeedback }) {
             {alts.map((alt, i) => (
               <div key={i} style={{ padding: '14px 16px', borderRadius: 8, background: C.white, border: `1px solid ${C.border}`, marginBottom: 8 }}>
                 <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 8, marginBottom: 4 }}>
-                  <div style={{ fontFamily: F, fontSize: 13, fontWeight: 600, color: C.ink }}>{alt.name}</div>
+                  <div style={{ fontFamily: F, fontSize: 14, fontWeight: 600, color: C.ink }}>{alt.name}</div>
                   {alt.priceRange && (
-                    <span style={{ fontFamily: F, fontSize: 10, fontWeight: 600, color: s.color, letterSpacing: '0.02em', flexShrink: 0 }}>{alt.priceRange}</span>
+                    <span style={{ fontFamily: F, fontSize: 11, fontWeight: 600, color: s.color, letterSpacing: '0.02em', flexShrink: 0 }}>{alt.priceRange}</span>
                   )}
                 </div>
-                {alt.vibe && <div style={{ fontFamily: F, fontSize: 11, fontWeight: 500, fontStyle: 'italic', color: C.sage, marginBottom: 6 }}>{alt.vibe}</div>}
-                <div style={{ fontFamily: F, fontSize: 12, color: C.body, lineHeight: 1.55 }}>{alt.why}</div>
+                {alt.vibe && <div style={{ fontFamily: F, fontSize: 12, fontWeight: 500, fontStyle: 'italic', color: C.sage, marginBottom: 6 }}>{alt.vibe}</div>}
+                <div style={{ fontFamily: F, fontSize: 13, color: C.body, lineHeight: 1.55 }}>{alt.why}</div>
               </div>
             ))}
           </div>
@@ -1326,7 +1326,7 @@ function DetailPanelContent({ item, activityFeedback, onActivityFeedback }) {
         {data.time && (
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '4px 11px', borderRadius: 20, background: `${dot}0e`, border: `1px solid ${dot}18`, marginBottom: 10 }}>
             <ClockIcon size={10} color={dot} />
-            <span style={{ fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.08em', color: dot }}>{data.time}</span>
+            <span style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: '0.08em', color: dot }}>{data.time}</span>
           </div>
         )}
 
@@ -1336,11 +1336,11 @@ function DetailPanelContent({ item, activityFeedback, onActivityFeedback }) {
         <InlineReactions id={thumbId} feedback={activityFeedback} onFeedback={onActivityFeedback} />
 
         {/* Summary */}
-        <p style={{ fontFamily: F, fontSize: 13, color: C.body, lineHeight: 1.7, marginBottom: 20 }}>{data.summary}</p>
+        <p style={{ fontFamily: F, fontSize: 14, color: C.body, lineHeight: 1.7, marginBottom: 20 }}>{data.summary}</p>
 
         {/* Details */}
         {data.details && (
-          <div style={{ fontFamily: F, fontSize: 13, color: C.body, lineHeight: 1.7, padding: '6px 0', paddingLeft: 13, borderLeft: `3px solid ${dot}30`, marginBottom: 20 }}>
+          <div style={{ fontFamily: F, fontSize: 14, color: C.body, lineHeight: 1.7, padding: '6px 0', paddingLeft: 13, borderLeft: `3px solid ${dot}30`, marginBottom: 20 }}>
             {renderInlineBlock(data.details)}
           </div>
         )}
@@ -1351,7 +1351,7 @@ function DetailPanelContent({ item, activityFeedback, onActivityFeedback }) {
             onClick={() => trackEvent('external_link_clicked', { name: data.title, url: data.url, link_type: 'activity' })}
             style={{
               display: 'inline-flex', alignItems: 'center', gap: 5,
-              fontFamily: F, fontSize: 12, fontWeight: 600,
+              fontFamily: F, fontSize: 13, fontWeight: 600,
               color: C.oceanTeal, textDecoration: 'none',
               padding: '8px 16px',
               background: `${C.oceanTeal}08`, borderRadius: 20,
@@ -1376,11 +1376,11 @@ function DetailPanelContent({ item, activityFeedback, onActivityFeedback }) {
       <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10 }}>
         <div style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '4px 11px', borderRadius: 20, background: `${s.color}0e`, border: `1px solid ${s.color}18` }}>
           <CategoryIcon category={type} color={s.color} size={12} />
-          <span style={{ fontFamily: F, fontSize: 9, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: s.color }}>{s.label}</span>
+          <span style={{ fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: s.color }}>{s.label}</span>
         </div>
         <div style={{ display: 'inline-flex', alignItems: 'center', gap: 4, padding: '3px 8px', borderRadius: 20, border: `1px solid ${s.color}20`, background: `${s.color}04` }}>
           <LilaStar size={9} color={s.color} />
-          <span style={{ fontFamily: F, fontSize: 8, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: s.color }}>Lila Pick</span>
+          <span style={{ fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: s.color }}>Lila Pick</span>
         </div>
       </div>
 
@@ -1395,7 +1395,7 @@ function DetailPanelContent({ item, activityFeedback, onActivityFeedback }) {
       {/* Vibe line */}
       {data.vibe && (
         <div style={{
-          fontFamily: F, fontSize: 12, fontWeight: 500,
+          fontFamily: F, fontSize: 13, fontWeight: 500,
           fontStyle: 'italic', color: C.sage, lineHeight: 1.4, marginBottom: 14,
         }}>
           {data.vibe}
@@ -1403,12 +1403,12 @@ function DetailPanelContent({ item, activityFeedback, onActivityFeedback }) {
       )}
 
       {/* Why */}
-      <p style={{ fontFamily: F, fontSize: 13, color: C.body, lineHeight: 1.7, marginBottom: 20 }}>{data.why}</p>
+      <p style={{ fontFamily: F, fontSize: 14, color: C.body, lineHeight: 1.7, marginBottom: 20 }}>{data.why}</p>
 
       {/* Stat grid */}
       {(() => {
-        const gridLabel = { fontFamily: F, fontSize: 9, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: C.muted, marginBottom: 4 };
-        const gridValue = { fontFamily: F, fontSize: 13, fontWeight: 500, color: C.ink };
+        const gridLabel = { fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: C.muted, marginBottom: 4 };
+        const gridValue = { fontFamily: F, fontSize: 14, fontWeight: 500, color: C.ink };
         const tile = { padding: '10px 12px', background: C.white, border: `1px solid ${C.border}`, borderRadius: 8 };
         let cells = [];
         if (type === 'stay') {
@@ -1449,7 +1449,7 @@ function DetailPanelContent({ item, activityFeedback, onActivityFeedback }) {
           onClick={() => trackEvent('external_link_clicked', { name: data.name, link_type: type })}
           style={{
             display: 'inline-flex', alignItems: 'center', gap: 7,
-            fontFamily: F, fontSize: 12, fontWeight: 600,
+            fontFamily: F, fontSize: 13, fontWeight: 600,
             color: s.color, textDecoration: 'none',
             padding: '8px 16px',
             border: `1.5px solid ${s.color}35`,
@@ -1467,23 +1467,23 @@ function DetailPanelContent({ item, activityFeedback, onActivityFeedback }) {
       {/* Alternatives listed flat */}
       {alternatives.length > 0 && (
         <div style={{ marginBottom: 20 }}>
-          <div style={{ fontFamily: F, fontSize: 9, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: C.muted, marginBottom: 10 }}>Other Options</div>
+          <div style={{ fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: C.muted, marginBottom: 10 }}>Other Options</div>
           {alternatives.map((alt, i) => (
             <div key={i} style={{ padding: '14px 16px', borderRadius: 8, background: C.white, border: `1px solid ${C.border}`, marginBottom: 8 }}>
               <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 8, marginBottom: 4 }}>
-                <div style={{ fontFamily: F, fontSize: 13, fontWeight: 600, color: C.ink }}>{alt.name}</div>
+                <div style={{ fontFamily: F, fontSize: 14, fontWeight: 600, color: C.ink }}>{alt.name}</div>
                 {alt.priceRange && (
-                  <span style={{ fontFamily: F, fontSize: 10, fontWeight: 600, color: s.color, letterSpacing: '0.02em', flexShrink: 0 }}>{alt.priceRange}</span>
+                  <span style={{ fontFamily: F, fontSize: 11, fontWeight: 600, color: s.color, letterSpacing: '0.02em', flexShrink: 0 }}>{alt.priceRange}</span>
                 )}
               </div>
               {alt.vibe && (
-                <div style={{ fontFamily: F, fontSize: 11, fontWeight: 500, fontStyle: 'italic', color: C.sage, marginBottom: 6 }}>
+                <div style={{ fontFamily: F, fontSize: 12, fontWeight: 500, fontStyle: 'italic', color: C.sage, marginBottom: 6 }}>
                   {alt.vibe}
                 </div>
               )}
-              <div style={{ fontFamily: F, fontSize: 12, color: C.body, lineHeight: 1.55 }}>{alt.why}</div>
+              <div style={{ fontFamily: F, fontSize: 13, color: C.body, lineHeight: 1.55 }}>{alt.why}</div>
               {(alt.duration || alt.whereToGet) && (
-                <div style={{ fontFamily: F, fontSize: 11, color: C.muted, marginTop: 6 }}>
+                <div style={{ fontFamily: F, fontSize: 12, color: C.muted, marginTop: 6 }}>
                   {[alt.duration, alt.whereToGet].filter(Boolean).join(' · ')}
                 </div>
               )}
@@ -1498,8 +1498,8 @@ function DetailPanelContent({ item, activityFeedback, onActivityFeedback }) {
 
 /* ── logistics form panels ─────────────────────────────────────────────── */
 
-const logisticsLabelStyle = { fontFamily: F, fontSize: 9, fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: C.muted, marginBottom: 4, display: 'block' };
-const logisticsInputStyle = { width: '100%', padding: '9px 12px', fontFamily: F, fontSize: 12, color: C.ink, background: C.white, border: `1px solid ${C.border}`, borderRadius: 8, outline: 'none', boxSizing: 'border-box' };
+const logisticsLabelStyle = { fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: C.muted, marginBottom: 4, display: 'block' };
+const logisticsInputStyle = { width: '100%', padding: '9px 12px', fontFamily: F, fontSize: 13, color: C.ink, background: C.white, border: `1px solid ${C.border}`, borderRadius: 8, outline: 'none', boxSizing: 'border-box' };
 
 function FlightFormPanel({ data, logistics, onSave }) {
   const [form, setForm] = useState(data || { airline: '', flightNumber: '', departureAirport: '', arrivalAirport: logistics?.arrivalAirport || '', date: '', departureTime: '' });
@@ -1510,17 +1510,17 @@ function FlightFormPanel({ data, logistics, onSave }) {
       <div style={{ maxWidth: 500, margin: '0 auto', padding: '20px 20px 60px' }}>
         <div style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '4px 11px', borderRadius: 20, background: `${C.teal}0e`, border: `1px solid ${C.teal}18`, marginBottom: 10 }}>
           <PlaneIcon size={12} color={C.teal} />
-          <span style={{ fontFamily: F, fontSize: 9, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: C.teal }}>Flights</span>
+          <span style={{ fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: C.teal }}>Flights</span>
         </div>
         <h1 style={{ fontFamily: F_SERIF, fontSize: 'clamp(20px, 5vw, 24px)', fontWeight: 300, color: C.ink, lineHeight: 1.25, marginBottom: 16 }}>Your Flight Details</h1>
         <div style={{ ...CARD_STYLE, padding: '16px 18px', marginBottom: 16 }}>
           <div style={{ fontFamily: F, fontSize: 14, fontWeight: 600, color: C.ink, marginBottom: 6 }}>{data.airline} {data.flightNumber}</div>
-          <div style={{ fontFamily: F, fontSize: 12, color: C.body, lineHeight: 1.6 }}>
+          <div style={{ fontFamily: F, fontSize: 13, color: C.body, lineHeight: 1.6 }}>
             {data.departureAirport && <>{data.departureAirport} → {data.arrivalAirport}<br /></>}
             {data.date && <>{data.date}{data.departureTime ? ` · ${data.departureTime}` : ''}</>}
           </div>
         </div>
-        <button onClick={() => setForm({ ...data, _editing: true })} style={{ fontFamily: F, fontSize: 12, fontWeight: 600, color: C.teal, background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>Edit →</button>
+        <button onClick={() => setForm({ ...data, _editing: true })} style={{ fontFamily: F, fontSize: 13, fontWeight: 600, color: C.teal, background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>Edit →</button>
       </div>
     );
   }
@@ -1534,7 +1534,7 @@ function FlightFormPanel({ data, logistics, onSave }) {
     <div style={{ maxWidth: 500, margin: '0 auto', padding: '20px 20px 60px' }}>
       <div style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '4px 11px', borderRadius: 20, background: `${C.teal}0e`, border: `1px solid ${C.teal}18`, marginBottom: 10 }}>
         <PlaneIcon size={12} color={C.teal} />
-        <span style={{ fontFamily: F, fontSize: 9, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: C.teal }}>Flights</span>
+        <span style={{ fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: C.teal }}>Flights</span>
       </div>
       <h1 style={{ fontFamily: F_SERIF, fontSize: 'clamp(20px, 5vw, 24px)', fontWeight: 300, color: C.ink, lineHeight: 1.25, marginBottom: 20 }}>Your Flight Details</h1>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
@@ -1548,7 +1548,7 @@ function FlightFormPanel({ data, logistics, onSave }) {
           <div><label style={logisticsLabelStyle}>Date</label><input style={logisticsInputStyle} value={form.date} onChange={e => set('date', e.target.value)} placeholder="e.g. Mar 15, 2026" /></div>
           <div><label style={logisticsLabelStyle}>Departure Time</label><input style={logisticsInputStyle} value={form.departureTime} onChange={e => set('departureTime', e.target.value)} placeholder="e.g. 8:30 AM" /></div>
         </div>
-        <button onClick={handleSave} style={{ fontFamily: F, fontSize: 13, fontWeight: 600, color: C.white, background: C.teal, border: 'none', borderRadius: 20, padding: '10px 28px', cursor: 'pointer', alignSelf: 'flex-start', marginTop: 4 }}>Save Flight</button>
+        <button onClick={handleSave} style={{ fontFamily: F, fontSize: 14, fontWeight: 600, color: C.white, background: C.teal, border: 'none', borderRadius: 20, padding: '10px 28px', cursor: 'pointer', alignSelf: 'flex-start', marginTop: 4 }}>Save Flight</button>
       </div>
     </div>
   );
@@ -1563,18 +1563,18 @@ function RentalFormPanel({ data, logistics, onSave }) {
       <div style={{ maxWidth: 500, margin: '0 auto', padding: '20px 20px 60px' }}>
         <div style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '4px 11px', borderRadius: 20, background: `${C.teal}0e`, border: `1px solid ${C.teal}18`, marginBottom: 10 }}>
           <CarIcon size={12} color={C.teal} />
-          <span style={{ fontFamily: F, fontSize: 9, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: C.teal }}>Rental Car</span>
+          <span style={{ fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: C.teal }}>Rental Car</span>
         </div>
         <h1 style={{ fontFamily: F_SERIF, fontSize: 'clamp(20px, 5vw, 24px)', fontWeight: 300, color: C.ink, lineHeight: 1.25, marginBottom: 16 }}>Your Rental Details</h1>
         <div style={{ ...CARD_STYLE, padding: '16px 18px', marginBottom: 16 }}>
           <div style={{ fontFamily: F, fontSize: 14, fontWeight: 600, color: C.ink, marginBottom: 6 }}>{data.company}</div>
-          <div style={{ fontFamily: F, fontSize: 12, color: C.body, lineHeight: 1.6 }}>
+          <div style={{ fontFamily: F, fontSize: 13, color: C.body, lineHeight: 1.6 }}>
             {data.confirmationNumber && <>Conf: {data.confirmationNumber}<br /></>}
             {data.pickupLocation && <>Pickup: {data.pickupLocation}<br /></>}
             {data.pickupDate && <>{data.pickupDate}{data.returnDate ? ` → ${data.returnDate}` : ''}</>}
           </div>
         </div>
-        <button onClick={() => setForm({ ...data, _editing: true })} style={{ fontFamily: F, fontSize: 12, fontWeight: 600, color: C.teal, background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>Edit →</button>
+        <button onClick={() => setForm({ ...data, _editing: true })} style={{ fontFamily: F, fontSize: 13, fontWeight: 600, color: C.teal, background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>Edit →</button>
       </div>
     );
   }
@@ -1588,7 +1588,7 @@ function RentalFormPanel({ data, logistics, onSave }) {
     <div style={{ maxWidth: 500, margin: '0 auto', padding: '20px 20px 60px' }}>
       <div style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '4px 11px', borderRadius: 20, background: `${C.teal}0e`, border: `1px solid ${C.teal}18`, marginBottom: 10 }}>
         <CarIcon size={12} color={C.teal} />
-        <span style={{ fontFamily: F, fontSize: 9, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: C.teal }}>Rental Car</span>
+        <span style={{ fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: C.teal }}>Rental Car</span>
       </div>
       <h1 style={{ fontFamily: F_SERIF, fontSize: 'clamp(20px, 5vw, 24px)', fontWeight: 300, color: C.ink, lineHeight: 1.25, marginBottom: 20 }}>Your Rental Details</h1>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
@@ -1599,7 +1599,7 @@ function RentalFormPanel({ data, logistics, onSave }) {
           <div><label style={logisticsLabelStyle}>Pickup Date</label><input style={logisticsInputStyle} value={form.pickupDate} onChange={e => set('pickupDate', e.target.value)} placeholder="e.g. Mar 15, 2026" /></div>
           <div><label style={logisticsLabelStyle}>Return Date</label><input style={logisticsInputStyle} value={form.returnDate} onChange={e => set('returnDate', e.target.value)} placeholder="e.g. Mar 20, 2026" /></div>
         </div>
-        <button onClick={handleSave} style={{ fontFamily: F, fontSize: 13, fontWeight: 600, color: C.white, background: C.teal, border: 'none', borderRadius: 20, padding: '10px 28px', cursor: 'pointer', alignSelf: 'flex-start', marginTop: 4 }}>Save Rental</button>
+        <button onClick={handleSave} style={{ fontFamily: F, fontSize: 14, fontWeight: 600, color: C.white, background: C.teal, border: 'none', borderRadius: 20, padding: '10px 28px', cursor: 'pointer', alignSelf: 'flex-start', marginTop: 4 }}>Save Rental</button>
       </div>
     </div>
   );
@@ -1845,7 +1845,7 @@ function LogisticsPanel({ destination, sticky = true, tripLogistics, onOpenPanel
         borderBottom: `1px solid ${C.border}`,
       }}>
         <div style={{
-          fontFamily: F, fontSize: 10, fontWeight: 700,
+          fontFamily: F, fontSize: 11, fontWeight: 700,
           letterSpacing: '0.18em', textTransform: 'uppercase',
           color: C.ink,
         }}>Trip Logistics</div>
@@ -1855,19 +1855,19 @@ function LogisticsPanel({ destination, sticky = true, tripLogistics, onOpenPanel
       <div style={{ padding: '13px 16px', borderBottom: `1px solid ${C.border}` }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 8 }}>
           <PlaneIcon size={12} color={C.muted} />
-          <span style={{ fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: C.muted }}>Flights</span>
+          <span style={{ fontFamily: F, fontSize: 10, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: C.muted }}>Flights</span>
         </div>
         {savedFlight ? (
           <div onClick={openFlights} style={{ cursor: 'pointer' }}>
-            <div style={{ fontFamily: F, fontSize: 12, fontWeight: 600, color: C.ink, marginBottom: 2 }}>{savedFlight.airline} {savedFlight.flightNumber}</div>
-            <div style={{ fontFamily: F, fontSize: 11, color: C.muted }}>{savedFlight.departureAirport ? `${savedFlight.departureAirport} → ${savedFlight.arrivalAirport}` : ''}{savedFlight.date ? ` · ${savedFlight.date}` : ''}</div>
+            <div style={{ fontFamily: F, fontSize: 13, fontWeight: 600, color: C.ink, marginBottom: 2 }}>{savedFlight.airline} {savedFlight.flightNumber}</div>
+            <div style={{ fontFamily: F, fontSize: 12, color: C.muted }}>{savedFlight.departureAirport ? `${savedFlight.departureAirport} → ${savedFlight.arrivalAirport}` : ''}{savedFlight.date ? ` · ${savedFlight.date}` : ''}</div>
           </div>
         ) : (
           <>
-            <div style={{ fontFamily: F, fontSize: 12, color: C.body, lineHeight: 1.5, marginBottom: 8 }}>
+            <div style={{ fontFamily: F, fontSize: 13, color: C.body, lineHeight: 1.5, marginBottom: 8 }}>
               {logistics.flights}
             </div>
-            <button onClick={openFlights} style={{ fontFamily: F, fontSize: 11, fontWeight: 500, color: C.muted, background: 'none', border: 'none', cursor: 'pointer', padding: 0, textAlign: 'left' }}>
+            <button onClick={openFlights} style={{ fontFamily: F, fontSize: 12, fontWeight: 500, color: C.muted, background: 'none', border: 'none', cursor: 'pointer', padding: 0, textAlign: 'left' }}>
               + Add your flight →
             </button>
           </>
@@ -1878,19 +1878,19 @@ function LogisticsPanel({ destination, sticky = true, tripLogistics, onOpenPanel
       <div style={{ padding: '13px 16px', borderBottom: `1px solid ${C.border}` }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 8 }}>
           <CarIcon size={12} color={C.muted} />
-          <span style={{ fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: C.muted }}>Rental Car</span>
+          <span style={{ fontFamily: F, fontSize: 10, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: C.muted }}>Rental Car</span>
         </div>
         {savedRental ? (
           <div onClick={openRental} style={{ cursor: 'pointer' }}>
-            <div style={{ fontFamily: F, fontSize: 12, fontWeight: 600, color: C.ink, marginBottom: 2 }}>{savedRental.company}</div>
-            <div style={{ fontFamily: F, fontSize: 11, color: C.muted }}>{savedRental.confirmationNumber ? `Conf: ${savedRental.confirmationNumber}` : ''}{savedRental.pickupDate ? ` · ${savedRental.pickupDate}` : ''}</div>
+            <div style={{ fontFamily: F, fontSize: 13, fontWeight: 600, color: C.ink, marginBottom: 2 }}>{savedRental.company}</div>
+            <div style={{ fontFamily: F, fontSize: 12, color: C.muted }}>{savedRental.confirmationNumber ? `Conf: ${savedRental.confirmationNumber}` : ''}{savedRental.pickupDate ? ` · ${savedRental.pickupDate}` : ''}</div>
           </div>
         ) : (
           <>
-            <div style={{ fontFamily: F, fontSize: 12, color: C.body, lineHeight: 1.5, marginBottom: 8 }}>
+            <div style={{ fontFamily: F, fontSize: 13, color: C.body, lineHeight: 1.5, marginBottom: 8 }}>
               {logistics.car}
             </div>
-            <button onClick={openRental} style={{ fontFamily: F, fontSize: 11, fontWeight: 500, color: C.muted, background: 'none', border: 'none', cursor: 'pointer', padding: 0, textAlign: 'left' }}>
+            <button onClick={openRental} style={{ fontFamily: F, fontSize: 12, fontWeight: 500, color: C.muted, background: 'none', border: 'none', cursor: 'pointer', padding: 0, textAlign: 'left' }}>
               Browse rentals →
             </button>
           </>
@@ -1901,7 +1901,7 @@ function LogisticsPanel({ destination, sticky = true, tripLogistics, onOpenPanel
       <div style={{ padding: '13px 16px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 10 }}>
           <CategoryIcon category="stay" color={C.muted} size={12} />
-          <span style={{ fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: C.muted }}>Accommodations</span>
+          <span style={{ fontFamily: F, fontSize: 10, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: C.muted }}>Accommodations</span>
         </div>
         <div onClick={openAccommodation} style={{
           background: `${PICK_STYLES.stay.color}06`,
@@ -1911,24 +1911,24 @@ function LogisticsPanel({ destination, sticky = true, tripLogistics, onOpenPanel
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginBottom: 5 }}>
             <LilaStar size={8} color={PICK_STYLES.stay.color} />
-            <span style={{ fontFamily: F, fontSize: 8, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: PICK_STYLES.stay.color }}>Lila Pick</span>
+            <span style={{ fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: PICK_STYLES.stay.color }}>Lila Pick</span>
           </div>
-          <div style={{ fontFamily: F, fontSize: 12, fontWeight: 600, color: C.ink, marginBottom: 2 }}>{accomName}</div>
+          <div style={{ fontFamily: F, fontSize: 13, fontWeight: 600, color: C.ink, marginBottom: 2 }}>{accomName}</div>
           {accom.location && (
-            <div style={{ fontFamily: F, fontSize: 10, fontWeight: 500, color: C.muted, marginBottom: 3 }}>{accom.location}</div>
+            <div style={{ fontFamily: F, fontSize: 11, fontWeight: 500, color: C.muted, marginBottom: 3 }}>{accom.location}</div>
           )}
           {accom.vibe && (
-            <div style={{ fontFamily: F, fontSize: 10, fontWeight: 500, fontStyle: 'italic', color: C.sage, lineHeight: 1.4 }}>{accom.vibe}</div>
+            <div style={{ fontFamily: F, fontSize: 11, fontWeight: 500, fontStyle: 'italic', color: C.sage, lineHeight: 1.4 }}>{accom.vibe}</div>
           )}
           {accom.priceRange && (
-            <div style={{ fontFamily: F, fontSize: 9, fontWeight: 600, color: PICK_STYLES.stay.color, marginTop: 5 }}>{accom.priceRange}</div>
+            <div style={{ fontFamily: F, fontSize: 10, fontWeight: 600, color: PICK_STYLES.stay.color, marginTop: 5 }}>{accom.priceRange}</div>
           )}
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
-          <button onClick={openAccommodation} style={{ fontFamily: F, fontSize: 11, fontWeight: 600, color: C.teal, background: 'none', border: 'none', cursor: 'pointer', padding: 0, textAlign: 'left' }}>
+          <button onClick={openAccommodation} style={{ fontFamily: F, fontSize: 12, fontWeight: 600, color: C.teal, background: 'none', border: 'none', cursor: 'pointer', padding: 0, textAlign: 'left' }}>
             See other options →
           </button>
-          <button onClick={openAccommodation} style={{ fontFamily: F, fontSize: 11, fontWeight: 500, color: C.muted, background: 'none', border: 'none', cursor: 'pointer', padding: 0, textAlign: 'left' }}>
+          <button onClick={openAccommodation} style={{ fontFamily: F, fontSize: 12, fontWeight: 500, color: C.muted, background: 'none', border: 'none', cursor: 'pointer', padding: 0, textAlign: 'left' }}>
             + Add your reservation
           </button>
         </div>
@@ -1980,7 +1980,7 @@ function DayFeedbackStrip({ dayIndex, feedback, onFeedback }) {
               transition: 'all 0.2s',
             }}>
               {r.icon}
-              <span style={{ fontFamily: F, fontSize: 10, fontWeight: active ? 600 : 500, color: active ? r.color : C.muted }}>{r.label}</span>
+              <span style={{ fontFamily: F, fontSize: 11, fontWeight: active ? 600 : 500, color: active ? r.color : C.muted }}>{r.label}</span>
             </button>
           );
         })}
@@ -1993,7 +1993,7 @@ function DayFeedbackStrip({ dayIndex, feedback, onFeedback }) {
         rows={1}
         style={{
           width: '100%', marginTop: 8, padding: '7px 0',
-          fontFamily: F, fontSize: 12, fontWeight: 400, color: C.body,
+          fontFamily: F, fontSize: 13, fontWeight: 400, color: C.body,
           background: 'transparent', border: 'none',
           borderBottom: `1px solid ${noteFocused ? `${C.sage}30` : C.border}`,
           resize: 'none', overflow: 'hidden', lineHeight: 1.5,
@@ -2019,7 +2019,7 @@ function DayCard({ day, dayIndex = 0, onOpenPanel, activityFeedback, onActivityF
       {/* Header */}
       <div style={{ padding: '14px 18px 10px' }}>
         <div style={{
-          fontFamily: F, fontSize: 10, fontWeight: 600,
+          fontFamily: F, fontSize: 11, fontWeight: 600,
           letterSpacing: '0.12em', textTransform: 'uppercase',
           color: color, marginBottom: 4,
         }}>DAY {dayIndex + 1} &middot; {day.label}</div>
@@ -2075,7 +2075,7 @@ function DayCard({ day, dayIndex = 0, onOpenPanel, activityFeedback, onActivityF
             >
               <IconLotus size={38} color="#4A9B9F" />
               <span style={{
-                fontFamily: F, fontSize: 9, fontWeight: 700,
+                fontFamily: F, fontSize: 10, fontWeight: 700,
                 letterSpacing: '0.22em', textTransform: 'uppercase',
                 color: '#4A9B9F', flex: 1,
               }}>Mindfulness Practice</span>
@@ -2115,7 +2115,7 @@ function DayCard({ day, dayIndex = 0, onOpenPanel, activityFeedback, onActivityF
                   : <PracticeIcon size={16} color="#4A9B9F" />}
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <div style={{
-                    fontFamily: F, fontSize: 8.5, fontWeight: 700,
+                    fontFamily: F, fontSize: 9, fontWeight: 700,
                     letterSpacing: '0.2em', textTransform: 'uppercase',
                     color: '#4A9B9F', marginBottom: 2,
                   }}>{item.type === 'teaching' ? 'Teaching' : 'Practice'}</div>
@@ -2125,7 +2125,7 @@ function DayCard({ day, dayIndex = 0, onOpenPanel, activityFeedback, onActivityF
                   }}>{item.data.title}</div>
                   {item.data.tradition && (
                     <div style={{
-                      fontFamily: F, fontSize: 11, color: '#3D5A6B',
+                      fontFamily: F, fontSize: 12, color: '#3D5A6B',
                       opacity: 0.55, marginTop: 2,
                     }}>{item.data.tradition}</div>
                   )}
@@ -2155,7 +2155,7 @@ function DayCard({ day, dayIndex = 0, onOpenPanel, activityFeedback, onActivityF
                   }}>{typeof quoteEntry.data.quote === 'string' ? quoteEntry.data.quote : quoteEntry.data.quote.text}</p>
                   {(quoteEntry.data.quote?.source || quoteEntry.data.sources?.[0]) && (
                     <div style={{
-                      fontFamily: F, fontSize: 9, fontWeight: 600,
+                      fontFamily: F, fontSize: 10, fontWeight: 600,
                       letterSpacing: '0.14em', textTransform: 'uppercase',
                       color: '#1a2530', opacity: 0.35, marginTop: 6,
                     }}>{quoteEntry.data.quote?.source || quoteEntry.data.sources[0]}</div>
@@ -2200,7 +2200,7 @@ function DayCard({ day, dayIndex = 0, onOpenPanel, activityFeedback, onActivityF
           >
             {/* Time */}
             <span style={{
-              fontFamily: F, fontSize: 10, fontWeight: 400,
+              fontFamily: F, fontSize: 11, fontWeight: 400,
               color: C.muted, width: 44, flexShrink: 0, paddingTop: 2,
             }}>{b.time || ''}</span>
 
@@ -2219,7 +2219,7 @@ function DayCard({ day, dayIndex = 0, onOpenPanel, activityFeedback, onActivityF
               }}>{b.title}</div>
               {b.summary && (
                 <div style={{
-                  fontFamily: F, fontSize: 12, fontWeight: 400,
+                  fontFamily: F, fontSize: 13, fontWeight: 400,
                   color: C.body, lineHeight: 1.5,
                 }}>{b.summary}</div>
               )}
@@ -2251,7 +2251,7 @@ function TripPulse({ overallNote, setOverallNote, pulse, setPulse, onPulseSelect
 
   return (
     <div style={{ background: C.white, borderRadius: 2, border: `1.5px solid ${C.sage}14`, boxShadow: `0 4px 20px ${C.amber}0a`, padding: '22px 20px', marginTop: 20 }}>
-      <div style={{ fontFamily: F, fontSize: 9, fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: `${C.sage}90`, marginBottom: 4 }}>Overall Feeling</div>
+      <div style={{ fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: `${C.sage}90`, marginBottom: 4 }}>Overall Feeling</div>
       <div style={{ fontFamily: F, fontSize: 14, fontWeight: 400, fontStyle: 'normal', color: `${C.slate}65`, marginBottom: 16 }}>How's this trip shaping up?</div>
 
       <div style={{ display: 'flex', gap: 8 }}>
@@ -2266,8 +2266,8 @@ function TripPulse({ overallNote, setOverallNote, pulse, setPulse, onPulseSelect
               cursor: 'pointer', WebkitTapHighlightColor: 'transparent', transition: 'all 0.25s',
             }}>
               {o.icon}
-              <span style={{ fontFamily: F, fontSize: 12, fontWeight: 600, color: active ? o.color : `${C.slate}90` }}>{o.label}</span>
-              <span style={{ fontFamily: F, fontSize: 10, fontWeight: 400, color: active ? `${o.color}90` : `${C.slate}35` }}>{o.sub}</span>
+              <span style={{ fontFamily: F, fontSize: 13, fontWeight: 600, color: active ? o.color : `${C.slate}90` }}>{o.label}</span>
+              <span style={{ fontFamily: F, fontSize: 11, fontWeight: 400, color: active ? `${o.color}90` : `${C.slate}35` }}>{o.sub}</span>
             </button>
           );
         })}
@@ -2278,7 +2278,7 @@ function TripPulse({ overallNote, setOverallNote, pulse, setPulse, onPulseSelect
           <textarea value={overallNote} onChange={e => setOverallNote(e.target.value)}
             onBlur={e => { if (e.target.value.trim()) trackEvent('overall_note_entered', { pulse, note_length: e.target.value.trim().length }); }}
             placeholder={pulse === 'close' ? 'What\'s close but not quite right?' : 'What direction would feel better?'}
-            style={{ width: '100%', minHeight: 72, padding: '10px 12px', fontFamily: F, fontSize: 13, fontWeight: 400, color: C.slate, background: C.white, border: `1px solid ${C.sage}15`, borderRadius: 10, resize: 'vertical', lineHeight: 1.55, outline: 'none', boxSizing: 'border-box' }}
+            style={{ width: '100%', minHeight: 72, padding: '10px 12px', fontFamily: F, fontSize: 14, fontWeight: 400, color: C.slate, background: C.white, border: `1px solid ${C.sage}15`, borderRadius: 10, resize: 'vertical', lineHeight: 1.55, outline: 'none', boxSizing: 'border-box' }}
           />
         </div>
       )}
@@ -2328,9 +2328,9 @@ function RefineCTA({ iteration, hasFeedback, onRefine, pulse, onGateShown, onUpg
       <div style={{ textAlign: 'center', padding: '28px 20px 0' }}>
         <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, padding: '10px 20px', borderRadius: 24, background: `${C.seaGlass}10`, border: `1px solid ${C.seaGlass}25` }}>
           <CheckIcon size={14} color={C.seaGlass} />
-          <span style={{ fontFamily: F, fontSize: 13, fontWeight: 600, color: C.seaGlass }}>Trip locked in</span>
+          <span style={{ fontFamily: F, fontSize: 14, fontWeight: 600, color: C.seaGlass }}>Trip locked in</span>
         </div>
-        <p style={{ fontFamily: F, fontSize: 12, color: `${C.slate}65`, marginTop: 10, lineHeight: 1.5 }}>You can still make changes anytime — just update your day notes above.</p>
+        <p style={{ fontFamily: F, fontSize: 13, color: `${C.slate}65`, marginTop: 10, lineHeight: 1.5 }}>You can still make changes anytime — just update your day notes above.</p>
       </div>
     );
   }
@@ -2338,12 +2338,12 @@ function RefineCTA({ iteration, hasFeedback, onRefine, pulse, onGateShown, onUpg
   if (isPremiumGated) {
     return (
       <div style={{ textAlign: 'center', padding: '24px 20px 0' }}>
-        <p style={{ fontFamily: F, fontSize: 12, fontWeight: 400, color: C.muted, lineHeight: 1.6, maxWidth: 360, margin: '0 auto' }}>
+        <p style={{ fontFamily: F, fontSize: 13, fontWeight: 400, color: C.muted, lineHeight: 1.6, maxWidth: 360, margin: '0 auto' }}>
           You're in early access — refinements are unlimited for now. Paid plans coming soon.
         </p>
         <div style={{ marginTop: 14 }}>
           <button onClick={onRefine} disabled={!hasFeedback} style={{
-            fontFamily: F, fontSize: 13, fontWeight: 600,
+            fontFamily: F, fontSize: 14, fontWeight: 600,
             color: hasFeedback ? C.white : `${C.sage}80`,
             background: hasFeedback ? C.oceanTeal : `${C.sage}08`,
             border: hasFeedback ? 'none' : `1px solid ${C.sage}15`,
@@ -2364,10 +2364,10 @@ function RefineCTA({ iteration, hasFeedback, onRefine, pulse, onGateShown, onUpg
       <div style={{ background: C.white, borderRadius: 2, border: `1px solid ${C.oceanTeal}20`, boxShadow: `0 2px 16px ${C.oceanTeal}08`, padding: '24px 20px', marginTop: 20, textAlign: 'center' }}>
         <div style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '4px 12px', borderRadius: 8, background: `${C.oceanTeal}10`, border: `1px solid ${C.oceanTeal}20`, marginBottom: 14 }}>
           <SparkleIcon size={12} color={C.oceanTeal} />
-          <span style={{ fontFamily: F, fontSize: 9, fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: C.oceanTeal }}>Lila Pro</span>
+          <span style={{ fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: C.oceanTeal }}>Lila Pro</span>
         </div>
         <h3 style={{ fontFamily: F, fontSize: 18, fontWeight: 600, color: C.slate, marginBottom: 6 }}>Keep refining your perfect trip</h3>
-        <p style={{ fontFamily: F, fontSize: 13, color: `${C.slate}99`, lineHeight: 1.6, maxWidth: 380, margin: '0 auto 18px' }}>
+        <p style={{ fontFamily: F, fontSize: 14, color: `${C.slate}99`, lineHeight: 1.6, maxWidth: 380, margin: '0 auto 18px' }}>
           You've used your {maxFree} free refinements. Upgrade to continue iterating and unlock the full trip planning toolkit.
         </p>
         <div ref={featuresRef} style={{ display: 'flex', flexDirection: 'column', gap: 8, maxWidth: 300, margin: '0 auto 20px', textAlign: 'left' }}>
@@ -2379,14 +2379,14 @@ function RefineCTA({ iteration, hasFeedback, onRefine, pulse, onGateShown, onUpg
           ].map((f, i) => (
             <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '4px 0' }}>
               <div style={{ width: 28, height: 28, borderRadius: 8, background: `${C.oceanTeal}08`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{f.icon}</div>
-              <span style={{ fontFamily: F, fontSize: 13, fontWeight: 500, color: `${C.slate}AA` }}>{f.text}</span>
+              <span style={{ fontFamily: F, fontSize: 14, fontWeight: 500, color: `${C.slate}AA` }}>{f.text}</span>
             </div>
           ))}
         </div>
-        <button onClick={onUpgradeClick} style={{ fontFamily: F, fontSize: 13, fontWeight: 600, color: C.white, background: C.oceanTeal, border: 'none', borderRadius: 24, padding: '12px 28px', cursor: 'pointer', WebkitTapHighlightColor: 'transparent', boxShadow: `0 2px 12px ${C.oceanTeal}25`, transition: 'all 0.2s' }}>
+        <button onClick={onUpgradeClick} style={{ fontFamily: F, fontSize: 14, fontWeight: 600, color: C.white, background: C.oceanTeal, border: 'none', borderRadius: 24, padding: '12px 28px', cursor: 'pointer', WebkitTapHighlightColor: 'transparent', boxShadow: `0 2px 12px ${C.oceanTeal}25`, transition: 'all 0.2s' }}>
           Upgrade to Lila Pro
         </button>
-        <div style={{ fontFamily: F, fontSize: 11, color: `${C.slate}65`, marginTop: 8 }}>Starting at $9/trip</div>
+        <div style={{ fontFamily: F, fontSize: 12, color: `${C.slate}65`, marginTop: 8 }}>Starting at $9/trip</div>
       </div>
     );
     ────────────────────────────────────────────────────────────────────── */
@@ -2395,7 +2395,7 @@ function RefineCTA({ iteration, hasFeedback, onRefine, pulse, onGateShown, onUpg
   return (
     <div style={{ textAlign: 'center', padding: '24px 20px 0' }}>
       <button onClick={onRefine} disabled={!hasFeedback} style={{
-        fontFamily: F, fontSize: 13, fontWeight: 600,
+        fontFamily: F, fontSize: 14, fontWeight: 600,
         color: hasFeedback ? C.white : `${C.sage}80`,
         background: hasFeedback ? C.oceanTeal : `${C.sage}08`,
         border: hasFeedback ? 'none' : `1px solid ${C.sage}15`,
@@ -2408,11 +2408,11 @@ function RefineCTA({ iteration, hasFeedback, onRefine, pulse, onGateShown, onUpg
         <SparkleIcon size={14} color={hasFeedback ? C.white : `${C.sage}40`} />
         Refine this trip
       </button>
-      <div style={{ fontFamily: F, fontSize: 11, color: `${C.slate}65`, marginTop: 8 }}>
+      <div style={{ fontFamily: F, fontSize: 12, color: `${C.slate}65`, marginTop: 8 }}>
         {remaining} free refinement{remaining !== 1 ? 's' : ''} remaining
       </div>
       {!hasFeedback && (
-        <div style={{ fontFamily: F, fontSize: 11, color: `${C.sage}90`, marginTop: 4, fontStyle: 'normal' }}>
+        <div style={{ fontFamily: F, fontSize: 12, color: `${C.sage}90`, marginTop: 4, fontStyle: 'normal' }}>
           Add day feedback or rate the overall trip to enable refinement
         </div>
       )}
@@ -2514,7 +2514,7 @@ function RefiningOverlay({ visible, iteration = 0 }) {
       {/* Subtitle */}
       <div style={{
         fontFamily: F,
-        fontSize: 13, fontWeight: 400,
+        fontSize: 14, fontWeight: 400,
         color: C.sage, opacity: 0.75,
         marginBottom: 28, textAlign: 'center',
       }}>Incorporating your feedback into a new draft.</div>
@@ -2539,7 +2539,7 @@ function RefiningOverlay({ visible, iteration = 0 }) {
                 transition: 'background 0.5s',
               }} />
               <span style={{
-                fontFamily: F, fontSize: 12, fontWeight: isActive ? 600 : 400,
+                fontFamily: F, fontSize: 13, fontWeight: isActive ? 600 : 400,
                 color: isActive ? C.slate : C.sage,
                 transition: 'all 0.5s',
               }}>{step}</span>
@@ -2566,7 +2566,7 @@ function RefiningOverlay({ visible, iteration = 0 }) {
       {/* Step counter */}
       <div style={{
         fontFamily: F,
-        fontSize: 10, fontWeight: 500,
+        fontSize: 11, fontWeight: 500,
         letterSpacing: '0.12em', textTransform: 'uppercase',
         color: `${C.sage}99`,
         marginTop: 8,
@@ -2577,7 +2577,7 @@ function RefiningOverlay({ visible, iteration = 0 }) {
       {/* Refinement quota callout */}
       <div style={{
         fontFamily: F,
-        fontSize: 11, fontWeight: 400,
+        fontSize: 12, fontWeight: 400,
         color: C.muted,
         marginTop: 20, textAlign: 'center',
       }}>
@@ -2596,7 +2596,7 @@ function VersionBadge({ iteration }) {
   return (
     <div style={{ display: 'inline-flex', alignItems: 'center', gap: 4, padding: '3px 10px', borderRadius: 8, background: `${C.oceanTeal}08`, border: `1px solid ${C.oceanTeal}15`, marginBottom: 8 }}>
       <SparkleIcon size={10} color={C.oceanTeal} />
-      <span style={{ fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.06em', color: C.oceanTeal }}>Revision {iteration}</span>
+      <span style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: '0.06em', color: C.oceanTeal }}>Revision {iteration}</span>
     </div>
   );
 }
@@ -2646,18 +2646,18 @@ function MarkdownContent({ content }) {
     } else if (/^### /.test(line)) {
       elements.push(<h3 key={key++} style={{ fontFamily: F, fontSize: 14, fontWeight: 700, color: C.sage, margin: '18px 0 6px' }}>{renderInline(line.slice(4))}</h3>);
     } else if (/^\s*[-*] /.test(line)) {
-      elements.push(<div key={key++} style={{ display: 'flex', gap: 8, padding: '3px 0' }}><span style={{ color: C.sage, flexShrink: 0 }}>•</span><span style={{ fontFamily: F, fontSize: 13, color: C.slate, lineHeight: 1.65 }}>{renderInline(line.replace(/^\s*[-*] /, ''))}</span></div>);
+      elements.push(<div key={key++} style={{ display: 'flex', gap: 8, padding: '3px 0' }}><span style={{ color: C.sage, flexShrink: 0 }}>•</span><span style={{ fontFamily: F, fontSize: 14, color: C.slate, lineHeight: 1.65 }}>{renderInline(line.replace(/^\s*[-*] /, ''))}</span></div>);
     } else if (/^\d+\.\s/.test(line)) {
       const numMatch = line.match(/^(\d+)\.\s(.*)/);
       if (numMatch) {
-        elements.push(<div key={key++} style={{ display: 'flex', gap: 8, padding: '3px 0' }}><span style={{ fontFamily: F, fontSize: 12, color: C.sage, fontWeight: 700, flexShrink: 0, minWidth: 18 }}>{numMatch[1]}.</span><span style={{ fontFamily: F, fontSize: 13, color: C.slate, lineHeight: 1.65 }}>{renderInline(numMatch[2])}</span></div>);
+        elements.push(<div key={key++} style={{ display: 'flex', gap: 8, padding: '3px 0' }}><span style={{ fontFamily: F, fontSize: 13, color: C.sage, fontWeight: 700, flexShrink: 0, minWidth: 18 }}>{numMatch[1]}.</span><span style={{ fontFamily: F, fontSize: 14, color: C.slate, lineHeight: 1.65 }}>{renderInline(numMatch[2])}</span></div>);
       }
     } else if (/^>\s/.test(line)) {
       elements.push(<div key={key++} style={{ borderLeft: `3px solid ${C.oceanTeal}30`, paddingLeft: 14, margin: '12px 0', fontFamily: F, fontSize: 'clamp(15px, 4vw, 18px)', fontStyle: 'normal', color: `${C.slate}AA`, lineHeight: 1.6 }}>{renderInline(line.slice(2))}</div>);
     } else if (line.trim() === '') {
       elements.push(<div key={key++} style={{ height: 6 }} />);
     } else {
-      elements.push(<p key={key++} style={{ fontFamily: F, fontSize: 13, color: C.slate, lineHeight: 1.75, margin: '5px 0' }}>{renderInline(line)}</p>);
+      elements.push(<p key={key++} style={{ fontFamily: F, fontSize: 14, color: C.slate, lineHeight: 1.75, margin: '5px 0' }}>{renderInline(line)}</p>);
     }
   }
   return <>{elements}</>;
@@ -2739,20 +2739,20 @@ function FirstDraftModal({ onDismiss }) {
         </button>
 
         {/* Wordmark */}
-        <div style={{ fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.22em', textTransform: 'uppercase', color: `${C.sage}75`, marginBottom: 22 }}>Lila Trips</div>
+        <div style={{ fontFamily: F, fontSize: 10, fontWeight: 700, letterSpacing: '0.22em', textTransform: 'uppercase', color: `${C.sage}75`, marginBottom: 22 }}>Lila Trips</div>
 
         {/* Headline */}
         <h2 style={{ fontFamily: F_SERIF, fontSize: 'clamp(22px, 5.5vw, 28px)', fontWeight: 300, color: C.ink, lineHeight: 1.25, letterSpacing: '-0.02em', marginBottom: 12 }}>Your itinerary is ready to explore.</h2>
 
         {/* Body */}
-        <p style={{ fontFamily: F, fontSize: 13, fontWeight: 400, color: `${C.slate}D9`, lineHeight: 1.75, marginBottom: 28 }}>We built this around what you shared with us. Read through it, react to what stands out, and we'll keep shaping it until it's yours.</p>
+        <p style={{ fontFamily: F, fontSize: 14, fontWeight: 400, color: `${C.slate}D9`, lineHeight: 1.75, marginBottom: 28 }}>We built this around what you shared with us. Read through it, react to what stands out, and we'll keep shaping it until it's yours.</p>
 
         {/* Divider */}
         <div style={{ height: 1, background: `${C.sage}10`, marginBottom: 24 }} />
 
         {/* Section header */}
         <div style={{ fontFamily: F, fontSize: 15, fontWeight: 700, color: C.ink, marginBottom: 4 }}>As you read, tell us how it's landing.</div>
-        <div style={{ fontFamily: F, fontSize: 12, fontWeight: 400, color: `${C.slate}99`, lineHeight: 1.6, marginBottom: 16 }}>Each activity has three reactions — use them as you go.</div>
+        <div style={{ fontFamily: F, fontSize: 13, fontWeight: 400, color: `${C.slate}99`, lineHeight: 1.6, marginBottom: 16 }}>Each activity has three reactions — use them as you go.</div>
 
         {/* Reaction rows */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 0 }}>
@@ -2767,9 +2767,9 @@ function FirstDraftModal({ onDismiss }) {
                   flexShrink: 0,
                 }}>
                   <Ic size={13} color={r.color} active />
-                  <span style={{ fontFamily: F, fontSize: 10, fontWeight: 600, color: r.color }}>{r.label}</span>
+                  <span style={{ fontFamily: F, fontSize: 11, fontWeight: 600, color: r.color }}>{r.label}</span>
                 </div>
-                <span style={{ fontFamily: F, fontSize: 12.5, fontWeight: 500, color: `${C.slate}CC` }}>{r.desc}</span>
+                <span style={{ fontFamily: F, fontSize: 13, fontWeight: 500, color: `${C.slate}CC` }}>{r.desc}</span>
               </div>
             );
           })}
@@ -2779,14 +2779,14 @@ function FirstDraftModal({ onDismiss }) {
         <div style={{ height: 1, background: `${C.sage}10`, marginTop: 28, marginBottom: 20 }} />
 
         {/* Freemium note */}
-        <p style={{ fontFamily: F, fontSize: 11.5, fontWeight: 400, color: `${C.slate}AA`, lineHeight: 1.65, textAlign: 'center', marginBottom: 24 }}>
+        <p style={{ fontFamily: F, fontSize: 13, fontWeight: 400, color: `${C.slate}AA`, lineHeight: 1.65, textAlign: 'center', marginBottom: 24 }}>
           You're in early access — refinements are unlimited for now. Shape it until it feels right.
         </p>
 
         {/* CTA */}
         <button onClick={onDismiss} style={{
           width: '100%', padding: '14px 0',
-          fontFamily: F, fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase',
+          fontFamily: F, fontSize: 13, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase',
           color: C.cream, background: C.slate,
           border: 'none', borderRadius: 2,
           cursor: 'pointer', WebkitTapHighlightColor: 'transparent',
@@ -3143,7 +3143,7 @@ export default function ItineraryResults() {
       }}>
         <Link to="/" style={{ fontFamily: F, fontSize: 16, fontWeight: 500, letterSpacing: '0.1em', color: C.slate, textDecoration: 'none' }}>Lila Trips</Link>
         <button onClick={() => { trackEvent('new_trip_clicked', { source: 'header' }); navigate('/plan'); }} style={{
-          fontFamily: F, fontSize: 10, fontWeight: 600,
+          fontFamily: F, fontSize: 11, fontWeight: 600,
           color: C.sage, background: `${C.white}70`,
           border: `1px solid ${C.sage}15`, borderRadius: 20,
           padding: '6px 14px', cursor: 'pointer', WebkitTapHighlightColor: 'transparent',
@@ -3161,7 +3161,7 @@ export default function ItineraryResults() {
           <div style={{ textAlign: 'left', padding: '18px 8px 28px' }}>
             <VersionBadge iteration={iteration} />
             <div style={{
-              fontFamily: F, fontSize: 10, fontWeight: 700,
+              fontFamily: F, fontSize: 11, fontWeight: 700,
               letterSpacing: '0.22em', textTransform: 'uppercase',
               color: C.teal, marginBottom: 8,
             }}>Your Itinerary</div>
@@ -3170,10 +3170,10 @@ export default function ItineraryResults() {
               color: C.ink, lineHeight: 1.15, marginBottom: 8,
             }}>{itinerary.title}</h1>
             {itinerary.subtitle && (
-              <p style={{ fontFamily: F_SERIF, fontSize: 13, color: C.muted, fontStyle: 'italic', fontWeight: 400 }}>{itinerary.subtitle}</p>
+              <p style={{ fontFamily: F_SERIF, fontSize: 14, color: C.muted, fontStyle: 'italic', fontWeight: 400 }}>{itinerary.subtitle}</p>
             )}
             {itinerary.intro && (
-              <p style={{ fontFamily: F, fontSize: 13, color: C.body, lineHeight: 1.75, maxWidth: 600, marginTop: 14, fontWeight: 400 }}>{itinerary.intro}</p>
+              <p style={{ fontFamily: F, fontSize: 14, color: C.body, lineHeight: 1.75, maxWidth: 600, marginTop: 14, fontWeight: 400 }}>{itinerary.intro}</p>
             )}
           </div>
         )}
@@ -3218,7 +3218,7 @@ export default function ItineraryResults() {
         {/* Day by Day label */}
         {isStructured && (
           <div style={{
-            fontFamily: F, fontSize: 9, fontWeight: 700,
+            fontFamily: F, fontSize: 10, fontWeight: 700,
             letterSpacing: '0.18em', textTransform: 'uppercase',
             color: 'rgba(28,28,26,0.4)', marginBottom: 14, paddingLeft: 8,
           }}>Day by Day</div>
@@ -3248,11 +3248,11 @@ export default function ItineraryResults() {
                 {/* Before You Go */}
                 {itinerary.beforeYouGo && (
                   <div ref={beforeYouGoRef} style={{ background: `linear-gradient(180deg, ${C.white}, ${C.cream}30)`, borderRadius: 2, border: `1px solid ${C.sage}18`, padding: '18px 20px', marginTop: 6, boxShadow: `0 1px 8px ${C.sage}08` }}>
-                    <div style={{ fontFamily: F, fontSize: 9, fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: C.sage, marginBottom: 12 }}>Before You Go</div>
+                    <div style={{ fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: C.sage, marginBottom: 12 }}>Before You Go</div>
                     {itinerary.beforeYouGo.map((item, i) => (
                       <div key={i} style={{ display: 'flex', gap: 8, padding: '5px 0', borderBottom: i < itinerary.beforeYouGo.length - 1 ? `1px solid ${C.sage}06` : 'none' }}>
-                        <span style={{ color: `${C.sage}80`, flexShrink: 0, fontSize: 10, marginTop: 2 }}>{"●\uFE0E"}</span>
-                        <span style={{ fontFamily: F, fontSize: 13, color: `${C.slate}85`, lineHeight: 1.65 }}>{renderInline(item)}</span>
+                        <span style={{ color: `${C.sage}80`, flexShrink: 0, fontSize: 11, marginTop: 2 }}>{"●\uFE0E"}</span>
+                        <span style={{ fontFamily: F, fontSize: 14, color: `${C.slate}85`, lineHeight: 1.65 }}>{renderInline(item)}</span>
                       </div>
                     ))}
                   </div>
@@ -3272,8 +3272,8 @@ export default function ItineraryResults() {
                 {/* Refinement error */}
                 {refineError && (
                   <div style={{ background: `${C.sunSalmon}10`, border: `1px solid ${C.sunSalmon}25`, borderRadius: 12, padding: '12px 16px', marginTop: 16, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10 }}>
-                    <span style={{ fontFamily: F, fontSize: 13, fontWeight: 500, color: C.sunSalmon, lineHeight: 1.4 }}>{refineError}</span>
-                    <button onClick={() => setRefineError(null)} style={{ fontFamily: F, fontSize: 11, fontWeight: 600, color: `${C.sunSalmon}80`, background: 'none', border: 'none', cursor: 'pointer', padding: '4px 8px', flexShrink: 0, WebkitTapHighlightColor: 'transparent' }}>Dismiss</button>
+                    <span style={{ fontFamily: F, fontSize: 14, fontWeight: 500, color: C.sunSalmon, lineHeight: 1.4 }}>{refineError}</span>
+                    <button onClick={() => setRefineError(null)} style={{ fontFamily: F, fontSize: 12, fontWeight: 600, color: `${C.sunSalmon}80`, background: 'none', border: 'none', cursor: 'pointer', padding: '4px 8px', flexShrink: 0, WebkitTapHighlightColor: 'transparent' }}>Dismiss</button>
                   </div>
                 )}
 
@@ -3319,7 +3319,7 @@ export default function ItineraryResults() {
         {/* Bottom nav */}
         <div style={{ textAlign: 'center', marginTop: 24, paddingBottom: 16 }}>
           <button onClick={() => { clearSession(); trackEvent('new_trip_clicked', { source: 'start_over' }); navigate('/plan'); }} style={{
-            fontFamily: F, fontSize: 11, fontWeight: 500,
+            fontFamily: F, fontSize: 12, fontWeight: 500,
             color: `${C.sage}90`, background: 'none',
             border: 'none', cursor: 'pointer', padding: '8px 16px',
             WebkitTapHighlightColor: 'transparent',

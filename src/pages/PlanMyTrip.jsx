@@ -471,7 +471,7 @@ function NavButtons({ onBack, onNext, nextLabel = "Continue", nextDisabled = fal
       {showBack && (
         <button onClick={onBack} style={{
           fontFamily: "'Quicksand', sans-serif",
-          fontSize: 13, fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase",
+          fontSize: 14, fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase",
           background: "none", border: `1.5px solid ${C.sage}40`,
           color: C.sage, padding: "14px 28px", borderRadius: 40,
           cursor: "pointer", transition: "all 0.3s",
@@ -480,7 +480,7 @@ function NavButtons({ onBack, onNext, nextLabel = "Continue", nextDisabled = fal
       )}
       <button onClick={onNext} disabled={nextDisabled} style={{
         fontFamily: "'Quicksand', sans-serif",
-        fontSize: 13, fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase",
+        fontSize: 14, fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase",
         background: nextDisabled ? `${C.oceanTeal}30` : C.oceanTeal,
         border: "none", color: C.white, padding: "14px 36px", borderRadius: 40,
         cursor: nextDisabled ? "not-allowed" : "pointer",
@@ -498,7 +498,7 @@ function StepTitle({ eyebrow, title, subtitle }) {
       {eyebrow && (
         <span style={{
           fontFamily: "'Quicksand', sans-serif",
-          fontSize: 11, fontWeight: 700, letterSpacing: "0.3em", textTransform: "uppercase",
+          fontSize: 12, fontWeight: 700, letterSpacing: "0.3em", textTransform: "uppercase",
           color: C.oceanTeal, display: "block", marginBottom: 14,
         }}>{eyebrow}</span>
       )}
@@ -510,7 +510,7 @@ function StepTitle({ eyebrow, title, subtitle }) {
       {subtitle && (
         <p style={{
           fontFamily: "'Quicksand', sans-serif",
-          fontSize: "clamp(13px, 3.5vw, 15px)", fontWeight: 400, color: `${C.slate}BB`,
+          fontSize: "clamp(14px, 3.5vw, 15px)", fontWeight: 400, color: `${C.slate}BB`,
           lineHeight: 1.6, maxWidth: 480, margin: "0 auto",
         }}>{subtitle}</p>
       )}
@@ -577,7 +577,7 @@ function RadarChart({ values, size = 260 }) {
             <circle cx={p.x} cy={p.y} r={5} fill={colors[i]} stroke={C.white} strokeWidth={2} />
             <text x={cx + Math.cos(angleStep * i - Math.PI / 2) * (r + 20)} y={cy + Math.sin(angleStep * i - Math.PI / 2) * (r + 20)}
               textAnchor="middle" dominantBaseline="middle"
-              style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 9, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", fill: C.sage }}
+              style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", fill: C.sage }}
             >{dim.label}</text>
           </g>
         );
@@ -655,7 +655,7 @@ function WelcomePathCard({ icon: IconComp, title, subtitle, description, buttonL
           background: tagColor || C.oceanTeal,
           color: C.white,
           fontFamily: "'Quicksand', sans-serif",
-          fontSize: 10, fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase",
+          fontSize: 11, fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase",
           padding: "4px 14px", borderRadius: 20,
         }}>{tag}</div>
       )}
@@ -672,7 +672,7 @@ function WelcomePathCard({ icon: IconComp, title, subtitle, description, buttonL
         <div style={{ flex: 1, minWidth: 0 }}>
           <div style={{
             fontFamily: "'Quicksand', sans-serif",
-            fontSize: 10, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase",
+            fontSize: 11, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase",
             color: isPrimary ? C.oceanTeal : `${C.sage}AA`,
             marginBottom: 4,
           }}>{subtitle}</div>
@@ -692,7 +692,7 @@ function WelcomePathCard({ icon: IconComp, title, subtitle, description, buttonL
             <span style={{
               display: "inline-flex", alignItems: "center", gap: 8,
               fontFamily: "'Quicksand', sans-serif",
-              fontSize: 12, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase",
+              fontSize: 13, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase",
               ...(isPrimary ? {
                 background: C.oceanTeal,
                 color: C.white,
@@ -806,7 +806,7 @@ function StepWelcome({ onNext }) {
                 <div style={{
                   position: "absolute", top: -9, left: "50%", transform: "translateX(-50%)",
                   fontFamily: "'Quicksand', sans-serif",
-                  fontSize: 8, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase",
+                  fontSize: 9, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase",
                   color: "#aab0b8",
                   border: "1px solid #d0d5d9",
                   background: C.white,
@@ -822,7 +822,7 @@ function StepWelcome({ onNext }) {
                 </div>
                 <div style={{
                   fontFamily: "'Quicksand', sans-serif",
-                  fontSize: 10, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase",
+                  fontSize: 11, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase",
                   color: card.color, marginBottom: 6,
                 }}>{card.eyebrow}</div>
                 <h3 style={{
@@ -832,14 +832,14 @@ function StepWelcome({ onNext }) {
                 }}>{card.title}</h3>
                 <p style={{
                   fontFamily: "'Quicksand', sans-serif",
-                  fontSize: 12, fontWeight: 400,
+                  fontSize: 13, fontWeight: 400,
                   color: `${C.slate}99`, lineHeight: 1.5,
                   margin: "8px 0 0",
                 }}>{card.desc}</p>
                 <div style={{
                   marginTop: 14, display: "inline-flex", alignItems: "center", gap: 6,
                   fontFamily: "'Quicksand', sans-serif",
-                  fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase",
+                  fontSize: 12, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase",
                   color: card.color,
                 }}>
                   {card.cta} <IconArrowRight size={12} color={card.color} />
@@ -860,7 +860,7 @@ function StepWelcome({ onNext }) {
       }}>
         <div style={{
           fontFamily: "'Quicksand', sans-serif",
-          fontSize: 10, fontWeight: 600, letterSpacing: "0.18em", textTransform: "uppercase",
+          fontSize: 11, fontWeight: 600, letterSpacing: "0.18em", textTransform: "uppercase",
           color: `${C.sage}99`, marginBottom: 12,
         }}>Powered by</div>
         <div style={{
@@ -874,7 +874,7 @@ function StepWelcome({ onNext }) {
           ].map(item => (
             <span key={item} style={{
               fontFamily: "'Quicksand', sans-serif",
-              fontSize: 11, fontWeight: 500, color: `${C.slate}99`,
+              fontSize: 12, fontWeight: 500, color: `${C.slate}99`,
               display: "flex", alignItems: "center", gap: 5,
             }}>
               <span style={{ width: 3, height: 3, borderRadius: "50%", background: `${C.oceanTeal}40`, flexShrink: 0 }} />
@@ -924,7 +924,7 @@ function StepDestination({ data, onChange, onNext, onBack }) {
                 <div style={{
                   position: "absolute", top: 8, right: 8,
                   fontFamily: "'Quicksand', sans-serif",
-                  fontSize: 8, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase",
+                  fontSize: 9, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase",
                   color: C.sage, background: `${C.sage}12`,
                   padding: "3px 7px", borderRadius: 6,
                 }}>Soon</div>
@@ -933,7 +933,7 @@ function StepDestination({ data, onChange, onNext, onBack }) {
                 <Ic size={28} color={sel ? C.sage : `${C.sage}AA`} />
               </div>
               <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(16px, 4vw, 18px)", fontWeight: 600, color: C.slate, marginBottom: 3 }}>{d.name}</div>
-              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, color: `${C.slate}99`, lineHeight: 1.3 }}>{d.subtitle}</div>
+              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, color: `${C.slate}99`, lineHeight: 1.3 }}>{d.subtitle}</div>
             </button>
           );
         })}
@@ -1012,7 +1012,7 @@ function StepMonth({ data, onChange, onNext, onBack }) {
               }}>{m.label}</div>
               <div style={{
                 fontFamily: "'Quicksand', sans-serif",
-                fontSize: 9, fontWeight: 600, letterSpacing: '0.08em',
+                fontSize: 10, fontWeight: 600, letterSpacing: '0.08em',
                 textTransform: 'uppercase',
                 color: sel ? m.color : `${C.sage}90`,
               }}>{m.window}</div>
@@ -1029,7 +1029,7 @@ function StepMonth({ data, onChange, onNext, onBack }) {
             width: '100%', padding: '12px 16px',
             background: 'none', border: 'none', cursor: 'pointer',
             fontFamily: "'Quicksand', sans-serif",
-            fontSize: 12, fontWeight: 600, letterSpacing: '0.06em',
+            fontSize: 13, fontWeight: 600, letterSpacing: '0.06em',
             color: showDates ? C.oceanTeal : `${C.sage}70`,
             WebkitTapHighlightColor: 'transparent',
           }}>
@@ -1059,7 +1059,7 @@ function StepMonth({ data, onChange, onNext, onBack }) {
                 <label style={{
                   display: 'block', marginBottom: 6,
                   fontFamily: "'Quicksand', sans-serif",
-                  fontSize: 10, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase',
+                  fontSize: 11, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase',
                   color: `${C.sage}AA`,
                 }}>Start date</label>
                 <input
@@ -1079,7 +1079,7 @@ function StepMonth({ data, onChange, onNext, onBack }) {
                 <label style={{
                   display: 'block', marginBottom: 6,
                   fontFamily: "'Quicksand', sans-serif",
-                  fontSize: 10, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase',
+                  fontSize: 11, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase',
                   color: `${C.sage}AA`,
                 }}>End date</label>
                 <input
@@ -1133,7 +1133,7 @@ function StepIntention({ data, onChange, onNext, onBack }) {
                 <Ic size={30} color={active ? item.color : C.sage} />
               </div>
               <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(16px, 4vw, 18px)", fontWeight: 600, color: C.slate, marginBottom: 3 }}>{item.label}</div>
-              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, color: `${C.slate}99`, lineHeight: 1.3 }}>{item.desc}</div>
+              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, color: `${C.slate}99`, lineHeight: 1.3 }}>{item.desc}</div>
             </button>
           );
         })}
@@ -1160,7 +1160,7 @@ function StepMovement({ data, onChange, onNext, onBack }) {
       <div style={{ maxWidth: 440, margin: "0 auto", padding: "0 28px" }}>
         <div style={{ textAlign: "center", marginBottom: 32 }}>
           <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(32px, 8vw, 40px)", fontWeight: 300, color: C.sage, marginBottom: 6 }}>{labels[labelIndex]}</div>
-          <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, color: `${C.slate}99`, lineHeight: 1.6 }}>{descriptions[labelIndex]}</p>
+          <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 14, color: `${C.slate}99`, lineHeight: 1.6 }}>{descriptions[labelIndex]}</p>
         </div>
         <div style={{ position: "relative", padding: "16px 0" }}>
           <div style={{ position: "absolute", top: "50%", left: 0, right: 0, height: 6, background: `${C.sage}18`, borderRadius: 3, transform: "translateY(-50%)" }} />
@@ -1173,10 +1173,10 @@ function StepMovement({ data, onChange, onNext, onBack }) {
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: 8 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
             <IconYinYang size={16} color={C.oceanTeal} />
-            <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: C.oceanTeal }}>Yin</span>
+            <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: C.oceanTeal }}>Yin</span>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-            <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: C.sunSalmon }}>Yang</span>
+            <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: C.sunSalmon }}>Yang</span>
             <IconFlame size={16} color={C.sunSalmon} />
           </div>
         </div>
@@ -1236,7 +1236,7 @@ function StepPracticeLevel({ data, onChange, onNext, onBack }) {
           }}>{current.label}</div>
           <p style={{
             fontFamily: "'Quicksand', sans-serif",
-            fontSize: "clamp(12px, 3.2vw, 13px)", color: `${C.slate}AA`, lineHeight: 1.65,
+            fontSize: "clamp(13px, 3.2vw, 14px)", color: `${C.slate}AA`, lineHeight: 1.65,
             minHeight: 48,
           }}>{current.desc}</p>
         </div>
@@ -1262,10 +1262,10 @@ function StepPracticeLevel({ data, onChange, onNext, onBack }) {
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: 4 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
             <IconBodhiLeaf size={14} color={C.seaGlass} />
-            <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 600, letterSpacing: "0.06em", color: C.seaGlass }}>Curious</span>
+            <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600, letterSpacing: "0.06em", color: C.seaGlass }}>Curious</span>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
-            <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 600, letterSpacing: "0.06em", color: C.oceanTeal }}>Deep</span>
+            <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600, letterSpacing: "0.06em", color: C.oceanTeal }}>Deep</span>
             <IconUnalome size={14} color={C.oceanTeal} />
           </div>
         </div>
@@ -1312,7 +1312,7 @@ function StepPracticeInterests({ data, onChange, onNext, onBack }) {
                 </div>
                 <div style={{
                   fontFamily: "'Quicksand', sans-serif",
-                  fontSize: 11, fontWeight: 600, color: active ? C.slate : `${C.slate}AA`, lineHeight: 1.2,
+                  fontSize: 12, fontWeight: 600, color: active ? C.slate : `${C.slate}AA`, lineHeight: 1.2,
                 }}>{p.label}</div>
               </button>
             );
@@ -1340,7 +1340,7 @@ function StepPacing({ data, onChange, onNext, onBack }) {
       <div style={{ maxWidth: 440, margin: "0 auto", padding: "0 28px" }}>
         <div style={{ textAlign: "center", marginBottom: 32 }}>
           <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(32px, 8vw, 40px)", fontWeight: 300, color: C.sage, marginBottom: 6 }}>{labels[labelIndex]}</div>
-          <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, color: `${C.slate}99`, lineHeight: 1.6 }}>{descriptions[labelIndex]}</p>
+          <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 14, color: `${C.slate}99`, lineHeight: 1.6 }}>{descriptions[labelIndex]}</p>
         </div>
         <div style={{ position: "relative", padding: "16px 0" }}>
           <div style={{ position: "absolute", top: "50%", left: 0, right: 0, height: 6, background: `${C.sage}18`, borderRadius: 3, transform: "translateY(-50%)" }} />
@@ -1353,10 +1353,10 @@ function StepPacing({ data, onChange, onNext, onBack }) {
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: 8 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
             <IconWave size={16} color={C.oceanTeal} />
-            <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600, letterSpacing: "0.08em", color: C.oceanTeal }}>Spacious</span>
+            <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 600, letterSpacing: "0.08em", color: C.oceanTeal }}>Spacious</span>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-            <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600, letterSpacing: "0.08em", color: C.goldenAmber }}>Full</span>
+            <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 600, letterSpacing: "0.08em", color: C.goldenAmber }}>Full</span>
             <IconFlame size={16} color={C.goldenAmber} />
           </div>
         </div>
@@ -1383,7 +1383,7 @@ function StepRange({ data, onChange, onNext, onBack }) {
       <div style={{ maxWidth: 440, margin: "0 auto", padding: "0 28px" }}>
         <div style={{ textAlign: "center", marginBottom: 32 }}>
           <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(32px, 8vw, 40px)", fontWeight: 300, color: C.sage, marginBottom: 6 }}>{labels[labelIndex]}</div>
-          <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, color: `${C.slate}99`, lineHeight: 1.6 }}>{descriptions[labelIndex]}</p>
+          <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 14, color: `${C.slate}99`, lineHeight: 1.6 }}>{descriptions[labelIndex]}</p>
         </div>
         <div style={{ position: "relative", padding: "16px 0" }}>
           <div style={{ position: "absolute", top: "50%", left: 0, right: 0, height: 6, background: `${C.sage}18`, borderRadius: 3, transform: "translateY(-50%)" }} />
@@ -1396,10 +1396,10 @@ function StepRange({ data, onChange, onNext, onBack }) {
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: 8 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
             <IconMountain size={16} color={C.seaGlass} />
-            <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600, letterSpacing: "0.08em", color: C.seaGlass }}>Rooted</span>
+            <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 600, letterSpacing: "0.08em", color: C.seaGlass }}>Rooted</span>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-            <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600, letterSpacing: "0.08em", color: C.goldenAmber }}>Drift</span>
+            <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 600, letterSpacing: "0.08em", color: C.goldenAmber }}>Drift</span>
             <IconTorii size={16} color={C.goldenAmber} />
           </div>
         </div>
@@ -1442,7 +1442,7 @@ function StepDuration({ data, onChange, onNext, onBack }) {
               }}>{days}</div>
               <div style={{
                 fontFamily: "'Quicksand', sans-serif",
-                fontSize: 11, fontWeight: 600, letterSpacing: "0.15em", textTransform: "uppercase",
+                fontSize: 12, fontWeight: 600, letterSpacing: "0.15em", textTransform: "uppercase",
                 color: `${C.sage}AA`, marginTop: 2,
               }}>days</div>
             </div>
@@ -1497,7 +1497,7 @@ function StepGroup({ data, onChange, onNext, onBack }) {
                 <Ic size={30} color={active ? item.color : C.sage} />
               </div>
               <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(16px, 4vw, 18px)", fontWeight: 600, color: C.slate, marginBottom: 3 }}>{item.label}</div>
-              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, color: `${C.slate}99`, lineHeight: 1.3 }}>{item.desc}</div>
+              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, color: `${C.slate}99`, lineHeight: 1.3 }}>{item.desc}</div>
             </button>
           );
         })}
@@ -1526,7 +1526,7 @@ function StepGroup({ data, onChange, onNext, onBack }) {
                 }}>{groupSize}</div>
                 <div style={{
                   fontFamily: "'Quicksand', sans-serif",
-                  fontSize: 11, fontWeight: 600, letterSpacing: "0.15em", textTransform: "uppercase",
+                  fontSize: 12, fontWeight: 600, letterSpacing: "0.15em", textTransform: "uppercase",
                   color: `${C.sage}AA`, marginTop: 2,
                 }}>travelers</div>
               </div>
@@ -1583,7 +1583,7 @@ function StepBudget({ data, onChange, onNext, onBack }) {
                   }}>{tier.label}</span>
                   <span style={{
                     fontFamily: "'Quicksand', sans-serif",
-                    fontSize: 12, color: `${C.slate}99`, marginLeft: 8,
+                    fontSize: 13, color: `${C.slate}99`, marginLeft: 8,
                   }}>{tier.desc}</span>
                 </div>
               </button>
@@ -1637,7 +1637,7 @@ function StepStay({ data, onChange, onNext, onBack }) {
                   }}>{style.label}</span>
                   <div style={{
                     fontFamily: "'Quicksand', sans-serif",
-                    fontSize: 12, color: `${C.slate}99`, lineHeight: 1.4, marginTop: 2,
+                    fontSize: 13, color: `${C.slate}99`, lineHeight: 1.4, marginTop: 2,
                   }}>{style.desc}</div>
                 </div>
               </button>
@@ -1697,9 +1697,9 @@ function StepProfile({ data, onBack, onUnlock, generating }) {
               <PersonaIcon size={22} color={persona.color} />
             </div>
           </div>
-          <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "0.25em", textTransform: "uppercase", color: persona.color, marginBottom: 6 }}>{persona.subtitle}</div>
+          <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.25em", textTransform: "uppercase", color: persona.color, marginBottom: 6 }}>{persona.subtitle}</div>
           <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(24px, 6vw, 30px)", fontWeight: 300, color: C.slate, marginBottom: 4, lineHeight: 1.1 }}>{persona.name}</div>
-          <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: "clamp(12px, 3.2vw, 13px)", fontWeight: 400, color: `${C.slate}AA`, lineHeight: 1.55, marginTop: 10 }}>{persona.desc}</p>
+          <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: "clamp(13px, 3.2vw, 14px)", fontWeight: 400, color: `${C.slate}AA`, lineHeight: 1.55, marginTop: 10 }}>{persona.desc}</p>
         </div>
       </div>
 
@@ -1708,7 +1708,7 @@ function StepProfile({ data, onBack, onUnlock, generating }) {
       </div>
 
       <div style={{ textAlign: "center", marginTop: 8, padding: "0 28px 20px" }}>
-        <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: "clamp(13px, 3.5vw, 14px)", color: `${C.slate}99`, maxWidth: 380, margin: "0 auto 20px", lineHeight: 1.6 }}>
+        <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: "clamp(14px, 3.5vw, 14px)", color: `${C.slate}99`, maxWidth: 380, margin: "0 auto 20px", lineHeight: 1.6 }}>
           A custom {data.duration || 4}-day {monthName ? `${monthName} ` : ''}plan for {destName} — built around your pace, your practices, and your intentions.
         </p>
         <button onClick={onUnlock} disabled={generating} style={{
@@ -1723,10 +1723,10 @@ function StepProfile({ data, onBack, onUnlock, generating }) {
           minHeight: 56, WebkitTapHighlightColor: "transparent",
           opacity: generating ? 0.8 : 1,
         }}>{generating ? 'Creating your journey...' : 'Build My Itinerary'}</button>
-        <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, color: `${C.sage}AA`, marginTop: 16 }}>Fully customizable · Powered by Lila Trips</div>
+        <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, color: `${C.sage}AA`, marginTop: 16 }}>Fully customizable · Powered by Lila Trips</div>
         <div style={{ marginTop: 20 }}>
           <button onClick={onBack} style={{
-            fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 500, color: `${C.sage}AA`,
+            fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 500, color: `${C.sage}AA`,
             background: "none", border: "none", cursor: "pointer",
             textDecoration: "underline", textUnderlineOffset: 3, padding: 12, minHeight: 44,
             WebkitTapHighlightColor: "transparent",
@@ -1821,7 +1821,7 @@ function GeneratingScreen({ destination }) {
 
       <div style={{
         fontFamily: "'Quicksand', sans-serif",
-        fontSize: "clamp(11px, 3vw, 13px)", fontWeight: 400,
+        fontSize: "clamp(12px, 3vw, 14px)", fontWeight: 400,
         color: C.sage, opacity: 0.75,
         marginBottom: 28, textAlign: "center",
         lineHeight: 1.6,
@@ -1904,7 +1904,7 @@ function GeneratingScreen({ destination }) {
       {/* Step count */}
       <div style={{
         fontFamily: "'Quicksand', sans-serif",
-        fontSize: 10, fontWeight: 500,
+        fontSize: 11, fontWeight: 500,
         letterSpacing: "0.12em", textTransform: "uppercase",
         color: `${C.sage}70`,
         marginTop: 8,

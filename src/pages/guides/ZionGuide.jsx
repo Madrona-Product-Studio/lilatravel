@@ -27,7 +27,7 @@ function SectionLabel({ children }) {
   return (
     <div style={{
       fontFamily: "'Quicksand', sans-serif",
-      fontSize: 11, fontWeight: 700,
+      fontSize: 12, fontWeight: 700,
       letterSpacing: "0.28em", textTransform: "uppercase",
       color: C.skyBlue, marginBottom: 12,
       textAlign: "center",
@@ -158,7 +158,7 @@ function ListItem({ name, detail, note, tags, featured, url, isMobile, onOpenShe
     }} onMouseEnter={e => { e.target.style.borderColor = C.oceanTeal; e.target.style.color = C.slate || "#3D5A6B"; }}
        onMouseLeave={e => { e.target.style.borderColor = C.stone; e.target.style.color = C.darkInk; }}>
       {name}
-      <span style={{ fontSize: 11, marginLeft: 4, color: "#7A857E" }}>{"↗"}</span>
+      <span style={{ fontSize: 12, marginLeft: 4, color: "#7A857E" }}>{"↗"}</span>
     </a>
   ) : (
     <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 15, fontWeight: 600, color: C.darkInk }}>{name}</span>
@@ -180,7 +180,7 @@ function ListItem({ name, detail, note, tags, featured, url, isMobile, onOpenShe
           {featured && (
             <span style={{
               padding: "2px 10px", border: `1px solid ${C.sunSalmon}40`,
-              fontFamily: "'Quicksand', sans-serif", fontSize: 9, fontWeight: 700,
+              fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700,
               letterSpacing: "0.18em", textTransform: "uppercase", color: C.sunSalmon,
             }}>{"Lila Pick"}</span>
           )}
@@ -188,7 +188,7 @@ function ListItem({ name, detail, note, tags, featured, url, isMobile, onOpenShe
             <span style={{
               display: "inline-flex", alignItems: "center", gap: 4,
               padding: "2px 8px", background: "#2D5F2B10",
-              fontFamily: "'Quicksand', sans-serif", fontSize: 8, fontWeight: 700,
+              fontFamily: "'Quicksand', sans-serif", fontSize: 9, fontWeight: 700,
               letterSpacing: "0.14em", textTransform: "uppercase", color: "#2D5F2B",
             }}>
               <NPSArrowhead size={10} />NPS
@@ -202,7 +202,7 @@ function ListItem({ name, detail, note, tags, featured, url, isMobile, onOpenShe
         }}>{detail}</div>
         {note && (
           <div style={{
-            fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600,
+            fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 600,
             color: C.oceanTeal, marginTop: 4,
           }}>{note}</div>
         )}
@@ -211,7 +211,7 @@ function ListItem({ name, detail, note, tags, featured, url, isMobile, onOpenShe
             {tags.map((t, i) => (
               <span key={i} style={{
                 padding: "2px 8px", background: C.stone + "60",
-                fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 600,
+                fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600,
                 color: "#7A857E",
               }}>{t}</span>
             ))}
@@ -239,7 +239,7 @@ function StayItem({ name, location, tier, detail, tags, url, featured, isMobile,
     }} onMouseEnter={e => e.target.style.borderColor = C.oceanTeal}
        onMouseLeave={e => e.target.style.borderColor = C.stone}>
       {name}
-      <span style={{ fontSize: 11, marginLeft: 4, color: "#7A857E" }}>{"↗"}</span>
+      <span style={{ fontSize: 12, marginLeft: 4, color: "#7A857E" }}>{"↗"}</span>
     </a>
   ) : (
     <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 15, fontWeight: 600, color: C.darkInk }}>{name}</span>
@@ -259,16 +259,16 @@ function StayItem({ name, location, tier, detail, tags, url, featured, isMobile,
         <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 3, flexWrap: "wrap" }}>
           <span style={{
             padding: "2px 10px", background: s.bg,
-            fontFamily: "'Quicksand', sans-serif", fontSize: 9, fontWeight: 700,
+            fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700,
             letterSpacing: "0.18em", textTransform: "uppercase", color: s.color,
           }}>{s.label}</span>
           <span style={{
-            fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 500, color: "#7A857E",
+            fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 500, color: "#7A857E",
           }}>{location}</span>
           {featured && (
             <span style={{
               padding: "2px 10px", border: `1px solid ${C.sunSalmon}40`,
-              fontFamily: "'Quicksand', sans-serif", fontSize: 9, fontWeight: 700,
+              fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700,
               letterSpacing: "0.18em", textTransform: "uppercase", color: C.sunSalmon,
             }}>{"Lila Pick"}</span>
           )}
@@ -284,7 +284,7 @@ function StayItem({ name, location, tier, detail, tags, url, featured, isMobile,
             {tags.map((t, i) => (
               <span key={i} style={{
                 padding: "2px 8px", background: C.stone + "60",
-                fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 600,
+                fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600,
                 color: "#7A857E",
               }}>{t}</span>
             ))}
@@ -314,7 +314,7 @@ function ExpandableList({ children, initialCount = 5, label = "more" }) {
             borderBottom: `1px solid ${C.darkInk}`,
             cursor: "pointer",
             fontFamily: "'Quicksand', sans-serif",
-            fontSize: 11, fontWeight: 700,
+            fontSize: 12, fontWeight: 700,
             letterSpacing: "0.2em", textTransform: "uppercase",
             color: C.darkInk, transition: "opacity 0.2s",
           }}
@@ -326,7 +326,7 @@ function ExpandableList({ children, initialCount = 5, label = "more" }) {
             display: "inline-block",
             transition: "transform 0.25s ease",
             transform: expanded ? "rotate(180deg)" : "rotate(0deg)",
-            fontSize: 10,
+            fontSize: 11,
           }}>{"▼"}</span>
         </button>
       )}
@@ -399,18 +399,18 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10, flexWrap: 'wrap' }}>
           <span style={{
             padding: '2px 10px', background: tierStyles[item.tier].bg,
-            fontFamily: "'Quicksand', sans-serif", fontSize: 9, fontWeight: 700,
+            fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700,
             letterSpacing: '0.18em', textTransform: 'uppercase', color: tierStyles[item.tier].color,
           }}>{tierStyles[item.tier].label}</span>
           {item.location && (
-            <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 500, color: '#7A857E' }}>{item.location}</span>
+            <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 500, color: '#7A857E' }}>{item.location}</span>
           )}
         </div>
       )}
       {item.type === 'list' && item.section && (
         <span style={{
           display: 'inline-block', padding: '2px 10px', background: `${C.skyBlue}15`,
-          fontFamily: "'Quicksand', sans-serif", fontSize: 9, fontWeight: 700,
+          fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700,
           letterSpacing: '0.18em', textTransform: 'uppercase', color: C.skyBlue, marginBottom: 10,
         }}>{item.section}</span>
       )}
@@ -426,7 +426,7 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
       {item.featured && (
         <span style={{
           display: 'inline-block', padding: '2px 10px', border: `1px solid ${C.sunSalmon}40`,
-          fontFamily: "'Quicksand', sans-serif", fontSize: 9, fontWeight: 700,
+          fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700,
           letterSpacing: '0.18em', textTransform: 'uppercase', color: C.sunSalmon, marginBottom: 14,
         }}>Lila Pick</span>
       )}
@@ -445,7 +445,7 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
               {(npsPrimaryImage.caption || npsPrimaryImage.credit) && (
                 <div style={{
                   padding: '6px 20px',
-                  fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 400,
+                  fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 400,
                   color: '#7A857E', lineHeight: 1.5,
                 }}>
                   {npsPrimaryImage.caption && <span>{npsPrimaryImage.caption}</span>}
@@ -489,13 +489,13 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
             <NPSArrowhead size={20} color="#2D5F2B" />
             <div>
               <div style={{
-                fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 500,
+                fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 500,
                 color: '#2D5F2B', lineHeight: 1.5,
               }}>
                 Trail information provided by the <strong>National Park Service</strong>
               </div>
               <div style={{
-                fontFamily: "'Quicksand', sans-serif", fontSize: 9, fontWeight: 600,
+                fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 600,
                 letterSpacing: '0.12em', textTransform: 'uppercase',
                 color: '#2D5F2B', opacity: 0.6, marginTop: 2,
               }}>View on NPS.gov ↗</div>
@@ -506,7 +506,7 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
           {(nps.longDescription || nps.shortDescription) && (
             <div style={{ marginBottom: 18 }}>
               <div style={{
-                fontFamily: "'Quicksand', sans-serif", fontSize: 9, fontWeight: 700,
+                fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700,
                 letterSpacing: '0.2em', textTransform: 'uppercase',
                 color: '#2D5F2B', marginBottom: 8,
               }}>NPS Description</div>
@@ -529,12 +529,12 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
               {npsInfoRows.map((row, i) => (
                 <div key={i} style={row.label === 'Location' ? { gridColumn: '1 / -1' } : {}}>
                   <div style={{
-                    fontFamily: "'Quicksand', sans-serif", fontSize: 9, fontWeight: 700,
+                    fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700,
                     letterSpacing: '0.18em', textTransform: 'uppercase',
                     color: '#7A857E', marginBottom: 3,
                   }}>{row.label}</div>
                   <div style={{
-                    fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 500,
+                    fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 500,
                     color: C.darkInk, lineHeight: 1.5,
                   }}>{row.value}</div>
                 </div>
@@ -556,12 +556,12 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
               return (
                 <div style={{ marginBottom: 20 }}>
                   <div style={{
-                    fontFamily: "'Quicksand', sans-serif", fontSize: 9, fontWeight: 700,
+                    fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700,
                     letterSpacing: '0.2em', textTransform: 'uppercase',
                     color: '#7A857E', marginBottom: 8,
                   }}>Accessibility</div>
                   <p style={{
-                    fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 400,
+                    fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 400,
                     color: '#4A5650', lineHeight: 1.6, margin: 0,
                   }}>{text}</p>
                 </div>
@@ -601,7 +601,7 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
             return (
               <div style={{ marginBottom: 20 }}>
                 <div style={{
-                  fontFamily: "'Quicksand', sans-serif", fontSize: 9, fontWeight: 700,
+                  fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700,
                   letterSpacing: '0.2em', textTransform: 'uppercase',
                   color: '#7A857E', marginBottom: 10,
                 }}>Trail Accessibility</div>
@@ -616,13 +616,13 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
                     }}>
                       {row.label && (
                         <div style={{
-                          fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700,
+                          fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700,
                           color: C.darkInk, marginBottom: 3,
                         }}>{row.label}</div>
                       )}
                       {row.values.map((val, j) => (
                         <div key={j} style={{
-                          fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 400,
+                          fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 400,
                           color: '#4A5650', lineHeight: 1.6,
                         }}>{val}</div>
                       ))}
@@ -631,7 +631,7 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
                   {footnote && (
                     <div style={{
                       padding: '8px 14px',
-                      fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 400,
+                      fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 400,
                       fontStyle: 'italic', color: '#7A857E', lineHeight: 1.5,
                     }}>{footnote}</div>
                   )}
@@ -648,19 +648,19 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
               borderLeft: `3px solid ${C.goldenAmber}40`,
             }}>
               <div style={{
-                fontFamily: "'Quicksand', sans-serif", fontSize: 9, fontWeight: 700,
+                fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700,
                 letterSpacing: '0.2em', textTransform: 'uppercase',
                 color: C.goldenAmber, marginBottom: 8,
               }}>Our Take</div>
               {item.detail && (
                 <p style={{
-                  fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 400,
+                  fontFamily: "'Quicksand', sans-serif", fontSize: 14, fontWeight: 400,
                   color: '#4A5650', lineHeight: 1.7, margin: '0 0 6px',
                 }}>{item.detail}</p>
               )}
               {item.note && (
                 <div style={{
-                  fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600,
+                  fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 600,
                   color: C.oceanTeal,
                 }}>{item.note}</div>
               )}
@@ -673,7 +673,7 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
               {item.tags.map((t, i) => (
                 <span key={i} style={{
                   padding: '3px 10px', background: C.stone + '60',
-                  fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600, color: '#7A857E',
+                  fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 600, color: '#7A857E',
                 }}>{t}</span>
               ))}
             </div>
@@ -695,7 +695,7 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
           {/* Note */}
           {item.note && (
             <div style={{
-              fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 600,
+              fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 600,
               color: C.oceanTeal, marginBottom: 14,
             }}>{item.note}</div>
           )}
@@ -706,7 +706,7 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
               {item.tags.map((t, i) => (
                 <span key={i} style={{
                   padding: '3px 10px', background: C.stone + '60',
-                  fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600, color: '#7A857E',
+                  fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 600, color: '#7A857E',
                 }}>{t}</span>
               ))}
             </div>
@@ -719,13 +719,13 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
         <a href={item.url} target="_blank" rel="noopener noreferrer" style={{
           display: 'inline-flex', alignItems: 'center', gap: 6,
           padding: '10px 20px', border: `1.5px solid ${C.oceanTeal}`,
-          fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700,
+          fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 700,
           letterSpacing: '0.16em', textTransform: 'uppercase',
           color: C.oceanTeal, textDecoration: 'none', transition: 'all 0.25s',
         }}
         onMouseEnter={e => { e.currentTarget.style.background = C.oceanTeal; e.currentTarget.style.color = '#fff'; }}
         onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = C.oceanTeal; }}
-        >Visit Website <span style={{ fontSize: 12 }}>↗</span></a>
+        >Visit Website <span style={{ fontSize: 13 }}>↗</span></a>
       )}
     </div>
   );
@@ -827,9 +827,9 @@ function WildlifeEntry({ name, season, detail, accent, isMobile }) {
     }}>
       <div style={{ display: "flex", alignItems: "baseline", gap: 10, flexWrap: "wrap" }}>
         <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 14, fontWeight: 600, color: C.darkInk }}>{name}</span>
-        <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: accent }}>{season}</span>
+        <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: accent }}>{season}</span>
       </div>
-      <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: "clamp(12px, 1.5vw, 13px)", fontWeight: 400, color: "#4A5650", lineHeight: 1.7, margin: 0 }}>{detail}</p>
+      <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: "clamp(13px, 1.5vw, 14px)", fontWeight: 400, color: "#4A5650", lineHeight: 1.7, margin: 0 }}>{detail}</p>
     </div>
   );
 }
@@ -853,14 +853,14 @@ function ParkPassport({ park, isMobile }) {
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 6 }}>
           <div style={{
             fontFamily: "'Quicksand', sans-serif",
-            fontSize: 9, fontWeight: 700,
+            fontSize: 10, fontWeight: 700,
             letterSpacing: "0.28em", textTransform: "uppercase",
             color: park.accent,
           }}>
             {park.isPrimary ? "Anchor Park" : `Est. ${park.established}`}
           </div>
           {!park.isPrimary && park.driveFrom && (
-            <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 9, fontWeight: 600, letterSpacing: "0.08em", color: "#7A857E" }}>
+            <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 600, letterSpacing: "0.08em", color: "#7A857E" }}>
               {park.driveFrom}
             </div>
           )}
@@ -872,7 +872,7 @@ function ParkPassport({ park, isMobile }) {
         }}>{park.name}</div>
         <div style={{
           fontFamily: "'Quicksand', sans-serif",
-          fontSize: 12, fontWeight: 400, color: "#4A5650", lineHeight: 1.6, fontStyle: "italic",
+          fontSize: 13, fontWeight: 400, color: "#4A5650", lineHeight: 1.6, fontStyle: "italic",
         }}>{park.soul}</div>
       </div>
 
@@ -884,17 +884,17 @@ function ParkPassport({ park, isMobile }) {
       }}>
         {park.isPrimary && (
           <div style={{ gridColumn: "1 / -1" }}>
-            <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 9, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#7A857E", marginBottom: 2 }}>Established</div>
-            <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 600, color: C.darkInk }}>{park.established}</div>
+            <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#7A857E", marginBottom: 2 }}>Established</div>
+            <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 14, fontWeight: 600, color: C.darkInk }}>{park.established}</div>
           </div>
         )}
         <div>
-          <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 9, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#7A857E", marginBottom: 2 }}>Acreage</div>
-          <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 600, color: C.darkInk }}>{park.acreage}</div>
+          <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#7A857E", marginBottom: 2 }}>Acreage</div>
+          <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 600, color: C.darkInk }}>{park.acreage}</div>
         </div>
         <div>
-          <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 9, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#7A857E", marginBottom: 2 }}>Elevation</div>
-          <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 600, color: C.darkInk }}>{park.elevation}</div>
+          <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#7A857E", marginBottom: 2 }}>Elevation</div>
+          <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 600, color: C.darkInk }}>{park.elevation}</div>
         </div>
       </div>
 
@@ -903,7 +903,7 @@ function ParkPassport({ park, isMobile }) {
         {park.facts.map((fact, i) => (
           <div key={i} style={{ display: "flex", gap: 8, marginBottom: 7, alignItems: "flex-start" }}>
             <div style={{ width: 4, height: 4, borderRadius: "50%", background: park.accent, opacity: 0.6, marginTop: 6, flexShrink: 0 }} />
-            <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 400, color: "#4A5650", lineHeight: 1.6 }}>{fact}</span>
+            <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 400, color: "#4A5650", lineHeight: 1.6 }}>{fact}</span>
           </div>
         ))}
       </div>
@@ -911,7 +911,7 @@ function ParkPassport({ park, isMobile }) {
       {/* NPS link */}
       <a href={park.npsUrl} target="_blank" rel="noopener noreferrer" style={{
         marginTop: 16,
-        fontFamily: "'Quicksand', sans-serif", fontSize: 9, fontWeight: 700,
+        fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700,
         letterSpacing: "0.18em", textTransform: "uppercase",
         color: park.accent, textDecoration: "none",
       }}>
@@ -950,7 +950,7 @@ function WildlifeDrawer({ isMobile }) {
             <line x1="9" y1="13" x2="12" y2="11" stroke={C.seaGlass} strokeWidth="1" />
           </svg>
           <div>
-            <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 9, fontWeight: 700, letterSpacing: "0.24em", textTransform: "uppercase", color: C.seaGlass, marginBottom: 2 }}>
+            <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "0.24em", textTransform: "uppercase", color: C.seaGlass, marginBottom: 2 }}>
               The Living Corridor
             </div>
             <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: isMobile ? 17 : 19, fontWeight: 400, color: C.darkInk, lineHeight: 1.1 }}>
@@ -958,9 +958,9 @@ function WildlifeDrawer({ isMobile }) {
             </div>
           </div>
         </div>
-        <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 9, fontWeight: 600, letterSpacing: "0.12em", color: "#7A857E", display: "flex", alignItems: "center", gap: 6 }}>
+        <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 600, letterSpacing: "0.12em", color: "#7A857E", display: "flex", alignItems: "center", gap: 6 }}>
           <span>{open ? "Collapse" : "Explore"}</span>
-          <span style={{ display: "inline-block", transform: open ? "rotate(180deg)" : "rotate(0deg)", transition: "transform 0.3s ease", fontSize: 12 }}>↓</span>
+          <span style={{ display: "inline-block", transform: open ? "rotate(180deg)" : "rotate(0deg)", transition: "transform 0.3s ease", fontSize: 13 }}>↓</span>
         </div>
       </button>
 
@@ -969,7 +969,7 @@ function WildlifeDrawer({ isMobile }) {
         <div style={{ borderTop: `1px solid ${C.stone}` }}>
           {/* Intro */}
           <div style={{ padding: isMobile ? "16px 18px 12px" : "18px 22px 12px" }}>
-            <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 400, color: "#4A5650", lineHeight: 1.7, margin: 0 }}>
+            <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 400, color: "#4A5650", lineHeight: 1.7, margin: 0 }}>
               Zion sits at the crossroads of four ecological zones. Bryce's high plateaus add a fifth dimension. Capitol Reef's Waterpocket Fold creates micro-climates found nowhere else. Together, the corridor hosts 78 mammal species, 291 birds, and plant life that shifts from desert floor to subalpine forest within a single day's drive.
             </p>
           </div>
@@ -982,7 +982,7 @@ function WildlifeDrawer({ isMobile }) {
                 style={{
                   flex: 1, padding: "11px 8px", background: activeGroup === g.label ? `${g.accent}10` : "transparent",
                   border: "none", borderBottom: `2px solid ${activeGroup === g.label ? g.accent : "transparent"}`,
-                  cursor: "pointer", fontFamily: "'Quicksand', sans-serif", fontSize: 9, fontWeight: 700,
+                  cursor: "pointer", fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700,
                   letterSpacing: "0.18em", textTransform: "uppercase",
                   color: activeGroup === g.label ? g.accent : "#7A857E", transition: "all 0.2s",
                 }}
@@ -1007,22 +1007,22 @@ function WildlifeDrawer({ isMobile }) {
                   >
                     <div style={{ flex: 1 }}>
                       <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap", marginBottom: 3 }}>
-                        <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 600, color: C.darkInk }}>{entry.name}</span>
-                        <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 9, fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: group.accent }}>{entry.season}</span>
+                        <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 14, fontWeight: 600, color: C.darkInk }}>{entry.name}</span>
+                        <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: group.accent }}>{entry.season}</span>
                       </div>
                       <div style={{ display: "flex", gap: 5, flexWrap: "wrap" }}>
                         {entry.parks.map((p, pi) => (
-                          <span key={p} style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 9, fontWeight: 500, color: "#7A857E", letterSpacing: "0.04em" }}>
+                          <span key={p} style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 500, color: "#7A857E", letterSpacing: "0.04em" }}>
                             {p}{pi < entry.parks.length - 1 ? " ·" : ""}
                           </span>
                         ))}
                       </div>
                     </div>
-                    <span style={{ display: "inline-block", transform: isExpanded ? "rotate(180deg)" : "rotate(0deg)", transition: "transform 0.25s", color: "#7A857E", fontSize: 12, flexShrink: 0, marginTop: 2 }}>↓</span>
+                    <span style={{ display: "inline-block", transform: isExpanded ? "rotate(180deg)" : "rotate(0deg)", transition: "transform 0.25s", color: "#7A857E", fontSize: 13, flexShrink: 0, marginTop: 2 }}>↓</span>
                   </button>
                   <div style={{ maxHeight: isExpanded ? 200 : 0, overflow: "hidden", transition: "max-height 0.35s cubic-bezier(0.4,0,0.2,1)" }}>
                     <div style={{ padding: isMobile ? "0 18px 16px" : "0 22px 16px" }}>
-                      <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 400, color: "#4A5650", lineHeight: 1.75, margin: 0, borderLeft: `2px solid ${group.accent}50`, paddingLeft: 12 }}>
+                      <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 400, color: "#4A5650", lineHeight: 1.75, margin: 0, borderLeft: `2px solid ${group.accent}50`, paddingLeft: 12 }}>
                         {entry.detail}
                       </p>
                     </div>
@@ -1058,7 +1058,7 @@ function OfferingCard({ icon, label, title, description, cta, ctaAction, accent,
       <div style={{ marginBottom: 20 }}>{icon}</div>
       <div style={{
         fontFamily: "'Quicksand', sans-serif",
-        fontSize: 10, fontWeight: 700,
+        fontSize: 11, fontWeight: 700,
         letterSpacing: "0.22em", textTransform: "uppercase",
         color: accent, marginBottom: 10,
       }}>{label}</div>
@@ -1069,7 +1069,7 @@ function OfferingCard({ icon, label, title, description, cta, ctaAction, accent,
       }}>{title}</div>
       <p style={{
         fontFamily: "'Quicksand', sans-serif",
-        fontSize: 13, fontWeight: 400,
+        fontSize: 14, fontWeight: 400,
         color: "#4A5650", lineHeight: 1.65, margin: "0 0 auto",
         paddingBottom: 24,
       }}>{description}</p>
@@ -1082,7 +1082,7 @@ function OfferingCard({ icon, label, title, description, cta, ctaAction, accent,
           border: `1.5px solid ${accent}`,
           color: accent,
           fontFamily: "'Quicksand', sans-serif",
-          fontSize: 10, fontWeight: 700,
+          fontSize: 11, fontWeight: 700,
           letterSpacing: "0.16em", textTransform: "uppercase",
           cursor: "pointer", transition: "all 0.25s",
         }}
@@ -1092,7 +1092,7 @@ function OfferingCard({ icon, label, title, description, cta, ctaAction, accent,
       {secondary && (
         <div style={{
           fontFamily: "'Quicksand', sans-serif",
-          fontSize: 10, fontWeight: 500, color: "#7A857E",
+          fontSize: 11, fontWeight: 500, color: "#7A857E",
           marginTop: 10, letterSpacing: "0.04em",
         }}>{secondary}</div>
       )}
@@ -1163,7 +1163,7 @@ function PlanMyTripCTA({ variant = "default" }) {
         }}>{v.heading}</div>
         <p style={{
           fontFamily: "'Quicksand', sans-serif",
-          fontSize: "clamp(13px, 1.6vw, 14px)", fontWeight: 400,
+          fontSize: "clamp(14px, 1.6vw, 14px)", fontWeight: 400,
           color: isDark ? "rgba(255,255,255,0.75)" : "#4A5650",
           lineHeight: 1.65, maxWidth: 480, margin: "0 auto 24px",
         }}>{v.body}</p>
@@ -1183,7 +1183,7 @@ function PlanMyTripCTA({ variant = "default" }) {
               ? (hovered ? C.darkInk : "#fff")
               : (hovered ? "#fff" : C.darkInk),
             fontFamily: "'Quicksand', sans-serif",
-            fontSize: 11, fontWeight: 700,
+            fontSize: 12, fontWeight: 700,
             letterSpacing: "0.18em", textTransform: "uppercase",
             cursor: "pointer", transition: "all 0.3s",
           }}
@@ -1191,7 +1191,7 @@ function PlanMyTripCTA({ variant = "default" }) {
         {!isDark && (
           <div style={{
             fontFamily: "'Quicksand', sans-serif",
-            fontSize: 10, fontWeight: 500, color: "#7A857E",
+            fontSize: 11, fontWeight: 500, color: "#7A857E",
             marginTop: 12, letterSpacing: "0.04em",
           }}>One-time purchase · Includes offline access</div>
         )}
@@ -1216,7 +1216,7 @@ function ThresholdTripCard({ title, dates, duration, description, spotsLeft, acc
       }}>
         <div style={{
           fontFamily: "'Quicksand', sans-serif",
-          fontSize: 10, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase",
+          fontSize: 11, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase",
           color: accent,
         }}>Threshold Trip</div>
         {spotsLeft && (
@@ -1224,7 +1224,7 @@ function ThresholdTripCard({ title, dates, duration, description, spotsLeft, acc
             padding: "2px 10px",
             border: `1px solid ${accent}40`,
             fontFamily: "'Quicksand', sans-serif",
-            fontSize: 9, fontWeight: 700,
+            fontSize: 10, fontWeight: 700,
             letterSpacing: "0.14em", textTransform: "uppercase",
             color: accent,
           }}>{spotsLeft} spots left</div>
@@ -1236,12 +1236,12 @@ function ThresholdTripCard({ title, dates, duration, description, spotsLeft, acc
       }}>{title}</div>
       <div style={{
         fontFamily: "'Quicksand', sans-serif",
-        fontSize: 11, fontWeight: 600, letterSpacing: "0.06em",
+        fontSize: 12, fontWeight: 600, letterSpacing: "0.06em",
         color: accent, marginBottom: 16,
       }}>{dates} · {duration} · Guided group</div>
       <p style={{
         fontFamily: "'Quicksand', sans-serif",
-        fontSize: "clamp(13px, 1.6vw, 14px)", fontWeight: 400,
+        fontSize: "clamp(14px, 1.6vw, 14px)", fontWeight: 400,
         lineHeight: 1.7, color: "rgba(255,255,255,0.75)", margin: "0 0 24px",
       }}>{description}</p>
       <div style={{ display: "flex", gap: 12, alignItems: "center", flexWrap: "wrap" }}>
@@ -1254,14 +1254,14 @@ function ThresholdTripCard({ title, dates, duration, description, spotsLeft, acc
             background: hovered ? "white" : "transparent",
             color: hovered ? C.darkInk : "white",
             fontFamily: "'Quicksand', sans-serif",
-            fontSize: 11, fontWeight: 700,
+            fontSize: 12, fontWeight: 700,
             letterSpacing: "0.2em", textTransform: "uppercase",
             cursor: "pointer", transition: "all 0.3s",
           }}
         >Express Interest</button>
         <span style={{
           fontFamily: "'Quicksand', sans-serif",
-          fontSize: 11, fontWeight: 500, color: "rgba(255,255,255,0.55)",
+          fontSize: 12, fontWeight: 500, color: "rgba(255,255,255,0.55)",
           letterSpacing: "0.04em",
         }}>From $895 per person</span>
       </div>
@@ -1289,13 +1289,13 @@ function TimingAlertCapture() {
           <>
             <div style={{
               fontFamily: "'Quicksand', sans-serif",
-              fontSize: 11, fontWeight: 700,
+              fontSize: 12, fontWeight: 700,
               letterSpacing: "0.2em", textTransform: "uppercase",
               color: C.goldenAmber, marginBottom: 8,
             }}>You're on the list</div>
             <div style={{
               fontFamily: "'Quicksand', sans-serif",
-              fontSize: 13, fontWeight: 400,
+              fontSize: 14, fontWeight: 400,
               color: "#4A5650", lineHeight: 1.6,
             }}>We'll let you know when the golden window opens.</div>
           </>
@@ -1309,7 +1309,7 @@ function TimingAlertCapture() {
             }}>Get Zion timing alerts</div>
             <p style={{
               fontFamily: "'Quicksand', sans-serif",
-              fontSize: 13, fontWeight: 400,
+              fontSize: 14, fontWeight: 400,
               color: "#4A5650", lineHeight: 1.6,
               maxWidth: 420, margin: "0 auto 20px",
             }}>We track conditions, seasonal windows, and earth rhythms — and let you know when it's time to go.</p>
@@ -1328,7 +1328,7 @@ function TimingAlertCapture() {
                   border: `1px solid ${C.stone}`,
                   background: "#fff",
                   fontFamily: "'Quicksand', sans-serif",
-                  fontSize: 13, fontWeight: 400, color: C.darkInk,
+                  fontSize: 14, fontWeight: 400, color: C.darkInk,
                   outline: "none",
                 }}
               />
@@ -1339,7 +1339,7 @@ function TimingAlertCapture() {
                   background: C.goldenAmber,
                   border: "none", color: "#fff",
                   fontFamily: "'Quicksand', sans-serif",
-                  fontSize: 11, fontWeight: 700,
+                  fontSize: 12, fontWeight: 700,
                   letterSpacing: "0.16em", textTransform: "uppercase",
                   cursor: "pointer", transition: "opacity 0.2s",
                   whiteSpace: "nowrap",
@@ -1350,7 +1350,7 @@ function TimingAlertCapture() {
             </div>
             <div style={{
               fontFamily: "'Quicksand', sans-serif",
-              fontSize: 10, fontWeight: 400, color: "#7A857E",
+              fontSize: 11, fontWeight: 400, color: "#7A857E",
               marginTop: 10, letterSpacing: "0.04em",
             }}>No spam. Just timing.</div>
           </>
@@ -1609,7 +1609,7 @@ function GuideNav({ isMobile }) {
                     borderBottom: `2px solid ${isActive ? C.oceanTeal : "transparent"}`,
                     cursor: "pointer",
                     fontFamily: "'Quicksand', sans-serif",
-                    fontSize: 11,
+                    fontSize: 12,
                     fontWeight: isActive ? 700 : 600,
                     letterSpacing: "0.14em",
                     textTransform: "uppercase",
@@ -1635,7 +1635,7 @@ function GuideNav({ isMobile }) {
                   {section.label}
                   <span style={{
                     display: "inline-block", marginLeft: 4,
-                    fontSize: 7, opacity: isActive ? 1 : 0.5,
+                    fontSize: 9, opacity: isActive ? 1 : 0.5,
                     transition: "opacity 0.25s",
                   }}>{"↓"}</span>
                 </button>
@@ -1724,7 +1724,7 @@ function CelestialDrawer({ isMobile }) {
   const riverColors = { low: C.seaGlass, moderate: C.skyBlue, high: C.goldenAmber, dangerous: C.sunSalmon };
   const LABEL_STYLE = {
     fontFamily: "'Quicksand', sans-serif",
-    fontSize: 8, fontWeight: 700,
+    fontSize: 9, fontWeight: 700,
     letterSpacing: "0.2em", textTransform: "uppercase",
     color: "#b8b0a8", marginBottom: 6,
   };
@@ -1735,7 +1735,7 @@ function CelestialDrawer({ isMobile }) {
   };
   const SUB_STYLE = {
     fontFamily: "'Quicksand', sans-serif",
-    fontSize: 11, fontWeight: 400,
+    fontSize: 12, fontWeight: 400,
     color: "#8a9098", marginTop: 4,
   };
 
@@ -1778,7 +1778,7 @@ function CelestialDrawer({ isMobile }) {
         }} />
         <span style={{
           fontFamily: "'Quicksand', sans-serif",
-          fontSize: 10, fontWeight: 700,
+          fontSize: 11, fontWeight: 700,
           letterSpacing: "0.18em", textTransform: "uppercase",
           color: "#7A857E", flexShrink: 0,
         }}>
@@ -1787,7 +1787,7 @@ function CelestialDrawer({ isMobile }) {
         {!isMobile && teasers.length > 0 && (
           <span style={{
             fontFamily: "'Quicksand', sans-serif",
-            fontSize: 10, fontWeight: 500,
+            fontSize: 11, fontWeight: 500,
             color: "#b8b0a8", letterSpacing: "0.04em",
           }}>
             — {teasers.join("  ·  ")}
@@ -1796,7 +1796,7 @@ function CelestialDrawer({ isMobile }) {
         {isMobile && weather && (
           <span style={{
             fontFamily: "'Quicksand', sans-serif",
-            fontSize: 10, fontWeight: 500,
+            fontSize: 11, fontWeight: 500,
             color: "#b8b0a8", letterSpacing: "0.04em",
           }}>
             · {weather.temp}° · {moon?.name}
@@ -1970,7 +1970,7 @@ export default function ZionGuide() {
                 {/* The land's history */}
                 <p style={{
                   fontFamily: "'Quicksand', sans-serif",
-                  fontSize: "clamp(13px, 1.6vw, 14px)", fontWeight: 400,
+                  fontSize: "clamp(14px, 1.6vw, 14px)", fontWeight: 400,
                   color: "#4A5650", lineHeight: 1.75, maxWidth: 460,
                   margin: "0 0 14px",
                 }}>
@@ -1980,7 +1980,7 @@ export default function ZionGuide() {
                 {/* Why we think it's magical */}
                 <p style={{
                   fontFamily: "'Quicksand', sans-serif",
-                  fontSize: "clamp(13px, 1.6vw, 14px)", fontWeight: 400,
+                  fontSize: "clamp(14px, 1.6vw, 14px)", fontWeight: 400,
                   color: "#4A5650", lineHeight: 1.75, maxWidth: 460,
                   margin: 0,
                 }}>
@@ -1997,7 +1997,7 @@ export default function ZionGuide() {
                 paddingLeft: 28,
               }}>
                 <div style={{
-                  fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700,
+                  fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700,
                   letterSpacing: "0.22em", textTransform: "uppercase",
                   color: "#7A857E", marginBottom: 18,
                 }}>This guide covers</div>
@@ -2005,7 +2005,7 @@ export default function ZionGuide() {
                 {/* Parks */}
                 <div style={{ marginBottom: 16 }}>
                   <div style={{
-                    fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700,
+                    fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700,
                     letterSpacing: "0.2em", textTransform: "uppercase",
                     color: C.seaGlass, marginBottom: 10,
                   }}>Parks</div>
@@ -2023,7 +2023,7 @@ export default function ZionGuide() {
                         background: C.seaGlass, opacity: 0.5,
                       }} />
                       <span style={{
-                        fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600,
+                        fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 600,
                         letterSpacing: "0.02em", color: C.darkInk,
                       }}>{park.label}</span>
                     </a>
@@ -2033,7 +2033,7 @@ export default function ZionGuide() {
                 {/* Gateway Towns */}
                 <div style={{ marginBottom: 16 }}>
                   <div style={{
-                    fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700,
+                    fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700,
                     letterSpacing: "0.2em", textTransform: "uppercase",
                     color: C.goldenAmber, marginBottom: 10,
                   }}>Gateway Towns</div>
@@ -2046,7 +2046,7 @@ export default function ZionGuide() {
                         background: C.goldenAmber, opacity: 0.5,
                       }} />
                       <span style={{
-                        fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600,
+                        fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 600,
                         letterSpacing: "0.02em", color: C.darkInk,
                       }}>{town}</span>
                     </div>
@@ -2055,7 +2055,7 @@ export default function ZionGuide() {
 
                 {/* Updated */}
                 <div style={{
-                  fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 500,
+                  fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 500,
                   letterSpacing: "0.06em", color: "#7A857E", marginTop: 14,
                   paddingTop: 12, borderTop: `1px solid ${C.stone}`,
                 }}>
@@ -2098,7 +2098,7 @@ export default function ZionGuide() {
               }}>
                 <span style={{
                   fontFamily: "'Quicksand', sans-serif",
-                  fontSize: 10, fontWeight: 600,
+                  fontSize: 11, fontWeight: 600,
                   letterSpacing: "0.08em",
                   color: "rgba(255,255,255,0.8)",
                 }}>{img.caption}</span>
@@ -2149,7 +2149,7 @@ export default function ZionGuide() {
               </div>
               {!isMobile && (
                 <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 8, marginBottom: 4 }}>
-                  <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 9, fontWeight: 500, letterSpacing: "0.12em", color: "#7A857E" }}>
+                  <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 500, letterSpacing: "0.12em", color: "#7A857E" }}>
                     Zion → Bryce Canyon: 1.5 hrs &nbsp;·&nbsp; Bryce → Capitol Reef: 2 hrs
                   </div>
                 </div>
@@ -2177,7 +2177,7 @@ export default function ZionGuide() {
                   { l: "Best Times", v: "Mar–May, Sep–Nov" },
                 ].map((s, i) => (
                   <div key={i}>
-                    <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: C.oceanTeal, marginBottom: 3 }}>{s.l}</div>
+                    <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: C.oceanTeal, marginBottom: 3 }}>{s.l}</div>
                     <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 14, fontWeight: 600, color: C.darkInk }}>{s.v}</div>
                   </div>
                 ))}
@@ -2242,8 +2242,8 @@ export default function ZionGuide() {
                   { label: "Premium", desc: "World-class", color: C.goldenAmber },
                 ].map((t, i) => (
                   <div key={i} style={{ flex: isMobile ? "0 0 auto" : "1 1 140px" }}>
-                    <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", color: t.color }}>{t.label}</span>
-                    <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 400, color: "#4A5650", marginLeft: 6 }}>{t.desc}</span>
+                    <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 700, letterSpacing: "0.1em", color: t.color }}>{t.label}</span>
+                    <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 400, color: "#4A5650", marginLeft: 6 }}>{t.desc}</span>
                   </div>
                 ))}
               </div>
@@ -2734,7 +2734,7 @@ export default function ZionGuide() {
               }}>
                 <p style={{
                   fontFamily: "'Quicksand', sans-serif",
-                  fontSize: 13, fontWeight: 400,
+                  fontSize: 14, fontWeight: 400,
                   color: "#4A5650", lineHeight: 1.6, margin: "0 0 16px",
                 }}>See all upcoming group trips across every destination.</p>
                 <Link to="/group-trips" style={{
@@ -2743,7 +2743,7 @@ export default function ZionGuide() {
                   border: `1.5px solid ${C.sunSalmon}`,
                   color: C.sunSalmon,
                   fontFamily: "'Quicksand', sans-serif",
-                  fontSize: 11, fontWeight: 700,
+                  fontSize: 12, fontWeight: 700,
                   letterSpacing: "0.18em", textTransform: "uppercase",
                   textDecoration: "none",
                   transition: "all 0.25s",
@@ -2767,7 +2767,7 @@ export default function ZionGuide() {
             <FadeIn>
               <span style={{
                 fontFamily: "'Quicksand', sans-serif",
-                fontSize: 11, fontWeight: 700,
+                fontSize: 12, fontWeight: 700,
                 letterSpacing: "0.28em", textTransform: "uppercase",
                 color: C.skyBlue, display: "block", marginBottom: 16,
               }}>Begin</span>
@@ -2778,7 +2778,7 @@ export default function ZionGuide() {
               }}>Your Zion trip starts here</h3>
               <p style={{
                 fontFamily: "'Quicksand', sans-serif",
-                fontSize: "clamp(13px, 1.6vw, 14px)", fontWeight: 400,
+                fontSize: "clamp(14px, 1.6vw, 14px)", fontWeight: 400,
                 color: "#4A5650", maxWidth: 460,
                 margin: "0 auto 36px", lineHeight: 1.65,
               }}>
@@ -2790,7 +2790,7 @@ export default function ZionGuide() {
                 background: C.darkInk, color: "#fff",
                 textAlign: "center", display: "inline-block",
                 fontFamily: "'Quicksand', sans-serif",
-                fontSize: 11, fontWeight: 700,
+                fontSize: 12, fontWeight: 700,
                 letterSpacing: "0.2em", textTransform: "uppercase",
                 cursor: "pointer", transition: "opacity 0.2s",
                 textDecoration: "none",
@@ -2810,7 +2810,7 @@ export default function ZionGuide() {
                 <span className="eyebrow" style={{ color: "#7A857E" }}>Also Explore</span>
                 <span style={{
                   fontFamily: "'Quicksand', sans-serif",
-                  fontSize: 11, fontWeight: 600,
+                  fontSize: 12, fontWeight: 600,
                   letterSpacing: "0.1em", color: "#7A857E",
                 }}>Guides available for each destination</span>
               </div>
@@ -2830,7 +2830,7 @@ export default function ZionGuide() {
                   >
                     <div style={{ width: 8, height: 8, borderRadius: "50%", background: other.accent, opacity: 0.6 }} />
                     <span style={{
-                      fontFamily: "'Quicksand'", fontSize: 12, fontWeight: 600,
+                      fontFamily: "'Quicksand'", fontSize: 13, fontWeight: 600,
                       letterSpacing: "0.1em", textTransform: "uppercase", color: C.darkInk,
                     }}>{other.name}</span>
                   </Link>

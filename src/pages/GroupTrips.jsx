@@ -51,7 +51,7 @@ export default function GroupTrips() {
                   <div style={{
                     position: "absolute", top: 14, right: 14, zIndex: 2,
                     fontFamily: "'Quicksand', sans-serif",
-                    fontSize: 9, fontWeight: 700,
+                    fontSize: 10, fontWeight: 700,
                     letterSpacing: "0.18em", textTransform: "uppercase",
                     color: C.darkInk,
                     background: "rgba(255,255,255,0.92)",
@@ -81,7 +81,7 @@ export default function GroupTrips() {
           </p>
           <Link to="/contact" style={{
             fontFamily: "'Quicksand', sans-serif",
-            fontSize: 10, fontWeight: 700,
+            fontSize: 11, fontWeight: 700,
             letterSpacing: "0.2em", textTransform: "uppercase",
             color: "white", padding: "12px 28px",
             border: "1px solid rgba(255,255,255,0.35)",

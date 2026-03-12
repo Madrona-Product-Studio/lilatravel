@@ -53,7 +53,7 @@ export default function BigSurGuide() {
               </h1>
               <p style={{
                 fontFamily: "'Quicksand', sans-serif",
-                fontSize: "clamp(13px, 1.6vw, 15px)", fontWeight: 400,
+                fontSize: "clamp(14px, 1.6vw, 15px)", fontWeight: 400,
                 color: "rgba(255,255,255,0.8)", maxWidth: 460,
                 margin: 0, lineHeight: 1.6,
               }}>
@@ -73,7 +73,7 @@ export default function BigSurGuide() {
           <div style={{ maxWidth: 520, margin: "0 auto" }}>
             <span style={{
               fontFamily: "'Quicksand', sans-serif",
-              fontSize: 11, fontWeight: 700,
+              fontSize: 12, fontWeight: 700,
               letterSpacing: "0.28em", textTransform: "uppercase",
               color: C.seaGlass, display: "block", marginBottom: 16,
             }}>Coming Soon</span>
@@ -84,7 +84,7 @@ export default function BigSurGuide() {
             }}>This guide is being woven together.</h2>
             <p style={{
               fontFamily: "'Quicksand', sans-serif",
-              fontSize: "clamp(13px, 1.6vw, 15px)", fontWeight: 400,
+              fontSize: "clamp(14px, 1.6vw, 15px)", fontWeight: 400,
               color: "#4A5650", lineHeight: 1.7, margin: "0 0 36px",
             }}>
               We're scouting trails, tasting menus, and timing the light along the coast. Check back soon — or start planning now and we'll match you with what we know.
@@ -94,7 +94,7 @@ export default function BigSurGuide() {
               padding: "14px 36px",
               background: C.darkInk, color: "#fff",
               fontFamily: "'Quicksand', sans-serif",
-              fontSize: 11, fontWeight: 700,
+              fontSize: 12, fontWeight: 700,
               letterSpacing: "0.2em", textTransform: "uppercase",
               textDecoration: "none", transition: "opacity 0.2s",
             }}

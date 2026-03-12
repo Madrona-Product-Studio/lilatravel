@@ -87,7 +87,7 @@ export default function RitualDetail() {
                             {tradMeta?.symbol}
                           </span>
                           <span style={{
-                            fontFamily: "'Quicksand'", fontSize: 11, fontWeight: 700,
+                            fontFamily: "'Quicksand'", fontSize: 12, fontWeight: 700,
                             letterSpacing: "0.15em", textTransform: "uppercase",
                             color: tradMeta?.color || C.darkInk,
                           }}>{t.name}</span>
@@ -150,7 +150,7 @@ export default function RitualDetail() {
                       borderLeft: `2px solid ${pillar.color}40`,
                     }}>
                       <span style={{
-                        fontFamily: "'Quicksand'", fontSize: 13, fontWeight: 500,
+                        fontFamily: "'Quicksand'", fontSize: 14, fontWeight: 500,
                         color: C.darkInk, letterSpacing: "0.02em",
                       }}>{detail}</span>
                     </div>
@@ -175,7 +175,7 @@ export default function RitualDetail() {
                     >
                       <span style={{ fontSize: 16, color: other.color }}>{other.icon}</span>
                       <span style={{
-                        fontFamily: "'Quicksand'", fontSize: 12, fontWeight: 600,
+                        fontFamily: "'Quicksand'", fontSize: 13, fontWeight: 600,
                         letterSpacing: "0.1em", textTransform: "uppercase", color: C.darkInk,
                       }}>{other.word}</span>
                     </Link>

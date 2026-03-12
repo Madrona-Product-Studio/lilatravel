@@ -33,7 +33,7 @@ export default function LilaModal({
 
   const btnBase = {
     fontFamily: FONTS.body,
-    fontSize: 13,
+    fontSize: 14,
     fontWeight: 600,
     letterSpacing: "0.08em",
     textTransform: "uppercase",

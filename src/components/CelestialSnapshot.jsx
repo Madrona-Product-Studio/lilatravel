@@ -16,7 +16,7 @@ import { getCelestialSnapshot } from '@services/celestialService';
 
 const LABEL = {
   fontFamily: "'Quicksand', sans-serif",
-  fontSize: 9, fontWeight: 700,
+  fontSize: 10, fontWeight: 700,
   letterSpacing: "0.2em", textTransform: "uppercase",
   color: "#b8b0a8", marginBottom: 6,
 };
@@ -29,7 +29,7 @@ const VALUE = {
 
 const DETAIL = {
   fontFamily: "'Quicksand', sans-serif",
-  fontSize: 11, fontWeight: 400,
+  fontSize: 12, fontWeight: 400,
   color: "#8a9098", lineHeight: 1.5,
 };
 
@@ -173,7 +173,7 @@ function CollapsedView({ data, onExpand }) {
 
   const CELL_LABEL = {
     fontFamily: "'Quicksand', sans-serif",
-    fontSize: 9, fontWeight: 700,
+    fontSize: 10, fontWeight: 700,
     letterSpacing: "0.18em", textTransform: "uppercase",
     color: "#b8b0a8", marginTop: 6,
   };
@@ -206,7 +206,7 @@ function CollapsedView({ data, onExpand }) {
     <>
       <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
         <RiverDot level={river.level} />
-        <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600, color: riverColors[river.level] || C.stone }}>
+        <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 600, color: riverColors[river.level] || C.stone }}>
           {riverLabels[river.level] || river.label}
         </span>
       </div>
@@ -231,7 +231,7 @@ function CollapsedView({ data, onExpand }) {
       </div>
       <div style={{
         fontFamily: "'Quicksand', sans-serif",
-        fontSize: 11, fontWeight: 400,
+        fontSize: 12, fontWeight: 400,
         color: "#8a9098", marginBottom: 16,
       }}>Zion Canyon — right now</div>
 
@@ -257,7 +257,7 @@ function CollapsedView({ data, onExpand }) {
         style={{
           background: "none", border: "none", padding: 0, cursor: "pointer",
           fontFamily: "'Quicksand', sans-serif",
-          fontSize: 10, fontWeight: 700,
+          fontSize: 11, fontWeight: 700,
           letterSpacing: "0.14em", textTransform: "uppercase",
           color: C.oceanTeal,
         }}
@@ -289,7 +289,7 @@ function ExpandedView({ data, onCollapse }) {
       </div>
       <div style={{
         fontFamily: "'Quicksand', sans-serif",
-        fontSize: 11, fontWeight: 400,
+        fontSize: 12, fontWeight: 400,
         color: "#8a9098", marginBottom: 16,
       }}>Zion Canyon — right now</div>
 
@@ -316,7 +316,7 @@ function ExpandedView({ data, onCollapse }) {
         <div style={{ borderBottom: `1px solid ${C.stone}`, padding: "14px 0" }}>
           <div style={LABEL}>DAYLIGHT</div>
           <SunArc progress={sun.progress} />
-          <div style={{ ...VALUE, fontSize: 12, textAlign: "center" }}>{sun.daylight}</div>
+          <div style={{ ...VALUE, fontSize: 13, textAlign: "center" }}>{sun.daylight}</div>
           <div style={{
             display: "flex", justifyContent: "space-between",
             marginTop: 8, padding: "8px 10px",
@@ -324,12 +324,12 @@ function ExpandedView({ data, onCollapse }) {
             border: `1px solid ${C.goldenAmber}18`,
           }}>
             <div style={{ textAlign: "left" }}>
-              <div style={{ ...LABEL, fontSize: 8, marginBottom: 2 }}>SUNRISE</div>
-              <div style={{ ...VALUE, fontSize: 13 }}>{sun.rise}</div>
+              <div style={{ ...LABEL, fontSize: 9, marginBottom: 2 }}>SUNRISE</div>
+              <div style={{ ...VALUE, fontSize: 14 }}>{sun.rise}</div>
             </div>
             <div style={{ textAlign: "right" }}>
-              <div style={{ ...LABEL, fontSize: 8, marginBottom: 2 }}>SUNSET</div>
-              <div style={{ ...VALUE, fontSize: 13 }}>{sun.set}</div>
+              <div style={{ ...LABEL, fontSize: 9, marginBottom: 2 }}>SUNSET</div>
+              <div style={{ ...VALUE, fontSize: 14 }}>{sun.set}</div>
             </div>
           </div>
         </div>
@@ -400,7 +400,7 @@ function ExpandedView({ data, onCollapse }) {
         style={{
           background: "none", border: "none", padding: 0, cursor: "pointer",
           fontFamily: "'Quicksand', sans-serif",
-          fontSize: 10, fontWeight: 700,
+          fontSize: 11, fontWeight: 700,
           letterSpacing: "0.14em", textTransform: "uppercase",
           color: C.oceanTeal, marginTop: 14,
         }}
@@ -422,7 +422,7 @@ function ExpandedView({ data, onCollapse }) {
                 width: 5, height: 5, borderRadius: "50%",
                 background: C.sunSalmon, marginTop: 4, flexShrink: 0,
               }} />
-              <span style={{ ...DETAIL, fontSize: 11, color: "#5a6a78" }}>{alert}</span>
+              <span style={{ ...DETAIL, fontSize: 12, color: "#5a6a78" }}>{alert}</span>
             </div>
           ))}
         </div>

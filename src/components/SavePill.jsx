@@ -114,7 +114,7 @@ export default function SavePill({ itineraryId, rawItinerary, formData, itinerar
         padding: '10px 18px', borderRadius: 24,
         background: C.slate, color: C.white,
         border: 'none', cursor: 'pointer',
-        fontFamily: F, fontSize: 12, fontWeight: 600,
+        fontFamily: F, fontSize: 13, fontWeight: 600,
         letterSpacing: '0.04em',
         boxShadow: `0 4px 20px ${C.ink}25`,
         WebkitTapHighlightColor: 'transparent',
@@ -145,7 +145,7 @@ export default function SavePill({ itineraryId, rawItinerary, formData, itinerar
         padding: '14px 16px 12px',
         borderBottom: `1px solid ${C.sage}0c`,
       }}>
-        <span style={{ fontFamily: F, fontSize: 13, fontWeight: 600, color: C.ink }}>
+        <span style={{ fontFamily: F, fontSize: 14, fontWeight: 600, color: C.ink }}>
           {mode === 'save' ? 'Save this trip' : 'Share this trip'}
         </span>
         <button onClick={handleClose} style={{
@@ -174,7 +174,7 @@ export default function SavePill({ itineraryId, rawItinerary, formData, itinerar
           }}>
             {tab.icon}
             <span style={{
-              fontFamily: F, fontSize: 10, fontWeight: mode === tab.key ? 600 : 500,
+              fontFamily: F, fontSize: 11, fontWeight: mode === tab.key ? 600 : 500,
               color: mode === tab.key ? C.oceanTeal : `${C.sage}70`,
             }}>{tab.label}</span>
           </button>
@@ -187,17 +187,17 @@ export default function SavePill({ itineraryId, rawItinerary, formData, itinerar
           /* Confirmation */
           <div style={{ textAlign: 'center', padding: '8px 0' }}>
             <CheckIcon size={20} color={C.seaGlass} />
-            <div style={{ fontFamily: F, fontSize: 13, fontWeight: 600, color: C.ink, marginTop: 8 }}>
+            <div style={{ fontFamily: F, fontSize: 14, fontWeight: 600, color: C.ink, marginTop: 8 }}>
               {mode === 'save' ? 'Link sent!' : 'Itinerary shared!'}
             </div>
-            <div style={{ fontFamily: F, fontSize: 11, color: C.muted, marginTop: 4, lineHeight: 1.5 }}>
+            <div style={{ fontFamily: F, fontSize: 12, color: C.muted, marginTop: 4, lineHeight: 1.5 }}>
               {mode === 'save' ? 'Check your inbox for the link.' : `We sent it to ${email}.`}
             </div>
           </div>
         ) : (
           /* Email input + send */
           <>
-            <div style={{ fontFamily: F, fontSize: 11, color: C.muted, marginBottom: 8, lineHeight: 1.5 }}>
+            <div style={{ fontFamily: F, fontSize: 12, color: C.muted, marginBottom: 8, lineHeight: 1.5 }}>
               {mode === 'save'
                 ? "We'll email you a link so you can pick up right where you left off."
                 : "Enter their email and we'll send the itinerary over."}
@@ -211,7 +211,7 @@ export default function SavePill({ itineraryId, rawItinerary, formData, itinerar
                 placeholder={mode === 'save' ? 'your@email.com' : 'their@email.com'}
                 style={{
                   flex: 1, padding: '9px 12px',
-                  fontFamily: F, fontSize: 12, fontWeight: 400,
+                  fontFamily: F, fontSize: 13, fontWeight: 400,
                   color: C.ink, background: C.white,
                   border: `1px solid ${C.sage}20`, borderRadius: 6,
                   outline: 'none', boxSizing: 'border-box',
@@ -222,7 +222,7 @@ export default function SavePill({ itineraryId, rawItinerary, formData, itinerar
               />
               <button onClick={handleSend} disabled={sending || !email.includes('@')} style={{
                 padding: '9px 14px', borderRadius: 6,
-                fontFamily: F, fontSize: 11, fontWeight: 600,
+                fontFamily: F, fontSize: 12, fontWeight: 600,
                 color: (sending || !email.includes('@')) ? `${C.sage}50` : C.white,
                 background: (sending || !email.includes('@')) ? `${C.sage}08` : C.oceanTeal,
                 border: (sending || !email.includes('@')) ? `1px solid ${C.sage}15` : 'none',
@@ -235,7 +235,7 @@ export default function SavePill({ itineraryId, rawItinerary, formData, itinerar
               </button>
             </div>
             {sendError && (
-              <div style={{ fontFamily: F, fontSize: 11, color: '#B06A5A', marginTop: 8, lineHeight: 1.5 }}>
+              <div style={{ fontFamily: F, fontSize: 12, color: '#B06A5A', marginTop: 8, lineHeight: 1.5 }}>
                 Hmm, that didn't go through. Try again?
               </div>
             )}
@@ -248,7 +248,7 @@ export default function SavePill({ itineraryId, rawItinerary, formData, itinerar
           borderTop: `1px solid ${C.sage}0c`,
           display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         }}>
-          <span style={{ fontFamily: F, fontSize: 10, color: C.muted }}>Or copy link</span>
+          <span style={{ fontFamily: F, fontSize: 11, color: C.muted }}>Or copy link</span>
           <button onClick={handleCopy} style={{
             display: 'flex', alignItems: 'center', gap: 5,
             padding: '5px 10px', borderRadius: 5,
@@ -259,7 +259,7 @@ export default function SavePill({ itineraryId, rawItinerary, formData, itinerar
           }}>
             {copied ? <CheckIcon size={10} color={C.seaGlass} /> : <CopyIcon size={10} color={C.sage} />}
             <span style={{
-              fontFamily: F, fontSize: 10, fontWeight: 600,
+              fontFamily: F, fontSize: 11, fontWeight: 600,
               color: copied ? C.seaGlass : C.sage,
             }}>
               {copied ? 'Copied!' : 'Copy link'}

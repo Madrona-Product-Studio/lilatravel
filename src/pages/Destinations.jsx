@@ -107,7 +107,7 @@ export default function DestinationsPage() {
                         <div style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
                           <div style={{ width: 16, height: 1, background: d.accent, boxShadow: "0 0 4px rgba(0,0,0,0.3)" }} />
                           <span style={{
-                            fontFamily: "'Quicksand'", fontSize: 9, fontWeight: 700,
+                            fontFamily: "'Quicksand'", fontSize: 10, fontWeight: 700,
                             letterSpacing: "0.22em", textTransform: "uppercase",
                             color: "rgba(255,255,255,0.92)",
                             textShadow: "0 1px 6px rgba(0,0,0,0.5), 0 0 2px rgba(0,0,0,0.3)",
@@ -117,7 +117,7 @@ export default function DestinationsPage() {
                           <div style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
                             <div style={{ width: 7, height: 7, borderRadius: "50%", background: "#7DB8A0" }} />
                             <span style={{
-                              fontFamily: "'Quicksand'", fontSize: 11, fontWeight: 600,
+                              fontFamily: "'Quicksand'", fontSize: 12, fontWeight: 600,
                               letterSpacing: "0.06em",
                               color: "rgba(255,255,255,0.9)",
                             }}>Guide Available</span>
@@ -126,7 +126,7 @@ export default function DestinationsPage() {
                           <div style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
                             <div style={{ width: 7, height: 7, borderRadius: "50%", background: "rgba(255,255,255,0.45)", boxShadow: "0 0 4px rgba(0,0,0,0.3)" }} />
                             <span style={{
-                              fontFamily: "'Quicksand'", fontSize: 11, fontWeight: 600,
+                              fontFamily: "'Quicksand'", fontSize: 12, fontWeight: 600,
                               letterSpacing: "0.06em",
                               color: "rgba(255,255,255,0.6)",
                               textShadow: "0 1px 6px rgba(0,0,0,0.5)",
@@ -140,7 +140,7 @@ export default function DestinationsPage() {
                         <div style={{ display: "flex", gap: 4, flexWrap: "wrap", marginBottom: 10 }}>
                           {d.windows.map((w, wi) => (
                             <span key={wi} style={{
-                              fontFamily: "'Quicksand'", fontSize: 8, fontWeight: 600,
+                              fontFamily: "'Quicksand'", fontSize: 9, fontWeight: 600,
                               letterSpacing: "0.04em",
                               color: "rgba(255,255,255,0.9)",
                               padding: "3px 8px",
@@ -165,7 +165,7 @@ export default function DestinationsPage() {
 
                       {/* Location */}
                       <p style={{
-                        fontFamily: "'Quicksand'", fontSize: 10, fontWeight: 600,
+                        fontFamily: "'Quicksand'", fontSize: 11, fontWeight: 600,
                         letterSpacing: "0.18em", textTransform: "uppercase",
                         color: "rgba(255,255,255,0.5)", marginBottom: 0,
                       }}>{d.location}</p>

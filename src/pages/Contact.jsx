@@ -28,7 +28,7 @@ const INPUT_STYLE = {
 
 const LABEL_STYLE = {
   fontFamily: "'Quicksand', sans-serif",
-  fontSize: 10, fontWeight: 700,
+  fontSize: 11, fontWeight: 700,
   letterSpacing: "0.18em", textTransform: "uppercase",
   color: "#7A857E", marginBottom: 8, display: "block",
 };
@@ -75,7 +75,7 @@ export default function ContactPage() {
         <FadeIn from="bottom" delay={0.1}>
           <span style={{
             fontFamily: "'Quicksand', sans-serif",
-            fontSize: 11, fontWeight: 700,
+            fontSize: 12, fontWeight: 700,
             letterSpacing: "0.28em", textTransform: "uppercase",
             color: C.goldenAmber, display: "block", marginBottom: 20,
           }}>Get in Touch</span>
@@ -115,7 +115,7 @@ export default function ContactPage() {
               }}>
                 <div style={{
                   fontFamily: "'Quicksand', sans-serif",
-                  fontSize: 10, fontWeight: 700,
+                  fontSize: 11, fontWeight: 700,
                   letterSpacing: "0.22em", textTransform: "uppercase",
                   color: C.seaGlass, marginBottom: 16,
                 }}>Message Sent</div>
@@ -161,14 +161,14 @@ export default function ContactPage() {
                         >
                           <div style={{
                             fontFamily: "'Quicksand', sans-serif",
-                            fontSize: 11, fontWeight: isActive ? 700 : 600,
+                            fontSize: 12, fontWeight: isActive ? 700 : 600,
                             letterSpacing: "0.12em", textTransform: "uppercase",
                             color: isActive ? C.oceanTeal : "#7A857E",
                             marginBottom: 4,
                           }}>{cat.value}</div>
                           <div style={{
                             fontFamily: "'Quicksand', sans-serif",
-                            fontSize: 11, fontWeight: 400,
+                            fontSize: 12, fontWeight: 400,
                             color: "#7A857E", lineHeight: 1.4,
                           }}>{cat.detail}</div>
                         </button>
@@ -240,7 +240,7 @@ export default function ContactPage() {
                     border: "none",
                     color: canSubmit ? "#fff" : "#7A857E",
                     fontFamily: "'Quicksand', sans-serif",
-                    fontSize: 12, fontWeight: 700,
+                    fontSize: 13, fontWeight: 700,
                     letterSpacing: "0.18em", textTransform: "uppercase",
                     cursor: canSubmit ? "pointer" : "default",
                     transition: "all 0.25s",
@@ -255,7 +255,7 @@ export default function ContactPage() {
                 {status === "error" && (
                   <p style={{
                     fontFamily: "'Quicksand', sans-serif",
-                    fontSize: 12, fontWeight: 500,
+                    fontSize: 13, fontWeight: 500,
                     color: C.sunSalmon, textAlign: "center",
                     marginTop: 12,
                   }}>Something went wrong. Please try again or email us directly.</p>

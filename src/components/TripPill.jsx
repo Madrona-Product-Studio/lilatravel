@@ -41,7 +41,7 @@ export default function TripPill() {
       padding: '10px 18px', borderRadius: 24,
       background: C.slate, color: C.white,
       border: 'none', cursor: 'pointer',
-      fontFamily: F, fontSize: 12, fontWeight: 600,
+      fontFamily: F, fontSize: 13, fontWeight: 600,
       letterSpacing: '0.04em',
       boxShadow: `0 4px 20px ${C.ink}25`,
       WebkitTapHighlightColor: 'transparent',

@@ -74,7 +74,7 @@ export default function TripCard({ trip, delay = 0 }) {
           }}>
             <span style={{
               fontFamily: "'Quicksand', sans-serif",
-              fontSize: 9, fontWeight: 700,
+              fontSize: 10, fontWeight: 700,
               letterSpacing: "0.2em", textTransform: "uppercase",
               color: trip.color,
               background: "rgba(255,255,255,0.92)",
@@ -85,7 +85,7 @@ export default function TripCard({ trip, delay = 0 }) {
             </span>
             <span style={{
               fontFamily: "'Quicksand', sans-serif",
-              fontSize: 9, fontWeight: 600,
+              fontSize: 10, fontWeight: 600,
               letterSpacing: "0.15em", textTransform: "uppercase",
               color: "#7a8a96",
               background: "rgba(255,255,255,0.92)",
@@ -101,7 +101,7 @@ export default function TripCard({ trip, delay = 0 }) {
             <div style={{
               position: "absolute", top: 14, left: 14,
               fontFamily: "'Quicksand', sans-serif",
-              fontSize: 9, fontWeight: 700,
+              fontSize: 10, fontWeight: 700,
               letterSpacing: "0.18em", textTransform: "uppercase",
               color: C.darkInk,
               background: "rgba(255,255,255,0.92)",
@@ -121,7 +121,7 @@ export default function TripCard({ trip, delay = 0 }) {
         }}>
           <span style={{
             fontFamily: "'Quicksand', sans-serif",
-            fontSize: 10, fontWeight: 700,
+            fontSize: 11, fontWeight: 700,
             letterSpacing: "0.2em", textTransform: "uppercase",
             color: trip.color, display: "block", marginBottom: 8,
           }}>
@@ -161,14 +161,14 @@ export default function TripCard({ trip, delay = 0 }) {
             <div>
               <div style={{
                 fontFamily: "'Quicksand', sans-serif",
-                fontSize: 11, color: "#7a8a96", marginBottom: 2,
+                fontSize: 12, color: "#7a8a96", marginBottom: 2,
               }}>
                 {trip.dates}
               </div>
               {trip.spots && (
                 <div style={{
                   fontFamily: "'Quicksand', sans-serif",
-                  fontSize: 10, fontWeight: 600,
+                  fontSize: 11, fontWeight: 600,
                   color: C.oceanTeal || "#5a9e8f",
                 }}>
                   {trip.spots}

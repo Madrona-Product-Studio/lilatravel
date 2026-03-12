@@ -77,7 +77,7 @@ export default function TravelYourWay({ showHeading = true }) {
           <div style={{ marginBottom: 56, maxWidth: 480 }}>
             <span style={{
               fontFamily: "Quicksand, sans-serif",
-              fontSize: 10, fontWeight: 700,
+              fontSize: 11, fontWeight: 700,
               letterSpacing: "0.22em", textTransform: "uppercase",
               color: C.sunSalmon, display: "block", marginBottom: 16,
             }}>Your Path</span>
@@ -89,7 +89,7 @@ export default function TravelYourWay({ showHeading = true }) {
             }}>Travel your way</h2>
             <p style={{
               fontFamily: "Quicksand, sans-serif",
-              fontSize: 13, fontWeight: 400,
+              fontSize: 14, fontWeight: 400,
               color: "#6a7a84", lineHeight: 1.8,
               margin: 0,
             }}>
@@ -138,7 +138,7 @@ export default function TravelYourWay({ showHeading = true }) {
                   {o.beta && (
                     <span style={{
                       fontFamily: "Quicksand, sans-serif",
-                      fontSize: 8, fontWeight: 700,
+                      fontSize: 9, fontWeight: 700,
                       letterSpacing: "0.12em", textTransform: "uppercase",
                       color: C.oceanTeal,
                       border: `1px solid ${C.oceanTeal}`,
@@ -148,7 +148,7 @@ export default function TravelYourWay({ showHeading = true }) {
                   {o.inDev && (
                     <span style={{
                       fontFamily: "Quicksand, sans-serif",
-                      fontSize: 8, fontWeight: 700,
+                      fontSize: 9, fontWeight: 700,
                       letterSpacing: "0.12em", textTransform: "uppercase",
                       color: "#aab0b8",
                       border: "1px solid #d0d5d9",
@@ -160,7 +160,7 @@ export default function TravelYourWay({ showHeading = true }) {
                 {/* Eyebrow */}
                 <span style={{
                   fontFamily: "Quicksand, sans-serif",
-                  fontSize: 9, fontWeight: 700,
+                  fontSize: 10, fontWeight: 700,
                   letterSpacing: "0.22em", textTransform: "uppercase",
                   color: o.color, display: "block", marginBottom: 10,
                 }}>{o.label}</span>
@@ -178,7 +178,7 @@ export default function TravelYourWay({ showHeading = true }) {
                 {/* Desc */}
                 <p style={{
                   fontFamily: "Quicksand, sans-serif",
-                  fontSize: 12, fontWeight: 400,
+                  fontSize: 13, fontWeight: 400,
                   color: "#6a7a84", lineHeight: 1.85,
                   flex: 1, margin: 0,
                 }}>{o.desc}</p>
@@ -194,7 +194,7 @@ export default function TravelYourWay({ showHeading = true }) {
                       background: o.color,
                       border: "none",
                       fontFamily: "Quicksand, sans-serif",
-                      fontSize: 9, fontWeight: 700,
+                      fontSize: 10, fontWeight: 700,
                       letterSpacing: "0.18em", textTransform: "uppercase",
                       color: "white",
                       cursor: "pointer",
@@ -209,7 +209,7 @@ export default function TravelYourWay({ showHeading = true }) {
                   >{o.cta}</Link>
                   <span style={{
                     fontFamily: "Quicksand, sans-serif",
-                    fontSize: 10, color: "#aab0b8",
+                    fontSize: 11, color: "#aab0b8",
                     display: "block",
                   }}>{o.detail}</span>
                 </div>

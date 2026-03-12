@@ -125,7 +125,7 @@ export default function EthosPage() {
               <span style={{ fontSize: 20, color: b.color, lineHeight: 1 }}>{b.icon}</span>
               <span style={{
                 fontFamily: "'Quicksand', sans-serif",
-                fontSize: 11, fontWeight: 700,
+                fontSize: 12, fontWeight: 700,
                 letterSpacing: "0.16em", textTransform: "uppercase",
                 color: C.darkInk,
               }}>{b.label}</span>
@@ -163,7 +163,7 @@ export default function EthosPage() {
                       <span style={{ fontSize: 24, color: b.color, opacity: 0.7, lineHeight: 1 }}>{b.icon}</span>
                       <span style={{
                         fontFamily: "'Quicksand', sans-serif",
-                        fontSize: 10, fontWeight: 700,
+                        fontSize: 11, fontWeight: 700,
                         letterSpacing: "0.2em", textTransform: "uppercase",
                         color: b.color,
                       }}>{b.label}</span>
@@ -183,7 +183,7 @@ export default function EthosPage() {
 
                     <p style={{
                       fontFamily: "'Quicksand', sans-serif",
-                      fontSize: "clamp(13px, 1.4vw, 15px)",
+                      fontSize: "clamp(14px, 1.4vw, 15px)",
                       fontWeight: 400,
                       color: isDark ? "rgba(255,255,255,0.55)" : "#5a6a78",
                       lineHeight: 2.0,
@@ -197,7 +197,7 @@ export default function EthosPage() {
                       <Link to={b.cta.link} style={{
                         display: "inline-flex", alignItems: "center", gap: 10,
                         fontFamily: "'Quicksand', sans-serif",
-                        fontSize: 11, fontWeight: 700,
+                        fontSize: 12, fontWeight: 700,
                         letterSpacing: "0.18em", textTransform: "uppercase",
                         color: b.color, textDecoration: "none",
                         paddingBottom: 4, borderBottom: `1px solid ${b.color}`,
@@ -216,7 +216,7 @@ export default function EthosPage() {
                   <div style={{ paddingTop: isMobile ? 0 : 48 }}>
                     <span style={{
                       fontFamily: "'Quicksand', sans-serif",
-                      fontSize: 10, fontWeight: 700,
+                      fontSize: 11, fontWeight: 700,
                       letterSpacing: "0.2em", textTransform: "uppercase",
                       color: isDark ? "rgba(255,255,255,0.25)" : "#9aabba",
                       display: "block", marginBottom: 20,
@@ -234,7 +234,7 @@ export default function EthosPage() {
                             key={j}
                             style={{
                               fontFamily: "'Quicksand', sans-serif",
-                              fontSize: 12, fontWeight: 600, letterSpacing: "0.06em",
+                              fontSize: 13, fontWeight: 600, letterSpacing: "0.06em",
                               color: isDark ? `${tagColor}cc` : tagColor,
                               padding: "10px 20px",
                               border: `1px solid ${isDark ? `${tagColor}25` : `${tagColor}30`}`,
@@ -271,7 +271,7 @@ export default function EthosPage() {
                   }}>
                     <span style={{
                       fontFamily: "'Quicksand', sans-serif",
-                      fontSize: 10, fontWeight: 700,
+                      fontSize: 11, fontWeight: 700,
                       letterSpacing: "0.22em", textTransform: "uppercase",
                       color: "#9aabba", display: "block", marginBottom: 8,
                     }}>Five Traditions, Four Principles</span>
@@ -299,7 +299,7 @@ export default function EthosPage() {
                           }}>{t.symbol}</span>
                           <span style={{
                             fontFamily: "'Quicksand', sans-serif",
-                            fontSize: 10, fontWeight: 700,
+                            fontSize: 11, fontWeight: 700,
                             letterSpacing: "0.1em", textTransform: "uppercase",
                             color: "#5a6a78",
                           }}>{t.name}</span>
@@ -327,14 +327,14 @@ export default function EthosPage() {
                             }}>{p.icon}</span>
                             <span style={{
                               fontFamily: "'Quicksand', sans-serif",
-                              fontSize: 11, fontWeight: 700,
+                              fontSize: 12, fontWeight: 700,
                               letterSpacing: "0.12em", textTransform: "uppercase",
                               color: p.color,
                             }}>{p.word}</span>
                           </div>
                           <p style={{
                             fontFamily: "'Quicksand', sans-serif",
-                            fontSize: 13, fontWeight: 400,
+                            fontSize: 14, fontWeight: 400,
                             color: "#6a7a8a", lineHeight: 1.8,
                             margin: 0,
                           }}>{p.desc}</p>
@@ -346,7 +346,7 @@ export default function EthosPage() {
                       <Link to="/ethos/philosophy" style={{
                         display: "inline-flex", alignItems: "center", gap: 10,
                         fontFamily: "'Quicksand', sans-serif",
-                        fontSize: 11, fontWeight: 700,
+                        fontSize: 12, fontWeight: 700,
                         letterSpacing: "0.18em", textTransform: "uppercase",
                         color: "#D4A853", textDecoration: "none",
                         paddingBottom: 4, borderBottom: "1px solid #D4A853",

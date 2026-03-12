@@ -27,7 +27,7 @@ function SectionLabel({ children }) {
   return (
     <div style={{
       fontFamily: "'Quicksand', sans-serif",
-      fontSize: 11, fontWeight: 700,
+      fontSize: 12, fontWeight: 700,
       letterSpacing: "0.28em", textTransform: "uppercase",
       color: C.goldenAmber, marginBottom: 12,
       textAlign: "center",
@@ -169,7 +169,7 @@ function ListItem({ name, detail, note, tags, featured, url, isMobile, onOpenShe
     }} onMouseEnter={e => { e.target.style.borderColor = C.oceanTeal; e.target.style.color = C.slate || "#3D5A6B"; }}
        onMouseLeave={e => { e.target.style.borderColor = C.stone; e.target.style.color = C.darkInk; }}>
       {name}
-      <span style={{ fontSize: 11, marginLeft: 4, color: "#7A857E" }}>{"↗"}</span>
+      <span style={{ fontSize: 12, marginLeft: 4, color: "#7A857E" }}>{"↗"}</span>
     </a>
   ) : (
     <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 15, fontWeight: 600, color: C.darkInk }}>{name}</span>
@@ -191,7 +191,7 @@ function ListItem({ name, detail, note, tags, featured, url, isMobile, onOpenShe
           {featured && (
             <span style={{
               padding: "2px 10px", border: `1px solid ${C.goldenAmber}40`,
-              fontFamily: "'Quicksand', sans-serif", fontSize: 9, fontWeight: 700,
+              fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700,
               letterSpacing: "0.18em", textTransform: "uppercase", color: C.goldenAmber,
             }}>{"Lila Pick"}</span>
           )}
@@ -199,7 +199,7 @@ function ListItem({ name, detail, note, tags, featured, url, isMobile, onOpenShe
             <span style={{
               display: "inline-flex", alignItems: "center", gap: 4,
               padding: "2px 8px", background: "#2D5F2B10",
-              fontFamily: "'Quicksand', sans-serif", fontSize: 8, fontWeight: 700,
+              fontFamily: "'Quicksand', sans-serif", fontSize: 9, fontWeight: 700,
               letterSpacing: "0.14em", textTransform: "uppercase", color: "#2D5F2B",
             }}>
               <NPSArrowhead size={10} />NPS
@@ -213,7 +213,7 @@ function ListItem({ name, detail, note, tags, featured, url, isMobile, onOpenShe
         }}>{detail}</div>
         {note && (
           <div style={{
-            fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600,
+            fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 600,
             color: C.oceanTeal, marginTop: 4,
           }}>{note}</div>
         )}
@@ -222,7 +222,7 @@ function ListItem({ name, detail, note, tags, featured, url, isMobile, onOpenShe
             {tags.map((t, i) => (
               <span key={i} style={{
                 padding: "2px 8px", background: C.stone + "60",
-                fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 600,
+                fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600,
                 color: "#7A857E",
               }}>{t}</span>
             ))}
@@ -250,7 +250,7 @@ function StayItem({ name, location, tier, detail, tags, url, featured, isMobile,
     }} onMouseEnter={e => e.target.style.borderColor = C.oceanTeal}
        onMouseLeave={e => e.target.style.borderColor = C.stone}>
       {name}
-      <span style={{ fontSize: 11, marginLeft: 4, color: "#7A857E" }}>{"↗"}</span>
+      <span style={{ fontSize: 12, marginLeft: 4, color: "#7A857E" }}>{"↗"}</span>
     </a>
   ) : (
     <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 15, fontWeight: 600, color: C.darkInk }}>{name}</span>
@@ -270,16 +270,16 @@ function StayItem({ name, location, tier, detail, tags, url, featured, isMobile,
         <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 3, flexWrap: "wrap" }}>
           <span style={{
             padding: "2px 10px", background: s.bg,
-            fontFamily: "'Quicksand', sans-serif", fontSize: 9, fontWeight: 700,
+            fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700,
             letterSpacing: "0.18em", textTransform: "uppercase", color: s.color,
           }}>{s.label}</span>
           <span style={{
-            fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 500, color: "#7A857E",
+            fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 500, color: "#7A857E",
           }}>{location}</span>
           {featured && (
             <span style={{
               padding: "2px 10px", border: `1px solid ${C.goldenAmber}40`,
-              fontFamily: "'Quicksand', sans-serif", fontSize: 9, fontWeight: 700,
+              fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700,
               letterSpacing: "0.18em", textTransform: "uppercase", color: C.goldenAmber,
             }}>{"Lila Pick"}</span>
           )}
@@ -295,7 +295,7 @@ function StayItem({ name, location, tier, detail, tags, url, featured, isMobile,
             {tags.map((t, i) => (
               <span key={i} style={{
                 padding: "2px 8px", background: C.stone + "60",
-                fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 600,
+                fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600,
                 color: "#7A857E",
               }}>{t}</span>
             ))}
@@ -325,7 +325,7 @@ function ExpandableList({ children, initialCount = 5, label = "more" }) {
             borderBottom: `1px solid ${C.darkInk}`,
             cursor: "pointer",
             fontFamily: "'Quicksand', sans-serif",
-            fontSize: 11, fontWeight: 700,
+            fontSize: 12, fontWeight: 700,
             letterSpacing: "0.2em", textTransform: "uppercase",
             color: C.darkInk, transition: "opacity 0.2s",
           }}
@@ -337,7 +337,7 @@ function ExpandableList({ children, initialCount = 5, label = "more" }) {
             display: "inline-block",
             transition: "transform 0.25s ease",
             transform: expanded ? "rotate(180deg)" : "rotate(0deg)",
-            fontSize: 10,
+            fontSize: 11,
           }}>{"▼"}</span>
         </button>
       )}
@@ -406,18 +406,18 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10, flexWrap: 'wrap' }}>
           <span style={{
             padding: '2px 10px', background: tierStyles[item.tier].bg,
-            fontFamily: "'Quicksand', sans-serif", fontSize: 9, fontWeight: 700,
+            fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700,
             letterSpacing: '0.18em', textTransform: 'uppercase', color: tierStyles[item.tier].color,
           }}>{tierStyles[item.tier].label}</span>
           {item.location && (
-            <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 500, color: '#7A857E' }}>{item.location}</span>
+            <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 500, color: '#7A857E' }}>{item.location}</span>
           )}
         </div>
       )}
       {item.type === 'list' && item.section && (
         <span style={{
           display: 'inline-block', padding: '2px 10px', background: `${C.goldenAmber}15`,
-          fontFamily: "'Quicksand', sans-serif", fontSize: 9, fontWeight: 700,
+          fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700,
           letterSpacing: '0.18em', textTransform: 'uppercase', color: C.goldenAmber, marginBottom: 10,
         }}>{item.section}</span>
       )}
@@ -431,7 +431,7 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
       {item.featured && (
         <span style={{
           display: 'inline-block', padding: '2px 10px', border: `1px solid ${C.goldenAmber}40`,
-          fontFamily: "'Quicksand', sans-serif", fontSize: 9, fontWeight: 700,
+          fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700,
           letterSpacing: '0.18em', textTransform: 'uppercase', color: C.goldenAmber, marginBottom: 14,
         }}>Lila Pick</span>
       )}
@@ -443,7 +443,7 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
               <img src={npsPrimaryImage.url} alt={npsPrimaryImage.altText || item.name}
                 style={{ width: '100%', height: 220, objectFit: 'cover', display: 'block' }} />
               {(npsPrimaryImage.caption || npsPrimaryImage.credit) && (
-                <div style={{ padding: '6px 20px', fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 400, color: '#7A857E', lineHeight: 1.5 }}>
+                <div style={{ padding: '6px 20px', fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 400, color: '#7A857E', lineHeight: 1.5 }}>
                   {npsPrimaryImage.caption && <span>{npsPrimaryImage.caption}</span>}
                   {npsPrimaryImage.credit && (
                     <span style={{ fontStyle: 'italic' }}>{npsPrimaryImage.caption ? ' · ' : ''}Photo: {npsPrimaryImage.credit}</span>
@@ -468,16 +468,16 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
           onMouseLeave={e => e.currentTarget.style.background = '#2D5F2B0D'}>
             <NPSArrowhead size={20} color="#2D5F2B" />
             <div>
-              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 500, color: '#2D5F2B', lineHeight: 1.5 }}>
+              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 500, color: '#2D5F2B', lineHeight: 1.5 }}>
                 Trail information provided by the <strong>National Park Service</strong>
               </div>
-              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 9, fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#2D5F2B', opacity: 0.6, marginTop: 2 }}>View on NPS.gov ↗</div>
+              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#2D5F2B', opacity: 0.6, marginTop: 2 }}>View on NPS.gov ↗</div>
             </div>
           </a>
 
           {(nps.longDescription || nps.shortDescription) && (
             <div style={{ marginBottom: 18 }}>
-              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 9, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#2D5F2B', marginBottom: 8 }}>NPS Description</div>
+              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#2D5F2B', marginBottom: 8 }}>NPS Description</div>
               <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 14, fontWeight: 400, color: '#4A5650', lineHeight: 1.75, margin: 0 }}>{stripHTML(nps.longDescription || nps.shortDescription)}</p>
             </div>
           )}
@@ -486,8 +486,8 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px 16px', marginBottom: 20, padding: '14px 0', borderTop: `1px solid ${C.stone}`, borderBottom: `1px solid ${C.stone}` }}>
               {npsInfoRows.map((row, i) => (
                 <div key={i} style={row.label === 'Location' ? { gridColumn: '1 / -1' } : {}}>
-                  <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 9, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#7A857E', marginBottom: 3 }}>{row.label}</div>
-                  <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 500, color: C.darkInk, lineHeight: 1.5 }}>{row.value}</div>
+                  <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#7A857E', marginBottom: 3 }}>{row.label}</div>
+                  <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 500, color: C.darkInk, lineHeight: 1.5 }}>{row.value}</div>
                 </div>
               ))}
             </div>
@@ -502,8 +502,8 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
               if (!text) return null;
               return (
                 <div style={{ marginBottom: 20 }}>
-                  <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 9, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#7A857E', marginBottom: 8 }}>Accessibility</div>
-                  <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 400, color: '#4A5650', lineHeight: 1.6, margin: 0 }}>{text}</p>
+                  <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#7A857E', marginBottom: 8 }}>Accessibility</div>
+                  <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 400, color: '#4A5650', lineHeight: 1.6, margin: 0 }}>{text}</p>
                 </div>
               );
             }
@@ -523,17 +523,17 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
             const footnote = footnoteMatch ? clean(footnoteMatch[1]) : null;
             return (
               <div style={{ marginBottom: 20 }}>
-                <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 9, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#7A857E', marginBottom: 10 }}>Trail Accessibility</div>
+                <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#7A857E', marginBottom: 10 }}>Trail Accessibility</div>
                 <div style={{ border: `1px solid ${C.stone}`, background: `${C.stone}18` }}>
                   {rows.map((row, i) => (
                     <div key={i} style={{ padding: '9px 14px', borderBottom: `1px solid ${C.stone}` }}>
-                      {row.label && (<div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, color: C.darkInk, marginBottom: 3 }}>{row.label}</div>)}
+                      {row.label && (<div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, color: C.darkInk, marginBottom: 3 }}>{row.label}</div>)}
                       {row.values.map((val, j) => (
-                        <div key={j} style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 400, color: '#4A5650', lineHeight: 1.6 }}>{val}</div>
+                        <div key={j} style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 400, color: '#4A5650', lineHeight: 1.6 }}>{val}</div>
                       ))}
                     </div>
                   ))}
-                  {footnote && (<div style={{ padding: '8px 14px', fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 400, fontStyle: 'italic', color: '#7A857E', lineHeight: 1.5 }}>{footnote}</div>)}
+                  {footnote && (<div style={{ padding: '8px 14px', fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 400, fontStyle: 'italic', color: '#7A857E', lineHeight: 1.5 }}>{footnote}</div>)}
                 </div>
               </div>
             );
@@ -541,16 +541,16 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
 
           {(item.detail || item.note) && (
             <div style={{ padding: '14px 16px', marginBottom: 18, background: `${C.goldenAmber}08`, borderLeft: `3px solid ${C.goldenAmber}40` }}>
-              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 9, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: C.goldenAmber, marginBottom: 8 }}>Our Take</div>
-              {item.detail && (<p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 400, color: '#4A5650', lineHeight: 1.7, margin: '0 0 6px' }}>{item.detail}</p>)}
-              {item.note && (<div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600, color: C.oceanTeal }}>{item.note}</div>)}
+              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: C.goldenAmber, marginBottom: 8 }}>Our Take</div>
+              {item.detail && (<p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 14, fontWeight: 400, color: '#4A5650', lineHeight: 1.7, margin: '0 0 6px' }}>{item.detail}</p>)}
+              {item.note && (<div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 600, color: C.oceanTeal }}>{item.note}</div>)}
             </div>
           )}
 
           {item.tags && item.tags.length > 0 && (
             <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 20 }}>
               {item.tags.map((t, i) => (
-                <span key={i} style={{ padding: '3px 10px', background: C.stone + '60', fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600, color: '#7A857E' }}>{t}</span>
+                <span key={i} style={{ padding: '3px 10px', background: C.stone + '60', fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 600, color: '#7A857E' }}>{t}</span>
               ))}
             </div>
           )}
@@ -560,11 +560,11 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
       {!nps && (
         <>
           {item.detail && (<p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 14, fontWeight: 400, color: '#4A5650', lineHeight: 1.7, margin: '0 0 14px' }}>{item.detail}</p>)}
-          {item.note && (<div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 600, color: C.oceanTeal, marginBottom: 14 }}>{item.note}</div>)}
+          {item.note && (<div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 600, color: C.oceanTeal, marginBottom: 14 }}>{item.note}</div>)}
           {item.tags && item.tags.length > 0 && (
             <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 20 }}>
               {item.tags.map((t, i) => (
-                <span key={i} style={{ padding: '3px 10px', background: C.stone + '60', fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600, color: '#7A857E' }}>{t}</span>
+                <span key={i} style={{ padding: '3px 10px', background: C.stone + '60', fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 600, color: '#7A857E' }}>{t}</span>
               ))}
             </div>
           )}
@@ -575,13 +575,13 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
         <a href={item.url} target="_blank" rel="noopener noreferrer" style={{
           display: 'inline-flex', alignItems: 'center', gap: 6,
           padding: '10px 20px', border: `1.5px solid ${C.oceanTeal}`,
-          fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700,
+          fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 700,
           letterSpacing: '0.16em', textTransform: 'uppercase',
           color: C.oceanTeal, textDecoration: 'none', transition: 'all 0.25s',
         }}
         onMouseEnter={e => { e.currentTarget.style.background = C.oceanTeal; e.currentTarget.style.color = '#fff'; }}
         onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = C.oceanTeal; }}
-        >Visit Website <span style={{ fontSize: 12 }}>↗</span></a>
+        >Visit Website <span style={{ fontSize: 13 }}>↗</span></a>
       )}
     </div>
   );
@@ -629,9 +629,9 @@ function WildlifeEntry({ name, season, detail, isMobile }) {
     <div style={{ display: "flex", flexDirection: "column", gap: 4, padding: "16px 0", borderBottom: `1px solid ${C.stone}` }}>
       <div style={{ display: "flex", alignItems: "baseline", gap: 10, flexWrap: "wrap" }}>
         <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 14, fontWeight: 600, color: C.darkInk }}>{name}</span>
-        <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: C.goldenAmber }}>{season}</span>
+        <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: C.goldenAmber }}>{season}</span>
       </div>
-      <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: "clamp(12px, 1.5vw, 13px)", fontWeight: 400, color: "#4A5650", lineHeight: 1.7, margin: 0 }}>{detail}</p>
+      <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: "clamp(13px, 1.5vw, 14px)", fontWeight: 400, color: "#4A5650", lineHeight: 1.7, margin: 0 }}>{detail}</p>
     </div>
   );
 }
@@ -647,36 +647,36 @@ function ParkPassport({ park, isMobile }) {
     }}>
       <div style={{ marginBottom: 14 }}>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 6 }}>
-          <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 9, fontWeight: 700, letterSpacing: "0.28em", textTransform: "uppercase", color: park.accent }}>
+          <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "0.28em", textTransform: "uppercase", color: park.accent }}>
             Anchor Park
           </div>
         </div>
         <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(22px, 3vw, 28px)", fontWeight: 400, color: C.darkInk, lineHeight: 1.1, marginBottom: 8 }}>{park.name}</div>
-        <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 400, color: "#4A5650", lineHeight: 1.6, fontStyle: "italic" }}>{park.soul}</div>
+        <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 400, color: "#4A5650", lineHeight: 1.6, fontStyle: "italic" }}>{park.soul}</div>
       </div>
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px 12px", padding: "12px 0", borderTop: `1px solid ${C.stone}`, borderBottom: `1px solid ${C.stone}`, marginBottom: 14 }}>
         <div style={{ gridColumn: "1 / -1" }}>
-          <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 9, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#7A857E", marginBottom: 2 }}>Established</div>
-          <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 600, color: C.darkInk }}>{park.established}</div>
+          <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#7A857E", marginBottom: 2 }}>Established</div>
+          <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 14, fontWeight: 600, color: C.darkInk }}>{park.established}</div>
         </div>
         <div>
-          <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 9, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#7A857E", marginBottom: 2 }}>Acreage</div>
-          <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 600, color: C.darkInk }}>{park.acreage}</div>
+          <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#7A857E", marginBottom: 2 }}>Acreage</div>
+          <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 600, color: C.darkInk }}>{park.acreage}</div>
         </div>
         <div>
-          <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 9, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#7A857E", marginBottom: 2 }}>Elevation</div>
-          <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 600, color: C.darkInk }}>{park.elevation}</div>
+          <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#7A857E", marginBottom: 2 }}>Elevation</div>
+          <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 600, color: C.darkInk }}>{park.elevation}</div>
         </div>
       </div>
       <div style={{ flex: 1 }}>
         {park.facts.map((fact, i) => (
           <div key={i} style={{ display: "flex", gap: 8, marginBottom: 7, alignItems: "flex-start" }}>
             <div style={{ width: 4, height: 4, borderRadius: "50%", background: park.accent, opacity: 0.6, marginTop: 6, flexShrink: 0 }} />
-            <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 400, color: "#4A5650", lineHeight: 1.6 }}>{fact}</span>
+            <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 400, color: "#4A5650", lineHeight: 1.6 }}>{fact}</span>
           </div>
         ))}
       </div>
-      <a href={park.npsUrl} target="_blank" rel="noopener noreferrer" style={{ marginTop: 16, fontFamily: "'Quicksand', sans-serif", fontSize: 9, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: park.accent, textDecoration: "none" }}>
+      <a href={park.npsUrl} target="_blank" rel="noopener noreferrer" style={{ marginTop: 16, fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: park.accent, textDecoration: "none" }}>
         NPS Page ↗
       </a>
     </div>
@@ -695,20 +695,20 @@ function TimingAlertCapture() {
       <div style={{ padding: "28px 24px", background: `${C.goldenAmber}08`, border: `1px solid ${C.goldenAmber}30`, textAlign: "center", margin: "8px 0" }}>
         {submitted ? (
           <>
-            <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: C.goldenAmber, marginBottom: 8 }}>You're on the list</div>
-            <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 400, color: "#4A5650", lineHeight: 1.6 }}>We'll let you know when the desert comes alive.</div>
+            <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: C.goldenAmber, marginBottom: 8 }}>You're on the list</div>
+            <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 14, fontWeight: 400, color: "#4A5650", lineHeight: 1.6 }}>We'll let you know when the desert comes alive.</div>
           </>
         ) : (
           <>
             <SectionIcon type="windows" />
             <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(18px, 2.5vw, 22px)", fontWeight: 400, color: C.darkInk, marginBottom: 6 }}>Get Joshua Tree timing alerts</div>
-            <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 400, color: "#4A5650", lineHeight: 1.6, maxWidth: 420, margin: "0 auto 20px" }}>We track dark sky windows, wildflower blooms, and meteor showers — and let you know when it's time to go.</p>
+            <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 14, fontWeight: 400, color: "#4A5650", lineHeight: 1.6, maxWidth: 420, margin: "0 auto 20px" }}>We track dark sky windows, wildflower blooms, and meteor showers — and let you know when it's time to go.</p>
             <div style={{ display: "flex", gap: 8, maxWidth: 380, margin: "0 auto", flexWrap: "wrap", justifyContent: "center" }}>
-              <input type="email" placeholder="your@email.com" value={email} onChange={e => setEmail(e.target.value)} style={{ flex: "1 1 200px", padding: "10px 16px", border: `1px solid ${C.stone}`, background: "#fff", fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 400, color: C.darkInk, outline: "none" }} />
-              <button onClick={() => { if (email) setSubmitted(true); }} style={{ padding: "10px 20px", background: C.goldenAmber, border: "none", color: "#fff", fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", cursor: "pointer", transition: "opacity 0.2s", whiteSpace: "nowrap" }}
+              <input type="email" placeholder="your@email.com" value={email} onChange={e => setEmail(e.target.value)} style={{ flex: "1 1 200px", padding: "10px 16px", border: `1px solid ${C.stone}`, background: "#fff", fontFamily: "'Quicksand', sans-serif", fontSize: 14, fontWeight: 400, color: C.darkInk, outline: "none" }} />
+              <button onClick={() => { if (email) setSubmitted(true); }} style={{ padding: "10px 20px", background: C.goldenAmber, border: "none", color: "#fff", fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", cursor: "pointer", transition: "opacity 0.2s", whiteSpace: "nowrap" }}
                 onMouseEnter={e => e.currentTarget.style.opacity = "0.85"} onMouseLeave={e => e.currentTarget.style.opacity = "1"}>Notify Me</button>
             </div>
-            <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 400, color: "#7A857E", marginTop: 10, letterSpacing: "0.04em" }}>No spam. Just timing.</div>
+            <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 400, color: "#7A857E", marginTop: 10, letterSpacing: "0.04em" }}>No spam. Just timing.</div>
           </>
         )}
       </div>
@@ -818,7 +818,7 @@ function GuideNav({ isMobile }) {
                 <button key={section.id} ref={isActive ? activeItemRef : null} onClick={() => handleClick(section.id)} className="guide-nav-scroll" style={{
                   padding: isMobile ? "16px 14px" : "20px 18px", background: "none", border: "none",
                   borderBottom: `2px solid ${isActive ? C.goldenAmber : "transparent"}`,
-                  cursor: "pointer", fontFamily: "'Quicksand', sans-serif", fontSize: 11,
+                  cursor: "pointer", fontFamily: "'Quicksand', sans-serif", fontSize: 12,
                   fontWeight: isActive ? 700 : 600, letterSpacing: "0.14em", textTransform: "uppercase",
                   color: isActive ? C.goldenAmber : "#7A857E", whiteSpace: "nowrap", flexShrink: 0,
                   transition: "color 0.25s ease, border-color 0.25s ease", position: "relative",
@@ -827,7 +827,7 @@ function GuideNav({ isMobile }) {
                 onMouseLeave={e => { if (!isActive) { e.currentTarget.style.color = "#7A857E"; e.currentTarget.style.borderBottomColor = "transparent"; } }}
                 >
                   {section.label}
-                  <span style={{ display: "inline-block", marginLeft: 4, fontSize: 7, opacity: isActive ? 1 : 0.5, transition: "opacity 0.25s" }}>{"↓"}</span>
+                  <span style={{ display: "inline-block", marginLeft: 4, fontSize: 9, opacity: isActive ? 1 : 0.5, transition: "opacity 0.25s" }}>{"↓"}</span>
                 </button>
               );
             })}
@@ -885,9 +885,9 @@ function CelestialDrawer({ isMobile }) {
   );
 
   const { weather, sun, moon, sky, nextEvent } = data;
-  const LABEL_STYLE = { fontFamily: "'Quicksand', sans-serif", fontSize: 8, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#b8b0a8", marginBottom: 6 };
+  const LABEL_STYLE = { fontFamily: "'Quicksand', sans-serif", fontSize: 9, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#b8b0a8", marginBottom: 6 };
   const VAL_STYLE = { fontFamily: "'Quicksand', sans-serif", fontSize: 14, fontWeight: 600, color: C.darkInk, lineHeight: 1.3 };
-  const SUB_STYLE = { fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 400, color: "#8a9098", marginTop: 4 };
+  const SUB_STYLE = { fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 400, color: "#8a9098", marginTop: 4 };
 
   const teasers = [];
   if (weather) teasers.push(`${weather.temp}° ${weather.condition}`);
@@ -906,16 +906,16 @@ function CelestialDrawer({ isMobile }) {
       onMouseEnter={e => e.currentTarget.style.background = `${C.stone}40`}
       onMouseLeave={e => e.currentTarget.style.background = "transparent"}>
         <span style={{ width: 5, height: 5, borderRadius: "50%", background: C.goldenAmber, animation: "celestialPulse 2s ease-in-out infinite", flexShrink: 0 }} />
-        <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "#7A857E", flexShrink: 0 }}>
+        <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "#7A857E", flexShrink: 0 }}>
           Joshua Tree Right Now
         </span>
         {!isMobile && teasers.length > 0 && (
-          <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 500, color: "#b8b0a8", letterSpacing: "0.04em" }}>
+          <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 500, color: "#b8b0a8", letterSpacing: "0.04em" }}>
             — {teasers.join("  ·  ")}
           </span>
         )}
         {isMobile && weather && (
-          <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 500, color: "#b8b0a8", letterSpacing: "0.04em" }}>
+          <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 500, color: "#b8b0a8", letterSpacing: "0.04em" }}>
             · {weather.temp}° · {moon?.name}
           </span>
         )}
@@ -1060,7 +1060,7 @@ export default function JoshuaTreeGuide() {
 
                 <p style={{
                   fontFamily: "'Quicksand', sans-serif",
-                  fontSize: "clamp(13px, 1.6vw, 14px)", fontWeight: 400,
+                  fontSize: "clamp(14px, 1.6vw, 14px)", fontWeight: 400,
                   color: "#4A5650", lineHeight: 1.75, maxWidth: 460,
                   margin: "0 0 14px",
                 }}>
@@ -1069,7 +1069,7 @@ export default function JoshuaTreeGuide() {
 
                 <p style={{
                   fontFamily: "'Quicksand', sans-serif",
-                  fontSize: "clamp(13px, 1.6vw, 14px)", fontWeight: 400,
+                  fontSize: "clamp(14px, 1.6vw, 14px)", fontWeight: 400,
                   color: "#4A5650", lineHeight: 1.75, maxWidth: 460,
                   margin: 0,
                 }}>
@@ -1079,27 +1079,27 @@ export default function JoshuaTreeGuide() {
 
               {/* ── Right: This Guide Covers ── */}
               <div style={isMobile ? { borderTop: `1px solid ${C.stone}`, paddingTop: 28 } : { borderLeft: `1px solid ${C.stone}`, paddingLeft: 28 }}>
-                <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: "#7A857E", marginBottom: 18 }}>This guide covers</div>
+                <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: "#7A857E", marginBottom: 18 }}>This guide covers</div>
 
                 <div style={{ marginBottom: 16 }}>
-                  <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: C.seaGlass, marginBottom: 10 }}>Park</div>
+                  <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: C.seaGlass, marginBottom: 10 }}>Park</div>
                   <a href="https://www.nps.gov/jotr/" target="_blank" rel="noopener noreferrer" style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 7, textDecoration: "none" }}>
                     <div style={{ width: 5, height: 5, borderRadius: "50%", background: C.seaGlass, opacity: 0.5 }} />
-                    <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600, letterSpacing: "0.02em", color: C.darkInk }}>Joshua Tree National Park</span>
+                    <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 600, letterSpacing: "0.02em", color: C.darkInk }}>Joshua Tree National Park</span>
                   </a>
                 </div>
 
                 <div style={{ marginBottom: 16 }}>
-                  <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: C.goldenAmber, marginBottom: 10 }}>Orbit Towns</div>
+                  <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: C.goldenAmber, marginBottom: 10 }}>Orbit Towns</div>
                   {["Joshua Tree town", "Twentynine Palms", "Pioneertown", "Palm Springs"].map((town, i) => (
                     <div key={i} style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 7 }}>
                       <div style={{ width: 5, height: 5, borderRadius: "50%", background: C.goldenAmber, opacity: 0.5 }} />
-                      <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600, letterSpacing: "0.02em", color: C.darkInk }}>{town}</span>
+                      <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 600, letterSpacing: "0.02em", color: C.darkInk }}>{town}</span>
                     </div>
                   ))}
                 </div>
 
-                <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 500, letterSpacing: "0.06em", color: "#7A857E", marginTop: 14, paddingTop: 12, borderTop: `1px solid ${C.stone}` }}>
+                <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 500, letterSpacing: "0.06em", color: "#7A857E", marginTop: 14, paddingTop: 12, borderTop: `1px solid ${C.stone}` }}>
                   Updated 2026
                 </div>
               </div>
@@ -1139,7 +1139,7 @@ export default function JoshuaTreeGuide() {
               }}>
                 <span style={{
                   fontFamily: "'Quicksand', sans-serif",
-                  fontSize: 10, fontWeight: 600,
+                  fontSize: 11, fontWeight: 600,
                   letterSpacing: "0.08em",
                   color: "rgba(255,255,255,0.8)",
                 }}>{img.caption}</span>
@@ -1184,7 +1184,7 @@ export default function JoshuaTreeGuide() {
             {/* ── Wildlife Section ── */}
             <FadeIn delay={0.1}>
               <div style={{ border: `1px solid ${C.stone}`, background: C.cream, marginTop: 28, padding: isMobile ? "18px" : "22px" }}>
-                <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 9, fontWeight: 700, letterSpacing: "0.24em", textTransform: "uppercase", color: C.seaGlass, marginBottom: 8 }}>Desert Wildlife</div>
+                <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "0.24em", textTransform: "uppercase", color: C.seaGlass, marginBottom: 8 }}>Desert Wildlife</div>
                 <WildlifeEntry isMobile={isMobile} name="Desert Bighorn Sheep" season="Year-round" detail="Most visible at dawn and dusk near water sources. Barker Dam and Lost Palms Oasis are reliable sighting zones." />
                 <WildlifeEntry isMobile={isMobile} name="Desert Tortoise" season="Spring – Fall" detail="Threatened species — do not approach or handle if encountered. Most active in spring after rain. Found in the Colorado Desert section." />
                 <WildlifeEntry isMobile={isMobile} name="Coyote" season="Year-round" detail="Listen for them at dusk. Their calls across the open desert are part of the sound of this place." />
@@ -1207,7 +1207,7 @@ export default function JoshuaTreeGuide() {
                   { l: "Best Times", v: "Mar–May, Oct–Nov" },
                 ].map((s, i) => (
                   <div key={i}>
-                    <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: C.goldenAmber, marginBottom: 3 }}>{s.l}</div>
+                    <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: C.goldenAmber, marginBottom: 3 }}>{s.l}</div>
                     <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 14, fontWeight: 600, color: C.darkInk }}>{s.v}</div>
                   </div>
                 ))}
@@ -1314,8 +1314,8 @@ export default function JoshuaTreeGuide() {
             {/* ── Bouldering & Climbing ── */}
             <FadeIn delay={0.12}>
               <div style={{ marginTop: 36 }}>
-                <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: C.goldenAmber, marginBottom: 16 }}>Bouldering & Climbing</div>
-                <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: "clamp(13px, 1.5vw, 14px)", fontWeight: 400, color: "#4A5650", lineHeight: 1.7, margin: "0 0 16px" }}>
+                <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: C.goldenAmber, marginBottom: 16 }}>Bouldering & Climbing</div>
+                <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: "clamp(14px, 1.5vw, 14px)", fontWeight: 400, color: "#4A5650", lineHeight: 1.7, margin: "0 0 16px" }}>
                   Joshua Tree is one of the world's great trad climbing destinations — over 8,000 established routes on 400+ formations. The rock is monzogranite, coarse-textured and grippy. For non-climbers, watching skilled climbers work the boulders is its own kind of meditation.
                 </p>
                 <ListItem isMobile={isMobile} onOpenSheet={openSheet('Climbing')} name="Intersection Rock"
@@ -1345,7 +1345,7 @@ export default function JoshuaTreeGuide() {
         <div style={{ maxWidth: 680, margin: "0 auto" }}>
           <FadeIn>
             <SectionIcon type="darksky" />
-            <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.28em", textTransform: "uppercase", color: C.goldenAmber, marginBottom: 12, textAlign: "center" }}>Dark Sky</div>
+            <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 700, letterSpacing: "0.28em", textTransform: "uppercase", color: C.goldenAmber, marginBottom: 12, textAlign: "center" }}>Dark Sky</div>
             <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(24px, 4vw, 32px)", fontWeight: 400, color: "#fff", margin: "0 0 6px", lineHeight: 1.2, textAlign: "center" }}>The night sky here is extraordinary</h2>
             <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: isMobile ? 15 : "clamp(14px, 1.8vw, 15px)", fontWeight: 400, color: "rgba(255,255,255,0.7)", margin: "0 auto 28px", lineHeight: 1.7, textAlign: isMobile ? "left" : "center", maxWidth: isMobile ? "100%" : 520 }}>
               Joshua Tree is a certified International Dark Sky Park. Bortle Class 2 conditions in the backcountry — among the darkest accessible skies in Southern California.
@@ -1355,7 +1355,7 @@ export default function JoshuaTreeGuide() {
           <FadeIn delay={0.06}>
             {/* Best Viewing Areas */}
             <div style={{ marginBottom: 32 }}>
-              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: C.goldenAmber, marginBottom: 16 }}>Best Viewing Areas</div>
+              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: C.goldenAmber, marginBottom: 16 }}>Best Viewing Areas</div>
               {[
                 { name: "Cholla Cactus Garden parking area", note: "Colorado Desert — minimal tree obstruction. Silhouetted cactus against the Milky Way." },
                 { name: "Jumbo Rocks Campground", note: "High desert, open sky. Dark sky conditions excellent from your campsite." },
@@ -1364,7 +1364,7 @@ export default function JoshuaTreeGuide() {
               ].map((area, i) => (
                 <div key={i} style={{ padding: "14px 0", borderBottom: `1px solid rgba(255,255,255,0.1)` }}>
                   <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 14, fontWeight: 600, color: "#fff", marginBottom: 4 }}>{area.name}</div>
-                  <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 400, color: "rgba(255,255,255,0.55)", lineHeight: 1.6 }}>{area.note}</div>
+                  <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 400, color: "rgba(255,255,255,0.55)", lineHeight: 1.6 }}>{area.note}</div>
                 </div>
               ))}
             </div>
@@ -1373,7 +1373,7 @@ export default function JoshuaTreeGuide() {
           <FadeIn delay={0.1}>
             {/* Calendar Anchors */}
             <div style={{ marginBottom: 32 }}>
-              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: C.goldenAmber, marginBottom: 16 }}>Calendar Anchors</div>
+              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: C.goldenAmber, marginBottom: 16 }}>Calendar Anchors</div>
               <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: 12 }}>
                 {[
                   { event: "New Moon Windows", timing: "Monthly", detail: "Plan around them for optimal stargazing" },
@@ -1382,9 +1382,9 @@ export default function JoshuaTreeGuide() {
                   { event: "Milky Way Core", timing: "May – August", detail: "Best overhead viewing after midnight" },
                 ].map((cal, i) => (
                   <div key={i} style={{ padding: "14px 16px", border: `1px solid rgba(255,255,255,0.12)`, background: "rgba(255,255,255,0.03)" }}>
-                    <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 600, color: "#fff", marginBottom: 3 }}>{cal.event}</div>
-                    <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: C.goldenAmber, marginBottom: 4 }}>{cal.timing}</div>
-                    <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 400, color: "rgba(255,255,255,0.5)" }}>{cal.detail}</div>
+                    <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 14, fontWeight: 600, color: "#fff", marginBottom: 3 }}>{cal.event}</div>
+                    <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: C.goldenAmber, marginBottom: 4 }}>{cal.timing}</div>
+                    <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 400, color: "rgba(255,255,255,0.5)" }}>{cal.detail}</div>
                   </div>
                 ))}
               </div>
@@ -1394,8 +1394,8 @@ export default function JoshuaTreeGuide() {
           <FadeIn delay={0.14}>
             {/* Practical Notes */}
             <div style={{ padding: "16px 18px", border: `1px solid rgba(255,255,255,0.12)`, background: "rgba(255,255,255,0.03)" }}>
-              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: C.goldenAmber, marginBottom: 10 }}>Practical Notes</div>
-              <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 400, color: "rgba(255,255,255,0.6)", lineHeight: 1.7, margin: 0 }}>
+              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: C.goldenAmber, marginBottom: 10 }}>Practical Notes</div>
+              <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 400, color: "rgba(255,255,255,0.6)", lineHeight: 1.7, margin: 0 }}>
                 Allow 20–30 minutes for eyes to fully dark-adapt. Use a red-lens headlamp — white light ruins night vision for everyone nearby. Download a stargazing app (Sky Guide, Stellarium) before entering the park — there's no cell service. Pair dark sky sessions with Cholla Cactus Garden for the surreal combination of silhouetted cactus against the Milky Way.
               </p>
             </div>
@@ -1584,8 +1584,8 @@ export default function JoshuaTreeGuide() {
                   { label: "Premium", desc: "Elevated experience", color: C.goldenAmber },
                 ].map((t, i) => (
                   <div key={i} style={{ flex: isMobile ? "0 0 auto" : "1 1 140px" }}>
-                    <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", color: t.color }}>{t.label}</span>
-                    <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 400, color: "#4A5650", marginLeft: 6 }}>{t.desc}</span>
+                    <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 700, letterSpacing: "0.1em", color: t.color }}>{t.label}</span>
+                    <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 400, color: "#4A5650", marginLeft: 6 }}>{t.desc}</span>
                   </div>
                 ))}
               </div>
@@ -1704,11 +1704,11 @@ export default function JoshuaTreeGuide() {
 
             <FadeIn delay={0.2}>
               <div style={{ padding: "20px 24px", border: `1px solid ${C.stone}`, textAlign: "center", marginTop: 16 }}>
-                <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 400, color: "#4A5650", lineHeight: 1.6, margin: "0 0 16px" }}>See all upcoming group trips across every destination.</p>
+                <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 14, fontWeight: 400, color: "#4A5650", lineHeight: 1.6, margin: "0 0 16px" }}>See all upcoming group trips across every destination.</p>
                 <Link to="/group-trips" style={{
                   padding: "10px 24px", background: "transparent",
                   border: `1.5px solid ${C.goldenAmber}`, color: C.goldenAmber,
-                  fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700,
+                  fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 700,
                   letterSpacing: "0.18em", textTransform: "uppercase", textDecoration: "none",
                   transition: "all 0.25s", display: "inline-block",
                 }}
@@ -1728,16 +1728,16 @@ export default function JoshuaTreeGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           <section id="cta" style={{ padding: "56px 0 72px", textAlign: "center" }}>
             <FadeIn>
-              <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.28em", textTransform: "uppercase", color: C.goldenAmber, display: "block", marginBottom: 16 }}>Begin</span>
+              <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 700, letterSpacing: "0.28em", textTransform: "uppercase", color: C.goldenAmber, display: "block", marginBottom: 16 }}>Begin</span>
               <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(28px, 5vw, 42px)", fontWeight: 300, color: C.darkInk, margin: "0 0 10px", lineHeight: 1.2 }}>Your desert trip starts here</h3>
-              <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: "clamp(13px, 1.6vw, 14px)", fontWeight: 400, color: "#4A5650", maxWidth: 460, margin: "0 auto 36px", lineHeight: 1.65 }}>
+              <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: "clamp(14px, 1.6vw, 14px)", fontWeight: 400, color: "#4A5650", maxWidth: 460, margin: "0 auto 36px", lineHeight: 1.65 }}>
                 Choose your path — build it yourself with our Trip Planner, or let us craft something personalized for you.
               </p>
               <Link to="/plan" style={{
                 padding: "14px 36px", border: "none",
                 background: C.darkInk, color: "#fff",
                 textAlign: "center", display: "inline-block",
-                fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700,
+                fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 700,
                 letterSpacing: "0.2em", textTransform: "uppercase",
                 cursor: "pointer", transition: "opacity 0.2s", textDecoration: "none",
               }}
@@ -1754,7 +1754,7 @@ export default function JoshuaTreeGuide() {
             <div style={{ padding: "44px 0" }}>
               <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 12, marginBottom: 16 }}>
                 <span className="eyebrow" style={{ color: "#7A857E" }}>Also Explore</span>
-                <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600, letterSpacing: "0.1em", color: "#7A857E" }}>Guides available for each destination</span>
+                <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 600, letterSpacing: "0.1em", color: "#7A857E" }}>Guides available for each destination</span>
               </div>
               <div style={{ display: "flex", gap: 16, flexWrap: "wrap", marginTop: 16 }}>
                 {[
@@ -1771,7 +1771,7 @@ export default function JoshuaTreeGuide() {
                   onMouseLeave={e => { e.currentTarget.style.borderColor = C.stone; }}
                   >
                     <div style={{ width: 8, height: 8, borderRadius: "50%", background: other.accent, opacity: 0.6 }} />
-                    <span style={{ fontFamily: "'Quicksand'", fontSize: 12, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: C.darkInk }}>{other.name}</span>
+                    <span style={{ fontFamily: "'Quicksand'", fontSize: 13, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: C.darkInk }}>{other.name}</span>
                   </Link>
                 ))}
               </div>

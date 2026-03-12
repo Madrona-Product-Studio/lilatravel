@@ -87,12 +87,12 @@ export default function RitualsPage() {
                   }}>{t.symbol}</span>
                   <div>
                     <span style={{
-                      fontFamily: "'Quicksand'", fontSize: 12, fontWeight: 700,
+                      fontFamily: "'Quicksand'", fontSize: 13, fontWeight: 700,
                       letterSpacing: "0.12em", textTransform: "uppercase",
                       color: C.darkInk, display: "block",
                     }}>{t.name}</span>
                     <span style={{
-                      fontFamily: "'Quicksand'", fontSize: 11, fontWeight: 400,
+                      fontFamily: "'Quicksand'", fontSize: 12, fontWeight: 400,
                       color: "#9aabba",
                     }}>{t.origin} · {t.age}</span>
                   </div>
@@ -122,7 +122,7 @@ export default function RitualsPage() {
                   <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 12 }}>
                     <span style={{ fontSize: 36, color: pillar.color, opacity: 0.7 }}>{pillar.icon}</span>
                     <span style={{
-                      fontFamily: "'Quicksand'", fontSize: 12, fontWeight: 700,
+                      fontFamily: "'Quicksand'", fontSize: 13, fontWeight: 700,
                       letterSpacing: "0.2em", textTransform: "uppercase", color: pillar.color,
                     }}>{pillar.word}</span>
                   </div>
@@ -138,12 +138,12 @@ export default function RitualsPage() {
                     <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 16 }}>
                       {pillar.traditions.map((t, j) => (
                         <span key={j} style={{
-                          fontFamily: "'Quicksand'", fontSize: 11, fontWeight: 500,
+                          fontFamily: "'Quicksand'", fontSize: 12, fontWeight: 500,
                           letterSpacing: "0.04em", color: "#7a8a9a",
                           padding: "6px 14px", border: `1px solid ${C.stone}`,
                           display: "flex", alignItems: "center", gap: 6,
                         }}>
-                          <span style={{ fontSize: 13, opacity: 0.5 }}>
+                          <span style={{ fontSize: 14, opacity: 0.5 }}>
                             {traditions.find(tr => tr.name === t.name)?.symbol}
                           </span>
                           {t.concept}
@@ -160,7 +160,7 @@ export default function RitualsPage() {
                       "{pillar.quote}"
                       <br />
                       <span style={{
-                        fontFamily: "'Quicksand'", fontSize: 10, fontWeight: 600,
+                        fontFamily: "'Quicksand'", fontSize: 11, fontWeight: 600,
                         fontStyle: "normal", letterSpacing: "0.08em",
                         color: pillar.color, opacity: 0.7,
                       }}>— {pillar.quoteAuthor}</span>
@@ -168,7 +168,7 @@ export default function RitualsPage() {
 
                     <div>
                       <span style={{
-                        fontFamily: "'Quicksand'", fontSize: 11, fontWeight: 700,
+                        fontFamily: "'Quicksand'", fontSize: 12, fontWeight: 700,
                         letterSpacing: "0.18em", textTransform: "uppercase", color: pillar.color,
                       }}>Explore This Principle →</span>
                     </div>

@@ -223,7 +223,7 @@ export default function PhilosophyPage() {
               <div style={{ width: 24, height: 1, background: C.goldenAmber }} />
               <span style={{
                 fontFamily: "'Quicksand', sans-serif",
-                fontSize: 10, fontWeight: 700,
+                fontSize: 11, fontWeight: 700,
                 letterSpacing: "0.22em", textTransform: "uppercase",
                 color: C.goldenAmber,
               }}>Philosophy</span>
@@ -271,7 +271,7 @@ export default function PhilosophyPage() {
                   }}>{t.symbol}</span>
                   <span style={{
                     fontFamily: "'Quicksand', sans-serif",
-                    fontSize: 10, fontWeight: 700,
+                    fontSize: 11, fontWeight: 700,
                     letterSpacing: "0.1em", textTransform: "uppercase",
                     color: "#5a6a78",
                   }}>{t.name}</span>
@@ -298,7 +298,7 @@ export default function PhilosophyPage() {
                 <span style={{ fontSize: 16, color: p.color, opacity: 0.7 }}>{p.icon}</span>
                 <span style={{
                   fontFamily: "'Quicksand', sans-serif",
-                  fontSize: 11, fontWeight: 700,
+                  fontSize: 12, fontWeight: 700,
                   letterSpacing: "0.14em", textTransform: "uppercase",
                   color: C.darkInk,
                 }}>{p.word}</span>
@@ -341,7 +341,7 @@ export default function PhilosophyPage() {
                     <span style={{ fontSize: 28, color: p.color, opacity: 0.6 }}>{p.icon}</span>
                     <span style={{
                       fontFamily: "'Quicksand', sans-serif",
-                      fontSize: 11, fontWeight: 700,
+                      fontSize: 12, fontWeight: 700,
                       letterSpacing: "0.2em", textTransform: "uppercase",
                       color: p.color,
                     }}>{p.word}</span>
@@ -359,7 +359,7 @@ export default function PhilosophyPage() {
                   </p>
                   <span style={{
                     fontFamily: "'Quicksand', sans-serif",
-                    fontSize: 10, fontWeight: 600,
+                    fontSize: 11, fontWeight: 600,
                     letterSpacing: "0.08em",
                     color: isDark ? "rgba(255,255,255,0.35)" : "#9aabba",
                   }}>— {p.author}</span>
@@ -369,7 +369,7 @@ export default function PhilosophyPage() {
                 <div style={{ paddingTop: 8 }}>
                   <p style={{
                     fontFamily: "'Quicksand', sans-serif",
-                    fontSize: "clamp(13px, 1.4vw, 15px)",
+                    fontSize: "clamp(14px, 1.4vw, 15px)",
                     fontWeight: 400,
                     color: isDark ? "rgba(255,255,255,0.55)" : "#5a6a78",
                     lineHeight: 2.0,
@@ -385,14 +385,14 @@ export default function PhilosophyPage() {
                   }}>
                     <span style={{
                       fontFamily: "'Quicksand', sans-serif",
-                      fontSize: 10, fontWeight: 700,
+                      fontSize: 11, fontWeight: 700,
                       letterSpacing: "0.2em", textTransform: "uppercase",
                       color: isDark ? "rgba(255,255,255,0.25)" : "#9aabba",
                       display: "block", marginBottom: 12,
                     }}>On a Lila trip</span>
                     <p style={{
                       fontFamily: "'Quicksand', sans-serif",
-                      fontSize: 13, fontWeight: 400,
+                      fontSize: 14, fontWeight: 400,
                       color: isDark ? "rgba(255,255,255,0.45)" : "#6a7a8a",
                       lineHeight: 1.85,
                       margin: 0,
@@ -408,7 +408,7 @@ export default function PhilosophyPage() {
               <FadeIn delay={0.1}>
                 <span style={{
                   fontFamily: "'Quicksand', sans-serif",
-                  fontSize: 10, fontWeight: 700,
+                  fontSize: 11, fontWeight: 700,
                   letterSpacing: "0.22em", textTransform: "uppercase",
                   color: isDark ? "rgba(255,255,255,0.25)" : "#9aabba",
                   display: "block", marginBottom: 16,
@@ -440,13 +440,13 @@ export default function PhilosophyPage() {
                         }}>{t.symbol}</span>
                         <span style={{
                           fontFamily: "'Quicksand', sans-serif",
-                          fontSize: 10, fontWeight: 700,
+                          fontSize: 11, fontWeight: 700,
                           letterSpacing: "0.1em", textTransform: "uppercase",
                           color: isDark ? "rgba(255,255,255,0.3)" : "#9aabba",
                         }}>{t.source}</span>
                         <span style={{
                           fontFamily: "'Quicksand', sans-serif",
-                          fontSize: 11, fontWeight: 700,
+                          fontSize: 12, fontWeight: 700,
                           letterSpacing: "0.08em", textTransform: "uppercase",
                           color: isDark ? "rgba(255,255,255,0.8)" : C.darkInk,
                         }}>{t.concept}</span>
@@ -464,7 +464,7 @@ export default function PhilosophyPage() {
                       {/* Line 3: quote */}
                       <p style={{
                         fontFamily: "'Quicksand', sans-serif",
-                        fontSize: 13, fontWeight: 400,
+                        fontSize: 14, fontWeight: 400,
                         color: isDark ? "rgba(255,255,255,0.55)" : "#5a6a78",
                         lineHeight: 1.7, margin: 0,
                         paddingLeft: 28,
@@ -482,7 +482,7 @@ export default function PhilosophyPage() {
                     style={{
                       display: "inline-flex", alignItems: "center", gap: 10,
                       fontFamily: "'Quicksand', sans-serif",
-                      fontSize: 11, fontWeight: 700,
+                      fontSize: 12, fontWeight: 700,
                       letterSpacing: "0.16em", textTransform: "uppercase",
                       color: isDark ? "rgba(255,255,255,0.4)" : "#9aabba",
                       textDecoration: "none",
@@ -554,7 +554,7 @@ export default function PhilosophyPage() {
               <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, marginBottom: 12 }}>
                 <span style={{
                   fontFamily: "'Quicksand', sans-serif",
-                  fontSize: 9, fontWeight: 700,
+                  fontSize: 10, fontWeight: 700,
                   letterSpacing: "0.2em", textTransform: "uppercase",
                   color: C.oceanTeal,
                 }}>
@@ -562,7 +562,7 @@ export default function PhilosophyPage() {
                 </span>
                 <span style={{
                   fontFamily: "'Quicksand', sans-serif",
-                  fontSize: 8, fontWeight: 700,
+                  fontSize: 9, fontWeight: 700,
                   letterSpacing: "0.12em", textTransform: "uppercase",
                   padding: "2px 8px", borderRadius: 4,
                   background: `${C.sunSalmon}15`,
@@ -581,7 +581,7 @@ export default function PhilosophyPage() {
               </p>
               <p style={{
                 fontFamily: "'Quicksand', sans-serif",
-                fontSize: 12, fontWeight: 400,
+                fontSize: 13, fontWeight: 400,
                 color: "#7a8a9a", lineHeight: 1.6, margin: "0 0 20px", textAlign: "center",
               }}>
                 Browse the full library of teachings, practices, and ceremonies across all five traditions — filterable by principle, type, and tradition.
@@ -590,7 +590,7 @@ export default function PhilosophyPage() {
                 <Link to="/ethos/practices" style={{
                   display: "inline-block",
                   fontFamily: "'Quicksand', sans-serif",
-                  fontSize: 10, fontWeight: 700,
+                  fontSize: 11, fontWeight: 700,
                   letterSpacing: "0.18em", textTransform: "uppercase",
                   color: "white", background: C.oceanTeal,
                   padding: "12px 28px", borderRadius: 8,

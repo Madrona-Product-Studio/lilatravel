@@ -52,7 +52,7 @@ export default function DestinationGuide() {
               }}>
                 <div style={{ width: 6, height: 6, borderRadius: "50%", background: dest.accent }} />
                 <span style={{
-                  fontFamily: "'Quicksand'", fontSize: 11, fontWeight: 700,
+                  fontFamily: "'Quicksand'", fontSize: 12, fontWeight: 700,
                   letterSpacing: "0.18em", textTransform: "uppercase", color: dest.accent,
                 }}>
                   Best Window: {dest.threshold}
@@ -96,7 +96,7 @@ export default function DestinationGuide() {
                     onMouseLeave={e => e.currentTarget.style.borderColor = C.stone}
                     >
                       <span style={{
-                        fontFamily: "'Quicksand'", fontSize: 10, fontWeight: 700,
+                        fontFamily: "'Quicksand'", fontSize: 11, fontWeight: 700,
                         letterSpacing: "0.2em", textTransform: "uppercase",
                         color: dest.accent, display: "block", marginBottom: 12,
                       }}>{`0${i + 1}`}</span>
@@ -105,7 +105,7 @@ export default function DestinationGuide() {
                         fontSize: 18, fontWeight: 500, color: C.darkInk, marginBottom: 8,
                       }}>{section}</h4>
                       <p style={{
-                        fontFamily: "'Quicksand'", fontSize: 13, color: "#7a90a0", lineHeight: 1.7,
+                        fontFamily: "'Quicksand'", fontSize: 14, color: "#7a90a0", lineHeight: 1.7,
                       }}>Content for this section will be expanded as the guide is built out.</p>
                     </div>
                   ))}
@@ -131,7 +131,7 @@ export default function DestinationGuide() {
                   <div style={{
                     display: "inline-block", padding: "12px 32px",
                     background: C.darkInk, color: "white",
-                    fontFamily: "'Quicksand'", fontSize: 11, fontWeight: 700,
+                    fontFamily: "'Quicksand'", fontSize: 12, fontWeight: 700,
                     letterSpacing: "0.18em", textTransform: "uppercase",
                     cursor: "pointer", transition: "opacity 0.2s",
                   }}
@@ -159,7 +159,7 @@ export default function DestinationGuide() {
                     >
                       <div style={{ width: 8, height: 8, borderRadius: "50%", background: other.accent, opacity: 0.6 }} />
                       <span style={{
-                        fontFamily: "'Quicksand'", fontSize: 12, fontWeight: 600,
+                        fontFamily: "'Quicksand'", fontSize: 13, fontWeight: 600,
                         letterSpacing: "0.1em", textTransform: "uppercase", color: C.darkInk,
                       }}>{other.name}</span>
                     </Link>

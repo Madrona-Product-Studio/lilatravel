@@ -32,7 +32,7 @@ export default function Footer() {
             Lila Trips
           </Link>
           <p style={{
-            fontFamily: "'Quicksand'", fontSize: 10,
+            fontFamily: "'Quicksand'", fontSize: 11,
             color: "rgba(255,255,255,0.25)", letterSpacing: "0.1em",
           }}>
             Less noise. More magic.
@@ -44,7 +44,7 @@ export default function Footer() {
             <Link key={link.label} to={link.to}
               onClick={() => trackEvent('footer_link_clicked', { label: link.label.toLowerCase(), to: link.to })}
               style={{
-              fontFamily: "'Quicksand'", fontSize: 10, fontWeight: 600,
+              fontFamily: "'Quicksand'", fontSize: 11, fontWeight: 600,
               letterSpacing: "0.18em", textTransform: "uppercase",
               color: "rgba(255,255,255,0.28)", transition: "color 0.25s",
               textDecoration: "none",
@@ -58,7 +58,7 @@ export default function Footer() {
         </div>
 
         <p style={{
-          fontFamily: "'Quicksand'", fontSize: 10,
+          fontFamily: "'Quicksand'", fontSize: 11,
           color: "rgba(255,255,255,0.16)", letterSpacing: "0.06em",
         }}>
           © 2026 Lila Trips

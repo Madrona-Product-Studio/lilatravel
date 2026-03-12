@@ -113,7 +113,7 @@ function MobileMenu({ open, links, onClose }) {
           <Link to="/plan" onClick={() => { trackEvent('nav_clicked', { label: 'plan_a_trip', to: '/plan', page: window.location.pathname }); onClose(); }} style={{
             display: "block",
             fontFamily: "'Quicksand', sans-serif",
-            fontSize: 11, fontWeight: 700,
+            fontSize: 12, fontWeight: 700,
             letterSpacing: "0.2em", textTransform: "uppercase",
             color: "white", background: C.darkInk,
             textAlign: "center", padding: "16px 24px",
@@ -180,7 +180,7 @@ export default function Nav({ transparent = false }) {
             <Link key={link.label} to={link.to}
               onClick={() => trackEvent('nav_clicked', { label: link.label.toLowerCase(), to: link.to, page: location.pathname })}
               style={{
-                fontFamily: "'Quicksand'", fontSize: 11, fontWeight: 600,
+                fontFamily: "'Quicksand'", fontSize: 12, fontWeight: 600,
                 letterSpacing: "0.18em", textTransform: "uppercase",
                 color: showSolid ? C.darkInk : "rgba(255,255,255,0.75)",
                 transition: "opacity 0.2s", textDecoration: "none",
@@ -197,7 +197,7 @@ export default function Nav({ transparent = false }) {
           <Link to="/plan"
             onClick={() => trackEvent('nav_clicked', { label: 'plan_a_trip', to: '/plan', page: location.pathname })}
             style={{
-              fontFamily: "'Quicksand'", fontSize: 10, fontWeight: 700,
+              fontFamily: "'Quicksand'", fontSize: 11, fontWeight: 700,
               letterSpacing: "0.2em", textTransform: "uppercase",
               color: showSolid ? C.darkInk : "white",
               padding: "9px 20px", textDecoration: "none",

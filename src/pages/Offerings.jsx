@@ -116,7 +116,7 @@ export default function OfferingsPage() {
                 <div style={{ width: 48, height: 1, background: C.sunSalmon }} />
               </div>
               <span style={{
-                fontFamily: "'Quicksand'", fontSize: 10, fontWeight: 700,
+                fontFamily: "'Quicksand'", fontSize: 11, fontWeight: 700,
                 letterSpacing: "0.22em", textTransform: "uppercase",
                 color: C.oceanTeal, display: "block", marginBottom: 12,
               }}>Woven Together</span>
@@ -155,7 +155,7 @@ export default function OfferingsPage() {
                   fontSize: 14, fontWeight: 400,
                   color: "#9aa8b2", fontStyle: "normal",
                 }}>Sample day</span>
-                <span style={{ fontSize: 11, color: "#c0c8cd" }}>·</span>
+                <span style={{ fontSize: 12, color: "#c0c8cd" }}>·</span>
                 <span style={{
                   fontFamily: "'Cormorant Garamond', serif",
                   fontSize: 14, fontWeight: 400,
@@ -176,7 +176,7 @@ export default function OfferingsPage() {
                     {/* Time */}
                     <span style={{
                       fontFamily: "'Quicksand'",
-                      fontSize: 11, fontWeight: 600,
+                      fontSize: 12, fontWeight: 600,
                       color: "#9aa8b2",
                       letterSpacing: "0.06em",
                       paddingTop: 2,
@@ -225,7 +225,7 @@ export default function OfferingsPage() {
                     <div style={{ width: 6, height: 6, borderRadius: "50%", background: t.color }} />
                     <span style={{
                       fontFamily: "'Quicksand'",
-                      fontSize: 10, fontWeight: 600,
+                      fontSize: 11, fontWeight: 600,
                       letterSpacing: "0.12em", textTransform: "uppercase",
                       color: "#9aa8b2",
                     }}>{t.name}</span>
@@ -250,7 +250,7 @@ export default function OfferingsPage() {
           <FadeIn>
             <div style={{ textAlign: "center", marginBottom: 56 }}>
               <span style={{
-                fontFamily: "'Quicksand'", fontSize: 10, fontWeight: 700,
+                fontFamily: "'Quicksand'", fontSize: 11, fontWeight: 700,
                 letterSpacing: "0.22em", textTransform: "uppercase",
                 color: C.sunSalmon, display: "block", marginBottom: 12,
               }}>Upcoming Experiences</span>
@@ -310,7 +310,7 @@ export default function OfferingsPage() {
                         background: "rgba(255,255,255,0.92)",
                         backdropFilter: "blur(8px)",
                         padding: "6px 14px",
-                        fontSize: 9, fontFamily: "'Quicksand'", fontWeight: 700,
+                        fontSize: 10, fontFamily: "'Quicksand'", fontWeight: 700,
                         letterSpacing: "0.18em", textTransform: "uppercase",
                         color: C.darkInk,
                       }}>
@@ -318,7 +318,7 @@ export default function OfferingsPage() {
                       </div>
                       <div>
                         <p style={{
-                          fontFamily: "'Quicksand'", fontSize: 11, fontWeight: 600,
+                          fontFamily: "'Quicksand'", fontSize: 12, fontWeight: 600,
                           letterSpacing: "0.15em", textTransform: "uppercase",
                           color: "rgba(255,255,255,0.7)", marginBottom: 4,
                         }}>{trip.location}</p>
@@ -332,7 +332,7 @@ export default function OfferingsPage() {
 
                     <div style={{ padding: "24px 24px 28px" }}>
                       <span style={{
-                        fontFamily: "'Quicksand'", fontSize: 9, fontWeight: 700,
+                        fontFamily: "'Quicksand'", fontSize: 10, fontWeight: 700,
                         letterSpacing: "0.2em", textTransform: "uppercase",
                         color: trip.accent,
                         display: "inline-block",
@@ -342,7 +342,7 @@ export default function OfferingsPage() {
                       }}>{trip.threshold}</span>
 
                       <p style={{
-                        fontFamily: "'Quicksand'", fontSize: 12, fontWeight: 600,
+                        fontFamily: "'Quicksand'", fontSize: 13, fontWeight: 600,
                         color: "#5a6a78", letterSpacing: "0.04em",
                         marginBottom: 10,
                       }}>{trip.window}</p>
@@ -357,11 +357,11 @@ export default function OfferingsPage() {
                         alignItems: "center",
                       }}>
                         <span style={{
-                          fontFamily: "'Quicksand'", fontSize: 11,
+                          fontFamily: "'Quicksand'", fontSize: 12,
                           color: "#8a96a3", letterSpacing: "0.04em",
                         }}>{trip.spots} spots</span>
                         <span style={{
-                          fontFamily: "'Quicksand'", fontSize: 10, fontWeight: 700,
+                          fontFamily: "'Quicksand'", fontSize: 11, fontWeight: 700,
                           letterSpacing: "0.18em", textTransform: "uppercase",
                           color: trip.accent,
                         }}>Learn More →</span>

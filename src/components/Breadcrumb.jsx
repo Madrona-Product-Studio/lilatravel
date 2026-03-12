@@ -9,7 +9,7 @@ export default function Breadcrumb({ items }) {
   return (
     <div style={{
       display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap",
-      fontFamily: "'Quicksand'", fontSize: 10, fontWeight: 600,
+      fontFamily: "'Quicksand'", fontSize: 11, fontWeight: 600,
       letterSpacing: "0.16em", textTransform: "uppercase",
       padding: "24px 0 0",
     }}>
