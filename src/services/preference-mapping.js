@@ -239,7 +239,7 @@ export const ContentTags = {
  * that get appended to the Claude prompt. This tells Claude
  * exactly how to interpret preferences against the guide content.
  */
-export function generateMatchingInstructions(profile) {
+export function generateMatchingInstructions(profile, destination) {
   const instructions = [];
 
   // Interest mapping
@@ -264,29 +264,56 @@ export function generateMatchingInstructions(profile) {
     );
   }
 
-  // Territory / exploration range mapping
+  // Territory / exploration range mapping (destination-aware)
   if (profile.territory) {
-    const territoryInstructions = {
+    // Base territory descriptions (apply to all destinations)
+    const baseTerritoryInstructions = {
       rooted:
         `TERRITORY: Rooted. The traveler wants to go deep in one area rather than cover ground. ` +
         `Keep all activities within a tight radius. Prioritize depth over breadth — revisit the same trail at different times of day, explore one neighborhood thoroughly.`,
       flexible:
         `TERRITORY: Flexible. A home base with a day trip or two woven in. ` +
-        `For Zion-based trips, Bryce Canyon (1.5 hrs) is the natural day trip — pink hoodoo amphitheater, dramatically different terrain. ` +
         `Include some variety in locations but don't require long drives between activities.`,
       nomadic:
         `TERRITORY: Nomadic. Multi-zone exploration. The traveler wants to cover ground and see different areas. ` +
-        `Include Bryce Canyon as a day trip or overnight. Surface Scenic Byway 12 as a routing option. ` +
-        `A night at Clear Sky Resorts or Stone Canyon Inn is on-brand. ` +
         `Include scenic drives, multiple zones of the park/region, and variety in landscapes across the trip.`,
       'full-drift':
         `TERRITORY: Full Drift. The traveler wants maximum geographic range. ` +
-        `Design a multi-base itinerary. Zion as the anchor, Bryce Canyon as the middle night, Capitol Reef/Torrey as the far reach. ` +
-        `Skyview Hotel or Capitol Reef Resort for the Torrey base. Scenic Byway 12 as the connective drive between Bryce and Capitol Reef. ` +
-        `Include the far-flung spots most visitors skip.`,
+        `Design the trip to move through the full breadth of the destination. Include the far-flung spots most visitors skip.`,
     };
-    if (territoryInstructions[profile.territory]) {
-      instructions.push(territoryInstructions[profile.territory]);
+
+    // Destination-specific corridor additions (appended to base instructions)
+    const corridorInstructions = {
+      zion: {
+        flexible:
+          `For Zion-based trips, Bryce Canyon (1.5 hrs) is the natural day trip — pink hoodoo amphitheater, dramatically different terrain.`,
+        nomadic:
+          `Include Bryce Canyon as a day trip or overnight. Surface Scenic Byway 12 as a routing option. ` +
+          `A night at Clear Sky Resorts or Stone Canyon Inn is on-brand.`,
+        'full-drift':
+          `Design a multi-base itinerary. Zion as the anchor, Bryce Canyon as the middle night, Capitol Reef/Torrey as the far reach. ` +
+          `Skyview Hotel or Capitol Reef Resort for the Torrey base. Scenic Byway 12 as the connective drive between Bryce and Capitol Reef.`,
+      },
+      'joshua-tree': {
+        flexible:
+          `For Joshua Tree trips, Indian Canyons in Palm Springs (~45 min) is the natural day trip — palm oases, Cahuilla heritage, a lush contrast to the high desert.`,
+        nomadic:
+          `Include Indian Canyons as a day trip. Surface Pioneertown and Palm Springs as orbit stops. ` +
+          `For 4+ day trips, Mojave National Preserve (2 hrs) offers Kelso Dunes and the densest Joshua tree forest on Earth. ` +
+          `Salton Sea / Bombay Beach is a worthy half-day detour for art and edge-of-world atmosphere.`,
+        'full-drift':
+          `Design a multi-base itinerary. Joshua Tree as the anchor, Palm Springs as the cultural counterpoint, Death Valley as the far reach (3 hrs). ` +
+          `The Inn at Death Valley or Stovepipe Wells for the Death Valley base. ` +
+          `Include Mojave National Preserve (Kelso Dunes, Teutonia Peak) as a transit stop or half-day. ` +
+          `Salton Sea / Bombay Beach and Salvation Mountain as a detour day.`,
+      },
+    };
+
+    const base = baseTerritoryInstructions[profile.territory];
+    const corridor = corridorInstructions[destination]?.[profile.territory];
+
+    if (base) {
+      instructions.push(corridor ? `${base} ${corridor}` : base);
     }
   }
 

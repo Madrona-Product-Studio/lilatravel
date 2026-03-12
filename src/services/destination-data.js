@@ -24,6 +24,8 @@ const PARK_CODES = {
   'bryce-canyon': 'brca',
   'capitol-reef': 'care',
   'joshua-tree': 'jotr',
+  'death-valley': 'deva',
+  'mojave-preserve': 'moja',
   'big-sur': null, // Not an NPS unit — no NPS API data
   'olympic-peninsula': 'olym',
   kauai: null, // State parks, not NPS
@@ -32,6 +34,7 @@ const PARK_CODES = {
 // Corridor parks associated with each primary destination
 const CORRIDOR_PARKS = {
   zion: ['bryce-canyon', 'capitol-reef'],
+  'joshua-tree': ['death-valley', 'mojave-preserve'],
 };
 
 // Open-Meteo coordinates for weather forecasts
@@ -818,7 +821,7 @@ export async function assembleContext(destination, userPreferences) {
   }
 
   // 4. Generate matching instructions from preferences
-  const matchingInstructions = generateMatchingInstructions(userPreferences);
+  const matchingInstructions = generateMatchingInstructions(userPreferences, destination);
 
   // 5. Compute night sky conditions (uses moon phase from celestial + static dark sky data)
   const moonPhase = celestial?.moonPhase || (hasExactDates ? null : getMoonPhase(new Date()));

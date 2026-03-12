@@ -7,6 +7,16 @@
 **Elevation:** ~4,000 ft (high desert) / ~2,000 ft (Colorado Desert transition)  
 **IDA Dark Sky Park:** Yes — certified 2017. Bortle Class 2–3 in the backcountry.
 
+**Entrance Fee:** $30/vehicle (7-day pass); $55 annual park pass; covered by America the Beautiful Pass ($80).
+**Visitor Centers:**
+- Oasis Visitor Center (Twentynine Palms / north entrance) — year-round, the main orientation point. Adjacent to the Oasis of Mara trail.
+- Joshua Tree Visitor Center (west entrance, in town) — smaller, staffed by the Joshua Tree National Park Association.
+- Cottonwood Visitor Center (south entrance) — seasonal, Colorado Desert section.
+- Black Rock Nature Center (northwest corner) — seasonal, near Black Rock Campground.
+
+**No shuttle system** — personal vehicle required. The park is 60+ miles end to end. Plan driving time between trailheads.
+**Entrances:** West entrance (Joshua Tree town) is busiest; north entrance (Twentynine Palms) is typically less crowded. South entrance (Cottonwood) is the least used and closest to I-10.
+
 ---
 
 ## The Place
@@ -272,3 +282,252 @@ Palm Springs is one of the world's greatest concentrations of mid-century modern
 **Fire:** Campfires allowed only in fire grates at designated campgrounds. Ground fires prohibited.
 
 **Golden Hour timing:** Sunrise and sunset here are extraordinary. Skull Rock, Keys View, and Ryan Mountain trailhead are all strong sunrise positions. Cholla Cactus Garden at golden hour is essential.
+
+---
+
+## Regional Corridor
+
+Joshua Tree sits at the intersection of Southern California's most dramatic landscapes. The high desert stretches north into Death Valley; the Mojave Preserve opens east into vast, empty terrain; the Indian Canyons drop into Palm Springs' desert floor. For travelers with time and appetite to roam, these destinations turn a Joshua Tree trip into a full desert immersion.
+
+**Drive times from Joshua Tree (town):**
+- Joshua Tree → Indian Canyons / Palm Springs: ~45 min (40 miles via CA-62 and I-10)
+- Joshua Tree → Pioneertown: ~20 min (15 miles via Pioneertown Rd)
+- Joshua Tree → Death Valley (Furnace Creek): ~3 hrs (190 miles via CA-62 and CA-127)
+- Joshua Tree → Mojave National Preserve (Kelso Depot): ~2 hrs (130 miles via I-40)
+- Joshua Tree → Salton Sea (Bombay Beach): ~1.5 hrs (90 miles via I-10 and CA-111)
+
+---
+
+### Scenic Drives
+
+#### Geology Tour Road (Inside Joshua Tree NP)
+An 18-mile unpaved loop through the park's interior geology — alluvial fans, ancient lake beds, mining ruins, and desert vistas far from the main road. High-clearance vehicle recommended (4WD after rain). The most immersive driving experience inside the park.
+- **Energy**: gentle (driving), moderate (with stop hikes)
+- **Group**: solo, couple, friends
+- **Budget**: any
+- **Interests**: scenic drives, photography, geology
+- **Months**: Oct–May (summer heat makes this inadvisable)
+
+#### Pinto Basin Road (Inside Joshua Tree NP)
+The main north-south artery through the park, connecting the Mojave high desert to the Colorado Desert lowlands. The transition is visible — Joshua trees thin out, ocotillo and cholla take over. Cholla Cactus Garden is along this route.
+- **Energy**: gentle
+- **Group**: solo, couple, friends, family
+- **Budget**: any
+- **Interests**: scenic drives, photography, nature
+- **Months**: Year-round
+
+#### Highway 62 (Twentynine Palms Highway)
+The corridor connecting all the gateway towns — Joshua Tree, Yucca Valley, Twentynine Palms. Not scenic in the traditional sense, but this is where the orbit's culture lives: galleries, cafes, vintage shops, and the transition from suburbia to wilderness.
+- **Energy**: gentle
+- **Group**: any
+- **Interests**: culture, dining, local life
+- **Months**: Year-round
+
+---
+
+### Indian Canyons — Agua Caliente Band of Cahuilla Indians
+
+A set of palm-lined canyons on the Agua Caliente reservation, just south of downtown Palm Springs. These canyons hold the largest natural fan palm oases in North America. The land is tribally managed — entrance fees support the Agua Caliente Band directly. A powerful complement to Joshua Tree's high desert: water, shade, and 2,000 years of indigenous stewardship.
+
+- **Entrance Fee**: $9 adults / $5 children (supports tribal land management)
+- **Hours**: 8 AM – 5 PM, Oct–Jun (closed Jul–Sep due to heat and flash flood risk)
+- **No NPS affiliation** — this is sovereign tribal land
+
+#### Trails
+
+##### Andreas Canyon
+A short loop through a lush palm oasis alongside a year-round stream. Over 150 fan palms, bedrock mortars from Cahuilla use, and resident wildlife. The most accessible and immediate of the Indian Canyons.
+- **Distance**: 1 mile loop · **Difficulty**: easy · **Time**: 45 min
+- **Energy**: gentle
+- **Group**: solo, couple, friends, family
+- **Interests**: hiking, nature, history, indigenous culture
+- **Months**: Oct–Jun
+
+##### Palm Canyon
+The signature hike. Follows a creek through the world's largest natural California fan palm oasis — over 2,600 palms stretching 15 miles into the canyon. A Trading Post halfway serves as a turnaround for shorter hikes.
+- **Distance**: 2–6 miles (variable) · **Difficulty**: easy to moderate · **Time**: 1–3 hrs
+- **Energy**: gentle to moderate
+- **Group**: solo, couple, friends, family
+- **Interests**: hiking, nature, photography, indigenous culture
+- **Months**: Oct–Jun
+
+##### Tahquitz Canyon
+A separate entrance from the main Indian Canyons. Ranger-led or self-guided hike to a 60-foot waterfall sacred to the Cahuilla people. Interpretive trail with cultural context throughout. Entrance fee separate from Indian Canyons.
+- **Distance**: 1.8 miles · **Difficulty**: moderate · **Time**: 1.5–2 hrs
+- **Energy**: moderate
+- **Group**: solo, couple, friends
+- **Interests**: hiking, nature, indigenous culture, waterfall
+- **Months**: Oct–Jun
+
+---
+
+### Death Valley National Park
+
+The largest national park in the lower 48. Below-sea-level basins, salt flats, sand dunes, volcanic craters, and some of the darkest skies on the continent. The extremes here are real — hottest recorded temperature on Earth (134°F), lowest point in North America (Badwater, -282 ft). Best experienced as a 1–2 night excursion from Joshua Tree, not a day trip.
+
+- **NPS Park Code**: DEVA
+- **Entrance Fee**: $30/vehicle (7-day pass); covered by America the Beautiful Pass
+- **Visitor Center**: Furnace Creek Visitor Center — open year-round, excellent ranger programs
+- **Elevation**: -282 ft (Badwater Basin) to 11,049 ft (Telescope Peak)
+- **Dark Sky**: Gold Tier IDA Dark Sky Park. Bortle 1–2 in remote areas — among the darkest skies in the US.
+- **Season warning**: Summer temperatures routinely exceed 120°F. Visit Oct–Apr only unless you are experienced and prepared.
+
+#### Trails
+
+##### Badwater Basin Salt Flats
+Walk out onto the lowest point in North America. Vast, white, surreal. Not a trail — an open expanse. Best at sunrise or sunset when the salt polygons catch directional light.
+- **Distance**: variable (up to 2 miles out and back) · **Difficulty**: easy · **Time**: 30–60 min
+- **Energy**: gentle
+- **Group**: solo, couple, friends, family
+- **Interests**: hiking, photography, geology
+- **Months**: Oct–Apr (dangerously hot May–Sep)
+
+##### Mesquite Flat Sand Dunes
+The most accessible dune field in Death Valley. No marked trail — wander freely. Best at sunrise or late afternoon when shadows define the dune crests. Star Dune is the tallest at ~130 ft.
+- **Distance**: variable (1–3 miles) · **Difficulty**: easy to moderate (sand walking) · **Time**: 1–2 hrs
+- **Energy**: moderate
+- **Group**: solo, couple, friends, family
+- **Interests**: hiking, photography, nature
+- **Months**: Oct–Apr
+
+##### Golden Canyon to Red Cathedral
+A walk through golden-walled narrows to an amphitheater of red cliffs. Layered geology, vivid color. One of the most photogenic short hikes in the park.
+- **Distance**: 3 miles · **Difficulty**: moderate · **Time**: 2 hrs
+- **Energy**: moderate
+- **Group**: solo, couple, friends
+- **Interests**: hiking, photography, geology
+- **Months**: Oct–Apr
+
+##### Mosaic Canyon
+A polished marble narrows hike near Stovepipe Wells. Smooth, swirling rock walls — the canyon itself is the art. Short enough for a morning add-on.
+- **Distance**: 2 miles · **Difficulty**: easy to moderate · **Time**: 1–1.5 hrs
+- **Energy**: moderate
+- **Group**: solo, couple, friends
+- **Interests**: hiking, photography, geology
+- **Months**: Oct–Apr
+
+##### Zabriskie Point
+Drive-up overlook with a short paved walk. Badlands formations in gold and amber. Best at sunrise — arrive 30 min before for light progression.
+- **Distance**: 0.1 miles · **Difficulty**: easy · **Time**: 20 min
+- **Energy**: gentle
+- **Group**: solo, couple, friends, family
+- **Interests**: photography, geology
+- **Months**: Year-round
+
+#### Stays
+
+##### The Inn at Death Valley
+The historic luxury resort at Furnace Creek, originally built in 1927. Spring-fed pool, palm-shaded grounds, fine dining. The oasis in the desert, literally. Books far in advance for peak season.
+- **Budget**: premium
+- **Group**: couple, solo, friends
+- **Months**: Oct–May (open year-round but summer is extreme)
+
+##### The Ranch at Death Valley
+Adjacent to The Inn, more casual and affordable. Cabins, pool, general store, golf course (the lowest elevation course in the world). Good base for families.
+- **Budget**: moderate
+- **Group**: couple, friends, family
+- **Months**: Year-round
+
+##### Stovepipe Wells Village
+Simple motel-style rooms on the west side of the valley. Close to Mesquite Flat Sand Dunes and Mosaic Canyon. Pool, saloon, general store. No frills, good location.
+- **Budget**: budget, moderate
+- **Group**: solo, couple, friends, family
+- **Months**: Year-round
+
+#### Dining
+
+Dining options in Death Valley are limited and tied to the lodges:
+- **The Inn at Death Valley Dining Room** — the upscale option, seasonal, reservations recommended
+- **The Last Kind Words Saloon** (at The Ranch) — casual, reliable, the social hub
+- **Toll Road Restaurant** (Stovepipe Wells) — basic, serviceable
+- **Pack provisions** from Joshua Tree or Ridgecrest before entering — there is no grocery store
+
+#### Dark Sky
+
+Death Valley holds a Gold Tier International Dark Sky Park designation. Bortle 1–2 conditions in the backcountry — darker than Joshua Tree. Harmony Borax Works and Badwater Basin are popular night sky locations. NPS hosts seasonal star parties and telescope programs at Furnace Creek.
+- **Interests**: stargazing, night sky, photography
+- **Months**: Oct–Apr (best); year-round (if you can handle the heat)
+
+---
+
+### Mojave National Preserve
+
+650,000 acres of wild Mojave between I-15 and I-40. Joshua tree forests denser than those in Joshua Tree NP, volcanic cinder cones, the Kelso Dunes, and almost no one. This is the emptiest, most remote landscape in this corridor. No services inside the preserve — come prepared.
+
+- **NPS Park Code**: MOJA
+- **Entrance Fee**: Free (no entrance fee)
+- **Visitor Center**: Kelso Depot Visitor Center — a restored 1924 Union Pacific railroad depot, open Thu–Mon. One of the most beautiful visitor centers in the NPS system.
+- **No water, no gas, no cell service** inside the preserve. Fill everything before entering.
+
+#### Trails
+
+##### Kelso Dunes
+The tallest dune system in the Mojave — up to 650 feet. The "singing" or "booming" dunes phenomenon (sand vibrations create a low hum when conditions are right). No trail — navigate by sight. The walk up the tallest crest is strenuous but the 360° view from the top is immense.
+- **Distance**: 3 miles · **Difficulty**: moderate to strenuous (sand) · **Time**: 2–3 hrs
+- **Energy**: adventurous
+- **Group**: solo, couple, friends
+- **Interests**: hiking, photography, solitude, geology
+- **Months**: Oct–Apr
+
+##### Teutonia Peak / Cima Dome
+A moderate hike through the world's densest Joshua tree forest to a granite summit with views of Cima Dome — a symmetrical volcanic shield. The Joshua trees here are larger and more densely packed than anywhere in the NP.
+- **Distance**: 4 miles · **Difficulty**: moderate · **Time**: 2–3 hrs
+- **Energy**: moderate
+- **Group**: solo, couple, friends
+- **Interests**: hiking, nature, photography, solitude
+- **Months**: Oct–Apr
+
+##### Rings Trail (Hole-in-the-Wall)
+A short loop involving metal rings bolted into volcanic rock to aid descent through narrow slots. Fun, unusual, and kid-friendly with supervision. Starts at the Hole-in-the-Wall campground.
+- **Distance**: 1.5 miles · **Difficulty**: moderate · **Time**: 1 hr
+- **Energy**: moderate
+- **Group**: solo, couple, friends, family
+- **Interests**: hiking, geology, family
+- **Months**: Oct–May
+
+#### Stays
+
+There are no lodges inside Mojave National Preserve. Options:
+- **Hole-in-the-Wall Campground** — 35 sites, first-come first-served, no water, no hookups. Volcanic terrain, dark skies.
+- **Mid Hills Campground** — 26 sites at 5,600 ft elevation among pinyon-juniper woodland. Cooler than the desert floor.
+- **Nipton Hotel** (just outside the preserve on I-15) — A tiny desert outpost with a few rooms, an eco-lodge, and genuine isolation.
+
+#### Dark Sky
+
+Mojave National Preserve has no formal dark sky designation but conditions rival Death Valley — Bortle 1–2 in most of the preserve. Kelso Dunes under the Milky Way is one of the most extraordinary night sky experiences in the American West.
+- **Interests**: stargazing, night sky, photography
+- **Months**: Year-round (best Oct–Apr)
+
+---
+
+### Salton Sea
+
+California's largest lake by surface area — and one of its strangest places. A 1905 engineering accident created an inland sea that became a resort destination, then an ecological disaster as agricultural runoff concentrated salts and pesticides. Today it's haunting, beautiful, and deeply weird. Bombay Beach, on the eastern shore, has become an accidental art installation — murals, sculptures, and abandoned structures reclaimed by artists.
+
+This is not a traditional park visit. It's a cultural and environmental experience for travelers drawn to edges and thresholds.
+
+- **No entrance fee** (public land / state recreation area)
+- **Bombay Beach**: ~1.5 hrs from Joshua Tree. Drive-through art, abandoned structures, Salton Sea shoreline.
+- **Salvation Mountain**: Folk art earthwork by Leonard Knight. Vivid, devotional, unlike anything else. ~1.5 hrs from Joshua Tree.
+- **International Sonoran Desert Museum / Salton Sea SRA**: Small visitor center, shoreline access, birding.
+
+- **Energy**: gentle
+- **Group**: solo, couple, friends
+- **Interests**: art, photography, culture, nature, solitude
+- **Months**: Oct–Apr (extreme heat in summer)
+
+*Note: Air quality near the Salton Sea can be poor, especially on windy days. Check conditions if you have respiratory sensitivity.*
+
+---
+
+### Resources
+- Joshua Tree National Park → https://www.nps.gov/jotr/
+- Joshua Tree Trails → https://www.nps.gov/jotr/planyourvisit/hikes.htm
+- Joshua Tree Campgrounds → https://www.nps.gov/jotr/planyourvisit/campgrounds.htm
+- Joshua Tree Dark Sky → https://www.nps.gov/jotr/planyourvisit/stargazing.htm
+- Indian Canyons (Agua Caliente) → https://www.indian-canyons.com/
+- Death Valley National Park → https://www.nps.gov/deva/
+- Death Valley Trails → https://www.nps.gov/deva/planyourvisit/day-hikes.htm
+- Mojave National Preserve → https://www.nps.gov/moja/
+- Mojave Preserve Trails → https://www.nps.gov/moja/planyourvisit/hiking.htm
+- Salvation Mountain → https://www.salvationmountain.us/

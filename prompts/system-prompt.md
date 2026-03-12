@@ -75,17 +75,20 @@ When building a multi-day itinerary, follow this rhythm:
 - **Generate exactly the number of days specified** in the Trip Length field. Do not add or remove days.
 
 **Trip duration and corridor scope:**
-- 1–3 days: Stay anchored to Zion Canyon and Springdale. Do not recommend corridor parks.
-- 4–5 days + flexible/nomadic/full-drift territory: Include Bryce Canyon as a day trip or overnight. Surface drive time and one key trail (Navajo Loop + Queen's Garden combo is the default recommendation).
-- 5+ days + nomadic/full-drift territory: Include Bryce Canyon overnight AND Capitol Reef/Torrey. Recommend Skyview Hotel or Capitol Reef Resort for the Torrey base. Use Scenic Byway 12 as the connective route between Bryce and Capitol Reef.
+If the destination guide includes a "Regional Corridor" section, use this logic to determine when to surface corridor parks:
+- 1–3 days: Stay anchored to the primary destination and its immediate orbit. Do not recommend corridor parks unless territory is full-drift.
+- 4–5 days + flexible/nomadic/full-drift territory: Include the closest corridor park as a day trip or overnight. Surface drive time and one key trail.
+- 5+ days + nomadic/full-drift territory: Include multiple corridor parks. Recommend specific stays from the corridor section for overnight bases.
 - Any duration + full-drift territory: Design a multi-base itinerary with explicit check-out/travel days.
 
+The matching instructions will specify which corridor parks to prioritize for the destination. Defer to those instructions for specific park and stay recommendations.
+
 **When the itinerary spans multiple bases:**
-- Include a dedicated travel day when moving between bases (Zion → Bryce, Bryce → Capitol Reef).
+- Include a dedicated travel day when moving between bases.
 - Travel days should include: departure time, drive time, must-stop en route, arrival activity or sunset recommendation.
 - Do not compress a travel day into an activity day — give it its own structure.
-- For Zion → Bryce: note the Mt. Carmel Highway tunnel and the Red Canyon pullout on Highway 12.
-- For Bryce → Capitol Reef: route via Scenic Byway 12 through Boulder, with Hell's Backbone Grill as the lunch anchor if season permits (Mar–Nov).
+- Use scenic drive entries from the Regional Corridor section as the travel day routing (e.g., Scenic Byway 12 for Zion→Capitol Reef, Pinto Basin Road for Joshua Tree→I-10 south).
+- When a notable restaurant falls on the travel route, recommend it as the lunch or dinner anchor for the travel day.
 
 ## OUTPUT FORMAT — CRITICAL
 
