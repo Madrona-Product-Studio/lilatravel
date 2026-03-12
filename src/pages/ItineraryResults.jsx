@@ -1750,32 +1750,76 @@ const DESTINATION_LOGISTICS = {
     arrivalAirport: 'LAS',
     car: 'A car is essential. Pick up at LAS airport.',
     pickupLocation: 'LAS Airport',
-    accommodation: {
-      name: 'Cable Mountain Lodge',
-      location: 'Springdale',
-      vibe: 'Rustic-modern lodge steps from the park entrance',
-      why: 'Walking distance to the Zion Canyon shuttle stop, pool and hot tub with red rock views, and kitchenettes for early-morning trail prep.',
-      stayType: 'Lodge',
-      priceRange: '$$$',
-      distanceFromPark: '0.2 miles from south entrance',
-    },
-    alternatives: [
-      { name: 'Cliffrose Lodge', vibe: 'Riverside retreat with gardens', why: 'Waterfront property on the Virgin River with direct park access.', priceRange: '$$$$' },
-      { name: 'La Quinta Inn Springdale', vibe: 'Clean and affordable base camp', why: 'Budget-friendly with shuttle stop access and continental breakfast.', priceRange: '$$' },
-    ],
+  },
+  'joshua-tree': {
+    flights: 'Fly into Palm Springs (PSP) \u2014 45 min to Joshua Tree.',
+    arrivalAirport: 'PSP',
+    car: 'A car is essential. The park is 60+ miles end to end.',
+    pickupLocation: 'PSP Airport',
   },
 };
 
 function getLogistics(destination) {
-  const key = (destination || '').toLowerCase().replace(/\s+/g, '');
+  const key = (destination || '').toLowerCase().replace(/\s+/g, '-');
   return DESTINATION_LOGISTICS[key] || DESTINATION_LOGISTICS.zion;
 }
 
-function LogisticsPanel({ destination, sticky = true, tripLogistics, onOpenPanel }) {
+/**
+ * Extract accommodation from Claude's generated itinerary.
+ * Priority: days[0].picks where category === "stay" \u2192 scan all days' picks \u2192 timeline "check in" \u2192 null
+ */
+function extractAccommodation(itinerary) {
+  if (!itinerary?.days?.length) return null;
+
+  // 1. Check picks on day 1 for a "stay" category
+  const day1 = itinerary.days[0];
+  if (day1.picks?.length) {
+    const stayPick = day1.picks.find(p => p.category === 'stay');
+    if (stayPick?.pick?.name) {
+      return {
+        name: stayPick.pick.name,
+        vibe: stayPick.pick.description || stayPick.pick.vibe || null,
+        url: stayPick.pick.url || null,
+      };
+    }
+  }
+
+  // 2. Scan all days' picks for a "stay" category (in case it's not on day 1)
+  for (const day of itinerary.days) {
+    if (day.picks?.length) {
+      const stayPick = day.picks.find(p => p.category === 'stay');
+      if (stayPick?.pick?.name) {
+        return {
+          name: stayPick.pick.name,
+          vibe: stayPick.pick.description || stayPick.pick.vibe || null,
+          url: stayPick.pick.url || null,
+        };
+      }
+    }
+  }
+
+  // 3. Fallback: scan day 1 timeline for "check in" / "check-in"
+  if (day1.timeline?.length) {
+    for (const item of day1.timeline) {
+      const title = (item.title || item.activity || '').toLowerCase();
+      if (title.includes('check in') || title.includes('check-in')) {
+        return {
+          name: item.title || item.activity,
+          vibe: item.details || item.description || null,
+        };
+      }
+    }
+  }
+
+  return null;
+}
+
+function LogisticsPanel({ destination, sticky = true, tripLogistics, onOpenPanel, itinerary }) {
   const logistics = getLogistics(destination);
   const savedFlight = tripLogistics?.flights;
   const savedRental = tripLogistics?.rental;
-  const accom = typeof logistics.accommodation === 'object' ? logistics.accommodation : { name: logistics.accommodation };
+  const dynamicAccom = extractAccommodation(itinerary);
+  const accom = dynamicAccom || { name: 'See your itinerary' };
   const accomName = accom.name;
 
   const openFlights = () => onOpenPanel && onOpenPanel({
@@ -1787,7 +1831,7 @@ function LogisticsPanel({ destination, sticky = true, tripLogistics, onOpenPanel
     onSave: (d) => onOpenPanel({ _updateLogistics: { rental: d } }),
   });
   const openAccommodation = () => onOpenPanel && onOpenPanel({
-    type: 'accommodation', data: logistics.accommodation, alternatives: logistics.alternatives || [],
+    type: 'accommodation', data: accom, alternatives: [],
   });
 
   return (
@@ -3154,6 +3198,7 @@ export default function ItineraryResults() {
               destination={formData?.destination}
               sticky={false}
               tripLogistics={tripLogistics}
+              itinerary={itinerary}
               onOpenPanel={(panelItem) => {
                 if (panelItem._updateLogistics) {
                   setTripLogistics(prev => ({ ...prev, ...panelItem._updateLogistics }));
@@ -3245,6 +3290,7 @@ export default function ItineraryResults() {
                     destination={formData?.destination}
                     sticky={true}
                     tripLogistics={tripLogistics}
+                    itinerary={itinerary}
                     onOpenPanel={(panelItem) => {
                       if (panelItem._updateLogistics) {
                         setTripLogistics(prev => ({ ...prev, ...panelItem._updateLogistics }));
