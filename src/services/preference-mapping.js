@@ -271,14 +271,19 @@ export function generateMatchingInstructions(profile) {
         `TERRITORY: Rooted. The traveler wants to go deep in one area rather than cover ground. ` +
         `Keep all activities within a tight radius. Prioritize depth over breadth — revisit the same trail at different times of day, explore one neighborhood thoroughly.`,
       flexible:
-        `TERRITORY: Flexible. The traveler is open to exploring moderately beyond a home base. ` +
+        `TERRITORY: Flexible. A home base with a day trip or two woven in. ` +
+        `For Zion-based trips, Bryce Canyon (1.5 hrs) is the natural day trip — pink hoodoo amphitheater, dramatically different terrain. ` +
         `Include some variety in locations but don't require long drives between activities.`,
       nomadic:
-        `TERRITORY: Nomadic. The traveler wants to cover ground and see different areas. ` +
+        `TERRITORY: Nomadic. Multi-zone exploration. The traveler wants to cover ground and see different areas. ` +
+        `Include Bryce Canyon as a day trip or overnight. Surface Scenic Byway 12 as a routing option. ` +
+        `A night at Clear Sky Resorts or Stone Canyon Inn is on-brand. ` +
         `Include scenic drives, multiple zones of the park/region, and variety in landscapes across the trip.`,
       'full-drift':
         `TERRITORY: Full Drift. The traveler wants maximum geographic range. ` +
-        `Design the trip to move through the full breadth of the destination. Include the far-flung spots most visitors skip.`,
+        `Design a multi-base itinerary. Zion as the anchor, Bryce Canyon as the middle night, Capitol Reef/Torrey as the far reach. ` +
+        `Skyview Hotel or Capitol Reef Resort for the Torrey base. Scenic Byway 12 as the connective drive between Bryce and Capitol Reef. ` +
+        `Include the far-flung spots most visitors skip.`,
     };
     if (territoryInstructions[profile.territory]) {
       instructions.push(territoryInstructions[profile.territory]);

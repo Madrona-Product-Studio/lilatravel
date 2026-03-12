@@ -884,6 +884,243 @@ When recommending any of the following places, include the corresponding URL in 
 - Zion Yogis → https://www.zionyogis.com/
 - Zion Guru → https://www.zionguru.com/
 
+---
+
+## Regional Corridor
+
+The Utah corridor stretching from Zion to Capitol Reef is one of the most concentrated landscapes in the American West. For travelers with time and a desire to roam, these parks and the roads connecting them transform a Zion trip into a full desert odyssey.
+
+**Drive times from Zion (Springdale):**
+- Zion → Bryce Canyon: ~1.5 hrs (84 miles via US-89)
+- Zion → Capitol Reef / Torrey: ~3.5 hrs direct (230 miles via I-70), or ~4.5 hrs via Scenic Byway 12 through Boulder
+- Bryce Canyon → Capitol Reef / Torrey: ~2 hrs (120 miles via Scenic Byway 12)
+
+---
+
+### Scenic Drives
+
+#### Scenic Byway 12 (Highway 12)
+One of America's most dramatic scenic byways. 124 miles from Bryce Canyon to Capitol Reef through red rock canyons, aspen forests, slickrock mesas, and the tiny town of Boulder. The drive itself is the experience — plan 3–4 hours with stops.
+- **Head of the Rocks Overlook** — sweeping view into the Escalante canyons, one of the most dramatic pullouts in Utah
+- **The Hogback** — a narrow ridge with thousand-foot drop-offs on both sides, no guardrails, unforgettable
+- **Red Canyon** — crimson hoodoos flanking the highway just before Bryce, free roadside stop with short trail options
+- **Energy**: gentle (driving), moderate (with stop hikes)
+- **Group**: solo, couple, friends, family
+- **Budget**: any
+- **Interests**: scenic drives, photography, nature
+- **Months**: May–Oct (check conditions Nov–Apr; snow possible at elevation)
+
+---
+
+### Bryce Canyon National Park
+
+Elevation 8,000–9,000 ft. A high-altitude amphitheater of pink and orange hoodoos unlike anything in Zion. Cooler temps, thinner air, and a completely different palette. Best paired with Zion for contrast.
+
+- **NPS Park Code**: BRCA
+- **Entrance Fee**: $35/vehicle (7-day pass); covered by America the Beautiful Pass
+- **Visitor Center**: Open year-round, hours vary seasonally
+- **Shuttle**: Free voluntary shuttle runs May–Oct between Ruby's Inn and Bryce Point. Recommended in peak season — parking lots fill by 9 AM.
+- **Elevation note**: 8,000–9,100 ft. Significantly higher and cooler than Zion (~4,000 ft). Bring layers even in summer. Afternoon thunderstorms common Jun–Sep.
+- **Winter access**: Park is open year-round but some roads close. Snowshoeing and cross-country skiing available.
+
+#### Trails
+
+##### Navajo Loop
+Steep descent into the hoodoo amphitheater through Wall Street — a narrow slot corridor lined with Douglas firs. The most iconic short hike in Bryce.
+- **Distance**: 1.3 miles · **Difficulty**: moderate · **Time**: 1–1.5 hrs
+- **Energy**: moderate
+- **Group**: solo, couple, friends, family
+- **Interests**: hiking, photography
+- **Months**: Apr–Nov
+
+##### Queen's Garden + Navajo Loop (Combined)
+The essential Bryce circuit. Drop into Queen's Garden from Sunrise Point, traverse the hoodoo forest, and climb out via Navajo Loop. The best bang-for-effort hike in the park.
+- **Distance**: 2.9 miles · **Difficulty**: moderate · **Time**: 2–3 hrs
+- **Energy**: moderate
+- **Group**: solo, couple, friends, family
+- **Interests**: hiking, photography
+- **Months**: Apr–Nov
+
+##### Peek-a-Boo Loop
+A strenuous loop through the heart of the amphitheater with constant elevation changes and views from every angle. Less crowded than Navajo/Queen's Garden.
+- **Distance**: 5.5 miles · **Difficulty**: strenuous · **Time**: 3–4 hrs
+- **Energy**: adventurous
+- **Group**: solo, couple, friends
+- **Interests**: hiking, photography
+- **Months**: May–Oct
+
+##### Fairyland Loop
+The full-day Bryce experience. Descends through Fairyland Canyon and climbs through China Wall — the longest and least crowded maintained trail in the park.
+- **Distance**: 8 miles · **Difficulty**: strenuous · **Time**: 4–5 hrs
+- **Energy**: adventurous
+- **Group**: solo, couple, friends
+- **Interests**: hiking, solitude
+- **Months**: May–Oct
+
+##### Bristlecone Loop
+A high-elevation trail to ancient bristlecone pines — some over 1,800 years old. Short, quiet, and meditative. Best at sunset when the light catches the twisted wood.
+- **Distance**: 1 mile · **Difficulty**: easy · **Time**: 30–45 min
+- **Energy**: gentle
+- **Group**: solo, couple, friends, family
+- **Interests**: hiking, nature, meditation
+- **Months**: May–Oct
+
+##### Mossy Cave
+Outside the main fee station on Highway 12. A short walk to a waterfall and moss-draped grotto. Great for families or as a Byway 12 stop.
+- **Distance**: 0.8 miles · **Difficulty**: easy · **Time**: 30 min
+- **Energy**: gentle
+- **Group**: solo, couple, friends, family
+- **Interests**: hiking, family
+- **Months**: Year-round (waterfall freezes in winter — still beautiful)
+
+##### Rim Trail
+A paved-to-gravel path connecting all major viewpoints along the amphitheater rim. Flat, easy, and panoramic. Walk as much or as little as you want.
+- **Distance**: up to 5.5 miles one-way · **Difficulty**: easy · **Time**: varies
+- **Energy**: gentle
+- **Group**: solo, couple, friends, family
+- **Interests**: hiking, photography, accessibility
+- **Months**: Year-round (portions may be icy in winter)
+
+#### Stays
+
+##### The Lodge at Bryce Canyon
+The only lodging inside the park. A 1925 historic lodge with cabins and motel-style rooms. Simple, well-located, and books out months in advance. No Wi-Fi in rooms — and that's the point.
+- **Budget**: moderate
+- **Group**: solo, couple, family
+- **Months**: Apr–Oct (closed in winter)
+
+##### Clear Sky Resorts
+Geodesic stargazing domes on the edge of Bryce Canyon. Glass ceiling, heated floors, full bathroom. Bryce has a Bortle 2 dark sky rating — you're sleeping under one of the darkest skies in the lower 48.
+- **Budget**: premium
+- **Group**: couple, solo
+- **Months**: Year-round
+
+##### Stone Canyon Inn
+A small boutique inn with canyon-view cottages, a few miles from the park entrance. Quiet, well-appointed, fireplace. The kind of place that doesn't need a sign.
+- **Budget**: premium
+- **Group**: couple, solo
+- **Months**: Year-round
+
+#### Dining
+
+##### The Lodge at Bryce Canyon Restaurant
+Seasonal dining inside the park. Locally sourced where possible, solid dinner menu. Breakfast is the move — eat early, hit the trail.
+- **Budget**: moderate
+- **Group**: solo, couple, family
+- **Months**: Apr–Nov
+
+##### Bryce Canyon Pines Restaurant
+Classic Utah roadside diner just outside the park. Famous for homemade pie. Unpretentious, reliable, exactly what you want after a long trail day.
+- **Budget**: budget, moderate
+- **Group**: solo, couple, friends, family
+- **Months**: Year-round
+
+#### Dark Sky
+
+Bryce Canyon holds a Bortle 2 dark sky rating — one of the darkest skies in the lower 48 states. The NPS runs ranger-led telescope programs (free, seasonal). Best Milky Way window: May–September on new moon nights. At 8,000+ feet, transparency is exceptional. Pair with a night at Clear Sky Resorts for a full immersion.
+- **Interests**: stargazing, night sky, photography
+- **Months**: May–Sep (best); year-round (good)
+
+---
+
+### Capitol Reef National Park / Torrey, UT
+
+The least-visited of Utah's Mighty Five, and for many, the most rewarding. Waterpocket Fold geology, pioneer orchards, petroglyphs, and almost no crowds. Torrey is the gateway town — quiet, artful, and deeply dark-sky.
+
+- **NPS Park Code**: CARE
+- **Entrance Fee**: $20/vehicle (7-day pass) for Scenic Drive only; no fee for Highway 24 corridor trails (Hickman Bridge, Grand Wash, Capitol Gorge). Covered by America the Beautiful Pass.
+- **Visitor Center**: Open year-round, Fruita Historic District. Rangers can advise on road conditions for unpaved routes.
+- **No shuttle system** — personal vehicle required. All trailheads accessible by paved or maintained gravel roads.
+- **Dark Sky**: Capitol Reef has Gold Tier International Dark Sky Park designation. Torrey is Utah's first Dark Sky community.
+- **Flash flood risk**: Capitol Gorge and Grand Wash are slot-like and flood-prone during monsoon season (Jul–Sep). Check NPS alerts before entering.
+
+#### Trails
+
+##### Hickman Bridge
+The signature Capitol Reef hike. A moderate climb to a massive natural bridge with Fremont granaries visible near the trailhead. Pairs perfectly with a morning in the Fruita orchards.
+- **Distance**: 1.8 miles · **Difficulty**: moderate · **Time**: 1.5 hrs
+- **Energy**: moderate
+- **Group**: solo, couple, friends, family
+- **Interests**: hiking, photography, history
+- **Months**: Year-round (hot in summer; best Mar–May, Sep–Nov)
+
+##### Navajo Knobs
+The crown jewel of Capitol Reef. A strenuous out-and-back to a 360° panoramic viewpoint above the Waterpocket Fold. Almost no one does this hike — you'll likely have the summit to yourself. **Lila Pick.**
+- **Distance**: 9.4 miles · **Difficulty**: strenuous · **Time**: 5–6 hrs
+- **Energy**: adventurous
+- **Group**: solo, couple, friends
+- **Interests**: hiking, solitude, photography
+- **Months**: Mar–May, Sep–Nov (too hot in summer)
+
+##### Cassidy Arch
+Named for Butch Cassidy. A moderate climb to a freestanding arch you can walk across. Dramatic exposure, rewarding views.
+- **Distance**: 3.4 miles · **Difficulty**: moderate · **Time**: 2–3 hrs
+- **Energy**: moderate
+- **Group**: solo, couple, friends
+- **Interests**: hiking, photography
+- **Months**: Year-round (hot in summer)
+
+##### Capitol Gorge
+A flat walk through a narrow canyon with pioneer register (names carved in the 1800s) and natural water tanks. Easy, shaded, and historic.
+- **Distance**: 2.4 miles · **Difficulty**: easy · **Time**: 1–1.5 hrs
+- **Energy**: gentle
+- **Group**: solo, couple, friends, family
+- **Interests**: hiking, history, family
+- **Months**: Year-round (flash flood risk in monsoon season)
+
+##### Grand Wash
+A wide, flat wash between towering canyon walls. The easiest trail in the park — no elevation gain. Narrows at the end.
+- **Distance**: 2.2 miles one-way · **Difficulty**: easy · **Time**: 1–1.5 hrs
+- **Energy**: gentle
+- **Group**: solo, couple, friends, family
+- **Interests**: hiking, family
+- **Months**: Year-round (flash flood risk in monsoon season)
+
+##### Cohab Canyon
+A short, steep climb from Highway 24 into a hidden canyon with hoodoos and side spurs. Lightly trafficked, great at golden hour.
+- **Distance**: 1.7 miles one-way · **Difficulty**: moderate · **Time**: 1–1.5 hrs
+- **Energy**: moderate
+- **Group**: solo, couple, friends
+- **Interests**: hiking, photography, solitude
+- **Months**: Year-round
+
+#### Stays
+
+##### Capitol Reef Resort
+Luxury cabins and Conestoga glamping wagons one mile from the park entrance in Torrey. Pool, hot tub, horseback riding. The most comfortable base for Capitol Reef.
+- **Budget**: premium
+- **Group**: couple, friends, family
+- **Months**: Year-round
+
+##### Skyview Hotel
+Boutique hotel in Torrey with 14 rooms and 6 glamping domes. Rooftop stargazing deck, locally crafted interiors, restaurant on-site. Torrey is Utah's first designated Dark Sky community. The best boutique option in the Capitol Reef corridor.
+- **Budget**: premium
+- **Group**: couple, solo
+- **Months**: Year-round
+
+#### Dining
+
+##### Fruita Orchards at Capitol Reef
+Historic pioneer orchards inside the park where you can pick fruit (cherries, apricots, peaches, apples, pears) in season. Pay by the bag, eat in the orchard. One of the most unique park experiences in the NPS system.
+- **Budget**: budget
+- **Group**: solo, couple, friends, family
+- **Interests**: dining, farmMarkets, family, history
+- **Months**: Jun–Oct (varies by fruit)
+
+*Note: Hell's Backbone Grill & Farm in Boulder, UT is listed in the main Nourish section above. It is the natural lunch stop on Scenic Byway 12 between Bryce Canyon and Capitol Reef.*
+
+---
+
 ### Resources
 - Zion National Park → https://www.nps.gov/zion/
 - Zion Shuttle System → https://www.nps.gov/zion/planyourvisit/zion-canyon-shuttle-system.htm
+- Bryce Canyon National Park → https://www.nps.gov/brca/
+- Bryce Canyon Trails → https://www.nps.gov/brca/planyourvisit/day-hikes.htm
+- Bryce Canyon Shuttle → https://www.nps.gov/brca/planyourvisit/shuttle.htm
+- Bryce Canyon Astronomy → https://www.nps.gov/brca/planyourvisit/astronomy.htm
+- Capitol Reef National Park → https://www.nps.gov/care/
+- Capitol Reef Trails → https://www.nps.gov/care/planyourvisit/hiking.htm
+- Capitol Reef Fruita Orchards → https://www.nps.gov/care/planyourvisit/orchards.htm
+- Scenic Byway 12 → https://scenicbyway12.com/
+- Skyview Hotel → https://skyviewhotel.com/
+- Capitol Reef Resort → https://capitolreefresort.com/

@@ -21,10 +21,17 @@ const NPS_BASE_URL = 'https://developer.nps.gov/api/v1';
 // Park codes for each Lila Trips destination
 const PARK_CODES = {
   zion: 'zion',
+  'bryce-canyon': 'brca',
+  'capitol-reef': 'care',
   'joshua-tree': 'jotr',
   'big-sur': null, // Not an NPS unit — no NPS API data
   'olympic-peninsula': 'olym',
   kauai: null, // State parks, not NPS
+};
+
+// Corridor parks associated with each primary destination
+const CORRIDOR_PARKS = {
+  zion: ['bryce-canyon', 'capitol-reef'],
 };
 
 // Open-Meteo coordinates for weather forecasts
@@ -792,10 +799,28 @@ export async function assembleContext(destination, userPreferences) {
       : Promise.resolve(null),
   ]);
 
-  // 3. Generate matching instructions from preferences
+  // 3. Fetch corridor park alerts when territory suggests multi-park travel
+  const corridorParks = CORRIDOR_PARKS[destination] || [];
+  const shouldFetchCorridor = corridorParks.length > 0 &&
+    ['flexible', 'nomadic', 'full-drift'].includes(userPreferences.territory) &&
+    (userPreferences.duration || 4) >= 4;
+
+  let corridorAlerts = null;
+  if (shouldFetchCorridor) {
+    const corridorResults = await Promise.all(
+      corridorParks.map(async (park) => {
+        const parkAlerts = await fetchNPSAlerts(park);
+        return parkAlerts ? `**${park}**: ${parkAlerts}` : null;
+      })
+    );
+    const validAlerts = corridorResults.filter(Boolean);
+    corridorAlerts = validAlerts.length > 0 ? validAlerts.join('\n\n') : null;
+  }
+
+  // 4. Generate matching instructions from preferences
   const matchingInstructions = generateMatchingInstructions(userPreferences);
 
-  // 4. Compute night sky conditions (uses moon phase from celestial + static dark sky data)
+  // 5. Compute night sky conditions (uses moon phase from celestial + static dark sky data)
   const moonPhase = celestial?.moonPhase || (hasExactDates ? null : getMoonPhase(new Date()));
   const nightSky = getNightSkyConditions(
     destination,
@@ -804,7 +829,7 @@ export async function assembleContext(destination, userPreferences) {
     moonPhase,
   );
 
-  // 5. Assemble the context block that goes into the Claude prompt
+  // 6. Assemble the context block that goes into the Claude prompt
   const context = {
     guide,
     permits: formatPermitsForPrompt(permits),
@@ -812,6 +837,7 @@ export async function assembleContext(destination, userPreferences) {
     tides: formatTidesForPrompt(tides),
     liveData: {
       alerts: alerts || 'No alert data available.',
+      corridorAlerts,
       weather: formatWeatherForPrompt(weather),
       celestial: formatCelestialForPrompt(celestial),
       celestialRaw: celestial,
@@ -845,6 +871,8 @@ ${context.guide}
 
 ### Current Park Alerts
 ${context.liveData.alerts}
+
+${context.liveData.corridorAlerts ? `### Corridor Park Alerts (Bryce Canyon & Capitol Reef)\n${context.liveData.corridorAlerts}` : ''}
 
 ### Weather Forecast for Travel Dates
 ${context.liveData.weather}

@@ -74,6 +74,19 @@ When building a multi-day itinerary, follow this rhythm:
 - **Earliest start time is 7:00 AM.** No timeline items before 7 AM unless the traveler explicitly requests sunrise activities. Even sunrise hikes should start no earlier than 7 AM for the meeting/departure time.
 - **Generate exactly the number of days specified** in the Trip Length field. Do not add or remove days.
 
+**Trip duration and corridor scope:**
+- 1–3 days: Stay anchored to Zion Canyon and Springdale. Do not recommend corridor parks.
+- 4–5 days + flexible/nomadic/full-drift territory: Include Bryce Canyon as a day trip or overnight. Surface drive time and one key trail (Navajo Loop + Queen's Garden combo is the default recommendation).
+- 5+ days + nomadic/full-drift territory: Include Bryce Canyon overnight AND Capitol Reef/Torrey. Recommend Skyview Hotel or Capitol Reef Resort for the Torrey base. Use Scenic Byway 12 as the connective route between Bryce and Capitol Reef.
+- Any duration + full-drift territory: Design a multi-base itinerary with explicit check-out/travel days.
+
+**When the itinerary spans multiple bases:**
+- Include a dedicated travel day when moving between bases (Zion → Bryce, Bryce → Capitol Reef).
+- Travel days should include: departure time, drive time, must-stop en route, arrival activity or sunset recommendation.
+- Do not compress a travel day into an activity day — give it its own structure.
+- For Zion → Bryce: note the Mt. Carmel Highway tunnel and the Red Canyon pullout on Highway 12.
+- For Bryce → Capitol Reef: route via Scenic Byway 12 through Boulder, with Hell's Backbone Grill as the lunch anchor if season permits (Mar–Nov).
+
 ## OUTPUT FORMAT — CRITICAL
 
 You MUST respond with ONLY a valid JSON object. No markdown code fences, no backticks, no preamble, no text before or after the JSON. Start your response with { and end with }.
