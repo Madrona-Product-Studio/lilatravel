@@ -19,7 +19,7 @@
 
 ---
 
-## The Place
+## Sense of Place
 
 Joshua Tree sits at the convergence of two deserts — the Mojave and the Colorado — and that collision is part of what makes it singular. The high desert is cool and boulder-studded, carpeted in the alien silhouettes of Yucca brevifolia. Drop below the transition zone into the Colorado Desert and the landscape shifts: more open, more stark, warmer. The park covers 800,000 acres. Most visitors see a fraction of it.
 
@@ -29,7 +29,7 @@ This is a place for people who want to feel small in the best possible way. The 
 
 ---
 
-## Optimal Windows
+## When to Go
 
 **Spring (March–May):** Best overall. Wildflower season peaks late February–April depending on winter rainfall. Temperatures comfortable (55–80°F). Busy on weekends — arrive early or camp midweek.  
 **Fall (October–November):** Second-best window. Crowds thinner than spring. Color subtle but the light is extraordinary.  
@@ -43,37 +43,113 @@ This is a place for people who want to feel small in the best possible way. The 
 
 ---
 
-## Sacred Terrain — Hikes & Landscape
+## Sacred Terrain
 
 ### Signature Hikes
 
-**Barker Dam Loop** — 1.3 miles, easy. A former ranching dam now reflecting sky and cliff. Rock art on the canyon walls. Bighorn sheep territory at dawn and dusk. One of the most accessible windows into the desert's quiet depth.
+#### Barker Dam Loop
+A former ranching dam now reflecting sky and cliff. Rock art on the canyon walls. Bighorn sheep territory at dawn and dusk. One of the most accessible windows into the desert's quiet depth.
+- **Distance**: 1.3 miles · **Difficulty**: Easy · **Time**: 45 min
+- **Energy**: gentle
+- **Group**: solo, couple, friends, family
+- **Interests**: hiking, photography, nature
+- **Months**: Year-round (avoid midday summer)
 
-**Hidden Valley Trail** — 1 mile loop, easy. Enclosed by massive boulder formations — the valley floor feels like a secret the desert kept. A legendary bouldering area; watch climbers work the walls.
+#### Hidden Valley Trail
+Enclosed by massive boulder formations — the valley floor feels like a secret the desert kept. A legendary bouldering area; watch climbers work the walls.
+- **Distance**: 1 mile loop · **Difficulty**: Easy · **Time**: 30–45 min
+- **Energy**: gentle
+- **Group**: solo, couple, friends, family
+- **Interests**: hiking, photography, climbing
+- **Months**: Year-round
 
-**Ryan Mountain** — 3 miles, moderate. The best panoramic summit in the park. Views of both desert systems, the Little San Bernardino Mountains, and on clear days, the Salton Sea. Sunrise from here is transformative.
+#### Ryan Mountain
+The best panoramic summit in the park. Views of both desert systems, the Little San Bernardino Mountains, and on clear days, the Salton Sea. Sunrise from here is transformative.
+- **Distance**: 3 miles · **Elevation gain**: 1,050 ft · **Difficulty**: Moderate · **Time**: 2–3 hrs
+- **Energy**: moderate
+- **Group**: solo, couple, friends
+- **Interests**: hiking, photography, sunrise
+- **Months**: Oct–May (too hot Jun–Sep)
 
-**Skull Rock Nature Trail** — 1.7 miles, easy. Along Pinto Basin Road. The signature rock formation, but the trail earns its length — good for tuning in to desert micro-ecosystems.
+#### Skull Rock Nature Trail
+Along Pinto Basin Road. The signature rock formation, but the trail earns its length — good for tuning in to desert micro-ecosystems.
+- **Distance**: 1.7 miles · **Difficulty**: Easy · **Time**: 1 hr
+- **Energy**: gentle
+- **Group**: solo, couple, friends, family
+- **Interests**: hiking, nature, family
+- **Months**: Year-round
 
-**Cholla Cactus Garden** — 0.25 miles, flat. In the Colorado Desert section. Walking through cholla forest at golden hour is one of the park's most otherworldly experiences. Do not touch.
+#### Cholla Cactus Garden
+In the Colorado Desert section. Walking through cholla forest at golden hour is one of the park's most otherworldly experiences. Do not touch.
+- **Distance**: 0.25 miles · **Difficulty**: Easy · **Time**: 20 min
+- **Energy**: gentle
+- **Group**: solo, couple, friends, family
+- **Interests**: hiking, photography, nature
+- **Months**: Year-round (best at golden hour)
 
-**Lost Palms Oasis** — 7.5 miles round trip, moderate-strenuous. The park's largest fan palm oasis, deep in the Colorado Desert. Bighorn sheep, a genuine sense of wilderness. Carry more water than you think you need.
+#### Lost Palms Oasis
+The park's largest fan palm oasis, deep in the Colorado Desert. Bighorn sheep, a genuine sense of wilderness. Carry more water than you think you need.
+- **Distance**: 7.5 miles round trip · **Difficulty**: Moderate-strenuous · **Time**: 4–5 hrs
+- **Energy**: adventurous
+- **Group**: solo, couple, friends
+- **Interests**: hiking, solitude, nature
+- **Months**: Oct–Apr (dangerously hot in summer)
 
-**Keys View** — Drive-up overlook. Not a hike, but worth naming. Views of the Coachella Valley, the San Andreas Fault, and the Salton Sea. Best in morning before haze builds.
+#### Keys View
+Drive-up overlook. Not a hike, but worth naming. Views of the Coachella Valley, the San Andreas Fault, and the Salton Sea. Best in morning before haze builds.
+- **Distance**: 0.1 miles (paved) · **Difficulty**: Easy · **Time**: 15 min
+- **Energy**: gentle
+- **Group**: solo, couple, friends, family
+- **Interests**: photography, scenic drives
+- **Months**: Year-round
 
-**Fortynine Palms Oasis** — 3 miles round trip, moderate. A surprise: a lush palm oasis tucked into otherwise arid hills. The contrast is visceral.
+#### Fortynine Palms Oasis
+A surprise: a lush palm oasis tucked into otherwise arid hills. The contrast is visceral.
+- **Distance**: 3 miles round trip · **Difficulty**: Moderate · **Time**: 1.5–2 hrs
+- **Energy**: moderate
+- **Group**: solo, couple, friends
+- **Interests**: hiking, nature, photography
+- **Months**: Oct–May
 
-**Mastodon Peak Loop** — 2.9 miles, moderate. Gold mine ruins, Cottonwood Spring oasis, bighorn territory. A layered walk.
+#### Mastodon Peak Loop
+Gold mine ruins, Cottonwood Spring oasis, bighorn territory. A layered walk.
+- **Distance**: 2.9 miles · **Difficulty**: Moderate · **Time**: 1.5–2 hrs
+- **Energy**: moderate
+- **Group**: solo, couple, friends
+- **Interests**: hiking, history, nature
+- **Months**: Year-round
 
 ### Bouldering & Climbing
 
 Joshua Tree is one of the world's great trad climbing destinations — over 8,000 established routes on 400+ formations. The rock is monzogranite, coarse-textured and grippy. For non-climbers, watching skilled climbers work the boulders is its own kind of meditation.
 
-- **Intersection Rock** — The social hub. All levels. Walk-ups visible from the road.
-- **Dome Rock** — Towering. Impressive even to watch.
-- **Jumbo Rocks Campground area** — Accessible bouldering with iconic formations.
-- **Verticalife** (Joshua Tree town) — Local guide service and gear shop. Good for intro clinics.
-- **Joshua Tree Rock Climbing School** — Established since 1988. Half and full-day instruction.
+#### Intersection Rock
+The social hub of JTree climbing. All levels. Walk-ups visible from the road. Start here.
+- **Energy**: moderate, adventurous
+- **Group**: solo, couple, friends
+- **Interests**: climbing, photography
+- **Months**: Oct–May
+
+#### Jumbo Rocks Area
+Accessible bouldering with iconic formations. Also home to Jumbo Rocks Campground — combine a camp night with a bouldering session.
+- **Energy**: moderate, adventurous
+- **Group**: solo, couple, friends
+- **Interests**: climbing, camping
+- **Months**: Oct–May
+
+#### Joshua Tree Rock Climbing School
+Established since 1988. Half and full-day instruction for all levels. The most trusted guiding operation in the area.
+- **Energy**: moderate, adventurous
+- **Group**: solo, couple, friends, family
+- **Interests**: climbing
+- **Months**: Year-round
+
+#### Verticalife
+Local guide service and gear shop in Joshua Tree town. Good for intro clinics and gear rental.
+- **Energy**: moderate, adventurous
+- **Group**: solo, couple, friends
+- **Interests**: climbing
+- **Months**: Year-round
 
 ---
 
@@ -97,15 +173,33 @@ Joshua Tree is a certified International Dark Sky Park. Bortle Class 2 condition
 
 ---
 
-## Living Practice — Wellness & Movement
+## Living Practice
 
 ### Yoga & Movement
 
-**Soul of Yoga at Joshua Tree** — Retreat-style yoga and meditation programming in the high desert. Drop-ins possible; retreats bookable.
+#### Soul of Yoga at Joshua Tree
+Retreat-style yoga and meditation programming in the high desert. Drop-ins possible; retreats bookable.
+- **Energy**: gentle, moderate
+- **Group**: solo, couple, friends
+- **Budget**: balanced, premium
+- **Interests**: yoga, meditation, wellness
+- **Months**: Year-round
 
-**Bhakti Yoga Shala** (Palm Springs, ~45 min) — One of the Coachella Valley's most respected studios. Consistent instruction, strong community.
+#### Bhakti Yoga Shala
+Palm Springs, ~45 min. One of the Coachella Valley's most respected studios. Consistent instruction, strong community.
+- **Energy**: gentle, moderate
+- **Group**: solo, couple, friends
+- **Budget**: mindful, balanced
+- **Interests**: yoga, wellness
+- **Months**: Year-round
 
-**Desert Yoga Retreats** — Small-group multi-day retreats based in or near the park. Various teachers rotate through. Check current programming.
+#### Desert Yoga Retreats
+Small-group multi-day retreats based in or near the park. Various teachers rotate through. Check current programming.
+- **Energy**: gentle, moderate
+- **Group**: solo, couple, friends
+- **Budget**: balanced, premium
+- **Interests**: yoga, meditation, wellness
+- **Months**: Oct–May
 
 **Morning practice suggestion:** Sunrise yoga at Ryan Mountain trailhead (before the hike) or at your campsite with the boulders as a backdrop. The early desert light — rose, amber, then white — provides natural rhythm for a sun salutation sequence.
 
@@ -113,19 +207,49 @@ Joshua Tree is a certified International Dark Sky Park. Bortle Class 2 condition
 
 **Desert silence as practice:** The high desert has measurable acoustic quiet. 29 Palms backcountry and the Wonderland of Rocks both offer conditions where ambient sound drops to near-zero. For breath-centered practice, there are few better natural environments.
 
-**Joshua Tree Retreat Center** — Long-established retreat venue with meditation halls, healing arts practitioners, and residential programs. About 2 miles from the park's west entrance.
+#### Joshua Tree Retreat Center
+Long-established retreat venue with meditation halls, healing arts practitioners, and residential programs. About 2 miles from the park's west entrance.
+- **Energy**: gentle
+- **Group**: solo, couple, friends
+- **Budget**: balanced, premium
+- **Interests**: meditation, yoga, wellness
+- **Months**: Year-round
 
-**Integratron** (Landers, ~25 min north) — A one-of-a-kind acoustic sound bath experience inside a resonant wood dome built in the 1950s by George Van Tassel. Rooted in fringe science but the experience is genuinely resonant. Bookings fill quickly — reserve well ahead. This belongs on every Lila itinerary.
+#### Integratron
+Landers, ~25 min north. A one-of-a-kind acoustic sound bath experience inside a resonant wood dome built in the 1950s by George Van Tassel. Rooted in fringe science but the experience is genuinely resonant. Bookings fill quickly — reserve well ahead. This belongs on every Lila itinerary.
+- **Energy**: gentle
+- **Group**: solo, couple, friends
+- **Budget**: balanced
+- **Interests**: meditation, soundHealing, wellness
+- **Months**: Year-round
 
-### Cold Water & Heat
+### Soaking & Thermal
 
 The desert climate itself is the elemental encounter here — daytime heat, night cold, low humidity. There's no river running through Joshua Tree the way the Virgin flows through Zion. The elemental contrast is heat-and-cold between day and night, or between sun and shade.
 
-**Two Bunch Palms** (Desert Hot Springs, ~45 min) — Historic mineral hot springs spa. Fed by a natural geothermal aquifer. Long a Hollywood hideaway. Grotto pools, couples treatments, serious relaxation. The counterpoint to a strenuous park day.
+#### Two Bunch Palms
+Desert Hot Springs, ~45 min. Historic mineral hot springs spa. Fed by a natural geothermal aquifer. Long a Hollywood hideaway. Grotto pools, couples treatments, serious relaxation. The counterpoint to a strenuous park day.
+- **Energy**: gentle
+- **Group**: solo, couple
+- **Budget**: premium, noLimits
+- **Interests**: spa, wellness, soaking
+- **Months**: Year-round
 
-**Miracle Springs Resort & Spa** (Desert Hot Springs) — More affordable than Two Bunch. Eight mineral pools ranging from warm to hot. Good for a long afternoon soak.
+#### Miracle Springs Resort & Spa
+Desert Hot Springs. More affordable than Two Bunch. Eight mineral pools ranging from warm to hot. Good for a long afternoon soak.
+- **Energy**: gentle
+- **Group**: solo, couple, friends, family
+- **Budget**: mindful, balanced
+- **Interests**: spa, wellness, soaking
+- **Months**: Year-round
 
-**Joshua Tree Spa** (29 Palms) — Smaller, local. Desert-inspired treatments.
+#### Joshua Tree Spa
+29 Palms. Smaller, local. Desert-inspired treatments.
+- **Energy**: gentle
+- **Group**: solo, couple
+- **Budget**: balanced
+- **Interests**: spa, wellness
+- **Months**: Year-round
 
 ---
 
@@ -133,83 +257,251 @@ The desert climate itself is the elemental encounter here — daytime heat, nigh
 
 ### Joshua Tree Town
 
-**La Copine** — The destination restaurant. A converted house in the high desert, farm-sourced, frequently changing menu. Has been written about in every major food publication. Reservations essential and often difficult — book weeks ahead. Worth the effort.
+#### La Copine
+The destination restaurant. A converted house in the high desert, farm-sourced, frequently changing menu. Has been written about in every major food publication. Reservations essential and often difficult — book weeks ahead. Worth the effort.
+- **Energy**: gentle
+- **Group**: couple, friends
+- **Budget**: premium, noLimits
+- **Time**: midday, evening
+- **Interests**: dining, farmMarkets
+- **Months**: Year-round (check hours; closed some days)
 
-**Crossroads Cafe** — The local gathering spot. Breakfast and lunch, good coffee, a community bulletin board that tells you more about the town than any guidebook. Eggs, benedicts, fresh-squeezed juice.
+#### Crossroads Cafe
+The local gathering spot. Breakfast and lunch, good coffee, a community bulletin board that tells you more about the town than any guidebook. Eggs, benedicts, fresh-squeezed juice.
+- **Energy**: gentle
+- **Group**: solo, couple, friends, family
+- **Budget**: mindful, balanced
+- **Time**: morning, midday
+- **Interests**: dining
+- **Months**: Year-round
 
-**Natural Sisters Cafe** — Vegetarian and vegan-friendly. Smoothies, bowls, wraps. A reliable healthy option near the west entrance.
+#### Natural Sisters Cafe
+Vegetarian and vegan-friendly. Smoothies, bowls, wraps. A reliable healthy option near the west entrance.
+- **Energy**: gentle
+- **Group**: solo, couple, friends
+- **Budget**: mindful, balanced
+- **Time**: morning, midday
+- **Interests**: dining, wellness
+- **Months**: Year-round
 
-**Joshua Tree Coffee Company** — The pre-hike stop. Good espresso, pastries from local bakers. Community hub.
+#### Joshua Tree Coffee Company
+The pre-hike stop. Good espresso, pastries from local bakers. Community hub.
+- **Energy**: gentle
+- **Group**: solo, couple, friends
+- **Budget**: mindful
+- **Time**: morning
+- **Interests**: dining
+- **Months**: Year-round
 
-**Pie for the People** — Pizza by the slice, unpretentious, good. A late-afternoon hiker staple.
+#### Pie for the People
+Pizza by the slice, unpretentious, good. A late-afternoon hiker staple.
+- **Energy**: gentle
+- **Group**: solo, couple, friends, family
+- **Budget**: mindful
+- **Time**: midday, evening
+- **Interests**: dining
+- **Months**: Year-round
 
 ### Twentynine Palms
 
-**29 Palms Inn Restaurant** — On the grounds of the historic inn near the north entrance. Farm-to-table, uses their own garden produce. Breakfast and dinner. Sit outside if weather permits.
+#### 29 Palms Inn Restaurant
+On the grounds of the historic inn near the north entrance. Farm-to-table, uses their own garden produce. Breakfast and dinner. Sit outside if weather permits.
+- **Energy**: gentle
+- **Group**: solo, couple, friends
+- **Budget**: balanced, premium
+- **Time**: morning, evening
+- **Interests**: dining, farmMarkets
+- **Months**: Year-round
 
-**Sunburst Cafe** — Breakfast and lunch. Portions generous, prices reasonable. Loved by locals and marines alike.
+#### Sunburst Cafe
+Breakfast and lunch. Portions generous, prices reasonable. Loved by locals and marines alike.
+- **Energy**: gentle
+- **Group**: solo, couple, friends, family
+- **Budget**: mindful
+- **Time**: morning, midday
+- **Interests**: dining
+- **Months**: Year-round
 
-**Ricochet Grill** — The local bar and grill. Casual, community, cold drinks after a long day.
+#### Ricochet Grill
+The local bar and grill. Casual, community, cold drinks after a long day.
+- **Energy**: gentle
+- **Group**: solo, couple, friends
+- **Budget**: mindful, balanced
+- **Time**: evening
+- **Interests**: dining
+- **Months**: Year-round
 
 ### Pioneertown
 
-**Pappy & Harriet's Pioneertown Palace** — Legendary. A roadhouse in the truest sense — part BBQ joint, part honky-tonk, part live music venue. Red-checkered tablecloths, mesquite-smoked meats, artists playing on a stage built into an old movie set. Opened 1982. Don't miss it. Check the music calendar — touring artists of serious caliber play here regularly.
+#### Pappy & Harriet's Pioneertown Palace
+Legendary. A roadhouse in the truest sense — part BBQ joint, part honky-tonk, part live music venue. Red-checkered tablecloths, mesquite-smoked meats, artists playing on a stage built into an old movie set. Opened 1982. Don't miss it. Check the music calendar — touring artists of serious caliber play here regularly.
+- **Energy**: gentle
+- **Group**: solo, couple, friends
+- **Budget**: balanced
+- **Time**: evening
+- **Interests**: dining, music, culture
+- **Months**: Year-round
 
-**Pioneertown Motel Bar** — Small, atmospheric bar connected to the motel. Good drinks, desert art on the walls, an entirely different vibe from Pappy's.
+#### Pioneertown Motel Bar
+Small, atmospheric bar connected to the motel. Good drinks, desert art on the walls, an entirely different vibe from Pappy's.
+- **Energy**: gentle
+- **Group**: solo, couple, friends
+- **Budget**: balanced
+- **Time**: evening
+- **Interests**: dining, culture
+- **Months**: Year-round
 
 ### Palm Springs (Orbit)
 
-**Workshop Kitchen + Bar** — Downtown PS, design-forward, farm-to-table. The kind of restaurant that rewards a nicer dinner out.
+#### Workshop Kitchen + Bar
+Downtown PS, design-forward, farm-to-table. The kind of restaurant that rewards a nicer dinner out.
+- **Energy**: gentle
+- **Group**: couple, friends
+- **Budget**: premium
+- **Time**: evening
+- **Interests**: dining
+- **Months**: Year-round
 
-**Cheeky's** — Weekend brunch institution. Seasonal, rotating menu, long waits. Worth it.
+#### Cheeky's
+Weekend brunch institution. Seasonal, rotating menu, long waits. Worth it.
+- **Energy**: gentle
+- **Group**: couple, friends
+- **Budget**: balanced
+- **Time**: morning, midday
+- **Interests**: dining
+- **Months**: Year-round
 
-**Koffi** — Local coffee mini-chain. Better than any chain you'd find elsewhere. Multiple locations.
+#### Koffi
+Local coffee mini-chain. Better than any chain you'd find elsewhere. Multiple locations.
+- **Energy**: gentle
+- **Group**: solo, couple, friends
+- **Budget**: mindful
+- **Time**: morning
+- **Interests**: dining
+- **Months**: Year-round
 
-**Rancho Mirage Farmers Market** — Wednesdays, November–May. One of the best in the Coachella Valley.
+#### Rancho Mirage Farmers Market
+Wednesdays, November–May. One of the best in the Coachella Valley.
+- **Energy**: gentle
+- **Group**: solo, couple, friends, family
+- **Budget**: mindful, balanced
+- **Time**: morning
+- **Interests**: dining, farmMarkets
+- **Months**: Nov–May
 
-### Trail Provisions
+### Provisions & Markets
 
-**Joshua Tree Health Foods** — Small grocery near the west entrance. Good for stocking up on real food before heading into the park.
+#### Joshua Tree Health Foods
+Small grocery near the west entrance. Good for stocking up on real food before heading into the park.
+- **Budget**: mindful, balanced
+- **Months**: Year-round
 
-**Stater Bros.** (Twentynine Palms) — Largest grocery option near the north entrance.
+#### Stater Bros.
+Twentynine Palms. Largest grocery option near the north entrance.
+- **Budget**: mindful
+- **Months**: Year-round
 
 ---
 
-## Discover — Culture, Art & Local Life
+## Discover
 
 ### Art & Galleries
 
-**Pioneertown** itself — The whole town is an artifact. Walk the main "street" (Mane Street — the original movie set thoroughfare). Surreal and atmospheric even without the crowds.
+#### Pioneertown (Mane Street)
+The whole town is an artifact. Walk the main "street" (Mane Street — the original movie set thoroughfare). Surreal and atmospheric even without the crowds.
+- **Energy**: gentle
+- **Group**: solo, couple, friends, family
+- **Interests**: art, culture, photography
+- **Months**: Year-round
 
-**High Desert Test Sites** — An ongoing art initiative founded in 2002 by Andrea Zittel. Site-specific works scattered across the high desert landscape. HDTS has seeded a generation of artists coming to the desert to make work. Various installations are accessible; check current locations.
+#### High Desert Test Sites
+An ongoing art initiative founded in 2002 by Andrea Zittel. Site-specific works scattered across the high desert landscape. HDTS has seeded a generation of artists coming to the desert to make work. Various installations are accessible; check current locations.
+- **Energy**: gentle
+- **Group**: solo, couple, friends
+- **Interests**: art, culture
+- **Months**: Year-round
 
-**Art Queen** (Joshua Tree) — Gallery and art supply. A hub of the local creative community. Rotating exhibitions.
+#### Art Queen
+Joshua Tree town. Gallery and art supply. A hub of the local creative community. Rotating exhibitions.
+- **Energy**: gentle
+- **Group**: solo, couple, friends
+- **Interests**: art, culture
+- **Months**: Year-round
 
-**Coyote Corner** (Joshua Tree) — The landmark local gift shop. Rocks, crystals, desert goods, maps, information. A genuine local institution rather than a tourist trap.
+#### Coyote Corner
+Joshua Tree town. The landmark local gift shop. Rocks, crystals, desert goods, maps, information. A genuine local institution rather than a tourist trap.
+- **Energy**: gentle
+- **Group**: solo, couple, friends, family
+- **Interests**: culture
+- **Months**: Year-round
 
-**Twentynine Palms Art Gallery** — Rotating shows, often featuring work by local and regional desert artists. Run by the 29 Palms Art Gallery, a nonprofit since 1944.
+#### Twentynine Palms Art Gallery
+Rotating shows, often featuring work by local and regional desert artists. Run by the 29 Palms Art Gallery, a nonprofit since 1944.
+- **Energy**: gentle
+- **Group**: solo, couple, friends
+- **Interests**: art, culture
+- **Months**: Year-round
 
-**Palm Springs Art Museum** (orbit) — World-class collection with strong desert Southwest emphasis. Architecture, photography, and modern art all represented. The building itself is striking.
+#### Palm Springs Art Museum
+World-class collection with strong desert Southwest emphasis. Architecture, photography, and modern art all represented. The building itself is striking.
+- **Energy**: gentle
+- **Group**: solo, couple, friends
+- **Budget**: balanced
+- **Interests**: art, culture
+- **Months**: Year-round
 
-### Architecture & Design (Palm Springs, orbit)
+### Architecture & Design (Palm Springs)
 
 Palm Springs is one of the world's greatest concentrations of mid-century modern residential architecture. If you're spending a night there:
 
-**Modernism Week** (February) — The largest event of its kind. Home tours, lectures, parties.
+#### Modernism Week
+February. The largest event of its kind. Home tours, lectures, parties.
+- **Energy**: gentle
+- **Group**: solo, couple, friends
+- **Interests**: art, culture, architecture
+- **Months**: Feb
 
-**The Kaufmann Desert House** (1946, Richard Neutra) — Visible from the street.
+#### The Kaufmann Desert House
+1946, Richard Neutra. Visible from the street.
+- **Energy**: gentle
+- **Interests**: architecture, culture
+- **Months**: Year-round
 
-**Tramway Gas Station** (Albert Frey, 1965) — Now the visitor center. A modernist gem.
+#### Tramway Gas Station
+Albert Frey, 1965. Now the visitor center. A modernist gem.
+- **Energy**: gentle
+- **Interests**: architecture, culture
+- **Months**: Year-round
 
-**Elvis Honeymoon Hideaway** (Palmer & Krisel, 1960) — Tours available.
+#### Elvis Honeymoon Hideaway
+Palmer & Krisel, 1960. Tours available.
+- **Energy**: gentle
+- **Group**: solo, couple, friends
+- **Interests**: architecture, culture
+- **Months**: Year-round
 
 ### Music
 
-**Pappy & Harriet's** (see above) — The essential live music destination in this entire orbit.
+#### Pappy & Harriet's (Live Music)
+The essential live music destination in this entire orbit. Check the music calendar — touring artists of serious caliber play here regularly. (See Pappy & Harriet's under Nourish for dining details.)
+- **Energy**: gentle
+- **Group**: solo, couple, friends
+- **Interests**: music, culture
+- **Months**: Year-round
 
-**Desert Stars Festival** — Annual music festival in Pioneertown. Lineup varies; intimate setting.
+#### Desert Stars Festival
+Annual music festival in Pioneertown. Lineup varies; intimate setting.
+- **Energy**: moderate
+- **Group**: solo, couple, friends
+- **Interests**: music, culture
+- **Months**: Check calendar
 
-**Coachella Valley Music and Arts Festival** (April, Indio) — If timing aligns, the world's most famous festival is an hour away. Not a Lila-core experience but worth noting for trip timing.
+#### Coachella Valley Music and Arts Festival
+April, Indio. If timing aligns, the world's most famous festival is an hour away. Not a Lila-core experience but worth noting for trip timing.
+- **Energy**: adventurous
+- **Group**: couple, friends
+- **Interests**: music, culture
+- **Months**: Apr
 
 ---
 
@@ -217,57 +509,169 @@ Palm Springs is one of the world's greatest concentrations of mid-century modern
 
 ### Elemental (In the landscape)
 
-**Jumbo Rocks Campground** — 124 sites, no hookups, first-come first-served. Set among massive boulder formations. The most immersive camping experience in the park. Dark sky conditions excellent.
+#### Jumbo Rocks Campground
+124 sites, no hookups, first-come first-served. Set among massive boulder formations. The most immersive camping experience in the park. Dark sky conditions excellent.
+- **StayStyle**: elemental
+- **Energy**: gentle, moderate, adventurous
+- **Group**: solo, couple, friends, family
+- **Budget**: mindful
+- **Interests**: camping, stargazing, climbing
+- **Months**: Year-round (hot in summer)
 
-**Hidden Valley Campground** — 44 sites, no hookups, first-come first-served. Inside the iconic boulder enclosure. Smaller, more intimate. Fills fast on weekends.
+#### Hidden Valley Campground
+44 sites, no hookups, first-come first-served. Inside the iconic boulder enclosure. Smaller, more intimate. Fills fast on weekends.
+- **StayStyle**: elemental
+- **Energy**: gentle, moderate, adventurous
+- **Group**: solo, couple, friends
+- **Budget**: mindful
+- **Interests**: camping, climbing, stargazing
+- **Months**: Year-round
 
-**White Tank Campground** — 15 sites. Quieter, less trafficked. Adjacent to the Arch Rock nature trail.
+#### White Tank Campground
+15 sites. Quieter, less trafficked. Adjacent to the Arch Rock nature trail.
+- **StayStyle**: elemental
+- **Energy**: gentle, moderate
+- **Group**: solo, couple
+- **Budget**: mindful
+- **Interests**: camping, solitude, stargazing
+- **Months**: Year-round
 
-**Cottonwood Campground** — South entrance, Colorado Desert. First-come or reservation. Good for early-season desert blooms.
+#### Cottonwood Campground
+South entrance, Colorado Desert. First-come or reservation. Good for early-season desert blooms.
+- **StayStyle**: elemental
+- **Energy**: gentle, moderate
+- **Group**: solo, couple, friends, family
+- **Budget**: mindful
+- **Interests**: camping, nature
+- **Months**: Oct–May (too hot in summer)
 
-**Skylight Joshua Tree** — A collection of intentionally designed desert cabins and domes near the park's north edge. Stargazing-optimized. Off-grid feel with considered design.
+#### Skylight Joshua Tree
+A collection of intentionally designed desert cabins and domes near the park's north edge. Stargazing-optimized. Off-grid feel with considered design.
+- **StayStyle**: elemental
+- **Energy**: gentle
+- **Group**: solo, couple
+- **Budget**: balanced, premium
+- **Interests**: stargazing, design
+- **Months**: Year-round
 
-**Hicksville Trailer Palace** — Vintage trailers on a small ranch near the park. Each themed and designed. Playful, adult, deeply Joshua Tree in spirit. Hot tub, pool, fire pit.
+#### Hicksville Trailer Palace
+Vintage trailers on a small ranch near the park. Each themed and designed. Playful, adult, deeply Joshua Tree in spirit. Hot tub, pool, fire pit.
+- **StayStyle**: elemental
+- **Energy**: gentle
+- **Group**: couple, friends
+- **Budget**: balanced
+- **Interests**: culture, design
+- **Months**: Year-round
 
-**JTREE Stays / Desert vacation rentals** — A cottage industry of thoughtfully designed desert homes available on short-term rental. Many have outdoor tubs, fire pits, unobstructed sky views. Search specifically for properties with outdoor soaking tubs and dark sky views.
+#### JTREE Stays / Desert Vacation Rentals
+A cottage industry of thoughtfully designed desert homes available on short-term rental. Many have outdoor tubs, fire pits, unobstructed sky views. Search specifically for properties with outdoor soaking tubs and dark sky views.
+- **StayStyle**: elemental
+- **Energy**: gentle
+- **Group**: solo, couple, friends
+- **Budget**: balanced, premium
+- **Interests**: stargazing, design, soaking
+- **Months**: Year-round
 
 ### Rooted (Boutique, local)
 
-**29 Palms Inn** — A historic oasis property near the north entrance. Adobe bungalows around a natural pool fed by an underground spring. Gardens, resident animals, a genuinely timeless quality. The inn has been here since 1928. One of the most special small lodges in the American West.
+#### 29 Palms Inn
+A historic oasis property near the north entrance. Adobe bungalows around a natural pool fed by an underground spring. Gardens, resident animals, a genuinely timeless quality. The inn has been here since 1928. One of the most special small lodges in the American West.
+- **StayStyle**: rooted
+- **Energy**: gentle
+- **Group**: solo, couple, friends
+- **Budget**: balanced
+- **Interests**: nature, history
+- **Months**: Year-round
 
-**Spin & Margie's Desert Hideaway** — A small collection of vintage-styled rooms in Joshua Tree town. Art everywhere, garden courtyard, walking distance to the best coffee and galleries.
+#### Spin & Margie's Desert Hideaway
+A small collection of vintage-styled rooms in Joshua Tree town. Art everywhere, garden courtyard, walking distance to the best coffee and galleries.
+- **StayStyle**: rooted
+- **Energy**: gentle
+- **Group**: solo, couple
+- **Budget**: balanced
+- **Interests**: art, culture
+- **Months**: Year-round
 
-**Pioneertown Motel** — Basic but atmospheric. The only place to sleep in Pioneertown itself. Walking distance to Pappy's.
+#### Pioneertown Motel
+Basic but atmospheric. The only place to sleep in Pioneertown itself. Walking distance to Pappy's.
+- **StayStyle**: rooted
+- **Energy**: gentle
+- **Group**: solo, couple, friends
+- **Budget**: mindful, balanced
+- **Interests**: music, culture
+- **Months**: Year-round
 
-**Sacred Sands** — Boutique B&B in Joshua Tree town. Two rooms only. Thoughtfully appointed, meditation garden, personal attention.
+#### Sacred Sands
+Boutique B&B in Joshua Tree town. Two rooms only. Thoughtfully appointed, meditation garden, personal attention.
+- **StayStyle**: rooted
+- **Energy**: gentle
+- **Group**: solo, couple
+- **Budget**: balanced, premium
+- **Interests**: meditation, wellness
+- **Months**: Year-round
 
 ### Premium (Elevated experience)
 
-**Two Bunch Palms** (Desert Hot Springs) — Technically a spa resort, but the accommodations are excellent. Grotto, thermal pools, healing arts. A true decompression experience.
+#### Two Bunch Palms
+Desert Hot Springs. Technically a spa resort, but the accommodations are excellent. Grotto, thermal pools, healing arts. A true decompression experience.
+- **StayStyle**: premium
+- **Energy**: gentle
+- **Group**: solo, couple
+- **Budget**: premium, noLimits
+- **Interests**: spa, wellness, soaking
+- **Months**: Year-round
 
-**L'Horizon Resort & Spa** (Palm Springs) — William Cody, 1952. Mid-century masterpiece, small pool-centric property. Intimate and refined.
+#### L'Horizon Resort & Spa
+Palm Springs. William Cody, 1952. Mid-century masterpiece, small pool-centric property. Intimate and refined.
+- **StayStyle**: premium
+- **Energy**: gentle
+- **Group**: couple
+- **Budget**: premium, noLimits
+- **Interests**: architecture, spa, wellness
+- **Months**: Year-round
 
-**Parker Palm Springs** — Jonathan Adler-designed, 13 acres. The most design-forward major property in the valley. Pool culture, strong restaurant (Norma's), unhurried pace.
+#### Parker Palm Springs
+Jonathan Adler-designed, 13 acres. The most design-forward major property in the valley. Pool culture, strong restaurant (Norma's), unhurried pace.
+- **StayStyle**: premium
+- **Energy**: gentle
+- **Group**: couple, friends
+- **Budget**: premium, noLimits
+- **Interests**: design, dining, culture
+- **Months**: Year-round
 
-**Arrive Palm Springs** — Smaller, hipper, more affordable entry point to the PS hotel scene. Good bar, good location.
+#### Arrive Palm Springs
+Smaller, hipper, more affordable entry point to the PS hotel scene. Good bar, good location.
+- **StayStyle**: premium
+- **Energy**: gentle
+- **Group**: solo, couple, friends
+- **Budget**: balanced, premium
+- **Interests**: design, culture
+- **Months**: Year-round
 
 ---
 
 ## Give Back & Cultural Heritage
 
-**Serrano and Cahuilla Nations** — The land that is now Joshua Tree National Park has been home to the Serrano and Cahuilla peoples for thousands of years. Petroglyphs, bedrock mortars, and plant use sites throughout the park attest to sustained presence. The Oasis of Mara (at the Twentynine Palms Visitor Center) was a Serrano gathering place — the name Twentynine Palms refers to the 29 native palms that marked this oasis.
+#### Serrano and Cahuilla Nations
+The land that is now Joshua Tree National Park has been home to the Serrano and Cahuilla peoples for thousands of years. Petroglyphs, bedrock mortars, and plant use sites throughout the park attest to sustained presence. The Oasis of Mara (at the Twentynine Palms Visitor Center) was a Serrano gathering place — the name Twentynine Palms refers to the 29 native palms that marked this oasis.
 
-**Twentynine Palms Band of Mission Indians** — The native Serrano community with federally recognized status, based in Twentynine Palms. Their website and cultural programs offer context.
+#### Twentynine Palms Band of Mission Indians
+The native Serrano community with federally recognized status, based in Twentynine Palms. Their website and cultural programs offer context.
 
-**Desert Institute at Joshua Tree** — Field institute offering educational programs, natural history classes, night sky programs, and guided experiences inside the park. Proceeds support the park.
+#### Desert Institute at Joshua Tree
+Field institute offering educational programs, natural history classes, night sky programs, and guided experiences inside the park. Proceeds support the park.
+- **Interests**: education, nature, stargazing
+- **Months**: Year-round
 
-**Joshua Tree National Park Association** — The park's official nonprofit partner. Supports conservation, education, and volunteer programs. Volunteer opportunities available for trail maintenance and restoration.
+#### Joshua Tree National Park Association
+The park's official nonprofit partner. Supports conservation, education, and volunteer programs. Volunteer opportunities available for trail maintenance and restoration.
 
-**Volunteers for Outdoor California** — Organizes trail restoration and invasive species removal days in and around the park.
+#### Volunteers for Outdoor California
+Organizes trail restoration and invasive species removal days in and around the park.
 
 ---
 
-## Seasonal & Practical Notes
+## Logistics & Practical Notes
 
 **Water:** No water sources inside the park backcountry. Black Rock and Cottonwood Campgrounds have water; Indian Cove and most others do not. Fill before entering.
 

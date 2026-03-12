@@ -1,4 +1,18 @@
 # Zion Canyon — Lila Trips Destination Guide
+
+**Anchor:** Zion National Park, Utah
+**Orbit:** Springdale · Virgin · Rockville · Grafton (ghost town)
+**Park Code:** ZION
+**Coordinates:** 37.2982° N, 113.0263° W
+**Elevation:** ~3,900 ft (canyon floor) / ~7,800 ft (Kolob Plateau)
+**IDA Dark Sky Park:** Designated 2021. Bortle Class 3–4 in the canyon; darker at Kolob and Lava Point.
+**Entrance Fee:** $35/vehicle (7-day pass); $70 annual park pass; covered by America the Beautiful Pass ($80).
+**Visitor Centers:**
+- Zion Canyon Visitor Center (main, south entrance) — year-round, shuttle hub, ranger programs
+- Kolob Canyons Visitor Center (northwest corner off I-15) — year-round, less trafficked
+**Shuttle:** Mandatory shuttle system on Zion Canyon Scenic Drive, typically mid-March through November. Private vehicles prohibited on the scenic drive during shuttle season. Free, frequent service from the visitor center to Temple of Sinai.
+**Entrances:** South entrance (Springdale) is primary; east entrance via Zion-Mt. Carmel Highway (1.1-mile tunnel, vehicle size restrictions); Kolob Canyons entrance off I-15.
+
 ## Source Registry & Editorial Standards
 
 This guide is the sole source of truth for AI-generated Zion itineraries.
@@ -23,7 +37,7 @@ The canyon is the gravitational center, but Zion's orbit extends outward — to 
 
 ---
 
-## Magic Windows — When to Go & Why It Matters
+## When to Go
 
 ### The Golden Corridor (Late September – October) ★ THRESHOLD TRIP TIMING
 The single best window. Cottonwoods turn gold along the Virgin River. Crowds thin dramatically after Labor Day. The light goes amber. Hiking weather is ideal — warm days, cool nights. The Autumn Equinox (around September 22) marks a threshold moment when light and shadow reach perfect balance in the canyon.
@@ -50,7 +64,7 @@ Canyon light at its most dramatic and brief. Snow dusts the upper rim while the 
 
 ---
 
-## Sacred Terrain — Essential Hikes
+## Sacred Terrain
 
 ### Angels Landing
 The trail that defines Zion. A knife-edge ridge 1,488 feet above the canyon floor with chain-assisted sections along sheer dropoffs. The summit rewards with a 360-degree panorama of the canyon. This is not just a hike — it's a conversation with your own courage.
@@ -163,7 +177,7 @@ A paved, flat, riverside trail connecting the Visitor Center to Canyon Junction.
 
 ---
 
-## Living Practice — Wellness & Mindfulness
+## Living Practice
 
 ### Yoga & Movement
 
@@ -434,9 +448,9 @@ Seasonal smoothies, fresh fruit, snacks. Quick and refreshing.
 
 ---
 
-## Unique Stays — Accommodation Spectrum
+## Unique Stays
 
-### Elemental (Camping & Close to Earth)
+### Elemental (In the landscape)
 
 #### Watchman Campground
 Inside park. 190 sites, some riverside. Reservations required at recreation.gov. The most immersive option — you wake up in the canyon.
@@ -468,7 +482,7 @@ Springdale. Private campground just outside the park entrance. Showers, laundry,
 - **Interests**: —
 - **Months**: all (year-round)
 
-### Rooted (Mid-Range Comfort)
+### Rooted (Boutique, local)
 
 #### Cable Mountain Lodge
 Springdale. Excellent location, pool, hot tub. Walking distance to park entrance and shuttle. Good value.
@@ -500,7 +514,7 @@ Springdale. Clean, well-located. Home to King's Landing Bistro.
 - **Interests**: dining
 - **Months**: all (year-round)
 
-### Premium (Elevated Experience)
+### Premium (Elevated experience)
 
 #### Under Canvas Zion
 Glamping with safari-style tents. Outside the park but designed for immersive experiences.
@@ -527,7 +541,7 @@ Inside park. The only lodge inside the park. Historic. Book far in advance. Limi
 
 ---
 
-## Discover — Galleries, Shops & Hidden Gems
+## Discover
 
 #### Worthington Gallery
 Springdale. Fine art inspired by the canyon landscape. Worth a browse.
