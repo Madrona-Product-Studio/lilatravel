@@ -145,7 +145,14 @@ Return this structure:
             "trailheadAccess": "Take Zion Canyon Shuttle to The Grotto (Stop 6). No private vehicles to trailhead.",
             "conditions": "Final half-mile requires chains bolted to rock. Not suitable if icy or during heavy rain.",
             "npsUrl": "https://www.nps.gov/zion/planyourvisit/angels-landing-trail.htm"
-          }
+          },
+          "alternatives": [
+            {
+              "title": "Alternative activity name",
+              "summary": "1-2 sentences. Different character from the original.",
+              "timeOfDay": "morning"
+            }
+          ]
         }
       ],
       "picks": [
@@ -206,6 +213,15 @@ Return this structure:
   - `conditions` (string — current or seasonal trail conditions/warnings)
   - `npsUrl` (string — NPS trail page URL if available)
   For non-hiking activities, omit `activityType` and `trailData` entirely.
+- **timeline.alternatives**: array of 2-3 alternative activities per timeline item. Each alternative has:
+  - `title` (string) — the alternative activity name
+  - `summary` (string, 1-2 sentences) — describes the alternative
+  - `timeOfDay` (same enum as the parent: "morning" | "midday" | "afternoon" | "evening" | "night")
+  - Alternatives should fit the same time slot and energy level but differ in character (e.g. strenuous ↔ restorative, solitary ↔ social).
+  - Must pass the Lila content filter — sacred terrain, craft/intention. No chains or tourist traps.
+  - Must match the traveler's profile the same way the primary activity does.
+  - Do NOT include alternatives on logistics items (check-in, drive, transit, "ground" activities).
+  - Mindfulness picks already exclude alternatives per existing rules — no alternatives on mindfulness timeline entries either.
 - picks.category: one of "mindfulness", "stay", "eat", "gear", "wellness"
 - **Mindfulness picks — REQUIRED on every day, always FIRST in the picks array:**
   - Choose ONE teaching OR practice per day (not both). Vary traditions across days — never repeat the same tradition two days in a row.

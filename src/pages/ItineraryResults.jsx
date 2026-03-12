@@ -587,38 +587,23 @@ function MetaStrip({ category, pick, color }) {
 function ActivityThumbs({ id, feedback, onFeedback }) {
   const current = feedback?.[id] || null;
   const currentReaction = typeof current === 'string' ? current : current?.reaction || null;
-  const currentNote = typeof current === 'object' ? current?.note || '' : '';
-  const [noteOpen, setNoteOpen] = useState(false);
-  const [noteText, setNoteText] = useState(currentNote);
 
   const toggle = (reaction) => {
     if (currentReaction === reaction) {
       onFeedback(id, null);
-      if (reaction === 'down') { setNoteOpen(false); setNoteText(''); }
     } else {
-      if (reaction === 'down') {
-        onFeedback(id, { reaction: 'down', note: noteText });
-      } else {
-        onFeedback(id, reaction);
-        setNoteOpen(false);
-        setNoteText('');
-      }
+      onFeedback(id, reaction);
     }
-  };
-
-  const saveNote = (text) => {
-    setNoteText(text);
-    onFeedback(id, { reaction: 'down', note: text });
   };
 
   const reactions = [
     { key: 'fire', icon: FlameIcon, color: C.goldenAmber, label: 'Must do',
       restBg: `${C.goldenAmber}10`, restBorder: `${C.goldenAmber}30`, restIcon: C.goldenAmber,
       activeBg: `${C.goldenAmber}1c`, activeBorder: `${C.goldenAmber}50` },
-    { key: 'up', icon: ThumbUp, color: C.seaGlass, label: 'Love it',
+    { key: 'up', icon: ThumbUp, color: C.seaGlass, label: 'Want it',
       restBg: `${C.seaGlass}10`, restBorder: `${C.seaGlass}30`, restIcon: C.seaGlass,
       activeBg: `${C.seaGlass}1c`, activeBorder: `${C.seaGlass}50` },
-    { key: 'down', icon: ThumbDown, color: C.sunSalmon, label: 'Not for me',
+    { key: 'down', icon: ThumbDown, color: C.sunSalmon, label: 'Explore alternatives',
       restBg: `${C.sunSalmon}10`, restBorder: `${C.sunSalmon}30`, restIcon: C.sunSalmon,
       activeBg: `${C.sunSalmon}1c`, activeBorder: `${C.sunSalmon}50` },
   ];
@@ -646,32 +631,6 @@ function ActivityThumbs({ id, feedback, onFeedback }) {
           );
         })}
       </div>
-      {/* Down note */}
-      {currentReaction === 'down' && (
-        <div style={{ marginTop: 6 }}>
-          {!noteOpen && !currentNote && (
-            <button onClick={() => setNoteOpen(true)} style={{ fontFamily: F, fontSize: 12, fontWeight: 500, color: `${C.sunSalmon}90`, background: 'none', border: 'none', cursor: 'pointer', padding: '2px 0', WebkitTapHighlightColor: 'transparent' }}>+ add note</button>
-          )}
-          {!noteOpen && currentNote && (
-            <button onClick={() => setNoteOpen(true)} style={{ fontFamily: F, fontSize: 12, fontWeight: 500, fontStyle: 'normal', color: `${C.slate}90`, background: 'none', border: 'none', cursor: 'pointer', padding: '2px 0', textAlign: 'left', WebkitTapHighlightColor: 'transparent', maxWidth: '100%', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', display: 'block' }}>
-              "{currentNote.length > 60 ? currentNote.slice(0, 60) + '…' : currentNote}" <span style={{ fontStyle: 'normal', color: `${C.sunSalmon}80` }}>edit</span>
-            </button>
-          )}
-          {noteOpen && (
-            <div style={{ marginTop: 4 }}>
-              <textarea value={noteText} onChange={e => setNoteText(e.target.value)}
-                placeholder="What doesn't feel right?"
-                rows={2}
-                style={{ width: '100%', padding: '8px 10px', fontFamily: F, fontSize: 13, fontWeight: 400, color: C.slate, background: C.white, border: `1px solid ${C.sunSalmon}25`, borderRadius: 8, resize: 'vertical', lineHeight: 1.5, outline: 'none', boxSizing: 'border-box' }}
-              />
-              <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 6, marginTop: 4 }}>
-                <button onClick={() => setNoteOpen(false)} style={{ fontFamily: F, fontSize: 11, fontWeight: 500, color: `${C.sage}99`, background: 'none', border: 'none', cursor: 'pointer', padding: '4px 8px' }}>Cancel</button>
-                <button onClick={() => { saveNote(noteText); setNoteOpen(false); }} style={{ fontFamily: F, fontSize: 11, fontWeight: 600, color: C.white, background: C.sunSalmon, border: 'none', borderRadius: 6, padding: '4px 12px', cursor: 'pointer' }}>Save</button>
-              </div>
-            </div>
-          )}
-        </div>
-      )}
     </div>
   );
 }
@@ -696,12 +655,7 @@ function InlineReactions({ id, feedback, onFeedback }) {
     if (currentReaction === reaction) {
       onFeedback(id, null);
     } else {
-      if (reaction === 'down') {
-        const existingNote = typeof current === 'object' ? current?.note || '' : '';
-        onFeedback(id, { reaction: 'down', note: existingNote });
-      } else {
-        onFeedback(id, reaction);
-      }
+      onFeedback(id, reaction);
     }
   };
 
@@ -710,11 +664,11 @@ function InlineReactions({ id, feedback, onFeedback }) {
       icon: (active, color) => <FlameIcon size={12} color={color} active={active} />,
       activeColor: C.amber, activeBg: 'rgba(200,148,26,0.10)', activeBorder: C.amber,
       restColor: 'rgba(200,148,26,0.85)', restBg: 'rgba(200,148,26,0.06)', restBorder: 'rgba(200,148,26,0.30)' },
-    { key: 'up', label: 'Love it',
+    { key: 'up', label: 'Want it',
       icon: (active, color) => <ThumbUp size={12} color={color} active={active} />,
       activeColor: C.sea, activeBg: 'rgba(127,181,160,0.10)', activeBorder: C.sea,
       restColor: 'rgba(127,181,160,0.85)', restBg: 'rgba(127,181,160,0.06)', restBorder: 'rgba(127,181,160,0.30)' },
-    { key: 'down', label: 'Not for me',
+    { key: 'down', label: 'Explore alternatives',
       icon: (active, color) => <ThumbDown size={12} color={color} active={active} />,
       activeColor: C.salmon, activeBg: 'rgba(228,119,93,0.10)', activeBorder: C.salmon,
       restColor: 'rgba(228,119,93,0.85)', restBg: 'rgba(228,119,93,0.06)', restBorder: 'rgba(228,119,93,0.30)' },
@@ -2055,7 +2009,7 @@ function DayFeedbackStrip({ dayIndex, feedback, onFeedback }) {
 
 /* ── day card (V2 flat) ────────────────────────────────────────────────── */
 
-function DayCard({ day, dayIndex = 0, onOpenPanel, activityFeedback, onActivityFeedback, feedback, onFeedback }) {
+function DayCard({ day, dayIndex = 0, onOpenPanel, activityFeedback, onActivityFeedback, feedback, onFeedback, onSwapOpen, swappedActivities }) {
   const color = DAY_COLORS[dayIndex % DAY_COLORS.length];
   const [mindfulnessOpen, setMindfulnessOpen] = useState(true);
   const [howToOpen, setHowToOpen] = useState(false);
@@ -2401,17 +2355,28 @@ function DayCard({ day, dayIndex = 0, onOpenPanel, activityFeedback, onActivityF
       {/* Activity rows */}
       {day.timeline && day.timeline.map((b, i) => {
         const thumbId = `day_${dayIndex}_timeline_${i}`;
+        const swap = swappedActivities?.[thumbId];
+        const displayTitle = swap ? swap.to : b.title;
+        const displaySummary = swap ? swap.toSummary : b.summary;
         const isTrail = !!(b.trailData) || b.activityType === 'trail';
         const tint = reactionTint(activityFeedback?.[thumbId]);
+
+        const handleReaction = (id, reaction) => {
+          if (reaction === 'down' && onSwapOpen) {
+            onSwapOpen({ dayIndex, itemIndex: i, thumbId, activityTitle: displayTitle, alternatives: b.alternatives || [] });
+          } else {
+            onActivityFeedback(id, reaction);
+          }
+        };
 
         return (
           <div
             key={i}
             onClick={() => {
-              trackEvent('panel_opened', { type: isTrail ? 'trail' : 'activity', title: b.title });
+              trackEvent('panel_opened', { type: isTrail ? 'trail' : 'activity', title: displayTitle });
               onOpenPanel({
                 type: isTrail ? 'trail' : 'activity',
-                data: { ...b, trailData: b.trailData || {} },
+                data: { ...b, title: displayTitle, summary: displaySummary, trailData: b.trailData || {} },
                 thumbId,
               });
             }}
@@ -2445,15 +2410,15 @@ function DayCard({ day, dayIndex = 0, onOpenPanel, activityFeedback, onActivityF
               <div style={{
                 fontFamily: F, fontSize: 14, fontWeight: 500,
                 color: C.ink, lineHeight: 1.3, marginBottom: 2,
-              }}>{b.title}</div>
-              {b.summary && (
+              }}>{displayTitle}</div>
+              {displaySummary && (
                 <div style={{
                   fontFamily: F, fontSize: 13, fontWeight: 400,
                   color: C.body, lineHeight: 1.5,
-                }}>{b.summary}</div>
+                }}>{displaySummary}</div>
               )}
               <div style={{ marginTop: 10 }}>
-                <InlineReactions id={thumbId} feedback={activityFeedback} onFeedback={onActivityFeedback} />
+                <InlineReactions id={thumbId} feedback={activityFeedback} onFeedback={handleReaction} />
               </div>
             </div>
 
@@ -2930,9 +2895,9 @@ function FirstDraftModal({ onDismiss }) {
   const reactions = [
     { icon: FlameIcon, color: C.goldenAmber, label: 'Must do', desc: 'So stoked for this one',
       bg: `${C.goldenAmber}18`, border: `${C.goldenAmber}40` },
-    { icon: ThumbUp, color: C.seaGlass, label: 'Love it', desc: 'Keep this — it feels right',
+    { icon: ThumbUp, color: C.seaGlass, label: 'Want it', desc: 'Keep this — it feels right',
       bg: `${C.seaGlass}18`, border: `${C.seaGlass}40` },
-    { icon: ThumbDown, color: C.sunSalmon, label: 'Not for me', desc: 'Flag it, add a note if you want',
+    { icon: ThumbDown, color: C.sunSalmon, label: 'Explore alternatives', desc: 'See other options and swap',
       bg: `${C.sunSalmon}15`, border: `${C.sunSalmon}38` },
   ];
 
@@ -3029,6 +2994,181 @@ function FirstDraftModal({ onDismiss }) {
   );
 }
 
+/* ── SwapModal — pick an alternative activity ──────────────────────────── */
+
+function SwapModal({ isOpen, onClose, activityTitle, alternatives, onConfirm }) {
+  const [selected, setSelected] = useState(null);
+  const [note, setNote] = useState('');
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    if (isOpen) {
+      setSelected(null);
+      setNote('');
+      const t = setTimeout(() => setShow(true), 30);
+      document.body.style.overflow = 'hidden';
+      return () => clearTimeout(t);
+    } else {
+      setShow(false);
+      document.body.style.overflow = '';
+    }
+  }, [isOpen]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKey = (e) => { if (e.key === 'Escape') onClose(); };
+    window.addEventListener('keydown', handleKey);
+    return () => window.removeEventListener('keydown', handleKey);
+  }, [isOpen, onClose]);
+
+  if (!isOpen) return null;
+
+  const hasAlts = alternatives && alternatives.length > 0;
+
+  return (
+    <div onClick={onClose} style={{
+      position: 'fixed', inset: 0, zIndex: 9999,
+      background: 'rgba(0,0,0,0.4)',
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
+      padding: 20,
+      opacity: show ? 1 : 0,
+      transition: 'opacity 0.25s ease',
+    }}>
+      <div onClick={e => e.stopPropagation()} style={{
+        width: '100%', maxWidth: 420,
+        background: C.white, borderRadius: 10,
+        padding: '28px 24px 24px',
+        maxHeight: '85vh', overflowY: 'auto',
+        transform: show ? 'translateY(0)' : 'translateY(12px)',
+        transition: 'transform 0.25s ease',
+      }}>
+        {/* Header */}
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
+          <span style={{ fontFamily: F, fontSize: 13, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: `${C.sage}90` }}>Explore alternatives</span>
+          <button onClick={onClose} style={{
+            width: 28, height: 28, borderRadius: '50%',
+            background: 'none', border: `1px solid ${C.sage}18`,
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            cursor: 'pointer', WebkitTapHighlightColor: 'transparent',
+          }}>
+            <CloseIcon size={11} color={C.sage} />
+          </button>
+        </div>
+
+        {/* Currently planned */}
+        <div style={{ marginBottom: 20 }}>
+          <div style={{ fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: C.muted, marginBottom: 6 }}>Currently planned</div>
+          <div style={{ fontFamily: F_SERIF, fontSize: 17, fontWeight: 400, color: C.ink, lineHeight: 1.3 }}>{activityTitle}</div>
+        </div>
+
+        {/* Alternatives */}
+        <div style={{ marginBottom: 18 }}>
+          <div style={{ fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: C.muted, marginBottom: 10 }}>Alternatives</div>
+          {hasAlts ? alternatives.map((alt, i) => {
+            const isSelected = selected === i;
+            return (
+              <div key={i} onClick={() => setSelected(i)} style={{
+                padding: '12px 14px',
+                borderRadius: 8,
+                border: `1.5px solid ${isSelected ? C.goldenAmber : C.border}`,
+                background: isSelected ? `${C.goldenAmber}08` : 'transparent',
+                marginBottom: 8,
+                cursor: 'pointer',
+                transition: 'all 0.15s',
+                WebkitTapHighlightColor: 'transparent',
+              }}>
+                <div style={{ fontFamily: F, fontSize: 14, fontWeight: 600, color: C.ink, marginBottom: 3 }}>{alt.title}</div>
+                <div style={{ fontFamily: F, fontSize: 13, fontWeight: 400, color: C.body, lineHeight: 1.5 }}>{alt.summary}</div>
+              </div>
+            );
+          }) : (
+            <div style={{ fontFamily: F, fontSize: 13, fontWeight: 400, color: C.muted, lineHeight: 1.6, padding: '8px 0' }}>
+              No alternatives available — your feedback will be noted in the next refinement.
+            </div>
+          )}
+        </div>
+
+        {/* Optional note */}
+        <div style={{ marginBottom: 20 }}>
+          <textarea
+            value={note}
+            onChange={e => setNote(e.target.value)}
+            placeholder="Looking for something specific? (optional)"
+            rows={2}
+            style={{
+              width: '100%', padding: '10px 12px',
+              fontFamily: F, fontSize: 13, fontWeight: 400,
+              color: C.ink, background: C.warm,
+              border: `1px solid ${C.sage}25`, borderRadius: 8,
+              resize: 'vertical', lineHeight: 1.5,
+              outline: 'none', boxSizing: 'border-box',
+            }}
+          />
+        </div>
+
+        {/* Footer */}
+        <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 10 }}>
+          <button onClick={onClose} style={{
+            fontFamily: F, fontSize: 13, fontWeight: 600,
+            color: C.muted, background: 'none',
+            border: 'none', cursor: 'pointer', padding: '10px 16px',
+            WebkitTapHighlightColor: 'transparent',
+          }}>Cancel</button>
+          <button
+            disabled={!hasAlts || selected === null}
+            onClick={() => {
+              if (selected !== null && alternatives[selected]) {
+                onConfirm(alternatives[selected], note);
+              }
+            }}
+            style={{
+              fontFamily: F, fontSize: 13, fontWeight: 700,
+              color: (hasAlts && selected !== null) ? '#9a7530' : C.muted,
+              background: (hasAlts && selected !== null) ? `${C.goldenAmber}12` : `${C.sage}08`,
+              border: `1.5px solid ${(hasAlts && selected !== null) ? C.goldenAmber : `${C.sage}20`}`,
+              borderRadius: 8, padding: '10px 20px',
+              cursor: (hasAlts && selected !== null) ? 'pointer' : 'default',
+              opacity: (hasAlts && selected !== null) ? 1 : 0.5,
+              transition: 'all 0.2s',
+              WebkitTapHighlightColor: 'transparent',
+            }}
+          >Use this instead</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ── Toast — brief auto-dismiss message ────────────────────────────────── */
+
+function Toast({ message, onDone }) {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    if (!message) return;
+    const tIn = setTimeout(() => setVisible(true), 30);
+    const tOut = setTimeout(() => setVisible(false), 2200);
+    const tDone = setTimeout(() => onDone(), 2500);
+    return () => { clearTimeout(tIn); clearTimeout(tOut); clearTimeout(tDone); };
+  }, [message, onDone]);
+
+  if (!message) return null;
+
+  return (
+    <div style={{
+      position: 'fixed', bottom: 32, left: '50%', transform: 'translateX(-50%)',
+      zIndex: 9998,
+      fontFamily: F, fontSize: 14, fontWeight: 600,
+      color: C.ink, background: C.white,
+      padding: '10px 22px', borderRadius: 10,
+      boxShadow: '0 4px 20px rgba(0,0,0,0.12)',
+      opacity: visible ? 1 : 0,
+      transition: 'opacity 0.25s ease',
+      pointerEvents: 'none',
+    }}>{message}</div>
+  );
+}
+
 /* ═══════════════════════════════════════════════════════════════════════ */
 /* ── MAIN PAGE ─────────────────────────────────────────────────────────── */
 /* ═══════════════════════════════════════════════════════════════════════ */
@@ -3100,6 +3240,9 @@ export default function ItineraryResults() {
     rental: null,   // { company, confirmationNumber, pickupLocation, pickupDate, returnDate }
   });
   const [activityFeedback, setActivityFeedback] = useState({});
+  const [swapModal, setSwapModal] = useState(null); // { dayIndex, itemIndex, thumbId, activityTitle, alternatives }
+  const [swappedActivities, setSwappedActivities] = useState({});
+  const [toastMessage, setToastMessage] = useState(null);
   const [pulse, setPulse] = useState(null);
   const [overallNote, setOverallNote] = useState('');
   const [refineError, setRefineError] = useState(null);
@@ -3293,6 +3436,7 @@ export default function ItineraryResults() {
           itinerary: rawItinerary,
           activityFeedback,
           dayFeedback,
+          swappedActivities,
           pulse,
           overallNote,
           formData,
@@ -3332,6 +3476,7 @@ export default function ItineraryResults() {
 
       setDayFeedback({});
       setActivityFeedback({});
+      setSwappedActivities({});
       setPulse(null);
       setOverallNote('');
       trackEvent('refinement_completed', { iteration: nextIteration, duration_ms: Math.round(performance.now() - t0) });
@@ -3356,6 +3501,32 @@ export default function ItineraryResults() {
       {iteration === 0 && showDraftModal && isStructured && (
         <FirstDraftModal onDismiss={() => setShowDraftModal(false)} />
       )}
+
+      {/* Swap modal */}
+      <SwapModal
+        isOpen={!!swapModal}
+        onClose={() => setSwapModal(null)}
+        activityTitle={swapModal?.activityTitle || ''}
+        alternatives={swapModal?.alternatives || []}
+        onConfirm={(chosen, note) => {
+          const { thumbId, activityTitle } = swapModal;
+          setSwappedActivities(prev => ({
+            ...prev,
+            [thumbId]: { from: activityTitle, to: chosen.title, toSummary: chosen.summary, note },
+          }));
+          // Clear any down feedback on this item
+          setActivityFeedback(prev => {
+            const next = { ...prev };
+            delete next[thumbId];
+            return next;
+          });
+          setSwapModal(null);
+          setToastMessage('Activity swapped');
+        }}
+      />
+
+      {/* Toast */}
+      <Toast message={toastMessage} onDone={() => setToastMessage(null)} />
 
       {/* Detail panel */}
       <DetailPanel item={activePanel} onClose={() => setActivePanel(null)}
@@ -3468,6 +3639,8 @@ export default function ItineraryResults() {
                     <DayCard day={day} dayIndex={i}
                       feedback={dayFeedback[i]} onFeedback={handleDayFeedback}
                       activityFeedback={activityFeedback} onActivityFeedback={handleActivityFeedback}
+                      swappedActivities={swappedActivities}
+                      onSwapOpen={(data) => setSwapModal(data)}
                       onOpenPanel={(panelItem) => {
                         setActivePanel(panelItem);
                       }} />
