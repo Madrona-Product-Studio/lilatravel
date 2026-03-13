@@ -447,7 +447,7 @@ export default function Nav({ transparent = false }) {
             </Link>
           ))}
 
-          {renderSuitcase()}
+          {trips.length > 0 && renderSuitcase()}
 
           <Link to="/plan"
             onClick={() => trackEvent('nav_clicked', { label: 'plan_a_trip', to: '/plan', page: location.pathname })}
@@ -471,7 +471,7 @@ export default function Nav({ transparent = false }) {
           className="nav-mobile-toggle"
           style={{ display: "none", alignItems: "center", gap: 16, zIndex: 101 }}
         >
-          {renderSuitcase()}
+          {trips.length > 0 && renderSuitcase()}
           <div
             onClick={() => { setMenuOpen(!menuOpen); setTripsOpen(false); }}
             style={{ padding: 8, cursor: "pointer" }}
