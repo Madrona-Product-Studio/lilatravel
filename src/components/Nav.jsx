@@ -33,13 +33,11 @@ function readTrips() {
 
 function SuitcaseIcon({ color, size = 20 }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-      {/* Handle */}
-      <path d="M9 5V3.5A1.5 1.5 0 0 1 10.5 2h3A1.5 1.5 0 0 1 15 3.5V5" />
-      {/* Body */}
-      <rect x="3" y="5" width="18" height="16" rx="2" />
-      {/* Band */}
-      <line x1="3" y1="13" x2="21" y2="13" />
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      {/* Slim curved handle */}
+      <path d="M9.5 7V5a2.5 2.5 0 0 1 5 0v2" />
+      {/* Rounded body */}
+      <rect x="4" y="7" width="16" height="14" rx="3" />
     </svg>
   );
 }
