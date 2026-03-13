@@ -1728,6 +1728,8 @@ export default function JoshuaTreeGuide() {
                   { name: "Zion Canyon", slug: "zion-canyon", accent: C.sunSalmon },
                   { name: "Olympic Peninsula", slug: "olympic-peninsula", accent: C.skyBlue },
                   { name: "Big Sur", slug: "big-sur", accent: C.seaGlass },
+                  { name: "Vancouver Island", slug: "vancouver-island", accent: C.oceanTeal },
+                  { name: "Kauai", slug: "kauai", accent: C.oceanTeal },
                 ].map(other => (
                   <Link key={other.slug} to={`/destinations/${other.slug}`} style={{
                     display: "flex", alignItems: "center", gap: 12,

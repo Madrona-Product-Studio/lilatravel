@@ -1428,7 +1428,9 @@ export default function BigSurGuide() {
                 {[
                   { name: "Zion Canyon", slug: "zion-canyon", accent: C.sunSalmon },
                   { name: "Joshua Tree", slug: "joshua-tree", accent: C.goldenAmber },
-                  { name: "Olympic Peninsula", slug: "olympic-peninsula", accent: C.seaGlass },
+                  { name: "Olympic Peninsula", slug: "olympic-peninsula", accent: C.skyBlue },
+                  { name: "Vancouver Island", slug: "vancouver-island", accent: C.oceanTeal },
+                  { name: "Kauai", slug: "kauai", accent: C.oceanTeal },
                 ].map(other => (
                   <Link key={other.slug} to={`/destinations/${other.slug}`} style={{
                     display: "flex", alignItems: "center", gap: 12,
