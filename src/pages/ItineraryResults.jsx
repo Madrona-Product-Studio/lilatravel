@@ -3050,10 +3050,30 @@ export default function ItineraryResults() {
   const [refining, setRefining] = useState(false);
   const [loadingShared, setLoadingShared] = useState(!!shareToken);
 
-  // Seed from router state once, then own locally so refinement can update in-place
-  const [rawItinerary, setRawItinerary] = useState(() => location.state?.itinerary || null);
-  const [metadata] = useState(() => location.state?.metadata || null);
-  const [formData, setFormData] = useState(() => location.state?.formData || null);
+  // Seed from router state, then sessionStorage fallback, then own locally
+  const [rawItinerary, setRawItinerary] = useState(() => {
+    if (location.state?.itinerary) return location.state.itinerary;
+    try { return sessionStorage.getItem('lila_raw_itinerary') || null; } catch { return null; }
+  });
+  const [metadata] = useState(() => {
+    if (location.state?.metadata) return location.state.metadata;
+    try { const m = sessionStorage.getItem('lila_metadata'); return m ? JSON.parse(m) : null; } catch { return null; }
+  });
+  const [formData, setFormData] = useState(() => {
+    if (location.state?.formData) return location.state.formData;
+    try { const f = sessionStorage.getItem('lila_form_data'); return f ? JSON.parse(f) : null; } catch { return null; }
+  });
+
+  // Persist itinerary data to sessionStorage so backpack nav link works
+  useEffect(() => {
+    if (rawItinerary) sessionStorage.setItem('lila_raw_itinerary', rawItinerary);
+  }, [rawItinerary]);
+  useEffect(() => {
+    if (formData) sessionStorage.setItem('lila_form_data', JSON.stringify(formData));
+  }, [formData]);
+  useEffect(() => {
+    if (metadata) sessionStorage.setItem('lila_metadata', JSON.stringify(metadata));
+  }, [metadata]);
 
   // Hydrate via server-side API when accessed via a share link (/trip/:token)
   // Uses the service role key on the server to bypass RLS policies
@@ -3143,7 +3163,7 @@ export default function ItineraryResults() {
     setTimeout(() => setVisible(true), 100);
     // Persist active trip to localStorage for nav backpack icon
     localStorage.setItem('lila_active_trip', JSON.stringify({
-      shareToken: shareToken || sessionStorage.getItem('lila_itinerary_id') || 'current',
+      path: shareToken ? `/trip/${shareToken}` : '/itinerary',
       destination: formData?.destination || 'Your Trip',
       generatedAt: Date.now(),
     }));

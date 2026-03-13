@@ -216,7 +216,7 @@ export default function Nav({ transparent = false }) {
 
           {activeTrip && (
             <Link
-              to={activeTrip.shareToken && activeTrip.shareToken !== 'current' ? `/trip/${activeTrip.shareToken}` : '/itinerary'}
+              to={activeTrip.path || '/itinerary'}
               onClick={() => trackEvent('nav_clicked', { label: 'backpack', page: location.pathname })}
               style={{ position: 'relative', display: 'flex', alignItems: 'center', color: C.goldenAmber, textDecoration: 'none' }}
               title={`Back to ${activeTrip.destination}`}
@@ -260,7 +260,7 @@ export default function Nav({ transparent = false }) {
         >
           {activeTrip && (
             <Link
-              to={activeTrip.shareToken && activeTrip.shareToken !== 'current' ? `/trip/${activeTrip.shareToken}` : '/itinerary'}
+              to={activeTrip.path || '/itinerary'}
               onClick={() => trackEvent('nav_clicked', { label: 'backpack', page: location.pathname })}
               style={{ position: 'relative', display: 'flex', alignItems: 'center', color: C.goldenAmber, textDecoration: 'none' }}
               title={`Back to ${activeTrip.destination}`}
