@@ -119,6 +119,55 @@ Gold mine ruins, Cottonwood Spring oasis, bighorn territory. A layered walk.
 - **Interests**: hiking, history, nature
 - **Months**: Year-round
 
+#### Cap Rock Nature Trail
+A flat, easy loop around one of the park's most iconic formations — an enormous boulder balanced atop a cluster of smaller rocks. Interpretive signage along the route. Good at sunrise for photography; rarely as crowded as Hidden Valley.
+- **Distance**: 0.4 miles loop · **Difficulty**: Easy · **Time**: 30 min
+- **Energy**: gentle
+- **Group**: solo, couple, friends, family
+- **Interests**: hiking, photography, nature
+- **Months**: Year-round
+
+#### Arch Rock Trail
+A flat lollipop loop through sandy and rocky terrain to one of the park's rare natural arches. The arch is modest in scale but the surrounding boulder field rewards exploration. Located inside White Tank Campground — arrive early on weekends.
+- **Distance**: 1.4 miles · **Difficulty**: Easy · **Time**: 1 hr
+- **Energy**: gentle
+- **Group**: solo, couple, friends, family
+- **Interests**: hiking, photography, geology
+- **Months**: Year-round
+
+#### Split Rock Loop
+An easy wander through tan sandstone boulders with big wildflower action in season. Split Rock — a 20-foot rounded boulder with a sinuous crack through its heart — is the visual anchor, but the whole loop rewards slow, attentive walking.
+- **Distance**: 2 miles loop · **Difficulty**: Easy · **Time**: 1–1.5 hrs
+- **Energy**: gentle
+- **Group**: solo, couple, friends, family
+- **Interests**: hiking, photography, nature
+- **Months**: Year-round (wildflowers Apr–May)
+
+#### Lost Horse Mine Loop
+One of the most historically significant trails in the park. The Lost Horse Mine is one of the best-preserved stamp mills in the NPS system — the ruins feel excavated from time. The full loop climbs across open desert with long views in every direction.
+- **Distance**: 6.6 miles loop · **Difficulty**: Moderate-strenuous · **Time**: 3–4 hrs
+- **Elevation gain**: ~1,000 ft
+- **Energy**: adventurous
+- **Group**: solo, couple, friends
+- **Interests**: hiking, history, solitude
+- **Months**: Oct–May
+
+#### Black Rock Canyon / Warren Peak
+A bird's-eye perspective on the entire high desert. Views stretch to Yucca Valley, the Palm Springs area, and the Salton Sea on clear days. The final push to the summit earns its difficulty rating — everything below it is moderate and deeply satisfying. Trailhead is in the northwest corner of the park near Black Rock Campground.
+- **Distance**: 5.5 miles out-and-back · **Difficulty**: Moderate-strenuous · **Time**: 3–4 hrs
+- **Energy**: adventurous
+- **Group**: solo, couple, friends
+- **Interests**: hiking, photography, solitude
+- **Months**: Oct–May
+
+#### Wall Street Mill
+From the Barker Dam trailhead — an easy extension into an old mining area with a well-preserved stamp mill, water tank, and rusting equipment from the early 1900s. Photography-rich, quiet, frequently overlooked.
+- **Distance**: 2 miles round trip · **Difficulty**: Easy · **Time**: 1–1.5 hrs
+- **Energy**: gentle
+- **Group**: solo, couple, friends
+- **Interests**: hiking, history, photography
+- **Months**: Year-round
+
 ### Bouldering & Climbing
 
 Joshua Tree is one of the world's great trad climbing destinations — over 8,000 established routes on 400+ formations. The rock is monzogranite, coarse-textured and grippy. For non-climbers, watching skilled climbers work the boulders is its own kind of meditation.
@@ -563,6 +612,15 @@ Vintage trailers on a small ranch near the park. Each themed and designed. Playf
 - **Interests**: culture, design
 - **Months**: Year-round
 
+#### AutoCamp Joshua Tree
+Iconic Airstream trailers and sleek modern cabins set around a mid-century modern Quonset Hut Clubhouse. The Airstreams are more luxurious than you'd expect — walk-in rain showers, kitchenettes, private fire pits. On-site pool, yoga classes, guided moonlight hikes, and weekly campfire music. 10 minutes from the west entrance. Frame around the experience, not the landscape — this is in town, not deep desert.
+- **StayStyle**: elemental
+- **Energy**: gentle, moderate
+- **Group**: solo, couple, friends
+- **Budget**: balanced, premium
+- **Interests**: stargazing, design, camping, wellness
+- **Months**: Year-round
+
 #### JTREE Stays / Desert Vacation Rentals
 A cottage industry of thoughtfully designed desert homes available on short-term rental. Many have outdoor tubs, fire pits, unobstructed sky views. Search specifically for properties with outdoor soaking tubs and dark sky views.
 - **StayStyle**: elemental
@@ -602,15 +660,24 @@ Basic but atmospheric. The only place to sleep in Pioneertown itself. Walking di
 - **Months**: Year-round
 
 #### Sacred Sands
-Boutique B&B in Joshua Tree town. Two rooms only. Thoughtfully appointed, meditation garden, personal attention.
+Boutique B&B in Joshua Tree town. Two rooms only. Thoughtfully appointed, meditation garden, personal attention. One mile from the west entrance — minimal light pollution, strong dark sky access.
 - **StayStyle**: rooted
 - **Energy**: gentle
 - **Group**: solo, couple
 - **Budget**: balanced, premium
-- **Interests**: meditation, wellness
+- **Interests**: meditation, wellness, stargazing
 - **Months**: Year-round
 
 ### Premium (Elevated experience)
+
+#### RESET Hotel
+The most significant new property in the Joshua Tree orbit — 65 rooms on 180 acres of high desert, five minutes from the north entrance in Twentynine Palms. Built as the first new-build hotel in the area in 15 years, RESET is explicitly designed around stillness: clean lines, quiet materials, buildings spaced to preserve openness. Every room opens to a private patio with a Solo Stove fire pit. A heated outdoor saltwater pool, 5-person cedar sauna, cold plunge, and on-site stargazing equipment round out the wellness offering. There's a 30-foot circular sculpture for contemplation under the night sky. The name is the ethos — and it's the right ethos for this place.
+- **StayStyle**: premium
+- **Energy**: gentle
+- **Group**: solo, couple, friends
+- **Budget**: premium
+- **Interests**: wellness, stargazing, design, soaking
+- **Months**: Year-round
 
 #### Two Bunch Palms
 Desert Hot Springs. Technically a spa resort, but the accommodations are excellent. Grotto, thermal pools, healing arts. A true decompression experience.
@@ -926,7 +993,7 @@ This is not a traditional park visit. It's a cultural and environmental experien
 
 ### Resources
 - Joshua Tree National Park → https://www.nps.gov/jotr/
-- Joshua Tree Trails → https://www.nps.gov/jotr/planyourvisit/hikes.htm
+- Joshua Tree Trails → https://www.nps.gov/jotr/planyourvisit/hiking.htm
 - Joshua Tree Campgrounds → https://www.nps.gov/jotr/planyourvisit/campgrounds.htm
 - Joshua Tree Dark Sky → https://www.nps.gov/jotr/planyourvisit/stargazing.htm
 - Indian Canyons (Agua Caliente) → https://www.indian-canyons.com/

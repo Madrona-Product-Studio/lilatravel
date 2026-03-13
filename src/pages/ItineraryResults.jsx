@@ -1,7 +1,9 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
 import { useLocation, useNavigate, useParams, Link } from 'react-router-dom';
 import { C as BrandC } from '@data/brand';
-import { lookupUrl } from '@data/destinations/zion-urls';
+import { lookupUrl as lookupZion } from '@data/destinations/zion-urls';
+import { lookupUrl as lookupJoshuaTree } from '@data/destinations/joshua-tree-urls';
+const lookupUrl = (name) => lookupZion(name) || lookupJoshuaTree(name);
 import JSON5 from 'json5';
 import { trackEvent } from '@utils/analytics';
 import { getPracticesForItinerary, TRADITIONS, ENTRIES } from '@services/practicesService';
