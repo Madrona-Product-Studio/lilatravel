@@ -643,14 +643,14 @@ function ActivityActions({ id, lovedItems, onLove, onAlternatives }) {
         display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 5,
         padding: '9px 10px',
         borderRadius: 20,
-        background: `${C.oceanTeal}08`,
-        border: `1px solid ${C.oceanTeal}22`,
+        background: `${C.oceanTeal}14`,
+        border: `1px solid ${C.oceanTeal}40`,
         cursor: 'pointer', transition: 'all 0.2s',
         WebkitTapHighlightColor: 'transparent',
         fontFamily: F, fontSize: 12, fontWeight: 600,
-        color: `${C.oceanTeal}90`,
+        color: C.oceanTeal,
       }}>
-        <SwapIcon size={12} color={`${C.oceanTeal}80`} />
+        <SwapIcon size={12} color={C.oceanTeal} />
         <span>Show Alternatives</span>
       </button>
     </div>
