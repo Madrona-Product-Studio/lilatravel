@@ -582,169 +582,103 @@ function MetaStrip({ category, pick, color }) {
 }
 
 
-/* ── ActivityThumbs — inline reaction buttons for timeline blocks and pick cards ── */
+/* ── isCuratable — determines which activities get action buttons ────── */
 
-function ActivityThumbs({ id, feedback, onFeedback }) {
-  const current = feedback?.[id] || null;
-  const currentReaction = typeof current === 'string' ? current : current?.reaction || null;
+const NON_CURATABLE_TYPES = ['logistics', 'transit', 'accommodation', 'checkin', 'checkout', 'travel'];
+const CURATABLE_KEYWORDS = ['hike', 'trail', 'experience', 'activity', 'restaurant', 'food', 'dining', 'viewpoint', 'stop', 'attraction', 'walk', 'canyon', 'sunrise', 'sunset', 'yoga', 'breathwork', 'meditation', 'spa', 'wellness', 'swim', 'kayak', 'climb', 'explore', 'visit', 'lunch', 'dinner', 'breakfast', 'brunch'];
 
-  const toggle = (reaction) => {
-    if (currentReaction === reaction) {
-      onFeedback(id, null);
-    } else {
-      onFeedback(id, reaction);
-    }
-  };
+function isCuratable(activity) {
+  const typeStr = (activity.activityType || activity.type || '').toLowerCase();
+  if (NON_CURATABLE_TYPES.some(t => typeStr.includes(t))) return false;
+  const titleLower = (activity.title || '').toLowerCase();
+  // Exclude common logistics patterns by title
+  if (/\b(check.?in|check.?out|pack|depart|arrive|drive to|travel to)\b/i.test(activity.title || '')) return false;
+  const text = `${typeStr} ${titleLower} ${(activity.category || '').toLowerCase()}`;
+  return CURATABLE_KEYWORDS.some(t => text.includes(t));
+}
 
-  const reactions = [
-    { key: 'fire', icon: FlameIcon, color: C.goldenAmber, label: 'Must do',
-      restBg: `${C.goldenAmber}10`, restBorder: `${C.goldenAmber}30`, restIcon: C.goldenAmber,
-      activeBg: `${C.goldenAmber}1c`, activeBorder: `${C.goldenAmber}50` },
-    { key: 'up', icon: ThumbUp, color: C.seaGlass, label: 'Want it',
-      restBg: `${C.seaGlass}10`, restBorder: `${C.seaGlass}30`, restIcon: C.seaGlass,
-      activeBg: `${C.seaGlass}1c`, activeBorder: `${C.seaGlass}50` },
-    { key: 'down', icon: ThumbDown, color: C.sunSalmon, label: 'Explore alternatives',
-      restBg: `${C.sunSalmon}10`, restBorder: `${C.sunSalmon}30`, restIcon: C.sunSalmon,
-      activeBg: `${C.sunSalmon}1c`, activeBorder: `${C.sunSalmon}50` },
-  ];
+/* ── SwapIcon — inline SVG refresh/swap icon ──────────────────────────── */
+
+const SwapIcon = ({ size = 12, color = C.oceanTeal }) => (
+  <svg width={size} height={size} viewBox="0 0 16 16" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M2.5 8a5.5 5.5 0 0 1 9.5-3.5" /><path d="M13.5 8a5.5 5.5 0 0 1-9.5 3.5" />
+    <polyline points="12,1 12,5 8,5" /><polyline points="4,15 4,11 8,11" />
+  </svg>
+);
+
+/* ── ActivityActions — Love This + Show Alternatives ──────────────────── */
+
+function ActivityActions({ id, lovedItems, onLove, onAlternatives }) {
+  const loved = !!lovedItems?.[id];
 
   return (
-    <div style={{ marginTop: 14, paddingTop: 14, borderTop: `1px solid ${C.sage}0c` }}>
-      <div style={{ fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: `${C.sage}90`, marginBottom: 8 }}>How does this feel?</div>
-      <div style={{ display: 'flex', gap: 7 }}>
-        {reactions.map(r => {
-          const active = currentReaction === r.key;
-          const Ic = r.icon;
-          return (
-            <button key={r.key} onClick={() => toggle(r.key)} style={{
-              display: 'flex', alignItems: 'center', gap: 5,
-              padding: '6px 11px',
-              borderRadius: 9,
-              background: active ? r.activeBg : r.restBg,
-              border: `1.5px solid ${active ? r.activeBorder : r.restBorder}`,
-              cursor: 'pointer', transition: 'all 0.2s',
-              WebkitTapHighlightColor: 'transparent',
-            }}>
-              <Ic size={14} color={active ? r.color : r.restIcon} active={active} />
-              <span style={{ fontFamily: F, fontSize: 11, fontWeight: 600, color: active ? r.color : `${r.color}90` }}>{r.label}</span>
-            </button>
-          );
-        })}
-      </div>
+    <div onClick={e => e.stopPropagation()} style={{ display: 'flex', gap: 8, marginTop: 8, marginBottom: 16, whiteSpace: 'nowrap' }}>
+      {/* Love This */}
+      <button onClick={e => { e.stopPropagation(); onLove(id); }} style={{
+        flex: 1,
+        display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 5,
+        padding: '9px 10px',
+        borderRadius: 20,
+        background: loved ? `${C.goldenAmber}14` : `${C.goldenAmber}08`,
+        border: `1px solid ${loved ? C.goldenAmber : `${C.goldenAmber}22`}`,
+        cursor: 'pointer', transition: 'all 0.2s',
+        WebkitTapHighlightColor: 'transparent',
+        fontFamily: F, fontSize: 12, fontWeight: loved ? 700 : 600,
+        color: loved ? C.goldenAmber : `${C.goldenAmber}90`,
+      }}>
+        <FlameIcon size={12} color={loved ? C.goldenAmber : `${C.goldenAmber}80`} active={loved} />
+        <span>Love This</span>
+      </button>
+
+      {/* Show Alternatives */}
+      <button onClick={e => { e.stopPropagation(); onAlternatives(id); }} style={{
+        flex: 1,
+        display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 5,
+        padding: '9px 10px',
+        borderRadius: 20,
+        background: `${C.oceanTeal}08`,
+        border: `1px solid ${C.oceanTeal}22`,
+        cursor: 'pointer', transition: 'all 0.2s',
+        WebkitTapHighlightColor: 'transparent',
+        fontFamily: F, fontSize: 12, fontWeight: 600,
+        color: `${C.oceanTeal}90`,
+      }}>
+        <SwapIcon size={12} color={`${C.oceanTeal}80`} />
+        <span>Show Alternatives</span>
+      </button>
     </div>
   );
 }
 
-/* ── InlineReactions — compact always-visible reaction pills ──────────── */
+/* ── lovedTint — background tint for loved items ─────────────────────── */
 
-function reactionTint(feedback) {
-  if (!feedback) return null;
-  const reaction = typeof feedback === 'string' ? feedback : feedback?.reaction || null;
-  if (reaction === 'fire') return 'rgba(200,148,26,0.04)';
-  if (reaction === 'up') return 'rgba(127,181,160,0.04)';
-  if (reaction === 'down') return 'rgba(228,119,93,0.04)';
+function lovedTint(lovedItems, id) {
+  if (lovedItems?.[id]) return 'rgba(200,148,26,0.04)';
   return null;
 }
 
-function InlineReactions({ id, feedback, onFeedback }) {
-  const current = feedback?.[id] || null;
-  const currentReaction = typeof current === 'string' ? current : current?.reaction || null;
 
-  const toggle = (reaction, e) => {
-    e.stopPropagation();
-    if (currentReaction === reaction) {
-      onFeedback(id, null);
-    } else {
-      onFeedback(id, reaction);
-    }
-  };
+/* ── MindfulnessReactions — Love This only (mindfulness doesn't have alternatives) ── */
 
-  const pills = [
-    { key: 'fire', label: 'Must do',
-      icon: (active, color) => <FlameIcon size={12} color={color} active={active} />,
-      activeColor: C.amber, activeBg: 'rgba(200,148,26,0.10)', activeBorder: C.amber,
-      restColor: 'rgba(200,148,26,0.85)', restBg: 'rgba(200,148,26,0.06)', restBorder: 'rgba(200,148,26,0.30)' },
-    { key: 'up', label: 'Want it',
-      icon: (active, color) => <ThumbUp size={12} color={color} active={active} />,
-      activeColor: C.sea, activeBg: 'rgba(127,181,160,0.10)', activeBorder: C.sea,
-      restColor: 'rgba(127,181,160,0.85)', restBg: 'rgba(127,181,160,0.06)', restBorder: 'rgba(127,181,160,0.30)' },
-    { key: 'down', label: 'Explore alternatives',
-      icon: (active, color) => <ThumbDown size={12} color={color} active={active} />,
-      activeColor: C.salmon, activeBg: 'rgba(228,119,93,0.10)', activeBorder: C.salmon,
-      restColor: 'rgba(228,119,93,0.85)', restBg: 'rgba(228,119,93,0.06)', restBorder: 'rgba(228,119,93,0.30)' },
-  ];
-
-  return (
-    <div onClick={e => e.stopPropagation()} style={{ display: 'flex', gap: 5, marginTop: 8, marginBottom: 16 }}>
-      {pills.map(p => {
-        const active = currentReaction === p.key;
-        const color = active ? p.activeColor : p.restColor;
-        return (
-          <button key={p.key} onClick={e => toggle(p.key, e)} style={{
-            display: 'flex', alignItems: 'center', gap: 4,
-            padding: '4px 10px',
-            borderRadius: 20,
-            background: active ? p.activeBg : p.restBg,
-            border: `1px solid ${active ? p.activeBorder : p.restBorder}`,
-            cursor: 'pointer', transition: 'all 0.2s',
-            WebkitTapHighlightColor: 'transparent',
-            fontFamily: F, fontSize: 12, fontWeight: 600,
-            color: color,
-          }}>
-            {p.icon(active, color)}
-            <span>{p.label}</span>
-          </button>
-        );
-      })}
-    </div>
-  );
-}
-
-
-/* ── MindfulnessReactions — Lock it in + Want it only (no "Swap this out") ── */
-
-function MindfulnessReactions({ id, feedback, onFeedback }) {
-  const current = feedback?.[id] || null;
-  const currentReaction = typeof current === 'string' ? current : current?.reaction || null;
-
-  const toggle = (reaction, e) => {
-    e.stopPropagation();
-    onFeedback(id, currentReaction === reaction ? null : reaction);
-  };
-
-  const pills = [
-    { key: 'fire', label: 'Lock it in',
-      icon: (active, color) => <FlameIcon size={12} color={color} active={active} />,
-      activeColor: C.amber, activeBg: 'rgba(200,148,26,0.10)', activeBorder: C.amber,
-      restColor: 'rgba(200,148,26,0.85)', restBg: 'rgba(200,148,26,0.06)', restBorder: 'rgba(200,148,26,0.30)' },
-    { key: 'up', label: 'Want it',
-      icon: (active, color) => <ThumbUp size={12} color={color} active={active} />,
-      activeColor: C.sea, activeBg: 'rgba(127,181,160,0.10)', activeBorder: C.sea,
-      restColor: 'rgba(127,181,160,0.85)', restBg: 'rgba(127,181,160,0.06)', restBorder: 'rgba(127,181,160,0.30)' },
-  ];
+function MindfulnessReactions({ id, lovedItems, onLove }) {
+  const loved = !!lovedItems?.[id];
 
   return (
     <div onClick={e => e.stopPropagation()} style={{ display: 'flex', gap: 5, marginTop: 12, paddingBottom: 16 }}>
-      {pills.map(p => {
-        const active = currentReaction === p.key;
-        const color = active ? p.activeColor : p.restColor;
-        return (
-          <button key={p.key} onClick={e => toggle(p.key, e)} style={{
-            display: 'flex', alignItems: 'center', gap: 4,
-            padding: '4px 10px',
-            borderRadius: 20,
-            background: active ? p.activeBg : p.restBg,
-            border: `1px solid ${active ? p.activeBorder : p.restBorder}`,
-            cursor: 'pointer', transition: 'all 0.2s',
-            WebkitTapHighlightColor: 'transparent',
-            fontFamily: F, fontSize: 12, fontWeight: 600,
-            color: color,
-          }}>
-            {p.icon(active, color)}
-            <span>{p.label}</span>
-          </button>
-        );
-      })}
+      <button onClick={e => { e.stopPropagation(); onLove(id); }} style={{
+        display: 'flex', alignItems: 'center', gap: 5,
+        padding: '9px 14px',
+        borderRadius: 20,
+        background: loved ? `${C.goldenAmber}14` : `${C.goldenAmber}08`,
+        border: `1px solid ${loved ? C.goldenAmber : `${C.goldenAmber}22`}`,
+        cursor: 'pointer', transition: 'all 0.2s',
+        WebkitTapHighlightColor: 'transparent',
+        fontFamily: F, fontSize: 12, fontWeight: loved ? 700 : 600,
+        color: loved ? C.goldenAmber : `${C.goldenAmber}90`,
+      }}>
+        <FlameIcon size={12} color={loved ? C.goldenAmber : `${C.goldenAmber}80`} active={loved} />
+        <span>Love This</span>
+      </button>
     </div>
   );
 }
@@ -776,7 +710,7 @@ function useIsMobile() {
 
 /* ── companion panel content (shared between SidePanel & BottomSheet) ── */
 
-function CompanionPanelContent({ type, data, id, feedback, onFeedback }) {
+function CompanionPanelContent({ type, data, id, lovedItems, onLove }) {
   if (!data) return null;
   const isTeaching = type === 'teaching';
   const accent = isTeaching ? C.goldenAmber : C.seaGlass;
@@ -797,7 +731,7 @@ function CompanionPanelContent({ type, data, id, feedback, onFeedback }) {
       {/* Title */}
       <h1 style={{ fontFamily: F_SERIF, fontSize: 'clamp(20px, 5vw, 24px)', fontWeight: 300, color: C.ink, lineHeight: 1.25, marginBottom: 4 }}>{data.title}</h1>
 
-      <InlineReactions id={id} feedback={feedback} onFeedback={onFeedback} />
+      <MindfulnessReactions id={id} lovedItems={lovedItems} onLove={onLove} />
 
       {/* Summary / essence */}
       <p style={{ fontFamily: F, fontSize: 14, color: C.body, lineHeight: 1.7, marginBottom: 20 }}>{isTeaching ? data.essence : data.description}</p>
@@ -863,7 +797,7 @@ function CompanionPanelContent({ type, data, id, feedback, onFeedback }) {
 
 /* ── trail detail content ──────────────────────────────────────────────── */
 
-function TrailDetailContent({ data, thumbId, activityFeedback, onActivityFeedback }) {
+function TrailDetailContent({ data, thumbId, lovedItems, onLove, onAlternatives }) {
   const { title, time, summary, details, trailData = {}, url } = data;
   const resolvedUrl = url || trailData.npsUrl || lookupUrl(title);
 
@@ -901,8 +835,8 @@ function TrailDetailContent({ data, thumbId, activityFeedback, onActivityFeedbac
         ) : title}
       </h1>
 
-      {/* Activity feedback */}
-      <InlineReactions id={thumbId} feedback={activityFeedback} onFeedback={onActivityFeedback} />
+      {/* Activity actions */}
+      <ActivityActions id={thumbId} lovedItems={lovedItems} onLove={onLove} onAlternatives={onAlternatives} />
 
       {/* Summary */}
       <p style={{ fontFamily: F, fontSize: 14, color: C.body, lineHeight: 1.7, marginBottom: 16 }}>{summary}</p>
@@ -1211,7 +1145,7 @@ function WisdomDetailContent({ entry }) {
   );
 }
 
-function DetailPanelContent({ item, activityFeedback, onActivityFeedback }) {
+function DetailPanelContent({ item, lovedItems, onLove, onAlternatives }) {
   if (!item) return null;
   const { type, data, thumbId } = item;
 
@@ -1304,7 +1238,7 @@ function DetailPanelContent({ item, activityFeedback, onActivityFeedback }) {
 
   // Companion content (teaching / practice)
   if (type === 'teaching' || type === 'practice') {
-    return <CompanionPanelContent type={type} data={data} id={thumbId} feedback={activityFeedback} onFeedback={onActivityFeedback} />;
+    return <CompanionPanelContent type={type} data={data} id={thumbId} lovedItems={lovedItems} onLove={onLove} />;
   }
 
   // Mindfulness pick content (from Claude's response)
@@ -1387,8 +1321,8 @@ function DetailPanelContent({ item, activityFeedback, onActivityFeedback }) {
           {/* Reactions */}
           <MindfulnessReactions
             id={thumbId}
-            feedback={activityFeedback}
-            onFeedback={onActivityFeedback}
+            lovedItems={lovedItems}
+            onLove={onLove}
           />
 
           {/* Essence */}
@@ -1466,8 +1400,9 @@ function DetailPanelContent({ item, activityFeedback, onActivityFeedback }) {
       <TrailDetailContent
         data={data}
         thumbId={thumbId}
-        activityFeedback={activityFeedback}
-        onActivityFeedback={onActivityFeedback}
+        lovedItems={lovedItems}
+        onLove={onLove}
+        onAlternatives={onAlternatives}
       />
     );
   }
@@ -1488,7 +1423,7 @@ function DetailPanelContent({ item, activityFeedback, onActivityFeedback }) {
         {/* Title */}
         <h1 style={{ fontFamily: F_SERIF, fontSize: 'clamp(20px, 5vw, 24px)', fontWeight: 300, color: C.ink, lineHeight: 1.25, marginBottom: 4 }}>{data.title}</h1>
 
-        <InlineReactions id={thumbId} feedback={activityFeedback} onFeedback={onActivityFeedback} />
+        <ActivityActions id={thumbId} lovedItems={lovedItems} onLove={onLove} onAlternatives={onAlternatives} />
 
         {/* Summary */}
         <p style={{ fontFamily: F, fontSize: 14, color: C.body, lineHeight: 1.7, marginBottom: 20 }}>{data.summary}</p>
@@ -1545,7 +1480,7 @@ function DetailPanelContent({ item, activityFeedback, onActivityFeedback }) {
         {(data.url || lookupUrl(data.name)) && <> <ExternalLinkIcon size={12} color={`${C.sage}40`} /></>}
       </h1>
 
-      <InlineReactions id={thumbId} feedback={activityFeedback} onFeedback={onActivityFeedback} />
+      <ActivityActions id={thumbId} lovedItems={lovedItems} onLove={onLove} onAlternatives={onAlternatives} />
 
       {/* Vibe line */}
       {data.vibe && (
@@ -1760,7 +1695,7 @@ function RentalFormPanel({ data, logistics, onSave }) {
   );
 }
 
-function DetailPanel({ item, onClose, activityFeedback, onActivityFeedback }) {
+function DetailPanel({ item, onClose, lovedItems, onLove, onAlternatives }) {
   const isDesktop = useIsDesktop();
   const sheetRef = useRef(null);
   const dragStartY = useRef(null);
@@ -1834,7 +1769,7 @@ function DetailPanel({ item, onClose, activityFeedback, onActivityFeedback }) {
             }} aria-label="Close">✕</button>
           </div>
 
-          <DetailPanelContent item={item} activityFeedback={activityFeedback} onActivityFeedback={onActivityFeedback} />
+          <DetailPanelContent item={item} lovedItems={lovedItems} onLove={onLove} onAlternatives={onAlternatives} />
         </div>
       </>
     );
@@ -1893,7 +1828,7 @@ function DetailPanel({ item, onClose, activityFeedback, onActivityFeedback }) {
 
         {/* Scrollable content */}
         <div style={{ overflowY: 'auto', flex: 1, WebkitOverflowScrolling: 'touch' }}>
-          <DetailPanelContent item={item} activityFeedback={activityFeedback} onActivityFeedback={onActivityFeedback} />
+          <DetailPanelContent item={item} lovedItems={lovedItems} onLove={onLove} onAlternatives={onAlternatives} />
         </div>
       </div>
     </>
@@ -2165,7 +2100,7 @@ function DayFeedbackStrip({ dayIndex, feedback, onFeedback }) {
 
 /* ── day card (V2 flat) ────────────────────────────────────────────────── */
 
-function DayCard({ day, dayIndex = 0, onOpenPanel, activityFeedback, onActivityFeedback, feedback, onFeedback, onSwapOpen, swappedActivities }) {
+function DayCard({ day, dayIndex = 0, onOpenPanel, lovedItems, onLove, onAlternatives, feedback, onFeedback, onSwapOpen, swappedActivities }) {
   const color = DAY_COLORS[dayIndex % DAY_COLORS.length];
 
   return (
@@ -2288,13 +2223,14 @@ function DayCard({ day, dayIndex = 0, onOpenPanel, activityFeedback, onActivityF
         const displayTitle = swap ? swap.to : b.title;
         const displaySummary = swap ? swap.toSummary : b.summary;
         const isTrail = !!(b.trailData) || b.activityType === 'trail';
-        const tint = reactionTint(activityFeedback?.[thumbId]);
+        const tint = lovedTint(lovedItems, thumbId);
+        const curatable = isCuratable({ ...b, title: displayTitle });
 
-        const handleReaction = (id, reaction) => {
-          if (reaction === 'down' && onSwapOpen) {
+        const handleShowAlternatives = (id) => {
+          if (onSwapOpen) {
             onSwapOpen({ dayIndex, itemIndex: i, thumbId, activityTitle: displayTitle, alternatives: b.alternatives || [] });
           } else {
-            onActivityFeedback(id, reaction);
+            onAlternatives(id);
           }
         };
 
@@ -2346,9 +2282,11 @@ function DayCard({ day, dayIndex = 0, onOpenPanel, activityFeedback, onActivityF
                   color: C.body, lineHeight: 1.5,
                 }}>{displaySummary}</div>
               )}
-              <div style={{ marginTop: 10 }}>
-                <InlineReactions id={thumbId} feedback={activityFeedback} onFeedback={handleReaction} />
-              </div>
+              {curatable && (
+                <div style={{ marginTop: 10 }}>
+                  <ActivityActions id={thumbId} lovedItems={lovedItems} onLove={onLove} onAlternatives={handleShowAlternatives} />
+                </div>
+              )}
             </div>
 
             {/* Chevron */}
@@ -2822,12 +2760,10 @@ function FirstDraftModal({ onDismiss }) {
   useEffect(() => { const t = setTimeout(() => setShow(true), 120); return () => clearTimeout(t); }, []);
 
   const reactions = [
-    { icon: FlameIcon, color: C.goldenAmber, label: 'Must do', desc: 'So stoked for this one',
+    { icon: FlameIcon, color: C.goldenAmber, label: 'Love This', desc: 'Keep this — it feels right',
       bg: `${C.goldenAmber}18`, border: `${C.goldenAmber}40` },
-    { icon: ThumbUp, color: C.seaGlass, label: 'Want it', desc: 'Keep this — it feels right',
-      bg: `${C.seaGlass}18`, border: `${C.seaGlass}40` },
-    { icon: ThumbDown, color: C.sunSalmon, label: 'Explore alternatives', desc: 'See other options and swap',
-      bg: `${C.sunSalmon}15`, border: `${C.sunSalmon}38` },
+    { icon: SwapIcon, color: C.oceanTeal, label: 'Show Alternatives', desc: 'See other options and swap',
+      bg: `${C.oceanTeal}15`, border: `${C.oceanTeal}38` },
   ];
 
   return (
@@ -3168,7 +3104,7 @@ export default function ItineraryResults() {
     flights: null,  // { airline, flightNumber, departureAirport, arrivalAirport, date, departureTime }
     rental: null,   // { company, confirmationNumber, pickupLocation, pickupDate, returnDate }
   });
-  const [activityFeedback, setActivityFeedback] = useState({});
+  const [lovedItems, setLovedItems] = useState({});
   const [swapModal, setSwapModal] = useState(null); // { dayIndex, itemIndex, thumbId, activityTitle, alternatives }
   const [swappedActivities, setSwappedActivities] = useState({});
   const [toastMessage, setToastMessage] = useState(null);
@@ -3340,14 +3276,49 @@ export default function ItineraryResults() {
     });
   };
 
-  const handleActivityFeedback = (id, value) => {
-    setActivityFeedback(prev => {
-      if (value === null) { const next = { ...prev }; delete next[id]; return next; }
-      return { ...prev, [id]: value };
+  const handleLove = (id) => {
+    setLovedItems(prev => {
+      const next = { ...prev };
+      if (next[id]) { delete next[id]; } else { next[id] = true; }
+      return next;
     });
   };
 
-  const hasFeedback = Object.keys(activityFeedback).length > 0 || Object.values(dayFeedback).some(f => f?.note || f?.reaction) || pulse === 'close' || pulse === 'rethink';
+  const handleAlternatives = (id) => {
+    // Find the activity data from enrichedDays to get alternatives
+    for (let di = 0; di < enrichedDays.length; di++) {
+      const day = enrichedDays[di];
+      if (!day?.timeline) continue;
+      for (let ti = 0; ti < day.timeline.length; ti++) {
+        const thumbId = `day_${di}_timeline_${ti}`;
+        if (thumbId === id) {
+          setSwapModal({
+            dayIndex: di, itemIndex: ti, thumbId,
+            activityTitle: day.timeline[ti].title,
+            alternatives: day.timeline[ti].alternatives || [],
+          });
+          return;
+        }
+      }
+      // Check picks too
+      if (day.picks) {
+        for (let pi = 0; pi < day.picks.length; pi++) {
+          const thumbId = `day_${di}_pick_${pi}`;
+          if (thumbId === id) {
+            const pick = day.picks[pi];
+            setSwapModal({
+              dayIndex: di, itemIndex: pi, thumbId,
+              activityTitle: pick?.pick?.name || pick?.category || 'this pick',
+              alternatives: pick?.pick?.alternatives || [],
+            });
+            return;
+          }
+        }
+      }
+    }
+  };
+
+  const hasFeedback = Object.keys(lovedItems).length > 0 || Object.keys(swappedActivities).length > 0 || Object.values(dayFeedback).some(f => f?.note || f?.reaction) || pulse === 'close' || pulse === 'rethink';
 
   const handleRefine = async () => {
     const nextIteration = iteration + 1;
@@ -3363,7 +3334,7 @@ export default function ItineraryResults() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           itinerary: rawItinerary,
-          activityFeedback,
+          lovedItems,
           dayFeedback,
           swappedActivities,
           pulse,
@@ -3383,7 +3354,7 @@ export default function ItineraryResults() {
       saveFeedback({
         formData,
         itineraryId,
-        activityFeedback,
+        lovedItems,
         dayFeedback,
         pulse,
         overallNote,
@@ -3404,7 +3375,7 @@ export default function ItineraryResults() {
       });
 
       setDayFeedback({});
-      setActivityFeedback({});
+      setLovedItems({});
       setSwappedActivities({});
       setPulse(null);
       setOverallNote('');
@@ -3443,12 +3414,6 @@ export default function ItineraryResults() {
             ...prev,
             [thumbId]: { from: activityTitle, to: chosen.title, toSummary: chosen.summary, note },
           }));
-          // Clear any down feedback on this item
-          setActivityFeedback(prev => {
-            const next = { ...prev };
-            delete next[thumbId];
-            return next;
-          });
           setSwapModal(null);
           setToastMessage('Activity swapped');
         }}
@@ -3459,7 +3424,7 @@ export default function ItineraryResults() {
 
       {/* Detail panel */}
       <DetailPanel item={activePanel} onClose={() => setActivePanel(null)}
-        activityFeedback={activityFeedback} onActivityFeedback={handleActivityFeedback} />
+        lovedItems={lovedItems} onLove={handleLove} onAlternatives={handleAlternatives} />
 
       {/* Header */}
       <div style={{
@@ -3567,7 +3532,7 @@ export default function ItineraryResults() {
                   <div key={i} ref={el => dayRefs.current[i] = el} style={{ scrollMarginTop: 60 }}>
                     <DayCard day={day} dayIndex={i}
                       feedback={dayFeedback[i]} onFeedback={handleDayFeedback}
-                      activityFeedback={activityFeedback} onActivityFeedback={handleActivityFeedback}
+                      lovedItems={lovedItems} onLove={handleLove} onAlternatives={handleAlternatives}
                       swappedActivities={swappedActivities}
                       onSwapOpen={(data) => setSwapModal(data)}
                       onOpenPanel={(panelItem) => {
