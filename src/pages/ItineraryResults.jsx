@@ -3141,12 +3141,6 @@ export default function ItineraryResults() {
     if (loadingShared) return;
     if (!rawItinerary) { navigate('/plan'); return; }
     setTimeout(() => setVisible(true), 100);
-    // Register active trip in sessionStorage for global TripPill
-    const tripPath = shareToken ? `/trip/${shareToken}` : '/itinerary';
-    sessionStorage.setItem('lilaActiveTrip', JSON.stringify({
-      destination: formData?.destination || 'your trip',
-      path: tripPath,
-    }));
     // Persist active trip to localStorage for nav backpack icon
     localStorage.setItem('lila_active_trip', JSON.stringify({
       shareToken: shareToken || sessionStorage.getItem('lila_itinerary_id') || 'current',

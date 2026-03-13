@@ -2024,7 +2024,6 @@ export default function PlanMyTrip() {
     trackEvent('itinerary_generation_started', { destination: data.destination || undefined });
     const t0 = performance.now();
     setGenerating(true);
-    sessionStorage.removeItem('lilaActiveTrip');
     localStorage.removeItem('lila_active_trip');
     try {
       const apiBody = translateFormToApi(data);
