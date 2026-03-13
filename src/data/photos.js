@@ -31,4 +31,8 @@ export const P = {
   olympicCreek: "/images/olympic-creek-oldgrowth.jpg",
   olympicHohRainforest: "/images/olympic-hoh-mossy-log.jpg",
   olympicLakeCrescent: "/images/olympic-lake-crescent-chairs.jpg",
+  bigSurSurfer: "/images/bigsur-surfer-sunset.jpg",
+  bigSurHiddenCove: "/images/bigsur-hidden-cove.jpg",
+  bigSurShoreline: "/images/bigsur-rocky-shoreline-wave.jpg",
+  bigSurSeaArch: "/images/bigsur-sea-arch-cove.jpg",
 };
