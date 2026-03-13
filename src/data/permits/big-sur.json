@@ -1,0 +1,102 @@
+[
+  {
+    "id": "state-park-day-use",
+    "activity": "State Park Day-Use Fees",
+    "permitType": "fee",
+    "required": true,
+    "description": "Pfeiffer Big Sur, Julia Pfeiffer Burns, and Andrew Molera state parks charge day-use vehicle fees. Garrapata is free. Point Lobos charges a separate entry fee.",
+    "where": "Pay at park entrance kiosks",
+    "url": "https://www.parks.ca.gov/PfeifferBigSur",
+    "cost": "$8–$12 per vehicle (varies by park) · Point Lobos $10/vehicle",
+    "seasonalWindow": {
+      "required": "year-round",
+      "notes": "Fee applies at all staffed entrance stations. Garrapata State Park has no entrance fee."
+    },
+    "tips": [
+      "The California State Parks annual pass ($125) covers day-use at all parks in the corridor.",
+      "The America the Beautiful pass ($80/year) covers some federal sites but NOT California State Parks.",
+      "Point Lobos limits to 420 vehicles — arrive before 10am on weekends or park on Highway 1 and walk in.",
+      "Pfeiffer Beach (accessed via Sycamore Canyon Rd) charges $12/vehicle, cash only."
+    ]
+  },
+  {
+    "id": "camping-state-parks",
+    "activity": "State Park Campground Reservations",
+    "permitType": "advance",
+    "required": true,
+    "description": "Pfeiffer Big Sur State Park campground (218 sites) is the most popular in California. Reservations open 6 months in advance to the day and book within minutes. Andrew Molera has primitive hike-in sites.",
+    "where": "reservecalifornia.com",
+    "url": "https://www.reservecalifornia.com/",
+    "cost": "$35–$50/night depending on site type",
+    "seasonalWindow": {
+      "required": "year-round",
+      "notes": "Summer and spring weekends are most competitive. Set a calendar alert for your 6-month booking window."
+    },
+    "tips": [
+      "Reservations open at 8am PT, 6 months in advance — be online at exactly 8am.",
+      "Weekday reservations are significantly easier to secure.",
+      "Andrew Molera's hike-in campsites are first-come, first-served and rarely full on weekdays.",
+      "Winter camping is available but some sites close seasonally — check ahead."
+    ]
+  },
+  {
+    "id": "camping-national-forest",
+    "activity": "National Forest Campground Reservations (Kirk Creek, Plaskett Creek)",
+    "permitType": "advance",
+    "required": true,
+    "description": "Kirk Creek (33 clifftop sites above the Pacific) and Plaskett Creek campgrounds are managed by the USDA Forest Service. Reservations via recreation.gov, 6 months in advance.",
+    "where": "recreation.gov",
+    "url": "https://www.recreation.gov/",
+    "cost": "$25–$35/night",
+    "seasonalWindow": {
+      "required": "year-round",
+      "notes": "Kirk Creek is the most sought-after national forest campground on the coast — every site has ocean views."
+    },
+    "tips": [
+      "Book 6 months out on recreation.gov — popular weekends sell out immediately.",
+      "Kirk Creek has no hookups, no showers — pack accordingly.",
+      "The clifftop setting makes Kirk Creek among the best stargazing campgrounds in California.",
+      "Plaskett Creek is slightly less competitive and has more tree cover."
+    ]
+  },
+  {
+    "id": "ventana-wilderness-permit",
+    "activity": "Ventana Wilderness Backcountry Permit",
+    "permitType": "permit",
+    "required": true,
+    "description": "Overnight backcountry camping in the Ventana Wilderness requires a free wilderness permit from the USFS King City Ranger District. Day hiking does not require a permit.",
+    "where": "USFS King City Ranger District office or self-register at trailheads",
+    "url": "https://www.fs.usda.gov/lpnf",
+    "cost": "Free",
+    "seasonalWindow": {
+      "required": "year-round for overnight trips",
+      "notes": "Fire restrictions may close areas during summer/fall. Check current conditions with the ranger district."
+    },
+    "tips": [
+      "Self-registration available at some trailheads — fill out the form at the register box.",
+      "Check fire season closures before planning backcountry trips (typically July–October).",
+      "Trail conditions vary — consult ventanawild.org for current reports.",
+      "Pack a bear canister — black bears are present in the backcountry."
+    ]
+  },
+  {
+    "id": "point-lobos-diving",
+    "activity": "Point Lobos Scuba Diving Reservations",
+    "permitType": "advance",
+    "required": true,
+    "description": "Diving at Point Lobos State Natural Reserve (Whalers and Bluefish Coves) requires advance reservations. Limited to a small number of dive teams per day.",
+    "where": "Call 831-624-8413 for reservations",
+    "url": "https://www.parks.ca.gov/pointlobos",
+    "cost": "Included with park entry ($10/vehicle)",
+    "seasonalWindow": {
+      "required": "year-round",
+      "notes": "Reservations are competitive — call well in advance, especially for weekends."
+    },
+    "tips": [
+      "Only Whalers Cove and Bluefish Cove are open to diving.",
+      "Water temperature is 50°F year-round — drysuit strongly recommended.",
+      "The kelp forests here are among the richest dive environments in North America.",
+      "Arrive early on your dive day — parking at Point Lobos fills quickly."
+    ]
+  }
+]

@@ -72,7 +72,7 @@ export const destinations = [
     photo: P.bigSur,
     gradient: "linear-gradient(165deg, #2a5f4f, #4a8a6f, #1c4a3a)",
     accent: C.seaGlass,
-    guideAvailable: false,
+    guideAvailable: true,
   },
   {
     slug: "vancouver-island",
