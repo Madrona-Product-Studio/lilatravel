@@ -133,6 +133,26 @@ export default function Nav({ transparent = false }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
+  // Active trip state (for backpack icon)
+  const [activeTrip, setActiveTrip] = useState(() => {
+    try {
+      const stored = localStorage.getItem('lila_active_trip');
+      return stored ? JSON.parse(stored) : null;
+    } catch { return null; }
+  });
+
+  // Re-check on focus (handles returning from another tab)
+  useEffect(() => {
+    const onFocus = () => {
+      try {
+        const stored = localStorage.getItem('lila_active_trip');
+        setActiveTrip(stored ? JSON.parse(stored) : null);
+      } catch { setActiveTrip(null); }
+    };
+    window.addEventListener('focus', onFocus);
+    return () => window.removeEventListener('focus', onFocus);
+  }, []);
+
   useEffect(() => {
     const h = () => setScrolled(window.scrollY > 60);
     window.addEventListener("scroll", h, { passive: true });
@@ -194,6 +214,28 @@ export default function Nav({ transparent = false }) {
             </Link>
           ))}
 
+          {activeTrip && (
+            <Link
+              to={activeTrip.shareToken && activeTrip.shareToken !== 'current' ? `/trip/${activeTrip.shareToken}` : '/itinerary'}
+              onClick={() => trackEvent('nav_clicked', { label: 'backpack', page: location.pathname })}
+              style={{ position: 'relative', display: 'flex', alignItems: 'center', color: C.goldenAmber, textDecoration: 'none' }}
+              title={`Back to ${activeTrip.destination}`}
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M9 2h6a1 1 0 0 1 1 1v2H8V3a1 1 0 0 1 1-1z"/>
+                <path d="M4 7h16a1 1 0 0 1 1 1v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a1 1 0 0 1 1-1z"/>
+                <path d="M9 11h6"/>
+                <path d="M12 11v5"/>
+              </svg>
+              <span style={{
+                position: 'absolute', top: -3, right: -3,
+                width: 7, height: 7, borderRadius: '50%',
+                background: C.goldenAmber,
+                border: `1.5px solid ${showSolid ? C.cream : 'rgba(0,0,0,0.3)'}`,
+              }} />
+            </Link>
+          )}
+
           <Link to="/plan"
             onClick={() => trackEvent('nav_clicked', { label: 'plan_a_trip', to: '/plan', page: location.pathname })}
             style={{
@@ -211,13 +253,38 @@ export default function Nav({ transparent = false }) {
           </Link>
         </div>
 
-        {/* Mobile hamburger */}
+        {/* Mobile: backpack + hamburger */}
         <div
           className="nav-mobile-toggle"
-          onClick={() => setMenuOpen(!menuOpen)}
-          style={{ display: "none", padding: 8, cursor: "pointer", zIndex: 101 }}
+          style={{ display: "none", alignItems: "center", gap: 16, zIndex: 101 }}
         >
-          <HamburgerIcon open={menuOpen} color={showSolid ? C.darkInk : "white"} />
+          {activeTrip && (
+            <Link
+              to={activeTrip.shareToken && activeTrip.shareToken !== 'current' ? `/trip/${activeTrip.shareToken}` : '/itinerary'}
+              onClick={() => trackEvent('nav_clicked', { label: 'backpack', page: location.pathname })}
+              style={{ position: 'relative', display: 'flex', alignItems: 'center', color: C.goldenAmber, textDecoration: 'none' }}
+              title={`Back to ${activeTrip.destination}`}
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M9 2h6a1 1 0 0 1 1 1v2H8V3a1 1 0 0 1 1-1z"/>
+                <path d="M4 7h16a1 1 0 0 1 1 1v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a1 1 0 0 1 1-1z"/>
+                <path d="M9 11h6"/>
+                <path d="M12 11v5"/>
+              </svg>
+              <span style={{
+                position: 'absolute', top: -3, right: -3,
+                width: 7, height: 7, borderRadius: '50%',
+                background: C.goldenAmber,
+                border: `1.5px solid ${showSolid ? C.cream : 'rgba(0,0,0,0.3)'}`,
+              }} />
+            </Link>
+          )}
+          <div
+            onClick={() => setMenuOpen(!menuOpen)}
+            style={{ padding: 8, cursor: "pointer" }}
+          >
+            <HamburgerIcon open={menuOpen} color={showSolid ? C.darkInk : "white"} />
+          </div>
         </div>
       </nav>
 
@@ -229,7 +296,7 @@ export default function Nav({ transparent = false }) {
         @media (max-width: 900px) {
           nav { padding: 18px 24px !important; }
           .nav-links { display: none !important; }
-          .nav-mobile-toggle { display: block !important; }
+          .nav-mobile-toggle { display: flex !important; }
         }
       `}</style>
     </>

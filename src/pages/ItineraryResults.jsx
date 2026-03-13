@@ -3115,6 +3115,9 @@ export default function ItineraryResults() {
   const [overallNote, setOverallNote] = useState('');
   const [refineError, setRefineError] = useState(null);
 
+  // Save panel state
+  const [savePanelOpen, setSavePanelOpen] = useState(false);
+
   // First draft modal state
   const [showDraftModal, setShowDraftModal] = useState(() => !shareToken);
 
@@ -3143,6 +3146,12 @@ export default function ItineraryResults() {
     sessionStorage.setItem('lilaActiveTrip', JSON.stringify({
       destination: formData?.destination || 'your trip',
       path: tripPath,
+    }));
+    // Persist active trip to localStorage for nav backpack icon
+    localStorage.setItem('lila_active_trip', JSON.stringify({
+      shareToken: shareToken || sessionStorage.getItem('lila_itinerary_id') || 'current',
+      destination: formData?.destination || 'Your Trip',
+      generatedAt: Date.now(),
     }));
   }, [rawItinerary, navigate, loadingShared, shareToken, formData]);
 
@@ -3439,12 +3448,13 @@ export default function ItineraryResults() {
         borderBottom: `1px solid ${C.sage}06`,
       }}>
         <Link to="/" style={{ fontFamily: F, fontSize: 16, fontWeight: 500, letterSpacing: '0.1em', color: C.slate, textDecoration: 'none' }}>Lila Trips</Link>
-        <button onClick={() => { trackEvent('new_trip_clicked', { source: 'header' }); navigate('/plan'); }} style={{
-          fontFamily: F, fontSize: 11, fontWeight: 600,
-          color: C.sage, background: `${C.white}70`,
-          border: `1px solid ${C.sage}15`, borderRadius: 20,
-          padding: '6px 14px', cursor: 'pointer', WebkitTapHighlightColor: 'transparent',
-        }}>New Trip</button>
+        <button onClick={() => { trackEvent('save_trip_clicked', { source: 'header' }); setSavePanelOpen(true); }} style={{
+          fontFamily: F, fontSize: 11, fontWeight: 700,
+          letterSpacing: '0.15em', textTransform: 'uppercase',
+          color: C.cream, background: C.slate,
+          border: 'none', padding: '10px 18px',
+          cursor: 'pointer', WebkitTapHighlightColor: 'transparent',
+        }}>Save This Trip</button>
       </div>
 
       <div style={{
@@ -3626,9 +3636,11 @@ export default function ItineraryResults() {
         </div>
       </div>
 
-      {/* Save / Share pill */}
+      {/* Save / Share panel */}
       {isStructured && (
         <SavePill
+          isOpen={savePanelOpen}
+          onClose={() => setSavePanelOpen(false)}
           itineraryId={itineraryId}
           rawItinerary={rawItinerary}
           formData={formData}

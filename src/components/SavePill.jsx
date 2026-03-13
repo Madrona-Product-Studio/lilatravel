@@ -48,8 +48,7 @@ const CloseIcon = ({ size = 12, color = C.sage }) => (
   </svg>
 );
 
-export default function SavePill({ itineraryId, rawItinerary, formData, itineraryTitle }) {
-  const [open, setOpen] = useState(false);
+export default function SavePill({ isOpen, onClose, itineraryId, rawItinerary, formData, itineraryTitle }) {
   const [mode, setMode] = useState('save'); // 'save' | 'share'
   const [email, setEmail] = useState('');
   const [sending, setSending] = useState(false);
@@ -72,7 +71,7 @@ export default function SavePill({ itineraryId, rawItinerary, formData, itinerar
 
   // Reset state when panel closes
   const handleClose = () => {
-    setOpen(false);
+    onClose?.();
     setSent(false);
     setSendError(false);
     setEmail('');
@@ -105,31 +104,8 @@ export default function SavePill({ itineraryId, rawItinerary, formData, itinerar
     setTimeout(() => setCopied(false), 2200);
   };
 
-  // Floating pill (collapsed)
-  if (!open) {
-    return (
-      <button onClick={() => setOpen(true)} style={{
-        position: 'fixed', bottom: 24, right: 24, zIndex: 150,
-        display: 'flex', alignItems: 'center', gap: 7,
-        padding: '10px 18px', borderRadius: 24,
-        background: C.slate, color: C.white,
-        border: 'none', cursor: 'pointer',
-        fontFamily: F, fontSize: 13, fontWeight: 600,
-        letterSpacing: '0.04em',
-        boxShadow: `0 4px 20px ${C.ink}25`,
-        WebkitTapHighlightColor: 'transparent',
-        transition: 'transform 0.2s, box-shadow 0.2s',
-      }}
-      onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.boxShadow = `0 6px 24px ${C.ink}30`; }}
-      onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = `0 4px 20px ${C.ink}25`; }}
-      >
-        <SaveIcon size={13} color={C.white} />
-        Save this trip
-      </button>
-    );
-  }
+  if (!isOpen) return null;
 
-  // Expanded panel
   return (
     <div style={{
       position: 'fixed', bottom: 24, right: 24, zIndex: 150,
