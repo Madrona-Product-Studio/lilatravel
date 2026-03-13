@@ -3,9 +3,133 @@
 // ═══════════════════════════════════════════════════════════════════════════════
 
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { C } from '@data/brand';
 import { trackEvent } from '@utils/analytics';
+
+// ─── Helpers ─────────────────────────────────────────────────────────────────
+
+function timeAgo(ts) {
+  const diff = Date.now() - ts;
+  const mins = Math.floor(diff / 60000);
+  if (mins < 1) return 'Just now';
+  if (mins < 60) return `${mins}m ago`;
+  const hrs = Math.floor(mins / 60);
+  if (hrs < 24) return `${hrs}h ago`;
+  const days = Math.floor(hrs / 24);
+  if (days === 1) return 'Yesterday';
+  if (days < 7) return `${days}d ago`;
+  return new Date(ts).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+}
+
+function readTrips() {
+  try {
+    const raw = localStorage.getItem('lila_trips');
+    return raw ? JSON.parse(raw) : [];
+  } catch { return []; }
+}
+
+// ─── Suitcase Icon ───────────────────────────────────────────────────────────
+
+function SuitcaseIcon({ color, size = 20 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+      {/* Handle */}
+      <path d="M9 5V3.5A1.5 1.5 0 0 1 10.5 2h3A1.5 1.5 0 0 1 15 3.5V5" />
+      {/* Body */}
+      <rect x="3" y="5" width="18" height="16" rx="2" />
+      {/* Band */}
+      <line x1="3" y1="13" x2="21" y2="13" />
+    </svg>
+  );
+}
+
+// ─── Trip Dropdown ───────────────────────────────────────────────────────────
+
+function TripDropdown({ trips, onSelect, onDelete, onNewTrip, onClose }) {
+  return (
+    <div style={{
+      position: 'absolute', top: 'calc(100% + 10px)', right: 0,
+      width: 280, maxHeight: 360, overflowY: 'auto',
+      background: C.warmWhite, border: `1px solid ${C.stone}`,
+      borderRadius: 8, boxShadow: '0 8px 32px rgba(0,0,0,0.10)',
+      zIndex: 200, fontFamily: "'Quicksand', sans-serif",
+    }}>
+      {/* Header */}
+      <div style={{
+        padding: '14px 16px 8px', fontSize: 10, fontWeight: 700,
+        letterSpacing: '0.18em', textTransform: 'uppercase',
+        color: '#8a8278',
+      }}>
+        My Trips
+      </div>
+
+      {/* Trip rows */}
+      {trips.length === 0 && (
+        <div style={{ padding: '12px 16px 16px', fontSize: 13, color: '#8a8278' }}>
+          No trips yet
+        </div>
+      )}
+      {trips.map(trip => (
+        <div
+          key={trip.id}
+          style={{
+            display: 'flex', alignItems: 'center', padding: '10px 16px',
+            cursor: 'pointer', transition: 'background 0.15s',
+            borderBottom: `1px solid ${C.stone}`,
+          }}
+          onClick={() => onSelect(trip)}
+          onMouseEnter={e => e.currentTarget.style.background = 'rgba(0,0,0,0.03)'}
+          onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
+        >
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div style={{
+              fontSize: 14, fontWeight: 600, color: C.darkInk,
+              whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
+            }}>
+              {trip.title || trip.destination || 'Your Trip'}
+            </div>
+            <div style={{ fontSize: 11, color: '#8a8278', marginTop: 2 }}>
+              {timeAgo(trip.generatedAt)}
+            </div>
+          </div>
+          <button
+            onClick={e => { e.stopPropagation(); onDelete(trip.id); }}
+            style={{
+              background: 'none', border: 'none', cursor: 'pointer',
+              padding: '4px 6px', fontSize: 16, color: '#8a8278',
+              lineHeight: 1, flexShrink: 0, borderRadius: 4,
+              transition: 'color 0.15s',
+            }}
+            onMouseEnter={e => e.currentTarget.style.color = C.darkInk}
+            onMouseLeave={e => e.currentTarget.style.color = '#8a8278'}
+            title="Remove trip"
+          >
+            ×
+          </button>
+        </div>
+      ))}
+
+      {/* Footer */}
+      <div style={{ padding: '12px 16px 14px' }}>
+        <button
+          onClick={onNewTrip}
+          style={{
+            width: '100%', padding: '10px 0', border: `1px solid ${C.darkInk}`,
+            background: 'transparent', cursor: 'pointer', borderRadius: 4,
+            fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700,
+            letterSpacing: '0.16em', textTransform: 'uppercase', color: C.darkInk,
+            transition: 'all 0.2s',
+          }}
+          onMouseEnter={e => { e.currentTarget.style.background = C.darkInk; e.currentTarget.style.color = 'white'; }}
+          onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = C.darkInk; }}
+        >
+          Plan a New Trip
+        </button>
+      </div>
+    </div>
+  );
+}
 
 // ─── Animated Hamburger Icon ─────────────────────────────────────────────────
 function HamburgerIcon({ open, color }) {
@@ -130,28 +254,50 @@ function MobileMenu({ open, links, onClose }) {
 // ─── Nav Component ───────────────────────────────────────────────────────────
 export default function Nav({ transparent = false }) {
   const location = useLocation();
+  const navigate = useNavigate();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // Active trip state (for backpack icon)
-  const [activeTrip, setActiveTrip] = useState(() => {
+  // Multi-trip state
+  const [trips, setTrips] = useState(() => {
+    // Migrate legacy single-trip format
     try {
-      const stored = localStorage.getItem('lila_active_trip');
-      return stored ? JSON.parse(stored) : null;
-    } catch { return null; }
+      const legacy = localStorage.getItem('lila_active_trip');
+      if (legacy) {
+        const old = JSON.parse(legacy);
+        const migrated = [{ id: crypto.randomUUID(), path: old.path || '/itinerary', destination: old.destination || 'Your Trip', title: null, generatedAt: old.generatedAt || Date.now() }];
+        localStorage.setItem('lila_trips', JSON.stringify(migrated));
+        localStorage.removeItem('lila_active_trip');
+        return migrated;
+      }
+    } catch {}
+    return readTrips();
   });
 
-  // Re-check on focus (handles returning from another tab)
+  const [tripsOpen, setTripsOpen] = useState(false);
+
+  // Sync trips from localStorage on focus and custom event
   useEffect(() => {
-    const onFocus = () => {
-      try {
-        const stored = localStorage.getItem('lila_active_trip');
-        setActiveTrip(stored ? JSON.parse(stored) : null);
-      } catch { setActiveTrip(null); }
+    const sync = () => setTrips(readTrips());
+    window.addEventListener('focus', sync);
+    window.addEventListener('lila_trips_changed', sync);
+    return () => {
+      window.removeEventListener('focus', sync);
+      window.removeEventListener('lila_trips_changed', sync);
     };
-    window.addEventListener('focus', onFocus);
-    return () => window.removeEventListener('focus', onFocus);
   }, []);
+
+  // Click-outside to close dropdown (uses data attribute to find container)
+  useEffect(() => {
+    if (!tripsOpen) return;
+    const handler = (e) => {
+      if (!e.target.closest('[data-trips-container]')) {
+        setTripsOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
+  }, [tripsOpen]);
 
   useEffect(() => {
     const h = () => setScrolled(window.scrollY > 60);
@@ -160,9 +306,10 @@ export default function Nav({ transparent = false }) {
     return () => window.removeEventListener("scroll", h);
   }, []);
 
-  // Close menu on route change
+  // Close menu + dropdown on route change
   useEffect(() => {
     setMenuOpen(false);
+    setTripsOpen(false);
   }, [location.pathname]);
 
   const showSolid = scrolled || !transparent;
@@ -173,6 +320,65 @@ export default function Nav({ transparent = false }) {
     { label: "Ethos", to: "/ethos" },
     { label: "Ways to Travel", to: "/ways-to-travel" },
   ];
+
+  const handleSelectTrip = (trip) => {
+    trackEvent('nav_clicked', { label: 'trip_dropdown_select', destination: trip.destination, page: location.pathname });
+    navigate(trip.path);
+    setTripsOpen(false);
+  };
+
+  const handleDeleteTrip = (id) => {
+    const updated = trips.filter(t => t.id !== id);
+    localStorage.setItem('lila_trips', JSON.stringify(updated));
+    setTrips(updated);
+    trackEvent('trip_deleted', { page: location.pathname });
+  };
+
+  const handleNewTrip = () => {
+    trackEvent('nav_clicked', { label: 'plan_new_trip', page: location.pathname });
+    navigate('/plan');
+    setTripsOpen(false);
+  };
+
+  const suitcaseColor = C.goldenAmber;
+
+  const renderSuitcase = () => (
+    <div data-trips-container style={{ position: 'relative', display: 'inline-flex' }}>
+      <button
+        onClick={() => { setTripsOpen(prev => !prev); }}
+        style={{
+          position: 'relative', display: 'flex', alignItems: 'center',
+          background: 'none', border: 'none', cursor: 'pointer', padding: 4,
+        }}
+        title="My Trips"
+      >
+        <SuitcaseIcon color={suitcaseColor} />
+        {trips.length > 0 && (
+          <span style={{
+            position: 'absolute', top: -5, right: -7,
+            minWidth: 16, height: 16, borderRadius: 8,
+            background: C.goldenAmber,
+            border: `1.5px solid ${showSolid ? C.warmWhite : 'rgba(0,0,0,0.3)'}`,
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            fontSize: 9, fontWeight: 700, color: 'white',
+            fontFamily: "'Quicksand', sans-serif",
+            padding: '0 4px',
+          }}>
+            {trips.length}
+          </span>
+        )}
+      </button>
+      {tripsOpen && (
+        <TripDropdown
+          trips={trips}
+          onSelect={handleSelectTrip}
+          onDelete={handleDeleteTrip}
+          onNewTrip={handleNewTrip}
+          onClose={() => setTripsOpen(false)}
+        />
+      )}
+    </div>
+  );
 
   return (
     <>
@@ -214,27 +420,7 @@ export default function Nav({ transparent = false }) {
             </Link>
           ))}
 
-          {activeTrip && (
-            <Link
-              to={activeTrip.path || '/itinerary'}
-              onClick={() => trackEvent('nav_clicked', { label: 'backpack', page: location.pathname })}
-              style={{ position: 'relative', display: 'flex', alignItems: 'center', color: C.goldenAmber, textDecoration: 'none' }}
-              title={`Back to ${activeTrip.destination}`}
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M9 2h6a1 1 0 0 1 1 1v2H8V3a1 1 0 0 1 1-1z"/>
-                <path d="M4 7h16a1 1 0 0 1 1 1v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a1 1 0 0 1 1-1z"/>
-                <path d="M9 11h6"/>
-                <path d="M12 11v5"/>
-              </svg>
-              <span style={{
-                position: 'absolute', top: -3, right: -3,
-                width: 7, height: 7, borderRadius: '50%',
-                background: C.goldenAmber,
-                border: `1.5px solid ${showSolid ? C.cream : 'rgba(0,0,0,0.3)'}`,
-              }} />
-            </Link>
-          )}
+          {renderSuitcase()}
 
           <Link to="/plan"
             onClick={() => trackEvent('nav_clicked', { label: 'plan_a_trip', to: '/plan', page: location.pathname })}
@@ -253,34 +439,14 @@ export default function Nav({ transparent = false }) {
           </Link>
         </div>
 
-        {/* Mobile: backpack + hamburger */}
+        {/* Mobile: suitcase + hamburger */}
         <div
           className="nav-mobile-toggle"
           style={{ display: "none", alignItems: "center", gap: 16, zIndex: 101 }}
         >
-          {activeTrip && (
-            <Link
-              to={activeTrip.path || '/itinerary'}
-              onClick={() => trackEvent('nav_clicked', { label: 'backpack', page: location.pathname })}
-              style={{ position: 'relative', display: 'flex', alignItems: 'center', color: C.goldenAmber, textDecoration: 'none' }}
-              title={`Back to ${activeTrip.destination}`}
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M9 2h6a1 1 0 0 1 1 1v2H8V3a1 1 0 0 1 1-1z"/>
-                <path d="M4 7h16a1 1 0 0 1 1 1v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a1 1 0 0 1 1-1z"/>
-                <path d="M9 11h6"/>
-                <path d="M12 11v5"/>
-              </svg>
-              <span style={{
-                position: 'absolute', top: -3, right: -3,
-                width: 7, height: 7, borderRadius: '50%',
-                background: C.goldenAmber,
-                border: `1.5px solid ${showSolid ? C.cream : 'rgba(0,0,0,0.3)'}`,
-              }} />
-            </Link>
-          )}
+          {renderSuitcase()}
           <div
-            onClick={() => setMenuOpen(!menuOpen)}
+            onClick={() => { setMenuOpen(!menuOpen); setTripsOpen(false); }}
             style={{ padding: 8, cursor: "pointer" }}
           >
             <HamburgerIcon open={menuOpen} color={showSolid ? C.darkInk : "white"} />

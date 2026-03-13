@@ -11,6 +11,7 @@ import { assignCompanions } from '@services/companionAssigner';
 import { saveItinerary, saveFeedback } from '@services/feedbackService';
 
 import { clearSession } from '@services/sessionManager';
+import { createShareableUrl } from '@services/shareService';
 import SavePill from '@components/SavePill';
 // CelestialMonthStrip consolidated into CelestialSnapshot below
 
@@ -3163,12 +3164,25 @@ export default function ItineraryResults() {
     if (loadingShared) return;
     if (!rawItinerary) { navigate('/plan'); return; }
     setTimeout(() => setVisible(true), 100);
-    // Persist active trip to localStorage for nav backpack icon
-    localStorage.setItem('lila_active_trip', JSON.stringify({
-      path: shareToken ? `/trip/${shareToken}` : '/itinerary',
+    // Append trip to lila_trips array (multi-trip support)
+    const tripId = crypto.randomUUID();
+    const path = shareToken ? `/trip/${shareToken}` : '/itinerary';
+    const newTrip = {
+      id: tripId,
+      path,
       destination: formData?.destination || 'Your Trip',
+      title: null,
       generatedAt: Date.now(),
-    }));
+    };
+    try {
+      const existing = JSON.parse(localStorage.getItem('lila_trips') || '[]');
+      // Deduplicate by path (for shared links reloaded)
+      const filtered = existing.filter(t => t.path !== path);
+      const updated = [newTrip, ...filtered].slice(0, 10);
+      localStorage.setItem('lila_trips', JSON.stringify(updated));
+      sessionStorage.setItem('lila_trip_id', tripId);
+      window.dispatchEvent(new Event('lila_trips_changed'));
+    } catch {}
   }, [rawItinerary, navigate, loadingShared, shareToken, formData]);
 
   // Parse itinerary — re-parses only when rawItinerary changes (i.e. after refinement)
@@ -3231,8 +3245,47 @@ export default function ItineraryResults() {
           setItineraryId(id);
         }
       });
+
+      // Patch trip title in lila_trips array
+      const tripId = sessionStorage.getItem('lila_trip_id');
+      if (tripId && itinerary.title) {
+        try {
+          const trips = JSON.parse(localStorage.getItem('lila_trips') || '[]');
+          const idx = trips.findIndex(t => t.id === tripId);
+          if (idx !== -1) {
+            trips[idx].title = itinerary.title;
+            localStorage.setItem('lila_trips', JSON.stringify(trips));
+            window.dispatchEvent(new Event('lila_trips_changed'));
+          }
+        } catch {}
+      }
     }
   }, [isStructured, itinerary, formData]);
+
+  // Eagerly generate share token so saved trips are loadable from dropdown
+  useEffect(() => {
+    if (!itineraryId || shareToken) return; // already has a share path
+    const tripId = sessionStorage.getItem('lila_trip_id');
+    if (!tripId) return;
+    createShareableUrl({
+      itineraryId,
+      rawItinerary,
+      formData,
+      destination: formData?.destination,
+    }).then(url => {
+      try {
+        const token = url.split('/trip/')[1];
+        if (!token) return;
+        const trips = JSON.parse(localStorage.getItem('lila_trips') || '[]');
+        const idx = trips.findIndex(t => t.id === tripId);
+        if (idx !== -1) {
+          trips[idx].path = `/trip/${token}`;
+          localStorage.setItem('lila_trips', JSON.stringify(trips));
+          window.dispatchEvent(new Event('lila_trips_changed'));
+        }
+      } catch {}
+    });
+  }, [itineraryId]);
 
   // time_on_itinerary — fire on page unload
   useEffect(() => {
