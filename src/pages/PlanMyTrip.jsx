@@ -368,6 +368,57 @@ const MONTHS = [
   { id: 'december',  label: 'December',  window: 'Winter Solstice',      color: '#7A8A9A' },
 ];
 
+const DESTINATION_WINDOWS = {
+  zion: {
+    january: 'The Longest Shadow', february: 'Quiet Awakening',
+    march: 'Spring Equinox', april: 'Desert Bloom',
+    may: 'Last Comfortable', june: 'Solstice Fire',
+    july: 'Monsoon Drama', august: 'Desert After Rain',
+    september: 'The Golden Corridor', october: 'Peak Fall Color',
+    november: 'Quiet Descent', december: 'Winter Solstice',
+  },
+  joshuaTree: {
+    january: 'Cool Desert Calm', february: 'Early Wildflowers',
+    march: 'Spring Bloom', april: 'Peak Wildflower',
+    may: 'Last Cool Window', june: 'Solstice Starlight',
+    july: 'Furnace Quiet', august: 'Perseid Meteor Shower',
+    september: 'Heat Breaks', october: 'Desert Autumn',
+    november: 'Stargazing Season', december: 'Winter Solstice Dark Sky',
+  },
+  bigSur: {
+    january: 'Storm & Whale Watch', february: 'Monarch Twilight',
+    march: 'Spring Green', april: 'Coastal Wildflower',
+    may: 'Fog Lifts', june: 'Longest Light',
+    july: 'Summer Fog', august: 'Perseid Coast',
+    september: 'Fog Clears', october: 'Warm & Quiet',
+    november: 'Autumn Gold', december: 'Gray Whale Return',
+  },
+  olympic: {
+    january: 'Deep Rainforest', february: 'Quiet Canopy',
+    march: 'Gray Whale Migration', april: 'Wildflower Ridge',
+    may: 'Spring Unfurling', june: 'Longest Day',
+    july: 'Alpine Access', august: 'Peak Summer',
+    september: 'Elk Rut Season', october: 'Peak Fall Color',
+    november: 'Storm Season Begins', december: 'Winter Rainforest',
+  },
+  kauai: {
+    january: 'Whale Season', february: 'North Shore Swells',
+    march: 'Peak Whale Watch', april: 'Kalalau Window',
+    may: 'Trade Wind Season', june: 'Calm North Shore',
+    july: 'Milky Way Season', august: 'Warm & Dry',
+    september: 'Least Crowded', october: 'Quiet Season',
+    november: 'Makahiki Begins', december: 'Humpback Return',
+  },
+  vancouver: {
+    january: 'Peak Storm Watch', february: 'Storm & Surf',
+    march: 'Gray Whale Migration', april: 'Whale Watch Peak',
+    may: 'Trail Season Opens', june: 'Long Light',
+    july: 'Peak Summer', august: 'Warmest Window',
+    september: 'Swell Season', october: 'Storm Season Begins',
+    november: 'Storm Watch Season', december: 'Deep Winter Storm',
+  },
+};
+
 const DIMENSIONS = [
   { key: "movement", label: "Movement" },
   { key: "wellness", label: "Wellness" },
@@ -944,7 +995,12 @@ function StepDestination({ data, onChange, onNext, onBack }) {
 }
 
 const GOLDEN_WINDOWS = {
-  zion: new Set(['march', 'april', 'october', 'november']),
+  zion:       new Set(['march', 'april', 'october', 'november']),
+  joshuaTree: new Set(['march', 'april', 'october', 'november']),
+  bigSur:     new Set(['april', 'may', 'september', 'october']),
+  olympic:    new Set(['july', 'august', 'september', 'october']),
+  kauai:      new Set(['april', 'may', 'september', 'october']),
+  vancouver:  new Set(['june', 'july', 'august', 'september']),
 };
 
 function StepMonth({ data, onChange, onNext, onBack }) {
@@ -1015,7 +1071,7 @@ function StepMonth({ data, onChange, onNext, onBack }) {
                 fontSize: 10, fontWeight: 600, letterSpacing: '0.08em',
                 textTransform: 'uppercase',
                 color: sel ? m.color : `${C.sage}90`,
-              }}>{m.window}</div>
+              }}>{(DESTINATION_WINDOWS[data.destination] || {})[m.id] || m.window}</div>
             </button>
           );
         })}
