@@ -1,0 +1,81 @@
+[
+  {
+    "id": "park-entrance-fee",
+    "activity": "Park Entrance Fee",
+    "permitType": "fee",
+    "required": true,
+    "description": "All vehicles entering Olympic National Park must pay an entrance fee or hold an America the Beautiful pass.",
+    "where": "Pay at entrance stations or purchase online",
+    "url": "https://www.nps.gov/olym/planyourvisit/fees.htm",
+    "cost": "$30 per vehicle (7-day pass) · $55 annual Olympic pass · $80 America the Beautiful annual pass",
+    "seasonalWindow": {
+      "required": "year-round",
+      "notes": "Fee applies year-round at staffed entrance stations. Some remote access points are self-pay."
+    },
+    "tips": [
+      "The America the Beautiful pass ($80/year) covers all national parks and is worth it if you visit two or more parks.",
+      "The Olympic-specific annual pass ($55) is good value for repeat visitors to the peninsula.",
+      "Fee-free days occur several times a year — check the NPS calendar."
+    ]
+  },
+  {
+    "id": "wilderness-camping-permit",
+    "activity": "Wilderness Camping Permit",
+    "permitType": "advance",
+    "required": true,
+    "description": "All overnight stays in the Olympic backcountry require a wilderness camping permit. Day hiking does not require a permit. Some popular areas (High Divide, Enchanted Valley, Grand Valley) require advance reservations during peak season.",
+    "where": "recreation.gov (advance) or Wilderness Information Center in Port Angeles (walk-up)",
+    "url": "https://www.recreation.gov/permits/4675311",
+    "cost": "$8 per person per night (reservation fee) + $6 per reservation (online booking fee)",
+    "seasonalWindow": {
+      "required": "year-round for overnight backcountry trips",
+      "notes": "Advance reservations for peak-season permits open in early spring. Walk-up permits available at the Wilderness Information Center, first-come-first-served."
+    },
+    "tips": [
+      "High Divide / Seven Lakes Basin is the most competitive permit — apply early in the reservation window.",
+      "Walk-up permits are available for less popular areas and shoulder season dates.",
+      "Bear canisters are required in some areas — check regulations for your route.",
+      "Group size limited to 12 in wilderness areas."
+    ]
+  },
+  {
+    "id": "campground-reservations",
+    "activity": "Campground Reservations",
+    "permitType": "advance",
+    "required": true,
+    "description": "Kalaloch Campground accepts reservations via recreation.gov. Hoh, Sol Duc, and other campgrounds are first-come-first-served or reservable depending on season.",
+    "where": "recreation.gov",
+    "url": "https://www.recreation.gov/camping/gateways/2554",
+    "cost": "$15–$24/night depending on campground and season",
+    "seasonalWindow": {
+      "required": "year-round (some campgrounds seasonal)",
+      "notes": "Kalaloch and Sol Duc campgrounds are reservable in peak season. Hoh Campground is first-come-first-served year-round."
+    },
+    "tips": [
+      "Kalaloch bluff sites are the most coveted — book 6 months out for summer weekends.",
+      "Hoh Campground rarely fills on weekdays; arrive by noon on summer weekends.",
+      "Sol Duc Campground's proximity to the hot springs makes it a popular choice — book ahead.",
+      "Winter camping is available at Kalaloch and Hoh year-round."
+    ]
+  },
+  {
+    "id": "cape-flattery-recreation-permit",
+    "activity": "Cape Flattery Recreation Permit",
+    "permitType": "fee",
+    "required": true,
+    "description": "A Makah Recreation Pass ($10/vehicle) is required to access Cape Flattery, Shi Shi Beach, and other Makah Reservation lands. Supports Makah cultural preservation and trail maintenance.",
+    "where": "Makah Museum, Neah Bay businesses, or makah.com",
+    "url": "https://www.makah.com/",
+    "cost": "$10 per vehicle",
+    "seasonalWindow": {
+      "required": "year-round",
+      "notes": "Purchase before arriving at the trailhead. Available at the Makah Museum, the Makah Marina, and several Neah Bay businesses."
+    },
+    "tips": [
+      "The permit is separate from the National Park entrance fee.",
+      "Combine with a visit to the Makah Museum — one of the most significant Indigenous cultural institutions in the Pacific Northwest.",
+      "Cape Flattery is the northwesternmost point in the contiguous United States.",
+      "The trail is 1.5 miles round trip and moderately rooted — wear sturdy shoes."
+    ]
+  }
+]

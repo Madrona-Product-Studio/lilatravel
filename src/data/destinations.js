@@ -57,7 +57,7 @@ export const destinations = [
     photo: P.olympic,
     gradient: "linear-gradient(165deg, #2b5070, #3d7090, #1a3d55)",
     accent: C.skyBlue,
-    guideAvailable: false,
+    guideAvailable: true,
   },
   {
     slug: "big-sur",

@@ -43,7 +43,7 @@ const DESTINATION_MAP = {
   zion: 'zion',
   bigSur: 'big-sur',
   joshuaTree: 'joshua-tree',
-  olympic: 'olympic',
+  olympic: 'olympic-peninsula',
   kauai: 'kauai',
   vancouver: 'vancouver-island',
 };
