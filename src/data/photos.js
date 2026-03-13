@@ -27,4 +27,8 @@ export const P = {
   kauaiKalalauValley: "/images/kauai-kalalau-valley-overlook.jpg",
   kauaiNapaliCoast: "/images/kauai-napali-coast-trail.jpg",
   kauaiWaimeaCanyon: "/images/kauai-waimea-canyon-waterfall.jpg",
+  olympicLakeSunset: "/images/olympic-lake-sunset-fire.jpg",
+  olympicCreek: "/images/olympic-creek-oldgrowth.jpg",
+  olympicHohRainforest: "/images/olympic-hoh-mossy-log.jpg",
+  olympicLakeCrescent: "/images/olympic-lake-crescent-chairs.jpg",
 };
