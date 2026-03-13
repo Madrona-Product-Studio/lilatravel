@@ -331,6 +331,7 @@ export default function Nav({ transparent = false }) {
     const updated = trips.filter(t => t.id !== id);
     localStorage.setItem('lila_trips', JSON.stringify(updated));
     setTrips(updated);
+    window.dispatchEvent(new Event('lila_trips_changed'));
     trackEvent('trip_deleted', { page: location.pathname });
   };
 
