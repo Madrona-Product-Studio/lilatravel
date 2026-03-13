@@ -1,15 +1,793 @@
 // ═══════════════════════════════════════════════════════════════════════════════
-// PAGE: OLYMPIC PENINSULA GUIDE (coming soon placeholder)
+// PAGE: OLYMPIC PENINSULA GUIDE (dedicated)
 // ═══════════════════════════════════════════════════════════════════════════════
+//
+// Full editorial guide for Olympic Peninsula — three parks in one. Uses shared
+// Nav/Footer/FadeIn from the Lila Trips component library, with guide-specific
+// components defined locally (ListItem, StayItem, ExpandableList).
 //
 // Route: /destinations/olympic-peninsula
 //
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { Nav, Footer, FadeIn, Breadcrumb } from '@components';
+import TripCard from '@components/TripCard';
 import { C } from '@data/brand';
 import { P } from '@data/photos';
+import { getTripsByDestination } from '@data/trips';
+import { trackEvent } from '@utils/analytics';
+import { getCelestialSnapshot } from '@services/celestialService';
+import { getNPSData, buildNPSLookup, findNPSMatch } from '@services/npsService';
+
+
+// ─── Guide-Specific Components ───────────────────────────────────────────────
+
+function SectionLabel({ children }) {
+  return (
+    <div style={{
+      fontFamily: "'Quicksand', sans-serif",
+      fontSize: 12, fontWeight: 700,
+      letterSpacing: "0.28em", textTransform: "uppercase",
+      color: C.skyBlue, marginBottom: 12,
+      textAlign: "center",
+    }}>{children}</div>
+  );
+}
+
+function SectionTitle({ children }) {
+  return (
+    <h2 style={{
+      fontFamily: "'Cormorant Garamond', serif",
+      fontSize: "clamp(24px, 4vw, 32px)", fontWeight: 400,
+      color: C.darkInk, margin: "0 0 6px", lineHeight: 1.2,
+      textAlign: "center",
+    }}>{children}</h2>
+  );
+}
+
+function SectionSub({ children, isMobile }) {
+  return (
+    <p style={{
+      fontFamily: "'Quicksand', sans-serif",
+      fontSize: isMobile ? 15 : "clamp(14px, 1.8vw, 15px)", fontWeight: 400,
+      color: "#4A5650", margin: "0 auto 28px", lineHeight: 1.7,
+      textAlign: isMobile ? "left" : "center", maxWidth: isMobile ? "100%" : 520,
+    }}>{children}</p>
+  );
+}
+
+function Divider() {
+  return <div style={{ height: 1, background: C.stone, margin: 0 }} />;
+}
+
+function SectionIcon({ type }) {
+  const size = 28;
+  const icons = {
+    move: (
+      <svg width={size} height={size} viewBox="0 0 28 28" fill="none">
+        <rect x="14" y="2" width="15" height="15" rx="2" transform="rotate(45 14 2)"
+          stroke={C.skyBlue} strokeWidth="1.5" fill="none" />
+      </svg>
+    ),
+    breathe: (
+      <svg width={size} height={size} viewBox="0 0 28 28" fill="none">
+        <circle cx="14" cy="14" r="10"
+          stroke={C.seaGlass} strokeWidth="1.5" fill="none" />
+      </svg>
+    ),
+    awaken: (
+      <svg width={size} height={size} viewBox="0 0 28 28" fill="none">
+        <path d="M14 3 L16 11 L24 14 L16 17 L14 25 L12 17 L4 14 L12 11 Z"
+          stroke={C.skyBlue} strokeWidth="1.5" fill="none" strokeLinejoin="round" />
+      </svg>
+    ),
+    connect: (
+      <svg width={size} height={size} viewBox="0 0 32 28" fill="none">
+        <circle cx="12" cy="14" r="9" stroke={C.skyBlue} strokeWidth="1.5" fill="none" />
+        <circle cx="20" cy="14" r="9" stroke={C.skyBlue} strokeWidth="1.5" fill="none" />
+      </svg>
+    ),
+    stay: (
+      <svg width={size} height={size} viewBox="0 0 28 28" fill="none">
+        <path d="M4 14 L14 5 L24 14" stroke={C.skyBlue} strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M7 13 L7 23 L21 23 L21 13" stroke={C.skyBlue} strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    ),
+    windows: (
+      <svg width={size} height={size} viewBox="0 0 28 28" fill="none">
+        <rect x="4" y="4" width="20" height="20" rx="2" stroke={C.skyBlue} strokeWidth="1.5" fill="none" />
+        <line x1="14" y1="4" x2="14" y2="24" stroke={C.skyBlue} strokeWidth="1.5" />
+        <line x1="4" y1="14" x2="24" y2="14" stroke={C.skyBlue} strokeWidth="1.5" />
+      </svg>
+    ),
+    threshold: (
+      <svg width={size} height={size} viewBox="0 0 28 28" fill="none">
+        <path d="M18 6 A10 10 0 1 0 18 22 A7 7 0 1 1 18 6 Z"
+          stroke={C.skyBlue} strokeWidth="1.5" fill="none" />
+      </svg>
+    ),
+    plan: (
+      <svg width={size} height={size} viewBox="0 0 28 28" fill="none">
+        <circle cx="14" cy="14" r="11" stroke={C.skyBlue} strokeWidth="1.5" fill="none" />
+        <path d="M11 17 L13 13 L17 11 L15 15 Z" stroke={C.skyBlue} strokeWidth="1.5" fill="none" strokeLinejoin="round" />
+      </svg>
+    ),
+    group: (
+      <svg width={size} height={size} viewBox="0 0 28 28" fill="none">
+        <circle cx="10" cy="10" r="3.5" stroke={C.skyBlue} strokeWidth="1.5" fill="none" />
+        <circle cx="18" cy="10" r="3.5" stroke={C.skyBlue} strokeWidth="1.5" fill="none" />
+        <path d="M4 22 C4 17 7 15 10 15 C11.5 15 12.5 15.5 14 16.5 C15.5 15.5 16.5 15 18 15 C21 15 24 17 24 22" stroke={C.skyBlue} strokeWidth="1.5" fill="none" strokeLinecap="round" />
+      </svg>
+    ),
+    giveback: (
+      <svg width={size} height={size} viewBox="0 0 28 28" fill="none">
+        <path d="M14 24 C14 24 4 17 4 11 C4 7.7 6.7 5 10 5 C11.8 5 13.3 5.9 14 7.2 C14.7 5.9 16.2 5 18 5 C21.3 5 24 7.7 24 11 C24 17 14 24 14 24 Z"
+          stroke={C.seaGlass} strokeWidth="1.5" fill="none" />
+      </svg>
+    ),
+    discover: (
+      <svg width={size} height={size} viewBox="0 0 28 28" fill="none">
+        <circle cx="14" cy="14" r="11" stroke={C.skyBlue} strokeWidth="1.5" fill="none" />
+        <path d="M10 14 L14 6 L18 14 L14 22 Z" stroke={C.skyBlue} strokeWidth="1.5" fill="none" strokeLinejoin="round" />
+      </svg>
+    ),
+  };
+  return (
+    <div style={{ display: "flex", justifyContent: "center", marginBottom: 12 }}>
+      {icons[type]}
+    </div>
+  );
+}
+
+function NPSArrowhead({ size = 14, color = "#2D5F2B" }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <path d="M12 2L4 22h3l5-11 5 11h3L12 2z" fill={color} opacity="0.85" />
+      <circle cx="12" cy="16" r="2.5" fill={color} opacity="0.6" />
+    </svg>
+  );
+}
+
+function ListItem({ name, detail, note, tags, featured, url, isMobile, onOpenSheet, location, hasNPS }) {
+  const nameEl = onOpenSheet ? (
+    <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 15, fontWeight: 600, color: C.darkInk }}>{name}</span>
+  ) : url ? (
+    <a href={url} target="_blank" rel="noopener noreferrer" style={{
+      fontFamily: "'Quicksand', sans-serif", fontSize: 15, fontWeight: 600,
+      color: C.darkInk, textDecoration: "none",
+      borderBottom: `1px solid ${C.stone}`, transition: "border-color 0.2s, color 0.2s",
+    }} onMouseEnter={e => { e.target.style.borderColor = C.skyBlue; e.target.style.color = C.slate || "#3D5A6B"; }}
+       onMouseLeave={e => { e.target.style.borderColor = C.stone; e.target.style.color = C.darkInk; }}>
+      {name}
+      <span style={{ fontSize: 12, marginLeft: 4, color: "#7A857E" }}>{"↗"}</span>
+    </a>
+  ) : (
+    <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 15, fontWeight: 600, color: C.darkInk }}>{name}</span>
+  );
+
+  return (
+    <div
+      onClick={onOpenSheet ? () => onOpenSheet({ type: 'list', name, detail, note, tags, featured, url, location }) : undefined}
+      style={{
+        display: "flex", flexDirection: isMobile ? "column" : "row", alignItems: isMobile ? "flex-start" : "center", gap: 14, padding: "16px 0", borderBottom: `1px solid ${C.stone}`,
+        ...(onOpenSheet ? { cursor: 'pointer', transition: 'background 0.15s' } : {}),
+      }}
+      onMouseEnter={onOpenSheet ? e => { e.currentTarget.style.background = `${C.stone}30`; } : undefined}
+      onMouseLeave={onOpenSheet ? e => { e.currentTarget.style.background = 'transparent'; } : undefined}
+    >
+      <div style={{ flex: 1, minWidth: 0 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap", marginBottom: 3 }}>
+          {nameEl}
+          {featured && (
+            <span style={{
+              padding: "2px 10px", border: `1px solid ${C.skyBlue}40`,
+              fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700,
+              letterSpacing: "0.18em", textTransform: "uppercase", color: C.skyBlue,
+            }}>{"Lila Pick"}</span>
+          )}
+          {hasNPS && (
+            <span style={{
+              display: "inline-flex", alignItems: "center", gap: 4,
+              padding: "2px 8px", background: "#2D5F2B10",
+              fontFamily: "'Quicksand', sans-serif", fontSize: 9, fontWeight: 700,
+              letterSpacing: "0.14em", textTransform: "uppercase", color: "#2D5F2B",
+            }}>
+              <NPSArrowhead size={10} />NPS
+            </span>
+          )}
+        </div>
+        <div style={{
+          fontFamily: "'Quicksand', sans-serif",
+          fontSize: isMobile ? 14 : "clamp(13px, 1.5vw, 14px)", fontWeight: 400,
+          color: "#4A5650", lineHeight: 1.65,
+        }}>{detail}</div>
+        {note && (
+          <div style={{
+            fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 600,
+            color: C.skyBlue, marginTop: 4,
+          }}>{note}</div>
+        )}
+        {tags && tags.length > 0 && (
+          <div style={{ display: "flex", gap: 5, marginTop: 7, flexWrap: "wrap" }}>
+            {tags.map((t, i) => (
+              <span key={i} style={{
+                padding: "2px 8px", background: C.stone + "60",
+                fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600,
+                color: "#7A857E",
+              }}>{t}</span>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function StayItem({ name, location, tier, detail, tags, url, featured, isMobile, onOpenSheet }) {
+  const styles = {
+    elemental: { color: C.seaGlass, label: "Elemental", bg: `${C.seaGlass}15` },
+    rooted: { color: C.oceanTeal, label: "Rooted", bg: `${C.oceanTeal}12` },
+    premium: { color: C.goldenAmber, label: "Premium", bg: `${C.goldenAmber}15` },
+  };
+  const s = styles[tier];
+  const nameEl = onOpenSheet ? (
+    <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 15, fontWeight: 600, color: C.darkInk }}>{name}</span>
+  ) : url ? (
+    <a href={url} target="_blank" rel="noopener noreferrer" style={{
+      fontFamily: "'Quicksand', sans-serif", fontSize: 15, fontWeight: 600,
+      color: C.darkInk, textDecoration: "none",
+      borderBottom: `1px solid ${C.stone}`, transition: "border-color 0.2s",
+    }} onMouseEnter={e => e.target.style.borderColor = C.skyBlue}
+       onMouseLeave={e => e.target.style.borderColor = C.stone}>
+      {name}
+      <span style={{ fontSize: 12, marginLeft: 4, color: "#7A857E" }}>{"↗"}</span>
+    </a>
+  ) : (
+    <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 15, fontWeight: 600, color: C.darkInk }}>{name}</span>
+  );
+
+  return (
+    <div
+      onClick={onOpenSheet ? () => onOpenSheet({ type: 'stay', name, location, tier, detail, tags, featured, url }) : undefined}
+      style={{
+        display: "flex", flexDirection: isMobile ? "column" : "row", alignItems: isMobile ? "stretch" : "center", gap: 14, padding: "18px 0", borderBottom: `1px solid ${C.stone}`,
+        ...(onOpenSheet ? { cursor: 'pointer', transition: 'background 0.15s' } : {}),
+      }}
+      onMouseEnter={onOpenSheet ? e => { e.currentTarget.style.background = `${C.stone}30`; } : undefined}
+      onMouseLeave={onOpenSheet ? e => { e.currentTarget.style.background = 'transparent'; } : undefined}
+    >
+      <div style={{ flex: 1, minWidth: 0 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 3, flexWrap: "wrap" }}>
+          <span style={{
+            padding: "2px 10px", background: s.bg,
+            fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700,
+            letterSpacing: "0.18em", textTransform: "uppercase", color: s.color,
+          }}>{s.label}</span>
+          <span style={{
+            fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 500, color: "#7A857E",
+          }}>{location}</span>
+          {featured && (
+            <span style={{
+              padding: "2px 10px", border: `1px solid ${C.skyBlue}40`,
+              fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700,
+              letterSpacing: "0.18em", textTransform: "uppercase", color: C.skyBlue,
+            }}>{"Lila Pick"}</span>
+          )}
+        </div>
+        <div style={{ marginBottom: 3 }}>{nameEl}</div>
+        <div style={{
+          fontFamily: "'Quicksand', sans-serif",
+          fontSize: isMobile ? 14 : "clamp(13px, 1.5vw, 14px)", fontWeight: 400,
+          color: "#4A5650", lineHeight: 1.65,
+        }}>{detail}</div>
+        {tags && (
+          <div style={{ display: "flex", gap: 5, marginTop: 7, flexWrap: "wrap" }}>
+            {tags.map((t, i) => (
+              <span key={i} style={{
+                padding: "2px 8px", background: C.stone + "60",
+                fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600,
+                color: "#7A857E",
+              }}>{t}</span>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function ExpandableList({ children, initialCount = 5, label = "more" }) {
+  const [expanded, setExpanded] = useState(false);
+  const items = Array.isArray(children) ? children : [children];
+  const visible = expanded ? items : items.slice(0, initialCount);
+  const hasMore = items.length > initialCount;
+
+  return (
+    <div>
+      {visible}
+      {hasMore && (
+        <button
+          onClick={() => setExpanded(!expanded)}
+          style={{
+            display: "inline-flex", alignItems: "center", gap: 8,
+            margin: "20px 0 0", padding: "8px 0", paddingBottom: 4,
+            background: "none", border: "none",
+            borderBottom: `1px solid ${C.darkInk}`,
+            cursor: "pointer",
+            fontFamily: "'Quicksand', sans-serif",
+            fontSize: 12, fontWeight: 700,
+            letterSpacing: "0.2em", textTransform: "uppercase",
+            color: C.darkInk, transition: "opacity 0.2s",
+          }}
+          onMouseEnter={e => e.currentTarget.style.opacity = "0.55"}
+          onMouseLeave={e => e.currentTarget.style.opacity = "1"}
+        >
+          {expanded ? "Show less" : `Show ${items.length - initialCount} more ${label}`}
+          <span style={{
+            display: "inline-block",
+            transition: "transform 0.25s ease",
+            transform: expanded ? "rotate(180deg)" : "rotate(0deg)",
+            fontSize: 11,
+          }}>{"▼"}</span>
+        </button>
+      )}
+    </div>
+  );
+}
+
+function GuideDetailSheet({ item, onClose, isMobile }) {
+  const sheetRef = useRef(null);
+  const dragStartY = useRef(null);
+  const dragCurrentY = useRef(0);
+
+  if (!item) return null;
+
+  const onTouchStart = (e) => { dragStartY.current = e.touches[0].clientY; };
+  const onTouchMove = (e) => {
+    if (dragStartY.current === null) return;
+    const dy = e.touches[0].clientY - dragStartY.current;
+    dragCurrentY.current = dy;
+    if (dy > 0 && sheetRef.current) sheetRef.current.style.transform = `translateY(${dy}px)`;
+  };
+  const onTouchEnd = () => {
+    if (dragCurrentY.current > 80) { onClose(); }
+    else if (sheetRef.current) { sheetRef.current.style.transform = 'translateY(0)'; }
+    dragStartY.current = null;
+    dragCurrentY.current = 0;
+  };
+
+  const tierStyles = {
+    elemental: { color: C.seaGlass, label: "Elemental", bg: `${C.seaGlass}15` },
+    rooted: { color: C.oceanTeal, label: "Rooted", bg: `${C.oceanTeal}12` },
+    premium: { color: C.goldenAmber, label: "Premium", bg: `${C.goldenAmber}15` },
+  };
+
+  const nps = item.nps;
+  const npsImages = nps?.images?.filter(img => img.url) || [];
+  const npsPrimaryImage = npsImages[0];
+
+  const stripHTML = (html) => {
+    if (!html) return '';
+    return html.replace(/<[^>]*>/g, '').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&nbsp;/g, ' ').trim();
+  };
+
+  const npsInfoRows = [];
+  if (nps) {
+    if (nps.duration) npsInfoRows.push({ label: 'Duration', value: nps.duration });
+    if (nps.season?.length) npsInfoRows.push({ label: 'Best Seasons', value: Array.isArray(nps.season) ? nps.season.join(', ') : nps.season });
+    if (nps.location || nps.locationDescription) npsInfoRows.push({ label: 'Location', value: stripHTML(nps.locationDescription || nps.location || '') });
+    const petsAllowed = nps.arePetsPermitted === 'true' || nps.arePetsPermitted === true;
+    if (nps.petsDescription || nps.arePetsPermitted !== undefined) {
+      npsInfoRows.push({ label: 'Pets', value: nps.petsDescription ? stripHTML(nps.petsDescription) : (petsAllowed ? 'Pets allowed' : 'No pets') });
+    }
+    const hasFees = nps.doFeesApply === 'true' || nps.doFeesApply === true;
+    if (nps.feeDescription || nps.doFeesApply !== undefined) {
+      npsInfoRows.push({ label: 'Fees', value: nps.feeDescription ? stripHTML(nps.feeDescription) : (hasFees ? 'Fees apply' : 'Free') });
+    }
+    const needsReservation = nps.isReservationRequired === 'true' || nps.isReservationRequired === true;
+    if (nps.isReservationRequired !== undefined) {
+      npsInfoRows.push({ label: 'Reservation', value: needsReservation ? 'Required' : 'Not required' });
+    }
+  }
+
+  const content = (
+    <div style={{ maxWidth: 500, margin: '0 auto', padding: '26px 20px 60px' }}>
+      {item.type === 'stay' && item.tier && tierStyles[item.tier] && (
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10, flexWrap: 'wrap' }}>
+          <span style={{ padding: '2px 10px', background: tierStyles[item.tier].bg, fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: tierStyles[item.tier].color }}>{tierStyles[item.tier].label}</span>
+          {item.location && (<span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 500, color: '#7A857E' }}>{item.location}</span>)}
+        </div>
+      )}
+      {item.type === 'list' && item.section && (
+        <span style={{ display: 'inline-block', padding: '2px 10px', background: `${C.skyBlue}15`, fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: C.skyBlue, marginBottom: 10 }}>{item.section}</span>
+      )}
+      <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(22px, 4vw, 28px)', fontWeight: 400, color: C.darkInk, margin: '0 0 10px', lineHeight: 1.2 }}>{item.name}</h3>
+      {item.featured && (
+        <span style={{ display: 'inline-block', padding: '2px 10px', border: `1px solid ${C.skyBlue}40`, fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: C.skyBlue, marginBottom: 14 }}>Lila Pick</span>
+      )}
+
+      {/* NPS ENRICHMENT */}
+      {nps && (
+        <>
+          {npsPrimaryImage && (
+            <div style={{ margin: '0 -20px 18px', position: 'relative' }}>
+              <img src={npsPrimaryImage.url} alt={npsPrimaryImage.altText || item.name} style={{ width: '100%', height: 220, objectFit: 'cover', display: 'block' }} />
+              {(npsPrimaryImage.caption || npsPrimaryImage.credit) && (
+                <div style={{ padding: '6px 20px', fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 400, color: '#7A857E', lineHeight: 1.5 }}>
+                  {npsPrimaryImage.caption && <span>{npsPrimaryImage.caption}</span>}
+                  {npsPrimaryImage.credit && (<span style={{ fontStyle: 'italic' }}>{npsPrimaryImage.caption ? ' · ' : ''}Photo: {npsPrimaryImage.credit}</span>)}
+                </div>
+              )}
+              {npsImages.length > 1 && (
+                <div style={{ display: 'flex', gap: 3, padding: '0 20px', overflowX: 'auto', scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+                  {npsImages.slice(1, 5).map((img, i) => (<img key={i} src={img.url} alt={img.altText || ''} style={{ width: 60, height: 42, objectFit: 'cover', opacity: 0.8 }} />))}
+                </div>
+              )}
+            </div>
+          )}
+          <a href={nps.url} target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '10px 14px', marginBottom: 18, background: '#2D5F2B0D', border: '1px solid #2D5F2B18', textDecoration: 'none', transition: 'background 0.2s' }} onMouseEnter={e => e.currentTarget.style.background = '#2D5F2B18'} onMouseLeave={e => e.currentTarget.style.background = '#2D5F2B0D'}>
+            <NPSArrowhead size={20} color="#2D5F2B" />
+            <div>
+              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 500, color: '#2D5F2B', lineHeight: 1.5 }}>Trail information provided by the <strong>National Park Service</strong></div>
+              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#2D5F2B', opacity: 0.6, marginTop: 2 }}>View on NPS.gov ↗</div>
+            </div>
+          </a>
+          {(nps.longDescription || nps.shortDescription) && (
+            <div style={{ marginBottom: 18 }}>
+              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#2D5F2B', marginBottom: 8 }}>NPS Description</div>
+              <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 14, fontWeight: 400, color: '#4A5650', lineHeight: 1.75, margin: 0 }}>{stripHTML(nps.longDescription || nps.shortDescription)}</p>
+            </div>
+          )}
+          {npsInfoRows.length > 0 && (
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px 16px', marginBottom: 20, padding: '14px 0', borderTop: `1px solid ${C.stone}`, borderBottom: `1px solid ${C.stone}` }}>
+              {npsInfoRows.map((row, i) => (
+                <div key={i} style={row.label === 'Location' ? { gridColumn: '1 / -1' } : {}}>
+                  <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#7A857E', marginBottom: 3 }}>{row.label}</div>
+                  <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 500, color: C.darkInk, lineHeight: 1.5 }}>{row.value}</div>
+                </div>
+              ))}
+            </div>
+          )}
+          {nps.accessibilityInformation && (() => {
+            const html = nps.accessibilityInformation;
+            const clean = (s) => s.replace(/&amp;/g, '&').replace(/&nbsp;/g, ' ').replace(/\xa0/g, ' ').replace(/<[^>]*>/g, '').trim();
+            const liMatches = html.match(/<li>([\s\S]*?)<\/li>/gi);
+            if (!liMatches || liMatches.length === 0) {
+              const text = clean(html);
+              if (!text) return null;
+              return (<div style={{ marginBottom: 20 }}><div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#7A857E', marginBottom: 8 }}>Accessibility</div><p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 400, color: '#4A5650', lineHeight: 1.6, margin: 0 }}>{text}</p></div>);
+            }
+            const rows = liMatches.map(li => { const inner = li.replace(/<\/?li>/gi, ''); const boldMatch = inner.match(/<b>([\s\S]*?)<\/b>/); const lbl = boldMatch ? clean(boldMatch[1]).replace(/\s*\|\s*$/, '').trim() : ''; const valueHtml = boldMatch ? inner.slice(inner.indexOf('</b>') + 4) : inner; const valueParts = valueHtml.split(/<b>\s*\|?\s*<\/b>|<b>\s*\|\s*<\/b>/).map(clean).filter(Boolean); const finalParts = []; for (const part of valueParts) { part.split(/\s+\|\s+/).forEach(p => { if (p.trim()) finalParts.push(p.trim()); }); } return { label: lbl, values: finalParts }; });
+            const footnoteMatch = html.match(/<p>([\s\S]*?)<\/p>/i);
+            const footnote = footnoteMatch ? clean(footnoteMatch[1]) : null;
+            return (<div style={{ marginBottom: 20 }}><div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#7A857E', marginBottom: 10 }}>Trail Accessibility</div><div style={{ border: `1px solid ${C.stone}`, background: `${C.stone}18` }}>{rows.map((row, i) => (<div key={i} style={{ padding: '9px 14px', borderBottom: `1px solid ${C.stone}` }}>{row.label && (<div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, color: C.darkInk, marginBottom: 3 }}>{row.label}</div>)}{row.values.map((val, j) => (<div key={j} style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 400, color: '#4A5650', lineHeight: 1.6 }}>{val}</div>))}</div>))}{footnote && (<div style={{ padding: '8px 14px', fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 400, fontStyle: 'italic', color: '#7A857E', lineHeight: 1.5 }}>{footnote}</div>)}</div></div>);
+          })()}
+          {(item.detail || item.note) && (
+            <div style={{ padding: '14px 16px', marginBottom: 18, background: `${C.goldenAmber}08`, borderLeft: `3px solid ${C.goldenAmber}40` }}>
+              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: C.goldenAmber, marginBottom: 8 }}>Our Take</div>
+              {item.detail && (<p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 14, fontWeight: 400, color: '#4A5650', lineHeight: 1.7, margin: '0 0 6px' }}>{item.detail}</p>)}
+              {item.note && (<div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 600, color: C.skyBlue }}>{item.note}</div>)}
+            </div>
+          )}
+          {item.tags && item.tags.length > 0 && (<div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 20 }}>{item.tags.map((t, i) => (<span key={i} style={{ padding: '3px 10px', background: C.stone + '60', fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 600, color: '#7A857E' }}>{t}</span>))}</div>)}
+        </>
+      )}
+
+      {!nps && (
+        <>
+          {item.detail && (<p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 14, fontWeight: 400, color: '#4A5650', lineHeight: 1.7, margin: '0 0 14px' }}>{item.detail}</p>)}
+          {item.note && (<div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 600, color: C.skyBlue, marginBottom: 14 }}>{item.note}</div>)}
+          {item.tags && item.tags.length > 0 && (<div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 20 }}>{item.tags.map((t, i) => (<span key={i} style={{ padding: '3px 10px', background: C.stone + '60', fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 600, color: '#7A857E' }}>{t}</span>))}</div>)}
+        </>
+      )}
+
+      {item.url && !nps && (
+        <a href={item.url} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, padding: '10px 20px', border: `1.5px solid ${C.skyBlue}`, fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 700, letterSpacing: '0.16em', textTransform: 'uppercase', color: C.skyBlue, textDecoration: 'none', transition: 'all 0.25s' }}
+        onMouseEnter={e => { e.currentTarget.style.background = C.skyBlue; e.currentTarget.style.color = '#fff'; }}
+        onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = C.skyBlue; }}
+        >Visit Website <span style={{ fontSize: 13 }}>↗</span></a>
+      )}
+    </div>
+  );
+
+  if (!isMobile) {
+    return (
+      <>
+        <style>{`@keyframes guideSheetSlideIn { from { transform: translateX(100%); } to { transform: translateX(0); } } @keyframes guideSheetBackdropIn { from { opacity: 0; } to { opacity: 1; } }`}</style>
+        <div onClick={onClose} style={{ position: 'fixed', inset: 0, zIndex: 249, background: 'rgba(0,0,0,0.3)', animation: 'guideSheetBackdropIn 0.25s ease' }} />
+        <div style={{ position: 'fixed', top: 0, right: 0, bottom: 0, width: 440, zIndex: 250, background: C.cream, overflowY: 'auto', animation: 'guideSheetSlideIn 0.3s ease', boxShadow: '-4px 0 24px rgba(0,0,0,0.08)' }}>
+          <div style={{ position: 'sticky', top: 0, zIndex: 10, display: 'flex', justifyContent: 'flex-end', padding: '12px 14px 0 0' }}>
+            <button onClick={onClose} style={{ width: 32, height: 32, display: 'flex', alignItems: 'center', justifyContent: 'center', background: `${C.warmWhite}e0`, border: `1px solid ${C.stone}15`, borderRadius: '50%', cursor: 'pointer', fontFamily: "'Quicksand', sans-serif", fontSize: 15, color: '#7A857E', lineHeight: 1, WebkitTapHighlightColor: 'transparent', boxShadow: `0 2px 8px ${C.darkInk}08` }} aria-label="Close">✕</button>
+          </div>
+          {content}
+        </div>
+      </>
+    );
+  }
+
+  return (
+    <>
+      <style>{`@keyframes guideSheetSlideUp { from { transform: translateY(100%); } to { transform: translateY(0); } } @keyframes guideSheetBackdropIn { from { opacity: 0; } to { opacity: 1; } }`}</style>
+      <div onClick={onClose} style={{ position: 'fixed', inset: 0, zIndex: 249, background: 'rgba(0,0,0,0.3)', animation: 'guideSheetBackdropIn 0.25s ease' }} />
+      <div ref={sheetRef} style={{ position: 'fixed', bottom: 0, left: 0, right: 0, height: '82vh', zIndex: 250, background: C.cream, borderRadius: '16px 16px 0 0', animation: 'guideSheetSlideUp 0.3s ease', boxShadow: '0 -4px 24px rgba(0,0,0,0.1)', display: 'flex', flexDirection: 'column' }}>
+        <div onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd} style={{ padding: '10px 14px 6px', flexShrink: 0, position: 'relative', zIndex: 10 }}>
+          <div style={{ width: 36, height: 4, borderRadius: 2, background: '#7A857E30', margin: '0 auto 8px' }} />
+          <button onClick={(e) => { e.stopPropagation(); onClose(); }} style={{ position: 'absolute', top: 8, right: 14, width: 36, height: 36, display: 'flex', alignItems: 'center', justifyContent: 'center', background: `${C.warmWhite}e0`, border: '1px solid #7A857E15', borderRadius: '50%', cursor: 'pointer', fontFamily: "'Quicksand', sans-serif", fontSize: 15, color: '#7A857E', lineHeight: 1, WebkitTapHighlightColor: 'transparent', boxShadow: `0 2px 8px ${C.darkInk}08` }} aria-label="Close">✕</button>
+        </div>
+        <div style={{ overflowY: 'auto', flex: 1, WebkitOverflowScrolling: 'touch' }}>{content}</div>
+      </div>
+    </>
+  );
+}
+
+
+// ─── Email Capture ────────────────────────────────────────────────────────────
+
+function TimingAlertCapture() {
+  const [email, setEmail] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+
+  return (
+    <FadeIn>
+      <div style={{ padding: "28px 24px", background: `${C.skyBlue}08`, border: `1px solid ${C.skyBlue}30`, textAlign: "center", margin: "8px 0" }}>
+        {submitted ? (
+          <>
+            <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: C.skyBlue, marginBottom: 8 }}>You're on the list</div>
+            <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 14, fontWeight: 400, color: "#4A5650", lineHeight: 1.6 }}>We'll let you know when the golden window opens.</div>
+          </>
+        ) : (
+          <>
+            <SectionIcon type="windows" />
+            <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(18px, 2.5vw, 22px)", fontWeight: 400, color: C.darkInk, marginBottom: 6 }}>{"Get Olympic timing alerts"}</div>
+            <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 14, fontWeight: 400, color: "#4A5650", lineHeight: 1.6, maxWidth: 420, margin: "0 auto 20px" }}>{"We track salmon runs, alpine meadow bloom, and weather windows — and let you know when it's time to go."}</p>
+            <div style={{ display: "flex", gap: 8, maxWidth: 380, margin: "0 auto", flexWrap: "wrap", justifyContent: "center" }}>
+              <input type="email" placeholder="your@email.com" value={email} onChange={e => setEmail(e.target.value)} style={{ flex: "1 1 200px", padding: "10px 16px", border: `1px solid ${C.stone}`, background: "#fff", fontFamily: "'Quicksand', sans-serif", fontSize: 14, fontWeight: 400, color: C.darkInk, outline: "none" }} />
+              <button onClick={() => { if (email) setSubmitted(true); }} style={{ padding: "10px 20px", background: C.skyBlue, border: "none", color: "#fff", fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", cursor: "pointer", transition: "opacity 0.2s", whiteSpace: "nowrap" }}
+                onMouseEnter={e => e.currentTarget.style.opacity = "0.85"} onMouseLeave={e => e.currentTarget.style.opacity = "1"}>Notify Me</button>
+            </div>
+            <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 400, color: "#7A857E", marginTop: 10, letterSpacing: "0.04em" }}>No spam. Just timing.</div>
+          </>
+        )}
+      </div>
+    </FadeIn>
+  );
+}
+
+
+// ─── Guide Section Navigation (sticky anchor bar) ───────────────────────────
+
+const GUIDE_SECTIONS = [
+  { id: "sense-of-place", label: "Sense of Place" },
+  { id: "when-to-go",     label: "When to Go" },
+  { id: "where-to-stay",  label: "Stay" },
+  { id: "trails",         label: "Trails" },
+  { id: "wellness",       label: "Wellness" },
+  { id: "food-culture",   label: "Food & Culture" },
+  { id: "group-trips",    label: "Group Trips" },
+];
+
+function GuideNav({ isMobile }) {
+  const [activeId, setActiveId] = useState(null);
+  const [isSticky, setIsSticky] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(false);
+  const navRef = useRef(null);
+  const sentinelRef = useRef(null);
+  const activeItemRef = useRef(null);
+  const scrollContainerRef = useRef(null);
+
+  // Observe which section is in view
+  useEffect(() => {
+    const ids = GUIDE_SECTIONS.map(s => s.id);
+    const elements = ids.map(id => document.getElementById(id)).filter(Boolean);
+    if (elements.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter(e => e.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+        if (visible.length > 0) setActiveId(visible[0].target.id);
+      },
+      { rootMargin: "-130px 0px -60% 0px", threshold: 0 }
+    );
+
+    elements.forEach(el => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
+  // Sentinel observer for sticky state
+  useEffect(() => {
+    const sentinel = sentinelRef.current;
+    if (!sentinel) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsSticky(!entry.isIntersecting),
+      { threshold: 0 }
+    );
+    observer.observe(sentinel);
+    return () => observer.disconnect();
+  }, []);
+
+  // Auto-scroll the active nav item into view on mobile
+  useEffect(() => {
+    if (isMobile && activeItemRef.current && scrollContainerRef.current) {
+      const container = scrollContainerRef.current;
+      const item = activeItemRef.current;
+      const offset = item.offsetLeft - container.offsetWidth / 2 + item.offsetWidth / 2;
+      container.scrollTo({ left: offset, behavior: "smooth" });
+    }
+  }, [activeId, isMobile]);
+
+  // Track whether the scroll container can scroll further right
+  useEffect(() => {
+    const container = scrollContainerRef.current;
+    if (!container || !isMobile) { setCanScrollRight(false); return; }
+
+    const check = () => {
+      const gap = container.scrollWidth - container.scrollLeft - container.clientWidth;
+      setCanScrollRight(gap > 4);
+    };
+    check();
+    container.addEventListener("scroll", check, { passive: true });
+    window.addEventListener("resize", check);
+    return () => {
+      container.removeEventListener("scroll", check);
+      window.removeEventListener("resize", check);
+    };
+  }, [isMobile]);
+
+  const handleClick = useCallback((id) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const guideNavHeight = navRef.current?.offsetHeight || 52;
+    const mainNavHeight = isMobile ? 58 : 64;
+    const y = el.getBoundingClientRect().top + window.scrollY - guideNavHeight - mainNavHeight - 16;
+    window.scrollTo({ top: y, behavior: "smooth" });
+  }, [isMobile]);
+
+  const MAIN_NAV_HEIGHT = isMobile ? 58 : 64;
+
+  return (
+    <>
+      <div ref={sentinelRef} style={{ height: 1, width: "100%", pointerEvents: "none" }} />
+      <nav ref={navRef} style={{ position: (isSticky && !isMobile) ? "fixed" : "relative", top: (isSticky && !isMobile) ? MAIN_NAV_HEIGHT : "auto", left: 0, right: 0, zIndex: 90, background: (isSticky && !isMobile) ? "rgba(250, 247, 243, 0.97)" : C.cream, backdropFilter: (isSticky && !isMobile) ? "blur(12px)" : "none", WebkitBackdropFilter: (isSticky && !isMobile) ? "blur(12px)" : "none", borderBottom: `1px solid ${(isSticky && !isMobile) ? C.stone : "transparent"}`, transition: "border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease", boxShadow: (isSticky && !isMobile) ? "0 1px 8px rgba(0,0,0,0.04)" : "none" }}>
+        <div style={{ maxWidth: 920, margin: "0 auto", padding: isMobile ? "0 16px" : "0 52px", display: "flex", alignItems: "center" }}>
+          <div style={{ flex: 1, minWidth: 0, position: "relative" }}>
+            <div ref={scrollContainerRef} className="guide-nav-scroll" style={{ display: "flex", alignItems: "center", gap: isMobile ? 4 : 0, overflowX: "auto", scrollbarWidth: "none", msOverflowStyle: "none", WebkitOverflowScrolling: "touch" }}>
+            <style>{`.guide-nav-scroll::-webkit-scrollbar { display: none; }`}</style>
+            {GUIDE_SECTIONS.map((section) => { const isActive = activeId === section.id; return (
+              <button key={section.id} ref={isActive ? activeItemRef : null} onClick={() => handleClick(section.id)} className="guide-nav-scroll" style={{ padding: isMobile ? "16px 14px" : "20px 18px", background: "none", border: "none", borderBottom: `2px solid ${isActive ? C.skyBlue : "transparent"}`, cursor: "pointer", fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: isActive ? 700 : 600, letterSpacing: "0.14em", textTransform: "uppercase", color: isActive ? C.skyBlue : "#7A857E", whiteSpace: "nowrap", flexShrink: 0, transition: "color 0.25s ease, border-color 0.25s ease", position: "relative" }}
+              onMouseEnter={e => { if (!isActive) { e.currentTarget.style.color = C.darkInk; e.currentTarget.style.borderBottomColor = C.stone; } }}
+              onMouseLeave={e => { if (!isActive) { e.currentTarget.style.color = "#7A857E"; e.currentTarget.style.borderBottomColor = "transparent"; } }}>
+                {section.label}<span style={{ display: "inline-block", marginLeft: 4, fontSize: 9, opacity: isActive ? 1 : 0.5, transition: "opacity 0.25s" }}>{"↓"}</span>
+              </button>); })}
+            </div>
+            {isMobile && canScrollRight && (<div style={{ position: "absolute", top: 0, right: 0, bottom: 0, width: 40, background: `linear-gradient(to right, transparent, ${isSticky ? "rgba(250,247,243,0.97)" : C.cream})`, display: "flex", alignItems: "center", justifyContent: "flex-end", paddingRight: 4, pointerEvents: "none", transition: "opacity 0.3s" }}><span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 14, fontWeight: 600, color: "#7A857E" }}>{"›"}</span></div>)}
+          </div>
+        </div>
+      </nav>
+      {isSticky && <div style={{ height: (navRef.current?.offsetHeight || 52) + 16 }} />}
+    </>
+  );
+}
+
+
+// ─── Celestial Drawer ────────────────────────────────────────────────────────
+
+function CelestialDrawer({ isMobile }) {
+  const [open, setOpen] = useState(false);
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const contentRef = useRef(null);
+  const [contentHeight, setContentHeight] = useState(0);
+
+  useEffect(() => {
+    getCelestialSnapshot("olympic-peninsula")
+      .then(setData)
+      .catch(() => {})
+      .finally(() => setLoading(false));
+  }, []);
+
+  // Measure content for smooth animation
+  useEffect(() => {
+    if (contentRef.current) setContentHeight(contentRef.current.scrollHeight);
+  }, [data, open, isMobile]);
+
+  // Inject pulse animation
+  useEffect(() => {
+    if (document.getElementById("celestial-pulse-style")) return;
+    const style = document.createElement("style");
+    style.id = "celestial-pulse-style";
+    style.textContent = `
+      @keyframes celestialPulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.4; }
+      }
+    `;
+    document.head.appendChild(style);
+    return () => { style.remove(); };
+  }, []);
+
+  const NAV_HEIGHT = isMobile ? 58 : 64;
+
+  if (loading || !data) return (
+    <div style={{ position: "relative", background: C.warmWhite, borderBottom: `1px solid ${C.stone}` }}>
+      <div style={{ height: NAV_HEIGHT + 14 }} />
+      <div style={{ height: 44 }} />
+    </div>
+  );
+
+  const { weather, sun, moon, sky, nextEvent } = data;
+  const LABEL_STYLE = { fontFamily: "'Quicksand', sans-serif", fontSize: 9, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#b8b0a8", marginBottom: 6 };
+  const VAL_STYLE = { fontFamily: "'Quicksand', sans-serif", fontSize: 14, fontWeight: 600, color: C.darkInk, lineHeight: 1.3 };
+  const SUB_STYLE = { fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 400, color: "#8a9098", marginTop: 4 };
+
+  const teasers = [];
+  if (weather) teasers.push(`${weather.temp}° ${weather.condition}`);
+  if (moon) teasers.push(moon.name);
+  if (sky) teasers.push(`Sky: ${sky.label}`);
+  if (sun) teasers.push(`☀ ${sun.rise} – ${sun.set}`);
+
+  return (
+    <div style={{ position: "relative", zIndex: open ? 95 : "auto", background: C.warmWhite, borderBottom: `1px solid ${C.stone}` }}>
+      <div style={{ height: NAV_HEIGHT + 14 }} />
+      <button onClick={() => setOpen(!open)} style={{ width: "100%", border: "none", cursor: "pointer", background: "transparent", padding: isMobile ? "14px 20px" : "14px 52px", display: "flex", alignItems: "center", justifyContent: "center", gap: 8, transition: "background 0.2s" }} onMouseEnter={e => e.currentTarget.style.background = `${C.stone}40`} onMouseLeave={e => e.currentTarget.style.background = "transparent"}>
+        <span style={{ width: 5, height: 5, borderRadius: "50%", background: C.skyBlue, animation: "celestialPulse 2s ease-in-out infinite", flexShrink: 0 }} />
+        <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "#7A857E", flexShrink: 0 }}>{"Olympic Right Now"}</span>
+        {!isMobile && teasers.length > 0 && (<span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 500, color: "#b8b0a8", letterSpacing: "0.04em" }}>— {teasers.join("  ·  ")}</span>)}
+        {isMobile && weather && (<span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 500, color: "#b8b0a8", letterSpacing: "0.04em" }}>· {weather.temp}° · {moon?.name}</span>)}
+        <span style={{ fontSize: 14, color: "#b8b0a8", transition: "color 0.3s ease, transform 0.35s ease", marginLeft: 6, flexShrink: 0, display: "inline-block", lineHeight: 1 }}>{open ? "✕" : "▾"}</span>
+      </button>
+      <div style={{ position: "relative", zIndex: 95, maxHeight: open ? contentHeight : 0, overflow: "hidden", transition: "max-height 0.5s ease", background: C.warmWhite }}>
+        <div ref={contentRef} style={{ padding: isMobile ? "16px 20px 24px" : "20px 52px 32px", maxWidth: 920, margin: "0 auto" }}>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : "repeat(3, 1fr)", gap: isMobile ? "20px 24px" : "24px 40px", paddingBottom: 0 }}>
+            {weather && (
+              <div>
+                <div style={LABEL_STYLE}>Conditions</div>
+                <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 28, fontWeight: 300, color: C.darkInk, lineHeight: 1 }}>{weather.temp}°</span>
+                <div style={SUB_STYLE}>H {weather.high}° / L {weather.low}° · {weather.condition}</div>
+              </div>
+            )}
+            {sun && (
+              <div>
+                <div style={LABEL_STYLE}>Daylight</div>
+                <div style={{ ...VAL_STYLE, color: C.skyBlue }}>{sun.daylight}</div>
+                <div style={SUB_STYLE}>{sun.rise} – {sun.set}</div>
+              </div>
+            )}
+            {moon && (
+              <div>
+                <div style={LABEL_STYLE}>Moon</div>
+                <div style={VAL_STYLE}>{moon.name}</div>
+                <div style={SUB_STYLE}>{moon.phase}% illuminated</div>
+              </div>
+            )}
+            {sky && (
+              <div>
+                <div style={LABEL_STYLE}>Tonight's Sky</div>
+                <div style={{ ...VAL_STYLE, color: C.skyBlue }}>{sky.label}</div>
+                <div style={SUB_STYLE}>
+                  Bortle {sky.bortle}
+                  {sky.milkyWayVisible && sky.milkyWayWindow && <> · MW {sky.milkyWayWindow}</>}
+                </div>
+              </div>
+            )}
+            {nextEvent && (
+              <div>
+                <div style={LABEL_STYLE}>Next Celestial Event</div>
+                <div style={VAL_STYLE}>{nextEvent.name}</div>
+                <div style={SUB_STYLE}>{nextEvent.date} · {nextEvent.daysAway}d away</div>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
+// ─── Main Page ───────────────────────────────────────────────────────────────
 
 export default function OlympicPeninsulaGuide() {
   const [isMobile, setIsMobile] = useState(false);
@@ -20,91 +798,817 @@ export default function OlympicPeninsulaGuide() {
     return () => window.removeEventListener("resize", check);
   }, []);
 
+  const [activeSheet, setActiveSheet] = useState(null);
+  useEffect(() => {
+    if (activeSheet) document.body.style.overflow = 'hidden';
+    else document.body.style.overflow = '';
+    return () => { document.body.style.overflow = ''; };
+  }, [activeSheet]);
+
+  // ── NPS Data ──
+  const [npsLookup, setNpsLookup] = useState(null);
+  useEffect(() => {
+    getNPSData(['olym'])
+      .then(data => {
+        setNpsLookup(buildNPSLookup(data.thingsToDo));
+      })
+      .catch(() => {});
+  }, []);
+
+  const openSheet = (section) => (item) => {
+    const npsMatch = npsLookup ? findNPSMatch(item.name, npsLookup) : null;
+    setActiveSheet({ ...item, section, nps: npsMatch || undefined });
+  };
+  const checkNPS = useCallback((name) => npsLookup ? !!findNPSMatch(name, npsLookup) : false, [npsLookup]);
+
   return (
     <>
       <Nav />
+      <CelestialDrawer isMobile={isMobile} />
 
-      {/* Hero */}
-      <section style={{
-        position: "relative",
-        height: isMobile ? 340 : 480,
-        background: `url(${P.olympic}) center/cover no-repeat`,
-      }}>
+      {/* ══ TITLE MASTHEAD ═══════════════════════════════════════════════════ */}
+      <section style={{ background: C.cream }}>
         <div style={{
-          position: "absolute", inset: 0,
-          background: "linear-gradient(to bottom, rgba(10,18,26,0.25) 0%, rgba(10,18,26,0.65) 100%)",
-          display: "flex", flexDirection: "column", justifyContent: "flex-end",
-          padding: isMobile ? "32px 20px" : "52px 52px",
+          padding: isMobile ? "28px 20px 24px" : "44px 52px 40px",
+          maxWidth: 920, margin: "0 auto",
         }}>
-          <div style={{ maxWidth: 920, margin: "0 auto", width: "100%" }}>
-            <FadeIn from="bottom" delay={0.1}>
-              <Breadcrumb items={[
-                { label: "Home", to: "/" },
-                { label: "Destinations", to: "/destinations" },
-                { label: "Olympic Peninsula" },
-              ]} light />
-              <h1 style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontSize: "clamp(38px, 6vw, 64px)", fontWeight: 300,
-                color: "white", lineHeight: 1.0,
-                margin: "16px 0 10px", letterSpacing: "-0.02em",
-              }}>
-                Olympic Peninsula
-              </h1>
-              <p style={{
-                fontFamily: "'Quicksand', sans-serif",
-                fontSize: "clamp(14px, 1.6vw, 15px)", fontWeight: 400,
-                color: "rgba(255,255,255,0.8)", maxWidth: 460,
-                margin: 0, lineHeight: 1.6,
-              }}>
-                Three ecosystems in one. Rainforest, glacial peaks, wild Pacific coast.
-              </p>
-            </FadeIn>
-          </div>
+          <FadeIn from="bottom" delay={0.1}>
+
+            <Breadcrumb items={[
+              { label: "Home", to: "/" },
+              { label: "Destinations", to: "/destinations" },
+              { label: "Olympic Peninsula" },
+            ]} />
+
+            <div style={{
+              display: "grid",
+              gridTemplateColumns: isMobile ? "1fr" : "1fr 320px",
+              gap: isMobile ? 28 : 52,
+              alignItems: "start",
+              marginTop: 28,
+            }}>
+
+              {/* ── Left: Title + description ── */}
+              <div>
+                <span className="eyebrow" style={{
+                  color: C.skyBlue, marginBottom: 14, display: "block",
+                }}>Destination Guide</span>
+
+                <h1 style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontSize: "clamp(38px, 6vw, 64px)", fontWeight: 300,
+                  color: C.darkInk, lineHeight: 1.0,
+                  margin: "0 0 22px", letterSpacing: "-0.02em",
+                }}>
+                  {"Olympic Peninsula"}
+                </h1>
+
+                <p style={{
+                  fontFamily: "'Quicksand', sans-serif",
+                  fontSize: "clamp(14px, 1.6vw, 14px)", fontWeight: 400,
+                  color: "#4A5650", lineHeight: 1.75, maxWidth: 460,
+                  margin: "0 0 14px",
+                }}>
+                  {"Olympic is three parks in one, stacked against each other in ecological improbability. Glacier-draped mountains, the wettest rainforests in the contiguous United States, and 73 miles of wilderness shoreline — each zone requires its own day, its own state of mind."}
+                </p>
+
+                <p style={{
+                  fontFamily: "'Quicksand', sans-serif",
+                  fontSize: "clamp(14px, 1.6vw, 14px)", fontWeight: 400,
+                  color: "#4A5650", lineHeight: 1.75, maxWidth: 460,
+                  margin: 0,
+                }}>
+                  {"You cannot see Olympic in a loop. You have to choose. What you get in exchange is complete immersion — in rain, in silence, in a landscape that feels like the Pacific Northwest distilled to its essence."}
+                </p>
+              </div>
+              <div style={isMobile ? { borderTop: `1px solid ${C.stone}`, paddingTop: 28 } : { borderLeft: `1px solid ${C.stone}`, paddingLeft: 28 }}>
+                <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: "#7A857E", marginBottom: 18 }}>This guide covers</div>
+                <div style={{ marginBottom: 16 }}>
+                  <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: C.skyBlue, marginBottom: 10 }}>Ecosystem Zones</div>
+                  {["Alpine (Hurricane Ridge)", "Rainforest (Hoh Valley)", "Coastal (La Push / Rialto)"].map((area, i) => (<div key={i} style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 7 }}><div style={{ width: 5, height: 5, borderRadius: "50%", background: C.skyBlue, opacity: 0.5 }} /><span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 600, letterSpacing: "0.02em", color: C.darkInk }}>{area}</span></div>))}
+                </div>
+                <div style={{ marginBottom: 16 }}>
+                  <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: C.goldenAmber, marginBottom: 10 }}>Gateway Towns</div>
+                  {["Port Angeles", "Sequim", "Forks", "Port Townsend"].map((town, i) => (<div key={i} style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 7 }}><div style={{ width: 5, height: 5, borderRadius: "50%", background: C.goldenAmber, opacity: 0.5 }} /><span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 600, letterSpacing: "0.02em", color: C.darkInk }}>{town}</span></div>))}
+                </div>
+                <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 500, letterSpacing: "0.06em", color: "#7A857E", marginTop: 14, paddingTop: 12, borderTop: `1px solid ${C.stone}` }}>Updated 2026</div>
+              </div>
+            </div>
+          </FadeIn>
         </div>
       </section>
 
-      {/* Coming Soon */}
-      <section style={{
-        padding: isMobile ? "80px 20px" : "120px 52px",
-        background: C.cream, textAlign: "center",
-      }}>
-        <FadeIn>
-          <div style={{ maxWidth: 520, margin: "0 auto" }}>
-            <span style={{
-              fontFamily: "'Quicksand', sans-serif",
-              fontSize: 12, fontWeight: 700,
-              letterSpacing: "0.28em", textTransform: "uppercase",
-              color: C.skyBlue, display: "block", marginBottom: 16,
-            }}>Coming Soon</span>
-            <h2 style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontSize: "clamp(26px, 4vw, 36px)", fontWeight: 300,
-              color: C.darkInk, margin: "0 0 16px", lineHeight: 1.2,
-            }}>This guide is being woven together.</h2>
-            <p style={{
-              fontFamily: "'Quicksand', sans-serif",
-              fontSize: "clamp(14px, 1.6vw, 15px)", fontWeight: 400,
-              color: "#4A5650", lineHeight: 1.7, margin: "0 0 36px",
-            }}>
-              We're walking the moss-draped trails, timing the salmon runs, and listening to the rain on old-growth canopy. Check back soon — or start planning now.
-            </p>
-            <Link to="/plan" style={{
-              display: "inline-block",
-              padding: "14px 36px",
-              background: C.darkInk, color: "#fff",
-              fontFamily: "'Quicksand', sans-serif",
-              fontSize: 12, fontWeight: 700,
-              letterSpacing: "0.2em", textTransform: "uppercase",
-              textDecoration: "none", transition: "opacity 0.2s",
-            }}
-            onMouseEnter={e => e.currentTarget.style.opacity = "0.85"}
-            onMouseLeave={e => e.currentTarget.style.opacity = "1"}
-            >Plan a Trip</Link>
-          </div>
-        </FadeIn>
+      <GuideNav isMobile={isMobile} />
+
+      {/* IMAGE STRIP */}
+      <section style={{ position: "relative" }}>
+        <div style={{ display: "flex", gap: 2, overflowX: "auto", scrollSnapType: "x mandatory", WebkitOverflowScrolling: "touch", scrollbarWidth: "none" }}>
+          {[
+            { src: P.olympic,             alt: "Olympic Peninsula mountains",            caption: "Olympic Range from Hurricane Ridge",         width: 420 },
+            { src: P.olympicHohRainforest, alt: "Hoh Rainforest mossy trail",             caption: "Hall of Mosses — the Hoh Rainforest",        width: 280 },
+            { src: P.olympicLakeCrescent,  alt: "Lake Crescent with Adirondack chairs",   caption: "Lake Crescent — glacially carved turquoise",  width: 420 },
+            { src: P.olympicLakeSunset,    alt: "Olympic lake at sunset",                 caption: "Sunset over the peninsula",                  width: 360 },
+          ].map((img, i) => (
+            <div key={i} style={{ flex: "0 0 auto", width: isMobile ? "85vw" : img.width, scrollSnapAlign: "start", position: "relative", overflow: "hidden" }}>
+              <img src={img.src} alt={img.alt} style={{ width: "100%", height: 320, objectFit: "cover", display: "block" }} />
+              <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "32px 16px 14px", background: "linear-gradient(to top, rgba(10,18,26,0.7), transparent)" }}>
+                <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600, letterSpacing: "0.08em", color: "rgba(255,255,255,0.8)" }}>{img.caption}</span>
+              </div>
+            </div>
+          ))}
+        </div>
       </section>
 
+      {/* ══ GUIDE CONTENT ═══════════════════════════════════════════════════ */}
+      <section style={{ padding: isMobile ? "32px 20px 60px" : "48px 52px 80px", background: C.cream }}>
+        <div style={{ maxWidth: 680, margin: "0 auto" }}>
+
+
+          {/* ══════════════════════════════════════════════════════════════ */}
+          {/* SENSE OF PLACE                                                */}
+          {/* ══════════════════════════════════════════════════════════════ */}
+          <section id="sense-of-place" style={{ padding: "44px 0" }}>
+            <FadeIn>
+              <SectionLabel>Sense of Place</SectionLabel>
+              <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: "clamp(14px, 1.8vw, 15px)", lineHeight: 1.8, fontWeight: 400, color: "#4A5650", margin: "0 0 16px" }}>
+                {"Olympic is three parks in one, stacked against each other in ecological improbability. In the center: the Olympic Mountains, glacier-draped and largely roadless, presiding over the peninsula's wild interior. On the west slope: the Hoh, Quinault, and Queets Rainforests — the wettest place in the contiguous United States, where bigleaf maples grow so dense with mosses and ferns they look like they're breathing. On the coast: 73 miles of wilderness shoreline, sea stacks rising from the surf, tide pools full of life, driftwood the size of tree trunks."}
+              </p>
+              <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: "clamp(14px, 1.8vw, 15px)", lineHeight: 1.8, fontWeight: 400, color: "#4A5650", margin: "0 0 16px" }}>
+                {"Each zone requires its own day, its own state of mind. You cannot see Olympic in a loop. You have to choose. What you get in exchange is complete immersion — in rain, in silence, in a landscape that feels like the Pacific Northwest distilled to its essence. This is a place that rewards unhurried attention."}
+              </p>
+              <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: "clamp(14px, 1.8vw, 15px)", lineHeight: 1.8, fontWeight: 400, color: "#4A5650", margin: "0 0 28px" }}>
+                {"Nine Indigenous Nations have called this peninsula home since time immemorial: the Makah, Quileute, Hoh, Quinault, Jamestown S'Klallam, Port Gamble S'Klallam, Lower Elwha Klallam, Skokomish, and Squaxin Island tribes. The land and water here carry thousands of years of their relationship."}
+              </p>
+            </FadeIn>
+
+            {/* Quick Stats Bar */}
+            <FadeIn delay={0.12}>
+              <div style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))",
+                gap: isMobile ? 12 : 16,
+                padding: isMobile ? 16 : 20,
+                background: C.cream,
+                border: `1px solid ${C.stone}`,
+                marginTop: 24,
+              }}>
+                {[
+                  { l: "Recommended", v: "4–7 days" },
+                  { l: "Nearest Airport", v: "Seattle (SEA)" },
+                  { l: "Drive from SEA", v: "~3 hrs to Port Angeles" },
+                  { l: "Best Times", v: "Jul–Sep" },
+                  { l: "Entrance Fee", v: "$30/vehicle (7-day)" },
+                  { l: "Shuttle", v: "None — car required" },
+                ].map((s, i) => (
+                  <div key={i}>
+                    <div style={{
+                      fontFamily: "'Quicksand', sans-serif",
+                      fontSize: 11, fontWeight: 700,
+                      letterSpacing: "0.22em", textTransform: "uppercase",
+                      color: C.skyBlue, marginBottom: 3,
+                    }}>{s.l}</div>
+                    <div style={{
+                      fontFamily: "'Quicksand', sans-serif",
+                      fontSize: 14, fontWeight: 600,
+                      color: C.darkInk,
+                    }}>{s.v}</div>
+                  </div>
+                ))}
+              </div>
+            </FadeIn>
+
+            {/* Driving Note */}
+            <FadeIn delay={0.14}>
+              <div style={{
+                padding: "14px 16px",
+                background: `${C.skyBlue}06`,
+                borderLeft: `3px solid ${C.skyBlue}40`,
+                marginTop: 16,
+              }}>
+                <p style={{
+                  fontFamily: "'Quicksand', sans-serif",
+                  fontSize: 13, fontWeight: 400,
+                  color: "#4A5650", lineHeight: 1.65,
+                  margin: 0,
+                }}>
+                  {"No shuttle system — personal vehicle required. Olympic is enormous and discontiguous: the park covers nearly a million acres across mountain, rainforest, and coastal ecosystems, and there is no single road through it. Plan driving time between zones — Hoh to Hurricane Ridge is 2.5 hours."}
+                </p>
+              </div>
+            </FadeIn>
+          </section>
+
+
+          <Divider />
+
+          {/* ══════════════════════════════════════════════════════════════ */}
+          {/* WHEN TO GO                                                    */}
+          {/* ══════════════════════════════════════════════════════════════ */}
+          <section id="when-to-go" style={{ padding: "44px 0" }}>
+            <FadeIn>
+              <SectionIcon type="windows" />
+              <SectionLabel>Magic Windows</SectionLabel>
+              <SectionTitle>When to go</SectionTitle>
+              <SectionSub isMobile={isMobile}>{"Olympic rewards every season differently. These are the moments when the peninsula is most alive."}</SectionSub>
+            </FadeIn>
+            <FadeIn delay={0.08}>
+              <div>
+                <ListItem isMobile={isMobile} onOpenSheet={openSheet('When to Go')} name="Summer — Alpine Access" featured
+                  detail={"Peak window for Hurricane Ridge. High trails are snow-free. Busiest crowds. Rainforest trails accessible year-round; the coast is foggier. July and August are the driest months on the peninsula."}
+                  tags={["Jul–Aug", "Alpine", "Peak Season"]} />
+                <ListItem isMobile={isMobile} onOpenSheet={openSheet('When to Go')} name="Fall — Elk Rut & Golden Light" featured
+                  detail={"Best overall. Crowds thin, light is extraordinary, elk rut in the Hoh Valley, weather still cooperative in the mountains. September and October offer the finest balance of access and solitude."}
+                  tags={["Sep–Oct", "Wildlife", "Fewer Crowds"]} />
+                <ListItem isMobile={isMobile} onOpenSheet={openSheet('When to Go')} name="Winter — Storm Season"
+                  detail={"Rainforest at its most atmospheric — mosses saturated, rivers running high. Coast is dramatic in storm season. Hurricane Ridge becomes a snowshoe destination. Alpine trails buried."}
+                  tags={["Dec–Feb", "Storms", "Rainforest"]} />
+                <ListItem isMobile={isMobile} onOpenSheet={openSheet('When to Go')} name="Spring — Whales & Wildflowers"
+                  detail={"Wildflowers on the ridge, migrating gray whales offshore, rivers running fast. Hurricane Ridge Road often closed until late spring — check ahead."}
+                  tags={["Mar–May", "Migration", "Wildflowers"]} />
+                <ListItem isMobile={isMobile} onOpenSheet={openSheet('When to Go')} name="Gray Whale Migration"
+                  detail={"Gray whales migrate offshore March through May, visible from coastal bluffs at La Push and Kalaloch. One of the most reliable cetacean viewing windows on the Pacific coast."}
+                  tags={["Mar–May", "Wildlife", "Coastal"]} />
+              </div>
+            </FadeIn>
+
+            {/* Threshold Moments */}
+            <FadeIn delay={0.12}>
+              <div style={{ marginTop: 28, padding: "20px", border: `1px solid ${C.stone}`, background: C.warmWhite }}>
+                <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: C.skyBlue, marginBottom: 14 }}>{"Threshold Moments"}</div>
+                <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: 12 }}>
+                  {[
+                    { event: "Gray Whale Migration", timing: "Mar–May", detail: "Offshore, visible from coastal bluffs" },
+                    { event: "Elk Rut", timing: "Sep–Oct", detail: "Hoh Valley at dawn and dusk" },
+                    { event: "Winter Storms", timing: "Nov–Feb", detail: "Dramatic surf at Rialto Beach and Kalaloch" },
+                    { event: "Summer Solstice", timing: "June 20–21", detail: "Longest light window for the alpine zone" },
+                    { event: "Alpine Wildflowers", timing: "Jul–Aug", detail: "Hurricane Ridge meadows in full bloom" },
+                    { event: "Salmon Runs", timing: "Sep–Nov", detail: "Sol Duc and Hoh rivers — spawning season" },
+                  ].map((cal, i) => (
+                    <div key={i} style={{ padding: "12px 14px", border: `1px solid ${C.stone}`, background: C.cream }}>
+                      <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 14, fontWeight: 600, color: C.darkInk, marginBottom: 3 }}>{cal.event}</div>
+                      <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: C.skyBlue, marginBottom: 4 }}>{cal.timing}</div>
+                      <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 400, color: "#7A857E" }}>{cal.detail}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </FadeIn>
+
+            <TimingAlertCapture />
+          </section>
+
+
+          <Divider />
+
+          {/* ══════════════════════════════════════════════════════════════ */}
+          {/* STAY                                                          */}
+          {/* ══════════════════════════════════════════════════════════════ */}
+          <section id="where-to-stay" style={{ padding: "44px 0" }}>
+            <FadeIn>
+              <SectionIcon type="stay" />
+              <SectionLabel>Unique Stays</SectionLabel>
+              <SectionTitle>Where to sleep</SectionTitle>
+              <SectionSub isMobile={isMobile}>{"How you inhabit a place matters. From ocean-bluff campgrounds to historic park lodges to Victorian B&Bs overlooking the Strait."}</SectionSub>
+            </FadeIn>
+
+            <FadeIn delay={0.05}>
+              <div style={{ padding: "14px 16px", background: C.cream, border: `1px solid ${C.stone}`, marginBottom: 20, display: "flex", flexDirection: isMobile ? "column" : "row", gap: isMobile ? 10 : 16, flexWrap: "wrap" }}>
+                {[
+                  { label: "Elemental", desc: "In the landscape", color: C.seaGlass },
+                  { label: "Rooted", desc: "Boutique, local", color: C.oceanTeal },
+                  { label: "Premium", desc: "Elevated experience", color: C.goldenAmber },
+                ].map((t, i) => (
+                  <div key={i} style={{ flex: isMobile ? "0 0 auto" : "1 1 140px" }}>
+                    <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 700, letterSpacing: "0.1em", color: t.color }}>{t.label}</span>
+                    <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 400, color: "#4A5650", marginLeft: 6 }}>{t.desc}</span>
+                  </div>
+                ))}
+              </div>
+            </FadeIn>
+
+            <div>
+              <ExpandableList initialCount={5} label="places to stay">
+                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="elemental" name="Kalaloch Campground" location="Kalaloch Coast" featured
+                  detail={"The only campground in the park with ocean views — sites sit above a wild beach, and the sound of the surf is your constant companion. Bluff sites are the ones to aim for. Book on recreation.gov."}
+                  tags={["Ocean Views", "Bluff Sites", "First-Come"]} />
+                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="elemental" name="Hoh Campground" location="Hoh Rainforest"
+                  detail={"Deep in the rainforest, at the end of Upper Hoh Road. Mossy, quiet, atmospheric. Year-round access. Walk to the Hall of Mosses before the day hikers arrive. Elk are common visitors at dawn."}
+                  tags={["Rainforest", "Year-Round", "Elk at Dawn"]} />
+                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="elemental" name="Sol Duc Campground" location="Sol Duc Valley"
+                  detail={"Forested campground adjacent to the hot springs resort. The hot springs are a short walk from your tent. One of the park's best campground-to-experience ratios."}
+                  tags={["Hot Springs Access", "Forested", "Running Water"]} />
+                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="elemental" name="Quileute Oceanside Resort" location="La Push" featured
+                  url="https://quileuteoceanside.com/"
+                  detail={"Tribally owned and operated by the Quileute Nation, directly on First Beach. Cabins, RV sites, a small motel building — the setting is the thing. Views of sea stacks from your window or from the beach ten steps away."}
+                  tags={["Tribal-Owned", "First Beach", "Sea Stacks", "Book Early"]} />
+                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="rooted" name="Lake Crescent Lodge" location="Lake Crescent" featured
+                  url="https://www.olympicnationalparks.com/lodging/lake-crescent-lodge/"
+                  detail={"A historic park lodge on the shore of Lake Crescent, operating since 1916. The lakeside cottages are the ones worth requesting. The view from the porch is unreasonable. Reserve well in advance for summer."}
+                  tags={["Historic 1916", "Lakeside Cottages", "Dining Room"]} />
+                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="rooted" name="Kalaloch Lodge" location="Kalaloch Coast"
+                  url="https://www.olympicnationalparks.com/lodging/kalaloch-lodge/"
+                  detail={"NPS-managed lodge on a bluff above the wild coast. A National Historic Landmark. Cabins closest to the bluff edge are extraordinary. The location is exceptional. Reserve 6+ months out for summer."}
+                  tags={["National Historic Landmark", "Bluff Cabins", "Wild Coast"]} />
+                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="rooted" name="Palace Hotel" location="Port Townsend"
+                  detail={"A restored Victorian hotel in the heart of Port Townsend's historic district — individually decorated rooms, original woodwork, above a lively arts town. Good base for accessing the park's eastern zones."}
+                  tags={["Victorian", "Arts Town", "Historic District"]} />
+                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="premium" name="Domaine Madeleine" location="Port Angeles" featured
+                  detail={"Waterfront B&B on the Strait of Juan de Fuca with views to Vancouver Island. Five suites, French-influenced interiors, exceptional breakfasts, kayaks available. A genuine sanctuary for a rest day."}
+                  tags={["Waterfront B&B", "Strait Views", "French-Influenced"]} />
+                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="premium" name="Manresa Castle" location="Port Townsend"
+                  detail={"Historic castle hotel above Port Townsend. Restored Victorian grandeur, views of Puget Sound. For those who want their park stay to include something architecturally distinct."}
+                  tags={["Castle Hotel", "Puget Sound Views", "Victorian"]} />
+              </ExpandableList>
+            </div>
+          </section>
+
+
+          <Divider />
+
+          {/* ══════════════════════════════════════════════════════════════ */}
+          {/* TRAILS                                                        */}
+          {/* ══════════════════════════════════════════════════════════════ */}
+          <section id="trails" style={{ padding: "44px 0" }}>
+            <FadeIn>
+              <SectionIcon type="move" />
+              <SectionLabel>Sacred Terrain</SectionLabel>
+              <SectionTitle>{"Trails by ecosystem"}</SectionTitle>
+              <SectionSub isMobile={isMobile}>{"Olympic's three distinct ecosystems each demand their own section. Choose your entry point based on the landscape that calls you."}</SectionSub>
+            </FadeIn>
+
+            {/* Alpine Zone */}
+            <FadeIn delay={0.06}>
+              <div style={{ marginBottom: 8 }}>
+                <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: C.skyBlue, marginBottom: 16 }}>{"Alpine Zone — Hurricane Ridge"}</div>
+                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Trails')} name="Hurricane Hill Trail" featured hasNPS={checkNPS("Hurricane Hill Trail")}
+                  detail={"The finest panoramic summit accessible by trail in the park. A paved path climbs past wildflower meadows and marmot habitat to a 5,757-foot summit with 360-degree views: the Olympic Range, the Strait of Juan de Fuca, and on clear days, Vancouver Island."}
+                  note="3.2 mi RT · 800 ft gain · Easy-Moderate · 2 hrs"
+                  tags={["Alpine Views", "Wildflowers", "Jul–Oct"]} />
+                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Trails')} name="High Divide Trail & Seven Lakes Basin Loop" hasNPS={checkNPS("High Divide Trail")}
+                  detail={"The defining backcountry traverse in the Olympics. The loop climbs from the Sol Duc valley to a ridge with unobstructed views of Mount Olympus's glaciers, descends through subalpine lakes, and returns through old-growth forest. Plan two to three days."}
+                  note="18–19 mi loop · ~3,500 ft gain · Strenuous · 2–3 days"
+                  tags={["Backpacking", "Glaciers", "Alpine Lakes", "Jul–Sep"]} />
+                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Trails')} name="Mount Storm King" hasNPS={checkNPS("Mount Storm King")}
+                  detail={"The steepest and most dramatic day hike in the park. The summit involves exposed scrambling and a rope-assisted section near the top. The reward: jaw-dropping views of Lake Crescent's turquoise water far below."}
+                  note="4.4 mi RT · 2,100 ft gain · Strenuous · 3–4 hrs"
+                  tags={["Scrambling", "Lake Crescent Views", "May–Oct"]} />
+                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Trails')} name="Marymere Falls Trail" hasNPS={checkNPS("Marymere Falls Trail")}
+                  detail={"Through old-growth conifers to a 90-foot waterfall tucked into a sandstone gorge. Short enough for any level, beautiful enough to anchor a morning."}
+                  note="1.8 mi RT · Easy · 1 hr"
+                  tags={["Waterfall", "Old-Growth", "Year-Round"]} />
+              </div>
+            </FadeIn>
+
+            {/* Rainforest Zone */}
+            <FadeIn delay={0.1}>
+              <div style={{ marginTop: 28, marginBottom: 8 }}>
+                <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: C.skyBlue, marginBottom: 16 }}>{"Rainforest Zone — Hoh Valley"}</div>
+                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Trails')} name="Hall of Mosses Trail" featured hasNPS={checkNPS("Hall of Mosses Trail")}
+                  detail={"The rainforest's most iconic walk. Bigleaf maples draped in club moss form a cathedral canopy — one of the most otherworldly short walks in North America. The Hoh receives up to 140 inches of rain a year, and it shows: every surface is alive with fern, lichen, and moss."}
+                  note="0.8 mi loop · Easy · 30–45 min"
+                  tags={["Iconic", "Photography", "Year-Round"]} />
+                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Trails')} name="Hoh River Trail" hasNPS={checkNPS("Hoh River Trail")}
+                  detail={"Runs 17 miles up-valley toward Mount Olympus. Day hikers can go as far as they want. The concept of 'One Square Inch of Silence' was developed here — one of the quietest places in the hemisphere. The deeper you go, the more the forest closes around you."}
+                  note="Varies (2–17 mi one way) · Easy-Moderate"
+                  tags={["Silence", "Forest Bathing", "Backpacking"]} />
+              </div>
+            </FadeIn>
+
+            {/* Coastal Zone */}
+            <FadeIn delay={0.14}>
+              <div style={{ marginTop: 28, marginBottom: 8 }}>
+                <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: C.skyBlue, marginBottom: 16 }}>{"Coastal Zone — La Push & Rialto"}</div>
+                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Trails')} name="Second Beach (La Push)" featured hasNPS={checkNPS("Second Beach")}
+                  detail={"The defining Olympic coast experience. A 0.7-mile trail through forest opens suddenly onto a wild beach of black sand and sea stacks — spires of rock rising from the surf, dense with seabirds. Sunsets here are extraordinary. On the traditional territory of the Quileute Nation."}
+                  note="1.4 mi RT · Easy · 45 min"
+                  tags={["Sea Stacks", "Sunset", "Year-Round"]} />
+                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Trails')} name="Hole-in-the-Wall (Rialto Beach)" hasNPS={checkNPS("Hole-in-the-Wall")}
+                  detail={"A natural sea arch carved by the surf, accessible by a 1.5-mile walk north along Rialto Beach. Tide pools, sea stacks, bald eagles, and the sound of the Pacific. Check tides — the final section requires low tide passage."}
+                  note="3 mi RT · Easy (tide-dependent) · 1.5–2 hrs"
+                  tags={["Sea Arch", "Tide Pools", "Check Tides"]} />
+                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Trails')} name="Ozette Triangle (Cape Alava / Sand Point Loop)" hasNPS={checkNPS("Ozette Triangle")}
+                  detail={"A 9-mile loop combining a beach segment with ancient cedar boardwalk trails. Cape Alava is the westernmost point in the contiguous United States. The beach passes Wedding Rocks — petroglyphs carved by the Makah people, some of the most significant ancient rock art on the peninsula."}
+                  note="9 mi loop · Moderate · 4–5 hrs"
+                  tags={["Petroglyphs", "Westernmost Point", "Indigenous Heritage"]} />
+              </div>
+            </FadeIn>
+
+            {/* Sol Duc */}
+            <FadeIn delay={0.18}>
+              <div style={{ marginTop: 28 }}>
+                <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: C.skyBlue, marginBottom: 16 }}>{"Sol Duc & Scenic Drives"}</div>
+                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Trails')} name="Sol Duc Falls" hasNPS={checkNPS("Sol Duc Falls")}
+                  detail={"A short walk through old-growth forest to a powerful three-pronged waterfall dropping into a basalt gorge. Photogenic in any weather, close to the Sol Duc Hot Springs. Combine the two for one of the best half-days in the park."}
+                  note="1.6 mi RT · Easy · 45 min"
+                  tags={["Waterfall", "Old-Growth", "Year-Round"]} />
+                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Trails')} name="Hurricane Ridge Road"
+                  detail={"17 miles of switchbacks from Port Angeles to the ridge. The road climbs through old growth, breaks into meadow, and delivers you to a view that stops conversation. Drive it at sunset if you can."}
+                  tags={["17 Miles", "Switchbacks", "Sunset Drive"]} />
+                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Trails')} name="US-101 Coastal Loop"
+                  detail={"The highway circles the Olympic Peninsula and offers access to all ecosystems. The stretch between Forks and Kalaloch runs close enough to the coast that you can pull off and walk to the beach repeatedly."}
+                  tags={["Full Day", "All Ecosystems", "Beach Pull-Offs"]} />
+                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Trails')} name="Lake Crescent"
+                  detail={"The lake sits in a glacially carved valley 20 miles west of Port Angeles. Turquoise water (low in nutrients, exceptionally clear), old-growth forest framing both shores. The East Beach picnic area, the Storm King trailhead, and Lake Crescent Lodge are all accessible without crowds if you arrive before 10 AM."}
+                  tags={["Turquoise Water", "Old-Growth", "Arrive Early"]} />
+              </div>
+            </FadeIn>
+          </section>
+
+
+          <Divider />
+
+          {/* ══════════════════════════════════════════════════════════════ */}
+          {/* WELLNESS                                                      */}
+          {/* ══════════════════════════════════════════════════════════════ */}
+          <section id="wellness" style={{ padding: "44px 0" }}>
+            <FadeIn>
+              <SectionIcon type="breathe" />
+              <SectionLabel>Living Practice</SectionLabel>
+              <SectionTitle>{"Soaking, silence & contemplation"}</SectionTitle>
+              <SectionSub isMobile={isMobile}>{"The peninsula's pace makes practice feel less like effort and more like returning to something you already knew."}</SectionSub>
+            </FadeIn>
+            <FadeIn delay={0.08}>
+              <ExpandableList initialCount={5} label="wellness experiences">
+                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Wellness')} name="Sol Duc Hot Springs Resort" featured
+                  url="https://www.olympicnationalparks.com/lodging/sol-duc-hot-springs-resort/"
+                  detail={"Geothermal hot springs deep in the Sol Duc valley, surrounded by old-growth forest. Three soaking pools (98°F to 104°F), a freshwater swimming pool, and access to the Sol Duc River below. The resort has operated here since 1912. Day use from Memorial Day through early October — arrive early, it fills quickly."}
+                  note="Day use: Memorial Day–early Oct · Arrive early"
+                  tags={["Hot Springs", "Old-Growth", "Day Use"]} />
+                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Wellness')} name="Olympic Hot Springs (dispersed)"
+                  detail={"A remote soaking experience reached by a 2.5-mile hike or 10-mile bike ride (road closed to vehicles). Small primitive pools along Boulder Creek, fed by geothermal springs. No facilities — pack in and pack out. Check conditions at the Elwha Ranger Station."}
+                  note="2.5 mi hike · Free · Year-round"
+                  tags={["Primitive", "Hike-In", "Free", "Wilderness"]} />
+                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Wellness')} name="Hoh Rainforest — One Square Inch of Silence" featured
+                  detail={"Acoustic ecologist Gordon Hempton designated a specific point on the Hoh River Trail as one of the quietest places in the Western Hemisphere. Walking the Hoh with no agenda — no earbuds, no podcast, just the sound of the river and the rain on bigleaf maple — is one of the most genuinely meditative experiences in any national park."}
+                  tags={["Silence", "Forest Bathing", "Meditative"]} />
+                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Wellness')} name="Hurricane Ridge — Dawn Alpine Meditation"
+                  detail={"Arrive at Hurricane Ridge before the visitor center opens (typically 9 AM). The parking lot faces the entire Olympic Range. At dawn, light rolls across the glaciers and meadows in waves. No interpretation needed — just a thermos and a place to sit."}
+                  tags={["Sunrise", "Alpine", "Contemplative"]} />
+                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Wellness')} name="Port Angeles & Sequim — Local Studios"
+                  detail={"Port Angeles has a small but active wellness community. Studios rotate; search 'yoga Port Angeles' for current offerings. Sequim has additional options, particularly for Pilates and somatic work."}
+                  tags={["Yoga", "Drop-In", "Local Community"]} />
+                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Wellness')} name="Kalaloch Lodge — Coastal Stillness"
+                  detail={"No formal wellness programming, but the location — above a sweep of wild beach with sea stacks visible from the windows — invites a particular quality of stillness. Recommended for anyone who wants the coast without camping."}
+                  tags={["Wild Coast", "Contemplative", "No Camping Needed"]} />
+              </ExpandableList>
+            </FadeIn>
+          </section>
+
+
+          {/* Dark Sky Note */}
+          <FadeIn>
+            <div style={{
+              padding: "20px 24px",
+              background: C.darkInk,
+              margin: "28px 0",
+            }}>
+              <div style={{
+                fontFamily: "'Quicksand', sans-serif",
+                fontSize: 11, fontWeight: 700,
+                letterSpacing: "0.22em", textTransform: "uppercase",
+                color: C.skyBlue, marginBottom: 10,
+              }}>Dark Sky Note</div>
+              <p style={{
+                fontFamily: "'Quicksand', sans-serif",
+                fontSize: 14, fontWeight: 400,
+                color: "rgba(255,255,255,0.7)",
+                lineHeight: 1.7, margin: 0,
+              }}>
+                {"No IDA dark sky certification. Consistent cloud cover limits sky access on the west side of the peninsula. The clearest conditions are found on the rain shadow side — Sequim and Dungeness — particularly in summer. When the clouds do break, the lack of development means genuine darkness is available from any park campground."}
+              </p>
+            </div>
+          </FadeIn>
+
+
+          <Divider />
+
+          {/* ══════════════════════════════════════════════════════════════ */}
+          {/* FOOD & CULTURE                                                */}
+          {/* ══════════════════════════════════════════════════════════════ */}
+          <section id="food-culture" style={{ padding: "44px 0" }}>
+            <FadeIn>
+              <SectionIcon type="connect" />
+              <SectionLabel>Connect</SectionLabel>
+              <SectionTitle>{"Food, culture & stewardship"}</SectionTitle>
+              <SectionSub isMobile={isMobile}>{"From Indigenous heritage to lavender farms to the peninsula's best kitchens. The connections here go deeper than a meal."}</SectionSub>
+            </FadeIn>
+
+            {/* Where to Eat — Port Angeles */}
+            <FadeIn delay={0.06}>
+              <div style={{ marginBottom: 8 }}>
+                <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: C.skyBlue, marginBottom: 16 }}>{"Port Angeles"}</div>
+                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food')} name="Kokopelli Grill" featured
+                  detail={"The best dinner option in Port Angeles. Wood-fired cooking, fresh seafood, local produce. Relaxed and well-executed. A reliable end to a long park day."}
+                  tags={["Wood-Fired", "Seafood", "Dinner"]} />
+                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food')} name="Barhop Brewing"
+                  detail={"Port Angeles's anchor craft brewery. Fish and chips, burgers, rotating taps. The rooftop patio has views over the harbor."}
+                  tags={["Brewery", "Rooftop", "Casual"]} />
+                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food')} name="Dupuis Restaurant"
+                  detail={"Locally loved, unpretentious, consistently good. Local seafood and Pacific Northwest comfort food. The kind of place a town this size needs and rarely has."}
+                  tags={["Local Favorite", "Seafood", "Comfort"]} />
+                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food')} name="Bonny's Bakery"
+                  detail={"Morning pastries, strong coffee, a community gathering point. Arrive early — the good things sell out."}
+                  tags={["Pastries", "Coffee", "Morning"]} />
+              </div>
+            </FadeIn>
+
+            {/* Sequim & Port Townsend */}
+            <FadeIn delay={0.1}>
+              <div style={{ marginTop: 28, marginBottom: 8 }}>
+                <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: C.skyBlue, marginBottom: 16 }}>{"Sequim & Port Townsend"}</div>
+                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food')} name="Alder Wood Bistro" featured
+                  detail={"Farm-to-table sourcing in a town that actually has farms. Local garlic, local oysters, thoughtful wine list. One of the best restaurants on the entire peninsula."}
+                  note="Sequim"
+                  tags={["Farm-to-Table", "Wine", "Oysters"]} />
+                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food')} name="Finistère" featured
+                  detail={"Pacific Northwest cuisine in a Victorian port town. Excellent shellfish, curated menu, a beautiful room. Worth the 45-minute drive from Port Angeles."}
+                  note="Port Townsend"
+                  tags={["Fine Dining", "Shellfish", "Victorian Setting"]} />
+                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food')} name="Bread & Roses Bakery"
+                  detail={"Sourdough, local grain, pastries that justify the trip. Community-owned institution."}
+                  note="Port Townsend"
+                  tags={["Sourdough", "Community-Owned", "Local Grain"]} />
+              </div>
+            </FadeIn>
+
+            {/* Forks & Provisions */}
+            <FadeIn delay={0.14}>
+              <div style={{ marginTop: 28, marginBottom: 8 }}>
+                <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: C.skyBlue, marginBottom: 16 }}>{"Forks & Provisions"}</div>
+                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food')} name="Quileute Oceanside Resort Restaurant"
+                  detail={"On-site at the resort in La Push, overlooking First Beach. Simple menu, extraordinary location. Worth eating here just to watch the surf from your table."}
+                  note="La Push"
+                  tags={["Ocean Views", "Tribal-Owned", "La Push"]} />
+                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food')} name="Swain's General Store"
+                  detail={"The peninsula's most complete outfitter — gear, food, camping supplies. Stock up here before heading into any zone."}
+                  note="Port Angeles"
+                  tags={["Outfitter", "Provisions", "Camping Supplies"]} />
+              </div>
+            </FadeIn>
+
+            {/* Farm & Landscape */}
+            <FadeIn delay={0.18}>
+              <div style={{ marginTop: 28, marginBottom: 8 }}>
+                <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: C.skyBlue, marginBottom: 16 }}>{"Farm & Landscape"}</div>
+                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Discover')} name="Sequim Lavender Trail" featured
+                  url="https://sequimlavender.org"
+                  detail={"A cluster of family-owned lavender farms in the Sequim-Dungeness Valley — sheltered by the Olympic rain shadow, averaging just 17 inches of rain per year. Nine working farms, u-pick fields, essential oil distillation, lavender ice cream. Jardin du Soleil and Purple Haze are the two anchors."}
+                  note="Peak bloom mid-July · Annual festival third weekend of July"
+                  tags={["Lavender", "U-Pick", "Rain Shadow", "Jun–Sep"]} />
+                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Discover')} name="Dungeness Spit — National Wildlife Refuge"
+                  detail={"The longest natural sand spit in the United States — nearly seven miles extending into the Strait of Juan de Fuca. Over 250 bird species recorded. At the tip sits the New Dungeness Lighthouse, operating since 1857 — free tours daily."}
+                  note="Up to 10 mi RT · $3/family · Open daily"
+                  tags={["Birdwatching", "Lighthouse", "Coastal Walk"]} />
+              </div>
+            </FadeIn>
+
+            {/* Indigenous Heritage & Discover */}
+            <FadeIn delay={0.22}>
+              <div style={{ marginTop: 28, marginBottom: 8 }}>
+                <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: C.skyBlue, marginBottom: 16 }}>{"Indigenous Heritage & Discovery"}</div>
+                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Culture')} name="Makah Museum & Cape Flattery" featured
+                  url="https://makahmuseum.com"
+                  detail={"The Makah Museum in Neah Bay houses artifacts from the excavation of Ozette — a village buried by a mudslide 500 years ago, remarkably preserved. One of the most significant archaeological finds in North America. Cape Flattery is the northwesternmost point in the contiguous US — a 1.5-mile Makah-managed trail to dramatic sea arch overlooks. $10/vehicle recreation permit."}
+                  note="Plan a dedicated half-day"
+                  tags={["Museum", "Cape Flattery", "Ozette", "Makah Nation"]} />
+                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Culture')} name="Elwha River Restoration" featured
+                  url="https://www.elwha.org"
+                  detail={"The largest dam removal project in U.S. history, led by the Lower Elwha Klallam Tribe. Sacred sites submerged for a century were re-exposed. An archaeological site revealing 8,000 years of continuous habitation was uncovered. Drive the Elwha River road and walk to the former dam sites."}
+                  tags={["Dam Removal", "Restoration", "Lower Elwha Klallam"]} />
+                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Culture')} name="Jamestown S'Klallam Tribe"
+                  detail={"'The Strong People' — operate the 7 Cedars Resort near Sequim and are known for hand-carved totem poles on their campus. The Jamestown Tribal Library offers cultural programming. The tribe welcomes visitors year-round."}
+                  note="Sequim area"
+                  tags={["Totem Poles", "Cultural Center", "Year-Round"]} />
+                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Culture')} name="Port Townsend — Victorian Seaport"
+                  detail={"One of the most architecturally intact Victorian seaports in the Pacific Northwest. Galleries, independent bookstores, live music via the Centrum Foundation. The Olympic Music Festival performs Saturdays in summer — world-class chamber music in a barn."}
+                  tags={["Arts", "Victorian", "Music Festival"]} />
+                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Culture')} name="Feiro Marine Life Center"
+                  url="https://www.feiromarinecenter.org/"
+                  detail={"A small, excellent marine science center in Port Angeles focused on species from the Strait of Juan de Fuca and Puget Sound. Touch tanks, knowledgeable volunteers, good complement to coast tide pool experiences."}
+                  note="Port Angeles"
+                  tags={["Marine Science", "Touch Tanks", "Families"]} />
+              </div>
+            </FadeIn>
+
+            {/* Regional Corridor */}
+            <FadeIn delay={0.26}>
+              <div style={{ marginTop: 28, marginBottom: 8 }}>
+                <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: C.skyBlue, marginBottom: 16 }}>{"Regional Corridor"}</div>
+                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Corridor')} name="Cape Flattery & Makah Reservation" featured
+                  url="https://makah.com"
+                  detail={"The northwesternmost point in the contiguous United States — accessible by a 1.5-mile Makah-managed trail through old-growth cedar and hemlock to overlooks above a dramatic sea arch and open Pacific. A $10/vehicle recreation permit is required. Pair with the Makah Museum for one of the most complete Indigenous-land experiences in the Pacific Northwest."}
+                  note="1.5 mi RT · Easy-Moderate · 1 hr · $10/vehicle"
+                  tags={["Makah Nation", "Cape Flattery", "Northwesternmost Point"]} />
+                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Corridor')} name="Port Townsend — Victorian Seaport"
+                  detail={"Victorian seaport at the tip of the Quimper Peninsula. Historic architecture, art galleries, serious coffee, and a slower pace than Seattle. The Olympic Music Festival performs Saturdays in summer in a barn — world-class chamber music in a pastoral setting. A strong argument for arriving a day early or leaving a day late."}
+                  tags={["Arts", "Architecture", "Music Festival", "Day Trip"]} />
+              </div>
+            </FadeIn>
+
+            {/* Logistics */}
+            <FadeIn delay={0.28}>
+              <div style={{ marginTop: 28, marginBottom: 8, padding: "20px", border: `1px solid ${C.stone}`, background: C.warmWhite }}>
+                <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: C.skyBlue, marginBottom: 14 }}>{"Logistics & Practical Notes"}</div>
+                <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: 16 }}>
+                  <div>
+                    <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "#7A857E", marginBottom: 4 }}>Getting There</div>
+                    <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 400, color: "#4A5650", lineHeight: 1.65, margin: 0 }}>
+                      {"From Seattle: Bainbridge Island ferry (35 min) + 2-hour drive to Port Angeles — scenic and avoids traffic. Or drive around the south end of Puget Sound (~3 hrs). Rent a car; there is no other practical way to access multiple park zones."}
+                    </p>
+                  </div>
+                  <div>
+                    <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "#7A857E", marginBottom: 4 }}>Best Base Camps</div>
+                    <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 400, color: "#4A5650", lineHeight: 1.65, margin: 0 }}>
+                      {"Alpine/Hurricane Ridge: Port Angeles. Rainforest/Hoh: Forks or camp in-park. Coast: La Push or Kalaloch Lodge. Sol Duc: Sol Duc Campground or day trip from Port Angeles."}
+                    </p>
+                  </div>
+                  <div>
+                    <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "#7A857E", marginBottom: 4 }}>Tide Awareness</div>
+                    <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 400, color: "#4A5650", lineHeight: 1.65, margin: 0 }}>
+                      {"Critical for coastal hikes. Several trails (Hole-in-the-Wall, Ozette, coastal wilderness route) require low tide passage. Download a tide chart app (Tides Near Me or NOAA) before heading to the coast."}
+                    </p>
+                  </div>
+                  <div>
+                    <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "#7A857E", marginBottom: 4 }}>Rain & Gear</div>
+                    <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 400, color: "#4A5650", lineHeight: 1.65, margin: 0 }}>
+                      {"The west-facing rainforest zone receives 140+ inches per year. Waterproof everything — pack layers, bring a dry bag, accept the rain as part of the experience. The east side (Port Angeles, Hurricane Ridge) is significantly drier."}
+                    </p>
+                  </div>
+                  <div>
+                    <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "#7A857E", marginBottom: 4 }}>Hurricane Ridge Road</div>
+                    <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 400, color: "#4A5650", lineHeight: 1.65, margin: 0 }}>
+                      {"Open year-round on Saturdays and Sundays (weather permitting); generally open daily July–October. Check the park website before driving — road closures are common."}
+                    </p>
+                  </div>
+                  <div>
+                    <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "#7A857E", marginBottom: 4 }}>Wildlife Safety</div>
+                    <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 400, color: "#4A5650", lineHeight: 1.65, margin: 0 }}>
+                      {"Black bear, Roosevelt elk, mountain goat, river otter, harbor seal. Keep 100 yards from elk and bear. Elk are bold and can be dangerous during rut (September–October)."}
+                    </p>
+                  </div>
+                </div>
+                <div style={{ marginTop: 16, paddingTop: 14, borderTop: `1px solid ${C.stone}` }}>
+                  <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "#7A857E", marginBottom: 8 }}>Essential Links</div>
+                  <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+                    {[
+                      { label: "NPS Park Info", url: "https://www.nps.gov/olym" },
+                      { label: "Hurricane Ridge Status", url: "https://www.nps.gov/olym/planyourvisit/hurricane-ridge.htm" },
+                      { label: "Tide Charts", url: "https://tidesandcurrents.noaa.gov" },
+                      { label: "WTA Trail Reports", url: "https://www.wta.org" },
+                    ].map((link, i) => (
+                      <a key={i} href={link.url} target="_blank" rel="noopener noreferrer" style={{
+                        fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 600,
+                        color: C.skyBlue, textDecoration: "none",
+                        borderBottom: `1px solid ${C.skyBlue}40`,
+                        transition: "border-color 0.2s",
+                      }}
+                      onMouseEnter={e => e.target.style.borderColor = C.skyBlue}
+                      onMouseLeave={e => e.target.style.borderColor = `${C.skyBlue}40`}
+                      >{link.label} <span style={{ fontSize: 10 }}>↗</span></a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </FadeIn>
+
+            {/* Stewardship */}
+            <FadeIn delay={0.3}>
+              <div style={{ marginTop: 28 }}>
+                <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: C.skyBlue, marginBottom: 16 }}>{"Give Back"}</div>
+                <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: "clamp(14px, 1.5vw, 14px)", fontWeight: 400, color: "#4A5650", lineHeight: 1.7, margin: "0 0 16px" }}>
+                  {"Olympic's landscape exists in relationship with the nine Nations who have stewarded it since time immemorial. Visiting thoughtfully means engaging with that history — and with ongoing restoration work reshaping the peninsula."}
+                </p>
+                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Stewardship')} name="Lower Elwha Klallam — Restoration Volunteering"
+                  url="https://www.elwha.org"
+                  detail={"The tribe and Olympic NP have collaborated on one of the largest riparian revegetation efforts ever — 425,000 native plants across 800 acres of former reservoir bed. Volunteer opportunities periodically available. Contact (360) 452-8471."}
+                  tags={["Volunteer", "Revegetation", "Dam Removal"]} />
+                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Stewardship')} name="Olympic NP Volunteer Program"
+                  url="https://www.nps.gov/olym/getinvolved/volunteer.htm"
+                  detail={"Trail maintenance, invasive species removal, beach cleanup on the wilderness coast, habitat restoration. Day volunteer options available. Register at nps.gov/olym."}
+                  tags={["Trail Work", "Beach Cleanup", "Day Options"]} />
+                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Stewardship')} name="Washington Trails Association (WTA)"
+                  url="https://www.wta.org"
+                  detail={"Organizes trail maintenance work parties across the Olympic Peninsula. Day and weekend events — brushing, drainage work, blowdown clearing. Family-friendly and well-organized."}
+                  tags={["Trail Maintenance", "Family-Friendly", "Weekend Events"]} />
+                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Stewardship')} name="Friends of the Hoh"
+                  url="https://friendsofthehoh.org"
+                  detail={"Small nonprofit supporting the Hoh Rainforest corridor — education, restoration, and advocacy for one of the world's rarest temperate rainforest ecosystems."}
+                  tags={["Nonprofit", "Rainforest", "Advocacy"]} />
+              </div>
+            </FadeIn>
+          </section>
+
+
+          <Divider />
+
+          {/* ══════════════════════════════════════════════════════════════ */}
+          {/* GROUP TRIPS                                                   */}
+          {/* ══════════════════════════════════════════════════════════════ */}
+          <section id="group-trips" style={{ padding: "48px 0" }}>
+            <FadeIn>
+              <SectionIcon type="group" />
+              <SectionLabel>Group Trips</SectionLabel>
+              <SectionTitle>Into the Wild Peninsula</SectionTitle>
+              <SectionSub isMobile={isMobile}>{"Small group trips timed to natural crescendos — salmon runs, alpine bloom, storm season. Expert guides, meaningful connection. Eight travelers maximum."}</SectionSub>
+            </FadeIn>
+
+            {(() => {
+              const olympicTrips = getTripsByDestination("Olympic");
+              return olympicTrips.length > 0 ? (
+                <div style={{
+                  display: "grid",
+                  gridTemplateColumns: isMobile ? "1fr" : (olympicTrips.length > 1 ? "repeat(2, 1fr)" : "1fr"),
+                  gap: 24,
+                  maxWidth: olympicTrips.length === 1 ? 400 : "100%",
+                }}>
+                  {olympicTrips.map((trip, i) => (
+                    <FadeIn key={trip.slug} delay={0.08 + i * 0.06}>
+                      <TripCard trip={trip} />
+                    </FadeIn>
+                  ))}
+                </div>
+              ) : null;
+            })()}
+
+            <FadeIn delay={0.2}>
+              <div style={{ padding: "20px 24px", border: `1px solid ${C.stone}`, textAlign: "center", marginTop: 16 }}>
+                <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 14, fontWeight: 400, color: "#4A5650", lineHeight: 1.6, margin: "0 0 16px" }}>See all upcoming group trips across every destination.</p>
+                <Link to="/group-trips" style={{
+                  padding: "10px 24px", background: "transparent",
+                  border: `1.5px solid ${C.skyBlue}`, color: C.skyBlue,
+                  fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 700,
+                  letterSpacing: "0.18em", textTransform: "uppercase", textDecoration: "none",
+                  transition: "all 0.25s", display: "inline-block",
+                }}
+                onClick={() => trackEvent('guide_cta_clicked', { action: 'view_group_trips', destination: 'olympic-peninsula' })}
+                onMouseEnter={e => { e.currentTarget.style.background = C.skyBlue; e.currentTarget.style.color = "#fff"; }}
+                onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = C.skyBlue; }}
+                >View All Group Trips</Link>
+              </div>
+            </FadeIn>
+          </section>
+
+
+          <Divider />
+
+          {/* ══════════════════════════════════════════════════════════════ */}
+          {/* CTA                                                           */}
+          {/* ══════════════════════════════════════════════════════════════ */}
+          <section id="cta" style={{ padding: "56px 0 72px", textAlign: "center" }}>
+            <FadeIn>
+              <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 700, letterSpacing: "0.28em", textTransform: "uppercase", color: C.skyBlue, display: "block", marginBottom: 16 }}>Begin</span>
+              <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(28px, 5vw, 42px)", fontWeight: 300, color: C.darkInk, margin: "0 0 10px", lineHeight: 1.2 }}>{"Your peninsula trip starts here"}</h3>
+              <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: "clamp(14px, 1.6vw, 14px)", fontWeight: 400, color: "#4A5650", maxWidth: 460, margin: "0 auto 36px", lineHeight: 1.65 }}>
+                {"Choose your path — build it yourself with our Trip Planner, or let us craft something personalized for you."}
+              </p>
+              <Link to="/plan" style={{
+                padding: "14px 36px", border: "none",
+                background: C.darkInk, color: "#fff",
+                textAlign: "center", display: "inline-block",
+                fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 700,
+                letterSpacing: "0.2em", textTransform: "uppercase",
+                cursor: "pointer", transition: "opacity 0.2s", textDecoration: "none",
+              }}
+              onClick={() => trackEvent('guide_cta_clicked', { action: 'plan_a_trip', destination: 'olympic-peninsula' })}
+              onMouseEnter={e => e.currentTarget.style.opacity = "0.85"}
+              onMouseLeave={e => e.currentTarget.style.opacity = "1"}
+              >{"Plan a Trip"}</Link>
+            </FadeIn>
+          </section>
+
+          {/* Also Explore */}
+          <Divider />
+          <FadeIn>
+            <div style={{ padding: "44px 0" }}>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 12, marginBottom: 16 }}>
+                <span className="eyebrow" style={{ color: "#7A857E" }}>Also Explore</span>
+                <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 600, letterSpacing: "0.1em", color: "#7A857E" }}>Guides available for each destination</span>
+              </div>
+              <div style={{ display: "flex", gap: 16, flexWrap: "wrap", marginTop: 16 }}>
+                {[
+                  { name: "Zion Canyon", slug: "zion-canyon", accent: C.sunSalmon },
+                  { name: "Joshua Tree", slug: "joshua-tree", accent: C.goldenAmber },
+                  { name: "Big Sur", slug: "big-sur", accent: C.seaGlass },
+                ].map(other => (
+                  <Link key={other.slug} to={`/destinations/${other.slug}`} style={{
+                    display: "flex", alignItems: "center", gap: 12,
+                    padding: "12px 20px", border: `1px solid ${C.stone}`,
+                    transition: "all 0.25s", background: C.warmWhite, textDecoration: "none",
+                  }}
+                  onMouseEnter={e => { e.currentTarget.style.borderColor = other.accent; }}
+                  onMouseLeave={e => { e.currentTarget.style.borderColor = C.stone; }}
+                  >
+                    <div style={{ width: 8, height: 8, borderRadius: "50%", background: other.accent, opacity: 0.6 }} />
+                    <span style={{ fontFamily: "'Quicksand'", fontSize: 13, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: C.darkInk }}>{other.name}</span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </FadeIn>
+
+        </div>
+      </section>
+
+      <GuideDetailSheet item={activeSheet} onClose={() => setActiveSheet(null)} isMobile={isMobile} />
       <Footer />
     </>
   );
