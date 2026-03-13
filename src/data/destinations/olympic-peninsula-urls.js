@@ -80,6 +80,14 @@ export const OLYMPIC_URLS = {
 
   // ── Provisions & Outfitters ────────────────────────────────────────────────
   "Swain's General Store":      "https://www.swainsinc.com/",
+
+  // ── Farm & Landscape ─────────────────────────────────────────────────────
+  "Sequim Lavender Trail":      "https://www.sequimlavender.org/",
+  "Jardin du Soleil":           "https://www.jardindusoleil.com/",
+  "Purple Haze Lavender":       "https://www.purplehazelavender.com/",
+  "Dungeness Spit":             "https://www.fws.gov/refuge/dungeness/",
+  "Dungeness National Wildlife Refuge": "https://www.fws.gov/refuge/dungeness/",
+  "New Dungeness Lighthouse":   "https://www.newdungenesslighthouse.com/",
 };
 
 // Alias map for fuzzy matching — handles common AI variations
@@ -136,6 +144,14 @@ export const OLYMPIC_ALIASES = {
 
   // Conservation
   "WTA":                        "Washington Trails Association",
+
+  // Farm & Landscape
+  "Lavender Trail":             "Sequim Lavender Trail",
+  "Sequim Lavender":            "Sequim Lavender Trail",
+  "Lavender Festival":          "Sequim Lavender Trail",
+  "Purple Haze":                "Purple Haze Lavender",
+  "Dungeness":                  "Dungeness Spit",
+  "Dungeness Lighthouse":       "New Dungeness Lighthouse",
 };
 
 /**

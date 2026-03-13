@@ -184,86 +184,39 @@ The lodge's coastal setting — above a sweep of wild beach, with sea stacks vis
 
 #### Kokopelli Grill
 The best dinner option in Port Angeles. Wood-fired cooking, fresh seafood, local produce. Relaxed and well-executed. A reliable end to a long park day.
-- **Energy**: gentle
-- **Group**: couple, friends
-- **Budget**: balanced
-- **Time**: evening
-- **Interests**: dining
-- **Months**: Year-round
 
 #### Barhop Brewing
 Port Angeles's anchor craft brewery. Straightforward and good — fish and chips, burgers, rotating taps. The rooftop patio has views over the harbor.
-- **Energy**: gentle
-- **Group**: solo, couple, friends
-- **Budget**: mindful
-- **Time**: midday, evening
-- **Interests**: dining
-- **Months**: Year-round
 
 #### Dupuis Restaurant
 Locally loved, unpretentious, consistently good. Serves local seafood and Pacific Northwest comfort food. The kind of place a town this size needs and rarely has.
-- **Energy**: gentle
-- **Group**: couple, friends
-- **Budget**: balanced
-- **Time**: evening
-- **Interests**: dining
-- **Months**: Year-round
 
 #### Bonny's Bakery
 Morning pastries, strong coffee, a community gathering point. Arrive early — the good things sell out.
-- **Energy**: gentle
-- **Group**: solo, couple, friends
-- **Budget**: mindful
-- **Time**: morning
-- **Interests**: dining
-- **Months**: Year-round
 
 ### Sequim & Port Townsend
 
 #### Alder Wood Bistro (Sequim)
 Farm-to-table sourcing in a town that actually has farms. Garlic from nearby farms, local oysters, thoughtful wine list. One of the best restaurants on the entire peninsula.
-- **Energy**: gentle
-- **Group**: couple, friends
-- **Budget**: balanced, premium
-- **Time**: evening
-- **Interests**: dining
-- **Months**: Year-round
 
 #### Finistère (Port Townsend)
 Pacific Northwest cuisine in a Victorian port town. Excellent shellfish, curated menu, a beautiful room. Worth the 45-minute drive from Port Angeles.
-- **Energy**: gentle
-- **Group**: couple, friends
-- **Budget**: premium
-- **Time**: evening
-- **Interests**: dining
-- **Months**: Year-round
 
 #### Bread & Roses Bakery (Port Townsend)
 Sourdough, local grain, pastries that justify the trip. Community-owned institution.
-- **Energy**: gentle
-- **Group**: solo, couple, friends
-- **Budget**: mindful
-- **Time**: morning
-- **Interests**: dining
-- **Months**: Year-round
 
 ### Forks & La Push
 
+#### In the Forks Area
+Forks is a small logging town. Options are limited — the River Inn Restaurant and the In Place Diner are solid. Plan provisions; don't expect to find great food here without advance prep.
+
 #### Quileute Oceanside Resort Restaurant (La Push)
 On-site at the resort, overlooking First Beach. Simple menu, extraordinary location. Worth eating here just to watch the surf from your table.
-- **Energy**: gentle
-- **Group**: solo, couple, friends, family
-- **Budget**: balanced
-- **Time**: midday, evening
-- **Interests**: dining
-- **Months**: Year-round
 
 ### Provisions
 
 #### Swain's General Store (Port Angeles)
 The peninsula's most complete outfitter — gear, food, camping supplies. Stock up here before heading into any zone.
-- **Budget**: mindful, balanced
-- **Months**: Year-round
 
 ---
 
@@ -273,70 +226,59 @@ The peninsula's most complete outfitter — gear, food, camping supplies. Stock 
 
 #### Cape Alava & Wedding Rocks (Ozette)
 The petroglyphs at Wedding Rocks on the Ozette coast are among the most significant ancient rock art sites on the Olympic Peninsula — carved by the Makah people, depicting whales, humans, and sea creatures. They are easy to miss; look carefully at the intertidal boulders as you walk south along the beach. Approach with reverence. Do not touch.
-- **Energy**: moderate
-- **Group**: solo, couple, friends
-- **Interests**: Indigenous heritage, history, coastal hiking
-- **Months**: Year-round
 
 #### The Makah Nation (Neah Bay)
 The Makah people reside at the northwestern tip of the peninsula, at Neah Bay — the only tribe in the U.S. with a treaty-guaranteed right to hunt whales. The Makah Museum in Neah Bay houses artifacts from the excavation of Ozette, a village buried by a mudslide 500 years ago and only uncovered in 1970, remarkably preserved. The collection is extraordinary — one of the most significant archaeological finds in North America. Plan a dedicated half-day.
-- **Energy**: gentle
-- **Group**: solo, couple, friends, family
-- **Interests**: Indigenous heritage, history, culture
-- **Months**: Year-round
 
 #### Lower Elwha Klallam Tribe — Elwha River Restoration
 The largest dam removal project in U.S. history was led, in significant part, by the Lower Elwha Klallam Tribe, who campaigned for decades to restore the free-flowing Elwha River and its salmon runs. The Elwha Dam (built 1913) and Glines Canyon Dam were removed in 2012 and 2014. Sacred sites submerged for a century were re-exposed. An archaeological site revealing 8,000 years of continuous human habitation was uncovered. The project is an ongoing story of ecological and cultural renewal. Drive the Elwha River road (off Hwy 101 west of Port Angeles) and walk to the former dam sites — the river and the revegetating land are visible evidence of what restoration looks like in practice.
-- **Energy**: gentle
-- **Group**: solo, couple, friends, family
-- **Interests**: Indigenous heritage, history, conservation, nature
-- **Months**: Year-round
+- **Elwha Tribal website**: www.elwha.org
 
 #### Jamestown S'Klallam Tribe (Sequim)
 The Jamestown S'Klallam — "The Strong People" — operate the 7 Cedars Resort near Sequim and are known for elaborately hand-carved totem poles on their campus. The newly opened Jamestown Tribal Library offers cultural programming and resources. The tribe welcomes visitors year-round.
+
+### Farm & Landscape
+
+#### Sequim Lavender Trail — Dungeness Valley
+One of the most unexpected sensory experiences on the Olympic Peninsula: a cluster of family-owned lavender farms tucked into the Sequim-Dungeness Valley, sheltered by the rain shadow of the Olympic Mountains. While the west side of the range receives 140 inches of rain per year, Sequim averages just 17 — the same as Los Angeles — and that microclimate produces some of the finest lavender in North America. The valley has been called the Lavender Capital of North America, and the farms that make up the Sequim Lavender Trail welcome visitors throughout the summer with free access, u-pick fields, essential oil distillation, lavender ice cream, and the particular calm of standing in a purple field with the Olympic Range behind you and the Strait of Juan de Fuca below.
+
+The trail encompasses nine working farms, each with its own character. **Jardin du Soleil** (certified organic, 10+ acres, Victorian gardens and ponds, Strait views) and **Purple Haze** (12 acres, 15,000+ plants, 50+ varieties, certified organic) are the two anchors. **Lavender Connection** has an aromatic tasting bar with 18 varieties of essential oil. **B&B Family Farm** runs three generations and free tours including a look at their century-old barn. Peak bloom: mid-July. Annual Lavender Festival: third weekend of July. Most farms open June through September; some year-round.
+- **Website**: sequimlavender.org
 - **Energy**: gentle
 - **Group**: solo, couple, friends, family
-- **Interests**: Indigenous heritage, culture
-- **Months**: Year-round
+- **Interests**: agriculture, aromatherapy, photography, Pacific Northwest
+- **Months**: June–September (peak bloom mid-July)
+
+#### Dungeness Spit — National Wildlife Refuge
+The longest natural sand spit in the United States — nearly seven miles of narrow, windswept shoreline extending into the Strait of Juan de Fuca just north of Sequim. The spit is within the Dungeness National Wildlife Refuge, established in 1915, and is one of the most important migratory bird stopover sites on the Pacific coast: over 250 species of birds recorded, including bald eagles, black oystercatchers, harlequin ducks, and sandpipers in migration season. At the tip sits the New Dungeness Lighthouse, operating continuously since 1857 — volunteer docents offer free tours daily 9 AM–5 PM and there is a lighthouse keeper program for those who want to spend a week in residence.
+
+The hike to the lighthouse and back is 10 miles round-trip on open beach — challenging in wind, extraordinary in clarity. You can also go as far as you like and turn back. Check tide tables before going. Entry fee $3/family.
+- **Address**: 600 Voice of America Road, Sequim, WA 98382
+- **Distance**: Up to 10 miles round-trip to lighthouse · Easy terrain, weather-dependent
+- **Fee**: $3/family · Open daily, 7 AM to 30 min before sunset
+- **Energy**: gentle to moderate
+- **Group**: solo, couple, friends, family
+- **Interests**: birdwatching, coastal walking, wildlife, photography
+- **Months**: Year-round (spring and fall migration peaks)
 
 ### Arts & Culture
 
 #### Port Townsend
 One of the most architecturally intact Victorian seaports in the Pacific Northwest. The historic downtown has galleries, independent bookstores, and live music (Centrum Foundation hosts major festivals including Olympic Music Festival and Festival of American Fiddle Tunes). A meaningful counterpoint to the park's wilderness.
-- **Energy**: gentle
-- **Group**: solo, couple, friends
-- **Interests**: art, culture, architecture, music
-- **Months**: Year-round
 
 #### Feiro Marine Life Center (Port Angeles)
 A small, excellent marine science center focused on species from the Strait of Juan de Fuca and Puget Sound. Touch tanks, knowledgeable volunteers, a good complement to the tide pool experiences at the coast.
-- **Energy**: gentle
-- **Group**: solo, couple, friends, family
-- **Interests**: nature, education, wildlife
-- **Months**: Year-round
 
 ### Scenic Drives
 
 #### Hurricane Ridge Road
 17 miles of switchbacks from Port Angeles to the ridge. The road climbs through old growth, breaks into meadow, and delivers you to a view that stops conversation. Drive it at sunset if you can secure a spot.
-- **Energy**: gentle
-- **Group**: solo, couple, friends, family
-- **Interests**: scenic drives, photography, alpine views
-- **Months**: July–October daily; weekends only in winter (check conditions)
 
 #### US-101 Coastal Loop
 The highway circles the Olympic Peninsula and offers access to all ecosystems. The stretch between Forks and Kalaloch (south of La Push) runs close enough to the coast that you can pull off and walk to the beach repeatedly. Plan a full day to drive it without rushing.
-- **Energy**: gentle
-- **Group**: solo, couple, friends, family
-- **Interests**: scenic drives, photography, beach
-- **Months**: Year-round
 
 #### Lake Crescent
 The lake sits in a glacially carved valley 20 miles west of Port Angeles. Turquoise water (low in nutrients, exceptionally clear), old-growth forest framing both shores. The East Beach picnic area, the Storm King trailhead, and Lake Crescent Lodge are all accessible without crowds if you arrive before 10 AM.
-- **Energy**: gentle
-- **Group**: solo, couple, friends, family
-- **Interests**: scenic drives, photography, nature
-- **Months**: Year-round
 
 ---
 
@@ -367,88 +309,34 @@ Small nonprofit supporting the Hoh Rainforest corridor — education, restoratio
 
 #### Kalaloch Campground
 The only campground in the park with ocean views — sites sit above a wild beach, and the sound of the surf is your constant companion. First-come-first-served for most sites. Pit toilets, no hookups. Book what you can on recreation.gov and fill in the rest with walk-ups. Bluff sites are the ones to aim for.
-- **StayStyle**: elemental
-- **Energy**: gentle, moderate
-- **Group**: solo, couple, friends, family
-- **Budget**: mindful
-- **Interests**: camping, beach, solitude
-- **Months**: Year-round
 
 #### Hoh Campground
 Deep in the rainforest, at the end of Upper Hoh Road. Mossy, quiet, atmospheric. Year-round access. Walk to the Hall of Mosses before the day hikers arrive. Elk are common visitors at dawn.
-- **StayStyle**: elemental
-- **Energy**: gentle, moderate
-- **Group**: solo, couple, friends, family
-- **Budget**: mindful
-- **Interests**: camping, nature, wildlife
-- **Months**: Year-round
 
 #### Sol Duc Campground
 Forested campground adjacent to the hot springs resort. The hot springs are a short walk from your tent. Campfire rings, running water. One of the park's best campground-to-experience ratios.
-- **StayStyle**: elemental
-- **Energy**: gentle, moderate
-- **Group**: solo, couple, friends, family
-- **Budget**: mindful
-- **Interests**: camping, soaking, hiking
-- **Months**: Late May–early October
 
 #### Quileute Oceanside Resort (La Push)
-Tribally owned and operated by the Quileute Nation, directly on First Beach. Cabins, RV sites, a small motel building — the setting is the thing. Views of sea stacks from your window or from the beach ten steps away. Reservation-required; books early in summer. quileuteoceanside.com
-- **StayStyle**: elemental
-- **Energy**: gentle
-- **Group**: solo, couple, friends, family
-- **Budget**: balanced
-- **Interests**: beach, wildlife, Indigenous heritage
-- **Months**: Year-round
+Tribally owned and operated by the Quileute Nation, directly on First Beach. Cabins, RV sites, a small motel building — the setting is the thing. Views of sea stacks from your window or from the beach ten steps away. Reservation-required; books early in summer. quileute.com
 
 ### Rooted (Boutique, local)
 
 #### Lake Crescent Lodge
 A historic park lodge on the shore of Lake Crescent, operating since 1916. The main lodge rooms are modest and charming; the lakeside cottages are the ones worth requesting. Dining room serves dinner nightly. The view from the porch is unreasonable. Reserve well in advance for summer. olympicnationalparks.com
-- **StayStyle**: rooted
-- **Energy**: gentle
-- **Group**: solo, couple, friends, family
-- **Budget**: balanced, premium
-- **Interests**: nature, architecture, dining
-- **Months**: Late May–early October
 
 #### Kalaloch Lodge
 NPS-managed lodge on a bluff above the wild coast. A National Historic Landmark. Rooms and cabins — cabins closest to the bluff edge are extraordinary. The Creekside Restaurant is adequate; the location is exceptional. Reserve 6+ months out for summer. olympicnationalparks.com
-- **StayStyle**: rooted
-- **Energy**: gentle
-- **Group**: solo, couple, friends, family
-- **Budget**: balanced, premium
-- **Interests**: beach, nature, solitude
-- **Months**: Year-round
 
 #### Palace Hotel (Port Townsend)
 A restored Victorian hotel in the heart of Port Townsend's historic district — individually decorated rooms, original woodwork, above a lively arts town. Good base for accessing the park's eastern zones.
-- **StayStyle**: rooted
-- **Energy**: gentle
-- **Group**: solo, couple, friends
-- **Budget**: balanced
-- **Interests**: architecture, culture, art
-- **Months**: Year-round
 
 ### Premium (Elevated experience)
 
 #### Domaine Madeleine (Port Angeles)
 Waterfront B&B on the Strait of Juan de Fuca with views to Vancouver Island. Five suites, French-influenced interiors, exceptional breakfasts, kayaks available. Boutique and quiet — a genuine sanctuary for a rest day.
-- **StayStyle**: premium
-- **Energy**: gentle
-- **Group**: couple, solo
-- **Budget**: premium
-- **Interests**: wellness, design, nature
-- **Months**: Year-round
 
-#### Manresa Castle (Port Townsend)
+#### Port Townsend Inn / Manresa Castle
 Historic castle hotel above Port Townsend. Restored Victorian grandeur, views of Puget Sound. For those who want their park stay to include something architecturally distinct.
-- **StayStyle**: premium
-- **Energy**: gentle
-- **Group**: couple, solo, friends
-- **Budget**: premium
-- **Interests**: architecture, history, culture
-- **Months**: Year-round
 
 ---
 
@@ -477,22 +365,16 @@ Historic castle hotel above Port Townsend. Restored Victorian grandeur, views of
 ### Makah Reservation & Cape Flattery
 Cape Flattery is the northwesternmost point in the contiguous United States — accessible by a 1.5-mile Makah-managed trail through old-growth cedar and hemlock to a series of overlooks above a dramatic sea arch and open Pacific. A $10/vehicle recreation permit is required (purchased at the Makah Museum or via makah.com). Pair the trail with a visit to the Makah Museum. The combination is one of the most complete Indigenous-land experiences in the Pacific Northwest.
 - **Distance to Cape Flattery**: 1.5 miles round trip · **Difficulty**: Easy-Moderate · **Time**: 1 hr
-- **Energy**: gentle, moderate
-- **Group**: solo, couple, friends, family
-- **Interests**: Indigenous heritage, coastal hiking, photography
-- **Months**: Year-round
 
 ### Port Townsend
 Victorian seaport at the tip of the Quimper Peninsula. Historic architecture, art galleries (Northwind Arts Center), serious coffee, and a slower pace than Seattle. The Olympic Music Festival performs Saturdays in summer in a barn — world-class chamber music in a pastoral setting. A strong argument for arriving a day early or leaving a day late.
-- **Energy**: gentle
-- **Group**: solo, couple, friends
-- **Interests**: art, culture, architecture, music
-- **Months**: Year-round
 
 ### Resources
 - **Park conditions**: nps.gov/olym
 - **Hurricane Ridge road status**: nps.gov/olym/planyourvisit/hurricane-ridge.htm
 - **Tide charts**: tidesandcurrents.noaa.gov
+- **Sequim Lavender Trail**: sequimlavender.org
+- **Dungeness National Wildlife Refuge**: fws.gov/refuge/dungeness
 - **Washington Trails Association**: wta.org
 - **Makah Nation / Cape Flattery**: makah.com
 - **Lower Elwha Klallam Tribe**: elwha.org
