@@ -458,39 +458,6 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
 }
 
 
-// ─── Email Capture ────────────────────────────────────────────────────────────
-
-function TimingAlertCapture() {
-  const [email, setEmail] = useState("");
-  const [submitted, setSubmitted] = useState(false);
-
-  return (
-    <FadeIn>
-      <div style={{ padding: "28px 24px", background: `${C.oceanTeal}08`, border: `1px solid ${C.oceanTeal}30`, textAlign: "center", margin: "8px 0" }}>
-        {submitted ? (
-          <>
-            <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: C.oceanTeal, marginBottom: 8 }}>You're on the list</div>
-            <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 14, fontWeight: 400, color: "#4A5650", lineHeight: 1.6 }}>We'll let you know when the golden window opens.</div>
-          </>
-        ) : (
-          <>
-            <SectionIcon type="windows" />
-            <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(18px, 2.5vw, 22px)", fontWeight: 400, color: C.darkInk, marginBottom: 6 }}>{"Get Kauaʻi timing alerts"}</div>
-            <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 14, fontWeight: 400, color: "#4A5650", lineHeight: 1.6, maxWidth: 420, margin: "0 auto 20px" }}>{"We track whale season, Nā Pali conditions, and trade wind patterns — and let you know when it's time to go."}</p>
-            <div style={{ display: "flex", gap: 8, maxWidth: 380, margin: "0 auto", flexWrap: "wrap", justifyContent: "center" }}>
-              <input type="email" placeholder="your@email.com" value={email} onChange={e => setEmail(e.target.value)} style={{ flex: "1 1 200px", padding: "10px 16px", border: `1px solid ${C.stone}`, background: "#fff", fontFamily: "'Quicksand', sans-serif", fontSize: 14, fontWeight: 400, color: C.darkInk, outline: "none" }} />
-              <button onClick={() => { if (email) setSubmitted(true); }} style={{ padding: "10px 20px", background: C.oceanTeal, border: "none", color: "#fff", fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", cursor: "pointer", transition: "opacity 0.2s", whiteSpace: "nowrap" }}
-                onMouseEnter={e => e.currentTarget.style.opacity = "0.85"} onMouseLeave={e => e.currentTarget.style.opacity = "1"}>Notify Me</button>
-            </div>
-            <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 400, color: "#7A857E", marginTop: 10, letterSpacing: "0.04em" }}>No spam. Just timing.</div>
-          </>
-        )}
-      </div>
-    </FadeIn>
-  );
-}
-
-
 // ─── Guide Section Navigation (sticky anchor bar) ───────────────────────────
 
 const GUIDE_SECTIONS = [
@@ -973,7 +940,6 @@ export default function KauaiGuide() {
               </div>
             </FadeIn>
 
-            <TimingAlertCapture />
           </section>
 
 
