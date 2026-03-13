@@ -1,0 +1,83 @@
+[
+  {
+    "id": "haena-state-park-reservation",
+    "activity": "Hāʻena State Park Reservation",
+    "permitType": "advance",
+    "required": true,
+    "description": "Non-Hawaii residents must reserve parking and entry to Hāʻena State Park in advance. This covers access to Ke'e Beach, Tunnels Reef, and the Kalalau Trail trailhead.",
+    "where": "gohaena.com",
+    "url": "https://www.gohaena.com/",
+    "cost": "$5 per vehicle (parking reservation)",
+    "seasonalWindow": {
+      "required": "year-round",
+      "notes": "Reservations release 30 days in advance at midnight HST and sell out quickly for peak dates. Walk-in shuttle access may be available from Wainiha — check the website."
+    },
+    "tips": [
+      "Book exactly 30 days ahead at midnight Hawaii time for best availability.",
+      "Hawaii residents with valid ID can enter without a reservation.",
+      "The reservation covers parking, not a separate entry fee.",
+      "Arrive early — the lot fills and late arrivals may be turned away even with a reservation."
+    ]
+  },
+  {
+    "id": "napali-camping-permit",
+    "activity": "Nā Pali Coast Camping Permit (Kalalau Trail)",
+    "permitType": "advance",
+    "required": true,
+    "description": "Overnight camping along the Kalalau Trail (beyond Hanakāpīʻai Beach) requires a camping permit from the Hawaii Division of State Parks. Permits cover Hanakoa Valley and Kalalau Beach campsites.",
+    "where": "Explore Outdoor Hawaii (formerly camping.ehawaii.gov)",
+    "url": "https://camping.ehawaii.gov/",
+    "cost": "$20 per person per night",
+    "seasonalWindow": {
+      "required": "year-round (best April–September)",
+      "notes": "Permits release exactly 90 days in advance and sell out within minutes for summer dates. Set a calendar reminder."
+    },
+    "tips": [
+      "Permits release at midnight HST, 90 days before the start date.",
+      "Summer weekends sell out in under 5 minutes — be ready to click.",
+      "Plan at least 2 nights to avoid rushing the 11-mile trail.",
+      "The trail is slippery year-round. Trekking poles and waterproof bags are essential.",
+      "No fires allowed at Kalalau Beach — bring a camp stove."
+    ]
+  },
+  {
+    "id": "state-park-camping",
+    "activity": "State Park Camping (Polihale, Kōkeʻe, etc.)",
+    "permitType": "advance",
+    "required": true,
+    "description": "Camping at Kauaʻi state parks (Polihale, Kōkeʻe, Haena) requires advance reservations through the Hawaii State Parks system.",
+    "where": "dlnr.hawaii.gov/dsp or Explore Outdoor Hawaii",
+    "url": "https://dlnr.hawaii.gov/dsp/parks/kauai/",
+    "cost": "$12–$30 per night depending on park and site type",
+    "seasonalWindow": {
+      "required": "year-round",
+      "notes": "Polihale access road may be impassable in wet conditions — check ahead. Kōkeʻe cabins book separately through kokee.net."
+    },
+    "tips": [
+      "Polihale requires a high-clearance vehicle — the 5-mile dirt road is rough.",
+      "Kōkeʻe cabins are an alternative to tent camping at elevation — book at kokee.net.",
+      "Bring all supplies to Polihale — there are no services for miles.",
+      "Check the state parks website for current closures before heading out."
+    ]
+  },
+  {
+    "id": "snorkel-reef-guidelines",
+    "activity": "Reef-Safe Snorkeling Requirements",
+    "permitType": "fee",
+    "required": true,
+    "description": "Hawaii law bans sunscreens containing oxybenzone and octinoxate. Reef-safe sunscreen is required at all beaches and snorkel sites. No separate permit is needed for snorkeling, but Hāʻena State Park (Tunnels Reef, Ke'e Beach) requires an entry reservation.",
+    "where": "Any local shop — available island-wide",
+    "url": "https://health.hawaii.gov/cab/sunscreen-law/",
+    "cost": "Reef-safe sunscreen: ~$12–$20",
+    "seasonalWindow": {
+      "required": "year-round",
+      "notes": "Enforced at all state beaches. Non-compliant sunscreens may be confiscated at park entrances."
+    },
+    "tips": [
+      "Buy reef-safe sunscreen before arriving — it's cheaper on the mainland.",
+      "Mineral-based sunscreens (zinc oxide, titanium dioxide) are the safest choice.",
+      "Rash guards reduce sunscreen needs and provide better protection in the water.",
+      "The law applies to all beaches in Hawaii, not just state parks."
+    ]
+  }
+]

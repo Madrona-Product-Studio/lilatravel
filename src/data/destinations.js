@@ -102,6 +102,6 @@ export const destinations = [
     photo: P.kauai,
     gradient: "linear-gradient(165deg, #2a6b5a, #3d8a7a, #5ab8d0)",
     accent: C.oceanTeal,
-    guideAvailable: false,
+    guideAvailable: true,
   },
 ];
