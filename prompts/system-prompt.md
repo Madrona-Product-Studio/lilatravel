@@ -184,7 +184,8 @@ Return this structure:
             "distanceFromPark": "25 min to east entrance"
           },
           "alternatives": [
-            { "name": "Cable Mountain Lodge", "why": "1 sentence.", "vibe": "Boutique · Walking distance · Quiet", "stayType": "Boutique Hotel", "priceRange": "$$", "distanceFromPark": "0.3 miles to south entrance" }
+            { "name": "Cable Mountain Lodge", "why": "Boutique feel with river views and a pool — slightly more relaxed than Under Canvas.", "vibe": "Boutique · Walking distance · Quiet", "stayType": "Boutique Hotel", "priceRange": "$$", "distanceFromPark": "0.3 miles to south entrance" },
+            { "name": "Driftwood Lodge", "why": "Most affordable option with solid reviews and easy shuttle access.", "vibe": "Value · Convenient · Shuttle access", "stayType": "Lodge", "priceRange": "$$", "distanceFromPark": "0.5 miles to south entrance" }
           ]
         },
         {
@@ -252,7 +253,12 @@ Return this structure:
   - eat only: cuisine (e.g. "American / Southwest"), priceRange, bestFor (e.g. "Post-hike fuel" | "Slow dinner" | "Quick breakfast")
   - wellness only: duration (e.g. "75 min"), difficulty ("All levels" | "Intermediate"), bestTimeOfDay (e.g. "Early morning · 7–8:30 AM")
   - gear only: priceRange, whereToGet (e.g. "In-store · Springdale" | "Salt Lake City · Pre-trip")
-- picks.alternatives: 1-2 alternative recommendations per pick (stay, eat, gear, wellness). Same structure as pick but also accept vibe, priceRange, duration, whereToGet where relevant. Always include alternatives on stay and eat picks so the traveler has options.
+- picks.alternatives: alternative recommendations per pick (stay, eat, gear, wellness). Same structure as pick — include name, why, and type-specific fields (vibe, priceRange, stayType, distanceFromPark, cuisine, etc.).
+  - Every "stay" pick MUST include at least 2 alternatives. Never return a stay pick with an empty alternatives array.
+  - Every "eat" pick MUST include at least 1 alternative.
+  - Alternative names MUST come from the destination guide — do not invent names.
+  - Each alternative MUST include both "name" and "why" fields.
+  - "why" for an alternative should contrast with the main pick in 1 sentence — e.g. "More budget-friendly, with a pool and walking distance to the shuttle."
 - For each pick, include the type-specific metadata fields (vibe, priceRange, cuisine, etc.) wherever you have reliable knowledge. These fields enrich the card UI. Omit a field only if you genuinely don't know it — don't guess. The vibe field should always be present and should read like 2-3 evocative descriptors separated by a center dot (·).
 - snapshot: brief day overview with → arrows, shown when collapsed
 - **snapshot (top-level)**: ALWAYS include this object. Use the destination guide's monthly data to populate concrete values:

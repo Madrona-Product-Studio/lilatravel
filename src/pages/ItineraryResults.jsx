@@ -1159,6 +1159,9 @@ function DetailPanelContent({ item, lovedItems, onLove, onAlternatives }) {
   if (type === 'accommodation') {
     const accom = data;
     const s = PICK_STYLES.stay;
+    if (item.alternatives === undefined) {
+      console.warn(`[DetailPanel] alternatives is undefined for accommodation: ${accom?.name}`);
+    }
     const alts = item.alternatives || [];
     const accomLabel = { fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: C.muted };
     return (
@@ -1870,9 +1873,9 @@ function extractAccommodation(itinerary) {
     const stayPick = day1.picks.find(p => p.category === 'stay');
     if (stayPick?.pick?.name) {
       return {
-        name: stayPick.pick.name,
+        ...stayPick.pick,
         vibe: stayPick.pick.description || stayPick.pick.vibe || null,
-        url: stayPick.pick.url || null,
+        alternatives: stayPick.alternatives || [],
       };
     }
   }
@@ -1883,9 +1886,9 @@ function extractAccommodation(itinerary) {
       const stayPick = day.picks.find(p => p.category === 'stay');
       if (stayPick?.pick?.name) {
         return {
-          name: stayPick.pick.name,
+          ...stayPick.pick,
           vibe: stayPick.pick.description || stayPick.pick.vibe || null,
-          url: stayPick.pick.url || null,
+          alternatives: stayPick.alternatives || [],
         };
       }
     }
@@ -1924,7 +1927,7 @@ function LogisticsPanel({ destination, sticky = true, tripLogistics, onOpenPanel
     onSave: (d) => onOpenPanel({ _updateLogistics: { rental: d } }),
   });
   const openAccommodation = () => onOpenPanel && onOpenPanel({
-    type: 'accommodation', data: accom, alternatives: [],
+    type: 'accommodation', data: accom, alternatives: accom.alternatives || [],
   });
 
   return (
