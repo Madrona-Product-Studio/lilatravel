@@ -3449,10 +3449,10 @@ export default function ItineraryResults() {
       }}>
         <Link to="/" style={{ fontFamily: F, fontSize: 16, fontWeight: 500, letterSpacing: '0.1em', color: C.slate, textDecoration: 'none' }}>Lila Trips</Link>
         <button onClick={() => { trackEvent('save_trip_clicked', { source: 'header' }); setSavePanelOpen(true); }} style={{
-          fontFamily: F, fontSize: 11, fontWeight: 700,
-          letterSpacing: '0.15em', textTransform: 'uppercase',
+          fontFamily: F, fontSize: 12, fontWeight: 700,
+          letterSpacing: '0.12em', textTransform: 'uppercase',
           color: C.cream, background: C.slate,
-          border: 'none', padding: '10px 18px',
+          border: 'none', padding: '12px 22px',
           cursor: 'pointer', WebkitTapHighlightColor: 'transparent',
         }}>Save This Trip</button>
       </div>

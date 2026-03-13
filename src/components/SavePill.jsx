@@ -108,8 +108,8 @@ export default function SavePill({ isOpen, onClose, itineraryId, rawItinerary, f
 
   return (
     <div style={{
-      position: 'fixed', bottom: 24, right: 24, zIndex: 150,
-      width: 320, maxWidth: 'calc(100vw - 48px)',
+      position: 'fixed', top: 56, right: 20, zIndex: 150,
+      width: 320, maxWidth: 'calc(100vw - 40px)',
       background: C.white, borderRadius: 2,
       border: `1px solid ${C.sage}15`,
       boxShadow: `0 8px 40px ${C.ink}18`,
