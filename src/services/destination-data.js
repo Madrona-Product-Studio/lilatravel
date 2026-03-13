@@ -38,14 +38,14 @@ const CORRIDOR_PARKS = {
   'joshua-tree': ['death-valley', 'mojave-preserve'],
 };
 
-// Open-Meteo coordinates for weather forecasts
+// Open-Meteo coordinates and timezones for weather/celestial forecasts
 const DESTINATION_COORDS = {
-  zion: { lat: 37.2982, lon: -113.0263 },
-  'joshua-tree': { lat: 33.8734, lon: -115.9010 },
-  'big-sur': { lat: 36.2704, lon: -121.8081 },
-  'olympic-peninsula': { lat: 47.8021, lon: -123.6044 },
-  kauai: { lat: 22.0964, lon: -159.5261 },
-  'vancouver-island': { lat: 49.1557, lon: -125.9066 },
+  zion: { lat: 37.2982, lon: -113.0263, tz: 'America/Denver' },
+  'joshua-tree': { lat: 33.8734, lon: -115.9010, tz: 'America/Los_Angeles' },
+  'big-sur': { lat: 36.2704, lon: -121.8081, tz: 'America/Los_Angeles' },
+  'olympic-peninsula': { lat: 47.8021, lon: -123.6044, tz: 'America/Los_Angeles' },
+  kauai: { lat: 22.0964, lon: -159.5261, tz: 'Pacific/Honolulu' },
+  'vancouver-island': { lat: 49.1557, lon: -125.9066, tz: 'America/Vancouver' },
 };
 
 
@@ -190,7 +190,7 @@ async function fetchWeather(destination, startDate, endDate) {
       `&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max,weathercode` +
       `&temperature_unit=fahrenheit` +
       `&start_date=${startDate}&end_date=${endDate}` +
-      `&timezone=America/Denver`
+      `&timezone=${coords.tz || 'America/Denver'}`
     );
 
     if (!response.ok) return null;
@@ -259,7 +259,7 @@ async function fetchCelestial(destination, startDate, endDate) {
       `latitude=${coords.lat}&longitude=${coords.lon}` +
       `&daily=sunrise,sunset` +
       `&start_date=${startDate}&end_date=${endDate}` +
-      `&timezone=America/Denver`
+      `&timezone=${coords.tz || 'America/Denver'}`
     );
 
     if (!response.ok) return null;
@@ -275,8 +275,8 @@ async function fetchCelestial(destination, startDate, endDate) {
     return {
       days: daily.time.map((date, i) => ({
         date,
-        sunrise: formatTime(daily.sunrise[i]),
-        sunset: formatTime(daily.sunset[i]),
+        sunrise: formatTime(daily.sunrise[i], coords.tz),
+        sunset: formatTime(daily.sunset[i], coords.tz),
       })),
       moonPhase,
     };
@@ -289,7 +289,7 @@ async function fetchCelestial(destination, startDate, endDate) {
 /**
  * Format ISO datetime to just the time portion (e.g., "6:42 AM")
  */
-function formatTime(isoString) {
+function formatTime(isoString, tz) {
   if (!isoString) return null;
   try {
     const date = new Date(isoString);
@@ -297,7 +297,7 @@ function formatTime(isoString) {
       hour: 'numeric',
       minute: '2-digit',
       hour12: true,
-      timeZone: 'America/Denver',
+      timeZone: tz || 'America/Denver',
     });
   } catch {
     return null;
@@ -884,7 +884,7 @@ ${context.guide}
 ### Current Park Alerts
 ${context.liveData.alerts}
 
-${context.liveData.corridorAlerts ? `### Corridor Park Alerts (Bryce Canyon & Capitol Reef)\n${context.liveData.corridorAlerts}` : ''}
+${context.liveData.corridorAlerts ? `### Corridor Park Alerts\n${context.liveData.corridorAlerts}` : ''}
 
 ### Weather Forecast for Travel Dates
 ${context.liveData.weather}

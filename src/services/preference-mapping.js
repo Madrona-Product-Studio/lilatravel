@@ -307,6 +307,52 @@ export function generateMatchingInstructions(profile, destination) {
           `Include Mojave National Preserve (Kelso Dunes, Teutonia Peak) as a transit stop or half-day. ` +
           `Salton Sea / Bombay Beach and Salvation Mountain as a detour day.`,
       },
+      'big-sur': {
+        flexible:
+          `For Big Sur trips, Point Lobos State Natural Reserve (5 min from Carmel) is the natural day trip — world-class tide pools, sea otters, and cypress groves.`,
+        nomadic:
+          `Include Monterey/Carmel as a northern base and extend south toward San Simeon. ` +
+          `Point Lobos, Garrapata Beach, and the Monterey Bay Aquarium anchor the north. ` +
+          `Hearst Castle and Piedras Blancas elephant seal rookery anchor the south.`,
+        'full-drift':
+          `Design a full Highway 1 corridor itinerary. Carmel/Monterey as the northern anchor, Big Sur as the wild center, San Simeon/Cambria as the southern reach. ` +
+          `Include Hearst Castle, Piedras Blancas, and Ragged Point. The drive from Carmel to San Luis Obispo is one of the great American road journeys.`,
+      },
+      'olympic-peninsula': {
+        flexible:
+          `For Olympic trips, Cape Flattery and the Makah Museum (2.5 hrs from Port Angeles) make a powerful day trip — the northwesternmost point in the contiguous US paired with extraordinary Indigenous heritage.`,
+        nomadic:
+          `Include Cape Flattery and the Makah Museum as a dedicated day. Surface Port Townsend as a cultural counterpoint — ` +
+          `Victorian architecture, galleries, and live music at Centrum. ` +
+          `Plan the trip around zones: alpine (Hurricane Ridge), rainforest (Hoh), coast (La Push/Rialto), with drives between.`,
+        'full-drift':
+          `Design a full-peninsula circuit. Port Angeles as the eastern anchor, Forks/La Push as the western base, with Cape Flattery/Neah Bay as the far reach. ` +
+          `Include Port Townsend as a bookend day. The US-101 loop connects all zones — plan driving time between them (Hoh to Hurricane Ridge is 2.5 hours).`,
+      },
+      kauai: {
+        flexible:
+          `For Kauai trips, Waimea Canyon (1 hr from Poipū) is the natural day trip — the "Grand Canyon of the Pacific" with multiple overlooks and the Kalalau Valley viewpoint at the end of the road.`,
+        nomadic:
+          `Include both the North Shore (Hanalei, Ke'e Beach, Kalalau Trail day hike) and the West Side (Waimea Canyon, Kōkeʻe). ` +
+          `A Nā Pali Coast boat tour is one of the island's defining experiences — book early. ` +
+          `The Hindu Monastery in Kapaa and Lydgate Farms chocolate tour are distinctive inland stops.`,
+        'full-drift':
+          `Design a full-island itinerary with multiple bases. Poipū/South Shore for beach and sun, Hanalei/North Shore for surf and jungle, ` +
+          `Waimea/West Side for canyon and remote coastline (Polihale). Include a Nā Pali boat tour or helicopter flight, ` +
+          `the Kalalau Trail first 2 miles, and cultural engagement at Waipa Foundation or the Hindu Monastery.`,
+      },
+      'vancouver-island': {
+        flexible:
+          `For Vancouver Island trips, Ucluelet and the Wild Pacific Trail (40 min from Tofino) make a natural day trip — coastal headland walking, storm watching, and Pluvio for dinner.`,
+        nomadic:
+          `Include both Tofino and Ucluelet as bases. Surface Hot Springs Cove (boat day trip through Clayoquot Sound) and Meares Island Big Tree Trail. ` +
+          `Strathcona Provincial Park offers alpine contrast to the coastal rainforest. ` +
+          `Book Ahous Adventures for wildlife tours — Ahousaht Nation-owned and culturally rich.`,
+        'full-drift':
+          `Design a multi-base itinerary spanning the island. Victoria as the southern bookend (Butchart Gardens, Empress afternoon tea, Inner Harbour), ` +
+          `Cathedral Grove on the mountain crossing, Tofino/Ucluelet as the coastal anchor, and Hot Springs Cove as the far reach. ` +
+          `For experienced hikers, the West Coast Trail (75 km, permit required) is the defining multi-day trek.`,
+      },
     };
 
     const base = baseTerritoryInstructions[profile.territory];
