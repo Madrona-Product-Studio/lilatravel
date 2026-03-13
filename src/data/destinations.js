@@ -42,7 +42,7 @@ export const destinations = [
     photo: P.joshuaTree,
     gradient: "linear-gradient(165deg, #c17f43, #8b4513, #d4855a)",
     accent: C.goldenAmber,
-    guideAvailable: false,
+    guideAvailable: true,
   },
   {
     slug: "olympic-peninsula",
