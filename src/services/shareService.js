@@ -1,6 +1,8 @@
 import { supabase } from './supabaseClient';
 
 // Returns a stable shareable URL — reuses the existing token if one exists
+// Requires index on itineraries.share_token — verify in Supabase dashboard:
+// create index if not exists itineraries_share_token_idx on itineraries(share_token);
 export async function createShareableUrl({ itineraryId, rawItinerary, formData, destination }) {
   try {
     // Check if this itinerary already has a share token

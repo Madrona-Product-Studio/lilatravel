@@ -3475,8 +3475,30 @@ export default function ItineraryResults() {
     }
   };
 
-  // Render nothing while loading a shared trip or if no itinerary data yet
-  if (loadingShared || !rawItinerary) return null;
+  // Render loading screen while fetching a shared trip via /trip/:token
+  if (loadingShared) return (
+    <div style={{
+      fontFamily: "'Quicksand', sans-serif",
+      background: C.warm,
+      minHeight: '100vh',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      color: C.sage,
+      gap: 12,
+    }}>
+      <div style={{
+        fontFamily: "'Cormorant Garamond', serif",
+        fontSize: 'clamp(22px, 5.5vw, 28px)',
+        fontWeight: 300,
+        color: C.slate,
+      }}>Loading your trip</div>
+      <div style={{ fontSize: 13, opacity: 0.7 }}>Fetching itinerary…</div>
+    </div>
+  );
+
+  if (!rawItinerary) return null;
 
   return (
     <div style={{ fontFamily: F, background: C.warm, minHeight: '100vh' }}>
