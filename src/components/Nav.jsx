@@ -45,6 +45,7 @@ function SuitcaseIcon({ color, size = 20 }) {
 // ─── Trip Dropdown ───────────────────────────────────────────────────────────
 
 function TripDropdown({ trips, onSelect, onDelete, onNewTrip, onClose }) {
+  const [confirmId, setConfirmId] = useState(null);
   return (
     <div style={{
       position: 'absolute', top: 'calc(100% + 10px)', right: 0,
@@ -91,20 +92,47 @@ function TripDropdown({ trips, onSelect, onDelete, onNewTrip, onClose }) {
               {timeAgo(trip.generatedAt)}
             </div>
           </div>
-          <button
-            onClick={e => { e.stopPropagation(); onDelete(trip.id); }}
-            style={{
-              background: 'none', border: 'none', cursor: 'pointer',
-              padding: '4px 6px', fontSize: 16, color: '#8a8278',
-              lineHeight: 1, flexShrink: 0, borderRadius: 4,
-              transition: 'color 0.15s',
-            }}
-            onMouseEnter={e => e.currentTarget.style.color = C.darkInk}
-            onMouseLeave={e => e.currentTarget.style.color = '#8a8278'}
-            title="Remove trip"
-          >
-            ×
-          </button>
+          {confirmId === trip.id ? (
+            <div style={{ display: 'flex', gap: 6, flexShrink: 0 }} onClick={e => e.stopPropagation()}>
+              <button
+                onClick={() => { onDelete(trip.id); setConfirmId(null); }}
+                style={{
+                  background: 'none', border: 'none', cursor: 'pointer',
+                  padding: '2px 6px', fontSize: 11, fontWeight: 600,
+                  fontFamily: "'Quicksand', sans-serif",
+                  color: '#b55', borderRadius: 4, transition: 'opacity 0.15s',
+                }}
+              >
+                Remove
+              </button>
+              <button
+                onClick={() => setConfirmId(null)}
+                style={{
+                  background: 'none', border: 'none', cursor: 'pointer',
+                  padding: '2px 6px', fontSize: 11, fontWeight: 600,
+                  fontFamily: "'Quicksand', sans-serif",
+                  color: '#8a8278', borderRadius: 4, transition: 'opacity 0.15s',
+                }}
+              >
+                Keep
+              </button>
+            </div>
+          ) : (
+            <button
+              onClick={e => { e.stopPropagation(); setConfirmId(trip.id); }}
+              style={{
+                background: 'none', border: 'none', cursor: 'pointer',
+                padding: '4px 6px', fontSize: 16, color: '#8a8278',
+                lineHeight: 1, flexShrink: 0, borderRadius: 4,
+                transition: 'color 0.15s',
+              }}
+              onMouseEnter={e => e.currentTarget.style.color = C.darkInk}
+              onMouseLeave={e => e.currentTarget.style.color = '#8a8278'}
+              title="Remove trip"
+            >
+              ×
+            </button>
+          )}
         </div>
       ))}
 
