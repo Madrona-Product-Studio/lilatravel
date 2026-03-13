@@ -310,6 +310,35 @@ The river gorge offers naturally sheltered contemplative spaces: flat rocks abov
 - **Interests**: meditation, nature, solitude
 - **Months**: Year-round
 
+#### Big Sur River Gorge Swimming Holes (Pfeiffer Big Sur State Park)
+A series of natural pools carved into the granite riverbed of the Big Sur River, reached via the Gorge Trail from Pfeiffer Big Sur State Park. The water is cold year-round — a genuine natural cold plunge in a redwood canyon setting. Flat sun-warmed rocks between pools invite lingering. The combination of cold immersion and forest silence makes this one of the most grounding spots in the corridor. Best after winter rains when pools are deep; by late summer some pools may be shallow.
+- **Energy**: gentle, moderate
+- **Group**: solo, couple, friends
+- **Interests**: wellness, nature, soaking, solitude
+- **Months**: Year-round (deepest pools Dec–Jun)
+
+#### Coast Gallery & Meditation Garden
+A small gallery and overlook garden perched on the cliffs of Highway 1, originally built inside a water tank. The outdoor terrace and surrounding grounds function as an informal meditation garden — benches facing the Pacific, art on the walls, and the kind of silence that only happens between the road and the edge. The gallery features work by local Big Sur artists. No fee to walk the grounds. A natural pause point on the drive, combining contemplation with art.
+- **Energy**: gentle
+- **Group**: solo, couple, friends
+- **Interests**: meditation, art, nature, solitude
+- **Months**: Year-round (check hours — seasonal schedule)
+
+#### Ventana Big Sur Guided Nature Meditation Walks
+Alila Ventana Big Sur offers guided meditation walks through the resort's 40-acre redwood canyon for resort guests. Led by trained facilitators, the walks integrate mindful movement, forest bathing (shinrin-yoku), and seated meditation at natural stopping points — moss-covered nurse logs, creek crossings, and clearings in the canopy. Sessions typically run 60–90 minutes in the morning. A structured counterpart to solo practice in the canyon.
+- **Energy**: gentle
+- **Group**: solo, couple, friends
+- **Budget**: premium, noLimits
+- **Interests**: meditation, wellness, nature, forestBathing
+- **Months**: Year-round
+
+#### Point Lobos Contemplative Walk & Nature Journaling
+Point Lobos State Natural Reserve offers some of the most meditative walking on the California coast — the combination of ancient Monterey cypress, crashing surf, and protected coves creates a natural rhythm for contemplative practice. The Cypress Grove and South Shore trails are particularly suited to slow, attentive walking and nature journaling. Bring a sketchbook or journal; the tide pools, lichen-covered branches, and China Cove overlook are all subjects that reward stillness. No formal programming — this is self-guided contemplation in one of the most powerful landscapes in the orbit. Arrive before 9 AM for near-solitude.
+- **Energy**: gentle
+- **Group**: solo, couple
+- **Interests**: meditation, nature, art, solitude, wildlife
+- **Months**: Year-round (arrive early; parking fills fast)
+
 ### Soaking & Thermal
 
 #### Refuge Carmel

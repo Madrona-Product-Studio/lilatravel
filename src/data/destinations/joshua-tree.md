@@ -250,6 +250,14 @@ Small-group multi-day retreats based in or near the park. Various teachers rotat
 - **Interests**: yoga, meditation, wellness
 - **Months**: Oct–May
 
+#### Desert Vibes Yoga
+Drop-in yoga studio in Joshua Tree village, walking distance from the coffee shops and galleries on Highway 62. Vinyasa, restorative, yin, and sound-infused classes in a small, community-rooted space. The schedule rotates teachers; check the website or Instagram for current class times. No membership required — single class drop-ins welcome. A practical option for travelers who want a morning practice without committing to a retreat.
+- **Energy**: gentle, moderate
+- **Group**: solo, couple, friends
+- **Budget**: mindful, balanced
+- **Interests**: yoga, wellness
+- **Months**: Year-round
+
 **Morning practice suggestion:** Sunrise yoga at Ryan Mountain trailhead (before the hike) or at your campsite with the boulders as a backdrop. The early desert light — rose, amber, then white — provides natural rhythm for a sun salutation sequence.
 
 ### Breathwork & Meditation
@@ -265,12 +273,35 @@ Long-established retreat venue with meditation halls, healing arts practitioners
 - **Months**: Year-round
 
 #### Integratron
-Landers, ~25 min north. A one-of-a-kind acoustic sound bath experience inside a resonant wood dome built in the 1950s by George Van Tassel. Rooted in fringe science but the experience is genuinely resonant. Bookings fill quickly — reserve well ahead. This belongs on every Lila itinerary.
+Landers, ~25 min north. A one-of-a-kind acoustic sound bath experience inside a resonant wood dome built in the 1950s by George Van Tassel — an aeronautical engineer who claimed the design was channeled from extraterrestrials. The 38-foot, all-wood dome (no metal fasteners) produces extraordinary acoustic resonance; participants lie on the floor while quartz crystal singing bowls are played above. Sessions are 60 minutes, limited to 25–30 people. The structure has hosted everyone from scientists to musicians to spiritual seekers. Rooted in fringe science but the sonic experience is genuinely transcendent — most people report deep physical relaxation regardless of their beliefs. Bookings fill weeks to months in advance; reserve as early as possible. This belongs on every Lila itinerary.
 - **Energy**: gentle
 - **Group**: solo, couple, friends
 - **Budget**: balanced
 - **Interests**: meditation, soundHealing, wellness
 - **Months**: Year-round
+
+#### Joshua Tree Sound Baths (Various Practitioners)
+The high desert around Joshua Tree has become one of the most active sound healing communities in the American West. Multiple practitioners offer outdoor evening sound bath sessions — crystal singing bowls, gongs, chimes, and didgeridoo played under open sky, often timed to new moons, full moons, or seasonal transitions. Sessions typically take place on private desert land near the park or at retreat centers in Joshua Tree and Twentynine Palms. The combination of desert acoustics, dark sky, and the natural quiet of the Mojave amplifies the experience. Check local listings, Joshua Tree Retreat Center, and community boards at Coyote Corner or Joshua Tree Coffee Company for current schedules.
+- **Energy**: gentle
+- **Group**: solo, couple, friends
+- **Budget**: mindful, balanced
+- **Interests**: soundHealing, meditation, wellness, stargazing
+- **Months**: Year-round (outdoor sessions best Oct–May)
+
+#### Coyote Hole (Natural Spring Swimming Hole)
+A seasonal natural spring and swimming hole in the desert wash north of the park, fed by underground water that surfaces when the water table is high enough — typically after a wet winter. When water is present, the pool sits among boulders and desert scrub, a genuinely surreal oasis in otherwise arid terrain. Local knowledge is required to find it; ask at Coyote Corner or local shops for current conditions. The site has a long history as a gathering place — petroglyphs nearby suggest indigenous use. Access is on BLM land. Do not visit when dry. When flowing, it offers a rare desert cold-water immersion experience.
+- **Energy**: gentle, moderate
+- **Group**: solo, couple, friends
+- **Interests**: wellness, nature, solitude, soaking
+- **Months**: Dec–May (water dependent; check locally)
+
+#### Sky Village Swap Meet & Community Gathering
+A weekend outdoor market and community gathering in Yucca Valley (Highway 62 corridor), where the local desert community converges — vintage goods, handmade crafts, crystals, local art, food vendors, and live music. Not a traditional wellness experience, but the social energy and unhurried pace function as a counterpoint to the solitude of the park. A place to connect with the human layer of the high desert ecosystem. Check current schedule — typically weekends, seasonal.
+- **Energy**: gentle
+- **Group**: solo, couple, friends, family
+- **Budget**: mindful
+- **Interests**: culture, community, art, farmMarkets
+- **Months**: Year-round (check schedule)
 
 ### Soaking & Thermal
 

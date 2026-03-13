@@ -135,6 +135,65 @@ A short walk through old-growth forest to a powerful three-pronged waterfall dro
 - **Interests**: waterfall, forest, photography
 - **Months**: Year-round
 
+### Activities & Experiences
+
+#### Tide Pooling at Kalaloch Beach 4 & Rialto Beach
+Some of the richest intertidal life on the Pacific coast. Kalaloch Beach 4 has accessible rock shelves exposed at low tide — sea stars, anemones, chitons, hermit crabs, and sculpin in shallow pools. Rialto Beach offers a second tide pooling zone near the Hole-in-the-Wall sea arch. Arrive at least one hour before low tide for the best window. Wear rubber-soled shoes, stay off algae-covered rocks, and never remove or disturb marine life. Check tide tables in advance — these experiences are entirely tide-dependent.
+- **Kalaloch Beach 4 access**: Short staircase from US-101 pullout, 5 miles south of Kalaloch Lodge
+- **Rialto Beach access**: End of Mora Road, 14 miles west of Forks
+- **Energy**: gentle
+- **Group**: solo, couple, friends, family
+- **Interests**: marine life, nature, photography, education
+- **Months**: Year-round (best at minus tides; check tidesandcurrents.noaa.gov)
+
+#### Whale Watching — Gray Whale Migration
+Gray whales pass the Olympic coast during their annual 10,000-mile migration from Baja California to Alaska, and the peninsula offers some of the best shore-based whale watching on the West Coast. La Push and the coastal bluffs between Kalaloch and Ruby Beach provide excellent vantage points — look for spouts and dorsal ridges from elevated positions. For closer encounters, charter boats depart from Westport (2.5 hours south of Kalaloch) during peak season, with operators like Ocean Sportfishing and Deep Sea Charters offering 2–3 hour trips ($45–65/person). Peak migration runs March through May; a few resident grays remain through summer.
+- **Best shore viewing**: La Push headlands, Kalaloch bluff trail, Cape Flattery overlooks
+- **Charter boats**: Westport, WA — 2–3 hour trips, $45–65/person
+- **Energy**: gentle (shore) to moderate (boat)
+- **Group**: solo, couple, friends, family
+- **Interests**: wildlife, marine life, photography
+- **Months**: March–May (peak); some residents through summer
+
+#### Lake Crescent Kayaking & Paddleboarding
+Lake Crescent's glacially carved basin holds some of the clearest freshwater in the Pacific Northwest — visibility reaches 60 feet in calm conditions, and the turquoise color is extraordinary from water level. Rent kayaks or stand-up paddleboards at the Lake Crescent Lodge boat dock (single kayak $25/hr, double $35/hr, SUP $25/hr) or bring your own and launch from East Beach or Fairholme. Morning sessions are best — the lake is often glassy before noon, and afternoon winds can build. Paddle toward Barnes Point for the best views of Storm King and the surrounding old-growth slopes. No motorized boats over 10 HP.
+- **Rentals**: Lake Crescent Lodge boat dock — kayaks, SUPs, rowboats. Memorial Day–Labor Day, 9 AM–5 PM.
+- **Launch sites**: East Beach (free, NPS), Fairholme (free, NPS), Lake Crescent Lodge (guests/renters)
+- **Energy**: gentle to moderate
+- **Group**: solo, couple, friends, family
+- **Interests**: paddling, photography, lake, nature
+- **Months**: May–September (rentals Memorial Day–Labor Day)
+
+#### Hurricane Ridge Snowshoeing & Wildflower Walks
+Hurricane Ridge transforms by season. In winter (December–March), the ridge becomes a snowshoe destination — the Hurricane Ridge Ski & Snowboard Area rents snowshoes ($25/day) and rangers lead guided snowshoe walks on weekends at 2 PM (free with park entry, first-come-first-served). The road opens Saturdays and Sundays only in winter, weather permitting. In summer (July–August), the same meadows erupt with wildflowers — glacier lilies, lupine, paintbrush, and bistort blanket the subalpine slopes. Rangers lead wildflower walks from the visitor center on summer weekends. Both experiences use the same trails but feel like different parks entirely.
+- **Winter snowshoe rentals**: $25/day at Hurricane Ridge Ski & Snowboard Area
+- **Ranger-led snowshoe walks**: Weekends at 2 PM, December–March (free with park entry)
+- **Summer wildflower walks**: Weekends from Hurricane Ridge Visitor Center, July–August
+- **Energy**: gentle (wildflower walk) to moderate (snowshoe)
+- **Group**: solo, couple, friends, family
+- **Interests**: snowshoeing, wildflowers, alpine, ranger programs
+- **Months**: December–March (snowshoe); July–August (wildflowers)
+
+#### Olympic Game Farm (Sequim)
+A drive-through wildlife park in Sequim housing formerly captive animals — including Kodiak bears, timber wolves, bison, elk, zebras, and Tibetan yaks — many retired from film and television work. The farm has operated since the 1970s, originally as a holding facility for Walt Disney nature film animals. The drive-through tour (45–60 min) lets you see animals at close range from your car; bread feeding of select species is allowed (whole wheat only, sold on site, $2/loaf). A walking tour covers a separate area with smaller animals and educational displays. Ideal for families with children or as a rain-day alternative when trails are soaked.
+- **Address**: 1423 Ward Road, Sequim, WA 98382
+- **Hours**: Daily 9 AM–4 PM (summer), 9 AM–3 PM (winter) — check olygamefarm.com for seasonal schedule
+- **Cost**: $15 adults, $13 children (6–12), free under 6
+- **Energy**: gentle
+- **Group**: couple, friends, family
+- **Interests**: wildlife, family-friendly, rainy-day activity
+- **Months**: Year-round
+
+#### Elwha River Fishing (Catch-and-Release)
+Since the removal of the Elwha and Glines Canyon dams in 2012–2014, the Elwha River has become one of the most remarkable river restoration stories in America — and its fishery is gradually returning. Salmon and steelhead are recolonizing over 70 miles of habitat. The river is currently open for catch-and-release fishing only (check WDFW regulations annually, as rules evolve with restoration progress). Fish from the restored riverbanks below the former Elwha Dam site or at accessible pullouts along the Elwha River Road. A Washington State fishing license is required, along with a Catch Record Card for salmon/steelhead. Barbless hooks mandatory. The experience here is as much ecological witnessing as it is angling — you're fishing a river in the middle of one of the largest ecosystem recoveries in U.S. history.
+- **Access**: Elwha River Road, off US-101 west of Port Angeles
+- **License**: Washington State fishing license + Catch Record Card required
+- **Regulations**: Catch-and-release only, barbless hooks, check WDFW annual rules
+- **Energy**: gentle to moderate
+- **Group**: solo, couple, friends
+- **Interests**: fishing, ecology, river restoration, solitude
+- **Months**: Year-round (check seasonal closures via WDFW)
+
 ---
 
 ## Soaking & Thermal
@@ -173,6 +232,65 @@ Arrive at Hurricane Ridge before the visitor center opens (typically 9 AM). The 
 #### Port Angeles and Sequim — Local Studios
 Port Angeles has a small but active wellness community. Studios rotate; search "yoga Port Angeles" for current offerings. The town is 20 minutes from Hurricane Ridge and a natural base camp. Sequim (25 min east) has a larger year-round population and additional options, particularly for Pilates and somatic work.
 
+#### Sol Duc Hot Springs Resort — Spa Services
+Beyond the soaking pools, the resort offers seasonal massage and bodywork in treatment rooms adjacent to the springs. Swedish, deep tissue, and hot stone massage available ($95–145, 50–80 min). Aromatherapy add-ons use locally sourced essential oils. Appointments book quickly in summer — reserve when you confirm your park dates. The combination of a morning soak, a trail to Sol Duc Falls, and an afternoon massage is one of the peninsula's most complete wellness half-days.
+- **Address**: Sol Duc Hot Springs Road, Olympic National Park
+- **Appointments**: (360) 327-3583 or olympicnationalparks.com — reserve in advance
+- **Cost**: $95–145 per treatment (50–80 min)
+- **Energy**: gentle
+- **Group**: solo, couple
+- **Interests**: spa, massage, thermal, wellness
+- **Months**: Late May–early October (seasonal with resort)
+
+#### Hoh Rainforest — Guided Forest Bathing Walks
+The Hoh's extraordinary density of life — moss, fern, lichen, and old-growth canopy filtering the light to a soft green — makes it one of the most naturally immersive environments for shinrin-yoku (forest bathing) in North America. Local guides periodically offer structured forest bathing walks along the Hall of Mosses and Spruce Nature Trail, emphasizing slow sensory engagement: listening to rain on canopy, touching bark, breathing the terpene-rich air. Check with the Olympic National Park Visitor Center in Port Angeles or local wellness providers for current offerings. Even without a guide, walking the Hoh trails slowly, silently, and without agenda achieves a similar result — the forest does most of the work.
+- **Location**: Hoh Rain Forest Visitor Center trailheads
+- **Duration**: 2–3 hours (guided), self-paced (unguided)
+- **Energy**: gentle
+- **Group**: solo, couple, friends
+- **Interests**: forest bathing, meditation, nature, mindfulness
+- **Months**: Year-round (most atmospheric in rain)
+
+#### Body Bliss Massage (Port Angeles)
+The go-to independent massage practice in Port Angeles. Licensed therapists offer Swedish, deep tissue, sports massage, and prenatal bodywork in a quiet downtown studio. Walk-ins sometimes available, but booking 2–3 days ahead is recommended during summer. Convenient for an end-of-day recovery session after a Hurricane Ridge or Elwha hike.
+- **Address**: 214 N Laurel St, Port Angeles, WA 98362
+- **Hours**: Monday–Saturday, 10 AM–6 PM (by appointment)
+- **Cost**: $80–120 (60–90 min sessions)
+- **Energy**: gentle
+- **Group**: solo, couple
+- **Interests**: massage, recovery, wellness
+- **Months**: Year-round
+
+#### Studio Glow Yoga (Sequim)
+A warm, welcoming yoga studio in Sequim offering drop-in classes across a range of styles — vinyasa flow, gentle/restorative, yin, and chair yoga. The studio draws a mix of locals and visitors and keeps a rotating schedule with morning and evening options. Drop-in rate $15/class. A useful complement to a day spent in the car or on trails, especially for travelers staying in the Sequim/Dungeness Valley corridor.
+- **Address**: 163 W Washington St, Sequim, WA 98382
+- **Hours**: Class schedule varies; check studioglowsequim.com
+- **Cost**: $15 drop-in
+- **Energy**: gentle
+- **Group**: solo, couple, friends
+- **Interests**: yoga, flexibility, wellness, community
+- **Months**: Year-round
+
+#### Cedar Creek Abbey — Contemplative Walks
+A small Benedictine-affiliated contemplative center set in forested acreage between Sequim and Port Angeles. The abbey maintains walking paths through native woodland, a meditation garden, and a simple chapel open to visitors of all faiths and none. No formal programming is required — visitors are welcome to walk the grounds in silence during daylight hours. The setting offers a different register of stillness than the park itself: cultivated, intentional, and very quiet. A meaningful pause between more active park days.
+- **Location**: Between Sequim and Port Angeles (check cedarcreekabbey.org for directions)
+- **Hours**: Grounds open daily during daylight hours
+- **Cost**: Free (donations welcome)
+- **Energy**: gentle
+- **Group**: solo, couple
+- **Interests**: contemplation, meditation, silence, walking
+- **Months**: Year-round
+
+#### Kalaloch Lodge — Serenity Spa
+The lodge's seasonal spa program offers massage and bodywork in a coastal setting above the wild Pacific beach. Treatments include Swedish massage, hot stone, and a signature driftwood aromatherapy session using Pacific Northwest botanicals. The treatment rooms face the ocean — the sound of surf is part of the experience. Available seasonally (typically Memorial Day through September); book at least a week in advance during peak summer.
+- **Address**: 157151 US-101, Forks, WA 98331 (Kalaloch Lodge)
+- **Appointments**: (360) 962-2271 or olympicnationalparks.com
+- **Cost**: $100–160 per treatment (50–80 min)
+- **Energy**: gentle
+- **Group**: solo, couple
+- **Interests**: spa, massage, coastal wellness
+- **Months**: Memorial Day–September (seasonal)
+
 #### Kalaloch Lodge
 The lodge's coastal setting — above a sweep of wild beach, with sea stacks visible from the windows — is its own kind of therapeutic environment. No formal wellness programming, but the location invites a particular quality of stillness. Recommended as a base for anyone who wants the coast without camping.
 
@@ -191,10 +309,22 @@ Port Angeles's anchor craft brewery. Straightforward and good — fish and chips
 #### Dupuis Restaurant
 Locally loved, unpretentious, consistently good. Serves local seafood and Pacific Northwest comfort food. The kind of place a town this size needs and rarely has.
 
+#### Next Door Gastropub
+A step up from standard pub fare without losing the casual, walk-in energy. Craft cocktails, rotating seasonal plates, and a burger that regulars swear by. The menu leans Pacific Northwest — Dungeness crab mac and cheese, local greens, house-made charcuterie. Good beer list. Open for lunch and dinner; a solid option when you want something more interesting than bar food but don't need a full-service restaurant.
+- **Address**: 113 W 1st St, Port Angeles, WA 98362
+- **Hours**: Daily 11 AM–9 PM
+- **Budget**: balanced ($15–28 entrées)
+
 #### Bonny's Bakery
 Morning pastries, strong coffee, a community gathering point. Arrive early — the good things sell out.
 
 ### Sequim & Port Townsend
+
+#### Nourish Sequim
+A bright, plant-forward café with a farm-to-table ethos matched by its Dungeness Valley sourcing. The menu rotates seasonally — expect local greens, house-made soups, grain bowls, and baked goods made with Washington-grown flour. Strong coffee program. Vegetarian and vegan options are genuine rather than afterthoughts. A good lunch stop between Sequim lavender farms and the park.
+- **Address**: 101 E Washington St, Sequim, WA 98382
+- **Hours**: Wednesday–Sunday, 8 AM–3 PM
+- **Budget**: budget-friendly to balanced ($12–20 entrées)
 
 #### Alder Wood Bistro (Sequim)
 Farm-to-table sourcing in a town that actually has farms. Garlic from nearby farms, local oysters, thoughtful wine list. One of the best restaurants on the entire peninsula.
@@ -209,6 +339,18 @@ Sourdough, local grain, pastries that justify the trip. Community-owned institut
 
 #### In the Forks Area
 Forks is a small logging town. Options are limited — the River Inn Restaurant and the In Place Diner are solid. Plan provisions; don't expect to find great food here without advance prep.
+
+#### In the Woods Café (Forks)
+A small, warm café on the main strip in Forks that over-delivers for its setting. Homemade soups, sandwiches on fresh bread, espresso drinks, and baked goods made in-house. The kind of place that turns a fuel stop into an actual meal. Locals and hikers share tables. A genuine find in a town with limited dining.
+- **Address**: 951 S Forks Ave, Forks, WA 98331
+- **Hours**: Monday–Saturday, 7 AM–3 PM
+- **Budget**: budget-friendly ($8–15 entrées)
+
+#### Kalaloch Lodge Creekside Restaurant
+The only sit-down restaurant on the wild coast between Forks and Lake Quinault. The menu features Pacific Northwest staples — grilled salmon, clam chowder, fish and chips, and seasonal specials using regional ingredients. The dining room overlooks Kalaloch Creek and the ocean beyond. Not destination dining, but the setting does real work — watching sunset over the Pacific from your table elevates the meal. Breakfast, lunch, and dinner served daily. Reservations recommended for dinner in summer.
+- **Address**: 157151 US-101, Forks, WA 98331 (Kalaloch Lodge)
+- **Hours**: Daily 7 AM–9 PM (seasonal hours may vary)
+- **Budget**: balanced ($16–32 entrées)
 
 #### Quileute Oceanside Resort Restaurant (La Push)
 On-site at the resort, overlooking First Beach. Simple menu, extraordinary location. Worth eating here just to watch the surf from your table.

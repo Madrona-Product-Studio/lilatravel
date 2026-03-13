@@ -104,6 +104,34 @@ A local's hike above Kapa'a, reaching a ridge with panoramic views of the East S
 - **Interests**: panoramic views, interior landscape, local
 - **Months**: Year-round
 
+#### Kuamoʻo-Nounou Trail (East Side)
+An alternative approach to the Sleeping Giant ridge from the west, connecting through a forested interior corridor along Kuamoʻo Road. The trail crosses the Nounou Mountain ridgeline with views into the Wailua River valley and out to the coast. Less trafficked than the East Trail, with more shade and a wilder feel. Can be combined with the East Trail for a through-hike with a car shuttle.
+- **Distance**: 4.0 miles round trip · **Elevation gain**: 1,100 ft · **Difficulty**: Moderate · **Time**: 2.5–3 hrs
+- **Energy**: moderate
+- **Group**: solo, couple, friends
+- **Interests**: ridge walk, forest, Wailua River views, solitude
+- **Months**: Year-round
+
+### South Shore
+
+#### Māhāʻulepū Heritage Trail (South Shore)
+A coastal walk along Kauaʻi's most intact stretch of undeveloped shoreline — lithified sand dunes, tide pools, an ancient sinkhole, and views of the rugged Māhāʻulepū coastline that most visitors never see. The trail begins past the Grand Hyatt at Shipwreck Beach and follows the coast southeast past Punahoa Point to Māhāʻulepū Beach. Easy terrain on packed sand and rock. Access through CJM Country Stables gate; closes at dark.
+- **Distance**: 4 miles round trip · **Elevation gain**: minimal · **Difficulty**: Easy · **Time**: 1.5–2 hrs
+- **Energy**: gentle
+- **Group**: solo, couple, friends, family
+- **Interests**: coastal walk, geology, tide pools, fossils, photography
+- **Months**: Year-round
+
+### Interior / Cross-Island
+
+#### Powerline Trail (North Shore to Līhuʻe)
+A 13-mile point-to-point trail that crosses the island's mountainous interior from Princeville to a trailhead near Kapahi on the east side, following the path of an old utility line through deep valleys and exposed ridges. Views of Mount Waiʻaleʻale and the Hanalei watershed are exceptional when the clouds break. The trail is rough, often muddy, and poorly marked in sections — real backcountry conditions on a small island. Requires a car shuttle or a very long out-and-back. Best done north to south for net elevation loss.
+- **Distance**: 13 miles one way · **Elevation gain**: 1,300 ft · **Difficulty**: Strenuous · **Time**: 6–8 hrs
+- **Energy**: adventurous
+- **Group**: solo, friends (experienced)
+- **Interests**: cross-island traverse, mountain views, backcountry, solitude
+- **Months**: April–September (impassable in heavy rain)
+
 ### Scenic Drives & Overland
 
 #### Waimea Canyon Drive (Highway 550)
@@ -153,7 +181,28 @@ The island's most developed spa facility. Traditional Hawaiian healing practices
 #### Kauaʻi Yoga (Multiple Locations)
 A long-running island-wide yoga community. Drop-in classes offered across Poipū, Kapa'a, and Princeville. Check kauaiyoga.com for current schedules.
 
+#### Kauaʻi Yoga on the Beach (Poipū / Hanalei)
+Sunrise yoga sessions held directly on the sand — Poipū Beach in winter, Hanalei Bay in summer. The practice is simple and open-level: breath, movement, and the sound of the ocean as the only soundtrack. Group sessions run at dawn; private sessions available by arrangement. No studio, no walls, no mirrors. The beach is the room.
+- **Energy**: gentle
+- **Group**: solo, couple, friends
+- **Interests**: yoga, sunrise, beach, open-air practice
+- **Months**: Year-round (location rotates by season)
+
+#### Angeline's Muʻumuʻu Heaven & Outdoor Shower Yoga (Kapaʻa)
+One of the most genuinely Kauaʻi experiences on the island — Auntie Angeline Locey runs lomilomi massage, storytelling, and outdoor yoga from her home property in Anahola. The "yoga" is held under the sky near an outdoor shower surrounded by tropical gardens. The muʻumuʻu shop is an extension of her personality — vibrant, local, completely uncommercial. This is Hawaiian wellness as cultural practice, not spa product. By appointment only.
+- **Energy**: gentle
+- **Group**: solo, couple
+- **Interests**: lomilomi, Hawaiian culture, yoga, local character
+- **Months**: Year-round (by appointment)
+
 ### Water Practice
+
+#### Nā Pali Kayak Meditation Paddle (North Shore, Summer)
+A guided mindful paddle along the first stretch of the Nā Pali coastline — combining the physical practice of ocean kayaking with intentional silence, breath awareness, and open-water presence. Offered by select outfitters (check Kayak Kauaʻi for guided options) during the calm summer months when the north shore is navigable. The combination of sea cliffs, open ocean, and focused attention creates something no studio can replicate. Experience required; ocean conditions dictate whether the trip goes.
+- **Energy**: moderate to adventurous
+- **Group**: solo, couple, friends
+- **Interests**: kayaking, mindfulness, Nā Pali Coast, ocean practice
+- **Months**: May–September (calm conditions only)
 
 #### Stand-Up Paddleboarding — Hanalei Bay (Summer)
 Hanalei Bay in summer is one of the finest flat-water SUP environments in the Pacific: a protected crescent bay with mountain backdrop, calm water, and turtles visible below the board on clear days. Multiple rental and lesson operators on the beach. An elemental morning.
@@ -166,6 +215,28 @@ The only navigable river in Hawaiʻi. A guided kayak tour up the river passes th
 #### Limahuli Garden & Preserve (Hāʻena)
 A National Tropical Botanical Garden property tucked into a valley on the north shore, built on the footprint of ancient Hawaiian agricultural terraces. Ancient lo'i (taro paddies), native plant collections, and one of the most biodiverse valleys in Hawaiʻi. Self-guided tours available; guided tours recommended for cultural depth. Limahuli is one of the quieter, more deeply grounded places on the island.
 - limahuli.org
+
+#### Hanalei Day Spa (Hanalei)
+A full-service day spa on the North Shore offering massage, bodywork, facials, and energy healing in a garden setting steps from Hanalei town. Treatments draw on both Hawaiian and Pacific Rim traditions. Lomilomi massage and hot stone sessions are the specialties. Walk-ins sometimes accommodated, but booking ahead is recommended — the North Shore has limited spa options, and this is the best of them.
+- **Energy**: gentle
+- **Group**: solo, couple
+- **Interests**: massage, bodywork, relaxation, Hawaiian healing
+- **Months**: Year-round
+
+#### Alexander Day Spa & Salon at Kauaʻi Marriott (Līhuʻe)
+The most accessible full-service spa on the east side — located inside the Kauaʻi Marriott Resort on Kalapakī Beach. A practical option for visitors based near Līhuʻe or arriving/departing the airport. Standard resort spa programming: massage, facials, body treatments, nail services. Not as culturally rooted as the North Shore options, but consistent, professional, and open to non-hotel guests.
+- **Address**: 3610 Rice Street, Līhuʻe, HI 96766 (inside Kauaʻi Marriott)
+- **Energy**: gentle
+- **Group**: solo, couple
+- **Interests**: spa, massage, relaxation, convenience
+- **Months**: Year-round
+
+#### Lomilomi — Hawaiian Healing Tradition (Island-wide)
+Lomilomi is the traditional Hawaiian practice of massage and bodywork — long, flowing strokes using the forearms and elbows, rooted in a spiritual framework of restoring balance and flow in the body. On Kauaʻi, lomilomi is offered at resort spas (Anara Spa, Grand Hyatt) and by independent Hawaiian practitioners working from private studios and home practices across the island. For an experience grounded in lineage rather than resort packaging, seek out practitioners in Kapaʻa and the North Shore — ask at Hanalei Day Spa or Angeline's for referrals. This is not a spa treatment; it is a cultural practice offered with generosity.
+- **Energy**: gentle
+- **Group**: solo, couple
+- **Interests**: Hawaiian healing, lomilomi, bodywork, cultural practice
+- **Months**: Year-round
 
 ---
 
@@ -319,6 +390,12 @@ The most practical affordable hotel on the island — well-located in Lihue near
 #### Na Pali Coast Cottages (Hanalei area)
 Small independent cottage rentals on the north shore. The Vacation Rental landscape on Kauaʻi is extensive — for something with character, look for VRBO/Airbnb listings that are locally owned and long-established. The north shore cottage experience is a Kauaʻi original.
 
+#### Waimea Plantation Cottages (Waimea, West Side)
+A collection of restored plantation-era cottages spread across a coconut grove on the west side, steps from the black-sand beach at Waimea. The buildings date from the early 1900s sugar plantation days — individual wooden cottages with deep porches, period details, and a pace that matches the quietest side of the island. The location is the best base for Waimea Canyon and Kōkeʻe exploration, and the sunsets over Niʻihau from the beach are unmatched. No resort amenities, no crowds — just history, stillness, and the garden isle as it was. waimea-plantation.com
+
+#### Aston at Poipū Kai (Poipū, South Shore)
+A condo-style resort set back from the coast in a 110-acre tropical setting near Brennecke's Beach and Poipū Beach Park. One- and two-bedroom units with full kitchens — practical for families and longer stays. The property is quieter and more affordable than the beachfront resorts, with pool access and walking distance to the south shore's best beaches and restaurants. A solid budget-friendly base for the south shore. astonhotels.com
+
 ### Premium (Elevated experience)
 
 #### Grand Hyatt Kauaʻi Resort & Spa (Poipū)
@@ -326,6 +403,15 @@ The grandest property on the island — lagoon pools, full Anara Spa with Hawaii
 
 #### Timbers Kauaʻi (Hōkūala, Lihue)
 A newer luxury property on the eastern coast, set on a former plantation estate. Organic farm on-site, direct ocean access, considered design. Less crowded than Poipū; a quieter base for island exploration. timberskauai.com
+
+#### 1 Hotel Hanalei Bay (Princeville, North Shore)
+The former St. Regis Princeville, reopened as 1 Hotel Hanalei Bay after a comprehensive renovation — now the North Shore's defining luxury property. Perched on a bluff above Hanalei Bay with direct views of the Nā Pali Coast and Bali Hai (Makana Peak). The renovation brought a sustainability-focused ethos: reclaimed materials, farm-to-table dining, on-site garden, and a spa rooted in Hawaiian and plant-based practices. The beach below — Pū Poa Beach — is one of the best on the island. The property is the only full-service luxury hotel on the North Shore. 1hotels.com/hanalei-bay
+
+#### Koloa Landing Resort (Poipū, South Shore)
+A family-oriented resort in the heart of Poipū with some of the best pool facilities on the island — multiple lagoon-style pools, a lazy river, water slides, and an adults-only infinity pool. Units are spacious villa-style with full kitchens. The location is a short walk from Poipū Beach and the shops at Kukuiʻula Village. A strong choice for families with children who want south shore access without the formality of the Grand Hyatt. koloalandingresort.com
+
+#### Outrigger Kauaʻi Beach Resort & Spa (Poipū, South Shore)
+Beachfront on Poipū Beach with direct sand access — one of the few properties where you can walk from your room to the water in under a minute. Recently renovated rooms, on-site dining, and a full spa. The property sits on a stretch of beach with reliable snorkeling and turtle sightings. Less grand than the Grand Hyatt, more accessible than Timbers — a solid middle-luxury option on the south shore. outrigger.com
 
 ---
 
