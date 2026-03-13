@@ -1,0 +1,81 @@
+[
+  {
+    "id": "pacific-rim-entry-fee",
+    "activity": "Pacific Rim National Park Reserve Entry",
+    "permitType": "fee",
+    "required": true,
+    "description": "All visitors to Pacific Rim National Park Reserve (Long Beach, Broken Group Islands, West Coast Trail) must pay a Parks Canada entry fee or hold a Discovery Pass.",
+    "where": "Parks Canada kiosks at park entrances or online",
+    "url": "https://parks.canada.ca/pn-np/bc/pacificrim",
+    "cost": "$9.50/person/day or $47.50/vehicle/day · Annual Discovery Pass: $75.25/person, $152.25/family",
+    "seasonalWindow": {
+      "required": "year-round",
+      "notes": "The Discovery Pass covers all Parks Canada sites nationwide and is good value for multi-day or multi-park trips."
+    },
+    "tips": [
+      "The Discovery Pass pays for itself in 2 days at Pacific Rim.",
+      "Purchase online before arrival to avoid queues at entrance kiosks.",
+      "The pass also covers the West Coast Trail entry (permit fee is separate)."
+    ]
+  },
+  {
+    "id": "west-coast-trail-permit",
+    "activity": "West Coast Trail Permit",
+    "permitType": "advance",
+    "required": true,
+    "description": "The West Coast Trail requires a hiking permit ($255 CAD + reservation fee) and a mandatory pre-trip orientation. Permits are limited and release in January for the May–September season.",
+    "where": "pc.gc.ca/wct",
+    "url": "https://parks.canada.ca/pn-np/bc/pacificrim/activ/activ1",
+    "cost": "$255 CAD per person + reservation fee",
+    "seasonalWindow": {
+      "required": "May–September only",
+      "notes": "Permits release in January and sell out quickly. A limited number of walk-up permits are available at trailheads (Bamfield and Port Renfrew) — arrive before 6 AM for a chance."
+    },
+    "tips": [
+      "Book in January when reservations open — peak dates sell out within days.",
+      "The mandatory orientation session covers tides, wildlife, and trail conditions.",
+      "Plan 6–8 days to complete the 75 km trail comfortably.",
+      "Water taxi fees at trailheads are additional (~$100–150 CAD).",
+      "Solid backcountry experience is required — the trail involves ladders, cable cars, and tidal passages."
+    ]
+  },
+  {
+    "id": "green-point-campground",
+    "activity": "Green Point Campground Reservation",
+    "permitType": "advance",
+    "required": true,
+    "description": "The only campground inside Pacific Rim's Long Beach unit. Clifftop sites above the Pacific. Reservations open in February and fill within hours for summer dates.",
+    "where": "reservation.pc.gc.ca",
+    "url": "https://parks.canada.ca/pn-np/bc/pacificrim/activ/camping",
+    "cost": "$27.50–$35.75 CAD/night depending on site type",
+    "seasonalWindow": {
+      "required": "year-round (peak May–September)",
+      "notes": "Reservations open in February for the full season. Generator-free zone."
+    },
+    "tips": [
+      "Book on opening day in February for July/August dates.",
+      "Sites on the ocean side are the most coveted — select carefully.",
+      "The campground is a short walk from Long Beach surf breaks.",
+      "No generators allowed — bring a battery pack if needed."
+    ]
+  },
+  {
+    "id": "strathcona-camping",
+    "activity": "Strathcona Provincial Park Camping",
+    "permitType": "advance",
+    "required": true,
+    "description": "Camping in Strathcona Provincial Park (Buttle Lake, Ralph River) requires reservations through the BC Parks system.",
+    "where": "bcparks.ca",
+    "url": "https://bcparks.ca/strathcona-park/",
+    "cost": "$18–$35 CAD/night depending on campground and site type",
+    "seasonalWindow": {
+      "required": "May–October (most campgrounds seasonal)",
+      "notes": "Reservations open 4 months ahead on a rolling basis via the Discover Camping system."
+    },
+    "tips": [
+      "Buttle Lake campground is the most popular — book 4 months ahead.",
+      "No day-use fee for the park itself — only camping requires payment.",
+      "Check bcparks.ca for current trail conditions before hiking."
+    ]
+  }
+]

@@ -29,6 +29,7 @@ const PARK_CODES = {
   'big-sur': null, // Not an NPS unit — no NPS API data
   'olympic-peninsula': 'olym',
   kauai: null, // State parks, not NPS
+  'vancouver-island': null, // Parks Canada, not NPS
 };
 
 // Corridor parks associated with each primary destination
@@ -44,6 +45,7 @@ const DESTINATION_COORDS = {
   'big-sur': { lat: 36.2704, lon: -121.8081 },
   'olympic-peninsula': { lat: 47.8021, lon: -123.6044 },
   kauai: { lat: 22.0964, lon: -159.5261 },
+  'vancouver-island': { lat: 49.1557, lon: -125.9066 },
 };
 
 
@@ -371,6 +373,7 @@ const TIDE_STATIONS = {
   'big-sur': { id: '9413450', name: 'Monterey, CA' },
   'olympic-peninsula': { id: '9444900', name: 'Port Townsend, WA' },
   kauai: { id: '1611400', name: 'Nawiliwili Harbor, HI' },
+  'vancouver-island': null, // Canadian tides — not available via NOAA API
 };
 
 /**
@@ -483,6 +486,12 @@ const DARK_SKY_DATA = {
     designation: null,
     bestSpots: ['Polihale State Park', 'Waimea Canyon lookout', 'Kalalau Trail overlook', 'Salt Pond Beach Park'],
     notes: 'Polihale on the west side is the darkest — no development for miles. Waimea Canyon at 3,400 ft gets above some atmospheric moisture. Trade wind clouds are common; leeward (west/south) side clears more often. Southern latitude (22°N) gives better Milky Way core visibility than mainland US.',
+  },
+  'vancouver-island': {
+    bortle: 3,
+    designation: null,
+    bestSpots: ['Long Beach (Pacific Rim)', 'Chesterman Beach', 'Ucluelet headland', 'Strathcona alpine'],
+    notes: 'No IDA designation. Coastal cloud cover is the primary challenge — clear nights are uncommon but extraordinary when they happen. Long Beach and Chesterman offer open Pacific horizons. Strathcona\'s alpine zone rises above marine layer. Best chance of clear skies: July-September. Check Clear Outside before committing.',
   },
 };
 

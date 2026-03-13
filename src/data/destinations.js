@@ -87,7 +87,7 @@ export const destinations = [
     photo: P.vancouver,
     gradient: "linear-gradient(165deg, #3d5a6b, #2a4a5a, #1a3040)",
     accent: C.oceanTeal,
-    guideAvailable: false,
+    guideAvailable: true,
   },
   {
     slug: "kauai",

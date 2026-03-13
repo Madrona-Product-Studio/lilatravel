@@ -6,7 +6,8 @@ import { lookupUrl as lookupJoshuaTree } from '@data/destinations/joshua-tree-ur
 import { lookupUrl as lookupBigSur } from '@data/destinations/big-sur-urls';
 import { lookupUrl as lookupOlympic } from '@data/destinations/olympic-peninsula-urls';
 import { lookupUrl as lookupKauai } from '@data/destinations/kauai-urls';
-const lookupUrl = (name) => lookupZion(name) || lookupJoshuaTree(name) || lookupBigSur(name) || lookupOlympic(name) || lookupKauai(name);
+import { lookupUrl as lookupVancouver } from '@data/destinations/vancouver-island-urls';
+const lookupUrl = (name) => lookupZion(name) || lookupJoshuaTree(name) || lookupBigSur(name) || lookupOlympic(name) || lookupKauai(name) || lookupVancouver(name);
 import JSON5 from 'json5';
 import { trackEvent } from '@utils/analytics';
 import { getPracticesForItinerary, TRADITIONS, ENTRIES } from '@services/practicesService';

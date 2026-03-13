@@ -888,7 +888,7 @@ function StepWelcome({ onNext }) {
 }
 
 function StepDestination({ data, onChange, onNext, onBack }) {
-  const AVAILABLE = new Set(["zion", "joshuaTree", "bigSur", "olympic", "kauai"]); // destinations with guides ready
+  const AVAILABLE = new Set(["zion", "joshuaTree", "bigSur", "olympic", "kauai", "vancouver"]); // destinations with guides ready
 
   // Auto-select if only one destination available
   useEffect(() => {
