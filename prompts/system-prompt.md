@@ -229,14 +229,16 @@ Return this structure:
   - `conditions` (string — current or seasonal trail conditions/warnings)
   - `npsUrl` (string — NPS trail page URL if available)
   For non-hiking activities, omit `activityType` and `trailData` entirely.
-- **timeline.alternatives**: array of 2-3 alternative activities per timeline item. Each alternative has:
+- **timeline.alternatives**: REQUIRED — every non-logistics, non-mindfulness timeline item MUST have 2-3 alternatives. Never return an empty alternatives array on activity items. Each alternative has:
   - `title` (string) — the alternative activity name
-  - `summary` (string, 1-2 sentences) — describes the alternative
+  - `summary` (string, 1-2 sentences) — describes the alternative and why someone might prefer it over the primary
   - `timeOfDay` (same enum as the parent: "morning" | "midday" | "afternoon" | "evening" | "night")
-  - Alternatives should fit the same time slot and energy level but differ in character (e.g. strenuous ↔ restorative, solitary ↔ social).
+  - Alternatives should fit the same general time slot but deliberately vary in character. Good alternatives contrast with the primary: strenuous ↔ restorative, solitary ↔ social, active ↔ contemplative, outdoors ↔ indoor/cultural.
+  - Cross-category alternatives are encouraged — a hike can have a scenic drive, soaking spot, art gallery, or yoga session as an alternative. The goal is giving travelers genuine choice, not three similar hikes.
+  - When the destination has limited options in one category (e.g. only 2 strenuous hikes), pull alternatives from adjacent categories or different zones rather than leaving thin alternatives.
   - For early morning activities (before 9 AM), always include a "Sleep in" alternative with a summary like "Rest is part of the journey. Skip the early start and ease into the day on your own schedule." This gives travelers permission to prioritize rest.
   - Must pass the Lila content filter — sacred terrain, craft/intention. No chains or tourist traps.
-  - Must match the traveler's profile the same way the primary activity does.
+  - Must match the traveler's general interests but can vary in intensity or approach.
   - Do NOT include alternatives on logistics items (check-in, drive, transit, "ground" activities).
   - Mindfulness picks already exclude alternatives per existing rules — no alternatives on mindfulness timeline entries either.
 - picks.category: one of "mindfulness", "stay", "eat", "gear", "wellness"
