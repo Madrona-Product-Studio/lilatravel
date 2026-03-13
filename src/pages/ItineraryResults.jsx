@@ -626,14 +626,14 @@ function ActivityActions({ id, lovedItems, onLove, onAlternatives }) {
         display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 5,
         padding: '9px 10px',
         borderRadius: 20,
-        background: loved ? `${C.goldenAmber}14` : `${C.goldenAmber}08`,
-        border: `1px solid ${loved ? C.goldenAmber : `${C.goldenAmber}22`}`,
+        background: loved ? `${C.goldenAmber}14` : `${C.goldenAmber}14`,
+        border: `1px solid ${loved ? C.goldenAmber : `${C.goldenAmber}40`}`,
         cursor: 'pointer', transition: 'all 0.2s',
         WebkitTapHighlightColor: 'transparent',
         fontFamily: F, fontSize: 12, fontWeight: loved ? 700 : 600,
-        color: loved ? C.goldenAmber : `${C.goldenAmber}90`,
+        color: loved ? C.goldenAmber : C.goldenAmber,
       }}>
-        <FlameIcon size={12} color={loved ? C.goldenAmber : `${C.goldenAmber}80`} active={loved} />
+        <FlameIcon size={12} color={C.goldenAmber} active={loved} />
         <span>Love This</span>
       </button>
 
@@ -676,14 +676,14 @@ function MindfulnessReactions({ id, lovedItems, onLove }) {
         display: 'flex', alignItems: 'center', gap: 5,
         padding: '9px 14px',
         borderRadius: 20,
-        background: loved ? `${C.goldenAmber}14` : `${C.goldenAmber}08`,
-        border: `1px solid ${loved ? C.goldenAmber : `${C.goldenAmber}22`}`,
+        background: loved ? `${C.goldenAmber}14` : `${C.goldenAmber}14`,
+        border: `1px solid ${loved ? C.goldenAmber : `${C.goldenAmber}40`}`,
         cursor: 'pointer', transition: 'all 0.2s',
         WebkitTapHighlightColor: 'transparent',
         fontFamily: F, fontSize: 12, fontWeight: loved ? 700 : 600,
-        color: loved ? C.goldenAmber : `${C.goldenAmber}90`,
+        color: loved ? C.goldenAmber : C.goldenAmber,
       }}>
-        <FlameIcon size={12} color={loved ? C.goldenAmber : `${C.goldenAmber}80`} active={loved} />
+        <FlameIcon size={12} color={C.goldenAmber} active={loved} />
         <span>Love This</span>
       </button>
     </div>
