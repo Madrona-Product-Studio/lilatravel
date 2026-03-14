@@ -735,9 +735,27 @@ function CompanionPanelContent({ type, data, id }) {
 
       {/* Quote */}
       {data.quote && (
-        <div style={{ padding: '14px 16px', borderLeft: `3px solid ${accent}30`, background: `${accent}05`, borderRadius: '0 8px 8px 0', marginBottom: 20 }}>
-          <p style={{ fontFamily: F, fontSize: 14, fontStyle: 'normal', color: C.body, lineHeight: 1.6, margin: 0 }}>"{data.quote.text}"</p>
-          {data.quote.source && <p style={{ fontFamily: F, fontSize: 12, color: C.muted, marginTop: 6, margin: '6px 0 0' }}>— {data.quote.source}</p>}
+        <div style={{
+          position: 'relative',
+          padding: '20px 20px 16px',
+          background: `${accent}06`,
+          borderRadius: 8,
+          marginBottom: 20,
+        }}>
+          <span style={{
+            position: 'absolute', top: 6, left: 14,
+            fontFamily: F_SERIF, fontSize: 48, fontWeight: 300,
+            color: `${accent}20`, lineHeight: 1, userSelect: 'none',
+          }}>"</span>
+          <p style={{
+            fontFamily: F_SERIF, fontSize: 16, fontWeight: 300,
+            fontStyle: 'italic', color: C.ink,
+            lineHeight: 1.6, margin: '0 0 8px', paddingLeft: 4,
+          }}>{data.quote.text}</p>
+          <p style={{
+            fontFamily: F, fontSize: 12, fontWeight: 600,
+            color: `${accent}CC`, margin: 0, paddingLeft: 4,
+          }}>— {data.quote.author || data.quote.source}{data.quote.role ? `, ${data.quote.role}` : ''}</p>
         </div>
       )}
 
@@ -1085,17 +1103,26 @@ function WisdomDetailContent({ entry }) {
         {/* Quote block */}
         {entry.quote?.text && (
           <div style={{
-            padding: '16px 18px', marginBottom: 20,
-            borderLeft: `3px solid ${accent}30`,
-            background: `${accent}05`, borderRadius: '0 8px 8px 0',
+            position: 'relative',
+            padding: '20px 20px 16px',
+            background: `${accent}06`,
+            borderRadius: 8,
+            marginBottom: 20,
           }}>
+            <span style={{
+              position: 'absolute', top: 6, left: 14,
+              fontFamily: F_SERIF, fontSize: 48, fontWeight: 300,
+              color: `${accent}20`, lineHeight: 1, userSelect: 'none',
+            }}>"</span>
             <p style={{
-              fontFamily: F_SERIF, fontSize: 16, fontStyle: 'italic', fontWeight: 400,
-              color: C.body, lineHeight: 1.6, margin: 0,
-            }}>"{entry.quote.text}"</p>
-            {entry.quote.source && (
-              <p style={{ fontFamily: F, fontSize: 12, color: C.muted, margin: '8px 0 0' }}>— {entry.quote.source}</p>
-            )}
+              fontFamily: F_SERIF, fontSize: 16, fontWeight: 300,
+              fontStyle: 'italic', color: C.ink,
+              lineHeight: 1.6, margin: '0 0 8px', paddingLeft: 4,
+            }}>{entry.quote.text}</p>
+            <p style={{
+              fontFamily: F, fontSize: 12, fontWeight: 600,
+              color: `${accent}CC`, margin: 0, paddingLeft: 4,
+            }}>— {entry.quote.author || entry.quote.source}{entry.quote.role ? `, ${entry.quote.role}` : ''}</p>
           </div>
         )}
 
@@ -1347,20 +1374,26 @@ function DetailPanelContent({ item, lockedItems, onLock, onAlternatives, alterna
           {/* Quote */}
           {data.quote?.text && (
             <div style={{
-              padding: '14px 18px', marginBottom: 20,
-              borderLeft: `3px solid ${accent}40`,
-              background: `${accent}08`, borderRadius: '0 8px 8px 0',
+              position: 'relative',
+              padding: '20px 20px 16px',
+              background: `${accent}06`,
+              borderRadius: 8,
+              marginBottom: 20,
             }}>
+              <span style={{
+                position: 'absolute', top: 6, left: 14,
+                fontFamily: F_SERIF, fontSize: 48, fontWeight: 300,
+                color: `${accent}20`, lineHeight: 1, userSelect: 'none',
+              }}>"</span>
               <p style={{
-                fontFamily: F_SERIF, fontSize: 16, fontStyle: 'italic', fontWeight: 400,
-                color: C.body, lineHeight: 1.6, margin: 0,
-              }}>"{data.quote.text}"</p>
-              {data.quote.source && (
-                <p style={{
-                  fontFamily: F, fontSize: 11, color: C.muted,
-                  margin: '8px 0 0',
-                }}>— {data.quote.source}</p>
-              )}
+                fontFamily: F_SERIF, fontSize: 16, fontWeight: 300,
+                fontStyle: 'italic', color: C.ink,
+                lineHeight: 1.6, margin: '0 0 8px', paddingLeft: 4,
+              }}>{data.quote.text}</p>
+              <p style={{
+                fontFamily: F, fontSize: 12, fontWeight: 600,
+                color: `${accent}CC`, margin: 0, paddingLeft: 4,
+              }}>— {data.quote.author || data.quote.source}{data.quote.role ? `, ${data.quote.role}` : ''}</p>
             </div>
           )}
 
@@ -2516,6 +2549,7 @@ function DayCard({ day, dayIndex = 0, onOpenPanel, lockedItems, onLock, onAltern
         const essence = mindfulnessPick?.essence;
         const tradition = mindfulnessPick ? TRADITIONS[mindfulnessPick.tradition] : null;
         const glyph = mindfulnessPick ? (TRADITION_GLYPHS[mindfulnessPick.tradition] || '◈') : null;
+        const quote = mindfulnessPick?.quote || day.companion?.teaching?.quote || day.companion?.practice?.quote;
 
         return (
           <div style={wrapperStyle} onClick={handleClick}>
@@ -2565,6 +2599,22 @@ function DayCard({ day, dayIndex = 0, onOpenPanel, lockedItems, onLock, onAltern
                         letterSpacing: '0.08em', textTransform: 'uppercase',
                         color: `${tradition.color || C.sage}99`,
                       }}>{tradition.name}</span>
+                    </div>
+                  )}
+                  {quote && (
+                    <div style={{
+                      marginTop: 10, paddingTop: 10,
+                      borderTop: '1px solid rgba(74,155,159,0.12)',
+                    }}>
+                      <p style={{
+                        fontFamily: F_SERIF, fontSize: 14, fontWeight: 300,
+                        fontStyle: 'italic', color: '#3D5A6B',
+                        lineHeight: 1.55, margin: 0,
+                      }}>"{quote.text}"</p>
+                      <p style={{
+                        fontFamily: F, fontSize: 11, fontWeight: 500,
+                        color: C.muted, marginTop: 4, margin: '4px 0 0',
+                      }}>— {quote.author || quote.source}{quote.role ? `, ${quote.role}` : ''}</p>
                     </div>
                   )}
                 </div>
