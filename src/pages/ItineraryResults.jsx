@@ -3767,7 +3767,7 @@ export default function ItineraryResults() {
               destination={formData?.destination}
               sticky={false}
               tripLogistics={tripLogistics}
-              itinerary={itinerary}
+              itinerary={{ ...itinerary, days: enrichedDays }}
               onOpenPanel={(panelItem) => {
                 if (panelItem._updateLogistics) {
                   setTripLogistics(prev => ({ ...prev, ...panelItem._updateLogistics }));
@@ -3861,7 +3861,7 @@ export default function ItineraryResults() {
                     destination={formData?.destination}
                     sticky={true}
                     tripLogistics={tripLogistics}
-                    itinerary={itinerary}
+                    itinerary={{ ...itinerary, days: enrichedDays }}
                     onOpenPanel={(panelItem) => {
                       if (panelItem._updateLogistics) {
                         setTripLogistics(prev => ({ ...prev, ...panelItem._updateLogistics }));
