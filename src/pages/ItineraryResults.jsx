@@ -1152,7 +1152,7 @@ function WisdomDetailContent({ entry }) {
   );
 }
 
-function DetailPanelContent({ item, lovedItems, onLove, onAlternatives }) {
+function DetailPanelContent({ item, lovedItems, onLove, onAlternatives, alternativesLoading }) {
   if (!item) return null;
   const { type, data, thumbId } = item;
 
@@ -1220,7 +1220,7 @@ function DetailPanelContent({ item, lovedItems, onLove, onAlternatives }) {
         )}
 
         {/* Alternatives */}
-        {alts.length > 0 && (
+        {alts.length > 0 ? (
           <div style={{ marginBottom: 20 }}>
             <div style={{ ...accomLabel, marginBottom: 10 }}>Other Options</div>
             {alts.map((alt, i) => (
@@ -1235,6 +1235,18 @@ function DetailPanelContent({ item, lovedItems, onLove, onAlternatives }) {
                 <div style={{ fontFamily: F, fontSize: 13, color: C.body, lineHeight: 1.55 }}>{alt.why}</div>
               </div>
             ))}
+          </div>
+        ) : alternativesLoading && (
+          <div style={{ marginBottom: 20 }}>
+            <div style={{ ...accomLabel, marginBottom: 10 }}>Other Options</div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '8px 0' }}>
+              <div style={{
+                width: 14, height: 14, border: `2px solid ${C.sage}30`, borderTopColor: C.sage,
+                borderRadius: '50%', animation: 'lila-spin 0.8s linear infinite',
+              }} />
+              <span style={{ fontFamily: F, fontSize: 13, fontWeight: 400, color: C.muted }}>Loading alternatives...</span>
+              <style>{`@keyframes lila-spin { to { transform: rotate(360deg); } }`}</style>
+            </div>
           </div>
         )}
       </div>
@@ -1565,7 +1577,7 @@ function DetailPanelContent({ item, lovedItems, onLove, onAlternatives }) {
       )}
 
       {/* Alternatives listed flat */}
-      {alternatives.length > 0 && (
+      {alternatives.length > 0 ? (
         <div style={{ marginBottom: 20 }}>
           <div style={{ fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: C.muted, marginBottom: 10 }}>Other Options</div>
           {alternatives.map((alt, i) => (
@@ -1589,6 +1601,18 @@ function DetailPanelContent({ item, lovedItems, onLove, onAlternatives }) {
               )}
             </div>
           ))}
+        </div>
+      ) : alternativesLoading && (
+        <div style={{ marginBottom: 20 }}>
+          <div style={{ fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: C.muted, marginBottom: 10 }}>Other Options</div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '8px 0' }}>
+            <div style={{
+              width: 14, height: 14, border: `2px solid ${C.sage}30`, borderTopColor: C.sage,
+              borderRadius: '50%', animation: 'lila-spin 0.8s linear infinite',
+            }} />
+            <span style={{ fontFamily: F, fontSize: 13, fontWeight: 400, color: C.muted }}>Loading alternatives...</span>
+            <style>{`@keyframes lila-spin { to { transform: rotate(360deg); } }`}</style>
+          </div>
         </div>
       )}
 
@@ -1705,7 +1729,7 @@ function RentalFormPanel({ data, logistics, onSave }) {
   );
 }
 
-function DetailPanel({ item, onClose, lovedItems, onLove, onAlternatives }) {
+function DetailPanel({ item, onClose, lovedItems, onLove, onAlternatives, alternativesLoading }) {
   const isDesktop = useIsDesktop();
   const sheetRef = useRef(null);
   const dragStartY = useRef(null);
@@ -1779,7 +1803,7 @@ function DetailPanel({ item, onClose, lovedItems, onLove, onAlternatives }) {
             }} aria-label="Close">✕</button>
           </div>
 
-          <DetailPanelContent item={item} lovedItems={lovedItems} onLove={onLove} onAlternatives={onAlternatives} />
+          <DetailPanelContent item={item} lovedItems={lovedItems} onLove={onLove} onAlternatives={onAlternatives} alternativesLoading={alternativesLoading} />
         </div>
       </>
     );
@@ -1838,7 +1862,7 @@ function DetailPanel({ item, onClose, lovedItems, onLove, onAlternatives }) {
 
         {/* Scrollable content */}
         <div style={{ overflowY: 'auto', flex: 1, WebkitOverflowScrolling: 'touch' }}>
-          <DetailPanelContent item={item} lovedItems={lovedItems} onLove={onLove} onAlternatives={onAlternatives} />
+          <DetailPanelContent item={item} lovedItems={lovedItems} onLove={onLove} onAlternatives={onAlternatives} alternativesLoading={alternativesLoading} />
         </div>
       </div>
     </>
@@ -2871,7 +2895,7 @@ function FirstDraftModal({ onDismiss }) {
 
 /* ── SwapModal — pick an alternative activity ──────────────────────────── */
 
-function SwapModal({ isOpen, onClose, activityTitle, alternatives, onConfirm }) {
+function SwapModal({ isOpen, onClose, activityTitle, alternatives, onConfirm, alternativesLoading }) {
   const [selected, setSelected] = useState(null);
   const [note, setNote] = useState('');
   const [show, setShow] = useState(false);
@@ -2956,7 +2980,16 @@ function SwapModal({ isOpen, onClose, activityTitle, alternatives, onConfirm }) 
                 <div style={{ fontFamily: F, fontSize: 13, fontWeight: 400, color: C.body, lineHeight: 1.5 }}>{alt.summary}</div>
               </div>
             );
-          }) : (
+          }) : alternativesLoading ? (
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '12px 0' }}>
+              <div style={{
+                width: 16, height: 16, border: `2px solid ${C.sage}30`, borderTopColor: C.sage,
+                borderRadius: '50%', animation: 'lila-spin 0.8s linear infinite',
+              }} />
+              <span style={{ fontFamily: F, fontSize: 13, fontWeight: 400, color: C.muted }}>Loading alternatives...</span>
+              <style>{`@keyframes lila-spin { to { transform: rotate(360deg); } }`}</style>
+            </div>
+          ) : (
             <div style={{ fontFamily: F, fontSize: 13, fontWeight: 400, color: C.muted, lineHeight: 1.6, padding: '8px 0' }}>
               No alternatives available — your feedback will be noted in the next refinement.
             </div>
@@ -3149,6 +3182,9 @@ export default function ItineraryResults() {
   const [lovedItems, setLovedItems] = useState({});
   const [swapModal, setSwapModal] = useState(null); // { dayIndex, itemIndex, thumbId, activityTitle, alternatives }
   const [swappedActivities, setSwappedActivities] = useState({});
+  // Two-pass alternatives loading state
+  const [alternativesLoaded, setAlternativesLoaded] = useState(false);
+  const [alternativesLoading, setAlternativesLoading] = useState(false);
   const [toastMessage, setToastMessage] = useState(null);
   const [pulse, setPulse] = useState(null);
   const [overallNote, setOverallNote] = useState('');
@@ -3226,7 +3262,7 @@ export default function ItineraryResults() {
   const isStructured = itinerary && itinerary.days;
 
   // Enrich days with companion data from practices service
-  const enrichedDays = useMemo(() => {
+  const baseDays = useMemo(() => {
     if (!isStructured || !formData) return itinerary?.days || [];
     try {
       const practiceResults = getPracticesForItinerary(formData);
@@ -3236,6 +3272,13 @@ export default function ItineraryResults() {
       return itinerary.days;
     }
   }, [isStructured, itinerary, formData]);
+  const [enrichedDays, setEnrichedDays] = useState(baseDays);
+  // Keep enrichedDays in sync with baseDays when itinerary changes (refinement)
+  useEffect(() => {
+    setEnrichedDays(baseDays);
+    setAlternativesLoaded(false);
+    setAlternativesLoading(false);
+  }, [baseDays]);
   const beforeYouGoRef = useRef(null);
   const scrollSentinels = useRef({});
   const pageLoadTime = useRef(performance.now());
@@ -3277,6 +3320,86 @@ export default function ItineraryResults() {
       }
     }
   }, [isStructured, itinerary, formData]);
+
+  // Pass 2: Fetch alternatives in the background after itinerary renders
+  const hasRequestedAlts = useRef(false);
+  useEffect(() => {
+    // Need the API-slug destination (e.g. 'big-sur', not 'bigSur')
+    const destSlug = metadata?.destination || formData?.destination;
+    if (!isStructured || !rawItinerary || !destSlug || alternativesLoaded || alternativesLoading || hasRequestedAlts.current) return;
+    hasRequestedAlts.current = true;
+    setAlternativesLoading(true);
+
+    fetch('/api/generate-alternatives', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        destination: destSlug,
+        preferences: formData,
+        itinerary: rawItinerary,
+      }),
+    })
+      .then(res => res.json())
+      .then(result => {
+        if (!result.success || !result.alternatives?.days) {
+          console.warn('[Alternatives] No valid response:', result.error || 'unknown');
+          setAlternativesLoading(false);
+          return;
+        }
+        // Merge alternatives into enrichedDays
+        setEnrichedDays(prev => {
+          const updated = prev.map((day, di) => {
+            const altDay = result.alternatives.days[di];
+            if (!altDay) return day;
+
+            const newDay = { ...day };
+
+            // Merge timeline alternatives
+            if (altDay.timelineAlts?.length && newDay.timeline) {
+              newDay.timeline = [...newDay.timeline];
+              for (const ta of altDay.timelineAlts) {
+                if (ta.itemIndex < newDay.timeline.length && ta.alternatives?.length) {
+                  newDay.timeline[ta.itemIndex] = {
+                    ...newDay.timeline[ta.itemIndex],
+                    alternatives: ta.alternatives,
+                  };
+                }
+              }
+            }
+
+            // Merge pick alternatives
+            if (altDay.pickAlts?.length && newDay.picks) {
+              newDay.picks = [...newDay.picks];
+              for (const pa of altDay.pickAlts) {
+                if (pa.pickIndex < newDay.picks.length && pa.alternatives?.length) {
+                  const oldPick = newDay.picks[pa.pickIndex];
+                  newDay.picks[pa.pickIndex] = {
+                    ...oldPick,
+                    alternatives: pa.alternatives,
+                    pick: oldPick.pick ? { ...oldPick.pick, alternatives: pa.alternatives } : oldPick.pick,
+                  };
+                }
+              }
+            }
+
+            return newDay;
+          });
+          return updated;
+        });
+        setAlternativesLoaded(true);
+        setAlternativesLoading(false);
+        console.log('[Alternatives] Merged successfully', result.metadata?.timing);
+      })
+      .catch(err => {
+        console.error('[Alternatives] Fetch failed:', err);
+        setAlternativesLoading(false);
+      });
+  }, [isStructured, rawItinerary, formData]);
+
+  // Reset alternatives ref when itinerary changes (refinement)
+  useEffect(() => {
+    hasRequestedAlts.current = false;
+  }, [rawItinerary]);
 
   // Eagerly generate share token so saved trips are loadable from dropdown
   useEffect(() => {
@@ -3557,6 +3680,7 @@ export default function ItineraryResults() {
         onClose={() => setSwapModal(null)}
         activityTitle={swapModal?.activityTitle || ''}
         alternatives={swapModal?.alternatives || []}
+        alternativesLoading={alternativesLoading}
         onConfirm={(chosen, note) => {
           const { thumbId, activityTitle } = swapModal;
           setSwappedActivities(prev => ({
@@ -3573,7 +3697,8 @@ export default function ItineraryResults() {
 
       {/* Detail panel */}
       <DetailPanel item={activePanel} onClose={() => setActivePanel(null)}
-        lovedItems={lovedItems} onLove={handleLove} onAlternatives={handleAlternatives} />
+        lovedItems={lovedItems} onLove={handleLove} onAlternatives={handleAlternatives}
+        alternativesLoading={alternativesLoading} />
 
       {/* Header */}
       <div style={{

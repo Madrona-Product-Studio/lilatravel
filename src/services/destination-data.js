@@ -57,7 +57,7 @@ const DESTINATION_COORDS = {
  * Load the curated destination guide (markdown file).
  * This is YOUR editorial content — the single source of truth.
  */
-function loadGuide(destination) {
+export function loadGuide(destination) {
   const guidePath = path.join(process.cwd(), 'src', 'data', 'destinations', `${destination}.md`);
 
   if (!fs.existsSync(guidePath)) {
@@ -869,7 +869,7 @@ export async function assembleContext(destination, userPreferences) {
 /**
  * Construct the full message payload for the Anthropic API.
  */
-export function buildClaudeMessage(context, systemPrompt) {
+export function buildClaudeMessage(context, systemPrompt, { skipAlternatives = false } = {}) {
   // Destination guide — static per destination, cached separately
   const guideBlock = `## Destination Guide (ONLY recommend from this content)\n\n${context.guide}`;
 
@@ -932,9 +932,17 @@ ${context.matchingInstructions || 'Use the traveler profile above to personalize
 Please create a personalized day-by-day itinerary for this traveler based on the destination guide above. Follow all rules in your system prompt. Only recommend places, trails, restaurants, and experiences that appear in the guide. Account for the weather forecast and any active alerts. Follow the matching instructions to select content that fits this specific traveler.
 `.trim();
 
-  // Scale token budget with trip length: ~2200 tokens per day + 1500 for framing
+  // Pass 1: instruct Claude to skip alternatives (they'll be generated separately)
+  if (skipAlternatives) {
+    liveMessage += `\n\nIMPORTANT: Do NOT generate alternatives. Set all timeline "alternatives" to empty arrays []. Do NOT include "alternatives" arrays on picks (stay, eat, gear, wellness). This is Pass 1 — alternatives are generated separately.`;
+  }
+
+  // Scale token budget with trip length
+  // Pass 1 (skipAlternatives): ~1600/day + 1500 framing (no alternatives text)
+  // Full generation: ~2200/day + 1500 framing
   const days = context.traveler.duration || 4;
-  const max_tokens = Math.min(1500 + days * 2200, 16000);
+  const perDay = skipAlternatives ? 1600 : 2200;
+  const max_tokens = Math.min(1500 + days * perDay, 16000);
 
   return {
     model: 'claude-sonnet-4-6',

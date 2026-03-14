@@ -53,8 +53,8 @@ export default async function handler(req, res) {
     const context = await assembleContext(destination, preferences);
     const t1 = Date.now();
 
-    // 2. Build the Claude API message
-    const messagePayload = buildClaudeMessage(context, systemPrompt);
+    // 2. Build the Claude API message (Pass 1: skip alternatives for faster response)
+    const messagePayload = buildClaudeMessage(context, systemPrompt, { skipAlternatives: true });
     const t2 = Date.now();
 
     // 3. Call Claude
