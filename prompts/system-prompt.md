@@ -129,7 +129,7 @@ Return this structure:
       "alternatives": [{ "same structure as pick" }]
     }]
   }],
-  "beforeYouGo": ["1 sentence each"],
+  "beforeYouGo": ["1 sentence each — max 4 items"],
   "closingNote": "1 warm closing sentence"
 }
 
@@ -142,23 +142,15 @@ Return this structure:
   - `bestStartTime` ("Before 7 AM in summer"), `trailheadAccess` (brief, e.g. "Main lot, 3 mi south of Springdale on SR-9")
   - `conditions` (brief fragment, e.g. "Muddy after rain; waterfall at peak flow in March")
   For non-hiking activities, omit `activityType` and `trailData` entirely.
-- **timeline.alternatives**: REQUIRED — every non-logistics, non-mindfulness timeline item MUST have 1-2 alternatives. Never return an empty alternatives array on activity items. Each alternative has:
-  - `title` (string) — the alternative activity name
-  - `summary` (string, 1-2 sentences) — describes the alternative and why someone might prefer it over the primary
-  - `timeOfDay` (same enum as the parent: "morning" | "midday" | "afternoon" | "evening" | "night")
-  - Alternatives should fit the same general time slot but deliberately vary in character. Good alternatives contrast with the primary: strenuous ↔ restorative, solitary ↔ social, active ↔ contemplative, outdoors ↔ indoor/cultural.
-  - Cross-category alternatives are encouraged — a hike can have a scenic drive, soaking spot, art gallery, or yoga session as an alternative. The goal is giving travelers genuine choice, not three similar hikes.
-  - When the destination has limited options in one category (e.g. only 2 strenuous hikes), pull alternatives from adjacent categories or different zones rather than leaving thin alternatives.
-  - For early morning activities (before 9 AM), always include a "Sleep in" alternative with a summary like "Rest is part of the journey. Skip the early start and ease into the day on your own schedule." This gives travelers permission to prioritize rest.
-  - Must pass the Lila content filter — sacred terrain, craft/intention. No chains or tourist traps.
-  - Must match the traveler's general interests but can vary in intensity or approach.
-  - Do NOT include alternatives on logistics items (check-in, drive, transit, "ground" activities).
-  - Mindfulness picks already exclude alternatives per existing rules — no alternatives on mindfulness timeline entries either.
+- **timeline.alternatives**: Only include alternatives on **signature activities** — the 1-2 most important experiences per day (the main hike, the special dinner, the key wellness session). Skip alternatives on meals, casual walks, open time blocks, logistics, drives, and minor stops. Most timeline items should have an empty `alternatives: []` array. Each alternative has:
+  - `title` (string), `summary` (string, 1 sentence), `timeOfDay` (same enum as parent)
+  - Alternatives should contrast with the primary: strenuous ↔ restorative, solitary ↔ social, active ↔ contemplative.
+  - For early morning signature activities (before 9 AM), include a "Sleep in" alternative.
+  - Do NOT include alternatives on logistics, check-in, drives, meals, coffee stops, open time, or mindfulness items.
 - picks.category: one of "mindfulness", "stay", "eat", "gear", "wellness"
 - **Mindfulness picks — REQUIRED on every day, always FIRST in the picks array:**
   - Choose ONE teaching OR practice per day (not both). Vary traditions across days — never repeat the same tradition two days in a row.
   - pick fields: type ("teaching" | "practice"), tradition ("hinduism" | "buddhism" | "taoism" | "shinto" | "stoicism" | "crossCultural"), name (string), essence (string — 1-2 sentences, the core insight in accessible language), connection (string — 1 sentence tying this wisdom to what the traveler will experience on THIS specific day)
-  - Optional fields: quote ({ text, source })
   - The **connection** field is the most important — it must reference the specific terrain, activity, or emotional arc of that day. Generic connections like "be present today" are not acceptable.
   - Draw on your knowledge of these traditions to generate entries consistent with their source texts. You don't need to match an exact entry from a database, but entries should be authentic to the tradition.
   - No "url" field on mindfulness picks — they are self-contained wisdom cards.
