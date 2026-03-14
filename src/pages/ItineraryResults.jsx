@@ -68,6 +68,13 @@ const CARD_STYLE = {
   boxShadow: '0 2px 12px rgba(28,28,26,0.05)',
 };
 
+const LOCKED_CARD_STYLE = {
+  background: C.white,
+  borderRadius: 8,
+  border: `2px solid rgba(212,168,83,0.50)`,
+  boxShadow: '0 2px 12px rgba(28,28,26,0.05)',
+};
+
 const PICK_STYLES = {
   mindfulness: { label: 'Mindfulness', color: C.seaGlass },
   stay: { label: 'Where to Stay', color: C.goldenAmber },
@@ -242,6 +249,12 @@ const FlameIcon = ({ size = 14, color = C.goldenAmber, active = false }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
     <path d="M12 2C12 2 7 7 7 13a5 5 0 0 0 10 0c0-3-2-5-2-5s0 3-3 3c0-2 0-6 0-9z" fill={active ? `${color}15` : 'none'} />
     <path d="M12 17a1.5 1.5 0 0 1-1.5-1.5C10.5 14.5 12 13 12 13s1.5 1.5 1.5 2.5A1.5 1.5 0 0 1 12 17z" fill={active ? `${color}30` : 'none'} />
+  </svg>
+);
+
+const UnlockIcon = ({ size = 14, color = C.slate }) => (
+  <svg width={size} height={size} viewBox="0 0 16 16" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="3" y="7" width="10" height="7" rx="1.5" /><path d="M5 7V5a3 3 0 0 1 6 0" />
   </svg>
 );
 
@@ -613,81 +626,58 @@ const SwapIcon = ({ size = 12, color = C.oceanTeal }) => (
   </svg>
 );
 
-/* ── ActivityActions — Love This + Show Alternatives ──────────────────── */
+/* ── ActivityActions — Lock This In + Show Alternatives ───────────────── */
 
-function ActivityActions({ id, lovedItems, onLove, onAlternatives }) {
-  const loved = !!lovedItems?.[id];
+function ActivityActions({ id, lockedItems, onLock, onAlternatives }) {
+  const lockEntry = lockedItems?.[id];
+  const isLocked = !!lockEntry;
 
   return (
-    <div onClick={e => e.stopPropagation()} style={{ display: 'flex', gap: 8, marginTop: 8, marginBottom: 16, whiteSpace: 'nowrap' }}>
-      {/* Love This */}
-      <button onClick={e => { e.stopPropagation(); onLove(id); }} style={{
-        flex: 1,
-        display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 5,
-        padding: '9px 10px',
-        borderRadius: 20,
-        background: loved ? `${C.goldenAmber}14` : `${C.goldenAmber}14`,
-        border: `1px solid ${loved ? C.goldenAmber : `${C.goldenAmber}40`}`,
-        cursor: 'pointer', transition: 'all 0.2s',
-        WebkitTapHighlightColor: 'transparent',
-        fontFamily: F, fontSize: 12, fontWeight: loved ? 700 : 600,
-        color: loved ? C.goldenAmber : C.goldenAmber,
-      }}>
-        <FlameIcon size={12} color={C.goldenAmber} active={loved} />
-        <span>Love This</span>
-      </button>
-
-      {/* Show Alternatives */}
-      <button onClick={e => { e.stopPropagation(); onAlternatives(id); }} style={{
-        flex: 1,
-        display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 5,
-        padding: '9px 10px',
-        borderRadius: 20,
-        background: `${C.oceanTeal}14`,
-        border: `1px solid ${C.oceanTeal}40`,
-        cursor: 'pointer', transition: 'all 0.2s',
-        WebkitTapHighlightColor: 'transparent',
-        fontFamily: F, fontSize: 12, fontWeight: 600,
-        color: C.oceanTeal,
-      }}>
-        <SwapIcon size={12} color={C.oceanTeal} />
-        <span>Show Alternatives</span>
-      </button>
+    <div onClick={e => e.stopPropagation()} style={{ display: 'flex', alignItems: 'center', gap: 0, marginTop: 6, marginBottom: 12 }}>
+      {isLocked ? (
+        lockEntry.source === 'user' && (
+          <button onClick={e => { e.stopPropagation(); onLock(id); }} style={{
+            background: 'none', border: 'none', cursor: 'pointer', padding: 0,
+            display: 'flex', alignItems: 'center', gap: 4,
+            fontFamily: F, fontSize: 11, fontWeight: 500, color: C.muted,
+            WebkitTapHighlightColor: 'transparent',
+          }}>
+            <UnlockIcon size={11} color={C.muted} />
+            <span>Unlock</span>
+          </button>
+        )
+      ) : (
+        <>
+          <button onClick={e => { e.stopPropagation(); onLock(id); }} style={{
+            background: 'none', border: 'none', cursor: 'pointer', padding: 0,
+            display: 'flex', alignItems: 'center', gap: 4,
+            fontFamily: F, fontSize: 11, fontWeight: 600, color: C.goldenAmber,
+            WebkitTapHighlightColor: 'transparent',
+          }}>
+            <LockIcon size={11} color={C.goldenAmber} />
+            <span>Lock this in</span>
+          </button>
+          <span style={{ fontFamily: F, fontSize: 11, color: C.muted, margin: '0 8px' }}>|</span>
+          <button onClick={e => { e.stopPropagation(); onAlternatives(id); }} style={{
+            background: 'none', border: 'none', cursor: 'pointer', padding: 0,
+            display: 'flex', alignItems: 'center', gap: 4,
+            fontFamily: F, fontSize: 11, fontWeight: 600, color: C.sage,
+            WebkitTapHighlightColor: 'transparent',
+          }}>
+            <SwapIcon size={11} color={C.sage} />
+            <span>Show alternatives</span>
+          </button>
+        </>
+      )}
     </div>
   );
 }
 
-/* ── lovedTint — background tint for loved items ─────────────────────── */
+/* ── lockedTint — background tint for locked items ───────────────────── */
 
-function lovedTint(lovedItems, id) {
-  if (lovedItems?.[id]) return 'rgba(200,148,26,0.04)';
+function lockedTint(lockedItems, id) {
+  if (lockedItems?.[id]) return 'rgba(200,148,26,0.04)';
   return null;
-}
-
-
-/* ── MindfulnessReactions — Love This only (mindfulness doesn't have alternatives) ── */
-
-function MindfulnessReactions({ id, lovedItems, onLove }) {
-  const loved = !!lovedItems?.[id];
-
-  return (
-    <div onClick={e => e.stopPropagation()} style={{ display: 'flex', gap: 5, marginTop: 12, paddingBottom: 16 }}>
-      <button onClick={e => { e.stopPropagation(); onLove(id); }} style={{
-        display: 'flex', alignItems: 'center', gap: 5,
-        padding: '9px 14px',
-        borderRadius: 20,
-        background: loved ? `${C.goldenAmber}14` : `${C.goldenAmber}14`,
-        border: `1px solid ${loved ? C.goldenAmber : `${C.goldenAmber}40`}`,
-        cursor: 'pointer', transition: 'all 0.2s',
-        WebkitTapHighlightColor: 'transparent',
-        fontFamily: F, fontSize: 12, fontWeight: loved ? 700 : 600,
-        color: loved ? C.goldenAmber : C.goldenAmber,
-      }}>
-        <FlameIcon size={12} color={C.goldenAmber} active={loved} />
-        <span>Love This</span>
-      </button>
-    </div>
-  );
 }
 
 
@@ -717,7 +707,7 @@ function useIsMobile() {
 
 /* ── companion panel content (shared between SidePanel & BottomSheet) ── */
 
-function CompanionPanelContent({ type, data, id, lovedItems, onLove }) {
+function CompanionPanelContent({ type, data, id }) {
   if (!data) return null;
   const isTeaching = type === 'teaching';
   const accent = isTeaching ? C.goldenAmber : C.seaGlass;
@@ -737,8 +727,6 @@ function CompanionPanelContent({ type, data, id, lovedItems, onLove }) {
 
       {/* Title */}
       <h1 style={{ fontFamily: F_SERIF, fontSize: 'clamp(20px, 5vw, 24px)', fontWeight: 300, color: C.ink, lineHeight: 1.25, marginBottom: 4 }}>{data.title}</h1>
-
-      <MindfulnessReactions id={id} lovedItems={lovedItems} onLove={onLove} />
 
       {/* Summary / essence */}
       <p style={{ fontFamily: F, fontSize: 14, color: C.body, lineHeight: 1.7, marginBottom: 20 }}>{isTeaching ? data.essence : data.description}</p>
@@ -804,7 +792,7 @@ function CompanionPanelContent({ type, data, id, lovedItems, onLove }) {
 
 /* ── trail detail content ──────────────────────────────────────────────── */
 
-function TrailDetailContent({ data, thumbId, lovedItems, onLove, onAlternatives }) {
+function TrailDetailContent({ data, thumbId, lockedItems, onLock, onAlternatives }) {
   const { title, time, summary, details, trailData = {}, url } = data;
   const resolvedUrl = url || trailData.npsUrl || lookupUrl(title);
 
@@ -843,7 +831,7 @@ function TrailDetailContent({ data, thumbId, lovedItems, onLove, onAlternatives 
       </h1>
 
       {/* Activity actions */}
-      <ActivityActions id={thumbId} lovedItems={lovedItems} onLove={onLove} onAlternatives={onAlternatives} />
+      <ActivityActions id={thumbId} lockedItems={lockedItems} onLock={onLock} onAlternatives={onAlternatives} />
 
       {/* Summary */}
       <p style={{ fontFamily: F, fontSize: 14, color: C.body, lineHeight: 1.7, marginBottom: 16 }}>{summary}</p>
@@ -1152,7 +1140,7 @@ function WisdomDetailContent({ entry }) {
   );
 }
 
-function DetailPanelContent({ item, lovedItems, onLove, onAlternatives, alternativesLoading }) {
+function DetailPanelContent({ item, lockedItems, onLock, onAlternatives, alternativesLoading }) {
   if (!item) return null;
   const { type, data, thumbId } = item;
 
@@ -1264,7 +1252,7 @@ function DetailPanelContent({ item, lovedItems, onLove, onAlternatives, alternat
 
   // Companion content (teaching / practice)
   if (type === 'teaching' || type === 'practice') {
-    return <CompanionPanelContent type={type} data={data} id={thumbId} lovedItems={lovedItems} onLove={onLove} />;
+    return <CompanionPanelContent type={type} data={data} id={thumbId} />;
   }
 
   // Mindfulness pick content (from Claude's response)
@@ -1344,13 +1332,6 @@ function DetailPanelContent({ item, lovedItems, onLove, onAlternatives, alternat
             color: '#1a2530', lineHeight: 1.3, marginBottom: 6,
           }}>{data.name}</h1>
 
-          {/* Reactions */}
-          <MindfulnessReactions
-            id={thumbId}
-            lovedItems={lovedItems}
-            onLove={onLove}
-          />
-
           {/* Essence */}
           <p style={{
             fontFamily: F, fontSize: 14, fontWeight: 400,
@@ -1426,8 +1407,8 @@ function DetailPanelContent({ item, lovedItems, onLove, onAlternatives, alternat
       <TrailDetailContent
         data={data}
         thumbId={thumbId}
-        lovedItems={lovedItems}
-        onLove={onLove}
+        lockedItems={lockedItems}
+        onLock={onLock}
         onAlternatives={onAlternatives}
       />
     );
@@ -1449,7 +1430,7 @@ function DetailPanelContent({ item, lovedItems, onLove, onAlternatives, alternat
         {/* Title */}
         <h1 style={{ fontFamily: F_SERIF, fontSize: 'clamp(20px, 5vw, 24px)', fontWeight: 300, color: C.ink, lineHeight: 1.25, marginBottom: 4 }}>{data.title}</h1>
 
-        <ActivityActions id={thumbId} lovedItems={lovedItems} onLove={onLove} onAlternatives={onAlternatives} />
+        <ActivityActions id={thumbId} lockedItems={lockedItems} onLock={onLock} onAlternatives={onAlternatives} />
 
         {/* Summary */}
         <p style={{ fontFamily: F, fontSize: 14, color: C.body, lineHeight: 1.7, marginBottom: 20 }}>{data.summary}</p>
@@ -1506,7 +1487,7 @@ function DetailPanelContent({ item, lovedItems, onLove, onAlternatives, alternat
         {(data.url || lookupUrl(data.name)) && <> <ExternalLinkIcon size={12} color={`${C.sage}40`} /></>}
       </h1>
 
-      <ActivityActions id={thumbId} lovedItems={lovedItems} onLove={onLove} onAlternatives={onAlternatives} />
+      <ActivityActions id={thumbId} lockedItems={lockedItems} onLock={onLock} onAlternatives={onAlternatives} />
 
       {/* Vibe line */}
       {data.vibe && (
@@ -1928,7 +1909,7 @@ function AccommodationFormPanel({ data, onSave, bookingIndex, highlightFields })
   );
 }
 
-function DetailPanel({ item, onClose, lovedItems, onLove, onAlternatives, alternativesLoading }) {
+function DetailPanel({ item, onClose, lockedItems, onLock, onAlternatives, alternativesLoading }) {
   const isDesktop = useIsDesktop();
   const sheetRef = useRef(null);
   const dragStartY = useRef(null);
@@ -2002,7 +1983,7 @@ function DetailPanel({ item, onClose, lovedItems, onLove, onAlternatives, altern
             }} aria-label="Close">✕</button>
           </div>
 
-          <DetailPanelContent item={item} lovedItems={lovedItems} onLove={onLove} onAlternatives={onAlternatives} alternativesLoading={alternativesLoading} />
+          <DetailPanelContent item={item} lockedItems={lockedItems} onLock={onLock} onAlternatives={onAlternatives} alternativesLoading={alternativesLoading} />
         </div>
       </>
     );
@@ -2061,7 +2042,7 @@ function DetailPanel({ item, onClose, lovedItems, onLove, onAlternatives, altern
 
         {/* Scrollable content */}
         <div style={{ overflowY: 'auto', flex: 1, WebkitOverflowScrolling: 'touch' }}>
-          <DetailPanelContent item={item} lovedItems={lovedItems} onLove={onLove} onAlternatives={onAlternatives} alternativesLoading={alternativesLoading} />
+          <DetailPanelContent item={item} lockedItems={lockedItems} onLock={onLock} onAlternatives={onAlternatives} alternativesLoading={alternativesLoading} />
         </div>
       </div>
     </>
@@ -2453,7 +2434,7 @@ function DayFeedbackStrip({ dayIndex, feedback, onFeedback }) {
 
 /* ── day card (V2 flat) ────────────────────────────────────────────────── */
 
-function DayCard({ day, dayIndex = 0, onOpenPanel, lovedItems, onLove, onAlternatives, feedback, onFeedback, onSwapOpen, swappedActivities }) {
+function DayCard({ day, dayIndex = 0, onOpenPanel, lockedItems, onLock, onAlternatives, feedback, onFeedback, onSwapOpen, swappedActivities }) {
   const color = DAY_COLORS[dayIndex % DAY_COLORS.length];
 
   return (
@@ -2576,7 +2557,8 @@ function DayCard({ day, dayIndex = 0, onOpenPanel, lovedItems, onLove, onAlterna
         const displayTitle = swap ? swap.to : b.title;
         const displaySummary = swap ? swap.toSummary : b.summary;
         const isTrail = !!(b.trailData) || b.activityType === 'trail';
-        const tint = lovedTint(lovedItems, thumbId);
+        const tint = lockedTint(lockedItems, thumbId);
+        const isItemLocked = !!lockedItems?.[thumbId];
         const curatable = isCuratable({ ...b, title: displayTitle });
 
         const handleShowAlternatives = (id) => {
@@ -2586,6 +2568,9 @@ function DayCard({ day, dayIndex = 0, onOpenPanel, lovedItems, onLove, onAlterna
             onAlternatives(id);
           }
         };
+
+        const lockEntry = lockedItems?.[thumbId];
+        const lockLabel = lockEntry?.bookingType === 'flight' ? 'Flight' : lockEntry?.bookingType === 'accommodation' ? 'Hotel' : lockEntry?.bookingType === 'rental' ? 'Rental' : 'Locked';
 
         return (
           <div
@@ -2606,6 +2591,7 @@ function DayCard({ day, dayIndex = 0, onOpenPanel, lovedItems, onLove, onAlterna
               background: tint || 'transparent',
               transition: 'background 0.2s',
               WebkitTapHighlightColor: 'transparent',
+              ...(isItemLocked ? { border: `2px solid rgba(212,168,83,0.50)`, borderRadius: 8, margin: '4px 8px', padding: '9px 14px 5px' } : {}),
             }}
             onMouseEnter={e => { if (!tint) e.currentTarget.style.background = 'rgba(28,28,26,0.02)'; }}
             onMouseLeave={e => { if (!tint) e.currentTarget.style.background = 'transparent'; }}
@@ -2628,7 +2614,14 @@ function DayCard({ day, dayIndex = 0, onOpenPanel, lovedItems, onLove, onAlterna
               <div style={{
                 fontFamily: F, fontSize: 14, fontWeight: 500,
                 color: C.ink, lineHeight: 1.3, marginBottom: 2,
-              }}>{displayTitle}</div>
+              }}>
+                {displayTitle}
+                {isItemLocked && (
+                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: 3, fontSize: 9, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase', color: C.goldenAmber, fontFamily: F, marginLeft: 6 }}>
+                    {lockLabel}
+                  </span>
+                )}
+              </div>
               {displaySummary && (
                 <div style={{
                   fontFamily: F, fontSize: 13, fontWeight: 400,
@@ -2637,7 +2630,7 @@ function DayCard({ day, dayIndex = 0, onOpenPanel, lovedItems, onLove, onAlterna
               )}
               {curatable && (
                 <div style={{ marginTop: 10 }}>
-                  <ActivityActions id={thumbId} lovedItems={lovedItems} onLove={onLove} onAlternatives={handleShowAlternatives} />
+                  <ActivityActions id={thumbId} lockedItems={lockedItems} onLock={onLock} onAlternatives={handleShowAlternatives} />
                 </div>
               )}
             </div>
@@ -3113,7 +3106,7 @@ function FirstDraftModal({ onDismiss }) {
   useEffect(() => { const t = setTimeout(() => setShow(true), 120); return () => clearTimeout(t); }, []);
 
   const reactions = [
-    { icon: FlameIcon, color: C.goldenAmber, label: 'Love This', desc: 'Keep this — it feels right',
+    { icon: LockIcon, color: C.goldenAmber, label: 'Lock this in', desc: 'Confirm this — keep it in',
       bg: `${C.goldenAmber}18`, border: `${C.goldenAmber}40` },
     { icon: SwapIcon, color: C.oceanTeal, label: 'Show Alternatives', desc: 'See other options and swap',
       bg: `${C.oceanTeal}15`, border: `${C.oceanTeal}38` },
@@ -3499,7 +3492,9 @@ export default function ItineraryResults() {
     rentals: [],         // [{ company, confirmationNumber, pickupLocation, pickupDate, returnDate }]
     accommodations: [],  // [{ name, confirmationNumber, checkIn, checkOut, address, phone }]
   });
-  const [lovedItems, setLovedItems] = useState({});
+  const [lockedItems, setLockedItems] = useState({});
+  // key: thumbId (e.g. "day_0_timeline_2")
+  // value: { source: 'user' | 'booking', bookingType?: 'flight' | 'rental' | 'accommodation' }
   const [swapModal, setSwapModal] = useState(null); // { dayIndex, itemIndex, thumbId, activityTitle, alternatives }
   const [swappedActivities, setSwappedActivities] = useState({});
   // Two-pass alternatives loading state
@@ -3599,6 +3594,47 @@ export default function ItineraryResults() {
     setAlternativesLoaded(false);
     setAlternativesLoading(false);
   }, [baseDays]);
+
+  // Auto-lock timeline items that correspond to bookings
+  useEffect(() => {
+    if (!enrichedDays?.length) return;
+    setLockedItems(prev => {
+      const next = { ...prev };
+      // Remove stale booking locks
+      for (const [key, val] of Object.entries(next)) {
+        if (val.source === 'booking') delete next[key];
+      }
+      const flights = tripLogistics?.flights || [];
+      const rentals = tripLogistics?.rentals || [];
+      const accoms = tripLogistics?.accommodations || [];
+
+      enrichedDays.forEach((day, dayIdx) => {
+        if (!day.timeline) return;
+        day.timeline.forEach((item, itemIdx) => {
+          const title = (item.title || '').toLowerCase();
+          const thumbId = `day_${dayIdx}_timeline_${itemIdx}`;
+          for (const f of flights) {
+            if (title.includes('flight') || title.includes('fly') || title.includes('airport') || title.includes('depart') || title.includes('arrive')) {
+              next[thumbId] = { source: 'booking', bookingType: 'flight' };
+            }
+          }
+          for (const a of accoms) {
+            const hotelName = (a.name || '').toLowerCase();
+            if (title.includes('check in') || title.includes('check-in') || title.includes('check out') || title.includes('check-out') || (hotelName && title.includes(hotelName))) {
+              next[thumbId] = { source: 'booking', bookingType: 'accommodation' };
+            }
+          }
+          for (const r of rentals) {
+            if (title.includes('rental') || title.includes('pick up') || title.includes('return car')) {
+              next[thumbId] = { source: 'booking', bookingType: 'rental' };
+            }
+          }
+        });
+      });
+      return next;
+    });
+  }, [tripLogistics, enrichedDays]);
+
   const beforeYouGoRef = useRef(null);
   const scrollSentinels = useRef({});
   const pageLoadTime = useRef(performance.now());
@@ -3816,10 +3852,15 @@ export default function ItineraryResults() {
     });
   };
 
-  const handleLove = (id) => {
-    setLovedItems(prev => {
+  const handleLock = (id) => {
+    setLockedItems(prev => {
       const next = { ...prev };
-      if (next[id]) { delete next[id]; } else { next[id] = true; }
+      if (next[id]) {
+        if (next[id].source === 'user') delete next[id];
+      } else {
+        next[id] = { source: 'user' };
+      }
+      trackEvent(next[id] ? 'item_locked' : 'item_unlocked', { thumbId: id });
       return next;
     });
   };
@@ -3858,7 +3899,7 @@ export default function ItineraryResults() {
     }
   };
 
-  const hasFeedback = Object.keys(lovedItems).length > 0 || Object.keys(swappedActivities).length > 0 || Object.values(dayFeedback).some(f => f?.note || f?.reaction) || pulse === 'close' || pulse === 'rethink';
+  const hasFeedback = Object.keys(lockedItems).length > 0 || Object.keys(swappedActivities).length > 0 || Object.values(dayFeedback).some(f => f?.note || f?.reaction) || pulse === 'close' || pulse === 'rethink';
 
   const handleRefine = async () => {
     const nextIteration = iteration + 1;
@@ -3874,7 +3915,7 @@ export default function ItineraryResults() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           itinerary: rawItinerary,
-          lovedItems,
+          lockedItems,
           dayFeedback,
           swappedActivities,
           pulse,
@@ -3895,7 +3936,7 @@ export default function ItineraryResults() {
       saveFeedback({
         formData,
         itineraryId,
-        lovedItems,
+        lockedItems,
         dayFeedback,
         pulse,
         overallNote,
@@ -3916,7 +3957,6 @@ export default function ItineraryResults() {
       });
 
       setDayFeedback({});
-      setLovedItems({});
       setSwappedActivities({});
       setPulse(null);
       setOverallNote('');
@@ -4018,7 +4058,7 @@ export default function ItineraryResults() {
 
       {/* Detail panel */}
       <DetailPanel item={activePanel} onClose={() => setActivePanel(null)}
-        lovedItems={lovedItems} onLove={handleLove} onAlternatives={handleAlternatives}
+        lockedItems={lockedItems} onLock={handleLock} onAlternatives={handleAlternatives}
         alternativesLoading={alternativesLoading} />
 
       {/* Header */}
@@ -4134,7 +4174,7 @@ export default function ItineraryResults() {
                   <div key={i} ref={el => dayRefs.current[i] = el} style={{ scrollMarginTop: 60 }}>
                     <DayCard day={day} dayIndex={i}
                       feedback={dayFeedback[i]} onFeedback={handleDayFeedback}
-                      lovedItems={lovedItems} onLove={handleLove} onAlternatives={handleAlternatives}
+                      lockedItems={lockedItems} onLock={handleLock} onAlternatives={handleAlternatives}
                       swappedActivities={swappedActivities}
                       onSwapOpen={(data) => setSwapModal(data)}
                       onOpenPanel={(panelItem) => {

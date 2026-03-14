@@ -5,7 +5,7 @@
  * File location: /api/refine-itinerary.js
  *
  * POST /api/refine-itinerary
- * Body: { itinerary, lovedItems, swappedActivities, dayFeedback, pulse, overallNote, formData }
+ * Body: { itinerary, lockedItems, swappedActivities, dayFeedback, pulse, overallNote, formData }
  *
  * Accepts the current itinerary + user feedback and returns
  * a revised itinerary via the Claude API.
@@ -49,14 +49,14 @@ function buildFeedbackSummary(dayFeedback, days) {
 }
 
 /**
- * Build the loved-items summary for the refinement prompt.
- * lovedItems is a map of { [thumbId]: true }.
+ * Build the locked-items summary for the refinement prompt.
+ * lockedItems is a map of { [thumbId]: { source, bookingType? } }.
  * Keys look like day_0_timeline_2 or day_1_pick_0.
  */
-function buildLovedItemsSummary(lovedItems, days) {
-  if (!lovedItems || Object.keys(lovedItems).length === 0) return '';
+function buildLockedItemsSummary(lockedItems, days) {
+  if (!lockedItems || Object.keys(lockedItems).length === 0) return '';
 
-  const lines = Object.keys(lovedItems).map(key => {
+  const lines = Object.keys(lockedItems).map(key => {
     const match = key.match(/^day_(\d+)_(timeline|pick)_(\d+)$/);
     if (!match) return null;
     const [, dayIdx, type, itemIdx] = match;
@@ -71,7 +71,7 @@ function buildLovedItemsSummary(lovedItems, days) {
       itemName = pick?.pick?.name || `${pick?.category || 'pick'} ${Number(itemIdx) + 1}`;
     }
 
-    return `- **${dayLabel}**, ${itemName}: LOVED — preserve this exactly`;
+    return `- **${dayLabel}**, ${itemName}: LOCKED — do not remove, reschedule, or replace`;
   }).filter(Boolean);
 
   return lines.join('\n');
@@ -159,7 +159,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { itinerary, lovedItems, swappedActivities, dayFeedback, pulse, overallNote, formData, tripLogistics } = req.body;
+    const { itinerary, lockedItems, swappedActivities, dayFeedback, pulse, overallNote, formData, tripLogistics } = req.body;
 
     if (!itinerary) {
       return res.status(400).json({ error: 'Missing required field: itinerary' });
@@ -180,18 +180,18 @@ export default async function handler(req, res) {
     }
 
     const feedbackSummary = buildFeedbackSummary(dayFeedback, parsedItinerary?.days);
-    const lovedSummary = buildLovedItemsSummary(lovedItems, parsedItinerary?.days);
+    const lockedSummary = buildLockedItemsSummary(lockedItems, parsedItinerary?.days);
     const swappedSummary = buildSwappedSummary(swappedActivities, parsedItinerary?.days);
     const pulseSummary = buildPulseSummary(pulse, overallNote);
     const bookingsSummary = buildBookingsSummary(tripLogistics);
 
     const hasDayFeedback = feedbackSummary.length > 0;
-    const hasLovedItems = lovedSummary.length > 0;
+    const hasLockedItems = lockedSummary.length > 0;
     const hasSwaps = swappedSummary.length > 0;
     const hasPulse = pulseSummary.length > 0;
     const hasBookings = bookingsSummary.length > 0;
 
-    if (!hasDayFeedback && !hasLovedItems && !hasSwaps && !hasPulse && !hasBookings) {
+    if (!hasDayFeedback && !hasLockedItems && !hasSwaps && !hasPulse && !hasBookings) {
       return res.status(400).json({ error: 'No feedback provided to refine against' });
     }
 
@@ -207,7 +207,7 @@ ${itinerary}
 
 ## Traveler Feedback
 
-${hasLovedItems ? `### Loved Activities\n\nThe traveler marked these as loved — preserve them exactly:\n\n${lovedSummary}` : ''}
+${hasLockedItems ? `### Locked Activities\n\nThe traveler locked these in — do not remove, reschedule, or replace:\n\n${lockedSummary}` : ''}
 
 ${hasSwaps ? `### Swapped Activities\n\nThe traveler chose alternatives for these activities — use the replacement:\n\n${swappedSummary}` : ''}
 
@@ -223,11 +223,11 @@ ${hasBookings ? `### Confirmed Bookings\n\nThe traveler has these confirmed book
 
 You are revising this itinerary based on the traveler's feedback. Follow these rules:
 
-1. **Honor loved activities.** Activities the traveler marked as LOVED must be preserved exactly — same title, same time slot, same details.
+1. **Honor locked activities.** Activities the traveler locked in must be preserved exactly — same title, same time slot, same details. Do not remove, reschedule, or replace them.
 
 2. **Apply swaps.** Where the traveler chose an alternative, replace the original activity with the chosen replacement. Use the replacement title and summary provided.
 
-3. **Preserve days whose activities are all loved.** If every activity on a day is loved with no swaps, keep that day locked.
+3. **Preserve days whose activities are all locked.** If every activity on a day is locked with no swaps, keep that day unchanged.
 
 4. **Respect per-day notes.** If the traveler left a note on a day, follow their direction. If they say "less hiking, more town time" — replace strenuous trail activities with town-based or gentle alternatives from the destination guide.
 
@@ -235,7 +235,7 @@ You are revising this itinerary based on the traveler's feedback. Follow these r
 
 6. **Honor the overall pulse:**
    - "Almost there" (close) → make targeted tweaks only, preserve the overall structure
-   - "Rethink it" (rethink) → feel free to make larger structural changes (reorder days, swap major activities), but still preserve any loved activities
+   - "Rethink it" (rethink) → feel free to make larger structural changes (reorder days, swap major activities), but still preserve any locked activities
 
 7. **Maintain the same JSON structure** as the original. Same fields, same format. The frontend depends on this structure.
 
