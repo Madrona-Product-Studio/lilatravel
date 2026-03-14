@@ -1814,7 +1814,7 @@ function GeneratingScreen({ destination }) {
   const activeIndex = completedIndex + 1;
 
   useEffect(() => {
-    const timings = [3000, 8000, 16000, 28000, 44000, 64000, 90000];
+    const timings = [4000, 12000, 24000, 40000, 60000, 85000, 115000];
     const timeouts = timings.map((delay, i) =>
       setTimeout(() => setCompletedIndex(i), delay)
     );
