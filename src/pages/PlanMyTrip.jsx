@@ -746,10 +746,10 @@ function WelcomePathCard({ icon: IconComp, title, subtitle, description, buttonL
               fontSize: 13, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase",
               ...(isPrimary ? {
                 background: "none",
-                color: C.slate,
-                padding: "10px 0 2px",
-                borderBottom: `1.5px solid ${C.slate}`,
-                fontWeight: 600,
+                color: C.oceanTeal,
+                padding: "11px 28px",
+                border: `1.5px solid ${C.oceanTeal}`,
+                borderRadius: 2,
               } : {
                 background: "none",
                 color: C.sage,
@@ -757,7 +757,7 @@ function WelcomePathCard({ icon: IconComp, title, subtitle, description, buttonL
               }),
             }}>
               {buttonLabel}
-              <IconArrowRight size={14} color={isPrimary ? C.slate : C.sage} />
+              <IconArrowRight size={14} color={isPrimary ? C.oceanTeal : C.sage} />
             </span>
           </div>
         </div>
