@@ -932,9 +932,13 @@ ${context.matchingInstructions || 'Use the traveler profile above to personalize
 Please create a personalized day-by-day itinerary for this traveler based on the destination guide above. Follow all rules in your system prompt. Only recommend places, trails, restaurants, and experiences that appear in the guide. Account for the weather forecast and any active alerts. Follow the matching instructions to select content that fits this specific traveler.
 `.trim();
 
+  // Scale token budget with trip length: ~2000 tokens per day + 1500 for framing
+  const days = context.traveler.duration || 4;
+  const max_tokens = Math.min(1500 + days * 2000, 16000);
+
   return {
     model: 'claude-sonnet-4-6',
-    max_tokens: 9000,
+    max_tokens,
     system: [
       { type: 'text', text: systemPrompt, cache_control: { type: 'ephemeral' } },
     ],
