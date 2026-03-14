@@ -233,7 +233,7 @@ function weatherDescription(code) {
  * Format weather data into a readable summary for the Claude prompt.
  */
 function formatWeatherForPrompt(weatherData) {
-  if (!weatherData) return 'Weather forecast not available. Suggest traveler check closer to trip dates.';
+  if (!weatherData) return null;
   
   return weatherData.map(day => 
     `${day.date}: High ${day.high}°F / Low ${day.low}°F — ${weatherDescription(day.code)} (${day.precipChance}% precip chance)`
@@ -345,7 +345,7 @@ function getMoonPhase(date) {
  * Format celestial data for the Claude prompt.
  */
 function formatCelestialForPrompt(celestialData) {
-  if (!celestialData) return 'Celestial data not available.';
+  if (!celestialData) return null;
 
   const firstDay = celestialData.days[0];
   const lastDay = celestialData.days[celestialData.days.length - 1];
@@ -934,7 +934,7 @@ Please create a personalized day-by-day itinerary for this traveler based on the
 
   return {
     model: 'claude-sonnet-4-6',
-    max_tokens: 12000,
+    max_tokens: 10000,
     system: [
       { type: 'text', text: systemPrompt, cache_control: { type: 'ephemeral' } },
     ],

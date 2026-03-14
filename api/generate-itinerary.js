@@ -33,35 +33,49 @@ export default async function handler(req, res) {
   }
 
   try {
+    const t0 = Date.now();
     const { destination, preferences } = req.body;
 
     // Validate required fields
     if (!destination || !preferences) {
-      return res.status(400).json({ 
-        error: 'Missing required fields: destination, preferences' 
+      return res.status(400).json({
+        error: 'Missing required fields: destination, preferences'
       });
     }
 
     if (!preferences.dates?.start && !preferences.month) {
-      return res.status(400).json({ 
-        error: 'Missing required fields: either preferences.dates or preferences.month' 
+      return res.status(400).json({
+        error: 'Missing required fields: either preferences.dates or preferences.month'
       });
     }
 
     // 1. Assemble all context (static guide + live data)
     const context = await assembleContext(destination, preferences);
+    const t1 = Date.now();
 
     // 2. Build the Claude API message
     const messagePayload = buildClaudeMessage(context, systemPrompt);
+    const t2 = Date.now();
 
     // 3. Call Claude
     const response = await anthropic.messages.create(messagePayload);
+    const t3 = Date.now();
 
     // 4. Extract the text response
     const itinerary = response.content
       .filter(block => block.type === 'text')
       .map(block => block.text)
       .join('\n');
+
+    // Timing breakdown
+    const timing = {
+      contextAssemblyMs: t1 - t0,
+      messageBuildMs: t2 - t1,
+      claudeApiMs: t3 - t2,
+      totalMs: t3 - t0,
+    };
+    console.log('[TIMING]', JSON.stringify(timing));
+    console.log('[USAGE]', JSON.stringify(response.usage));
 
     // 5. Return the itinerary
     return res.status(200).json({
@@ -71,10 +85,12 @@ export default async function handler(req, res) {
         destination,
         dates: preferences.dates,
         model: messagePayload.model,
-        hasAlerts: context.liveData.alerts !== 'No alert data available.',
-        hasWeather: context.liveData.weather !== 'Weather forecast not available. Suggest traveler check closer to trip dates.',
+        hasAlerts: !!context.liveData.alerts,
+        hasWeather: !!context.liveData.weatherRaw,
         celestial: context.liveData.celestialRaw || null,
         weather: context.liveData.weatherRaw || null,
+        timing,
+        usage: response.usage,
       }
     });
 
