@@ -20,25 +20,57 @@ const anthropic = new Anthropic({
 const ALLOWED_MIME_TYPES = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
 const MAX_SIZE_BYTES = 5 * 1024 * 1024; // 5MB
 
-const EXTRACTION_PROMPT = `You are a booking confirmation data extractor. Analyze this image and extract structured booking information.
+const SYSTEM_PROMPT = `You are a precision booking confirmation data extractor. Your job is to carefully analyze screenshots of travel confirmations and extract every relevant detail into structured JSON.
 
-Determine the booking type and extract the relevant fields:
+IMPORTANT EXTRACTION PRIORITIES — look carefully for ALL of these:
+- Airport codes (3-letter IATA codes like LAX, JFK, SFO — often near city names)
+- Flight numbers (e.g. UA 1234, DL 567, AA 890)
+- Dates and times (check headers, sidebars, and fine print)
+- Confirmation/record locator codes (usually 6 alphanumeric characters)
+- Departure and arrival cities/airports
 
-**Flight**: airline, flightNumber, departureAirport (3-letter code), arrivalAirport (3-letter code), date (format: "Mon DD, YYYY"), departureTime (format: "H:MM AM/PM"), arrivalTime (format: "H:MM AM/PM"), confirmationNumber
-**Rental Car**: company, confirmationNumber, pickupLocation, pickupDate (format: "Mon DD, YYYY"), returnDate (format: "Mon DD, YYYY")
-**Accommodation**: name, confirmationNumber, checkIn (format: "Mon DD, YYYY"), checkOut (format: "Mon DD, YYYY"), address, phone
+FIELD DEFINITIONS BY BOOKING TYPE:
 
-Respond with ONLY valid JSON in this exact format:
+**Flight**:
+- airline: Full airline name (e.g. "United Airlines", "Delta Air Lines")
+- flightNumber: Carrier code + number (e.g. "UA 1234")
+- departureAirport: 3-letter IATA code (e.g. "LAX"). If only city name is visible, use the primary airport code.
+- arrivalAirport: 3-letter IATA code (e.g. "JFK"). If only city name is visible, use the primary airport code.
+- date: Format "Mon DD, YYYY" (e.g. "Mar 15, 2026")
+- departureTime: Format "H:MM AM/PM" (e.g. "8:30 AM")
+- arrivalTime: Format "H:MM AM/PM" (e.g. "4:45 PM")
+- confirmationNumber: The booking reference / record locator
+
+**Rental Car**:
+- company, confirmationNumber, pickupLocation
+- pickupDate: Format "Mon DD, YYYY"
+- returnDate: Format "Mon DD, YYYY"
+
+**Accommodation**:
+- name, confirmationNumber
+- checkIn: Format "Mon DD, YYYY"
+- checkOut: Format "Mon DD, YYYY"
+- address, phone
+
+RESPONSE FORMAT — respond with ONLY valid JSON, no other text:
 {
   "type": "flight" | "rental" | "accommodation",
   ...extracted fields for that type...,
   "_uncertain": ["fieldName1", "fieldName2"]
 }
 
-The "_uncertain" array should list any field names where the text was blurry, partially obscured, or you had to guess. If all fields are clear, use an empty array.
+The "_uncertain" array should list any field names where the value was blurry, partially obscured, or you had to infer. If all fields are clear, use an empty array.
+
+EXAMPLES:
+
+Flight confirmation screenshot →
+{"type":"flight","airline":"United Airlines","flightNumber":"UA 2381","departureAirport":"SFO","arrivalAirport":"LAX","date":"Apr 12, 2026","departureTime":"7:15 AM","arrivalTime":"8:50 AM","confirmationNumber":"ABC123","_uncertain":[]}
+
+Hotel confirmation screenshot →
+{"type":"accommodation","name":"The Ritz-Carlton","confirmationNumber":"92841556","checkIn":"Apr 12, 2026","checkOut":"Apr 15, 2026","address":"1 Ritz-Carlton Dr, Dana Point, CA 92629","phone":"(949) 240-2000","_uncertain":["phone"]}
 
 If the image is not a booking confirmation, respond with:
-{ "error": "This doesn't appear to be a booking confirmation." }`;
+{"error":"This doesn't appear to be a booking confirmation."}`;
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -64,7 +96,8 @@ export default async function handler(req, res) {
 
     const response = await anthropic.messages.create({
       model: 'claude-sonnet-4-6',
-      max_tokens: 1024,
+      max_tokens: 2048,
+      system: SYSTEM_PROMPT,
       messages: [
         {
           role: 'user',
@@ -79,7 +112,7 @@ export default async function handler(req, res) {
             },
             {
               type: 'text',
-              text: EXTRACTION_PROMPT,
+              text: 'Extract all booking details from this confirmation screenshot. Look carefully for airport codes, flight numbers, dates, times, and confirmation numbers.',
             },
           ],
         },
