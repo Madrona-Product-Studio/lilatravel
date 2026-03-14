@@ -745,11 +745,11 @@ function WelcomePathCard({ icon: IconComp, title, subtitle, description, buttonL
               fontFamily: "'Quicksand', sans-serif",
               fontSize: 13, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase",
               ...(isPrimary ? {
-                background: C.oceanTeal,
-                color: C.white,
-                padding: "12px 28px",
-                borderRadius: 30,
-                boxShadow: `0 4px 20px ${C.oceanTeal}25`,
+                background: "none",
+                color: C.slate,
+                padding: "10px 0 2px",
+                borderBottom: `1.5px solid ${C.slate}`,
+                fontWeight: 600,
               } : {
                 background: "none",
                 color: C.sage,
@@ -757,7 +757,7 @@ function WelcomePathCard({ icon: IconComp, title, subtitle, description, buttonL
               }),
             }}>
               {buttonLabel}
-              <IconArrowRight size={14} color={isPrimary ? C.white : C.sage} />
+              <IconArrowRight size={14} color={isPrimary ? C.slate : C.sage} />
             </span>
           </div>
         </div>
@@ -806,7 +806,7 @@ function StepWelcome({ onNext }) {
           subtitle="Self-Guided"
           title="Plan My Own Trip"
           description="Answer a few questions about what you're seeking and we'll craft a personalized itinerary — complete with trails, wellness practices, timing, and local picks."
-          buttonLabel="Start Planning — Free"
+          buttonLabel="Design Your Trip"
           isPrimary={true}
           tag="Beta"
           tagColor={C.oceanTeal}
