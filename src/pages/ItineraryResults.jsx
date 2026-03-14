@@ -605,16 +605,13 @@ function MetaStrip({ category, pick, color }) {
 /* ── isCuratable — determines which activities get action buttons ────── */
 
 const NON_CURATABLE_TYPES = ['logistics', 'transit', 'accommodation', 'checkin', 'checkout', 'travel'];
-const CURATABLE_KEYWORDS = ['hike', 'trail', 'experience', 'activity', 'restaurant', 'food', 'dining', 'viewpoint', 'stop', 'attraction', 'walk', 'canyon', 'sunrise', 'sunset', 'yoga', 'breathwork', 'meditation', 'spa', 'wellness', 'swim', 'kayak', 'climb', 'explore', 'visit', 'lunch', 'dinner', 'breakfast', 'brunch'];
 
 function isCuratable(activity) {
   const typeStr = (activity.activityType || activity.type || '').toLowerCase();
   if (NON_CURATABLE_TYPES.some(t => typeStr.includes(t))) return false;
-  const titleLower = (activity.title || '').toLowerCase();
   // Exclude common logistics patterns by title
-  if (/\b(check.?in|check.?out|pack|depart|arrive|drive to|travel to)\b/i.test(activity.title || '')) return false;
-  const text = `${typeStr} ${titleLower} ${(activity.category || '').toLowerCase()}`;
-  return CURATABLE_KEYWORDS.some(t => text.includes(t));
+  if (/\b(check.?in|check.?out|pack|depart|arrive|drive to|travel to|open time|free time|settle in)\b/i.test(activity.title || '')) return false;
+  return true;
 }
 
 /* ── SwapIcon — inline SVG refresh/swap icon ──────────────────────────── */
