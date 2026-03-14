@@ -2,11 +2,11 @@
   "functions": {
     "api/generate-itinerary.js": {
       "includeFiles": "src/data/destinations/**,prompts/**,src/services/**",
-      "maxDuration": 120
+      "maxDuration": 180
     },
     "api/refine-itinerary.js": {
       "includeFiles": "prompts/**",
-      "maxDuration": 120
+      "maxDuration": 180
     }
   },
   "rewrites": [
