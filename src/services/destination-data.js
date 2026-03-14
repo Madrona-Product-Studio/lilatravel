@@ -928,7 +928,7 @@ Please create a personalized day-by-day itinerary for this traveler based on the
 
   return {
     model: 'claude-sonnet-4-6',
-    max_tokens: 8000,
+    max_tokens: 12000,
     system: [
       { type: 'text', text: systemPrompt, cache_control: { type: 'ephemeral' } },
     ],
