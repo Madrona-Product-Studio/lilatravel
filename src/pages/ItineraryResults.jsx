@@ -296,18 +296,18 @@ function LinkedName({ name, url, style = {}, linkType = 'activity' }) {
 
 // Per-month celestial event data (mirrors CelestialMonthStrip)
 const CELESTIAL_BY_MONTH = {
-  january:   { sky: 'Deep Winter Sky',  events: [{ icon: '🌑', name: 'New Moon',       date: 'Jan 29', note: 'Darkest skies of the month. Prime stargazing.' }, { icon: '🌕', name: 'Full Moon',       date: 'Jan 13', note: 'Wolf Moon. Canyon walls glow under full light.' }, { icon: '❄️', name: 'Winter Cold',     date: 'Jan',     note: 'Coldest temps. Snow possible on upper trails.' }] },
-  february:  { sky: 'Late Winter Sky',  events: [{ icon: '🌑', name: 'New Moon',       date: 'Feb 27', note: 'Best night-sky window. Milky Way returns.' }, { icon: '🌕', name: 'Full Moon',       date: 'Feb 12', note: 'Snow Moon. Cold brilliance over the canyon.' }, { icon: '🌸', name: 'First Blooms',    date: 'Late Feb', note: 'Desert willow and redbud begin to bud.' }] },
-  march:     { sky: 'Spring Equinox',   events: [{ icon: '☀️', name: 'Spring Equinox', date: 'Mar 20', note: 'Equal day and night. Canyon light turns golden.' }, { icon: '🌑', name: 'New Moon',       date: 'Mar 29', note: 'Clear skies for deep-sky viewing.' }, { icon: '🌸', name: 'Desert Bloom',   date: 'Mar–Apr', note: 'Wildflowers begin. Color spreads canyon floor.' }] },
-  april:     { sky: 'Desert Bloom Sky', events: [{ icon: '🌸', name: 'Peak Bloom',     date: 'Apr',    note: 'Sacred datura, prickly pear, cliffrose in flower.' }, { icon: '🌑', name: 'New Moon',       date: 'Apr 27', note: 'Warm nights. Ideal for camping under stars.' }, { icon: '🌕', name: 'Full Moon',       date: 'Apr 12', note: 'Pink Moon. Soft light over sandstone.' }] },
-  may:       { sky: 'Late Spring Sky',  events: [{ icon: '🌑', name: 'New Moon',       date: 'May 26', note: 'Pre-summer clarity. Milky Way rising.' }, { icon: '🌕', name: 'Full Moon',       date: 'May 12', note: 'Flower Moon. Warm evenings canyon-side.' }, { icon: '🌿', name: 'Green Canyon',   date: 'May',    note: 'Virgin River runs lush. Cottonwoods fully leafed.' }] },
-  june:      { sky: 'Summer Solstice',  events: [{ icon: '☀️', name: 'Summer Solstice',date: 'Jun 21', note: 'Longest day. Canyon walls catch last light longest.' }, { icon: '🌌', name: 'Milky Way Peak', date: 'Jun–Sep', note: 'Galaxy rises overhead on clear nights.' }, { icon: '🌑', name: 'New Moon',       date: 'Jun 25', note: 'Best stargazing window of summer.' }] },
-  july:      { sky: 'Monsoon Sky',      events: [{ icon: '⛈️', name: 'Monsoon Season', date: 'Jul–Aug', note: 'Afternoon storms. Flash flood risk. Dramatic skies.' }, { icon: '🌌', name: 'Milky Way',      date: 'Jul',    note: 'Core overhead mid-summer. Spectacular from the rim.' }, { icon: '🌕', name: 'Full Moon',       date: 'Jul 10', note: 'Buck Moon. Warm light, warm nights.' }] },
-  august:    { sky: 'Late Summer Sky',  events: [{ icon: '🌠', name: 'Perseids',        date: 'Aug 11–13', note: 'Peak meteor shower. Up to 100 meteors/hour.' }, { icon: '⛈️', name: 'Monsoon Tail',  date: 'Early Aug', note: 'Storms taper. Stunning post-rain clarity.' }, { icon: '🌑', name: 'New Moon',       date: 'Aug 23', note: 'Moonless nights for star-heavy viewing.' }] },
-  september: { sky: 'Early Autumn Sky', events: [{ icon: '☀️', name: 'Autumn Equinox', date: 'Sep 22', note: 'Light shifts. Cottonwoods begin to turn.' }, { icon: '🌑', name: 'New Moon',       date: 'Sep 11', note: 'Best night-sky viewing. Ideal for stargazing.' }, { icon: '🌕', name: 'Full Moon',       date: 'Sep 25', note: 'Bright moonlit canyon walks.' }] },
-  october:   { sky: 'Golden Corridor',  events: [{ icon: '🍂', name: 'Peak Color',      date: 'Oct',    note: 'Cottonwoods gold. Best light of the year.' }, { icon: '🌑', name: 'New Moon',       date: 'Oct 21', note: 'Dark skies over golden canyon walls.' }, { icon: '🌕', name: 'Full Moon',       date: 'Oct 6',  note: "Hunter's Moon. Canyon glows at midnight." }] },
-  november:  { sky: 'Deep Autumn Sky',  events: [{ icon: '🌕', name: 'Full Moon',       date: 'Nov 5',  note: 'Beaver Moon over bare cottonwoods.' }, { icon: '🌠', name: 'Leonids',         date: 'Nov 17', note: 'Meteor shower. 15–20 per hour at peak.' }, { icon: '🌑', name: 'New Moon',       date: 'Nov 20', note: 'Clear, cold. Best Milky Way of autumn.' }] },
-  december:  { sky: 'Winter Solstice',  events: [{ icon: '☀️', name: 'Winter Solstice', date: 'Dec 21', note: 'Shortest day. Most dramatic canyon light.' }, { icon: '🌠', name: 'Geminids',        date: 'Dec 13–14', note: 'Best meteor shower of the year. 120/hour at peak.' }, { icon: '🌑', name: 'New Moon',       date: 'Dec 30', note: 'Year-end dark sky. Snow-dusted walls.' }] },
+  january:   { sky: 'Deep Winter Sky',  events: [{ icon: '\u{1F311}', name: 'New Moon',       date: 'Jan 29', note: 'Darkest skies of the month. Prime stargazing.' }, { icon: '\u{1F315}', name: 'Full Moon',       date: 'Jan 13', note: 'Wolf Moon. Landscape glows under full light.' }, { icon: '\u2744\uFE0F', name: 'Winter Cold',     date: 'Jan',     note: 'Coldest temps. Bundle up for trails.' }] },
+  february:  { sky: 'Late Winter Sky',  events: [{ icon: '\u{1F311}', name: 'New Moon',       date: 'Feb 27', note: 'Best night-sky window. Milky Way returns.' }, { icon: '\u{1F315}', name: 'Full Moon',       date: 'Feb 12', note: 'Snow Moon. Cold brilliance overhead.' }, { icon: '\u{1F338}', name: 'First Blooms',    date: 'Late Feb', note: 'Early wildflowers begin to emerge.' }] },
+  march:     { sky: 'Spring Equinox',   events: [{ icon: '\u2600\uFE0F', name: 'Spring Equinox', date: 'Mar 20', note: 'Equal day and night. Golden light returns.' }, { icon: '\u{1F311}', name: 'New Moon',       date: 'Mar 29', note: 'Clear skies for deep-sky viewing.' }, { icon: '\u{1F338}', name: 'Spring Bloom',   date: 'Mar\u2013Apr', note: 'Wildflowers begin. Color spreads across the landscape.' }] },
+  april:     { sky: 'Spring Bloom Sky', events: [{ icon: '\u{1F338}', name: 'Peak Bloom',     date: 'Apr',    note: 'Wildflowers and native plants in full display.' }, { icon: '\u{1F311}', name: 'New Moon',       date: 'Apr 27', note: 'Warm nights. Ideal for camping under stars.' }, { icon: '\u{1F315}', name: 'Full Moon',       date: 'Apr 12', note: 'Pink Moon. Soft light across the landscape.' }] },
+  may:       { sky: 'Late Spring Sky',  events: [{ icon: '\u{1F311}', name: 'New Moon',       date: 'May 26', note: 'Pre-summer clarity. Milky Way rising.' }, { icon: '\u{1F315}', name: 'Full Moon',       date: 'May 12', note: 'Flower Moon. Warm evenings outdoors.' }, { icon: '\u{1F33F}', name: 'Green Season',   date: 'May',    note: 'Lush vegetation. Peak greenery across the region.' }] },
+  june:      { sky: 'Summer Solstice',  events: [{ icon: '\u2600\uFE0F', name: 'Summer Solstice',date: 'Jun 21', note: 'Longest day. Extended golden hour light.' }, { icon: '\u{1F30C}', name: 'Milky Way Peak', date: 'Jun\u2013Sep', note: 'Galaxy rises overhead on clear nights.' }, { icon: '\u{1F311}', name: 'New Moon',       date: 'Jun 25', note: 'Best stargazing window of summer.' }] },
+  july:      { sky: 'High Summer Sky',  events: [{ icon: '\u2600\uFE0F', name: 'Peak Summer',   date: 'Jul',    note: 'Long warm days. Best conditions for evening outings.' }, { icon: '\u{1F30C}', name: 'Milky Way',      date: 'Jul',    note: 'Core overhead mid-summer. Spectacular night skies.' }, { icon: '\u{1F315}', name: 'Full Moon',       date: 'Jul 10', note: 'Buck Moon. Warm light, warm nights.' }] },
+  august:    { sky: 'Late Summer Sky',  events: [{ icon: '\u{1F320}', name: 'Perseids',        date: 'Aug 11\u201313', note: 'Peak meteor shower. Up to 100 meteors/hour.' }, { icon: '\u2600\uFE0F', name: 'Late Summer',  date: 'Early Aug', note: 'Summer winds down. Stunning clarity in the skies.' }, { icon: '\u{1F311}', name: 'New Moon',       date: 'Aug 23', note: 'Moonless nights for star-heavy viewing.' }] },
+  september: { sky: 'Early Autumn Sky', events: [{ icon: '\u2600\uFE0F', name: 'Autumn Equinox', date: 'Sep 22', note: 'Light shifts. Foliage begins to turn.' }, { icon: '\u{1F311}', name: 'New Moon',       date: 'Sep 11', note: 'Best night-sky viewing. Ideal for stargazing.' }, { icon: '\u{1F315}', name: 'Full Moon',       date: 'Sep 25', note: 'Bright moonlit evening walks.' }] },
+  october:   { sky: 'Golden Autumn',    events: [{ icon: '\u{1F342}', name: 'Peak Color',      date: 'Oct',    note: 'Autumn foliage at its best. Golden light of the year.' }, { icon: '\u{1F311}', name: 'New Moon',       date: 'Oct 21', note: 'Dark skies over golden landscapes.' }, { icon: '\u{1F315}', name: 'Full Moon',       date: 'Oct 6',  note: "Hunter's Moon. Landscape glows at midnight." }] },
+  november:  { sky: 'Deep Autumn Sky',  events: [{ icon: '\u{1F315}', name: 'Full Moon',       date: 'Nov 5',  note: 'Beaver Moon over bare branches.' }, { icon: '\u{1F320}', name: 'Leonids',         date: 'Nov 17', note: 'Meteor shower. 15\u201320 per hour at peak.' }, { icon: '\u{1F311}', name: 'New Moon',       date: 'Nov 20', note: 'Clear, cold. Best Milky Way of autumn.' }] },
+  december:  { sky: 'Winter Solstice',  events: [{ icon: '\u2600\uFE0F', name: 'Winter Solstice', date: 'Dec 21', note: 'Shortest day. Most dramatic light of the year.' }, { icon: '\u{1F320}', name: 'Geminids',        date: 'Dec 13\u201314', note: 'Best meteor shower of the year. 120/hour at peak.' }, { icon: '\u{1F311}', name: 'New Moon',       date: 'Dec 30', note: 'Year-end dark sky. Crisp winter air.' }] },
 };
 
 // Moon phase emojis for the pill display
@@ -2064,11 +2064,35 @@ const DESTINATION_LOGISTICS = {
     car: 'A car is essential. The park is 60+ miles end to end.',
     pickupLocation: 'PSP Airport',
   },
+  'big-sur': {
+    flights: 'Fly into San Jose (SJC) or Monterey (MRY) \u2014 1\u20132 hrs to Big Sur.',
+    arrivalAirport: 'SJC',
+    car: 'A car is essential. Highway 1 is the only route through.',
+    pickupLocation: 'SJC Airport',
+  },
+  'olympic-peninsula': {
+    flights: 'Fly into Seattle (SEA) \u2014 2.5 hrs to the peninsula.',
+    arrivalAirport: 'SEA',
+    car: 'A car is essential. The peninsula is vast with limited transit.',
+    pickupLocation: 'SEA Airport',
+  },
+  kauai: {
+    flights: 'Fly into Lihue (LIH) \u2014 the island\'s only commercial airport.',
+    arrivalAirport: 'LIH',
+    car: 'A rental car is highly recommended for exploring the island.',
+    pickupLocation: 'LIH Airport',
+  },
+  'vancouver-island': {
+    flights: 'Fly into Victoria (YYJ) or Nanaimo (YCD), or ferry from Vancouver.',
+    arrivalAirport: 'YYJ',
+    car: 'A car is essential for exploring beyond Victoria.',
+    pickupLocation: 'YYJ Airport',
+  },
 };
 
 function getLogistics(destination) {
   const key = (destination || '').toLowerCase().replace(/\s+/g, '-');
-  return DESTINATION_LOGISTICS[key] || DESTINATION_LOGISTICS.zion;
+  return DESTINATION_LOGISTICS[key] || null;
 }
 
 /**
@@ -2265,9 +2289,11 @@ function LogisticsPanel({ destination, sticky = true, tripLogistics, onOpenPanel
           </div>
         ) : (
           <>
-            <div style={{ fontFamily: F, fontSize: 13, color: C.body, lineHeight: 1.5, marginBottom: 4 }}>
-              {logistics.flights}
-            </div>
+            {logistics?.flights && (
+              <div style={{ fontFamily: F, fontSize: 13, color: C.body, lineHeight: 1.5, marginBottom: 4 }}>
+                {logistics.flights}
+              </div>
+            )}
             <div style={{ fontFamily: F, fontSize: 11, fontStyle: 'italic', color: C.muted, marginBottom: 8 }}>
               Add your flight to get timing-aware scheduling.
             </div>
@@ -2288,9 +2314,11 @@ function LogisticsPanel({ destination, sticky = true, tripLogistics, onOpenPanel
           </div>
         ) : (
           <>
-            <div style={{ fontFamily: F, fontSize: 13, color: C.body, lineHeight: 1.5, marginBottom: 4 }}>
-              {logistics.car}
-            </div>
+            {logistics?.car && (
+              <div style={{ fontFamily: F, fontSize: 13, color: C.body, lineHeight: 1.5, marginBottom: 4 }}>
+                {logistics.car}
+              </div>
+            )}
             <div style={{ fontFamily: F, fontSize: 11, fontStyle: 'italic', color: C.muted, marginBottom: 8 }}>
               Add your rental confirmation to keep it handy.
             </div>
