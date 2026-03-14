@@ -100,6 +100,41 @@ function buildSwappedSummary(swappedActivities, days) {
 }
 
 /**
+ * Build the bookings summary for the refinement prompt.
+ * Formats flights/rentals/accommodations into readable constraints.
+ */
+function buildBookingsSummary(tripLogistics) {
+  if (!tripLogistics) return '';
+  const { flights = [], rentals = [], accommodations = [] } = tripLogistics;
+  if (flights.length === 0 && rentals.length === 0 && accommodations.length === 0) return '';
+
+  const lines = [];
+
+  flights.forEach((f, i) => {
+    const label = flights.length === 2 ? (i === 0 ? 'Outbound flight' : 'Return flight') : `Flight ${i + 1}`;
+    const parts = [f.airline, f.flightNumber].filter(Boolean).join(' ');
+    const route = f.departureAirport && f.arrivalAirport ? `${f.departureAirport} → ${f.arrivalAirport}` : '';
+    const timing = [f.date, f.departureTime ? `departs ${f.departureTime}` : '', f.arrivalTime ? `arrives ${f.arrivalTime}` : ''].filter(Boolean).join(', ');
+    lines.push(`- **${label}**: ${[parts, route, timing].filter(Boolean).join(' · ')}`);
+  });
+
+  rentals.forEach((r, i) => {
+    const label = rentals.length > 1 ? `Rental ${i + 1}` : 'Rental car';
+    const parts = [r.company, r.confirmationNumber ? `Conf: ${r.confirmationNumber}` : ''].filter(Boolean).join(' · ');
+    const dates = [r.pickupDate, r.returnDate].filter(Boolean).join(' → ');
+    lines.push(`- **${label}**: ${[parts, r.pickupLocation, dates].filter(Boolean).join(' · ')}`);
+  });
+
+  accommodations.forEach((a, i) => {
+    const label = accommodations.length > 1 ? `Accommodation ${i + 1}` : 'Accommodation';
+    const dates = a.checkIn && a.checkOut ? `${a.checkIn} → ${a.checkOut}` : '';
+    lines.push(`- **${label}**: ${[a.name, dates, a.confirmationNumber ? `Conf: ${a.confirmationNumber}` : ''].filter(Boolean).join(' · ')}`);
+  });
+
+  return lines.join('\n');
+}
+
+/**
  * Build the overall pulse section for the refinement prompt.
  */
 function buildPulseSummary(pulse, overallNote) {
@@ -124,7 +159,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { itinerary, lovedItems, swappedActivities, dayFeedback, pulse, overallNote, formData } = req.body;
+    const { itinerary, lovedItems, swappedActivities, dayFeedback, pulse, overallNote, formData, tripLogistics } = req.body;
 
     if (!itinerary) {
       return res.status(400).json({ error: 'Missing required field: itinerary' });
@@ -148,13 +183,15 @@ export default async function handler(req, res) {
     const lovedSummary = buildLovedItemsSummary(lovedItems, parsedItinerary?.days);
     const swappedSummary = buildSwappedSummary(swappedActivities, parsedItinerary?.days);
     const pulseSummary = buildPulseSummary(pulse, overallNote);
+    const bookingsSummary = buildBookingsSummary(tripLogistics);
 
     const hasDayFeedback = feedbackSummary.length > 0;
     const hasLovedItems = lovedSummary.length > 0;
     const hasSwaps = swappedSummary.length > 0;
     const hasPulse = pulseSummary.length > 0;
+    const hasBookings = bookingsSummary.length > 0;
 
-    if (!hasDayFeedback && !hasLovedItems && !hasSwaps && !hasPulse) {
+    if (!hasDayFeedback && !hasLovedItems && !hasSwaps && !hasPulse && !hasBookings) {
       return res.status(400).json({ error: 'No feedback provided to refine against' });
     }
 
@@ -177,6 +214,8 @@ ${hasSwaps ? `### Swapped Activities\n\nThe traveler chose alternatives for thes
 ${hasDayFeedback ? `### Per-Day Notes\n\n${feedbackSummary}` : ''}
 
 ${hasPulse ? `### Overall Trip Feeling\n\n${pulseSummary}` : ''}
+
+${hasBookings ? `### Confirmed Bookings\n\nThe traveler has these confirmed bookings — treat as hard constraints:\n\n${bookingsSummary}` : ''}
 
 ---
 
@@ -203,6 +242,12 @@ You are revising this itinerary based on the traveler's feedback. Follow these r
 8. **All recommendations must still come from the destination guide** in your system prompt context. Do not invent new places.
 
 9. **Keep the same number of days** unless the overall note explicitly asks to add or remove days.
+
+10. **Respect confirmed bookings as hard constraints:**
+    - Do not schedule activities before flight arrival time + 1.5 hours (travel from airport + check-in buffer).
+    - Wrap up all activities at least 2.5 hours before a departure flight (drive to airport + security + buffer).
+    - If the traveler has confirmed accommodation, naturally build hotel check-in/check-out into the day arc instead of suggesting different lodging.
+    - Rental car pickup/return times should align with flight arrivals/departures.
 
 ${formData ? `
 ---

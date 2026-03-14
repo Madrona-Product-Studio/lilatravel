@@ -1158,10 +1158,14 @@ function DetailPanelContent({ item, lovedItems, onLove, onAlternatives, alternat
 
   // Logistics form panels
   if (type === 'flights') {
-    return <FlightFormPanel data={item.savedData} logistics={item.logistics} onSave={item.onSave} />;
+    return <FlightFormPanel data={item.savedData} logistics={item.logistics} onSave={item.onSave} bookingIndex={item.bookingIndex} highlightFields={item.highlightFields} />;
   }
   if (type === 'rental') {
-    return <RentalFormPanel data={item.savedData} logistics={item.logistics} onSave={item.onSave} />;
+    return <RentalFormPanel data={item.savedData} logistics={item.logistics} onSave={item.onSave} bookingIndex={item.bookingIndex} highlightFields={item.highlightFields} />;
+  }
+  // Editable accommodation form (user booking) — must come before read-only Lila Pick
+  if (type === 'accommodation' && item.onSave) {
+    return <AccommodationFormPanel data={item.savedData} onSave={item.onSave} bookingIndex={item.bookingIndex} highlightFields={item.highlightFields} />;
   }
   if (type === 'accommodation') {
     const accom = data;
@@ -1625,11 +1629,12 @@ function DetailPanelContent({ item, lovedItems, onLove, onAlternatives, alternat
 const logisticsLabelStyle = { fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: C.muted, marginBottom: 4, display: 'block' };
 const logisticsInputStyle = { width: '100%', padding: '9px 12px', fontFamily: F, fontSize: 13, color: C.ink, background: C.white, border: `1px solid ${C.border}`, borderRadius: 8, outline: 'none', boxSizing: 'border-box' };
 
-function FlightFormPanel({ data, logistics, onSave }) {
-  const [form, setForm] = useState(data || { airline: '', flightNumber: '', departureAirport: '', arrivalAirport: logistics?.arrivalAirport || '', date: '', departureTime: '' });
+function FlightFormPanel({ data, logistics, onSave, bookingIndex, highlightFields }) {
+  const [form, setForm] = useState(data || { airline: '', flightNumber: '', departureAirport: '', arrivalAirport: logistics?.arrivalAirport || '', date: '', departureTime: '', arrivalTime: '', confirmationNumber: '' });
   const set = (k, v) => setForm(prev => ({ ...prev, [k]: v }));
+  const highlight = (field) => highlightFields?.includes(field) ? { borderColor: `${C.amber}80` } : {};
 
-  if (data && !form._editing) {
+  if (data && !form._editing && bookingIndex !== undefined) {
     return (
       <div style={{ maxWidth: 500, margin: '0 auto', padding: '20px 20px 60px' }}>
         <div style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '4px 11px', borderRadius: 20, background: `${C.teal}0e`, border: `1px solid ${C.teal}18`, marginBottom: 10 }}>
@@ -1641,7 +1646,8 @@ function FlightFormPanel({ data, logistics, onSave }) {
           <div style={{ fontFamily: F, fontSize: 14, fontWeight: 600, color: C.ink, marginBottom: 6 }}>{data.airline} {data.flightNumber}</div>
           <div style={{ fontFamily: F, fontSize: 13, color: C.body, lineHeight: 1.6 }}>
             {data.departureAirport && <>{data.departureAirport} → {data.arrivalAirport}<br /></>}
-            {data.date && <>{data.date}{data.departureTime ? ` · ${data.departureTime}` : ''}</>}
+            {data.date && <>{data.date}{data.departureTime ? ` · Departs ${data.departureTime}` : ''}{data.arrivalTime ? ` · Arrives ${data.arrivalTime}` : ''}<br /></>}
+            {data.confirmationNumber && <>Conf: {data.confirmationNumber}</>}
           </div>
         </div>
         <button onClick={() => setForm({ ...data, _editing: true })} style={{ fontFamily: F, fontSize: 13, fontWeight: 600, color: C.teal, background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>Edit →</button>
@@ -1662,15 +1668,17 @@ function FlightFormPanel({ data, logistics, onSave }) {
       </div>
       <h1 style={{ fontFamily: F_SERIF, fontSize: 'clamp(20px, 5vw, 24px)', fontWeight: 300, color: C.ink, lineHeight: 1.25, marginBottom: 20 }}>Your Flight Details</h1>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-        <div><label style={logisticsLabelStyle}>Airline</label><input style={logisticsInputStyle} value={form.airline} onChange={e => set('airline', e.target.value)} placeholder="e.g. United Airlines" /></div>
-        <div><label style={logisticsLabelStyle}>Flight Number</label><input style={logisticsInputStyle} value={form.flightNumber} onChange={e => set('flightNumber', e.target.value)} placeholder="e.g. UA 1234" /></div>
+        <div><label style={logisticsLabelStyle}>Airline</label><input style={{ ...logisticsInputStyle, ...highlight('airline') }} value={form.airline} onChange={e => set('airline', e.target.value)} placeholder="e.g. United Airlines" /></div>
+        <div><label style={logisticsLabelStyle}>Flight Number</label><input style={{ ...logisticsInputStyle, ...highlight('flightNumber') }} value={form.flightNumber} onChange={e => set('flightNumber', e.target.value)} placeholder="e.g. UA 1234" /></div>
+        <div><label style={logisticsLabelStyle}>Confirmation Number</label><input style={{ ...logisticsInputStyle, ...highlight('confirmationNumber') }} value={form.confirmationNumber} onChange={e => set('confirmationNumber', e.target.value)} placeholder="e.g. ABC123" /></div>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
-          <div><label style={logisticsLabelStyle}>Departure Airport</label><input style={logisticsInputStyle} value={form.departureAirport} onChange={e => set('departureAirport', e.target.value)} placeholder="e.g. SFO" /></div>
-          <div><label style={logisticsLabelStyle}>Arrival Airport</label><input style={logisticsInputStyle} value={form.arrivalAirport} onChange={e => set('arrivalAirport', e.target.value)} placeholder="e.g. LAS" /></div>
+          <div><label style={logisticsLabelStyle}>Departure Airport</label><input style={{ ...logisticsInputStyle, ...highlight('departureAirport') }} value={form.departureAirport} onChange={e => set('departureAirport', e.target.value)} placeholder="e.g. SFO" /></div>
+          <div><label style={logisticsLabelStyle}>Arrival Airport</label><input style={{ ...logisticsInputStyle, ...highlight('arrivalAirport') }} value={form.arrivalAirport} onChange={e => set('arrivalAirport', e.target.value)} placeholder="e.g. LAS" /></div>
         </div>
+        <div><label style={logisticsLabelStyle}>Date</label><input style={{ ...logisticsInputStyle, ...highlight('date') }} value={form.date} onChange={e => set('date', e.target.value)} placeholder="e.g. Mar 15, 2026" /></div>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
-          <div><label style={logisticsLabelStyle}>Date</label><input style={logisticsInputStyle} value={form.date} onChange={e => set('date', e.target.value)} placeholder="e.g. Mar 15, 2026" /></div>
-          <div><label style={logisticsLabelStyle}>Departure Time</label><input style={logisticsInputStyle} value={form.departureTime} onChange={e => set('departureTime', e.target.value)} placeholder="e.g. 8:30 AM" /></div>
+          <div><label style={logisticsLabelStyle}>Departure Time</label><input style={{ ...logisticsInputStyle, ...highlight('departureTime') }} value={form.departureTime} onChange={e => set('departureTime', e.target.value)} placeholder="e.g. 8:30 AM" /></div>
+          <div><label style={logisticsLabelStyle}>Arrival Time</label><input style={{ ...logisticsInputStyle, ...highlight('arrivalTime') }} value={form.arrivalTime} onChange={e => set('arrivalTime', e.target.value)} placeholder="e.g. 10:15 AM" /></div>
         </div>
         <button onClick={handleSave} style={{ fontFamily: F, fontSize: 14, fontWeight: 600, color: C.white, background: C.teal, border: 'none', borderRadius: 20, padding: '10px 28px', cursor: 'pointer', alignSelf: 'flex-start', marginTop: 4 }}>Save Flight</button>
       </div>
@@ -1678,11 +1686,12 @@ function FlightFormPanel({ data, logistics, onSave }) {
   );
 }
 
-function RentalFormPanel({ data, logistics, onSave }) {
+function RentalFormPanel({ data, logistics, onSave, bookingIndex, highlightFields }) {
   const [form, setForm] = useState(data || { company: '', confirmationNumber: '', pickupLocation: logistics?.pickupLocation || '', pickupDate: '', returnDate: '' });
   const set = (k, v) => setForm(prev => ({ ...prev, [k]: v }));
+  const highlight = (field) => highlightFields?.includes(field) ? { borderColor: `${C.amber}80` } : {};
 
-  if (data && !form._editing) {
+  if (data && !form._editing && bookingIndex !== undefined) {
     return (
       <div style={{ maxWidth: 500, margin: '0 auto', padding: '20px 20px 60px' }}>
         <div style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '4px 11px', borderRadius: 20, background: `${C.teal}0e`, border: `1px solid ${C.teal}18`, marginBottom: 10 }}>
@@ -1716,14 +1725,204 @@ function RentalFormPanel({ data, logistics, onSave }) {
       </div>
       <h1 style={{ fontFamily: F_SERIF, fontSize: 'clamp(20px, 5vw, 24px)', fontWeight: 300, color: C.ink, lineHeight: 1.25, marginBottom: 20 }}>Your Rental Details</h1>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-        <div><label style={logisticsLabelStyle}>Rental Company</label><input style={logisticsInputStyle} value={form.company} onChange={e => set('company', e.target.value)} placeholder="e.g. Enterprise" /></div>
-        <div><label style={logisticsLabelStyle}>Confirmation Number</label><input style={logisticsInputStyle} value={form.confirmationNumber} onChange={e => set('confirmationNumber', e.target.value)} placeholder="e.g. ABC123456" /></div>
-        <div><label style={logisticsLabelStyle}>Pickup Location</label><input style={logisticsInputStyle} value={form.pickupLocation} onChange={e => set('pickupLocation', e.target.value)} placeholder="e.g. LAS Airport" /></div>
+        <div><label style={logisticsLabelStyle}>Rental Company</label><input style={{ ...logisticsInputStyle, ...highlight('company') }} value={form.company} onChange={e => set('company', e.target.value)} placeholder="e.g. Enterprise" /></div>
+        <div><label style={logisticsLabelStyle}>Confirmation Number</label><input style={{ ...logisticsInputStyle, ...highlight('confirmationNumber') }} value={form.confirmationNumber} onChange={e => set('confirmationNumber', e.target.value)} placeholder="e.g. ABC123456" /></div>
+        <div><label style={logisticsLabelStyle}>Pickup Location</label><input style={{ ...logisticsInputStyle, ...highlight('pickupLocation') }} value={form.pickupLocation} onChange={e => set('pickupLocation', e.target.value)} placeholder="e.g. LAS Airport" /></div>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
-          <div><label style={logisticsLabelStyle}>Pickup Date</label><input style={logisticsInputStyle} value={form.pickupDate} onChange={e => set('pickupDate', e.target.value)} placeholder="e.g. Mar 15, 2026" /></div>
-          <div><label style={logisticsLabelStyle}>Return Date</label><input style={logisticsInputStyle} value={form.returnDate} onChange={e => set('returnDate', e.target.value)} placeholder="e.g. Mar 20, 2026" /></div>
+          <div><label style={logisticsLabelStyle}>Pickup Date</label><input style={{ ...logisticsInputStyle, ...highlight('pickupDate') }} value={form.pickupDate} onChange={e => set('pickupDate', e.target.value)} placeholder="e.g. Mar 15, 2026" /></div>
+          <div><label style={logisticsLabelStyle}>Return Date</label><input style={{ ...logisticsInputStyle, ...highlight('returnDate') }} value={form.returnDate} onChange={e => set('returnDate', e.target.value)} placeholder="e.g. Mar 20, 2026" /></div>
         </div>
         <button onClick={handleSave} style={{ fontFamily: F, fontSize: 14, fontWeight: 600, color: C.white, background: C.teal, border: 'none', borderRadius: 20, padding: '10px 28px', cursor: 'pointer', alignSelf: 'flex-start', marginTop: 4 }}>Save Rental</button>
+      </div>
+    </div>
+  );
+}
+
+function BookingUploadTrigger({ onExtracted, onError }) {
+  const fileRef = useRef(null);
+  const [uploading, setUploading] = useState(false);
+
+  const handleFile = async (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    // Reset input so same file can be re-selected
+    e.target.value = '';
+
+    setUploading(true);
+    try {
+      const reader = new FileReader();
+      const base64 = await new Promise((resolve, reject) => {
+        reader.onload = () => resolve(reader.result.split(',')[1]);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+
+      const res = await fetch('/api/extract-booking', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ base64Image: base64, mimeType: file.type }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.success) {
+        onError?.(data.error || 'Could not extract booking data.');
+        return;
+      }
+      trackEvent('booking_extracted', { type: data.booking.type, uncertain_count: data.booking._uncertain?.length || 0 });
+      onExtracted(data.booking);
+    } catch {
+      onError?.('Something went wrong. Please try again.');
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  return (
+    <div>
+      <input ref={fileRef} type="file" accept="image/*" onChange={handleFile} style={{ display: 'none' }} />
+      <button
+        onClick={() => fileRef.current?.click()}
+        disabled={uploading}
+        style={{
+          width: '100%', padding: '14px 12px',
+          background: 'none', cursor: uploading ? 'default' : 'pointer',
+          border: `1.5px dashed ${C.sage}40`, borderRadius: 8,
+          fontFamily: F, fontSize: 12, fontWeight: 500, color: C.sage,
+          display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+          WebkitTapHighlightColor: 'transparent',
+        }}
+      >
+        {uploading ? (
+          <>
+            <span style={{
+              width: 14, height: 14, border: `2px solid ${C.sage}30`, borderTopColor: C.sage,
+              borderRadius: '50%', animation: 'lila-spin 0.8s linear infinite', display: 'inline-block',
+            }} />
+            <style>{`@keyframes lila-spin { to { transform: rotate(360deg); } }`}</style>
+            Extracting...
+          </>
+        ) : (
+          <>📷 Upload confirmation screenshot</>
+        )}
+      </button>
+    </div>
+  );
+}
+
+function BookingCard({ booking, badge, onClick, onRemove }) {
+  const hasUncertain = booking._uncertain?.length > 0;
+
+  let title = '';
+  let subtitle = '';
+  if (booking.type === 'flight') {
+    title = [booking.airline, booking.flightNumber].filter(Boolean).join(' ') || 'Flight';
+    subtitle = [
+      booking.departureAirport && booking.arrivalAirport ? `${booking.departureAirport} → ${booking.arrivalAirport}` : '',
+      booking.date || '',
+    ].filter(Boolean).join(' · ');
+  } else if (booking.type === 'rental') {
+    title = booking.company || 'Rental Car';
+    subtitle = [
+      booking.confirmationNumber ? `Conf: ${booking.confirmationNumber}` : '',
+      booking.pickupDate || '',
+    ].filter(Boolean).join(' · ');
+  } else if (booking.type === 'accommodation') {
+    title = booking.name || 'Accommodation';
+    subtitle = [
+      booking.checkIn && booking.checkOut ? `${booking.checkIn} → ${booking.checkOut}` : '',
+      booking.confirmationNumber ? `Conf: ${booking.confirmationNumber}` : '',
+    ].filter(Boolean).join(' · ');
+  }
+
+  return (
+    <div
+      onClick={onClick}
+      style={{
+        ...CARD_STYLE, padding: '10px 12px', cursor: 'pointer',
+        position: 'relative',
+        borderColor: hasUncertain ? `${C.amber}50` : undefined,
+      }}
+    >
+      {onRemove && (
+        <button
+          onClick={(e) => { e.stopPropagation(); onRemove(); }}
+          style={{
+            position: 'absolute', top: 6, right: 8,
+            background: 'none', border: 'none', cursor: 'pointer',
+            fontFamily: F, fontSize: 13, color: C.muted, padding: '2px 4px',
+            WebkitTapHighlightColor: 'transparent',
+          }}
+          aria-label="Remove"
+        >✕</button>
+      )}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 4 }}>
+        <span style={{ fontFamily: F, fontSize: 13, fontWeight: 600, color: C.ink }}>{title}</span>
+        {badge && (
+          <span style={{
+            fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase',
+            color: C.teal, background: `${C.teal}0e`, border: `1px solid ${C.teal}18`,
+            padding: '2px 7px', borderRadius: 10,
+          }}>{badge}</span>
+        )}
+      </div>
+      {subtitle && <div style={{ fontFamily: F, fontSize: 11, color: C.muted, lineHeight: 1.4 }}>{subtitle}</div>}
+      {hasUncertain && (
+        <div style={{ fontFamily: F, fontSize: 10, fontWeight: 500, color: C.amber, marginTop: 4 }}>
+          ⚠ Review: {booking._uncertain.join(', ')}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function AccommodationFormPanel({ data, onSave, bookingIndex, highlightFields }) {
+  const [form, setForm] = useState(data || { name: '', confirmationNumber: '', checkIn: '', checkOut: '', address: '', phone: '' });
+  const set = (k, v) => setForm(prev => ({ ...prev, [k]: v }));
+  const highlight = (field) => highlightFields?.includes(field) ? { borderColor: `${C.amber}80` } : {};
+
+  if (data && !form._editing && bookingIndex !== undefined) {
+    return (
+      <div style={{ maxWidth: 500, margin: '0 auto', padding: '20px 20px 60px' }}>
+        <div style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '4px 11px', borderRadius: 20, background: `${C.teal}0e`, border: `1px solid ${C.teal}18`, marginBottom: 10 }}>
+          <CategoryIcon category="stay" color={C.teal} size={12} />
+          <span style={{ fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: C.teal }}>Accommodation</span>
+        </div>
+        <h1 style={{ fontFamily: F_SERIF, fontSize: 'clamp(20px, 5vw, 24px)', fontWeight: 300, color: C.ink, lineHeight: 1.25, marginBottom: 16 }}>Your Reservation</h1>
+        <div style={{ ...CARD_STYLE, padding: '16px 18px', marginBottom: 16 }}>
+          <div style={{ fontFamily: F, fontSize: 14, fontWeight: 600, color: C.ink, marginBottom: 6 }}>{data.name}</div>
+          <div style={{ fontFamily: F, fontSize: 13, color: C.body, lineHeight: 1.6 }}>
+            {data.confirmationNumber && <>Conf: {data.confirmationNumber}<br /></>}
+            {data.checkIn && data.checkOut && <>{data.checkIn} → {data.checkOut}<br /></>}
+            {data.address && <>{data.address}<br /></>}
+            {data.phone && <>{data.phone}</>}
+          </div>
+        </div>
+        <button onClick={() => setForm({ ...data, _editing: true })} style={{ fontFamily: F, fontSize: 13, fontWeight: 600, color: C.teal, background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>Edit →</button>
+      </div>
+    );
+  }
+
+  const handleSave = () => {
+    const { _editing, ...clean } = form;
+    onSave(clean);
+  };
+
+  return (
+    <div style={{ maxWidth: 500, margin: '0 auto', padding: '20px 20px 60px' }}>
+      <div style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '4px 11px', borderRadius: 20, background: `${C.teal}0e`, border: `1px solid ${C.teal}18`, marginBottom: 10 }}>
+        <CategoryIcon category="stay" color={C.teal} size={12} />
+        <span style={{ fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: C.teal }}>Accommodation</span>
+      </div>
+      <h1 style={{ fontFamily: F_SERIF, fontSize: 'clamp(20px, 5vw, 24px)', fontWeight: 300, color: C.ink, lineHeight: 1.25, marginBottom: 20 }}>Your Reservation</h1>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+        <div><label style={logisticsLabelStyle}>Property Name</label><input style={{ ...logisticsInputStyle, ...highlight('name') }} value={form.name} onChange={e => set('name', e.target.value)} placeholder="e.g. Desert Rose Inn" /></div>
+        <div><label style={logisticsLabelStyle}>Confirmation Number</label><input style={{ ...logisticsInputStyle, ...highlight('confirmationNumber') }} value={form.confirmationNumber} onChange={e => set('confirmationNumber', e.target.value)} placeholder="e.g. HTL-789012" /></div>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+          <div><label style={logisticsLabelStyle}>Check-In</label><input style={{ ...logisticsInputStyle, ...highlight('checkIn') }} value={form.checkIn} onChange={e => set('checkIn', e.target.value)} placeholder="e.g. Mar 15, 2026" /></div>
+          <div><label style={logisticsLabelStyle}>Check-Out</label><input style={{ ...logisticsInputStyle, ...highlight('checkOut') }} value={form.checkOut} onChange={e => set('checkOut', e.target.value)} placeholder="e.g. Mar 20, 2026" /></div>
+        </div>
+        <div><label style={logisticsLabelStyle}>Address (optional)</label><input style={{ ...logisticsInputStyle, ...highlight('address') }} value={form.address} onChange={e => set('address', e.target.value)} placeholder="e.g. 123 Canyon Rd, Springdale UT" /></div>
+        <div><label style={logisticsLabelStyle}>Phone (optional)</label><input style={{ ...logisticsInputStyle, ...highlight('phone') }} value={form.phone} onChange={e => set('phone', e.target.value)} placeholder="e.g. (435) 555-0123" /></div>
+        <button onClick={handleSave} style={{ fontFamily: F, fontSize: 14, fontWeight: 600, color: C.white, background: C.teal, border: 'none', borderRadius: 20, padding: '10px 28px', cursor: 'pointer', alignSelf: 'flex-start', marginTop: 4 }}>Save Reservation</button>
       </div>
     </div>
   );
@@ -1941,25 +2140,117 @@ function extractAccommodation(itinerary) {
   return null;
 }
 
-function LogisticsPanel({ destination, sticky = true, tripLogistics, onOpenPanel, itinerary }) {
+function LogisticsPanel({ destination, sticky = true, tripLogistics, onOpenPanel, itinerary, onRefine }) {
   const logistics = getLogistics(destination);
-  const savedFlight = tripLogistics?.flights;
-  const savedRental = tripLogistics?.rental;
+  const flights = tripLogistics?.flights || [];
+  const rentals = tripLogistics?.rentals || [];
+  const userAccoms = tripLogistics?.accommodations || [];
   const dynamicAccom = extractAccommodation(itinerary);
   const accom = dynamicAccom || { name: 'See your itinerary' };
   const accomName = accom.name;
 
-  const openFlights = () => onOpenPanel && onOpenPanel({
-    type: 'flights', savedData: savedFlight, logistics,
-    onSave: (d) => onOpenPanel({ _updateLogistics: { flights: d } }),
+  const [uploadError, setUploadError] = useState(null);
+
+  const hasAnyBookings = flights.length > 0 || rentals.length > 0 || userAccoms.length > 0;
+
+  // Flight badge logic
+  const getFlightBadge = (index) => {
+    if (flights.length === 2) return index === 0 ? 'Outbound' : 'Return';
+    if (flights.length > 2) return `Flight ${index + 1}`;
+    return null;
+  };
+
+  // Open form panels for editing/adding
+  const openFlightForm = (index) => onOpenPanel && onOpenPanel({
+    type: 'flights', savedData: index !== undefined ? flights[index] : null, logistics,
+    bookingIndex: index,
+    onSave: (d) => onOpenPanel({
+      _updateLogistics: (prev) => {
+        const arr = [...(prev.flights || [])];
+        if (index !== undefined) arr[index] = d;
+        else arr.push(d);
+        return { ...prev, flights: arr };
+      },
+    }),
   });
-  const openRental = () => onOpenPanel && onOpenPanel({
-    type: 'rental', savedData: savedRental, logistics,
-    onSave: (d) => onOpenPanel({ _updateLogistics: { rental: d } }),
+  const openRentalForm = (index) => onOpenPanel && onOpenPanel({
+    type: 'rental', savedData: index !== undefined ? rentals[index] : null, logistics,
+    bookingIndex: index,
+    onSave: (d) => onOpenPanel({
+      _updateLogistics: (prev) => {
+        const arr = [...(prev.rentals || [])];
+        if (index !== undefined) arr[index] = d;
+        else arr.push(d);
+        return { ...prev, rentals: arr };
+      },
+    }),
   });
-  const openAccommodation = () => onOpenPanel && onOpenPanel({
+  const openAccomForm = (index) => onOpenPanel && onOpenPanel({
+    type: 'accommodation',
+    savedData: index !== undefined ? userAccoms[index] : null,
+    bookingIndex: index,
+    onSave: (d) => onOpenPanel({
+      _updateLogistics: (prev) => {
+        const arr = [...(prev.accommodations || [])];
+        if (index !== undefined) arr[index] = d;
+        else arr.push(d);
+        return { ...prev, accommodations: arr };
+      },
+    }),
+  });
+  const openLilaAccom = () => onOpenPanel && onOpenPanel({
     type: 'accommodation', data: accom, alternatives: accom.alternatives || [],
   });
+
+  const removeFlight = (index) => onOpenPanel({ _updateLogistics: (prev) => ({ ...prev, flights: prev.flights.filter((_, i) => i !== index) }) });
+  const removeRental = (index) => onOpenPanel({ _updateLogistics: (prev) => ({ ...prev, rentals: prev.rentals.filter((_, i) => i !== index) }) });
+  const removeAccom = (index) => onOpenPanel({ _updateLogistics: (prev) => ({ ...prev, accommodations: prev.accommodations.filter((_, i) => i !== index) }) });
+
+  // Vision-to-form: on extraction, open the correct form pre-filled
+  const handleExtracted = (booking) => {
+    setUploadError(null);
+    if (booking.type === 'flight') {
+      onOpenPanel && onOpenPanel({
+        type: 'flights', savedData: booking, logistics,
+        highlightFields: booking._uncertain || [],
+        onSave: (d) => onOpenPanel({
+          _updateLogistics: (prev) => ({ ...prev, flights: [...(prev.flights || []), d] }),
+        }),
+      });
+    } else if (booking.type === 'rental') {
+      onOpenPanel && onOpenPanel({
+        type: 'rental', savedData: booking, logistics,
+        highlightFields: booking._uncertain || [],
+        onSave: (d) => onOpenPanel({
+          _updateLogistics: (prev) => ({ ...prev, rentals: [...(prev.rentals || []), d] }),
+        }),
+      });
+    } else if (booking.type === 'accommodation') {
+      onOpenPanel && onOpenPanel({
+        type: 'accommodation', savedData: booking,
+        highlightFields: booking._uncertain || [],
+        onSave: (d) => onOpenPanel({
+          _updateLogistics: (prev) => ({ ...prev, accommodations: [...(prev.accommodations || []), d] }),
+        }),
+      });
+    }
+  };
+
+  const sectionHeader = (icon, label) => (
+    <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 8 }}>
+      {icon}
+      <span style={{ fontFamily: F, fontSize: 10, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: C.muted }}>{label}</span>
+    </div>
+  );
+
+  const addRow = (uploadSection, onManual) => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 6, marginTop: 8 }}>
+      <BookingUploadTrigger onExtracted={handleExtracted} onError={setUploadError} />
+      <button onClick={onManual} style={{ fontFamily: F, fontSize: 12, fontWeight: 500, color: C.muted, background: 'none', border: 'none', cursor: 'pointer', padding: 0, textAlign: 'left' }}>
+        + Enter manually
+      </button>
+    </div>
+  );
 
   return (
     <div style={{
@@ -1967,70 +2258,81 @@ function LogisticsPanel({ destination, sticky = true, tripLogistics, onOpenPanel
       ...(sticky ? { position: 'sticky', top: 56 } : {}),
     }}>
       {/* Header */}
-      <div style={{
-        padding: '12px 16px',
-        borderBottom: `1px solid ${C.border}`,
-      }}>
-        <div style={{
-          fontFamily: F, fontSize: 11, fontWeight: 700,
-          letterSpacing: '0.18em', textTransform: 'uppercase',
-          color: C.ink,
-        }}>Trip Logistics</div>
+      <div style={{ padding: '12px 16px', borderBottom: `1px solid ${C.border}` }}>
+        <div style={{ fontFamily: F, fontSize: 11, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: C.ink }}>Trip Logistics</div>
       </div>
+
+      {/* Upload error */}
+      {uploadError && (
+        <div style={{ padding: '8px 16px', background: `${C.salmon}10`, borderBottom: `1px solid ${C.border}` }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
+            <span style={{ fontFamily: F, fontSize: 12, color: C.salmon }}>{uploadError}</span>
+            <button onClick={() => setUploadError(null)} style={{ fontFamily: F, fontSize: 11, fontWeight: 600, color: `${C.salmon}80`, background: 'none', border: 'none', cursor: 'pointer', padding: '2px 6px', WebkitTapHighlightColor: 'transparent' }}>✕</button>
+          </div>
+        </div>
+      )}
 
       {/* Flights */}
       <div style={{ padding: '13px 16px', borderBottom: `1px solid ${C.border}` }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 8 }}>
-          <PlaneIcon size={12} color={C.muted} />
-          <span style={{ fontFamily: F, fontSize: 10, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: C.muted }}>Flights</span>
-        </div>
-        {savedFlight ? (
-          <div onClick={openFlights} style={{ cursor: 'pointer' }}>
-            <div style={{ fontFamily: F, fontSize: 13, fontWeight: 600, color: C.ink, marginBottom: 2 }}>{savedFlight.airline} {savedFlight.flightNumber}</div>
-            <div style={{ fontFamily: F, fontSize: 12, color: C.muted }}>{savedFlight.departureAirport ? `${savedFlight.departureAirport} → ${savedFlight.arrivalAirport}` : ''}{savedFlight.date ? ` · ${savedFlight.date}` : ''}</div>
+        {sectionHeader(<PlaneIcon size={12} color={C.muted} />, 'Flights')}
+        {flights.length > 0 ? (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+            {flights.map((f, i) => (
+              <BookingCard key={i} booking={{ ...f, type: 'flight' }} badge={getFlightBadge(i)} onClick={() => openFlightForm(i)} onRemove={() => removeFlight(i)} />
+            ))}
+            {addRow('flights', () => openFlightForm())}
           </div>
         ) : (
           <>
-            <div style={{ fontFamily: F, fontSize: 13, color: C.body, lineHeight: 1.5, marginBottom: 8 }}>
+            <div style={{ fontFamily: F, fontSize: 13, color: C.body, lineHeight: 1.5, marginBottom: 4 }}>
               {logistics.flights}
             </div>
-            <button onClick={openFlights} style={{ fontFamily: F, fontSize: 12, fontWeight: 500, color: C.muted, background: 'none', border: 'none', cursor: 'pointer', padding: 0, textAlign: 'left' }}>
-              + Add your flight →
-            </button>
+            <div style={{ fontFamily: F, fontSize: 11, fontStyle: 'italic', color: C.muted, marginBottom: 8 }}>
+              Add your flight to get timing-aware scheduling.
+            </div>
+            {addRow('flights', () => openFlightForm())}
           </>
         )}
       </div>
 
-      {/* Rental Car */}
+      {/* Rental Cars */}
       <div style={{ padding: '13px 16px', borderBottom: `1px solid ${C.border}` }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 8 }}>
-          <CarIcon size={12} color={C.muted} />
-          <span style={{ fontFamily: F, fontSize: 10, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: C.muted }}>Rental Car</span>
-        </div>
-        {savedRental ? (
-          <div onClick={openRental} style={{ cursor: 'pointer' }}>
-            <div style={{ fontFamily: F, fontSize: 13, fontWeight: 600, color: C.ink, marginBottom: 2 }}>{savedRental.company}</div>
-            <div style={{ fontFamily: F, fontSize: 12, color: C.muted }}>{savedRental.confirmationNumber ? `Conf: ${savedRental.confirmationNumber}` : ''}{savedRental.pickupDate ? ` · ${savedRental.pickupDate}` : ''}</div>
+        {sectionHeader(<CarIcon size={12} color={C.muted} />, 'Rental Car')}
+        {rentals.length > 0 ? (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+            {rentals.map((r, i) => (
+              <BookingCard key={i} booking={{ ...r, type: 'rental' }} onClick={() => openRentalForm(i)} onRemove={() => removeRental(i)} />
+            ))}
+            {addRow('rentals', () => openRentalForm())}
           </div>
         ) : (
           <>
-            <div style={{ fontFamily: F, fontSize: 13, color: C.body, lineHeight: 1.5, marginBottom: 8 }}>
+            <div style={{ fontFamily: F, fontSize: 13, color: C.body, lineHeight: 1.5, marginBottom: 4 }}>
               {logistics.car}
             </div>
-            <button onClick={openRental} style={{ fontFamily: F, fontSize: 12, fontWeight: 500, color: C.muted, background: 'none', border: 'none', cursor: 'pointer', padding: 0, textAlign: 'left' }}>
-              Browse rentals →
-            </button>
+            <div style={{ fontFamily: F, fontSize: 11, fontStyle: 'italic', color: C.muted, marginBottom: 8 }}>
+              Add your rental confirmation to keep it handy.
+            </div>
+            {addRow('rentals', () => openRentalForm())}
           </>
         )}
       </div>
 
       {/* Accommodations */}
       <div style={{ padding: '13px 16px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 10 }}>
-          <CategoryIcon category="stay" color={C.muted} size={12} />
-          <span style={{ fontFamily: F, fontSize: 10, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: C.muted }}>Accommodations</span>
-        </div>
-        <div onClick={openAccommodation} style={{
+        {sectionHeader(<CategoryIcon category="stay" color={C.muted} size={12} />, 'Accommodations')}
+
+        {/* User booking cards */}
+        {userAccoms.length > 0 && (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 6, marginBottom: 10 }}>
+            {userAccoms.map((a, i) => (
+              <BookingCard key={i} booking={{ ...a, type: 'accommodation' }} onClick={() => openAccomForm(i)} onRemove={() => removeAccom(i)} />
+            ))}
+          </div>
+        )}
+
+        {/* Lila Pick card */}
+        <div onClick={openLilaAccom} style={{
           background: `${PICK_STYLES.stay.color}06`,
           border: `1px solid ${PICK_STYLES.stay.color}15`,
           borderRadius: 8, padding: '10px 12px', marginBottom: 10, cursor: 'pointer',
@@ -2041,25 +2343,42 @@ function LogisticsPanel({ destination, sticky = true, tripLogistics, onOpenPanel
             <span style={{ fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: PICK_STYLES.stay.color }}>Lila Pick</span>
           </div>
           <div style={{ fontFamily: F, fontSize: 13, fontWeight: 600, color: C.ink, marginBottom: 2 }}>{accomName}</div>
-          {accom.location && (
-            <div style={{ fontFamily: F, fontSize: 11, fontWeight: 500, color: C.muted, marginBottom: 3 }}>{accom.location}</div>
-          )}
-          {accom.vibe && (
-            <div style={{ fontFamily: F, fontSize: 11, fontWeight: 500, fontStyle: 'italic', color: C.sage, lineHeight: 1.4 }}>{accom.vibe}</div>
-          )}
-          {accom.priceRange && (
-            <div style={{ fontFamily: F, fontSize: 10, fontWeight: 600, color: PICK_STYLES.stay.color, marginTop: 5 }}>{accom.priceRange}</div>
-          )}
+          {accom.location && <div style={{ fontFamily: F, fontSize: 11, fontWeight: 500, color: C.muted, marginBottom: 3 }}>{accom.location}</div>}
+          {accom.vibe && <div style={{ fontFamily: F, fontSize: 11, fontWeight: 500, fontStyle: 'italic', color: C.sage, lineHeight: 1.4 }}>{accom.vibe}</div>}
+          {accom.priceRange && <div style={{ fontFamily: F, fontSize: 10, fontWeight: 600, color: PICK_STYLES.stay.color, marginTop: 5 }}>{accom.priceRange}</div>}
         </div>
+
         <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
-          <button onClick={openAccommodation} style={{ fontFamily: F, fontSize: 12, fontWeight: 600, color: C.teal, background: 'none', border: 'none', cursor: 'pointer', padding: 0, textAlign: 'left' }}>
+          <button onClick={openLilaAccom} style={{ fontFamily: F, fontSize: 12, fontWeight: 600, color: C.teal, background: 'none', border: 'none', cursor: 'pointer', padding: 0, textAlign: 'left' }}>
             See other options →
           </button>
-          <button onClick={openAccommodation} style={{ fontFamily: F, fontSize: 12, fontWeight: 500, color: C.muted, background: 'none', border: 'none', cursor: 'pointer', padding: 0, textAlign: 'left' }}>
-            + Add your reservation
+        </div>
+
+        {/* Add reservation row */}
+        {addRow('accommodations', () => openAccomForm())}
+      </div>
+
+      {/* Refine strip — shown when any bookings exist */}
+      {hasAnyBookings && onRefine && (
+        <div style={{
+          padding: '10px 16px',
+          background: `${C.amber}07`,
+          borderTop: `1px solid ${C.border}`,
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+        }}>
+          <button
+            onClick={onRefine}
+            style={{
+              fontFamily: F, fontSize: 12, fontWeight: 600, color: C.amber,
+              background: 'none', border: `1px solid ${C.amber}40`,
+              borderRadius: 16, padding: '7px 16px', cursor: 'pointer',
+              WebkitTapHighlightColor: 'transparent',
+            }}
+          >
+            Adjust itinerary to my bookings
           </button>
         </div>
-      </div>
+      )}
     </div>
   );
 }
@@ -3176,8 +3495,9 @@ export default function ItineraryResults() {
 
   // Trip logistics form state (session-only)
   const [tripLogistics, setTripLogistics] = useState({
-    flights: null,  // { airline, flightNumber, departureAirport, arrivalAirport, date, departureTime }
-    rental: null,   // { company, confirmationNumber, pickupLocation, pickupDate, returnDate }
+    flights: [],         // [{ airline, flightNumber, departureAirport, arrivalAirport, date, departureTime, arrivalTime, confirmationNumber }]
+    rentals: [],         // [{ company, confirmationNumber, pickupLocation, pickupDate, returnDate }]
+    accommodations: [],  // [{ name, confirmationNumber, checkIn, checkOut, address, phone }]
   });
   const [lovedItems, setLovedItems] = useState({});
   const [swapModal, setSwapModal] = useState(null); // { dayIndex, itemIndex, thumbId, activityTitle, alternatives }
@@ -3560,6 +3880,7 @@ export default function ItineraryResults() {
           pulse,
           overallNote,
           formData,
+          tripLogistics,
         }),
       });
       const result = await response.json();
@@ -3770,7 +4091,12 @@ export default function ItineraryResults() {
               itinerary={{ ...itinerary, days: enrichedDays }}
               onOpenPanel={(panelItem) => {
                 if (panelItem._updateLogistics) {
-                  setTripLogistics(prev => ({ ...prev, ...panelItem._updateLogistics }));
+                  setTripLogistics(prev => {
+                    const update = typeof panelItem._updateLogistics === 'function'
+                      ? panelItem._updateLogistics(prev)
+                      : { ...prev, ...panelItem._updateLogistics };
+                    return update;
+                  });
                   setActivePanel(null);
                   return;
                 }
@@ -3780,6 +4106,7 @@ export default function ItineraryResults() {
                 }
                 setActivePanel(panelItem);
               }}
+              onRefine={handleRefine}
             />
           </div>
         )}
@@ -3864,7 +4191,12 @@ export default function ItineraryResults() {
                     itinerary={{ ...itinerary, days: enrichedDays }}
                     onOpenPanel={(panelItem) => {
                       if (panelItem._updateLogistics) {
-                        setTripLogistics(prev => ({ ...prev, ...panelItem._updateLogistics }));
+                        setTripLogistics(prev => {
+                          const update = typeof panelItem._updateLogistics === 'function'
+                            ? panelItem._updateLogistics(prev)
+                            : { ...prev, ...panelItem._updateLogistics };
+                          return update;
+                        });
                         setActivePanel(null);
                         return;
                       }
@@ -3876,6 +4208,7 @@ export default function ItineraryResults() {
                       }
                       setActivePanel(panelItem);
                     }}
+                    onRefine={handleRefine}
                   />
                 </div>
               )}

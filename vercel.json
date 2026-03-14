@@ -7,6 +7,9 @@
     "api/refine-itinerary.js": {
       "includeFiles": "prompts/**",
       "maxDuration": 180
+    },
+    "api/extract-booking.js": {
+      "maxDuration": 30
     }
   },
   "rewrites": [
