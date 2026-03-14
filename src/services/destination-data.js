@@ -899,7 +899,7 @@ export function buildClaudeMessage(context, systemPrompt, { skipAlternatives = f
     liveSections.push(`### Tide Predictions\n${context.tides}`);
   }
 
-  const liveMessage = `
+  let liveMessage = `
 ## Live Data
 
 ${liveSections.join('\n\n')}
