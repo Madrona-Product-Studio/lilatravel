@@ -54,86 +54,46 @@ Olympic's three distinct ecosystems each demand their own section. The trails be
 #### Hurricane Hill Trail
 The finest panoramic summit accessible by trail in the park. From the Hurricane Ridge trailhead, a paved path climbs steadily past wildflower meadows and marmot habitat to a 5,757-foot summit with 360-degree views: the Olympic Range, the Strait of Juan de Fuca, Port Angeles, and on clear days, Vancouver Island across the water. Deer walk the trail. Marmots sun themselves on the rocks. One of the most accessible alpine experiences in any national park.
 - **Distance**: 3.2 miles round trip · **Elevation gain**: 800 ft · **Difficulty**: Easy-Moderate · **Time**: 2 hrs
-- **Energy**: gentle, moderate
-- **Group**: solo, couple, friends, family
-- **Interests**: hiking, photography, alpine views, wildlife
-- **Months**: July–October (snow permitting)
 
 #### High Divide Trail & Seven Lakes Basin Loop
 The defining backcountry traverse in the Olympics. The loop climbs from the Sol Duc valley to a ridge with unobstructed views of Mount Olympus's glaciers, descends through subalpine lakes, and returns through old-growth forest. The ridge walk itself — several miles of it above treeline — is among the finest in the Pacific Northwest. Bears, marmots, elk. Plan two to three days.
 - **Distance**: 18–19 miles loop · **Elevation gain**: ~3,500 ft · **Difficulty**: Strenuous · **Time**: 2–3 days
-- **Energy**: adventurous
-- **Group**: solo, friends
-- **Interests**: backpacking, alpine lakes, wildlife, solitude
-- **Months**: July–September
 
 #### Mount Storm King
 The steepest and most dramatic day hike in the park. The summit involves exposed scrambling and a rope-assisted section near the top. The reward: jaw-dropping views of Lake Crescent's turquoise water far below, framed by old-growth forest. Not for those uncomfortable with heights. One of the highest-rated trails on the peninsula.
 - **Distance**: 4.4 miles round trip · **Elevation gain**: 2,100 ft · **Difficulty**: Strenuous · **Time**: 3–4 hrs
-- **Energy**: adventurous
-- **Group**: solo, friends
-- **Interests**: hiking, climbing, photography
-- **Months**: May–October
 
 #### Marymere Falls Trail
 The classic near-Lake Crescent hike — through old-growth conifers to a 90-foot waterfall tucked into a sandstone gorge. Short enough for any level, beautiful enough to anchor a morning.
 - **Distance**: 1.8 miles round trip · **Difficulty**: Easy · **Time**: 1 hr
-- **Energy**: gentle
-- **Group**: solo, couple, friends, family
-- **Interests**: waterfall, old-growth forest, easy hike
-- **Months**: Year-round
 
 ### Hoh Rainforest (Temperate Rainforest Zone)
 
 #### Hall of Mosses Trail
 The rainforest's most iconic walk. Bigleaf maples draped in club moss form a cathedral canopy above the trail — one of the most otherworldly short walks in North America. The Hoh receives up to 140 inches of rain a year, and it shows: every surface is alive with fern, lichen, and moss. Combine with the Hoh River Trail for a longer morning.
 - **Distance**: 0.8 miles loop · **Difficulty**: Easy · **Time**: 30–45 min
-- **Energy**: gentle
-- **Group**: solo, couple, friends, family
-- **Interests**: photography, nature, old-growth forest
-- **Months**: Year-round (most atmospheric in rain)
 
 #### Hoh River Trail
 The Hoh River Trail runs 17 miles up-valley from the visitor center toward Mount Olympus. Day hikers can go as far as they want — the first few miles are flat, ancient, and extraordinarily quiet. The concept of "One Square Inch of Silence" was developed here — a specific point in the Hoh designated as one of the quietest places in the hemisphere. The deeper you go, the more the forest closes around you.
 - **Distance**: Varies (2–17 miles one way) · **Difficulty**: Easy-Moderate · **Time**: 1 hr to multi-day
-- **Energy**: gentle to adventurous
-- **Group**: solo, couple, friends
-- **Interests**: forest bathing, silence, wildlife, backpacking
-- **Months**: Year-round
 
 ### Pacific Coast (Coastal Zone)
 
 #### Second Beach (La Push)
 The defining Olympic coast experience. A 0.7-mile trail through forest opens suddenly onto a wild beach of black sand and sea stacks — spires of rock rising from the surf, dense with seabirds. Sunsets here are extraordinary. The beach is on the traditional territory of the Quileute Nation.
 - **Distance**: 1.4 miles round trip · **Difficulty**: Easy · **Time**: 45 min
-- **Energy**: gentle
-- **Group**: solo, couple, friends, family
-- **Interests**: beach, photography, sunset, wildlife
-- **Months**: Year-round
 
 #### Hole-in-the-Wall (Rialto Beach)
 A natural sea arch carved by the surf, accessible by a 1.5-mile walk north along Rialto Beach. Tide pools, sea stacks, bald eagles, and the sound of the Pacific. Check tides — the final section to the arch requires a low tide passage. One of the most photographed coastal features in the park.
 - **Distance**: 3 miles round trip · **Difficulty**: Easy (tide-dependent) · **Time**: 1.5–2 hrs
-- **Energy**: gentle
-- **Group**: solo, couple, friends, family
-- **Interests**: coastal hiking, photography, tide pools
-- **Months**: Year-round (check tides)
 
 #### Ozette Triangle (Cape Alava / Sand Point Loop)
 A 9-mile loop combining a beach segment with ancient cedar boardwalk trails through coastal forest. Cape Alava is the westernmost point in the contiguous United States. The beach section passes Wedding Rocks — a cluster of petroglyphs carved by the Makah people, some of the most significant ancient rock art on the peninsula. A profound walk.
 - **Distance**: 9 miles loop · **Difficulty**: Moderate · **Time**: 4–5 hrs
-- **Energy**: moderate
-- **Group**: solo, couple, friends
-- **Interests**: coastal hiking, Indigenous heritage, petroglyphs, solitude
-- **Months**: Year-round (check weather/tides)
 
 ### Sol Duc Falls
 A short walk through old-growth forest to a powerful three-pronged waterfall dropping into a basalt gorge. The falls are accessible year-round, photogenic in any weather, and close to the Sol Duc Hot Springs. Combine the two for one of the best half-days in the park.
 - **Distance**: 1.6 miles round trip · **Difficulty**: Easy · **Time**: 45 min
-- **Energy**: gentle
-- **Group**: solo, couple, friends, family
-- **Interests**: waterfall, forest, photography
-- **Months**: Year-round
 
 ### Activities & Experiences
 
@@ -141,58 +101,34 @@ A short walk through old-growth forest to a powerful three-pronged waterfall dro
 Some of the richest intertidal life on the Pacific coast. Kalaloch Beach 4 has accessible rock shelves exposed at low tide — sea stars, anemones, chitons, hermit crabs, and sculpin in shallow pools. Rialto Beach offers a second tide pooling zone near the Hole-in-the-Wall sea arch. Arrive at least one hour before low tide for the best window. Wear rubber-soled shoes, stay off algae-covered rocks, and never remove or disturb marine life. Check tide tables in advance — these experiences are entirely tide-dependent.
 - **Kalaloch Beach 4 access**: Short staircase from US-101 pullout, 5 miles south of Kalaloch Lodge
 - **Rialto Beach access**: End of Mora Road, 14 miles west of Forks
-- **Energy**: gentle
-- **Group**: solo, couple, friends, family
-- **Interests**: marine life, nature, photography, education
-- **Months**: Year-round (best at minus tides; check tidesandcurrents.noaa.gov)
 
 #### Whale Watching — Gray Whale Migration
 Gray whales pass the Olympic coast during their annual 10,000-mile migration from Baja California to Alaska, and the peninsula offers some of the best shore-based whale watching on the West Coast. La Push and the coastal bluffs between Kalaloch and Ruby Beach provide excellent vantage points — look for spouts and dorsal ridges from elevated positions. For closer encounters, charter boats depart from Westport (2.5 hours south of Kalaloch) during peak season, with operators like Ocean Sportfishing and Deep Sea Charters offering 2–3 hour trips ($45–65/person). Peak migration runs March through May; a few resident grays remain through summer.
 - **Best shore viewing**: La Push headlands, Kalaloch bluff trail, Cape Flattery overlooks
 - **Charter boats**: Westport, WA — 2–3 hour trips, $45–65/person
-- **Energy**: gentle (shore) to moderate (boat)
-- **Group**: solo, couple, friends, family
-- **Interests**: wildlife, marine life, photography
-- **Months**: March–May (peak); some residents through summer
 
 #### Lake Crescent Kayaking & Paddleboarding
 Lake Crescent's glacially carved basin holds some of the clearest freshwater in the Pacific Northwest — visibility reaches 60 feet in calm conditions, and the turquoise color is extraordinary from water level. Rent kayaks or stand-up paddleboards at the Lake Crescent Lodge boat dock (single kayak $25/hr, double $35/hr, SUP $25/hr) or bring your own and launch from East Beach or Fairholme. Morning sessions are best — the lake is often glassy before noon, and afternoon winds can build. Paddle toward Barnes Point for the best views of Storm King and the surrounding old-growth slopes. No motorized boats over 10 HP.
 - **Rentals**: Lake Crescent Lodge boat dock — kayaks, SUPs, rowboats. Memorial Day–Labor Day, 9 AM–5 PM.
 - **Launch sites**: East Beach (free, NPS), Fairholme (free, NPS), Lake Crescent Lodge (guests/renters)
-- **Energy**: gentle to moderate
-- **Group**: solo, couple, friends, family
-- **Interests**: paddling, photography, lake, nature
-- **Months**: May–September (rentals Memorial Day–Labor Day)
 
 #### Hurricane Ridge Snowshoeing & Wildflower Walks
 Hurricane Ridge transforms by season. In winter (December–March), the ridge becomes a snowshoe destination — the Hurricane Ridge Ski & Snowboard Area rents snowshoes ($25/day) and rangers lead guided snowshoe walks on weekends at 2 PM (free with park entry, first-come-first-served). The road opens Saturdays and Sundays only in winter, weather permitting. In summer (July–August), the same meadows erupt with wildflowers — glacier lilies, lupine, paintbrush, and bistort blanket the subalpine slopes. Rangers lead wildflower walks from the visitor center on summer weekends. Both experiences use the same trails but feel like different parks entirely.
 - **Winter snowshoe rentals**: $25/day at Hurricane Ridge Ski & Snowboard Area
 - **Ranger-led snowshoe walks**: Weekends at 2 PM, December–March (free with park entry)
 - **Summer wildflower walks**: Weekends from Hurricane Ridge Visitor Center, July–August
-- **Energy**: gentle (wildflower walk) to moderate (snowshoe)
-- **Group**: solo, couple, friends, family
-- **Interests**: snowshoeing, wildflowers, alpine, ranger programs
-- **Months**: December–March (snowshoe); July–August (wildflowers)
 
 #### Olympic Game Farm (Sequim)
 A drive-through wildlife park in Sequim housing formerly captive animals — including Kodiak bears, timber wolves, bison, elk, zebras, and Tibetan yaks — many retired from film and television work. The farm has operated since the 1970s, originally as a holding facility for Walt Disney nature film animals. The drive-through tour (45–60 min) lets you see animals at close range from your car; bread feeding of select species is allowed (whole wheat only, sold on site, $2/loaf). A walking tour covers a separate area with smaller animals and educational displays. Ideal for families with children or as a rain-day alternative when trails are soaked.
 - **Address**: 1423 Ward Road, Sequim, WA 98382
 - **Hours**: Daily 9 AM–4 PM (summer), 9 AM–3 PM (winter) — check olygamefarm.com for seasonal schedule
 - **Cost**: $15 adults, $13 children (6–12), free under 6
-- **Energy**: gentle
-- **Group**: couple, friends, family
-- **Interests**: wildlife, family-friendly, rainy-day activity
-- **Months**: Year-round
 
 #### Elwha River Fishing (Catch-and-Release)
 Since the removal of the Elwha and Glines Canyon dams in 2012–2014, the Elwha River has become one of the most remarkable river restoration stories in America — and its fishery is gradually returning. Salmon and steelhead are recolonizing over 70 miles of habitat. The river is currently open for catch-and-release fishing only (check WDFW regulations annually, as rules evolve with restoration progress). Fish from the restored riverbanks below the former Elwha Dam site or at accessible pullouts along the Elwha River Road. A Washington State fishing license is required, along with a Catch Record Card for salmon/steelhead. Barbless hooks mandatory. The experience here is as much ecological witnessing as it is angling — you're fishing a river in the middle of one of the largest ecosystem recoveries in U.S. history.
 - **Access**: Elwha River Road, off US-101 west of Port Angeles
 - **License**: Washington State fishing license + Catch Record Card required
 - **Regulations**: Catch-and-release only, barbless hooks, check WDFW annual rules
-- **Energy**: gentle to moderate
-- **Group**: solo, couple, friends
-- **Interests**: fishing, ecology, river restoration, solitude
-- **Months**: Year-round (check seasonal closures via WDFW)
 
 ---
 
@@ -201,19 +137,9 @@ Since the removal of the Elwha and Glines Canyon dams in 2012–2014, the Elwha 
 ### Sol Duc Hot Springs Resort
 Geothermal hot springs deep in the Sol Duc valley, surrounded by old-growth forest. Three soaking pools (ranging from 98°F to 104°F), a freshwater swimming pool, and access to the Sol Duc River below. The resort has operated here since 1912. Day use available from Memorial Day through early October — arrive early, it fills quickly. Camping and lodge rooms also available if you want to wake up in the valley.
 - **Address**: Sol Duc Hot Springs Road, Olympic National Park, WA 98362
-- **Energy**: gentle
-- **Group**: solo, couple, friends, family
-- **Budget**: balanced
-- **Interests**: soaking, thermal, nature
-- **Months**: Late May–early October (day use)
 
 ### Olympic Hot Springs (dispersed, free)
 A remote soaking experience reached by a 2.5-mile hike or a 10-mile bike ride (the road is closed to vehicles). A series of small primitive pools along Boulder Creek, fed by geothermal springs at varying temperatures. No facilities, no services — pack in and pack out. Popular with those willing to make the effort. Check current conditions at the Elwha Ranger Station before going; some pools vary seasonally.
-- **Energy**: moderate (hike required)
-- **Group**: solo, couple, friends
-- **Budget**: free
-- **Interests**: soaking, wilderness, thermal
-- **Months**: Year-round (access road may be muddy in winter)
 
 ---
 
@@ -237,59 +163,35 @@ Beyond the soaking pools, the resort offers seasonal massage and bodywork in tre
 - **Address**: Sol Duc Hot Springs Road, Olympic National Park
 - **Appointments**: (360) 327-3583 or olympicnationalparks.com — reserve in advance
 - **Cost**: $95–145 per treatment (50–80 min)
-- **Energy**: gentle
-- **Group**: solo, couple
-- **Interests**: spa, massage, thermal, wellness
-- **Months**: Late May–early October (seasonal with resort)
 
 #### Hoh Rainforest — Guided Forest Bathing Walks
 The Hoh's extraordinary density of life — moss, fern, lichen, and old-growth canopy filtering the light to a soft green — makes it one of the most naturally immersive environments for shinrin-yoku (forest bathing) in North America. Local guides periodically offer structured forest bathing walks along the Hall of Mosses and Spruce Nature Trail, emphasizing slow sensory engagement: listening to rain on canopy, touching bark, breathing the terpene-rich air. Check with the Olympic National Park Visitor Center in Port Angeles or local wellness providers for current offerings. Even without a guide, walking the Hoh trails slowly, silently, and without agenda achieves a similar result — the forest does most of the work.
 - **Location**: Hoh Rain Forest Visitor Center trailheads
 - **Duration**: 2–3 hours (guided), self-paced (unguided)
-- **Energy**: gentle
-- **Group**: solo, couple, friends
-- **Interests**: forest bathing, meditation, nature, mindfulness
-- **Months**: Year-round (most atmospheric in rain)
 
 #### Body Bliss Massage (Port Angeles)
 The go-to independent massage practice in Port Angeles. Licensed therapists offer Swedish, deep tissue, sports massage, and prenatal bodywork in a quiet downtown studio. Walk-ins sometimes available, but booking 2–3 days ahead is recommended during summer. Convenient for an end-of-day recovery session after a Hurricane Ridge or Elwha hike.
 - **Address**: 214 N Laurel St, Port Angeles, WA 98362
 - **Hours**: Monday–Saturday, 10 AM–6 PM (by appointment)
 - **Cost**: $80–120 (60–90 min sessions)
-- **Energy**: gentle
-- **Group**: solo, couple
-- **Interests**: massage, recovery, wellness
-- **Months**: Year-round
 
 #### Studio Glow Yoga (Sequim)
 A warm, welcoming yoga studio in Sequim offering drop-in classes across a range of styles — vinyasa flow, gentle/restorative, yin, and chair yoga. The studio draws a mix of locals and visitors and keeps a rotating schedule with morning and evening options. Drop-in rate $15/class. A useful complement to a day spent in the car or on trails, especially for travelers staying in the Sequim/Dungeness Valley corridor.
 - **Address**: 163 W Washington St, Sequim, WA 98382
 - **Hours**: Class schedule varies; check studioglowsequim.com
 - **Cost**: $15 drop-in
-- **Energy**: gentle
-- **Group**: solo, couple, friends
-- **Interests**: yoga, flexibility, wellness, community
-- **Months**: Year-round
 
 #### Cedar Creek Abbey — Contemplative Walks
 A small Benedictine-affiliated contemplative center set in forested acreage between Sequim and Port Angeles. The abbey maintains walking paths through native woodland, a meditation garden, and a simple chapel open to visitors of all faiths and none. No formal programming is required — visitors are welcome to walk the grounds in silence during daylight hours. The setting offers a different register of stillness than the park itself: cultivated, intentional, and very quiet. A meaningful pause between more active park days.
 - **Location**: Between Sequim and Port Angeles (check cedarcreekabbey.org for directions)
 - **Hours**: Grounds open daily during daylight hours
 - **Cost**: Free (donations welcome)
-- **Energy**: gentle
-- **Group**: solo, couple
-- **Interests**: contemplation, meditation, silence, walking
-- **Months**: Year-round
 
 #### Kalaloch Lodge — Serenity Spa
 The lodge's seasonal spa program offers massage and bodywork in a coastal setting above the wild Pacific beach. Treatments include Swedish massage, hot stone, and a signature driftwood aromatherapy session using Pacific Northwest botanicals. The treatment rooms face the ocean — the sound of surf is part of the experience. Available seasonally (typically Memorial Day through September); book at least a week in advance during peak summer.
 - **Address**: 157151 US-101, Forks, WA 98331 (Kalaloch Lodge)
 - **Appointments**: (360) 962-2271 or olympicnationalparks.com
 - **Cost**: $100–160 per treatment (50–80 min)
-- **Energy**: gentle
-- **Group**: solo, couple
-- **Interests**: spa, massage, coastal wellness
-- **Months**: Memorial Day–September (seasonal)
 
 #### Kalaloch Lodge
 The lodge's coastal setting — above a sweep of wild beach, with sea stacks visible from the windows — is its own kind of therapeutic environment. No formal wellness programming, but the location invites a particular quality of stillness. Recommended as a base for anyone who wants the coast without camping.
@@ -313,7 +215,6 @@ Locally loved, unpretentious, consistently good. Serves local seafood and Pacifi
 A step up from standard pub fare without losing the casual, walk-in energy. Craft cocktails, rotating seasonal plates, and a burger that regulars swear by. The menu leans Pacific Northwest — Dungeness crab mac and cheese, local greens, house-made charcuterie. Good beer list. Open for lunch and dinner; a solid option when you want something more interesting than bar food but don't need a full-service restaurant.
 - **Address**: 113 W 1st St, Port Angeles, WA 98362
 - **Hours**: Daily 11 AM–9 PM
-- **Budget**: balanced ($15–28 entrées)
 
 #### Bonny's Bakery
 Morning pastries, strong coffee, a community gathering point. Arrive early — the good things sell out.
@@ -324,7 +225,6 @@ Morning pastries, strong coffee, a community gathering point. Arrive early — t
 A bright, plant-forward café with a farm-to-table ethos matched by its Dungeness Valley sourcing. The menu rotates seasonally — expect local greens, house-made soups, grain bowls, and baked goods made with Washington-grown flour. Strong coffee program. Vegetarian and vegan options are genuine rather than afterthoughts. A good lunch stop between Sequim lavender farms and the park.
 - **Address**: 101 E Washington St, Sequim, WA 98382
 - **Hours**: Wednesday–Sunday, 8 AM–3 PM
-- **Budget**: budget-friendly to balanced ($12–20 entrées)
 
 #### Alder Wood Bistro (Sequim)
 Farm-to-table sourcing in a town that actually has farms. Garlic from nearby farms, local oysters, thoughtful wine list. One of the best restaurants on the entire peninsula.
@@ -344,13 +244,11 @@ Forks is a small logging town. Options are limited — the River Inn Restaurant 
 A small, warm café on the main strip in Forks that over-delivers for its setting. Homemade soups, sandwiches on fresh bread, espresso drinks, and baked goods made in-house. The kind of place that turns a fuel stop into an actual meal. Locals and hikers share tables. A genuine find in a town with limited dining.
 - **Address**: 951 S Forks Ave, Forks, WA 98331
 - **Hours**: Monday–Saturday, 7 AM–3 PM
-- **Budget**: budget-friendly ($8–15 entrées)
 
 #### Kalaloch Lodge Creekside Restaurant
 The only sit-down restaurant on the wild coast between Forks and Lake Quinault. The menu features Pacific Northwest staples — grilled salmon, clam chowder, fish and chips, and seasonal specials using regional ingredients. The dining room overlooks Kalaloch Creek and the ocean beyond. Not destination dining, but the setting does real work — watching sunset over the Pacific from your table elevates the meal. Breakfast, lunch, and dinner served daily. Reservations recommended for dinner in summer.
 - **Address**: 157151 US-101, Forks, WA 98331 (Kalaloch Lodge)
 - **Hours**: Daily 7 AM–9 PM (seasonal hours may vary)
-- **Budget**: balanced ($16–32 entrées)
 
 #### Quileute Oceanside Resort Restaurant (La Push)
 On-site at the resort, overlooking First Beach. Simple menu, extraordinary location. Worth eating here just to watch the surf from your table.
@@ -386,10 +284,6 @@ One of the most unexpected sensory experiences on the Olympic Peninsula: a clust
 
 The trail encompasses nine working farms, each with its own character. **Jardin du Soleil** (certified organic, 10+ acres, Victorian gardens and ponds, Strait views) and **Purple Haze** (12 acres, 15,000+ plants, 50+ varieties, certified organic) are the two anchors. **Lavender Connection** has an aromatic tasting bar with 18 varieties of essential oil. **B&B Family Farm** runs three generations and free tours including a look at their century-old barn. Peak bloom: mid-July. Annual Lavender Festival: third weekend of July. Most farms open June through September; some year-round.
 - **Website**: sequimlavender.org
-- **Energy**: gentle
-- **Group**: solo, couple, friends, family
-- **Interests**: agriculture, aromatherapy, photography, Pacific Northwest
-- **Months**: June–September (peak bloom mid-July)
 
 #### Dungeness Spit — National Wildlife Refuge
 The longest natural sand spit in the United States — nearly seven miles of narrow, windswept shoreline extending into the Strait of Juan de Fuca just north of Sequim. The spit is within the Dungeness National Wildlife Refuge, established in 1915, and is one of the most important migratory bird stopover sites on the Pacific coast: over 250 species of birds recorded, including bald eagles, black oystercatchers, harlequin ducks, and sandpipers in migration season. At the tip sits the New Dungeness Lighthouse, operating continuously since 1857 — volunteer docents offer free tours daily 9 AM–5 PM and there is a lighthouse keeper program for those who want to spend a week in residence.
@@ -398,10 +292,6 @@ The hike to the lighthouse and back is 10 miles round-trip on open beach — cha
 - **Address**: 600 Voice of America Road, Sequim, WA 98382
 - **Distance**: Up to 10 miles round-trip to lighthouse · Easy terrain, weather-dependent
 - **Fee**: $3/family · Open daily, 7 AM to 30 min before sunset
-- **Energy**: gentle to moderate
-- **Group**: solo, couple, friends, family
-- **Interests**: birdwatching, coastal walking, wildlife, photography
-- **Months**: Year-round (spring and fall migration peaks)
 
 ### Arts & Culture
 

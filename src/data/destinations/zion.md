@@ -13,22 +13,6 @@
 **Shuttle:** Mandatory shuttle system on Zion Canyon Scenic Drive, typically mid-March through November. Private vehicles prohibited on the scenic drive during shuttle season. Free, frequent service from the visitor center to Temple of Sinai.
 **Entrances:** South entrance (Springdale) is primary; east entrance via Zion-Mt. Carmel Highway (1.1-mile tunnel, vehicle size restrictions); Kolob Canyons entrance off I-15.
 
-## Source Registry & Editorial Standards
-
-This guide is the sole source of truth for AI-generated Zion itineraries.
-Every recommendation has been vetted against the following approved sources:
-
-- **NPS.gov/zion** — Trails, permits, safety, seasonal closures, operating hours
-- **recreation.gov** — Permit availability (Angels Landing, The Narrows)
-- **Utah.com** — Regional lodging, tourism context
-- **Open-Meteo API** — Weather forecasts (live data, fetched at request time)
-- **NPS API (developer.nps.gov)** — Alerts, closures, campground status (live data)
-- **Lila Trips editorial** — Personal curation, timing insights, wellness recommendations
-
-**If a place, trail, restaurant, or provider is not listed below, it does not exist for recommendation purposes.**
-
----
-
 ## Sense of Place
 
 Zion Canyon is a cathedral carved by water and time. The Virgin River has spent millions of years sculpting thousand-foot sandstone walls into forms that shift color with every hour of light — from pale rose at dawn to deep amber at golden hour to violet in the last minutes before dark. This is terrain that asks you to look up, to slow down, to feel the scale of something far older and larger than yourself.
@@ -75,13 +59,6 @@ The trail that defines Zion. A knife-edge ridge 1,488 feet above the canyon floo
 - **Permit**: Required — book at recreation.gov. Seasonal lottery + day-before lottery.
 - **Best timing**: Start early morning to avoid heat and crowds. Golden hour descent is transcendent.
 - **Safety**: Not recommended in wet/icy conditions. Chain section requires comfort with exposure.
-- **Tags**: [strenuous, permit-required, signature-experience, morning-start]
-- **Energy**: adventurous
-- **Group**: solo, couple, friends
-- **Budget**: mindful, balanced, premium, noLimits
-- **Time**: sunrise, morning
-- **Interests**: hiking
-- **Months**: all (Jan-Dec, but use microspikes Nov-Mar; not recommended in wet/icy conditions)
 
 ### The Narrows (Bottom-Up)
 Walk upstream through the Virgin River as thousand-foot walls close in around you. The canyon narrows until there is only water, stone, and sky. You will be walking in the river — sometimes ankle-deep, sometimes waist-deep. Rental gear (dry suit, neoprene socks, canyoneering boots, walking stick) available in Springdale.
@@ -92,13 +69,6 @@ Walk upstream through the Virgin River as thousand-foot walls close in around yo
 - **Seasonal**: Closed during flash flood risk. Check NPS flow rate and forecast before going. Generally open May-October, but varies.
 - **Gear**: Rent canyoneering shoes + walking stick in Springdale. Essential, not optional.
 - **Best timing**: Start by 8am. Afternoon light in the narrows is otherworldly.
-- **Tags**: [moderate-to-strenuous, seasonal, water-hike, gear-rental, half-day-to-full-day]
-- **Energy**: moderate, adventurous
-- **Group**: solo, couple, friends
-- **Budget**: balanced, premium, noLimits (gear rental ~$30-50)
-- **Time**: morning
-- **Interests**: hiking, water
-- **Months**: May-Oct (varies by water conditions; closed Nov-Apr due to cold water temps and flash flood risk)
 
 ### Canyon Overlook Trail
 One mile of trail, a lifetime of perspective. The best effort-to-awe ratio in the park. The trailhead is at the east end of the Zion-Mt. Carmel Tunnel — a different approach than most canyon trails, offering views from above.
@@ -108,13 +78,6 @@ One mile of trail, a lifetime of perspective. The best effort-to-awe ratio in th
 - **Time**: 30-60 minutes
 - **Permit**: Not required
 - **Best timing**: 45 minutes before sunset. The canyon ignites.
-- **Tags**: [easy, family-friendly, sunset-spot, quick-win, no-shuttle-needed]
-- **Energy**: gentle, moderate
-- **Group**: solo, couple, friends, family
-- **Budget**: mindful, balanced, premium, noLimits
-- **Time**: sunset, anytime
-- **Interests**: hiking, scenicDrives
-- **Months**: all (year-round; may be icy Dec-Feb, use caution)
 
 ### The Watchman Trail
 A gentle trail with a powerful payoff. Views of Watchman Peak, the Towers of the Virgin, and the town of Springdale far below. Best experienced at sunrise when the canyon walls light up one layer at a time.
@@ -124,13 +87,6 @@ A gentle trail with a powerful payoff. Views of Watchman Peak, the Towers of the
 - **Time**: 1.5-2 hours
 - **Permit**: Not required
 - **Best timing**: Arrive at trailhead before first light for sunrise.
-- **Tags**: [moderate, sunrise-spot, morning-start, near-visitor-center]
-- **Energy**: moderate
-- **Group**: solo, couple, friends, family
-- **Budget**: mindful, balanced, premium, noLimits
-- **Time**: sunrise
-- **Interests**: hiking
-- **Months**: all (year-round; beautiful in every season)
 
 ### Observation Point (East Mesa Trail)
 The view that makes Angels Landing look small. At 6,521 feet, this is the highest overlook in Zion Canyon — you look DOWN on Angels Landing. The East Mesa approach avoids the strenuous canyon-bottom trail and is relatively flat.
@@ -139,13 +95,6 @@ The view that makes Angels Landing look small. At 6,521 feet, this is the highes
 - **Difficulty**: Moderate (via East Mesa)
 - **Time**: 3-4 hours
 - **Note**: Requires driving to the East Mesa trailhead (outside the park, dirt road — check conditions). The canyon-bottom trail via Weeping Rock has been closed due to rockfall since 2019; check NPS for current status.
-- **Tags**: [moderate, panoramic, east-side, car-required]
-- **Energy**: moderate, adventurous
-- **Group**: solo, couple, friends
-- **Budget**: mindful, balanced, premium, noLimits
-- **Time**: morning, anytime
-- **Interests**: hiking, scenicDrives
-- **Months**: Apr-Nov (East Mesa dirt road typically impassable Dec-Mar)
 
 ### Emerald Pools (Lower, Middle, Upper)
 A series of three pools fed by waterfalls cascading down red rock walls. The lower pool is accessible and easy; the upper pool adds elevation and scrambling. A good option for afternoons or recovery days.
@@ -153,13 +102,6 @@ A series of three pools fed by waterfalls cascading down red rock walls. The low
 - **Elevation gain**: 69 ft / 150 ft / 350 ft
 - **Difficulty**: Easy (lower) to Moderate (upper)
 - **Time**: 1-3 hours depending on route
-- **Tags**: [easy-to-moderate, waterfall, family-friendly, afternoon-option]
-- **Energy**: gentle, moderate
-- **Group**: solo, couple, friends, family
-- **Budget**: mindful, balanced, premium, noLimits
-- **Time**: afternoon, anytime
-- **Interests**: hiking, water
-- **Months**: all (lower year-round; upper may be icy Dec-Feb)
 
 ### Pa'rus Trail
 A paved, flat, riverside trail connecting the Visitor Center to Canyon Junction. Bikes allowed. Dogs allowed (only trail in Zion proper). Perfect for early morning walks, gentle movement, or a mindful start to the day.
@@ -167,13 +109,6 @@ A paved, flat, riverside trail connecting the Visitor Center to Canyon Junction.
 - **Elevation gain**: 50 ft
 - **Difficulty**: Easy
 - **Time**: 1-1.5 hours
-- **Tags**: [easy, paved, bikes-ok, dogs-ok, riverside, morning-walk, gentle-movement]
-- **Energy**: gentle
-- **Group**: solo, couple, friends, family
-- **Budget**: mindful, balanced, premium, noLimits
-- **Time**: morning, anytime
-- **Interests**: hiking, mindfulness
-- **Months**: all (year-round; paved and accessible in every season)
 
 ---
 
@@ -183,168 +118,66 @@ A paved, flat, riverside trail connecting the Visitor Center to Canyon Junction.
 
 #### Zion Canyon Yoga
 Drop-in classes in Springdale, often morning flow sessions. Check seasonal schedule. Small studio with views.
-- **Energy**: gentle, moderate
-- **Group**: solo, couple, friends
-- **Budget**: balanced
-- **Time**: morning
-- **Interests**: yoga
-- **Months**: all (check seasonal schedule)
 
 #### Desert Yoga (Self-Guided)
 Self-guided sunrise practice at Pa'rus Trail or Canyon Junction. Bring your own mat. The flat, quiet riverside setting is ideal.
-- **Energy**: gentle
-- **Group**: solo, couple
-- **Budget**: mindful
-- **Time**: sunrise, morning
-- **Interests**: yoga, mindfulness
-- **Months**: Mar–Nov (comfortable outdoor temps; possible year-round on mild days)
 
 #### Cliffrose Lodge Lawn
 If staying at Cliffrose, the riverside lawn is a natural yoga space.
-- **Energy**: gentle
-- **Group**: solo, couple
-- **Budget**: premium, noLimits (guest amenity)
-- **Time**: sunrise, morning
-- **Interests**: yoga
-- **Months**: all (year-round, weather permitting)
 
 ### Breathwork & Meditation
 
 #### Canyon Floor Morning Meditation
 The amphitheater acoustics of the canyon create natural resonance. Temple of Sinawava (shuttle stop 9) at dawn, before crowds arrive, is profoundly still.
-- **Energy**: gentle
-- **Group**: solo, couple
-- **Budget**: mindful
-- **Time**: sunrise
-- **Interests**: breathwork, mindfulness
-- **Months**: all (shuttle access Mar–Nov; drive in winter)
 
 #### Sunrise Breathwork
 Watchman Trail overlook or Canyon Overlook are ideal for guided breathwork with panoramic views.
-- **Energy**: gentle, moderate
-- **Group**: solo, couple
-- **Budget**: mindful
-- **Time**: sunrise
-- **Interests**: breathwork
-- **Months**: all (year-round; layer up in winter)
 
 ### Mindful Movement
 
 #### Walking Meditation on Pa'rus Trail
 Flat, paved, riverside. No competition for space. Early morning.
-- **Energy**: gentle
-- **Group**: solo, couple
-- **Budget**: mindful
-- **Time**: morning
-- **Interests**: mindfulness
-- **Months**: all (year-round; paved and accessible every season)
 
 #### River Grounding
 Wade into the Virgin River at various accessible points along the canyon floor. The cold water and river sounds create natural sensory grounding.
-- **Energy**: gentle
-- **Group**: solo, couple, friends
-- **Budget**: mindful
-- **Time**: morning, afternoon
-- **Interests**: mindfulness, water
-- **Months**: Apr–Oct (comfortable water temps)
 
 ### Recovery & Restoration
 
 #### Deep Creek Coffee (Recovery Stop)
 Good post-hike recovery spot. Coffee, smoothies, light fare. Springdale.
-- **Energy**: gentle
-- **Group**: solo, couple, friends, family
-- **Budget**: mindful, balanced
-- **Time**: morning, afternoon
-- **Interests**: coffee
-- **Months**: all (year-round)
 
 #### Hot Tub / Spa at Lodging
 Cable Mountain Lodge and Cliffrose Lodge both have hot tubs available to guests.
-- **Energy**: gentle
-- **Group**: solo, couple
-- **Budget**: balanced, premium, noLimits (guest amenity at rooted/premium lodging)
-- **Time**: afternoon, evening
-- **Interests**: spa
-- **Months**: all (year-round)
 
 ### Spa & Bodywork
 
 #### Deep Canyon Spa
 Massage, facials, body treatments at Flanigan's Inn. Walk-in or reservation.
-- **Energy**: gentle
-- **Group**: solo, couple
-- **Budget**: balanced, premium
-- **Time**: morning, afternoon, evening
-- **Interests**: spa, massage
-- **Months**: all (year-round)
 
 #### Cable Mountain Spa
 Massage and body treatments at Cable Mountain Lodge in Springdale.
-- **Energy**: gentle
-- **Group**: solo, couple
-- **Budget**: balanced, premium
-- **Time**: morning, afternoon, evening
-- **Interests**: spa, massage
-- **Months**: all (year-round)
 
 #### Amangiri Spa
 Luxury destination spa ~90 min from Zion. Bodywork, hydrotherapy, desert wraps in a stunning desert setting.
-- **Energy**: gentle
-- **Group**: solo, couple
-- **Budget**: premium, noLimits
-- **Time**: morning, afternoon
-- **Interests**: spa, massage
-- **Months**: all (year-round)
 
 #### Homebody Healing
 Sound baths, energy work, massage. Mobile practitioner serving the Springdale area.
-- **Energy**: gentle
-- **Group**: solo, couple, friends
-- **Budget**: balanced, premium
-- **Time**: morning, afternoon, evening
-- **Interests**: spa, soundBath, massage
-- **Months**: all (year-round)
 
 ### Soaking & Thermal
 
 #### Zion Canyon Hot Springs
 Soaking pools and sauna near Springdale. A perfect post-hike recovery spot.
-- **Energy**: gentle
-- **Group**: solo, couple, friends
-- **Budget**: balanced
-- **Time**: afternoon, evening
-- **Interests**: spa, sauna, water
-- **Months**: all (year-round)
 
 #### True North Float
 Sensory deprivation float pods in St. George (~45 min from Zion). Deep rest and recovery.
-- **Energy**: gentle
-- **Group**: solo
-- **Budget**: balanced, premium
-- **Time**: morning, afternoon, evening
-- **Interests**: spa, mindfulness
-- **Months**: all (year-round)
 
 ### Additional Studios
 
 #### Cosmic Flow Yoga
 Dedicated yoga studio in Springdale. Drop-in classes, workshops, and retreats.
-- **Energy**: gentle, moderate
-- **Group**: solo, couple, friends
-- **Budget**: mindful, balanced
-- **Time**: morning, afternoon
-- **Interests**: yoga
-- **Months**: all (year-round)
 
 #### Zion Yogis
 Outdoor and indoor yoga experiences near Zion. Scenic sessions with canyon views.
-- **Energy**: gentle, moderate
-- **Group**: solo, couple, friends
-- **Budget**: mindful, balanced
-- **Time**: morning, afternoon
-- **Interests**: yoga
-- **Months**: all (year-round)
 
 ---
 
@@ -354,97 +187,37 @@ Outdoor and indoor yoga experiences near Zion. Scenic sessions with canyon views
 
 #### Oscar's Cafe
 Beloved local breakfast and lunch spot. Hearty portions, outdoor seating. Known for huevos rancheros and burgers. Expect a wait on weekends.
-- **Energy**: gentle
-- **Group**: solo, couple, friends, family
-- **Budget**: mindful, balanced
-- **Time**: morning, midday
-- **Interests**: dining
-- **Months**: all (year-round; may have reduced winter hours)
 
 #### Whiptail Grill
 Mexican-inspired with creative dishes. Good vegetarian options. Covered patio dining.
-- **Energy**: gentle
-- **Group**: solo, couple, friends, family
-- **Budget**: mindful, balanced
-- **Time**: midday, afternoon
-- **Interests**: dining
-- **Months**: all (check winter hours)
 
 #### MeMe's Cafe
 Cozy breakfast/brunch. Locally sourced when possible. Smoothies and lighter fare.
-- **Energy**: gentle
-- **Group**: solo, couple, friends, family
-- **Budget**: mindful, balanced
-- **Time**: morning
-- **Interests**: dining, coffee
-- **Months**: all (check winter hours)
 
 #### Bit & Spur
 Dinner destination. Southwest-inspired with a creative cocktail program. Reservations recommended, especially in peak season.
-- **Energy**: gentle
-- **Group**: couple, friends
-- **Budget**: balanced, premium, noLimits
-- **Time**: evening
-- **Interests**: dining
-- **Months**: all (year-round; reservations recommended peak season)
 
 #### Deep Creek Coffee
 Best coffee in Springdale. Good pastries. Opens early for pre-hike fuel.
-- **Energy**: gentle
-- **Group**: solo, couple, friends, family
-- **Budget**: mindful
-- **Time**: sunrise, morning
-- **Interests**: coffee
-- **Months**: all (year-round)
 
 #### King's Landing Bistro
 Upscale option at Driftwood Lodge. Good for a nicer dinner out.
-- **Energy**: gentle
-- **Group**: couple, friends
-- **Budget**: premium, noLimits
-- **Time**: evening
-- **Interests**: dining
-- **Months**: all (check winter hours)
 
 ### On the Way (Regional)
 
 #### Hell's Backbone Grill
 Boulder, UT — ~2.5 hrs from Zion. James Beard-recognized. Farm-to-table with ingredients from their own farm. Worth the drive if you're heading toward Capitol Reef/Bryce. Reservations essential.
-- **Energy**: gentle
-- **Group**: couple, friends
-- **Budget**: premium, noLimits
-- **Time**: evening
-- **Interests**: dining, farmMarkets
-- **Months**: Apr–Nov (seasonal; closed in winter)
 
 #### Switchback Grille
 Springdale. Steaks and American fare. Reliable.
-- **Energy**: gentle
-- **Group**: solo, couple, friends, family
-- **Budget**: balanced
-- **Time**: evening
-- **Interests**: dining
-- **Months**: all (year-round)
 
 ### Provisions & Markets
 
 #### Sol Foods Market
 Springdale. Small but well-stocked. Good for trail snacks, sandwiches, basic groceries.
-- **Energy**: gentle
-- **Group**: solo, couple, friends, family
-- **Budget**: mindful
-- **Time**: morning, midday, anytime
-- **Interests**: farmMarkets
-- **Months**: all (year-round)
 
 #### Springdale Fruit Company
 Seasonal smoothies, fresh fruit, snacks. Quick and refreshing.
-- **Energy**: gentle
-- **Group**: solo, couple, friends, family
-- **Budget**: mindful
-- **Time**: morning, midday, afternoon
-- **Interests**: farmMarkets
-- **Months**: Mar–Nov (seasonal; check hours)
 
 ---
 
@@ -454,87 +227,31 @@ Seasonal smoothies, fresh fruit, snacks. Quick and refreshing.
 
 #### Watchman Campground
 Inside park. 190 sites, some riverside. Reservations required at recreation.gov. The most immersive option — you wake up in the canyon.
-- **StayStyle**: elemental
-- **Energy**: gentle, moderate, adventurous
-- **Group**: solo, couple, friends, family
-- **Budget**: mindful
-- **Time**: anytime
-- **Interests**: stargazing
-- **Months**: all (year-round; cold winter nights — gear accordingly)
 
 #### South Campground
 Inside park. Walk-in, first-come-first-served. Smaller, quieter. No reservations.
-- **StayStyle**: elemental
-- **Energy**: gentle, moderate, adventurous
-- **Group**: solo, couple, friends
-- **Budget**: mindful
-- **Time**: anytime
-- **Interests**: stargazing
-- **Months**: all (year-round; first-come first-served, arrive early in peak season)
 
 #### Zion Canyon Campground & RV Resort
 Springdale. Private campground just outside the park entrance. Showers, laundry, store.
-- **StayStyle**: elemental
-- **Energy**: gentle, moderate, adventurous
-- **Group**: solo, couple, friends, family
-- **Budget**: mindful
-- **Time**: anytime
-- **Interests**: —
-- **Months**: all (year-round)
 
 ### Rooted (Boutique, local)
 
 #### Cable Mountain Lodge
 Springdale. Excellent location, pool, hot tub. Walking distance to park entrance and shuttle. Good value.
-- **StayStyle**: rooted
-- **Energy**: gentle, moderate, adventurous
-- **Group**: solo, couple, friends, family
-- **Budget**: balanced
-- **Time**: anytime
-- **Interests**: spa
-- **Months**: all (year-round)
 
 #### Cliffrose Lodge
 Springdale. Riverside setting, beautiful grounds. Walking distance to everything. Slightly more premium.
-- **StayStyle**: rooted
-- **Energy**: gentle, moderate, adventurous
-- **Group**: solo, couple, friends, family
-- **Budget**: balanced, premium, noLimits
-- **Time**: anytime
-- **Interests**: yoga, spa
-- **Months**: all (year-round)
 
 #### Driftwood Lodge
 Springdale. Clean, well-located. Home to King's Landing Bistro.
-- **StayStyle**: rooted
-- **Energy**: gentle, moderate, adventurous
-- **Group**: solo, couple, friends, family
-- **Budget**: balanced
-- **Time**: anytime
-- **Interests**: dining
-- **Months**: all (year-round)
 
 ### Premium (Elevated experience)
 
 #### Under Canvas Zion
 Glamping with safari-style tents. Outside the park but designed for immersive experiences.
-- **StayStyle**: premium
-- **Energy**: gentle, moderate, adventurous
-- **Group**: solo, couple, friends
-- **Budget**: premium, noLimits
-- **Time**: anytime
-- **Interests**: stargazing
-- **Months**: Mar–Nov (seasonal; closed in winter)
 
 #### Zion Lodge
 Inside park. The only lodge inside the park. Historic. Book far in advance. Limited availability.
-- **StayStyle**: premium
-- **Energy**: gentle, moderate, adventurous
-- **Group**: solo, couple, friends, family
-- **Budget**: premium, noLimits
-- **Time**: anytime
-- **Interests**: history
-- **Months**: all (year-round; book well in advance)
 
 ### Beyond the Canyon
 - **Torrey & Capitol Reef area** — If extending your trip, this is where the magic deepens. Quiet, dark skies, fewer crowds.
@@ -545,39 +262,15 @@ Inside park. The only lodge inside the park. Historic. Book far in advance. Limi
 
 #### Worthington Gallery
 Springdale. Fine art inspired by the canyon landscape. Worth a browse.
-- **Energy**: gentle
-- **Group**: solo, couple, friends
-- **Budget**: balanced, premium, noLimits
-- **Time**: midday, afternoon
-- **Interests**: galleries
-- **Months**: all (check winter hours)
 
 #### David J. West Gallery
 Springdale. Photography of Zion and the Southwest. Beautiful prints.
-- **Energy**: gentle
-- **Group**: solo, couple, friends
-- **Budget**: balanced, premium, noLimits
-- **Time**: midday, afternoon
-- **Interests**: galleries
-- **Months**: all (check winter hours)
 
 #### Bumbleberry Inn Gift Shop
 Kitsch and charm. Bumbleberry pie is the move.
-- **Energy**: gentle
-- **Group**: solo, couple, friends, family
-- **Budget**: mindful, balanced
-- **Time**: midday, afternoon
-- **Interests**: shopping
-- **Months**: all (year-round)
 
 #### Zion Human History Museum
 Inside park, shuttle stop 2. Small but thoughtful museum on the cultural history of the canyon, including Paiute heritage and early settler history.
-- **Energy**: gentle
-- **Group**: solo, couple, friends, family
-- **Budget**: mindful
-- **Time**: midday, afternoon
-- **Interests**: history
-- **Months**: all (year-round; shuttle access Mar–Nov, drive in winter)
 
 ---
 
@@ -585,50 +278,20 @@ Inside park, shuttle stop 2. Small but thoughtful museum on the cultural history
 
 ### Stargazing
 Zion has excellent dark skies, especially in winter and shoulder seasons. Best spots: Watchman Campground area, Pa'rus Trail, or drive to Kolob Terrace Road for minimal light pollution. No special equipment needed — the Milky Way is visible to the naked eye on clear, moonless nights.
-- **Energy**: gentle
-- **Group**: solo, couple, friends, family
-- **Budget**: mindful
-- **Time**: evening
-- **Interests**: stargazing
-- **Months**: all (year-round; best in winter and shoulder seasons on moonless nights)
 
 ### Scenic Drives
 
 #### Zion-Mt. Carmel Highway
 The tunnel, the switchbacks, the checkerboard mesa. Drive it both directions for different light.
-- **Energy**: gentle
-- **Group**: solo, couple, friends, family
-- **Budget**: mindful
-- **Time**: morning, afternoon, sunset
-- **Interests**: scenicDrives
-- **Months**: all (year-round; rare winter closures in extreme weather)
 
 #### Kolob Terrace Road
 The quiet side of Zion. Lava Point overlook. Far fewer people. An entirely different character.
-- **Energy**: gentle
-- **Group**: solo, couple, friends
-- **Budget**: mindful
-- **Time**: morning, afternoon
-- **Interests**: scenicDrives, stargazing
-- **Months**: Apr–Nov (road may be impassable Dec–Mar)
 
 #### Kolob Canyons
 Northwest section. A separate entrance with red finger canyons. 5-mile scenic drive. Timber Creek Overlook trail (1 mile) for quick views.
-- **Energy**: gentle, moderate
-- **Group**: solo, couple, friends, family
-- **Budget**: mindful
-- **Time**: morning, afternoon
-- **Interests**: scenicDrives, hiking
-- **Months**: all (year-round; separate entrance)
 
 ### River Time
 Wade, sit, listen. The Virgin River is accessible at multiple points along the canyon floor. Not a destination — a practice. Bring water shoes.
-- **Energy**: gentle
-- **Group**: solo, couple, friends, family
-- **Budget**: mindful
-- **Time**: morning, afternoon
-- **Interests**: water, mindfulness
-- **Months**: Apr–Oct (comfortable water temps)
 
 ---
 
@@ -642,12 +305,6 @@ Timed to the moment when light and shadow reach perfect balance in the canyon. T
 Includes: Guided canyon hikes, sunrise yoga, evening breathwork, shared meals at curated restaurants, stargazing, and the space to simply be present in one of the most powerful landscapes on Earth.
 
 **Status**: Coming soon. Join the waitlist.
-- **Energy**: moderate, adventurous
-- **Group**: friends
-- **Budget**: premium, noLimits
-- **Time**: anytime (multi-day experience)
-- **Interests**: hiking, yoga, breathwork, stargazing, dining
-- **Months**: Sep
 
 ---
 
@@ -841,65 +498,6 @@ Use this section to tailor itineraries based on the traveler's selected month. E
 
 ---
 
-## Data Freshness Notes
-
-The following information should be supplemented with live data at request time:
-- **Current alerts and closures** → NPS API (`/alerts?parkCode=zion`)
-- **Weather forecast for travel dates** → Open-Meteo API
-- **Campground availability** → NPS API (`/campgrounds?parkCode=zion`)
-- **Event listings** → NPS API (`/events?parkCode=zion`)
-- **Angels Landing permit availability** → recreation.gov (no public API; advise users to check directly)
-
----
-
-## URL Registry — Include These in Your Response
-
-When recommending any of the following places, include the corresponding URL in the "url" field of your JSON output.
-
-### Accommodation
-- Under Canvas Zion → https://www.undercanvas.com/camps/zion/
-- AutoCamp Zion → https://autocamp.com/zion/
-- Cliffrose Lodge → https://www.cliffroselodge.com/
-- Amangiri → https://www.aman.com/hotels/amangiri
-- Open Sky Zion → https://www.openskyzion.com/
-- Desert Pearl Inn → https://www.desertpearl.com/
-- Flanigan's Inn → https://flanigans.com/
-- Skyview Hotel → https://skyviewhotel.com/
-- Inn at Entrada → https://www.innatentrada.com/
-- Cable Mountain Lodge → https://www.cablemountainlodge.com/
-- Driftwood Lodge → https://www.driftwoodlodge.net/
-
-### Dining
-- Zion Canyon Brew Pub → https://zionbrewery.com/
-- King's Landing Bistro → https://www.kingslanding-zion.com/
-- Spotted Dog Café → https://flanigans.com/
-- Oscar's Café → https://www.oscarscafe.com/
-- Whiptail Grill → https://www.whiptailgrillzion.com/
-- Bit & Spur → https://bitandspur.com/
-
-### Trails
-- Angels Landing → https://www.nps.gov/zion/planyourvisit/angels-landing-702702.htm
-- The Narrows → https://www.nps.gov/zion/planyourvisit/thenarrows.htm
-- The Subway → https://www.nps.gov/zion/planyourvisit/the-subway.htm
-- Observation Point → https://www.nps.gov/zion/planyourvisit/zion-canyon-trail-descriptions.htm
-- Canyon Overlook → https://www.nps.gov/zion/planyourvisit/zion-canyon-trail-descriptions.htm
-- Emerald Pools → https://www.nps.gov/zion/planyourvisit/zion-canyon-trail-descriptions.htm
-- Pa'rus Trail → https://www.nps.gov/zion/planyourvisit/zion-canyon-trail-descriptions.htm
-- Watchman Trail → https://www.nps.gov/zion/planyourvisit/zion-canyon-trail-descriptions.htm
-
-### Wellness
-- Deep Canyon Spa → https://flanigans.com/spa/
-- Cable Mountain Spa → https://cablemountainspa.com/
-- Amangiri Spa → https://www.aman.com/hotels/amangiri
-- Homebody Healing → https://www.homebodyhealing.love/
-- Zion Canyon Hot Springs → https://www.zioncanyonhotsprings.com/
-- True North Float → https://www.tnfloat.com/
-- Cosmic Flow Yoga → https://www.yogainzion.com/
-- Zion Yogis → https://www.zionyogis.com/
-- Zion Guru → https://www.zionguru.com/
-
----
-
 ## Regional Corridor
 
 The Utah corridor stretching from Zion to Capitol Reef is one of the most concentrated landscapes in the American West. For travelers with time and a desire to roam, these parks and the roads connecting them transform a Zion trip into a full desert odyssey.
@@ -918,11 +516,6 @@ One of America's most dramatic scenic byways. 124 miles from Bryce Canyon to Cap
 - **Head of the Rocks Overlook** — sweeping view into the Escalante canyons, one of the most dramatic pullouts in Utah
 - **The Hogback** — a narrow ridge with thousand-foot drop-offs on both sides, no guardrails, unforgettable
 - **Red Canyon** — crimson hoodoos flanking the highway just before Bryce, free roadside stop with short trail options
-- **Energy**: gentle (driving), moderate (with stop hikes)
-- **Group**: solo, couple, friends, family
-- **Budget**: any
-- **Interests**: scenic drives, photography, nature
-- **Months**: May–Oct (check conditions Nov–Apr; snow possible at elevation)
 
 ---
 
@@ -942,98 +535,53 @@ Elevation 8,000–9,000 ft. A high-altitude amphitheater of pink and orange hood
 ##### Navajo Loop
 Steep descent into the hoodoo amphitheater through Wall Street — a narrow slot corridor lined with Douglas firs. The most iconic short hike in Bryce.
 - **Distance**: 1.3 miles · **Difficulty**: moderate · **Time**: 1–1.5 hrs
-- **Energy**: moderate
-- **Group**: solo, couple, friends, family
-- **Interests**: hiking, photography
-- **Months**: Apr–Nov
 
 ##### Queen's Garden + Navajo Loop (Combined)
 The essential Bryce circuit. Drop into Queen's Garden from Sunrise Point, traverse the hoodoo forest, and climb out via Navajo Loop. The best bang-for-effort hike in the park.
 - **Distance**: 2.9 miles · **Difficulty**: moderate · **Time**: 2–3 hrs
-- **Energy**: moderate
-- **Group**: solo, couple, friends, family
-- **Interests**: hiking, photography
-- **Months**: Apr–Nov
 
 ##### Peek-a-Boo Loop
 A strenuous loop through the heart of the amphitheater with constant elevation changes and views from every angle. Less crowded than Navajo/Queen's Garden.
 - **Distance**: 5.5 miles · **Difficulty**: strenuous · **Time**: 3–4 hrs
-- **Energy**: adventurous
-- **Group**: solo, couple, friends
-- **Interests**: hiking, photography
-- **Months**: May–Oct
 
 ##### Fairyland Loop
 The full-day Bryce experience. Descends through Fairyland Canyon and climbs through China Wall — the longest and least crowded maintained trail in the park.
 - **Distance**: 8 miles · **Difficulty**: strenuous · **Time**: 4–5 hrs
-- **Energy**: adventurous
-- **Group**: solo, couple, friends
-- **Interests**: hiking, solitude
-- **Months**: May–Oct
 
 ##### Bristlecone Loop
 A high-elevation trail to ancient bristlecone pines — some over 1,800 years old. Short, quiet, and meditative. Best at sunset when the light catches the twisted wood.
 - **Distance**: 1 mile · **Difficulty**: easy · **Time**: 30–45 min
-- **Energy**: gentle
-- **Group**: solo, couple, friends, family
-- **Interests**: hiking, nature, meditation
-- **Months**: May–Oct
 
 ##### Mossy Cave
 Outside the main fee station on Highway 12. A short walk to a waterfall and moss-draped grotto. Great for families or as a Byway 12 stop.
 - **Distance**: 0.8 miles · **Difficulty**: easy · **Time**: 30 min
-- **Energy**: gentle
-- **Group**: solo, couple, friends, family
-- **Interests**: hiking, family
-- **Months**: Year-round (waterfall freezes in winter — still beautiful)
 
 ##### Rim Trail
 A paved-to-gravel path connecting all major viewpoints along the amphitheater rim. Flat, easy, and panoramic. Walk as much or as little as you want.
 - **Distance**: up to 5.5 miles one-way · **Difficulty**: easy · **Time**: varies
-- **Energy**: gentle
-- **Group**: solo, couple, friends, family
-- **Interests**: hiking, photography, accessibility
-- **Months**: Year-round (portions may be icy in winter)
 
 #### Stays
 
 ##### The Lodge at Bryce Canyon
 The only lodging inside the park. A 1925 historic lodge with cabins and motel-style rooms. Simple, well-located, and books out months in advance. No Wi-Fi in rooms — and that's the point.
-- **Budget**: moderate
-- **Group**: solo, couple, family
-- **Months**: Apr–Oct (closed in winter)
 
 ##### Clear Sky Resorts
 Geodesic stargazing domes on the edge of Bryce Canyon. Glass ceiling, heated floors, full bathroom. Bryce has a Bortle 2 dark sky rating — you're sleeping under one of the darkest skies in the lower 48.
-- **Budget**: premium
-- **Group**: couple, solo
-- **Months**: Year-round
 
 ##### Stone Canyon Inn
 A small boutique inn with canyon-view cottages, a few miles from the park entrance. Quiet, well-appointed, fireplace. The kind of place that doesn't need a sign.
-- **Budget**: premium
-- **Group**: couple, solo
-- **Months**: Year-round
 
 #### Dining
 
 ##### The Lodge at Bryce Canyon Restaurant
 Seasonal dining inside the park. Locally sourced where possible, solid dinner menu. Breakfast is the move — eat early, hit the trail.
-- **Budget**: moderate
-- **Group**: solo, couple, family
-- **Months**: Apr–Nov
 
 ##### Bryce Canyon Pines Restaurant
 Classic Utah roadside diner just outside the park. Famous for homemade pie. Unpretentious, reliable, exactly what you want after a long trail day.
-- **Budget**: budget, moderate
-- **Group**: solo, couple, friends, family
-- **Months**: Year-round
 
 #### Dark Sky
 
 Bryce Canyon holds a Bortle 2 dark sky rating — one of the darkest skies in the lower 48 states. The NPS runs ranger-led telescope programs (free, seasonal). Best Milky Way window: May–September on new moon nights. At 8,000+ feet, transparency is exceptional. Pair with a night at Clear Sky Resorts for a full immersion.
-- **Interests**: stargazing, night sky, photography
-- **Months**: May–Sep (best); year-round (good)
 
 ---
 
@@ -1053,73 +601,39 @@ The least-visited of Utah's Mighty Five, and for many, the most rewarding. Water
 ##### Hickman Bridge
 The signature Capitol Reef hike. A moderate climb to a massive natural bridge with Fremont granaries visible near the trailhead. Pairs perfectly with a morning in the Fruita orchards.
 - **Distance**: 1.8 miles · **Difficulty**: moderate · **Time**: 1.5 hrs
-- **Energy**: moderate
-- **Group**: solo, couple, friends, family
-- **Interests**: hiking, photography, history
-- **Months**: Year-round (hot in summer; best Mar–May, Sep–Nov)
 
 ##### Navajo Knobs
 The crown jewel of Capitol Reef. A strenuous out-and-back to a 360° panoramic viewpoint above the Waterpocket Fold. Almost no one does this hike — you'll likely have the summit to yourself. **Lila Pick.**
 - **Distance**: 9.4 miles · **Difficulty**: strenuous · **Time**: 5–6 hrs
-- **Energy**: adventurous
-- **Group**: solo, couple, friends
-- **Interests**: hiking, solitude, photography
-- **Months**: Mar–May, Sep–Nov (too hot in summer)
 
 ##### Cassidy Arch
 Named for Butch Cassidy. A moderate climb to a freestanding arch you can walk across. Dramatic exposure, rewarding views.
 - **Distance**: 3.4 miles · **Difficulty**: moderate · **Time**: 2–3 hrs
-- **Energy**: moderate
-- **Group**: solo, couple, friends
-- **Interests**: hiking, photography
-- **Months**: Year-round (hot in summer)
 
 ##### Capitol Gorge
 A flat walk through a narrow canyon with pioneer register (names carved in the 1800s) and natural water tanks. Easy, shaded, and historic.
 - **Distance**: 2.4 miles · **Difficulty**: easy · **Time**: 1–1.5 hrs
-- **Energy**: gentle
-- **Group**: solo, couple, friends, family
-- **Interests**: hiking, history, family
-- **Months**: Year-round (flash flood risk in monsoon season)
 
 ##### Grand Wash
 A wide, flat wash between towering canyon walls. The easiest trail in the park — no elevation gain. Narrows at the end.
 - **Distance**: 2.2 miles one-way · **Difficulty**: easy · **Time**: 1–1.5 hrs
-- **Energy**: gentle
-- **Group**: solo, couple, friends, family
-- **Interests**: hiking, family
-- **Months**: Year-round (flash flood risk in monsoon season)
 
 ##### Cohab Canyon
 A short, steep climb from Highway 24 into a hidden canyon with hoodoos and side spurs. Lightly trafficked, great at golden hour.
 - **Distance**: 1.7 miles one-way · **Difficulty**: moderate · **Time**: 1–1.5 hrs
-- **Energy**: moderate
-- **Group**: solo, couple, friends
-- **Interests**: hiking, photography, solitude
-- **Months**: Year-round
 
 #### Stays
 
 ##### Capitol Reef Resort
 Luxury cabins and Conestoga glamping wagons one mile from the park entrance in Torrey. Pool, hot tub, horseback riding. The most comfortable base for Capitol Reef.
-- **Budget**: premium
-- **Group**: couple, friends, family
-- **Months**: Year-round
 
 ##### Skyview Hotel
 Boutique hotel in Torrey with 14 rooms and 6 glamping domes. Rooftop stargazing deck, locally crafted interiors, restaurant on-site. Torrey is Utah's first designated Dark Sky community. The best boutique option in the Capitol Reef corridor.
-- **Budget**: premium
-- **Group**: couple, solo
-- **Months**: Year-round
 
 #### Dining
 
 ##### Fruita Orchards at Capitol Reef
 Historic pioneer orchards inside the park where you can pick fruit (cherries, apricots, peaches, apples, pears) in season. Pay by the bag, eat in the orchard. One of the most unique park experiences in the NPS system.
-- **Budget**: budget
-- **Group**: solo, couple, friends, family
-- **Interests**: dining, farmMarkets, family, history
-- **Months**: Jun–Oct (varies by fruit)
 
 *Note: Hell's Backbone Grill & Farm in Boulder, UT is listed in the main Nourish section above. It is the natural lunch stop on Scenic Byway 12 between Bryce Canyon and Capitol Reef.*
 

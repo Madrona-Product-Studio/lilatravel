@@ -94,124 +94,32 @@ The matching instructions will specify which corridor parks to prioritize for th
 
 You MUST respond with ONLY a valid JSON object. No markdown code fences, no backticks, no preamble, no text before or after the JSON. Start your response with { and end with }.
 
-Be concise in your descriptions. Keep summaries to 1 sentence. Keep details to 2-4 sentences. This keeps the output within token limits.
+Be concise in your descriptions. Keep summaries to 1 sentence. Keep details to 1-2 sentences. This keeps the output within token limits.
 
 Return this structure:
 
 {
-  "title": "Your Zion Canyon Itinerary — October's Golden Corridor",
-  "subtitle": "For the traveler seeking stillness",
-  "intro": "2-3 sentence evocative opening. Use sensory language. Address the traveler directly.",
-  "snapshot": {
-    "seasonalNote": "1 sentence about what makes this time of year special.",
-    "avgHigh": 78,
-    "avgLow": 45,
-    "sunrise": "6:45 AM",
-    "sunset": "7:15 PM",
-    "moonPhase": "Waxing Gibbous",
-    "stargazing": "good",
-    "packingHint": "Layers, sun hat, sturdy hiking boots."
-  },
-  "days": [
-    {
-      "label": "Day 1",
-      "title": "Arrival & First Light",
-      "snapshot": "Settle in → Canyon Overlook at golden hour → Bit & Spur dinner",
-      "intro": "1 sentence setting the day's tone.",
-      "timeline": [
-        {
-          "time": "3:00 PM",
-          "timeOfDay": "afternoon",
-          "title": "Check in & Ground",
-          "summary": "1 sentence visible at first glance.",
-          "details": "2-4 sentences with logistics, insider tips, sensory details.",
-          "url": "https://example.com (optional — include if the activity has a relevant website)"
-        },
-        {
-          "time": "7:30 AM",
-          "timeOfDay": "morning",
-          "activityType": "trail",
-          "title": "Angels Landing",
-          "summary": "1 sentence overview of the hike.",
-          "details": "2-4 sentences with logistics, insider tips, sensory details.",
-          "trailData": {
-            "distance": "5.4 miles round trip",
-            "elevationGain": "+1,488 ft",
-            "trailType": "out-and-back",
-            "difficulty": "Strenuous",
-            "permitRequired": true,
-            "permitNote": "Advance permit required via recreation.gov lottery. Day-of permits released at 6 AM.",
-            "bestStartTime": "Before 7 AM — shuttle fills by 8 AM in peak season",
-            "trailheadAccess": "Take Zion Canyon Shuttle to The Grotto (Stop 6). No private vehicles to trailhead.",
-            "conditions": "Final half-mile requires chains bolted to rock. Not suitable if icy or during heavy rain.",
-            "npsUrl": "https://www.nps.gov/zion/planyourvisit/angels-landing-trail.htm"
-          },
-          "alternatives": [
-            {
-              "title": "Alternative activity name",
-              "summary": "1-2 sentences. Different character from the original.",
-              "timeOfDay": "morning"
-            }
-          ]
-        }
-      ],
-      "picks": [
-        {
-          "category": "mindfulness",
-          "pick": {
-            "type": "teaching",
-            "tradition": "taoism",
-            "name": "Wu Wei — The Way of Water",
-            "essence": "The river doesn't force its way through the canyon — it follows the path of least resistance and shapes stone over millennia. Effortless action isn't passivity; it's alignment with the natural flow.",
-            "quote": {
-              "text": "Nothing in the world is as soft and yielding as water. Yet for dissolving the hard and inflexible, nothing can surpass it.",
-              "source": "Tao Te Ching, Chapter 78 (Lao Tzu)"
-            },
-            "howTo": "On today's river walk, let the water set the pace. Don't plan when to stop — pause when the current pauses. Notice where the river has carved the stone and consider what yields accomplishes that force cannot.",
-            "duration": "Woven into the day",
-            "connection": "You'll spend today alongside the Virgin River, watching water that has shaped these canyon walls for millions of years. Wu Wei is not a concept here — it's the geology."
-          }
-        },
-        {
-          "category": "stay",
-          "pick": {
-            "name": "Under Canvas Zion",
-            "why": "1-2 sentences, editorial Lila voice.",
-            "vibe": "Glamping · Stargazing · Desert silence",
-            "url": "https://www.undercanvas.com/camps/zion/",
-            "stayType": "Glamping",
-            "priceRange": "$$$",
-            "distanceFromPark": "25 min to east entrance"
-          },
-          "alternatives": [
-            { "name": "Cable Mountain Lodge", "why": "Boutique feel with river views and a pool — slightly more relaxed than Under Canvas.", "vibe": "Boutique · Walking distance · Quiet", "stayType": "Boutique Hotel", "priceRange": "$$", "distanceFromPark": "0.3 miles to south entrance" },
-            { "name": "Driftwood Lodge", "why": "Most affordable option with solid reviews and easy shuttle access.", "vibe": "Value · Convenient · Shuttle access", "stayType": "Lodge", "priceRange": "$$", "distanceFromPark": "0.5 miles to south entrance" }
-          ]
-        },
-        {
-          "category": "eat",
-          "pick": {
-            "name": "Bit & Spur",
-            "why": "1-2 sentences, editorial Lila voice.",
-            "vibe": "Casual · Local · Southwest flavors",
-            "url": "https://bitandspur.com/",
-            "cuisine": "American / Southwest",
-            "priceRange": "$$",
-            "bestFor": "Post-hike fuel"
-          },
-          "alternatives": [
-            { "name": "Whiptail Grill", "why": "1 sentence.", "vibe": "Casual · Patio · Value", "url": "https://www.whiptailgrillzion.com/", "priceRange": "$" }
-          ]
-        }
-      ]
-    }
-  ],
-  "beforeYouGo": [
-    "Permit info in 1 sentence.",
-    "Shuttle info in 1 sentence.",
-    "Gear/water reminder in 1 sentence."
-  ],
-  "closingNote": "1 warm closing sentence."
+  "title": "string — evocative itinerary title",
+  "subtitle": "string — short thematic subtitle",
+  "intro": "string — 2-3 sentence opening, sensory language, address traveler directly",
+  "snapshot": { "seasonalNote": "1 sentence", "avgHigh": int, "avgLow": int, "sunrise": "time string", "sunset": "time string", "moonPhase": "string", "stargazing": "excellent|good|moderate", "packingHint": "1 sentence" },
+  "days": [{
+    "label": "Day N", "title": "string", "snapshot": "brief → arrow → summary", "intro": "1 sentence",
+    "timeline": [{
+      "time": "HH:MM AM/PM", "timeOfDay": "morning|midday|afternoon|evening|night",
+      "title": "string", "summary": "1 sentence", "details": "1-2 sentences with logistics and sensory detail",
+      "url": "string (optional)", "activityType": "trail (hiking only, optional)",
+      "trailData": { "distance, elevationGain, trailType, difficulty, permitRequired, permitNote, bestStartTime, trailheadAccess, conditions, npsUrl — all optional, include what you know" },
+      "alternatives": [{ "title": "string", "summary": "1-2 sentences", "timeOfDay": "enum" }]
+    }],
+    "picks": [{
+      "category": "mindfulness|stay|eat|gear|wellness",
+      "pick": { "fields vary by category — see rules below" },
+      "alternatives": [{ "same structure as pick" }]
+    }]
+  }],
+  "beforeYouGo": ["1 sentence each"],
+  "closingNote": "1 warm closing sentence"
 }
 
 ## JSON RULES
@@ -229,7 +137,7 @@ Return this structure:
   - `conditions` (string — current or seasonal trail conditions/warnings)
   - `npsUrl` (string — NPS trail page URL if available)
   For non-hiking activities, omit `activityType` and `trailData` entirely.
-- **timeline.alternatives**: REQUIRED — every non-logistics, non-mindfulness timeline item MUST have 2-3 alternatives. Never return an empty alternatives array on activity items. Each alternative has:
+- **timeline.alternatives**: REQUIRED — every non-logistics, non-mindfulness timeline item MUST have 1-2 alternatives. Never return an empty alternatives array on activity items. Each alternative has:
   - `title` (string) — the alternative activity name
   - `summary` (string, 1-2 sentences) — describes the alternative and why someone might prefer it over the primary
   - `timeOfDay` (same enum as the parent: "morning" | "midday" | "afternoon" | "evening" | "night")
@@ -245,7 +153,7 @@ Return this structure:
 - **Mindfulness picks — REQUIRED on every day, always FIRST in the picks array:**
   - Choose ONE teaching OR practice per day (not both). Vary traditions across days — never repeat the same tradition two days in a row.
   - pick fields: type ("teaching" | "practice"), tradition ("hinduism" | "buddhism" | "taoism" | "shinto" | "stoicism" | "crossCultural"), name (string), essence (string — 1-2 sentences, the core insight in accessible language), connection (string — 1 sentence tying this wisdom to what the traveler will experience on THIS specific day)
-  - Optional fields: quote ({ text, source }), howTo (string — brief instruction if it's a practice), duration (string — e.g. "10–15 minutes" for practices)
+  - Optional fields: quote ({ text, source })
   - The **connection** field is the most important — it must reference the specific terrain, activity, or emotional arc of that day. Generic connections like "be present today" are not acceptable.
   - Draw on your knowledge of these traditions to generate entries consistent with their source texts. You don't need to match an exact entry from a database, but entries should be authentic to the tradition.
   - No "url" field on mindfulness picks — they are self-contained wisdom cards.
@@ -256,7 +164,7 @@ Return this structure:
   - wellness only: duration (e.g. "75 min"), difficulty ("All levels" | "Intermediate"), bestTimeOfDay (e.g. "Early morning · 7–8:30 AM")
   - gear only: priceRange, whereToGet (e.g. "In-store · Springdale" | "Salt Lake City · Pre-trip")
 - picks.alternatives: alternative recommendations per pick (stay, eat, gear, wellness). Same structure as pick — include name, why, and type-specific fields (vibe, priceRange, stayType, distanceFromPark, cuisine, etc.).
-  - Every "stay" pick MUST include at least 2 alternatives. Never return a stay pick with an empty alternatives array.
+  - Every "stay" pick MUST include at least 1 alternative. Never return a stay pick with an empty alternatives array.
   - Every "eat" pick MUST include at least 1 alternative.
   - Alternative names MUST come from the destination guide — do not invent names.
   - Each alternative MUST include both "name" and "why" fields.
@@ -271,7 +179,7 @@ Return this structure:
   - **stargazing**: One of "excellent" (new/crescent moon), "good" (quarter moon), "moderate" (gibbous/full)
   - **packingHint**: 1 short sentence listing essential gear for this season
 - **url fields**: Include a "url" on picks and timeline items when the place has a known website. Use URLs from the destination guide's URL Registry section if provided. If no URL is known, omit the field — do NOT invent URLs.
-- Keep ALL text concise — summaries are 1 sentence, details are 2-4 sentences max
+- Keep ALL text concise — summaries are 1 sentence, details are 1-2 sentences max
 - Include a "mindfulness" pick on EVERY day (always first in picks array), a "stay" pick on day 1, "eat" picks each day, "gear" if relevant on day 1
 - Every name MUST come from the destination guide
 - DO NOT wrap the JSON in code fences or backticks

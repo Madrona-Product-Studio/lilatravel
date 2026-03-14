@@ -48,89 +48,49 @@ The Hawaiian people have called Kauaʻi home for over 1,500 years. Place names c
 #### Kalalau Trail to Hanakāpīʻai Beach (First 2 Miles)
 The most iconic trail in Hawaiʻi. The full Kalalau Trail runs 11 miles from Ke'e Beach to Kalalau Beach and is permit-only beyond Hanakāpīʻai Beach. The first two miles — to Hanakāpīʻai Beach — are open to day hikers without a camping permit and deliver a concentrated version of the trail's drama: cliffs, jungle, switchbacks above the Pacific, a waterfall visible from the lookouts. The beach itself is dangerous for swimming (powerful shore break year-round) — come to see it, not to enter it. Advance park reservation required through gohaena.com.
 - **Distance**: 4 miles round trip to beach · **Elevation gain**: 800 ft · **Difficulty**: Moderate · **Time**: 2.5–3 hrs
-- **Energy**: moderate
-- **Group**: solo, couple, friends
-- **Interests**: coastal cliffs, jungle, Nā Pali views, photography
-- **Months**: Year-round (trail can be slippery after rain — always)
 
 #### Kalalau Trail — Full (Permitted Overnight)
 The complete 11-mile route traverses five valleys and ends at Kalalau Beach, one of the most remote and beautiful beaches accessible on foot in the United States. Camping permits required; available 90 days in advance through Explore Outdoor Hawaiʻi. The trail is graded but almost never flat — it crosses sea cliffs, drops into valleys, and climbs out again repeatedly. Plan 2 nights minimum to do it without rushing. The payoff is proportional to the difficulty.
 - **Distance**: 22 miles round trip · **Difficulty**: Strenuous · **Time**: 2–4 days
-- **Energy**: adventurous
-- **Group**: small, experienced
-- **Interests**: backpacking, Nā Pali, wilderness, solitude
-- **Months**: April–September (avoid in heavy winter swell/rain)
 
 #### Awaʻawapuhi Trail (Kōkeʻe State Park)
 The finest ridge trail on the island — a 6.4-mile out-and-back through native forest to a knife-edge viewpoint 2,500 feet above the ocean on the Nā Pali Coast. The final viewpoint looks directly down into the fluted valleys that make the Nā Pali famous. Exceptional. Strenuous on the return, which is all uphill.
 - **Distance**: 6.4 miles round trip · **Elevation gain**: 1,500 ft · **Difficulty**: Strenuous · **Time**: 3–4 hrs
-- **Energy**: adventurous
-- **Group**: solo, friends
-- **Interests**: ridge walk, Nā Pali views, native forest
-- **Months**: Year-round (trail can be muddy — traction recommended)
 
 ### Waimea Canyon & Kōkeʻe
 
 #### Waimea Canyon Trail (Canyon Trail)
 The primary canyon trail runs 3.6 miles along the rim, with a detour to the top of Waipo'o Falls — an 800-foot cascade visible from the lookouts across the canyon. The views of the red-rock canyon layers are remarkable from close range. The canyon itself receives far less rain than the north shore; expect dry, warm conditions.
 - **Distance**: 3.6 miles round trip · **Difficulty**: Moderate · **Time**: 2–3 hrs
-- **Energy**: moderate
-- **Group**: solo, couple, friends, family
-- **Interests**: canyon, waterfall, geology, photography
-- **Months**: Year-round
 
 #### Pihea Trail (Kōkeʻe to Alaka'i Swamp)
 A 3.8-mile trail from the end of the highway at Puʻu o Kila Lookout into the Alaka'i Swamp — the world's highest tropical swamp (4,000 feet elevation), home to rare native birds found nowhere else on Earth (ʻapapane, ʻiʻiwi, pueo). The trailhead viewpoint overlooks the Kalalau Valley. Long and often muddy — wear gaiters.
 - **Distance**: 7.6 miles round trip · **Difficulty**: Moderate · **Time**: 3–4 hrs
-- **Energy**: moderate
-- **Group**: solo, couple, friends
-- **Interests**: native birds, swamp ecology, endemic species, solitude
-- **Months**: Year-round (muddy in rain)
 
 ### North Shore
 
 #### Hāʻena State Park — Ke'e Beach & Reef Walk
 The beach at the end of the highway — where the road literally stops — is one of the most beautiful on the island. A calm reef lagoon in summer creates a protected snorkeling environment with excellent visibility. In winter, the water is rough and the reef is for looking, not entering. Reservations required through gohaena.com. Arrive early.
-- **Energy**: gentle
-- **Group**: solo, couple, friends, family
-- **Interests**: snorkeling, beach, reef, photography
-- **Months**: Year-round (swimming safe in summer only)
 
 #### Sleeping Giant (Nounou Mountain — East Trail)
 A local's hike above Kapa'a, reaching a ridge with panoramic views of the East Shore, Mount Waiʻaleʻale, and the Pacific. Named for the profile of the ridge, which resembles a reclining figure. Less crowded than the north shore trails, more revealing as a view of the island's interior.
 - **Distance**: 3.4 miles round trip · **Elevation gain**: 1,000 ft · **Difficulty**: Moderate · **Time**: 2–2.5 hrs
-- **Energy**: moderate
-- **Group**: solo, couple, friends
-- **Interests**: panoramic views, interior landscape, local
-- **Months**: Year-round
 
 #### Kuamoʻo-Nounou Trail (East Side)
 An alternative approach to the Sleeping Giant ridge from the west, connecting through a forested interior corridor along Kuamoʻo Road. The trail crosses the Nounou Mountain ridgeline with views into the Wailua River valley and out to the coast. Less trafficked than the East Trail, with more shade and a wilder feel. Can be combined with the East Trail for a through-hike with a car shuttle.
 - **Distance**: 4.0 miles round trip · **Elevation gain**: 1,100 ft · **Difficulty**: Moderate · **Time**: 2.5–3 hrs
-- **Energy**: moderate
-- **Group**: solo, couple, friends
-- **Interests**: ridge walk, forest, Wailua River views, solitude
-- **Months**: Year-round
 
 ### South Shore
 
 #### Māhāʻulepū Heritage Trail (South Shore)
 A coastal walk along Kauaʻi's most intact stretch of undeveloped shoreline — lithified sand dunes, tide pools, an ancient sinkhole, and views of the rugged Māhāʻulepū coastline that most visitors never see. The trail begins past the Grand Hyatt at Shipwreck Beach and follows the coast southeast past Punahoa Point to Māhāʻulepū Beach. Easy terrain on packed sand and rock. Access through CJM Country Stables gate; closes at dark.
 - **Distance**: 4 miles round trip · **Elevation gain**: minimal · **Difficulty**: Easy · **Time**: 1.5–2 hrs
-- **Energy**: gentle
-- **Group**: solo, couple, friends, family
-- **Interests**: coastal walk, geology, tide pools, fossils, photography
-- **Months**: Year-round
 
 ### Interior / Cross-Island
 
 #### Powerline Trail (North Shore to Līhuʻe)
 A 13-mile point-to-point trail that crosses the island's mountainous interior from Princeville to a trailhead near Kapahi on the east side, following the path of an old utility line through deep valleys and exposed ridges. Views of Mount Waiʻaleʻale and the Hanalei watershed are exceptional when the clouds break. The trail is rough, often muddy, and poorly marked in sections — real backcountry conditions on a small island. Requires a car shuttle or a very long out-and-back. Best done north to south for net elevation loss.
 - **Distance**: 13 miles one way · **Elevation gain**: 1,300 ft · **Difficulty**: Strenuous · **Time**: 6–8 hrs
-- **Energy**: adventurous
-- **Group**: solo, friends (experienced)
-- **Interests**: cross-island traverse, mountain views, backcountry, solitude
-- **Months**: April–September (impassable in heavy rain)
 
 ### Scenic Drives & Overland
 
@@ -169,10 +129,6 @@ The anchor yoga studio on Kauaʻi's North Shore — voted #1 on the island — o
 - **Address**: 5-5161 Kuhio Hwy, Suite 204E, Hanalei, HI 96714 (2nd floor, Hanalei Center)
 - **Website**: blackcoralyoga.com
 - **Hours**: Daily 7 AM–6:30 PM (shorter Sat/Sun)
-- **Energy**: gentle to vigorous (class-dependent)
-- **Group**: solo, couple
-- **Interests**: yoga, pranayama, sound, infrared heat, lineage-based practice
-- **Months**: Year-round
 
 #### Anara Spa at Grand Hyatt Kauaʻi (Poipū)
 The island's most developed spa facility. Traditional Hawaiian healing practices (lomilomi massage, pohaku hot stone treatment) offered alongside standard spa programming. Day access to the outdoor facilities — pools, waterfall, garden steam rooms — available for non-guests. Grand in scale; grounded in Hawaiian tradition.
@@ -183,26 +139,14 @@ A long-running island-wide yoga community. Drop-in classes offered across Poipū
 
 #### Kauaʻi Yoga on the Beach (Poipū / Hanalei)
 Sunrise yoga sessions held directly on the sand — Poipū Beach in winter, Hanalei Bay in summer. The practice is simple and open-level: breath, movement, and the sound of the ocean as the only soundtrack. Group sessions run at dawn; private sessions available by arrangement. No studio, no walls, no mirrors. The beach is the room.
-- **Energy**: gentle
-- **Group**: solo, couple, friends
-- **Interests**: yoga, sunrise, beach, open-air practice
-- **Months**: Year-round (location rotates by season)
 
 #### Angeline's Muʻumuʻu Heaven & Outdoor Shower Yoga (Kapaʻa)
 One of the most genuinely Kauaʻi experiences on the island — Auntie Angeline Locey runs lomilomi massage, storytelling, and outdoor yoga from her home property in Anahola. The "yoga" is held under the sky near an outdoor shower surrounded by tropical gardens. The muʻumuʻu shop is an extension of her personality — vibrant, local, completely uncommercial. This is Hawaiian wellness as cultural practice, not spa product. By appointment only.
-- **Energy**: gentle
-- **Group**: solo, couple
-- **Interests**: lomilomi, Hawaiian culture, yoga, local character
-- **Months**: Year-round (by appointment)
 
 ### Water Practice
 
 #### Nā Pali Kayak Meditation Paddle (North Shore, Summer)
 A guided mindful paddle along the first stretch of the Nā Pali coastline — combining the physical practice of ocean kayaking with intentional silence, breath awareness, and open-water presence. Offered by select outfitters (check Kayak Kauaʻi for guided options) during the calm summer months when the north shore is navigable. The combination of sea cliffs, open ocean, and focused attention creates something no studio can replicate. Experience required; ocean conditions dictate whether the trip goes.
-- **Energy**: moderate to adventurous
-- **Group**: solo, couple, friends
-- **Interests**: kayaking, mindfulness, Nā Pali Coast, ocean practice
-- **Months**: May–September (calm conditions only)
 
 #### Stand-Up Paddleboarding — Hanalei Bay (Summer)
 Hanalei Bay in summer is one of the finest flat-water SUP environments in the Pacific: a protected crescent bay with mountain backdrop, calm water, and turtles visible below the board on clear days. Multiple rental and lesson operators on the beach. An elemental morning.
@@ -218,25 +162,13 @@ A National Tropical Botanical Garden property tucked into a valley on the north 
 
 #### Hanalei Day Spa (Hanalei)
 A full-service day spa on the North Shore offering massage, bodywork, facials, and energy healing in a garden setting steps from Hanalei town. Treatments draw on both Hawaiian and Pacific Rim traditions. Lomilomi massage and hot stone sessions are the specialties. Walk-ins sometimes accommodated, but booking ahead is recommended — the North Shore has limited spa options, and this is the best of them.
-- **Energy**: gentle
-- **Group**: solo, couple
-- **Interests**: massage, bodywork, relaxation, Hawaiian healing
-- **Months**: Year-round
 
 #### Alexander Day Spa & Salon at Kauaʻi Marriott (Līhuʻe)
 The most accessible full-service spa on the east side — located inside the Kauaʻi Marriott Resort on Kalapakī Beach. A practical option for visitors based near Līhuʻe or arriving/departing the airport. Standard resort spa programming: massage, facials, body treatments, nail services. Not as culturally rooted as the North Shore options, but consistent, professional, and open to non-hotel guests.
 - **Address**: 3610 Rice Street, Līhuʻe, HI 96766 (inside Kauaʻi Marriott)
-- **Energy**: gentle
-- **Group**: solo, couple
-- **Interests**: spa, massage, relaxation, convenience
-- **Months**: Year-round
 
 #### Lomilomi — Hawaiian Healing Tradition (Island-wide)
 Lomilomi is the traditional Hawaiian practice of massage and bodywork — long, flowing strokes using the forearms and elbows, rooted in a spiritual framework of restoring balance and flow in the body. On Kauaʻi, lomilomi is offered at resort spas (Anara Spa, Grand Hyatt) and by independent Hawaiian practitioners working from private studios and home practices across the island. For an experience grounded in lineage rather than resort packaging, seek out practitioners in Kapaʻa and the North Shore — ask at Hanalei Day Spa or Angeline's for referrals. This is not a spa treatment; it is a cultural practice offered with generosity.
-- **Energy**: gentle
-- **Group**: solo, couple
-- **Interests**: Hawaiian healing, lomilomi, bodywork, cultural practice
-- **Months**: Year-round
 
 ---
 
@@ -297,10 +229,6 @@ Visitors are welcome on the monastery grounds daily from 9 AM to noon. The 9 AM 
 - **Hours**: Daily 9 AM–12 PM (reservation required to enter temple)
 - **Admission**: Free; donations welcomed
 - **Website**: himalayanacademy.com
-- **Energy**: gentle, contemplative
-- **Group**: solo, couple, friends
-- **Interests**: Hinduism, sacred practice, meditation, pilgrimage
-- **Months**: Year-round
 
 #### Lydgate Farms — Chocolate Farm Tour (Kapa'a East Side)
 A fifth-generation Kauaʻi family has been farming this land since 1865. Today, that legacy lives in a three-hour guided tour through botanical gardens and award-winning cacao fields — Lydgate has been recognized three times by Cocoa of Excellence in Paris (including Gold in 2023) as growing some of the finest cacao beans in the world. The tour covers the full arc from tree to bar: tropical fruit tasting (apple banana, lilikoi, rambutan, lychee, sugarcane, and more depending on season), vanilla beans on the vine, palm-blossom honey, and an education in fermentation, drying, and chocolate-making before an extensive tasting of their single-origin craft chocolate. It is genuinely one of the finest agricultural experiences in the state — not a tourist attraction that happens to have cacao, but a working farm with deep roots and real craft. The concept of *mālama ʻāina* — caring for the land — is embedded in how they operate.
@@ -308,10 +236,6 @@ A fifth-generation Kauaʻi family has been farming this land since 1865. Today, 
 - **Tour**: 3 hours guided · Reservation required · Children 7+ only
 - **Tasting Room**: Downtown Kapaa, Mon–Fri 10 AM–4 PM (no reservation needed)
 - **Website**: lydgatefarms.com
-- **Energy**: gentle
-- **Group**: solo, couple, friends, family (kids 7+)
-- **Interests**: food, agriculture, Hawaiian culture, craft chocolate, *mālama ʻāina*
-- **Months**: Year-round
 
 ### Land & Water
 

@@ -48,75 +48,42 @@ The land around Tofino has been home to the Nuu-chah-nulth peoples for over 10,0
 #### Long Beach (Pacific Rim National Park Reserve)
 A 16-kilometer stretch of wild Pacific coastline — the longest beach in Canada accessible by road. The beach shifts from hard sand to tide pools to driftwood fields depending on where you walk. Surfers at one end, beachcombers at the other, old-growth forest as a backdrop on both. Walk it at low tide for the widest expanse; walk it in a storm for the full experience. Access from multiple pullouts along Pacific Rim Highway.
 - **Distance**: Up to 16 km · **Difficulty**: Easy · **Time**: 1–4 hrs depending on length
-- **Energy**: gentle
-- **Group**: solo, couple, friends, family
-- **Interests**: beach, photography, surf watching, storm watching
-- **Months**: Year-round
 
 #### Rainforest Trail (Pacific Rim National Park Reserve)
 Two short loop trails through a western red cedar and Sitka spruce old-growth forest. Loop A (1 km) and Loop B (1 km) feature boardwalk through a stand of trees that feel genuinely ancient — cedar root systems covering the boardwalk, nurse logs supporting entire ecosystems, filtered light coming down through the canopy. For those who want old-growth access without committing to a full day of hiking.
 - **Distance**: 1 km each loop · **Difficulty**: Easy · **Time**: 30–45 min per loop
-- **Energy**: gentle
-- **Group**: solo, couple, friends, family
-- **Interests**: forest bathing, old-growth, photography, accessible
-- **Months**: Year-round
 
 #### Wild Pacific Trail (Ucluelet)
 A 10-kilometer trail hugging the rocky headland of the Ucluth Peninsula — owned and managed in part by the Yuułuʔiłʔatḥ (Ucluelet) First Nation. The trail is divided into sections: the Lighthouse Loop (2.6 km, easy, family-friendly) circles the Amphitrite Point Lighthouse with open ocean views; the Ancient Cedars section moves into old-growth forest. Whales are visible offshore in spring and fall. The trail offers accessible coastal walking without permit or crowds.
 - **Distance**: 2.6–10 km depending on section · **Difficulty**: Easy-Moderate · **Time**: 1–4 hrs
-- **Energy**: gentle to moderate
-- **Group**: solo, couple, friends, family
-- **Interests**: coastal walk, lighthouse, whale watching, old-growth
-- **Months**: Year-round (storm watching in winter is exceptional)
 
 #### Meares Island Big Tree Trail
 A water-taxi crossing from Tofino to Meares Island leads to a trail through one of the largest remaining intact temperate rainforest stands in Canada. Ancient western red cedar and Sitka spruce, some estimated at over 1,000 years old. The Hanging Garden Tree — a massive cedar — is the landmark. The island is a Tla-o-qui-aht Tribal Park: traveling here is entering active Indigenous stewardship territory. Come with awareness of that. Water taxi from Tofino's government dock; check with operators for current crossings.
 - **Distance**: 4 km loop · **Difficulty**: Easy-Moderate · **Time**: 2 hrs + water taxi
-- **Energy**: moderate
-- **Group**: solo, couple, friends
-- **Interests**: old-growth, Indigenous territory, photography, ancient trees
-- **Months**: Year-round
 
 #### Schooner Cove Trail (Pacific Rim National Park Reserve)
 A 2-kilometer trail descending through old-growth spruce and cedar forest to a secluded cove on Long Beach's north end. The cove is often empty even when Long Beach is busy. Tide pools at low tide; surf break at high. One of the finest short trails in the park.
 - **Distance**: 2 km round trip · **Difficulty**: Easy-Moderate · **Time**: 45 min
-- **Energy**: gentle
-- **Group**: solo, couple, friends, family
-- **Interests**: beach, old-growth, seclusion, tide pools
-- **Months**: Year-round
 
 ### Strathcona Provincial Park (Interior Alpine)
 
 #### Paradise Meadows & Battleship Lake Loop
 The most accessible introduction to Strathcona's alpine interior, starting from the Mount Washington ski area road. A 6-kilometer loop through subalpine meadows, past Battleship Lake and Lady Falls. Wildflowers from July through August are exceptional. The meadows are quiet, wide, and genuinely beautiful — a completely different landscape from the rainforest coast.
 - **Distance**: 6 km loop · **Difficulty**: Easy-Moderate · **Time**: 2–3 hrs
-- **Energy**: gentle
-- **Group**: solo, couple, friends, family
-- **Interests**: alpine meadows, wildflowers, easy hiking, photography
-- **Months**: July–September (snowpack dependent)
 
 #### Elk River Trail
 A 10.6-kilometer round-trip hike along the Elk River through old-growth forest to a glacially-fed waterfall. One of the most beautiful valley hikes in the park — the forest is dense and enormous, the river audible throughout. The waterfall at the end drops into a turquoise pool. Strenuous but not technical.
 - **Distance**: 10.6 km round trip · **Elevation gain**: 480 m · **Difficulty**: Moderate-Strenuous · **Time**: 4–5 hrs
-- **Energy**: moderate, adventurous
-- **Group**: solo, couple, friends
-- **Interests**: waterfall, old-growth, river, seclusion
-- **Months**: June–October
 
 #### West Coast Trail (Advanced / Multi-Day)
 The most demanding and celebrated multi-day trail on Vancouver Island — 75 kilometers between Bamfield and Port Renfrew through the traditional territories of the Huu-ay-aht, Ditidaht, and Pacheedaht First Nations. The trail passes sea caves, sea stacks, suspension bridges, ladders, and some of the most remote coastline in Canada. It requires a permit ($255 CAD + reservation fee), a registered orientation session, and solid backcountry experience. Open May–September. Plan 6–8 days. It is the defining coastal wilderness walk in North America.
 - **Distance**: 75 km · **Difficulty**: Strenuous · **Time**: 6–8 days
-- **Energy**: adventurous
-- **Group**: small experienced group
-- **Interests**: backpacking, coastal wilderness, Indigenous territories, challenge
-- **Months**: May–September
 - **Permits**: pc.gc.ca/wct
 
 #### Juan de Fuca Marine Trail (Day Hiking Sections)
 A 47-kilometer coastal trail south of the West Coast Trail, running from Botanical Beach near Port Renfrew to China Beach near Jordan River. **Note: The full trail sustained significant storm damage and was closed through summer 2025; check bcparks.ca for current status before planning.** Individual sections — particularly the Mystic Beach access from China Beach (2.6 km, easy) and Botanical Beach (accessible year-round) — remain accessible as spectacular day hikes. Botanical Beach hosts some of the most dramatic tide pools on the island.
 - **Day hike**: Mystic Beach 2.6 km round trip · China Beach trailhead · Easy
 - **Botanical Beach**: 2.5 km round trip · Port Renfrew · Easy
-- **Months**: Year-round for day hike sections (check current conditions)
 
 ### Scenic Drives
 
@@ -136,20 +103,10 @@ The most spectacular soaking experience on the BC coast, and one of the most rem
 Multiple Tofino operators run Hot Springs Cove tours. **Ahous Adventures** (ahousadventures.com) is the recommended operator — an eco and cultural tour company owned and operated by the Ahousaht Nation, with guides who carry Ahousaht cultural knowledge and history of the territories you're traveling through. Every tour is an act of reciprocity, not extraction.
 - **Access**: Boat (1.5–2 hrs from Tofino dock) or floatplane. Day trip.
 - **Season**: Year-round; most operators run March–October
-- **Energy**: moderate (boat + trail)
-- **Group**: solo, couple, friends
-- **Budget**: balanced–premium (tour operator costs)
-- **Interests**: soaking, wilderness, geothermal, old-growth, Ahousaht territory
-- **Months**: March–October (peak); some winter tours available
 
 ### Ancient Cedars Spa (Wickaninnish Inn)
 One of the finest spa experiences on the island — designed entirely around the Pacific Rim environment. Treatments include cedar steam, seaweed body wraps, and therapies incorporating local botanicals and marine elements. The spa sits within the Wickaninnish Inn on Chesterman Beach. Day spa access for non-guests is limited — inquire about availability when booking treatments. Set in old-growth forest with ocean views from treatment rooms.
 - **Address**: 500 Osprey Lane at Chesterman Beach, Tofino, BC V0R 2Z0
-- **Energy**: gentle
-- **Group**: solo, couple
-- **Budget**: premium
-- **Interests**: spa, soaking, cedar, coastal
-- **Months**: Year-round
 
 ### Tofino Resort + Marina — The Boathouse Spa
 Waterfront spa on Tofino's inner harbour. Focused on surf recovery and Pacific Northwest elements — hot stone, deep tissue, and various soaking options. Day treatments available. Attached to the resort's dock; arrive by boat if you want the full effect.
@@ -243,10 +200,6 @@ The major institutional repository of Kwakwaka'wakw culture on Vancouver Island 
 #### Ahous Adventures — Whale Watching, Bear Watching & Hot Springs Cove (Tofino)
 The Ahousaht Nation-owned tour operator — and the one to book with if you're doing any wildlife tour from Tofino. Ahous Adventures runs whale watching (gray whales, humpbacks, occasional orcas), bear watching (black bears foraging along the rocky intertidal shores of Clayoquot Sound), and Hot Springs Cove tours. Guides carry Ahousaht cultural knowledge of the territories you're traveling through — place names, ecological relationships, history — and they welcome questions. The framing is explicit: visitors are guests in Ahousaht haḥuułii (territorial lands and waters), and the relationship is one of reciprocity and respect. Gray whales: March–October. Humpbacks: summer–fall. Bears: spring–fall.
 - **Website**: ahousadventures.com
-- **Energy**: moderate (open zodiac boats)
-- **Group**: solo, couple, friends, family
-- **Interests**: wildlife, whale watching, bear watching, Ahousaht culture, Clayoquot Sound
-- **Months**: March–October
 
 ### Arts & Nature
 
@@ -343,10 +296,6 @@ The Butchart family still owns and operates it. It is a National Historic Site o
 - **Website**: butchartgardens.com
 - **Hours**: Year-round; hours vary by season — check website
 - **Admission**: Varies by season; book online
-- **Energy**: gentle
-- **Group**: solo, couple, friends, family
-- **Interests**: gardens, horticulture, photography, history
-- **Months**: Year-round (peak bloom June–September; Christmas lights December)
 
 #### Fairmont Empress — Afternoon Tea (Inner Harbour, Victoria)
 The Empress has been serving afternoon tea since 1908. The hotel sits on the Inner Harbour like an anchor — ivy-covered stone, castle-scale — and the tea takes place in the Lobby Lounge overlooking the water, with live piano and bone china from a set gifted by Queen Elizabeth in 1939. The menu is built around 21 loose-leaf teas, freshly baked scones with house-made strawberry jam (from local berries), honey from the hotel's own rooftop apiary, and a tiered tray of finger sandwiches and pastries. It is not cheap (~$109 CAD/person) and it is unambiguously touristy — but it is also genuinely well-executed and one of those experiences that earns its cliché. Reserve well in advance; midweek seatings are quieter.
@@ -355,11 +304,6 @@ Note: The Q Restaurant and Q Bar were closed for renovation January–April 2026
 - **Address**: 721 Government St, Victoria, BC V8W 1W5
 - **Reservation**: Required — book at fairmont.com or teaattheempress.com
 - **Price**: ~$109 CAD/person (champagne add-on available)
-- **Energy**: gentle, ceremonial
-- **Group**: couple, friends, family
-- **Budget**: premium
-- **Interests**: tea tradition, historic architecture, Inner Harbour, ritual
-- **Months**: Year-round
 
 #### Inner Harbour & Beacon Hill Park
 The Harbour itself is worth time — Parliament Buildings, float planes arriving from Vancouver, Victoria Harbour Ferry running between docks, whale watching boats departing at dawn. Beacon Hill Park, a short walk from the waterfront, is 200 acres of old Garry oak meadow, gardens, and open lawn — the city's green anchor and one of the few places on the island where the rare Garry oak ecosystem survives. The park's southern edge meets Dallas Road and the oceanfront walkway along the Strait.

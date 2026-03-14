@@ -797,12 +797,11 @@ export async function assembleContext(destination, userPreferences) {
   // 2. Fetch live data in parallel
   const hasExactDates = userPreferences.dates?.start && userPreferences.dates?.end;
   
-  const [alerts, weather, campgrounds, celestial, tides] = await Promise.all([
+  const [alerts, weather, celestial, tides] = await Promise.all([
     fetchNPSAlerts(destination),
     hasExactDates
       ? fetchWeather(destination, userPreferences.dates.start, userPreferences.dates.end)
       : Promise.resolve(null), // No weather fetch if only month selected
-    fetchNPSCampgrounds(destination),
     hasExactDates
       ? fetchCelestial(destination, userPreferences.dates.start, userPreferences.dates.end)
       : Promise.resolve(null),
@@ -848,13 +847,12 @@ export async function assembleContext(destination, userPreferences) {
     nightSky: formatNightSkyForPrompt(nightSky),
     tides: formatTidesForPrompt(tides),
     liveData: {
-      alerts: alerts || 'No alert data available.',
+      alerts: alerts || null,
       corridorAlerts,
       weather: formatWeatherForPrompt(weather),
       celestial: formatCelestialForPrompt(celestial),
       celestialRaw: celestial,
       weatherRaw: weather,
-      campgrounds: campgrounds ? JSON.stringify(campgrounds, null, 2) : null,
     },
     traveler: userPreferences,
     matchingInstructions,
@@ -876,27 +874,35 @@ export function buildClaudeMessage(context, systemPrompt) {
   const guideBlock = `## Destination Guide (ONLY recommend from this content)\n\n${context.guide}`;
 
   // Live data + traveler profile — changes every call, not cached
+  // Build live data sections, skipping any that are null/empty
+  const liveSections = [];
+
+  if (context.liveData.alerts) {
+    liveSections.push(`### Current Park Alerts\n${context.liveData.alerts}`);
+  }
+  if (context.liveData.corridorAlerts) {
+    liveSections.push(`### Corridor Park Alerts\n${context.liveData.corridorAlerts}`);
+  }
+  if (context.liveData.weather) {
+    liveSections.push(`### Weather Forecast for Travel Dates\n${context.liveData.weather}`);
+  }
+  if (context.liveData.celestial) {
+    liveSections.push(`### Celestial Data\n${context.liveData.celestial}`);
+  }
+  if (context.permits) {
+    liveSections.push(`### Permits & Reservations\nThe following activities require permits or advance reservations. When recommending any of these, ALWAYS mention the permit requirement, where to get it, and advise the traveler to book in advance.\n\n${context.permits}`);
+  }
+  if (context.nightSky) {
+    liveSections.push(`### Night Sky Conditions\n${context.nightSky}`);
+  }
+  if (context.tides) {
+    liveSections.push(`### Tide Predictions\n${context.tides}`);
+  }
+
   const liveMessage = `
 ## Live Data
 
-### Current Park Alerts
-${context.liveData.alerts}
-
-${context.liveData.corridorAlerts ? `### Corridor Park Alerts\n${context.liveData.corridorAlerts}` : ''}
-
-### Weather Forecast for Travel Dates
-${context.liveData.weather}
-
-### Celestial Data
-${context.liveData.celestial}
-
-${context.liveData.campgrounds ? `### Campground Data\n${context.liveData.campgrounds}` : ''}
-
-${context.permits ? `### Permits & Reservations\nThe following activities require permits or advance reservations. When recommending any of these, ALWAYS mention the permit requirement, where to get it, and advise the traveler to book in advance.\n\n${context.permits}` : ''}
-
-${context.nightSky ? `### Night Sky Conditions\n${context.nightSky}` : ''}
-
-${context.tides ? `### Tide Predictions\n${context.tides}` : ''}
+${liveSections.join('\n\n')}
 
 ---
 
