@@ -3056,9 +3056,12 @@ export default function ItineraryResults() {
   const [visible, setVisible] = useState(false);
   const [refining, setRefining] = useState(false);
   const [loadingShared, setLoadingShared] = useState(!!shareToken);
+  const [shareError, setShareError] = useState(null);
 
   // Seed from router state, then sessionStorage fallback, then own locally
+  // When loading via share link, ignore stale sessionStorage — always fetch fresh
   const [rawItinerary, setRawItinerary] = useState(() => {
+    if (shareToken) return null; // force fetch from API
     if (location.state?.itinerary) return location.state.itinerary;
     try { return sessionStorage.getItem('lila_raw_itinerary') || null; } catch { return null; }
   });
@@ -3084,31 +3087,40 @@ export default function ItineraryResults() {
 
   // Hydrate via server-side API when accessed via a share link (/trip/:token)
   // Uses the service role key on the server to bypass RLS policies
-  useEffect(() => {
-    console.log('[SharedTrip] effect fired', { shareToken, rawItinerary: !!rawItinerary });
-    if (!shareToken || rawItinerary) return;
-    (async () => {
-      try {
-        const res = await fetch(`/api/get-shared-trip?token=${encodeURIComponent(shareToken)}`);
-        if (!res.ok) {
-          const errBody = await res.json().catch(() => ({}));
-          console.log('[SharedTrip] API returned', res.status, errBody);
-          setLoadingShared(false);
-          navigate('/plan');
-          return;
-        }
-        const data = await res.json();
-        console.log('[SharedTrip] API result', { id: data.id, hasItinerary: !!data.rawItinerary });
-        setRawItinerary(data.rawItinerary);
-        setItineraryId(data.id);
+  const fetchSharedTrip = async (token) => {
+    setShareError(null);
+    setLoadingShared(true);
+    try {
+      const res = await fetch(`/api/get-shared-trip?token=${encodeURIComponent(token)}`);
+      if (!res.ok) {
+        const errBody = await res.json().catch(() => ({}));
+        console.error('[SharedTrip] API error', res.status, errBody);
+        setShareError(`Could not load trip (${res.status})`);
         setLoadingShared(false);
-        if (data.formData) setFormData(data.formData);
-      } catch (e) {
-        console.log('[SharedTrip] redirecting to /plan — caught exception', e);
-        setLoadingShared(false);
-        navigate('/plan');
+        return;
       }
-    })();
+      const data = await res.json();
+      if (!data.rawItinerary) {
+        console.error('[SharedTrip] API returned empty itinerary', data);
+        setShareError('This trip has no itinerary data');
+        setLoadingShared(false);
+        return;
+      }
+      console.log('[SharedTrip] loaded', { id: data.id });
+      setRawItinerary(data.rawItinerary);
+      setItineraryId(data.id);
+      setLoadingShared(false);
+      if (data.formData) setFormData(data.formData);
+    } catch (e) {
+      console.error('[SharedTrip] fetch exception', e);
+      setShareError('Network error — check your connection');
+      setLoadingShared(false);
+    }
+  };
+
+  useEffect(() => {
+    if (!shareToken || rawItinerary) return;
+    fetchSharedTrip(shareToken);
   }, [shareToken]);
 
   // Iteration counter — persisted in sessionStorage keyed to this trip
@@ -3475,8 +3487,8 @@ export default function ItineraryResults() {
     }
   };
 
-  // Render loading screen while fetching a shared trip via /trip/:token
-  if (loadingShared) return (
+  // Render loading / error screen while fetching a shared trip via /trip/:token
+  if (loadingShared || shareError) return (
     <div style={{
       fontFamily: "'Quicksand', sans-serif",
       background: C.warm,
@@ -3487,14 +3499,44 @@ export default function ItineraryResults() {
       justifyContent: 'center',
       color: C.sage,
       gap: 12,
+      padding: '0 24px',
+      textAlign: 'center',
     }}>
       <div style={{
         fontFamily: "'Cormorant Garamond', serif",
         fontSize: 'clamp(22px, 5.5vw, 28px)',
         fontWeight: 300,
         color: C.slate,
-      }}>Loading your trip</div>
-      <div style={{ fontSize: 13, opacity: 0.7 }}>Fetching itinerary…</div>
+      }}>{shareError ? 'Couldn\u2019t load this trip' : 'Loading your trip'}</div>
+      <div style={{ fontSize: 13, opacity: 0.7 }}>
+        {shareError || 'Fetching itinerary\u2026'}
+      </div>
+      {shareError && (
+        <div style={{ display: 'flex', gap: 12, marginTop: 8 }}>
+          <button
+            onClick={() => fetchSharedTrip(shareToken)}
+            style={{
+              fontFamily: "'Quicksand', sans-serif",
+              fontSize: 12, fontWeight: 700, letterSpacing: '0.1em',
+              textTransform: 'uppercase',
+              padding: '12px 24px',
+              background: C.slate, color: C.warm,
+              border: 'none', borderRadius: 2, cursor: 'pointer',
+            }}
+          >Try again</button>
+          <button
+            onClick={() => navigate('/plan')}
+            style={{
+              fontFamily: "'Quicksand', sans-serif",
+              fontSize: 12, fontWeight: 700, letterSpacing: '0.1em',
+              textTransform: 'uppercase',
+              padding: '12px 24px',
+              background: 'none', color: C.sage,
+              border: `1px solid ${C.sage}40`, borderRadius: 2, cursor: 'pointer',
+            }}
+          >Plan a new trip</button>
+        </div>
+      )}
     </div>
   );
 

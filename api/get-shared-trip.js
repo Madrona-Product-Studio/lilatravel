@@ -12,6 +12,15 @@ export default async function handler(req, res) {
   const { token } = req.query;
   if (!token) return res.status(400).json({ error: 'Missing token' });
 
+  // Fail fast if env vars are missing
+  if (!process.env.VITE_SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
+    console.error('get-shared-trip: missing env vars', {
+      hasUrl: !!process.env.VITE_SUPABASE_URL,
+      hasKey: !!process.env.SUPABASE_SERVICE_ROLE_KEY,
+    });
+    return res.status(500).json({ error: 'Server misconfigured' });
+  }
+
   try {
     // Fetch itinerary by share token
     const { data, error } = await supabase
@@ -20,7 +29,12 @@ export default async function handler(req, res) {
       .eq('share_token', token)
       .single();
 
-    if (error || !data) {
+    if (error) {
+      console.error('get-shared-trip query error:', error.code, error.message);
+      return res.status(404).json({ error: 'Trip not found', detail: error.message });
+    }
+    if (!data) {
+      console.error('get-shared-trip: query returned null data for token', token);
       return res.status(404).json({ error: 'Trip not found' });
     }
 
@@ -42,7 +56,7 @@ export default async function handler(req, res) {
       formData,
     });
   } catch (err) {
-    console.error('get-shared-trip error:', err);
-    res.status(500).json({ error: 'Server error' });
+    console.error('get-shared-trip exception:', err);
+    res.status(500).json({ error: 'Server error', detail: err.message });
   }
 }
