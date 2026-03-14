@@ -94,7 +94,18 @@ The matching instructions will specify which corridor parks to prioritize for th
 
 You MUST respond with ONLY a valid JSON object. No markdown code fences, no backticks, no preamble, no text before or after the JSON. Start your response with { and end with }.
 
-Be concise in your descriptions. Keep summaries to 1 sentence. Keep details to 1-2 sentences. This keeps the output within token limits.
+**TOKEN BUDGET**: You have a strict token limit. If you write too much, your response will be cut off mid-JSON and the itinerary will break. Brevity is non-negotiable:
+- **summary**: Exactly 1 sentence. Never 2.
+- **details**: Exactly 1 sentence. Pack logistics and one sensory detail into a single sentence.
+- **intro** (day-level): Exactly 1 sentence.
+- **intro** (top-level): 2 sentences max.
+- **alternatives.summary**: Exactly 1 sentence.
+- **trailData** values: Brief fragments, not sentences (e.g., "Main lot, 28 mi south of Carmel on Hwy 1" not a multi-sentence description).
+- **permitNote**: 1 short sentence max.
+- **mindfulness essence**: 1-2 sentences.
+- **mindfulness connection**: Exactly 1 sentence.
+- **pick.why**: 1 sentence.
+If you find yourself writing a second sentence anywhere marked "1 sentence", stop and compress into one.
 
 Return this structure:
 
@@ -125,17 +136,11 @@ Return this structure:
 ## JSON RULES
 
 - timeline.timeOfDay: one of "morning", "midday", "afternoon", "evening", "night"
-- **Trail activities**: For any hiking, trail, or significant walk activity, set `activityType: "trail"` and include a `trailData` object with these fields (all optional, include what you know):
-  - `distance` (string, e.g. "5.4 miles round trip")
-  - `elevationGain` (string, e.g. "+1,488 ft")
-  - `trailType` ("loop" | "out-and-back" | "point-to-point")
-  - `difficulty` ("Easy" | "Moderate" | "Strenuous")
-  - `permitRequired` (boolean)
-  - `permitNote` (string — details about permits or "No permit needed" note)
-  - `bestStartTime` (string, e.g. "Before 7 AM in summer")
-  - `trailheadAccess` (string — how to reach the trailhead)
-  - `conditions` (string — current or seasonal trail conditions/warnings)
-  - `npsUrl` (string — NPS trail page URL if available)
+- **Trail activities**: For hiking/trail activities, set `activityType: "trail"` and include `trailData` (all fields optional, include what you know). **Keep all values as brief fragments, not full sentences.**
+  - `distance` ("5.4 miles round trip"), `elevationGain` ("+1,488 ft"), `trailType` ("loop" | "out-and-back" | "point-to-point"), `difficulty` ("Easy" | "Moderate" | "Strenuous")
+  - `permitRequired` (boolean), `permitNote` (brief, e.g. "$10/vehicle at entrance kiosk")
+  - `bestStartTime` ("Before 7 AM in summer"), `trailheadAccess` (brief, e.g. "Main lot, 3 mi south of Springdale on SR-9")
+  - `conditions` (brief fragment, e.g. "Muddy after rain; waterfall at peak flow in March")
   For non-hiking activities, omit `activityType` and `trailData` entirely.
 - **timeline.alternatives**: REQUIRED — every non-logistics, non-mindfulness timeline item MUST have 1-2 alternatives. Never return an empty alternatives array on activity items. Each alternative has:
   - `title` (string) — the alternative activity name
@@ -179,7 +184,7 @@ Return this structure:
   - **stargazing**: One of "excellent" (new/crescent moon), "good" (quarter moon), "moderate" (gibbous/full)
   - **packingHint**: 1 short sentence listing essential gear for this season
 - **url fields**: Include a "url" on picks and timeline items when the place has a known website. Use URLs from the destination guide's URL Registry section if provided. If no URL is known, omit the field — do NOT invent URLs.
-- Keep ALL text concise — summaries are 1 sentence, details are 1-2 sentences max
+- **BREVITY IS CRITICAL** — every field has a sentence limit specified above. Exceeding it risks truncating the entire response.
 - Include a "mindfulness" pick on EVERY day (always first in picks array), a "stay" pick on day 1, "eat" picks each day, "gear" if relevant on day 1
 - Every name MUST come from the destination guide
 - DO NOT wrap the JSON in code fences or backticks
