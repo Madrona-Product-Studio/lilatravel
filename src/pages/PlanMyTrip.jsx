@@ -328,9 +328,9 @@ const PRACTICES = [
   { id: "plantMedicine", label: "Plant Medicine", icon: IconBodhiLeaf, color: C.sage },
   { id: "massage", label: "Massage", icon: IconMassage, color: C.coralBlush },
   { id: "biking", label: "Biking", icon: IconBike, color: C.skyBlue },
-  { id: "birding", label: "Birding", icon: IconBird, color: C.sage },
+  { id: "birding", label: "Local Culture", icon: ({ size }) => <span style={{ fontSize: size, lineHeight: 1 }}>🪬</span>, color: C.sage },
   { id: "liveMusic", label: "Live Music", icon: IconMusic, color: C.sunSalmon },
-  { id: "wildlife", label: "Wildlife", icon: IconPaw, color: C.goldenAmber },
+  { id: "wildlife", label: "Wildlife", icon: ({ size }) => <span style={{ fontSize: size, lineHeight: 1 }}>🦅</span>, color: C.goldenAmber },
 ];
 
 const BUDGET_TIERS = [
@@ -454,7 +454,7 @@ const PERSONAS = [
   {
     id: "lilaPlayer", name: "The Līlā Player", subtitle: "The One Who Dances",
     desc: "You travel with an open hand. No rigid plans — just a willingness to be surprised. You're here for the beauty, the flavor, the spontaneous conversation with a stranger. We'll create a journey that feels like play.",
-    color: C.goldenAmber, icon: IconMagatama,
+    color: C.goldenAmber, icon: IconEnso,
     match: (d) => {
       const pacing = d.pacing ?? 50;
       const balanced = pacing > 30 && pacing < 70;
@@ -1157,7 +1157,9 @@ function StepMonth({ data, onChange, onNext, onBack }) {
         </div>
       )}
 
-      <NavButtons onBack={onBack} onNext={onNext} nextDisabled={!data.month} />
+      <div style={{ marginTop: showDates ? -16 : 0 }}>
+        <NavButtons onBack={onBack} onNext={onNext} nextDisabled={!data.month} />
+      </div>
     </div>
   );
 }
@@ -1253,7 +1255,7 @@ const PRACTICE_LEVELS = [
   },
   {
     label: "Find a rhythm",
-    desc: "You've been to a few classes. We'll mix in some morning yoga, a breathwork session, maybe a sound bath — nothing too intense.",
+    desc: "We'll mix in some morning yoga, a breathwork session, maybe a sound bath — nothing too intense.",
     icon: IconDharmaWheel,
   },
   {
@@ -1706,9 +1708,62 @@ function StepStay({ data, onChange, onNext, onBack }) {
   );
 }
 
+// ─── Profiles Modal ──────────────────────────────────────────────────────────
+function ProfilesModal({ personas, currentId, onClose }) {
+  return (
+    <div style={{ position: 'fixed', inset: 0, zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+         onClick={onClose}>
+      <div style={{ position: 'absolute', inset: 0, background: 'rgba(26,37,48,0.6)' }} />
+      <div onClick={e => e.stopPropagation()} style={{
+        position: 'relative', background: '#FAF6F0', borderRadius: 0,
+        width: '90vw', maxWidth: 520, maxHeight: '85vh', overflowY: 'auto',
+        padding: '32px 24px',
+        animation: 'fadeScale 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+      }}>
+        <button onClick={onClose} style={{
+          position: 'absolute', top: 12, right: 12,
+          width: 44, height: 44, background: 'none', border: 'none',
+          fontSize: 20, color: C.sage, cursor: 'pointer',
+        }}>×</button>
+        <div style={{ textAlign: 'center', marginBottom: 24 }}>
+          <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 24, fontWeight: 300, color: C.slate }}>
+            Travel Spirits
+          </div>
+        </div>
+        {personas.map(p => (
+          <div key={p.id} style={{
+            borderLeft: `3px solid ${p.color}`,
+            padding: '16px 20px', marginBottom: 12,
+            background: p.id === currentId ? `${p.color}08` : 'transparent',
+          }}>
+            {p.id === currentId && (
+              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700,
+                letterSpacing: '0.15em', textTransform: 'uppercase', color: p.color, marginBottom: 4 }}>
+                Your profile
+              </div>
+            )}
+            <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 20, fontWeight: 300, color: C.slate }}>
+              {p.name}
+            </div>
+            <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700,
+              letterSpacing: '0.2em', textTransform: 'uppercase', color: p.color, marginTop: 2 }}>
+              {p.subtitle}
+            </div>
+            <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 400,
+              color: `${C.slate}99`, lineHeight: 1.55, marginTop: 8, marginBottom: 0 }}>
+              {p.desc}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 // ─── Profile ─────────────────────────────────────────────────────────────────
 function StepProfile({ data, onBack, onUnlock, generating }) {
   const [visible, setVisible] = useState(false);
+  const [showProfilesModal, setShowProfilesModal] = useState(false);
   useEffect(() => { setTimeout(() => setVisible(true), 200); }, []);
 
   const persona = getPersona(data);
@@ -1758,6 +1813,18 @@ function StepProfile({ data, onBack, onUnlock, generating }) {
           <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: "clamp(13px, 3.2vw, 14px)", fontWeight: 400, color: `${C.slate}AA`, lineHeight: 1.55, marginTop: 10 }}>{persona.desc}</p>
         </div>
       </div>
+
+      <div style={{ textAlign: 'center', marginTop: 8 }}>
+        <button onClick={() => setShowProfilesModal(true)} style={{
+          fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 500,
+          color: `${C.sage}80`, background: 'none', border: 'none',
+          cursor: 'pointer', padding: 8,
+        }}>Not you? See all profiles →</button>
+      </div>
+
+      {showProfilesModal && (
+        <ProfilesModal personas={PERSONAS} currentId={persona.id} onClose={() => setShowProfilesModal(false)} />
+      )}
 
       <div style={{ display: "flex", justifyContent: "center", marginBottom: 8, padding: "0 20px" }}>
         <RadarChart values={radarValues} size={200} />
