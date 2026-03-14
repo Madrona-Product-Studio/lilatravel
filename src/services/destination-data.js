@@ -872,13 +872,11 @@ export async function assembleContext(destination, userPreferences) {
  * Construct the full message payload for the Anthropic API.
  */
 export function buildClaudeMessage(context, systemPrompt) {
-  const userMessage = `
-## Destination Guide (ONLY recommend from this content)
+  // Destination guide — static per destination, cached separately
+  const guideBlock = `## Destination Guide (ONLY recommend from this content)\n\n${context.guide}`;
 
-${context.guide}
-
----
-
+  // Live data + traveler profile — changes every call, not cached
+  const liveMessage = `
 ## Live Data
 
 ### Current Park Alerts
@@ -929,11 +927,19 @@ Please create a personalized day-by-day itinerary for this traveler based on the
 `.trim();
 
   return {
-    model: 'claude-sonnet-4-5-20250929',
-    max_tokens: 12000,
-    system: systemPrompt,
+    model: 'claude-sonnet-4-6',
+    max_tokens: 8000,
+    system: [
+      { type: 'text', text: systemPrompt, cache_control: { type: 'ephemeral' } },
+    ],
     messages: [
-      { role: 'user', content: userMessage }
+      {
+        role: 'user',
+        content: [
+          { type: 'text', text: guideBlock, cache_control: { type: 'ephemeral' } },
+          { type: 'text', text: liveMessage },
+        ],
+      },
     ],
   };
 }
