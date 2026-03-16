@@ -3641,6 +3641,7 @@ export default function ItineraryResults() {
   const [overallNote, setOverallNote] = useState('');
   const [refineError, setRefineError] = useState(null);
   const [refineConfirmOpen, setRefineConfirmOpen] = useState(false);
+  const [logisticsBaseline, setLogisticsBaseline] = useState(0); // booking count at last refinement
 
   // Save panel state
   const [savePanelOpen, setSavePanelOpen] = useState(false);
@@ -4086,16 +4087,19 @@ export default function ItineraryResults() {
 
   const hasFeedback = Object.keys(lockedItems).length > 0 || Object.keys(swappedActivities).length > 0 || Object.values(dayFeedback).some(f => f?.note || f?.reaction) || pulse === 'close' || pulse === 'rethink';
 
-  // Count only NEW feedback inputs — exclude lockedItems and tripLogistics
-  // which persist across refinements as ongoing constraints
+  // Count NEW feedback inputs since last refinement
+  const totalBookings = (tripLogistics?.flights?.length || 0) + (tripLogistics?.rentals?.length || 0) + (tripLogistics?.accommodations?.length || 0);
   const feedbackCount = useMemo(() => {
     let count = 0;
     count += Object.keys(swappedActivities).length;
     count += Object.values(dayFeedback).filter(f => f?.note || f?.reaction).length;
     if (overallNote?.trim()) count += 1;
     if (pulse === 'close' || pulse === 'rethink') count += 1;
+    // Count only bookings added since last refinement
+    const newBookings = totalBookings - logisticsBaseline;
+    if (newBookings > 0) count += newBookings;
     return count;
-  }, [swappedActivities, dayFeedback, overallNote, pulse]);
+  }, [swappedActivities, dayFeedback, overallNote, pulse, totalBookings, logisticsBaseline]);
 
   const requestRefine = () => setRefineConfirmOpen(true);
   const confirmRefine = () => { setRefineConfirmOpen(false); handleRefine(); };
@@ -4160,6 +4164,7 @@ export default function ItineraryResults() {
       setSwappedActivities({});
       setPulse(null);
       setOverallNote('');
+      setLogisticsBaseline(totalBookings);
       trackEvent('refinement_completed', { iteration: nextIteration, duration_ms: Math.round(performance.now() - t0) });
     } catch (err) {
       console.error('Refinement failed:', err);
