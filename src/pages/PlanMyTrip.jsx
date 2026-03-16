@@ -328,9 +328,9 @@ const PRACTICES = [
   { id: "plantMedicine", label: "Plant Medicine", icon: IconBodhiLeaf, color: C.sage },
   { id: "massage", label: "Massage", icon: IconMassage, color: C.coralBlush },
   { id: "biking", label: "Biking", icon: IconBike, color: C.skyBlue },
-  { id: "birding", label: "Local Culture", icon: ({ size }) => <span style={{ fontSize: size, lineHeight: 1 }}>🪬</span>, color: C.sage },
+  { id: "birding", label: "Local Culture", icon: IconTorii, color: C.sage },
   { id: "liveMusic", label: "Live Music", icon: IconMusic, color: C.sunSalmon },
-  { id: "wildlife", label: "Wildlife", icon: ({ size }) => <span style={{ fontSize: size, lineHeight: 1 }}>🦅</span>, color: C.goldenAmber },
+  { id: "wildlife", label: "Wildlife", icon: IconPaw, color: C.goldenAmber },
 ];
 
 const BUDGET_TIERS = [
