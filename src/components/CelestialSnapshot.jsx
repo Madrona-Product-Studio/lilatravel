@@ -169,7 +169,7 @@ function RiverDot({ level }) {
 // ─── Collapsed View ──────────────────────────────────────────────────────────
 
 function CollapsedView({ data, onExpand }) {
-  const { weather, moon, sky, river } = data;
+  const { weather, moon, sky, river, destinationName } = data;
 
   const CELL_LABEL = {
     fontFamily: "'Quicksand', sans-serif",
@@ -233,7 +233,7 @@ function CollapsedView({ data, onExpand }) {
         fontFamily: "'Quicksand', sans-serif",
         fontSize: 12, fontWeight: 400,
         color: "#8a9098", marginBottom: 16,
-      }}>Zion Canyon — right now</div>
+      }}>{destinationName} — right now</div>
 
       {/* 4-across flex grid */}
       {cells.length > 0 && (
@@ -270,7 +270,7 @@ function CollapsedView({ data, onExpand }) {
 // ─── Expanded View ───────────────────────────────────────────────────────────
 
 function ExpandedView({ data, onCollapse }) {
-  const { weather, sun, moon, sky, river, nextEvent, alerts } = data;
+  const { weather, sun, moon, sky, river, nextEvent, alerts, destinationName } = data;
 
   return (
     <>
@@ -291,7 +291,7 @@ function ExpandedView({ data, onCollapse }) {
         fontFamily: "'Quicksand', sans-serif",
         fontSize: 12, fontWeight: 400,
         color: "#8a9098", marginBottom: 16,
-      }}>Zion Canyon — right now</div>
+      }}>{destinationName} — right now</div>
 
       {/* 1. Conditions */}
       {weather && (
@@ -371,7 +371,7 @@ function ExpandedView({ data, onCollapse }) {
       {/* 5. Virgin River */}
       {river && (
         <div style={{ borderBottom: `1px solid ${C.stone}`, padding: "14px 0" }}>
-          <div style={LABEL}>VIRGIN RIVER</div>
+          <div style={LABEL}>RIVER</div>
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
             <RiverDot level={river.level} />
             <span style={VALUE}>{river.label}</span>

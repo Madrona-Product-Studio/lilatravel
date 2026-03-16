@@ -324,6 +324,7 @@ export async function getCelestialSnapshot(destinationKey = "zion") {
   }
 
   return {
+    destinationName: config.name,
     weather,
     sun: sunData,
     moon: moonData,
