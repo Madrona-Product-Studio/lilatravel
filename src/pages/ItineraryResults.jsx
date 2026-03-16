@@ -2554,7 +2554,6 @@ function DayCard({ day, dayIndex = 0, onOpenPanel, lockedItems, onLock, onAltern
         const essence = mindfulnessPick?.essence;
         const tradition = mindfulnessPick ? TRADITIONS[mindfulnessPick.tradition] : null;
         const glyph = mindfulnessPick ? (TRADITION_GLYPHS[mindfulnessPick.tradition] || '◈') : null;
-        const quote = mindfulnessPick?.quote || day.companion?.teaching?.quote || day.companion?.practice?.quote;
 
         return (
           <div style={wrapperStyle} onClick={handleClick}>
@@ -2604,22 +2603,6 @@ function DayCard({ day, dayIndex = 0, onOpenPanel, lockedItems, onLock, onAltern
                         letterSpacing: '0.08em', textTransform: 'uppercase',
                         color: `${tradition.color || C.sage}99`,
                       }}>{tradition.name}</span>
-                    </div>
-                  )}
-                  {quote && (
-                    <div style={{
-                      marginTop: 10, paddingTop: 10,
-                      borderTop: '1px solid rgba(74,155,159,0.12)',
-                    }}>
-                      <p style={{
-                        fontFamily: F_SERIF, fontSize: 14, fontWeight: 300,
-                        fontStyle: 'italic', color: '#3D5A6B',
-                        lineHeight: 1.55, margin: 0,
-                      }}>"{quote.text}"</p>
-                      <p style={{
-                        fontFamily: F, fontSize: 11, fontWeight: 500,
-                        color: C.muted, marginTop: 4, margin: '4px 0 0',
-                      }}>— {quote.author || quote.source}{quote.role ? `, ${quote.role}` : ''}</p>
                     </div>
                   )}
                 </div>
@@ -3343,7 +3326,7 @@ function FirstDraftModal({ onDismiss }) {
 
 /* ── SwapModal — pick an alternative activity ──────────────────────────── */
 
-function SwapModal({ isOpen, onClose, activityTitle, alternatives, onConfirm, alternativesLoading }) {
+function SwapModal({ isOpen, onClose, activityTitle, alternatives, onConfirm, alternativesLoading, onLoadMore, loadingMore }) {
   const [selected, setSelected] = useState(null);
   const [note, setNote] = useState('');
   const [show, setShow] = useState(false);
@@ -3443,6 +3426,38 @@ function SwapModal({ isOpen, onClose, activityTitle, alternatives, onConfirm, al
             </div>
           )}
         </div>
+
+        {/* Load more alternatives */}
+        {hasAlts && !alternativesLoading && (
+          <button
+            disabled={loadingMore}
+            onClick={() => onLoadMore?.()}
+            style={{
+              background: 'none', border: `1px solid ${C.sage}25`, borderRadius: 8,
+              padding: '8px 14px', cursor: loadingMore ? 'default' : 'pointer',
+              fontFamily: F, fontSize: 12, fontWeight: 600, color: C.sage,
+              display: 'flex', alignItems: 'center', gap: 6,
+              marginBottom: 8, opacity: loadingMore ? 0.6 : 1,
+              transition: 'opacity 0.2s',
+              WebkitTapHighlightColor: 'transparent',
+            }}
+          >
+            {loadingMore ? (
+              <>
+                <div style={{
+                  width: 12, height: 12, border: `1.5px solid ${C.sage}30`, borderTopColor: C.sage,
+                  borderRadius: '50%', animation: 'lila-spin 0.8s linear infinite',
+                }} />
+                Loading more...
+              </>
+            ) : (
+              <>
+                <SwapIcon size={11} color={C.sage} />
+                Load more alternatives
+              </>
+            )}
+          </button>
+        )}
 
         {/* Optional note */}
         <div style={{ marginBottom: 20 }}>
@@ -3636,6 +3651,7 @@ export default function ItineraryResults() {
   // Two-pass alternatives loading state
   const [alternativesLoaded, setAlternativesLoaded] = useState(false);
   const [alternativesLoading, setAlternativesLoading] = useState(false);
+  const [loadingMoreAlts, setLoadingMoreAlts] = useState(null); // thumbId being loaded
   const [toastMessage, setToastMessage] = useState(null);
   const [pulse, setPulse] = useState(null);
   const [overallNote, setOverallNote] = useState('');
@@ -4085,6 +4101,85 @@ export default function ItineraryResults() {
     }
   };
 
+  const handleLoadMore = async (thumbId) => {
+    setLoadingMoreAlts(thumbId);
+    const destSlug = metadata?.destination || formData?.destination;
+    try {
+      const res = await fetch('/api/generate-alternatives', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          destination: destSlug,
+          preferences: formData,
+          itinerary: rawItinerary,
+          loadMore: thumbId,
+        }),
+      });
+      const result = await res.json();
+      if (!result.success || !result.alternatives?.days) return;
+
+      const match = thumbId.match(/^day_(\d+)_(timeline|pick)_(\d+)$/);
+      if (!match) return;
+      const [, dayIdx, type, itemIdx] = match;
+      const di = Number(dayIdx);
+      const ii = Number(itemIdx);
+
+      const altDay = result.alternatives.days[di];
+      if (!altDay) return;
+
+      let newAlts = [];
+      if (type === 'timeline' && altDay.timelineAlts) {
+        const entry = altDay.timelineAlts.find(ta => ta.itemIndex === ii);
+        newAlts = entry?.alternatives || [];
+      } else if (type === 'pick' && altDay.pickAlts) {
+        const entry = altDay.pickAlts.find(pa => pa.pickIndex === ii);
+        newAlts = entry?.alternatives || [];
+      }
+
+      // Merge into enrichedDays
+      setEnrichedDays(prev => {
+        const updated = [...prev];
+        const day = { ...updated[di] };
+        if (type === 'timeline' && day.timeline) {
+          day.timeline = [...day.timeline];
+          const item = { ...day.timeline[ii] };
+          const existing = item.alternatives || [];
+          const existingTitles = new Set(existing.map(a => a.title));
+          const fresh = newAlts.filter(a => !existingTitles.has(a.title));
+          item.alternatives = [...existing, ...fresh];
+          day.timeline[ii] = item;
+        } else if (type === 'pick' && day.picks) {
+          day.picks = [...day.picks];
+          const pick = { ...day.picks[ii] };
+          const existing = pick?.pick?.alternatives || pick.alternatives || [];
+          const existingNames = new Set(existing.map(a => a.name || a.title));
+          const fresh = newAlts.filter(a => !existingNames.has(a.name || a.title));
+          const merged = [...existing, ...fresh];
+          pick.alternatives = merged;
+          if (pick.pick) pick.pick = { ...pick.pick, alternatives: merged };
+          day.picks[ii] = pick;
+        }
+        updated[di] = day;
+        return updated;
+      });
+
+      // Update swapModal alternatives directly
+      if (type === 'timeline') {
+        setSwapModal(prev => prev && prev.thumbId === thumbId
+          ? { ...prev, alternatives: [...(prev.alternatives || []), ...newAlts.filter(a => !(prev.alternatives || []).some(e => e.title === a.title))] }
+          : prev);
+      } else {
+        setSwapModal(prev => prev && prev.thumbId === thumbId
+          ? { ...prev, alternatives: [...(prev.alternatives || []), ...newAlts.filter(a => !(prev.alternatives || []).some(e => (e.name || e.title) === (a.name || a.title)))] }
+          : prev);
+      }
+    } catch (err) {
+      console.error('[Load more alternatives] failed:', err);
+    } finally {
+      setLoadingMoreAlts(null);
+    }
+  };
+
   const hasFeedback = Object.keys(lockedItems).length > 0 || Object.keys(swappedActivities).length > 0 || Object.values(dayFeedback).some(f => f?.note || f?.reaction) || pulse === 'close' || pulse === 'rethink';
 
   // Count NEW feedback inputs since last refinement
@@ -4252,6 +4347,8 @@ export default function ItineraryResults() {
         activityTitle={swapModal?.activityTitle || ''}
         alternatives={swapModal?.alternatives || []}
         alternativesLoading={alternativesLoading}
+        onLoadMore={() => handleLoadMore(swapModal?.thumbId)}
+        loadingMore={loadingMoreAlts === swapModal?.thumbId}
         onConfirm={(chosen, note) => {
           const { thumbId, activityTitle } = swapModal;
           setSwappedActivities(prev => ({

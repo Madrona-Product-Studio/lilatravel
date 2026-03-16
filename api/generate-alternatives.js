@@ -30,7 +30,7 @@ const ALTERNATIVES_INSTRUCTION = `You are adding alternatives to an existing iti
 
 Your task: Return a JSON object with alternatives for timeline items and picks. Follow the same rules from your system prompt for alternatives:
 
-**Timeline alternatives**: Only on **signature activities** — the 1-2 most important experiences per day (the main hike, the special dinner, the key wellness session). Skip alternatives on meals, casual walks, open time blocks, logistics, drives, check-in, coffee stops, and mindfulness items.
+**Timeline alternatives**: Include at least 2 alternatives on EVERY activity EXCEPT logistics, check-in/check-out, drives, transit, and mindfulness items. This includes hikes, meals, wellness sessions, town visits, cultural stops, coffee/café stops, and any other substantive experience.
 Each alternative: { "title": "string", "summary": "1 sentence", "timeOfDay": "same enum as parent" }
 Alternatives should contrast with the primary: strenuous ↔ restorative, solitary ↔ social, active ↔ contemplative.
 For early morning signature activities (before 9 AM), include a "Sleep in" alternative.
@@ -68,7 +68,7 @@ export default async function handler(req, res) {
 
   try {
     const t0 = Date.now();
-    const { destination, preferences, itinerary } = req.body;
+    const { destination, preferences, itinerary, loadMore } = req.body;
 
     if (!destination || !itinerary) {
       return res.status(400).json({
@@ -82,13 +82,18 @@ export default async function handler(req, res) {
 
     const guideBlock = `## Destination Guide (ONLY recommend from this content)\n\n${guide}`;
 
-    const userMessage = `Here is the generated itinerary (JSON). Add alternatives to it following the rules above.
+    let extraInstruction = '';
+    if (loadMore) {
+      extraInstruction = `\n\nIMPORTANT: The user is requesting MORE alternatives. Generate DIFFERENT alternatives than what you would normally suggest — explore different styles, vibes, and difficulty levels. Aim for variety and surprise.`;
+    }
+
+    const userMessage = `Here is the generated itinerary (JSON). Add alternatives to it following the rules above.${extraInstruction}
 
 ${itinerary}`;
 
     const messagePayload = {
       model: 'claude-sonnet-4-6',
-      max_tokens: 3000,
+      max_tokens: 8000,
       system: [
         { type: 'text', text: systemPrompt, cache_control: { type: 'ephemeral' } },
         { type: 'text', text: ALTERNATIVES_INSTRUCTION },

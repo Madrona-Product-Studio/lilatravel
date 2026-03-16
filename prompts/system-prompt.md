@@ -142,7 +142,7 @@ Return this structure:
   - `bestStartTime` ("Before 7 AM in summer"), `trailheadAccess` (brief, e.g. "Main lot, 3 mi south of Springdale on SR-9")
   - `conditions` (brief fragment, e.g. "Muddy after rain; waterfall at peak flow in March")
   For non-hiking activities, omit `activityType` and `trailData` entirely.
-- **timeline.alternatives**: Only include alternatives on **signature activities** — the 1-2 most important experiences per day (the main hike, the special dinner, the key wellness session). Skip alternatives on meals, casual walks, open time blocks, logistics, drives, and minor stops. Most timeline items should have an empty `alternatives: []` array. Each alternative has:
+- **timeline.alternatives**: Include at least 2 alternatives on every activity EXCEPT logistics, check-in/check-out, drives, transit, and mindfulness items. This includes hikes, meals, wellness sessions, town visits, cultural stops, and any other substantive activity. Each alternative has:
   - `title` (string), `summary` (string, 1 sentence), `timeOfDay` (same enum as parent)
   - Alternatives should contrast with the primary: strenuous ↔ restorative, solitary ↔ social, active ↔ contemplative.
   - For early morning signature activities (before 9 AM), include a "Sleep in" alternative.
