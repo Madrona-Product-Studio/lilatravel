@@ -169,21 +169,28 @@ export default function ItineraryNav({ itinerary, iteration, itineraryId, rawIti
   const [tripsOpen, setTripsOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
-  // Pre-set saved state for shared trips or trips with existing itineraryId
+  // Pre-set saved state for shared trips
   useEffect(() => {
     if (location.pathname.startsWith('/trip/')) {
       setSaveState('saved');
       setShareUrl(window.location.href);
-    } else if (itineraryId) {
-      setSaveState('saving');
-      createShareableUrl({ itineraryId, rawItinerary, formData, destination: formData?.destination })
-        .then(url => {
-          setShareUrl(url);
-          setSaveState('saved');
-        })
-        .catch(() => setSaveState('unsaved'));
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Re-generate share URL when itineraryId changes, but only if already saved
+  useEffect(() => {
+    if (!itineraryId || saveState !== 'saved') return;
+    createShareableUrl({ itineraryId, rawItinerary, formData, destination: formData?.destination })
+      .then(url => setShareUrl(url));
+  }, [itineraryId]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Reset to unsaved when a refinement completes (iteration increments)
+  useEffect(() => {
+    if (iteration > 0) {
+      setSaveState('unsaved');
+      setShareUrl('');
+    }
+  }, [iteration]);
 
   // Sync trips from localStorage on focus and custom event
   useEffect(() => {
@@ -307,9 +314,9 @@ export default function ItineraryNav({ itinerary, iteration, itineraryId, rawIti
             width: 6, height: 6, borderRadius: '50%',
             background: C.goldenAmber, flexShrink: 0,
           }} />
-          {!isMobile && <span>Unsaved</span>}
+          {!isMobile && <span>{iteration > 1 ? 'New draft' : 'Unsaved'}</span>}
           {!isMobile && divider('#9a7d3a')}
-          <span>{isMobile ? 'Save' : 'Save trip'}</span>
+          <span>{isMobile ? 'Save' : (iteration > 1 ? 'Save' : 'Save trip')}</span>
         </button>
       );
     }
