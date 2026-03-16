@@ -17,6 +17,7 @@ import { saveItinerary, saveFeedback } from '@services/feedbackService';
 import { clearSession } from '@services/sessionManager';
 import { createShareableUrl } from '@services/shareService';
 import SavePill from '@components/SavePill';
+import ItineraryNav from '@components/ItineraryNav';
 // CelestialMonthStrip consolidated into CelestialSnapshot below
 
 /*
@@ -4137,23 +4138,14 @@ export default function ItineraryResults() {
         alternativesLoading={alternativesLoading} />
 
       {/* Header */}
-      <div style={{
-        position: 'sticky', top: 0, zIndex: 100,
-        display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-        padding: '12px 20px',
-        background: `${C.warm}f0`,
-        backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)',
-        borderBottom: `1px solid ${C.sage}06`,
-      }}>
-        <Link to="/" style={{ fontFamily: F, fontSize: 16, fontWeight: 500, letterSpacing: '0.1em', color: C.slate, textDecoration: 'none' }}>Lila Trips</Link>
-        <button onClick={() => { trackEvent('save_trip_clicked', { source: 'header' }); setSavePanelOpen(true); }} style={{
-          fontFamily: F, fontSize: 12, fontWeight: 700,
-          letterSpacing: '0.12em', textTransform: 'uppercase',
-          color: C.cream, background: C.slate,
-          border: 'none', padding: '12px 22px',
-          cursor: 'pointer', WebkitTapHighlightColor: 'transparent',
-        }}>Save This Trip</button>
-      </div>
+      <ItineraryNav
+        itinerary={itinerary}
+        iteration={iteration}
+        itineraryId={itineraryId}
+        rawItinerary={rawItinerary}
+        formData={formData}
+      />
+      <div style={{ height: 56 }} /> {/* spacer for fixed nav */}
 
       <div style={{
         maxWidth: 900, margin: '0 auto', padding: '16px 16px 80px',
