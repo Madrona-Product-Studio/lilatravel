@@ -158,7 +158,7 @@ function TripDropdown({ trips, onSelect, onDelete, onNewTrip, onClose }) {
 
 // ─── ItineraryNav Component ─────────────────────────────────────────────────
 
-export default function ItineraryNav({ itinerary, iteration, itineraryId, rawItinerary, formData }) {
+export default function ItineraryNav({ itinerary, iteration, itineraryId, rawItinerary, formData, onShare }) {
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -426,6 +426,20 @@ export default function ItineraryNav({ itinerary, iteration, itineraryId, rawIti
         {/* Right — Actions */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
           {renderSavePill()}
+
+          {/* Share */}
+          <button
+            onClick={() => { trackEvent('share_clicked', { source: 'itinerary_nav' }); onShare?.(); }}
+            style={{
+              display: 'flex', alignItems: 'center',
+              background: 'none', border: 'none', cursor: 'pointer', padding: 4,
+            }}
+            title="Share trip"
+          >
+            <svg width={20} height={20} viewBox="0 0 24 24" fill="none" stroke="#8a8278" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M22 2L11 13" /><path d="M22 2l-7 20-4-9-9-4z" />
+            </svg>
+          </button>
 
           {/* Suitcase */}
           <div data-trips-container style={{ position: 'relative', display: 'inline-flex' }}>

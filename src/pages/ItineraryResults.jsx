@@ -4144,6 +4144,7 @@ export default function ItineraryResults() {
         itineraryId={itineraryId}
         rawItinerary={rawItinerary}
         formData={formData}
+        onShare={() => setSavePanelOpen(true)}
       />
       <div style={{ height: 56 }} /> {/* spacer for fixed nav */}
 
