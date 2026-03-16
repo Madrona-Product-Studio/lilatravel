@@ -3595,7 +3595,7 @@ export default function ItineraryResults() {
   // Save panel state
   const [savePanelOpen, setSavePanelOpen] = useState(false);
 
-  // Trip title — shared editable state
+  // Trip title — shared editable state (sync effect is after itinerary useMemo below)
   const [tripTitle, setTripTitle] = useState('');
   const [editingHeroTitle, setEditingHeroTitle] = useState(false);
   const [draftHeroTitle, setDraftHeroTitle] = useState('');
@@ -3608,48 +3608,6 @@ export default function ItineraryResults() {
   const [itineraryId, setItineraryId] = useState(() =>
     sessionStorage.getItem('lila_itinerary_id') || null
   );
-
-  // Sync tripTitle from parsed itinerary
-  useEffect(() => {
-    if (itinerary?.title && !tripTitle) setTripTitle(itinerary.title);
-  }, [itinerary?.title]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  // Persist title rename to Supabase + localStorage
-  const persistTitle = (newTitle) => {
-    if (itineraryId) updateItineraryTitle(itineraryId, newTitle);
-    const tripId = sessionStorage.getItem('lila_trip_id');
-    if (tripId) {
-      try {
-        const trips = JSON.parse(localStorage.getItem('lila_trips') || '[]');
-        const idx = trips.findIndex(t => t.id === tripId);
-        if (idx !== -1) {
-          trips[idx].title = newTitle;
-          localStorage.setItem('lila_trips', JSON.stringify(trips));
-          window.dispatchEvent(new Event('lila_trips_changed'));
-        }
-      } catch {}
-    }
-  };
-
-  const handleHeroTitleClick = () => {
-    setDraftHeroTitle(tripTitle);
-    setEditingHeroTitle(true);
-    setTimeout(() => heroTitleRef.current?.select(), 0);
-  };
-
-  const commitHeroTitle = () => {
-    const trimmed = draftHeroTitle.trim();
-    if (trimmed && trimmed !== tripTitle) {
-      setTripTitle(trimmed);
-      persistTitle(trimmed);
-    }
-    setEditingHeroTitle(false);
-  };
-
-  const handleHeroTitleKeyDown = (e) => {
-    if (e.key === 'Enter') commitHeroTitle();
-    if (e.key === 'Escape') setEditingHeroTitle(false);
-  };
 
   // Detail panel state — unified for activities, picks, and companion cards
   const [activePanel, setActivePanel] = useState(null); // { type, data, thumbId }
@@ -3710,6 +3668,48 @@ export default function ItineraryResults() {
   }, [rawItinerary]);
 
   const isStructured = itinerary && itinerary.days;
+
+  // Sync tripTitle from parsed itinerary
+  useEffect(() => {
+    if (itinerary?.title && !tripTitle) setTripTitle(itinerary.title);
+  }, [itinerary?.title]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Persist title rename to Supabase + localStorage
+  const persistTitle = (newTitle) => {
+    if (itineraryId) updateItineraryTitle(itineraryId, newTitle);
+    const tripId = sessionStorage.getItem('lila_trip_id');
+    if (tripId) {
+      try {
+        const trips = JSON.parse(localStorage.getItem('lila_trips') || '[]');
+        const idx = trips.findIndex(t => t.id === tripId);
+        if (idx !== -1) {
+          trips[idx].title = newTitle;
+          localStorage.setItem('lila_trips', JSON.stringify(trips));
+          window.dispatchEvent(new Event('lila_trips_changed'));
+        }
+      } catch {}
+    }
+  };
+
+  const handleHeroTitleClick = () => {
+    setDraftHeroTitle(tripTitle);
+    setEditingHeroTitle(true);
+    setTimeout(() => heroTitleRef.current?.select(), 0);
+  };
+
+  const commitHeroTitle = () => {
+    const trimmed = draftHeroTitle.trim();
+    if (trimmed && trimmed !== tripTitle) {
+      setTripTitle(trimmed);
+      persistTitle(trimmed);
+    }
+    setEditingHeroTitle(false);
+  };
+
+  const handleHeroTitleKeyDown = (e) => {
+    if (e.key === 'Enter') commitHeroTitle();
+    if (e.key === 'Escape') setEditingHeroTitle(false);
+  };
 
   // Enrich days with companion data from practices service
   const baseDays = useMemo(() => {
