@@ -2771,7 +2771,7 @@ function TripPulse({ overallNote, setOverallNote, pulse, setPulse, onPulseSelect
 
 /* ── refine CTA + premium gate ─────────────────────────────────────────── */
 
-function RefineCTA({ iteration, hasFeedback, onRefine, pulse, onGateShown, onUpgradeClick }) {
+function RefineCTA({ iteration, hasFeedback, onRefine, pulse, onGateShown, onUpgradeClick, feedbackCount = 0, isRefining }) {
   const maxFree = 10;
   const remaining = maxFree - iteration;
   const isPremiumGated = iteration >= maxFree;
@@ -2825,20 +2825,26 @@ function RefineCTA({ iteration, hasFeedback, onRefine, pulse, onGateShown, onUpg
           You're in early access — refinements are unlimited for now. Paid plans coming soon.
         </p>
         <div style={{ marginTop: 14 }}>
-          <button onClick={onRefine} disabled={!hasFeedback} style={{
+          <button onClick={onRefine} disabled={!hasFeedback || isRefining} style={{
             fontFamily: F, fontSize: 14, fontWeight: 600,
-            color: hasFeedback ? C.white : `${C.sage}80`,
-            background: hasFeedback ? C.oceanTeal : `${C.sage}08`,
-            border: hasFeedback ? 'none' : `1px solid ${C.sage}15`,
+            color: hasFeedback && !isRefining ? C.white : `${C.sage}80`,
+            background: hasFeedback && !isRefining ? C.oceanTeal : `${C.sage}08`,
+            border: hasFeedback && !isRefining ? 'none' : `1px solid ${C.sage}15`,
             borderRadius: 24, padding: '12px 28px',
-            cursor: hasFeedback ? 'pointer' : 'default',
+            cursor: hasFeedback && !isRefining ? 'pointer' : 'default',
             WebkitTapHighlightColor: 'transparent',
-            boxShadow: hasFeedback ? `0 2px 12px ${C.oceanTeal}20` : 'none',
+            boxShadow: hasFeedback && !isRefining ? `0 2px 12px ${C.oceanTeal}20` : 'none',
             transition: 'all 0.3s', display: 'inline-flex', alignItems: 'center', gap: 7,
+            opacity: isRefining ? 0.5 : 1,
           }}>
-            <SparkleIcon size={14} color={hasFeedback ? C.white : `${C.sage}40`} />
-            Refine this trip
+            <SparkleIcon size={14} color={hasFeedback && !isRefining ? C.white : `${C.sage}40`} />
+            {isRefining ? 'Refining...' : (feedbackCount > 0 ? `Refine this trip · ${feedbackCount}` : 'Refine this trip')}
           </button>
+          {feedbackCount > 0 && !isRefining && (
+            <p style={{ fontFamily: F, fontSize: 11, color: '#aaa', marginTop: 6, textAlign: 'center', letterSpacing: '0.04em' }}>
+              {feedbackCount} {feedbackCount === 1 ? 'input' : 'inputs'} ready to apply
+            </p>
+          )}
         </div>
       </div>
     );
@@ -2877,24 +2883,29 @@ function RefineCTA({ iteration, hasFeedback, onRefine, pulse, onGateShown, onUpg
 
   return (
     <div style={{ textAlign: 'center', padding: '24px 20px 0' }}>
-      <button onClick={onRefine} disabled={!hasFeedback} style={{
+      <button onClick={onRefine} disabled={!hasFeedback || isRefining} style={{
         fontFamily: F, fontSize: 14, fontWeight: 600,
-        color: hasFeedback ? C.white : `${C.sage}80`,
-        background: hasFeedback ? C.oceanTeal : `${C.sage}08`,
-        border: hasFeedback ? 'none' : `1px solid ${C.sage}15`,
+        color: hasFeedback && !isRefining ? C.white : `${C.sage}80`,
+        background: hasFeedback && !isRefining ? C.oceanTeal : `${C.sage}08`,
+        border: hasFeedback && !isRefining ? 'none' : `1px solid ${C.sage}15`,
         borderRadius: 24, padding: '12px 28px',
-        cursor: hasFeedback ? 'pointer' : 'default',
+        cursor: hasFeedback && !isRefining ? 'pointer' : 'default',
         WebkitTapHighlightColor: 'transparent',
-        boxShadow: hasFeedback ? `0 2px 12px ${C.oceanTeal}20` : 'none',
+        boxShadow: hasFeedback && !isRefining ? `0 2px 12px ${C.oceanTeal}20` : 'none',
         transition: 'all 0.3s', display: 'inline-flex', alignItems: 'center', gap: 7,
+        opacity: isRefining ? 0.5 : 1,
       }}>
-        <SparkleIcon size={14} color={hasFeedback ? C.white : `${C.sage}40`} />
-        Refine this trip
+        <SparkleIcon size={14} color={hasFeedback && !isRefining ? C.white : `${C.sage}40`} />
+        {isRefining ? 'Refining...' : (feedbackCount > 0 ? `Refine this trip · ${feedbackCount}` : 'Refine this trip')}
       </button>
       <div style={{ fontFamily: F, fontSize: 12, color: `${C.slate}65`, marginTop: 8 }}>
         {remaining} free refinement{remaining !== 1 ? 's' : ''} remaining
       </div>
-      {!hasFeedback && (
+      {feedbackCount > 0 && !isRefining ? (
+        <p style={{ fontFamily: F, fontSize: 11, color: '#aaa', marginTop: 4, textAlign: 'center', letterSpacing: '0.04em' }}>
+          {feedbackCount} {feedbackCount === 1 ? 'input' : 'inputs'} ready to apply
+        </p>
+      ) : !hasFeedback && (
         <div style={{ fontFamily: F, fontSize: 12, color: `${C.sage}90`, marginTop: 4, fontStyle: 'normal' }}>
           Add day feedback or rate the overall trip to enable refinement
         </div>
@@ -4025,6 +4036,19 @@ export default function ItineraryResults() {
 
   const hasFeedback = Object.keys(lockedItems).length > 0 || Object.keys(swappedActivities).length > 0 || Object.values(dayFeedback).some(f => f?.note || f?.reaction) || pulse === 'close' || pulse === 'rethink';
 
+  const feedbackCount = useMemo(() => {
+    let count = 0;
+    count += Object.keys(lockedItems).length;
+    count += Object.keys(swappedActivities).length;
+    count += Object.values(dayFeedback).filter(f => f?.note || f?.reaction).length;
+    if (overallNote?.trim()) count += 1;
+    if (pulse === 'close' || pulse === 'rethink') count += 1;
+    count += (tripLogistics?.flights?.length || 0);
+    count += (tripLogistics?.rentals?.length || 0);
+    count += (tripLogistics?.accommodations?.length || 0);
+    return count;
+  }, [lockedItems, swappedActivities, dayFeedback, overallNote, pulse, tripLogistics]);
+
   const handleRefine = async () => {
     const nextIteration = iteration + 1;
     const daysSpotOn = Object.values(dayFeedback).filter(f => f.reaction === 'spot-on').length;
@@ -4195,6 +4219,9 @@ export default function ItineraryResults() {
         onShare={() => setSavePanelOpen(true)}
         tripTitle={tripTitle}
         onTitleChange={(t) => { setTripTitle(t); persistTitle(t); }}
+        feedbackCount={feedbackCount}
+        onRefine={handleRefine}
+        isRefining={refining}
       />
       <div style={{ height: 56 }} /> {/* spacer for fixed nav */}
 
@@ -4361,6 +4388,7 @@ export default function ItineraryResults() {
 
                 {/* Refine CTA / Premium Gate */}
                 <RefineCTA iteration={iteration} hasFeedback={hasFeedback} onRefine={handleRefine} pulse={pulse}
+                  feedbackCount={feedbackCount} isRefining={refining}
                   onGateShown={() => trackEvent('premium_gate_shown', { iteration })}
                   onUpgradeClick={() => trackEvent('premium_upgrade_clicked', { iteration })} />
               </div>

@@ -158,7 +158,7 @@ function TripDropdown({ trips, onSelect, onDelete, onNewTrip, onClose }) {
 
 // ─── ItineraryNav Component ─────────────────────────────────────────────────
 
-export default function ItineraryNav({ itinerary, iteration, itineraryId, rawItinerary, formData, onShare, tripTitle, onTitleChange }) {
+export default function ItineraryNav({ itinerary, iteration, itineraryId, rawItinerary, formData, onShare, tripTitle, onTitleChange, feedbackCount = 0, onRefine, isRefining }) {
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -474,6 +474,28 @@ export default function ItineraryNav({ itinerary, iteration, itineraryId, rawIti
 
         {/* Right — Actions */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+          {/* Refine */}
+          <button
+            onClick={() => { if (feedbackCount > 0 && !isRefining) onRefine?.(); }}
+            disabled={feedbackCount === 0 || isRefining}
+            style={{
+              fontFamily: FONTS.body, fontSize: 11, fontWeight: 600,
+              letterSpacing: '0.1em', textTransform: 'uppercase',
+              padding: '7px 16px', borderRadius: 0,
+              border: `1px solid ${feedbackCount > 0 && !isRefining ? C.darkInk : C.stone}`,
+              background: 'transparent',
+              color: feedbackCount > 0 && !isRefining ? C.darkInk : C.stone,
+              cursor: feedbackCount > 0 && !isRefining ? 'pointer' : 'not-allowed',
+              opacity: feedbackCount === 0 || isRefining ? 0.5 : 1,
+              transition: 'all 0.2s',
+              WebkitTapHighlightColor: 'transparent',
+            }}
+            onMouseEnter={e => { if (feedbackCount > 0 && !isRefining) { e.currentTarget.style.background = C.darkInk; e.currentTarget.style.color = C.warmWhite; } }}
+            onMouseLeave={e => { if (feedbackCount > 0 && !isRefining) { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = C.darkInk; } }}
+          >
+            {isRefining ? 'REFINING...' : (feedbackCount > 0 ? `REFINE · ${feedbackCount}` : 'REFINE')}
+          </button>
+
           {renderSavePill()}
 
           {/* Share */}
