@@ -2371,28 +2371,32 @@ function LogisticsPanel({ destination, sticky = true, tripLogistics, onOpenPanel
           </div>
         )}
 
-        {/* Lila Pick card */}
-        <div onClick={openLilaAccom} style={{
-          background: `${PICK_STYLES.stay.color}06`,
-          border: `1px solid ${PICK_STYLES.stay.color}15`,
-          borderRadius: 8, padding: '10px 12px', marginBottom: 10, cursor: 'pointer',
-          transition: 'background 0.15s',
-        }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginBottom: 5 }}>
-            <LilaStar size={8} color={PICK_STYLES.stay.color} />
-            <span style={{ fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: PICK_STYLES.stay.color }}>Lila Pick</span>
-          </div>
-          <div style={{ fontFamily: F, fontSize: 13, fontWeight: 600, color: C.ink, marginBottom: 2 }}>{accomName}</div>
-          {accom.location && <div style={{ fontFamily: F, fontSize: 11, fontWeight: 500, color: C.muted, marginBottom: 3 }}>{accom.location}</div>}
-          {accom.vibe && <div style={{ fontFamily: F, fontSize: 11, fontWeight: 500, fontStyle: 'italic', color: C.sage, lineHeight: 1.4 }}>{accom.vibe}</div>}
-          {accom.priceRange && <div style={{ fontFamily: F, fontSize: 10, fontWeight: 600, color: PICK_STYLES.stay.color, marginTop: 5 }}>{accom.priceRange}</div>}
-        </div>
+        {/* Lila Pick card — hidden when user has their own accommodation */}
+        {userAccoms.length === 0 && (
+          <>
+            <div onClick={openLilaAccom} style={{
+              background: `${PICK_STYLES.stay.color}06`,
+              border: `1px solid ${PICK_STYLES.stay.color}15`,
+              borderRadius: 8, padding: '10px 12px', marginBottom: 10, cursor: 'pointer',
+              transition: 'background 0.15s',
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginBottom: 5 }}>
+                <LilaStar size={8} color={PICK_STYLES.stay.color} />
+                <span style={{ fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: PICK_STYLES.stay.color }}>Lila Pick</span>
+              </div>
+              <div style={{ fontFamily: F, fontSize: 13, fontWeight: 600, color: C.ink, marginBottom: 2 }}>{accomName}</div>
+              {accom.location && <div style={{ fontFamily: F, fontSize: 11, fontWeight: 500, color: C.muted, marginBottom: 3 }}>{accom.location}</div>}
+              {accom.vibe && <div style={{ fontFamily: F, fontSize: 11, fontWeight: 500, fontStyle: 'italic', color: C.sage, lineHeight: 1.4 }}>{accom.vibe}</div>}
+              {accom.priceRange && <div style={{ fontFamily: F, fontSize: 10, fontWeight: 600, color: PICK_STYLES.stay.color, marginTop: 5 }}>{accom.priceRange}</div>}
+            </div>
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
-          <button onClick={openLilaAccom} style={{ fontFamily: F, fontSize: 12, fontWeight: 600, color: C.teal, background: 'none', border: 'none', cursor: 'pointer', padding: 0, textAlign: 'left' }}>
-            See other options →
-          </button>
-        </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
+              <button onClick={openLilaAccom} style={{ fontFamily: F, fontSize: 12, fontWeight: 600, color: C.teal, background: 'none', border: 'none', cursor: 'pointer', padding: 0, textAlign: 'left' }}>
+                See other options →
+              </button>
+            </div>
+          </>
+        )}
 
         {/* Add reservation row */}
         {addRow('accommodations', () => openAccomForm())}
@@ -2770,6 +2774,51 @@ function TripPulse({ overallNote, setOverallNote, pulse, setPulse, onPulseSelect
 }
 
 /* ── refine CTA + premium gate ─────────────────────────────────────────── */
+
+function RefineConfirmModal({ onConfirm, onCancel, feedbackCount }) {
+  return (
+    <div style={{
+      position: 'fixed', inset: 0, zIndex: 300,
+      background: 'rgba(0,0,0,0.35)',
+      backdropFilter: 'blur(4px)', WebkitBackdropFilter: 'blur(4px)',
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
+      padding: 20,
+    }} onClick={onCancel}>
+      <div style={{
+        maxWidth: 380, width: '100%',
+        background: '#F5F0E8', borderRadius: 2,
+        padding: '32px 28px 28px',
+        boxShadow: '0 12px 48px rgba(0,0,0,0.15)',
+      }} onClick={e => e.stopPropagation()}>
+        <div style={{ fontFamily: F, fontSize: 10, fontWeight: 700, letterSpacing: '0.22em', textTransform: 'uppercase', color: '#8C8C80', marginBottom: 14 }}>Refine</div>
+        <h3 style={{ fontFamily: F, fontSize: 18, fontWeight: 600, color: '#1C1C1A', lineHeight: 1.3, marginBottom: 8 }}>Ready to refine your itinerary?</h3>
+        <p style={{ fontFamily: F, fontSize: 13, fontWeight: 400, color: '#3D3D38', lineHeight: 1.6, marginBottom: 24 }}>
+          {feedbackCount > 0
+            ? `We'll apply your ${feedbackCount} ${feedbackCount === 1 ? 'input' : 'inputs'} and generate an updated version.`
+            : "We'll generate an updated version based on your feedback."}
+        </p>
+        <div style={{ display: 'flex', gap: 10 }}>
+          <button onClick={onCancel} style={{
+            flex: 1, padding: '11px 0',
+            fontFamily: F, fontSize: 12, fontWeight: 600,
+            letterSpacing: '0.08em', textTransform: 'uppercase',
+            color: '#1C1C1A', background: 'transparent',
+            border: '1px solid #e8e2d9', borderRadius: 0,
+            cursor: 'pointer', transition: 'all 0.2s',
+          }}>Cancel</button>
+          <button onClick={onConfirm} style={{
+            flex: 1, padding: '11px 0',
+            fontFamily: F, fontSize: 12, fontWeight: 600,
+            letterSpacing: '0.08em', textTransform: 'uppercase',
+            color: '#faf8f4', background: '#1a2530',
+            border: '1px solid #1a2530', borderRadius: 0,
+            cursor: 'pointer', transition: 'all 0.2s',
+          }}>Refine</button>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 function RefineCTA({ iteration, hasFeedback, onRefine, pulse, onGateShown, onUpgradeClick, feedbackCount = 0, isRefining }) {
   const maxFree = 10;
@@ -3591,6 +3640,7 @@ export default function ItineraryResults() {
   const [pulse, setPulse] = useState(null);
   const [overallNote, setOverallNote] = useState('');
   const [refineError, setRefineError] = useState(null);
+  const [refineConfirmOpen, setRefineConfirmOpen] = useState(false);
 
   // Save panel state
   const [savePanelOpen, setSavePanelOpen] = useState(false);
@@ -4036,18 +4086,20 @@ export default function ItineraryResults() {
 
   const hasFeedback = Object.keys(lockedItems).length > 0 || Object.keys(swappedActivities).length > 0 || Object.values(dayFeedback).some(f => f?.note || f?.reaction) || pulse === 'close' || pulse === 'rethink';
 
+  // Count only NEW feedback inputs — exclude lockedItems and tripLogistics
+  // which persist across refinements as ongoing constraints
   const feedbackCount = useMemo(() => {
     let count = 0;
-    count += Object.keys(lockedItems).length;
     count += Object.keys(swappedActivities).length;
     count += Object.values(dayFeedback).filter(f => f?.note || f?.reaction).length;
     if (overallNote?.trim()) count += 1;
     if (pulse === 'close' || pulse === 'rethink') count += 1;
-    count += (tripLogistics?.flights?.length || 0);
-    count += (tripLogistics?.rentals?.length || 0);
-    count += (tripLogistics?.accommodations?.length || 0);
     return count;
-  }, [lockedItems, swappedActivities, dayFeedback, overallNote, pulse, tripLogistics]);
+  }, [swappedActivities, dayFeedback, overallNote, pulse]);
+
+  const requestRefine = () => setRefineConfirmOpen(true);
+  const confirmRefine = () => { setRefineConfirmOpen(false); handleRefine(); };
+  const cancelRefine = () => setRefineConfirmOpen(false);
 
   const handleRefine = async () => {
     const nextIteration = iteration + 1;
@@ -4183,6 +4235,11 @@ export default function ItineraryResults() {
         <FirstDraftModal onDismiss={() => setShowDraftModal(false)} />
       )}
 
+      {/* Refine confirmation */}
+      {refineConfirmOpen && (
+        <RefineConfirmModal onConfirm={confirmRefine} onCancel={cancelRefine} feedbackCount={feedbackCount} />
+      )}
+
       {/* Swap modal */}
       <SwapModal
         isOpen={!!swapModal}
@@ -4220,7 +4277,7 @@ export default function ItineraryResults() {
         tripTitle={tripTitle}
         onTitleChange={(t) => { setTripTitle(t); persistTitle(t); }}
         feedbackCount={feedbackCount}
-        onRefine={handleRefine}
+        onRefine={requestRefine}
         isRefining={refining}
       />
       <div style={{ height: 56 }} /> {/* spacer for fixed nav */}
@@ -4317,7 +4374,7 @@ export default function ItineraryResults() {
                 }
                 setActivePanel(panelItem);
               }}
-              onRefine={handleRefine}
+              onRefine={requestRefine}
             />
           </div>
         )}
@@ -4387,7 +4444,7 @@ export default function ItineraryResults() {
                 )}
 
                 {/* Refine CTA / Premium Gate */}
-                <RefineCTA iteration={iteration} hasFeedback={hasFeedback} onRefine={handleRefine} pulse={pulse}
+                <RefineCTA iteration={iteration} hasFeedback={hasFeedback} onRefine={requestRefine} pulse={pulse}
                   feedbackCount={feedbackCount} isRefining={refining}
                   onGateShown={() => trackEvent('premium_gate_shown', { iteration })}
                   onUpgradeClick={() => trackEvent('premium_upgrade_clicked', { iteration })} />
@@ -4420,7 +4477,7 @@ export default function ItineraryResults() {
                       }
                       setActivePanel(panelItem);
                     }}
-                    onRefine={handleRefine}
+                    onRefine={requestRefine}
                   />
                 </div>
               )}

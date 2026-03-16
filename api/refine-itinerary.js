@@ -246,7 +246,7 @@ You are revising this itinerary based on the traveler's feedback. Follow these r
 10. **Respect confirmed bookings as hard constraints:**
     - Do not schedule activities before flight arrival time + 1.5 hours (travel from airport + check-in buffer).
     - Wrap up all activities at least 2.5 hours before a departure flight (drive to airport + security + buffer).
-    - If the traveler has confirmed accommodation, naturally build hotel check-in/check-out into the day arc instead of suggesting different lodging.
+    - If the traveler has confirmed accommodation, use their confirmed hotel as the "stay" pick in the JSON output — set the stay pick's "name" to the confirmed hotel name. Do NOT suggest a different hotel. Build hotel check-in/check-out into the daily timeline naturally.
     - Rental car pickup/return times should align with flight arrivals/departures.
 
 ${formData ? `
