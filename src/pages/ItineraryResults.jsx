@@ -2333,33 +2333,8 @@ function LogisticsPanel({ destination, sticky = true, tripLogistics, onOpenPanel
         )}
       </div>
 
-      {/* Rental Cars */}
-      <div style={{ padding: '13px 16px', borderBottom: `1px solid ${C.border}` }}>
-        {sectionHeader(<CarIcon size={12} color={C.muted} />, 'Rental Car')}
-        {rentals.length > 0 ? (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-            {rentals.map((r, i) => (
-              <BookingCard key={i} booking={{ ...r, type: 'rental' }} onClick={() => openRentalForm(i)} onRemove={() => removeRental(i)} />
-            ))}
-            {addRow('rentals', () => openRentalForm())}
-          </div>
-        ) : (
-          <>
-            {logistics?.car && (
-              <div style={{ fontFamily: F, fontSize: 13, color: C.body, lineHeight: 1.5, marginBottom: 4 }}>
-                {logistics.car}
-              </div>
-            )}
-            <div style={{ fontFamily: F, fontSize: 11, fontStyle: 'italic', color: C.muted, marginBottom: 8 }}>
-              Add your rental confirmation to keep it handy.
-            </div>
-            {addRow('rentals', () => openRentalForm())}
-          </>
-        )}
-      </div>
-
       {/* Accommodations */}
-      <div style={{ padding: '13px 16px' }}>
+      <div style={{ padding: '13px 16px', borderBottom: `1px solid ${C.border}` }}>
         {sectionHeader(<CategoryIcon category="stay" color={C.muted} size={12} />, 'Accommodations')}
 
         {/* User booking cards */}
@@ -2400,6 +2375,31 @@ function LogisticsPanel({ destination, sticky = true, tripLogistics, onOpenPanel
 
         {/* Add reservation row */}
         {addRow('accommodations', () => openAccomForm())}
+      </div>
+
+      {/* Rental Cars */}
+      <div style={{ padding: '13px 16px' }}>
+        {sectionHeader(<CarIcon size={12} color={C.muted} />, 'Rental Car')}
+        {rentals.length > 0 ? (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+            {rentals.map((r, i) => (
+              <BookingCard key={i} booking={{ ...r, type: 'rental' }} onClick={() => openRentalForm(i)} onRemove={() => removeRental(i)} />
+            ))}
+            {addRow('rentals', () => openRentalForm())}
+          </div>
+        ) : (
+          <>
+            {logistics?.car && (
+              <div style={{ fontFamily: F, fontSize: 13, color: C.body, lineHeight: 1.5, marginBottom: 4 }}>
+                {logistics.car}
+              </div>
+            )}
+            <div style={{ fontFamily: F, fontSize: 11, fontStyle: 'italic', color: C.muted, marginBottom: 8 }}>
+              Add your rental confirmation to keep it handy.
+            </div>
+            {addRow('rentals', () => openRentalForm())}
+          </>
+        )}
       </div>
 
       {/* Refine strip — shown when any bookings exist */}
