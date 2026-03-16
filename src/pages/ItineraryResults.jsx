@@ -12,7 +12,7 @@ import JSON5 from 'json5';
 import { trackEvent } from '@utils/analytics';
 import { getPracticesForItinerary, TRADITIONS, ENTRIES } from '@services/practicesService';
 import { assignCompanions } from '@services/companionAssigner';
-import { saveItinerary, saveFeedback } from '@services/feedbackService';
+import { saveItinerary, saveFeedback, updateItineraryTitle } from '@services/feedbackService';
 
 import { clearSession } from '@services/sessionManager';
 import { createShareableUrl } from '@services/shareService';
@@ -3584,6 +3584,12 @@ export default function ItineraryResults() {
   // Save panel state
   const [savePanelOpen, setSavePanelOpen] = useState(false);
 
+  // Trip title — shared editable state
+  const [tripTitle, setTripTitle] = useState('');
+  const [editingHeroTitle, setEditingHeroTitle] = useState(false);
+  const [draftHeroTitle, setDraftHeroTitle] = useState('');
+  const heroTitleRef = useRef(null);
+
   // First draft modal state
   const [showDraftModal, setShowDraftModal] = useState(() => !shareToken);
 
@@ -3591,6 +3597,48 @@ export default function ItineraryResults() {
   const [itineraryId, setItineraryId] = useState(() =>
     sessionStorage.getItem('lila_itinerary_id') || null
   );
+
+  // Sync tripTitle from parsed itinerary
+  useEffect(() => {
+    if (itinerary?.title && !tripTitle) setTripTitle(itinerary.title);
+  }, [itinerary?.title]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Persist title rename to Supabase + localStorage
+  const persistTitle = (newTitle) => {
+    if (itineraryId) updateItineraryTitle(itineraryId, newTitle);
+    const tripId = sessionStorage.getItem('lila_trip_id');
+    if (tripId) {
+      try {
+        const trips = JSON.parse(localStorage.getItem('lila_trips') || '[]');
+        const idx = trips.findIndex(t => t.id === tripId);
+        if (idx !== -1) {
+          trips[idx].title = newTitle;
+          localStorage.setItem('lila_trips', JSON.stringify(trips));
+          window.dispatchEvent(new Event('lila_trips_changed'));
+        }
+      } catch {}
+    }
+  };
+
+  const handleHeroTitleClick = () => {
+    setDraftHeroTitle(tripTitle);
+    setEditingHeroTitle(true);
+    setTimeout(() => heroTitleRef.current?.select(), 0);
+  };
+
+  const commitHeroTitle = () => {
+    const trimmed = draftHeroTitle.trim();
+    if (trimmed && trimmed !== tripTitle) {
+      setTripTitle(trimmed);
+      persistTitle(trimmed);
+    }
+    setEditingHeroTitle(false);
+  };
+
+  const handleHeroTitleKeyDown = (e) => {
+    if (e.key === 'Enter') commitHeroTitle();
+    if (e.key === 'Escape') setEditingHeroTitle(false);
+  };
 
   // Detail panel state — unified for activities, picks, and companion cards
   const [activePanel, setActivePanel] = useState(null); // { type, data, thumbId }
@@ -4145,6 +4193,8 @@ export default function ItineraryResults() {
         rawItinerary={rawItinerary}
         formData={formData}
         onShare={() => setSavePanelOpen(true)}
+        tripTitle={tripTitle}
+        onTitleChange={(t) => { setTripTitle(t); persistTitle(t); }}
       />
       <div style={{ height: 56 }} /> {/* spacer for fixed nav */}
 
@@ -4163,10 +4213,36 @@ export default function ItineraryResults() {
               letterSpacing: '0.22em', textTransform: 'uppercase',
               color: C.teal, marginBottom: 8,
             }}>Your Itinerary</div>
-            <h1 style={{
-              fontFamily: F_SERIF, fontSize: 'clamp(26px, 4.5vw, 36px)', fontWeight: 300,
-              color: C.ink, lineHeight: 1.15, marginBottom: 8,
-            }}>{itinerary.title}</h1>
+            {editingHeroTitle ? (
+              <input
+                ref={heroTitleRef}
+                value={draftHeroTitle}
+                onChange={e => setDraftHeroTitle(e.target.value)}
+                onBlur={commitHeroTitle}
+                onKeyDown={handleHeroTitleKeyDown}
+                style={{
+                  fontFamily: F_SERIF, fontSize: 'clamp(26px, 4.5vw, 36px)', fontWeight: 300,
+                  color: C.ink, lineHeight: 1.15, marginBottom: 8,
+                  background: 'transparent', border: 'none',
+                  borderBottom: `1px solid ${BrandC.goldenAmber}`,
+                  borderRadius: 0, outline: 'none',
+                  width: '100%', padding: 0,
+                  letterSpacing: 'inherit',
+                }}
+              />
+            ) : (
+              <h1
+                onClick={handleHeroTitleClick}
+                style={{
+                  fontFamily: F_SERIF, fontSize: 'clamp(26px, 4.5vw, 36px)', fontWeight: 300,
+                  color: C.ink, lineHeight: 1.15, marginBottom: 8,
+                  cursor: 'text', borderBottom: '1px dashed transparent',
+                  transition: 'border-color 0.2s',
+                }}
+                onMouseEnter={e => e.currentTarget.style.borderBottomColor = 'rgba(26,37,48,0.2)'}
+                onMouseLeave={e => e.currentTarget.style.borderBottomColor = 'transparent'}
+              >{tripTitle || itinerary.title}</h1>
+            )}
             {itinerary.subtitle && (
               <p style={{ fontFamily: F_SERIF, fontSize: 14, color: C.muted, fontStyle: 'italic', fontWeight: 400 }}>{itinerary.subtitle}</p>
             )}

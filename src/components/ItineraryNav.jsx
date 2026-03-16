@@ -2,7 +2,7 @@
 // ITINERARY NAV — fixed header for itinerary results page
 // ═══════════════════════════════════════════════════════════════════════════════
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { C, FONTS } from '@data/brand';
 import { createShareableUrl } from '@services/shareService';
@@ -158,7 +158,7 @@ function TripDropdown({ trips, onSelect, onDelete, onNewTrip, onClose }) {
 
 // ─── ItineraryNav Component ─────────────────────────────────────────────────
 
-export default function ItineraryNav({ itinerary, iteration, itineraryId, rawItinerary, formData, onShare }) {
+export default function ItineraryNav({ itinerary, iteration, itineraryId, rawItinerary, formData, onShare, tripTitle, onTitleChange }) {
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -168,6 +168,30 @@ export default function ItineraryNav({ itinerary, iteration, itineraryId, rawIti
   const [trips, setTrips] = useState(readTrips);
   const [tripsOpen, setTripsOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+  // Nav title editing
+  const [editingNavTitle, setEditingNavTitle] = useState(false);
+  const [draftNavTitle, setDraftNavTitle] = useState('');
+  const navTitleRef = useRef(null);
+
+  const handleNavTitleClick = () => {
+    setDraftNavTitle(tripTitle);
+    setEditingNavTitle(true);
+    setTimeout(() => navTitleRef.current?.select(), 0);
+  };
+
+  const commitNavTitle = () => {
+    const trimmed = draftNavTitle.trim();
+    if (trimmed && trimmed !== tripTitle) {
+      onTitleChange?.(trimmed);
+    }
+    setEditingNavTitle(false);
+  };
+
+  const handleNavTitleKeyDown = (e) => {
+    if (e.key === 'Enter') commitNavTitle();
+    if (e.key === 'Escape') setEditingNavTitle(false);
+  };
 
   // Pre-set saved state for shared trips
   useEffect(() => {
@@ -397,19 +421,44 @@ export default function ItineraryNav({ itinerary, iteration, itineraryId, rawIti
         </Link>
 
         {/* Center — Trip identity (desktop only) */}
-        {!isMobile && itinerary?.title && (
+        {!isMobile && (tripTitle || itinerary?.title) && (
           <div style={{
             position: 'absolute', left: '50%', transform: 'translateX(-50%)',
             display: 'flex', alignItems: 'center', gap: 10,
             maxWidth: '40%',
           }}>
-            <span style={{
-              fontFamily: FONTS.body, fontSize: 14, fontWeight: 600,
-              color: C.darkInk, whiteSpace: 'nowrap', overflow: 'hidden',
-              textOverflow: 'ellipsis',
-            }}>
-              {itinerary.title}
-            </span>
+            {editingNavTitle ? (
+              <input
+                ref={navTitleRef}
+                value={draftNavTitle}
+                onChange={e => setDraftNavTitle(e.target.value)}
+                onBlur={commitNavTitle}
+                onKeyDown={handleNavTitleKeyDown}
+                style={{
+                  fontFamily: FONTS.body, fontSize: 13, fontWeight: 600,
+                  color: C.darkInk, background: 'transparent',
+                  border: 'none', borderBottom: `1px solid ${C.goldenAmber}`,
+                  borderRadius: 0, outline: 'none', padding: 0,
+                  letterSpacing: '0.01em', textAlign: 'center',
+                  minWidth: 120,
+                }}
+              />
+            ) : (
+              <span
+                onClick={handleNavTitleClick}
+                style={{
+                  fontFamily: FONTS.body, fontSize: 14, fontWeight: 600,
+                  color: C.darkInk, whiteSpace: 'nowrap', overflow: 'hidden',
+                  textOverflow: 'ellipsis', cursor: 'text',
+                  borderBottom: '1px dashed transparent',
+                  transition: 'border-color 0.2s',
+                }}
+                onMouseEnter={e => e.currentTarget.style.borderBottomColor = 'rgba(26,37,48,0.2)'}
+                onMouseLeave={e => e.currentTarget.style.borderBottomColor = 'transparent'}
+              >
+                {tripTitle || itinerary.title}
+              </span>
+            )}
             {iteration > 0 && (
               <span style={{
                 fontFamily: FONTS.body, fontSize: 10, fontWeight: 700,

@@ -25,6 +25,18 @@ export async function saveItinerary({ formData, rawItinerary, destination, itera
   }
 }
 
+export async function updateItineraryTitle(itineraryId, title) {
+  try {
+    const { error } = await supabase
+      .from('itineraries')
+      .update({ title })
+      .eq('id', itineraryId);
+    if (error) console.error('updateItineraryTitle failed:', error);
+  } catch (e) {
+    console.error('updateItineraryTitle exception:', e);
+  }
+}
+
 export async function saveFeedback({ formData, itineraryId, activityFeedback, dayFeedback, pulse, overallNote, iteration }) {
   try {
     const sessionId = await getOrCreateSession(formData);
