@@ -3881,12 +3881,18 @@ export default function ItineraryResults() {
 
   // Pass 2: Fetch alternatives in the background after itinerary renders
   const hasRequestedAlts = useRef(false);
+  const altsAbortRef = useRef(null);
   useEffect(() => {
     // Need the API-slug destination (e.g. 'big-sur', not 'bigSur')
     const destSlug = metadata?.destination || formData?.destination;
     if (!isStructured || !rawItinerary || !destSlug || alternativesLoaded || alternativesLoading || hasRequestedAlts.current) return;
     hasRequestedAlts.current = true;
     setAlternativesLoading(true);
+
+    // Abort any stale in-flight request (e.g. from pre-refinement itinerary)
+    if (altsAbortRef.current) altsAbortRef.current.abort();
+    const controller = new AbortController();
+    altsAbortRef.current = controller;
 
     fetch('/api/generate-alternatives', {
       method: 'POST',
@@ -3896,6 +3902,7 @@ export default function ItineraryResults() {
         preferences: formData,
         itinerary: rawItinerary,
       }),
+      signal: controller.signal,
     })
       .then(res => res.json())
       .then(result => {
@@ -3949,9 +3956,12 @@ export default function ItineraryResults() {
         console.log('[Alternatives] Merged successfully', result.metadata?.timing);
       })
       .catch(err => {
+        if (err.name === 'AbortError') return; // expected on refinement
         console.error('[Alternatives] Fetch failed:', err);
         setAlternativesLoading(false);
       });
+
+    return () => controller.abort();
   }, [isStructured, rawItinerary, formData]);
 
   // Reset alternatives ref when itinerary changes (refinement)
@@ -4029,7 +4039,7 @@ export default function ItineraryResults() {
     }, { threshold: 0.3 });
     obs.observe(el);
     return () => obs.disconnect();
-  });
+  }, [isStructured]);
 
   const scrollToDay = (index) => {
     if (dayRefs.current[index]) {
@@ -4257,6 +4267,14 @@ export default function ItineraryResults() {
 
       setDayFeedback({});
       setSwappedActivities({});
+      // Clear user locks (booking locks re-derive from tripLogistics via auto-lock effect)
+      setLockedItems(prev => {
+        const kept = {};
+        for (const [k, v] of Object.entries(prev)) {
+          if (v.source === 'booking') kept[k] = v;
+        }
+        return kept;
+      });
       setPulse(null);
       setOverallNote('');
       setLogisticsBaseline(totalBookings);

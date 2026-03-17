@@ -14,6 +14,7 @@
 import Anthropic from '@anthropic-ai/sdk';
 import fs from 'fs';
 import path from 'path';
+import { checkOrigin } from './_utils.js';
 
 const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
@@ -157,6 +158,7 @@ export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
+  if (!checkOrigin(req, res)) return;
 
   try {
     const { itinerary, lockedItems, swappedActivities, dayFeedback, pulse, overallNote, formData, tripLogistics } = req.body;
@@ -265,9 +267,11 @@ Please return the revised itinerary as a complete JSON object. Follow the same o
 `.trim();
 
     const response = await anthropic.messages.create({
-      model: 'claude-sonnet-4-5-20250929',
+      model: 'claude-sonnet-4-6',
       max_tokens: 12000,
-      system: systemPrompt,
+      system: [
+        { type: 'text', text: systemPrompt, cache_control: { type: 'ephemeral' } },
+      ],
       messages: [
         { role: 'user', content: userMessage },
       ],
