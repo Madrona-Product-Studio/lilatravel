@@ -232,10 +232,8 @@ function getNextCelestialEvent() {
 // ─── NPS Alerts ──────────────────────────────────────────────────────────────
 
 async function fetchNPSAlerts(parkCode) {
-  const apiKey = import.meta.env.VITE_NPS_API_KEY;
-  if (!apiKey) return [];
   const res = await fetch(
-    `https://developer.nps.gov/api/v1/alerts?parkCode=${parkCode}&api_key=${apiKey}`
+    `/api/nps-proxy?endpoint=alerts&parkCode=${encodeURIComponent(parkCode)}`
   );
   if (!res.ok) throw new Error("NPS fetch failed");
   const data = await res.json();

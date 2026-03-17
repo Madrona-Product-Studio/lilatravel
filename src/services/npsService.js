@@ -3,7 +3,7 @@
 // ═══════════════════════════════════════════════════════════════════════════════
 //
 // Fetches and caches NPS "Things to Do" and Events data for trail enrichment.
-// Uses VITE_NPS_API_KEY environment variable for authentication.
+// Calls /api/nps-proxy (API key stays server-side).
 // Uses Promise.allSettled for graceful degradation (matches celestialService).
 // If no API key is set or fetches fail, returns empty arrays — the guide
 // works exactly as before.
@@ -28,10 +28,8 @@ function setCache(key, data) {
 // ─── NPS API Fetchers ────────────────────────────────────────────────────────
 
 async function fetchThingsToDo(parkCode) {
-  const apiKey = import.meta.env.VITE_NPS_API_KEY;
-  if (!apiKey) return [];
   const res = await fetch(
-    `https://developer.nps.gov/api/v1/thingstodo?parkCode=${parkCode}&limit=50&api_key=${apiKey}`
+    `/api/nps-proxy?endpoint=thingstodo&parkCode=${encodeURIComponent(parkCode)}`
   );
   if (!res.ok) throw new Error(`NPS Things to Do fetch failed for ${parkCode}`);
   const data = await res.json();
@@ -39,10 +37,8 @@ async function fetchThingsToDo(parkCode) {
 }
 
 async function fetchEvents(parkCode) {
-  const apiKey = import.meta.env.VITE_NPS_API_KEY;
-  if (!apiKey) return [];
   const res = await fetch(
-    `https://developer.nps.gov/api/v1/events?parkCode=${parkCode}&limit=20&api_key=${apiKey}`
+    `/api/nps-proxy?endpoint=events&parkCode=${encodeURIComponent(parkCode)}`
   );
   if (!res.ok) throw new Error(`NPS Events fetch failed for ${parkCode}`);
   const data = await res.json();
