@@ -32,50 +32,65 @@
 // ─── HOW TO ADD A NEW DEDICATED GUIDE ────────────────────────────────────────
 //
 //   1. Create your guide in src/pages/guides/  (e.g. BigSurGuide.jsx)
-//   2. Import it below
+//   2. Import it below (via React.lazy)
 //   3. Add a specific <Route> ABOVE the generic :slug route
 //      (React Router matches top-to-bottom, first match wins)
 //
 // ─── HOW TO ADD A NEW ITINERARY ──────────────────────────────────────────────
 //
 //   1. Create your itinerary in src/itineraries/<destination>/
-//   2. Import the main component below
+//   2. Import the main component below (via React.lazy)
 //   3. Add a <Route> under the Itineraries section
 //
 // ═══════════════════════════════════════════════════════════════════════════════
 
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, lazy, Suspense } from 'react';
 import { C } from '@data/brand';
 
-// ─── Pages ──────────────────────────────────────────────────────────────────
-import HomePage from '@pages/Home';
-import DestinationsPage from '@pages/Destinations';
-import DestinationGuide from '@pages/DestinationGuide';
-import EthosPage from '@pages/Ethos';              // renamed from Approach.jsx
-import EthosDetail from '@pages/RitualDetail';     // TODO: rename file to EthosDetail.jsx
-import WaysToTravelPage from '@pages/HowItWorks';  // TODO: rename file to WaysToTravel.jsx
-import ContactPage from '@pages/Contact';
-import PlanMyTrip from '@pages/PlanMyTrip';
-import NotFound from '@pages/NotFound';
-import GroupTripsPage from '@pages/GroupTrips';
-import PhilosophyPage from '@pages/Philosophy';
-import PracticesExplorerPage from '@pages/PracticesExplorer';
-import TripPage from '@pages/trips/TripPage';
-import ItineraryResults from './pages/ItineraryResults';
+// ─── Loading Spinner ─────────────────────────────────────────────────────────
+function LoadingSpinner() {
+  return (
+    <div style={{
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
+      minHeight: '100vh', background: C.cream,
+    }}>
+      <div style={{
+        width: 28, height: 28,
+        border: `2px solid ${C.oceanTeal}30`, borderTopColor: C.oceanTeal,
+        borderRadius: '50%', animation: 'lila-spin 0.8s linear infinite',
+      }} />
+      <style>{`@keyframes lila-spin { to { transform: rotate(360deg); } }`}</style>
+    </div>
+  );
+}
+
+// ─── Lazy Pages ─────────────────────────────────────────────────────────────
+const HomePage = lazy(() => import('@pages/Home'));
+const DestinationsPage = lazy(() => import('@pages/Destinations'));
+const DestinationGuide = lazy(() => import('@pages/DestinationGuide'));
+const EthosPage = lazy(() => import('@pages/Ethos'));
+const EthosDetail = lazy(() => import('@pages/RitualDetail'));
+const WaysToTravelPage = lazy(() => import('@pages/HowItWorks'));
+const ContactPage = lazy(() => import('@pages/Contact'));
+const PlanMyTrip = lazy(() => import('@pages/PlanMyTrip'));
+const NotFound = lazy(() => import('@pages/NotFound'));
+const GroupTripsPage = lazy(() => import('@pages/GroupTrips'));
+const PhilosophyPage = lazy(() => import('@pages/Philosophy'));
+const PracticesExplorerPage = lazy(() => import('@pages/PracticesExplorer'));
+const TripPage = lazy(() => import('@pages/trips/TripPage'));
+const ItineraryResults = lazy(() => import('./pages/ItineraryResults'));
 
 // ─── Dedicated Guides ───────────────────────────────────────────────────────
-import ZionGuide from '@pages/guides/ZionGuide';
-import BigSurGuide from '@pages/guides/BigSurGuide';
-import JoshuaTreeGuide from '@pages/guides/JoshuaTreeGuide';
-import OlympicPeninsulaGuide from '@pages/guides/OlympicPeninsulaGuide';
-import VancouverIslandGuide from '@pages/guides/VancouverIslandGuide';
-import KauaiGuide from '@pages/guides/KauaiGuide';
+const ZionGuide = lazy(() => import('@pages/guides/ZionGuide'));
+const BigSurGuide = lazy(() => import('@pages/guides/BigSurGuide'));
+const JoshuaTreeGuide = lazy(() => import('@pages/guides/JoshuaTreeGuide'));
+const OlympicPeninsulaGuide = lazy(() => import('@pages/guides/OlympicPeninsulaGuide'));
+const VancouverIslandGuide = lazy(() => import('@pages/guides/VancouverIslandGuide'));
+const KauaiGuide = lazy(() => import('@pages/guides/KauaiGuide'));
 
 // ─── Itineraries ────────────────────────────────────────────────────────────
-import UtahTripGuide from './itineraries/utah/UtahTripGuide';
-// import BigSurItinerary from './itineraries/bigsur/BigSurItinerary';
-// import ZionAutumnItinerary from './itineraries/zion-autumn/ZionAutumnItinerary';
+const UtahTripGuide = lazy(() => import('./itineraries/utah/UtahTripGuide'));
 
 // ─── Scroll to top on route change ──────────────────────────────────────────
 function ScrollToTop() {
@@ -97,61 +112,61 @@ export default function App() {
     }}>
       <BrowserRouter>
         <ScrollToTop />
-        <Routes>
-          {/* Homepage */}
-          <Route path="/" element={<HomePage />} />
+        <Suspense fallback={<LoadingSpinner />}>
+          <Routes>
+            {/* Homepage */}
+            <Route path="/" element={<HomePage />} />
 
-          {/* Trip Planner — full-screen onboarding (no Nav/Footer) */}
-          <Route path="/plan" element={<PlanMyTrip />} />
-          <Route path="/itinerary" element={<ItineraryResults />} />
+            {/* Trip Planner — full-screen onboarding (no Nav/Footer) */}
+            <Route path="/plan" element={<PlanMyTrip />} />
+            <Route path="/itinerary" element={<ItineraryResults />} />
 
-          {/* Destinations */}
-          <Route path="/destinations" element={<DestinationsPage />} />
-          {/* ↓ Dedicated guides go HERE (above the generic :slug catch-all) */}
-          <Route path="/destinations/zion-canyon" element={<ZionGuide />} />
-          <Route path="/destinations/big-sur" element={<BigSurGuide />} />
-          <Route path="/destinations/joshua-tree" element={<JoshuaTreeGuide />} />
-          <Route path="/destinations/olympic-peninsula" element={<OlympicPeninsulaGuide />} />
-          <Route path="/destinations/vancouver-island" element={<VancouverIslandGuide />} />
-          <Route path="/destinations/kauai" element={<KauaiGuide />} />
-          {/* ↓ Generic guide for destinations without a dedicated page */}
-          <Route path="/destinations/:slug" element={<DestinationGuide />} />
+            {/* Destinations */}
+            <Route path="/destinations" element={<DestinationsPage />} />
+            {/* ↓ Dedicated guides go HERE (above the generic :slug catch-all) */}
+            <Route path="/destinations/zion-canyon" element={<ZionGuide />} />
+            <Route path="/destinations/big-sur" element={<BigSurGuide />} />
+            <Route path="/destinations/joshua-tree" element={<JoshuaTreeGuide />} />
+            <Route path="/destinations/olympic-peninsula" element={<OlympicPeninsulaGuide />} />
+            <Route path="/destinations/vancouver-island" element={<VancouverIslandGuide />} />
+            <Route path="/destinations/kauai" element={<KauaiGuide />} />
+            {/* ↓ Generic guide for destinations without a dedicated page */}
+            <Route path="/destinations/:slug" element={<DestinationGuide />} />
 
-          {/* Group Trips */}
-          <Route path="/group-trips" element={<GroupTripsPage />} />
+            {/* Group Trips */}
+            <Route path="/group-trips" element={<GroupTripsPage />} />
 
-          {/* Ethos (formerly "Our Approach") */}
-          <Route path="/ethos" element={<EthosPage />} />
-          <Route path="/ethos/philosophy" element={<PhilosophyPage />} />
-          <Route path="/ethos/practices" element={<PracticesExplorerPage />} />
-          <Route path="/ethos/:slug" element={<EthosDetail />} />
+            {/* Ethos (formerly "Our Approach") */}
+            <Route path="/ethos" element={<EthosPage />} />
+            <Route path="/ethos/philosophy" element={<PhilosophyPage />} />
+            <Route path="/ethos/practices" element={<PracticesExplorerPage />} />
+            <Route path="/ethos/:slug" element={<EthosDetail />} />
 
-          {/* Trips (Threshold Trip detail pages) */}
-          <Route path="/trips/:slug" element={<TripPage />} />
+            {/* Trips (Threshold Trip detail pages) */}
+            <Route path="/trips/:slug" element={<TripPage />} />
 
-          {/* Saved/shared itinerary via share token */}
-          <Route path="/trip/:token" element={<ItineraryResults />} />
+            {/* Saved/shared itinerary via share token */}
+            <Route path="/trip/:token" element={<ItineraryResults />} />
 
-          {/* Itineraries (self-contained trip guides) */}
-          <Route path="/itineraries/utah" element={<UtahTripGuide />} />
-          {/* <Route path="/itineraries/big-sur" element={<BigSurItinerary />} /> */}
-          {/* <Route path="/itineraries/zion-autumn" element={<ZionAutumnItinerary />} /> */}
+            {/* Itineraries (self-contained trip guides) */}
+            <Route path="/itineraries/utah" element={<UtahTripGuide />} />
 
-          {/* Ways to Travel (formerly "How It Works") */}
-          <Route path="/ways-to-travel" element={<WaysToTravelPage />} />
+            {/* Ways to Travel (formerly "How It Works") */}
+            <Route path="/ways-to-travel" element={<WaysToTravelPage />} />
 
-          {/* Other pages */}
-          <Route path="/contact" element={<ContactPage />} />
+            {/* Other pages */}
+            <Route path="/contact" element={<ContactPage />} />
 
-          {/* ─── Redirects from old routes ───────────────────────────────── */}
-          <Route path="/approach" element={<Navigate to="/ethos" replace />} />
-          <Route path="/approach/philosophy" element={<Navigate to="/ethos/philosophy" replace />} />
-          <Route path="/approach/:slug" element={<Navigate to="/ethos" replace />} />
-          <Route path="/how-it-works" element={<Navigate to="/ways-to-travel" replace />} />
+            {/* ─── Redirects from old routes ───────────────────────────────── */}
+            <Route path="/approach" element={<Navigate to="/ethos" replace />} />
+            <Route path="/approach/philosophy" element={<Navigate to="/ethos/philosophy" replace />} />
+            <Route path="/approach/:slug" element={<Navigate to="/ethos" replace />} />
+            <Route path="/how-it-works" element={<Navigate to="/ways-to-travel" replace />} />
 
-          {/* 404 */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+            {/* 404 */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Suspense>
       </BrowserRouter>
     </div>
   );
