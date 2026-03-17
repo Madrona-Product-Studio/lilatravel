@@ -56,6 +56,7 @@ export default function SavePill({ isOpen, onClose, itineraryId, rawItinerary, f
   const [sendError, setSendError] = useState(false);
   const [copied, setCopied] = useState(false);
   const [shareUrl, setShareUrl] = useState('');
+  const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
   useEffect(() => {
     if (!itineraryId) {
@@ -78,7 +79,7 @@ export default function SavePill({ isOpen, onClose, itineraryId, rawItinerary, f
   };
 
   const handleSend = async () => {
-    if (!email.includes('@')) return;
+    if (!emailValid) return;
     setSending(true);
     setSendError(false);
     try {
@@ -196,13 +197,13 @@ export default function SavePill({ isOpen, onClose, itineraryId, rawItinerary, f
                 onFocus={e => e.target.style.borderColor = `${C.oceanTeal}40`}
                 onBlur={e => e.target.style.borderColor = `${C.sage}20`}
               />
-              <button onClick={handleSend} disabled={sending || !email.includes('@')} style={{
+              <button onClick={handleSend} disabled={sending || !emailValid} style={{
                 padding: '9px 14px', borderRadius: 6,
                 fontFamily: F, fontSize: 12, fontWeight: 600,
-                color: (sending || !email.includes('@')) ? `${C.sage}50` : C.white,
-                background: (sending || !email.includes('@')) ? `${C.sage}08` : C.oceanTeal,
-                border: (sending || !email.includes('@')) ? `1px solid ${C.sage}15` : 'none',
-                cursor: (sending || !email.includes('@')) ? 'default' : 'pointer',
+                color: (sending || !emailValid) ? `${C.sage}50` : C.white,
+                background: (sending || !emailValid) ? `${C.sage}08` : C.oceanTeal,
+                border: (sending || !emailValid) ? `1px solid ${C.sage}15` : 'none',
+                cursor: (sending || !emailValid) ? 'default' : 'pointer',
                 WebkitTapHighlightColor: 'transparent',
                 transition: 'all 0.2s',
                 whiteSpace: 'nowrap',

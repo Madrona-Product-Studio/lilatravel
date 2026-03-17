@@ -12,6 +12,11 @@ export default async function handler(req, res) {
   const { token } = req.query;
   if (!token) return res.status(400).json({ error: 'Missing token' });
 
+  // Validate UUID v4 format before querying database
+  if (!/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(token)) {
+    return res.status(400).json({ error: 'Invalid token format' });
+  }
+
   // Fail fast if env vars are missing
   if (!process.env.VITE_SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
     console.error('get-shared-trip: missing env vars', {

@@ -1,5 +1,5 @@
 import { Resend } from 'resend';
-import { checkOrigin, escapeHtml, isSafeUrl } from './_utils.js';
+import { checkOrigin, escapeHtml, isSafeUrl, isValidEmail } from './_utils.js';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -11,6 +11,10 @@ export default async function handler(req, res) {
 
   if (!email || !itineraryUrl) {
     return res.status(400).json({ error: 'Missing email or itineraryUrl' });
+  }
+
+  if (!isValidEmail(email)) {
+    return res.status(400).json({ error: 'Invalid email address' });
   }
 
   if (!isSafeUrl(itineraryUrl)) {

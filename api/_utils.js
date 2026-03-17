@@ -53,6 +53,14 @@ export function escapeHtml(str) {
 }
 
 /**
+ * Validate email format (basic RFC-compatible check).
+ */
+export function isValidEmail(str) {
+  if (!str || typeof str !== 'string') return false;
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(str);
+}
+
+/**
  * Validate that a URL is a safe HTTP(S) URL (not javascript:, data:, etc.)
  */
 export function isSafeUrl(url) {

@@ -38,6 +38,9 @@ const CORRIDOR_PARKS = {
   'joshua-tree': ['death-valley', 'mojave-preserve'],
 };
 
+// Valid destination slugs (derived from PARK_CODES keys)
+const VALID_DESTINATIONS = new Set(Object.keys(PARK_CODES));
+
 // Open-Meteo coordinates and timezones for weather/celestial forecasts
 const DESTINATION_COORDS = {
   zion: { lat: 37.2982, lon: -113.0263, tz: 'America/Denver' },
@@ -58,6 +61,10 @@ const DESTINATION_COORDS = {
  * This is YOUR editorial content — the single source of truth.
  */
 export function loadGuide(destination) {
+  if (!VALID_DESTINATIONS.has(destination)) {
+    throw new Error(`Invalid destination: ${destination}`);
+  }
+
   const guidePath = path.join(process.cwd(), 'src', 'data', 'destinations', `${destination}.md`);
 
   if (!fs.existsSync(guidePath)) {
@@ -72,6 +79,10 @@ export function loadGuide(destination) {
  * Returns null if no permit data exists for the destination.
  */
 function loadPermits(destination) {
+  if (!VALID_DESTINATIONS.has(destination)) {
+    throw new Error(`Invalid destination: ${destination}`);
+  }
+
   const permitPath = path.join(process.cwd(), 'src', 'data', 'permits', `${destination}.json`);
 
   if (!fs.existsSync(permitPath)) return null;
