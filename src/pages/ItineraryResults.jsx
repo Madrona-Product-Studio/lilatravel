@@ -16,6 +16,7 @@ import { saveItinerary, saveFeedback, updateItineraryTitle } from '@services/fee
 
 import { clearSession } from '@services/sessionManager';
 import { createShareableUrl } from '@services/shareService';
+import { safeJson, fetchWithTimeout } from '@utils/fetchHelpers';
 import SavePill from '@components/SavePill';
 import ItineraryNav from '@components/ItineraryNav';
 // CelestialMonthStrip consolidated into CelestialSnapshot below
@@ -1262,8 +1263,7 @@ function DetailPanelContent({ item, lockedItems, onLock, onAlternatives, alterna
                 borderRadius: '50%', animation: 'lila-spin 0.8s linear infinite',
               }} />
               <span style={{ fontFamily: F, fontSize: 13, fontWeight: 400, color: C.muted }}>Loading alternatives...</span>
-              <style>{`@keyframes lila-spin { to { transform: rotate(360deg); } }`}</style>
-            </div>
+              </div>
           </div>
         )}
       </div>
@@ -1293,21 +1293,11 @@ function DetailPanelContent({ item, lockedItems, onLock, onAlternatives, alterna
         minHeight: '100%',
         background: 'linear-gradient(150deg, #f5f1ea 0%, #ede9e0 100%)',
       }}>
-        <style>{`
-          @keyframes practiceBreathPanel {
-            0%   { opacity: 0; transform: translateX(-80%); }
-            12%  { opacity: 0.7; transform: translateX(0%); }
-            45%  { opacity: 0.6; transform: translateX(5%); }
-            60%  { opacity: 0.7; transform: translateX(0%); }
-            75%  { opacity: 0; transform: translateX(-80%); }
-            100% { opacity: 0; transform: translateX(-80%); }
-          }
-        `}</style>
         <div aria-hidden style={{
           position: 'absolute', top: 0, bottom: 0,
           left: '-40%', width: '180%',
           background: 'linear-gradient(to right, transparent 0%, #dceee9 25%, #e2eeeb 50%, #dceee9 75%, transparent 100%)',
-          animation: 'practiceBreathPanel 16s ease-in-out infinite',
+          animation: 'practiceBreath 16s ease-in-out infinite',
           pointerEvents: 'none',
         }} />
         <div style={{ position: 'relative', maxWidth: 500, margin: '0 auto', padding: '20px 24px 60px' }}>
@@ -1627,7 +1617,6 @@ function DetailPanelContent({ item, lockedItems, onLock, onAlternatives, alterna
               borderRadius: '50%', animation: 'lila-spin 0.8s linear infinite',
             }} />
             <span style={{ fontFamily: F, fontSize: 13, fontWeight: 400, color: C.muted }}>Loading alternatives...</span>
-            <style>{`@keyframes lila-spin { to { transform: rotate(360deg); } }`}</style>
           </div>
         </div>
       )}
@@ -1769,20 +1758,23 @@ function BookingUploadTrigger({ onExtracted, onError }) {
         reader.readAsDataURL(file);
       });
 
+      const { signal, clear } = fetchWithTimeout(30000);
       const res = await fetch('/api/extract-booking', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ base64Image: base64, mimeType: file.type }),
+        signal,
       });
-      const data = await res.json();
-      if (!res.ok || !data.success) {
-        onError?.(data.error || 'Could not extract booking data.');
+      clear();
+      const { ok, data, error } = await safeJson(res);
+      if (!ok || !data.success) {
+        onError?.(error || data?.error || 'Could not extract booking data.');
         return;
       }
       trackEvent('booking_extracted', { type: data.booking.type, uncertain_count: data.booking._uncertain?.length || 0 });
       onExtracted(data.booking);
-    } catch {
-      onError?.('Something went wrong. Please try again.');
+    } catch (err) {
+      onError?.(err.name === 'AbortError' ? 'Extraction timed out — try a smaller image.' : 'Something went wrong. Please try again.');
     } finally {
       setUploading(false);
     }
@@ -1809,7 +1801,6 @@ function BookingUploadTrigger({ onExtracted, onError }) {
               width: 14, height: 14, border: `2px solid ${C.sage}30`, borderTopColor: C.sage,
               borderRadius: '50%', animation: 'lila-spin 0.8s linear infinite', display: 'inline-block',
             }} />
-            <style>{`@keyframes lila-spin { to { transform: rotate(360deg); } }`}</style>
             Extracting...
           </>
         ) : (
@@ -1977,11 +1968,6 @@ function DetailPanel({ item, onClose, lockedItems, onLock, onAlternatives, alter
   if (isDesktop) {
     return (
       <>
-        <style>{`
-          @keyframes sidePanelSlideIn { from { transform: translateX(100%); } to { transform: translateX(0); } }
-          @keyframes sidePanelBackdropIn { from { opacity: 0; } to { opacity: 1; } }
-        `}</style>
-
         {/* Backdrop */}
         <div onClick={onClose} style={{
           position: 'fixed', inset: 0, zIndex: 249,
@@ -2023,11 +2009,6 @@ function DetailPanel({ item, onClose, lockedItems, onLock, onAlternatives, alter
   // Mobile: bottom sheet
   return (
     <>
-      <style>{`
-        @keyframes bottomSheetSlideIn { from { transform: translateY(100%); } to { transform: translateY(0); } }
-        @keyframes bottomSheetBackdropIn { from { opacity: 0; } to { opacity: 1; } }
-      `}</style>
-
       {/* Backdrop */}
       <div onClick={onClose} style={{
         position: 'fixed', inset: 0, zIndex: 249,
@@ -2557,16 +2538,6 @@ function DayCard({ day, dayIndex = 0, onOpenPanel, lockedItems, onLock, onAltern
 
         return (
           <div style={wrapperStyle} onClick={handleClick}>
-            <style>{`
-              @keyframes practiceBreath {
-                0%   { opacity: 0; transform: translateX(-80%); }
-                12%  { opacity: 0.7; transform: translateX(0%); }
-                45%  { opacity: 0.6; transform: translateX(5%); }
-                60%  { opacity: 0.7; transform: translateX(0%); }
-                75%  { opacity: 0; transform: translateX(-80%); }
-                100% { opacity: 0; transform: translateX(-80%); }
-              }
-            `}</style>
             <div aria-hidden style={{
               position: 'absolute', top: 0, bottom: 0,
               left: '-40%', width: '180%',
@@ -3418,8 +3389,7 @@ function SwapModal({ isOpen, onClose, activityTitle, alternatives, onConfirm, al
                 borderRadius: '50%', animation: 'lila-spin 0.8s linear infinite',
               }} />
               <span style={{ fontFamily: F, fontSize: 13, fontWeight: 400, color: C.muted }}>Loading alternatives...</span>
-              <style>{`@keyframes lila-spin { to { transform: rotate(360deg); } }`}</style>
-            </div>
+              </div>
           ) : (
             <div style={{ fontFamily: F, fontSize: 13, fontWeight: 400, color: C.muted, lineHeight: 1.6, padding: '8px 0' }}>
               No alternatives available — your feedback will be noted in the next refinement.
@@ -3572,13 +3542,13 @@ export default function ItineraryResults() {
 
   // Persist itinerary data to sessionStorage so backpack nav link works
   useEffect(() => {
-    if (rawItinerary) sessionStorage.setItem('lila_raw_itinerary', rawItinerary);
+    try { if (rawItinerary) sessionStorage.setItem('lila_raw_itinerary', rawItinerary); } catch { /* quota */ }
   }, [rawItinerary]);
   useEffect(() => {
-    if (formData) sessionStorage.setItem('lila_form_data', JSON.stringify(formData));
+    try { if (formData) sessionStorage.setItem('lila_form_data', JSON.stringify(formData)); } catch { /* quota */ }
   }, [formData]);
   useEffect(() => {
-    if (metadata) sessionStorage.setItem('lila_metadata', JSON.stringify(metadata));
+    try { if (metadata) sessionStorage.setItem('lila_metadata', JSON.stringify(metadata)); } catch { /* quota */ }
   }, [metadata]);
 
   // Hydrate via server-side API when accessed via a share link (/trip/:token)
@@ -3586,16 +3556,17 @@ export default function ItineraryResults() {
   const fetchSharedTrip = async (token) => {
     setShareError(null);
     setLoadingShared(true);
+    const { signal, clear } = fetchWithTimeout(15000);
     try {
-      const res = await fetch(`/api/get-shared-trip?token=${encodeURIComponent(token)}`);
-      if (!res.ok) {
-        const errBody = await res.json().catch(() => ({}));
-        console.error('[SharedTrip] API error', res.status, errBody);
-        setShareError(`Could not load trip (${res.status})`);
+      const res = await fetch(`/api/get-shared-trip?token=${encodeURIComponent(token)}`, { signal });
+      clear();
+      const { ok, data, error } = await safeJson(res);
+      if (!ok) {
+        console.error('[SharedTrip] API error', error);
+        setShareError(`Could not load trip — ${error}`);
         setLoadingShared(false);
         return;
       }
-      const data = await res.json();
       if (!data.rawItinerary) {
         console.error('[SharedTrip] API returned empty itinerary', data);
         setShareError('This trip has no itinerary data');
@@ -3608,8 +3579,9 @@ export default function ItineraryResults() {
       setLoadingShared(false);
       if (data.formData) setFormData(data.formData);
     } catch (e) {
+      clear();
       console.error('[SharedTrip] fetch exception', e);
-      setShareError('Network error — check your connection');
+      setShareError(e.name === 'AbortError' ? 'Loading timed out — please refresh' : 'Network error — check your connection');
       setLoadingShared(false);
     }
   };
@@ -3858,7 +3830,7 @@ export default function ItineraryResults() {
         iteration: 0,
       }).then(id => {
         if (id) {
-          sessionStorage.setItem('lila_itinerary_id', id);
+          try { sessionStorage.setItem('lila_itinerary_id', id); } catch { /* quota */ }
           setItineraryId(id);
         }
       });
@@ -3904,9 +3876,9 @@ export default function ItineraryResults() {
       }),
       signal: controller.signal,
     })
-      .then(res => res.json())
-      .then(result => {
-        if (!result.success || !result.alternatives?.days) {
+      .then(res => safeJson(res))
+      .then(({ ok, data: result }) => {
+        if (!ok || !result?.success || !result.alternatives?.days) {
           console.warn('[Alternatives] No valid response:', result.error || 'unknown');
           setAlternativesLoading(false);
           return;
@@ -4114,6 +4086,7 @@ export default function ItineraryResults() {
   const handleLoadMore = async (thumbId) => {
     setLoadingMoreAlts(thumbId);
     const destSlug = metadata?.destination || formData?.destination;
+    const { signal, clear } = fetchWithTimeout(60000);
     try {
       const res = await fetch('/api/generate-alternatives', {
         method: 'POST',
@@ -4124,9 +4097,11 @@ export default function ItineraryResults() {
           itinerary: rawItinerary,
           loadMore: thumbId,
         }),
+        signal,
       });
-      const result = await res.json();
-      if (!result.success || !result.alternatives?.days) return;
+      clear();
+      const { ok, data: result } = await safeJson(res);
+      if (!ok || !result.success || !result.alternatives?.days) return;
 
       const match = thumbId.match(/^day_(\d+)_(timeline|pick)_(\d+)$/);
       if (!match) return;
@@ -4184,6 +4159,7 @@ export default function ItineraryResults() {
           : prev);
       }
     } catch (err) {
+      clear();
       console.error('[Load more alternatives] failed:', err);
     } finally {
       setLoadingMoreAlts(null);
@@ -4218,6 +4194,7 @@ export default function ItineraryResults() {
     const t0 = performance.now();
     setRefining(true);
     setRefineError(null);
+    const { signal, clear } = fetchWithTimeout(180000);
     try {
       const response = await fetch('/api/refine-itinerary', {
         method: 'POST',
@@ -4232,10 +4209,12 @@ export default function ItineraryResults() {
           formData,
           tripLogistics,
         }),
+        signal,
       });
-      const result = await response.json();
-      if (!response.ok || !result.success) {
-        throw new Error(result.error || 'Refinement failed');
+      clear();
+      const { ok, data: result, error } = await safeJson(response);
+      if (!ok || !result.success) {
+        throw new Error(error || result?.error || 'Refinement failed');
       }
       setRawItinerary(result.itinerary);
       setIteration(prev => prev + 1);
@@ -4260,7 +4239,7 @@ export default function ItineraryResults() {
         iteration: nextIteration,
       }).then(id => {
         if (id) {
-          sessionStorage.setItem('lila_itinerary_id', id);
+          try { sessionStorage.setItem('lila_itinerary_id', id); } catch { /* quota */ }
           setItineraryId(id);
         }
       });
@@ -4280,9 +4259,11 @@ export default function ItineraryResults() {
       setLogisticsBaseline(totalBookings);
       trackEvent('refinement_completed', { iteration: nextIteration, duration_ms: Math.round(performance.now() - t0) });
     } catch (err) {
+      clear();
       console.error('Refinement failed:', err);
-      trackEvent('refinement_failed', { iteration: nextIteration, error_type: err.message || 'unknown' });
-      setRefineError('Something went wrong refining your trip. Please try again.');
+      const isTimeout = err.name === 'AbortError';
+      trackEvent('refinement_failed', { iteration: nextIteration, error_type: isTimeout ? 'timeout' : (err.message || 'unknown') });
+      setRefineError(isTimeout ? 'Refinement timed out — please try again.' : 'Something went wrong refining your trip. Please try again.');
     } finally {
       setRefining(false);
       setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 50);
@@ -4346,6 +4327,21 @@ export default function ItineraryResults() {
 
   return (
     <div style={{ fontFamily: F, background: C.warm, minHeight: '100vh' }}>
+      <style>{`
+        @keyframes lila-spin { to { transform: rotate(360deg); } }
+        @keyframes practiceBreath {
+          0%   { opacity: 0; transform: translateX(-80%); }
+          12%  { opacity: 0.7; transform: translateX(0%); }
+          45%  { opacity: 0.6; transform: translateX(5%); }
+          60%  { opacity: 0.7; transform: translateX(0%); }
+          75%  { opacity: 0; transform: translateX(-80%); }
+          100% { opacity: 0; transform: translateX(-80%); }
+        }
+        @keyframes sidePanelSlideIn { from { transform: translateX(100%); } to { transform: translateX(0); } }
+        @keyframes sidePanelBackdropIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes bottomSheetSlideIn { from { transform: translateY(100%); } to { transform: translateY(0); } }
+        @keyframes bottomSheetBackdropIn { from { opacity: 0; } to { opacity: 1; } }
+      `}</style>
       <RefiningOverlay visible={refining} iteration={iteration} />
 
       {/* First draft modal */}

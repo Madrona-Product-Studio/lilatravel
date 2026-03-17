@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { C as BrandC } from '@data/brand';
 import { translateFormToApi } from "../services/form-to-api";
 import { trackEvent } from '@utils/analytics';
+import { safeJson, fetchWithTimeout } from '@utils/fetchHelpers';
 import LilaModal from '@components/LilaModal';
 
 // ─── Brand Tokens (extended from site brand system) ─────────────────────────
@@ -2150,15 +2151,18 @@ export default function PlanMyTrip() {
     sessionStorage.removeItem('lila_raw_itinerary');
     sessionStorage.removeItem('lila_form_data');
     sessionStorage.removeItem('lila_metadata');
+    const { signal, clear } = fetchWithTimeout(180000);
     try {
       const apiBody = translateFormToApi(data);
       const response = await fetch('/api/generate-itinerary', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(apiBody),
+        signal,
       });
-      const result = await response.json();
-      if (result.success) {
+      clear();
+      const { ok, data: result, error } = await safeJson(response);
+      if (ok && result.success) {
         navigate('/itinerary', {
           state: {
             itinerary: result.itinerary,
@@ -2168,12 +2172,14 @@ export default function PlanMyTrip() {
         });
       } else {
         trackEvent('itinerary_generation_failed', { destination: data.destination || undefined, error_type: 'api_error' });
-        setErrorMessage('Something went wrong generating your itinerary. Please try again.');
+        setErrorMessage(error || 'Something went wrong generating your itinerary. Please try again.');
       }
     } catch (err) {
+      clear();
       console.error('Itinerary generation failed:', err);
-      trackEvent('itinerary_generation_failed', { destination: data.destination || undefined, error_type: err.message || 'network_error' });
-      setErrorMessage('Something went wrong. Please try again.');
+      const isTimeout = err.name === 'AbortError';
+      trackEvent('itinerary_generation_failed', { destination: data.destination || undefined, error_type: isTimeout ? 'timeout' : (err.message || 'network_error') });
+      setErrorMessage(isTimeout ? 'This is taking longer than expected. Please try again.' : 'Something went wrong. Please try again.');
     } finally {
       setGenerating(false);
     }
