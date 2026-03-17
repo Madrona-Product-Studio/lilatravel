@@ -20,7 +20,7 @@ export const CELESTIAL_CONFIG = {
     parkCode: "jotr",
     bortleClass: 2,
   },
-  olympic: {
+  'olympic-peninsula': {
     name: "Olympic Peninsula",
     lat: 47.8021,
     lon: -123.6044,
@@ -28,7 +28,7 @@ export const CELESTIAL_CONFIG = {
     parkCode: "olym",
     bortleClass: 3,
   },
-  bigSur: {
+  'big-sur': {
     name: "Big Sur",
     lat: 36.2704,
     lon: -121.8081,
