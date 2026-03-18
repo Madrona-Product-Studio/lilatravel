@@ -436,14 +436,14 @@ const approachBraids = [
     icon: "△\uFE0E",
     color: "#7DB8A0",
     headline: "The landscape is the teacher.",
-    tags: ["Outdoor Meccas", "Seasonal Rhythms", "Canyon & Desert", "Old-Growth Forest", "Wild Coastline", "Alpine Peaks"],
+    tags: ["Seasonal Rhythms", "Canyon & Desert", "Old-Growth Forest", "Wild Coastline", "Mountain Summits"],
   },
   {
     label: "Ancient Practices",
     icon: "◎\uFE0E",
     color: "#D4A853",
     headline: "Steeped in living tradition.",
-    tags: ["Yoga Asana", "Meditation", "Breathwork", "Mindful Movement", "Personal Reflection", "Ceremonies"],
+    tags: ["Yoga", "Meditation", "Breathwork", "Mindful Movement", "Forest Bathing", "Contemplation"],
   },
   {
     label: "Elemental Encounters",
