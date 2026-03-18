@@ -11,7 +11,7 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
-import { Nav, Footer, FadeIn, Breadcrumb } from '@components';
+import { Nav, Footer, FadeIn, Breadcrumb, WhisperBar } from '@components';
 import TripCard from '@components/TripCard';
 import { C } from '@data/brand';
 import { P } from '@data/photos';
@@ -1755,6 +1755,7 @@ export default function JoshuaTreeGuide() {
         onClose={() => setActiveSheet(null)}
         isMobile={isMobile}
       />
+      <WhisperBar destination="joshuaTree" label="Joshua Tree" />
       <Footer />
     </>
   );

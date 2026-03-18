@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useSearchParams } from 'react-router-dom';
 import { C as BrandC } from '@data/brand';
 import { translateFormToApi } from "../services/form-to-api";
 import { trackEvent } from '@utils/analytics';
@@ -2062,9 +2062,14 @@ const STEP_NAMES = [
 
 export default function PlanMyTrip() {
   const navigate = useNavigate();
-  const [step, setStep] = useState(0);
+  const [searchParams] = useSearchParams();
+  const destParam = searchParams.get('destination');
+  const validDests = new Set(["zion","joshuaTree","bigSur","olympic","kauai","vancouver"]);
+  const preselected = validDests.has(destParam) ? destParam : null;
+
+  const [step, setStep] = useState(preselected ? 2 : 0);
   const [data, setData] = useState({
-    destination: null, groupType: null, groupSize: 1,
+    destination: preselected, groupType: null, groupSize: 1,
     month: null, dateStart: null, dateEnd: null,
     intentions: [], movement: 30,
     pacing: 50, range: 35, duration: 4, budget: null, stayStyle: null,
