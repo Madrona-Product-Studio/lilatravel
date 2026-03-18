@@ -1290,10 +1290,18 @@ export default function VancouverIslandGuide() {
 
             <div>
               <ExpandableList initialCount={5} label="places to stay">
+                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="rooted" name="Pluvio Restaurant + Rooms" location="Ucluelet" featured
+                  url="https://www.pluviorestaurant.com/"
+                  detail="Six rooms above the best restaurant in Ucluelet. Small, thoughtfully furnished, quiet. Book room + dinner as a package."
+                  tags={["6 Rooms", "Restaurant", "Intimate", "James Beard"]} />
                 <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="elemental" name="Green Point Campground" location="Pacific Rim National Park" featured
                   url="https://parks.canada.ca/pn-np/bc/pacificrim/activ/camping"
                   detail="The only campground inside the Long Beach unit — clifftop sites above the Pacific, ocean sound throughout the night. Reservation system opens in February; it fills in hours. Worth planning months ahead."
                   tags={["Camping", "Clifftop", "Pacific Views", "Reserve Early"]} />
+                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="premium" name="Wickaninnish Inn" location="Chesterman Beach, Tofino" featured
+                  url="https://www.wickinn.com/"
+                  detail="The defining luxury property on the outer coast of British Columbia. Every room faces the Pacific with floor-to-ceiling windows designed for storm watching. Ancient Cedars Spa. The Pointe Restaurant. Reserve 6-12 months ahead."
+                  tags={["Storm Watching", "Spa", "Pointe Restaurant", "World-Class"]} />
                 <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="elemental" name="Wya Point Resort" location="Ucluelet — Tribal Land" featured
                   url="https://www.wyapoint.com/"
                   detail="Owned and operated by the Yuułuʔiłʔatḥ First Nation. Oceanfront yurts, tent camping, and rustic lodging on 600 acres of old-growth forest on an exclusive beach. Sleeping on land cared for by the Nation that has held it for 10,000 years."
@@ -1310,14 +1318,6 @@ export default function VancouverIslandGuide() {
                   url="https://www.longbeachlodgeresort.com/"
                   detail="Dedicated surf camp operation and a well-regarded dining room (the Pointe Restaurant). The great room has a fireplace the size of a car and views of the Pacific that command attention."
                   tags={["Surf Camp", "Restaurant", "Great Room", "Beach"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="rooted" name="Pluvio Restaurant + Rooms" location="Ucluelet" featured
-                  url="https://www.pluviorestaurant.com/"
-                  detail="Six rooms above the best restaurant in Ucluelet. Small, thoughtfully furnished, quiet. Book room + dinner as a package."
-                  tags={["6 Rooms", "Restaurant", "Intimate", "James Beard"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="premium" name="Wickaninnish Inn" location="Chesterman Beach, Tofino" featured
-                  url="https://www.wickinn.com/"
-                  detail="The defining luxury property on the outer coast of British Columbia. Every room faces the Pacific with floor-to-ceiling windows designed for storm watching. Ancient Cedars Spa. The Pointe Restaurant. Reserve 6-12 months ahead."
-                  tags={["Storm Watching", "Spa", "Pointe Restaurant", "World-Class"]} />
               </ExpandableList>
             </div>
           </section>

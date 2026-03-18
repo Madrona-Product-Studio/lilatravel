@@ -1053,9 +1053,16 @@ export default function OlympicPeninsulaGuide() {
 
             <div>
               <ExpandableList initialCount={5} label="places to stay">
+                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="rooted" name="Lake Crescent Lodge" location="Lake Crescent" featured
+                  url="https://www.olympicnationalparks.com/lodging/lake-crescent-lodge/"
+                  detail={"A historic park lodge on the shore of Lake Crescent, operating since 1916. The lakeside cottages are the ones worth requesting. The view from the porch is unreasonable. Reserve well in advance for summer."}
+                  tags={["Historic 1916", "Lakeside Cottages", "Dining Room"]} />
                 <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="elemental" name="Kalaloch Campground" location="Kalaloch Coast" featured
                   detail={"The only campground in the park with ocean views — sites sit above a wild beach, and the sound of the surf is your constant companion. Bluff sites are the ones to aim for. Book on recreation.gov."}
                   tags={["Ocean Views", "Bluff Sites", "First-Come"]} />
+                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="premium" name="Domaine Madeleine" location="Port Angeles" featured
+                  detail={"Waterfront B&B on the Strait of Juan de Fuca with views to Vancouver Island. Five suites, French-influenced interiors, exceptional breakfasts, kayaks available. A genuine sanctuary for a rest day."}
+                  tags={["Waterfront B&B", "Strait Views", "French-Influenced"]} />
                 <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="elemental" name="Hoh Campground" location="Hoh Rainforest"
                   detail={"Deep in the rainforest, at the end of Upper Hoh Road. Mossy, quiet, atmospheric. Year-round access. Walk to the Hall of Mosses before the day hikers arrive. Elk are common visitors at dawn."}
                   tags={["Rainforest", "Year-Round", "Elk at Dawn"]} />
@@ -1066,10 +1073,6 @@ export default function OlympicPeninsulaGuide() {
                   url="https://quileuteoceanside.com/"
                   detail={"Tribally owned and operated by the Quileute Nation, directly on First Beach. Cabins, RV sites, a small motel building — the setting is the thing. Views of sea stacks from your window or from the beach ten steps away."}
                   tags={["Tribal-Owned", "First Beach", "Sea Stacks", "Book Early"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="rooted" name="Lake Crescent Lodge" location="Lake Crescent" featured
-                  url="https://www.olympicnationalparks.com/lodging/lake-crescent-lodge/"
-                  detail={"A historic park lodge on the shore of Lake Crescent, operating since 1916. The lakeside cottages are the ones worth requesting. The view from the porch is unreasonable. Reserve well in advance for summer."}
-                  tags={["Historic 1916", "Lakeside Cottages", "Dining Room"]} />
                 <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="rooted" name="Kalaloch Lodge" location="Kalaloch Coast"
                   url="https://www.olympicnationalparks.com/lodging/kalaloch-lodge/"
                   detail={"NPS-managed lodge on a bluff above the wild coast. A National Historic Landmark. Cabins closest to the bluff edge are extraordinary. The location is exceptional. Reserve 6+ months out for summer."}
@@ -1077,9 +1080,6 @@ export default function OlympicPeninsulaGuide() {
                 <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="rooted" name="Palace Hotel" location="Port Townsend"
                   detail={"A restored Victorian hotel in the heart of Port Townsend's historic district — individually decorated rooms, original woodwork, above a lively arts town. Good base for accessing the park's eastern zones."}
                   tags={["Victorian", "Arts Town", "Historic District"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="premium" name="Domaine Madeleine" location="Port Angeles" featured
-                  detail={"Waterfront B&B on the Strait of Juan de Fuca with views to Vancouver Island. Five suites, French-influenced interiors, exceptional breakfasts, kayaks available. A genuine sanctuary for a rest day."}
-                  tags={["Waterfront B&B", "Strait Views", "French-Influenced"]} />
                 <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="premium" name="Manresa Castle" location="Port Townsend"
                   detail={"Historic castle hotel above Port Townsend. Restored Victorian grandeur, views of Puget Sound. For those who want their park stay to include something architecturally distinct."}
                   tags={["Castle Hotel", "Puget Sound Views", "Victorian"]} />

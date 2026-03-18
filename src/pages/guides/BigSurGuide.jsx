@@ -977,9 +977,15 @@ export default function BigSurGuide() {
 
             <div>
               <ExpandableList initialCount={5} label="places to stay">
+                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="rooted" name="Asilomar Conference Grounds" location="Pacific Grove" featured
+                  detail={"107 acres of Pacific Grove beachfront — sand dunes, Monterey pines, tide pools. 313 rooms across 30 historic buildings designed by Julia Morgan. No televisions. Fire pits, heated pool, miles of walking paths. The name is a portmanteau of asilo (refuge) and mar (sea). Walking distance to Monarch Butterfly Sanctuary and 17-Mile Drive."}
+                  tags={["Julia Morgan", "Beachfront", "No TVs", "State Parks"]} />
                 <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="elemental" name="Pfeiffer Big Sur State Park Campground" location="Big Sur" featured
                   detail={"218 sites in a cathedral redwood grove along the Big Sur River. The most popular campground in California — reservations open 6 months in advance and book within minutes. Worth setting a reservation alert. Dark sky conditions good; the river provides constant ambient sound."}
                   tags={["Redwood Grove", "River", "218 Sites", "Book 6 Mo Ahead"]} />
+                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="premium" name="Post Ranch Inn" location="Big Sur" featured
+                  detail={"The most acclaimed hotel on the California coast. 40 accommodations — ocean view suites, treehouses on stilts, cliff houses cantilevered 1,200 feet above the sea. No televisions or alarm clocks. No children under 18. Three Michelin Keys. Sierra Mar restaurant at dinner. The standard against which all similar experiences are measured."}
+                  tags={["Three Michelin Keys", "Treehouses", "Sierra Mar", "No TVs"]} />
                 <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="elemental" name="Kirk Creek Campground" location="Los Padres NF"
                   detail={"Clifftop sites directly above the Pacific — the most dramatic camping in California. 33 sites, all with ocean views. No hookups, no showers. At the southern end of the corridor, 30 miles south of Pfeiffer. Among the best drive-in stargazing campgrounds in the state."}
                   tags={["Clifftop", "Ocean Views", "Dark Sky", "Bortle 2"]} />
@@ -995,18 +1001,12 @@ export default function BigSurGuide() {
                 <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="rooted" name="Big Sur Lodge" location="Pfeiffer Big Sur SP"
                   detail={"Operated by California State Parks. Basic but storied — cottages inside the state park, walking distance to every trailhead. The least expensive roofed accommodation in the Big Sur corridor and the most convenient for serious hikers."}
                   tags={["State Park", "Trail Access", "Affordable"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="rooted" name="Asilomar Conference Grounds" location="Pacific Grove" featured
-                  detail={"107 acres of Pacific Grove beachfront — sand dunes, Monterey pines, tide pools. 313 rooms across 30 historic buildings designed by Julia Morgan. No televisions. Fire pits, heated pool, miles of walking paths. The name is a portmanteau of asilo (refuge) and mar (sea). Walking distance to Monarch Butterfly Sanctuary and 17-Mile Drive."}
-                  tags={["Julia Morgan", "Beachfront", "No TVs", "State Parks"]} />
                 <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="rooted" name="Bernardus Lodge & Spa" location="Carmel Valley"
                   detail={"Fifteen miles inland from Carmel. Vineyard estate with full-service spa, heated pool, and restaurant built around estate wine and local produce. Warm, dry, sun-drenched when the coastal fog is thick."}
                   tags={["Wine Country", "Spa", "Inland", "Fog-Free"]} />
                 <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="rooted" name="L'Auberge Carmel" location="Carmel-by-the-Sea"
                   detail={"Relais & Chateaux property in a 1929 building in Carmel village center. 20 rooms with antique furnishings, fireplace, and the Aubergine restaurant (one Michelin star) downstairs."}
                   tags={["Relais & Chateaux", "Michelin Star", "Village Center"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="premium" name="Post Ranch Inn" location="Big Sur" featured
-                  detail={"The most acclaimed hotel on the California coast. 40 accommodations — ocean view suites, treehouses on stilts, cliff houses cantilevered 1,200 feet above the sea. No televisions or alarm clocks. No children under 18. Three Michelin Keys. Sierra Mar restaurant at dinner. The standard against which all similar experiences are measured."}
-                  tags={["Three Michelin Keys", "Treehouses", "Sierra Mar", "No TVs"]} />
                 <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="premium" name="Alila Ventana Big Sur" location="Big Sur"
                   detail={"Adults-only, all-inclusive resort in the redwood canyon above the Pacific. All meals, wellness programming, Spa Alila access, and guided experiences included. Safari glamping and tent camping also bookable on the property."}
                   tags={["All-Inclusive", "Adults Only", "Spa Alila", "Redwood Canyon"]} />

@@ -1560,10 +1560,18 @@ export default function JoshuaTreeGuide() {
 
             <div>
               <ExpandableList initialCount={5} label="places to stay">
+                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="rooted" name="29 Palms Inn" location="Twentynine Palms" featured
+                  url="https://29palmsinn.com/"
+                  detail="Historic oasis property since 1928. Adobe bungalows around a natural pool fed by underground spring. Gardens, resident animals, a genuinely timeless quality."
+                  tags={["Historic", "Oasis", "Gardens", "Since 1928"]} />
                 <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="elemental" name="Skylight Joshua Tree" location="Twentynine Palms" featured
                   url="https://www.skylightjt.com/"
                   detail="Intentionally designed desert cabins and domes near the park's north edge. Stargazing-optimized. Off-grid feel with considered design."
                   tags={["Cabins", "Domes", "Stargazing", "Design"]} />
+                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="premium" name="Two Bunch Palms" location="Desert Hot Springs" featured
+                  url="https://www.twobunchpalms.com/"
+                  detail="Historic mineral hot springs spa. Grotto, thermal pools, healing arts. A true decompression experience."
+                  tags={["Hot Springs", "Spa", "Grotto", "Historic"]} />
                 <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="elemental" name="Jumbo Rocks Campground" location="Inside the park"
                   detail="124 sites set among massive boulder formations. The most immersive camping in the park. Dark sky conditions excellent. First-come, first-served."
                   tags={["Camping", "Boulders", "Dark Sky", "FCFS"]} />
@@ -1571,10 +1579,6 @@ export default function JoshuaTreeGuide() {
                   url="https://www.hicksville.com/"
                   detail="Vintage trailers on a small ranch. Each themed and designed. Playful, adult, deeply Joshua Tree in spirit. Hot tub, pool, fire pit."
                   tags={["Vintage Trailers", "Pool", "Hot Tub", "Quirky"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="rooted" name="29 Palms Inn" location="Twentynine Palms" featured
-                  url="https://29palmsinn.com/"
-                  detail="Historic oasis property since 1928. Adobe bungalows around a natural pool fed by underground spring. Gardens, resident animals, a genuinely timeless quality."
-                  tags={["Historic", "Oasis", "Gardens", "Since 1928"]} />
                 <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="rooted" name="Sacred Sands" location="Joshua Tree town"
                   url="https://www.sacredsands.com/"
                   detail="Boutique B&B — two rooms only. Thoughtfully appointed, meditation garden, personal attention, 360-degree desert views."
@@ -1583,10 +1587,6 @@ export default function JoshuaTreeGuide() {
                   url="https://www.pioneertownmotel.com/"
                   detail="Basic but atmospheric. The only place to sleep in Pioneertown itself. Walking distance to Pappy's."
                   tags={["Motel", "Atmospheric", "Pappy's Access"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="premium" name="Two Bunch Palms" location="Desert Hot Springs" featured
-                  url="https://www.twobunchpalms.com/"
-                  detail="Historic mineral hot springs spa. Grotto, thermal pools, healing arts. A true decompression experience."
-                  tags={["Hot Springs", "Spa", "Grotto", "Historic"]} />
                 <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="premium" name="Parker Palm Springs" location="Palm Springs" featured
                   url="https://www.parkerpalmsprings.com/"
                   detail="Jonathan Adler-designed, 13 acres. The most design-forward major property in the valley. Pool culture, strong restaurant (Norma's), unhurried pace."

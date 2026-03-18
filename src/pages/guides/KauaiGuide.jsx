@@ -977,10 +977,18 @@ export default function KauaiGuide() {
 
             <div>
               <ExpandableList initialCount={5} label="places to stay">
+                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="rooted" name="Hanalei Colony Resort" location="North Shore" featured
+                  url="https://www.hcr.com/"
+                  detail={"The only true beachfront property in Hanalei. No TVs, no phones in rooms — simple condos facing the beach. The best base for Kalalau Trail day hikers."}
+                  tags={["Beachfront", "No TVs", "Kalalau Base"]} />
                 <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="elemental" name={"Hāʻena Beach Park Camping"} location="North Shore" featured
                   url="https://dlnr.hawaii.gov/dsp/parks/kauai/"
                   detail={"The closest camping to the Kalalau trailhead — five campsites on the beach at Hāʻena, a short walk from Keʻe Beach and the Limahuli Garden. One of the most atmospheric camping locations in the state."}
                   tags={["Beach Camping", "Kalalau Access", "Reservations Required"]} />
+                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="premium" name={"Grand Hyatt Kauaʻi Resort & Spa"} location="Poipū" featured
+                  url="https://www.hyatt.com/grand-hyatt/en-US/kauai"
+                  detail={"The grandest property on the island — lagoon pools, full Anara Spa with Hawaiian healing traditions, beachfront access to Shipwreck Beach, lush grounds. The south shore's most complete luxury experience."}
+                  tags={["Lagoon Pools", "Anara Spa", "Beachfront", "Luxury"]} />
                 <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="elemental" name={"Kōkeʻe State Park Cabins"} location="West Side"
                   url="https://www.kokee.net/"
                   detail={"Rustic cabins in the highlands above Waimea Canyon at 3,600 feet. Cool temperatures, canyon and swamp trail access, birdsong from species found nowhere else on Earth. Extremely affordable."}
@@ -989,10 +997,6 @@ export default function KauaiGuide() {
                   url="https://dlnr.hawaii.gov/dsp/parks/kauai/polihale-state-park/"
                   detail={"Remote camping on the westernmost beach on Kauaʻi — 17 miles of empty beach backed by the Nā Pali cliffs. Rough dirt road access. The darkness is exceptional. The sunsets are the best on the island."}
                   tags={["Remote", "Dark Sky", "Sunsets", "4WD"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="rooted" name="Hanalei Colony Resort" location="North Shore" featured
-                  url="https://www.hcr.com/"
-                  detail={"The only true beachfront property in Hanalei. No TVs, no phones in rooms — simple condos facing the beach. The best base for Kalalau Trail day hikers."}
-                  tags={["Beachfront", "No TVs", "Kalalau Base"]} />
                 <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="rooted" name={"Kauaʻi Inn"} location={"Līhuʻe"}
                   url="https://www.kauai-inn.com/"
                   detail={"The most practical affordable hotel on the island — well-located near the airport, clean and simple, operated with care. A good first and last night option."}
@@ -1000,10 +1004,6 @@ export default function KauaiGuide() {
                 <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="rooted" name={"Nā Pali Coast Cottages"} location="North Shore"
                   detail={"Small independent cottage rentals on the north shore. Look for locally owned, long-established properties. The north shore cottage experience is a Kauaʻi original."}
                   tags={["Cottage", "Local", "North Shore"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="premium" name={"Grand Hyatt Kauaʻi Resort & Spa"} location="Poipū" featured
-                  url="https://www.hyatt.com/grand-hyatt/en-US/kauai"
-                  detail={"The grandest property on the island — lagoon pools, full Anara Spa with Hawaiian healing traditions, beachfront access to Shipwreck Beach, lush grounds. The south shore's most complete luxury experience."}
-                  tags={["Lagoon Pools", "Anara Spa", "Beachfront", "Luxury"]} />
                 <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="premium" name={"Timbers Kauaʻi"} location={"Hōkūala, Līhuʻe"}
                   url="https://www.timberskauai.com/"
                   detail={"A newer luxury property on the eastern coast, set on a former plantation estate. Organic farm on-site, direct ocean access, considered design. Less crowded than Poipū; a quieter base."}

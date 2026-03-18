@@ -2160,23 +2160,23 @@ export default function ZionGuide() {
             </FadeIn>
 
             <div>
-              <ExpandableList initialCount={4} label="places to stay">
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="elemental" name="Under Canvas Zion" location="Virgin, UT" featured
-                  url="https://www.undercanvas.com/camps/zion/"
-                  detail="Safari-style tents on 196 acres. DarkSky certified. Stargazer tents with sky windows above your bed. No WiFi — by design."
-                  tags={["Glamping", "DarkSky", "Seasonal"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="elemental" name="AutoCamp Zion" location="Virgin, UT" featured
-                  url="https://autocamp.com/zion/"
-                  detail="Climate-controlled Airstream suites with midcentury design. Retro charm, modern comfort."
-                  tags={["Airstreams", "Climate-Controlled", "Hilton Points"]} />
+              <ExpandableList initialCount={5} label="places to stay">
                 <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="rooted" name="Cliffrose Springdale" location="Springdale" featured
                   url="https://www.cliffroselodge.com/"
                   detail="Five acres of gardens on the Virgin River. Heated pools year-round. Anthera restaurant. Steps from the park."
                   tags={["Riverfront", "Restaurant", "Spa", "Pool"]} />
+                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="elemental" name="Under Canvas Zion" location="Virgin, UT" featured
+                  url="https://www.undercanvas.com/camps/zion/"
+                  detail="Safari-style tents on 196 acres. DarkSky certified. Stargazer tents with sky windows above your bed. No WiFi — by design."
+                  tags={["Glamping", "DarkSky", "Seasonal"]} />
                 <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="premium" name="Amangiri" location="Canyon Point, UT" featured
                   url="https://www.aman.com/hotels/amangiri"
                   detail="34 modernist suites on 900 acres. Camp Sarika with private plunge pools. Aman Spa with Navajo healing traditions."
                   tags={["Ultra-Luxury", "Via Ferrata", "Spa"]} />
+                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="elemental" name="AutoCamp Zion" location="Virgin, UT" featured
+                  url="https://autocamp.com/zion/"
+                  detail="Climate-controlled Airstream suites with midcentury design. Retro charm, modern comfort."
+                  tags={["Airstreams", "Climate-Controlled", "Hilton Points"]} />
                 <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="elemental" name="Open Sky Zion" location="Virgin, UT"
                   url="https://www.openskyzion.com/"
                   detail="Private and immersive. Farm-to-table at Black Sage restaurant. Wellness woven into every element."
