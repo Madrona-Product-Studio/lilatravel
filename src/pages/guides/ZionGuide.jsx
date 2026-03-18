@@ -1451,7 +1451,7 @@ function GuideNav({ isMobile }) {
     if (!el) return;
     const guideNavHeight = navRef.current?.offsetHeight || 52;
     const mainNavHeight = isMobile ? 58 : 64;
-    const y = el.getBoundingClientRect().top + window.scrollY - guideNavHeight - mainNavHeight - 16;
+    const y = el.getBoundingClientRect().top + window.scrollY - guideNavHeight - mainNavHeight - 32;
     window.scrollTo({ top: y, behavior: "smooth" });
   }, [isMobile]);
 
@@ -2022,7 +2022,7 @@ export default function ZionGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* SENSE OF PLACE                                                */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="sense-of-place" style={{ padding: "44px 0" }}>
+          <section id="sense-of-place" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
             <FadeIn>
               <SectionLabel>Sense of Place</SectionLabel>
               <p style={{
@@ -2097,7 +2097,7 @@ export default function ZionGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* MAGIC WINDOWS                                                 */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="when-to-go" style={{ padding: "44px 0" }}>
+          <section id="when-to-go" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
             <FadeIn>
               <SectionIcon type="windows" />
               <SectionLabel>Magic Windows</SectionLabel>
@@ -2128,7 +2128,7 @@ export default function ZionGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* STAY                                                          */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="where-to-stay" style={{ padding: "44px 0" }}>
+          <section id="where-to-stay" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
             <FadeIn>
               <SectionIcon type="stay" />
               <SectionLabel>Stay</SectionLabel>
@@ -2223,7 +2223,7 @@ export default function ZionGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* MOVE                                                          */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="trails" style={{ padding: "44px 0" }}>
+          <section id="trails" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
             <FadeIn>
               <SectionIcon type="move" />
               <SectionLabel>Move</SectionLabel>
@@ -2381,7 +2381,7 @@ export default function ZionGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* BREATHE                                                       */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="wellness" style={{ padding: "44px 0" }}>
+          <section id="wellness" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
             <FadeIn>
               <SectionIcon type="breathe" />
               <SectionLabel>Breathe</SectionLabel>
@@ -2462,7 +2462,7 @@ export default function ZionGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* AWAKEN                                                        */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="light-sky" style={{ padding: "44px 0" }}>
+          <section id="light-sky" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
             <FadeIn>
               <SectionIcon type="awaken" />
               <SectionLabel>Awaken</SectionLabel>
@@ -2504,7 +2504,7 @@ export default function ZionGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* CONNECT                                                       */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="food-culture" style={{ padding: "44px 0" }}>
+          <section id="food-culture" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
             <FadeIn>
               <SectionIcon type="connect" />
               <SectionLabel>Connect</SectionLabel>
@@ -2604,7 +2604,7 @@ export default function ZionGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* GROUP TRIPS — ZION                                             */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="group-trips" style={{ padding: "48px 0" }}>
+          <section id="group-trips" style={{ scrollMarginTop: 126, padding: "48px 0" }}>
             <FadeIn>
               <SectionIcon type="threshold" />
               <SectionLabel>Group Trips</SectionLabel>
@@ -2669,7 +2669,7 @@ export default function ZionGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* CTA — DUAL PATH                                               */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="cta" style={{ padding: "56px 0 72px", textAlign: "center" }}>
+          <section id="cta" style={{ scrollMarginTop: 126, padding: "56px 0 72px", textAlign: "center" }}>
             <FadeIn>
               <span style={{
                 fontFamily: "'Quicksand', sans-serif",

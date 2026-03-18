@@ -612,7 +612,7 @@ function GuideNav({ isMobile }) {
     if (!el) return;
     const guideNavHeight = navRef.current?.offsetHeight || 52;
     const mainNavHeight = isMobile ? 58 : 64;
-    const y = el.getBoundingClientRect().top + window.scrollY - guideNavHeight - mainNavHeight - 16;
+    const y = el.getBoundingClientRect().top + window.scrollY - guideNavHeight - mainNavHeight - 32;
     window.scrollTo({ top: y, behavior: "smooth" });
   }, [isMobile]);
 
@@ -1152,7 +1152,7 @@ export default function VancouverIslandGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* SENSE OF PLACE                                                */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="sense-of-place" style={{ padding: "44px 0" }}>
+          <section id="sense-of-place" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
             <FadeIn>
               <SectionLabel>Sense of Place</SectionLabel>
               <p style={{
@@ -1206,7 +1206,7 @@ export default function VancouverIslandGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* WHEN TO GO                                                    */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="when-to-go" style={{ padding: "44px 0" }}>
+          <section id="when-to-go" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
             <FadeIn>
               <SectionIcon type="windows" />
               <SectionLabel>Magic Windows</SectionLabel>
@@ -1257,7 +1257,7 @@ export default function VancouverIslandGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* STAY                                                          */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="where-to-stay" style={{ padding: "44px 0" }}>
+          <section id="where-to-stay" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
             <FadeIn>
               <SectionIcon type="stay" />
               <SectionLabel>Unique Stays</SectionLabel>
@@ -1324,7 +1324,7 @@ export default function VancouverIslandGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* TRAILS                                                        */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="trails" style={{ padding: "44px 0" }}>
+          <section id="trails" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
             <FadeIn>
               <SectionIcon type="move" />
               <SectionLabel>Sacred Terrain</SectionLabel>
@@ -1395,7 +1395,7 @@ export default function VancouverIslandGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* WELLNESS                                                      */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="wellness" style={{ padding: "44px 0" }}>
+          <section id="wellness" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
             <FadeIn>
               <SectionIcon type="breathe" />
               <SectionLabel>Living Practice</SectionLabel>
@@ -1445,7 +1445,7 @@ export default function VancouverIslandGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* LIGHT & SKY — DISCOVER                                       */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="light-sky" style={{ padding: "44px 0" }}>
+          <section id="light-sky" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
             <FadeIn>
               <SectionIcon type="awaken" />
               <SectionLabel>Discover</SectionLabel>
@@ -1493,7 +1493,7 @@ export default function VancouverIslandGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* FOOD & CULTURE                                                */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="food-culture" style={{ padding: "44px 0" }}>
+          <section id="food-culture" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
             <FadeIn>
               <SectionIcon type="connect" />
               <SectionLabel>Connect</SectionLabel>
@@ -1581,7 +1581,7 @@ export default function VancouverIslandGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* GROUP TRIPS                                                   */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="group-trips" style={{ padding: "48px 0" }}>
+          <section id="group-trips" style={{ scrollMarginTop: 126, padding: "48px 0" }}>
             <FadeIn>
               <SectionIcon type="group" />
               <SectionLabel>Group Trips</SectionLabel>
@@ -1645,7 +1645,7 @@ export default function VancouverIslandGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* CTA                                                           */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="cta" style={{ padding: "56px 0 72px", textAlign: "center" }}>
+          <section id="cta" style={{ scrollMarginTop: 126, padding: "56px 0 72px", textAlign: "center" }}>
             <FadeIn>
               <span style={{
                 fontFamily: "'Quicksand', sans-serif",

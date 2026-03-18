@@ -527,7 +527,7 @@ function GuideNav({ isMobile }) {
     if (!el) return;
     const guideNavHeight = navRef.current?.offsetHeight || 52;
     const mainNavHeight = isMobile ? 58 : 64;
-    const y = el.getBoundingClientRect().top + window.scrollY - guideNavHeight - mainNavHeight - 16;
+    const y = el.getBoundingClientRect().top + window.scrollY - guideNavHeight - mainNavHeight - 32;
     window.scrollTo({ top: y, behavior: "smooth" });
   }, [isMobile]);
 
@@ -858,7 +858,7 @@ export default function KauaiGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* SENSE OF PLACE                                                */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="sense-of-place" style={{ padding: "44px 0" }}>
+          <section id="sense-of-place" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
             <FadeIn>
               <SectionLabel>Sense of Place</SectionLabel>
               <p style={{
@@ -912,7 +912,7 @@ export default function KauaiGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* WHEN TO GO                                                    */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="when-to-go" style={{ padding: "44px 0" }}>
+          <section id="when-to-go" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
             <FadeIn>
               <SectionIcon type="windows" />
               <SectionLabel>Magic Windows</SectionLabel>
@@ -947,7 +947,7 @@ export default function KauaiGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* STAY                                                          */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="where-to-stay" style={{ padding: "44px 0" }}>
+          <section id="where-to-stay" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
             <FadeIn>
               <SectionIcon type="stay" />
               <SectionLabel>Unique Stays</SectionLabel>
@@ -1017,7 +1017,7 @@ export default function KauaiGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* TRAILS                                                        */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="trails" style={{ padding: "44px 0" }}>
+          <section id="trails" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
             <FadeIn>
               <SectionIcon type="move" />
               <SectionLabel>Sacred Terrain</SectionLabel>
@@ -1101,7 +1101,7 @@ export default function KauaiGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* WELLNESS                                                      */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="wellness" style={{ padding: "44px 0" }}>
+          <section id="wellness" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
             <FadeIn>
               <SectionIcon type="breathe" />
               <SectionLabel>Living Practice</SectionLabel>
@@ -1149,7 +1149,7 @@ export default function KauaiGuide() {
       </section>
 
       {/* Night Sky section with full-width dark background */}
-      <section id="light-sky" style={{ padding: isMobile ? "52px 20px" : "64px 52px", background: C.darkInk }}>
+      <section id="light-sky" style={{ scrollMarginTop: 126, padding: isMobile ? "52px 20px" : "64px 52px", background: C.darkInk }}>
         <div style={{ maxWidth: 680, margin: "0 auto" }}>
           <FadeIn>
             <SectionIcon type="awaken" />
@@ -1215,7 +1215,7 @@ export default function KauaiGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* FOOD & CULTURE                                                */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="food-culture" style={{ padding: "44px 0" }}>
+          <section id="food-culture" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
             <FadeIn>
               <SectionIcon type="connect" />
               <SectionLabel>Connect</SectionLabel>
@@ -1374,7 +1374,7 @@ export default function KauaiGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* GROUP TRIPS                                                   */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="group-trips" style={{ padding: "48px 0" }}>
+          <section id="group-trips" style={{ scrollMarginTop: 126, padding: "48px 0" }}>
             <FadeIn>
               <SectionIcon type="group" />
               <SectionLabel>Group Trips</SectionLabel>
@@ -1424,7 +1424,7 @@ export default function KauaiGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* CTA                                                           */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="cta" style={{ padding: "56px 0 72px", textAlign: "center" }}>
+          <section id="cta" style={{ scrollMarginTop: 126, padding: "56px 0 72px", textAlign: "center" }}>
             <FadeIn>
               <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 700, letterSpacing: "0.28em", textTransform: "uppercase", color: C.oceanTeal, display: "block", marginBottom: 16 }}>Begin</span>
               <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(28px, 5vw, 42px)", fontWeight: 300, color: C.darkInk, margin: "0 0 10px", lineHeight: 1.2 }}>{"Your island trip starts here"}</h3>
