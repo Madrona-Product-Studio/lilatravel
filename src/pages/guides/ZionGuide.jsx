@@ -1481,7 +1481,7 @@ function GuideNav({ isMobile }) {
         <div style={{
           maxWidth: 920,
           margin: "0 auto",
-          padding: isMobile ? "0 16px" : "0 52px",
+          padding: isMobile ? "0 0 0 16px" : "0 40px",
           display: "flex",
           alignItems: "center",
         }}>
@@ -1513,15 +1513,16 @@ function GuideNav({ isMobile }) {
                   onClick={() => handleClick(section.id)}
                   className="guide-nav-scroll"
                   style={{
-                    padding: isMobile ? "16px 14px" : "20px 18px",
+                    padding: isMobile ? "0 16px" : "0 16px",
+                    height: isMobile ? 42 : 44,
                     background: "none",
                     border: "none",
                     borderBottom: `2px solid ${isActive ? C.oceanTeal : "transparent"}`,
                     cursor: "pointer",
                     fontFamily: "'Quicksand', sans-serif",
-                    fontSize: 12,
+                    fontSize: isMobile ? 10.5 : 11,
                     fontWeight: isActive ? 700 : 600,
-                    letterSpacing: "0.14em",
+                    letterSpacing: isMobile ? "0.13em" : "0.14em",
                     textTransform: "uppercase",
                     color: isActive ? C.oceanTeal : "#7A857E",
                     whiteSpace: "nowrap",
@@ -1543,11 +1544,6 @@ function GuideNav({ isMobile }) {
                   }}
                 >
                   {section.label}
-                  <span style={{
-                    display: "inline-block", marginLeft: 4,
-                    fontSize: 9, opacity: isActive ? 1 : 0.5,
-                    transition: "opacity 0.25s",
-                  }}>{"↓"}</span>
                 </button>
               );
             })}

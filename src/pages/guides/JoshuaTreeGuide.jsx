@@ -776,7 +776,7 @@ function GuideNav({ isMobile }) {
         transition: "border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease",
         boxShadow: (isSticky && !isMobile) ? "0 1px 8px rgba(0,0,0,0.04)" : "none",
       }}>
-        <div style={{ maxWidth: 920, margin: "0 auto", padding: isMobile ? "0 16px" : "0 52px", display: "flex", alignItems: "center" }}>
+        <div style={{ maxWidth: 920, margin: "0 auto", padding: isMobile ? "0 0 0 16px" : "0 40px", display: "flex", alignItems: "center" }}>
           <div style={{ flex: 1, minWidth: 0, position: "relative" }}>
             <div ref={scrollContainerRef} className="guide-nav-scroll" style={{ display: "flex", alignItems: "center", gap: isMobile ? 4 : 0, overflowX: "auto", scrollbarWidth: "none", msOverflowStyle: "none", WebkitOverflowScrolling: "touch" }}>
             <style>{`.guide-nav-scroll::-webkit-scrollbar { display: none; }`}</style>
@@ -784,10 +784,10 @@ function GuideNav({ isMobile }) {
               const isActive = activeId === section.id;
               return (
                 <button key={section.id} ref={isActive ? activeItemRef : null} onClick={() => handleClick(section.id)} className="guide-nav-scroll" style={{
-                  padding: isMobile ? "16px 14px" : "20px 18px", background: "none", border: "none",
+                  padding: isMobile ? "0 16px" : "0 16px", height: isMobile ? 42 : 44, background: "none", border: "none",
                   borderBottom: `2px solid ${isActive ? C.goldenAmber : "transparent"}`,
-                  cursor: "pointer", fontFamily: "'Quicksand', sans-serif", fontSize: 12,
-                  fontWeight: isActive ? 700 : 600, letterSpacing: "0.14em", textTransform: "uppercase",
+                  cursor: "pointer", fontFamily: "'Quicksand', sans-serif", fontSize: isMobile ? 10.5 : 11,
+                  fontWeight: isActive ? 700 : 600, letterSpacing: isMobile ? "0.13em" : "0.14em", textTransform: "uppercase",
                   color: isActive ? C.goldenAmber : "#7A857E", whiteSpace: "nowrap", flexShrink: 0,
                   transition: "color 0.25s ease, border-color 0.25s ease", position: "relative",
                 }}
@@ -795,7 +795,6 @@ function GuideNav({ isMobile }) {
                 onMouseLeave={e => { if (!isActive) { e.currentTarget.style.color = "#7A857E"; e.currentTarget.style.borderBottomColor = "transparent"; } }}
                 >
                   {section.label}
-                  <span style={{ display: "inline-block", marginLeft: 4, fontSize: 9, opacity: isActive ? 1 : 0.5, transition: "opacity 0.25s" }}>{"↓"}</span>
                 </button>
               );
             })}
