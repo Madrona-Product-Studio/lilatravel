@@ -16,7 +16,7 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Invalid parkCode' });
   }
 
-  const apiKey = process.env.NPS_API_KEY;
+  const apiKey = process.env.NPS_API_KEY || process.env.VITE_NPS_API_KEY;
   if (!apiKey) {
     return res.status(500).json({ error: 'NPS API key not configured' });
   }
