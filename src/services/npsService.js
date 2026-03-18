@@ -31,7 +31,10 @@ async function fetchThingsToDo(parkCode) {
   const res = await fetch(
     `/api/nps-proxy?endpoint=thingstodo&parkCode=${encodeURIComponent(parkCode)}`
   );
-  if (!res.ok) throw new Error(`NPS Things to Do fetch failed for ${parkCode}`);
+  if (!res.ok) {
+    console.warn(`NPS Things to Do fetch failed for ${parkCode} (${res.status})`);
+    return [];
+  }
   const data = await res.json();
   return data.data || [];
 }
@@ -40,7 +43,10 @@ async function fetchEvents(parkCode) {
   const res = await fetch(
     `/api/nps-proxy?endpoint=events&parkCode=${encodeURIComponent(parkCode)}`
   );
-  if (!res.ok) throw new Error(`NPS Events fetch failed for ${parkCode}`);
+  if (!res.ok) {
+    console.warn(`NPS Events fetch failed for ${parkCode} (${res.status})`);
+    return [];
+  }
   const data = await res.json();
   return data.data || [];
 }

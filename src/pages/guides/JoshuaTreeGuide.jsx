@@ -964,7 +964,7 @@ export default function JoshuaTreeGuide() {
       .then(data => {
         setNpsLookup(buildNPSLookup(data.thingsToDo));
       })
-      .catch(() => {});
+      .catch(err => console.warn('NPS fetch failed:', err.message));
   }, []);
 
   const openSheet = (section) => (item) => {
