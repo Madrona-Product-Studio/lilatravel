@@ -83,7 +83,7 @@ export default function DestinationsPage() {
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <div className="bento-grid">
             {destinations.map((d, i) => {
-              const isHero = i === 0;
+
               return (
                 <FadeIn key={d.slug} delay={i * 0.06}>
                   <Link
@@ -100,7 +100,7 @@ export default function DestinationsPage() {
                     <div className="bento-overlay" />
                     <div style={{
                       position: "absolute", bottom: 0, left: 0, right: 0,
-                      padding: isHero ? "36px 32px" : "24px 24px",
+                      padding: "24px 24px",
                     }}>
                       {/* Golden Windows + Guide status */}
                       <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 6, flexWrap: "wrap" }}>
@@ -139,7 +139,7 @@ export default function DestinationsPage() {
                       {/* Name */}
                       <h3 style={{
                         fontFamily: "'Cormorant Garamond', serif",
-                        fontSize: isHero ? "clamp(28px, 4vw, 42px)" : "clamp(22px, 3vw, 30px)",
+                        fontSize: "clamp(22px, 3vw, 30px)",
                         fontWeight: 300, color: "white", lineHeight: 1.1, marginBottom: 4,
                       }}>{d.slug === 'zion-canyon' ? 'Zion & Orbit' : d.name}</h3>
 
@@ -154,7 +154,7 @@ export default function DestinationsPage() {
                       <div className="bento-desc">
                         <p style={{
                           fontFamily: "'Cormorant Garamond', serif",
-                          fontSize: isHero ? 16 : 14, fontWeight: 300, fontStyle: "normal",
+                          fontSize: 14, fontWeight: 300, fontStyle: "normal",
                           color: "rgba(255,255,255,0.7)", lineHeight: 1.6, marginTop: 8,
                         }}>{d.description}</p>
                       </div>
