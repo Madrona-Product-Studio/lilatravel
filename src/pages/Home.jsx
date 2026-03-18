@@ -310,29 +310,6 @@ function DestCarousel() {
                   Golden Windows
                 </span>
               </div>
-              {d.guideAvailable ? (
-                <div style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
-                  <div style={{ width: 8, height: 8, borderRadius: "50%", background: C.seaGlass || "#7DB8A0" }} />
-                  <span style={{
-                    fontFamily: "'Quicksand'", fontSize: 13, fontWeight: 600,
-                    letterSpacing: "0.06em",
-                    color: C.seaGlass || "#7DB8A0",
-                  }}>
-                    Guide Available
-                  </span>
-                </div>
-              ) : (
-                <div style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
-                  <div style={{ width: 8, height: 8, borderRadius: "50%", background: C.stone || "#B0BEC5" }} />
-                  <span style={{
-                    fontFamily: "'Quicksand'", fontSize: 13, fontWeight: 600,
-                    letterSpacing: "0.06em",
-                    color: C.stone || "#B0BEC5",
-                  }}>
-                    Guide Coming Soon
-                  </span>
-                </div>
-              )}
             </div>
             {d.windows && (
               <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
@@ -932,30 +909,6 @@ export default function HomePage() {
                               textShadow: "0 1px 6px rgba(0,0,0,0.5), 0 0 2px rgba(0,0,0,0.3)",
                             }}>Golden Windows</span>
                           </div>
-                          {d.guideAvailable ? (
-                            <div style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
-                              <div style={{ width: 7, height: 7, borderRadius: "50%", background: "#7DB8A0" }} />
-                              <span style={{
-                                fontFamily: "'Quicksand'", fontSize: 11, fontWeight: 600,
-                                letterSpacing: "0.06em",
-                                color: "rgba(255,255,255,0.9)",
-                              }}>
-                                Guide Available
-                              </span>
-                            </div>
-                          ) : (
-                            <div style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
-                              <div style={{ width: 7, height: 7, borderRadius: "50%", background: "rgba(255,255,255,0.45)", boxShadow: "0 0 4px rgba(0,0,0,0.3)" }} />
-                              <span style={{
-                                fontFamily: "'Quicksand'", fontSize: 11, fontWeight: 600,
-                                letterSpacing: "0.06em",
-                                color: "rgba(255,255,255,0.6)",
-                                textShadow: "0 1px 6px rgba(0,0,0,0.5), 0 0 2px rgba(0,0,0,0.3)",
-                              }}>
-                                Guide Coming Soon
-                              </span>
-                            </div>
-                          )}
                         </div>
                         {d.windows && (
                           <div style={{ display: "flex", gap: 4, flexWrap: "wrap" }}>
