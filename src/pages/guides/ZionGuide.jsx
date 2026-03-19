@@ -2139,19 +2139,51 @@ export default function ZionGuide() {
 
             <FadeIn delay={0.1}>
               <div style={{ marginTop: 8 }}>
-                <ListItem isMobile={isMobile} name="The ground is alive. Stay on the trail."
-                  detail="The dark, lumpy biological crust visible just off the path is cryptobiotic soil — a living community of cyanobacteria, lichens, and fungi that can take 50–250 years to recover from a single footstep. It holds the desert floor together, fixes nitrogen, and retains moisture. It looks like nothing. It is everything. The trail exists for a reason."
-                  tags={["Stay on trail", "Desert fragility"]} />
-                <ListItem isMobile={isMobile} name="Dawn entry isn't just better. It's right."
-                  detail="The Narrows receives nearly 3,000 visitors on a peak summer day. By 9am, the slot canyon is a slow-moving crowd. Dawn entry — before the shuttle starts running — means the river is yours, the light is extraordinary, and you're carrying a smaller footprint through one of the most fragile corridors in the park. We route toward it every time."
-                  note="◈ Arrive at the Temple of Sinawava trailhead no later than 6:30am in July–August"
-                  tags={["Off-peak timing", "Low impact", "Dawn entry"]} />
-                <ListItem isMobile={isMobile} name="The lottery exists because we loved it too hard."
-                  detail="Angels Landing now requires a permit — not because the NPS wanted to gatekeep it, but because the trail was eroding under the weight of unmanaged visitation. The permit system is an act of conservation. If you don't get one, the West Rim Trail above Scouts Lookout offers the same exposure and a fraction of the crowd. We're happy to route you there instead."
-                  tags={["Permit required", "Alternatives available"]} />
-                <ListItem isMobile={isMobile} name="What goes in comes out downstream."
-                  detail="The Virgin River runs through the entire canyon and sustains one of the most biodiverse riparian corridors in the American Southwest. Sunscreen, insect repellent, and soap — even biodegradable — affect the aquatic ecosystem. Apply well before you enter the water. Pack out everything. The river is not a wash."
-                  tags={["Water stewardship", "Riparian habitat"]} />
+                <div style={{ paddingTop: 16 }}>
+                  <div style={{
+                    fontFamily: "'Quicksand', sans-serif",
+                    fontSize: 11, fontWeight: 700,
+                    letterSpacing: "0.14em", textTransform: "uppercase",
+                    color: "#7A857E", marginBottom: 2,
+                  }}>Cryptobiotic Soil</div>
+                  <ListItem isMobile={isMobile} name="The ground is alive. Stay on the trail."
+                    detail="The dark, lumpy biological crust visible just off the path is cryptobiotic soil — a living community of cyanobacteria, lichens, and fungi that can take 50–250 years to recover from a single footstep. It holds the desert floor together, fixes nitrogen, and retains moisture. It looks like nothing. It is everything. The trail exists for a reason."
+                    tags={["Stay on trail", "Desert fragility"]} />
+                </div>
+                <div style={{ paddingTop: 16 }}>
+                  <div style={{
+                    fontFamily: "'Quicksand', sans-serif",
+                    fontSize: 11, fontWeight: 700,
+                    letterSpacing: "0.14em", textTransform: "uppercase",
+                    color: "#7A857E", marginBottom: 2,
+                  }}>The Narrows · Peak Season</div>
+                  <ListItem isMobile={isMobile} name="Dawn entry isn't just better. It's right."
+                    detail="The Narrows receives nearly 3,000 visitors on a peak summer day. By 9am, the slot canyon is a slow-moving crowd. Dawn entry — before the shuttle starts running — means the river is yours, the light is extraordinary, and you're carrying a smaller footprint through one of the most fragile corridors in the park. We route toward it every time."
+                    note="◈ Arrive at the Temple of Sinawava trailhead no later than 6:30am in July–August"
+                    tags={["Off-peak timing", "Low impact", "Dawn entry"]} />
+                </div>
+                <div style={{ paddingTop: 16 }}>
+                  <div style={{
+                    fontFamily: "'Quicksand', sans-serif",
+                    fontSize: 11, fontWeight: 700,
+                    letterSpacing: "0.14em", textTransform: "uppercase",
+                    color: "#7A857E", marginBottom: 2,
+                  }}>Angels Landing · Permit System</div>
+                  <ListItem isMobile={isMobile} name="The lottery exists because we loved it too hard."
+                    detail="Angels Landing now requires a permit — not because the NPS wanted to gatekeep it, but because the trail was eroding under the weight of unmanaged visitation. The permit system is an act of conservation. If you don't get one, the West Rim Trail above Scouts Lookout offers the same exposure and a fraction of the crowd. We're happy to route you there instead."
+                    tags={["Permit required", "Alternatives available"]} />
+                </div>
+                <div style={{ paddingTop: 16 }}>
+                  <div style={{
+                    fontFamily: "'Quicksand', sans-serif",
+                    fontSize: 11, fontWeight: 700,
+                    letterSpacing: "0.14em", textTransform: "uppercase",
+                    color: "#7A857E", marginBottom: 2,
+                  }}>Virgin River · Water Ethics</div>
+                  <ListItem isMobile={isMobile} name="What goes in comes out downstream."
+                    detail="The Virgin River runs through the entire canyon and sustains one of the most biodiverse riparian corridors in the American Southwest. Sunscreen, insect repellent, and soap — even biodegradable — affect the aquatic ecosystem. Apply well before you enter the water. Pack out everything. The river is not a wash."
+                    tags={["Water stewardship", "Riparian habitat"]} />
+                </div>
               </div>
             </FadeIn>
           </section>

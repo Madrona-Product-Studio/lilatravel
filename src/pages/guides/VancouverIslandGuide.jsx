@@ -1415,9 +1415,51 @@ export default function VancouverIslandGuide() {
 
             <FadeIn delay={0.1}>
               <div style={{ marginTop: 8 }}>
-                <ListItem isMobile={isMobile} name="This is unceded territory. Travel accordingly."
-                  detail="Much of Vancouver Island sits on the unceded traditional territories of the Kwakwaka'wakw, Nuu-chah-nulth, and Coast Salish peoples. Old-growth logging remains an active conflict here — some of the trees being felled are among the oldest living things on the continent. We flag Indigenous-led tourism and support local conservation efforts. The land has a legal and spiritual context that precedes any trail map."
-                  tags={["Indigenous land", "Old-growth awareness", "Support local"]} />
+                <div style={{ paddingTop: 16 }}>
+                  <div style={{
+                    fontFamily: "'Quicksand', sans-serif",
+                    fontSize: 11, fontWeight: 700,
+                    letterSpacing: "0.14em", textTransform: "uppercase",
+                    color: "#7A857E", marginBottom: 2,
+                  }}>Unceded Territory · Kwakwaka'wakw, Nuu-chah-nulth, Coast Salish</div>
+                  <ListItem isMobile={isMobile} name="This is unceded territory. The legal and spiritual context precedes any trail map."
+                    detail="Much of Vancouver Island remains the unceded traditional territories of the Kwakwaka'wakw, Nuu-chah-nulth, and Coast Salish peoples — meaning it was never ceded through treaty. Protected areas on this island move at the speed of the local First Nations whose territories they occupy. The land you're walking has Indigenous governance, law, and relationship that precede and supersede park boundaries."
+                    tags={["Unceded territory", "Indigenous governance", "No treaty land"]} />
+                </div>
+                <div style={{ paddingTop: 16 }}>
+                  <div style={{
+                    fontFamily: "'Quicksand', sans-serif",
+                    fontSize: 11, fontWeight: 700,
+                    letterSpacing: "0.14em", textTransform: "uppercase",
+                    color: "#7A857E", marginBottom: 2,
+                  }}>Old Growth · Fairy Creek & Beyond</div>
+                  <ListItem isMobile={isMobile} name="Vancouver Island is down to 20% of its original ancient forest."
+                    detail="By the early 1990s, just 30% of the Island's original forest remained unlogged. Today it's down to 20%, with only around 3% of the most productive valley-bottom old growth still standing. The Fairy Creek blockades — the largest act of civil disobedience in Canadian history, with over 1,100 arrests — were an attempt to save some of the last intact valleys. When you walk among these trees, you're in contested, living terrain."
+                    tags={["Old-growth crisis", "Active logging conflict", "20% remaining"]} />
+                </div>
+                <div style={{ paddingTop: 16 }}>
+                  <div style={{
+                    fontFamily: "'Quicksand', sans-serif",
+                    fontSize: 11, fontWeight: 700,
+                    letterSpacing: "0.14em", textTransform: "uppercase",
+                    color: "#7A857E", marginBottom: 2,
+                  }}>Tofino & Pacific Rim · Coastal Access</div>
+                  <ListItem isMobile={isMobile} name="Tofino's permanent population is 2,500. Summer brings 20 times that."
+                    detail="The Tofino corridor absorbs extreme visitor density against a tiny permanent community and a sensitive marine environment. Grey whale migration, sea otters, and nesting shorebirds share the coastline with surfers and day-trippers. Stay on boardwalks in the dune systems, give wide berth to any wildlife, and book well ahead so you're not improvising accommodation in sensitive areas."
+                    note="◈ Pacific Rim National Park Reserve requires day-use fees — they fund trail maintenance and wildlife monitoring"
+                    tags={["Coastal wildlife", "Dune protection", "Book ahead"]} />
+                </div>
+                <div style={{ paddingTop: 16 }}>
+                  <div style={{
+                    fontFamily: "'Quicksand', sans-serif",
+                    fontSize: 11, fontWeight: 700,
+                    letterSpacing: "0.14em", textTransform: "uppercase",
+                    color: "#7A857E", marginBottom: 2,
+                  }}>Indigenous-Led Tourism · Active Stewardship</div>
+                  <ListItem isMobile={isMobile} name="Seek out Indigenous-led experiences. They're the best ones anyway."
+                    detail="Several First Nations on Vancouver Island operate exceptional cultural tourism — Tla-o-qui-aht Tribal Parks near Tofino, Namgis First Nation in Alert Bay, and others. These aren't add-ons to a trip — they're the most grounded way to understand where you are. Booking directly with Indigenous-operated guides and lodges ensures revenue flows to the community and that the experience is sanctioned rather than extracted."
+                    tags={["Indigenous-led tourism", "Tla-o-qui-aht Tribal Parks", "Book direct"]} />
+                </div>
               </div>
             </FadeIn>
           </section>

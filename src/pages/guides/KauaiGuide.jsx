@@ -1155,9 +1155,51 @@ export default function KauaiGuide() {
 
             <FadeIn delay={0.1}>
               <div style={{ marginTop: 8 }}>
-                <ListItem isMobile={isMobile} name="You are a guest on sacred land."
-                  detail="Hawaiʻi receives more visitors per resident than almost anywhere on earth. Kauaʻi in particular holds heiau — ancient sacred sites — that are not on any tourist map and should not be. The Nā Pali Coast has trails that exceed the skill of most visitors; rescues are common and costly. We do not put certain places on our itineraries. The most powerful act of reverence is sometimes choosing not to go."
-                  tags={["Indigenous sacred sites", "Visitor pressure", "Selective access"]} />
+                <div style={{ paddingTop: 16 }}>
+                  <div style={{
+                    fontFamily: "'Quicksand', sans-serif",
+                    fontSize: 11, fontWeight: 700,
+                    letterSpacing: "0.14em", textTransform: "uppercase",
+                    color: "#7A857E", marginBottom: 2,
+                  }}>Visitor Density · 10M Arrivals</div>
+                  <ListItem isMobile={isMobile} name="Hawaiʻi receives more visitors per resident than almost anywhere on earth."
+                    detail="Hawaiʻi hit a record 10.4 million visitors in 2019 — for a resident population of 1.4 million, on a chain of islands with finite resources. Kauaʻi is the least developed of the major islands and absorbs this pressure on a smaller infrastructure. The tension between residents and visitors is real and documented. Traveling with awareness of that dynamic — not just the landscape — is part of what it means to visit respectfully."
+                    tags={["Visitor pressure", "Resident tension", "Travel mindfully"]} />
+                </div>
+                <div style={{ paddingTop: 16 }}>
+                  <div style={{
+                    fontFamily: "'Quicksand', sans-serif",
+                    fontSize: 11, fontWeight: 700,
+                    letterSpacing: "0.14em", textTransform: "uppercase",
+                    color: "#7A857E", marginBottom: 2,
+                  }}>Heiau · Sacred Sites</div>
+                  <ListItem isMobile={isMobile} name="Some places are not on the map. They shouldn't be."
+                    detail="Heiau — ancient Hawaiian temples, fishing shrines, and ceremonial platforms — have been desecrated in their use and misuse as tourist attractions, and hundreds have been destroyed for resort development. Several heiau on Kauaʻi are known to locals and deliberately kept off visitor maps. We do not put these places on itineraries. If you encounter a site that looks ceremonial or marked, leave it undisturbed and do not photograph it."
+                    tags={["Sacred sites", "No photography", "Leave undisturbed"]} />
+                </div>
+                <div style={{ paddingTop: 16 }}>
+                  <div style={{
+                    fontFamily: "'Quicksand', sans-serif",
+                    fontSize: 11, fontWeight: 700,
+                    letterSpacing: "0.14em", textTransform: "uppercase",
+                    color: "#7A857E", marginBottom: 2,
+                  }}>Nā Pali Coast · Trail Safety</div>
+                  <ListItem isMobile={isMobile} name="Rescues on the Kalalau Trail are common. Go prepared or don't go."
+                    detail="The Kalalau Trail is one of the most spectacular and most dangerous trails in the United States. Flash flooding, steep unprotected sections, and difficult river crossings have killed experienced hikers. Permits are required and limited. If you don't have one, the legal beaches are accessible by kayak or boat tour. We route around unpermitted sections entirely."
+                    note="◈ Day hiking to Hanakāpīʻai Beach (2 miles) requires no permit — the full 11-mile Kalalau Trail requires a camping permit"
+                    tags={["Permit required", "Flash flood risk", "Know your limits"]} />
+                </div>
+                <div style={{ paddingTop: 16 }}>
+                  <div style={{
+                    fontFamily: "'Quicksand', sans-serif",
+                    fontSize: 11, fontWeight: 700,
+                    letterSpacing: "0.14em", textTransform: "uppercase",
+                    color: "#7A857E", marginBottom: 2,
+                  }}>Hāʻena State Park · Community-Managed Access</div>
+                  <ListItem isMobile={isMobile} name="The north shore developed a new model. Follow it."
+                    detail="Hāʻena State Park was the first in Hawaiʻi to set a daily visitor cap, managed by two nonprofits led by Native Hawaiian lineal descendants. Nonresidents must reserve and pay for entry. This is what responsible access looks like in practice — a community-led system built because the alternative was losing the place entirely. Book your reservation, pay the fee, and recognize the system as the point."
+                    tags={["Reservation required", "Community-managed", "Daily visitor cap"]} />
+                </div>
               </div>
             </FadeIn>
           </section>

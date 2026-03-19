@@ -1332,9 +1332,51 @@ export default function JoshuaTreeGuide() {
 
             <FadeIn delay={0.1}>
               <div style={{ marginTop: 8 }}>
-                <ListItem isMobile={isMobile} name="Slow down. The desert is paying attention."
-                  detail="Joshua trees grow roughly an inch a year. The ones you'll walk past are older than anyone you know. Off-trail movement in the park compacts soil that took millennia to develop and damages root systems that aren't visible from the surface. We stay on trail here without exception — and we think about timing, because the night sky at Joshua Tree is one of the last truly dark horizons in Southern California."
-                  tags={["Stay on trail", "Dark sky stewardship", "Low-impact camping"]} />
+                <div style={{ paddingTop: 16 }}>
+                  <div style={{
+                    fontFamily: "'Quicksand', sans-serif",
+                    fontSize: 11, fontWeight: 700,
+                    letterSpacing: "0.14em", textTransform: "uppercase",
+                    color: "#7A857E", marginBottom: 2,
+                  }}>Joshua Trees · Age & Fragility</div>
+                  <ListItem isMobile={isMobile} name="The trees you're walking past are older than anyone you know."
+                    detail="Joshua trees grow roughly an inch a year — the ones lining the trail may be a century old or more. Off-trail movement compacts soil that took millennia to develop and damages root systems that aren't visible from the surface. Stay on trail without exception. The desert floor looks empty. It isn't."
+                    tags={["Stay on trail", "Soil compaction", "Desert fragility"]} />
+                </div>
+                <div style={{ paddingTop: 16 }}>
+                  <div style={{
+                    fontFamily: "'Quicksand', sans-serif",
+                    fontSize: 11, fontWeight: 700,
+                    letterSpacing: "0.14em", textTransform: "uppercase",
+                    color: "#7A857E", marginBottom: 2,
+                  }}>Dark Sky · IDA Certification</div>
+                  <ListItem isMobile={isMobile} name="One of the last truly dark horizons in Southern California."
+                    detail="Joshua Tree sits sandwiched between the Inland Empire's 4 million residents to the west and the last pool of natural darkness in Southern California to the east. The park earned International Dark Sky Park designation in 2017. That status depends on visitors using red-filtered lights at night, staying in designated stargazing areas, and not pulling off-road into undisturbed terrain. The darker you let it stay, the more sky you get."
+                    note="◈ Head east into the park for the darkest skies — away from Palm Springs light pollution"
+                    tags={["IDA dark sky park", "Red light only", "Stay on designated areas"]} />
+                </div>
+                <div style={{ paddingTop: 16 }}>
+                  <div style={{
+                    fontFamily: "'Quicksand', sans-serif",
+                    fontSize: 11, fontWeight: 700,
+                    letterSpacing: "0.14em", textTransform: "uppercase",
+                    color: "#7A857E", marginBottom: 2,
+                  }}>Peregrine Falcons · Seasonal Closures</div>
+                  <ListItem isMobile={isMobile} name="Some trails close in spring. That's not an inconvenience — it's conservation."
+                    detail="In spring, certain trails and rock-climbing routes close to protect nesting peregrine falcons. These closures are temporary and specific. Respecting them is the difference between a falcon pair successfully nesting and abandoning the site entirely. Check the NPS alerts page before you arrive — route closures shift year to year."
+                    tags={["Seasonal closures", "Nesting protection", "Check before you go"]} />
+                </div>
+                <div style={{ paddingTop: 16 }}>
+                  <div style={{
+                    fontFamily: "'Quicksand', sans-serif",
+                    fontSize: 11, fontWeight: 700,
+                    letterSpacing: "0.14em", textTransform: "uppercase",
+                    color: "#7A857E", marginBottom: 2,
+                  }}>Camping · Fire & Waste</div>
+                  <ListItem isMobile={isMobile} name="The 2019 shutdown showed what happens without rangers."
+                    detail="During the 2019 government shutdown, visitors camped illegally in sensitive areas and drove off-road vehicles over fragile landscapes, creating new roads in previously undisturbed terrain. The damage took months to recover from. Camp only in designated sites. Pack out all waste. Never build fires outside established rings — desert scrub ignites fast and the park has limited suppression capacity."
+                    tags={["Designated camping only", "Pack it out", "No off-road"]} />
+                </div>
               </div>
             </FadeIn>
           </section>

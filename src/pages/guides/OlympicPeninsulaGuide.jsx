@@ -1234,9 +1234,51 @@ export default function OlympicPeninsulaGuide() {
 
             <FadeIn delay={0.1}>
               <div style={{ marginTop: 8 }}>
-                <ListItem isMobile={isMobile} name="Old growth takes centuries. Protect it in hours."
-                  detail="The Hoh Rain Forest contains some of the last temperate old-growth in the lower 48. Trails here are narrow and the understory is fragile — widening happens fast when visitors step around mud. The Elwha River restoration, the largest dam removal in US history, is still recovering. We orient itineraries around witnessing that recovery, not interrupting it."
-                  tags={["Stay on trail", "River restoration", "Leave no trace"]} />
+                <div style={{ paddingTop: 16 }}>
+                  <div style={{
+                    fontFamily: "'Quicksand', sans-serif",
+                    fontSize: 11, fontWeight: 700,
+                    letterSpacing: "0.14em", textTransform: "uppercase",
+                    color: "#7A857E", marginBottom: 2,
+                  }}>Hall of Mosses · Trail Widening</div>
+                  <ListItem isMobile={isMobile} name="The moss took decades to grow. It takes one footstep to damage it."
+                    detail="The surge in visitors has widened and compacted trails like the Hall of Mosses — paths previously edged with lush moss are now bare, hard-packed dirt. Social trails to objects of interest make it worse. Moss can withstand light traffic but not the volume the Hoh now sees. Stay on wooden boardwalks and established paths. Resist the urge to step off for a photo."
+                    tags={["Stay on trail", "No social trails", "Moss protection"]} />
+                </div>
+                <div style={{ paddingTop: 16 }}>
+                  <div style={{
+                    fontFamily: "'Quicksand', sans-serif",
+                    fontSize: 11, fontWeight: 700,
+                    letterSpacing: "0.14em", textTransform: "uppercase",
+                    color: "#7A857E", marginBottom: 2,
+                  }}>Hoh Rainforest · Peak Season</div>
+                  <ListItem isMobile={isMobile} name="In August, 107,000 people came here. Plan accordingly."
+                    detail="In August 2011, the Hoh Rainforest saw 38,000 visitors. By August 2021, that number had tripled to over 107,000. The single access road gridlocks by mid-morning. Arriving before 8am dramatically changes the experience and reduces pressure on the parking area. The Hoh River Trail beyond the first two miles sees a fraction of the crowd and rewards the extra distance."
+                    note="◈ Arrive before 8am in summer — the parking lot fills completely by mid-morning"
+                    tags={["Off-peak arrival", "Dawn entry", "Hoh River Trail"]} />
+                </div>
+                <div style={{ paddingTop: 16 }}>
+                  <div style={{
+                    fontFamily: "'Quicksand', sans-serif",
+                    fontSize: 11, fontWeight: 700,
+                    letterSpacing: "0.14em", textTransform: "uppercase",
+                    color: "#7A857E", marginBottom: 2,
+                  }}>Elwha River · Dam Removal Recovery</div>
+                  <ListItem isMobile={isMobile} name="The largest dam removal in US history is still healing."
+                    detail="The Elwha River restoration — removal of two dams completed in 2014 — is the most significant river recovery project in American history. Salmon are returning for the first time in over a century. The riparian corridor is still fragile. We orient itineraries around witnessing that recovery from the trail, not wading through active restoration zones or disturbing newly colonizing vegetation on the former reservoir beds."
+                    tags={["River restoration", "Active recovery", "Witness don't disturb"]} />
+                </div>
+                <div style={{ paddingTop: 16 }}>
+                  <div style={{
+                    fontFamily: "'Quicksand', sans-serif",
+                    fontSize: 11, fontWeight: 700,
+                    letterSpacing: "0.14em", textTransform: "uppercase",
+                    color: "#7A857E", marginBottom: 2,
+                  }}>Hoh Tribe · Indigenous Territory</div>
+                  <ListItem isMobile={isMobile} name="The Hoh River valley is the ancestral home of the Hoh people."
+                    detail="The Hoh River valley is the ancestral home of the Hoh people, who have maintained a continuous relationship with this watershed for centuries. The park's boundaries were drawn around — not with — the tribe. The Hoh Indian Reservation sits at the river's mouth. When visiting, that history is part of the landscape. We support Hoh-led cultural programs and recommend purchasing directly from tribal artisans when the opportunity arises."
+                    tags={["Hoh tribal territory", "Indigenous-led programs", "Support tribal artisans"]} />
+                </div>
               </div>
             </FadeIn>
           </section>

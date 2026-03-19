@@ -1168,9 +1168,50 @@ export default function BigSurGuide() {
 
             <FadeIn delay={0.1}>
               <div style={{ marginTop: 8 }}>
-                <ListItem isMobile={isMobile} name="The road is not the destination."
-                  detail="Highway 1 closures have made Big Sur intermittently inaccessible for years — a reminder that the coast operates on its own terms. The pullouts are narrow and the cliffs are real. Several of the most-photographed spots are on private land or actively eroding. We steer toward the interior trails and the quieter coves, where the encounter feels earned rather than extracted."
-                  tags={["Road etiquette", "Private land awareness", "Coastal access ethics"]} />
+                <div style={{ paddingTop: 16 }}>
+                  <div style={{
+                    fontFamily: "'Quicksand', sans-serif",
+                    fontSize: 11, fontWeight: 700,
+                    letterSpacing: "0.14em", textTransform: "uppercase",
+                    color: "#7A857E", marginBottom: 2,
+                  }}>Highway 1 · Erosion & Access</div>
+                  <ListItem isMobile={isMobile} name="The road exists on borrowed time. Drive like it."
+                    detail="The dramatic cliffs of Big Sur aren't a stable place to build a highly trafficked highway — collapses, mudslides, and fires are a recurring reality. The pullouts are engineered for momentary stops, not extended gatherings. Parking on the shoulder damages drainage infrastructure that keeps the road viable. When a section closes, it closes for everyone — including the 1,500 people who live here."
+                    tags={["Road etiquette", "No shoulder parking", "Respect closures"]} />
+                </div>
+                <div style={{ paddingTop: 16 }}>
+                  <div style={{
+                    fontFamily: "'Quicksand', sans-serif",
+                    fontSize: 11, fontWeight: 700,
+                    letterSpacing: "0.14em", textTransform: "uppercase",
+                    color: "#7A857E", marginBottom: 2,
+                  }}>Bixby Bridge · Overtourism</div>
+                  <ListItem isMobile={isMobile} name="The most photographed spot is also the most pressured."
+                    detail="Bixby Creek Bridge has become a tourist magnet — traffic jams, illegal parking, visitors clambering down unstable cliffs for the shot. We route toward the interior trails and quieter coves instead. The encounter feels earned rather than extracted. Several of the most-photographed spots along this coast are on private land or actively eroding. Closed means closed."
+                    tags={["Off the main road", "Interior trails", "Slow travel"]} />
+                </div>
+                <div style={{ paddingTop: 16 }}>
+                  <div style={{
+                    fontFamily: "'Quicksand', sans-serif",
+                    fontSize: 11, fontWeight: 700,
+                    letterSpacing: "0.14em", textTransform: "uppercase",
+                    color: "#7A857E", marginBottom: 2,
+                  }}>Pfeiffer Beach · Dispersed Camping</div>
+                  <ListItem isMobile={isMobile} name="Illegal camping caused one of the costliest wildfires in US history."
+                    detail="The Soberanes Fire of 2016 started from an illegal campfire. Big Sur's coastal scrub and redwood understory ignite fast in dry conditions. Dispersed camping outside designated sites is not just illegal here — it's genuinely dangerous for the ecosystem and for the permanent community that depends on Highway 1 remaining open. Book a site or a stay."
+                    tags={["Designated camping only", "Fire risk", "Protect the corridor"]} />
+                </div>
+                <div style={{ paddingTop: 16 }}>
+                  <div style={{
+                    fontFamily: "'Quicksand', sans-serif",
+                    fontSize: 11, fontWeight: 700,
+                    letterSpacing: "0.14em", textTransform: "uppercase",
+                    color: "#7A857E", marginBottom: 2,
+                  }}>Resident Community · 1,500 People</div>
+                  <ListItem isMobile={isMobile} name="Tourism is 90% of the economy. That doesn't mean it's welcome everywhere."
+                    detail="Big Sur's permanent population is just 1,500 people. Four to five million visitors come annually. Many of the most beautiful spots are on private land or actively managed for conservation. The locals who remain here have chosen a difficult life in exchange for the landscape. Respect that bargain — and when you find somewhere that feels undiscovered, consider not sharing the exact location."
+                    tags={["Private land awareness", "Resident respect", "Coastal access ethics"]} />
+                </div>
               </div>
             </FadeIn>
           </section>
