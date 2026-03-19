@@ -1218,7 +1218,7 @@ export default function JoshuaTreeGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           <section id="sense-of-place" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
             <FadeIn>
-              <SectionLabel>The Place</SectionLabel>
+              <SectionLabel>Sense of Place</SectionLabel>
               <p style={{
                 fontFamily: "'Quicksand', sans-serif",
                 fontSize: "clamp(14px, 1.8vw, 15px)", lineHeight: 1.8,
