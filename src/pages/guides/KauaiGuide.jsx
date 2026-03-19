@@ -473,14 +473,10 @@ const GUIDE_SECTIONS = [
 
 function GuideNav({ isMobile }) {
   const [activeId, setActiveId] = useState(null);
-  const [isSticky, setIsSticky] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(false);
-  const navRef = useRef(null);
-  const sentinelRef = useRef(null);
-  const activeItemRef = useRef(null);
   const scrollContainerRef = useRef(null);
 
   useEffect(() => {
+    if (isMobile) return;
     const ids = GUIDE_SECTIONS.map(s => s.id);
     const elements = ids.map(id => document.getElementById(id)).filter(Boolean);
     if (elements.length === 0) return;
@@ -493,93 +489,105 @@ function GuideNav({ isMobile }) {
     );
     elements.forEach(el => observer.observe(el));
     return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    const sentinel = sentinelRef.current;
-    if (!sentinel) return;
-    const observer = new IntersectionObserver(([entry]) => setIsSticky(!entry.isIntersecting), { threshold: 0 });
-    observer.observe(sentinel);
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    if (isMobile && activeItemRef.current && scrollContainerRef.current) {
-      const container = scrollContainerRef.current;
-      const item = activeItemRef.current;
-      const offset = item.offsetLeft - container.offsetWidth / 2 + item.offsetWidth / 2;
-      container.scrollTo({ left: offset, behavior: "smooth" });
-    }
-  }, [activeId, isMobile]);
-
-  useEffect(() => {
-    const container = scrollContainerRef.current;
-    if (!container || !isMobile) { setCanScrollRight(false); return; }
-    const check = () => { const gap = container.scrollWidth - container.scrollLeft - container.clientWidth; setCanScrollRight(gap > 4); };
-    check();
-    container.addEventListener("scroll", check, { passive: true });
-    window.addEventListener("resize", check);
-    return () => { container.removeEventListener("scroll", check); window.removeEventListener("resize", check); };
   }, [isMobile]);
 
   const handleClick = useCallback((id) => {
     const el = document.getElementById(id);
     if (!el) return;
-    const guideNavHeight = navRef.current?.offsetHeight || 52;
     const mainNavHeight = isMobile ? 58 : 64;
+    const guideNavHeight = isMobile ? 0 : 52;
     const y = el.getBoundingClientRect().top + window.scrollY - guideNavHeight - mainNavHeight - 32;
     window.scrollTo({ top: y, behavior: "smooth" });
   }, [isMobile]);
 
-  const MAIN_NAV_HEIGHT = isMobile ? 58 : 64;
+  if (isMobile) {
+    return (
+      <div style={{
+        margin: "0 20px 24px",
+        border: `1px solid ${C.stone}`,
+        padding: "16px 18px",
+        background: C.cream,
+      }}>
+        <div style={{
+          display: "flex", alignItems: "center", justifyContent: "space-between",
+          marginBottom: 14,
+        }}>
+          <span style={{
+            fontFamily: "'Quicksand', sans-serif",
+            fontSize: 10, fontWeight: 700,
+            letterSpacing: "0.22em", textTransform: "uppercase",
+            color: "#7A857E",
+          }}>In this guide</span>
+          <span style={{
+            fontFamily: "'Quicksand', sans-serif",
+            fontSize: 10, fontWeight: 500,
+            color: "#b8b0a8", letterSpacing: "0.06em",
+          }}>{GUIDE_SECTIONS.length} sections</span>
+        </div>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2px 16px" }}>
+          {GUIDE_SECTIONS.map((section, i) => (
+            <button
+              key={section.id}
+              onClick={() => handleClick(section.id)}
+              style={{
+                display: "flex", alignItems: "center", gap: 8,
+                padding: "7px 0",
+                background: "none", border: "none", cursor: "pointer",
+                textAlign: "left",
+              }}
+            >
+              <span style={{
+                fontFamily: "'Quicksand', sans-serif",
+                fontSize: 9, fontWeight: 700,
+                letterSpacing: "0.1em", color: "#b8b0a8",
+                minWidth: 16,
+              }}>{String(i + 1).padStart(2, "0")}</span>
+              <span style={{
+                fontFamily: "'Quicksand', sans-serif",
+                fontSize: 11, fontWeight: 600,
+                letterSpacing: "0.08em", textTransform: "uppercase",
+                color: "#4A5650",
+              }}>{section.label}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <>
-      <div ref={sentinelRef} style={{ height: 1, width: "100%", pointerEvents: "none" }} />
-      <nav ref={navRef} style={{
-        position: (isSticky && !isMobile) ? "fixed" : "relative",
-        top: (isSticky && !isMobile) ? MAIN_NAV_HEIGHT : "auto",
-        left: 0, right: 0, zIndex: 90,
-        background: (isSticky && !isMobile) ? "rgba(250, 247, 243, 0.97)" : C.cream,
-        backdropFilter: (isSticky && !isMobile) ? "blur(12px)" : "none",
-        WebkitBackdropFilter: (isSticky && !isMobile) ? "blur(12px)" : "none",
-        borderBottom: `1px solid ${(isSticky && !isMobile) ? C.stone : "transparent"}`,
-        transition: "border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease",
-        boxShadow: (isSticky && !isMobile) ? "0 1px 8px rgba(0,0,0,0.04)" : "none",
-      }}>
-        <div style={{ maxWidth: 920, margin: "0 auto", padding: isMobile ? "0 0 0 16px" : "0 40px", display: "flex", alignItems: "center" }}>
-          <div style={{ flex: 1, minWidth: 0, position: "relative" }}>
-            <div ref={scrollContainerRef} className="guide-nav-scroll" style={{ display: "flex", alignItems: "center", gap: isMobile ? 4 : 0, overflowX: "auto", scrollbarWidth: "none", msOverflowStyle: "none", WebkitOverflowScrolling: "touch" }}>
-            <style>{`.guide-nav-scroll::-webkit-scrollbar { display: none; }`}</style>
-            {GUIDE_SECTIONS.map((section) => {
-              const isActive = activeId === section.id;
-              return (
-                <button key={section.id} ref={isActive ? activeItemRef : null} onClick={() => handleClick(section.id)} className="guide-nav-scroll" style={{
-                  padding: isMobile ? "0 16px" : "0 16px", height: isMobile ? 42 : 44, background: "none", border: "none",
-                  borderBottom: `2px solid ${isActive ? C.oceanTeal : "transparent"}`,
-                  cursor: "pointer", fontFamily: "'Quicksand', sans-serif", fontSize: isMobile ? 10.5 : 11,
-                  fontWeight: isActive ? 700 : 600, letterSpacing: isMobile ? "0.13em" : "0.14em", textTransform: "uppercase",
-                  color: isActive ? C.oceanTeal : "#7A857E", whiteSpace: "nowrap", flexShrink: 0,
-                  transition: "color 0.25s ease, border-color 0.25s ease", position: "relative",
-                }}
-                onMouseEnter={e => { if (!isActive) { e.currentTarget.style.color = C.darkInk; e.currentTarget.style.borderBottomColor = C.stone; } }}
-                onMouseLeave={e => { if (!isActive) { e.currentTarget.style.color = "#7A857E"; e.currentTarget.style.borderBottomColor = "transparent"; } }}
-                >
-                  {section.label}
-                </button>
-              );
-            })}
-            </div>
-            {isMobile && canScrollRight && (
-              <div style={{ position: "absolute", top: 0, right: 0, bottom: 0, width: 40, background: `linear-gradient(to right, transparent, ${isSticky ? "rgba(250,247,243,0.97)" : C.cream})`, display: "flex", alignItems: "center", justifyContent: "flex-end", paddingRight: 4, pointerEvents: "none", transition: "opacity 0.3s" }}>
-                <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 14, fontWeight: 600, color: "#7A857E" }}>{"›"}</span>
-              </div>
-            )}
+    <nav style={{
+      position: "sticky", top: 72, zIndex: 90,
+      background: "rgba(250, 247, 243, 0.97)",
+      borderTop: `1px solid ${C.stone}`,
+      borderBottom: `1px solid ${C.stone}`,
+    }}>
+      <div style={{ maxWidth: 920, margin: "0 auto", padding: "4px 40px 0", display: "flex", alignItems: "center" }}>
+        <div style={{ flex: 1, minWidth: 0, position: "relative" }}>
+          <div ref={scrollContainerRef} className="guide-nav-scroll" style={{ display: "flex", alignItems: "center", gap: 0, overflowX: "auto", scrollbarWidth: "none", msOverflowStyle: "none" }}>
+          <style>{`.guide-nav-scroll::-webkit-scrollbar { display: none; }`}</style>
+          {GUIDE_SECTIONS.map((section) => {
+            const isActive = activeId === section.id;
+            return (
+              <button key={section.id} onClick={() => handleClick(section.id)} className="guide-nav-scroll" style={{
+                padding: "0 16px", height: 44, background: "none", border: "none",
+                borderBottom: `2px solid ${isActive ? C.oceanTeal : "transparent"}`,
+                cursor: "pointer", fontFamily: "'Quicksand', sans-serif", fontSize: 11,
+                fontWeight: isActive ? 700 : 600, letterSpacing: "0.14em", textTransform: "uppercase",
+                color: isActive ? C.oceanTeal : "#7A857E", whiteSpace: "nowrap", flexShrink: 0,
+                transition: "color 0.25s ease, border-color 0.25s ease", position: "relative",
+              }}
+              onMouseEnter={e => { if (!isActive) { e.currentTarget.style.color = C.darkInk; e.currentTarget.style.borderBottomColor = C.stone; } }}
+              onMouseLeave={e => { if (!isActive) { e.currentTarget.style.color = "#7A857E"; e.currentTarget.style.borderBottomColor = "transparent"; } }}
+              >
+                {section.label}
+              </button>
+            );
+          })}
           </div>
         </div>
-      </nav>
-      {isSticky && <div style={{ height: (navRef.current?.offsetHeight || 52) + 16 }} />}
-    </>
+      </div>
+    </nav>
   );
 }
 
