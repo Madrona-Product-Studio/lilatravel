@@ -19,6 +19,7 @@ import { getTripsByDestination } from '@data/trips';
 import { trackEvent } from '@utils/analytics';
 import { getCelestialSnapshot } from '@services/celestialService';
 import { getNPSData, buildNPSLookup, findNPSMatch } from '@services/npsService';
+import { Helmet } from 'react-helmet-async';
 
 
 // ─── Guide-Specific Components ───────────────────────────────────────────────
@@ -957,6 +958,21 @@ export default function OlympicPeninsulaGuide() {
 
   return (
     <>
+      <Helmet>
+        <title>Olympic Peninsula Guide — Rainforest, Wild Coast & Slow Travel | Lila Trips</title>
+        <meta name="description" content="Temperate rainforest, tide pools, and isolated Pacific coastline. A guide for travelers who want to move through one of North America's most intact ecosystems with care." />
+        <link rel="canonical" href="https://lilatrips.com/destinations/olympic-peninsula" />
+        <meta property="og:title" content="Olympic Peninsula Guide — Rainforest, Wild Coast & Slow Travel | Lila Trips" />
+        <meta property="og:description" content="Temperate rainforest, tide pools, and isolated Pacific coastline. A guide for travelers who want to move through one of North America's most intact ecosystems with care." />
+        <meta property="og:url" content="https://lilatrips.com/destinations/olympic-peninsula" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://lilatrips.com/og-image.png" />
+        <meta property="og:image:alt" content="Olympic Peninsula — Lila Trips" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Olympic Peninsula Guide — Rainforest, Wild Coast & Slow Travel | Lila Trips" />
+        <meta name="twitter:description" content="Temperate rainforest, tide pools, and isolated Pacific coastline. A guide for travelers who want to move through one of North America's most intact ecosystems with care." />
+        <meta name="twitter:image" content="https://lilatrips.com/og-image.png" />
+      </Helmet>
       <Nav />
       <CelestialDrawer isMobile={isMobile} />
 

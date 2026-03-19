@@ -7,11 +7,27 @@ import { Nav, Footer, FadeIn, PageHeader } from '@components';
 import { C } from '@data/brand';
 import { destinations } from '@data/destinations';
 import { trackEvent } from '@utils/analytics';
+import { Helmet } from 'react-helmet-async';
 
 // ─── Main Page ───────────────────────────────────────────────────────────────
 export default function DestinationsPage() {
   return (
     <>
+      <Helmet>
+        <title>Destinations — Zion, Joshua Tree, Big Sur & More | Lila Trips</title>
+        <meta name="description" content="Curated destination guides for travelers seeking depth over distance. From Utah's canyon corridor to the Na Pali Coast — each place chosen for its capacity to transform." />
+        <link rel="canonical" href="https://lilatrips.com/destinations" />
+        <meta property="og:title" content="Destinations — Zion, Joshua Tree, Big Sur & More | Lila Trips" />
+        <meta property="og:description" content="Curated destination guides for travelers seeking depth over distance. From Utah's canyon corridor to the Na Pali Coast — each place chosen for its capacity to transform." />
+        <meta property="og:url" content="https://lilatrips.com/destinations" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://lilatrips.com/og-image.png" />
+        <meta property="og:image:alt" content="Lila Trips Destinations" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Destinations — Zion, Joshua Tree, Big Sur & More | Lila Trips" />
+        <meta name="twitter:description" content="Curated destination guides for travelers seeking depth over distance. From Utah's canyon corridor to the Na Pali Coast — each place chosen for its capacity to transform." />
+        <meta name="twitter:image" content="https://lilatrips.com/og-image.png" />
+      </Helmet>
       <Nav />
       <PageHeader
         eyebrow="Destinations"

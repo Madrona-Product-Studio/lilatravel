@@ -19,6 +19,7 @@ import { P } from '@data/photos';
 import { getTripsByDestination } from '@data/trips';
 import { trackEvent } from '@utils/analytics';
 import { getCelestialSnapshot } from '@services/celestialService';
+import { Helmet } from 'react-helmet-async';
 
 
 // ─── Guide-Specific Components ───────────────────────────────────────────────
@@ -1088,6 +1089,21 @@ export default function VancouverIslandGuide() {
 
   return (
     <>
+      <Helmet>
+        <title>Vancouver Island Guide — Ancient Forest, Pacific Shores & Mindful Travel | Lila Trips</title>
+        <meta name="description" content="Old-growth cedar, orca-watched straits, and wild coastline. A guide for travelers who understand that some places ask more of you than a photo." />
+        <link rel="canonical" href="https://lilatrips.com/destinations/vancouver-island" />
+        <meta property="og:title" content="Vancouver Island Guide — Ancient Forest, Pacific Shores & Mindful Travel | Lila Trips" />
+        <meta property="og:description" content="Old-growth cedar, orca-watched straits, and wild coastline. A guide for travelers who understand that some places ask more of you than a photo." />
+        <meta property="og:url" content="https://lilatrips.com/destinations/vancouver-island" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://lilatrips.com/og-image.png" />
+        <meta property="og:image:alt" content="Vancouver Island — Lila Trips" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Vancouver Island Guide — Ancient Forest, Pacific Shores & Mindful Travel | Lila Trips" />
+        <meta name="twitter:description" content="Old-growth cedar, orca-watched straits, and wild coastline. A guide for travelers who understand that some places ask more of you than a photo." />
+        <meta name="twitter:image" content="https://lilatrips.com/og-image.png" />
+      </Helmet>
       <Nav />
 
       {/* ══ CELESTIAL DRAWER ═══════════════════════════════════════════════ */}

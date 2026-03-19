@@ -19,6 +19,7 @@ import { getTripsByDestination } from '@data/trips';
 import { trackEvent } from '@utils/analytics';
 import { getCelestialSnapshot } from '@services/celestialService';
 import { getNPSData, buildNPSLookup, findNPSMatch } from '@services/npsService';
+import { Helmet } from 'react-helmet-async';
 
 
 // ─── Guide-Specific Components ───────────────────────────────────────────────
@@ -1070,6 +1071,21 @@ export default function JoshuaTreeGuide() {
 
   return (
     <>
+      <Helmet>
+        <title>Joshua Tree Guide — Desert Stillness, Dark Sky & Low-Impact Travel | Lila Trips</title>
+        <meta name="description" content="One of California's darkest skies, and one of its most fragile landscapes. A guide for travelers who come to listen, not just look." />
+        <link rel="canonical" href="https://lilatrips.com/destinations/joshua-tree" />
+        <meta property="og:title" content="Joshua Tree Guide — Desert Stillness, Dark Sky & Low-Impact Travel | Lila Trips" />
+        <meta property="og:description" content="One of California's darkest skies, and one of its most fragile landscapes. A guide for travelers who come to listen, not just look." />
+        <meta property="og:url" content="https://lilatrips.com/destinations/joshua-tree" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://lilatrips.com/og-image.png" />
+        <meta property="og:image:alt" content="Joshua Tree — Lila Trips" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Joshua Tree Guide — Desert Stillness, Dark Sky & Low-Impact Travel | Lila Trips" />
+        <meta name="twitter:description" content="One of California's darkest skies, and one of its most fragile landscapes. A guide for travelers who come to listen, not just look." />
+        <meta name="twitter:image" content="https://lilatrips.com/og-image.png" />
+      </Helmet>
       <Nav />
 
       {/* ══ CELESTIAL DRAWER ═══════════════════════════════════════════════ */}

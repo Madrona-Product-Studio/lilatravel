@@ -17,6 +17,7 @@ import { Nav, Footer, FadeIn, PageHeader } from '@components';
 import { C } from '@data/brand';
 import { ritualsPillars, traditions, ritualsIntro } from '@data/rituals';
 import { trackEvent } from '@utils/analytics';
+import { Helmet } from 'react-helmet-async';
 
 // ─── Section Data ───────────────────────────────────────────────────────────
 
@@ -95,6 +96,21 @@ export default function EthosPage() {
 
   return (
     <>
+      <Helmet>
+        <title>Our Ethos — Sacred Terrain, Ancient Practices & Reciprocity | Lila Trips</title>
+        <meta name="description" content="The philosophy behind Lila Trips. How we think about land, travel, wellness, and what it means to move through a place with care." />
+        <link rel="canonical" href="https://lilatrips.com/ethos" />
+        <meta property="og:title" content="Our Ethos — Sacred Terrain, Ancient Practices & Reciprocity | Lila Trips" />
+        <meta property="og:description" content="The philosophy behind Lila Trips. How we think about land, travel, wellness, and what it means to move through a place with care." />
+        <meta property="og:url" content="https://lilatrips.com/ethos" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://lilatrips.com/og-image.png" />
+        <meta property="og:image:alt" content="Our Ethos — Lila Trips" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Our Ethos — Sacred Terrain, Ancient Practices & Reciprocity | Lila Trips" />
+        <meta name="twitter:description" content="The philosophy behind Lila Trips. How we think about land, travel, wellness, and what it means to move through a place with care." />
+        <meta name="twitter:image" content="https://lilatrips.com/og-image.png" />
+      </Helmet>
       <Nav />
 
       {/* ══ HERO ═══════════════════════════════════════════════════════════════ */}

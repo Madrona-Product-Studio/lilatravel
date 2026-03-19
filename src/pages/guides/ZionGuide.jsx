@@ -19,6 +19,7 @@ import { getTripsByDestination } from '@data/trips';
 import { trackEvent } from '@utils/analytics';
 import { getCelestialSnapshot } from '@services/celestialService';
 import { getNPSData, buildNPSLookup, findNPSMatch } from '@services/npsService';
+import { Helmet } from 'react-helmet-async';
 
 
 // ─── Guide-Specific Components ───────────────────────────────────────────────
@@ -1829,6 +1830,21 @@ export default function ZionGuide() {
 
   return (
     <>
+      <Helmet>
+        <title>Zion Canyon Guide — Trails, Dark Sky & Responsible Adventure | Lila Trips</title>
+        <meta name="description" content="Curated trails, dark sky windows, and wellness practices for travelers who want to move through Zion with intention — and leave it intact." />
+        <link rel="canonical" href="https://lilatrips.com/destinations/zion-canyon" />
+        <meta property="og:title" content="Zion Canyon Guide — Trails, Dark Sky & Responsible Adventure | Lila Trips" />
+        <meta property="og:description" content="Curated trails, dark sky windows, and wellness practices for travelers who want to move through Zion with intention — and leave it intact." />
+        <meta property="og:url" content="https://lilatrips.com/destinations/zion-canyon" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://lilatrips.com/og-image.png" />
+        <meta property="og:image:alt" content="Zion Canyon — Lila Trips" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Zion Canyon Guide — Trails, Dark Sky & Responsible Adventure | Lila Trips" />
+        <meta name="twitter:description" content="Curated trails, dark sky windows, and wellness practices for travelers who want to move through Zion with intention — and leave it intact." />
+        <meta name="twitter:image" content="https://lilatrips.com/og-image.png" />
+      </Helmet>
       <Nav />
 
       {/* ══ CELESTIAL DRAWER ═══════════════════════════════════════════════ */}

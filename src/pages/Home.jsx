@@ -11,6 +11,7 @@ import { destinations } from '@data/destinations';
 import { heroCallouts, magicMoments } from '@data/journey';
 import { useDayCycle, interpolatePhase, useHorizontalSwipe } from '@utils/hooks';
 import { trackEvent } from '@utils/analytics';
+import { Helmet } from 'react-helmet-async';
 
 
 // ─── Shooting Stars ────────────────────────────────────────────────────────
@@ -594,6 +595,21 @@ export default function HomePage() {
 
   return (
     <>
+      <Helmet>
+        <title>Lila Trips — Wellness-Infused Adventure Travel</title>
+        <meta name="description" content="Intentional travel for people who want to arrive somewhere — not just visit. Curated guides, mindful itineraries, and a deep respect for the land." />
+        <link rel="canonical" href="https://lilatrips.com/" />
+        <meta property="og:title" content="Lila Trips — Wellness-Infused Adventure Travel" />
+        <meta property="og:description" content="Intentional travel for people who want to arrive somewhere — not just visit. Curated guides, mindful itineraries, and a deep respect for the land." />
+        <meta property="og:url" content="https://lilatrips.com/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://lilatrips.com/og-image.png" />
+        <meta property="og:image:alt" content="Lila Trips — Wellness-Infused Adventure Travel" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Lila Trips — Wellness-Infused Adventure Travel" />
+        <meta name="twitter:description" content="Intentional travel for people who want to arrive somewhere — not just visit. Curated guides, mindful itineraries, and a deep respect for the land." />
+        <meta name="twitter:image" content="https://lilatrips.com/og-image.png" />
+      </Helmet>
       <Nav transparent />
 
       {/* ══ 1. HERO — Animated Day Cycle ═════════════════════════════════ */}

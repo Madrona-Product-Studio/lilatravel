@@ -18,6 +18,7 @@ import { P } from '@data/photos';
 import { getTripsByDestination } from '@data/trips';
 import { trackEvent } from '@utils/analytics';
 import { getCelestialSnapshot } from '@services/celestialService';
+import { Helmet } from 'react-helmet-async';
 
 
 // --- Guide-Specific Components ------------------------------------------------
@@ -914,6 +915,21 @@ export default function BigSurGuide() {
 
   return (
     <>
+      <Helmet>
+        <title>Big Sur Guide — Coastal Wilderness, Hot Springs & Slow Travel | Lila Trips</title>
+        <meta name="description" content="Big Sur is slipping into the sea. A guide for travelers who want to experience it deeply and tread lightly while it's still here." />
+        <link rel="canonical" href="https://lilatrips.com/destinations/big-sur" />
+        <meta property="og:title" content="Big Sur Guide — Coastal Wilderness, Hot Springs & Slow Travel | Lila Trips" />
+        <meta property="og:description" content="Big Sur is slipping into the sea. A guide for travelers who want to experience it deeply and tread lightly while it's still here." />
+        <meta property="og:url" content="https://lilatrips.com/destinations/big-sur" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://lilatrips.com/og-image.png" />
+        <meta property="og:image:alt" content="Big Sur — Lila Trips" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Big Sur Guide — Coastal Wilderness, Hot Springs & Slow Travel | Lila Trips" />
+        <meta name="twitter:description" content="Big Sur is slipping into the sea. A guide for travelers who want to experience it deeply and tread lightly while it's still here." />
+        <meta name="twitter:image" content="https://lilatrips.com/og-image.png" />
+      </Helmet>
       <Nav />
 
       {/* == CELESTIAL DRAWER ================================================ */}

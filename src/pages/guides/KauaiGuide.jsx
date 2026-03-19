@@ -18,6 +18,7 @@ import { P } from '@data/photos';
 import { getTripsByDestination } from '@data/trips';
 import { trackEvent } from '@utils/analytics';
 import { getCelestialSnapshot } from '@services/celestialService';
+import { Helmet } from 'react-helmet-async';
 
 
 // ─── Guide-Specific Components ───────────────────────────────────────────────
@@ -901,6 +902,21 @@ export default function KauaiGuide() {
 
   return (
     <>
+      <Helmet>
+        <title>Kauaʻi Guide — Na Pali, Sacred Land & Intentional Travel in Hawaii | Lila Trips</title>
+        <meta name="description" content="Kauaʻi is not just a destination — it's a responsibility. Curated trails, sacred valleys, and a guide built around reciprocity with Hawaiian land and culture." />
+        <link rel="canonical" href="https://lilatrips.com/destinations/kauai" />
+        <meta property="og:title" content="Kauaʻi Guide — Na Pali, Sacred Land & Intentional Travel in Hawaii | Lila Trips" />
+        <meta property="og:description" content="Kauaʻi is not just a destination — it's a responsibility. Curated trails, sacred valleys, and a guide built around reciprocity with Hawaiian land and culture." />
+        <meta property="og:url" content="https://lilatrips.com/destinations/kauai" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://lilatrips.com/og-image.png" />
+        <meta property="og:image:alt" content="Kauaʻi — Lila Trips" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Kauaʻi Guide — Na Pali, Sacred Land & Intentional Travel in Hawaii | Lila Trips" />
+        <meta name="twitter:description" content="Kauaʻi is not just a destination — it's a responsibility. Curated trails, sacred valleys, and a guide built around reciprocity with Hawaiian land and culture." />
+        <meta name="twitter:image" content="https://lilatrips.com/og-image.png" />
+      </Helmet>
       <Nav />
 
       {/* ══ CELESTIAL DRAWER ═══════════════════════════════════════════════ */}
