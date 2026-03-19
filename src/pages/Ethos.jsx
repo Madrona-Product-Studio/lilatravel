@@ -28,9 +28,9 @@ const approachBraids = [
     label: "Sacred Terrain",
     color: "#7DB8A0",
     headline: "The landscape is the teacher.",
-    body: "We don't choose destinations for their Instagram potential. We choose them for their capacity to dissolve the ordinary — places where canyon walls hold millions of years of silence, where ancient forests hum with something older than language, where the horizon line rearranges something inside you.",
-    tags: ["Seasonal Rhythms", "Canyon & Desert", "Old-Growth Forest", "Wild Coastline", "Mountain Summits"],
-    tagLabel: "Where we go",
+    body: "We don't choose destinations for their Instagram potential. We choose them for their capacity to dissolve the ordinary — places where canyon walls hold millions of years of silence, where ancient forests hum with something older than language, where the horizon line rearranges something inside you. To be changed by a place is to owe it something. We take that seriously.",
+    tags: ["Seasonal Rhythms", "Tread Lightly", "Give Back", "Canyon & Desert", "Old-Growth Forest", "Wild Coastline", "Mountain Summits"],
+    tagLabel: "Way we travel",
     cta: { text: "Explore Destinations", link: "/destinations" },
   },
   {
