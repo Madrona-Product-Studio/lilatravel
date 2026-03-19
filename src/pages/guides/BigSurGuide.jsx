@@ -570,7 +570,7 @@ function GuideNav({ isMobile }) {
             const isActive = activeId === section.id;
             return (
               <button key={section.id} onClick={() => handleClick(section.id)} className="guide-nav-scroll" style={{
-                padding: "0 16px", height: 44, background: "none", border: "none",
+                padding: "0 14px", height: 44, background: "none", border: "none",
                 borderBottom: `2px solid ${isActive ? C.seaGlass : "transparent"}`,
                 cursor: "pointer", fontFamily: "'Quicksand', sans-serif", fontSize: 11,
                 fontWeight: isActive ? 700 : 600, letterSpacing: "0.14em", textTransform: "uppercase",

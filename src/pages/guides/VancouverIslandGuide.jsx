@@ -668,7 +668,7 @@ function GuideNav({ isMobile }) {
                 onClick={() => handleClick(section.id)}
                 className="guide-nav-scroll"
                 style={{
-                  padding: "0 16px",
+                  padding: "0 14px",
                   height: 44,
                   background: "none",
                   border: "none",
