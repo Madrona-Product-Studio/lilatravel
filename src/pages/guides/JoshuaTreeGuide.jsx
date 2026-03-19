@@ -763,7 +763,7 @@ const GUIDE_SECTIONS = [
   { id: "sense-of-place", label: "Sense of Place" },
   { id: "when-to-go",     label: "Magic Windows" },
   { id: "tread-lightly",  label: "Tread Lightly" },
-  { id: "where-to-stay",  label: "Where to Sleep" },
+  { id: "where-to-stay",  label: "Sleep" },
   { id: "trails",         label: "Move" },
   { id: "wellness",       label: "Breathe" },
   { id: "light-sky",      label: "Night Sky" },
@@ -1348,7 +1348,7 @@ export default function JoshuaTreeGuide() {
           <section id="where-to-stay" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
             <FadeIn>
               <SectionIcon type="stay" />
-              <SectionLabel>Where to Sleep</SectionLabel>
+              <SectionLabel>Sleep</SectionLabel>
               <SectionTitle>Where to sleep</SectionTitle>
               <SectionSub isMobile={isMobile}>How you inhabit a place matters. Options across the full spectrum — from sleeping under the stars to Palm Springs luxury.</SectionSub>
             </FadeIn>
