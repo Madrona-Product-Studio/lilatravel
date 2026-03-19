@@ -458,6 +458,165 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
 }
 
 
+// ─── Park Card Accordion ────────────────────────────────────────────────────
+
+function DesignationIcon({ designation, size = 14, color = "#2D5F2B" }) {
+  if (designation === "us-national-park") return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <path d="M12 2L4 22h3l5-11 5 11h3L12 2z" fill={color} opacity="0.85" />
+      <circle cx="12" cy="16" r="2.5" fill={color} opacity="0.6" />
+    </svg>
+  );
+  if (designation === "canadian-national-park") return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <path d="M12 2L3 8v8l9 6 9-6V8L12 2z" stroke={color} strokeWidth="1.5" fill={`${color}15`} />
+      <path d="M9 11l3-3 3 3M12 8v8" stroke={color} strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+  return null;
+}
+
+const PARKS = [
+  {
+    id: "napali", name: "Nā Pali Coast State Wilderness Park", designation: "state-wilderness", established: 1983,
+    acreage: "6,175 ac", elevation: null, attribute: "Kalalau Trail",
+    soul: "Eleven miles of fluted sea cliffs rising 4,000 feet from the Pacific — accessible only by trail, boat, or helicopter. The Kalalau Trail traverses all of it, ending at a beach that feels like the edge of the world.",
+    facts: [
+      "Kalalau Trail: 11 miles one-way, permit required for overnight",
+      "Sea cliffs reach 4,000 ft — among the tallest in the world",
+      "Accessible only by trail, boat, or helicopter — no road access",
+    ],
+    infoUrl: "https://dlnr.hawaii.gov/dsp/parks/kauai/napali-coast-state-wilderness-park/",
+    driveFrom: null, accent: C.oceanTeal, isAnchor: false,
+  },
+  {
+    id: "waimea", name: "Waimea Canyon State Park", designation: "state-park", established: 1952,
+    acreage: "1,866 ac", elevation: null, attribute: "3,600 ft deep",
+    soul: "The Grand Canyon of the Pacific — 14 miles long, a mile wide, and 3,600 feet deep. Red rock, green forest, silver river. Mark Twain's name for it understates nothing.",
+    facts: [
+      "14 miles long, 1 mile wide, 3,600 feet deep",
+      "Formed by the collapse of the island's volcanic caldera and millions of years of erosion",
+      "Waimea means 'reddish water' — the river runs red with iron-rich soil",
+    ],
+    infoUrl: "https://dlnr.hawaii.gov/dsp/parks/kauai/waimea-canyon-state-park/",
+    driveFrom: "~40 min from Poipū", accent: C.sunSalmon, isAnchor: false,
+  },
+  {
+    id: "kokee", name: "Kōkeʻe State Park", designation: "state-park", established: 1952,
+    acreage: "4,345 ac", elevation: null, attribute: "Kalalau Lookout access",
+    soul: "The high-altitude counterpart to the coast — 4,000 feet above sea level, cool and forested, with the Kalalau Lookout offering the most accessible view of the Nā Pali Coast. Where the island reveals its interior.",
+    facts: [
+      "Kalalau Lookout: the most photographed view on Kauaʻi",
+      "45 miles of hiking trails through native forest",
+      "Home to rare native birds including the ʻapapane and ʻamakihi",
+    ],
+    infoUrl: "https://dlnr.hawaii.gov/dsp/parks/kauai/kokee-state-park/",
+    driveFrom: "~50 min from Poipū", accent: C.seaGlass, isAnchor: false,
+  },
+];
+
+function ParkCard({ park, isExpanded, onToggle, isMobile }) {
+  const DESIGNATION_LABELS = {
+    "us-national-park": "National Park",
+    "canadian-national-park": "National Park Reserve",
+    "state-park": "State Park",
+    "provincial-park": "Provincial Park",
+    "national-forest": "National Forest",
+    "state-wilderness": "State Wilderness Preserve",
+  };
+  const chips = [park.acreage, park.elevation, park.attribute].filter(Boolean);
+  return (
+    <div style={{
+      borderLeft: `4px solid ${park.accent}`,
+      border: `1px solid ${isExpanded ? park.accent + "40" : C.stone}`,
+      borderLeftWidth: 4, borderLeftColor: park.accent,
+      background: isExpanded ? `${park.accent}06` : C.cream,
+      transition: "border-color 0.2s, background 0.2s",
+      marginBottom: 6,
+    }}>
+      <button
+        onClick={onToggle}
+        style={{
+          width: "100%", padding: isMobile ? "14px 14px" : "16px 20px",
+          background: "none", border: "none", cursor: "pointer",
+          display: "flex", alignItems: "center", gap: 12,
+          textAlign: "left",
+        }}
+      >
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 4 }}>
+            <div style={{
+              fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700,
+              letterSpacing: "0.22em", textTransform: "uppercase", color: park.accent,
+            }}>
+              {DESIGNATION_LABELS[park.designation] || park.designation}{park.established ? ` · Est. ${park.established}` : ""}
+            </div>
+            {!park.isAnchor && park.driveFrom && (
+              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 600, letterSpacing: "0.08em", color: "#7A857E" }}>
+                {park.driveFrom}
+              </div>
+            )}
+          </div>
+          <div style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontSize: "clamp(18px, 2.5vw, 22px)", fontWeight: 400,
+            color: C.darkInk, lineHeight: 1.15, marginBottom: chips.length ? 8 : 0,
+          }}>{park.name}</div>
+          {chips.length > 0 && (
+            <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
+              {chips.map((chip, i) => (
+                <span key={i} style={{
+                  padding: "2px 10px", background: `${park.accent}10`,
+                  fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600,
+                  color: "#4A5650", whiteSpace: "nowrap",
+                }}>{chip}</span>
+              ))}
+            </div>
+          )}
+        </div>
+        <div style={{ display: "flex", alignItems: "center", gap: 8, flexShrink: 0 }}>
+          <DesignationIcon designation={park.designation} size={16} color={park.accent} />
+          <span style={{
+            display: "inline-block", fontSize: 14, color: "#7A857E", lineHeight: 1,
+            transform: isExpanded ? "rotate(180deg)" : "rotate(0deg)",
+            transition: "transform 0.3s ease",
+          }}>▾</span>
+        </div>
+      </button>
+      <div style={{
+        maxHeight: isExpanded ? 400 : 0, overflow: "hidden",
+        transition: "max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
+      }}>
+        <div style={{ padding: isMobile ? "0 14px 16px" : "0 20px 18px" }}>
+          <div style={{
+            fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 400,
+            color: "#4A5650", lineHeight: 1.7, fontStyle: "italic",
+            marginBottom: 12, paddingTop: 2,
+          }}>
+            {"◈ "}{park.soul}
+          </div>
+          {park.facts.map((fact, i) => (
+            <div key={i} style={{ display: "flex", gap: 8, marginBottom: 5, alignItems: "flex-start" }}>
+              <div style={{ width: 4, height: 4, borderRadius: "50%", background: park.accent, opacity: 0.6, marginTop: 7, flexShrink: 0 }} />
+              <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 400, color: "#4A5650", lineHeight: 1.65 }}>{fact}</span>
+            </div>
+          ))}
+          {park.infoUrl && (
+            <a href={park.infoUrl} target="_blank" rel="noopener noreferrer" style={{
+              display: "inline-block", marginTop: 10,
+              fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700,
+              letterSpacing: "0.18em", textTransform: "uppercase",
+              color: park.accent, textDecoration: "none",
+            }}>
+              {park.designation === "canadian-national-park" ? "Parks Canada" : park.designation === "us-national-park" ? "NPS Page" : "Park Info"} ↗
+            </a>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ─── Guide Section Navigation (sticky anchor bar) ───────────────────────────
 
 const GUIDE_SECTIONS = [
@@ -728,6 +887,7 @@ export default function KauaiGuide() {
     return () => window.removeEventListener("resize", check);
   }, []);
 
+  const [expandedPark, setExpandedPark] = useState(null);
   const [activeSheet, setActiveSheet] = useState(null);
   useEffect(() => {
     if (activeSheet) document.body.style.overflow = 'hidden';
@@ -892,23 +1052,38 @@ export default function KauaiGuide() {
               </p>
             </FadeIn>
 
-            {/* ── Quick Stats Bar ── */}
-            <FadeIn delay={0.12}>
+            {/* ── At a Glance ── */}
+            <FadeIn delay={0.06}>
               <div style={{
                 display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))",
                 gap: isMobile ? 12 : 16, padding: isMobile ? 16 : 20,
-                background: C.cream, border: `1px solid ${C.stone}`, marginTop: 24,
+                background: C.cream, border: `1px solid ${C.stone}`, marginBottom: 20,
               }}>
                 {[
                   { l: "Recommended", v: "5–7 days" },
-                  { l: "Nearest Airport", v: "Līhuʻe (LIH)" },
-                  { l: "Direct Flights", v: "LAX / SFO / SEA" },
-                  { l: "Best Times", v: "Apr–May, Sep–Oct" },
+                  { l: "Nearest Airport", v: "Lihue (LIH)" },
+                  { l: "Direct Flights", v: "West Coast" },
+                  { l: "Best Times", v: "Apr–Oct" },
                 ].map((s, i) => (
                   <div key={i}>
                     <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: C.oceanTeal, marginBottom: 3 }}>{s.l}</div>
                     <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 14, fontWeight: 600, color: C.darkInk }}>{s.v}</div>
                   </div>
+                ))}
+              </div>
+            </FadeIn>
+
+            {/* ── Park Cards ── */}
+            <FadeIn delay={0.08}>
+              <div style={{ marginBottom: 4 }}>
+                {PARKS.map(park => (
+                  <ParkCard
+                    key={park.id}
+                    park={park}
+                    isExpanded={expandedPark === park.id}
+                    onToggle={() => setExpandedPark(expandedPark === park.id ? null : park.id)}
+                    isMobile={isMobile}
+                  />
                 ))}
               </div>
             </FadeIn>

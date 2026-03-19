@@ -458,6 +458,178 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
 }
 
 
+// ─── Park Card Accordion ────────────────────────────────────────────────────
+
+function DesignationIcon({ designation, size = 14, color = "#2D5F2B" }) {
+  if (designation === "us-national-park") return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <path d="M12 2L4 22h3l5-11 5 11h3L12 2z" fill={color} opacity="0.85" />
+      <circle cx="12" cy="16" r="2.5" fill={color} opacity="0.6" />
+    </svg>
+  );
+  if (designation === "canadian-national-park") return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <path d="M12 2L3 8v8l9 6 9-6V8L12 2z" stroke={color} strokeWidth="1.5" fill={`${color}15`} />
+      <path d="M9 11l3-3 3 3M12 8v8" stroke={color} strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+  return null;
+}
+
+const PARKS = [
+  {
+    id: "los-padres", name: "Los Padres National Forest", designation: "national-forest", established: 1906,
+    acreage: "1.75M ac", elevation: "sea level–5,862 ft", attribute: "Multi-jurisdiction corridor",
+    soul: "The wild backbone of Big Sur — nearly two million acres of chaparral, oak woodland, and coastal mountains stretching from Carmel to Ventura. Most of Big Sur's backcountry trails, hot springs, and wilderness areas fall within Los Padres.",
+    facts: [
+      "Contains the Ventana Wilderness and Silver Peak Wilderness",
+      "Sykes Hot Springs and Tassajara Hot Springs lie within its boundaries",
+      "Managed by the USDA Forest Service, distinct from state park lands",
+    ],
+    infoUrl: "https://www.fs.usda.gov/lpnf",
+    driveFrom: null, accent: C.seaGlass, isAnchor: false,
+  },
+  {
+    id: "julia-pfeiffer", name: "Julia Pfeiffer Burns State Park", designation: "state-park", established: 1962,
+    acreage: "3,762 ac", elevation: null, attribute: "McWay Falls",
+    soul: "Home to McWay Falls — an 80-foot waterfall that drops directly onto a pristine cove beach. One of the most photographed spots on the California coast, and one of only two tidefall waterfalls in the state.",
+    facts: [
+      "McWay Falls drops 80 ft directly onto the beach",
+      "Named for Julia Pfeiffer Burns, a Big Sur pioneer",
+      "Underwater area designated as a marine protected area",
+    ],
+    infoUrl: "https://www.parks.ca.gov/?page_id=578",
+    driveFrom: "~20 min from Big Sur Station", accent: "#B07D4B", isAnchor: false,
+  },
+  {
+    id: "pfeiffer-big-sur", name: "Pfeiffer Big Sur State Park", designation: "state-park", established: 1933,
+    acreage: "1,006 ac", elevation: null, attribute: "Redwood groves",
+    soul: "The heart of Big Sur's valley — old-growth redwoods along the Big Sur River, with some of the most accessible trails in the region. The park that makes Big Sur feel habitable.",
+    facts: [
+      "Contains old-growth coast redwood groves along the Big Sur River",
+      "Pfeiffer Falls trail is the most accessible waterfall hike in Big Sur",
+      "Big Sur Lodge sits within the park boundaries",
+    ],
+    infoUrl: "https://www.parks.ca.gov/?page_id=570",
+    driveFrom: "~5 min from Big Sur Station", accent: "#6B8F71", isAnchor: false,
+  },
+  {
+    id: "andrew-molera", name: "Andrew Molera State Park", designation: "state-park", established: 1972,
+    acreage: "4,766 ac", elevation: null, attribute: "Largest Big Sur state park",
+    soul: "The largest state park in Big Sur — where the Big Sur River meets the ocean. Open meadows, beach access, and the best birding on the coast. Less crowded than Pfeiffer, more expansive.",
+    facts: [
+      "Largest state park on the Big Sur coast",
+      "Where the Big Sur River meets the Pacific",
+      "Home to the Ventana Wildlife Society's condor observation point",
+    ],
+    infoUrl: "https://www.parks.ca.gov/?page_id=582",
+    driveFrom: "~15 min north of Big Sur Station", accent: "#5A7E8C", isAnchor: false,
+  },
+];
+
+function ParkCard({ park, isExpanded, onToggle, isMobile }) {
+  const DESIGNATION_LABELS = {
+    "us-national-park": "National Park",
+    "canadian-national-park": "National Park Reserve",
+    "state-park": "State Park",
+    "provincial-park": "Provincial Park",
+    "national-forest": "National Forest",
+    "state-wilderness": "State Wilderness Preserve",
+  };
+  const chips = [park.acreage, park.elevation, park.attribute].filter(Boolean);
+  return (
+    <div style={{
+      borderLeft: `4px solid ${park.accent}`,
+      border: `1px solid ${isExpanded ? park.accent + "40" : C.stone}`,
+      borderLeftWidth: 4, borderLeftColor: park.accent,
+      background: isExpanded ? `${park.accent}06` : C.cream,
+      transition: "border-color 0.2s, background 0.2s",
+      marginBottom: 6,
+    }}>
+      <button
+        onClick={onToggle}
+        style={{
+          width: "100%", padding: isMobile ? "14px 14px" : "16px 20px",
+          background: "none", border: "none", cursor: "pointer",
+          display: "flex", alignItems: "center", gap: 12,
+          textAlign: "left",
+        }}
+      >
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 4 }}>
+            <div style={{
+              fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700,
+              letterSpacing: "0.22em", textTransform: "uppercase", color: park.accent,
+            }}>
+              {DESIGNATION_LABELS[park.designation] || park.designation}{park.established ? ` · Est. ${park.established}` : ""}
+            </div>
+            {!park.isAnchor && park.driveFrom && (
+              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 600, letterSpacing: "0.08em", color: "#7A857E" }}>
+                {park.driveFrom}
+              </div>
+            )}
+          </div>
+          <div style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontSize: "clamp(18px, 2.5vw, 22px)", fontWeight: 400,
+            color: C.darkInk, lineHeight: 1.15, marginBottom: chips.length ? 8 : 0,
+          }}>{park.name}</div>
+          {chips.length > 0 && (
+            <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
+              {chips.map((chip, i) => (
+                <span key={i} style={{
+                  padding: "2px 10px", background: `${park.accent}10`,
+                  fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600,
+                  color: "#4A5650", whiteSpace: "nowrap",
+                }}>{chip}</span>
+              ))}
+            </div>
+          )}
+        </div>
+        <div style={{ display: "flex", alignItems: "center", gap: 8, flexShrink: 0 }}>
+          <DesignationIcon designation={park.designation} size={16} color={park.accent} />
+          <span style={{
+            display: "inline-block", fontSize: 14, color: "#7A857E", lineHeight: 1,
+            transform: isExpanded ? "rotate(180deg)" : "rotate(0deg)",
+            transition: "transform 0.3s ease",
+          }}>▾</span>
+        </div>
+      </button>
+      <div style={{
+        maxHeight: isExpanded ? 400 : 0, overflow: "hidden",
+        transition: "max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
+      }}>
+        <div style={{ padding: isMobile ? "0 14px 16px" : "0 20px 18px" }}>
+          <div style={{
+            fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 400,
+            color: "#4A5650", lineHeight: 1.7, fontStyle: "italic",
+            marginBottom: 12, paddingTop: 2,
+          }}>
+            {"◈ "}{park.soul}
+          </div>
+          {park.facts.map((fact, i) => (
+            <div key={i} style={{ display: "flex", gap: 8, marginBottom: 5, alignItems: "flex-start" }}>
+              <div style={{ width: 4, height: 4, borderRadius: "50%", background: park.accent, opacity: 0.6, marginTop: 7, flexShrink: 0 }} />
+              <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 400, color: "#4A5650", lineHeight: 1.65 }}>{fact}</span>
+            </div>
+          ))}
+          {park.infoUrl && (
+            <a href={park.infoUrl} target="_blank" rel="noopener noreferrer" style={{
+              display: "inline-block", marginTop: 10,
+              fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700,
+              letterSpacing: "0.18em", textTransform: "uppercase",
+              color: park.accent, textDecoration: "none",
+            }}>
+              {park.designation === "canadian-national-park" ? "Parks Canada" : park.designation === "us-national-park" ? "NPS Page" : "Park Info"} ↗
+            </a>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
 // --- Guide Section Navigation (sticky anchor bar) ----------------------------
 
 const GUIDE_SECTIONS = [
@@ -728,6 +900,7 @@ export default function BigSurGuide() {
     return () => window.removeEventListener("resize", check);
   }, []);
 
+  const [expandedPark, setExpandedPark] = useState(null);
   const [activeSheet, setActiveSheet] = useState(null);
   useEffect(() => {
     if (activeSheet) document.body.style.overflow = 'hidden';
@@ -892,23 +1065,38 @@ export default function BigSurGuide() {
               </p>
             </FadeIn>
 
-            {/* -- Quick Stats Bar -- */}
-            <FadeIn delay={0.12}>
+            {/* ── At a Glance ── */}
+            <FadeIn delay={0.06}>
               <div style={{
                 display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))",
                 gap: isMobile ? 12 : 16, padding: isMobile ? 16 : 20,
-                background: C.cream, border: `1px solid ${C.stone}`, marginTop: 24,
+                background: C.cream, border: `1px solid ${C.stone}`, marginBottom: 20,
               }}>
                 {[
                   { l: "Recommended", v: "3–5 days" },
-                  { l: "Nearest Airport", v: "MRY / SFO" },
-                  { l: "From SFO", v: "~2.5 hrs" },
-                  { l: "Best Times", v: "Mar–May, Sep–Nov" },
+                  { l: "Nearest Airport", v: "Monterey (MRY) or SFO" },
+                  { l: "From SFO", v: "~3 hours" },
+                  { l: "Best Times", v: "Apr–Oct" },
                 ].map((s, i) => (
                   <div key={i}>
                     <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: C.seaGlass, marginBottom: 3 }}>{s.l}</div>
                     <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 14, fontWeight: 600, color: C.darkInk }}>{s.v}</div>
                   </div>
+                ))}
+              </div>
+            </FadeIn>
+
+            {/* ── Park Cards ── */}
+            <FadeIn delay={0.08}>
+              <div style={{ marginBottom: 4 }}>
+                {PARKS.map(park => (
+                  <ParkCard
+                    key={park.id}
+                    park={park}
+                    isExpanded={expandedPark === park.id}
+                    onToggle={() => setExpandedPark(expandedPark === park.id ? null : park.id)}
+                    isMobile={isMobile}
+                  />
                 ))}
               </div>
             </FadeIn>

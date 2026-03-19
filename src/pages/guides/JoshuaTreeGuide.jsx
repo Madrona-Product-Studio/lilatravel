@@ -636,49 +636,122 @@ function WildlifeEntry({ name, season, detail, isMobile }) {
   );
 }
 
-function ParkPassport({ park, isMobile }) {
+// ─── Park Card Accordion ────────────────────────────────────────────────────
+
+function DesignationIcon({ designation, size = 14, color = "#2D5F2B" }) {
+  if (designation === "us-national-park") return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <path d="M12 2L4 22h3l5-11 5 11h3L12 2z" fill={color} opacity="0.85" />
+      <circle cx="12" cy="16" r="2.5" fill={color} opacity="0.6" />
+    </svg>
+  );
+  if (designation === "canadian-national-park") return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <path d="M12 2L3 8v8l9 6 9-6V8L12 2z" stroke={color} strokeWidth="1.5" fill={`${color}15`} />
+      <path d="M9 11l3-3 3 3M12 8v8" stroke={color} strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+  return null;
+}
+
+function ParkCard({ park, isExpanded, onToggle, isMobile }) {
+  const DESIGNATION_LABELS = {
+    "us-national-park": "National Park",
+    "canadian-national-park": "National Park Reserve",
+    "state-park": "State Park",
+    "provincial-park": "Provincial Park",
+    "national-forest": "National Forest",
+    "state-wilderness": "State Wilderness Preserve",
+  };
+  const chips = [park.acreage, park.elevation, park.attribute].filter(Boolean);
   return (
     <div style={{
-      flex: "1", minWidth: isMobile ? "100%" : 0,
-      border: `1px solid ${park.accent}60`,
-      background: `${park.accent}06`,
-      padding: isMobile ? "20px 18px" : "24px 22px",
-      display: "flex", flexDirection: "column",
+      borderLeft: `4px solid ${park.accent}`,
+      border: `1px solid ${isExpanded ? park.accent + "40" : C.stone}`,
+      borderLeftWidth: 4, borderLeftColor: park.accent,
+      background: isExpanded ? `${park.accent}06` : C.cream,
+      transition: "border-color 0.2s, background 0.2s",
+      marginBottom: 6,
     }}>
-      <div style={{ marginBottom: 14 }}>
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 6 }}>
-          <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "0.28em", textTransform: "uppercase", color: park.accent }}>
-            Anchor Park
+      <button
+        onClick={onToggle}
+        style={{
+          width: "100%", padding: isMobile ? "14px 14px" : "16px 20px",
+          background: "none", border: "none", cursor: "pointer",
+          display: "flex", alignItems: "center", gap: 12,
+          textAlign: "left",
+        }}
+      >
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 4 }}>
+            <div style={{
+              fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700,
+              letterSpacing: "0.22em", textTransform: "uppercase", color: park.accent,
+            }}>
+              {DESIGNATION_LABELS[park.designation] || park.designation}{park.established ? ` · Est. ${park.established}` : ""}
+            </div>
+            {!park.isAnchor && park.driveFrom && (
+              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 600, letterSpacing: "0.08em", color: "#7A857E" }}>
+                {park.driveFrom}
+              </div>
+            )}
           </div>
+          <div style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontSize: "clamp(18px, 2.5vw, 22px)", fontWeight: 400,
+            color: C.darkInk, lineHeight: 1.15, marginBottom: chips.length ? 8 : 0,
+          }}>{park.name}</div>
+          {chips.length > 0 && (
+            <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
+              {chips.map((chip, i) => (
+                <span key={i} style={{
+                  padding: "2px 10px", background: `${park.accent}10`,
+                  fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600,
+                  color: "#4A5650", whiteSpace: "nowrap",
+                }}>{chip}</span>
+              ))}
+            </div>
+          )}
         </div>
-        <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(22px, 3vw, 28px)", fontWeight: 400, color: C.darkInk, lineHeight: 1.1, marginBottom: 8 }}>{park.name}</div>
-        <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 400, color: "#4A5650", lineHeight: 1.6, fontStyle: "italic" }}>{park.soul}</div>
-      </div>
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px 12px", padding: "12px 0", borderTop: `1px solid ${C.stone}`, borderBottom: `1px solid ${C.stone}`, marginBottom: 14 }}>
-        <div style={{ gridColumn: "1 / -1" }}>
-          <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#7A857E", marginBottom: 2 }}>Established</div>
-          <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 14, fontWeight: 600, color: C.darkInk }}>{park.established}</div>
+        <div style={{ display: "flex", alignItems: "center", gap: 8, flexShrink: 0 }}>
+          <DesignationIcon designation={park.designation} size={16} color={park.accent} />
+          <span style={{
+            display: "inline-block", fontSize: 14, color: "#7A857E", lineHeight: 1,
+            transform: isExpanded ? "rotate(180deg)" : "rotate(0deg)",
+            transition: "transform 0.3s ease",
+          }}>▾</span>
         </div>
-        <div>
-          <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#7A857E", marginBottom: 2 }}>Acreage</div>
-          <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 600, color: C.darkInk }}>{park.acreage}</div>
-        </div>
-        <div>
-          <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#7A857E", marginBottom: 2 }}>Elevation</div>
-          <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 600, color: C.darkInk }}>{park.elevation}</div>
-        </div>
-      </div>
-      <div style={{ flex: 1 }}>
-        {park.facts.map((fact, i) => (
-          <div key={i} style={{ display: "flex", gap: 8, marginBottom: 7, alignItems: "flex-start" }}>
-            <div style={{ width: 4, height: 4, borderRadius: "50%", background: park.accent, opacity: 0.6, marginTop: 6, flexShrink: 0 }} />
-            <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 400, color: "#4A5650", lineHeight: 1.6 }}>{fact}</span>
+      </button>
+      <div style={{
+        maxHeight: isExpanded ? 400 : 0, overflow: "hidden",
+        transition: "max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
+      }}>
+        <div style={{ padding: isMobile ? "0 14px 16px" : "0 20px 18px" }}>
+          <div style={{
+            fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 400,
+            color: "#4A5650", lineHeight: 1.7, fontStyle: "italic",
+            marginBottom: 12, paddingTop: 2,
+          }}>
+            {"◈ "}{park.soul}
           </div>
-        ))}
+          {park.facts.map((fact, i) => (
+            <div key={i} style={{ display: "flex", gap: 8, marginBottom: 5, alignItems: "flex-start" }}>
+              <div style={{ width: 4, height: 4, borderRadius: "50%", background: park.accent, opacity: 0.6, marginTop: 7, flexShrink: 0 }} />
+              <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 400, color: "#4A5650", lineHeight: 1.65 }}>{fact}</span>
+            </div>
+          ))}
+          {park.infoUrl && (
+            <a href={park.infoUrl} target="_blank" rel="noopener noreferrer" style={{
+              display: "inline-block", marginTop: 10,
+              fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700,
+              letterSpacing: "0.18em", textTransform: "uppercase",
+              color: park.accent, textDecoration: "none",
+            }}>
+              {park.designation === "canadian-national-park" ? "Parks Canada" : park.designation === "us-national-park" ? "NPS Page" : "Park Info"} ↗
+            </a>
+          )}
+        </div>
       </div>
-      <a href={park.npsUrl} target="_blank" rel="noopener noreferrer" style={{ marginTop: 16, fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: park.accent, textDecoration: "none" }}>
-        NPS Page ↗
-      </a>
     </div>
   );
 }
@@ -957,6 +1030,7 @@ export default function JoshuaTreeGuide() {
     return () => window.removeEventListener("resize", check);
   }, []);
 
+  const [expandedPark, setExpandedPark] = useState(null);
   const [activeSheet, setActiveSheet] = useState(null);
   useEffect(() => {
     if (activeSheet) document.body.style.overflow = 'hidden';
@@ -980,22 +1054,19 @@ export default function JoshuaTreeGuide() {
   };
   const checkNPS = useCallback((name) => npsLookup ? !!findNPSMatch(name, npsLookup) : false, [npsLookup]);
 
-  const PARK_DATA = {
-    name: "Joshua Tree",
-    full: "Joshua Tree National Park",
-    soul: "The silence here has weight.",
-    established: 1994,
-    acreage: "795,156",
-    elevation: "536 – 5,814 ft",
-    npsUrl: "https://www.nps.gov/jotr/",
+  const PARKS = [{
+    id: "joshua-tree", name: "Joshua Tree", designation: "us-national-park", established: 1994,
+    acreage: "795,156 ac", elevation: "536–5,814 ft", attribute: "IDA Dark Sky Certified",
+    soul: "One of the last truly dark skies in Southern California — IDA certified, Bortle 3–4. The park straddles two deserts: Mojave (high, cooler, Joshua trees) and Colorado (low, hotter, cholla and ocotillo).",
     facts: [
       "Sits at the convergence of the Mojave and Colorado Deserts",
       "Certified International Dark Sky Park — Bortle Class 2–3",
       "Over 8,000 climbing routes on 400+ formations",
       "Home to the Serrano and Cahuilla peoples for thousands of years",
     ],
-    accent: C.goldenAmber,
-  };
+    infoUrl: "https://www.nps.gov/jotr/",
+    driveFrom: null, accent: C.goldenAmber, isAnchor: true,
+  }];
 
   return (
     <>
@@ -1151,9 +1222,40 @@ export default function JoshuaTreeGuide() {
               </p>
             </FadeIn>
 
-            {/* ── Park Passport ── */}
+            {/* ── At a Glance ── */}
             <FadeIn delay={0.06}>
-              <ParkPassport park={PARK_DATA} isMobile={isMobile} />
+              <div style={{
+                display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))",
+                gap: isMobile ? 12 : 16, padding: isMobile ? 16 : 20,
+                background: C.cream, border: `1px solid ${C.stone}`, marginBottom: 20,
+              }}>
+                {[
+                  { l: "Recommended", v: "3–5 days" },
+                  { l: "Nearest Airport", v: "Palm Springs (PSP) or LAX" },
+                  { l: "Drive from LAX", v: "~2.5 hours" },
+                  { l: "Best Times", v: "Oct–Apr" },
+                ].map((s, i) => (
+                  <div key={i}>
+                    <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: C.goldenAmber, marginBottom: 3 }}>{s.l}</div>
+                    <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 14, fontWeight: 600, color: C.darkInk }}>{s.v}</div>
+                  </div>
+                ))}
+              </div>
+            </FadeIn>
+
+            {/* ── Park Cards ── */}
+            <FadeIn delay={0.08}>
+              <div style={{ marginBottom: 4 }}>
+                {PARKS.map(park => (
+                  <ParkCard
+                    key={park.id}
+                    park={park}
+                    isExpanded={expandedPark === park.id}
+                    onToggle={() => setExpandedPark(expandedPark === park.id ? null : park.id)}
+                    isMobile={isMobile}
+                  />
+                ))}
+              </div>
             </FadeIn>
 
             {/* ── Wildlife Section ── */}
@@ -1165,27 +1267,6 @@ export default function JoshuaTreeGuide() {
                 <WildlifeEntry isMobile={isMobile} name="Coyote" season="Year-round" detail="Listen for them at dusk. Their calls across the open desert are part of the sound of this place." />
                 <WildlifeEntry isMobile={isMobile} name="Roadrunner" season="Year-round" detail="Fast, curious, and frequently spotted along park roads and at campground edges." />
                 <WildlifeEntry isMobile={isMobile} name="Sidewinder Rattlesnake" season="Warm months" detail="Watch where you step and reach, especially in rocky areas. They're shy but present." />
-              </div>
-            </FadeIn>
-
-            {/* ── Quick Stats Bar ── */}
-            <FadeIn delay={0.12}>
-              <div style={{
-                display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))",
-                gap: isMobile ? 12 : 16, padding: isMobile ? 16 : 20,
-                background: C.cream, border: `1px solid ${C.stone}`, marginTop: 24,
-              }}>
-                {[
-                  { l: "Recommended", v: "3–5 days" },
-                  { l: "Nearest Airport", v: "Palm Springs (PSP)" },
-                  { l: "Drive from PSP", v: "~45 minutes" },
-                  { l: "Best Times", v: "Mar–May, Oct–Nov" },
-                ].map((s, i) => (
-                  <div key={i}>
-                    <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: C.goldenAmber, marginBottom: 3 }}>{s.l}</div>
-                    <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 14, fontWeight: 600, color: C.darkInk }}>{s.v}</div>
-                  </div>
-                ))}
               </div>
             </FadeIn>
           </section>

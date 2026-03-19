@@ -522,6 +522,153 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
 }
 
 
+// ─── Park Card Accordion ────────────────────────────────────────────────────
+
+function DesignationIcon({ designation, size = 14, color = "#2D5F2B" }) {
+  if (designation === "us-national-park") return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <path d="M12 2L4 22h3l5-11 5 11h3L12 2z" fill={color} opacity="0.85" />
+      <circle cx="12" cy="16" r="2.5" fill={color} opacity="0.6" />
+    </svg>
+  );
+  if (designation === "canadian-national-park") return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <path d="M12 2L3 8v8l9 6 9-6V8L12 2z" stroke={color} strokeWidth="1.5" fill={`${color}15`} />
+      <path d="M9 11l3-3 3 3M12 8v8" stroke={color} strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+  return null;
+}
+
+const PARKS = [
+  {
+    id: "olympic-np", name: "Olympic National Park", designation: "us-national-park", established: 1938,
+    acreage: "922,650 ac", elevation: "sea level–7,980 ft", attribute: "Three ecosystems",
+    soul: "Three parks in one — glacier-draped mountains, the wettest rainforests in the contiguous US, and 73 miles of wilderness coastline. No single road connects them. You choose your immersion.",
+    facts: [
+      "UNESCO World Heritage Site and International Biosphere Reserve",
+      "The Hoh Rainforest receives 140–170 inches of rain annually",
+      "Home to the largest unmanaged herd of Roosevelt elk in the Pacific Northwest",
+    ],
+    infoUrl: "https://www.nps.gov/olym/",
+    driveFrom: null, accent: C.skyBlue, isAnchor: true,
+  },
+  {
+    id: "olympic-nf", name: "Olympic National Forest", designation: "national-forest",
+    acreage: "628,000 ac", elevation: null, attribute: "Dispersed camping",
+    soul: "The buffer zone surrounding the national park — 628,000 acres of working forest, wild rivers, and dispersed campsites. Where the park draws boundaries, the forest offers freedom.",
+    facts: [
+      "Surrounds Olympic National Park on three sides",
+      "Five designated wilderness areas within the forest",
+      "Dispersed camping permitted throughout — no reservation needed",
+    ],
+    infoUrl: "https://www.fs.usda.gov/olympic",
+    driveFrom: null, accent: "#6B8F71", isAnchor: false,
+  },
+];
+
+function ParkCard({ park, isExpanded, onToggle, isMobile }) {
+  const DESIGNATION_LABELS = {
+    "us-national-park": "National Park",
+    "canadian-national-park": "National Park Reserve",
+    "state-park": "State Park",
+    "provincial-park": "Provincial Park",
+    "national-forest": "National Forest",
+    "state-wilderness": "State Wilderness Preserve",
+  };
+  const chips = [park.acreage, park.elevation, park.attribute].filter(Boolean);
+  return (
+    <div style={{
+      borderLeft: `4px solid ${park.accent}`,
+      border: `1px solid ${isExpanded ? park.accent + "40" : C.stone}`,
+      borderLeftWidth: 4, borderLeftColor: park.accent,
+      background: isExpanded ? `${park.accent}06` : C.cream,
+      transition: "border-color 0.2s, background 0.2s",
+      marginBottom: 6,
+    }}>
+      <button
+        onClick={onToggle}
+        style={{
+          width: "100%", padding: isMobile ? "14px 14px" : "16px 20px",
+          background: "none", border: "none", cursor: "pointer",
+          display: "flex", alignItems: "center", gap: 12,
+          textAlign: "left",
+        }}
+      >
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 4 }}>
+            <div style={{
+              fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700,
+              letterSpacing: "0.22em", textTransform: "uppercase", color: park.accent,
+            }}>
+              {DESIGNATION_LABELS[park.designation] || park.designation}{park.established ? ` · Est. ${park.established}` : ""}
+            </div>
+            {!park.isAnchor && park.driveFrom && (
+              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 600, letterSpacing: "0.08em", color: "#7A857E" }}>
+                {park.driveFrom}
+              </div>
+            )}
+          </div>
+          <div style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontSize: "clamp(18px, 2.5vw, 22px)", fontWeight: 400,
+            color: C.darkInk, lineHeight: 1.15, marginBottom: chips.length ? 8 : 0,
+          }}>{park.name}</div>
+          {chips.length > 0 && (
+            <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
+              {chips.map((chip, i) => (
+                <span key={i} style={{
+                  padding: "2px 10px", background: `${park.accent}10`,
+                  fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600,
+                  color: "#4A5650", whiteSpace: "nowrap",
+                }}>{chip}</span>
+              ))}
+            </div>
+          )}
+        </div>
+        <div style={{ display: "flex", alignItems: "center", gap: 8, flexShrink: 0 }}>
+          <DesignationIcon designation={park.designation} size={16} color={park.accent} />
+          <span style={{
+            display: "inline-block", fontSize: 14, color: "#7A857E", lineHeight: 1,
+            transform: isExpanded ? "rotate(180deg)" : "rotate(0deg)",
+            transition: "transform 0.3s ease",
+          }}>▾</span>
+        </div>
+      </button>
+      <div style={{
+        maxHeight: isExpanded ? 400 : 0, overflow: "hidden",
+        transition: "max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
+      }}>
+        <div style={{ padding: isMobile ? "0 14px 16px" : "0 20px 18px" }}>
+          <div style={{
+            fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 400,
+            color: "#4A5650", lineHeight: 1.7, fontStyle: "italic",
+            marginBottom: 12, paddingTop: 2,
+          }}>
+            {"◈ "}{park.soul}
+          </div>
+          {park.facts.map((fact, i) => (
+            <div key={i} style={{ display: "flex", gap: 8, marginBottom: 5, alignItems: "flex-start" }}>
+              <div style={{ width: 4, height: 4, borderRadius: "50%", background: park.accent, opacity: 0.6, marginTop: 7, flexShrink: 0 }} />
+              <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 400, color: "#4A5650", lineHeight: 1.65 }}>{fact}</span>
+            </div>
+          ))}
+          {park.infoUrl && (
+            <a href={park.infoUrl} target="_blank" rel="noopener noreferrer" style={{
+              display: "inline-block", marginTop: 10,
+              fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700,
+              letterSpacing: "0.18em", textTransform: "uppercase",
+              color: park.accent, textDecoration: "none",
+            }}>
+              {park.designation === "canadian-national-park" ? "Parks Canada" : park.designation === "us-national-park" ? "NPS Page" : "Park Info"} ↗
+            </a>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ─── Guide Section Navigation (sticky anchor bar) ───────────────────────────
 
 const GUIDE_SECTIONS = [
@@ -784,6 +931,7 @@ export default function OlympicPeninsulaGuide() {
     return () => window.removeEventListener("resize", check);
   }, []);
 
+  const [expandedPark, setExpandedPark] = useState(null);
   const [activeSheet, setActiveSheet] = useState(null);
   useEffect(() => {
     if (activeSheet) document.body.style.overflow = 'hidden';
@@ -927,8 +1075,8 @@ export default function OlympicPeninsulaGuide() {
               </p>
             </FadeIn>
 
-            {/* Quick Stats Bar */}
-            <FadeIn delay={0.12}>
+            {/* ── At a Glance ── */}
+            <FadeIn delay={0.06}>
               <div style={{
                 display: "grid",
                 gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))",
@@ -936,15 +1084,13 @@ export default function OlympicPeninsulaGuide() {
                 padding: isMobile ? 16 : 20,
                 background: C.cream,
                 border: `1px solid ${C.stone}`,
-                marginTop: 24,
+                marginBottom: 20,
               }}>
                 {[
                   { l: "Recommended", v: "4–7 days" },
                   { l: "Nearest Airport", v: "Seattle (SEA)" },
-                  { l: "Drive from SEA", v: "~3 hrs to Port Angeles" },
-                  { l: "Best Times", v: "Jul–Sep" },
-                  { l: "Entrance Fee", v: "$30/vehicle (7-day)" },
-                  { l: "Shuttle", v: "None — car required" },
+                  { l: "Drive from SEA", v: "~2.5 hours" },
+                  { l: "Best Times", v: "Jun–Sep" },
                 ].map((s, i) => (
                   <div key={i}>
                     <div style={{
@@ -959,6 +1105,21 @@ export default function OlympicPeninsulaGuide() {
                       color: C.darkInk,
                     }}>{s.v}</div>
                   </div>
+                ))}
+              </div>
+            </FadeIn>
+
+            {/* ── Park Cards ── */}
+            <FadeIn delay={0.08}>
+              <div style={{ marginBottom: 4 }}>
+                {PARKS.map(park => (
+                  <ParkCard
+                    key={park.id}
+                    park={park}
+                    isExpanded={expandedPark === park.id}
+                    onToggle={() => setExpandedPark(expandedPark === park.id ? null : park.id)}
+                    isMobile={isMobile}
+                  />
                 ))}
               </div>
             </FadeIn>

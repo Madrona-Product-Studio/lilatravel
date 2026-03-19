@@ -835,88 +835,127 @@ function WildlifeEntry({ name, season, detail, accent, isMobile }) {
 }
 
 
-// ─── Park Passport Card ─────────────────────────────────────────────────────
+// ─── Park Card Accordion ────────────────────────────────────────────────────
 
-function ParkPassport({ park, isMobile }) {
+function DesignationIcon({ designation, size = 14, color = "#2D5F2B" }) {
+  if (designation === "us-national-park") return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <path d="M12 2L4 22h3l5-11 5 11h3L12 2z" fill={color} opacity="0.85" />
+      <circle cx="12" cy="16" r="2.5" fill={color} opacity="0.6" />
+    </svg>
+  );
+  if (designation === "canadian-national-park") return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <path d="M12 2L3 8v8l9 6 9-6V8L12 2z" stroke={color} strokeWidth="1.5" fill={`${color}15`} />
+      <path d="M9 11l3-3 3 3M12 8v8" stroke={color} strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+  return null;
+}
+
+function ParkCard({ park, isExpanded, onToggle, isMobile }) {
+  const DESIGNATION_LABELS = {
+    "us-national-park": "National Park",
+    "canadian-national-park": "National Park Reserve",
+    "state-park": "State Park",
+    "provincial-park": "Provincial Park",
+    "national-forest": "National Forest",
+    "state-wilderness": "State Wilderness Preserve",
+  };
+  const chips = [park.acreage, park.elevation, park.attribute].filter(Boolean);
   return (
     <div style={{
-      flex: park.isPrimary ? "1.35" : "1",
-      minWidth: isMobile ? "100%" : 0,
-      border: `1px solid ${park.isPrimary ? park.accent + "60" : C.stone}`,
-      background: park.isPrimary ? `${park.accent}06` : C.cream,
-      padding: isMobile ? "20px 18px" : "24px 22px",
-      display: "flex",
-      flexDirection: "column",
+      borderLeft: `4px solid ${park.accent}`,
+      border: `1px solid ${isExpanded ? park.accent + "40" : C.stone}`,
+      borderLeftWidth: 4, borderLeftColor: park.accent,
+      background: isExpanded ? `${park.accent}06` : C.cream,
+      transition: "border-color 0.2s, background 0.2s",
+      marginBottom: 6,
     }}>
-      {/* Header */}
-      <div style={{ marginBottom: 14 }}>
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 6 }}>
-          <div style={{
-            fontFamily: "'Quicksand', sans-serif",
-            fontSize: 10, fontWeight: 700,
-            letterSpacing: "0.28em", textTransform: "uppercase",
-            color: park.accent,
-          }}>
-            {park.isPrimary ? "Anchor Park" : `Est. ${park.established}`}
+      <button
+        onClick={onToggle}
+        style={{
+          width: "100%", padding: isMobile ? "14px 14px" : "16px 20px",
+          background: "none", border: "none", cursor: "pointer",
+          display: "flex", alignItems: "center", gap: 12,
+          textAlign: "left",
+        }}
+      >
+        <div style={{ flex: 1, minWidth: 0 }}>
+          {/* Eyebrow */}
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 4 }}>
+            <div style={{
+              fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700,
+              letterSpacing: "0.22em", textTransform: "uppercase", color: park.accent,
+            }}>
+              {DESIGNATION_LABELS[park.designation] || park.designation}{park.established ? ` · Est. ${park.established}` : ""}
+            </div>
+            {!park.isAnchor && park.driveFrom && (
+              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 600, letterSpacing: "0.08em", color: "#7A857E" }}>
+                {park.driveFrom}
+              </div>
+            )}
           </div>
-          {!park.isPrimary && park.driveFrom && (
-            <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 600, letterSpacing: "0.08em", color: "#7A857E" }}>
-              {park.driveFrom}
+          {/* Name */}
+          <div style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontSize: "clamp(18px, 2.5vw, 22px)", fontWeight: 400,
+            color: C.darkInk, lineHeight: 1.15, marginBottom: chips.length ? 8 : 0,
+          }}>{park.name}</div>
+          {/* Chips */}
+          {chips.length > 0 && (
+            <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
+              {chips.map((chip, i) => (
+                <span key={i} style={{
+                  padding: "2px 10px", background: `${park.accent}10`,
+                  fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600,
+                  color: "#4A5650", whiteSpace: "nowrap",
+                }}>{chip}</span>
+              ))}
             </div>
           )}
         </div>
-        <div style={{
-          fontFamily: "'Cormorant Garamond', serif",
-          fontSize: park.isPrimary ? "clamp(22px, 3vw, 28px)" : "clamp(18px, 2.5vw, 22px)",
-          fontWeight: 400, color: C.darkInk, lineHeight: 1.1, marginBottom: 8,
-        }}>{park.name}</div>
-        <div style={{
-          fontFamily: "'Quicksand', sans-serif",
-          fontSize: 13, fontWeight: 400, color: "#4A5650", lineHeight: 1.6, fontStyle: "italic",
-        }}>{park.soul}</div>
-      </div>
-
-      {/* NPS Stats */}
+        {/* Icon + chevron */}
+        <div style={{ display: "flex", alignItems: "center", gap: 8, flexShrink: 0 }}>
+          <DesignationIcon designation={park.designation} size={16} color={park.accent} />
+          <span style={{
+            display: "inline-block", fontSize: 14, color: "#7A857E", lineHeight: 1,
+            transform: isExpanded ? "rotate(180deg)" : "rotate(0deg)",
+            transition: "transform 0.3s ease",
+          }}>▾</span>
+        </div>
+      </button>
+      {/* Expanded body */}
       <div style={{
-        display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px 12px",
-        padding: "12px 0", borderTop: `1px solid ${C.stone}`, borderBottom: `1px solid ${C.stone}`,
-        marginBottom: 14,
+        maxHeight: isExpanded ? 400 : 0, overflow: "hidden",
+        transition: "max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
       }}>
-        {park.isPrimary && (
-          <div style={{ gridColumn: "1 / -1" }}>
-            <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#7A857E", marginBottom: 2 }}>Established</div>
-            <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 14, fontWeight: 600, color: C.darkInk }}>{park.established}</div>
+        <div style={{ padding: isMobile ? "0 14px 16px" : "0 20px 18px" }}>
+          <div style={{
+            fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 400,
+            color: "#4A5650", lineHeight: 1.7, fontStyle: "italic",
+            marginBottom: 12, paddingTop: 2,
+          }}>
+            {"◈ "}{park.soul}
           </div>
-        )}
-        <div>
-          <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#7A857E", marginBottom: 2 }}>Acreage</div>
-          <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 600, color: C.darkInk }}>{park.acreage}</div>
-        </div>
-        <div>
-          <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#7A857E", marginBottom: 2 }}>Elevation</div>
-          <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 600, color: C.darkInk }}>{park.elevation}</div>
+          {park.facts.map((fact, i) => (
+            <div key={i} style={{ display: "flex", gap: 8, marginBottom: 5, alignItems: "flex-start" }}>
+              <div style={{ width: 4, height: 4, borderRadius: "50%", background: park.accent, opacity: 0.6, marginTop: 7, flexShrink: 0 }} />
+              <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 400, color: "#4A5650", lineHeight: 1.65 }}>{fact}</span>
+            </div>
+          ))}
+          {park.infoUrl && (
+            <a href={park.infoUrl} target="_blank" rel="noopener noreferrer" style={{
+              display: "inline-block", marginTop: 10,
+              fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700,
+              letterSpacing: "0.18em", textTransform: "uppercase",
+              color: park.accent, textDecoration: "none",
+            }}>
+              {park.designation === "canadian-national-park" ? "Parks Canada" : park.designation === "us-national-park" ? "NPS Page" : "Park Info"} ↗
+            </a>
+          )}
         </div>
       </div>
-
-      {/* Defining facts */}
-      <div style={{ flex: 1 }}>
-        {park.facts.map((fact, i) => (
-          <div key={i} style={{ display: "flex", gap: 8, marginBottom: 7, alignItems: "flex-start" }}>
-            <div style={{ width: 4, height: 4, borderRadius: "50%", background: park.accent, opacity: 0.6, marginTop: 6, flexShrink: 0 }} />
-            <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 400, color: "#4A5650", lineHeight: 1.6 }}>{fact}</span>
-          </div>
-        ))}
-      </div>
-
-      {/* NPS link */}
-      <a href={park.npsUrl} target="_blank" rel="noopener noreferrer" style={{
-        marginTop: 16,
-        fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700,
-        letterSpacing: "0.18em", textTransform: "uppercase",
-        color: park.accent, textDecoration: "none",
-      }}>
-        NPS Page ↗
-      </a>
     </div>
   );
 }
@@ -1273,60 +1312,42 @@ function ThresholdTripCard({ title, dates, duration, description, spotsLeft, acc
 
 // ─── Corridor Parks & Wildlife Data ──────────────────────────────────────────
 
-const CORRIDOR_PARKS = [
+const PARKS = [
   {
-    id: "zion",
-    name: "Zion",
-    full: "Zion National Park",
-    soul: "The canyon that stops you mid-sentence.",
-    established: 1919,
-    acreage: "147,242",
-    elevation: "3,666 – 8,726 ft",
-    npsUrl: "https://www.nps.gov/zion/",
+    id: "zion", name: "Zion", designation: "us-national-park", established: 1919,
+    acreage: "147,242 ac", elevation: "3,666–8,726 ft", attribute: "Virgin River narrows",
+    soul: "The canyon that stops you mid-sentence. Carved by the Virgin River through 2,000 ft of Navajo sandstone — walls that glow copper at sunrise, amber at midday, impossible pink at dusk.",
     facts: [
       "Carved by the Virgin River over 250 million years",
       "Home to the slot canyon known as The Narrows",
       "Named Mukuntuweap by the Southern Paiute",
     ],
-    driveFrom: null,
-    accent: C.sunSalmon,
-    isPrimary: true,
+    infoUrl: "https://www.nps.gov/zion/",
+    driveFrom: null, accent: C.sunSalmon, isAnchor: true,
   },
   {
-    id: "bryce",
-    name: "Bryce Canyon",
-    full: "Bryce Canyon National Park",
-    soul: "A forest of stone spires that blushed and never recovered.",
-    established: 1928,
-    acreage: "35,835",
-    elevation: "8,000 – 9,115 ft",
-    npsUrl: "https://www.nps.gov/brca/",
+    id: "bryce", name: "Bryce Canyon", designation: "us-national-park", established: 1928,
+    acreage: "35,835 ac", elevation: "8,000–9,115 ft", attribute: "Darkest night skies",
+    soul: "A forest of stone spires that blushed and never recovered. Not a canyon at all — a series of natural amphitheaters eroded into the Paunsaugunt Plateau.",
     facts: [
       "Not a canyon — a series of natural amphitheaters",
       "One of the darkest night skies in the continental US",
       "Named for settler Ebenezer Bryce, who called it 'a hell of a place to lose a cow'",
     ],
-    driveFrom: "~1.5 hrs from Zion",
-    accent: C.goldenAmber,
-    isPrimary: false,
+    infoUrl: "https://www.nps.gov/brca/",
+    driveFrom: "~1.5 hrs from Zion", accent: C.goldenAmber, isAnchor: false,
   },
   {
-    id: "capitol-reef",
-    name: "Capitol Reef",
-    full: "Capitol Reef National Park",
-    soul: "The hidden wrinkle in the earth that most people drive past.",
-    established: 1971,
-    acreage: "241,904",
-    elevation: "3,900 – 8,960 ft",
-    npsUrl: "https://www.nps.gov/care/",
+    id: "capitol-reef", name: "Capitol Reef", designation: "us-national-park", established: 1971,
+    acreage: "241,904 ac", elevation: "3,900–8,960 ft", attribute: "Waterpocket Fold",
+    soul: "The hidden wrinkle in the earth that most people drive past. The Waterpocket Fold — a 100-mile warp in the crust — runs through orchards still harvested by visitors.",
     facts: [
       "The Waterpocket Fold — a 100-mile warp in the earth's crust",
       "Fruita Historic District: an orchard still harvested by visitors",
       "Far fewer crowds than Zion or Bryce despite comparable grandeur",
     ],
-    driveFrom: "~3 hrs from Zion",
-    accent: C.oceanTeal,
-    isPrimary: false,
+    infoUrl: "https://www.nps.gov/care/",
+    driveFrom: "~3 hrs from Zion", accent: C.oceanTeal, isAnchor: false,
   },
 ];
 
@@ -1782,6 +1803,7 @@ export default function ZionGuide() {
     return () => window.removeEventListener("resize", check);
   }, []);
 
+  const [expandedPark, setExpandedPark] = useState(null);
   const [activeSheet, setActiveSheet] = useState(null);
   useEffect(() => {
     if (activeSheet) document.body.style.overflow = 'hidden';
@@ -2011,40 +2033,14 @@ export default function ZionGuide() {
               </p>
             </FadeIn>
 
-            {/* ── Park Passports ── */}
+            {/* ── At a Glance ── */}
             <FadeIn delay={0.06}>
-              <div style={{
-                display: "flex",
-                flexDirection: isMobile ? "column" : "row",
-                gap: isMobile ? 12 : 8,
-                marginBottom: 4,
-              }}>
-                {CORRIDOR_PARKS.map(park => (
-                  <ParkPassport key={park.id} park={park} isMobile={isMobile} />
-                ))}
-              </div>
-              {!isMobile && (
-                <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 8, marginBottom: 4 }}>
-                  <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 500, letterSpacing: "0.12em", color: "#7A857E" }}>
-                    Zion → Bryce Canyon: 1.5 hrs &nbsp;·&nbsp; Bryce → Capitol Reef: 2 hrs
-                  </div>
-                </div>
-              )}
-            </FadeIn>
-
-            {/* ── Wildlife Drawer ── */}
-            <FadeIn delay={0.1}>
-              <WildlifeDrawer isMobile={isMobile} />
-            </FadeIn>
-
-            {/* ── Quick Stats Bar ── */}
-            <FadeIn delay={0.12}>
               <div style={{
                 display: "grid",
                 gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))",
                 gap: isMobile ? 12 : 16, padding: isMobile ? 16 : 20,
                 background: C.cream, border: `1px solid ${C.stone}`,
-                marginTop: 24,
+                marginBottom: 20,
               }}>
                 {[
                   { l: "Recommended", v: "4–7 days" },
@@ -2058,6 +2054,26 @@ export default function ZionGuide() {
                   </div>
                 ))}
               </div>
+            </FadeIn>
+
+            {/* ── Park Cards ── */}
+            <FadeIn delay={0.08}>
+              <div style={{ marginBottom: 4 }}>
+                {PARKS.map(park => (
+                  <ParkCard
+                    key={park.id}
+                    park={park}
+                    isExpanded={expandedPark === park.id}
+                    onToggle={() => setExpandedPark(expandedPark === park.id ? null : park.id)}
+                    isMobile={isMobile}
+                  />
+                ))}
+              </div>
+            </FadeIn>
+
+            {/* ── Wildlife Drawer ── */}
+            <FadeIn delay={0.1}>
+              <WildlifeDrawer isMobile={isMobile} />
             </FadeIn>
           </section>
 
