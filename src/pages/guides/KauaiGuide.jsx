@@ -1642,13 +1642,60 @@ export default function KauaiGuide() {
               <SectionIcon type="threshold" />
               <SectionLabel>Give Back</SectionLabel>
               <SectionTitle>Leave it better than you found it.</SectionTitle>
-              <SectionSub isMobile={isMobile}>The island gives more than it asks. Honor that.</SectionSub>
+              <SectionSub isMobile={isMobile}>Mālama — to care for. These organizations make that concrete.</SectionSub>
             </FadeIn>
 
             <FadeIn delay={0.1}>
-              <p style={{ fontFamily: "'Quicksand'", fontSize: 14, color: "#4A5650", lineHeight: 1.7 }}>
-                Local organizations, Indigenous-led businesses, and trail stewardship opportunities for Kauaʻi — coming soon.
-              </p>
+              <div style={{ marginTop: 8 }}>
+                <div style={{ paddingTop: 16 }}>
+                  <div style={{
+                    fontFamily: "'Quicksand', sans-serif",
+                    fontSize: 11, fontWeight: 700,
+                    letterSpacing: "0.14em", textTransform: "uppercase",
+                    color: "#7A857E", marginBottom: 2,
+                  }}>Conservation</div>
+                  <ListItem isMobile={isMobile} name="Mālama Hawaiʻi"
+                    url="https://www.gohawaii.com/malama"
+                    detail="A statewide program connecting visitors to volunteer opportunities — beach cleanups, native tree planting, cultural preservation projects. Several participating hotels offer a complimentary night in exchange for a volunteer day. One of the cleanest models in regenerative tourism anywhere."
+                    tags={["Volunteer", "Book a Mālama Stay"]} />
+                </div>
+                <div style={{ paddingTop: 16 }}>
+                  <div style={{
+                    fontFamily: "'Quicksand', sans-serif",
+                    fontSize: 11, fontWeight: 700,
+                    letterSpacing: "0.14em", textTransform: "uppercase",
+                    color: "#7A857E", marginBottom: 2,
+                  }}>Conservation</div>
+                  <ListItem isMobile={isMobile} name="Hawaiʻi Conservation Alliance"
+                    url="https://www.hawaiiconservation.org"
+                    detail="Provides unified scientific and community leadership to conserve and restore native ecosystems across the islands, guided by Hawaiian values and practice. Donations support watershed protection and native species restoration."
+                    tags={["Donate"]} />
+                </div>
+                <div style={{ paddingTop: 16 }}>
+                  <div style={{
+                    fontFamily: "'Quicksand', sans-serif",
+                    fontSize: 11, fontWeight: 700,
+                    letterSpacing: "0.14em", textTransform: "uppercase",
+                    color: "#7A857E", marginBottom: 2,
+                  }}>Indigenous Giving</div>
+                  <ListItem isMobile={isMobile} name="Malama Kauai"
+                    url="https://malamakauai.org"
+                    detail="Kauaʻi-based community organization running local food, land stewardship, and cultural programs rooted in Native Hawaiian relationships to ʻāina. Beach cleanup events, native planting, and community food programs are open to visitors."
+                    tags={["Volunteer", "Donate"]} />
+                </div>
+                <div style={{ paddingTop: 16 }}>
+                  <div style={{
+                    fontFamily: "'Quicksand', sans-serif",
+                    fontSize: 11, fontWeight: 700,
+                    letterSpacing: "0.14em", textTransform: "uppercase",
+                    color: "#7A857E", marginBottom: 2,
+                  }}>Indigenous Giving</div>
+                  <ListItem isMobile={isMobile} name="Hawaiʻi Natural Area Reserves System"
+                    url="https://dlnr.hawaii.gov/ecosystems/nars/donate"
+                    detail="Direct donations fund protection of critical watersheds and native habitats — including culturally significant areas not open to visitors that depend entirely on funding to survive. One of the most direct conservation giving options in the state."
+                    tags={["Donate"]} />
+                </div>
+              </div>
             </FadeIn>
           </section>
 

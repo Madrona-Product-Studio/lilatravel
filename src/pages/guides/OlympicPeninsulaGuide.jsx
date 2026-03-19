@@ -1747,13 +1747,48 @@ export default function OlympicPeninsulaGuide() {
               <SectionIcon type="threshold" />
               <SectionLabel>Give Back</SectionLabel>
               <SectionTitle>Leave it better than you found it.</SectionTitle>
-              <SectionSub isMobile={isMobile}>The peninsula gives quietly. Return the favor.</SectionSub>
+              <SectionSub isMobile={isMobile}>The Elwha is still recovering. The tribes never stopped tending it.</SectionSub>
             </FadeIn>
 
             <FadeIn delay={0.1}>
-              <p style={{ fontFamily: "'Quicksand'", fontSize: 14, color: "#4A5650", lineHeight: 1.7 }}>
-                Local organizations, Indigenous-led businesses, and trail stewardship opportunities for the Olympic Peninsula — coming soon.
-              </p>
+              <div style={{ marginTop: 8 }}>
+                <div style={{ paddingTop: 16 }}>
+                  <div style={{
+                    fontFamily: "'Quicksand', sans-serif",
+                    fontSize: 11, fontWeight: 700,
+                    letterSpacing: "0.14em", textTransform: "uppercase",
+                    color: "#7A857E", marginBottom: 2,
+                  }}>Indigenous Giving</div>
+                  <ListItem isMobile={isMobile} name="Lower Elwha Klallam Tribe"
+                    url="https://www.elwha.org"
+                    detail="The driving force behind the Elwha dam removal and river restoration. Tribe staff and volunteers have planted nearly 800 acres of dewatered lands with 425,000 native plants to date. The tribe accepts volunteers for restoration planting days — the most directly meaningful way to give back on the Peninsula."
+                    tags={["Volunteer", "Support"]} />
+                </div>
+                <div style={{ paddingTop: 16 }}>
+                  <div style={{
+                    fontFamily: "'Quicksand', sans-serif",
+                    fontSize: 11, fontWeight: 700,
+                    letterSpacing: "0.14em", textTransform: "uppercase",
+                    color: "#7A857E", marginBottom: 2,
+                  }}>Conservation</div>
+                  <ListItem isMobile={isMobile} name="North Olympic Land Trust"
+                    url="https://northolympiclandtrust.org"
+                    detail="Conserves land across Clallam County in the traditional homeland of the Hoh, Makah, Quileute, Jamestown S'Klallam, and Lower Elwha Klallam tribes. Volunteer for site stewardship, salmon habitat monitoring, and restoration work parties."
+                    tags={["Donate", "Volunteer"]} />
+                </div>
+                <div style={{ paddingTop: 16 }}>
+                  <div style={{
+                    fontFamily: "'Quicksand', sans-serif",
+                    fontSize: 11, fontWeight: 700,
+                    letterSpacing: "0.14em", textTransform: "uppercase",
+                    color: "#7A857E", marginBottom: 2,
+                  }}>Trail Stewardship</div>
+                  <ListItem isMobile={isMobile} name="Olympic Park Associates"
+                    url="https://www.olympicparkassociates.org"
+                    detail="The oldest friends group for Olympic National Park, funding research, conservation, and education programs inside the park boundary since 1948."
+                    tags={["Donate", "Become a Member"]} />
+                </div>
+              </div>
             </FadeIn>
           </section>
 

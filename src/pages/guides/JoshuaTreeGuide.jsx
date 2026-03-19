@@ -1777,12 +1777,47 @@ export default function JoshuaTreeGuide() {
               <SectionIcon type="giveback" />
               <SectionLabel>Give Back</SectionLabel>
               <SectionTitle>Leave it better than you found it.</SectionTitle>
-              <SectionSub isMobile={isMobile}>The desert remembers everything. Tread gently and give where you can.</SectionSub>
+              <SectionSub isMobile={isMobile}>The desert sustains itself slowly. These organizations help it along.</SectionSub>
             </FadeIn>
             <FadeIn delay={0.1}>
-              <p style={{ fontFamily: "'Quicksand'", fontSize: 14, color: "#4A5650", lineHeight: 1.7 }}>
-                Local organizations, Indigenous-led businesses, and trail stewardship opportunities for Joshua Tree — coming soon.
-              </p>
+              <div style={{ marginTop: 8 }}>
+                <div style={{ paddingTop: 16 }}>
+                  <div style={{
+                    fontFamily: "'Quicksand', sans-serif",
+                    fontSize: 11, fontWeight: 700,
+                    letterSpacing: "0.14em", textTransform: "uppercase",
+                    color: "#7A857E", marginBottom: 2,
+                  }}>Conservation</div>
+                  <ListItem isMobile={isMobile} name="Mojave Desert Land Trust"
+                    url="https://www.mdlt.org"
+                    detail="Based in Joshua Tree, MDLT protects the California desert through land acquisition, habitat restoration, and a native plant seed bank — including growing thousands of Joshua trees for replanting in the park. Volunteer on land monitoring hikes or donate to their seed bank program."
+                    tags={["Donate", "Volunteer"]} />
+                </div>
+                <div style={{ paddingTop: 16 }}>
+                  <div style={{
+                    fontFamily: "'Quicksand', sans-serif",
+                    fontSize: 11, fontWeight: 700,
+                    letterSpacing: "0.14em", textTransform: "uppercase",
+                    color: "#7A857E", marginBottom: 2,
+                  }}>Indigenous Giving</div>
+                  <ListItem isMobile={isMobile} name="Native American Land Conservancy"
+                    url="https://www.nativeamericanlandconservancy.org"
+                    detail="A partner in MDLT's Joshua tree conservation coalition, bringing Indigenous cultural knowledge to desert stewardship. To Indigenous communities in this region, the Joshua tree — Humwichawa — is a family member, not a landmark."
+                    tags={["Donate"]} />
+                </div>
+                <div style={{ paddingTop: 16 }}>
+                  <div style={{
+                    fontFamily: "'Quicksand', sans-serif",
+                    fontSize: 11, fontWeight: 700,
+                    letterSpacing: "0.14em", textTransform: "uppercase",
+                    color: "#7A857E", marginBottom: 2,
+                  }}>Trail Stewardship</div>
+                  <ListItem isMobile={isMobile} name="Joshua Tree National Park Volunteer Program"
+                    url="https://www.nps.gov/jotr/getinvolved/volunteer.htm"
+                    detail="The most direct option for visitors who want to give time rather than money. Trail maintenance, restoration, and education programs run directly through the park."
+                    tags={["Volunteer"]} />
+                </div>
+              </div>
             </FadeIn>
           </section>
 

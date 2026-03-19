@@ -2675,13 +2675,48 @@ export default function ZionGuide() {
               <SectionIcon type="threshold" />
               <SectionLabel>Give Back</SectionLabel>
               <SectionTitle>Leave it better than you found it.</SectionTitle>
-              <SectionSub isMobile={isMobile}>The canyon gives everything. Here's how to return the favor.</SectionSub>
+              <SectionSub isMobile={isMobile}>Zion sits on ancestral Southern Paiute land. These organizations honor that, and the canyon itself.</SectionSub>
             </FadeIn>
 
             <FadeIn delay={0.1}>
-              <p style={{ fontFamily: "'Quicksand'", fontSize: 14, color: "#4A5650", lineHeight: 1.7 }}>
-                Local organizations, Indigenous-led businesses, and trail stewardship opportunities for Zion — coming soon.
-              </p>
+              <div style={{ marginTop: 8 }}>
+                <div style={{ paddingTop: 16 }}>
+                  <div style={{
+                    fontFamily: "'Quicksand', sans-serif",
+                    fontSize: 11, fontWeight: 700,
+                    letterSpacing: "0.14em", textTransform: "uppercase",
+                    color: "#7A857E", marginBottom: 2,
+                  }}>Trail Stewardship</div>
+                  <ListItem isMobile={isMobile} name="Zion Forever Project"
+                    url="https://www.zionpark.org"
+                    detail="The official nonprofit partner of Zion National Park, funding trail restoration, wildlife habitat protection, youth education, and night sky stewardship. Direct, local, and legitimate."
+                    tags={["Donate", "Volunteer"]} />
+                </div>
+                <div style={{ paddingTop: 16 }}>
+                  <div style={{
+                    fontFamily: "'Quicksand', sans-serif",
+                    fontSize: 11, fontWeight: 700,
+                    letterSpacing: "0.14em", textTransform: "uppercase",
+                    color: "#7A857E", marginBottom: 2,
+                  }}>Indigenous Giving</div>
+                  <ListItem isMobile={isMobile} name="Paiute Indian Tribe of Utah"
+                    url="https://pitu.gov"
+                    detail="Zion's canyon walls are named Mukuntuweap — a Paiute word. The tribe's cultural department works on language preservation, repatriation, and youth culture camps run in partnership with the NPS and Zion Forever Project. Supporting their programs is the most meaningful reciprocity you can offer this place."
+                    tags={["Learn & Support"]} />
+                </div>
+                <div style={{ paddingTop: 16 }}>
+                  <div style={{
+                    fontFamily: "'Quicksand', sans-serif",
+                    fontSize: 11, fontWeight: 700,
+                    letterSpacing: "0.14em", textTransform: "uppercase",
+                    color: "#7A857E", marginBottom: 2,
+                  }}>Indigenous Land</div>
+                  <ListItem isMobile={isMobile} name="Utah Diné Bikéyah"
+                    url="https://utahdinebikeyah.org"
+                    detail="A 501(c)(3) dedicated to healing people and the Earth by supporting Indigenous communities and protecting culturally significant ancestral lands across the broader Colorado Plateau."
+                    tags={["Donate"]} />
+                </div>
+              </div>
             </FadeIn>
           </section>
 

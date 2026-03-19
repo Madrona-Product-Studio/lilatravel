@@ -1622,13 +1622,48 @@ export default function BigSurGuide() {
               <SectionIcon type="threshold" />
               <SectionLabel>Give Back</SectionLabel>
               <SectionTitle>Leave it better than you found it.</SectionTitle>
-              <SectionSub isMobile={isMobile}>The coast gives freely. Here's how to return the favor.</SectionSub>
+              <SectionSub isMobile={isMobile}>The coast and the people who live here need different kinds of support. These organizations cover both.</SectionSub>
             </FadeIn>
 
             <FadeIn delay={0.1}>
-              <p style={{ fontFamily: "'Quicksand'", fontSize: 14, color: "#4A5650", lineHeight: 1.7 }}>
-                Local organizations, Indigenous-led businesses, and trail stewardship opportunities for Big Sur — coming soon.
-              </p>
+              <div style={{ marginTop: 8 }}>
+                <div style={{ paddingTop: 16 }}>
+                  <div style={{
+                    fontFamily: "'Quicksand', sans-serif",
+                    fontSize: 11, fontWeight: 700,
+                    letterSpacing: "0.14em", textTransform: "uppercase",
+                    color: "#7A857E", marginBottom: 2,
+                  }}>Conservation</div>
+                  <ListItem isMobile={isMobile} name="Big Sur Land Trust"
+                    url="https://bigsurlandtrust.org"
+                    detail="Since 1978, BSLT has conserved over 45,000 acres of Monterey County coastline and interior lands. They partner with the Esselen Tribe to manage Basin Ranch using traditional ecological stewardship — one of the most direct models of Indigenous land partnership on the California coast."
+                    tags={["Donate", "Volunteer"]} />
+                </div>
+                <div style={{ paddingTop: 16 }}>
+                  <div style={{
+                    fontFamily: "'Quicksand', sans-serif",
+                    fontSize: 11, fontWeight: 700,
+                    letterSpacing: "0.14em", textTransform: "uppercase",
+                    color: "#7A857E", marginBottom: 2,
+                  }}>Indigenous Giving</div>
+                  <ListItem isMobile={isMobile} name="Esselen Tribe of Monterey County"
+                    url="https://www.esselen.com"
+                    detail="In 2020 the Esselen Tribe regained its first ancestral homelands since displacement by the Spanish four centuries ago. Big Sur Land Trust is their partner in land stewardship. Supporting BSLT directly supports this ongoing restoration of Indigenous land relationship."
+                    tags={["Learn & Support"]} />
+                </div>
+                <div style={{ paddingTop: 16 }}>
+                  <div style={{
+                    fontFamily: "'Quicksand', sans-serif",
+                    fontSize: 11, fontWeight: 700,
+                    letterSpacing: "0.14em", textTransform: "uppercase",
+                    color: "#7A857E", marginBottom: 2,
+                  }}>Trail Stewardship</div>
+                  <ListItem isMobile={isMobile} name="Los Padres ForestWatch"
+                    url="https://lpfw.org"
+                    detail="Watchdog organization protecting Los Padres National Forest — the interior backbone of Big Sur — from illegal off-road vehicle damage, overdevelopment, and fire mismanagement."
+                    tags={["Donate", "Volunteer"]} />
+                </div>
+              </div>
             </FadeIn>
           </section>
 

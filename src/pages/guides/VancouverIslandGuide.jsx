@@ -1799,13 +1799,48 @@ export default function VancouverIslandGuide() {
               <SectionIcon type="threshold" />
               <SectionLabel>Give Back</SectionLabel>
               <SectionTitle>Leave it better than you found it.</SectionTitle>
-              <SectionSub isMobile={isMobile}>The island gives generously. Return it in kind.</SectionSub>
+              <SectionSub isMobile={isMobile}>The old growth is still being logged. These organizations are fighting to stop it — and to restore what's been lost.</SectionSub>
             </FadeIn>
 
             <FadeIn delay={0.1}>
-              <p style={{ fontFamily: "'Quicksand'", fontSize: 14, color: "#4A5650", lineHeight: 1.7 }}>
-                Local organizations, Indigenous-led businesses, and trail stewardship opportunities for Vancouver Island — coming soon.
-              </p>
+              <div style={{ marginTop: 8 }}>
+                <div style={{ paddingTop: 16 }}>
+                  <div style={{
+                    fontFamily: "'Quicksand', sans-serif",
+                    fontSize: 11, fontWeight: 700,
+                    letterSpacing: "0.14em", textTransform: "uppercase",
+                    color: "#7A857E", marginBottom: 2,
+                  }}>Indigenous Giving</div>
+                  <ListItem isMobile={isMobile} name="Tla-o-qui-aht Tribal Parks"
+                    url="https://www.tribalparks.com"
+                    detail="Tla-o-qui-aht and neighboring First Nations have protected 76,000 hectares of critical habitat — the largest intact coastal temperate rainforest on Vancouver Island — through Indigenous governance. Donate directly or look for the Tribal Parks Allies logo on Tofino businesses whose 1% revenue contribution funds Guardian programs on the ground."
+                    tags={["Donate", "Support Allied Businesses"]} />
+                </div>
+                <div style={{ paddingTop: 16 }}>
+                  <div style={{
+                    fontFamily: "'Quicksand', sans-serif",
+                    fontSize: 11, fontWeight: 700,
+                    letterSpacing: "0.14em", textTransform: "uppercase",
+                    color: "#7A857E", marginBottom: 2,
+                  }}>Conservation</div>
+                  <ListItem isMobile={isMobile} name="Ancient Forest Alliance"
+                    url="https://ancientforestalliance.org"
+                    detail="The leading charitable organization working to protect BC's endangered old-growth forests and ensure a transition to sustainable second-growth forestry. Direct donations support advocacy, documentation, and political pressure on the BC government."
+                    tags={["Donate"]} />
+                </div>
+                <div style={{ paddingTop: 16 }}>
+                  <div style={{
+                    fontFamily: "'Quicksand', sans-serif",
+                    fontSize: 11, fontWeight: 700,
+                    letterSpacing: "0.14em", textTransform: "uppercase",
+                    color: "#7A857E", marginBottom: 2,
+                  }}>Cultural Preservation</div>
+                  <ListItem isMobile={isMobile} name="U'mista Cultural Centre"
+                    url="https://www.umista.ca"
+                    detail="Located in Alert Bay on Cormorant Island, U'mista houses historic potlatch artifacts and works to ensure the survival of Kwakwa̱ka̱ʼwakw cultural heritage through exhibits, tours, and dance performances. Visit and donate directly."
+                    tags={["Visit", "Donate"]} />
+                </div>
+              </div>
             </FadeIn>
           </section>
 
