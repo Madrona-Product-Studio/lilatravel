@@ -12,10 +12,8 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { Nav, Footer, FadeIn, Breadcrumb, WhisperBar } from '@components';
-import TripCard from '@components/TripCard';
 import { C } from '@data/brand';
 import { P } from '@data/photos';
-import { getTripsByDestination } from '@data/trips';
 import { trackEvent } from '@utils/analytics';
 import { getCelestialSnapshot } from '@services/celestialService';
 import { getNPSData, buildNPSLookup, findNPSMatch } from '@services/npsService';
@@ -762,16 +760,15 @@ function ParkCard({ park, isExpanded, onToggle, isMobile }) {
 // ─── Guide Section Navigation (sticky anchor bar) ───────────────────────────
 
 const GUIDE_SECTIONS = [
-  { id: "sense-of-place", label: "The Place" },
-  { id: "when-to-go",     label: "When to Go" },
-  { id: "trails",         label: "Sacred Terrain" },
-  { id: "dark-sky",       label: "Dark Sky" },
-  { id: "wellness",       label: "Living Practice" },
-  { id: "food-culture",   label: "Nourish" },
-  { id: "discover",       label: "Discover" },
-  { id: "where-to-stay",  label: "Unique Stays" },
+  { id: "sense-of-place", label: "Sense of Place" },
+  { id: "when-to-go",     label: "Magic Windows" },
+  { id: "tread-lightly",  label: "Tread Lightly" },
+  { id: "where-to-stay",  label: "Where to Sleep" },
+  { id: "trails",         label: "Move" },
+  { id: "wellness",       label: "Breathe" },
+  { id: "light-sky",      label: "Night Sky" },
+  { id: "food-culture",   label: "Food & Culture" },
   { id: "give-back",      label: "Give Back" },
-  { id: "group-trips",    label: "Group Trips" },
 ];
 
 function GuideNav({ isMobile }) {
@@ -1323,12 +1320,113 @@ export default function JoshuaTreeGuide() {
           <Divider />
 
           {/* ══════════════════════════════════════════════════════════════ */}
-          {/* SACRED TERRAIN                                                */}
+          {/* TREAD LIGHTLY                                                 */}
+          {/* ══════════════════════════════════════════════════════════════ */}
+          <section id="tread-lightly" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
+            <FadeIn>
+              <SectionIcon type="awaken" />
+              <SectionLabel>Tread Lightly</SectionLabel>
+              <SectionTitle>Traveling responsibly.</SectionTitle>
+              <SectionSub isMobile={isMobile}>The desert moves slowly. So should you.</SectionSub>
+            </FadeIn>
+
+            <FadeIn delay={0.1}>
+              <div style={{ marginTop: 8 }}>
+                <ListItem isMobile={isMobile} name="Slow down. The desert is paying attention."
+                  detail="Joshua trees grow roughly an inch a year. The ones you'll walk past are older than anyone you know. Off-trail movement in the park compacts soil that took millennia to develop and damages root systems that aren't visible from the surface. We stay on trail here without exception — and we think about timing, because the night sky at Joshua Tree is one of the last truly dark horizons in Southern California."
+                  tags={["Stay on trail", "Dark sky stewardship", "Low-impact camping"]} />
+              </div>
+            </FadeIn>
+          </section>
+
+
+          <Divider />
+
+          {/* ══════════════════════════════════════════════════════════════ */}
+          {/* WHERE TO SLEEP                                                */}
+          {/* ══════════════════════════════════════════════════════════════ */}
+          <section id="where-to-stay" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
+            <FadeIn>
+              <SectionIcon type="stay" />
+              <SectionLabel>Where to Sleep</SectionLabel>
+              <SectionTitle>Where to sleep</SectionTitle>
+              <SectionSub isMobile={isMobile}>How you inhabit a place matters. Options across the full spectrum — from sleeping under the stars to Palm Springs luxury.</SectionSub>
+            </FadeIn>
+
+            <FadeIn delay={0.05}>
+              <div style={{
+                padding: "14px 16px", background: C.cream,
+                border: `1px solid ${C.stone}`, marginBottom: 20,
+                display: "flex", flexDirection: isMobile ? "column" : "row", gap: isMobile ? 10 : 16, flexWrap: "wrap",
+              }}>
+                {[
+                  { label: "Elemental", desc: "In the landscape", color: C.seaGlass },
+                  { label: "Rooted", desc: "Boutique, local", color: C.oceanTeal },
+                  { label: "Premium", desc: "Elevated experience", color: C.goldenAmber },
+                ].map((t, i) => (
+                  <div key={i} style={{ flex: isMobile ? "0 0 auto" : "1 1 140px" }}>
+                    <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 700, letterSpacing: "0.1em", color: t.color }}>{t.label}</span>
+                    <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 400, color: "#4A5650", marginLeft: 6 }}>{t.desc}</span>
+                  </div>
+                ))}
+              </div>
+            </FadeIn>
+
+            <div>
+              <ExpandableList initialCount={5} label="places to stay">
+                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="rooted" name="29 Palms Inn" location="Twentynine Palms" featured
+                  url="https://29palmsinn.com/"
+                  detail="Historic oasis property since 1928. Adobe bungalows around a natural pool fed by underground spring. Gardens, resident animals, a genuinely timeless quality."
+                  tags={["Historic", "Oasis", "Gardens", "Since 1928"]} />
+                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="elemental" name="Skylight Joshua Tree" location="Twentynine Palms" featured
+                  url="https://www.skylightjt.com/"
+                  detail="Intentionally designed desert cabins and domes near the park's north edge. Stargazing-optimized. Off-grid feel with considered design."
+                  tags={["Cabins", "Domes", "Stargazing", "Design"]} />
+                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="premium" name="Two Bunch Palms" location="Desert Hot Springs" featured
+                  url="https://www.twobunchpalms.com/"
+                  detail="Historic mineral hot springs spa. Grotto, thermal pools, healing arts. A true decompression experience."
+                  tags={["Hot Springs", "Spa", "Grotto", "Historic"]} />
+                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="elemental" name="Jumbo Rocks Campground" location="Inside the park"
+                  detail="124 sites set among massive boulder formations. The most immersive camping in the park. Dark sky conditions excellent. First-come, first-served."
+                  tags={["Camping", "Boulders", "Dark Sky", "FCFS"]} />
+                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="elemental" name="Hicksville Trailer Palace" location="Joshua Tree town"
+                  url="https://www.hicksville.com/"
+                  detail="Vintage trailers on a small ranch. Each themed and designed. Playful, adult, deeply Joshua Tree in spirit. Hot tub, pool, fire pit."
+                  tags={["Vintage Trailers", "Pool", "Hot Tub", "Quirky"]} />
+                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="rooted" name="Sacred Sands" location="Joshua Tree town"
+                  url="https://www.sacredsands.com/"
+                  detail="Boutique B&B — two rooms only. Thoughtfully appointed, meditation garden, personal attention, 360-degree desert views."
+                  tags={["B&B", "Two Rooms", "Meditation Garden"]} />
+                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="rooted" name="Pioneertown Motel" location="Pioneertown"
+                  url="https://www.pioneertownmotel.com/"
+                  detail="Basic but atmospheric. The only place to sleep in Pioneertown itself. Walking distance to Pappy's."
+                  tags={["Motel", "Atmospheric", "Pappy's Access"]} />
+                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="premium" name="Parker Palm Springs" location="Palm Springs" featured
+                  url="https://www.parkerpalmsprings.com/"
+                  detail="Jonathan Adler-designed, 13 acres. The most design-forward major property in the valley. Pool culture, strong restaurant (Norma's), unhurried pace."
+                  tags={["Design", "13 Acres", "Pool Culture", "Norma's"]} />
+                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="premium" name="L'Horizon Resort" location="Palm Springs"
+                  url="https://www.lhorizonpalmsprings.com/"
+                  detail="William Cody, 1952. Mid-century masterpiece, small pool-centric property. Intimate and refined."
+                  tags={["Mid-Century", "Pool", "Intimate"]} />
+                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="premium" name="Arrive Palm Springs" location="Palm Springs"
+                  url="https://www.arrivehotels.com/palm-springs"
+                  detail="Smaller, hipper, more affordable entry point to the PS hotel scene. Good bar, good location."
+                  tags={["Boutique", "Bar", "Accessible Luxury"]} />
+              </ExpandableList>
+            </div>
+          </section>
+
+
+          <Divider />
+
+          {/* ══════════════════════════════════════════════════════════════ */}
+          {/* MOVE                                                          */}
           {/* ══════════════════════════════════════════════════════════════ */}
           <section id="trails" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
             <FadeIn>
               <SectionIcon type="move" />
-              <SectionLabel>Sacred Terrain</SectionLabel>
+              <SectionLabel>Move</SectionLabel>
               <SectionTitle>{"Hikes, trails & landscape"}</SectionTitle>
               <SectionSub isMobile={isMobile}>{"From easy desert loops to world-class climbing. The terrain teaches you something new at every turn."}</SectionSub>
             </FadeIn>
@@ -1406,17 +1504,62 @@ export default function JoshuaTreeGuide() {
           <Divider />
 
           {/* ══════════════════════════════════════════════════════════════ */}
-          {/* DARK SKY                                                      */}
+          {/* BREATHE                                                       */}
+          {/* ══════════════════════════════════════════════════════════════ */}
+          <section id="wellness" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
+            <FadeIn>
+              <SectionIcon type="breathe" />
+              <SectionLabel>Breathe</SectionLabel>
+              <SectionTitle>{"Yoga, breathwork & wellness"}</SectionTitle>
+              <SectionSub isMobile={isMobile}>{"The desert climate itself is the elemental encounter here — daytime heat, night cold, low humidity. The elemental contrast is between day and night, sun and shade."}</SectionSub>
+            </FadeIn>
+            <FadeIn delay={0.08}>
+              <ExpandableList initialCount={5} label="wellness options">
+                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Wellness')} name="Integratron Sound Bath" featured
+                  url="https://www.integratron.com/"
+                  detail="A one-of-a-kind acoustic sound bath inside a resonant wood dome built in the 1950s by George Van Tassel. Rooted in fringe science but the experience is genuinely resonant. Bookings fill quickly — reserve well ahead."
+                  note="Landers, ~25 min north — book well ahead"
+                  tags={["Sound Bath", "Acoustic Dome", "Unique", "Reserve Early"]} />
+                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Wellness')} name="Joshua Tree Retreat Center" featured
+                  url="https://www.jtrcc.org/"
+                  detail="Long-established retreat venue with meditation halls, healing arts practitioners, and residential programs. About 2 miles from the park's west entrance."
+                  tags={["Retreat", "Meditation", "Healing Arts", "Residential"]} />
+                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Wellness')} name="Two Bunch Palms Hot Springs" featured
+                  url="https://www.twobunchpalms.com/"
+                  detail="Historic mineral hot springs spa fed by a natural geothermal aquifer. Grotto pools, couples treatments, serious relaxation. The counterpoint to a strenuous park day."
+                  note="Desert Hot Springs, ~45 min"
+                  tags={["Hot Springs", "Spa", "Grotto", "Historic"]} />
+                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Wellness')} name="Bhakti Yoga Shala"
+                  url="https://www.bhaktiyogashala.com/"
+                  detail="One of the Coachella Valley's most respected studios. Consistent instruction, strong community."
+                  note="Palm Springs, ~45 min"
+                  tags={["Yoga Studio", "Palm Springs", "Community"]} />
+                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Wellness')} name="Miracle Springs Resort"
+                  url="https://www.miraclesprings.com/"
+                  detail="More affordable than Two Bunch. Eight mineral pools ranging from warm to hot. Good for a long afternoon soak."
+                  tags={["Mineral Pools", "Affordable", "Desert Hot Springs"]} />
+                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Wellness')} name="Sunrise Yoga at Ryan Mountain Trailhead"
+                  detail="Before the hike. The early desert light — rose, amber, then white — provides natural rhythm for a sun salutation sequence. Bring your own mat."
+                  tags={["Free", "Self-Guided", "Sunrise", "Solo"]} />
+                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Wellness')} name="Desert Silence as Practice"
+                  detail="The high desert has measurable acoustic quiet. 29 Palms backcountry and the Wonderland of Rocks both offer conditions where ambient sound drops to near-zero. For breath-centered practice, there are few better natural environments."
+                  tags={["Free", "Meditation", "Solitude", "Self-Guided"]} />
+              </ExpandableList>
+            </FadeIn>
+          </section>
+
+          {/* ══════════════════════════════════════════════════════════════ */}
+          {/* NIGHT SKY                                                     */}
           {/* ══════════════════════════════════════════════════════════════ */}
         </div>
       </section>
 
-      {/* Dark Sky section with full-width dark background */}
-      <section id="dark-sky" style={{ scrollMarginTop: 126, padding: isMobile ? "52px 20px" : "64px 52px", background: C.darkInk }}>
+      {/* Night Sky section with full-width dark background */}
+      <section id="light-sky" style={{ scrollMarginTop: 126, padding: isMobile ? "52px 20px" : "64px 52px", background: C.darkInk }}>
         <div style={{ maxWidth: 680, margin: "0 auto" }}>
           <FadeIn>
             <SectionIcon type="darksky" />
-            <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 700, letterSpacing: "0.28em", textTransform: "uppercase", color: C.goldenAmber, marginBottom: 12, textAlign: "center" }}>Dark Sky</div>
+            <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 700, letterSpacing: "0.28em", textTransform: "uppercase", color: C.goldenAmber, marginBottom: 12, textAlign: "center" }}>Night Sky</div>
             <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(24px, 4vw, 32px)", fontWeight: 400, color: "#fff", margin: "0 0 6px", lineHeight: 1.2, textAlign: "center" }}>The night sky here is extraordinary</h2>
             <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: isMobile ? 15 : "clamp(14px, 1.8vw, 15px)", fontWeight: 400, color: "rgba(255,255,255,0.7)", margin: "0 auto 28px", lineHeight: 1.7, textAlign: isMobile ? "left" : "center", maxWidth: isMobile ? "100%" : 520 }}>
               Joshua Tree is a certified International Dark Sky Park. Bortle Class 2 conditions in the backcountry — among the darkest accessible skies in Southern California.
@@ -1480,60 +1623,12 @@ export default function JoshuaTreeGuide() {
 
 
           {/* ══════════════════════════════════════════════════════════════ */}
-          {/* LIVING PRACTICE                                               */}
-          {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="wellness" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
-            <FadeIn>
-              <SectionIcon type="breathe" />
-              <SectionLabel>Living Practice</SectionLabel>
-              <SectionTitle>{"Yoga, breathwork & wellness"}</SectionTitle>
-              <SectionSub isMobile={isMobile}>{"The desert climate itself is the elemental encounter here — daytime heat, night cold, low humidity. The elemental contrast is between day and night, sun and shade."}</SectionSub>
-            </FadeIn>
-            <FadeIn delay={0.08}>
-              <ExpandableList initialCount={5} label="wellness options">
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Wellness')} name="Integratron Sound Bath" featured
-                  url="https://www.integratron.com/"
-                  detail="A one-of-a-kind acoustic sound bath inside a resonant wood dome built in the 1950s by George Van Tassel. Rooted in fringe science but the experience is genuinely resonant. Bookings fill quickly — reserve well ahead."
-                  note="Landers, ~25 min north — book well ahead"
-                  tags={["Sound Bath", "Acoustic Dome", "Unique", "Reserve Early"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Wellness')} name="Joshua Tree Retreat Center" featured
-                  url="https://www.jtrcc.org/"
-                  detail="Long-established retreat venue with meditation halls, healing arts practitioners, and residential programs. About 2 miles from the park's west entrance."
-                  tags={["Retreat", "Meditation", "Healing Arts", "Residential"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Wellness')} name="Two Bunch Palms Hot Springs" featured
-                  url="https://www.twobunchpalms.com/"
-                  detail="Historic mineral hot springs spa fed by a natural geothermal aquifer. Grotto pools, couples treatments, serious relaxation. The counterpoint to a strenuous park day."
-                  note="Desert Hot Springs, ~45 min"
-                  tags={["Hot Springs", "Spa", "Grotto", "Historic"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Wellness')} name="Bhakti Yoga Shala"
-                  url="https://www.bhaktiyogashala.com/"
-                  detail="One of the Coachella Valley's most respected studios. Consistent instruction, strong community."
-                  note="Palm Springs, ~45 min"
-                  tags={["Yoga Studio", "Palm Springs", "Community"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Wellness')} name="Miracle Springs Resort"
-                  url="https://www.miraclesprings.com/"
-                  detail="More affordable than Two Bunch. Eight mineral pools ranging from warm to hot. Good for a long afternoon soak."
-                  tags={["Mineral Pools", "Affordable", "Desert Hot Springs"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Wellness')} name="Sunrise Yoga at Ryan Mountain Trailhead"
-                  detail="Before the hike. The early desert light — rose, amber, then white — provides natural rhythm for a sun salutation sequence. Bring your own mat."
-                  tags={["Free", "Self-Guided", "Sunrise", "Solo"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Wellness')} name="Desert Silence as Practice"
-                  detail="The high desert has measurable acoustic quiet. 29 Palms backcountry and the Wonderland of Rocks both offer conditions where ambient sound drops to near-zero. For breath-centered practice, there are few better natural environments."
-                  tags={["Free", "Meditation", "Solitude", "Self-Guided"]} />
-              </ExpandableList>
-            </FadeIn>
-          </section>
-
-
-          <Divider />
-
-          {/* ══════════════════════════════════════════════════════════════ */}
-          {/* NOURISH                                                       */}
+          {/* FOOD & CULTURE                                                */}
           {/* ══════════════════════════════════════════════════════════════ */}
           <section id="food-culture" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
             <FadeIn>
               <SectionIcon type="connect" />
-              <SectionLabel>Nourish</SectionLabel>
+              <SectionLabel>Food & Culture</SectionLabel>
               <SectionTitle>Where to eat</SectionTitle>
               <SectionSub isMobile={isMobile}>{"From the desert's most celebrated kitchen to roadhouse BBQ and pre-hike espresso."}</SectionSub>
             </FadeIn>
@@ -1633,161 +1728,19 @@ export default function JoshuaTreeGuide() {
           <Divider />
 
           {/* ══════════════════════════════════════════════════════════════ */}
-          {/* UNIQUE STAYS                                                  */}
-          {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="where-to-stay" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
-            <FadeIn>
-              <SectionIcon type="stay" />
-              <SectionLabel>Unique Stays</SectionLabel>
-              <SectionTitle>Where to sleep</SectionTitle>
-              <SectionSub isMobile={isMobile}>How you inhabit a place matters. Options across the full spectrum — from sleeping under the stars to Palm Springs luxury.</SectionSub>
-            </FadeIn>
-
-            <FadeIn delay={0.05}>
-              <div style={{
-                padding: "14px 16px", background: C.cream,
-                border: `1px solid ${C.stone}`, marginBottom: 20,
-                display: "flex", flexDirection: isMobile ? "column" : "row", gap: isMobile ? 10 : 16, flexWrap: "wrap",
-              }}>
-                {[
-                  { label: "Elemental", desc: "In the landscape", color: C.seaGlass },
-                  { label: "Rooted", desc: "Boutique, local", color: C.oceanTeal },
-                  { label: "Premium", desc: "Elevated experience", color: C.goldenAmber },
-                ].map((t, i) => (
-                  <div key={i} style={{ flex: isMobile ? "0 0 auto" : "1 1 140px" }}>
-                    <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 700, letterSpacing: "0.1em", color: t.color }}>{t.label}</span>
-                    <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 400, color: "#4A5650", marginLeft: 6 }}>{t.desc}</span>
-                  </div>
-                ))}
-              </div>
-            </FadeIn>
-
-            <div>
-              <ExpandableList initialCount={5} label="places to stay">
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="rooted" name="29 Palms Inn" location="Twentynine Palms" featured
-                  url="https://29palmsinn.com/"
-                  detail="Historic oasis property since 1928. Adobe bungalows around a natural pool fed by underground spring. Gardens, resident animals, a genuinely timeless quality."
-                  tags={["Historic", "Oasis", "Gardens", "Since 1928"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="elemental" name="Skylight Joshua Tree" location="Twentynine Palms" featured
-                  url="https://www.skylightjt.com/"
-                  detail="Intentionally designed desert cabins and domes near the park's north edge. Stargazing-optimized. Off-grid feel with considered design."
-                  tags={["Cabins", "Domes", "Stargazing", "Design"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="premium" name="Two Bunch Palms" location="Desert Hot Springs" featured
-                  url="https://www.twobunchpalms.com/"
-                  detail="Historic mineral hot springs spa. Grotto, thermal pools, healing arts. A true decompression experience."
-                  tags={["Hot Springs", "Spa", "Grotto", "Historic"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="elemental" name="Jumbo Rocks Campground" location="Inside the park"
-                  detail="124 sites set among massive boulder formations. The most immersive camping in the park. Dark sky conditions excellent. First-come, first-served."
-                  tags={["Camping", "Boulders", "Dark Sky", "FCFS"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="elemental" name="Hicksville Trailer Palace" location="Joshua Tree town"
-                  url="https://www.hicksville.com/"
-                  detail="Vintage trailers on a small ranch. Each themed and designed. Playful, adult, deeply Joshua Tree in spirit. Hot tub, pool, fire pit."
-                  tags={["Vintage Trailers", "Pool", "Hot Tub", "Quirky"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="rooted" name="Sacred Sands" location="Joshua Tree town"
-                  url="https://www.sacredsands.com/"
-                  detail="Boutique B&B — two rooms only. Thoughtfully appointed, meditation garden, personal attention, 360-degree desert views."
-                  tags={["B&B", "Two Rooms", "Meditation Garden"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="rooted" name="Pioneertown Motel" location="Pioneertown"
-                  url="https://www.pioneertownmotel.com/"
-                  detail="Basic but atmospheric. The only place to sleep in Pioneertown itself. Walking distance to Pappy's."
-                  tags={["Motel", "Atmospheric", "Pappy's Access"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="premium" name="Parker Palm Springs" location="Palm Springs" featured
-                  url="https://www.parkerpalmsprings.com/"
-                  detail="Jonathan Adler-designed, 13 acres. The most design-forward major property in the valley. Pool culture, strong restaurant (Norma's), unhurried pace."
-                  tags={["Design", "13 Acres", "Pool Culture", "Norma's"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="premium" name="L'Horizon Resort" location="Palm Springs"
-                  url="https://www.lhorizonpalmsprings.com/"
-                  detail="William Cody, 1952. Mid-century masterpiece, small pool-centric property. Intimate and refined."
-                  tags={["Mid-Century", "Pool", "Intimate"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="premium" name="Arrive Palm Springs" location="Palm Springs"
-                  url="https://www.arrivehotels.com/palm-springs"
-                  detail="Smaller, hipper, more affordable entry point to the PS hotel scene. Good bar, good location."
-                  tags={["Boutique", "Bar", "Accessible Luxury"]} />
-              </ExpandableList>
-            </div>
-          </section>
-
-
-          <Divider />
-
-          {/* ══════════════════════════════════════════════════════════════ */}
           {/* GIVE BACK                                                     */}
           {/* ══════════════════════════════════════════════════════════════ */}
           <section id="give-back" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
             <FadeIn>
               <SectionIcon type="giveback" />
               <SectionLabel>Give Back</SectionLabel>
-              <SectionTitle>{"Cultural heritage & stewardship"}</SectionTitle>
-              <SectionSub isMobile={isMobile}>{"Honor the land and the people who have called it home for thousands of years."}</SectionSub>
+              <SectionTitle>Leave it better than you found it.</SectionTitle>
+              <SectionSub isMobile={isMobile}>The desert remembers everything. Tread gently and give where you can.</SectionSub>
             </FadeIn>
-            <FadeIn delay={0.08}>
-              <div>
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Give Back')} name="Serrano & Cahuilla Nations" featured
-                  detail="The land that is now Joshua Tree National Park has been home to the Serrano and Cahuilla peoples for thousands of years. Petroglyphs, bedrock mortars, and plant use sites throughout the park attest to sustained presence. The Oasis of Mara was a Serrano gathering place."
-                  tags={["Indigenous Heritage", "Cultural", "Serrano", "Cahuilla"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Give Back')} name="Twentynine Palms Band of Mission Indians"
-                  detail="The native Serrano community with federally recognized status. Their website and cultural programs offer context for understanding this land."
-                  tags={["Indigenous", "Serrano", "Cultural Programs"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Give Back')} name="Desert Institute at Joshua Tree" featured
-                  url="https://www.joshuatree.org/"
-                  detail="Field institute offering educational programs, natural history classes, night sky programs, and guided experiences inside the park. Proceeds support the park."
-                  tags={["Educational", "Night Sky", "Nonprofit"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Give Back')} name="Joshua Tree National Park Association" featured
-                  url="https://www.joshuatree.org/"
-                  detail="The park's official nonprofit partner. Supports conservation, education, and volunteer programs. Volunteer opportunities available for trail maintenance and restoration."
-                  note="joshuatree.org"
-                  tags={["Conservation", "Volunteer", "Nonprofit"]} />
-              </div>
-            </FadeIn>
-          </section>
-
-
-          <Divider />
-
-          {/* ══════════════════════════════════════════════════════════════ */}
-          {/* GROUP TRIPS                                                   */}
-          {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="group-trips" style={{ scrollMarginTop: 126, padding: "48px 0" }}>
-            <FadeIn>
-              <SectionIcon type="group" />
-              <SectionLabel>Group Trips</SectionLabel>
-              <SectionTitle>Tuned to Cosmic Rhythms</SectionTitle>
-              <SectionSub isMobile={isMobile}>Small group trips timed to natural crescendos. Expert guides, meaningful connection, transformative terrain. Eight travelers maximum.</SectionSub>
-            </FadeIn>
-
-            {(() => {
-              const jtTrips = getTripsByDestination("Joshua Tree");
-              return jtTrips.length > 0 ? (
-                <div style={{
-                  display: "grid",
-                  gridTemplateColumns: isMobile ? "1fr" : (jtTrips.length > 1 ? "repeat(2, 1fr)" : "1fr"),
-                  gap: 24,
-                  maxWidth: jtTrips.length === 1 ? 400 : "100%",
-                }}>
-                  {jtTrips.map((trip, i) => (
-                    <FadeIn key={trip.slug} delay={0.08 + i * 0.06}>
-                      <TripCard trip={trip} />
-                    </FadeIn>
-                  ))}
-                </div>
-              ) : null;
-            })()}
-
-            <FadeIn delay={0.2}>
-              <div style={{ padding: "20px 24px", border: `1px solid ${C.stone}`, textAlign: "center", marginTop: 16 }}>
-                <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 14, fontWeight: 400, color: "#4A5650", lineHeight: 1.6, margin: "0 0 16px" }}>See all upcoming group trips across every destination.</p>
-                <Link to="/group-trips" style={{
-                  padding: "10px 24px", background: "transparent",
-                  border: `1.5px solid ${C.goldenAmber}`, color: C.goldenAmber,
-                  fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 700,
-                  letterSpacing: "0.18em", textTransform: "uppercase", textDecoration: "none",
-                  transition: "all 0.25s", display: "inline-block",
-                }}
-                onClick={() => trackEvent('guide_cta_clicked', { action: 'view_group_trips', destination: 'joshua-tree' })}
-                onMouseEnter={e => { e.currentTarget.style.background = C.goldenAmber; e.currentTarget.style.color = "#fff"; }}
-                onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = C.goldenAmber; }}
-                >View All Group Trips</Link>
-              </div>
+            <FadeIn delay={0.1}>
+              <p style={{ fontFamily: "'Quicksand'", fontSize: 14, color: "#4A5650", lineHeight: 1.7 }}>
+                Local organizations, Indigenous-led businesses, and trail stewardship opportunities for Joshua Tree — coming soon.
+              </p>
             </FadeIn>
           </section>
 

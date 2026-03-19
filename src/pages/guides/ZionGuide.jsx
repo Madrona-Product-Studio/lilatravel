@@ -12,10 +12,8 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { Nav, Footer, FadeIn, Breadcrumb, WhisperBar } from '@components';
-import TripCard from '@components/TripCard';
 import { C } from '@data/brand';
 import { P } from '@data/photos';
-import { getTripsByDestination } from '@data/trips';
 import { trackEvent } from '@utils/analytics';
 import { getCelestialSnapshot } from '@services/celestialService';
 import { getNPSData, buildNPSLookup, findNPSMatch } from '@services/npsService';
@@ -1386,13 +1384,14 @@ const WILDLIFE_GROUPS = [
 
 const GUIDE_SECTIONS = [
   { id: "sense-of-place", label: "Sense of Place" },
-  { id: "when-to-go",     label: "When to Go" },
-  { id: "where-to-stay",  label: "Stay" },
-  { id: "trails",         label: "Trails" },
-  { id: "wellness",       label: "Wellness" },
-  { id: "light-sky",      label: "Light & Sky" },
+  { id: "when-to-go",     label: "Magic Windows" },
+  { id: "tread-lightly",  label: "Tread Lightly" },
+  { id: "where-to-stay",  label: "Where to Sleep" },
+  { id: "trails",         label: "Move" },
+  { id: "wellness",       label: "Breathe" },
+  { id: "light-sky",      label: "Night Sky" },
   { id: "food-culture",   label: "Food & Culture" },
-  { id: "group-trips",    label: "Group Trips" },
+  { id: "give-back",      label: "Give Back" },
 ];
 
 function GuideNav({ isMobile }) {
@@ -2128,12 +2127,45 @@ export default function ZionGuide() {
           <Divider />
 
           {/* ══════════════════════════════════════════════════════════════ */}
+          {/* TREAD LIGHTLY                                                 */}
+          {/* ══════════════════════════════════════════════════════════════ */}
+          <section id="tread-lightly" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
+            <FadeIn>
+              <SectionIcon type="awaken" />
+              <SectionLabel>Tread Lightly</SectionLabel>
+              <SectionTitle>Traveling responsibly.</SectionTitle>
+              <SectionSub isMobile={isMobile}>The canyon has been here for 250 million years. How you move through it matters.</SectionSub>
+            </FadeIn>
+
+            <FadeIn delay={0.1}>
+              <div style={{ marginTop: 8 }}>
+                <ListItem isMobile={isMobile} name="The ground is alive. Stay on the trail."
+                  detail="The dark, lumpy biological crust visible just off the path is cryptobiotic soil — a living community of cyanobacteria, lichens, and fungi that can take 50–250 years to recover from a single footstep. It holds the desert floor together, fixes nitrogen, and retains moisture. It looks like nothing. It is everything. The trail exists for a reason."
+                  tags={["Stay on trail", "Desert fragility"]} />
+                <ListItem isMobile={isMobile} name="Dawn entry isn't just better. It's right."
+                  detail="The Narrows receives nearly 3,000 visitors on a peak summer day. By 9am, the slot canyon is a slow-moving crowd. Dawn entry — before the shuttle starts running — means the river is yours, the light is extraordinary, and you're carrying a smaller footprint through one of the most fragile corridors in the park. We route toward it every time."
+                  note="◈ Arrive at the Temple of Sinawava trailhead no later than 6:30am in July–August"
+                  tags={["Off-peak timing", "Low impact", "Dawn entry"]} />
+                <ListItem isMobile={isMobile} name="The lottery exists because we loved it too hard."
+                  detail="Angels Landing now requires a permit — not because the NPS wanted to gatekeep it, but because the trail was eroding under the weight of unmanaged visitation. The permit system is an act of conservation. If you don't get one, the West Rim Trail above Scouts Lookout offers the same exposure and a fraction of the crowd. We're happy to route you there instead."
+                  tags={["Permit required", "Alternatives available"]} />
+                <ListItem isMobile={isMobile} name="What goes in comes out downstream."
+                  detail="The Virgin River runs through the entire canyon and sustains one of the most biodiverse riparian corridors in the American Southwest. Sunscreen, insect repellent, and soap — even biodegradable — affect the aquatic ecosystem. Apply well before you enter the water. Pack out everything. The river is not a wash."
+                  tags={["Water stewardship", "Riparian habitat"]} />
+              </div>
+            </FadeIn>
+          </section>
+
+
+          <Divider />
+
+          {/* ══════════════════════════════════════════════════════════════ */}
           {/* STAY                                                          */}
           {/* ══════════════════════════════════════════════════════════════ */}
           <section id="where-to-stay" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
             <FadeIn>
               <SectionIcon type="stay" />
-              <SectionLabel>Stay</SectionLabel>
+              <SectionLabel>Where to Sleep</SectionLabel>
               <SectionTitle>Where to sleep</SectionTitle>
               <SectionSub isMobile={isMobile}>How you inhabit a place matters. Options across the full spectrum — from sleeping under the stars to world-class luxury.</SectionSub>
             </FadeIn>
@@ -2467,7 +2499,7 @@ export default function ZionGuide() {
           <section id="light-sky" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
             <FadeIn>
               <SectionIcon type="awaken" />
-              <SectionLabel>Awaken</SectionLabel>
+              <SectionLabel>Night Sky</SectionLabel>
               <SectionTitle>{"Light, sky & wonder"}</SectionTitle>
               <SectionSub isMobile={isMobile}>{"The moments that shift something inside you. Sunrise, starlight, the land at its most alive."}</SectionSub>
             </FadeIn>
@@ -2509,7 +2541,7 @@ export default function ZionGuide() {
           <section id="food-culture" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
             <FadeIn>
               <SectionIcon type="connect" />
-              <SectionLabel>Connect</SectionLabel>
+              <SectionLabel>Food & Culture</SectionLabel>
               <SectionTitle>{"Food, culture & community"}</SectionTitle>
               <SectionSub isMobile={isMobile}>{"The people and places that turn a visit into a memory. Where to eat, give back, honor the land, and linger."}</SectionSub>
             </FadeIn>
@@ -2604,64 +2636,20 @@ export default function ZionGuide() {
           <Divider />
 
           {/* ══════════════════════════════════════════════════════════════ */}
-          {/* GROUP TRIPS — ZION                                             */}
+          {/* GIVE BACK                                                     */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="group-trips" style={{ scrollMarginTop: 126, padding: "48px 0" }}>
+          <section id="give-back" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
             <FadeIn>
               <SectionIcon type="threshold" />
-              <SectionLabel>Group Trips</SectionLabel>
-              <SectionTitle>Tuned to Cosmic Rhythms</SectionTitle>
-              <SectionSub isMobile={isMobile}>Small group trips timed to natural crescendos. Expert guides, meaningful connection, transformative terrain. Eight travelers maximum.</SectionSub>
+              <SectionLabel>Give Back</SectionLabel>
+              <SectionTitle>Leave it better than you found it.</SectionTitle>
+              <SectionSub isMobile={isMobile}>The canyon gives everything. Here's how to return the favor.</SectionSub>
             </FadeIn>
 
-            {/* Zion-specific trip — uses shared TripCard */}
-            {(() => {
-              const zionTrips = getTripsByDestination("Zion");
-              return zionTrips.length > 0 ? (
-                <div style={{
-                  display: "grid",
-                  gridTemplateColumns: isMobile ? "1fr" : (zionTrips.length > 1 ? "repeat(2, 1fr)" : "1fr"),
-                  gap: 24,
-                  maxWidth: zionTrips.length === 1 ? 400 : "100%",
-                }}>
-                  {zionTrips.map((trip, i) => (
-                    <FadeIn key={trip.slug} delay={0.08 + i * 0.06}>
-                      <TripCard trip={trip} />
-                    </FadeIn>
-                  ))}
-                </div>
-              ) : null;
-            })()}
-
-            <FadeIn delay={0.2}>
-              <div style={{
-                padding: "20px 24px",
-                border: `1px solid ${C.stone}`,
-                textAlign: "center",
-                marginTop: 16,
-              }}>
-                <p style={{
-                  fontFamily: "'Quicksand', sans-serif",
-                  fontSize: 14, fontWeight: 400,
-                  color: "#4A5650", lineHeight: 1.6, margin: "0 0 16px",
-                }}>See all upcoming group trips across every destination.</p>
-                <Link to="/group-trips" style={{
-                  padding: "10px 24px",
-                  background: "transparent",
-                  border: `1.5px solid ${C.sunSalmon}`,
-                  color: C.sunSalmon,
-                  fontFamily: "'Quicksand', sans-serif",
-                  fontSize: 12, fontWeight: 700,
-                  letterSpacing: "0.18em", textTransform: "uppercase",
-                  textDecoration: "none",
-                  transition: "all 0.25s",
-                  display: "inline-block",
-                }}
-                onClick={() => trackEvent('guide_cta_clicked', { action: 'view_group_trips', destination: 'zion' })}
-                onMouseEnter={e => { e.currentTarget.style.background = C.sunSalmon; e.currentTarget.style.color = "#fff"; }}
-                onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = C.sunSalmon; }}
-                >View All Group Trips</Link>
-              </div>
+            <FadeIn delay={0.1}>
+              <p style={{ fontFamily: "'Quicksand'", fontSize: 14, color: "#4A5650", lineHeight: 1.7 }}>
+                Local organizations, Indigenous-led businesses, and trail stewardship opportunities for Zion — coming soon.
+              </p>
             </FadeIn>
           </section>
 

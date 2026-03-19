@@ -12,10 +12,8 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { Nav, Footer, FadeIn, Breadcrumb, WhisperBar } from '@components';
-import TripCard from '@components/TripCard';
 import { C } from '@data/brand';
 import { P } from '@data/photos';
-import { getTripsByDestination } from '@data/trips';
 import { trackEvent } from '@utils/analytics';
 import { getCelestialSnapshot } from '@services/celestialService';
 import { getNPSData, buildNPSLookup, findNPSMatch } from '@services/npsService';
@@ -674,12 +672,14 @@ function ParkCard({ park, isExpanded, onToggle, isMobile }) {
 
 const GUIDE_SECTIONS = [
   { id: "sense-of-place", label: "Sense of Place" },
-  { id: "when-to-go",     label: "When to Go" },
-  { id: "where-to-stay",  label: "Stay" },
-  { id: "trails",         label: "Trails" },
-  { id: "wellness",       label: "Wellness" },
+  { id: "when-to-go",     label: "Magic Windows" },
+  { id: "tread-lightly",  label: "Tread Lightly" },
+  { id: "where-to-stay",  label: "Where to Sleep" },
+  { id: "trails",         label: "Move" },
+  { id: "wellness",       label: "Breathe" },
+  { id: "light-sky",      label: "Night Sky" },
   { id: "food-culture",   label: "Food & Culture" },
-  { id: "group-trips",    label: "Group Trips" },
+  { id: "give-back",      label: "Give Back" },
 ];
 
 function GuideNav({ isMobile }) {
@@ -1222,12 +1222,34 @@ export default function OlympicPeninsulaGuide() {
           <Divider />
 
           {/* ══════════════════════════════════════════════════════════════ */}
+          {/* TREAD LIGHTLY                                                 */}
+          {/* ══════════════════════════════════════════════════════════════ */}
+          <section id="tread-lightly" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
+            <FadeIn>
+              <SectionIcon type="awaken" />
+              <SectionLabel>Tread Lightly</SectionLabel>
+              <SectionTitle>Traveling responsibly.</SectionTitle>
+              <SectionSub isMobile={isMobile}>One of the last temperate wildernesses in the lower 48. Treat it that way.</SectionSub>
+            </FadeIn>
+
+            <FadeIn delay={0.1}>
+              <div style={{ marginTop: 8 }}>
+                <ListItem isMobile={isMobile} name="Old growth takes centuries. Protect it in hours."
+                  detail="The Hoh Rain Forest contains some of the last temperate old-growth in the lower 48. Trails here are narrow and the understory is fragile — widening happens fast when visitors step around mud. The Elwha River restoration, the largest dam removal in US history, is still recovering. We orient itineraries around witnessing that recovery, not interrupting it."
+                  tags={["Stay on trail", "River restoration", "Leave no trace"]} />
+              </div>
+            </FadeIn>
+          </section>
+
+          <Divider />
+
+          {/* ══════════════════════════════════════════════════════════════ */}
           {/* STAY                                                          */}
           {/* ══════════════════════════════════════════════════════════════ */}
           <section id="where-to-stay" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
             <FadeIn>
               <SectionIcon type="stay" />
-              <SectionLabel>Unique Stays</SectionLabel>
+              <SectionLabel>Where to Sleep</SectionLabel>
               <SectionTitle>Where to sleep</SectionTitle>
               <SectionSub isMobile={isMobile}>{"How you inhabit a place matters. From ocean-bluff campgrounds to historic park lodges to Victorian B&Bs overlooking the Strait."}</SectionSub>
             </FadeIn>
@@ -1292,7 +1314,7 @@ export default function OlympicPeninsulaGuide() {
           <section id="trails" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
             <FadeIn>
               <SectionIcon type="move" />
-              <SectionLabel>Sacred Terrain</SectionLabel>
+              <SectionLabel>Move</SectionLabel>
               <SectionTitle>{"Trails by ecosystem"}</SectionTitle>
               <SectionSub isMobile={isMobile}>{"Olympic's three distinct ecosystems each demand their own section. Choose your entry point based on the landscape that calls you."}</SectionSub>
             </FadeIn>
@@ -1384,7 +1406,7 @@ export default function OlympicPeninsulaGuide() {
           <section id="wellness" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
             <FadeIn>
               <SectionIcon type="breathe" />
-              <SectionLabel>Living Practice</SectionLabel>
+              <SectionLabel>Breathe</SectionLabel>
               <SectionTitle>{"Soaking, silence & contemplation"}</SectionTitle>
               <SectionSub isMobile={isMobile}>{"The peninsula's pace makes practice feel less like effort and more like returning to something you already knew."}</SectionSub>
             </FadeIn>
@@ -1416,30 +1438,43 @@ export default function OlympicPeninsulaGuide() {
           </section>
 
 
-          {/* Dark Sky Note */}
-          <FadeIn>
-            <div style={{
-              padding: "20px 24px",
-              background: C.darkInk,
-              margin: "28px 0",
-            }}>
-              <div style={{
-                fontFamily: "'Quicksand', sans-serif",
-                fontSize: 11, fontWeight: 700,
-                letterSpacing: "0.22em", textTransform: "uppercase",
-                color: C.skyBlue, marginBottom: 10,
-              }}>Dark Sky Note</div>
-              <p style={{
-                fontFamily: "'Quicksand', sans-serif",
-                fontSize: 14, fontWeight: 400,
-                color: "rgba(255,255,255,0.7)",
-                lineHeight: 1.7, margin: 0,
-              }}>
-                {"No IDA dark sky certification. Consistent cloud cover limits sky access on the west side of the peninsula. The clearest conditions are found on the rain shadow side — Sequim and Dungeness — particularly in summer. When the clouds do break, the lack of development means genuine darkness is available from any park campground."}
-              </p>
-            </div>
-          </FadeIn>
+          <Divider />
 
+          {/* ══════════════════════════════════════════════════════════════ */}
+          {/* NIGHT SKY                                                     */}
+          {/* ══════════════════════════════════════════════════════════════ */}
+          <section id="light-sky" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
+            <FadeIn>
+              <SectionIcon type="awaken" />
+              <SectionLabel>Night Sky</SectionLabel>
+              <SectionTitle>After dark on the peninsula.</SectionTitle>
+              <SectionSub isMobile={isMobile}>Hurricane Ridge and the coast offer some of the darkest skies in the Pacific Northwest.</SectionSub>
+            </FadeIn>
+
+            {/* Dark Sky Note */}
+            <FadeIn delay={0.1}>
+              <div style={{
+                padding: "20px 24px",
+                background: C.darkInk,
+                margin: "28px 0",
+              }}>
+                <div style={{
+                  fontFamily: "'Quicksand', sans-serif",
+                  fontSize: 11, fontWeight: 700,
+                  letterSpacing: "0.22em", textTransform: "uppercase",
+                  color: C.skyBlue, marginBottom: 10,
+                }}>Dark Sky Note</div>
+                <p style={{
+                  fontFamily: "'Quicksand', sans-serif",
+                  fontSize: 14, fontWeight: 400,
+                  color: "rgba(255,255,255,0.7)",
+                  lineHeight: 1.7, margin: 0,
+                }}>
+                  {"No IDA dark sky certification. Consistent cloud cover limits sky access on the west side of the peninsula. The clearest conditions are found on the rain shadow side — Sequim and Dungeness — particularly in summer. When the clouds do break, the lack of development means genuine darkness is available from any park campground."}
+                </p>
+              </div>
+            </FadeIn>
+          </section>
 
           <Divider />
 
@@ -1449,7 +1484,7 @@ export default function OlympicPeninsulaGuide() {
           <section id="food-culture" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
             <FadeIn>
               <SectionIcon type="connect" />
-              <SectionLabel>Connect</SectionLabel>
+              <SectionLabel>Food & Culture</SectionLabel>
               <SectionTitle>{"Food, culture & stewardship"}</SectionTitle>
               <SectionSub isMobile={isMobile}>{"From Indigenous heritage to lavender farms to the peninsula's best kitchens. The connections here go deeper than a meal."}</SectionSub>
             </FadeIn>
@@ -1663,52 +1698,22 @@ export default function OlympicPeninsulaGuide() {
           <Divider />
 
           {/* ══════════════════════════════════════════════════════════════ */}
-          {/* GROUP TRIPS                                                   */}
+          {/* GIVE BACK                                                     */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="group-trips" style={{ scrollMarginTop: 126, padding: "48px 0" }}>
+          <section id="give-back" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
             <FadeIn>
-              <SectionIcon type="group" />
-              <SectionLabel>Group Trips</SectionLabel>
-              <SectionTitle>Into the Wild Peninsula</SectionTitle>
-              <SectionSub isMobile={isMobile}>{"Small group trips timed to natural crescendos — salmon runs, alpine bloom, storm season. Expert guides, meaningful connection. Eight travelers maximum."}</SectionSub>
+              <SectionIcon type="threshold" />
+              <SectionLabel>Give Back</SectionLabel>
+              <SectionTitle>Leave it better than you found it.</SectionTitle>
+              <SectionSub isMobile={isMobile}>The peninsula gives quietly. Return the favor.</SectionSub>
             </FadeIn>
 
-            {(() => {
-              const olympicTrips = getTripsByDestination("Olympic");
-              return olympicTrips.length > 0 ? (
-                <div style={{
-                  display: "grid",
-                  gridTemplateColumns: isMobile ? "1fr" : (olympicTrips.length > 1 ? "repeat(2, 1fr)" : "1fr"),
-                  gap: 24,
-                  maxWidth: olympicTrips.length === 1 ? 400 : "100%",
-                }}>
-                  {olympicTrips.map((trip, i) => (
-                    <FadeIn key={trip.slug} delay={0.08 + i * 0.06}>
-                      <TripCard trip={trip} />
-                    </FadeIn>
-                  ))}
-                </div>
-              ) : null;
-            })()}
-
-            <FadeIn delay={0.2}>
-              <div style={{ padding: "20px 24px", border: `1px solid ${C.stone}`, textAlign: "center", marginTop: 16 }}>
-                <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 14, fontWeight: 400, color: "#4A5650", lineHeight: 1.6, margin: "0 0 16px" }}>See all upcoming group trips across every destination.</p>
-                <Link to="/group-trips" style={{
-                  padding: "10px 24px", background: "transparent",
-                  border: `1.5px solid ${C.skyBlue}`, color: C.skyBlue,
-                  fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 700,
-                  letterSpacing: "0.18em", textTransform: "uppercase", textDecoration: "none",
-                  transition: "all 0.25s", display: "inline-block",
-                }}
-                onClick={() => trackEvent('guide_cta_clicked', { action: 'view_group_trips', destination: 'olympic-peninsula' })}
-                onMouseEnter={e => { e.currentTarget.style.background = C.skyBlue; e.currentTarget.style.color = "#fff"; }}
-                onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = C.skyBlue; }}
-                >View All Group Trips</Link>
-              </div>
+            <FadeIn delay={0.1}>
+              <p style={{ fontFamily: "'Quicksand'", fontSize: 14, color: "#4A5650", lineHeight: 1.7 }}>
+                Local organizations, Indigenous-led businesses, and trail stewardship opportunities for the Olympic Peninsula — coming soon.
+              </p>
             </FadeIn>
           </section>
-
 
           <Divider />
 

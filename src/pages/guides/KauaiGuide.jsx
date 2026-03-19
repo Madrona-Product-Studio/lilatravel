@@ -12,10 +12,8 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { Nav, Footer, FadeIn, Breadcrumb, WhisperBar } from '@components';
-import TripCard from '@components/TripCard';
 import { C } from '@data/brand';
 import { P } from '@data/photos';
-import { getTripsByDestination } from '@data/trips';
 import { trackEvent } from '@utils/analytics';
 import { getCelestialSnapshot } from '@services/celestialService';
 import { Helmet } from 'react-helmet-async';
@@ -622,13 +620,14 @@ function ParkCard({ park, isExpanded, onToggle, isMobile }) {
 
 const GUIDE_SECTIONS = [
   { id: "sense-of-place", label: "Sense of Place" },
-  { id: "when-to-go",     label: "When to Go" },
-  { id: "where-to-stay",  label: "Stay" },
-  { id: "trails",         label: "Trails" },
-  { id: "wellness",       label: "Wellness" },
-  { id: "light-sky",      label: "Light & Sky" },
+  { id: "when-to-go",     label: "Magic Windows" },
+  { id: "tread-lightly",  label: "Tread Lightly" },
+  { id: "where-to-stay",  label: "Where to Sleep" },
+  { id: "trails",         label: "Move" },
+  { id: "wellness",       label: "Breathe" },
+  { id: "light-sky",      label: "Night Sky" },
   { id: "food-culture",   label: "Food & Culture" },
-  { id: "group-trips",    label: "Group Trips" },
+  { id: "give-back",      label: "Give Back" },
 ];
 
 function GuideNav({ isMobile }) {
@@ -1144,12 +1143,35 @@ export default function KauaiGuide() {
           <Divider />
 
           {/* ══════════════════════════════════════════════════════════════ */}
+          {/* TREAD LIGHTLY                                                 */}
+          {/* ══════════════════════════════════════════════════════════════ */}
+          <section id="tread-lightly" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
+            <FadeIn>
+              <SectionIcon type="awaken" />
+              <SectionLabel>Tread Lightly</SectionLabel>
+              <SectionTitle>Traveling responsibly.</SectionTitle>
+              <SectionSub isMobile={isMobile}>Hawaiʻi receives more visitors per resident than almost anywhere on earth. Travel with that in mind.</SectionSub>
+            </FadeIn>
+
+            <FadeIn delay={0.1}>
+              <div style={{ marginTop: 8 }}>
+                <ListItem isMobile={isMobile} name="You are a guest on sacred land."
+                  detail="Hawaiʻi receives more visitors per resident than almost anywhere on earth. Kauaʻi in particular holds heiau — ancient sacred sites — that are not on any tourist map and should not be. The Nā Pali Coast has trails that exceed the skill of most visitors; rescues are common and costly. We do not put certain places on our itineraries. The most powerful act of reverence is sometimes choosing not to go."
+                  tags={["Indigenous sacred sites", "Visitor pressure", "Selective access"]} />
+              </div>
+            </FadeIn>
+          </section>
+
+
+          <Divider />
+
+          {/* ══════════════════════════════════════════════════════════════ */}
           {/* STAY                                                          */}
           {/* ══════════════════════════════════════════════════════════════ */}
           <section id="where-to-stay" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
             <FadeIn>
               <SectionIcon type="stay" />
-              <SectionLabel>Unique Stays</SectionLabel>
+              <SectionLabel>Where to Sleep</SectionLabel>
               <SectionTitle>Where to sleep</SectionTitle>
               <SectionSub isMobile={isMobile}>{"How you inhabit a place matters. From beach camping under the Nā Pali cliffs to the island's grandest resort."}</SectionSub>
             </FadeIn>
@@ -1219,7 +1241,7 @@ export default function KauaiGuide() {
           <section id="trails" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
             <FadeIn>
               <SectionIcon type="move" />
-              <SectionLabel>Sacred Terrain</SectionLabel>
+              <SectionLabel>Move</SectionLabel>
               <SectionTitle>{"Trails, coast & canyon"}</SectionTitle>
               <SectionSub isMobile={isMobile}>{"From the Nā Pali Coast's fluted sea cliffs to the red rock of Waimea Canyon. Every trail here earns its reputation."}</SectionSub>
             </FadeIn>
@@ -1303,7 +1325,7 @@ export default function KauaiGuide() {
           <section id="wellness" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
             <FadeIn>
               <SectionIcon type="breathe" />
-              <SectionLabel>Living Practice</SectionLabel>
+              <SectionLabel>Breathe</SectionLabel>
               <SectionTitle>{"Yoga, water & contemplation"}</SectionTitle>
               <SectionSub isMobile={isMobile}>{"The island's pace makes practice feel less like effort and more like returning to something you already knew."}</SectionSub>
             </FadeIn>
@@ -1352,7 +1374,7 @@ export default function KauaiGuide() {
         <div style={{ maxWidth: 680, margin: "0 auto" }}>
           <FadeIn>
             <SectionIcon type="awaken" />
-            <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 700, letterSpacing: "0.28em", textTransform: "uppercase", color: C.oceanTeal, marginBottom: 12, textAlign: "center" }}>Awaken</div>
+            <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 700, letterSpacing: "0.28em", textTransform: "uppercase", color: C.oceanTeal, marginBottom: 12, textAlign: "center" }}>Night Sky</div>
             <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(24px, 4vw, 32px)", fontWeight: 400, color: "#fff", margin: "0 0 6px", lineHeight: 1.2, textAlign: "center" }}>{"Light & sky"}</h2>
             <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: isMobile ? 15 : "clamp(14px, 1.8vw, 15px)", fontWeight: 400, color: "rgba(255,255,255,0.7)", margin: "0 auto 28px", lineHeight: 1.7, textAlign: isMobile ? "left" : "center", maxWidth: isMobile ? "100%" : 520 }}>
               {"No IDA designation, but the island's building-height law and low development density create genuinely dark conditions on the south and west shores. The Milky Way core is visible from the coast on moonless nights between April and October."}
@@ -1417,7 +1439,7 @@ export default function KauaiGuide() {
           <section id="food-culture" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
             <FadeIn>
               <SectionIcon type="connect" />
-              <SectionLabel>Connect</SectionLabel>
+              <SectionLabel>Food & Culture</SectionLabel>
               <SectionTitle>{"Food, culture & stewardship"}</SectionTitle>
               <SectionSub isMobile={isMobile}>{"From sacred practice to farm culture to the island's best kitchens. The connections here go deeper than a meal."}</SectionSub>
             </FadeIn>
@@ -1571,49 +1593,20 @@ export default function KauaiGuide() {
           <Divider />
 
           {/* ══════════════════════════════════════════════════════════════ */}
-          {/* GROUP TRIPS                                                   */}
+          {/* GIVE BACK                                                     */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="group-trips" style={{ scrollMarginTop: 126, padding: "48px 0" }}>
+          <section id="give-back" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
             <FadeIn>
-              <SectionIcon type="group" />
-              <SectionLabel>Group Trips</SectionLabel>
-              <SectionTitle>Tuned to Island Rhythms</SectionTitle>
-              <SectionSub isMobile={isMobile}>{"Small group trips timed to natural crescendos — whale season, Nā Pali calm, trade wind windows. Expert guides, meaningful connection. Eight travelers maximum."}</SectionSub>
+              <SectionIcon type="threshold" />
+              <SectionLabel>Give Back</SectionLabel>
+              <SectionTitle>Leave it better than you found it.</SectionTitle>
+              <SectionSub isMobile={isMobile}>The island gives more than it asks. Honor that.</SectionSub>
             </FadeIn>
 
-            {(() => {
-              const kauaiTrips = getTripsByDestination("Kauai");
-              return kauaiTrips.length > 0 ? (
-                <div style={{
-                  display: "grid",
-                  gridTemplateColumns: isMobile ? "1fr" : (kauaiTrips.length > 1 ? "repeat(2, 1fr)" : "1fr"),
-                  gap: 24,
-                  maxWidth: kauaiTrips.length === 1 ? 400 : "100%",
-                }}>
-                  {kauaiTrips.map((trip, i) => (
-                    <FadeIn key={trip.slug} delay={0.08 + i * 0.06}>
-                      <TripCard trip={trip} />
-                    </FadeIn>
-                  ))}
-                </div>
-              ) : null;
-            })()}
-
-            <FadeIn delay={0.2}>
-              <div style={{ padding: "20px 24px", border: `1px solid ${C.stone}`, textAlign: "center", marginTop: 16 }}>
-                <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 14, fontWeight: 400, color: "#4A5650", lineHeight: 1.6, margin: "0 0 16px" }}>See all upcoming group trips across every destination.</p>
-                <Link to="/group-trips" style={{
-                  padding: "10px 24px", background: "transparent",
-                  border: `1.5px solid ${C.oceanTeal}`, color: C.oceanTeal,
-                  fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 700,
-                  letterSpacing: "0.18em", textTransform: "uppercase", textDecoration: "none",
-                  transition: "all 0.25s", display: "inline-block",
-                }}
-                onClick={() => trackEvent('guide_cta_clicked', { action: 'view_group_trips', destination: 'kauai' })}
-                onMouseEnter={e => { e.currentTarget.style.background = C.oceanTeal; e.currentTarget.style.color = "#fff"; }}
-                onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = C.oceanTeal; }}
-                >View All Group Trips</Link>
-              </div>
+            <FadeIn delay={0.1}>
+              <p style={{ fontFamily: "'Quicksand'", fontSize: 14, color: "#4A5650", lineHeight: 1.7 }}>
+                Local organizations, Indigenous-led businesses, and trail stewardship opportunities for Kauaʻi — coming soon.
+              </p>
             </FadeIn>
           </section>
 

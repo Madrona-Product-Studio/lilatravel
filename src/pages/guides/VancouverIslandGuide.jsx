@@ -13,10 +13,8 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { Nav, Footer, FadeIn, Breadcrumb, WhisperBar } from '@components';
-import TripCard from '@components/TripCard';
 import { C } from '@data/brand';
 import { P } from '@data/photos';
-import { getTripsByDestination } from '@data/trips';
 import { trackEvent } from '@utils/analytics';
 import { getCelestialSnapshot } from '@services/celestialService';
 import { Helmet } from 'react-helmet-async';
@@ -674,13 +672,14 @@ function ParkCard({ park, isExpanded, onToggle, isMobile }) {
 
 const GUIDE_SECTIONS = [
   { id: "sense-of-place", label: "Sense of Place" },
-  { id: "when-to-go",     label: "When to Go" },
-  { id: "where-to-stay",  label: "Stay" },
-  { id: "trails",         label: "Trails" },
-  { id: "wellness",       label: "Wellness" },
-  { id: "light-sky",      label: "Light & Sky" },
+  { id: "when-to-go",     label: "Magic Windows" },
+  { id: "tread-lightly",  label: "Tread Lightly" },
+  { id: "where-to-stay",  label: "Where to Sleep" },
+  { id: "trails",         label: "Move" },
+  { id: "wellness",       label: "Breathe" },
+  { id: "light-sky",      label: "Night Sky" },
   { id: "food-culture",   label: "Food & Culture" },
-  { id: "group-trips",    label: "Group Trips" },
+  { id: "give-back",      label: "Give Back" },
 ];
 
 function GuideNav({ isMobile }) {
@@ -1404,12 +1403,35 @@ export default function VancouverIslandGuide() {
           <Divider />
 
           {/* ══════════════════════════════════════════════════════════════ */}
+          {/* TREAD LIGHTLY                                                 */}
+          {/* ══════════════════════════════════════════════════════════════ */}
+          <section id="tread-lightly" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
+            <FadeIn>
+              <SectionIcon type="awaken" />
+              <SectionLabel>Tread Lightly</SectionLabel>
+              <SectionTitle>Traveling responsibly.</SectionTitle>
+              <SectionSub isMobile={isMobile}>This land has a legal and spiritual context that precedes any trail map.</SectionSub>
+            </FadeIn>
+
+            <FadeIn delay={0.1}>
+              <div style={{ marginTop: 8 }}>
+                <ListItem isMobile={isMobile} name="This is unceded territory. Travel accordingly."
+                  detail="Much of Vancouver Island sits on the unceded traditional territories of the Kwakwaka'wakw, Nuu-chah-nulth, and Coast Salish peoples. Old-growth logging remains an active conflict here — some of the trees being felled are among the oldest living things on the continent. We flag Indigenous-led tourism and support local conservation efforts. The land has a legal and spiritual context that precedes any trail map."
+                  tags={["Indigenous land", "Old-growth awareness", "Support local"]} />
+              </div>
+            </FadeIn>
+          </section>
+
+
+          <Divider />
+
+          {/* ══════════════════════════════════════════════════════════════ */}
           {/* STAY                                                          */}
           {/* ══════════════════════════════════════════════════════════════ */}
           <section id="where-to-stay" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
             <FadeIn>
               <SectionIcon type="stay" />
-              <SectionLabel>Unique Stays</SectionLabel>
+              <SectionLabel>Where to Sleep</SectionLabel>
               <SectionTitle>Where to sleep</SectionTitle>
               <SectionSub isMobile={isMobile}>From sleeping on First Nations territory to watching storms from your room at the edge of the Pacific.</SectionSub>
             </FadeIn>
@@ -1476,7 +1498,7 @@ export default function VancouverIslandGuide() {
           <section id="trails" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
             <FadeIn>
               <SectionIcon type="move" />
-              <SectionLabel>Sacred Terrain</SectionLabel>
+              <SectionLabel>Move</SectionLabel>
               <SectionTitle>{"Trails, beaches & old-growth"}</SectionTitle>
               <SectionSub isMobile={isMobile}>{"From boardwalks through ancient cedar to the defining coastal wilderness walk of North America."}</SectionSub>
             </FadeIn>
@@ -1547,7 +1569,7 @@ export default function VancouverIslandGuide() {
           <section id="wellness" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
             <FadeIn>
               <SectionIcon type="breathe" />
-              <SectionLabel>Living Practice</SectionLabel>
+              <SectionLabel>Breathe</SectionLabel>
               <SectionTitle>{"Soaking, surf & forest bathing"}</SectionTitle>
               <SectionSub isMobile={isMobile}>{"The Pacific is cold. The rain is constant. The forest is ancient. The elemental encounter here is immersion — in water, in cedar, in weather."}</SectionSub>
             </FadeIn>
@@ -1597,7 +1619,7 @@ export default function VancouverIslandGuide() {
           <section id="light-sky" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
             <FadeIn>
               <SectionIcon type="awaken" />
-              <SectionLabel>Discover</SectionLabel>
+              <SectionLabel>Night Sky</SectionLabel>
               <SectionTitle>{"Wildlife, storms & the living coast"}</SectionTitle>
               <SectionSub isMobile={isMobile}>{"Whales offshore. Bears on the shoreline. Storms that shake the windows. The coast at its most alive."}</SectionSub>
             </FadeIn>
@@ -1645,7 +1667,7 @@ export default function VancouverIslandGuide() {
           <section id="food-culture" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
             <FadeIn>
               <SectionIcon type="connect" />
-              <SectionLabel>Connect</SectionLabel>
+              <SectionLabel>Food & Culture</SectionLabel>
               <SectionTitle>{"Food, culture & stewardship"}</SectionTitle>
               <SectionSub isMobile={isMobile}>{"From Nuu-chah-nulth galleries to James Beard-nominated kitchens. The people and places that turn a visit into a relationship."}</SectionSub>
             </FadeIn>
@@ -1728,63 +1750,20 @@ export default function VancouverIslandGuide() {
           <Divider />
 
           {/* ══════════════════════════════════════════════════════════════ */}
-          {/* GROUP TRIPS                                                   */}
+          {/* GIVE BACK                                                     */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="group-trips" style={{ scrollMarginTop: 126, padding: "48px 0" }}>
+          <section id="give-back" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
             <FadeIn>
-              <SectionIcon type="group" />
-              <SectionLabel>Group Trips</SectionLabel>
-              <SectionTitle>Tuned to Coastal Rhythms</SectionTitle>
-              <SectionSub isMobile={isMobile}>Small group trips timed to natural crescendos. Expert guides, meaningful connection, transformative terrain. Eight travelers maximum.</SectionSub>
+              <SectionIcon type="threshold" />
+              <SectionLabel>Give Back</SectionLabel>
+              <SectionTitle>Leave it better than you found it.</SectionTitle>
+              <SectionSub isMobile={isMobile}>The island gives generously. Return it in kind.</SectionSub>
             </FadeIn>
 
-            {(() => {
-              const viTrips = getTripsByDestination("Vancouver Island");
-              return viTrips.length > 0 ? (
-                <div style={{
-                  display: "grid",
-                  gridTemplateColumns: isMobile ? "1fr" : (viTrips.length > 1 ? "repeat(2, 1fr)" : "1fr"),
-                  gap: 24,
-                  maxWidth: viTrips.length === 1 ? 400 : "100%",
-                }}>
-                  {viTrips.map((trip, i) => (
-                    <FadeIn key={trip.slug} delay={0.08 + i * 0.06}>
-                      <TripCard trip={trip} />
-                    </FadeIn>
-                  ))}
-                </div>
-              ) : null;
-            })()}
-
-            <FadeIn delay={0.2}>
-              <div style={{
-                padding: "20px 24px",
-                border: `1px solid ${C.stone}`,
-                textAlign: "center",
-                marginTop: 16,
-              }}>
-                <p style={{
-                  fontFamily: "'Quicksand', sans-serif",
-                  fontSize: 14, fontWeight: 400,
-                  color: "#4A5650", lineHeight: 1.6, margin: "0 0 16px",
-                }}>See all upcoming group trips across every destination.</p>
-                <Link to="/group-trips" style={{
-                  padding: "10px 24px",
-                  background: "transparent",
-                  border: `1.5px solid ${C.oceanTeal}`,
-                  color: C.oceanTeal,
-                  fontFamily: "'Quicksand', sans-serif",
-                  fontSize: 12, fontWeight: 700,
-                  letterSpacing: "0.18em", textTransform: "uppercase",
-                  textDecoration: "none",
-                  transition: "all 0.25s",
-                  display: "inline-block",
-                }}
-                onClick={() => trackEvent('guide_cta_clicked', { action: 'view_group_trips', destination: 'vancouver-island' })}
-                onMouseEnter={e => { e.currentTarget.style.background = C.oceanTeal; e.currentTarget.style.color = "#fff"; }}
-                onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = C.oceanTeal; }}
-                >View All Group Trips</Link>
-              </div>
+            <FadeIn delay={0.1}>
+              <p style={{ fontFamily: "'Quicksand'", fontSize: 14, color: "#4A5650", lineHeight: 1.7 }}>
+                Local organizations, Indigenous-led businesses, and trail stewardship opportunities for Vancouver Island — coming soon.
+              </p>
             </FadeIn>
           </section>
 
