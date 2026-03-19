@@ -108,7 +108,7 @@ export default function App() {
       fontFamily: "'Quicksand', sans-serif",
       background: C.cream,
       color: C.darkInk,
-      overflowX: "hidden",
+      overflowX: "clip",
     }}>
       <BrowserRouter>
         <ScrollToTop />
