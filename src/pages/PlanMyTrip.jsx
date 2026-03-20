@@ -962,8 +962,8 @@ function StepDestination({ data, onChange, onNext, onBack }) {
               onClick={() => available && onChange({ destination: d.id })}
               style={{
                 position: "relative",
-                background: !available ? `${C.sage}06` : sel ? `${C.oceanTeal}10` : `linear-gradient(135deg, ${d.color}18, ${d.color}08)`,
-                border: `2px solid ${!available ? `${C.sage}10` : sel ? C.oceanTeal : `${d.color}25`}`,
+                background: !available ? `${C.sage}06` : sel ? `${C.oceanTeal}10` : C.white,
+                border: `2px solid ${!available ? `${C.sage}10` : sel ? C.oceanTeal : `${C.sage}18`}`,
                 borderRadius: 16, padding: "22px 14px",
                 cursor: available ? "pointer" : "default",
                 transition: "all 0.3s",
@@ -1181,8 +1181,8 @@ function StepIntention({ data, onChange, onNext, onBack }) {
           const Ic = item.icon;
           return (
             <button key={item.id} onClick={() => toggle(item.id)} style={{
-              background: active ? `${item.color}12` : `linear-gradient(135deg, ${item.color}18, ${item.color}08)`,
-              border: `2px solid ${active ? item.color : `${item.color}25`}`,
+              background: active ? `${item.color}12` : C.white,
+              border: `2px solid ${active ? item.color : `${C.sage}18`}`,
               borderRadius: 16, padding: "24px 16px",
               cursor: "pointer", transition: "all 0.35s",
               textAlign: "center", minHeight: 140,
@@ -1589,8 +1589,8 @@ function StepGroup({ data, onChange, onNext, onBack }) {
           const Ic = item.icon;
           return (
             <button key={item.id} onClick={() => handleSelect(item.id)} style={{
-              background: active ? `${item.color}12` : `linear-gradient(135deg, ${item.color}18, ${item.color}08)`,
-              border: `2px solid ${active ? item.color : `${item.color}25`}`,
+              background: active ? `${item.color}12` : C.white,
+              border: `2px solid ${active ? item.color : `${C.sage}18`}`,
               borderRadius: 16, padding: "24px 16px",
               cursor: "pointer", transition: "all 0.35s",
               textAlign: "center", minHeight: 140,
@@ -1667,8 +1667,8 @@ function StepBudget({ data, onChange, onNext, onBack }) {
             return (
               <button key={tier.id} onClick={() => onChange({ budget: tier.id })} style={{
                 display: "flex", alignItems: "center", gap: 14,
-                background: active ? `${tier.color}08` : `linear-gradient(135deg, ${tier.color}18, ${tier.color}08)`,
-                border: `1.5px solid ${active ? tier.color : `${tier.color}25`}`,
+                background: active ? `${tier.color}08` : C.white,
+                border: `1.5px solid ${active ? tier.color : `${C.sage}18`}`,
                 borderRadius: 14, padding: "18px 20px",
                 cursor: "pointer", transition: "all 0.25s",
                 minHeight: 60, WebkitTapHighlightColor: "transparent",
@@ -1718,8 +1718,8 @@ function StepStay({ data, onChange, onNext, onBack }) {
             return (
               <button key={style.id} onClick={() => onChange({ stayStyle: style.id })} style={{
                 display: "flex", alignItems: "center", gap: 14,
-                background: active ? `${style.color}08` : `linear-gradient(135deg, ${style.color}18, ${style.color}08)`,
-                border: `1.5px solid ${active ? style.color : `${style.color}25`}`,
+                background: active ? `${style.color}08` : C.white,
+                border: `1.5px solid ${active ? style.color : `${C.sage}18`}`,
                 borderRadius: 14, padding: "18px 20px",
                 cursor: "pointer", transition: "all 0.25s",
                 minHeight: 60, WebkitTapHighlightColor: "transparent",
@@ -1728,7 +1728,7 @@ function StepStay({ data, onChange, onNext, onBack }) {
               }}>
                 <div style={{
                   width: 40, height: 40, borderRadius: 12,
-                  background: active ? `${style.color}12` : `${style.color}18`,
+                  background: active ? `${style.color}12` : `${C.sage}08`,
                   display: "flex", alignItems: "center", justifyContent: "center",
                   flexShrink: 0, transition: "background 0.25s",
                 }}>
