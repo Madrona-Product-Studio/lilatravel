@@ -1527,7 +1527,7 @@ export default function OlympicPeninsulaGuide() {
             <FadeIn>
               <SectionIcon type="connect" />
               <SectionLabel>Food & Culture</SectionLabel>
-              <SectionTitle>{"Food, culture & stewardship"}</SectionTitle>
+              <SectionTitle>{"Food & Culture"}</SectionTitle>
               <SectionSub isMobile={isMobile}>{"From Indigenous heritage to lavender farms to the peninsula's best kitchens. The connections here go deeper than a meal."}</SectionSub>
             </FadeIn>
 
@@ -1709,31 +1709,6 @@ export default function OlympicPeninsulaGuide() {
               </div>
             </FadeIn>
 
-            {/* Stewardship */}
-            <FadeIn delay={0.3}>
-              <div style={{ marginTop: 28 }}>
-                <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: C.skyBlue, marginBottom: 16 }}>{"Give Back"}</div>
-                <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: "clamp(14px, 1.5vw, 14px)", fontWeight: 400, color: "#4A5650", lineHeight: 1.7, margin: "0 0 16px" }}>
-                  {"Olympic's landscape exists in relationship with the nine Nations who have stewarded it since time immemorial. Visiting thoughtfully means engaging with that history — and with ongoing restoration work reshaping the peninsula."}
-                </p>
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Stewardship')} name="Lower Elwha Klallam — Restoration Volunteering"
-                  url="https://www.elwha.org"
-                  detail={"The tribe and Olympic NP have collaborated on one of the largest riparian revegetation efforts ever — 425,000 native plants across 800 acres of former reservoir bed. Volunteer opportunities periodically available. Contact (360) 452-8471."}
-                  tags={["Volunteer", "Revegetation", "Dam Removal"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Stewardship')} name="Olympic NP Volunteer Program"
-                  url="https://www.nps.gov/olym/getinvolved/volunteer.htm"
-                  detail={"Trail maintenance, invasive species removal, beach cleanup on the wilderness coast, habitat restoration. Day volunteer options available. Register at nps.gov/olym."}
-                  tags={["Trail Work", "Beach Cleanup", "Day Options"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Stewardship')} name="Washington Trails Association (WTA)"
-                  url="https://www.wta.org"
-                  detail={"Organizes trail maintenance work parties across the Olympic Peninsula. Day and weekend events — brushing, drainage work, blowdown clearing. Family-friendly and well-organized."}
-                  tags={["Trail Maintenance", "Family-Friendly", "Weekend Events"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Stewardship')} name="Friends of the Hoh"
-                  url="https://friendsofthehoh.org"
-                  detail={"Small nonprofit supporting the Hoh Rainforest corridor — education, restoration, and advocacy for one of the world's rarest temperate rainforest ecosystems."}
-                  tags={["Nonprofit", "Rainforest", "Advocacy"]} />
-              </div>
-            </FadeIn>
           </section>
 
 
@@ -1787,6 +1762,30 @@ export default function OlympicPeninsulaGuide() {
                     url="https://www.olympicparkassociates.org"
                     detail="The oldest friends group for Olympic National Park, funding research, conservation, and education programs inside the park boundary since 1948."
                     tags={["Donate", "Become a Member"]} />
+                </div>
+                <div style={{ paddingTop: 16 }}>
+                  <div style={{
+                    fontFamily: "'Quicksand', sans-serif",
+                    fontSize: 11, fontWeight: 700,
+                    letterSpacing: "0.14em", textTransform: "uppercase",
+                    color: "#7A857E", marginBottom: 2,
+                  }}>Trail Stewardship</div>
+                  <ListItem isMobile={isMobile} name="Washington Trails Association (WTA)"
+                    url="https://www.wta.org"
+                    detail="Organizes trail maintenance work parties across the Olympic Peninsula. Day and weekend events — brushing, drainage work, blowdown clearing. Family-friendly and well-organized."
+                    tags={["Trail Maintenance", "Family-Friendly", "Weekend Events"]} />
+                </div>
+                <div style={{ paddingTop: 16 }}>
+                  <div style={{
+                    fontFamily: "'Quicksand', sans-serif",
+                    fontSize: 11, fontWeight: 700,
+                    letterSpacing: "0.14em", textTransform: "uppercase",
+                    color: "#7A857E", marginBottom: 2,
+                  }}>Conservation</div>
+                  <ListItem isMobile={isMobile} name="Friends of the Hoh"
+                    url="https://friendsofthehoh.org"
+                    detail="Small nonprofit supporting the Hoh Rainforest corridor — education, restoration, and advocacy for one of the world's rarest temperate rainforest ecosystems."
+                    tags={["Donate", "Rainforest", "Advocacy"]} />
                 </div>
               </div>
             </FadeIn>
