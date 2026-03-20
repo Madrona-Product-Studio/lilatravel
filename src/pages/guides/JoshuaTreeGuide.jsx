@@ -1656,6 +1656,29 @@ export default function JoshuaTreeGuide() {
               </p>
             </div>
           </FadeIn>
+
+          <FadeIn delay={0.18}>
+            {/* Sky's the Limit Callout */}
+            <div style={{ marginTop: 28, padding: "20px 22px", borderLeft: `3px solid ${C.goldenAmber}`, background: "rgba(255,255,255,0.04)" }}>
+              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: C.goldenAmber, marginBottom: 6 }}>Lila Partner</div>
+              <a href="https://skysthelimit29.org/" target="_blank" rel="noopener noreferrer" style={{
+                fontFamily: "'Cormorant Garamond', serif", fontSize: 20, fontWeight: 400,
+                color: "#fff", textDecoration: "none", display: "inline-block", marginBottom: 8,
+                borderBottom: "1px solid rgba(255,255,255,0.25)", transition: "border-color 0.2s",
+              }}
+              onMouseEnter={e => e.currentTarget.style.borderColor = C.goldenAmber}
+              onMouseLeave={e => e.currentTarget.style.borderColor = "rgba(255,255,255,0.25)"}
+              >Sky's the Limit Observatory & Nature Center <span style={{ fontSize: 14 }}>↗</span></a>
+              <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 400, color: "rgba(255,255,255,0.6)", lineHeight: 1.7, margin: 0 }}>
+                A volunteer-run observatory and dark sky education center in Twentynine Palms — right at the edge of the park. Free public star parties every Saturday night with research-grade telescopes, knowledgeable astronomers, and one of the best night sky experiences available anywhere in Southern California. No reservation needed.
+              </p>
+              <div style={{ display: "flex", gap: 6, marginTop: 10, flexWrap: "wrap" }}>
+                {["Free Admission", "Saturday Star Parties", "Twentynine Palms"].map((t, i) => (
+                  <span key={i} style={{ padding: "3px 9px", background: "rgba(255,255,255,0.08)", fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600, color: "rgba(255,255,255,0.5)" }}>{t}</span>
+                ))}
+              </div>
+            </div>
+          </FadeIn>
         </div>
       </section>
 
