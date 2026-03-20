@@ -949,7 +949,7 @@ function CelestialDrawer({ isMobile }) {
         padding: isMobile ? "14px 20px" : "14px 52px",
         display: "flex", alignItems: "center", justifyContent: "center", gap: 8, transition: "background 0.2s",
       }}
-      onMouseEnter={e => e.currentTarget.style.background = `${C.stone}40`}
+      onMouseEnter={e => e.currentTarget.style.background = "rgba(0,0,0,0.045)"}
       onMouseLeave={e => e.currentTarget.style.background = "transparent"}>
         <span style={{ width: 5, height: 5, borderRadius: "50%", background: C.goldenAmber, animation: "celestialPulse 2s ease-in-out infinite", flexShrink: 0 }} />
         <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "#5c6358", flexShrink: 0 }}>
