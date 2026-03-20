@@ -924,7 +924,7 @@ function CelestialDrawer({ isMobile }) {
   const NAV_HEIGHT = isMobile ? 58 : 64;
 
   if (loading || !data) return (
-    <div style={{ position: "relative", background: C.warmWhite, borderBottom: `1px solid ${C.stone}` }}>
+    <div style={{ position: "relative", background: C.stone, borderBottom: `1px solid ${C.stone}` }}>
       <div style={{ height: NAV_HEIGHT + 14 }} />
       <div style={{ height: 44 }} />
     </div>
@@ -942,7 +942,7 @@ function CelestialDrawer({ isMobile }) {
   if (sun) teasers.push(`☀ ${sun.rise} – ${sun.set}`);
 
   return (
-    <div style={{ position: "relative", zIndex: open ? 95 : "auto", background: C.warmWhite, borderBottom: `1px solid ${C.stone}` }}>
+    <div style={{ position: "relative", zIndex: open ? 95 : "auto", background: C.stone, borderBottom: `1px solid ${C.stone}` }}>
       <div style={{ height: NAV_HEIGHT + 14 }} />
       <button onClick={() => setOpen(!open)} style={{
         width: "100%", border: "none", cursor: "pointer", background: "transparent",
@@ -1660,7 +1660,7 @@ export default function JoshuaTreeGuide() {
           <FadeIn delay={0.18}>
             {/* Sky's the Limit Callout */}
             <div style={{ marginTop: 28, padding: "20px 22px", borderLeft: `3px solid ${C.goldenAmber}`, background: "rgba(255,255,255,0.04)" }}>
-              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: C.goldenAmber, marginBottom: 6 }}>Lila Partner</div>
+              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: C.goldenAmber, marginBottom: 6 }}>Local Spotlight</div>
               <a href="https://skysthelimit29.org/" target="_blank" rel="noopener noreferrer" style={{
                 fontFamily: "'Cormorant Garamond', serif", fontSize: 20, fontWeight: 400,
                 color: "#fff", textDecoration: "none", display: "inline-block", marginBottom: 8,
