@@ -783,7 +783,7 @@ function CelestialDrawer({ isMobile }) {
   const NAV_HEIGHT = isMobile ? 58 : 64;
 
   if (loading || !data) return (
-    <div style={{ position: "relative", background: C.warmWhite, borderBottom: `1px solid ${C.stone}` }}>
+    <div style={{ position: "relative", background: C.stone, borderBottom: `1px solid ${C.stone}` }}>
       <div style={{ height: NAV_HEIGHT + 14 }} />
       <div style={{ height: 44 }} />
     </div>
@@ -801,30 +801,35 @@ function CelestialDrawer({ isMobile }) {
   if (sun) teasers.push(`☀ ${sun.rise} – ${sun.set}`);
 
   return (
-    <div style={{ position: "relative", zIndex: open ? 95 : "auto", background: C.warmWhite, borderBottom: `1px solid ${C.stone}` }}>
+    <div style={{ position: "relative", zIndex: open ? 95 : "auto", background: C.stone, borderBottom: `1px solid ${C.stone}` }}>
       <div style={{ height: NAV_HEIGHT + 14 }} />
       <button onClick={() => setOpen(!open)} style={{
         width: "100%", border: "none", cursor: "pointer", background: "transparent",
         padding: isMobile ? "14px 20px" : "14px 52px",
         display: "flex", alignItems: "center", justifyContent: "center", gap: 8, transition: "background 0.2s",
       }}
-      onMouseEnter={e => e.currentTarget.style.background = `${C.stone}40`}
+      onMouseEnter={e => e.currentTarget.style.background = `rgba(0,0,0,0.045)`}
       onMouseLeave={e => e.currentTarget.style.background = "transparent"}>
         <span style={{ width: 5, height: 5, borderRadius: "50%", background: C.oceanTeal, animation: "celestialPulse 2s ease-in-out infinite", flexShrink: 0 }} />
-        <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "#7A857E", flexShrink: 0 }}>
+        <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "#5c6358", flexShrink: 0 }}>
           {"Kauaʻi Right Now"}
         </span>
         {!isMobile && teasers.length > 0 && (
-          <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 500, color: "#b8b0a8", letterSpacing: "0.04em" }}>
-            — {teasers.join("  ·  ")}
+          <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600, color: "#6b6359", letterSpacing: "0.04em" }}>
+            — {teasers.map((t, i) => (
+              <span key={i}>
+                {i > 0 && <span style={{ margin: "0 10px", opacity: 0.55, fontWeight: 300 }}>|</span>}
+                {t}
+              </span>
+            ))}
           </span>
         )}
         {isMobile && weather && (
-          <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 500, color: "#b8b0a8", letterSpacing: "0.04em" }}>
+          <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600, color: "#6b6359", letterSpacing: "0.04em" }}>
             · {weather.temp}° · {moon?.name}
           </span>
         )}
-        <span style={{ fontSize: 14, color: "#b8b0a8", transition: "color 0.3s ease, transform 0.35s ease", marginLeft: 6, flexShrink: 0, display: "inline-block", lineHeight: 1 }}>{open ? "✕" : "▾"}</span>
+        <span style={{ fontSize: 14, color: "#6b6359", transition: "color 0.3s ease, transform 0.35s ease", marginLeft: 6, flexShrink: 0, display: "inline-block", lineHeight: 1 }}>{open ? "✕" : "▾"}</span>
       </button>
 
       <div style={{ position: "relative", zIndex: 95, maxHeight: open ? contentHeight : 0, overflow: "hidden", transition: "max-height 0.5s ease", background: C.warmWhite }}>

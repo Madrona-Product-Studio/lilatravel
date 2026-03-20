@@ -898,7 +898,7 @@ function CelestialDrawer({ isMobile }) {
   const NAV_HEIGHT = isMobile ? 58 : 64;
 
   if (loading || !data) return (
-    <div style={{ position: "relative", background: C.warmWhite, borderBottom: `1px solid ${C.stone}` }}>
+    <div style={{ position: "relative", background: C.stone, borderBottom: `1px solid ${C.stone}` }}>
       <div style={{ height: NAV_HEIGHT + 14 }} />
       <div style={{ height: 44 }} />
     </div>
@@ -933,7 +933,7 @@ function CelestialDrawer({ isMobile }) {
     <div style={{
       position: "relative",
       zIndex: open ? 95 : "auto",
-      background: C.warmWhite,
+      background: C.stone,
       borderBottom: `1px solid ${C.stone}`,
     }}>
       {/* Spacer to clear fixed nav */}
@@ -949,7 +949,7 @@ function CelestialDrawer({ isMobile }) {
           gap: 8,
           transition: "background 0.2s",
         }}
-        onMouseEnter={e => e.currentTarget.style.background = `${C.stone}40`}
+        onMouseEnter={e => e.currentTarget.style.background = "rgba(0,0,0,0.045)"}
         onMouseLeave={e => e.currentTarget.style.background = "transparent"}
       >
         <span style={{
@@ -962,31 +962,37 @@ function CelestialDrawer({ isMobile }) {
           fontFamily: "'Quicksand', sans-serif",
           fontSize: 11, fontWeight: 700,
           letterSpacing: "0.18em", textTransform: "uppercase",
-          color: "#7A857E", flexShrink: 0,
+          color: "#5c6358", flexShrink: 0,
         }}>
           Vancouver Island Right Now
         </span>
         {!isMobile && teasers.length > 0 && (
           <span style={{
             fontFamily: "'Quicksand', sans-serif",
-            fontSize: 11, fontWeight: 500,
-            color: "#b8b0a8", letterSpacing: "0.04em",
+            fontSize: 11, fontWeight: 600,
+            color: "#6b6359", letterSpacing: "0.04em",
           }}>
-            — {teasers.join("  ·  ")}
+            —{" "}
+            {teasers.map((t, i) => (
+              <span key={i}>
+                {i > 0 && <span style={{ margin: "0 10px", opacity: 0.55, fontWeight: 300 }}>|</span>}
+                {t}
+              </span>
+            ))}
           </span>
         )}
         {isMobile && weather && (
           <span style={{
             fontFamily: "'Quicksand', sans-serif",
-            fontSize: 11, fontWeight: 500,
-            color: "#b8b0a8", letterSpacing: "0.04em",
+            fontSize: 11, fontWeight: 600,
+            color: "#6b6359", letterSpacing: "0.04em",
           }}>
             · {weather.temp}° · {moon?.name}
           </span>
         )}
         <span style={{
           fontSize: 14,
-          color: "#b8b0a8",
+          color: "#6b6359",
           transition: "color 0.3s ease, transform 0.35s ease",
           marginLeft: 6, flexShrink: 0,
           display: "inline-block",
