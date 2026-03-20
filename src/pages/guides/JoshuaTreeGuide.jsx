@@ -952,20 +952,20 @@ function CelestialDrawer({ isMobile }) {
       onMouseEnter={e => e.currentTarget.style.background = `${C.stone}40`}
       onMouseLeave={e => e.currentTarget.style.background = "transparent"}>
         <span style={{ width: 5, height: 5, borderRadius: "50%", background: C.goldenAmber, animation: "celestialPulse 2s ease-in-out infinite", flexShrink: 0 }} />
-        <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "#7A857E", flexShrink: 0 }}>
+        <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "#5c6358", flexShrink: 0 }}>
           Joshua Tree Right Now
         </span>
         {!isMobile && teasers.length > 0 && (
-          <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 500, color: "#b8b0a8", letterSpacing: "0.04em" }}>
+          <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 500, color: "#8a8279", letterSpacing: "0.04em" }}>
             — {teasers.join("  ·  ")}
           </span>
         )}
         {isMobile && weather && (
-          <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 500, color: "#b8b0a8", letterSpacing: "0.04em" }}>
+          <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 500, color: "#8a8279", letterSpacing: "0.04em" }}>
             · {weather.temp}° · {moon?.name}
           </span>
         )}
-        <span style={{ fontSize: 14, color: "#b8b0a8", transition: "color 0.3s ease, transform 0.35s ease", marginLeft: 6, flexShrink: 0, display: "inline-block", lineHeight: 1 }}>{open ? "✕" : "▾"}</span>
+        <span style={{ fontSize: 14, color: "#8a8279", transition: "color 0.3s ease, transform 0.35s ease", marginLeft: 6, flexShrink: 0, display: "inline-block", lineHeight: 1 }}>{open ? "✕" : "▾"}</span>
       </button>
 
       <div style={{ position: "relative", zIndex: 95, maxHeight: open ? contentHeight : 0, overflow: "hidden", transition: "max-height 0.5s ease", background: C.warmWhite }}>
