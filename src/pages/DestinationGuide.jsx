@@ -11,7 +11,7 @@
 //
 
 import { useParams, Link, Navigate } from 'react-router-dom';
-import { Nav, Footer, FadeIn, PageHero, Breadcrumb } from '@components';
+import { Nav, Footer, FadeIn, PageHero } from '@components';
 import { C } from '@data/brand';
 import { destinations } from '@data/destinations';
 import { trackEvent } from '@utils/analytics';
@@ -36,13 +36,7 @@ export default function DestinationGuide() {
 
       <section className="page-content" style={{ padding: "80px 52px", background: C.cream }}>
         <div style={{ maxWidth: 900, margin: "0 auto" }}>
-          <Breadcrumb items={[
-            { label: "Home", to: "/" },
-            { label: "Destinations", to: "/destinations" },
-            { label: dest.name },
-          ]} />
-
-          <div style={{ marginTop: 48 }}>
+          <div style={{ marginTop: 0 }}>
             <FadeIn>
               <div style={{
                 display: "inline-flex", alignItems: "center", gap: 8, marginBottom: 32,

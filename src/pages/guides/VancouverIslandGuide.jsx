@@ -12,7 +12,7 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
-import { Nav, Footer, FadeIn, Breadcrumb, WhisperBar } from '@components';
+import { Nav, Footer, FadeIn, WhisperBar } from '@components';
 import { C } from '@data/brand';
 import { P } from '@data/photos';
 import { trackEvent } from '@utils/analytics';
@@ -1119,16 +1119,10 @@ export default function VancouverIslandGuide() {
         <div style={{ padding: isMobile ? "28px 20px 24px" : "44px 52px 40px", maxWidth: 920, margin: "0 auto" }}>
           <FadeIn from="bottom" delay={0.1}>
 
-            <Breadcrumb items={[
-              { label: "Home", to: "/" },
-              { label: "Destinations", to: "/destinations" },
-              { label: "Vancouver Island" },
-            ]} />
-
             {/* Two column layout */}
             <div style={{
               display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 320px", gap: isMobile ? 28 : 52, alignItems: "start",
-              marginTop: 28,
+              marginTop: 0,
             }}>
 
               {/* ── Left: Title + description ── */}
