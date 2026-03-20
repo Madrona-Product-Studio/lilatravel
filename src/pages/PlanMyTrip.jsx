@@ -518,9 +518,9 @@ function StepIndicator({ current, total }) {
   );
 }
 
-function NavButtons({ onBack, onNext, nextLabel = "Continue", nextDisabled = false, showBack = true }) {
+function NavButtons({ onBack, onNext, nextLabel = "Continue", nextDisabled = false, showBack = true, topPadding }) {
   return (
-    <div style={{ display: "flex", gap: 12, justifyContent: "center", padding: "40px 24px" }}>
+    <div style={{ display: "flex", gap: 12, justifyContent: "center", padding: `${topPadding ?? 40}px 24px` }}>
       {showBack && (
         <button onClick={onBack} style={{
           fontFamily: "'Quicksand', sans-serif",
@@ -1049,9 +1049,9 @@ function StepMonth({ data, onChange, onNext, onBack }) {
               position: 'relative',
               background: sel ? `${m.color}18` : C.white,
               border: `2px solid ${sel ? m.color : isGolden ? `${C.goldenAmber}35` : `${C.sage}18`}`,
-              borderRadius: 14, padding: '16px 10px',
+              borderRadius: 14, padding: '14px 10px',
               cursor: 'pointer', transition: 'all 0.3s',
-              textAlign: 'center', minHeight: 80,
+              textAlign: 'center', minHeight: 72,
               boxShadow: sel ? `0 3px 16px ${m.color}20` : isGolden ? `0 1px 8px ${C.goldenAmber}12` : '0 1px 4px rgba(0,0,0,0.04)',
               transform: sel ? 'scale(1.03)' : 'scale(1)',
               WebkitTapHighlightColor: 'transparent',
@@ -1160,7 +1160,7 @@ function StepMonth({ data, onChange, onNext, onBack }) {
       )}
 
       <div style={{ marginTop: showDates ? -16 : 0 }}>
-        <NavButtons onBack={onBack} onNext={onNext} nextDisabled={!data.month} />
+        <NavButtons onBack={onBack} onNext={onNext} nextDisabled={!data.month} topPadding={20} />
       </div>
     </div>
   );
