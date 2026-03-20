@@ -302,7 +302,7 @@ function IconPaw({ size, color }) {
 const DESTINATIONS = [
   { id: "zion", name: "Zion", subtitle: "Red cathedral walls", icon: IconMountain, gradient: `linear-gradient(135deg, ${C.sunSalmon}30, ${C.goldenAmber}20)` },
   { id: "joshuaTree", name: "Joshua Tree", subtitle: "Desert silence & starlight", icon: IconStars, gradient: `linear-gradient(135deg, ${C.goldenAmber}30, ${C.coralBlush}20)` },
-  { id: "bigSur", name: "Big Sur", subtitle: "Where mountains meet the sea", icon: IconWave, gradient: `linear-gradient(135deg, ${C.oceanTeal}30, ${C.skyBlue}20)` },
+  { id: "bigSur", name: "Big Sur", subtitle: "Mountains meet the sea", icon: IconWave, gradient: `linear-gradient(135deg, ${C.oceanTeal}30, ${C.skyBlue}20)` },
   { id: "olympic", name: "Olympic", subtitle: "Temperate rainforest magic", icon: IconBodhiLeaf, gradient: `linear-gradient(135deg, ${C.seaGlass}30, ${C.sage}20)` },
   { id: "kauai", name: "Kauaʻi", subtitle: "Garden isle, sacred coast", icon: IconLotus, gradient: `linear-gradient(135deg, ${C.seaGlass}20, ${C.oceanTeal}30)` },
   { id: "vancouver", name: "Vancouver Island", subtitle: "Wild coast, ancient forest", icon: IconTorii, gradient: `linear-gradient(135deg, ${C.sage}25, ${C.seaGlass}20)` },
