@@ -300,12 +300,12 @@ function IconPaw({ size, color }) {
 // ═══════════════════════════════════════════════════════════════════════════════
 
 const DESTINATIONS = [
-  { id: "zion", name: "Zion", subtitle: "Red cathedral walls", icon: IconMountain, gradient: `linear-gradient(135deg, ${C.sunSalmon}30, ${C.goldenAmber}20)` },
-  { id: "joshuaTree", name: "Joshua Tree", subtitle: "Desert silence & starlight", icon: IconStars, gradient: `linear-gradient(135deg, ${C.goldenAmber}30, ${C.coralBlush}20)` },
-  { id: "bigSur", name: "Big Sur", subtitle: "Mountains meet the sea", icon: IconWave, gradient: `linear-gradient(135deg, ${C.oceanTeal}30, ${C.skyBlue}20)` },
-  { id: "olympic", name: "Olympic", subtitle: "Temperate rainforest magic", icon: IconBodhiLeaf, gradient: `linear-gradient(135deg, ${C.seaGlass}30, ${C.sage}20)` },
-  { id: "kauai", name: "Kauaʻi", subtitle: "Garden isle, sacred coast", icon: IconLotus, gradient: `linear-gradient(135deg, ${C.seaGlass}20, ${C.oceanTeal}30)` },
-  { id: "vancouver", name: "Vancouver Island", subtitle: "Wild coast, ancient forest", icon: IconTorii, gradient: `linear-gradient(135deg, ${C.sage}25, ${C.seaGlass}20)` },
+  { id: "zion", name: "Zion", subtitle: "Red cathedral walls", icon: IconMountain, color: C.sunSalmon, gradient: `linear-gradient(135deg, ${C.sunSalmon}30, ${C.goldenAmber}20)` },
+  { id: "joshuaTree", name: "Joshua Tree", subtitle: "Desert silence & starlight", icon: IconStars, color: C.goldenAmber, gradient: `linear-gradient(135deg, ${C.goldenAmber}30, ${C.coralBlush}20)` },
+  { id: "bigSur", name: "Big Sur", subtitle: "Mountains meet the sea", icon: IconWave, color: C.oceanTeal, gradient: `linear-gradient(135deg, ${C.oceanTeal}30, ${C.skyBlue}20)` },
+  { id: "olympic", name: "Olympic", subtitle: "Temperate rainforest magic", icon: IconBodhiLeaf, color: C.seaGlass, gradient: `linear-gradient(135deg, ${C.seaGlass}30, ${C.sage}20)` },
+  { id: "kauai", name: "Kauaʻi", subtitle: "Garden isle, sacred coast", icon: IconLotus, color: C.oceanTeal, gradient: `linear-gradient(135deg, ${C.seaGlass}20, ${C.oceanTeal}30)` },
+  { id: "vancouver", name: "Vancouver Island", subtitle: "Wild coast, ancient forest", icon: IconTorii, color: C.sage, gradient: `linear-gradient(135deg, ${C.sage}25, ${C.seaGlass}20)` },
 ];
 
 const INTENTIONS = [
@@ -962,8 +962,8 @@ function StepDestination({ data, onChange, onNext, onBack }) {
               onClick={() => available && onChange({ destination: d.id })}
               style={{
                 position: "relative",
-                background: !available ? `${C.sage}06` : sel ? `${C.oceanTeal}10` : C.white,
-                border: `2px solid ${!available ? `${C.sage}10` : sel ? C.oceanTeal : `${C.sage}18`}`,
+                background: !available ? `${C.sage}06` : sel ? `${C.oceanTeal}10` : `linear-gradient(135deg, ${d.color}18, ${d.color}08)`,
+                border: `2px solid ${!available ? `${C.sage}10` : sel ? C.oceanTeal : `${d.color}25`}`,
                 borderRadius: 16, padding: "22px 14px",
                 cursor: available ? "pointer" : "default",
                 transition: "all 0.3s",
@@ -983,7 +983,7 @@ function StepDestination({ data, onChange, onNext, onBack }) {
                 }}>Soon</div>
               )}
               <div style={{ display: "flex", justifyContent: "center", marginBottom: 10 }}>
-                <Ic size={28} color={sel ? C.sage : `${C.sage}AA`} />
+                <Ic size={28} color={sel ? C.oceanTeal : d.color} />
               </div>
               <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(16px, 4vw, 18px)", fontWeight: 600, color: C.slate, marginBottom: 3 }}>{d.name}</div>
               <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, color: `${C.slate}99`, lineHeight: 1.3 }}>{d.subtitle}</div>
@@ -1181,16 +1181,16 @@ function StepIntention({ data, onChange, onNext, onBack }) {
           const Ic = item.icon;
           return (
             <button key={item.id} onClick={() => toggle(item.id)} style={{
-              background: active ? `${item.color}12` : C.white,
-              border: `2px solid ${active ? item.color : `${C.sage}18`}`,
+              background: active ? `${item.color}12` : `linear-gradient(135deg, ${item.color}18, ${item.color}08)`,
+              border: `2px solid ${active ? item.color : `${item.color}25`}`,
               borderRadius: 16, padding: "24px 16px",
               cursor: "pointer", transition: "all 0.35s",
               textAlign: "center", minHeight: 140,
               boxShadow: active ? `0 4px 20px ${item.color}20` : "0 1px 4px rgba(0,0,0,0.04)",
               WebkitTapHighlightColor: "transparent",
             }}>
-              <div style={{ display: "flex", justifyContent: "center", marginBottom: 10, transition: "opacity 0.3s", opacity: active ? 1 : 0.4 }}>
-                <Ic size={30} color={active ? item.color : C.sage} />
+              <div style={{ display: "flex", justifyContent: "center", marginBottom: 10, transition: "opacity 0.3s", opacity: 1 }}>
+                <Ic size={30} color={item.color} />
               </div>
               <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(16px, 4vw, 18px)", fontWeight: 600, color: C.slate, marginBottom: 3 }}>{item.label}</div>
               <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, color: `${C.slate}99`, lineHeight: 1.3 }}>{item.desc}</div>
@@ -1545,16 +1545,16 @@ function StepGroup({ data, onChange, onNext, onBack }) {
           const Ic = item.icon;
           return (
             <button key={item.id} onClick={() => handleSelect(item.id)} style={{
-              background: active ? `${item.color}12` : C.white,
-              border: `2px solid ${active ? item.color : `${C.sage}18`}`,
+              background: active ? `${item.color}12` : `linear-gradient(135deg, ${item.color}18, ${item.color}08)`,
+              border: `2px solid ${active ? item.color : `${item.color}25`}`,
               borderRadius: 16, padding: "24px 16px",
               cursor: "pointer", transition: "all 0.35s",
               textAlign: "center", minHeight: 140,
               boxShadow: active ? `0 4px 20px ${item.color}20` : "0 1px 4px rgba(0,0,0,0.04)",
               WebkitTapHighlightColor: "transparent",
             }}>
-              <div style={{ display: "flex", justifyContent: "center", marginBottom: 10, transition: "opacity 0.3s", opacity: active ? 1 : 0.4 }}>
-                <Ic size={30} color={active ? item.color : C.sage} />
+              <div style={{ display: "flex", justifyContent: "center", marginBottom: 10, transition: "opacity 0.3s", opacity: 1 }}>
+                <Ic size={30} color={item.color} />
               </div>
               <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(16px, 4vw, 18px)", fontWeight: 600, color: C.slate, marginBottom: 3 }}>{item.label}</div>
               <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, color: `${C.slate}99`, lineHeight: 1.3 }}>{item.desc}</div>
@@ -1623,8 +1623,8 @@ function StepBudget({ data, onChange, onNext, onBack }) {
             return (
               <button key={tier.id} onClick={() => onChange({ budget: tier.id })} style={{
                 display: "flex", alignItems: "center", gap: 14,
-                background: active ? `${tier.color}08` : C.white,
-                border: `1.5px solid ${active ? tier.color : `${C.sage}18`}`,
+                background: active ? `${tier.color}08` : `linear-gradient(135deg, ${tier.color}18, ${tier.color}08)`,
+                border: `1.5px solid ${active ? tier.color : `${tier.color}25`}`,
                 borderRadius: 14, padding: "18px 20px",
                 cursor: "pointer", transition: "all 0.25s",
                 minHeight: 60, WebkitTapHighlightColor: "transparent",
@@ -1633,7 +1633,7 @@ function StepBudget({ data, onChange, onNext, onBack }) {
               }}>
                 <div style={{
                   fontFamily: "'Quicksand', sans-serif",
-                  fontSize: 14, fontWeight: 700, color: active ? tier.color : `${C.sage}70`,
+                  fontSize: 14, fontWeight: 700, color: active ? tier.color : tier.color,
                   flexShrink: 0, minWidth: 40, textAlign: "center",
                 }}>{tier.range}</div>
                 <div style={{ flex: 1 }}>
@@ -1674,8 +1674,8 @@ function StepStay({ data, onChange, onNext, onBack }) {
             return (
               <button key={style.id} onClick={() => onChange({ stayStyle: style.id })} style={{
                 display: "flex", alignItems: "center", gap: 14,
-                background: active ? `${style.color}08` : C.white,
-                border: `1.5px solid ${active ? style.color : `${C.sage}18`}`,
+                background: active ? `${style.color}08` : `linear-gradient(135deg, ${style.color}18, ${style.color}08)`,
+                border: `1.5px solid ${active ? style.color : `${style.color}25`}`,
                 borderRadius: 14, padding: "18px 20px",
                 cursor: "pointer", transition: "all 0.25s",
                 minHeight: 60, WebkitTapHighlightColor: "transparent",
@@ -1684,11 +1684,11 @@ function StepStay({ data, onChange, onNext, onBack }) {
               }}>
                 <div style={{
                   width: 40, height: 40, borderRadius: 12,
-                  background: active ? `${style.color}12` : `${C.sage}08`,
+                  background: active ? `${style.color}12` : `${style.color}18`,
                   display: "flex", alignItems: "center", justifyContent: "center",
                   flexShrink: 0, transition: "background 0.25s",
                 }}>
-                  <Ic size={20} color={active ? style.color : `${C.sage}60`} />
+                  <Ic size={20} color={style.color} />
                 </div>
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <span style={{
