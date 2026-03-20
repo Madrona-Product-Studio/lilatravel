@@ -1475,45 +1475,89 @@ function StepRange({ data, onChange, onNext, onBack }) {
 function StepDuration({ data, onChange, onNext, onBack }) {
   const days = data.duration || 4;
 
+  const DURATION_LABELS = {
+    2:  { text: 'Just a taste',      sweet: false },
+    3:  { text: 'Long weekend',      sweet: false },
+    4:  { text: 'Finding your feet', sweet: true  },
+    5:  { text: 'Full immersion',    sweet: true  },
+    6:  { text: 'Room to breathe',   sweet: true  },
+    7:  { text: 'The classic week',  sweet: true  },
+    8:  { text: 'Unhurried pace',    sweet: false },
+    9:  { text: 'Extended stay',     sweet: false },
+    10: { text: 'Deep immersion',    sweet: false },
+  };
+
   return (
     <div>
       <StepTitle
         eyebrow="Duration"
         title="How many days?"
-        subtitle="We recommend 4–7 days for a transformative experience."
+        subtitle="We recommend 4–7 days for a full experience."
       />
-      <div style={{ maxWidth: 480, margin: "0 auto", padding: "0 20px" }}>
-        <div style={{
-          background: C.white, borderRadius: 2, padding: "36px 24px",
-          border: `1px solid ${C.sage}12`,
-        }}>
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 28 }}>
-            <button onClick={() => onChange({ duration: Math.max(2, days - 1) })} style={{
-              width: 48, height: 48, borderRadius: "50%",
-              background: "transparent", border: `2px solid ${C.sage}25`,
-              cursor: "pointer", fontSize: 20, color: C.sage,
-              display: "flex", alignItems: "center", justifyContent: "center",
-              fontFamily: "'Quicksand', sans-serif", WebkitTapHighlightColor: "transparent",
-            }}>−</button>
-            <div style={{ textAlign: "center", minWidth: 60 }}>
-              <div style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontSize: "clamp(48px, 12vw, 60px)", fontWeight: 300, color: C.slate, lineHeight: 1,
-              }}>{days}</div>
-              <div style={{
-                fontFamily: "'Quicksand', sans-serif",
-                fontSize: 12, fontWeight: 600, letterSpacing: "0.15em", textTransform: "uppercase",
-                color: `${C.sage}AA`, marginTop: 2,
-              }}>days</div>
-            </div>
-            <button onClick={() => onChange({ duration: Math.min(14, days + 1) })} style={{
-              width: 48, height: 48, borderRadius: "50%",
-              background: "transparent", border: `2px solid ${C.sage}25`,
-              cursor: "pointer", fontSize: 20, color: C.sage,
-              display: "flex", alignItems: "center", justifyContent: "center",
-              fontFamily: "'Quicksand', sans-serif", WebkitTapHighlightColor: "transparent",
-            }}>+</button>
-          </div>
+      <div style={{ maxWidth: 440, margin: '0 auto', padding: '0 28px' }}>
+        {/* Large number display */}
+        <div style={{ textAlign: 'center', marginBottom: 32 }}>
+          <div style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontSize: 'clamp(64px, 16vw, 80px)', fontWeight: 300,
+            color: C.slate, lineHeight: 1,
+            transition: 'transform 0.12s',
+          }}>{days}</div>
+          <div style={{
+            fontFamily: "'Quicksand', sans-serif",
+            fontSize: 11, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase',
+            color: `${C.sage}AA`, marginTop: 4,
+          }}>days</div>
+          <div style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontStyle: 'italic', fontSize: 18, fontWeight: 300,
+            color: DURATION_LABELS[days].sweet ? C.oceanTeal : `${C.slate}55`,
+            marginTop: 10, minHeight: 26, transition: 'color 0.2s',
+          }}>{DURATION_LABELS[days].text}</div>
+        </div>
+
+        {/* Slider track */}
+        <div style={{ position: 'relative', padding: '16px 0' }}>
+          <div style={{
+            position: 'absolute', top: '50%', left: 0, right: 0,
+            height: 4, background: `${C.sage}18`, borderRadius: 2,
+            transform: 'translateY(-50%)',
+          }} />
+          <div style={{
+            position: 'absolute', top: '50%', left: 0,
+            width: `${((days - 2) / 8) * 100}%`,
+            height: 4, background: C.oceanTeal, borderRadius: 2,
+            transform: 'translateY(-50%)', transition: 'width 0.15s',
+          }} />
+          <input
+            id="duration-slider"
+            type="range" min={2} max={10} step={1} value={days}
+            onChange={e => onChange({ duration: Number(e.target.value) })}
+            style={{
+              width: '100%', appearance: 'none', WebkitAppearance: 'none',
+              background: 'transparent', cursor: 'pointer',
+              position: 'relative', zIndex: 2, height: 44,
+              WebkitTapHighlightColor: 'transparent',
+            }}
+          />
+        </div>
+
+        {/* Min/max labels */}
+        <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 8 }}>
+          <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600, color: `${C.slate}40` }}>2 days</span>
+          <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600, color: `${C.slate}40` }}>10 days</span>
+        </div>
+
+        {/* Sweet spot badge */}
+        <div style={{ textAlign: 'center', marginTop: 20, minHeight: 28 }}>
+          {DURATION_LABELS[days].sweet && (
+            <span style={{
+              fontFamily: "'Quicksand', sans-serif",
+              fontSize: 11, fontWeight: 600, letterSpacing: '0.1em',
+              background: `${C.oceanTeal}10`, color: C.oceanTeal,
+              padding: '5px 16px', borderRadius: 20,
+            }}>✦ Sweet spot</span>
+          )}
         </div>
       </div>
       <NavButtons onBack={onBack} onNext={onNext} />
@@ -2271,6 +2315,19 @@ export default function PlanMyTrip() {
           width: 32px; height: 32px; border-radius: 50%;
           background: ${C.white}; border: 3px solid ${C.sage};
           box-shadow: 0 2px 10px rgba(0,0,0,0.15); cursor: pointer;
+        }
+        input[type="range"]#duration-slider::-webkit-slider-thumb {
+          -webkit-appearance: none; appearance: none;
+          width: 28px; height: 28px; border-radius: 50%;
+          background: #fff; border: 2.5px solid #4A9B9F;
+          box-shadow: 0 2px 10px rgba(74,155,159,0.2);
+          cursor: pointer;
+        }
+        input[type="range"]#duration-slider::-moz-range-thumb {
+          width: 28px; height: 28px; border-radius: 50%;
+          background: #fff; border: 2.5px solid #4A9B9F;
+          box-shadow: 0 2px 10px rgba(74,155,159,0.2);
+          cursor: pointer;
         }
         @keyframes fadeScale {
           from { opacity: 0; transform: scale(0.95) translateY(4px); }
