@@ -959,7 +959,7 @@ function CelestialDrawer({ isMobile }) {
           <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600, color: "#6b6359", letterSpacing: "0.04em" }}>
             — {teasers.map((t, i) => (
               <span key={i}>
-                {i > 0 && <span style={{ margin: "0 10px", opacity: 0.3, fontWeight: 300 }}>|</span>}
+                {i > 0 && <span style={{ margin: "0 10px", opacity: 0.55, fontWeight: 300 }}>|</span>}
                 {t}
               </span>
             ))}
