@@ -777,7 +777,7 @@ function GuideNav({ isMobile }) {
       borderTop: `1px solid ${C.stone}`,
       borderBottom: `1px solid ${C.stone}`,
     }}>
-      <div style={{ maxWidth: 920, margin: "0 auto", padding: "4px 40px 0", display: "flex", alignItems: "center" }}>
+      <div style={{ maxWidth: 1120, margin: "0 auto", padding: "4px 40px 0", display: "flex", alignItems: "center" }}>
         <div style={{ flex: 1, minWidth: 0, position: "relative" }}>
           <div ref={scrollContainerRef} className="guide-nav-scroll" style={{ display: "flex", alignItems: "center", gap: 0, overflowX: "auto", scrollbarWidth: "none", msOverflowStyle: "none" }}>
           <style>{`.guide-nav-scroll::-webkit-scrollbar { display: none; }`}</style>

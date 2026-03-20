@@ -1497,7 +1497,7 @@ function GuideNav({ isMobile }) {
       }}
     >
       <div style={{
-        maxWidth: 920,
+        maxWidth: 1120,
         margin: "0 auto",
         padding: "4px 40px 0",
         display: "flex",
