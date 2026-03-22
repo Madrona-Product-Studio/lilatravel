@@ -119,6 +119,8 @@ Return this structure:
     "timeline": [{
       "time": "HH:MM AM/PM", "timeOfDay": "morning|midday|afternoon|evening|night",
       "title": "string", "summary": "1 sentence", "details": "1-2 sentences with logistics and sensory detail",
+      "duration": "string — plain-language time estimate (e.g. '45 min', '2–3 hrs', '4–6 hrs', '90 min', 'open ended')",
+      "practiceTag": "string | string[] | null — practice ID(s) from vocabulary, or null if none apply",
       "url": "string (optional)", "activityType": "trail (hiking only, optional)",
       "trailData": { "distance, elevationGain, trailType, difficulty, permitRequired, permitNote, bestStartTime, trailheadAccess, conditions, npsUrl — all optional, include what you know" },
       "alternatives": [{ "title": "string", "summary": "1-2 sentences", "timeOfDay": "enum" }]
@@ -142,6 +144,11 @@ Return this structure:
   - `bestStartTime` ("Before 7 AM in summer"), `trailheadAccess` (brief, e.g. "Main lot, 3 mi south of Springdale on SR-9")
   - `conditions` (brief fragment, e.g. "Muddy after rain; waterfall at peak flow in March")
   For non-hiking activities, omit `activityType` and `trailData` entirely.
+- **duration and practiceTag — REQUIRED on every timeline item:**
+  - `duration`: Set to a plain-language time estimate appropriate for the activity. Examples: "45 min", "2–3 hrs", "4–6 hrs", "90 min", "open ended". Required on every timeline item.
+  - `practiceTag`: Set to the matching practice ID(s) from this vocabulary, or `null` if none apply:
+    `yoga`, `breathwork`, `coldPlunge`, `meditation`, `hiking`, `stargazing`, `stewardship`, `spa`, `sauna`, `biking`, `nativeCulture`, `wildlife`, `hotSprings`, `paddling`, `farmToTable`, `musicAndArts`
+    Use a single string for one match (e.g. `"hiking"`), an array for multiple (e.g. `["sauna", "coldPlunge"]`). Tag liberally — if an activity meaningfully involves a practice, include it. Use `null` for logistics, check-in, drives, and generic open time.
 - **timeline.alternatives**: Include at least 2 alternatives on every activity EXCEPT logistics, check-in/check-out, drives, transit, and mindfulness items. This includes hikes, meals, wellness sessions, town visits, cultural stops, and any other substantive activity. Each alternative has:
   - `title` (string), `summary` (string, 1 sentence), `timeOfDay` (same enum as parent)
   - Alternatives should contrast with the primary: strenuous ↔ restorative, solitary ↔ social, active ↔ contemplative.

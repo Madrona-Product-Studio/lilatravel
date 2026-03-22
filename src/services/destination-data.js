@@ -865,7 +865,10 @@ export async function assembleContext(destination, userPreferences) {
       celestialRaw: celestial,
       weatherRaw: weather,
     },
-    traveler: userPreferences,
+    traveler: {
+      ...userPreferences,
+      practicesRaw: userPreferences.practicesRaw || [],
+    },
     matchingInstructions,
   };
 
@@ -923,6 +926,7 @@ ${liveSections.join('\n\n')}
 - **Dates**: ${context.traveler.dates?.start ? `${context.traveler.dates.start} to ${context.traveler.dates.end}` : `Month: ${context.traveler.month || 'Not specified'}`}
 - **Trip length**: ${context.traveler.duration || 4} days
 - **Wellness interests**: ${context.traveler.wellness?.join(', ') || context.traveler.interests?.map(i => i).join(', ') || 'Not specified'}
+- **Selected practices**: ${context.traveler.practicesRaw?.length ? context.traveler.practicesRaw.join(', ') : 'none specified'}
 - **Energy level**: ${context.traveler.energy}
 - **Pacing**: ${context.traveler.pacing != null ? (context.traveler.pacing < 25 ? 'Spacious (few activities, lots of open time)' : context.traveler.pacing < 50 ? 'Unhurried (moderate structure, built-in rest)' : context.traveler.pacing < 75 ? 'Balanced (mix of activity and downtime)' : 'Full (packed days, maximize every moment)') : 'Balanced'}
 - **Practice level**: ${context.traveler.practiceLevel != null ? ['Curious beginner', 'Dabbler', 'Regular practitioner', 'Dedicated practitioner'][context.traveler.practiceLevel] || 'Curious beginner' : 'Not specified'}

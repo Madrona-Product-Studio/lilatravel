@@ -3767,6 +3767,7 @@ export default function ItineraryResults() {
     setEnrichedDays(baseDays);
     setAlternativesLoaded(false);
     setAlternativesLoading(false);
+    setSwapModal(null);
   }, [baseDays]);
 
   // Auto-lock timeline items that correspond to bookings
@@ -3940,6 +3941,27 @@ export default function ItineraryResults() {
   useEffect(() => {
     hasRequestedAlts.current = false;
   }, [rawItinerary]);
+
+  // Keep swapModal alternatives in sync when enrichedDays updates (e.g. pass-2 fetch completes)
+  useEffect(() => {
+    if (!swapModal) return;
+    const match = swapModal.thumbId.match(/^day_(\d+)_(timeline|pick)_(\d+)$/);
+    if (!match) return;
+    const [, dayIdx, type, itemIdx] = match;
+    const day = enrichedDays[Number(dayIdx)];
+    if (!day) return;
+    let freshAlts = [];
+    if (type === 'timeline' && day.timeline?.[Number(itemIdx)]) {
+      freshAlts = day.timeline[Number(itemIdx)].alternatives || [];
+    } else if (type === 'pick' && day.picks?.[Number(itemIdx)]) {
+      const pick = day.picks[Number(itemIdx)];
+      freshAlts = pick?.pick?.alternatives || pick?.alternatives || [];
+    }
+    // Only update if alternatives actually changed
+    if (freshAlts.length !== (swapModal.alternatives || []).length) {
+      setSwapModal(prev => prev ? { ...prev, alternatives: freshAlts } : null);
+    }
+  }, [enrichedDays, swapModal?.thumbId]);
 
   // Eagerly generate share token so saved trips are loadable from dropdown
   useEffect(() => {

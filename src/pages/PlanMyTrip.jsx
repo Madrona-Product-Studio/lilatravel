@@ -317,22 +317,24 @@ const INTENTIONS = [
 
 
 const PRACTICES = [
-  { id: "yoga", label: "Yoga", icon: IconLotus, color: C.oceanTeal },
-  { id: "breathwork", label: "Breathwork", icon: IconShide, color: C.skyBlue },
-  { id: "coldPlunge", label: "Cold Plunge", icon: IconWave, color: C.seaGlass },
-  { id: "meditation", label: "Meditation", icon: IconEnso, color: C.sage },
-  { id: "hiking", label: "Mindful Hiking", icon: IconMountain, color: C.goldenAmber },
-  { id: "stargazing", label: "Stargazing", icon: IconStars, color: C.slateLight },
-  { id: "localFarms", label: "Local Farms", icon: IconBindu, color: C.seaGlass },
-  { id: "soundBath", label: "Sound Bath", icon: IconSoundBath, color: C.sageLight },
-  { id: "sauna", label: "Sauna", icon: IconFlame, color: C.sunSalmon },
-  { id: "service", label: "Service Work", icon: IconDharmaWheel, color: C.seaGlass },
-  { id: "plantMedicine", label: "Plant Medicine", icon: IconBodhiLeaf, color: C.sage },
-  { id: "massage", label: "Massage", icon: IconMassage, color: C.coralBlush },
-  { id: "biking", label: "Biking", icon: IconBike, color: C.skyBlue },
-  { id: "birding", label: "Local Culture", icon: IconTorii, color: C.sage },
-  { id: "liveMusic", label: "Live Music", icon: IconMusic, color: C.sunSalmon },
-  { id: "wildlife", label: "Wildlife", icon: IconPaw, color: C.goldenAmber },
+  { id: "yoga",         label: "Yoga",           icon: IconLotus,       color: C.oceanTeal },
+  { id: "breathwork",   label: "Breathwork",     icon: IconShide,       color: C.skyBlue },
+  { id: "coldPlunge",   label: "Cold Plunge",    icon: IconWave,        color: C.seaGlass },
+  { id: "meditation",   label: "Meditation",     icon: IconEnso,        color: C.sage },
+  { id: "hiking",       label: "Hiking",         icon: IconMountain,    color: C.goldenAmber },
+  { id: "stargazing",   label: "Stargazing",     icon: IconStars,       color: C.slateLight },
+  { id: "stewardship",  label: "Stewardship",    icon: IconDharmaWheel, color: C.seaGlass },
+  { id: "spa",          label: "Spa & Massage",  icon: IconMassage,     color: C.sageLight },
+  { id: "sauna",        label: "Sauna",          icon: IconFlame,       color: C.sunSalmon },
+  { id: "biking",       label: "Biking",         icon: IconBike,        color: C.skyBlue },
+  { id: "nativeCulture",label: "Native Culture", icon: IconTorii,       color: C.sage },
+  { id: "wildlife",     label: "Wildlife",       icon: IconPaw,         color: C.goldenAmber },
+  // TODO: hotSprings and paddling share IconWave as a placeholder.
+  // Ideally paddling gets a canoe/paddle icon and hotSprings gets something thermal.
+  { id: "hotSprings",   label: "Hot Springs",    icon: IconWave,        color: C.oceanTeal },
+  { id: "paddling",     label: "Paddling",       icon: IconWave,        color: C.skyBlue },
+  { id: "farmToTable",  label: "Farm to Table",  icon: IconBindu,       color: C.goldenAmber },
+  { id: "musicAndArts", label: "Music & Arts",   icon: IconMusic,       color: C.sunSalmon },
 ];
 
 const BUDGET_TIERS = [

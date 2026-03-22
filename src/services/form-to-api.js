@@ -163,6 +163,7 @@ export function translateFormToApi(formData, userName = 'Traveler') {
       // Pass through raw form data for additional context
       duration: formData.duration || 4,
       practiceLevel: formData.practiceLevel ?? 1,
+      practicesRaw: formData.practices || [],
       pacing: formData.pacing ?? 50,
     },
   };
