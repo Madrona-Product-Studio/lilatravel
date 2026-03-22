@@ -953,11 +953,11 @@ Please create a personalized day-by-day itinerary for this traveler based on the
   }
 
   // Scale token budget with trip length
-  // Pass 1 (skipAlternatives): ~1600/day + 1500 framing (no alternatives text)
-  // Full generation: ~2200/day + 1500 framing
+  // Pass 1 (skipAlternatives): ~2000/day + 1500 framing (duration + practiceTag fields added)
+  // Full generation: ~2600/day + 1500 framing
   const days = context.traveler.duration || 4;
-  const perDay = skipAlternatives ? 1600 : 2200;
-  const max_tokens = Math.min(1500 + days * perDay, 16000);
+  const perDay = skipAlternatives ? 2000 : 2600;
+  const max_tokens = Math.min(1500 + days * perDay, 20000);
 
   return {
     model: 'claude-sonnet-4-6',

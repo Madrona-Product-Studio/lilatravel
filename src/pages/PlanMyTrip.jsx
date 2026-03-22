@@ -1912,29 +1912,64 @@ function StepProfile({ data, onBack, onUnlock, generating }) {
 // GENERATING SCREEN — meditative loading experience
 // ═══════════════════════════════════════════════════════════════════════════════
 
-const GENERATING_STEPS = [
-  { text: "Studying the terrain", icon: IconMountain },
-  { text: "Reading the season", icon: IconBodhiLeaf },
-  { text: "Setting your pace", icon: IconWave },
-  { text: "Weaving in your practices", icon: IconLotus },
-  { text: "Curating your stays", icon: IconTorii },
-  { text: "Finding the golden hours", icon: IconFlame },
-  { text: "Assembling your journey", icon: IconEnso },
-];
+function buildGeneratingSteps(days) {
+  const steps = [
+    { text: "Studying the terrain", icon: IconMountain },
+    { text: "Reading the season", icon: IconBodhiLeaf },
+  ];
+  const dayIcons = [IconWave, IconLotus, IconFlame, IconTorii, IconMountain, IconBodhiLeaf, IconWave, IconLotus, IconFlame, IconTorii];
+  for (let d = 1; d <= days; d++) {
+    steps.push({ text: `Crafting Day ${d}`, icon: dayIcons[(d - 1) % dayIcons.length] });
+  }
+  steps.push({ text: "Weaving in your practices", icon: IconLotus });
+  steps.push({ text: "Final touches", icon: IconEnso });
+  return steps;
+}
 
-function GeneratingScreen({ destination }) {
+function buildTimings(steps, days) {
+  // Estimated total: ~18s base + ~10s per day
+  const total = 18000 + days * 10000;
+  const n = steps.length;
+  // Intro steps get 15% of time, day steps 70%, outro 15%
+  const introTime = total * 0.15;
+  const dayTime = total * 0.70;
+  const outroTime = total * 0.15;
+  const dayCount = days;
+  const timings = [];
+  // 2 intro steps
+  timings.push(introTime * 0.5);
+  timings.push(introTime);
+  // day steps — evenly spaced
+  for (let d = 0; d < dayCount; d++) {
+    timings.push(introTime + dayTime * ((d + 1) / dayCount));
+  }
+  // 2 outro steps
+  timings.push(introTime + dayTime + outroTime * 0.5);
+  timings.push(introTime + dayTime + outroTime);
+  return timings.map(Math.round);
+}
+
+function estimateLabel(days) {
+  if (days <= 3) return "Usually about 45 seconds";
+  if (days <= 5) return "Usually about a minute";
+  if (days <= 7) return "Usually a minute or two";
+  return "Usually about two minutes";
+}
+
+function GeneratingScreen({ destination, days = 4 }) {
+  const steps = useMemo(() => buildGeneratingSteps(days), [days]);
+  const timings = useMemo(() => buildTimings(steps, days), [steps, days]);
   const [completedIndex, setCompletedIndex] = useState(-1);
   const [breathPhase, setBreathPhase] = useState(0);
-  const allDone = completedIndex >= GENERATING_STEPS.length - 1;
+  const allDone = completedIndex >= steps.length - 1;
   const activeIndex = completedIndex + 1;
 
   useEffect(() => {
-    const timings = [4000, 12000, 24000, 40000, 60000, 85000, 115000];
     const timeouts = timings.map((delay, i) =>
       setTimeout(() => setCompletedIndex(i), delay)
     );
     return () => timeouts.forEach(clearTimeout);
-  }, []);
+  }, [timings]);
 
   useEffect(() => {
     let frame;
@@ -1996,7 +2031,7 @@ function GeneratingScreen({ destination }) {
         color: C.sage, opacity: 0.75,
         marginBottom: 28, textAlign: "center",
         lineHeight: 1.6,
-      }}>This can take between one and two minutes.<br/>Sit tight — it's worth the wait.</div>
+      }}>{estimateLabel(days)}<br/>Sit tight — it's worth the wait.</div>
 
       {/* Checklist — compact with collapsing completed items */}
       <div style={{
@@ -2004,7 +2039,7 @@ function GeneratingScreen({ destination }) {
         alignItems: "center",
         width: "100%", maxWidth: 300,
       }}>
-        {GENERATING_STEPS.map((step, i) => {
+        {steps.map((step, i) => {
           const StepIcon = step.icon;
           const isComplete = i <= completedIndex;
           const isActive = i === activeIndex && !allDone;
@@ -2067,7 +2102,7 @@ function GeneratingScreen({ destination }) {
         <div style={{
           height: "100%", borderRadius: 1,
           background: C.oceanTeal,
-          width: `${Math.min(100, ((completedIndex + 1) / GENERATING_STEPS.length) * 100)}%`,
+          width: `${Math.min(100, ((completedIndex + 1) / steps.length) * 100)}%`,
           transition: "width 1.2s cubic-bezier(0.4, 0, 0.2, 1)",
         }} />
       </div>
@@ -2080,7 +2115,7 @@ function GeneratingScreen({ destination }) {
         color: `${C.sage}70`,
         marginTop: 8,
       }}>
-        {allDone ? "Finalizing..." : `${Math.max(0, completedIndex + 1)} of ${GENERATING_STEPS.length}`}
+        {allDone ? "Finalizing..." : `${Math.max(0, completedIndex + 1)} of ${steps.length}`}
       </div>
     </div>
   );
@@ -2338,7 +2373,7 @@ export default function PlanMyTrip() {
       `}</style>
 
       {/* Generating overlay */}
-      {generating && <GeneratingScreen destination={data.destination} />}
+      {generating && <GeneratingScreen destination={data.destination} days={data.duration || 4} />}
 
       <div style={{
         maxWidth: 640, margin: "0 auto",
