@@ -97,6 +97,48 @@ const TRADITION_GLYPHS = {
   crossCultural: '◈',
 };
 
+const PRACTICE_TAG_LABELS = {
+  yoga: 'Yoga', breathwork: 'Breathwork', coldPlunge: 'Cold Plunge',
+  meditation: 'Meditation', hiking: 'Hiking', stargazing: 'Stargazing',
+  stewardship: 'Stewardship', spa: 'Spa & Massage', sauna: 'Sauna',
+  biking: 'Biking', nativeCulture: 'Native Culture', wildlife: 'Wildlife',
+  hotSprings: 'Hot Springs', paddling: 'Paddling', farmToTable: 'Farm to Table',
+  musicAndArts: 'Music & Arts',
+};
+
+const PRACTICE_MAP = {
+  yoga:         { color: '#4A9B9F', paths: ['M12 20 C12 20 8 16 8 12 C8 8 10 5 12 3 C14 5 16 8 16 12 C16 16 12 20 12 20Z', 'M12 20 C12 20 5 15 4 11 C3 7 6 5 8 6', 'M12 20 C12 20 19 15 20 11 C21 7 18 5 16 6'], fill: 'rgba(74,155,159,0.12)' },
+  breathwork:   { color: '#7aaec8', paths: ['M12 2 L12 22', 'M12 5 L17 5 L17 9 L12 9', 'M12 9 L7 9 L7 13 L12 13', 'M12 13 L17 13 L17 17 L12 17'], fill: null },
+  coldPlunge:   { color: '#8FA39A', paths: ['M2 12 C4 8 6 8 8 12 C10 16 12 16 14 12 C16 8 18 8 22 12', 'M2 16 C4 12 6 12 8 16 C10 20 12 20 14 16'], fill: null },
+  meditation:   { color: '#6B7A72', paths: ['M12 3 C17.5 3 21 7 21 12 C21 17 17.5 21 12 21 C6.5 21 3 17 3 12 C3 8.5 5 5.5 8 4'], fill: null },
+  hiking:       { color: '#D4A853', paths: ['M3 20 L10 6 L14 13 L17 8 L21 20 Z', 'M3 20 L10 6 L14 13 L17 8 L21 20'], fill: 'rgba(212,168,83,0.1)' },
+  stargazing:   { color: '#2d3d4d', paths: ['M18 12 C18 7 13 3 8 5 C12 5 15 8 15 12 C15 16 12 19 8 19 C13 21 18 17 18 12Z', 'M4 5 L4.8 3 L5.6 5', 'M3 9 L3.5 8 L4 9', 'M6 3 L6.4 2 L6.8 3'], fill: 'rgba(45,61,77,0.08)' },
+  stewardship:  { color: '#6B7A72', paths: ['M12 3 L12 21', 'M12 3 L16.5 6', 'M12 9 L7.5 12', 'M12 15 L16.5 18'], fill: null },
+  spa:          { color: '#8FA39A', paths: ['M6 14 C6 10 9 7 12 7 C15 7 18 10 18 14', 'M4 16 C5 12 8 9 12 9 C16 9 19 12 20 16', 'M4 16 C4 18 6 19 8 18', 'M20 16 C20 18 18 19 16 18'], fill: 'rgba(143,163,154,0.1)' },
+  sauna:        { color: '#E8856A', paths: ['M12 2 C12 2 18 8 18 14 C18 17.3 15.3 20 12 20 C8.7 20 6 17.3 6 14 C6 8 12 2 12 2Z'], fill: 'rgba(232,133,106,0.1)' },
+  biking:       { color: '#7aaec8', paths: ['M7 16 a3.5 3.5 0 1 0 0.001 0', 'M17 16 a3.5 3.5 0 1 0 0.001 0', 'M7 16 L10 8 L14 8', 'M14 8 L17 16 L12 16 L10 8'], fill: null },
+  nativeCulture:{ color: '#6B7A72', paths: ['M5 6 L19 6', 'M6 10 L18 10', 'M7 6 L7 21', 'M17 6 L17 21', 'M3 5 L21 5'], fill: null },
+  wildlife:     { color: '#D4A853', paths: ['M12 15 a4 3.5 0 1 0 0.001 0', 'M7.5 10 a1.8 1.8 0 1 0 0.001 0', 'M10.5 7.5 a1.8 1.8 0 1 0 0.001 0', 'M13.5 7.5 a1.8 1.8 0 1 0 0.001 0', 'M16.5 10 a1.8 1.8 0 1 0 0.001 0'], fill: null },
+  hotSprings:   { color: '#4A9B9F', paths: ['M2 12 C4 8 6 8 8 12 C10 16 12 16 14 12 C16 8 18 8 22 12'], fill: null },
+  paddling:     { color: '#7aaec8', paths: ['M2 12 C4 8 6 8 8 12 C10 16 12 16 14 12 C16 8 18 8 22 12'], fill: null },
+  farmToTable:  { color: '#D4A853', paths: ['M6 16 C6 10 9 6 12 4 C15 6 18 10 18 16'], fill: null, circles: [{ cx: 12, cy: 10, r: 2, fill: 'rgba(212,168,83,0.22)' }, { cx: 12, cy: 10, r: 0.8, fill: '#D4A853' }] },
+  musicAndArts: { color: '#E8856A', paths: ['M9 18 L9 6 L19 4 L19 16'], fill: null, circles: [{ cx: 6.5, cy: 18, r: 2.5, fill: 'rgba(232,133,106,0.1)' }, { cx: 16.5, cy: 16, r: 2.5, fill: 'rgba(232,133,106,0.1)' }] },
+};
+
+function PracticeIcon({ practiceId, size = 15 }) {
+  const p = PRACTICE_MAP[practiceId];
+  if (!p) return null;
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
+      stroke={p.color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"
+      style={{ display: 'block', flexShrink: 0 }}>
+      {p.fill && p.paths?.[0] && <path d={p.paths[0]} fill={p.fill} stroke="none" />}
+      {p.paths?.map((d, i) => <path key={i} d={d} />)}
+      {p.circles?.map((c, i) => <circle key={i} cx={c.cx} cy={c.cy} r={c.r} fill={c.fill} stroke="none" />)}
+    </svg>
+  );
+}
+
 /* ── SVG icons ─────────────────────────────────────────────────────────── */
 
 const Chevron = ({ open, color = C.sage }) => (
@@ -181,7 +223,7 @@ const TeachingIcon = ({ size = 13, color = C.goldenAmber }) => (
   </svg>
 );
 
-const PracticeIcon = ({ size = 13, color = C.seaGlass }) => (
+const PracticeIconSimple = ({ size = 13, color = C.seaGlass }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
     <circle cx="12" cy="5" r="2" /><path d="M12 7v4" /><path d="M8 21l4-10 4 10" /><path d="M6 14l6-3 6 3" />
   </svg>
@@ -715,7 +757,7 @@ function CompanionPanelContent({ type, data, id }) {
     <div style={{ maxWidth: 500, margin: '0 auto', padding: '20px 20px 60px' }}>
       {/* Type badge */}
       <div style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '4px 11px', borderRadius: 20, background: `${accent}0e`, border: `1px solid ${accent}18`, marginBottom: 10 }}>
-        {isTeaching ? <TeachingIcon size={11} color={accent} /> : <PracticeIcon size={11} color={accent} />}
+        {isTeaching ? <TeachingIcon size={11} color={accent} /> : <PracticeIconSimple size={11} color={accent} />}
         <span style={{ fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: accent }}>{isTeaching ? "Today's Teaching" : "Today's Practice"}</span>
       </div>
 
@@ -1332,7 +1374,7 @@ function DetailPanelContent({ item, lockedItems, onLock, onAlternatives, alterna
             }}>
               {data.type === 'teaching'
                 ? <TeachingIcon size={10} color={accent} />
-                : <PracticeIcon size={10} color={accent} />}
+                : <PracticeIconSimple size={10} color={accent} />}
               <span style={{
                 fontFamily: F, fontSize: 10, fontWeight: 600,
                 letterSpacing: '0.08em', textTransform: 'uppercase',
@@ -2618,59 +2660,162 @@ function DayCard({ day, dayIndex = 0, onOpenPanel, lockedItems, onLock, onAltern
               });
             }}
             style={{
-              display: 'flex', alignItems: 'flex-start', gap: 10,
-              padding: '9px 18px 5px',
-              borderTop: `1px solid ${C.border}`,
+              display: 'grid',
+              gridTemplateColumns: '44px 1fr auto',
+              gap: '0 10px',
+              padding: isItemLocked ? '12px 14px' : '12px 16px',
+              borderTop: isItemLocked ? 'none' : `1px solid ${C.border}`,
+              border: isItemLocked ? `2px solid rgba(212,168,83,0.50)` : undefined,
+              borderRadius: isItemLocked ? 8 : 0,
+              margin: isItemLocked ? '4px 8px' : 0,
               cursor: 'pointer',
               background: tint || 'transparent',
               transition: 'background 0.2s',
+              alignItems: 'start',
               WebkitTapHighlightColor: 'transparent',
-              ...(isItemLocked ? { border: `2px solid rgba(212,168,83,0.50)`, borderRadius: 8, margin: '4px 8px', padding: '9px 14px 5px' } : {}),
             }}
-            onMouseEnter={e => { if (!tint) e.currentTarget.style.background = 'rgba(28,28,26,0.02)'; }}
+            onMouseEnter={e => { if (!tint) e.currentTarget.style.background = 'rgba(28,28,26,0.015)'; }}
             onMouseLeave={e => { if (!tint) e.currentTarget.style.background = 'transparent'; }}
           >
             {/* Time */}
-            <span style={{
-              fontFamily: F, fontSize: 11, fontWeight: 400,
-              color: C.muted, width: 44, flexShrink: 0, paddingTop: 2,
-            }}>{b.time || ''}</span>
-
-            {/* Dot */}
             <div style={{
-              width: 6, height: 6, borderRadius: '50%',
-              background: color, opacity: 0.45,
-              flexShrink: 0, marginTop: 6,
-            }} />
+              fontFamily: F, fontSize: 11, fontWeight: 400,
+              color: C.muted, lineHeight: 1.3,
+              textAlign: 'right', paddingTop: 2,
+            }}>{b.time || ''}</div>
 
             {/* Content */}
-            <div style={{ flex: 1, minWidth: 0 }}>
-              <div style={{
-                fontFamily: F, fontSize: 14, fontWeight: 500,
-                color: C.ink, lineHeight: 1.3, marginBottom: 2,
-              }}>
-                {displayTitle}
-                {isItemLocked && (
-                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: 3, fontSize: 9, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase', color: C.goldenAmber, fontFamily: F, marginLeft: 6 }}>
-                    {lockLabel}
-                  </span>
-                )}
+            <div style={{ minWidth: 0 }}>
+              {/* Icon stack + title */}
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: 7, marginBottom: 3 }}>
+                {/* Practice icons — absolutely positioned so multiple icons don't push title down */}
+                {(() => {
+                  const tags = b.practiceTag
+                    ? (Array.isArray(b.practiceTag) ? b.practiceTag : [b.practiceTag])
+                    : [];
+                  if (tags.length > 0) {
+                    return (
+                      <div style={{ position: 'relative', width: 15, flexShrink: 0, marginTop: 3 }}>
+                        <div style={{ position: 'absolute', top: 0, left: 0, display: 'flex', flexDirection: 'column', gap: 3 }}>
+                          {tags.map((tag, ti) => <PracticeIcon key={ti} practiceId={tag} size={15} />)}
+                        </div>
+                      </div>
+                    );
+                  }
+                  // Fallback dot when no practiceTag
+                  return (
+                    <div style={{
+                      width: 6, height: 6, borderRadius: '50%',
+                      background: color, opacity: 0.4,
+                      flexShrink: 0, marginTop: 6,
+                    }} />
+                  );
+                })()}
+
+                {/* Title */}
+                <div style={{
+                  fontFamily: F_SERIF, fontSize: 17, fontWeight: 400,
+                  color: C.ink, lineHeight: 1.25,
+                }}>
+                  {displayTitle}
+                  {isItemLocked && (
+                    <span style={{
+                      display: 'inline-flex', alignItems: 'center', gap: 3,
+                      fontSize: 9, fontWeight: 700, letterSpacing: '0.07em',
+                      textTransform: 'uppercase', color: C.goldenAmber,
+                      fontFamily: F, marginLeft: 6,
+                    }}>{lockLabel}</span>
+                  )}
+                </div>
               </div>
+
+              {/* Meta — practice tag labels, duration, difficulty */}
+              <div style={{
+                display: 'flex', alignItems: 'center', gap: 5,
+                flexWrap: 'wrap', marginBottom: 4, paddingLeft: 22,
+              }}>
+                {(() => {
+                  const tags = b.practiceTag
+                    ? (Array.isArray(b.practiceTag) ? b.practiceTag : [b.practiceTag])
+                    : [];
+                  const items = [];
+                  tags.forEach((tag, ti) => {
+                    const p = PRACTICE_MAP[tag];
+                    if (!p) return;
+                    if (ti > 0) items.push(<div key={`dot-${ti}`} style={{ width: 2, height: 2, borderRadius: '50%', background: '#ccc', flexShrink: 0 }} />);
+                    items.push(
+                      <span key={tag} style={{ fontSize: 10, fontWeight: 600, letterSpacing: '0.05em', color: p.color }}>
+                        {PRACTICE_TAG_LABELS[tag] || tag}
+                      </span>
+                    );
+                  });
+                  if (b.duration) {
+                    if (items.length > 0) items.push(<div key="dur-dot" style={{ width: 2, height: 2, borderRadius: '50%', background: '#ccc', flexShrink: 0 }} />);
+                    items.push(<span key="dur" style={{ fontSize: 11, color: C.muted }}>{b.duration}</span>);
+                  }
+                  if (b.trailData?.difficulty) {
+                    items.push(<div key="diff-dot" style={{ width: 2, height: 2, borderRadius: '50%', background: '#ccc', flexShrink: 0 }} />);
+                    const diffColor = b.trailData.difficulty === 'strenuous' ? C.sunSalmon : b.trailData.difficulty === 'moderate' ? C.goldenAmber : C.seaGlass;
+                    items.push(<span key="diff" style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.04em', color: diffColor, textTransform: 'capitalize' }}>{b.trailData.difficulty}</span>);
+                  }
+                  return items;
+                })()}
+              </div>
+
+              {/* Summary — always visible */}
               {displaySummary && (
                 <div style={{
-                  fontFamily: F, fontSize: 13, fontWeight: 400,
-                  color: C.body, lineHeight: 1.5,
+                  fontFamily: F, fontSize: 12, fontWeight: 400,
+                  color: C.muted, lineHeight: 1.65, paddingLeft: 22,
                 }}>{displaySummary}</div>
-              )}
-              {curatable && (
-                <div style={{ marginTop: 10 }}>
-                  <ActivityActions id={thumbId} lockedItems={lockedItems} onLock={onLock} onAlternatives={handleShowAlternatives} />
-                </div>
               )}
             </div>
 
-            {/* Chevron */}
-            <Chevron open={false} color={`${C.sage}40`} />
+            {/* Actions — Lock + Swap, right column, top aligned */}
+            {curatable && (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 6, alignItems: 'flex-end', paddingTop: 2 }}>
+                <button
+                  onClick={e => { e.stopPropagation(); onLock(thumbId); }}
+                  title="Lock this in"
+                  style={{
+                    display: 'flex', alignItems: 'center', gap: 4,
+                    background: lockedItems?.[thumbId] ? `${C.goldenAmber}18` : `${C.goldenAmber}08`,
+                    border: `1px solid ${lockedItems?.[thumbId] ? `${C.goldenAmber}60` : `${C.goldenAmber}30`}`,
+                    borderRadius: 6, padding: '5px 8px',
+                    color: '#B8922A', cursor: 'pointer', transition: 'all 0.15s',
+                    fontFamily: F,
+                  }}
+                >
+                  <svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="#B8922A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="3" y="7" width="10" height="7" rx="1.5"/>
+                    <path d="M5 7V5a3 3 0 0 1 6 0v2"/>
+                  </svg>
+                  <span style={{ fontSize: 9, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+                    {lockedItems?.[thumbId] ? 'Locked' : 'Lock'}
+                  </span>
+                </button>
+                <button
+                  onClick={e => { e.stopPropagation(); handleShowAlternatives(thumbId); }}
+                  title="See alternatives"
+                  style={{
+                    display: 'flex', alignItems: 'center', gap: 4,
+                    background: 'transparent',
+                    border: `1px solid rgba(28,28,26,0.1)`,
+                    borderRadius: 6, padding: '5px 8px',
+                    color: C.muted, cursor: 'pointer', transition: 'all 0.15s',
+                    fontFamily: F,
+                  }}
+                >
+                  <svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke={C.muted} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M2.5 8a5.5 5.5 0 0 1 9.5-3.5"/>
+                    <path d="M13.5 8a5.5 5.5 0 0 1-9.5 3.5"/>
+                    <polyline points="12,1 12,5 8,5"/>
+                    <polyline points="4,15 4,11 8,11"/>
+                  </svg>
+                  <span style={{ fontSize: 9, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' }}>Swap</span>
+                </button>
+              </div>
+            )}
           </div>
         );
       })}
