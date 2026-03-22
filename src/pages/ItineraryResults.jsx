@@ -120,8 +120,8 @@ const PRACTICE_MAP = {
   nativeCulture:{ color: '#6B7A72', paths: ['M5 6 L19 6', 'M6 10 L18 10', 'M7 6 L7 21', 'M17 6 L17 21', 'M3 5 L21 5'], fill: null },
   wildlife:     { color: '#D4A853', paths: ['M12 15 a4 3.5 0 1 0 0.001 0', 'M7.5 10 a1.8 1.8 0 1 0 0.001 0', 'M10.5 7.5 a1.8 1.8 0 1 0 0.001 0', 'M13.5 7.5 a1.8 1.8 0 1 0 0.001 0', 'M16.5 10 a1.8 1.8 0 1 0 0.001 0'], fill: null },
   hotSprings:   { color: '#4A9B9F', paths: ['M2 12 C4 8 6 8 8 12 C10 16 12 16 14 12 C16 8 18 8 22 12'], fill: null },
-  paddling:     { color: '#7aaec8', paths: ['M2 12 C4 8 6 8 8 12 C10 16 12 16 14 12 C16 8 18 8 22 12'], fill: null },
-  farmToTable:  { color: '#D4A853', paths: ['M6 16 C6 10 9 6 12 4 C15 6 18 10 18 16'], fill: null, circles: [{ cx: 12, cy: 10, r: 2, fill: 'rgba(212,168,83,0.22)' }, { cx: 12, cy: 10, r: 0.8, fill: '#D4A853' }] },
+  paddling:     { color: '#7aaec8', paths: ['M4 19 L10 5', 'M8 4 L10 5 L11 7', 'M2 16 C4 13 7 13 9 16 C11 19 14 19 16 16 C18 13 20 13 22 16'], fill: null },
+  farmToTable:  { color: '#D4A853', paths: ['M8 3 L8 14', 'M8 3 C8 3 5 5 5 7 C5 9 6.5 10 8 10', 'M8 3 C8 3 11 5 11 7 C11 9 9.5 10 8 10', 'M16 4 L16 21', 'M16 8 L16 8', 'M14 4 L14 10', 'M18 4 L18 10', 'M14 10 L18 10'], fill: null },
   musicAndArts: { color: '#E8856A', paths: ['M9 18 L9 6 L19 4 L19 16'], fill: null, circles: [{ cx: 6.5, cy: 18, r: 2.5, fill: 'rgba(232,133,106,0.1)' }, { cx: 16.5, cy: 16, r: 2.5, fill: 'rgba(232,133,106,0.1)' }] },
 };
 

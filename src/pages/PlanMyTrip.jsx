@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { useNavigate, Link, useSearchParams } from 'react-router-dom';
 import { C as BrandC } from '@data/brand';
 import { translateFormToApi } from "../services/form-to-api";
@@ -152,12 +152,26 @@ function IconMudra({ size, color }) {
   );
 }
 
-function IconBindu({ size, color }) {
+function IconPaddle({ size, color }) {
   return (
     <Icon size={size} color={color}>
-      <path d="M6 16 C6 10 9 6 12 4 C15 6 18 10 18 16" />
-      <circle cx="12" cy="10" r="2" fill={`${color}25`} />
-      <circle cx="12" cy="10" r="0.8" fill={color} stroke="none" />
+      <path d="M4 19 L10 5" />
+      <path d="M8 4 L10 5 L11 7" />
+      <path d="M2 16 C4 13 7 13 9 16 C11 19 14 19 16 16 C18 13 20 13 22 16" />
+    </Icon>
+  );
+}
+
+function IconForkLeaf({ size, color }) {
+  return (
+    <Icon size={size} color={color}>
+      <path d="M8 3 L8 14" />
+      <path d="M8 3 C8 3 5 5 5 7 C5 9 6.5 10 8 10" />
+      <path d="M8 3 C8 3 11 5 11 7 C11 9 9.5 10 8 10" />
+      <path d="M16 4 L16 21" />
+      <path d="M14 4 L14 10" />
+      <path d="M18 4 L18 10" />
+      <path d="M14 10 L18 10" />
     </Icon>
   );
 }
@@ -329,11 +343,9 @@ const PRACTICES = [
   { id: "biking",       label: "Biking",         icon: IconBike,        color: C.skyBlue },
   { id: "nativeCulture",label: "Native Culture", icon: IconTorii,       color: C.sage },
   { id: "wildlife",     label: "Wildlife",       icon: IconPaw,         color: C.goldenAmber },
-  // TODO: hotSprings and paddling share IconWave as a placeholder.
-  // Ideally paddling gets a canoe/paddle icon and hotSprings gets something thermal.
   { id: "hotSprings",   label: "Hot Springs",    icon: IconWave,        color: C.oceanTeal },
-  { id: "paddling",     label: "Paddling",       icon: IconWave,        color: C.skyBlue },
-  { id: "farmToTable",  label: "Farm to Table",  icon: IconBindu,       color: C.goldenAmber },
+  { id: "paddling",     label: "Paddling",       icon: IconPaddle,      color: C.skyBlue },
+  { id: "farmToTable",  label: "Farm to Table",  icon: IconForkLeaf,    color: C.goldenAmber },
   { id: "musicAndArts", label: "Music & Arts",   icon: IconMusic,       color: C.sunSalmon },
 ];
 
