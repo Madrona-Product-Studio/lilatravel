@@ -1511,6 +1511,11 @@ function StepDuration({ data, onChange, onNext, onBack }) {
             color: `${C.sage}AA`, marginTop: 4,
           }}>days</div>
           <div style={{
+            fontFamily: "'Quicksand', sans-serif",
+            fontSize: 12, fontWeight: 400,
+            color: `${C.sage}88`, marginTop: 2,
+          }}>{days - 1} night{days - 1 !== 1 ? 's' : ''}</div>
+          <div style={{
             fontFamily: "'Cormorant Garamond', serif",
             fontStyle: 'italic', fontSize: 18, fontWeight: 300,
             color: DURATION_LABELS[days].sweet ? C.oceanTeal : `${C.slate}55`,
