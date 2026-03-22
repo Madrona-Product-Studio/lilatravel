@@ -1161,7 +1161,7 @@ function StepMonth({ data, onChange, onNext, onBack }) {
         </div>
       )}
 
-      <div style={{ marginTop: showDates ? -16 : 0 }}>
+      <div style={{ marginTop: 0 }}>
         <NavButtons onBack={onBack} onNext={onNext} nextDisabled={!data.month} topPadding={8} />
       </div>
     </div>

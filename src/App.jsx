@@ -46,6 +46,7 @@
 
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { useEffect, lazy, Suspense } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import { C } from '@data/brand';
 
 // ─── Loading Spinner ─────────────────────────────────────────────────────────
@@ -168,6 +169,7 @@ export default function App() {
           </Routes>
         </Suspense>
       </BrowserRouter>
+      <Analytics />
     </div>
   );
 }
