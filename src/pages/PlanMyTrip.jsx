@@ -1112,7 +1112,7 @@ function StepMonth({ data, onChange, onNext, onBack }) {
 
           {showDates && (
             <div style={{
-              display: 'flex', gap: 12, marginTop: 12,
+              display: 'flex', gap: 12, marginTop: 12, marginBottom: 8,
               animation: 'fadeScale 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
             }}>
               <div style={{ flex: 1 }}>
@@ -1162,7 +1162,7 @@ function StepMonth({ data, onChange, onNext, onBack }) {
       )}
 
       <div style={{ marginTop: 0 }}>
-        <NavButtons onBack={onBack} onNext={onNext} nextDisabled={!data.month} topPadding={8} />
+        <NavButtons onBack={onBack} onNext={onNext} nextDisabled={!data.month} topPadding={showDates ? 24 : 8} />
       </div>
     </div>
   );
