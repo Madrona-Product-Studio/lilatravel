@@ -367,12 +367,51 @@ function CelestialSnapshot({ snapshot, celestial, weather, month }) {
   const avgLow    = snapshot?.avgLow  ?? (weather?.length > 0 ? Math.round(weather.map(d=>d.low).reduce((a,b)=>a+b,0)/weather.length) : null);
   const sunrise   = snapshot?.sunrise ?? celestial?.days?.[0]?.sunrise ?? null;
   const sunset    = snapshot?.sunset  ?? celestial?.days?.[0]?.sunset  ?? null;
-  const moonName  = snapshot?.moonPhase ?? celestial?.moonPhase?.name  ?? null;
   const stargazing = snapshot?.stargazing ?? celestial?.moonPhase?.stargazing ?? null;
 
   const monthKey  = (month || '').toLowerCase();
   const monthData = CELESTIAL_BY_MONTH[monthKey] ?? CELESTIAL_BY_MONTH['september'];
   const { sky, events } = monthData;
+
+  // Split events into categories
+  const moonEvents = events.filter(ev =>
+    ev.name.toLowerCase().includes('moon') ||
+    ev.name.toLowerCase().includes('lunar')
+  );
+  const starEvents = events.filter(ev =>
+    !ev.name.toLowerCase().includes('moon') &&
+    !ev.name.toLowerCase().includes('lunar') &&
+    (ev.icon === '🌠' || ev.icon === '🌌' || ev.icon === '⭐' ||
+     ev.name.toLowerCase().includes('milky') ||
+     ev.name.toLowerCase().includes('meteor') ||
+     ev.name.toLowerCase().includes('perseids') ||
+     ev.name.toLowerCase().includes('leonids') ||
+     ev.name.toLowerCase().includes('geminids') ||
+     ev.name.toLowerCase().includes('orionid'))
+  );
+  const seasonEvents = events.filter(ev =>
+    !moonEvents.includes(ev) && !starEvents.includes(ev)
+  );
+
+  // Daylight duration
+  const daylightHours = (() => {
+    if (!sunrise || !sunset) return null;
+    try {
+      const parseTime = (t) => {
+        const [time, period] = t.split(' ');
+        let [h, m] = time.split(':').map(Number);
+        if (period === 'pm' && h !== 12) h += 12;
+        if (period === 'am' && h === 12) h = 0;
+        return h * 60 + m;
+      };
+      const mins = parseTime(sunset) - parseTime(sunrise);
+      const h = Math.floor(mins / 60);
+      const m = mins % 60;
+      return `${h}h ${m}m`;
+    } catch { return null; }
+  })();
+
+  const eyebrow = { fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.22em', textTransform: 'uppercase', color: `${C.sage}88`, marginBottom: 8 };
 
   // Don't render if truly nothing
   if (!sky && !snapshot?.seasonalNote) return null;
@@ -383,98 +422,145 @@ function CelestialSnapshot({ snapshot, celestial, weather, month }) {
       overflow: 'hidden',
       marginBottom: 24,
     }}>
-      {/* Header */}
-      <div style={{ padding: '16px 20px 14px', borderBottom: `1px solid ${C.border}` }}>
-        <div style={{
-          fontFamily: F, fontSize: 10, fontWeight: 700,
-          letterSpacing: '0.2em', textTransform: 'uppercase',
-          color: C.muted, marginBottom: 6,
-        }}>Celestial Snapshot</div>
-        <div style={{
-          fontFamily: F_SERIF, fontSize: 22, fontWeight: 300,
-          color: C.ink, marginBottom: 5,
-        }}>{sky}</div>
-        {snapshot?.seasonalNote && (
-          <div style={{
-            fontFamily: F, fontSize: 13, fontWeight: 400,
-            color: C.body, lineHeight: 1.6,
-          }}>{snapshot.seasonalNote}</div>
-        )}
+      {/* 1. Sky name */}
+      <div style={{ padding: '18px 20px 16px', borderBottom: `1px solid ${C.border}` }}>
+        <div style={{ fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.24em', textTransform: 'uppercase', color: `${C.sage}88`, marginBottom: 10 }}>
+          Sky & Season · {MONTH_LABELS[monthKey] || monthKey}
+        </div>
+        <div style={{ fontFamily: F_SERIF, fontSize: 24, fontWeight: 300, color: C.ink, lineHeight: 1.1 }}>{sky}</div>
       </div>
 
-      {/* Events grid — 3 columns */}
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(3, 1fr)',
-        borderBottom: `1px solid ${C.border}`,
-      }}>
-        {events.map((ev, i) => (
-          <div key={i} style={{
-            padding: '14px 18px',
-            borderRight: i < events.length - 1 ? `1px solid ${C.border}` : 'none',
-          }}>
-            <div style={{ fontSize: 18, marginBottom: 6 }}>{ev.icon}</div>
-            <div style={{
-              fontFamily: F, fontSize: 14, fontWeight: 600,
-              color: C.ink, marginBottom: 2,
-            }}>{ev.name}</div>
-            <div style={{
-              fontFamily: F, fontSize: 11, fontWeight: 700,
-              letterSpacing: '0.06em', color: C.amber, marginBottom: 5,
-            }}>{ev.date}</div>
-            <div style={{
-              fontFamily: F, fontSize: 12, fontWeight: 400,
-              color: C.body, lineHeight: 1.5,
-            }}>{ev.note}</div>
+      {/* 2. Temperature + Sunlight — side by side */}
+      {(avgHigh !== null || sunrise) && (
+        <div style={{ padding: '14px 20px 13px', borderBottom: `1px solid ${C.border}` }}>
+          <div style={{ display: 'grid', gridTemplateColumns: avgHigh !== null && sunrise ? '1fr 1px 1fr' : '1fr', gap: '0 16px', alignItems: 'start' }}>
+            {avgHigh !== null && (
+              <div>
+                <div style={eyebrow}>Temperature</div>
+                <div style={{ height: 3, borderRadius: 2, background: 'linear-gradient(to right, #7aaec8, #D4A853, #E8856A)', marginBottom: 6 }} />
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+                  <div>
+                    <div style={{ fontFamily: F_SERIF, fontSize: 20, fontWeight: 300, color: '#7aaec8', lineHeight: 1 }}>{avgLow}°</div>
+                    <div style={{ fontSize: 9, color: C.muted, marginTop: 1 }}>low</div>
+                  </div>
+                  <div style={{ fontSize: 9, color: 'rgba(26,37,48,0.3)' }}>avg</div>
+                  <div style={{ textAlign: 'right' }}>
+                    <div style={{ fontFamily: F_SERIF, fontSize: 20, fontWeight: 300, color: '#E8856A', lineHeight: 1 }}>{avgHigh}°</div>
+                    <div style={{ fontSize: 9, color: C.muted, marginTop: 1 }}>high</div>
+                  </div>
+                </div>
+              </div>
+            )}
+            {avgHigh !== null && sunrise && (
+              <div style={{ width: 1, background: C.border, marginTop: 18, alignSelf: 'stretch' }} />
+            )}
+            {sunrise && (
+              <div>
+                <div style={eyebrow}>Sunlight</div>
+                <svg width="100%" height="32" viewBox="0 0 140 32" fill="none" style={{ display: 'block', marginBottom: 4 }}>
+                  <path d="M10 28 Q70 3 130 28" stroke="rgba(212,168,83,0.12)" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
+                  <path d="M10 28 Q70 3 130 28" stroke="rgba(212,168,83,0.5)" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
+                  <circle cx="10" cy="28" r="2.5" fill="rgba(212,168,83,0.85)"/>
+                  <circle cx="130" cy="28" r="2.5" fill="rgba(212,168,83,0.35)"/>
+                  <circle cx="70" cy="3" r="1.8" fill="rgba(212,168,83,0.25)"/>
+                </svg>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+                  <div>
+                    <div style={{ fontSize: 12, fontWeight: 600, color: C.ink, lineHeight: 1 }}>{sunrise}</div>
+                    <div style={{ fontSize: 9, color: C.muted, marginTop: 1 }}>sunrise</div>
+                  </div>
+                  {sunrise && sunset && daylightHours && (
+                    <div style={{ textAlign: 'center', fontSize: 10, color: 'rgba(26,37,48,0.32)' }}>
+                      {daylightHours}
+                    </div>
+                  )}
+                  <div style={{ textAlign: 'right' }}>
+                    <div style={{ fontSize: 12, fontWeight: 600, color: 'rgba(26,37,48,0.5)', lineHeight: 1 }}>{sunset}</div>
+                    <div style={{ fontSize: 9, color: C.muted, marginTop: 1 }}>sunset</div>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
-        ))}
-      </div>
-
-      {/* Weather row — 4 columns */}
-      {(avgHigh !== null || sunrise || moonName) && (
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(4, 1fr)',
-          borderBottom: `1px solid ${C.border}`,
-        }}>
-          {avgHigh !== null && (
-            <div style={{ padding: '12px 18px', borderRight: `1px solid ${C.border}` }}>
-              <div style={{ fontFamily: F, fontSize: 10, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: C.muted, marginBottom: 5 }}>Avg High</div>
-              <div style={{ fontSize: 18, fontWeight: 600, color: C.ink }}>
-                {avgHigh}°
-                {avgLow !== null && <span style={{ fontSize: 13, color: C.muted, fontWeight: 400 }}> /{avgLow}°</span>}
-              </div>
-            </div>
-          )}
-          {sunrise && (
-            <div style={{ padding: '12px 18px', borderRight: `1px solid ${C.border}` }}>
-              <div style={{ fontFamily: F, fontSize: 10, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: C.muted, marginBottom: 5 }}>Sunrise</div>
-              <div style={{ fontSize: 16, fontWeight: 600, color: C.ink }}>{sunrise}</div>
-            </div>
-          )}
-          {sunset && (
-            <div style={{ padding: '12px 18px', borderRight: `1px solid ${C.border}` }}>
-              <div style={{ fontFamily: F, fontSize: 10, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: C.muted, marginBottom: 5 }}>Sunset</div>
-              <div style={{ fontSize: 16, fontWeight: 600, color: C.ink }}>{sunset}</div>
-            </div>
-          )}
-          {moonName && (
-            <div style={{ padding: '12px 18px' }}>
-              <div style={{ fontFamily: F, fontSize: 10, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: C.muted, marginBottom: 5 }}>Moon</div>
-              <div style={{ fontSize: 14, fontWeight: 600, color: C.ink, lineHeight: 1.3 }}>
-                {MOON_EMOJI[moonName] ?? '🌙'} {moonName}
-              </div>
-              {stargazing && <div style={{ fontFamily: F, fontSize: 11, color: C.muted, marginTop: 2 }}>{stargazing}</div>}
-            </div>
-          )}
         </div>
       )}
 
-      {/* Pack note */}
+      {/* 3. Moon + Stars — side by side */}
+      {(moonEvents.length > 0 || starEvents.length > 0) && (
+        <div style={{ padding: '14px 20px 13px', borderBottom: `1px solid ${C.border}` }}>
+          <div style={{ display: 'grid', gridTemplateColumns: moonEvents.length > 0 && starEvents.length > 0 ? '1fr 1px 1fr' : '1fr', gap: '0 16px', alignItems: 'start' }}>
+            {moonEvents.length > 0 && (
+              <div>
+                <div style={eyebrow}>Moon</div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                  {moonEvents.map((ev, i) => {
+                    const isFull = ev.name.toLowerCase().includes('full');
+                    const iconFill = isFull ? 'rgba(212,168,83,0.35)' : 'rgba(26,37,48,0.12)';
+                    const iconStroke = isFull ? 'rgba(212,168,83,0.5)' : 'rgba(26,37,48,0.2)';
+                    return (
+                      <div key={i}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="9" fill={iconFill} stroke={iconStroke} strokeWidth="1.2"/>
+                          </svg>
+                          <span style={{ fontFamily: F_SERIF, fontSize: 15, fontWeight: 400, color: C.ink }}>{ev.name}</span>
+                          <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.06em', color: C.amber }}>{ev.date}</span>
+                        </div>
+                        <div style={{ fontSize: 11, color: C.muted, lineHeight: 1.55, paddingLeft: 22 }}>{ev.note}</div>
+                      </div>
+                    );
+                  })}
+                  {stargazing && <div style={{ fontSize: 11, color: C.muted, paddingLeft: 22, marginTop: 4 }}>{stargazing}</div>}
+                </div>
+              </div>
+            )}
+            {moonEvents.length > 0 && starEvents.length > 0 && (
+              <div style={{ width: 1, background: C.border, marginTop: 18, alignSelf: 'stretch' }} />
+            )}
+            {starEvents.length > 0 && (
+              <div>
+                <div style={eyebrow}>Stars</div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                  {starEvents.map((ev, i) => (
+                    <div key={i}>
+                      <div style={{ display: 'flex', alignItems: 'baseline', gap: 8 }}>
+                        <span style={{ fontFamily: F_SERIF, fontSize: 15, fontWeight: 400, color: C.ink }}>{ev.name}</span>
+                        <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.06em', color: C.amber }}>{ev.date}</span>
+                      </div>
+                      <div style={{ fontSize: 11, color: C.muted, lineHeight: 1.55 }}>{ev.note}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* 4. Season */}
+      {seasonEvents.length > 0 && (
+        <div style={{ padding: '14px 20px 12px', borderBottom: `1px solid ${C.border}` }}>
+          <div style={eyebrow}>Season</div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+            {seasonEvents.map((ev, i) => (
+              <div key={i}>
+                {i > 0 && <div style={{ height: 1, background: 'rgba(28,28,26,0.05)', marginBottom: 8 }} />}
+                <div style={{ display: 'flex', alignItems: 'baseline', gap: 10 }}>
+                  <span style={{ fontFamily: F_SERIF, fontSize: 15, fontWeight: 400, color: C.ink, minWidth: 110 }}>{ev.name}</span>
+                  <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.06em', color: C.amber, minWidth: 36 }}>{ev.date}</span>
+                  <span style={{ fontSize: 11, color: C.muted, lineHeight: 1.5 }}>{ev.note}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* 5. Pack */}
       {snapshot?.packingHint && (
-        <div style={{ padding: '12px 20px', display: 'flex', gap: 10, alignItems: 'baseline' }}>
-          <span style={{ fontFamily: F, fontSize: 10, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: C.muted, flexShrink: 0 }}>Pack</span>
-          <span style={{ fontFamily: F, fontSize: 13, color: C.body, lineHeight: 1.6 }}>{snapshot.packingHint}</span>
+        <div style={{ padding: '11px 20px', display: 'flex', alignItems: 'baseline', gap: 10 }}>
+          <span style={{ fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: C.muted, flexShrink: 0 }}>Pack</span>
+          <span style={{ fontFamily: F, fontSize: 12, color: 'rgba(26,37,48,0.55)', lineHeight: 1.6 }}>{snapshot.packingHint}</span>
         </div>
       )}
     </div>
