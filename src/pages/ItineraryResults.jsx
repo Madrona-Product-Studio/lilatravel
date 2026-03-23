@@ -1761,10 +1761,22 @@ function DetailPanelContent({ item, lockedItems, onLock, onAlternatives, alterna
 const logisticsLabelStyle = { fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: C.muted, marginBottom: 4, display: 'block' };
 const logisticsInputStyle = { width: '100%', padding: '9px 12px', fontFamily: F, fontSize: 13, color: C.ink, background: C.white, border: `1px solid ${C.border}`, borderRadius: 8, outline: 'none', boxSizing: 'border-box' };
 
-function FlightFormPanel({ data, logistics, onSave, bookingIndex, highlightFields }) {
+function FlightFormPanel({ data, logistics, onSave, bookingIndex, highlightFields: initialHighlights }) {
   const [form, setForm] = useState(data || { airline: '', flightNumber: '', departureAirport: '', arrivalAirport: logistics?.arrivalAirport || '', date: '', departureTime: '', arrivalTime: '', confirmationNumber: '' });
   const set = (k, v) => setForm(prev => ({ ...prev, [k]: v }));
-  const highlight = (field) => highlightFields?.includes(field) ? { borderColor: `${C.amber}80` } : {};
+  const [highlights, setHighlights] = useState(initialHighlights || []);
+  const [uploadError, setUploadError] = useState(null);
+  const highlight = (field) => highlights?.includes(field) ? { borderColor: `${C.amber}80` } : {};
+
+  const handleExtracted = (booking) => {
+    setUploadError(null);
+    if (booking.type === 'flight') {
+      setForm(prev => ({ ...prev, airline: booking.airline || prev.airline, flightNumber: booking.flightNumber || prev.flightNumber, departureAirport: booking.departureAirport || prev.departureAirport, arrivalAirport: booking.arrivalAirport || prev.arrivalAirport, date: booking.date || prev.date, departureTime: booking.departureTime || prev.departureTime, arrivalTime: booking.arrivalTime || prev.arrivalTime, confirmationNumber: booking.confirmationNumber || prev.confirmationNumber }));
+      setHighlights(booking._uncertain || []);
+    } else {
+      setUploadError(`Detected a ${booking.type} — open that section to save it.`);
+    }
+  };
 
   if (data && !form._editing && bookingIndex !== undefined) {
     return (
@@ -1799,6 +1811,13 @@ function FlightFormPanel({ data, logistics, onSave, bookingIndex, highlightField
         <span style={{ fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: C.teal }}>Flights</span>
       </div>
       <h1 style={{ fontFamily: F_SERIF, fontSize: 'clamp(20px, 5vw, 24px)', fontWeight: 300, color: C.ink, lineHeight: 1.25, marginBottom: 20 }}>Your Flight Details</h1>
+      <BookingUploadTrigger onExtracted={handleExtracted} onError={setUploadError} />
+      {uploadError && <div style={{ fontFamily: F, fontSize: 12, color: C.salmon, marginTop: 8 }}>{uploadError}</div>}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 12, margin: '18px 0' }}>
+        <div style={{ flex: 1, height: 1, background: C.border }} />
+        <span style={{ fontFamily: F, fontSize: 11, color: C.muted, whiteSpace: 'nowrap' }}>or enter manually</span>
+        <div style={{ flex: 1, height: 1, background: C.border }} />
+      </div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
         <div><label style={logisticsLabelStyle}>Airline</label><input style={{ ...logisticsInputStyle, ...highlight('airline') }} value={form.airline} onChange={e => set('airline', e.target.value)} placeholder="e.g. United Airlines" /></div>
         <div><label style={logisticsLabelStyle}>Flight Number</label><input style={{ ...logisticsInputStyle, ...highlight('flightNumber') }} value={form.flightNumber} onChange={e => set('flightNumber', e.target.value)} placeholder="e.g. UA 1234" /></div>
@@ -1818,10 +1837,22 @@ function FlightFormPanel({ data, logistics, onSave, bookingIndex, highlightField
   );
 }
 
-function RentalFormPanel({ data, logistics, onSave, bookingIndex, highlightFields }) {
+function RentalFormPanel({ data, logistics, onSave, bookingIndex, highlightFields: initialHighlights }) {
   const [form, setForm] = useState(data || { company: '', confirmationNumber: '', pickupLocation: logistics?.pickupLocation || '', pickupDate: '', returnDate: '' });
   const set = (k, v) => setForm(prev => ({ ...prev, [k]: v }));
-  const highlight = (field) => highlightFields?.includes(field) ? { borderColor: `${C.amber}80` } : {};
+  const [highlights, setHighlights] = useState(initialHighlights || []);
+  const [uploadError, setUploadError] = useState(null);
+  const highlight = (field) => highlights?.includes(field) ? { borderColor: `${C.amber}80` } : {};
+
+  const handleExtracted = (booking) => {
+    setUploadError(null);
+    if (booking.type === 'rental') {
+      setForm(prev => ({ ...prev, company: booking.company || prev.company, confirmationNumber: booking.confirmationNumber || prev.confirmationNumber, pickupLocation: booking.pickupLocation || prev.pickupLocation, pickupDate: booking.pickupDate || prev.pickupDate, returnDate: booking.returnDate || prev.returnDate }));
+      setHighlights(booking._uncertain || []);
+    } else {
+      setUploadError(`Detected a ${booking.type} — open that section to save it.`);
+    }
+  };
 
   if (data && !form._editing && bookingIndex !== undefined) {
     return (
@@ -1856,6 +1887,13 @@ function RentalFormPanel({ data, logistics, onSave, bookingIndex, highlightField
         <span style={{ fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: C.teal }}>Rental Car</span>
       </div>
       <h1 style={{ fontFamily: F_SERIF, fontSize: 'clamp(20px, 5vw, 24px)', fontWeight: 300, color: C.ink, lineHeight: 1.25, marginBottom: 20 }}>Your Rental Details</h1>
+      <BookingUploadTrigger onExtracted={handleExtracted} onError={setUploadError} />
+      {uploadError && <div style={{ fontFamily: F, fontSize: 12, color: C.salmon, marginTop: 8 }}>{uploadError}</div>}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 12, margin: '18px 0' }}>
+        <div style={{ flex: 1, height: 1, background: C.border }} />
+        <span style={{ fontFamily: F, fontSize: 11, color: C.muted, whiteSpace: 'nowrap' }}>or enter manually</span>
+        <div style={{ flex: 1, height: 1, background: C.border }} />
+      </div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
         <div><label style={logisticsLabelStyle}>Rental Company</label><input style={{ ...logisticsInputStyle, ...highlight('company') }} value={form.company} onChange={e => set('company', e.target.value)} placeholder="e.g. Enterprise" /></div>
         <div><label style={logisticsLabelStyle}>Confirmation Number</label><input style={{ ...logisticsInputStyle, ...highlight('confirmationNumber') }} value={form.confirmationNumber} onChange={e => set('confirmationNumber', e.target.value)} placeholder="e.g. ABC123456" /></div>
@@ -2016,10 +2054,22 @@ function BookingCard({ booking, badge, onClick, onRemove }) {
   );
 }
 
-function AccommodationFormPanel({ data, onSave, bookingIndex, highlightFields }) {
+function AccommodationFormPanel({ data, onSave, bookingIndex, highlightFields: initialHighlights }) {
   const [form, setForm] = useState(data || { name: '', confirmationNumber: '', checkIn: '', checkOut: '', address: '', phone: '' });
   const set = (k, v) => setForm(prev => ({ ...prev, [k]: v }));
-  const highlight = (field) => highlightFields?.includes(field) ? { borderColor: `${C.amber}80` } : {};
+  const [highlights, setHighlights] = useState(initialHighlights || []);
+  const [uploadError, setUploadError] = useState(null);
+  const highlight = (field) => highlights?.includes(field) ? { borderColor: `${C.amber}80` } : {};
+
+  const handleExtracted = (booking) => {
+    setUploadError(null);
+    if (booking.type === 'accommodation') {
+      setForm(prev => ({ ...prev, name: booking.name || prev.name, confirmationNumber: booking.confirmationNumber || prev.confirmationNumber, checkIn: booking.checkIn || prev.checkIn, checkOut: booking.checkOut || prev.checkOut, address: booking.address || prev.address, phone: booking.phone || prev.phone }));
+      setHighlights(booking._uncertain || []);
+    } else {
+      setUploadError(`Detected a ${booking.type} — open that section to save it.`);
+    }
+  };
 
   if (data && !form._editing && bookingIndex !== undefined) {
     return (
@@ -2055,6 +2105,13 @@ function AccommodationFormPanel({ data, onSave, bookingIndex, highlightFields })
         <span style={{ fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: C.teal }}>Accommodation</span>
       </div>
       <h1 style={{ fontFamily: F_SERIF, fontSize: 'clamp(20px, 5vw, 24px)', fontWeight: 300, color: C.ink, lineHeight: 1.25, marginBottom: 20 }}>Your Reservation</h1>
+      <BookingUploadTrigger onExtracted={handleExtracted} onError={setUploadError} />
+      {uploadError && <div style={{ fontFamily: F, fontSize: 12, color: C.salmon, marginTop: 8 }}>{uploadError}</div>}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 12, margin: '18px 0' }}>
+        <div style={{ flex: 1, height: 1, background: C.border }} />
+        <span style={{ fontFamily: F, fontSize: 11, color: C.muted, whiteSpace: 'nowrap' }}>or enter manually</span>
+        <div style={{ flex: 1, height: 1, background: C.border }} />
+      </div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
         <div><label style={logisticsLabelStyle}>Property Name</label><input style={{ ...logisticsInputStyle, ...highlight('name') }} value={form.name} onChange={e => set('name', e.target.value)} placeholder="e.g. Desert Rose Inn" /></div>
         <div><label style={logisticsLabelStyle}>Confirmation Number</label><input style={{ ...logisticsInputStyle, ...highlight('confirmationNumber') }} value={form.confirmationNumber} onChange={e => set('confirmationNumber', e.target.value)} placeholder="e.g. HTL-789012" /></div>
@@ -2346,7 +2403,6 @@ function LogisticsPanel({ destination, sticky = true, tripLogistics, onOpenPanel
   const accomName = accom.name;
 
   const reservations = tripLogistics?.reservations || [];
-  const [uploadError, setUploadError] = useState(null);
 
   const hasAnyBookings = flights.length > 0 || rentals.length > 0 || userAccoms.length > 0 || reservations.length > 0;
 
@@ -2417,36 +2473,6 @@ function LogisticsPanel({ destination, sticky = true, tripLogistics, onOpenPanel
   const removeAccom = (index) => onOpenPanel({ _updateLogistics: (prev) => ({ ...prev, accommodations: prev.accommodations.filter((_, i) => i !== index) }) });
   const removeReservation = (index) => onOpenPanel({ _updateLogistics: (prev) => ({ ...prev, reservations: prev.reservations.filter((_, i) => i !== index) }) });
 
-  // Vision-to-form: on extraction, open the correct form pre-filled
-  const handleExtracted = (booking) => {
-    setUploadError(null);
-    if (booking.type === 'flight') {
-      onOpenPanel && onOpenPanel({
-        type: 'flights', savedData: booking, logistics,
-        highlightFields: booking._uncertain || [],
-        onSave: (d) => onOpenPanel({
-          _updateLogistics: (prev) => ({ ...prev, flights: [...(prev.flights || []), d] }),
-        }),
-      });
-    } else if (booking.type === 'rental') {
-      onOpenPanel && onOpenPanel({
-        type: 'rental', savedData: booking, logistics,
-        highlightFields: booking._uncertain || [],
-        onSave: (d) => onOpenPanel({
-          _updateLogistics: (prev) => ({ ...prev, rentals: [...(prev.rentals || []), d] }),
-        }),
-      });
-    } else if (booking.type === 'accommodation') {
-      onOpenPanel && onOpenPanel({
-        type: 'accommodation', savedData: booking,
-        highlightFields: booking._uncertain || [],
-        onSave: (d) => onOpenPanel({
-          _updateLogistics: (prev) => ({ ...prev, accommodations: [...(prev.accommodations || []), d] }),
-        }),
-      });
-    }
-  };
-
   const sectionHeader = (icon, label, onAdd) => (
     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
@@ -2474,16 +2500,6 @@ function LogisticsPanel({ destination, sticky = true, tripLogistics, onOpenPanel
         <div style={{ fontFamily: F_SERIF, fontSize: 18, fontWeight: 300, color: C.ink }}>Logistics</div>
       </div>
 
-      {/* Upload error */}
-      {uploadError && (
-        <div style={{ padding: '8px 16px', background: `${C.salmon}10`, borderBottom: `1px solid ${C.border}` }}>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
-            <span style={{ fontFamily: F, fontSize: 12, color: C.salmon }}>{uploadError}</span>
-            <button onClick={() => setUploadError(null)} style={{ fontFamily: F, fontSize: 11, fontWeight: 600, color: `${C.salmon}80`, background: 'none', border: 'none', cursor: 'pointer', padding: '2px 6px', WebkitTapHighlightColor: 'transparent' }}>✕</button>
-          </div>
-        </div>
-      )}
-
       {/* Flights */}
       <div style={{ padding: '13px 16px', borderBottom: `1px solid ${C.border}` }}>
         {sectionHeader(<PlaneIcon size={12} color={C.muted} />, 'Flights', () => openFlightForm())}
@@ -2498,9 +2514,6 @@ function LogisticsPanel({ destination, sticky = true, tripLogistics, onOpenPanel
             Add your flight for timing-aware scheduling
           </div>
         )}
-        <div style={{ marginTop: 8 }}>
-          <BookingUploadTrigger onExtracted={handleExtracted} onError={setUploadError} />
-        </div>
       </div>
 
       {/* Accommodations */}
@@ -2534,9 +2547,6 @@ function LogisticsPanel({ destination, sticky = true, tripLogistics, onOpenPanel
             {accom.priceRange && <div style={{ fontFamily: F, fontSize: 10, fontWeight: 600, color: PICK_STYLES.stay.color, marginTop: 4 }}>{accom.priceRange}</div>}
           </div>
         )}
-        <div style={{ marginTop: 8 }}>
-          <BookingUploadTrigger onExtracted={handleExtracted} onError={setUploadError} />
-        </div>
       </div>
 
       {/* Rental Cars */}
@@ -2553,9 +2563,6 @@ function LogisticsPanel({ destination, sticky = true, tripLogistics, onOpenPanel
             Add your rental confirmation to keep it handy
           </div>
         )}
-        <div style={{ marginTop: 8 }}>
-          <BookingUploadTrigger onExtracted={handleExtracted} onError={setUploadError} />
-        </div>
       </div>
 
       {/* Other Bookings */}
