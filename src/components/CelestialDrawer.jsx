@@ -4,9 +4,9 @@ import { getCelestialSnapshot } from '@services/celestialService';
 
 const F = "'Quicksand', sans-serif";
 const F_SERIF = "'Cormorant Garamond', serif";
-const EYEBROW = { fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.22em', textTransform: 'uppercase', color: 'rgba(107,122,114,0.55)', marginBottom: 8 };
+const EYEBROW = { fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.22em', textTransform: 'uppercase', color: 'rgba(107,122,114,0.8)', marginBottom: 8 };
 const SECTION_BORDER = { borderBottom: `1px solid ${C.stone}`, padding: '14px 0 13px' };
-const SUB = { fontFamily: F, fontSize: 11, fontWeight: 400, color: '#8a9098', lineHeight: 1.55 };
+const SUB = { fontFamily: F, fontSize: 12, fontWeight: 400, color: 'rgba(26,37,48,0.55)', lineHeight: 1.55 };
 
 const DESTINATION_LABELS = {
   'zion': 'Zion',
@@ -201,12 +201,12 @@ export default function CelestialDrawer({ destination, isMobile }) {
                   <div style={{ height: 3, borderRadius: 2, background: 'linear-gradient(to right, #7aaec8, #D4A853, #E8856A)', marginBottom: 6 }} />
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
                     <div>
-                      <div style={{ fontFamily: F_SERIF, fontSize: 20, fontWeight: 300, color: '#7aaec8', lineHeight: 1 }}>{weather.low}°</div>
+                      <div style={{ fontFamily: F_SERIF, fontSize: 22, fontWeight: 400, color: '#7aaec8', lineHeight: 1 }}>{weather.low}°</div>
                       <div style={{ fontFamily: F, fontSize: 9, color: '#8a9098', marginTop: 1 }}>low</div>
                     </div>
                     <div style={{ fontFamily: F, fontSize: 9, color: 'rgba(26,37,48,0.3)' }}>today</div>
                     <div style={{ textAlign: 'right' }}>
-                      <div style={{ fontFamily: F_SERIF, fontSize: 20, fontWeight: 300, color: '#E8856A', lineHeight: 1 }}>{weather.high}°</div>
+                      <div style={{ fontFamily: F_SERIF, fontSize: 22, fontWeight: 400, color: '#E8856A', lineHeight: 1 }}>{weather.high}°</div>
                       <div style={{ fontFamily: F, fontSize: 9, color: '#8a9098', marginTop: 1 }}>high</div>
                     </div>
                   </div>
@@ -286,7 +286,7 @@ export default function CelestialDrawer({ destination, isMobile }) {
                   <SwellIntensityBar intensity={oceanData.swell.intensity} />
                   <div style={{ fontFamily: F, fontSize: 9, color: '#8a9098', marginBottom: 6 }}>{oceanData.swell.range} typical</div>
                   <div style={{ height: 1, background: 'rgba(28,28,26,0.05)', marginBottom: 6 }} />
-                  <div style={{ fontFamily: F, fontSize: 11, color: '#8a9098', lineHeight: 1.6 }}>{oceanData.swell.note}</div>
+                  <div style={{ fontFamily: F, fontSize: 12, color: 'rgba(26,37,48,0.55)', lineHeight: 1.6 }}>{oceanData.swell.note}</div>
                 </div>
                 <div style={{ width: 1, background: C.stone, marginTop: 18, alignSelf: 'stretch' }} />
                 <div>
@@ -304,7 +304,7 @@ export default function CelestialDrawer({ destination, isMobile }) {
                     <div style={{ fontFamily: F, fontSize: 9, fontWeight: 600, color: '#7aaec8' }}>{oceanData.tides.high}</div>
                   </div>
                   <div style={{ height: 1, background: 'rgba(28,28,26,0.05)', marginBottom: 6 }} />
-                  <div style={{ fontFamily: F, fontSize: 11, color: '#8a9098', lineHeight: 1.6 }}>{oceanData.tides.note}</div>
+                  <div style={{ fontFamily: F, fontSize: 12, color: 'rgba(26,37,48,0.55)', lineHeight: 1.6 }}>{oceanData.tides.note}</div>
                 </div>
               </div>
             </div>

@@ -299,10 +299,14 @@ export async function getCelestialSnapshot(destinationKey = "zion") {
   const config = CELESTIAL_CONFIG[destinationKey];
   const now = new Date();
 
+  // Only fetch river data for destinations with a USGS gauge configured
+  const hasRiver = !!config.usgsSiteId;
+  const hasAlerts = !!config.parkCode;
+
   const [weatherData, riverData, alertsData] = await Promise.allSettled([
     fetchWeather(config.lat, config.lon, config.timezone),
-    getRiverLevel(config.usgsSiteId),
-    fetchNPSAlerts(config.parkCode),
+    hasRiver ? getRiverLevel(config.usgsSiteId) : Promise.resolve(null),
+    hasAlerts ? fetchNPSAlerts(config.parkCode) : Promise.resolve([]),
   ]);
 
   const moonData = getMoonPhase(now);
@@ -331,7 +335,7 @@ export async function getCelestialSnapshot(destinationKey = "zion") {
     sun: sunData,
     moon: moonData,
     sky: skyData,
-    river: riverData.status === "fulfilled" ? riverData.value : null,
+    river: (hasRiver && riverData.status === "fulfilled") ? riverData.value : null,
     nextEvent,
     alerts: alertsData.status === "fulfilled" ? alertsData.value : [],
     npsAlerts: alertsData.status === "fulfilled" ? alertsData.value : [],
