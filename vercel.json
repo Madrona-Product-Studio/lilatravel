@@ -10,7 +10,7 @@
     },
     "api/generate-alternatives.js": {
       "includeFiles": "src/data/destinations/**,prompts/**,src/services/**",
-      "maxDuration": 60
+      "maxDuration": 180
     },
     "api/extract-booking.js": {
       "maxDuration": 30
