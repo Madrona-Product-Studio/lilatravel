@@ -237,7 +237,11 @@ async function fetchNPSAlerts(parkCode) {
   );
   if (!res.ok) throw new Error("NPS fetch failed");
   const data = await res.json();
-  return (data.data || []).map(a => a.title);
+  return (data.data || []).map(a => ({
+    title: a.title,
+    description: a.description || '',
+    category: a.category || 'Information',
+  }));
 }
 
 
@@ -330,6 +334,7 @@ export async function getCelestialSnapshot(destinationKey = "zion") {
     river: riverData.status === "fulfilled" ? riverData.value : null,
     nextEvent,
     alerts: alertsData.status === "fulfilled" ? alertsData.value : [],
+    npsAlerts: alertsData.status === "fulfilled" ? alertsData.value : [],
     fetchedAt: now.toISOString(),
   };
 }

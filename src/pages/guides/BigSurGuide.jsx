@@ -15,7 +15,7 @@ import { Nav, Footer, FadeIn, WhisperBar } from '@components';
 import { C } from '@data/brand';
 import { P } from '@data/photos';
 import { trackEvent } from '@utils/analytics';
-import { getCelestialSnapshot } from '@services/celestialService';
+import { CelestialDrawer } from '@components';
 import { Helmet } from 'react-helmet-async';
 
 
@@ -764,134 +764,6 @@ function GuideNav({ isMobile }) {
 }
 
 
-// --- Celestial Drawer ---------------------------------------------------------
-
-function CelestialDrawer({ isMobile }) {
-  const [open, setOpen] = useState(false);
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const contentRef = useRef(null);
-  const [contentHeight, setContentHeight] = useState(0);
-
-  useEffect(() => {
-    getCelestialSnapshot("big-sur")
-      .then(setData)
-      .catch(() => {})
-      .finally(() => setLoading(false));
-  }, []);
-
-  useEffect(() => {
-    if (contentRef.current) setContentHeight(contentRef.current.scrollHeight);
-  }, [data, open, isMobile]);
-
-  useEffect(() => {
-    if (document.getElementById("celestial-pulse-style")) return;
-    const style = document.createElement("style");
-    style.id = "celestial-pulse-style";
-    style.textContent = `@keyframes celestialPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }`;
-    document.head.appendChild(style);
-    return () => { style.remove(); };
-  }, []);
-
-  const NAV_HEIGHT = isMobile ? 58 : 64;
-
-  if (loading || !data) return (
-    <div style={{ position: "relative", background: C.stone, borderBottom: `1px solid ${C.stone}` }}>
-      <div style={{ height: NAV_HEIGHT + 14 }} />
-      <div style={{ height: 44 }} />
-    </div>
-  );
-
-  const { weather, sun, moon, sky, nextEvent } = data;
-  const LABEL_STYLE = { fontFamily: "'Quicksand', sans-serif", fontSize: 9, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#b8b0a8", marginBottom: 6 };
-  const VAL_STYLE = { fontFamily: "'Quicksand', sans-serif", fontSize: 14, fontWeight: 600, color: C.darkInk, lineHeight: 1.3 };
-  const SUB_STYLE = { fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 400, color: "#8a9098", marginTop: 4 };
-
-  const teasers = [];
-  if (weather) teasers.push(`${weather.temp}° ${weather.condition}`);
-  if (moon) teasers.push(moon.name);
-  if (sky) teasers.push(`Sky: ${sky.label}`);
-  if (sun) teasers.push(`☀ ${sun.rise} – ${sun.set}`);
-
-  return (
-    <div style={{ position: "relative", zIndex: open ? 95 : "auto", background: C.stone, borderBottom: `1px solid ${C.stone}` }}>
-      <div style={{ height: NAV_HEIGHT + 14 }} />
-      <button onClick={() => setOpen(!open)} style={{
-        width: "100%", border: "none", cursor: "pointer", background: "transparent",
-        padding: isMobile ? "14px 20px" : "14px 52px",
-        display: "flex", alignItems: "center", justifyContent: "center", gap: 8, transition: "background 0.2s",
-      }}
-      onMouseEnter={e => e.currentTarget.style.background = `rgba(0,0,0,0.045)`}
-      onMouseLeave={e => e.currentTarget.style.background = "transparent"}>
-        <span style={{ width: 5, height: 5, borderRadius: "50%", background: C.seaGlass, animation: "celestialPulse 2s ease-in-out infinite", flexShrink: 0 }} />
-        <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "#5c6358", flexShrink: 0 }}>
-          {"Big Sur Right Now"}
-        </span>
-        {!isMobile && teasers.length > 0 && (
-          <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600, color: "#6b6359", letterSpacing: "0.04em" }}>
-            — {teasers.map((t, i) => (
-              <span key={i}>
-                {i > 0 && <span style={{ margin: "0 10px", opacity: 0.55, fontWeight: 300 }}>|</span>}
-                {t}
-              </span>
-            ))}
-          </span>
-        )}
-        {isMobile && weather && (
-          <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600, color: "#6b6359", letterSpacing: "0.04em" }}>
-            · {weather.temp}° · {moon?.name}
-          </span>
-        )}
-        <span style={{ fontSize: 14, color: "#6b6359", transition: "color 0.3s ease, transform 0.35s ease", marginLeft: 6, flexShrink: 0, display: "inline-block", lineHeight: 1 }}>{open ? "✕" : "▾"}</span>
-      </button>
-
-      <div style={{ position: "relative", zIndex: 95, maxHeight: open ? contentHeight : 0, overflow: "hidden", transition: "max-height 0.5s ease", background: C.warmWhite }}>
-        <div ref={contentRef} style={{ padding: isMobile ? "16px 20px 24px" : "20px 52px 32px", maxWidth: 920, margin: "0 auto" }}>
-          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : "repeat(3, 1fr)", gap: isMobile ? "20px 24px" : "24px 40px", paddingBottom: 0 }}>
-            {weather && (
-              <div>
-                <div style={LABEL_STYLE}>Conditions</div>
-                <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 28, fontWeight: 300, color: C.darkInk, lineHeight: 1 }}>{weather.temp}°</span>
-                <div style={SUB_STYLE}>H {weather.high}° / L {weather.low}° · {weather.condition}</div>
-              </div>
-            )}
-            {sun && (
-              <div>
-                <div style={LABEL_STYLE}>Daylight</div>
-                <div style={{ ...VAL_STYLE, color: C.seaGlass }}>{sun.daylight}</div>
-                <div style={SUB_STYLE}>{sun.rise} – {sun.set}</div>
-              </div>
-            )}
-            {moon && (
-              <div>
-                <div style={LABEL_STYLE}>Moon</div>
-                <div style={VAL_STYLE}>{moon.name}</div>
-                <div style={SUB_STYLE}>{moon.phase}% illuminated</div>
-              </div>
-            )}
-            {sky && (
-              <div>
-                <div style={LABEL_STYLE}>Tonight's Sky</div>
-                <div style={{ ...VAL_STYLE, color: C.seaGlass }}>{sky.label}</div>
-                <div style={SUB_STYLE}>
-                  Bortle {sky.bortle}
-                  {sky.milkyWayVisible && sky.milkyWayWindow && <> · MW {sky.milkyWayWindow}</>}
-                </div>
-              </div>
-            )}
-            {nextEvent && (
-              <div>
-                <div style={LABEL_STYLE}>Next Celestial Event</div>
-                <div style={VAL_STYLE}>{nextEvent.name}</div>
-                <div style={SUB_STYLE}>{nextEvent.date} · {nextEvent.daysAway}d away</div>
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 
 // --- Main Page ----------------------------------------------------------------
@@ -937,7 +809,7 @@ export default function BigSurGuide() {
       <Nav />
 
       {/* == CELESTIAL DRAWER ================================================ */}
-      <CelestialDrawer isMobile={isMobile} />
+      <CelestialDrawer destination="big-sur" isMobile={isMobile} />
 
       {/* == TITLE MASTHEAD ================================================== */}
       <section style={{ background: C.cream }}>
