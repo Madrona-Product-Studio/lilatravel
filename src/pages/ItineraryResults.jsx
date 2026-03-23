@@ -108,20 +108,20 @@ const PRACTICE_TAG_LABELS = {
 
 const PRACTICE_MAP = {
   yoga:         { color: '#4A9B9F', paths: ['M12 20 C12 20 8 16 8 12 C8 8 10 5 12 3 C14 5 16 8 16 12 C16 16 12 20 12 20Z', 'M12 20 C12 20 5 15 4 11 C3 7 6 5 8 6', 'M12 20 C12 20 19 15 20 11 C21 7 18 5 16 6'], fill: 'rgba(74,155,159,0.12)' },
-  breathwork:   { color: '#7aaec8', paths: ['M12 2 L12 22', 'M12 5 L17 5 L17 9 L12 9', 'M12 9 L7 9 L7 13 L12 13', 'M12 13 L17 13 L17 17 L12 17'], fill: null },
+  breathwork:   { color: '#7aaec8', paths: ['M5 7 L19 7 L19 21 L5 21 Z'], fill: null, circles: [{ cx: 12, cy: 7, r: 2, fill: '#7aaec8' }] },
   coldPlunge:   { color: '#8FA39A', paths: ['M2 12 C4 8 6 8 8 12 C10 16 12 16 14 12 C16 8 18 8 22 12', 'M2 16 C4 12 6 12 8 16 C10 20 12 20 14 16'], fill: null },
   meditation:   { color: '#6B7A72', paths: ['M12 3 C17.5 3 21 7 21 12 C21 17 17.5 21 12 21 C6.5 21 3 17 3 12 C3 8.5 5 5.5 8 4'], fill: null },
   hiking:       { color: '#D4A853', paths: ['M3 20 L10 6 L14 13 L17 8 L21 20 Z', 'M3 20 L10 6 L14 13 L17 8 L21 20'], fill: 'rgba(212,168,83,0.1)' },
   stargazing:   { color: '#2d3d4d', paths: ['M18 12 C18 7 13 3 8 5 C12 5 15 8 15 12 C15 16 12 19 8 19 C13 21 18 17 18 12Z', 'M4 5 L4.8 3 L5.6 5', 'M3 9 L3.5 8 L4 9', 'M6 3 L6.4 2 L6.8 3'], fill: 'rgba(45,61,77,0.08)' },
-  stewardship:  { color: '#6B7A72', paths: ['M12 3 L12 21', 'M12 3 L16.5 6', 'M12 9 L7.5 12', 'M12 15 L16.5 18'], fill: null },
-  spa:          { color: '#8FA39A', paths: ['M6 14 C6 10 9 7 12 7 C15 7 18 10 18 14', 'M4 16 C5 12 8 9 12 9 C16 9 19 12 20 16', 'M4 16 C4 18 6 19 8 18', 'M20 16 C20 18 18 19 16 18'], fill: 'rgba(143,163,154,0.1)' },
+  stewardship:  { color: '#6B7A72', paths: ['M12 3 L12 14', 'M9.5 3 Q12 1.5 14.5 3', 'M8 14 L8 18 Q8 21 12 21 Q16 21 16 18 L16 14 Z', 'M8 14 L16 14'], fill: null },
+  spa:          { color: '#8FA39A', paths: ['M5 8 Q9 6 12 8 Q15 10 19 8', 'M5 12 Q9 10 12 12 Q15 14 19 12', 'M5 16 Q9 14 12 16 Q15 18 19 16'], fill: null },
   sauna:        { color: '#E8856A', paths: ['M12 2 C12 2 18 8 18 14 C18 17.3 15.3 20 12 20 C8.7 20 6 17.3 6 14 C6 8 12 2 12 2Z'], fill: 'rgba(232,133,106,0.1)' },
   biking:       { color: '#7aaec8', paths: ['M7 16 a3.5 3.5 0 1 0 0.001 0', 'M17 16 a3.5 3.5 0 1 0 0.001 0', 'M7 16 L10 8 L14 8', 'M14 8 L17 16 L12 16 L10 8'], fill: null },
   nativeCulture:{ color: '#6B7A72', paths: ['M5 6 L19 6', 'M6 10 L18 10', 'M7 6 L7 21', 'M17 6 L17 21', 'M3 5 L21 5'], fill: null },
   wildlife:     { color: '#D4A853', paths: ['M12 15 a4 3.5 0 1 0 0.001 0', 'M7.5 10 a1.8 1.8 0 1 0 0.001 0', 'M10.5 7.5 a1.8 1.8 0 1 0 0.001 0', 'M13.5 7.5 a1.8 1.8 0 1 0 0.001 0', 'M16.5 10 a1.8 1.8 0 1 0 0.001 0'], fill: null },
   hotSprings:   { color: '#4A9B9F', paths: ['M2 12 C4 8 6 8 8 12 C10 16 12 16 14 12 C16 8 18 8 22 12'], fill: null },
-  paddling:     { color: '#7aaec8', paths: ['M4 19 L10 5', 'M8 4 L10 5 L11 7', 'M2 16 C4 13 7 13 9 16 C11 19 14 19 16 16 C18 13 20 13 22 16'], fill: null },
-  farmToTable:  { color: '#D4A853', paths: ['M8 3 L8 14', 'M8 3 C8 3 5 5 5 7 C5 9 6.5 10 8 10', 'M8 3 C8 3 11 5 11 7 C11 9 9.5 10 8 10', 'M16 4 L16 21', 'M16 8 L16 8', 'M14 4 L14 10', 'M18 4 L18 10', 'M14 10 L18 10'], fill: null },
+  paddling:     { color: '#7aaec8', paths: ['M12 3 L12 21', 'M12 13 C9 15 8 19 12 21 C16 19 15 15 12 13Z', 'M9.5 3 L14.5 3'], fill: null },
+  farmToTable:  { color: '#D4A853', paths: ['M9 21 L9 11', 'M7 3 L7 7 Q7 11 9 11 Q11 11 11 7 L11 3', 'M9 3 L9 7', 'M15 3 C17 3 17 5 17 8 L17 21', 'M15 3 L15 8 Q15 11 17 11'], fill: null },
   musicAndArts: { color: '#E8856A', paths: ['M9 18 L9 6 L19 4 L19 16'], fill: null, circles: [{ cx: 6.5, cy: 18, r: 2.5, fill: 'rgba(232,133,106,0.1)' }, { cx: 16.5, cy: 16, r: 2.5, fill: 'rgba(232,133,106,0.1)' }] },
 };
 

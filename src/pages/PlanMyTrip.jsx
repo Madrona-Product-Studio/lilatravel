@@ -78,6 +78,17 @@ function IconDharmaWheel({ size, color }) {
   );
 }
 
+function IconShovel({ size, color }) {
+  return (
+    <Icon size={size} color={color}>
+      <line x1="12" y1="3" x2="12" y2="14"/>
+      <path d="M9.5 3 Q12 1.5 14.5 3"/>
+      <path d="M8 14 L8 18 Q8 21 12 21 Q16 21 16 18 L16 14 Z"/>
+      <line x1="8" y1="14" x2="16" y2="14"/>
+    </Icon>
+  );
+}
+
 function IconBodhiLeaf({ size, color }) {
   return (
     <Icon size={size} color={color}>
@@ -152,26 +163,24 @@ function IconMudra({ size, color }) {
   );
 }
 
-function IconPaddle({ size, color }) {
+function IconSinglePaddle({ size, color }) {
   return (
     <Icon size={size} color={color}>
-      <path d="M4 19 L10 5" />
-      <path d="M8 4 L10 5 L11 7" />
-      <path d="M2 16 C4 13 7 13 9 16 C11 19 14 19 16 16 C18 13 20 13 22 16" />
+      <line x1="12" y1="3" x2="12" y2="21"/>
+      <path d="M12 13 C9 15 8 19 12 21 C16 19 15 15 12 13Z"/>
+      <line x1="9.5" y1="3" x2="14.5" y2="3"/>
     </Icon>
   );
 }
 
-function IconForkLeaf({ size, color }) {
+function IconForkKnife({ size, color }) {
   return (
     <Icon size={size} color={color}>
-      <path d="M8 3 L8 14" />
-      <path d="M8 3 C8 3 5 5 5 7 C5 9 6.5 10 8 10" />
-      <path d="M8 3 C8 3 11 5 11 7 C11 9 9.5 10 8 10" />
-      <path d="M16 4 L16 21" />
-      <path d="M14 4 L14 10" />
-      <path d="M18 4 L18 10" />
-      <path d="M14 10 L18 10" />
+      <line x1="9" y1="21" x2="9" y2="11"/>
+      <path d="M7 3 L7 7 Q7 11 9 11 Q11 11 11 7 L11 3"/>
+      <line x1="9" y1="3" x2="9" y2="7"/>
+      <path d="M15 3 C17 3 17 5 17 8 L17 21"/>
+      <path d="M15 3 L15 8 Q15 11 17 11"/>
     </Icon>
   );
 }
@@ -198,13 +207,11 @@ function IconMagatama({ size, color }) {
   );
 }
 
-function IconShide({ size, color }) {
+function IconBoxBreath({ size, color }) {
   return (
     <Icon size={size} color={color}>
-      <line x1="12" y1="2" x2="12" y2="22" />
-      <path d="M12 5 L17 5 L17 9 L12 9" fill={`${color}08`} />
-      <path d="M12 9 L7 9 L7 13 L12 13" fill={`${color}08`} />
-      <path d="M12 13 L17 13 L17 17 L12 17" fill={`${color}08`} />
+      <rect x="5" y="7" width="14" height="14" rx="1.5"/>
+      <circle cx="12" cy="7" r="2" fill={color} stroke="none"/>
     </Icon>
   );
 }
@@ -332,20 +339,20 @@ const INTENTIONS = [
 
 const PRACTICES = [
   { id: "yoga",         label: "Yoga",           icon: IconLotus,       color: C.oceanTeal },
-  { id: "breathwork",   label: "Breathwork",     icon: IconShide,       color: C.skyBlue },
+  { id: "breathwork",   label: "Breathwork",     icon: IconBoxBreath,   color: C.skyBlue },
   { id: "coldPlunge",   label: "Cold Plunge",    icon: IconWave,        color: C.seaGlass },
   { id: "meditation",   label: "Meditation",     icon: IconEnso,        color: C.sage },
   { id: "hiking",       label: "Hiking",         icon: IconMountain,    color: C.goldenAmber },
   { id: "stargazing",   label: "Stargazing",     icon: IconStars,       color: C.slateLight },
-  { id: "stewardship",  label: "Stewardship",    icon: IconDharmaWheel, color: C.seaGlass },
-  { id: "spa",          label: "Spa & Massage",  icon: IconMassage,     color: C.sageLight },
+  { id: "stewardship",  label: "Stewardship",    icon: IconShovel,      color: C.seaGlass },
+  { id: "spa",          label: "Spa & Massage",  icon: IconSoundBath,   color: C.sageLight },
   { id: "sauna",        label: "Sauna",          icon: IconFlame,       color: C.sunSalmon },
   { id: "biking",       label: "Biking",         icon: IconBike,        color: C.skyBlue },
   { id: "nativeCulture",label: "Native Culture", icon: IconTorii,       color: C.sage },
   { id: "wildlife",     label: "Wildlife",       icon: IconPaw,         color: C.goldenAmber },
   { id: "hotSprings",   label: "Hot Springs",    icon: IconWave,        color: C.oceanTeal },
-  { id: "paddling",     label: "Paddling",       icon: IconPaddle,      color: C.skyBlue },
-  { id: "farmToTable",  label: "Farm to Table",  icon: IconForkLeaf,    color: C.goldenAmber },
+  { id: "paddling",     label: "Paddling",       icon: IconSinglePaddle, color: C.skyBlue },
+  { id: "farmToTable",  label: "Farm to Table",  icon: IconForkKnife,   color: C.goldenAmber },
   { id: "musicAndArts", label: "Music & Arts",   icon: IconMusic,       color: C.sunSalmon },
 ];
 
