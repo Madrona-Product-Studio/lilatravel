@@ -354,6 +354,72 @@ const CELESTIAL_BY_MONTH = {
   december:  { sky: 'Winter Solstice',  events: [{ icon: '\u2600\uFE0F', name: 'Winter Solstice', date: 'Dec 21', note: 'Shortest day. Most dramatic light of the year.' }, { icon: '\u{1F320}', name: 'Geminids',        date: 'Dec 13\u201314', note: 'Best meteor shower of the year. 120/hour at peak.' }, { icon: '\u{1F311}', name: 'New Moon',       date: 'Dec 30', note: 'Year-end dark sky. Crisp winter air.' }] },
 };
 
+const OCEAN_BY_MONTH = {
+  january: {
+    swell: { name: 'Peak NW Swell', range: '6–12 ft', intensity: 5, note: 'Largest swells of the year. Powerful and consistent. Experienced surfers only.' },
+    tides: { name: 'King Tides', high: '5.9 ft', low: '−0.9 ft', note: 'Extreme tidal swings. Minus tides in the afternoon expose hidden tide pools and sea caves.' },
+  },
+  february: {
+    swell: { name: 'Strong NW Swell', range: '5–10 ft', intensity: 4, note: 'Still powerful NW energy. Occasional windows of clean surf between systems.' },
+    tides: { name: 'Spring Tides', high: '5.7 ft', low: '−0.6 ft', note: 'Large range continues. Minus tides shift toward morning — good for early tide pool walks.' },
+  },
+  march: {
+    swell: { name: 'NW Swell Fading', range: '4–8 ft', intensity: 3, note: 'Winter swell season winding down. More consistent windows of cleaner conditions.' },
+    tides: { name: 'Morning Minus Tides', high: '5.4 ft', low: '−0.4 ft', note: 'Best morning tide pool access of the year. Lows fall early — arrive at dawn.' },
+  },
+  april: {
+    swell: { name: 'Mixed Swell', range: '3–6 ft', intensity: 3, note: 'Transition month. NW and S swells mix. Calmer mornings, wind picks up by afternoon.' },
+    tides: { name: 'Minus Tides at Dawn', high: '5.2 ft', low: '−0.3 ft', note: 'Excellent early morning low tide access. Hidden pools and rocky reefs exposed at sunrise.' },
+  },
+  may: {
+    swell: { name: 'Spring Calm', range: '2–5 ft', intensity: 2, note: 'Ocean settles. Light S swells. Good for kayaking, paddling, and beginner surfing.' },
+    tides: { name: 'Minus Tides at Dawn', high: '5.0 ft', low: '−0.2 ft', note: 'Low tides fall at first light. Calm seas make coastal exploration easy.' },
+  },
+  june: {
+    swell: { name: 'Summer Calm', range: '1–3 ft', intensity: 1, note: 'Gentlest ocean of the year. Ideal for beginners, snorkeling, and flat-water paddling.' },
+    tides: { name: 'Moderate Range', high: '4.5 ft', low: '0.1 ft', note: 'Predictable rhythm. Morning lows make for easy tide pool access before crowds arrive.' },
+  },
+  july: {
+    swell: { name: 'Summer Calm', range: '1–3 ft', intensity: 1, note: 'Consistent light S swell. Warm water. Best month for calm ocean activities.' },
+    tides: { name: 'Moderate Range', high: '4.6 ft', low: '0.2 ft', note: 'Stable, predictable tides. High tide in the morning, low in the afternoon.' },
+  },
+  august: {
+    swell: { name: 'S Swell Season', range: '2–5 ft', intensity: 2, note: 'Southern hemisphere storms send occasional long-period swells. Fun for all levels.' },
+    tides: { name: 'Moderate Range', high: '4.8 ft', low: '0.0 ft', note: 'Range building through the month. Afternoon lows best for beach exploration.' },
+  },
+  september: {
+    swell: { name: 'Swell Building', range: '3–6 ft', intensity: 3, note: 'NW swell season begins. First powerful sets of autumn. Mornings tend to be cleanest.' },
+    tides: { name: 'Tides Building', high: '5.1 ft', low: '−0.3 ft', note: 'Range increasing. Minus tides return to late afternoon. Coastal access improves.' },
+  },
+  october: {
+    swell: { name: 'NW Swell Arrives', range: '4–8 ft', intensity: 3, note: 'Autumn swells arrive with force. Consistent NW energy. Best for intermediate to advanced surfers.' },
+    tides: { name: 'Tides Strengthening', high: '5.4 ft', low: '−0.6 ft', note: 'Strong tidal swings return. Low tides at dusk begin to expose rocky reefs and tide pools.' },
+  },
+  november: {
+    swell: { name: 'NW Swell Season', range: '4–8 ft', intensity: 3, note: 'Powerful NW sets. First serious swell month. Experienced surfers. Cleanest in the morning.' },
+    tides: { name: 'King Tides', high: '5.8 ft', low: '−0.8 ft', note: 'Largest swings of the year begin. Minus tides at dusk expose hidden tide pools and sea caves.' },
+  },
+  december: {
+    swell: { name: 'Peak NW Swell', range: '6–12 ft', intensity: 5, note: 'Biggest swells of the year. Powerful and unpredictable. Experienced surfers only.' },
+    tides: { name: 'King Tides', high: '6.0 ft', low: '−1.0 ft', note: 'Extreme tidal range. Dramatic high tides flood beaches. Extraordinary minus tides at low.' },
+  },
+};
+
+function SwellIntensityBar({ intensity }) {
+  return (
+    <div style={{ display: 'flex', gap: 3, marginBottom: 4 }}>
+      {[1,2,3,4,5].map(i => (
+        <div key={i} style={{
+          height: 7, flex: 1, borderRadius: 1,
+          background: i <= intensity
+            ? `rgba(122,174,200,${0.4 + (i / intensity) * 0.5})`
+            : 'rgba(122,174,200,0.12)',
+        }} />
+      ))}
+    </div>
+  );
+}
+
 // Moon phase emojis for the pill display
 const MOON_EMOJI = {
   'New Moon': '🌑', 'Waxing Crescent': '🌒', 'First Quarter': '🌓',
@@ -361,7 +427,7 @@ const MOON_EMOJI = {
   'Last Quarter': '🌗', 'Waning Crescent': '🌘',
 };
 
-function CelestialSnapshot({ snapshot, celestial, weather, month }) {
+function CelestialSnapshot({ snapshot, celestial, weather, month, destination }) {
   // Resolve data
   const avgHigh   = snapshot?.avgHigh ?? (weather?.length > 0 ? Math.round(weather.map(d=>d.high).reduce((a,b)=>a+b,0)/weather.length) : null);
   const avgLow    = snapshot?.avgLow  ?? (weather?.length > 0 ? Math.round(weather.map(d=>d.low).reduce((a,b)=>a+b,0)/weather.length) : null);
@@ -371,6 +437,10 @@ function CelestialSnapshot({ snapshot, celestial, weather, month }) {
 
   const monthKey  = (month || '').toLowerCase();
   const monthData = CELESTIAL_BY_MONTH[monthKey] ?? CELESTIAL_BY_MONTH['september'];
+
+  const COASTAL_DESTINATIONS = ['big-sur', 'kauai', 'olympic-peninsula', 'vancouver-island'];
+  const isCoastal = COASTAL_DESTINATIONS.includes((destination || '').toLowerCase());
+  const oceanData = isCoastal ? (OCEAN_BY_MONTH[monthKey] ?? OCEAN_BY_MONTH['september']) : null;
   const { sky, events } = monthData;
 
   // Split events into categories
@@ -537,7 +607,48 @@ function CelestialSnapshot({ snapshot, celestial, weather, month }) {
         </div>
       )}
 
-      {/* 4. Season */}
+      {/* 4. Ocean (coastal destinations only) */}
+      {isCoastal && oceanData && (
+        <div style={{ padding: '14px 20px 13px', borderBottom: `1px solid ${C.border}` }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1px 1fr', gap: '0 16px', alignItems: 'start' }}>
+
+            {/* Swell */}
+            <div>
+              <div style={{ fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.22em', textTransform: 'uppercase', color: `${C.sage}88`, marginBottom: 10 }}>Swell</div>
+              <div style={{ fontFamily: F_SERIF, fontSize: 15, fontWeight: 400, color: C.ink, marginBottom: 6 }}>{oceanData.swell.name}</div>
+              <SwellIntensityBar intensity={oceanData.swell.intensity} />
+              <div style={{ fontFamily: F, fontSize: 9, color: C.muted, marginBottom: 6 }}>{oceanData.swell.range} typical</div>
+              <div style={{ height: 1, background: 'rgba(28,28,26,0.05)', marginBottom: 6 }} />
+              <div style={{ fontFamily: F, fontSize: 11, color: C.muted, lineHeight: 1.6 }}>{oceanData.swell.note}</div>
+            </div>
+
+            {/* Divider */}
+            <div style={{ width: 1, background: C.border, marginTop: 18, alignSelf: 'stretch' }} />
+
+            {/* Tides */}
+            <div>
+              <div style={{ fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.22em', textTransform: 'uppercase', color: `${C.sage}88`, marginBottom: 10 }}>Tides</div>
+              <div style={{ fontFamily: F_SERIF, fontSize: 15, fontWeight: 400, color: C.ink, marginBottom: 6 }}>{oceanData.tides.name}</div>
+              <div style={{ position: 'relative', height: 7, borderRadius: 4, background: 'rgba(122,174,200,0.12)', marginBottom: 4 }}>
+                <div style={{
+                  position: 'absolute', left: 0, top: 0, height: 7, borderRadius: 4,
+                  width: `${Math.min(95, Math.max(30, (parseFloat(oceanData.tides.high) / 7) * 100))}%`,
+                  background: 'linear-gradient(to right, rgba(122,174,200,0.25), rgba(122,174,200,0.65))',
+                }} />
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
+                <div style={{ fontFamily: F, fontSize: 9, color: 'rgba(122,174,200,0.55)' }}>{oceanData.tides.low}</div>
+                <div style={{ fontFamily: F, fontSize: 9, fontWeight: 600, color: '#7aaec8' }}>{oceanData.tides.high}</div>
+              </div>
+              <div style={{ height: 1, background: 'rgba(28,28,26,0.05)', marginBottom: 6 }} />
+              <div style={{ fontFamily: F, fontSize: 11, color: C.muted, lineHeight: 1.6 }}>{oceanData.tides.note}</div>
+            </div>
+
+          </div>
+        </div>
+      )}
+
+      {/* 5. Season */}
       {seasonEvents.length > 0 && (
         <div style={{ padding: '14px 20px 12px', borderBottom: `1px solid ${C.border}` }}>
           <div style={eyebrow}>Season</div>
@@ -4792,6 +4903,7 @@ export default function ItineraryResults() {
             celestial={metadata?.celestial}
             weather={metadata?.weather}
             month={formData?.month}
+            destination={metadata?.destination || formData?.destination}
           />
         )}
 
