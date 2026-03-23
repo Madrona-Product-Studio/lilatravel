@@ -1940,11 +1940,11 @@ const GENERATING_STEPS = [
 ];
 
 function estimateLabel(days) {
-  if (days <= 2) return "Usually under a minute";
-  if (days <= 3) return "Usually about a minute";
-  if (days <= 5) return "Usually a minute or two";
-  if (days <= 7) return "Usually about two minutes";
-  return "Usually two to three minutes";
+  if (days <= 2) return "Usually about a minute";
+  if (days <= 3) return "Usually a minute or two";
+  if (days <= 5) return "Usually two to three minutes";
+  if (days <= 7) return "Usually about three minutes";
+  return "Usually three to four minutes";
 }
 
 function GeneratingScreen({ destination, days = 4 }) {
@@ -1954,11 +1954,18 @@ function GeneratingScreen({ destination, days = 4 }) {
   const activeIndex = completedIndex + 1;
 
   useEffect(() => {
-    // Scale timings to trip length: ~18s base + ~10s per day, spread across 7 steps
-    const total = 18000 + days * 10000;
-    const timings = GENERATING_STEPS.map((_, i) =>
-      Math.round(total * ((i + 1) / (GENERATING_STEPS.length + 1)))
-    );
+    // Scale timings to trip length: ~30s base + ~18s per day
+    // Back-weight: later steps take progressively longer so "Finalizing" doesn't linger
+    const total = 30000 + days * 18000;
+    const n = GENERATING_STEPS.length;
+    // Quadratic weighting: step i gets weight (i+1)^1.4
+    const weights = GENERATING_STEPS.map((_, i) => Math.pow(i + 1, 1.4));
+    const sumW = weights.reduce((a, b) => a + b, 0);
+    let cumulative = 0;
+    const timings = weights.map(w => {
+      cumulative += w;
+      return Math.round(total * (cumulative / sumW));
+    });
     const timeouts = timings.map((delay, i) =>
       setTimeout(() => setCompletedIndex(i), delay)
     );
