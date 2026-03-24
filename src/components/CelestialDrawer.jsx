@@ -4,9 +4,11 @@ import { getCelestialSnapshot } from '@services/celestialService';
 
 const F = "'Quicksand', sans-serif";
 const F_SERIF = "'Cormorant Garamond', serif";
-const EYEBROW = { fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.22em', textTransform: 'uppercase', color: 'rgba(107,122,114,0.8)', marginBottom: 8 };
-const SECTION_BORDER = { borderBottom: `1px solid ${C.stone}`, padding: '14px 0 13px' };
-const SUB = { fontFamily: F, fontSize: 12, fontWeight: 400, color: 'rgba(26,37,48,0.55)', lineHeight: 1.55 };
+const SAGE = '#6B8078';
+const BODY_COLOR = 'rgba(26,37,48,0.65)';
+const EYEBROW = { fontFamily: F, fontSize: 10, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: SAGE, marginBottom: 10 };
+const SECTION_BORDER = { borderBottom: `1px solid ${C.stone}`, padding: '12px 0 11px' };
+const SUB = { fontFamily: F, fontSize: 12, fontWeight: 400, color: BODY_COLOR, lineHeight: 1.65 };
 
 const DESTINATION_LABELS = {
   'zion': 'Zion',
@@ -202,12 +204,12 @@ export default function CelestialDrawer({ destination, isMobile }) {
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
                     <div>
                       <div style={{ fontFamily: F_SERIF, fontSize: 22, fontWeight: 400, color: '#7aaec8', lineHeight: 1 }}>{weather.low}°</div>
-                      <div style={{ fontFamily: F, fontSize: 10, color: 'rgba(26,37,48,0.5)', marginTop: 1 }}>low</div>
+                      <div style={{ fontFamily: F, fontSize: 10, color: BODY_COLOR, marginTop: 1 }}>low</div>
                     </div>
-                    <div style={{ fontFamily: F, fontSize: 10, color: 'rgba(26,37,48,0.45)' }}>today</div>
+                    <div style={{ fontFamily: F, fontSize: 10, color: BODY_COLOR }}>today</div>
                     <div style={{ textAlign: 'right' }}>
                       <div style={{ fontFamily: F_SERIF, fontSize: 22, fontWeight: 400, color: '#E8856A', lineHeight: 1 }}>{weather.high}°</div>
-                      <div style={{ fontFamily: F, fontSize: 10, color: 'rgba(26,37,48,0.5)', marginTop: 1 }}>high</div>
+                      <div style={{ fontFamily: F, fontSize: 10, color: BODY_COLOR, marginTop: 1 }}>high</div>
                     </div>
                   </div>
                 </div>
@@ -217,21 +219,21 @@ export default function CelestialDrawer({ destination, isMobile }) {
                 <div>
                   <div style={EYEBROW}>Sunlight</div>
                   <svg width="100%" height="28" viewBox="0 0 140 28" fill="none" style={{ display: 'block', marginBottom: 4 }}>
-                    <path d="M10 24 Q70 3 130 24" stroke="rgba(212,168,83,0.12)" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
-                    <path d="M10 24 Q70 3 130 24" stroke="rgba(212,168,83,0.5)" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
-                    <circle cx="10" cy="24" r="2.5" fill="rgba(212,168,83,0.85)"/>
-                    <circle cx="130" cy="24" r="2.5" fill="rgba(212,168,83,0.35)"/>
-                    <circle cx="70" cy="3" r="1.8" fill="rgba(212,168,83,0.25)"/>
+                    <path d="M10 24 Q70 3 130 24" stroke="rgba(212,168,83,0.15)" strokeWidth="1" strokeLinecap="round" fill="none"/>
+                    <path d="M10 24 Q70 3 130 24" stroke="rgba(212,168,83,0.65)" strokeWidth="1.8" strokeLinecap="round" fill="none"/>
+                    <circle cx="10" cy="24" r="3" fill="rgba(212,168,83,0.9)"/>
+                    <circle cx="130" cy="24" r="3" fill="rgba(212,168,83,0.45)"/>
+                    <circle cx="70" cy="3" r="2" fill="rgba(212,168,83,0.35)"/>
                   </svg>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
                     <div>
                       <div style={{ fontFamily: F, fontSize: 12, fontWeight: 600, color: C.darkInk, lineHeight: 1 }}>{sun.rise}</div>
-                      <div style={{ fontFamily: F, fontSize: 10, color: 'rgba(26,37,48,0.5)', marginTop: 1 }}>sunrise</div>
+                      <div style={{ fontFamily: F, fontSize: 10, color: BODY_COLOR, marginTop: 1 }}>sunrise</div>
                     </div>
-                    <div style={{ fontFamily: F, fontSize: 10, color: 'rgba(26,37,48,0.45)' }}>{sun.daylight}</div>
+                    <div style={{ fontFamily: F, fontSize: 10, color: BODY_COLOR }}>{sun.daylight}</div>
                     <div style={{ textAlign: 'right' }}>
-                      <div style={{ fontFamily: F, fontSize: 12, fontWeight: 600, color: 'rgba(26,37,48,0.7)', lineHeight: 1 }}>{sun.set}</div>
-                      <div style={{ fontFamily: F, fontSize: 10, color: 'rgba(26,37,48,0.5)', marginTop: 1 }}>sunset</div>
+                      <div style={{ fontFamily: F, fontSize: 12, fontWeight: 600, color: C.darkInk, lineHeight: 1 }}>{sun.set}</div>
+                      <div style={{ fontFamily: F, fontSize: 10, color: BODY_COLOR, marginTop: 1 }}>sunset</div>
                     </div>
                   </div>
                 </div>
@@ -245,14 +247,14 @@ export default function CelestialDrawer({ destination, isMobile }) {
               {moon ? (
                 <div>
                   <div style={EYEBROW}>Moon</div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 5 }}>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                       <circle cx="12" cy="12" r="9"
                         fill={moon.phase > 50 ? 'rgba(212,168,83,0.35)' : 'rgba(26,37,48,0.12)'}
                         stroke={moon.phase > 50 ? 'rgba(212,168,83,0.5)' : 'rgba(26,37,48,0.2)'}
                         strokeWidth="1.2"/>
                     </svg>
-                    <span style={{ fontFamily: F_SERIF, fontSize: 16, fontWeight: 400, color: C.darkInk }}>{moon.name}</span>
+                    <span style={{ fontFamily: F_SERIF, fontSize: 20, fontWeight: 400, color: C.darkInk, lineHeight: 1.2 }}>{moon.name}</span>
                   </div>
                   <div style={{ ...SUB, paddingLeft: 22 }}>{moon.phase}% illuminated</div>
                 </div>
@@ -261,14 +263,14 @@ export default function CelestialDrawer({ destination, isMobile }) {
               {sky ? (
                 <div>
                   <div style={EYEBROW}>Tonight's Sky</div>
-                  <div style={{ fontFamily: F_SERIF, fontSize: 16, fontWeight: 400, color: C.seaGlass, marginBottom: 4 }}>{sky.label}</div>
+                  <div style={{ fontFamily: F_SERIF, fontSize: 20, fontWeight: 400, color: C.seaGlass, lineHeight: 1.2, marginBottom: 5 }}>{sky.label}</div>
                   <div style={SUB}>
                     Bortle {sky.bortle}
                     {sky.milkyWayVisible && sky.milkyWayWindow && <> · MW {sky.milkyWayWindow}</>}
                   </div>
                   {nextEvent && (
                     <div style={{ marginTop: 8 }}>
-                      <div style={{ fontFamily: F, fontSize: 10, color: 'rgba(26,37,48,0.5)' }}>{nextEvent.name} · {nextEvent.date} · {nextEvent.daysAway}d away</div>
+                      <div style={{ fontFamily: F, fontSize: 11, color: BODY_COLOR }}>{nextEvent.name} · {nextEvent.date} · {nextEvent.daysAway}d away</div>
                     </div>
                   )}
                 </div>
@@ -282,16 +284,16 @@ export default function CelestialDrawer({ destination, isMobile }) {
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1px 1fr', gap: '0 20px', alignItems: 'start' }}>
                 <div>
                   <div style={EYEBROW}>Swell</div>
-                  <div style={{ fontFamily: F_SERIF, fontSize: 15, fontWeight: 400, color: C.darkInk, marginBottom: 6 }}>{oceanData.swell.name}</div>
+                  <div style={{ fontFamily: F_SERIF, fontSize: 20, fontWeight: 400, color: C.darkInk, lineHeight: 1.2, marginBottom: 5 }}>{oceanData.swell.name}</div>
                   <SwellIntensityBar intensity={oceanData.swell.intensity} />
-                  <div style={{ fontFamily: F, fontSize: 10, color: 'rgba(26,37,48,0.5)', marginBottom: 6 }}>{oceanData.swell.range} typical</div>
+                  <div style={{ fontFamily: F, fontSize: 11, color: BODY_COLOR, marginBottom: 6 }}>{oceanData.swell.range} typical</div>
                   <div style={{ height: 1, background: 'rgba(28,28,26,0.05)', marginBottom: 6 }} />
-                  <div style={{ fontFamily: F, fontSize: 12, color: 'rgba(26,37,48,0.55)', lineHeight: 1.6 }}>{oceanData.swell.note}</div>
+                  <div style={{ fontFamily: F, fontSize: 12, color: BODY_COLOR, lineHeight: 1.65 }}>{oceanData.swell.note}</div>
                 </div>
                 <div style={{ width: 1, background: C.stone, marginTop: 18, alignSelf: 'stretch' }} />
                 <div>
                   <div style={EYEBROW}>Tides</div>
-                  <div style={{ fontFamily: F_SERIF, fontSize: 15, fontWeight: 400, color: C.darkInk, marginBottom: 6 }}>{oceanData.tides.name}</div>
+                  <div style={{ fontFamily: F_SERIF, fontSize: 20, fontWeight: 400, color: C.darkInk, lineHeight: 1.2, marginBottom: 5 }}>{oceanData.tides.name}</div>
                   <div style={{ position: 'relative', height: 7, borderRadius: 4, background: 'rgba(122,174,200,0.12)', marginBottom: 4 }}>
                     <div style={{
                       position: 'absolute', left: 0, top: 0, height: 7, borderRadius: 4,
@@ -304,7 +306,7 @@ export default function CelestialDrawer({ destination, isMobile }) {
                     <div style={{ fontFamily: F, fontSize: 10, fontWeight: 600, color: '#7aaec8' }}>{oceanData.tides.high}</div>
                   </div>
                   <div style={{ height: 1, background: 'rgba(28,28,26,0.05)', marginBottom: 6 }} />
-                  <div style={{ fontFamily: F, fontSize: 12, color: 'rgba(26,37,48,0.55)', lineHeight: 1.6 }}>{oceanData.tides.note}</div>
+                  <div style={{ fontFamily: F, fontSize: 12, color: BODY_COLOR, lineHeight: 1.65 }}>{oceanData.tides.note}</div>
                 </div>
               </div>
             </div>
@@ -325,14 +327,14 @@ export default function CelestialDrawer({ destination, isMobile }) {
           {/* 5. NPS Alerts */}
           {npsAlerts.length > 0 && (
             <div style={SECTION_BORDER}>
-              <div style={{ ...EYEBROW, color: 'rgba(232,133,106,0.7)' }}>Active Alerts</div>
+              <div style={{ ...EYEBROW, color: C.sunSalmon }}>Active Alerts</div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                 {npsAlerts.map((alert, i) => (
                   <div key={i} style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
                     <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#E8856A', flexShrink: 0, marginTop: 5 }} />
                     <div>
-                      <div style={{ fontFamily: F, fontSize: 12, fontWeight: 600, color: C.darkInk, marginBottom: 2 }}>{alert.title}</div>
-                      {alert.description && <div style={SUB}>{alert.description}</div>}
+                      <div style={{ fontFamily: F, fontSize: 13, fontWeight: 700, color: C.darkInk, marginBottom: 3 }}>{alert.title}</div>
+                      {alert.description && <div style={{ fontFamily: F, fontSize: 12, fontWeight: 400, color: BODY_COLOR, lineHeight: 1.6 }}>{alert.description}</div>}
                     </div>
                   </div>
                 ))}
