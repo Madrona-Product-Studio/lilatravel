@@ -1963,7 +1963,7 @@ function GeneratingScreen({ destination, days = 4 }) {
   useEffect(() => {
     // Scale timings to trip length: ~30s base + ~18s per day
     // Back-weight: later steps take progressively longer so "Finalizing" doesn't linger
-    const total = 30000 + days * 18000;
+    const total = 40000 + days * 22000;
     const n = GENERATING_STEPS.length;
     // Quadratic weighting: step i gets weight (i+1)^1.4
     const weights = GENERATING_STEPS.map((_, i) => Math.pow(i + 1, 1.4));
@@ -2246,7 +2246,7 @@ export default function PlanMyTrip() {
     sessionStorage.removeItem('lila_raw_itinerary');
     sessionStorage.removeItem('lila_form_data');
     sessionStorage.removeItem('lila_metadata');
-    const { signal, clear } = fetchWithTimeout(180000);
+    const { signal, clear } = fetchWithTimeout(240000);
     try {
       const apiBody = translateFormToApi(data);
       const response = await fetch('/api/generate-itinerary', {
