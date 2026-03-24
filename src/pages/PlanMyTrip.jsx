@@ -2256,8 +2256,22 @@ export default function PlanMyTrip() {
         signal,
       });
       clear();
-      const { ok, data: result, error } = await safeJson(response);
-      if (ok && result.success) {
+      // Server sends NDJSON (keepalive newlines + final JSON line) to prevent
+      // mobile carriers from killing the connection during long generations.
+      // Parse the last non-empty line as the JSON payload.
+      const text = await response.text();
+      const lines = text.split('\n').filter(l => l.trim());
+      const lastLine = lines[lines.length - 1] || '{}';
+      let result, error;
+      try {
+        result = JSON.parse(lastLine);
+        error = result.success ? null : (result.error || `HTTP ${response.status}`);
+      } catch {
+        result = null;
+        error = `HTTP ${response.status} (invalid JSON)`;
+      }
+      const ok = response.ok && result?.success;
+      if (ok) {
         navigate('/itinerary', {
           state: {
             itinerary: result.itinerary,

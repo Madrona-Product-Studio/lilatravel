@@ -59,15 +59,29 @@ export default async function handler(req, res) {
     const messagePayload = buildClaudeMessage(context, systemPrompt, { skipAlternatives: true });
     const t2 = Date.now();
 
-    // 3. Call Claude
-    const response = await anthropic.messages.create(messagePayload);
-    const t3 = Date.now();
+    // 3. Stream from Claude with keepalive pings to prevent mobile timeouts
+    //    The client receives chunked data but only parses the final JSON line.
+    res.setHeader('Content-Type', 'application/x-ndjson');
+    res.setHeader('Cache-Control', 'no-cache');
+    res.setHeader('X-Accel-Buffering', 'no'); // disable nginx buffering
 
-    // 4. Extract the text response
-    const itinerary = response.content
-      .filter(block => block.type === 'text')
-      .map(block => block.text)
-      .join('\n');
+    // Send an initial keepalive immediately so the connection is established
+    res.write('\n');
+
+    // Keepalive: send a newline every 15s to prevent carrier/browser timeouts
+    const keepalive = setInterval(() => { try { res.write('\n'); } catch {} }, 15000);
+
+    let response, itinerary;
+    try {
+      response = await anthropic.messages.create(messagePayload);
+      itinerary = response.content
+        .filter(block => block.type === 'text')
+        .map(block => block.text)
+        .join('\n');
+    } finally {
+      clearInterval(keepalive);
+    }
+    const t3 = Date.now();
 
     // Timing breakdown
     const timing = {
@@ -79,8 +93,8 @@ export default async function handler(req, res) {
     console.log('[TIMING]', JSON.stringify(timing));
     console.log('[USAGE]', JSON.stringify(response.usage));
 
-    // 5. Return the itinerary
-    return res.status(200).json({
+    // Send the full result as the final line and close
+    res.write(JSON.stringify({
       success: true,
       itinerary,
       metadata: {
@@ -94,21 +108,23 @@ export default async function handler(req, res) {
         timing,
         usage: response.usage,
       }
-    });
+    }) + '\n');
+    return res.end();
 
   } catch (error) {
     console.error('Itinerary generation failed:', error);
 
-    // Handle specific errors
-    if (error.message?.includes('No guide found')) {
-      return res.status(404).json({ 
-        error: `Destination guide not available yet. We're working on it!` 
-      });
-    }
+    const msg = error.message?.includes('No guide found')
+      ? `Destination guide not available yet. We're working on it!`
+      : 'Something went wrong generating your itinerary. Please try again.';
+    const status = error.message?.includes('No guide found') ? 404 : 500;
 
-    return res.status(500).json({ 
-      error: 'Something went wrong generating your itinerary. Please try again.' 
-    });
+    // If headers already sent (keepalive started), write error as NDJSON line
+    if (res.headersSent) {
+      res.write(JSON.stringify({ success: false, error: msg }) + '\n');
+      return res.end();
+    }
+    return res.status(status).json({ error: msg });
   }
 }
 
