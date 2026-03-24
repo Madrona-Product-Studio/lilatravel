@@ -202,12 +202,12 @@ export default function CelestialDrawer({ destination, isMobile }) {
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
                     <div>
                       <div style={{ fontFamily: F_SERIF, fontSize: 22, fontWeight: 400, color: '#7aaec8', lineHeight: 1 }}>{weather.low}°</div>
-                      <div style={{ fontFamily: F, fontSize: 9, color: '#8a9098', marginTop: 1 }}>low</div>
+                      <div style={{ fontFamily: F, fontSize: 10, color: 'rgba(26,37,48,0.5)', marginTop: 1 }}>low</div>
                     </div>
-                    <div style={{ fontFamily: F, fontSize: 9, color: 'rgba(26,37,48,0.3)' }}>today</div>
+                    <div style={{ fontFamily: F, fontSize: 10, color: 'rgba(26,37,48,0.45)' }}>today</div>
                     <div style={{ textAlign: 'right' }}>
                       <div style={{ fontFamily: F_SERIF, fontSize: 22, fontWeight: 400, color: '#E8856A', lineHeight: 1 }}>{weather.high}°</div>
-                      <div style={{ fontFamily: F, fontSize: 9, color: '#8a9098', marginTop: 1 }}>high</div>
+                      <div style={{ fontFamily: F, fontSize: 10, color: 'rgba(26,37,48,0.5)', marginTop: 1 }}>high</div>
                     </div>
                   </div>
                 </div>
@@ -226,12 +226,12 @@ export default function CelestialDrawer({ destination, isMobile }) {
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
                     <div>
                       <div style={{ fontFamily: F, fontSize: 12, fontWeight: 600, color: C.darkInk, lineHeight: 1 }}>{sun.rise}</div>
-                      <div style={{ fontFamily: F, fontSize: 9, color: '#8a9098', marginTop: 1 }}>sunrise</div>
+                      <div style={{ fontFamily: F, fontSize: 10, color: 'rgba(26,37,48,0.5)', marginTop: 1 }}>sunrise</div>
                     </div>
-                    <div style={{ fontFamily: F, fontSize: 10, color: 'rgba(26,37,48,0.32)' }}>{sun.daylight}</div>
+                    <div style={{ fontFamily: F, fontSize: 10, color: 'rgba(26,37,48,0.45)' }}>{sun.daylight}</div>
                     <div style={{ textAlign: 'right' }}>
-                      <div style={{ fontFamily: F, fontSize: 12, fontWeight: 600, color: 'rgba(26,37,48,0.5)', lineHeight: 1 }}>{sun.set}</div>
-                      <div style={{ fontFamily: F, fontSize: 9, color: '#8a9098', marginTop: 1 }}>sunset</div>
+                      <div style={{ fontFamily: F, fontSize: 12, fontWeight: 600, color: 'rgba(26,37,48,0.7)', lineHeight: 1 }}>{sun.set}</div>
+                      <div style={{ fontFamily: F, fontSize: 10, color: 'rgba(26,37,48,0.5)', marginTop: 1 }}>sunset</div>
                     </div>
                   </div>
                 </div>
@@ -268,7 +268,7 @@ export default function CelestialDrawer({ destination, isMobile }) {
                   </div>
                   {nextEvent && (
                     <div style={{ marginTop: 8 }}>
-                      <div style={{ fontFamily: F, fontSize: 9, color: '#8a9098' }}>{nextEvent.name} · {nextEvent.date} · {nextEvent.daysAway}d away</div>
+                      <div style={{ fontFamily: F, fontSize: 10, color: 'rgba(26,37,48,0.5)' }}>{nextEvent.name} · {nextEvent.date} · {nextEvent.daysAway}d away</div>
                     </div>
                   )}
                 </div>
@@ -284,7 +284,7 @@ export default function CelestialDrawer({ destination, isMobile }) {
                   <div style={EYEBROW}>Swell</div>
                   <div style={{ fontFamily: F_SERIF, fontSize: 15, fontWeight: 400, color: C.darkInk, marginBottom: 6 }}>{oceanData.swell.name}</div>
                   <SwellIntensityBar intensity={oceanData.swell.intensity} />
-                  <div style={{ fontFamily: F, fontSize: 9, color: '#8a9098', marginBottom: 6 }}>{oceanData.swell.range} typical</div>
+                  <div style={{ fontFamily: F, fontSize: 10, color: 'rgba(26,37,48,0.5)', marginBottom: 6 }}>{oceanData.swell.range} typical</div>
                   <div style={{ height: 1, background: 'rgba(28,28,26,0.05)', marginBottom: 6 }} />
                   <div style={{ fontFamily: F, fontSize: 12, color: 'rgba(26,37,48,0.55)', lineHeight: 1.6 }}>{oceanData.swell.note}</div>
                 </div>
@@ -300,8 +300,8 @@ export default function CelestialDrawer({ destination, isMobile }) {
                     }} />
                   </div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
-                    <div style={{ fontFamily: F, fontSize: 9, color: 'rgba(122,174,200,0.55)' }}>{oceanData.tides.low}</div>
-                    <div style={{ fontFamily: F, fontSize: 9, fontWeight: 600, color: '#7aaec8' }}>{oceanData.tides.high}</div>
+                    <div style={{ fontFamily: F, fontSize: 10, color: 'rgba(122,174,200,0.7)' }}>{oceanData.tides.low}</div>
+                    <div style={{ fontFamily: F, fontSize: 10, fontWeight: 600, color: '#7aaec8' }}>{oceanData.tides.high}</div>
                   </div>
                   <div style={{ height: 1, background: 'rgba(28,28,26,0.05)', marginBottom: 6 }} />
                   <div style={{ fontFamily: F, fontSize: 12, color: 'rgba(26,37,48,0.55)', lineHeight: 1.6 }}>{oceanData.tides.note}</div>
@@ -329,7 +329,7 @@ export default function CelestialDrawer({ destination, isMobile }) {
               <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                 {npsAlerts.map((alert, i) => (
                   <div key={i} style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
-                    <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#E8856A', opacity: 0.7, flexShrink: 0, marginTop: 5 }} />
+                    <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#E8856A', flexShrink: 0, marginTop: 5 }} />
                     <div>
                       <div style={{ fontFamily: F, fontSize: 12, fontWeight: 600, color: C.darkInk, marginBottom: 2 }}>{alert.title}</div>
                       {alert.description && <div style={SUB}>{alert.description}</div>}
