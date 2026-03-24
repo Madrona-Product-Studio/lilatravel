@@ -202,6 +202,29 @@ function EntryCard({ entry, expanded, onToggle }) {
             </p>
           </div>
 
+          {/* Quote */}
+          {entry.quote?.text && (
+            <div style={{
+              marginTop: 16, padding: '14px 18px',
+              borderLeft: `2px solid ${t.color}30`,
+              background: `${t.color}04`,
+              borderRadius: '0 8px 8px 0',
+            }}>
+              <div style={{
+                fontFamily: FONTS.serif, fontSize: 17, fontWeight: 400,
+                color: V.ink, lineHeight: 1.65, letterSpacing: '0.01em',
+              }}>
+                "{entry.quote.text}"
+              </div>
+              <div style={{
+                fontFamily: FONTS.body, fontSize: 11, fontWeight: 600,
+                color: `${t.color}cc`, marginTop: 8, letterSpacing: '0.04em',
+              }}>
+                — {entry.quote.author}{entry.quote.role ? `, ${entry.quote.role}` : ''}
+              </div>
+            </div>
+          )}
+
           {/* Trip Context */}
           {entry.tripContext && (
             <div style={{
