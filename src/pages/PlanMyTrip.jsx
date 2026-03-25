@@ -963,6 +963,7 @@ function StepWelcome({ onNext }) {
 
 function StepDestination({ data, onChange, onNext, onBack }) {
   const AVAILABLE = new Set(["zion", "joshuaTree", "bigSur", "olympic", "kauai", "vancouver"]); // destinations with guides ready
+  const hasPick = !!data.destination;
 
   // Auto-select if only one destination available
   useEffect(() => {
@@ -970,6 +971,14 @@ function StepDestination({ data, onChange, onNext, onBack }) {
       onChange({ destination: [...AVAILABLE][0] });
     }
   }, []);
+
+  const handleSurprise = () => {
+    const pick = selectDestination(data);
+    onChange({ destination: pick });
+    // Short delay so the user sees which card lights up before advancing
+    setTimeout(() => onNext(), 420);
+  };
+
   return (
     <div>
       <StepTitle eyebrow="Where" title="Where is calling you?" subtitle="Choose the landscape that stirs something." />
@@ -1012,7 +1021,41 @@ function StepDestination({ data, onChange, onNext, onBack }) {
           );
         })}
       </div>
-      <NavButtons onBack={onBack} onNext={onNext} nextDisabled={!data.destination} showBack={false} />
+
+      {/* Two-button row: Surprise Me + Continue */}
+      <div style={{ display: "flex", gap: 12, justifyContent: "center", alignItems: "center", padding: "40px 24px" }}>
+        {hasPick ? (
+          <button onClick={handleSurprise} style={{
+            fontFamily: "'Quicksand', sans-serif",
+            fontSize: 13, fontWeight: 500,
+            background: "none", border: "none",
+            color: C.sage, cursor: "pointer",
+            textDecoration: "underline", textUnderlineOffset: 3,
+            padding: "14px 8px",
+            WebkitTapHighlightColor: "transparent",
+          }}>or surprise me</button>
+        ) : (
+          <button onClick={handleSurprise} style={{
+            fontFamily: "'Quicksand', sans-serif",
+            fontSize: 14, fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase",
+            background: "transparent",
+            border: `1.5px solid ${C.oceanTeal}`,
+            color: C.oceanTeal, padding: "14px 28px", borderRadius: 40,
+            cursor: "pointer", transition: "all 0.3s",
+            minHeight: 48, WebkitTapHighlightColor: "transparent",
+          }}>Surprise me</button>
+        )}
+        <button onClick={onNext} disabled={!hasPick} style={{
+          fontFamily: "'Quicksand', sans-serif",
+          fontSize: 14, fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase",
+          background: !hasPick ? `${C.oceanTeal}30` : C.oceanTeal,
+          border: "none", color: C.white, padding: "14px 36px", borderRadius: 40,
+          cursor: !hasPick ? "not-allowed" : "pointer",
+          transition: "all 0.3s", opacity: !hasPick ? 0.5 : 1,
+          boxShadow: !hasPick ? "none" : `0 4px 20px ${C.oceanTeal}30`,
+          minHeight: 48, WebkitTapHighlightColor: "transparent",
+        }}>Continue</button>
+      </div>
     </div>
   );
 }
@@ -1025,6 +1068,103 @@ const GOLDEN_WINDOWS = {
   kauai:      new Set(['april', 'may', 'september', 'october']),
   vancouver:  new Set(['june', 'july', 'august', 'september']),
 };
+
+// ─── Destination Profiles (for Surprise Me scoring) ─────────────────────────
+const DESTINATION_PROFILE = {
+  zion: {
+    terrain: 'canyon',
+    elemental: ['rock', 'water', 'sky'],
+    intensity: [2, 5],
+    coastal: false,
+    solitude: false,
+    bestIntentions: ['reconnect', 'light_up'],
+  },
+  joshuaTree: {
+    terrain: 'desert',
+    elemental: ['rock', 'sky', 'fire'],
+    intensity: [1, 4],
+    coastal: false,
+    solitude: true,
+    bestIntentions: ['tune_in', 'slow_down'],
+  },
+  bigSur: {
+    terrain: 'coastal-mountain',
+    elemental: ['water', 'rock', 'wind'],
+    intensity: [2, 4],
+    coastal: true,
+    solitude: false,
+    bestIntentions: ['reconnect', 'slow_down'],
+  },
+  olympic: {
+    terrain: 'rainforest-coast',
+    elemental: ['water', 'earth', 'mist'],
+    intensity: [1, 4],
+    coastal: true,
+    solitude: true,
+    bestIntentions: ['slow_down', 'tune_in'],
+  },
+  kauai: {
+    terrain: 'tropical-coast',
+    elemental: ['water', 'earth', 'sky'],
+    intensity: [1, 3],
+    coastal: true,
+    solitude: false,
+    bestIntentions: ['reconnect', 'light_up'],
+  },
+  vancouver: {
+    terrain: 'coastal-forest',
+    elemental: ['water', 'earth', 'wind'],
+    intensity: [1, 4],
+    coastal: true,
+    solitude: true,
+    bestIntentions: ['slow_down', 'reconnect'],
+  },
+};
+
+/**
+ * Score each destination against the user's form inputs and return the best match.
+ * Uses: month (golden window), movement (intensity fit), intentions, group type.
+ */
+function selectDestination(formData) {
+  const candidates = Object.keys(DESTINATION_PROFILE);
+  const scores = {};
+
+  for (const id of candidates) {
+    const profile = DESTINATION_PROFILE[id];
+    let score = 0;
+
+    // Month match (weight 3) — golden window bonus
+    if (formData.month && GOLDEN_WINDOWS[id]?.has(formData.month)) {
+      score += 3;
+    }
+
+    // Intensity match (weight 2) — map movement slider (0-100) to 1-5 scale
+    const movement = formData.movement ?? 50;
+    const intensityLevel = 1 + Math.round((movement / 100) * 4); // 1-5
+    const [lo, hi] = profile.intensity;
+    if (intensityLevel >= lo && intensityLevel <= hi) {
+      score += 2;
+    }
+
+    // Intention match (weight 2) — any overlap with bestIntentions
+    const intentions = formData.intentions || [];
+    if (intentions.some(i => profile.bestIntentions.includes(i))) {
+      score += 2;
+    }
+
+    // Coastal preference (weight 1) — family groups get a soft coastal bonus
+    if (formData.groupType === 'family' && profile.coastal) {
+      score += 1;
+    }
+
+    scores[id] = score;
+  }
+
+  // Find max score, collect ties, break with random
+  const maxScore = Math.max(...Object.values(scores));
+  const winners = candidates.filter(id => scores[id] === maxScore);
+  return winners[Math.floor(Math.random() * winners.length)];
+}
 
 function StepMonth({ data, onChange, onNext, onBack }) {
   const goldenMonths = GOLDEN_WINDOWS[data.destination] || new Set();
@@ -1992,7 +2132,8 @@ function GeneratingScreen({ destination, days = 4 }) {
     return () => cancelAnimationFrame(frame);
   }, []);
 
-  const destName = DESTINATIONS.find(d => d.id === destination)?.name || "your destination";
+  const resolvedName = DESTINATIONS.find(d => d.id === destination)?.name;
+  const destName = resolvedName || null;
   const ringScale = 0.9 + breathPhase * 0.1;
 
   return (
@@ -2031,7 +2172,7 @@ function GeneratingScreen({ destination, days = 4 }) {
         fontFamily: "'Cormorant Garamond', serif",
         fontSize: "clamp(22px, 5.5vw, 28px)", fontWeight: 300,
         color: C.slate, marginBottom: 6, textAlign: "center",
-      }}>Crafting your {destName} trip</div>
+      }}>{destName ? `Crafting your ${destName} trip` : 'Preparing your journey'}</div>
 
       <div style={{
         fontFamily: "'Quicksand', sans-serif",
