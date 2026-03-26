@@ -150,7 +150,7 @@ export default function CelestialDrawer({ destination, isMobile, breathValueRef 
   const NAV_HEIGHT = isMobile ? 58 : 64;
 
   if (loading || !data) return (
-    <div style={{ position: 'relative', background: breathValueRef ? 'transparent' : C.warmWhite, borderBottom: `1px solid ${C.stone}` }}>
+    <div style={{ position: 'relative', background: C.warmWhite, borderBottom: `1px solid ${C.stone}` }}>
       <div style={{ height: NAV_HEIGHT + 14 }} />
       <div style={{ height: 44 }} />
     </div>
