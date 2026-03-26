@@ -634,6 +634,13 @@ ${formData ? `
 ` : ''}
 
 Please return the revised itinerary as a complete JSON object. Follow the same output format rules from your system prompt — respond with ONLY the JSON, no markdown fences, no preamble.
+
+**IMPORTANT — add a "changes" field** at the top level of your JSON response (alongside "title", "days", etc.):
+"changes": an array of 2–4 short plain-language strings summarising the main adjustments you made in this refinement. Focus on things the traveller will notice: swapped activities, new logistics accommodated, restructured days, added or removed stops. Keep each item under 12 words. Examples:
+- "Routed Day 1 through Oakland arrival with drive to Monterey"
+- "Added hotel transition day from Monterey to Big Sur"
+- "Swapped afternoon hike for a closer trail near hotel"
+- "Incorporated dinner reservation at Nepenthe on Day 3"
 `.trim();
 
     const response = await anthropic.messages.create({
@@ -652,9 +659,25 @@ Please return the revised itinerary as a complete JSON object. Follow the same o
       .map(block => block.text)
       .join('\n');
 
+    // Extract changes array from the response if present
+    let changes = [];
+    try {
+      const firstBrace = revisedItinerary.indexOf('{');
+      const lastBrace = revisedItinerary.lastIndexOf('}');
+      if (firstBrace !== -1 && lastBrace !== -1) {
+        const parsed = JSON.parse(revisedItinerary.slice(firstBrace, lastBrace + 1));
+        if (Array.isArray(parsed.changes)) {
+          changes = parsed.changes.filter(c => typeof c === 'string').slice(0, 6);
+        }
+      }
+    } catch {
+      // If parsing fails, changes stays empty — no error
+    }
+
     return res.status(200).json({
       success: true,
       itinerary: revisedItinerary,
+      changes,
     });
 
   } catch (error) {

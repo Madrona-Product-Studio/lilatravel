@@ -3748,7 +3748,7 @@ function FirstDraftModal({ onDismiss }) {
               <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
                 <div style={{
                   display: 'flex', alignItems: 'center', gap: 5,
-                  padding: '5px 12px', borderRadius: 20,
+                  padding: '5px 12px', borderRadius: 2,
                   background: r.bg, border: `1px solid ${r.border}`,
                   flexShrink: 0,
                 }}>
@@ -3764,9 +3764,9 @@ function FirstDraftModal({ onDismiss }) {
         {/* Divider */}
         <div style={{ height: 1, background: `${C.sage}10`, marginTop: 28, marginBottom: 20 }} />
 
-        {/* Freemium note */}
-        <p style={{ fontFamily: F, fontSize: 13, fontWeight: 400, color: `${C.slate}AA`, lineHeight: 1.65, textAlign: 'center', marginBottom: 24 }}>
-          You're in early access — refinements are unlimited for now. Shape it until it feels right.
+        {/* Logistics note */}
+        <p style={{ fontFamily: F, fontSize: 12, fontWeight: 400, color: `${C.darkInk}8C`, lineHeight: 1.6, textAlign: 'center', maxWidth: 320, margin: '0 auto 24px' }}>
+          Add flights, hotel confirmations, or restaurant reservations in the logistics panel — we'll build around them.
         </p>
 
         {/* CTA */}
@@ -3781,6 +3781,86 @@ function FirstDraftModal({ onDismiss }) {
         onMouseEnter={e => e.currentTarget.style.opacity = '0.85'}
         onMouseLeave={e => e.currentTarget.style.opacity = '1'}
         >Start exploring →</button>
+      </div>
+    </div>
+  );
+}
+
+/* ── RefinementModal — shown after each refinement completes ──────────── */
+
+function RefinementModal({ onDismiss, iteration, changes = [] }) {
+  const [show, setShow] = useState(false);
+  useEffect(() => { const t = setTimeout(() => setShow(true), 120); return () => clearTimeout(t); }, []);
+
+  return (
+    <div style={{
+      position: 'fixed', inset: 0, zIndex: 300,
+      background: 'rgba(0,0,0,0.45)',
+      backdropFilter: 'blur(4px)', WebkitBackdropFilter: 'blur(4px)',
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
+      padding: 20,
+    }}>
+      <div style={{
+        position: 'relative',
+        maxWidth: 480, margin: '0 auto',
+        background: C.cream, borderRadius: 2,
+        padding: '40px 32px 32px',
+        opacity: show ? 1 : 0,
+        transition: 'opacity 0.5s ease',
+      }}>
+        {/* Close button */}
+        <button onClick={onDismiss} style={{
+          position: 'absolute', top: 16, right: 16,
+          width: 28, height: 28, borderRadius: '50%',
+          background: 'none', border: `1px solid ${C.sage}18`,
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          cursor: 'pointer', WebkitTapHighlightColor: 'transparent',
+          transition: 'background 0.2s, border-color 0.2s',
+        }}
+        onMouseEnter={e => { e.currentTarget.style.background = `${C.sage}06`; e.currentTarget.style.borderColor = `${C.sage}30`; }}
+        onMouseLeave={e => { e.currentTarget.style.background = 'none'; e.currentTarget.style.borderColor = `${C.sage}18`; }}
+        >
+          <CloseIcon size={11} color={C.sage} />
+        </button>
+
+        {/* Top label */}
+        <div style={{ fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: `${C.sage}75`, marginBottom: 22 }}>Refinement {iteration}</div>
+
+        {/* Headline */}
+        <h2 style={{ fontFamily: F_SERIF, fontSize: 'clamp(22px, 5.5vw, 28px)', fontWeight: 300, color: C.ink, lineHeight: 1.25, letterSpacing: '-0.02em', marginBottom: 12 }}>Your itinerary has been updated.</h2>
+
+        {/* Divider */}
+        <div style={{ height: 1, background: `${C.sage}10`, marginBottom: 24 }} />
+
+        {/* Changes section header */}
+        <div style={{ fontFamily: F, fontSize: 10, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: `${C.sage}75`, marginBottom: 14 }}>What we adjusted</div>
+
+        {/* Changes list */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 28 }}>
+          {changes.length > 0 ? changes.map((c, i) => (
+            <div key={i} style={{ display: 'flex', gap: 8, alignItems: 'baseline' }}>
+              <span style={{ fontFamily: F, fontSize: 13, color: `${C.goldenAmber}99`, flexShrink: 0 }}>{'\u25C8'}</span>
+              <span style={{ fontFamily: F, fontSize: 13, fontWeight: 400, color: `${C.darkInk}B3`, lineHeight: 1.6 }}>{c}</span>
+            </div>
+          )) : (
+            <div style={{ fontFamily: F, fontSize: 13, fontWeight: 400, color: `${C.darkInk}B3`, lineHeight: 1.6 }}>
+              We've reshaped your itinerary based on your feedback.
+            </div>
+          )}
+        </div>
+
+        {/* CTA */}
+        <button onClick={onDismiss} style={{
+          width: '100%', padding: '14px 0',
+          fontFamily: F, fontSize: 13, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase',
+          color: C.cream, background: C.slate,
+          border: 'none', borderRadius: 2,
+          cursor: 'pointer', WebkitTapHighlightColor: 'transparent',
+          transition: 'opacity 0.2s',
+        }}
+        onMouseEnter={e => e.currentTarget.style.opacity = '0.85'}
+        onMouseLeave={e => e.currentTarget.style.opacity = '1'}
+        >See what's new &rarr;</button>
       </div>
     </div>
   );
@@ -4135,6 +4215,10 @@ export default function ItineraryResults() {
 
   // First draft modal state
   const [showDraftModal, setShowDraftModal] = useState(() => !shareToken);
+
+  // Refinement modal state
+  const [showRefinementModal, setShowRefinementModal] = useState(false);
+  const [refinementChanges, setRefinementChanges] = useState([]);
 
   // Itinerary ID for save/share
   const [itineraryId, setItineraryId] = useState(() =>
@@ -4735,6 +4819,7 @@ export default function ItineraryResults() {
         throw new Error(error || result?.error || 'Refinement failed');
       }
       setRawItinerary(result.itinerary);
+      setRefinementChanges(Array.isArray(result.changes) ? result.changes : []);
       setIteration(prev => prev + 1);
 
       // Save feedback for this refinement
@@ -4877,9 +4962,19 @@ export default function ItineraryResults() {
           setRefining(false);
           setRefineApiDone(false);
           setRefineError(null);
+          setShowRefinementModal(true);
           setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 50);
         }}
       />
+
+      {/* Refinement summary modal — shown after overlay dismisses */}
+      {showRefinementModal && isStructured && (
+        <RefinementModal
+          iteration={iteration}
+          changes={refinementChanges}
+          onDismiss={() => setShowRefinementModal(false)}
+        />
+      )}
 
       {/* First draft modal */}
       {iteration === 0 && showDraftModal && isStructured && (
