@@ -1294,7 +1294,7 @@ export default function JoshuaTreeGuide() {
                     name={a.name}
                     location={a.location}
                     tier={a.stayStyle}
-                    detail={a.highlights?.[0]}
+                    detail={a.highlights?.join('. ')}
                     tags={a.tags}
                     url={a.links?.booking || a.links?.website}
                     featured={a.lilaPick}
@@ -1317,7 +1317,7 @@ export default function JoshuaTreeGuide() {
                       name={a.name}
                       location={a.location}
                       tier={a.stayStyle}
-                      detail={a.highlights?.[0]}
+                      detail={a.highlights?.join('. ')}
                       tags={a.tags}
                       url={a.links?.booking || a.links?.website}
                       featured={a.lilaPick}
@@ -1574,7 +1574,7 @@ export default function JoshuaTreeGuide() {
                   <ListItem
                     key={r.id}
                     name={r.name}
-                    detail={r.highlights?.[0]}
+                    detail={r.highlights?.join('. ')}
                     note={r.hours}
                     tags={r.tags}
                     featured={r.lilaPick}
@@ -1596,7 +1596,7 @@ export default function JoshuaTreeGuide() {
                       <ListItem
                         key={r.id}
                         name={r.name}
-                        detail={r.highlights?.[0]}
+                        detail={r.highlights?.join('. ')}
                         note={r.hours}
                         tags={r.tags}
                         featured={r.lilaPick}
