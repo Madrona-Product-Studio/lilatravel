@@ -421,12 +421,12 @@ export default function Nav({ transparent = false, breathConfig = null }) {
         borderBottom: breathConfig ? "none" : (showSolid ? `1px solid ${C.stone}` : "none"),
         transition: "all 0.4s ease",
       }}>
-        {breathConfig && <canvas ref={navCanvasRef} style={{ position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none' }} />}
+        {breathConfig && <canvas ref={navCanvasRef} style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }} />}
         <div className="nav-inner" style={{
-          position: 'relative', zIndex: 1,
+          position: 'relative',
           padding: "20px 52px",
           display: "flex", alignItems: "center", justifyContent: "space-between",
-          borderBottom: breathConfig && showSolid ? `1px solid ${C.stone}` : "none",
+          borderBottom: breathConfig && showSolid ? '1px solid rgba(26,37,48,0.08)' : (showSolid ? `1px solid ${C.stone}` : "none"),
         }}>
         <Link to="/" style={{
           fontFamily: "'Quicksand', sans-serif",

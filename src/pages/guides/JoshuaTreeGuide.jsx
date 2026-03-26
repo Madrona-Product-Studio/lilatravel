@@ -1089,8 +1089,8 @@ export default function JoshuaTreeGuide() {
 
       {/* ══ CELESTIAL DRAWER ═══════════════════════════════════════════════ */}
       <div ref={breathWrapperRef} style={{ position: 'relative', overflow: 'hidden', background: C.warmWhite }}>
-        <canvas ref={breathCanvasRef} style={{ position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none' }} />
-        <div style={{ position: 'relative', zIndex: 2 }}>
+        <canvas ref={breathCanvasRef} style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }} />
+        <div style={{ position: 'relative' }}>
           <CelestialDrawer destination="joshua-tree" isMobile={isMobile} breathValueRef={breathValueRef} breathConfig={breathConfig} />
 
           {/* ══ TITLE MASTHEAD ═══════════════════════════════════════════════════ */}
