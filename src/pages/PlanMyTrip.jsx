@@ -594,7 +594,7 @@ function StepTitle({ eyebrow, title, subtitle }) {
 
 // ─── Radar Chart ─────────────────────────────────────────────────────────────
 function RadarChart({ values, size = 260 }) {
-  const pad = 32;
+  const pad = 24;
   const cx = size / 2 + pad, cy = size / 2 + pad, r = size * 0.36;
   const n = DIMENSIONS.length;
   const angleStep = (Math.PI * 2) / n;
@@ -2005,7 +2005,7 @@ function StepProfile({ data, onBack, onUnlock, generating }) {
       <StepTitle eyebrow="Your Travel Spirit" />
 
       {/* Persona card */}
-      <div style={{ maxWidth: 480, margin: "0 auto 12px", padding: "0 20px" }}>
+      <div style={{ maxWidth: 480, margin: "0 auto 6px", padding: "0 20px" }}>
         <div style={{
           position: "relative",
           background: C.white, borderRadius: 2, padding: "20px 20px",
@@ -2044,12 +2044,12 @@ function StepProfile({ data, onBack, onUnlock, generating }) {
         <ProfilesModal personas={PERSONAS} currentId={persona.id} onClose={() => setShowProfilesModal(false)} />
       )}
 
-      <div style={{ display: "flex", justifyContent: "center", marginBottom: 8, padding: "0 20px" }}>
-        <RadarChart values={radarValues} size={200} />
+      <div style={{ display: "flex", justifyContent: "center", marginBottom: 4, padding: "0 20px" }}>
+        <RadarChart values={radarValues} size={190} />
       </div>
 
-      <div style={{ textAlign: "center", marginTop: 8, padding: "0 28px 20px" }}>
-        <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: "clamp(14px, 3.5vw, 14px)", color: `${C.slate}99`, maxWidth: 380, margin: "0 auto 20px", lineHeight: 1.6 }}>
+      <div style={{ textAlign: "center", marginTop: 4, padding: "0 28px 20px" }}>
+        <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: "clamp(14px, 3.5vw, 14px)", color: `${C.slate}99`, maxWidth: 380, margin: "0 auto 16px", lineHeight: 1.6 }}>
           A custom {data.duration || 4}-day {monthName ? `${monthName} ` : ''}plan for {destName} — built around your pace, your practices, and your intentions.
         </p>
         <button onClick={onUnlock} disabled={generating} style={{
@@ -2064,8 +2064,8 @@ function StepProfile({ data, onBack, onUnlock, generating }) {
           minHeight: 56, WebkitTapHighlightColor: "transparent",
           opacity: generating ? 0.8 : 1,
         }}>{generating ? 'Creating your journey...' : 'Build My Itinerary'}</button>
-        <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, color: `${C.sage}AA`, marginTop: 16 }}>Fully customizable · Powered by Lila Trips</div>
-        <div style={{ marginTop: 20 }}>
+        <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, color: `${C.sage}AA`, marginTop: 12 }}>Fully customizable · Powered by Lila Trips</div>
+        <div style={{ marginTop: 14 }}>
           <button onClick={onBack} style={{
             fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 500, color: `${C.sage}AA`,
             background: "none", border: "none", cursor: "pointer",
