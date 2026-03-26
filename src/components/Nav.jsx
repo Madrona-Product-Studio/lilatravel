@@ -2,10 +2,11 @@
 // NAV — shared navigation across all pages
 // ═══════════════════════════════════════════════════════════════════════════════
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { C } from '@data/brand';
 import { trackEvent } from '@utils/analytics';
+import useBreathCanvas from '@hooks/useBreathCanvas';
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
@@ -278,11 +279,15 @@ function MobileMenu({ open, links, onClose }) {
 }
 
 // ─── Nav Component ───────────────────────────────────────────────────────────
-export default function Nav({ transparent = false }) {
+export default function Nav({ transparent = false, breathConfig = null }) {
   const location = useLocation();
   const navigate = useNavigate();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const navCanvasRef = useRef(null);
+  const navRef = useRef(null);
+  useBreathCanvas(breathConfig, navCanvasRef, navRef, { opacityScale: 0.85, opaqueBase: true, flat: true });
 
   // Multi-trip state
   const [trips, setTrips] = useState(() => {
@@ -409,15 +414,19 @@ export default function Nav({ transparent = false }) {
 
   return (
     <>
-      <nav style={{
+      <nav ref={navRef} style={{
         position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
-        padding: "20px 52px",
-        display: "flex", alignItems: "center", justifyContent: "space-between",
-        background: showSolid ? "rgba(250,248,244,0.97)" : "transparent",
-        backdropFilter: showSolid ? "blur(16px)" : "none",
+        background: breathConfig ? "transparent" : (showSolid ? "rgba(250,248,244,0.97)" : "transparent"),
+        backdropFilter: breathConfig ? "none" : (showSolid ? "blur(16px)" : "none"),
         borderBottom: showSolid ? `1px solid ${C.stone}` : "none",
         transition: "all 0.4s ease",
       }}>
+        {breathConfig && <canvas ref={navCanvasRef} style={{ position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none' }} />}
+        <div className="nav-inner" style={{
+          position: 'relative', zIndex: 1,
+          padding: "20px 52px",
+          display: "flex", alignItems: "center", justifyContent: "space-between",
+        }}>
         <Link to="/" style={{
           fontFamily: "'Quicksand', sans-serif",
           fontSize: 22, fontWeight: 500, letterSpacing: "0.08em",
@@ -479,6 +488,7 @@ export default function Nav({ transparent = false }) {
             <HamburgerIcon open={menuOpen} color={showSolid ? C.darkInk : "white"} />
           </div>
         </div>
+        </div>
       </nav>
 
       {/* Mobile menu overlay */}
@@ -487,7 +497,7 @@ export default function Nav({ transparent = false }) {
       {/* Responsive styles */}
       <style>{`
         @media (max-width: 900px) {
-          nav { padding: 18px 24px !important; }
+          .nav-inner { padding: 18px 24px !important; }
           .nav-links { display: none !important; }
           .nav-mobile-toggle { display: flex !important; }
         }

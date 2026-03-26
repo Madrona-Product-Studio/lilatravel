@@ -97,12 +97,13 @@ function SwellIntensityBar({ intensity }) {
   );
 }
 
-export default function CelestialDrawer({ destination, isMobile }) {
+export default function CelestialDrawer({ destination, isMobile, breathValueRef }) {
   const [open, setOpen] = useState(false);
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const contentRef = useRef(null);
   const [contentHeight, setContentHeight] = useState(0);
+  const pipRef = useRef(null);
 
   const configKey = CONFIG_KEYS[destination] || destination;
   const label = DESTINATION_LABELS[destination] || destination;
@@ -123,6 +124,21 @@ export default function CelestialDrawer({ destination, isMobile }) {
   }, [data, open, isMobile]);
 
   useEffect(() => {
+    if (!breathValueRef) return;
+    let raf;
+    const tick = () => {
+      if (pipRef.current) {
+        const v = breathValueRef.current;
+        pipRef.current.style.transform = `scale(${0.75 + v * 0.25})`;
+        pipRef.current.style.opacity = 0.5 + v * 0.5;
+      }
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [breathValueRef]);
+
+  useEffect(() => {
     if (document.getElementById('celestial-pulse-style')) return;
     const style = document.createElement('style');
     style.id = 'celestial-pulse-style';
@@ -134,7 +150,7 @@ export default function CelestialDrawer({ destination, isMobile }) {
   const NAV_HEIGHT = isMobile ? 58 : 64;
 
   if (loading || !data) return (
-    <div style={{ position: 'relative', background: C.stone, borderBottom: `1px solid ${C.stone}` }}>
+    <div style={{ position: 'relative', background: breathValueRef ? 'transparent' : C.warmWhite, borderBottom: `1px solid ${C.stone}` }}>
       <div style={{ height: NAV_HEIGHT + 14 }} />
       <div style={{ height: 44 }} />
     </div>
@@ -151,7 +167,7 @@ export default function CelestialDrawer({ destination, isMobile }) {
   if (npsAlerts?.length > 0) teasers.push(`${npsAlerts.length} Alert${npsAlerts.length > 1 ? 's' : ''}`);
 
   return (
-    <div style={{ position: 'relative', zIndex: open ? 95 : 'auto', background: C.stone, borderBottom: `1px solid ${C.stone}` }}>
+    <div style={{ position: 'relative', zIndex: open ? 95 : 'auto', background: breathValueRef ? 'transparent' : C.warmWhite, borderBottom: `1px solid ${C.stone}` }}>
       <div style={{ height: NAV_HEIGHT + 14 }} />
 
       {/* Teaser bar */}
@@ -166,7 +182,7 @@ export default function CelestialDrawer({ destination, isMobile }) {
         onMouseEnter={e => e.currentTarget.style.background = 'rgba(0,0,0,0.045)'}
         onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
       >
-        <span style={{ width: 5, height: 5, borderRadius: '50%', background: C.seaGlass, animation: 'celestialPulse 2s ease-in-out infinite', flexShrink: 0 }} />
+        <span ref={pipRef} style={{ width: 5, height: 5, borderRadius: '50%', background: C.seaGlass, flexShrink: 0, ...(breathValueRef ? { animation: 'none', willChange: 'transform, opacity' } : { animation: 'celestialPulse 2s ease-in-out infinite' }) }} />
         <span style={{ fontFamily: F, fontSize: 11, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#5c6358', flexShrink: 0 }}>
           {label} Right Now
         </span>
@@ -191,7 +207,7 @@ export default function CelestialDrawer({ destination, isMobile }) {
       </button>
 
       {/* Expanded content */}
-      <div style={{ position: 'relative', zIndex: 95, maxHeight: open ? contentHeight : 0, overflow: 'hidden', transition: 'max-height 0.5s ease', background: C.warmWhite }}>
+      <div style={{ position: 'relative', zIndex: 95, maxHeight: open ? contentHeight : 0, overflow: 'hidden', transition: 'max-height 0.5s ease', background: breathValueRef ? 'transparent' : C.warmWhite }}>
         <div ref={contentRef} style={{ padding: isMobile ? '16px 20px 24px' : '20px 52px 32px', maxWidth: 920, margin: '0 auto' }}>
 
           {/* 1. Temperature + Sunlight */}

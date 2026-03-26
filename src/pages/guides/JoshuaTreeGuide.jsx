@@ -20,6 +20,8 @@ import { getNPSData, buildNPSLookup, findNPSMatch } from '@services/npsService';
 import { Helmet } from 'react-helmet-async';
 import accommodations from '../../data/accommodations/joshua-tree.json';
 import restaurants from '../../data/restaurants/joshua-tree.json';
+import { BREATH_CONFIG } from '@data/breathConfig';
+import useBreathCanvas from '@hooks/useBreathCanvas';
 
 
 // ─── Guide-Specific Components ───────────────────────────────────────────────
@@ -1017,6 +1019,10 @@ function GuideNav({ isMobile }) {
 
 export default function JoshuaTreeGuide() {
   const [isMobile, setIsMobile] = useState(false);
+  const breathConfig = BREATH_CONFIG.joshuaTree;
+  const breathCanvasRef = useRef(null);
+  const breathWrapperRef = useRef(null);
+  const breathValueRef = useBreathCanvas(breathConfig, breathCanvasRef, breathWrapperRef);
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth <= 768);
     check();
@@ -1079,13 +1085,16 @@ export default function JoshuaTreeGuide() {
         <meta name="twitter:description" content="One of California's darkest skies, and one of its most fragile landscapes. A guide for travelers who come to listen, not just look." />
         <meta name="twitter:image" content="https://lilatrips.com/og-image.png" />
       </Helmet>
-      <Nav />
+      <Nav breathConfig={breathConfig} />
 
       {/* ══ CELESTIAL DRAWER ═══════════════════════════════════════════════ */}
-      <CelestialDrawer destination="joshua-tree" isMobile={isMobile} />
+      <div ref={breathWrapperRef} style={{ position: 'relative', overflow: 'hidden', background: C.warmWhite }}>
+        <canvas ref={breathCanvasRef} style={{ position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none' }} />
+        <div style={{ position: 'relative', zIndex: 2 }}>
+          <CelestialDrawer destination="joshua-tree" isMobile={isMobile} breathValueRef={breathValueRef} />
 
-      {/* ══ TITLE MASTHEAD ═══════════════════════════════════════════════════ */}
-      <section style={{ background: C.cream }}>
+          {/* ══ TITLE MASTHEAD ═══════════════════════════════════════════════════ */}
+          <section style={{ background: 'transparent' }}>
         <div style={{ padding: isMobile ? "28px 20px 24px" : "44px 52px 40px", maxWidth: 920, margin: "0 auto" }}>
           <FadeIn from="bottom" delay={0.1}>
 
@@ -1155,7 +1164,9 @@ export default function JoshuaTreeGuide() {
             </div>
           </FadeIn>
         </div>
-      </section>
+          </section>
+        </div>
+      </div>
 
       {/* ══ GUIDE SECTION NAV ═══════════════════════════════════════════════ */}
       <GuideNav isMobile={isMobile} />

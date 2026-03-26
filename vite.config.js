@@ -34,6 +34,7 @@ export default defineConfig(({ mode }) => {
         '@data': '/src/data',
         '@utils': '/src/utils',
         '@services': '/src/services',
+        '@hooks': '/src/hooks',
       },
     },
     build: {

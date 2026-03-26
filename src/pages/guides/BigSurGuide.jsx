@@ -19,6 +19,8 @@ import { CelestialDrawer } from '@components';
 import { Helmet } from 'react-helmet-async';
 import accommodations from '../../data/accommodations/big-sur.json';
 import restaurants from '../../data/restaurants/big-sur.json';
+import { BREATH_CONFIG } from '@data/breathConfig';
+import useBreathCanvas from '@hooks/useBreathCanvas';
 
 
 // --- Guide-Specific Components ------------------------------------------------
@@ -889,6 +891,10 @@ function GuideNav({ isMobile }) {
 
 export default function BigSurGuide() {
   const [isMobile, setIsMobile] = useState(false);
+  const breathConfig = BREATH_CONFIG.bigSur;
+  const breathCanvasRef = useRef(null);
+  const breathWrapperRef = useRef(null);
+  const breathValueRef = useBreathCanvas(breathConfig, breathCanvasRef, breathWrapperRef);
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth <= 768);
     check();
@@ -925,13 +931,16 @@ export default function BigSurGuide() {
         <meta name="twitter:description" content="Big Sur is slipping into the sea. A guide for travelers who want to experience it deeply and tread lightly while it's still here." />
         <meta name="twitter:image" content="https://lilatrips.com/og-image.png" />
       </Helmet>
-      <Nav />
+      <Nav breathConfig={breathConfig} />
 
       {/* == CELESTIAL DRAWER ================================================ */}
-      <CelestialDrawer destination="big-sur" isMobile={isMobile} />
+      <div ref={breathWrapperRef} style={{ position: 'relative', overflow: 'hidden', background: C.warmWhite }}>
+        <canvas ref={breathCanvasRef} style={{ position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none' }} />
+        <div style={{ position: 'relative', zIndex: 2 }}>
+          <CelestialDrawer destination="big-sur" isMobile={isMobile} breathValueRef={breathValueRef} />
 
-      {/* == TITLE MASTHEAD ================================================== */}
-      <section style={{ background: C.cream }}>
+          {/* == TITLE MASTHEAD ================================================== */}
+          <section style={{ background: 'transparent' }}>
         <div style={{ padding: isMobile ? "28px 20px 24px" : "44px 52px 40px", maxWidth: 920, margin: "0 auto" }}>
           <FadeIn from="bottom" delay={0.1}>
 
@@ -993,7 +1002,9 @@ export default function BigSurGuide() {
             </div>
           </FadeIn>
         </div>
-      </section>
+          </section>
+        </div>
+      </div>
 
       {/* == GUIDE SECTION NAV =============================================== */}
       <GuideNav isMobile={isMobile} />

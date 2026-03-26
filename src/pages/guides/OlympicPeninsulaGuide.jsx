@@ -20,6 +20,8 @@ import { getNPSData, buildNPSLookup, findNPSMatch } from '@services/npsService';
 import { Helmet } from 'react-helmet-async';
 import accommodations from '../../data/accommodations/olympic-peninsula.json';
 import restaurants from '../../data/restaurants/olympic-peninsula.json';
+import { BREATH_CONFIG } from '@data/breathConfig';
+import useBreathCanvas from '@hooks/useBreathCanvas';
 
 
 // ─── Guide-Specific Components ───────────────────────────────────────────────
@@ -932,6 +934,10 @@ function GuideNav({ isMobile }) {
 
 export default function OlympicPeninsulaGuide() {
   const [isMobile, setIsMobile] = useState(false);
+  const breathConfig = BREATH_CONFIG.olympic;
+  const breathCanvasRef = useRef(null);
+  const breathWrapperRef = useRef(null);
+  const breathValueRef = useBreathCanvas(breathConfig, breathCanvasRef, breathWrapperRef);
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth <= 768);
     check();
@@ -980,11 +986,14 @@ export default function OlympicPeninsulaGuide() {
         <meta name="twitter:description" content="Temperate rainforest, tide pools, and isolated Pacific coastline. A guide for travelers who want to move through one of North America's most intact ecosystems with care." />
         <meta name="twitter:image" content="https://lilatrips.com/og-image.png" />
       </Helmet>
-      <Nav />
-      <CelestialDrawer destination="olympic-peninsula" isMobile={isMobile} />
+      <Nav breathConfig={breathConfig} />
+      <div ref={breathWrapperRef} style={{ position: 'relative', overflow: 'hidden', background: C.warmWhite }}>
+        <canvas ref={breathCanvasRef} style={{ position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none' }} />
+        <div style={{ position: 'relative', zIndex: 2 }}>
+          <CelestialDrawer destination="olympic-peninsula" isMobile={isMobile} breathValueRef={breathValueRef} />
 
-      {/* ══ TITLE MASTHEAD ═══════════════════════════════════════════════════ */}
-      <section style={{ background: C.cream }}>
+          {/* ══ TITLE MASTHEAD ═══════════════════════════════════════════════════ */}
+          <section style={{ background: 'transparent' }}>
         <div style={{
           padding: isMobile ? "28px 20px 24px" : "44px 52px 40px",
           maxWidth: 920, margin: "0 auto",
@@ -1047,7 +1056,9 @@ export default function OlympicPeninsulaGuide() {
             </div>
           </FadeIn>
         </div>
-      </section>
+          </section>
+        </div>
+      </div>
 
       <GuideNav isMobile={isMobile} />
 

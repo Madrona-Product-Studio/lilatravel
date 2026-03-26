@@ -19,6 +19,8 @@ import { CelestialDrawer } from '@components';
 import { Helmet } from 'react-helmet-async';
 import accommodations from '../../data/accommodations/kauai.json';
 import restaurants from '../../data/restaurants/kauai.json';
+import { BREATH_CONFIG } from '@data/breathConfig';
+import useBreathCanvas from '@hooks/useBreathCanvas';
 
 
 // ─── Guide-Specific Components ───────────────────────────────────────────────
@@ -875,6 +877,10 @@ function GuideNav({ isMobile }) {
 
 export default function KauaiGuide() {
   const [isMobile, setIsMobile] = useState(false);
+  const breathConfig = BREATH_CONFIG.kauai;
+  const breathCanvasRef = useRef(null);
+  const breathWrapperRef = useRef(null);
+  const breathValueRef = useBreathCanvas(breathConfig, breathCanvasRef, breathWrapperRef);
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth <= 768);
     check();
@@ -911,13 +917,16 @@ export default function KauaiGuide() {
         <meta name="twitter:description" content="Kauaʻi is not just a destination — it's a responsibility. Curated trails, sacred valleys, and a guide built around reciprocity with Hawaiian land and culture." />
         <meta name="twitter:image" content="https://lilatrips.com/og-image.png" />
       </Helmet>
-      <Nav />
+      <Nav breathConfig={breathConfig} />
 
       {/* ══ CELESTIAL DRAWER ═══════════════════════════════════════════════ */}
-      <CelestialDrawer destination="kauai" isMobile={isMobile} />
+      <div ref={breathWrapperRef} style={{ position: 'relative', overflow: 'hidden', background: C.warmWhite }}>
+        <canvas ref={breathCanvasRef} style={{ position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none' }} />
+        <div style={{ position: 'relative', zIndex: 2 }}>
+          <CelestialDrawer destination="kauai" isMobile={isMobile} breathValueRef={breathValueRef} />
 
-      {/* ══ TITLE MASTHEAD ═══════════════════════════════════════════════════ */}
-      <section style={{ background: C.cream }}>
+          {/* ══ TITLE MASTHEAD ═══════════════════════════════════════════════════ */}
+          <section style={{ background: 'transparent' }}>
         <div style={{ padding: isMobile ? "28px 20px 24px" : "44px 52px 40px", maxWidth: 920, margin: "0 auto" }}>
           <FadeIn from="bottom" delay={0.1}>
 
@@ -979,7 +988,9 @@ export default function KauaiGuide() {
             </div>
           </FadeIn>
         </div>
-      </section>
+          </section>
+        </div>
+      </div>
 
       {/* ══ GUIDE SECTION NAV ═══════════════════════════════════════════════ */}
       <GuideNav isMobile={isMobile} />
