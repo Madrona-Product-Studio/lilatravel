@@ -17,6 +17,8 @@ import { P } from '@data/photos';
 import { trackEvent } from '@utils/analytics';
 import { CelestialDrawer } from '@components';
 import { Helmet } from 'react-helmet-async';
+import accommodations from '../../data/accommodations/big-sur.json';
+import restaurants from '../../data/restaurants/big-sur.json';
 
 
 // --- Guide-Specific Components ------------------------------------------------
@@ -1121,42 +1123,20 @@ export default function BigSurGuide() {
 
             <div>
               <ExpandableList initialCount={5} label="places to stay">
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="rooted" name="Asilomar Conference Grounds" location="Pacific Grove" featured
-                  detail={"107 acres of Pacific Grove beachfront — sand dunes, Monterey pines, tide pools. 313 rooms across 30 historic buildings designed by Julia Morgan. No televisions. Fire pits, heated pool, miles of walking paths. The name is a portmanteau of asilo (refuge) and mar (sea). Walking distance to Monarch Butterfly Sanctuary and 17-Mile Drive."}
-                  tags={["Julia Morgan", "Beachfront", "No TVs", "State Parks"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="elemental" name="Pfeiffer Big Sur State Park Campground" location="Big Sur" featured
-                  detail={"218 sites in a cathedral redwood grove along the Big Sur River. The most popular campground in California — reservations open 6 months in advance and book within minutes. Worth setting a reservation alert. Dark sky conditions good; the river provides constant ambient sound."}
-                  tags={["Redwood Grove", "River", "218 Sites", "Book 6 Mo Ahead"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="premium" name="Post Ranch Inn" location="Big Sur" featured
-                  detail={"The most acclaimed hotel on the California coast. 40 accommodations — ocean view suites, treehouses on stilts, cliff houses cantilevered 1,200 feet above the sea. No televisions or alarm clocks. No children under 18. Three Michelin Keys. Sierra Mar restaurant at dinner. The standard against which all similar experiences are measured."}
-                  tags={["Three Michelin Keys", "Treehouses", "Sierra Mar", "No TVs"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="elemental" name="Kirk Creek Campground" location="Los Padres NF"
-                  detail={"Clifftop sites directly above the Pacific — the most dramatic camping in California. 33 sites, all with ocean views. No hookups, no showers. At the southern end of the corridor, 30 miles south of Pfeiffer. Among the best drive-in stargazing campgrounds in the state."}
-                  tags={["Clifftop", "Ocean Views", "Dark Sky", "Bortle 2"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="elemental" name="Treebones Resort" location="Southern Big Sur" featured
-                  detail={"Yurt resort perched on a coastal ridge above the Pacific. 16 yurts with ocean views, pool, hot tub, and nightly s'mores. The human nest — a sculptural outdoor sleeping structure built into the hillside — is bookable and genuinely singular."}
-                  tags={["Yurts", "Ocean Views", "Human Nest", "Pool"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="elemental" name="Glen Oaks Big Sur" location="Big Sur"
-                  detail={"Cabins and motor lodge rooms in the redwoods alongside the Big Sur River. Design-forward, sustainably built, using natural wool and Coyuchi organic cotton. Walking distance to Big Sur Bakery and trailheads."}
-                  tags={["Cabins", "Design", "River", "Sustainable"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="elemental" name="Ventana Campground / Glampsites" location="Big Sur"
-                  detail={"Traditional tent camping and luxury safari-style canvas glampsites in a 40-acre redwood canyon. The glampsites have custom mattresses, heated blankets, private fire pits, and bathhouse access with teak showers."}
-                  tags={["Glamping", "Redwood Canyon", "Bathhouse"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="rooted" name="Big Sur Lodge" location="Pfeiffer Big Sur SP"
-                  detail={"Operated by California State Parks. Basic but storied — cottages inside the state park, walking distance to every trailhead. The least expensive roofed accommodation in the Big Sur corridor and the most convenient for serious hikers."}
-                  tags={["State Park", "Trail Access", "Affordable"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="rooted" name="Bernardus Lodge & Spa" location="Carmel Valley"
-                  detail={"Fifteen miles inland from Carmel. Vineyard estate with full-service spa, heated pool, and restaurant built around estate wine and local produce. Warm, dry, sun-drenched when the coastal fog is thick."}
-                  tags={["Wine Country", "Spa", "Inland", "Fog-Free"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="rooted" name="L'Auberge Carmel" location="Carmel-by-the-Sea"
-                  detail={"Relais & Chateaux property in a 1929 building in Carmel village center. 20 rooms with antique furnishings, fireplace, and the Aubergine restaurant (one Michelin star) downstairs."}
-                  tags={["Relais & Chateaux", "Michelin Star", "Village Center"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="premium" name="Alila Ventana Big Sur" location="Big Sur"
-                  detail={"Adults-only, all-inclusive resort in the redwood canyon above the Pacific. All meals, wellness programming, Spa Alila access, and guided experiences included. Safari glamping and tent camping also bookable on the property."}
-                  tags={["All-Inclusive", "Adults Only", "Spa Alila", "Redwood Canyon"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="premium" name="Hyatt Carmel Highlands" location="Carmel Highlands"
-                  detail={"On a cliffside above Big Sur and Carmel, 10 miles south of Carmel center. Panoramic ocean views, fireplaces in most rooms, infinity pool. A less stratospheric price point than Post Ranch with similar view quality."}
-                  tags={["Cliffside", "Infinity Pool", "Ocean Views"]} />
+                {accommodations.filter(a => !a.corridor).map(a => (
+                  <StayItem
+                    key={a.id}
+                    name={a.name}
+                    location={a.location}
+                    tier={a.stayStyle}
+                    detail={a.highlights?.[0]}
+                    tags={a.tags}
+                    url={a.links?.booking || a.links?.website}
+                    featured={a.lilaPick}
+                    isMobile={isMobile}
+                    onOpenSheet={setActiveSheet}
+                  />
+                ))}
               </ExpandableList>
             </div>
           </section>
@@ -1383,58 +1363,23 @@ export default function BigSurGuide() {
               <SectionSub isMobile={isMobile}>{"From the most spectacular restaurant in California to a chair in the Big Sur River. The connections here go deeper than a meal."}</SectionSub>
             </FadeIn>
 
-            {/* -- Big Sur Dining -- */}
             <FadeIn delay={0.06}>
-              <div style={{ marginBottom: 8 }}>
-                <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: C.seaGlass, marginBottom: 16 }}>{"Big Sur (On the Highway)"}</div>
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food')} name="Sierra Mar (Post Ranch Inn)" featured
-                  detail={"The most spectacular restaurant in California, full stop. Floor-to-ceiling glass walls suspended 1,200 feet above the Pacific. Four-course prix fixe dinner; daily lunch more accessible in price. Reservations essential — book weeks or months ahead. Open to non-guests."}
-                  tags={["Fine Dining", "Ocean Views", "Reserve Far Ahead"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food')} name="Nepenthe" featured
-                  detail={"The iconic Big Sur terrace. Built in 1949 on land Henry Miller once owned. The Ambrosia burger is a pilgrimage food for locals. The view from the outdoor deck — nothing between you and the horizon — is the point. No reservations; arrive early or late."}
-                  tags={["Iconic Terrace", "Ambrosia Burger", "No Reservations"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food')} name="Big Sur Bakery"
-                  detail={"Breakfast and lunch in a converted house surrounded by redwoods. Wood-fired pastries, fresh eggs, excellent coffee. A local institution. Opens early; the pastry case sells out. Friday–Tuesday only."}
-                  tags={["Pastries", "Wood-Fired", "Fri–Tue Only"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food')} name="Big Sur River Inn Restaurant"
-                  detail={"The gathering place of Big Sur's small community. Riverside deck over the Big Sur River — during warm months, patrons sit in chairs directly in the river. Less refined than Nepenthe but more authentically local."}
-                  tags={["Riverside", "Chairs in the River", "Community"]} />
-              </div>
-            </FadeIn>
-
-            {/* -- Carmel Dining -- */}
-            <FadeIn delay={0.1}>
-              <div style={{ marginTop: 28, marginBottom: 8 }}>
-                <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: C.seaGlass, marginBottom: 16 }}>{"Carmel-by-the-Sea"}</div>
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food')} name="Aubergine (L'Auberge Carmel)" featured
-                  detail={"One Michelin star. The best fine dining in the Carmel/Monterey orbit. Tasting menu format, intimate dining room, wine program anchored on local producers. The special occasion restaurant — worth planning a trip around."}
-                  tags={["Michelin Star", "Tasting Menu", "Special Occasion"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food')} name="La Bicyclette"
-                  detail={"Seasonal menu, wood-fired oven, French bistro sensibility with California ingredients. The mushroom appetizer is a regular on best-of lists. Takes reservations; has walk-in bar seating."}
-                  tags={["Wood-Fired", "French Bistro", "Walk-In Bar"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food')} name="Casanova"
-                  detail={"A vintage Carmel farmhouse converted into a French/Italian restaurant with a legendary wine cellar. One of the most atmospheric dining rooms in California — low-beamed ceilings, candlelight, garden patio."}
-                  tags={["Wine Cellar", "Candlelight", "Garden Patio"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food')} name="Carmel Belle"
-                  detail={"The morning anchor. Inside the Doud Craft Studios — coffee, breakfast bowls, local provisions. The preferred start to a day before heading south on Highway 1."}
-                  tags={["Morning", "Coffee", "Provisions"]} />
-              </div>
-            </FadeIn>
-
-            {/* -- Monterey Dining -- */}
-            <FadeIn delay={0.14}>
-              <div style={{ marginTop: 28, marginBottom: 8 }}>
-                <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: C.seaGlass, marginBottom: 16 }}>{"Monterey"}</div>
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food')} name="Coastal Kitchen Monterey"
-                  detail={"Tasting menu format, sustainable seafood-centric. Chef Michael Rotondo's multi-course experience is among the most serious culinary offerings on the Central Coast. Tuesday–Saturday evenings."}
-                  tags={["Tasting Menu", "Seafood", "Tue–Sat"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food')} name="Old Fisherman's Grotto"
-                  detail={"Fisherman's Wharf, harbor views, fresh-caught local seafood. A tourist destination that has earned its reputation — the clam chowder and Dungeness crab are the real deal."}
-                  tags={["Fisherman's Wharf", "Clam Chowder", "Dungeness Crab"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food')} name="Alta Bakery"
-                  detail={"The best coffee stop in Monterey. Sunny back courtyard, excellent pastries, a genuinely good neighborhood cafe energy. Downtown Monterey."}
-                  tags={["Coffee", "Pastries", "Morning"]} />
-              </div>
+              <ExpandableList initialCount={5} label="places to eat">
+                {restaurants.filter(r => !r.corridor).map(r => (
+                  <ListItem
+                    key={r.id}
+                    name={r.name}
+                    detail={r.highlights?.[0]}
+                    note={r.hours}
+                    tags={r.tags}
+                    featured={r.lilaPick}
+                    url={r.links?.website}
+                    location={r.location}
+                    isMobile={isMobile}
+                    onOpenSheet={openSheet('Food')}
+                  />
+                ))}
+              </ExpandableList>
             </FadeIn>
 
             {/* -- Discover & Culture -- */}

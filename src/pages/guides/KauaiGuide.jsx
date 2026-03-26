@@ -17,6 +17,8 @@ import { P } from '@data/photos';
 import { trackEvent } from '@utils/analytics';
 import { CelestialDrawer } from '@components';
 import { Helmet } from 'react-helmet-async';
+import accommodations from '../../data/accommodations/kauai.json';
+import restaurants from '../../data/restaurants/kauai.json';
 
 
 // ─── Guide-Specific Components ───────────────────────────────────────────────
@@ -1109,37 +1111,20 @@ export default function KauaiGuide() {
 
             <div>
               <ExpandableList initialCount={5} label="places to stay">
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="rooted" name="Hanalei Colony Resort" location="North Shore" featured
-                  url="https://www.hcr.com/"
-                  detail={"The only true beachfront property in Hanalei. No TVs, no phones in rooms — simple condos facing the beach. The best base for Kalalau Trail day hikers."}
-                  tags={["Beachfront", "No TVs", "Kalalau Base"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="elemental" name={"Hāʻena Beach Park Camping"} location="North Shore" featured
-                  url="https://dlnr.hawaii.gov/dsp/parks/kauai/"
-                  detail={"The closest camping to the Kalalau trailhead — five campsites on the beach at Hāʻena, a short walk from Keʻe Beach and the Limahuli Garden. One of the most atmospheric camping locations in the state."}
-                  tags={["Beach Camping", "Kalalau Access", "Reservations Required"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="premium" name={"Grand Hyatt Kauaʻi Resort & Spa"} location="Poipū" featured
-                  url="https://www.hyatt.com/grand-hyatt/en-US/kauai"
-                  detail={"The grandest property on the island — lagoon pools, full Anara Spa with Hawaiian healing traditions, beachfront access to Shipwreck Beach, lush grounds. The south shore's most complete luxury experience."}
-                  tags={["Lagoon Pools", "Anara Spa", "Beachfront", "Luxury"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="elemental" name={"Kōkeʻe State Park Cabins"} location="West Side"
-                  url="https://www.kokee.net/"
-                  detail={"Rustic cabins in the highlands above Waimea Canyon at 3,600 feet. Cool temperatures, canyon and swamp trail access, birdsong from species found nowhere else on Earth. Extremely affordable."}
-                  tags={["Highland Cabins", "Canyon Access", "Affordable"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="elemental" name="Polihale State Park Camping" location="West Side"
-                  url="https://dlnr.hawaii.gov/dsp/parks/kauai/polihale-state-park/"
-                  detail={"Remote camping on the westernmost beach on Kauaʻi — 17 miles of empty beach backed by the Nā Pali cliffs. Rough dirt road access. The darkness is exceptional. The sunsets are the best on the island."}
-                  tags={["Remote", "Dark Sky", "Sunsets", "4WD"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="rooted" name={"Kauaʻi Inn"} location={"Līhuʻe"}
-                  url="https://www.kauai-inn.com/"
-                  detail={"The most practical affordable hotel on the island — well-located near the airport, clean and simple, operated with care. A good first and last night option."}
-                  tags={["Airport Proximity", "Affordable", "Practical"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="rooted" name={"Nā Pali Coast Cottages"} location="North Shore"
-                  detail={"Small independent cottage rentals on the north shore. Look for locally owned, long-established properties. The north shore cottage experience is a Kauaʻi original."}
-                  tags={["Cottage", "Local", "North Shore"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="premium" name={"Timbers Kauaʻi"} location={"Hōkūala, Līhuʻe"}
-                  url="https://www.timberskauai.com/"
-                  detail={"A newer luxury property on the eastern coast, set on a former plantation estate. Organic farm on-site, direct ocean access, considered design. Less crowded than Poipū; a quieter base."}
-                  tags={["Plantation Estate", "Farm-to-Table", "Ocean Access"]} />
+                {accommodations.filter(a => !a.corridor).map(a => (
+                  <StayItem
+                    key={a.id}
+                    name={a.name}
+                    location={a.location}
+                    tier={a.stayStyle}
+                    detail={a.highlights?.[0]}
+                    tags={a.tags}
+                    url={a.links?.booking || a.links?.website}
+                    featured={a.lilaPick}
+                    isMobile={isMobile}
+                    onOpenSheet={setActiveSheet}
+                  />
+                ))}
               </ExpandableList>
             </div>
           </section>
@@ -1373,72 +1358,23 @@ export default function KauaiGuide() {
               </div>
             </FadeIn>
 
-            {/* ── Where to Eat ── */}
             <FadeIn delay={0.1}>
-              <div style={{ marginTop: 28, marginBottom: 8 }}>
-                <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: C.oceanTeal, marginBottom: 16 }}>{"North Shore (Hanalei)"}</div>
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food')} name="Bar Acuda" featured
-                  url="https://www.baracuda.com/"
-                  detail={"The North Shore's finest dinner — tapas format built on local fish, charcuterie, and island produce with a European sensibility. Small room, focused menu, excellent wine list. Reserve ahead."}
-                  tags={["Tapas", "Local Fish", "Wine", "Reserve"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food')} name="Dolphin Restaurant"
-                  url="https://www.hanaleidolphin.com/"
-                  detail={"Hanalei's anchor fish restaurant. Fresh off the boat. Simple, honest, good. The setting on the Hanalei River is part of the experience."}
-                  tags={["Seafood", "River Setting", "Institution"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food')} name={"Hanalei Taro & Juice Co."}
-                  url="https://www.hanaleitaroandjuice.com/"
-                  detail={"A north shore institution — taro smoothies, local plate lunch, shave ice done properly. Order the taro hummus. A meal for under $20 that connects you to the land immediately."}
-                  tags={["Taro", "Plate Lunch", "Under $20"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food')} name="Wishing Well Shave Ice"
-                  url="https://www.wishingwellshaveice.com/"
-                  detail={"The best shave ice on the island. Organic, local fruit flavors, natural syrups."}
-                  tags={["Shave Ice", "Organic", "Local Fruit"]} />
-              </div>
-            </FadeIn>
-
-            <FadeIn delay={0.14}>
-              <div style={{ marginTop: 28, marginBottom: 8 }}>
-                <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: C.oceanTeal, marginBottom: 16 }}>{"South Shore (Poipū / Koloa)"}</div>
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food')} name="The Beach House Restaurant" featured
-                  url="https://www.the-beach-house.com/"
-                  detail={"Oceanfront dining above Lāwaʻi Beach — local seafood, sunset views. Arrive for the sunset."}
-                  tags={["Oceanfront", "Sunset", "Seafood", "Upscale"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food')} name={"Kukuiʻula Village Farmers Market"}
-                  detail={"Every Wednesday afternoon. The best local produce, prepared food, and artisan goods on the south shore. Buy fruit, try the poke, talk to the farmers."}
-                  tags={["Wednesdays", "Farmers Market", "Poke"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food')} name={"Merriman's Fish House"}
-                  url="https://www.merrimanshawaii.com/poipu/"
-                  detail={"Farm-to-table Hawaiian regional cuisine from one of the state's most respected restaurant groups. Local fish, Kauaʻi-grown vegetables, excellent execution."}
-                  tags={["Farm-to-Table", "Hawaiian Regional", "$$"]} />
-              </div>
-            </FadeIn>
-
-            <FadeIn delay={0.18}>
-              <div style={{ marginTop: 28, marginBottom: 8 }}>
-                <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: C.oceanTeal, marginBottom: 16 }}>{"West Side (Waimea / Hanapepe)"}</div>
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food')} name="Waimea Brewing Company"
-                  url="https://www.waimea-plantation.com/dining/"
-                  detail={"The only brewpub in the Waimea area — useful stop after a canyon day. Local craft beer, solid food, casual atmosphere."}
-                  tags={["Brewpub", "Post-Canyon", "Casual"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food')} name={"Hanappe'e Café"}
-                  url="https://www.hanapepe.org/"
-                  detail={"In the small art town of Hanapepe. Creative farm-to-table menu in a space that feels genuinely local. BYOB, cash only. Worth planning around."}
-                  tags={["Farm-to-Table", "Art Town", "BYOB", "Cash Only"]} />
-              </div>
-            </FadeIn>
-
-            <FadeIn delay={0.22}>
-              <div style={{ marginTop: 28, marginBottom: 8 }}>
-                <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: C.oceanTeal, marginBottom: 16 }}>Provisions</div>
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food')} name="Healthy Hut"
-                  url="https://www.healthyhutkauai.com/"
-                  detail={"The north shore's best grocery stop for quality local and organic food, smoothies, and deli items. Stock up here before heading to Keʻe Beach."}
-                  tags={["Hanalei", "Organic", "Smoothies", "Pre-Hike"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food')} name="Koloa Rum Company"
-                  url="https://www.koloarum.com/"
-                  detail={"Distillery and tasting room in Koloa. Rum made from Kauaʻi-grown sugarcane. Tours and tastings available."}
-                  tags={["Distillery", "Rum", "Tastings", "South Shore"]} />
-              </div>
+              <ExpandableList initialCount={5} label="places to eat">
+                {restaurants.filter(r => !r.corridor).map(r => (
+                  <ListItem
+                    key={r.id}
+                    name={r.name}
+                    detail={r.highlights?.[0]}
+                    note={r.hours}
+                    tags={r.tags}
+                    featured={r.lilaPick}
+                    url={r.links?.website}
+                    location={r.location}
+                    isMobile={isMobile}
+                    onOpenSheet={openSheet('Food')}
+                  />
+                ))}
+              </ExpandableList>
             </FadeIn>
 
             {/* ── Discover ── */}

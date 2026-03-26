@@ -18,6 +18,8 @@ import { trackEvent } from '@utils/analytics';
 import { CelestialDrawer } from '@components';
 import { getNPSData, buildNPSLookup, findNPSMatch } from '@services/npsService';
 import { Helmet } from 'react-helmet-async';
+import accommodations from '../../data/accommodations/zion.json';
+import restaurants from '../../data/restaurants/zion.json';
 
 
 // ─── Guide-Specific Components ───────────────────────────────────────────────
@@ -1997,63 +1999,45 @@ export default function ZionGuide() {
 
             <div>
               <ExpandableList initialCount={5} label="places to stay">
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="rooted" name="Cliffrose Springdale" location="Springdale" featured
-                  url="https://www.cliffroselodge.com/"
-                  detail="Five acres of gardens on the Virgin River. Heated pools year-round. Anthera restaurant. Steps from the park."
-                  tags={["Riverfront", "Restaurant", "Spa", "Pool"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="elemental" name="Under Canvas Zion" location="Virgin, UT" featured
-                  url="https://www.undercanvas.com/camps/zion/"
-                  detail="Safari-style tents on 196 acres. DarkSky certified. Stargazer tents with sky windows above your bed. No WiFi — by design."
-                  tags={["Glamping", "DarkSky", "Seasonal"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="premium" name="Amangiri" location="Canyon Point, UT" featured
-                  url="https://www.aman.com/hotels/amangiri"
-                  detail="34 modernist suites on 900 acres. Camp Sarika with private plunge pools. Aman Spa with Navajo healing traditions."
-                  tags={["Ultra-Luxury", "Via Ferrata", "Spa"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="elemental" name="AutoCamp Zion" location="Virgin, UT" featured
-                  url="https://autocamp.com/zion/"
-                  detail="Climate-controlled Airstream suites with midcentury design. Retro charm, modern comfort."
-                  tags={["Airstreams", "Climate-Controlled", "Hilton Points"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="elemental" name="Open Sky Zion" location="Virgin, UT"
-                  url="https://www.openskyzion.com/"
-                  detail="Private and immersive. Farm-to-table at Black Sage restaurant. Wellness woven into every element."
-                  tags={["Luxury Glamping", "Farm-to-Table", "Wellness"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="rooted" name="Desert Pearl Inn" location="Springdale"
-                  url="https://www.desertpearl.com/"
-                  detail="Family-owned 20+ years. Built with reclaimed Douglas fir from a century-old railroad trestle. Rated #1 in Springdale."
-                  tags={["Family-Owned", "Riverside", "Kitchenette"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="rooted" name={"Flanigan's Resort"} location="Springdale"
-                  url="https://flanigans.com/"
-                  detail="Park lodge with Deep Canyon Spa, Spotted Dog restaurant, and hillside yoga. Best wellness integration in town."
-                  tags={["Spa", "Restaurant", "Yoga"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="premium" name="The Inn at Entrada" location="St. George, UT"
-                  url="https://www.innatentrada.com/"
-                  detail="Luxury casitas near Snow Canyon. Red rock panoramas, championship golf, full-service spa."
-                  tags={["Casitas", "Golf", "Spa"]} />
-
-                {/* ── Bryce Canyon Stay ──────────────────────────── */}
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="rooted" name="The Lodge at Bryce Canyon" location="Inside Bryce Canyon NP" featured
-                  url="https://www.visitbrycecanyon.com/lodging/the-lodge-at-bryce-canyon"
-                  detail="The only lodging inside the park. Historic 1920s lodge with western cabins (gas fireplaces, private porches), motel rooms with canyon balconies, and no TV or WiFi by design. Steps from the rim and the trailheads."
-                  tags={["Inside the Park", "Historic Lodge", "Cabins", "Rim Access"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="premium" name="Clear Sky Resorts" location="Cannonville, UT" featured
-                  url="https://brycecanyon.clearskyresorts.com/"
-                  detail="Geodesic Sky Domes with panoramic glass walls for unobstructed stargazing from your bed. Private canyon on Scenic Byway 12, 15 minutes from the park. One of the best astrotourism stays in the country."
-                  tags={["Dark Sky", "Geodesic Domes", "Byway 12", "Stargazing"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="rooted" name="Stone Canyon Inn" location="Tropic, UT"
-                  url="https://www.stonecanyoninn.com/"
-                  detail="Boutique lodge 6 miles from Bryce with sweeping canyon views from every cottage. Award-winning service, no two rooms alike. A quiet, beautifully situated base."
-                  tags={["Boutique", "Canyon Views", "Cottages"]} />
-
-                {/* ── Capitol Reef Stay ──────────────────────────── */}
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="premium" name="Capitol Reef Resort" location="Torrey, UT" featured
-                  url="https://capitolreefresort.com/"
-                  detail="58 acres one mile from the park entrance. Luxury cabins with red cliff views, spa bathrooms, and private verandas. Glamping options include teepees and Conestoga wagons. On-site restaurant, pool, and llama hikes."
-                  tags={["1 Mile to Park", "Luxury Cabins", "Glamping", "Pool"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="rooted" name="Skyview Hotel" location="Torrey, UT"
-                  url="https://skyviewhotel.com/"
-                  detail="14 rooms and 6 glamping domes in Utah's first Dark Sky designated community. Rooftop stargazing, minimalist design, and a genuinely remote feel. The best boutique option in Torrey."
-                  tags={["Dark Sky", "Glamping Domes", "Boutique", "Rooftop Stargazing"]} />
+                {accommodations.filter(a => !a.corridor).map(a => (
+                  <StayItem
+                    key={a.id}
+                    name={a.name}
+                    location={a.location}
+                    tier={a.stayStyle}
+                    detail={a.highlights?.[0]}
+                    tags={a.tags}
+                    url={a.links?.booking || a.links?.website}
+                    featured={a.lilaPick}
+                    isMobile={isMobile}
+                    onOpenSheet={setActiveSheet}
+                  />
+                ))}
               </ExpandableList>
+
+              {accommodations.filter(a => a.corridor).length > 0 && (
+                <>
+                  <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 600,
+                    letterSpacing: '0.08em', textTransform: 'uppercase',
+                    color: C.warmGray, marginTop: 32, marginBottom: 12 }}>
+                    Regional Corridor
+                  </p>
+                  {accommodations.filter(a => a.corridor).map(a => (
+                    <StayItem
+                      key={a.id}
+                      name={a.name}
+                      location={a.location}
+                      tier={a.stayStyle}
+                      detail={a.highlights?.[0]}
+                      tags={a.tags}
+                      url={a.links?.booking || a.links?.website}
+                      featured={a.lilaPick}
+                      isMobile={isMobile}
+                      onOpenSheet={setActiveSheet}
+                    />
+                  ))}
+                </>
+              )}
             </div>
           </section>
 
@@ -2353,30 +2337,22 @@ export default function ZionGuide() {
             </FadeIn>
             <FadeIn delay={0.08}>
               <ExpandableList initialCount={4} label="places">
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food & Culture')} name={"Live Music at Zion Canyon Brew Pub"} featured
-                  url="https://zionbrewery.com/"
-                  detail={"Cold beer, outdoor patio right on the Virgin River, canyon walls glowing overhead, and live music drifting through it all. Southern Utah's first brewery, and still the best post-hike spot in town."}
-                  note="Live music Tuesdays, Fridays, and weekends — 95 Zion Park Blvd"
-                  tags={["Live Music", "Outdoor Patio", "Craft Beer", "Canyon Views"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food & Culture')} name={"King's Landing Bistro"} featured
-                  url="https://www.kingslanding-zion.com/"
-                  detail={"The canyon's most celebrated table. Seasonal, Southwest-rooted. Reserve ahead."}
-                  tags={["Dinner", "Fine Dining", "Reservations", "$$–$$$"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food & Culture')} name={"Spotted Dog Café"}
-                  url="https://flanigans.com/"
-                  detail={"Inside Flanigan's lodge. Organic, local, elevated comfort food."}
-                  tags={["Dinner", "Organic", "$$"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food & Culture')} name={"Oscar's Café"}
-                  url="https://www.oscarscafe.com/"
-                  detail="Big portions, excellent huevos rancheros. The local gathering spot."
-                  tags={["Breakfast", "Lunch", "Casual", "$–$$"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food & Culture')} name="Deep Creek Coffee"
-                  detail="The first stop every morning. Single-origin pour-overs and house-baked pastries."
-                  tags={["Coffee", "Pastries", "$"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food & Culture')} name="Whiptail Grill"
-                  url="https://www.whiptailgrillzion.com/"
-                  detail="Mexican-inspired, great patio, solid margaritas, reasonable for Springdale."
-                  tags={["Lunch", "Dinner", "Mexican", "$–$$"]} />
+                {restaurants.filter(r => !r.corridor).map(r => (
+                  <ListItem
+                    key={r.id}
+                    name={r.name}
+                    detail={r.highlights?.[0]}
+                    note={r.hours}
+                    tags={r.tags}
+                    featured={r.lilaPick}
+                    url={r.links?.website}
+                    location={r.location}
+                    isMobile={isMobile}
+                    onOpenSheet={openSheet('Food & Culture')}
+                  />
+                ))}
+
+                {/* ── Cultural Heritage & Service ──────────────────────── */}
                 <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food & Culture')} name="Tribal Arts Zion"
                   detail="Native American art and jewelry sourced directly from tribal artists."
                   tags={["Native Art", "Jewelry", "Gallery"]} />
@@ -2384,14 +2360,9 @@ export default function ZionGuide() {
                   url="https://www.davidjwest.com/"
                   detail={"Fine art photography of the Southwest in light that makes you question whether you've ever really seen these places."}
                   tags={["Photography", "Fine Art"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food & Culture')} name="Sol Foods Market"
-                  detail="Small but mighty grocery. Good sandwiches for the trail, cold drinks, local provisions."
-                  tags={["Grocery", "Deli", "Trail Provisions"]} />
                 <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food & Culture')} name="Springdale Farmers Market"
                   detail="Saturday mornings in season. Local produce, artisan goods."
                   tags={["Seasonal", "Saturday AM", "Local"]} />
-
-                {/* ── Cultural Heritage & Service ──────────────────────── */}
                 <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food & Culture')} name="Paiute Cultural Heritage" featured
                   url="https://pitu.gov/culture/"
                   detail={"The Southern Paiute called this land Mukuntuweap long before it was Zion. The Paiute Indian Tribe of Utah preserves language, oral history, and traditions through cultural programs and the annual Restoration Powwow in Cedar City each June."}
@@ -2414,26 +2385,35 @@ export default function ZionGuide() {
                 <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food & Culture')} name="Parowan Gap Petroglyphs"
                   detail={"A free, open-air gallery of ancient rock art attributed to the Fremont people, near Cedar City. Hundreds of petroglyphs etched into the canyon walls — a contemplative stop that asks nothing but attention."}
                   tags={["Free", "Ancient Rock Art", "Self-Guided", "Cedar City"]} />
-
-                {/* ── Bryce Canyon Area Food ──────────────────────── */}
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food & Culture')} name="The Lodge at Bryce Canyon Restaurant" location="Inside Bryce Canyon NP" featured
-                  url="https://www.visitbrycecanyon.com/dining"
-                  detail="High-beam ceilings, stone fireplace, towering pines outside the windows. Elk chili, buffalo sirloin, almond-crusted trout using organic and sustainable ingredients. Open April–November. The most atmospheric dining room in the corridor."
-                  tags={["Dinner", "Inside the Park", "Sustainable", "Apr–Nov", "$–$$"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food & Culture')} name="Bryce Canyon Pines Restaurant" location="Hwy 12, near Bryce"
-                  url="https://www.brycecanyonmotel.com/"
-                  detail="A beloved Utah roadside institution. Hearty breakfasts, elk burgers, rib-eyes, rainbow trout — and homemade pie in more flavors than you can count. The top draw for a reason."
-                  tags={["Breakfast", "Dinner", "Pie", "Classic", "$–$"]} />
-
-                {/* ── Capitol Reef / Torrey Food ──────────────────── */}
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food & Culture')} name="Hell's Backbone Grill & Farm" location="Boulder, UT" featured
-                  url="https://www.hellsbackbonegrill.com/"
-                  detail="The most celebrated restaurant between Zion and Moab, on Scenic Byway 12 in Boulder. Chef-owners Jen Castle and Blake Spalding follow Buddhist principles of sustainability — organic farm on-site, James Beard semifinalist since 2017. Worth the detour. Seasonal: mid-March through November."
-                  tags={["Farm-to-Table", "James Beard", "Boulder", "Byway 12", "Seasonal", "$–$$"]} />
                 <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food & Culture')} name="Fruita Orchards at Capitol Reef" location="Capitol Reef NP" featured
                   url="https://www.nps.gov/care/planyourvisit/fruita.htm"
                   detail="The park's historic orchard — apricot, cherry, peach, pear, apple — is still harvested by visitors in season. Walk in, pick fruit off the tree, pay by the pound. One of the most quietly extraordinary things you can do in any national park."
                   tags={["Free to Enter", "U-Pick", "In-Season", "Historic"]} />
+
+                {/* ── Corridor Restaurants ──────────────────────── */}
+                {restaurants.filter(r => r.corridor).length > 0 && (
+                  <>
+                    <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 600,
+                      letterSpacing: '0.08em', textTransform: 'uppercase',
+                      color: C.warmGray, marginTop: 32, marginBottom: 12 }}>
+                      Regional Corridor
+                    </p>
+                    {restaurants.filter(r => r.corridor).map(r => (
+                      <ListItem
+                        key={r.id}
+                        name={r.name}
+                        detail={r.highlights?.[0]}
+                        note={r.hours}
+                        tags={r.tags}
+                        featured={r.lilaPick}
+                        url={r.links?.website}
+                        location={r.location}
+                        isMobile={isMobile}
+                        onOpenSheet={openSheet('Food & Culture')}
+                      />
+                    ))}
+                  </>
+                )}
               </ExpandableList>
             </FadeIn>
           </section>

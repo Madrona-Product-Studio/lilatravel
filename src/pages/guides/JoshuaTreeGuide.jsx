@@ -18,6 +18,8 @@ import { trackEvent } from '@utils/analytics';
 import { CelestialDrawer } from '@components';
 import { getNPSData, buildNPSLookup, findNPSMatch } from '@services/npsService';
 import { Helmet } from 'react-helmet-async';
+import accommodations from '../../data/accommodations/joshua-tree.json';
+import restaurants from '../../data/restaurants/joshua-tree.json';
 
 
 // ─── Guide-Specific Components ───────────────────────────────────────────────
@@ -1286,46 +1288,45 @@ export default function JoshuaTreeGuide() {
 
             <div>
               <ExpandableList initialCount={5} label="places to stay">
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="rooted" name="29 Palms Inn" location="Twentynine Palms" featured
-                  url="https://29palmsinn.com/"
-                  detail="Historic oasis property since 1928. Adobe bungalows around a natural pool fed by underground spring. Gardens, resident animals, a genuinely timeless quality."
-                  tags={["Historic", "Oasis", "Gardens", "Since 1928"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="elemental" name="Skylight Joshua Tree" location="Twentynine Palms" featured
-                  url="https://www.skylightjt.com/"
-                  detail="Intentionally designed desert cabins and domes near the park's north edge. Stargazing-optimized. Off-grid feel with considered design."
-                  tags={["Cabins", "Domes", "Stargazing", "Design"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="premium" name="Two Bunch Palms" location="Desert Hot Springs" featured
-                  url="https://www.twobunchpalms.com/"
-                  detail="Historic mineral hot springs spa. Grotto, thermal pools, healing arts. A true decompression experience."
-                  tags={["Hot Springs", "Spa", "Grotto", "Historic"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="elemental" name="Jumbo Rocks Campground" location="Inside the park"
-                  detail="124 sites set among massive boulder formations. The most immersive camping in the park. Dark sky conditions excellent. First-come, first-served."
-                  tags={["Camping", "Boulders", "Dark Sky", "FCFS"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="elemental" name="Hicksville Trailer Palace" location="Joshua Tree town"
-                  url="https://www.hicksville.com/"
-                  detail="Vintage trailers on a small ranch. Each themed and designed. Playful, adult, deeply Joshua Tree in spirit. Hot tub, pool, fire pit."
-                  tags={["Vintage Trailers", "Pool", "Hot Tub", "Quirky"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="rooted" name="Sacred Sands" location="Joshua Tree town"
-                  url="https://www.sacredsands.com/"
-                  detail="Boutique B&B — two rooms only. Thoughtfully appointed, meditation garden, personal attention, 360-degree desert views."
-                  tags={["B&B", "Two Rooms", "Meditation Garden"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="rooted" name="Pioneertown Motel" location="Pioneertown"
-                  url="https://www.pioneertownmotel.com/"
-                  detail="Basic but atmospheric. The only place to sleep in Pioneertown itself. Walking distance to Pappy's."
-                  tags={["Motel", "Atmospheric", "Pappy's Access"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="premium" name="Parker Palm Springs" location="Palm Springs" featured
-                  url="https://www.parkerpalmsprings.com/"
-                  detail="Jonathan Adler-designed, 13 acres. The most design-forward major property in the valley. Pool culture, strong restaurant (Norma's), unhurried pace."
-                  tags={["Design", "13 Acres", "Pool Culture", "Norma's"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="premium" name="L'Horizon Resort" location="Palm Springs"
-                  url="https://www.lhorizonpalmsprings.com/"
-                  detail="William Cody, 1952. Mid-century masterpiece, small pool-centric property. Intimate and refined."
-                  tags={["Mid-Century", "Pool", "Intimate"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="premium" name="Arrive Palm Springs" location="Palm Springs"
-                  url="https://www.arrivehotels.com/palm-springs"
-                  detail="Smaller, hipper, more affordable entry point to the PS hotel scene. Good bar, good location."
-                  tags={["Boutique", "Bar", "Accessible Luxury"]} />
+                {accommodations.filter(a => !a.corridor).map(a => (
+                  <StayItem
+                    key={a.id}
+                    name={a.name}
+                    location={a.location}
+                    tier={a.stayStyle}
+                    detail={a.highlights?.[0]}
+                    tags={a.tags}
+                    url={a.links?.booking || a.links?.website}
+                    featured={a.lilaPick}
+                    isMobile={isMobile}
+                    onOpenSheet={setActiveSheet}
+                  />
+                ))}
               </ExpandableList>
+
+              {accommodations.filter(a => a.corridor).length > 0 && (
+                <>
+                  <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 600,
+                    letterSpacing: '0.08em', textTransform: 'uppercase',
+                    color: C.warmGray, marginTop: 32, marginBottom: 12 }}>
+                    Regional Corridor
+                  </p>
+                  {accommodations.filter(a => a.corridor).map(a => (
+                    <StayItem
+                      key={a.id}
+                      name={a.name}
+                      location={a.location}
+                      tier={a.stayStyle}
+                      detail={a.highlights?.[0]}
+                      tags={a.tags}
+                      url={a.links?.booking || a.links?.website}
+                      featured={a.lilaPick}
+                      isMobile={isMobile}
+                      onOpenSheet={setActiveSheet}
+                    />
+                  ))}
+                </>
+              )}
             </div>
           </section>
 
@@ -1569,43 +1570,44 @@ export default function JoshuaTreeGuide() {
             </FadeIn>
             <FadeIn delay={0.08}>
               <ExpandableList initialCount={6} label="places to eat">
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food')} name="La Copine" featured
-                  url="https://www.lacopinekitchen.com/"
-                  detail="The destination restaurant. A converted house in the high desert, farm-sourced, frequently changing menu. Written about in every major food publication. Reservations essential — book weeks ahead."
-                  note="Joshua Tree town — reservations essential"
-                  tags={["Brunch", "Lunch", "Farm-Sourced", "$$$"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food')} name={"Pappy & Harriet's"} featured
-                  url="https://www.pappyandharriets.com/"
-                  detail="Legendary roadhouse — part BBQ joint, part honky-tonk, part live music venue. Red-checkered tablecloths, mesquite-smoked meats, artists playing on a stage built into an old movie set. Don't miss it."
-                  note="Pioneertown — check the music calendar"
-                  tags={["BBQ", "Live Music", "Iconic", "$$"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food')} name="Crossroads Cafe"
-                  detail="The local gathering spot. Good coffee, eggs, benedicts, fresh-squeezed juice. The community bulletin board tells you more about the town than any guidebook."
-                  tags={["Breakfast", "Lunch", "Community", "$"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food')} name="29 Palms Inn Restaurant"
-                  url="https://29palmsinn.com/"
-                  detail="On the grounds of the historic inn near the north entrance. Farm-to-table, uses their own garden produce. Sit outside if weather permits."
-                  tags={["Breakfast", "Dinner", "Farm-to-Table", "$$"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food')} name="Natural Sisters Cafe"
-                  detail="Vegetarian and vegan-friendly. Smoothies, bowls, wraps. A reliable healthy option near the west entrance."
-                  tags={["Vegetarian", "Vegan", "Smoothies", "$"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food')} name="Workshop Kitchen + Bar"
-                  url="https://www.workshoppalmsprings.com/"
-                  detail="Downtown Palm Springs, design-forward, farm-to-table. The kind of restaurant that rewards a nicer dinner out."
-                  note="Palm Springs orbit"
-                  tags={["Dinner", "Farm-to-Table", "Palm Springs", "$$$"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food')} name="Pie for the People"
-                  detail="Pizza by the slice, unpretentious, good. A late-afternoon hiker staple."
-                  tags={["Pizza", "Casual", "$"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food')} name="Joshua Tree Coffee Company"
-                  detail="The pre-hike stop. Good espresso, pastries from local bakers. Community hub."
-                  tags={["Coffee", "Pastries", "Pre-Hike", "$"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food')} name="Cheeky's"
-                  detail="Weekend brunch institution in Palm Springs. Seasonal, rotating menu, long waits. Worth it."
-                  tags={["Brunch", "Palm Springs", "$$"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food')} name="Joshua Tree Health Foods"
-                  detail="Small grocery near the west entrance. Good for stocking up on real food before heading into the park."
-                  tags={["Market", "Provisions", "Natural", "$"]} />
+                {restaurants.filter(r => !r.corridor).map(r => (
+                  <ListItem
+                    key={r.id}
+                    name={r.name}
+                    detail={r.highlights?.[0]}
+                    note={r.hours}
+                    tags={r.tags}
+                    featured={r.lilaPick}
+                    url={r.links?.website}
+                    location={r.location}
+                    isMobile={isMobile}
+                    onOpenSheet={openSheet('Food')}
+                  />
+                ))}
+
+                {restaurants.filter(r => r.corridor).length > 0 && (
+                  <>
+                    <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 600,
+                      letterSpacing: '0.08em', textTransform: 'uppercase',
+                      color: C.warmGray, marginTop: 32, marginBottom: 12 }}>
+                      Regional Corridor
+                    </p>
+                    {restaurants.filter(r => r.corridor).map(r => (
+                      <ListItem
+                        key={r.id}
+                        name={r.name}
+                        detail={r.highlights?.[0]}
+                        note={r.hours}
+                        tags={r.tags}
+                        featured={r.lilaPick}
+                        url={r.links?.website}
+                        location={r.location}
+                        isMobile={isMobile}
+                        onOpenSheet={openSheet('Food')}
+                      />
+                    ))}
+                  </>
+                )}
               </ExpandableList>
             </FadeIn>
           </section>

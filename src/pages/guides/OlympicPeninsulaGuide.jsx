@@ -18,6 +18,8 @@ import { trackEvent } from '@utils/analytics';
 import { CelestialDrawer } from '@components';
 import { getNPSData, buildNPSLookup, findNPSMatch } from '@services/npsService';
 import { Helmet } from 'react-helmet-async';
+import accommodations from '../../data/accommodations/olympic-peninsula.json';
+import restaurants from '../../data/restaurants/olympic-peninsula.json';
 
 
 // ─── Guide-Specific Components ───────────────────────────────────────────────
@@ -1194,36 +1196,20 @@ export default function OlympicPeninsulaGuide() {
 
             <div>
               <ExpandableList initialCount={5} label="places to stay">
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="rooted" name="Lake Crescent Lodge" location="Lake Crescent" featured
-                  url="https://www.olympicnationalparks.com/lodging/lake-crescent-lodge/"
-                  detail={"A historic park lodge on the shore of Lake Crescent, operating since 1916. The lakeside cottages are the ones worth requesting. The view from the porch is unreasonable. Reserve well in advance for summer."}
-                  tags={["Historic 1916", "Lakeside Cottages", "Dining Room"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="elemental" name="Kalaloch Campground" location="Kalaloch Coast" featured
-                  detail={"The only campground in the park with ocean views — sites sit above a wild beach, and the sound of the surf is your constant companion. Bluff sites are the ones to aim for. Book on recreation.gov."}
-                  tags={["Ocean Views", "Bluff Sites", "First-Come"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="premium" name="Domaine Madeleine" location="Port Angeles" featured
-                  detail={"Waterfront B&B on the Strait of Juan de Fuca with views to Vancouver Island. Five suites, French-influenced interiors, exceptional breakfasts, kayaks available. A genuine sanctuary for a rest day."}
-                  tags={["Waterfront B&B", "Strait Views", "French-Influenced"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="elemental" name="Hoh Campground" location="Hoh Rainforest"
-                  detail={"Deep in the rainforest, at the end of Upper Hoh Road. Mossy, quiet, atmospheric. Year-round access. Walk to the Hall of Mosses before the day hikers arrive. Elk are common visitors at dawn."}
-                  tags={["Rainforest", "Year-Round", "Elk at Dawn"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="elemental" name="Sol Duc Campground" location="Sol Duc Valley"
-                  detail={"Forested campground adjacent to the hot springs resort. The hot springs are a short walk from your tent. One of the park's best campground-to-experience ratios."}
-                  tags={["Hot Springs Access", "Forested", "Running Water"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="elemental" name="Quileute Oceanside Resort" location="La Push" featured
-                  url="https://quileuteoceanside.com/"
-                  detail={"Tribally owned and operated by the Quileute Nation, directly on First Beach. Cabins, RV sites, a small motel building — the setting is the thing. Views of sea stacks from your window or from the beach ten steps away."}
-                  tags={["Tribal-Owned", "First Beach", "Sea Stacks", "Book Early"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="rooted" name="Kalaloch Lodge" location="Kalaloch Coast"
-                  url="https://www.olympicnationalparks.com/lodging/kalaloch-lodge/"
-                  detail={"NPS-managed lodge on a bluff above the wild coast. A National Historic Landmark. Cabins closest to the bluff edge are extraordinary. The location is exceptional. Reserve 6+ months out for summer."}
-                  tags={["National Historic Landmark", "Bluff Cabins", "Wild Coast"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="rooted" name="Palace Hotel" location="Port Townsend"
-                  detail={"A restored Victorian hotel in the heart of Port Townsend's historic district — individually decorated rooms, original woodwork, above a lively arts town. Good base for accessing the park's eastern zones."}
-                  tags={["Victorian", "Arts Town", "Historic District"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="premium" name="Manresa Castle" location="Port Townsend"
-                  detail={"Historic castle hotel above Port Townsend. Restored Victorian grandeur, views of Puget Sound. For those who want their park stay to include something architecturally distinct."}
-                  tags={["Castle Hotel", "Puget Sound Views", "Victorian"]} />
+                {accommodations.filter(a => !a.corridor).map(a => (
+                  <StayItem
+                    key={a.id}
+                    name={a.name}
+                    location={a.location}
+                    tier={a.stayStyle}
+                    detail={a.highlights?.[0]}
+                    tags={a.tags}
+                    url={a.links?.booking || a.links?.website}
+                    featured={a.lilaPick}
+                    isMobile={isMobile}
+                    onOpenSheet={setActiveSheet}
+                  />
+                ))}
               </ExpandableList>
             </div>
           </section>
@@ -1412,57 +1398,23 @@ export default function OlympicPeninsulaGuide() {
               <SectionSub isMobile={isMobile}>{"From Indigenous heritage to lavender farms to the peninsula's best kitchens. The connections here go deeper than a meal."}</SectionSub>
             </FadeIn>
 
-            {/* Where to Eat — Port Angeles */}
             <FadeIn delay={0.06}>
-              <div style={{ marginBottom: 8 }}>
-                <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: C.skyBlue, marginBottom: 16 }}>{"Port Angeles"}</div>
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food')} name="Kokopelli Grill" featured
-                  detail={"The best dinner option in Port Angeles. Wood-fired cooking, fresh seafood, local produce. Relaxed and well-executed. A reliable end to a long park day."}
-                  tags={["Wood-Fired", "Seafood", "Dinner"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food')} name="Barhop Brewing"
-                  detail={"Port Angeles's anchor craft brewery. Fish and chips, burgers, rotating taps. The rooftop patio has views over the harbor."}
-                  tags={["Brewery", "Rooftop", "Casual"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food')} name="Dupuis Restaurant"
-                  detail={"Locally loved, unpretentious, consistently good. Local seafood and Pacific Northwest comfort food. The kind of place a town this size needs and rarely has."}
-                  tags={["Local Favorite", "Seafood", "Comfort"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food')} name="Bonny's Bakery"
-                  detail={"Morning pastries, strong coffee, a community gathering point. Arrive early — the good things sell out."}
-                  tags={["Pastries", "Coffee", "Morning"]} />
-              </div>
-            </FadeIn>
-
-            {/* Sequim & Port Townsend */}
-            <FadeIn delay={0.1}>
-              <div style={{ marginTop: 28, marginBottom: 8 }}>
-                <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: C.skyBlue, marginBottom: 16 }}>{"Sequim & Port Townsend"}</div>
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food')} name="Alder Wood Bistro" featured
-                  detail={"Farm-to-table sourcing in a town that actually has farms. Local garlic, local oysters, thoughtful wine list. One of the best restaurants on the entire peninsula."}
-                  note="Sequim"
-                  tags={["Farm-to-Table", "Wine", "Oysters"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food')} name="Finistère" featured
-                  detail={"Pacific Northwest cuisine in a Victorian port town. Excellent shellfish, curated menu, a beautiful room. Worth the 45-minute drive from Port Angeles."}
-                  note="Port Townsend"
-                  tags={["Fine Dining", "Shellfish", "Victorian Setting"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food')} name="Bread & Roses Bakery"
-                  detail={"Sourdough, local grain, pastries that justify the trip. Community-owned institution."}
-                  note="Port Townsend"
-                  tags={["Sourdough", "Community-Owned", "Local Grain"]} />
-              </div>
-            </FadeIn>
-
-            {/* Forks & Provisions */}
-            <FadeIn delay={0.14}>
-              <div style={{ marginTop: 28, marginBottom: 8 }}>
-                <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: C.skyBlue, marginBottom: 16 }}>{"Forks & Provisions"}</div>
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food')} name="Quileute Oceanside Resort Restaurant"
-                  detail={"On-site at the resort in La Push, overlooking First Beach. Simple menu, extraordinary location. Worth eating here just to watch the surf from your table."}
-                  note="La Push"
-                  tags={["Ocean Views", "Tribal-Owned", "La Push"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food')} name="Swain's General Store"
-                  detail={"The peninsula's most complete outfitter — gear, food, camping supplies. Stock up here before heading into any zone."}
-                  note="Port Angeles"
-                  tags={["Outfitter", "Provisions", "Camping Supplies"]} />
-              </div>
+              <ExpandableList initialCount={5} label="places to eat">
+                {restaurants.filter(r => !r.corridor).map(r => (
+                  <ListItem
+                    key={r.id}
+                    name={r.name}
+                    detail={r.highlights?.[0]}
+                    note={r.hours}
+                    tags={r.tags}
+                    featured={r.lilaPick}
+                    url={r.links?.website}
+                    location={r.location}
+                    isMobile={isMobile}
+                    onOpenSheet={openSheet('Food')}
+                  />
+                ))}
+              </ExpandableList>
             </FadeIn>
 
             {/* Farm & Landscape */}

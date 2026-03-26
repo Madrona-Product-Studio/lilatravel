@@ -18,6 +18,8 @@ import { P } from '@data/photos';
 import { trackEvent } from '@utils/analytics';
 import { CelestialDrawer } from '@components';
 import { Helmet } from 'react-helmet-async';
+import accommodations from '../../data/accommodations/vancouver-island.json';
+import restaurants from '../../data/restaurants/vancouver-island.json';
 
 
 // ─── Guide-Specific Components ───────────────────────────────────────────────
@@ -1289,34 +1291,20 @@ export default function VancouverIslandGuide() {
 
             <div>
               <ExpandableList initialCount={5} label="places to stay">
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="rooted" name="Pluvio Restaurant + Rooms" location="Ucluelet" featured
-                  url="https://www.pluviorestaurant.com/"
-                  detail="Six rooms above the best restaurant in Ucluelet. Small, thoughtfully furnished, quiet. Book room + dinner as a package."
-                  tags={["6 Rooms", "Restaurant", "Intimate", "James Beard"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="elemental" name="Green Point Campground" location="Pacific Rim National Park" featured
-                  url="https://parks.canada.ca/pn-np/bc/pacificrim/activ/camping"
-                  detail="The only campground inside the Long Beach unit — clifftop sites above the Pacific, ocean sound throughout the night. Reservation system opens in February; it fills in hours. Worth planning months ahead."
-                  tags={["Camping", "Clifftop", "Pacific Views", "Reserve Early"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="premium" name="Wickaninnish Inn" location="Chesterman Beach, Tofino" featured
-                  url="https://www.wickinn.com/"
-                  detail="The defining luxury property on the outer coast of British Columbia. Every room faces the Pacific with floor-to-ceiling windows designed for storm watching. Ancient Cedars Spa. The Pointe Restaurant. Reserve 6-12 months ahead."
-                  tags={["Storm Watching", "Spa", "Pointe Restaurant", "World-Class"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="elemental" name="Wya Point Resort" location="Ucluelet — Tribal Land" featured
-                  url="https://www.wyapoint.com/"
-                  detail="Owned and operated by the Yuułuʔiłʔatḥ First Nation. Oceanfront yurts, tent camping, and rustic lodging on 600 acres of old-growth forest on an exclusive beach. Sleeping on land cared for by the Nation that has held it for 10,000 years."
-                  tags={["First Nations", "Yurts", "Old-Growth", "Oceanfront"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="elemental" name="Clayoquot Wilderness Resort" location="Bedwell River — Remote"
-                  url="https://www.clayoquot.com/"
-                  detail="Remote fly-in/boat-in safari tents on the shores of Bedwell River in Clayoquot Sound. Extreme privacy, extreme nature, guided programming with Tla-o-qui-aht guides. No road access."
-                  tags={["Safari Tents", "Fly-In", "All-Inclusive", "Wilderness"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="rooted" name="Pacific Sands Beach Resort" location="Cox Bay, Tofino"
-                  url="https://www.pacificsands.com/"
-                  detail="On Cox Bay, directly on a consistent surf break. Self-catering suites and cabins with fireplaces. Boards available, wetsuit rinse stations. The location is hard to beat."
-                  tags={["Surf Access", "Cabins", "Fireplaces", "Cox Bay"]} />
-                <StayItem isMobile={isMobile} onOpenSheet={setActiveSheet} tier="rooted" name="Long Beach Lodge Resort" location="Cox Bay, Tofino"
-                  url="https://www.longbeachlodgeresort.com/"
-                  detail="Dedicated surf camp operation and a well-regarded dining room (the Pointe Restaurant). The great room has a fireplace the size of a car and views of the Pacific that command attention."
-                  tags={["Surf Camp", "Restaurant", "Great Room", "Beach"]} />
+                {accommodations.filter(a => !a.corridor).map(a => (
+                  <StayItem
+                    key={a.id}
+                    name={a.name}
+                    location={a.location}
+                    tier={a.stayStyle}
+                    detail={a.highlights?.[0]}
+                    tags={a.tags}
+                    url={a.links?.booking || a.links?.website}
+                    featured={a.lilaPick}
+                    isMobile={isMobile}
+                    onOpenSheet={setActiveSheet}
+                  />
+                ))}
               </ExpandableList>
             </div>
           </section>
@@ -1519,44 +1507,21 @@ export default function VancouverIslandGuide() {
                   detail="Meares Island and surrounding territories were declared a Tribal Park in 1984 — one of the first acts of Indigenous land protection in Canada, in response to planned clear-cutting. An active, living declaration of stewardship. Support Indigenous-guided tours when possible."
                   tags={["Indigenous Stewardship", "Since 1984", "Tribal Park", "Living Practice"]} />
 
-                {/* ── Dining: Tofino ── */}
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food & Culture')} name="Wolf in the Fog" featured
-                  url="https://www.wolfinthefog.com/"
-                  detail="The anchor restaurant of Tofino's dining scene. Farm and ocean-driven menu focused on Vancouver Island producers and the Pacific immediately outside. The chowder is the standard. Reserve weeks ahead in summer."
-                  tags={["Dinner", "Ocean-to-Table", "Reservations", "Tofino"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food & Culture')} name="Shelter Restaurant"
-                  url="https://www.shelterrestaurant.com/"
-                  detail="Consistent, warm, locally sourced. Fresh Pacific halibut, Clayoquot Sound oysters, and regional wine. Slightly more relaxed than Wolf in the Fog — the right call after a long day on the water."
-                  tags={["Dinner", "Seafood", "Relaxed", "Tofino"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food & Culture')} name="1909 Kitchen"
-                  url="https://www.tofinoresortandmarina.com/dine/"
-                  detail="Japanese-influenced local seafood at Tofino Resort + Marina. Crisp execution. Worth it for the dock views alone at sunset."
-                  tags={["Dinner", "Japanese-Influenced", "Dock Views", "Tofino"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food & Culture')} name="Common Loaf Bake Shop"
-                  url="https://www.commonloaf.com/"
-                  detail="Tofino's original bakery — sourdough, pastries, strong coffee. Community institution since the 1970s. Morning staple."
-                  tags={["Breakfast", "Bakery", "Since 1970s", "$"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food & Culture')} name="SoBo"
-                  url="https://www.sobo.ca/"
-                  detail="Originally a food truck, now a proper restaurant. Known for fish tacos, local shellfish, and whole-ingredient cooking. A Tofino original."
-                  tags={["Fish Tacos", "Casual", "Tofino Original", "$$"]} />
-
-                {/* ── Dining: Ucluelet ── */}
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food & Culture')} name="Pluvio Restaurant + Rooms" featured
-                  url="https://www.pluviorestaurant.com/"
-                  detail="The best restaurant in Ucluelet, and one of the best on the island. An intimate 8-table dining room serving fixed-format Pacific Northwest cuisine: local seafood, foraged ingredients, housemade everything. James Beard-nominated. Reserve immediately."
-                  tags={["Fixed Menu", "8 Tables", "James Beard", "Ucluelet"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food & Culture')} name="Heartwood Kitchen"
-                  url="https://www.heartwoodkitchen.ca/"
-                  detail="The daily staple for Ucluelet visitors. Casual, locally sourced, full breakfast and lunch. Busy in summer — arrive early."
-                  tags={["Breakfast", "Lunch", "Casual", "Ucluelet"]} />
-
-                {/* ── Victoria Corridor Dining ── */}
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food & Culture')} name="Fairmont Empress — Afternoon Tea" featured
-                  url="https://www.fairmont.com/empress-victoria/"
-                  detail="The Empress has been serving afternoon tea since 1908. Lobby Lounge overlooking the water, live piano, bone china. 21 loose-leaf teas, fresh scones with house-made jam, honey from the hotel's rooftop apiary. Genuinely well-executed and one of those experiences that earns its cliche."
-                  note="~$109 CAD/person — reserve well in advance, midweek quieter"
-                  tags={["Victoria Corridor", "Afternoon Tea", "Since 1908", "Premium"]} />
+                {/* ── Dining ── */}
+                {restaurants.filter(r => !r.corridor).map(r => (
+                  <ListItem
+                    key={r.id}
+                    name={r.name}
+                    detail={r.highlights?.[0]}
+                    note={r.hours}
+                    tags={r.tags}
+                    featured={r.lilaPick}
+                    url={r.links?.website}
+                    location={r.location}
+                    isMobile={isMobile}
+                    onOpenSheet={openSheet('Food & Culture')}
+                  />
+                ))}
 
                 {/* ── Stewardship ── */}
                 <ListItem isMobile={isMobile} onOpenSheet={openSheet('Food & Culture')} name="Clayoquot Biosphere Trust"
