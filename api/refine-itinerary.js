@@ -132,6 +132,23 @@ function buildBookingsSummary(tripLogistics) {
     lines.push(`- **${label}**: ${[a.name, dates, a.confirmationNumber ? `Conf: ${a.confirmationNumber}` : ''].filter(Boolean).join(' · ')}`);
   });
 
+  // Conditional context: airport → destination drive note
+  if (flights.length > 0) {
+    const outbound = flights[0];
+    const arrivalAirport = outbound.arrivalAirport;
+    if (arrivalAirport) {
+      lines.push(`- ⚠ The arrival airport (${arrivalAirport}) may require a significant drive to the destination area. Factor this drive into Day 1's timeline as the opening arc.`);
+    }
+  }
+
+  // Conditional context: multi-property transition note
+  if (accommodations.length >= 2) {
+    const hasDates = accommodations.some(a => a.checkIn || a.checkOut);
+    if (hasDates) {
+      lines.push(`- ⚠ Multiple accommodations are booked. On each changeover day (check-out from one → check-in to next), include the transition as a timeline event: pack up, drive, check in, settle in.`);
+    }
+  }
+
   return lines.join('\n');
 }
 
@@ -245,11 +262,25 @@ You are revising this itinerary based on the traveler's feedback. Follow these r
 
 9. **Keep the same number of days** unless the overall note explicitly asks to add or remove days.
 
-10. **Respect confirmed bookings as hard constraints:**
-    - Do not schedule activities before flight arrival time + 1.5 hours (travel from airport + check-in buffer).
-    - Wrap up all activities at least 2.5 hours before a departure flight (drive to airport + security + buffer).
-    - If the traveler has confirmed accommodation, use their confirmed hotel as the "stay" pick in the JSON output — set the stay pick's "name" to the confirmed hotel name. Do NOT suggest a different hotel. Build hotel check-in/check-out into the daily timeline naturally.
-    - Rental car pickup/return times should align with flight arrivals/departures.
+10. **Respect confirmed bookings as hard structural constraints:**
+
+    **Arrival day:**
+    - The traveler arrives at the airport listed in their outbound flight. If that airport is NOT in the destination itself (e.g., LAS for Zion, LAX/ONT for Joshua Tree, OGG for Kauai), the drive from airport to the destination area IS the first arc of Day 1. Include it as a timeline event with an estimated drive time. Do not schedule trailhead activities before the traveler has realistically arrived and checked in.
+    - Do not schedule activities before flight arrival time + airport-to-destination drive time + 1 hour buffer.
+    - If the traveler has a rental car pickup, the first timeline event should be: arrive → pick up rental car → drive to destination.
+
+    **Accommodations:**
+    - Use the confirmed hotel/lodge name as the "stay" pick for every night the traveler is booked there. Do NOT suggest alternatives.
+    - If multiple accommodations are booked on different date ranges, the changeover day must include a transition arc in the timeline: check out of Property A → drive to Property B → check in. Treat this as a real event with time allocated, not a footnote.
+    - Build check-in (typically mid-afternoon) and check-out (typically late morning) into the daily rhythm. Suggest a mellow arrival-evening activity after a late check-in, not a full day of hiking.
+
+    **Departure day:**
+    - The traveler must reach their departure airport for the return flight. If the airport is far from the destination, the drive back IS the closing arc of the final day. Include it as a timeline event.
+    - Wrap up all destination activities at least airport-drive-time + 2 hours before departure flight time.
+
+    **Rental car:**
+    - Rental pickup/return should align with flight arrivals/departures.
+    - If the rental pickup location differs from the airport, note this in the timeline.
 
 ${formData ? `
 ---
