@@ -153,6 +153,257 @@ function buildBookingsSummary(tripLogistics) {
 }
 
 /**
+ * Known drive time estimates between common location pairs (minutes).
+ * Keys are normalized "from|to" pairs. Checked bidirectionally.
+ */
+const DRIVE_TIMES = {
+  'oakland|monterey': 130, 'oak|monterey': 130,
+  'san francisco|monterey': 140, 'sfo|monterey': 140,
+  'san jose|monterey': 80, 'sjc|monterey': 80,
+  'monterey|big sur': 90, 'monterey|big sur area': 90,
+  'monterey|carmel': 10, 'carmel|big sur': 75,
+  'las vegas|zion': 170, 'las|zion': 170, 'las|springdale': 170,
+  'las vegas|springdale': 170,
+  'lax|joshua tree': 160, 'ont|joshua tree': 100,
+  'lax|twentynine palms': 170, 'ont|twentynine palms': 110,
+  'ogg|kauai': null, // inter-island flight, not a drive
+  'lih|poipu': 35, 'lih|princeville': 45, 'lih|kapaa': 20,
+  'sea|olympic peninsula': 150, 'sea|port angeles': 160,
+  'sfo|big sur': 180, 'oak|big sur': 190, 'sjc|big sur': 150,
+  'monterey|pacific grove': 10, 'big sur|san simeon': 60,
+  'yvr|tofino': 300, 'yvr|ucluelet': 290, 'yvr|victoria': 90,
+  'victoria|tofino': 240,
+};
+
+function lookupDriveTime(from, to) {
+  if (!from || !to) return null;
+  const a = from.toLowerCase().trim();
+  const b = to.toLowerCase().trim();
+  // Try both directions
+  const key1 = `${a}|${b}`;
+  const key2 = `${b}|${a}`;
+  if (DRIVE_TIMES[key1] !== undefined) return DRIVE_TIMES[key1];
+  if (DRIVE_TIMES[key2] !== undefined) return DRIVE_TIMES[key2];
+  // Try partial matching: check if either location contains a key token
+  for (const [k, v] of Object.entries(DRIVE_TIMES)) {
+    const [kA, kB] = k.split('|');
+    if ((a.includes(kA) || kA.includes(a)) && (b.includes(kB) || kB.includes(b))) return v;
+    if ((a.includes(kB) || kB.includes(a)) && (b.includes(kA) || kA.includes(b))) return v;
+  }
+  return null;
+}
+
+function formatDriveTime(minutes) {
+  if (!minutes) return null;
+  const h = Math.floor(minutes / 60);
+  const m = minutes % 60;
+  if (h === 0) return `~${m} min`;
+  if (m === 0) return `~${h} hr${h > 1 ? 's' : ''}`;
+  return `~${h}.${Math.round(m / 6)}–${h + 1} hrs`;
+}
+
+/**
+ * Extract a city name from an accommodation's address or name.
+ * Tries address first (looks for "City, State" pattern), falls back to
+ * extracting location hints from the hotel name.
+ */
+function extractCity(accommodation) {
+  if (!accommodation) return null;
+  const addr = accommodation.address || '';
+  // Try "City, ST" or "City, State" pattern from address
+  const cityStateMatch = addr.match(/,\s*([A-Za-z\s]+),\s*[A-Z]{2}\b/);
+  if (cityStateMatch) return cityStateMatch[1].trim();
+  // Try last component before ZIP
+  const beforeZip = addr.match(/,\s*([A-Za-z\s]+)\s+\d{5}/);
+  if (beforeZip) return beforeZip[1].trim();
+  // Extract from name — common patterns like "Hotel Name, City" or "Hotel Name - City"
+  const nameParts = (accommodation.name || '').split(/[,\-–—·]/).map(s => s.trim());
+  if (nameParts.length > 1) {
+    const lastPart = nameParts[nameParts.length - 1];
+    // If the last part looks like a city (not too long, no numbers)
+    if (lastPart.length < 30 && !/\d/.test(lastPart)) return lastPart;
+  }
+  return null;
+}
+
+/**
+ * Map airport codes to city names for known airports.
+ */
+const AIRPORT_CITIES = {
+  OAK: 'Oakland', SFO: 'San Francisco', SJC: 'San Jose',
+  LAX: 'Los Angeles', ONT: 'Ontario', BUR: 'Burbank', LGB: 'Long Beach', SNA: 'Orange County',
+  LAS: 'Las Vegas', OGG: 'Kahului (Maui)', LIH: 'Lihue (Kauai)',
+  SEA: 'Seattle', PDX: 'Portland', YVR: 'Vancouver',
+  SLC: 'Salt Lake City', PHX: 'Phoenix', DEN: 'Denver',
+  JFK: 'New York', EWR: 'Newark', LGA: 'New York',
+  ORD: 'Chicago', ATL: 'Atlanta', DFW: 'Dallas', IAH: 'Houston',
+  MCI: 'Kansas City', MSP: 'Minneapolis', DTW: 'Detroit', BOS: 'Boston',
+};
+
+function airportCity(code) {
+  if (!code) return null;
+  return AIRPORT_CITIES[code.toUpperCase().trim()] || code;
+}
+
+/**
+ * Build a day-by-day location scaffold from logistics + itinerary data.
+ * This gives Claude explicit geographic anchoring for each day.
+ */
+function buildLocationScaffold(tripLogistics, parsedItinerary) {
+  if (!tripLogistics) return '';
+  const { flights = [], accommodations = [] } = tripLogistics;
+  const numDays = parsedItinerary?.days?.length || 0;
+  if (numDays === 0) return '';
+  if (flights.length === 0 && accommodations.length === 0) return '';
+
+  // Sort accommodations by check-in date
+  const sortedAccom = [...accommodations]
+    .filter(a => a.name)
+    .sort((a, b) => {
+      if (!a.checkIn) return 1;
+      if (!b.checkIn) return -1;
+      return new Date(a.checkIn) - new Date(b.checkIn);
+    });
+
+  if (sortedAccom.length === 0 && flights.length === 0) return '';
+
+  const lines = [];
+  lines.push('## ITINERARY STRUCTURE — TREAT AS HARD CONSTRAINTS\n');
+  lines.push('The following day-by-day location scaffold is derived from the traveler\'s confirmed bookings. **Each day\'s activities MUST be anchored to the location specified below.** Do not place activities in a different city than where the traveler is staying that night.\n');
+
+  // Determine arrival info
+  const outbound = flights.length > 0 ? flights[0] : null;
+  const returnFlight = flights.length >= 2 ? flights[1] : null;
+  const arrivalAirport = outbound?.arrivalAirport || null;
+  const arrivalAirportCity = airportCity(arrivalAirport);
+  const departureAirport = returnFlight?.departureAirport || outbound?.departureAirport || arrivalAirport;
+  const departureAirportCity = airportCity(departureAirport);
+
+  // Build accommodation schedule: which hotel covers which days
+  // If we have dates, use them. Otherwise, split days evenly.
+  const hotel1 = sortedAccom[0] || null;
+  const hotel2 = sortedAccom.length >= 2 ? sortedAccom[1] : null;
+  const hotel1City = extractCity(hotel1) || (hotel1?.name ? hotel1.name.split(/[,\-–—]/)[0].trim() : null);
+  const hotel2City = hotel2 ? (extractCity(hotel2) || hotel2.name.split(/[,\-–—]/)[0].trim()) : null;
+
+  // Determine transition day index (0-based)
+  let transitionDayIndex = null;
+  if (hotel1 && hotel2 && hotel1.checkOut) {
+    // Find which itinerary day matches the check-out date of hotel 1
+    const checkOutDate = new Date(hotel1.checkOut);
+    const days = parsedItinerary?.days || [];
+    for (let i = 0; i < days.length; i++) {
+      const dayDate = days[i]?.date ? new Date(days[i].date) : null;
+      if (dayDate && dayDate.toDateString() === checkOutDate.toDateString()) {
+        transitionDayIndex = i;
+        break;
+      }
+    }
+    // Fallback: if dates don't match, use hotel2 checkIn
+    if (transitionDayIndex === null && hotel2.checkIn) {
+      const checkInDate = new Date(hotel2.checkIn);
+      for (let i = 0; i < days.length; i++) {
+        const dayDate = days[i]?.date ? new Date(days[i].date) : null;
+        if (dayDate && dayDate.toDateString() === checkInDate.toDateString()) {
+          transitionDayIndex = i;
+          break;
+        }
+      }
+    }
+    // Last fallback: estimate from date difference relative to trip length
+    if (transitionDayIndex === null && hotel1.checkIn && hotel1.checkOut) {
+      const start = new Date(hotel1.checkIn);
+      const end = new Date(hotel1.checkOut);
+      const nightsAtHotel1 = Math.round((end - start) / (1000 * 60 * 60 * 24));
+      if (nightsAtHotel1 > 0 && nightsAtHotel1 < numDays) {
+        transitionDayIndex = nightsAtHotel1;
+      }
+    }
+  }
+
+  // --- Day 1 (arrival) ---
+  lines.push(`**Day 1 (arrival day):**`);
+  if (arrivalAirport) {
+    lines.push(`- Flight lands at ${arrivalAirport} (${arrivalAirportCity})`);
+    if (hotel1City) {
+      const driveMin = lookupDriveTime(arrivalAirport, hotel1City) || lookupDriveTime(arrivalAirportCity, hotel1City);
+      const driveStr = formatDriveTime(driveMin);
+      lines.push(`- Drive from ${arrivalAirportCity} (${arrivalAirport}) to ${hotel1.name}${hotel1City ? `, ${hotel1City}` : ''}${driveStr ? ` (${driveStr})` : ''}`);
+    }
+    if (outbound?.arrivalTime) {
+      lines.push(`- Flight arrives at ${outbound.arrivalTime} — do not schedule activities before realistic arrival at hotel`);
+    }
+  }
+  if (hotel1) {
+    lines.push(`- Check in at ${hotel1.name}`);
+    if (hotel1City) {
+      lines.push(`- Remaining Day 1 activities must be in or near **${hotel1City}**`);
+      lines.push(`- Day 1 title must reflect the arrival city: **${hotel1City}**`);
+    }
+  }
+  lines.push('');
+
+  // --- Middle days at hotel 1 ---
+  if (hotel1City) {
+    const lastHotel1Day = transitionDayIndex !== null ? transitionDayIndex : numDays;
+    if (lastHotel1Day > 1) {
+      const endDay = hotel2 ? lastHotel1Day : (returnFlight ? numDays - 1 : numDays);
+      if (endDay > 1) {
+        lines.push(`**Days 2–${endDay}${hotel2 ? '' : (returnFlight ? ' (pre-departure)' : '')}:**`);
+        lines.push(`- Traveler is based at ${hotel1.name}, ${hotel1City}`);
+        lines.push(`- All activities must be within reach of **${hotel1City}**`);
+        lines.push(`- Use "${hotel1.name}" as the stay pick name`);
+        lines.push('');
+      }
+    }
+  }
+
+  // --- Transition day ---
+  if (hotel2 && transitionDayIndex !== null) {
+    const transitionDay = transitionDayIndex + 1; // 1-indexed
+    const driveMin = lookupDriveTime(hotel1City, hotel2City);
+    const driveStr = formatDriveTime(driveMin);
+    lines.push(`**Day ${transitionDay} (hotel transition):**`);
+    lines.push(`- Check out of ${hotel1.name}${hotel1City ? ` (${hotel1City})` : ''}`);
+    lines.push(`- Drive from ${hotel1City || hotel1.name} to ${hotel2.name}${hotel2City ? `, ${hotel2City}` : ''}${driveStr ? ` (${driveStr})` : ''}`);
+    lines.push(`- Check in at ${hotel2.name}`);
+    if (hotel2City) {
+      lines.push(`- Remaining activities on this day must be in or near **${hotel2City}**`);
+    }
+    lines.push('');
+
+    // --- Days at hotel 2 ---
+    const hotel2StartDay = transitionDay + 1;
+    const hotel2EndDay = returnFlight ? numDays - 1 : numDays;
+    if (hotel2StartDay <= hotel2EndDay) {
+      lines.push(`**Days ${hotel2StartDay}–${hotel2EndDay}:**`);
+      lines.push(`- Traveler is based at ${hotel2.name}${hotel2City ? `, ${hotel2City}` : ''}`);
+      lines.push(`- All activities must be within reach of **${hotel2City || hotel2.name}**`);
+      lines.push(`- Use "${hotel2.name}" as the stay pick name`);
+      lines.push('');
+    }
+  }
+
+  // --- Departure day ---
+  if (returnFlight) {
+    lines.push(`**Day ${numDays} (departure day):**`);
+    const lastHotel = hotel2 || hotel1;
+    const lastHotelCity = hotel2City || hotel1City;
+    if (lastHotel && departureAirport) {
+      const driveMin = lookupDriveTime(lastHotelCity, departureAirport) || lookupDriveTime(lastHotelCity, departureAirportCity);
+      const driveStr = formatDriveTime(driveMin);
+      lines.push(`- Drive from ${lastHotel.name}${lastHotelCity ? ` (${lastHotelCity})` : ''} to ${departureAirport} airport${driveStr ? ` (${driveStr})` : ''}`);
+    }
+    if (returnFlight.departureTime) {
+      lines.push(`- Flight departs at ${returnFlight.departureTime} — wrap up all activities with enough time for the drive + 2 hrs buffer`);
+    }
+    lines.push('');
+  }
+
+  return lines.join('\n');
+}
+
+/**
  * Build the overall pulse section for the refinement prompt.
  */
 function buildPulseSummary(pulse, overallNote) {
@@ -203,14 +454,16 @@ export default async function handler(req, res) {
     const swappedSummary = buildSwappedSummary(swappedActivities, parsedItinerary?.days);
     const pulseSummary = buildPulseSummary(pulse, overallNote);
     const bookingsSummary = buildBookingsSummary(tripLogistics);
+    const locationScaffold = buildLocationScaffold(tripLogistics, parsedItinerary);
 
     const hasDayFeedback = feedbackSummary.length > 0;
     const hasLockedItems = lockedSummary.length > 0;
     const hasSwaps = swappedSummary.length > 0;
     const hasPulse = pulseSummary.length > 0;
     const hasBookings = bookingsSummary.length > 0;
+    const hasScaffold = locationScaffold.length > 0;
 
-    if (!hasDayFeedback && !hasLockedItems && !hasSwaps && !hasPulse && !hasBookings) {
+    if (!hasDayFeedback && !hasLockedItems && !hasSwaps && !hasPulse && !hasBookings && !hasScaffold) {
       return res.status(400).json({ error: 'No feedback provided to refine against' });
     }
 
@@ -235,6 +488,8 @@ ${hasDayFeedback ? `### Per-Day Notes\n\n${feedbackSummary}` : ''}
 ${hasPulse ? `### Overall Trip Feeling\n\n${pulseSummary}` : ''}
 
 ${hasBookings ? `### Confirmed Bookings\n\nThe traveler has these confirmed bookings — treat as hard constraints:\n\n${bookingsSummary}` : ''}
+
+${hasScaffold ? `---\n\n${locationScaffold}` : ''}
 
 ---
 
