@@ -418,7 +418,7 @@ export default function Nav({ transparent = false, breathConfig = null }) {
         position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
         background: breathConfig ? "transparent" : (showSolid ? "rgba(250,248,244,0.97)" : "transparent"),
         backdropFilter: breathConfig ? "none" : (showSolid ? "blur(16px)" : "none"),
-        borderBottom: showSolid ? `1px solid ${C.stone}` : "none",
+        borderBottom: showSolid ? (breathConfig ? '1px solid rgba(0,0,0,0.08)' : `1px solid ${C.stone}`) : "none",
         transition: "all 0.4s ease",
       }}>
         {breathConfig && <canvas ref={navCanvasRef} style={{ position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none' }} />}
