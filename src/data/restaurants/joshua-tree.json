@@ -329,7 +329,7 @@
       "maps": null
     },
     "corridor": true,
-    "lilaPick": true,
+    "lilaPick": false,
     "tags": ["dinner", "farm-to-table", "design-forward", "palm-springs", "date-night"],
     "months": "all"
   },

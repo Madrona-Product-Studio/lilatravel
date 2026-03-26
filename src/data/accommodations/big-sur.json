@@ -48,7 +48,7 @@
       "booking": "https://www.recreation.gov/"
     },
     "seasonalNotes": "Year-round. 30 miles south of Pfeiffer — the southern Big Sur corridor.",
-    "lilaPick": true,
+    "lilaPick": false,
     "tags": ["clifftop", "ocean-view", "stargazing", "primitive", "bortle-2"]
   },
   {
@@ -73,7 +73,7 @@
       "booking": null
     },
     "seasonalNotes": "Year-round. Glampsites are the middle path between camping and the full Alila resort.",
-    "lilaPick": true,
+    "lilaPick": false,
     "tags": ["glamping", "redwood-canyon", "fire-pit", "luxury-camping"]
   },
   {
@@ -124,7 +124,7 @@
       "booking": null
     },
     "seasonalNotes": "Year-round. Each cabin is unique — request details when booking.",
-    "lilaPick": true,
+    "lilaPick": false,
     "tags": ["cabins", "design-forward", "riverside", "redwoods", "sustainable"]
   },
   {
@@ -227,7 +227,7 @@
       "booking": null
     },
     "seasonalNotes": "Year-round. Intimate and refined — 20 rooms total.",
-    "lilaPick": true,
+    "lilaPick": false,
     "tags": ["relais-chateaux", "michelin", "historic", "village-center", "intimate"]
   },
   {
@@ -306,7 +306,7 @@
       "booking": null
     },
     "seasonalNotes": "Year-round. All-inclusive means no surprise costs — everything is in the rate.",
-    "lilaPick": true,
+    "lilaPick": false,
     "tags": ["all-inclusive", "adults-only", "spa", "japanese-baths", "redwood-canyon"]
   },
   {

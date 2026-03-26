@@ -149,7 +149,7 @@
       "website": "https://bitandspur.com/",
       "maps": null
     },
-    "lilaPick": true,
+    "lilaPick": false,
     "tags": ["dinner", "cocktails", "date-night", "southwest", "reservations-recommended"],
     "months": "all"
   },

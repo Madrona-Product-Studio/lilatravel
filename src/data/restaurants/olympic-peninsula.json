@@ -179,7 +179,7 @@
       "website": null,
       "maps": null
     },
-    "lilaPick": true,
+    "lilaPick": false,
     "tags": ["breakfast", "lunch", "farm-to-table", "vegetarian-friendly", "vegan-friendly"],
     "months": "all"
   },
@@ -302,7 +302,7 @@
       "website": null,
       "maps": null
     },
-    "lilaPick": true,
+    "lilaPick": false,
     "tags": ["breakfast", "lunch", "cafe", "homemade", "local-find"],
     "months": "all"
   },

@@ -58,7 +58,7 @@
       "website": "https://www.alilahotels.com/ventana-big-sur/sur-house",
       "maps": null
     },
-    "lilaPick": true,
+    "lilaPick": false,
     "tags": ["dinner", "ocean-view", "sustainable", "wine-program", "local-sourcing"],
     "months": "all"
   },
@@ -121,7 +121,7 @@
       "website": "https://www.bigsurbakery.com/",
       "maps": null
     },
-    "lilaPick": true,
+    "lilaPick": false,
     "tags": ["breakfast", "brunch", "bakery", "coffee", "local-favorite", "limited-days"],
     "months": "all"
   },
@@ -277,7 +277,7 @@
       "website": "https://www.casanovacarmel.com/",
       "maps": null
     },
-    "lilaPick": true,
+    "lilaPick": false,
     "tags": ["dinner", "romantic", "wine-cellar", "historic", "garden-patio"],
     "months": "all"
   },
@@ -369,7 +369,7 @@
       "website": null,
       "maps": null
     },
-    "lilaPick": true,
+    "lilaPick": false,
     "tags": ["fine-dining", "tasting-menu", "seafood", "sustainable", "show-kitchen"],
     "months": "all"
   },

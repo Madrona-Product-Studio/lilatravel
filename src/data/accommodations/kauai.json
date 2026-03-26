@@ -47,7 +47,7 @@
       "booking": null
     },
     "seasonalNotes": "Year-round. Cool and misty — bring layers. A completely different Kauaʻi from the coast.",
-    "lilaPick": true,
+    "lilaPick": false,
     "tags": ["highland", "rustic", "canyon-access", "endemic-birds", "budget"]
   },
   {
@@ -172,7 +172,7 @@
       "booking": null
     },
     "seasonalNotes": "Year-round. No resort amenities, no crowds — just history, stillness, and the garden isle as it was.",
-    "lilaPick": true,
+    "lilaPick": false,
     "tags": ["historic", "plantation-era", "coconut-grove", "canyon-base", "sunset"]
   },
   {
@@ -274,7 +274,7 @@
       "booking": null
     },
     "seasonalNotes": "Year-round. The renovation brought genuine sustainability ethos, not just branding.",
-    "lilaPick": true,
+    "lilaPick": false,
     "tags": ["luxury", "sustainability", "na-pali-views", "north-shore", "spa", "farm-to-table"]
   },
   {

@@ -21,7 +21,7 @@
       "booking": "https://www.recreation.gov/camping/campgrounds/232445"
     },
     "seasonalNotes": "Year-round. Cold winter nights (25–35°F) — bring warm gear. Summer is hot — shade is limited.",
-    "lilaPick": true,
+    "lilaPick": false,
     "tags": ["inside-park", "riverside", "stargazing", "reservations-required", "immersive"]
   },
   {
@@ -94,7 +94,7 @@
       "booking": null
     },
     "seasonalNotes": "Year-round. Great base camp in any season. AC in summer, heated in winter.",
-    "lilaPick": true,
+    "lilaPick": false,
     "tags": ["springdale", "good-value", "pool", "hot-tub", "walking-distance", "family-friendly"]
   },
   {
@@ -244,7 +244,7 @@
       "booking": null
     },
     "seasonalNotes": "Year-round. Climate-controlled units mean year-round comfort — an advantage over tent glamping.",
-    "lilaPick": false,
+    "lilaPick": true,
     "tags": ["airstreams", "climate-controlled", "hilton-points", "midcentury", "design"]
   },
   {
@@ -294,7 +294,7 @@
       "booking": null
     },
     "seasonalNotes": "Year-round. Winter is quieter and easier to book. Summer sells out far in advance.",
-    "lilaPick": true,
+    "lilaPick": false,
     "tags": ["inside-park", "historic", "only-in-park-lodge", "book-early", "iconic"]
   },
   {

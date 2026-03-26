@@ -46,7 +46,7 @@
       "booking": null
     },
     "seasonalNotes": "Year-round. Rainforest is most atmospheric in winter — mosses saturated, river running high.",
-    "lilaPick": true,
+    "lilaPick": false,
     "tags": ["rainforest", "mossy", "elk", "quiet", "immersive"]
   },
   {
@@ -146,7 +146,7 @@
       "booking": null
     },
     "seasonalNotes": "Year-round. Storm watching from the bluff cabins in winter is singular.",
-    "lilaPick": true,
+    "lilaPick": false,
     "tags": ["bluff-top", "ocean-view", "historic-landmark", "cabins", "restaurant"]
   },
   {

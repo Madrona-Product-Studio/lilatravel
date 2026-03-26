@@ -87,7 +87,7 @@
       "website": null,
       "maps": null
     },
-    "lilaPick": true,
+    "lilaPick": false,
     "tags": ["breakfast", "lunch", "taro", "plate-lunch", "local-institution", "budget-friendly"],
     "months": "all"
   },
@@ -178,7 +178,7 @@
       "website": null,
       "maps": null
     },
-    "lilaPick": true,
+    "lilaPick": false,
     "tags": ["market", "farmers-market", "local-produce", "poke", "wednesday-only"],
     "months": "all"
   },
@@ -209,7 +209,7 @@
       "website": null,
       "maps": null
     },
-    "lilaPick": true,
+    "lilaPick": false,
     "tags": ["dinner", "farm-to-table", "hawaiian-regional", "local-fish"],
     "months": "all"
   },
@@ -270,7 +270,7 @@
       "website": null,
       "maps": null
     },
-    "lilaPick": true,
+    "lilaPick": false,
     "tags": ["dinner", "farm-to-table", "byob", "cash-only", "art-town"],
     "months": "all"
   },
