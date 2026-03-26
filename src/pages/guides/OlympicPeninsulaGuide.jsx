@@ -990,7 +990,7 @@ export default function OlympicPeninsulaGuide() {
       <div ref={breathWrapperRef} style={{ position: 'relative', overflow: 'hidden', background: C.warmWhite }}>
         <canvas ref={breathCanvasRef} style={{ position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none' }} />
         <div style={{ position: 'relative', zIndex: 2 }}>
-          <CelestialDrawer destination="olympic-peninsula" isMobile={isMobile} breathValueRef={breathValueRef} />
+          <CelestialDrawer destination="olympic-peninsula" isMobile={isMobile} breathValueRef={breathValueRef} breathConfig={breathConfig} />
 
           {/* ══ TITLE MASTHEAD ═══════════════════════════════════════════════════ */}
           <section style={{ background: 'transparent' }}>

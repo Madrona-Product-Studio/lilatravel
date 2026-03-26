@@ -97,13 +97,14 @@ function SwellIntensityBar({ intensity }) {
   );
 }
 
-export default function CelestialDrawer({ destination, isMobile, breathValueRef }) {
+export default function CelestialDrawer({ destination, isMobile, breathValueRef, breathConfig }) {
   const [open, setOpen] = useState(false);
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const contentRef = useRef(null);
   const [contentHeight, setContentHeight] = useState(0);
   const pipRef = useRef(null);
+  const containerRef = useRef(null);
 
   const configKey = CONFIG_KEYS[destination] || destination;
   const label = DESTINATION_LABELS[destination] || destination;
@@ -127,16 +128,21 @@ export default function CelestialDrawer({ destination, isMobile, breathValueRef 
     if (!breathValueRef) return;
     let raf;
     const tick = () => {
+      const v = breathValueRef.current;
       if (pipRef.current) {
-        const v = breathValueRef.current;
         pipRef.current.style.transform = `scale(${0.75 + v * 0.25})`;
         pipRef.current.style.opacity = 0.5 + v * 0.5;
+      }
+      if (containerRef.current && breathConfig) {
+        const [r, g, b] = breathConfig.rgb;
+        const alpha = v * 0.46;
+        containerRef.current.style.backgroundImage = `linear-gradient(to bottom, rgba(${r},${g},${b},${alpha}), rgba(${r},${g},${b},0))`;
       }
       raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [breathValueRef]);
+  }, [breathValueRef, breathConfig]);
 
   useEffect(() => {
     if (document.getElementById('celestial-pulse-style')) return;
@@ -167,7 +173,7 @@ export default function CelestialDrawer({ destination, isMobile, breathValueRef 
   if (npsAlerts?.length > 0) teasers.push(`${npsAlerts.length} Alert${npsAlerts.length > 1 ? 's' : ''}`);
 
   return (
-    <div style={{ position: 'relative', zIndex: open ? 95 : 'auto', background: breathValueRef ? 'transparent' : C.warmWhite, borderBottom: `1px solid ${C.stone}` }}>
+    <div ref={containerRef} style={{ position: 'relative', zIndex: open ? 95 : 'auto', backgroundColor: C.warmWhite, borderBottom: `1px solid ${C.stone}` }}>
       <div style={{ height: NAV_HEIGHT + 14 }} />
 
       {/* Teaser bar */}
@@ -207,7 +213,7 @@ export default function CelestialDrawer({ destination, isMobile, breathValueRef 
       </button>
 
       {/* Expanded content */}
-      <div style={{ position: 'relative', zIndex: 95, maxHeight: open ? contentHeight : 0, overflow: 'hidden', transition: 'max-height 0.5s ease', background: breathValueRef ? 'transparent' : C.warmWhite }}>
+      <div style={{ position: 'relative', zIndex: 95, maxHeight: open ? contentHeight : 0, overflow: 'hidden', transition: 'max-height 0.5s ease', background: C.warmWhite }}>
         <div ref={contentRef} style={{ padding: isMobile ? '16px 20px 24px' : '20px 52px 32px', maxWidth: 920, margin: '0 auto' }}>
 
           {/* 1. Temperature + Sunlight */}

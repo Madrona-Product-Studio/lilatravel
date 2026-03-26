@@ -1831,7 +1831,7 @@ export default function ZionGuide() {
       <div ref={breathWrapperRef} style={{ position: 'relative', overflow: 'hidden', background: C.warmWhite }}>
         <canvas ref={breathCanvasRef} style={{ position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none' }} />
         <div style={{ position: 'relative', zIndex: 2 }}>
-          <CelestialDrawer destination="zion" isMobile={isMobile} breathValueRef={breathValueRef} />
+          <CelestialDrawer destination="zion" isMobile={isMobile} breathValueRef={breathValueRef} breathConfig={breathConfig} />
 
           {/* ══ TITLE MASTHEAD ═══════════════════════════════════════════════════ */}
           <section style={{ background: 'transparent' }}>
