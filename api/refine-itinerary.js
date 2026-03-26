@@ -106,8 +106,8 @@ function buildSwappedSummary(swappedActivities, days) {
  */
 function buildBookingsSummary(tripLogistics) {
   if (!tripLogistics) return '';
-  const { flights = [], rentals = [], accommodations = [] } = tripLogistics;
-  if (flights.length === 0 && rentals.length === 0 && accommodations.length === 0) return '';
+  const { flights = [], rentals = [], accommodations = [], reservations = [] } = tripLogistics;
+  if (flights.length === 0 && rentals.length === 0 && accommodations.length === 0 && reservations.length === 0) return '';
 
   const lines = [];
 
@@ -132,6 +132,12 @@ function buildBookingsSummary(tripLogistics) {
     lines.push(`- **${label}**: ${[a.name, dates, a.confirmationNumber ? `Conf: ${a.confirmationNumber}` : ''].filter(Boolean).join(' · ')}`);
   });
 
+  reservations.forEach((r, i) => {
+    const label = reservations.length > 1 ? `Reservation ${i + 1}` : 'Reservation';
+    const details = [r.name, r.type, r.date, r.time, r.notes].filter(Boolean).join(' · ');
+    lines.push(`- **${label}**: ${details}`);
+  });
+
   // Conditional context: airport → destination drive note
   if (flights.length > 0) {
     const outbound = flights[0];
@@ -146,6 +152,14 @@ function buildBookingsSummary(tripLogistics) {
     const hasDates = accommodations.some(a => a.checkIn || a.checkOut);
     if (hasDates) {
       lines.push(`- ⚠ Multiple accommodations are booked. On each changeover day (check-out from one → check-in to next), include the transition as a timeline event: pack up, drive, check in, settle in.`);
+    }
+  }
+
+  // Conditional context: reservations are fixed events
+  if (reservations.length > 0) {
+    const datedReservations = reservations.filter(r => r.date);
+    if (datedReservations.length > 0) {
+      lines.push(`- ⚠ The traveler has ${datedReservations.length} confirmed reservation(s) on specific dates/times. These are FIXED timeline events — build the rest of the day around them, not the reverse.`);
     }
   }
 
@@ -251,10 +265,10 @@ function airportCity(code) {
  */
 function buildLocationScaffold(tripLogistics, parsedItinerary) {
   if (!tripLogistics) return '';
-  const { flights = [], accommodations = [] } = tripLogistics;
+  const { flights = [], accommodations = [], rentals = [], reservations = [] } = tripLogistics;
   const numDays = parsedItinerary?.days?.length || 0;
   if (numDays === 0) return '';
-  if (flights.length === 0 && accommodations.length === 0) return '';
+  if (flights.length === 0 && accommodations.length === 0 && reservations.length === 0) return '';
 
   // Sort accommodations by check-in date
   const sortedAccom = [...accommodations]
@@ -265,11 +279,11 @@ function buildLocationScaffold(tripLogistics, parsedItinerary) {
       return new Date(a.checkIn) - new Date(b.checkIn);
     });
 
-  if (sortedAccom.length === 0 && flights.length === 0) return '';
+  if (sortedAccom.length === 0 && flights.length === 0 && reservations.length === 0) return '';
 
   const lines = [];
   lines.push('## ITINERARY STRUCTURE — TREAT AS HARD CONSTRAINTS\n');
-  lines.push('The following day-by-day location scaffold is derived from the traveler\'s confirmed bookings. **Each day\'s activities MUST be anchored to the location specified below.** Do not place activities in a different city than where the traveler is staying that night.\n');
+  lines.push('The following day-by-day location scaffold is derived from the traveler\'s confirmed bookings. **Each day\'s activities MUST be anchored to the location specified below.** Do not place activities in a different city than where the traveler is staying that night. Confirmed reservations and bookings are FIXED events — schedule other activities around them, not the reverse.\n');
 
   // Determine arrival info
   const outbound = flights.length > 0 ? flights[0] : null;
@@ -334,6 +348,16 @@ function buildLocationScaffold(tripLogistics, parsedItinerary) {
       lines.push(`- Flight arrives at ${outbound.arrivalTime} — do not schedule activities before realistic arrival at hotel`);
     }
   }
+  // Rental car pickup
+  const rental = rentals[0] || null;
+  if (rental && rental.pickupLocation) {
+    const pickupDiffersFromAirport = arrivalAirport && !rental.pickupLocation.toUpperCase().includes(arrivalAirport);
+    if (pickupDiffersFromAirport) {
+      lines.push(`- Pick up rental car at ${rental.pickupLocation} (NOTE: different from arrival airport)`);
+    } else {
+      lines.push(`- Pick up rental car at airport`);
+    }
+  }
   if (hotel1) {
     lines.push(`- Check in at ${hotel1.name}`);
     if (hotel1City) {
@@ -394,9 +418,50 @@ function buildLocationScaffold(tripLogistics, parsedItinerary) {
       const driveStr = formatDriveTime(driveMin);
       lines.push(`- Drive from ${lastHotel.name}${lastHotelCity ? ` (${lastHotelCity})` : ''} to ${departureAirport} airport${driveStr ? ` (${driveStr})` : ''}`);
     }
-    if (returnFlight.departureTime) {
-      lines.push(`- Flight departs at ${returnFlight.departureTime} — wrap up all activities with enough time for the drive + 2 hrs buffer`);
+    // Rental car return
+    if (rental) {
+      const returnLocation = rental.returnLocation || rental.pickupLocation;
+      if (returnLocation) {
+        lines.push(`- Return rental car at ${returnLocation}`);
+      }
     }
+    if (returnFlight.departureTime) {
+      lines.push(`- Flight departs at ${returnFlight.departureTime} — wrap up all activities with enough time for the drive + car return + 2 hrs buffer`);
+    }
+    lines.push('');
+  }
+
+  // --- Confirmed reservations (pinned timeline events) ---
+  const datedReservations = reservations.filter(r => r.name && r.date);
+  if (datedReservations.length > 0) {
+    lines.push('**Confirmed Reservations (FIXED timeline events):**');
+    lines.push('These are non-negotiable. Schedule the rest of each day\'s activities around these, not the reverse.\n');
+
+    // Try to match each reservation to a day index
+    const days = parsedItinerary?.days || [];
+    datedReservations.forEach(r => {
+      const resDate = new Date(r.date);
+      let dayLabel = r.date;
+      for (let i = 0; i < days.length; i++) {
+        const dayDate = days[i]?.date ? new Date(days[i].date) : null;
+        if (dayDate && dayDate.toDateString() === resDate.toDateString()) {
+          dayLabel = `Day ${i + 1} (${r.date})`;
+          break;
+        }
+      }
+      const time = r.time ? ` at ${r.time}` : '';
+      const type = r.type ? ` (${r.type})` : '';
+      const notes = r.notes ? ` — ${r.notes}` : '';
+      lines.push(`- **${dayLabel}**: ${r.name}${type}${time}${notes}`);
+    });
+
+    // Also include undated reservations as general constraints
+    const undatedReservations = reservations.filter(r => r.name && !r.date);
+    undatedReservations.forEach(r => {
+      const type = r.type ? ` (${r.type})` : '';
+      const notes = r.notes ? ` — ${r.notes}` : '';
+      lines.push(`- **Date TBD**: ${r.name}${type}${notes} — fit this into the itinerary on the most appropriate day`);
+    });
     lines.push('');
   }
 
