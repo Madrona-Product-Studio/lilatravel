@@ -992,19 +992,20 @@ function CompanionPanelContent({ type, data, id }) {
       {/* Quote */}
       {data.quote?.text && (
         <div style={{
-          borderLeft: `2px solid ${BrandC.goldenAmber}4D`,
-          paddingLeft: 14,
-          marginTop: 18,
-          marginBottom: 20,
+          borderLeft: `3px solid ${BrandC.goldenAmber}60`,
+          paddingLeft: 16,
+          marginTop: 20,
+          marginBottom: 24,
+          padding: '14px 0 14px 16px',
         }}>
           <p style={{
-            fontFamily: F_SERIF, fontSize: 15, fontWeight: 300,
-            fontStyle: 'italic', color: `${C.ink}A6`,
-            lineHeight: 1.6, margin: 0,
+            fontFamily: F, fontSize: 16, fontWeight: 500,
+            fontStyle: 'normal', color: `${C.ink}CC`,
+            lineHeight: 1.65, margin: 0, letterSpacing: '-0.01em',
           }}>{data.quote.text}</p>
           <p style={{
-            fontFamily: F, fontSize: 11, fontWeight: 500,
-            color: `${C.ink}73`, margin: '6px 0 0',
+            fontFamily: F, fontSize: 12, fontWeight: 600,
+            color: `${C.ink}66`, margin: '8px 0 0', letterSpacing: '0.02em',
           }}>— {data.quote.author || data.quote.source}{data.quote.role ? `, ${data.quote.role}` : ''}</p>
         </div>
       )}
