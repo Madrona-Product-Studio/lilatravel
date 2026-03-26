@@ -2007,10 +2007,24 @@ function StepProfile({ data, onBack, onUnlock, generating }) {
       {/* Persona card */}
       <div style={{ maxWidth: 480, margin: "0 auto 12px", padding: "0 20px" }}>
         <div style={{
+          position: "relative",
           background: C.white, borderRadius: 2, padding: "20px 20px",
           border: `2px solid ${persona.color}25`, boxShadow: `0 4px 24px ${persona.color}12`,
           textAlign: "center",
         }}>
+          {/* Info icon — opens profiles modal */}
+          <button onClick={() => setShowProfilesModal(true)} style={{
+            position: "absolute", top: 10, right: 10,
+            width: 20, height: 20, borderRadius: "50%",
+            border: "1px solid rgba(26,37,48,0.2)", background: "transparent",
+            display: "flex", alignItems: "center", justifyContent: "center",
+            cursor: "pointer", color: "rgba(26,37,48,0.4)", padding: 0,
+            WebkitTapHighlightColor: "transparent",
+          }}>
+            <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" width="10" height="10">
+              <circle cx="6" cy="6" r="5"/><line x1="6" y1="5.5" x2="6" y2="8.5"/><circle cx="6" cy="3.5" r="0.5" fill="currentColor" stroke="none"/>
+            </svg>
+          </button>
           <div style={{ display: "flex", justifyContent: "center", marginBottom: 10 }}>
             <div style={{
               width: 44, height: 44, borderRadius: "50%",
@@ -2024,14 +2038,6 @@ function StepProfile({ data, onBack, onUnlock, generating }) {
           <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(24px, 6vw, 30px)", fontWeight: 300, color: C.slate, marginBottom: 4, lineHeight: 1.1 }}>{persona.name}</div>
           <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: "clamp(13px, 3.2vw, 14px)", fontWeight: 400, color: `${C.slate}AA`, lineHeight: 1.55, marginTop: 10 }}>{persona.desc}</p>
         </div>
-      </div>
-
-      <div style={{ textAlign: 'center', marginTop: 8 }}>
-        <button onClick={() => setShowProfilesModal(true)} style={{
-          fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 500,
-          color: `${C.sage}80`, background: 'none', border: 'none',
-          cursor: 'pointer', padding: 8,
-        }}>Not you? See all profiles →</button>
       </div>
 
       {showProfilesModal && (
