@@ -210,13 +210,14 @@ function ListItem({ name, detail, note, tags, featured, url, isMobile, onOpenShe
   );
 }
 
-function StayItem({ name, location, tier, detail, tags, url, featured, isMobile, onOpenSheet }) {
+function StayItem({ name, location, tier, detail, tags, url, featured, isMobile, onOpenSheet, priceRange, amenities, bookingWindow, seasonalNotes, groupFit }) {
   const styles = {
     elemental: { color: C.seaGlass, label: "Elemental", bg: `${C.seaGlass}15` },
     rooted: { color: C.oceanTeal, label: "Rooted", bg: `${C.oceanTeal}12` },
     premium: { color: C.goldenAmber, label: "Premium", bg: `${C.goldenAmber}15` },
+    luxury: { color: C.sunSalmon, label: "Luxury", bg: `${C.sunSalmon}15` },
   };
-  const s = styles[tier];
+  const s = styles[tier] || styles.rooted;
   const nameEl = onOpenSheet ? (
     <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 15, fontWeight: 600, color: C.darkInk }}>{name}</span>
   ) : url ? (
@@ -235,7 +236,7 @@ function StayItem({ name, location, tier, detail, tags, url, featured, isMobile,
 
   return (
     <div
-      onClick={onOpenSheet ? () => onOpenSheet({ type: 'stay', name, location, tier, detail, tags, featured, url }) : undefined}
+      onClick={onOpenSheet ? () => onOpenSheet({ type: 'stay', name, location, tier, detail, tags, featured, url, priceRange, amenities, bookingWindow, seasonalNotes, groupFit }) : undefined}
       style={{
         display: "flex", flexDirection: isMobile ? "column" : "row", alignItems: isMobile ? "stretch" : "center", gap: 14, padding: "18px 0", borderBottom: `1px solid ${C.stone}`,
         ...(onOpenSheet ? { cursor: 'pointer', transition: 'background 0.15s' } : {}),
@@ -347,6 +348,7 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
     elemental: { color: C.seaGlass, label: "Elemental", bg: `${C.seaGlass}15` },
     rooted: { color: C.oceanTeal, label: "Rooted", bg: `${C.oceanTeal}12` },
     premium: { color: C.goldenAmber, label: "Premium", bg: `${C.goldenAmber}15` },
+    luxury: { color: C.sunSalmon, label: "Luxury", bg: `${C.sunSalmon}15` },
   };
 
   const content = (
@@ -402,6 +404,54 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
           fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 600,
           color: C.oceanTeal, marginBottom: 14,
         }}>{item.note}</div>
+      )}
+
+      {/* Accommodation info grid */}
+      {item.type === 'stay' && (item.priceRange || item.bookingWindow || item.seasonalNotes || item.groupFit) && (
+        <div style={{
+          display: 'grid', gridTemplateColumns: '1fr 1fr',
+          gap: '10px 16px', marginBottom: 18,
+          padding: '14px 0',
+          borderTop: `1px solid ${C.stone}`,
+          borderBottom: `1px solid ${C.stone}`,
+        }}>
+          {item.priceRange && (
+            <div>
+              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#7A857E', marginBottom: 3 }}>Price Range</div>
+              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 500, color: C.darkInk, lineHeight: 1.5 }}>{item.priceRange}</div>
+            </div>
+          )}
+          {item.groupFit && (
+            <div>
+              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#7A857E', marginBottom: 3 }}>Good For</div>
+              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 500, color: C.darkInk, lineHeight: 1.5 }}>{item.groupFit.join(', ')}</div>
+            </div>
+          )}
+          {item.bookingWindow && (
+            <div style={{ gridColumn: '1 / -1' }}>
+              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#7A857E', marginBottom: 3 }}>Booking</div>
+              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 500, color: C.darkInk, lineHeight: 1.5 }}>{item.bookingWindow}</div>
+            </div>
+          )}
+          {item.seasonalNotes && (
+            <div style={{ gridColumn: '1 / -1' }}>
+              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#7A857E', marginBottom: 3 }}>Season</div>
+              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 500, color: C.darkInk, lineHeight: 1.5 }}>{item.seasonalNotes}</div>
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Amenities */}
+      {item.type === 'stay' && item.amenities && item.amenities.length > 0 && (
+        <div style={{ marginBottom: 18 }}>
+          <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#7A857E', marginBottom: 8 }}>Amenities</div>
+          <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+            {item.amenities.map((a, i) => (
+              <span key={i} style={{ padding: '3px 10px', background: `${C.oceanTeal}10`, fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 600, color: C.oceanTeal }}>{a}</span>
+            ))}
+          </div>
+        </div>
       )}
 
       {/* Tags */}
@@ -1303,6 +1353,11 @@ export default function VancouverIslandGuide() {
                     featured={a.lilaPick}
                     isMobile={isMobile}
                     onOpenSheet={setActiveSheet}
+                    priceRange={a.priceRange}
+                    amenities={a.amenities}
+                    bookingWindow={a.bookingWindow}
+                    seasonalNotes={a.seasonalNotes}
+                    groupFit={a.groupFit}
                   />
                 ))}
               </ExpandableList>
