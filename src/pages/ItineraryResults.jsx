@@ -3376,38 +3376,35 @@ function RefiningOverlay({ visible, iteration = 0, days = 4, apiDone, onDismiss,
     }
   }, [visible]);
 
-  // Step timings — scaled to trip length, same pattern as GeneratingScreen
+  // Step timings — advance through steps but HOLD before the final step until API responds
   useEffect(() => {
     if (!visible) return;
-    // Refinements are faster than generation: ~18s base + ~6s per day
+    const lastIdx = REFINING_STEPS.length - 1;
+    // Time budget for the non-final steps (spread across steps 0 to lastIdx-1)
     const total = 18000 + days * 6000;
-    // Back-weighted: later steps get progressively more time
-    const weights = REFINING_STEPS.map((_, i) => Math.pow(i + 1, 1.4));
+    const stepsBeforeFinal = lastIdx; // e.g. 3 steps before "Finalizing"
+    const weights = Array.from({ length: stepsBeforeFinal }, (_, i) => Math.pow(i + 1, 1.4));
     const sumW = weights.reduce((a, b) => a + b, 0);
     let cumulative = 0;
     const timings = weights.map(w => {
       cumulative += w;
       return Math.round(total * (cumulative / sumW));
     });
+    // Only advance through steps 0..lastIdx-1 on timers (never the final step)
     const timeouts = timings.map((delay, i) =>
       setTimeout(() => setCompletedIndex(i), delay)
     );
     return () => timeouts.forEach(clearTimeout);
   }, [visible, days]);
 
-  // When API responds (apiDone), fast-forward to final step then dismiss
+  // When API responds (apiDone), advance to final step then dismiss
   useEffect(() => {
     if (!apiDone || !visible) return;
-    if (allDone) {
-      // Already on last step — hold briefly then dismiss
-      const t = setTimeout(() => onDismissRef.current?.(), 2000);
-      return () => clearTimeout(t);
-    }
-    // Jump to last step, then dismiss after a short hold
+    // Jump to final step
     setCompletedIndex(REFINING_STEPS.length - 1);
-    const t = setTimeout(() => onDismissRef.current?.(), 3000);
+    const t = setTimeout(() => onDismissRef.current?.(), 2500);
     return () => clearTimeout(t);
-  }, [apiDone, visible, allDone]);
+  }, [apiDone, visible]);
 
   // Breathing animation
   useEffect(() => {
