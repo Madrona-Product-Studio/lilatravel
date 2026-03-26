@@ -150,7 +150,7 @@ export default function CelestialDrawer({ destination, isMobile, breathValueRef 
   const NAV_HEIGHT = isMobile ? 58 : 64;
 
   if (loading || !data) return (
-    <div style={{ position: 'relative', background: breathValueRef ? 'transparent' : C.warmWhite, borderBottom: `1px solid ${C.stone}` }}>
+    <div style={{ position: 'relative', background: breathValueRef ? 'transparent' : C.stone, borderBottom: `1px solid ${C.stone}` }}>
       <div style={{ height: NAV_HEIGHT + 14 }} />
       <div style={{ height: 44 }} />
     </div>
@@ -167,7 +167,7 @@ export default function CelestialDrawer({ destination, isMobile, breathValueRef 
   if (npsAlerts?.length > 0) teasers.push(`${npsAlerts.length} Alert${npsAlerts.length > 1 ? 's' : ''}`);
 
   return (
-    <div style={{ position: 'relative', zIndex: open ? 95 : 'auto', backgroundColor: breathValueRef ? 'transparent' : C.warmWhite, borderBottom: `1px solid ${C.stone}` }}>
+    <div style={{ position: 'relative', zIndex: open ? 95 : 'auto', backgroundColor: breathValueRef ? 'transparent' : C.stone, borderBottom: `1px solid ${C.stone}` }}>
       <div style={{ height: NAV_HEIGHT + 14 }} />
 
       {/* Teaser bar */}
@@ -207,7 +207,7 @@ export default function CelestialDrawer({ destination, isMobile, breathValueRef 
       </button>
 
       {/* Expanded content */}
-      <div style={{ position: 'relative', zIndex: 95, maxHeight: open ? contentHeight : 0, overflow: 'hidden', transition: 'max-height 0.5s ease', background: C.warmWhite }}>
+      <div style={{ position: 'relative', zIndex: 95, maxHeight: open ? contentHeight : 0, overflow: 'hidden', transition: 'max-height 0.5s ease', background: breathValueRef ? C.warmWhite : C.stone }}>
         <div ref={contentRef} style={{ padding: isMobile ? '16px 20px 24px' : '20px 52px 32px', maxWidth: 920, margin: '0 auto' }}>
 
           {/* 1. Temperature + Sunlight */}

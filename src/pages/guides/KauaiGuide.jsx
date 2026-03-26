@@ -876,13 +876,12 @@ function GuideNav({ isMobile }) {
 // ─── Main Page ───────────────────────────────────────────────────────────────
 
 export default function KauaiGuide() {
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth <= 768);
   const breathConfig = isMobile ? null : BREATH_CONFIG.kauai;
   const breathWrapperRef = useRef(null);
   const breathValueRef = useBreathCanvas(breathConfig, breathWrapperRef);
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth <= 768);
-    check();
     window.addEventListener("resize", check);
     return () => window.removeEventListener("resize", check);
   }, []);

@@ -1771,10 +1771,9 @@ function GuideNav({ isMobile }) {
 // ─── Main Page ───────────────────────────────────────────────────────────────
 
 export default function ZionGuide() {
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth <= 768);
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth <= 768);
-    check();
     window.addEventListener("resize", check);
     return () => window.removeEventListener("resize", check);
   }, []);
