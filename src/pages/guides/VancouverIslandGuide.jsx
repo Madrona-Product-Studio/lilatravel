@@ -984,7 +984,7 @@ function GuideNav({ isMobile }) {
 
 export default function VancouverIslandGuide() {
   const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth <= 768);
-  const breathConfig = isMobile ? null : BREATH_CONFIG.vancouver;
+  const breathConfig = BREATH_CONFIG.vancouver;
   const breathWrapperRef = useRef(null);
   const breathValueRef = useBreathCanvas(breathConfig, breathWrapperRef);
   useEffect(() => {

@@ -891,7 +891,7 @@ function GuideNav({ isMobile }) {
 
 export default function BigSurGuide() {
   const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth <= 768);
-  const breathConfig = isMobile ? null : BREATH_CONFIG.bigSur;
+  const breathConfig = BREATH_CONFIG.bigSur;
   const breathWrapperRef = useRef(null);
   const breathValueRef = useBreathCanvas(breathConfig, breathWrapperRef);
   useEffect(() => {

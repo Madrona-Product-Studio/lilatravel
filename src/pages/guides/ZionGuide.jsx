@@ -1778,7 +1778,7 @@ export default function ZionGuide() {
     return () => window.removeEventListener("resize", check);
   }, []);
 
-  const breathConfig = isMobile ? null : BREATH_CONFIG.zion;
+  const breathConfig = BREATH_CONFIG.zion;
   const breathWrapperRef = useRef(null);
   const breathValueRef = useBreathCanvas(breathConfig, breathWrapperRef);
 

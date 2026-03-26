@@ -877,7 +877,7 @@ function GuideNav({ isMobile }) {
 
 export default function KauaiGuide() {
   const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth <= 768);
-  const breathConfig = isMobile ? null : BREATH_CONFIG.kauai;
+  const breathConfig = BREATH_CONFIG.kauai;
   const breathWrapperRef = useRef(null);
   const breathValueRef = useBreathCanvas(breathConfig, breathWrapperRef);
   useEffect(() => {

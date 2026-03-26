@@ -1019,7 +1019,7 @@ function GuideNav({ isMobile }) {
 
 export default function JoshuaTreeGuide() {
   const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth <= 768);
-  const breathConfig = isMobile ? null : BREATH_CONFIG.joshuaTree;
+  const breathConfig = BREATH_CONFIG.joshuaTree;
   const breathWrapperRef = useRef(null);
   const breathValueRef = useBreathCanvas(breathConfig, breathWrapperRef);
   useEffect(() => {

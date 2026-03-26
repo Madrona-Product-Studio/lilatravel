@@ -934,7 +934,7 @@ function GuideNav({ isMobile }) {
 
 export default function OlympicPeninsulaGuide() {
   const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth <= 768);
-  const breathConfig = isMobile ? null : BREATH_CONFIG.olympic;
+  const breathConfig = BREATH_CONFIG.olympic;
   const breathWrapperRef = useRef(null);
   const breathValueRef = useBreathCanvas(breathConfig, breathWrapperRef);
   useEffect(() => {
