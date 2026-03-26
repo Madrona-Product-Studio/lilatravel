@@ -2022,27 +2022,41 @@ function RentalFormPanel({ data, logistics, onSave, bookingIndex, highlightField
 function BookingUploadTrigger({ onExtracted, onError }) {
   const fileRef = useRef(null);
   const [uploading, setUploading] = useState(false);
+  const [inputKey, setInputKey] = useState(0);
 
   const handleFile = async (e) => {
     const file = e.target.files?.[0];
     if (!file) return;
-    // Reset input so same file can be re-selected
     e.target.value = '';
+
+    if (file.size > 5 * 1024 * 1024) {
+      onError?.('Image must be under 5 MB.');
+      return;
+    }
 
     setUploading(true);
     try {
-      const reader = new FileReader();
+      // Convert any image format (including HEIC) to JPEG via canvas
       const base64 = await new Promise((resolve, reject) => {
-        reader.onload = () => resolve(reader.result.split(',')[1]);
-        reader.onerror = reject;
-        reader.readAsDataURL(file);
+        const img = new Image();
+        const url = URL.createObjectURL(file);
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          canvas.width = img.naturalWidth;
+          canvas.height = img.naturalHeight;
+          canvas.getContext('2d').drawImage(img, 0, 0);
+          resolve(canvas.toDataURL('image/jpeg', 0.92).split(',')[1]);
+          URL.revokeObjectURL(url);
+        };
+        img.onerror = () => { URL.revokeObjectURL(url); reject(new Error('Could not read image')); };
+        img.src = url;
       });
 
       const { signal, clear } = fetchWithTimeout(30000);
       const res = await fetch('/api/extract-booking', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ base64Image: base64, mimeType: file.type }),
+        body: JSON.stringify({ base64Image: base64, mimeType: 'image/jpeg' }),
         signal,
       });
       clear();
@@ -2057,12 +2071,13 @@ function BookingUploadTrigger({ onExtracted, onError }) {
       onError?.(err.name === 'AbortError' ? 'Extraction timed out — try a smaller image.' : 'Something went wrong. Please try again.');
     } finally {
       setUploading(false);
+      setInputKey(k => k + 1);
     }
   };
 
   return (
     <div>
-      <input ref={fileRef} type="file" accept="image/*" onChange={handleFile} style={{ display: 'none' }} />
+      <input key={inputKey} ref={fileRef} type="file" accept="image/*" onChange={handleFile} style={{ display: 'none' }} />
       <button
         onClick={() => fileRef.current?.click()}
         disabled={uploading}
