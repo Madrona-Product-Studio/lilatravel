@@ -417,7 +417,7 @@ export default function Nav({ transparent = false, breathConfig = null }) {
         position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
         background: breathConfig ? C.warmWhite : (showSolid ? "rgba(250,248,244,0.97)" : "transparent"),
         backdropFilter: breathConfig ? "none" : (showSolid ? "blur(16px)" : "none"),
-        borderBottom: breathConfig ? "none" : (showSolid ? `1px solid ${C.stone}` : "none"),
+        borderBottom: "none",
         transition: "all 0.4s ease",
       }}>
         <div className="nav-inner" style={{
