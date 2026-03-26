@@ -428,6 +428,8 @@ const MOON_EMOJI = {
 };
 
 function CelestialSnapshot({ snapshot, celestial, weather, month, destination }) {
+  const [skySeasonOpen, setSkySeasonOpen] = useState(true);
+
   // Resolve data
   const avgHigh   = snapshot?.avgHigh ?? (weather?.length > 0 ? Math.round(weather.map(d=>d.high).reduce((a,b)=>a+b,0)/weather.length) : null);
   const avgLow    = snapshot?.avgLow  ?? (weather?.length > 0 ? Math.round(weather.map(d=>d.low).reduce((a,b)=>a+b,0)/weather.length) : null);
@@ -494,8 +496,21 @@ function CelestialSnapshot({ snapshot, celestial, weather, month, destination })
     }}>
       {/* 1. Sky name */}
       <div style={{ padding: '18px 20px 16px', borderBottom: `1px solid ${C.border}` }}>
-        <div style={{ fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.24em', textTransform: 'uppercase', color: `${C.sage}88`, marginBottom: 10 }}>
-          Sky & Season · {MONTH_LABELS[monthKey] || monthKey}
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
+          <div style={{ fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.24em', textTransform: 'uppercase', color: `${C.sage}88` }}>
+            Sky & Season · {MONTH_LABELS[monthKey] || monthKey}
+          </div>
+          <button
+            onClick={() => setSkySeasonOpen(o => !o)}
+            aria-label={skySeasonOpen ? 'Collapse Sky & Season' : 'Expand Sky & Season'}
+            style={{ background: 'none', border: 'none', padding: 4, margin: -4, cursor: 'pointer', display: 'flex', alignItems: 'center' }}
+          >
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"
+              stroke={C.sage} strokeWidth="1.5" strokeLinecap="round"
+              style={{ transform: skySeasonOpen ? 'rotate(0deg)' : 'rotate(180deg)', transition: 'transform 0.35s ease' }}>
+              <polyline points="4.5,6 8,9.5 11.5,6" />
+            </svg>
+          </button>
         </div>
         <div style={{ fontFamily: F_SERIF, fontSize: 24, fontWeight: 300, color: C.ink, lineHeight: 1.1 }}>{sky}</div>
       </div>
@@ -555,8 +570,8 @@ function CelestialSnapshot({ snapshot, celestial, weather, month, destination })
         </div>
       )}
 
-      {/* 3. Moon + Stars — side by side */}
-      {(moonEvents.length > 0 || starEvents.length > 0) && (
+      {/* 3–5: collapsible detail sections */}
+      {skySeasonOpen && (moonEvents.length > 0 || starEvents.length > 0) && (
         <div style={{ padding: '14px 20px 13px', borderBottom: `1px solid ${C.border}` }}>
           <div style={{ display: 'grid', gridTemplateColumns: moonEvents.length > 0 && starEvents.length > 0 ? '1fr 1px 1fr' : '1fr', gap: '0 16px', alignItems: 'start' }}>
             {moonEvents.length > 0 && (
@@ -608,7 +623,7 @@ function CelestialSnapshot({ snapshot, celestial, weather, month, destination })
       )}
 
       {/* 4. Ocean (coastal destinations only) */}
-      {isCoastal && oceanData && (
+      {skySeasonOpen && isCoastal && oceanData && (
         <div style={{ padding: '14px 20px 13px', borderBottom: `1px solid ${C.border}` }}>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1px 1fr', gap: '0 16px', alignItems: 'start' }}>
 
@@ -649,7 +664,7 @@ function CelestialSnapshot({ snapshot, celestial, weather, month, destination })
       )}
 
       {/* 5. Season */}
-      {seasonEvents.length > 0 && (
+      {skySeasonOpen && seasonEvents.length > 0 && (
         <div style={{ padding: '14px 20px 12px', borderBottom: `1px solid ${C.border}` }}>
           <div style={eyebrow}>Season</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
@@ -667,8 +682,8 @@ function CelestialSnapshot({ snapshot, celestial, weather, month, destination })
         </div>
       )}
 
-      {/* 5. Pack */}
-      {snapshot?.packingHint && (
+      {/* 6. Pack */}
+      {skySeasonOpen && snapshot?.packingHint && (
         <div style={{ padding: '11px 20px', display: 'flex', alignItems: 'baseline', gap: 10 }}>
           <span style={{ fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: C.muted, flexShrink: 0 }}>Pack</span>
           <span style={{ fontFamily: F, fontSize: 12, color: 'rgba(26,37,48,0.55)', lineHeight: 1.6 }}>{snapshot.packingHint}</span>
@@ -975,27 +990,21 @@ function CompanionPanelContent({ type, data, id }) {
       )}
 
       {/* Quote */}
-      {data.quote && (
+      {data.quote?.text && (
         <div style={{
-          position: 'relative',
-          padding: '20px 20px 16px',
-          background: `${accent}06`,
-          borderRadius: 8,
+          borderLeft: `2px solid ${BrandC.goldenAmber}4D`,
+          paddingLeft: 14,
+          marginTop: 18,
           marginBottom: 20,
         }}>
-          <span style={{
-            position: 'absolute', top: 6, left: 14,
-            fontFamily: F_SERIF, fontSize: 48, fontWeight: 300,
-            color: `${accent}20`, lineHeight: 1, userSelect: 'none',
-          }}>"</span>
           <p style={{
-            fontFamily: F_SERIF, fontSize: 16, fontWeight: 300,
-            fontStyle: 'italic', color: C.ink,
-            lineHeight: 1.6, margin: '0 0 8px', paddingLeft: 4,
+            fontFamily: F_SERIF, fontSize: 15, fontWeight: 300,
+            fontStyle: 'italic', color: `${C.ink}A6`,
+            lineHeight: 1.6, margin: 0,
           }}>{data.quote.text}</p>
           <p style={{
-            fontFamily: F, fontSize: 12, fontWeight: 600,
-            color: `${accent}CC`, margin: 0, paddingLeft: 4,
+            fontFamily: F, fontSize: 11, fontWeight: 500,
+            color: `${C.ink}73`, margin: '6px 0 0',
           }}>— {data.quote.author || data.quote.source}{data.quote.role ? `, ${data.quote.role}` : ''}</p>
         </div>
       )}
@@ -1344,25 +1353,19 @@ function WisdomDetailContent({ entry }) {
         {/* Quote block */}
         {entry.quote?.text && (
           <div style={{
-            position: 'relative',
-            padding: '20px 20px 16px',
-            background: `${accent}06`,
-            borderRadius: 8,
+            borderLeft: `2px solid ${BrandC.goldenAmber}4D`,
+            paddingLeft: 14,
+            marginTop: 18,
             marginBottom: 20,
           }}>
-            <span style={{
-              position: 'absolute', top: 6, left: 14,
-              fontFamily: F_SERIF, fontSize: 48, fontWeight: 300,
-              color: `${accent}20`, lineHeight: 1, userSelect: 'none',
-            }}>"</span>
             <p style={{
-              fontFamily: F_SERIF, fontSize: 16, fontWeight: 300,
-              fontStyle: 'italic', color: C.ink,
-              lineHeight: 1.6, margin: '0 0 8px', paddingLeft: 4,
+              fontFamily: F_SERIF, fontSize: 15, fontWeight: 300,
+              fontStyle: 'italic', color: `${C.ink}A6`,
+              lineHeight: 1.6, margin: 0,
             }}>{entry.quote.text}</p>
             <p style={{
-              fontFamily: F, fontSize: 12, fontWeight: 600,
-              color: `${accent}CC`, margin: 0, paddingLeft: 4,
+              fontFamily: F, fontSize: 11, fontWeight: 500,
+              color: `${C.ink}73`, margin: '6px 0 0',
             }}>— {entry.quote.author || entry.quote.source}{entry.quote.role ? `, ${entry.quote.role}` : ''}</p>
           </div>
         )}
@@ -1607,25 +1610,19 @@ function DetailPanelContent({ item, lockedItems, onLock, onAlternatives, alterna
           {/* Quote */}
           {data.quote?.text && (
             <div style={{
-              position: 'relative',
-              padding: '20px 20px 16px',
-              background: `${accent}06`,
-              borderRadius: 8,
+              borderLeft: `2px solid ${BrandC.goldenAmber}4D`,
+              paddingLeft: 14,
+              marginTop: 18,
               marginBottom: 20,
             }}>
-              <span style={{
-                position: 'absolute', top: 6, left: 14,
-                fontFamily: F_SERIF, fontSize: 48, fontWeight: 300,
-                color: `${accent}20`, lineHeight: 1, userSelect: 'none',
-              }}>"</span>
               <p style={{
-                fontFamily: F_SERIF, fontSize: 16, fontWeight: 300,
-                fontStyle: 'italic', color: C.ink,
-                lineHeight: 1.6, margin: '0 0 8px', paddingLeft: 4,
+                fontFamily: F_SERIF, fontSize: 15, fontWeight: 300,
+                fontStyle: 'italic', color: `${C.ink}A6`,
+                lineHeight: 1.6, margin: 0,
               }}>{data.quote.text}</p>
               <p style={{
-                fontFamily: F, fontSize: 12, fontWeight: 600,
-                color: `${accent}CC`, margin: 0, paddingLeft: 4,
+                fontFamily: F, fontSize: 11, fontWeight: 500,
+                color: `${C.ink}73`, margin: '6px 0 0',
               }}>— {data.quote.author || data.quote.source}{data.quote.role ? `, ${data.quote.role}` : ''}</p>
             </div>
           )}
@@ -2845,9 +2842,15 @@ function DayCard({ day, dayIndex = 0, onOpenPanel, lockedItems, onLock, onAltern
         const handleClick = () => {
           if (mindfulnessPick) {
             trackEvent('mindfulness_opened', { name: mindfulnessPick.name, day_index: dayIndex });
+            // Merge companion quote into mindfulness data if available
+            // (Claude's picks don't include quotes; the companion entry from practicesService does)
+            const companionEntry = day.companion?.teaching || day.companion?.practice;
+            const enrichedData = companionEntry?.quote && !mindfulnessPick.quote
+              ? { ...mindfulnessPick, quote: companionEntry.quote }
+              : mindfulnessPick;
             onOpenPanel({
               type: 'mindfulness',
-              data: mindfulnessPick,
+              data: enrichedData,
               thumbId: `day_${dayIndex}_mindfulness`,
             });
           } else if (hasCompanion) {
@@ -3357,10 +3360,12 @@ const REFINING_STEPS = [
   'Finalizing your revision',
 ];
 
-function RefiningOverlay({ visible, iteration = 0 }) {
+function RefiningOverlay({ visible, iteration = 0, days = 4, apiDone, onDismiss }) {
   const [completedIndex, setCompletedIndex] = useState(-1);
   const [breathPhase, setBreathPhase] = useState(0);
   const allDone = completedIndex >= REFINING_STEPS.length - 1;
+  const onDismissRef = useRef(onDismiss);
+  onDismissRef.current = onDismiss;
 
   // Reset state when overlay becomes visible
   useEffect(() => {
@@ -3370,15 +3375,38 @@ function RefiningOverlay({ visible, iteration = 0 }) {
     }
   }, [visible]);
 
-  // Step timings
+  // Step timings — scaled to trip length, same pattern as GeneratingScreen
   useEffect(() => {
     if (!visible) return;
-    const timings = [5000, 18000, 40000, 65000];
+    // Refinements are faster than generation: ~18s base + ~6s per day
+    const total = 18000 + days * 6000;
+    // Back-weighted: later steps get progressively more time
+    const weights = REFINING_STEPS.map((_, i) => Math.pow(i + 1, 1.4));
+    const sumW = weights.reduce((a, b) => a + b, 0);
+    let cumulative = 0;
+    const timings = weights.map(w => {
+      cumulative += w;
+      return Math.round(total * (cumulative / sumW));
+    });
     const timeouts = timings.map((delay, i) =>
       setTimeout(() => setCompletedIndex(i), delay)
     );
     return () => timeouts.forEach(clearTimeout);
-  }, [visible]);
+  }, [visible, days]);
+
+  // When API responds (apiDone), fast-forward to final step then dismiss
+  useEffect(() => {
+    if (!apiDone || !visible) return;
+    if (allDone) {
+      // Already on last step — hold briefly then dismiss
+      const t = setTimeout(() => onDismissRef.current?.(), 2000);
+      return () => clearTimeout(t);
+    }
+    // Jump to last step, then dismiss after a short hold
+    setCompletedIndex(REFINING_STEPS.length - 1);
+    const t = setTimeout(() => onDismissRef.current?.(), 3000);
+    return () => clearTimeout(t);
+  }, [apiDone, visible, allDone]);
 
   // Breathing animation
   useEffect(() => {
@@ -3952,6 +3980,7 @@ export default function ItineraryResults() {
   const isMobile = useIsMobile();
   const [visible, setVisible] = useState(false);
   const [refining, setRefining] = useState(false);
+  const [refineApiDone, setRefineApiDone] = useState(false);
   const [loadingShared, setLoadingShared] = useState(!!shareToken);
   const [shareError, setShareError] = useState(null);
 
@@ -4649,6 +4678,7 @@ export default function ItineraryResults() {
     trackEvent('refinement_requested', { iteration: nextIteration, days_spot_on: daysSpotOn, days_needs_work: daysNeedsWork, pulse: pulse || 'none' });
     const t0 = performance.now();
     setRefining(true);
+    setRefineApiDone(false);
     setRefineError(null);
     const { signal, clear } = fetchWithTimeout(180000);
     try {
@@ -4714,15 +4744,17 @@ export default function ItineraryResults() {
       setOverallNote('');
       setLogisticsBaseline(totalBookings);
       trackEvent('refinement_completed', { iteration: nextIteration, duration_ms: Math.round(performance.now() - t0) });
+      // Signal overlay that API is done — overlay will call onDismiss after phase wind-down
+      setRefineApiDone(true);
     } catch (err) {
       clear();
       console.error('Refinement failed:', err);
       const isTimeout = err.name === 'AbortError';
       trackEvent('refinement_failed', { iteration: nextIteration, error_type: isTimeout ? 'timeout' : (err.message || 'unknown') });
       setRefineError(isTimeout ? 'Refinement timed out — please try again.' : 'Something went wrong refining your trip. Please try again.');
-    } finally {
+      // On error, dismiss overlay immediately
       setRefining(false);
-      setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 50);
+      setRefineApiDone(false);
     }
   };
 
@@ -4798,7 +4830,17 @@ export default function ItineraryResults() {
         @keyframes bottomSheetSlideIn { from { transform: translateY(100%); } to { transform: translateY(0); } }
         @keyframes bottomSheetBackdropIn { from { opacity: 0; } to { opacity: 1; } }
       `}</style>
-      <RefiningOverlay visible={refining} iteration={iteration} />
+      <RefiningOverlay
+        visible={refining}
+        iteration={iteration}
+        days={itinerary?.days?.length || 4}
+        apiDone={refineApiDone}
+        onDismiss={() => {
+          setRefining(false);
+          setRefineApiDone(false);
+          setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 50);
+        }}
+      />
 
       {/* First draft modal */}
       {iteration === 0 && showDraftModal && isStructured && (
@@ -4870,34 +4912,54 @@ export default function ItineraryResults() {
               color: C.teal, marginBottom: 8,
             }}>Your Itinerary</div>
             {editingHeroTitle ? (
-              <input
-                ref={heroTitleRef}
-                value={draftHeroTitle}
-                onChange={e => setDraftHeroTitle(e.target.value)}
-                onBlur={commitHeroTitle}
-                onKeyDown={handleHeroTitleKeyDown}
-                style={{
-                  fontFamily: F_SERIF, fontSize: 'clamp(26px, 4.5vw, 36px)', fontWeight: 300,
-                  color: C.ink, lineHeight: 1.15, marginBottom: 8,
-                  background: 'transparent', border: 'none',
-                  borderBottom: `1px solid ${BrandC.goldenAmber}`,
-                  borderRadius: 0, outline: 'none',
-                  width: '100%', padding: 0,
-                  letterSpacing: 'inherit',
-                }}
-              />
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
+                <input
+                  ref={heroTitleRef}
+                  value={draftHeroTitle}
+                  onChange={e => setDraftHeroTitle(e.target.value)}
+                  onBlur={commitHeroTitle}
+                  onKeyDown={handleHeroTitleKeyDown}
+                  style={{
+                    fontFamily: F_SERIF, fontSize: 'clamp(26px, 4.5vw, 36px)', fontWeight: 300,
+                    color: C.ink, lineHeight: 1.15,
+                    background: 'transparent', border: 'none',
+                    borderBottom: `1px solid ${BrandC.goldenAmber}`,
+                    borderRadius: 0, outline: 'none',
+                    flex: 1, minWidth: 0, padding: 0,
+                    letterSpacing: 'inherit',
+                  }}
+                />
+                <button
+                  onMouseDown={e => { e.preventDefault(); commitHeroTitle(); }}
+                  aria-label="Save title"
+                  style={{ background: 'none', border: 'none', padding: 4, cursor: 'pointer', display: 'flex', alignItems: 'center', flexShrink: 0 }}
+                >
+                  <CheckIcon size={16} color={C.seaGlass} />
+                </button>
+              </div>
             ) : (
-              <h1
-                onClick={handleHeroTitleClick}
-                style={{
-                  fontFamily: F_SERIF, fontSize: 'clamp(26px, 4.5vw, 36px)', fontWeight: 300,
-                  color: C.ink, lineHeight: 1.15, marginBottom: 8,
-                  cursor: 'text', borderBottom: '1px dashed transparent',
-                  transition: 'border-color 0.2s',
-                }}
-                onMouseEnter={e => e.currentTarget.style.borderBottomColor = 'rgba(26,37,48,0.2)'}
-                onMouseLeave={e => e.currentTarget.style.borderBottomColor = 'transparent'}
-              >{tripTitle || itinerary.title}</h1>
+              <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, marginBottom: 8 }}>
+                <h1
+                  onClick={handleHeroTitleClick}
+                  style={{
+                    fontFamily: F_SERIF, fontSize: 'clamp(26px, 4.5vw, 36px)', fontWeight: 300,
+                    color: C.ink, lineHeight: 1.15,
+                    cursor: 'text', borderBottom: '1px dashed transparent',
+                    transition: 'border-color 0.2s',
+                  }}
+                  onMouseEnter={e => e.currentTarget.style.borderBottomColor = 'rgba(26,37,48,0.2)'}
+                  onMouseLeave={e => e.currentTarget.style.borderBottomColor = 'transparent'}
+                >{tripTitle || itinerary.title}</h1>
+                <button
+                  onClick={handleHeroTitleClick}
+                  aria-label="Edit title"
+                  style={{ background: 'none', border: 'none', padding: 4, cursor: 'pointer', display: 'flex', alignItems: 'center', flexShrink: 0, opacity: 0.4, transition: 'opacity 0.2s' }}
+                  onMouseEnter={e => e.currentTarget.style.opacity = '0.7'}
+                  onMouseLeave={e => e.currentTarget.style.opacity = '0.4'}
+                >
+                  <PencilIcon size={14} color={C.ink} />
+                </button>
+              </div>
             )}
             {itinerary.subtitle && (
               <p style={{ fontFamily: F_SERIF, fontSize: 14, color: C.muted, fontStyle: 'italic', fontWeight: 400 }}>{itinerary.subtitle}</p>
