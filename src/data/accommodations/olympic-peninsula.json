@@ -1,0 +1,228 @@
+[
+  {
+    "id": "kalaloch-campground",
+    "name": "Kalaloch Campground",
+    "type": "camping",
+    "stayStyle": "elemental",
+    "budgetTier": "mindful",
+    "priceRange": "$22–44/night",
+    "location": "Olympic National Park — Kalaloch (coastal zone)",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "highlights": [
+      "Only campground in the park with ocean views",
+      "Sites above a wild beach — surf is your constant companion",
+      "Bluff sites are the ones to aim for",
+      "First-come-first-served for most sites"
+    ],
+    "amenities": ["pit toilets", "drinking water", "fire rings", "picnic tables"],
+    "bookingWindow": "Book what you can on recreation.gov; fill in with walk-ups",
+    "links": {
+      "website": "https://www.nps.gov/olym/planyourvisit/campgrounds.htm",
+      "booking": "https://www.recreation.gov/"
+    },
+    "seasonalNotes": "Year-round. Winter storms are dramatic from the bluff sites.",
+    "lilaPick": true,
+    "tags": ["ocean-view", "coastal", "bluff-sites", "first-come", "surf-sound"]
+  },
+  {
+    "id": "hoh-campground",
+    "name": "Hoh Campground",
+    "type": "camping",
+    "stayStyle": "elemental",
+    "budgetTier": "mindful",
+    "priceRange": "$22–24/night",
+    "location": "Olympic National Park — Hoh Rainforest",
+    "groupFit": ["solo", "couple", "friends"],
+    "highlights": [
+      "Deep in the rainforest at the end of Upper Hoh Road",
+      "Mossy, quiet, atmospheric",
+      "Walk to the Hall of Mosses before day hikers arrive",
+      "Elk are common visitors at dawn"
+    ],
+    "amenities": ["restrooms", "drinking water", "fire rings", "picnic tables"],
+    "bookingWindow": "First-come-first-served; arrive early in summer",
+    "links": {
+      "website": "https://www.nps.gov/olym/planyourvisit/campgrounds.htm",
+      "booking": null
+    },
+    "seasonalNotes": "Year-round. Rainforest is most atmospheric in winter — mosses saturated, river running high.",
+    "lilaPick": true,
+    "tags": ["rainforest", "mossy", "elk", "quiet", "immersive"]
+  },
+  {
+    "id": "sol-duc-campground",
+    "name": "Sol Duc Campground",
+    "type": "camping",
+    "stayStyle": "elemental",
+    "budgetTier": "mindful",
+    "priceRange": "$22–24/night",
+    "location": "Olympic National Park — Sol Duc Valley",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "highlights": [
+      "Forested campground adjacent to the hot springs resort",
+      "Hot springs are a short walk from your tent",
+      "One of the park's best campground-to-experience ratios"
+    ],
+    "amenities": ["restrooms", "drinking water", "fire rings", "picnic tables"],
+    "bookingWindow": "First-come-first-served; arrive early in peak season",
+    "links": {
+      "website": "https://www.nps.gov/olym/planyourvisit/campgrounds.htm",
+      "booking": null
+    },
+    "seasonalNotes": "Seasonal — Memorial Day through early October. Hot springs day use available.",
+    "lilaPick": false,
+    "tags": ["forested", "hot-springs-adjacent", "first-come"]
+  },
+  {
+    "id": "quileute-oceanside-resort",
+    "name": "Quileute Oceanside Resort",
+    "type": "cabin",
+    "stayStyle": "elemental",
+    "budgetTier": "moderate",
+    "priceRange": "$150–300/night",
+    "location": "La Push — directly on First Beach",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "highlights": [
+      "Tribally owned and operated by the Quileute Nation",
+      "Directly on First Beach",
+      "Cabins, RV sites, small motel building",
+      "Sea stacks visible from your window — the setting is the thing"
+    ],
+    "amenities": ["restaurant", "beach access", "parking"],
+    "bookingWindow": "Reservation-required; books early in summer",
+    "links": {
+      "website": "https://www.quileuteoceanside.com/",
+      "booking": null
+    },
+    "seasonalNotes": "Year-round. Winter storms and summer beach walks are both worth it.",
+    "lilaPick": true,
+    "tags": ["indigenous-owned", "beachfront", "sea-stacks", "first-beach", "quileute"]
+  },
+  {
+    "id": "lake-crescent-lodge",
+    "name": "Lake Crescent Lodge",
+    "type": "lodge",
+    "stayStyle": "rooted",
+    "budgetTier": "moderate",
+    "priceRange": "$150–350/night",
+    "location": "Olympic National Park — Lake Crescent",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "highlights": [
+      "Historic park lodge on the shore since 1916",
+      "Lakeside cottages are the ones worth requesting",
+      "Dining room serves dinner nightly",
+      "The view from the porch is unreasonable"
+    ],
+    "amenities": ["restaurant", "boat rentals", "lakeside porch", "historic building"],
+    "bookingWindow": "Reserve well in advance for summer",
+    "links": {
+      "website": "https://www.olympicnationalparks.com/",
+      "booking": null
+    },
+    "seasonalNotes": "Seasonal — typically May through October. Request lakeside cottage.",
+    "lilaPick": true,
+    "tags": ["historic", "lakeside", "scenic-view", "cottages", "dining"]
+  },
+  {
+    "id": "kalaloch-lodge",
+    "name": "Kalaloch Lodge",
+    "type": "lodge",
+    "stayStyle": "rooted",
+    "budgetTier": "moderate",
+    "priceRange": "$200–400/night",
+    "location": "Olympic National Park — Kalaloch coastal bluff",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "highlights": [
+      "NPS-managed lodge on a bluff above the wild coast",
+      "National Historic Landmark",
+      "Rooms and cabins — bluff edge cabins are extraordinary",
+      "Creekside Restaurant on-site",
+      "The location is exceptional"
+    ],
+    "amenities": ["restaurant", "ocean views", "spa (seasonal)", "cabins"],
+    "bookingWindow": "Reserve 6+ months out for summer",
+    "links": {
+      "website": "https://www.olympicnationalparks.com/",
+      "booking": null
+    },
+    "seasonalNotes": "Year-round. Storm watching from the bluff cabins in winter is singular.",
+    "lilaPick": true,
+    "tags": ["bluff-top", "ocean-view", "historic-landmark", "cabins", "restaurant"]
+  },
+  {
+    "id": "palace-hotel",
+    "name": "Palace Hotel",
+    "type": "hotel",
+    "stayStyle": "rooted",
+    "budgetTier": "moderate",
+    "priceRange": "$100–200/night",
+    "location": "Port Townsend (historic district)",
+    "groupFit": ["solo", "couple", "friends"],
+    "highlights": [
+      "Restored Victorian hotel in Port Townsend's historic district",
+      "Individually decorated rooms, original woodwork",
+      "Above a lively arts town",
+      "Good base for the park's eastern zones"
+    ],
+    "amenities": ["historic building", "walkable downtown"],
+    "bookingWindow": "Book 1–2 months ahead for summer",
+    "links": {
+      "website": null,
+      "booking": null
+    },
+    "seasonalNotes": "Year-round. Port Townsend's arts and music scene adds cultural depth to a park trip.",
+    "lilaPick": false,
+    "tags": ["victorian", "historic", "arts-town", "walkable", "budget-friendly"]
+  },
+  {
+    "id": "domaine-madeleine",
+    "name": "Domaine Madeleine",
+    "type": "bed-and-breakfast",
+    "stayStyle": "premium",
+    "budgetTier": "premium",
+    "priceRange": "$300–500/night",
+    "location": "Port Angeles — Strait of Juan de Fuca waterfront",
+    "groupFit": ["couple"],
+    "highlights": [
+      "Waterfront B&B with views to Vancouver Island",
+      "Five suites, French-influenced interiors",
+      "Exceptional breakfasts",
+      "Kayaks available",
+      "A genuine sanctuary for a rest day"
+    ],
+    "amenities": ["breakfast included", "kayaks", "waterfront", "gardens"],
+    "bookingWindow": "Book 2–3 months ahead for summer",
+    "links": {
+      "website": null,
+      "booking": null
+    },
+    "seasonalNotes": "Year-round. Five suites — intimate and quiet. Best for couples seeking a pause.",
+    "lilaPick": true,
+    "tags": ["waterfront", "b-and-b", "french", "kayaks", "views-to-canada", "intimate"]
+  },
+  {
+    "id": "manresa-castle",
+    "name": "Manresa Castle",
+    "type": "hotel",
+    "stayStyle": "premium",
+    "budgetTier": "moderate",
+    "priceRange": "$150–300/night",
+    "location": "Port Townsend",
+    "groupFit": ["couple", "friends"],
+    "highlights": [
+      "Historic castle hotel above Port Townsend",
+      "Restored Victorian grandeur",
+      "Views of Puget Sound",
+      "Architecturally distinct park stay"
+    ],
+    "amenities": ["restaurant", "bar", "historic building", "views"],
+    "bookingWindow": "Book 1–2 months ahead for summer",
+    "links": {
+      "website": null,
+      "booking": null
+    },
+    "seasonalNotes": "Year-round. The Victorian setting is a counterpoint to the wilderness.",
+    "lilaPick": false,
+    "tags": ["castle", "victorian", "historic", "puget-sound-views"]
+  }
+]

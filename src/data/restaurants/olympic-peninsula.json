@@ -1,0 +1,370 @@
+[
+  {
+    "id": "kokopelli-grill",
+    "name": "Kokopelli Grill",
+    "cuisine": "Pacific Northwest / seafood",
+    "location": "Port Angeles",
+    "priceRange": "$$",
+    "budgetTier": "moderate",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "relaxed",
+    "highlights": [
+      "Best dinner option in Port Angeles",
+      "Wood-fired cooking",
+      "Fresh seafood, local produce",
+      "Reliable end to a long park day"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": false,
+      "notes": null
+    },
+    "hours": "Dinner; check seasonal hours",
+    "reservations": "recommended",
+    "links": {
+      "website": null,
+      "maps": null
+    },
+    "lilaPick": true,
+    "tags": ["dinner", "seafood", "wood-fired", "local-produce"],
+    "months": "all"
+  },
+  {
+    "id": "barhop-brewing",
+    "name": "Barhop Brewing",
+    "cuisine": "Brewpub",
+    "location": "Port Angeles",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "lively",
+    "highlights": [
+      "Port Angeles anchor craft brewery",
+      "Fish and chips, burgers, rotating taps",
+      "Rooftop patio with harbor views"
+    ],
+    "dietary": {
+      "vegetarian": false,
+      "vegan": false,
+      "glutenFree": false,
+      "notes": "Limited dietary options"
+    },
+    "hours": "Lunch and dinner; check hours",
+    "reservations": "walk-in",
+    "links": {
+      "website": null,
+      "maps": null
+    },
+    "lilaPick": false,
+    "tags": ["brewery", "pub", "rooftop", "harbor-view", "casual"],
+    "months": "all"
+  },
+  {
+    "id": "dupuis",
+    "name": "Dupuis Restaurant",
+    "cuisine": "Pacific Northwest",
+    "location": "Port Angeles",
+    "priceRange": "$$",
+    "budgetTier": "moderate",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "relaxed",
+    "highlights": [
+      "Locally loved, unpretentious, consistently good",
+      "Local seafood and Pacific Northwest comfort food",
+      "The kind of place a town this size needs and rarely has"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": false,
+      "notes": null
+    },
+    "hours": "Dinner; check hours",
+    "reservations": "recommended",
+    "links": {
+      "website": null,
+      "maps": null
+    },
+    "lilaPick": false,
+    "tags": ["dinner", "seafood", "local-favorite", "comfort-food"],
+    "months": "all"
+  },
+  {
+    "id": "next-door-gastropub",
+    "name": "Next Door Gastropub",
+    "cuisine": "Pacific Northwest gastropub",
+    "location": "Port Angeles",
+    "priceRange": "$$",
+    "budgetTier": "moderate",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "lively",
+    "highlights": [
+      "A step up from standard pub fare",
+      "Craft cocktails, rotating seasonal plates",
+      "Dungeness crab mac and cheese",
+      "Good beer list"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": false,
+      "notes": "House-made charcuterie, local greens"
+    },
+    "hours": "Daily 11 AM–9 PM",
+    "reservations": "walk-in",
+    "links": {
+      "website": null,
+      "maps": null
+    },
+    "lilaPick": false,
+    "tags": ["lunch", "dinner", "gastropub", "craft-cocktails", "local-sourcing"],
+    "months": "all"
+  },
+  {
+    "id": "bonnys-bakery",
+    "name": "Bonny's Bakery",
+    "cuisine": "Bakery & café",
+    "location": "Port Angeles",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple"],
+    "energy": "relaxed",
+    "highlights": [
+      "Morning pastries, strong coffee",
+      "Community gathering point",
+      "Arrive early — the good things sell out"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": false,
+      "notes": null
+    },
+    "hours": "Morning; check hours",
+    "reservations": "walk-in",
+    "links": {
+      "website": null,
+      "maps": null
+    },
+    "lilaPick": false,
+    "tags": ["breakfast", "bakery", "coffee", "morning"],
+    "months": "all"
+  },
+  {
+    "id": "nourish-sequim",
+    "name": "Nourish Sequim",
+    "cuisine": "Farm-to-table café",
+    "location": "Sequim",
+    "priceRange": "$$",
+    "budgetTier": "moderate",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "relaxed",
+    "highlights": [
+      "Bright, plant-forward café",
+      "Farm-to-table ethos with Dungeness Valley sourcing",
+      "Seasonal rotating menu — local greens, grain bowls, baked goods",
+      "Strong coffee program",
+      "Vegetarian and vegan options are genuine rather than afterthoughts"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": true,
+      "glutenFree": false,
+      "notes": "Strong plant-forward menu"
+    },
+    "hours": "Wednesday–Sunday, 8 AM–3 PM",
+    "reservations": "walk-in",
+    "links": {
+      "website": null,
+      "maps": null
+    },
+    "lilaPick": true,
+    "tags": ["breakfast", "lunch", "farm-to-table", "vegetarian-friendly", "vegan-friendly"],
+    "months": "all"
+  },
+  {
+    "id": "alder-wood-bistro",
+    "name": "Alder Wood Bistro",
+    "cuisine": "Farm-to-table",
+    "location": "Sequim",
+    "priceRange": "$$$",
+    "budgetTier": "premium",
+    "groupFit": ["couple", "friends"],
+    "energy": "relaxed",
+    "highlights": [
+      "Farm-to-table sourcing in a town that actually has farms",
+      "Garlic from nearby farms, local oysters",
+      "Thoughtful wine list",
+      "One of the best restaurants on the entire peninsula"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": false,
+      "notes": null
+    },
+    "hours": "Dinner; check seasonal hours",
+    "reservations": "recommended",
+    "links": {
+      "website": null,
+      "maps": null
+    },
+    "lilaPick": true,
+    "tags": ["dinner", "farm-to-table", "local-sourcing", "wine-list", "oysters"],
+    "months": "all"
+  },
+  {
+    "id": "finistere",
+    "name": "Finistère",
+    "cuisine": "Pacific Northwest fine dining",
+    "location": "Port Townsend",
+    "priceRange": "$$$",
+    "budgetTier": "premium",
+    "groupFit": ["couple", "friends"],
+    "energy": "refined",
+    "highlights": [
+      "Pacific Northwest cuisine in a Victorian port town",
+      "Excellent shellfish",
+      "Curated menu, a beautiful room",
+      "Worth the 45-minute drive from Port Angeles"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": false,
+      "notes": null
+    },
+    "hours": "Dinner; check seasonal hours",
+    "reservations": "recommended",
+    "links": {
+      "website": null,
+      "maps": null
+    },
+    "lilaPick": true,
+    "tags": ["dinner", "fine-dining", "shellfish", "victorian-setting", "destination-dining"],
+    "months": "all"
+  },
+  {
+    "id": "bread-and-roses",
+    "name": "Bread & Roses Bakery",
+    "cuisine": "Bakery",
+    "location": "Port Townsend",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple"],
+    "energy": "relaxed",
+    "highlights": [
+      "Sourdough, local grain, pastries that justify the trip",
+      "Community-owned institution"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": false,
+      "notes": null
+    },
+    "hours": "Morning and afternoon; check hours",
+    "reservations": "walk-in",
+    "links": {
+      "website": null,
+      "maps": null
+    },
+    "lilaPick": false,
+    "tags": ["breakfast", "bakery", "sourdough", "local-grain", "community-owned"],
+    "months": "all"
+  },
+  {
+    "id": "in-the-woods-cafe",
+    "name": "In the Woods Café",
+    "cuisine": "Café",
+    "location": "Forks",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "relaxed",
+    "highlights": [
+      "Over-delivers for its setting",
+      "Homemade soups, sandwiches on fresh bread",
+      "Espresso drinks and baked goods made in-house",
+      "Turns a fuel stop into an actual meal",
+      "A genuine find in a town with limited dining"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": false,
+      "notes": null
+    },
+    "hours": "Monday–Saturday, 7 AM–3 PM",
+    "reservations": "walk-in",
+    "links": {
+      "website": null,
+      "maps": null
+    },
+    "lilaPick": true,
+    "tags": ["breakfast", "lunch", "cafe", "homemade", "local-find"],
+    "months": "all"
+  },
+  {
+    "id": "kalaloch-lodge-creekside",
+    "name": "Kalaloch Lodge Creekside Restaurant",
+    "cuisine": "Pacific Northwest",
+    "location": "Kalaloch (US-101)",
+    "priceRange": "$$",
+    "budgetTier": "moderate",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "relaxed",
+    "highlights": [
+      "Only sit-down restaurant on the wild coast between Forks and Lake Quinault",
+      "Grilled salmon, clam chowder, fish and chips",
+      "Dining room overlooks Kalaloch Creek and the ocean",
+      "Sunset over the Pacific from your table"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": false,
+      "notes": null
+    },
+    "hours": "Daily 7 AM–9 PM; seasonal hours may vary",
+    "reservations": "recommended for dinner in summer",
+    "links": {
+      "website": "https://www.olympicnationalparks.com/",
+      "maps": null
+    },
+    "lilaPick": false,
+    "tags": ["breakfast", "lunch", "dinner", "ocean-view", "salmon", "sunset"],
+    "months": "all"
+  },
+  {
+    "id": "quileute-oceanside",
+    "name": "Quileute Oceanside Resort Restaurant",
+    "cuisine": "American / seafood",
+    "location": "La Push",
+    "priceRange": "$$",
+    "budgetTier": "moderate",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "relaxed",
+    "highlights": [
+      "Overlooking First Beach and the sea stacks",
+      "Simple menu, extraordinary location",
+      "Worth eating here for the surf view from your table"
+    ],
+    "dietary": {
+      "vegetarian": false,
+      "vegan": false,
+      "glutenFree": false,
+      "notes": "Limited menu"
+    },
+    "hours": "Check with resort for current hours",
+    "reservations": "walk-in",
+    "links": {
+      "website": "https://www.quileuteoceanside.com/",
+      "maps": null
+    },
+    "lilaPick": false,
+    "tags": ["lunch", "dinner", "ocean-view", "indigenous-owned", "sea-stacks"],
+    "months": "all"
+  }
+]

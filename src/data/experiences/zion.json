@@ -1,0 +1,163 @@
+[
+  {
+    "id": "tribal-arts-zion",
+    "name": "Tribal Arts Zion",
+    "type": "gallery",
+    "location": "Springdale",
+    "description": "Native American art and jewelry sourced directly from tribal artists.",
+    "highlights": [
+      "Authentic Native American art and jewelry",
+      "Sourced directly from tribal artists",
+      "A meaningful cultural stop in Springdale"
+    ],
+    "links": {
+      "website": null
+    },
+    "featured": false,
+    "tags": ["native-art", "jewelry", "gallery", "indigenous"]
+  },
+  {
+    "id": "david-j-west-gallery",
+    "name": "David J. West Gallery",
+    "type": "gallery",
+    "location": "Springdale",
+    "description": "Fine art photography of the Southwest in light that makes you question whether you've ever really seen these places.",
+    "highlights": [
+      "Fine art photography of the Southwest",
+      "Extraordinary light and perspective",
+      "A quiet, contemplative stop"
+    ],
+    "links": {
+      "website": "https://www.davidjwest.com/"
+    },
+    "featured": false,
+    "tags": ["photography", "fine-art", "southwest"]
+  },
+  {
+    "id": "springdale-farmers-market",
+    "name": "Springdale Farmers Market",
+    "type": "market",
+    "location": "Springdale",
+    "description": "Saturday mornings in season. Local produce, artisan goods.",
+    "highlights": [
+      "Saturday mornings in season",
+      "Local produce and artisan goods",
+      "A window into the community"
+    ],
+    "links": {
+      "website": null
+    },
+    "seasonalNotes": "Seasonal — Saturday mornings, typically spring through fall.",
+    "featured": false,
+    "tags": ["seasonal", "saturday", "local-produce", "artisan"]
+  },
+  {
+    "id": "paiute-cultural-heritage",
+    "name": "Paiute Cultural Heritage",
+    "type": "cultural-heritage",
+    "location": "Cedar City, UT — Paiute Indian Tribe of Utah",
+    "description": "The Southern Paiute called this land Mukuntuweap long before it was Zion. The Paiute Indian Tribe of Utah preserves language, oral history, and traditions through cultural programs and the annual Restoration Powwow in Cedar City each June.",
+    "highlights": [
+      "The land's original name: Mukuntuweap",
+      "Language preservation and oral history programs",
+      "Annual Restoration Powwow in Cedar City each June",
+      "Supporting their programs is the most meaningful reciprocity you can offer this place"
+    ],
+    "links": {
+      "website": "https://pitu.gov/culture/"
+    },
+    "featured": true,
+    "tags": ["indigenous-heritage", "cultural", "paiute", "powwow", "language-preservation"]
+  },
+  {
+    "id": "pipe-spring-national-monument",
+    "name": "Pipe Spring National Monument",
+    "type": "landmark",
+    "location": "Fredonia, AZ — jointly managed by NPS and Kaibab Band of Paiutes",
+    "description": "A desert oasis that tells the layered story of water, sovereignty, and survival — Native, pioneer, and ranching history in one place. The Kaibab Paiutes operate the visitor center.",
+    "highlights": [
+      "Jointly managed by NPS and the Kaibab Band of Paiutes",
+      "A desert oasis with layered history",
+      "Kaibab Paiutes operate the visitor center",
+      "Water, sovereignty, and survival in one place"
+    ],
+    "links": {
+      "website": "https://www.nps.gov/pisp/"
+    },
+    "featured": true,
+    "tags": ["nps-monument", "indigenous-history", "day-trip", "kaibab-paiute"]
+  },
+  {
+    "id": "zion-forever-project",
+    "name": "Zion Forever Project",
+    "type": "conservation",
+    "location": "Zion National Park",
+    "description": "The park's official nonprofit partner. Conservation volunteer days, trail restoration, hanging garden protection, and dark sky preservation. A way to give back to the land that gives so much.",
+    "highlights": [
+      "Official nonprofit partner of Zion National Park",
+      "Trail restoration and wildlife habitat protection",
+      "Dark sky stewardship and youth education",
+      "Volunteer opportunities available"
+    ],
+    "links": {
+      "website": "https://www.zionpark.org/"
+    },
+    "featured": true,
+    "tags": ["conservation", "volunteer", "nonprofit", "trail-restoration", "dark-sky"]
+  },
+  {
+    "id": "conserve-southwest-utah",
+    "name": "Conserve Southwest Utah",
+    "type": "conservation",
+    "location": "Red Cliffs NCA, near St. George — 45 min from Zion",
+    "description": "Hands-on desert habitat restoration at Red Cliffs NCA. Planting native shrubs, protecting threatened Mojave desert tortoise habitat, invasive species removal. Over 5,000 native plants restored since 2020.",
+    "highlights": [
+      "Hands-on desert habitat restoration",
+      "Mojave desert tortoise protection",
+      "Over 5,000 native plants restored since 2020",
+      "Regular volunteer days"
+    ],
+    "links": {
+      "website": "https://www.conserveswu.org/stewardship"
+    },
+    "featured": true,
+    "tags": ["habitat-restoration", "volunteer", "desert-tortoise", "native-plants"]
+  },
+  {
+    "id": "parowan-gap-petroglyphs",
+    "name": "Parowan Gap Petroglyphs",
+    "type": "landmark",
+    "location": "Near Cedar City, UT",
+    "description": "A free, open-air gallery of ancient rock art attributed to the Fremont people. Hundreds of petroglyphs etched into the canyon walls — a contemplative stop that asks nothing but attention.",
+    "highlights": [
+      "Free, open-air gallery of ancient rock art",
+      "Attributed to the Fremont people",
+      "Hundreds of petroglyphs etched into canyon walls",
+      "Self-guided, contemplative"
+    ],
+    "links": {
+      "website": null
+    },
+    "featured": false,
+    "tags": ["free", "ancient-rock-art", "self-guided", "fremont", "petroglyphs"]
+  },
+  {
+    "id": "fruita-orchards",
+    "name": "Fruita Orchards at Capitol Reef",
+    "type": "landmark",
+    "location": "Capitol Reef National Park",
+    "description": "The park's historic orchard — apricot, cherry, peach, pear, apple — is still harvested by visitors in season. Walk in, pick fruit off the tree, pay by the pound. One of the most quietly extraordinary things you can do in any national park.",
+    "highlights": [
+      "Historic orchard with U-pick fruit in season",
+      "Apricot, cherry, peach, pear, apple",
+      "Pay by the pound — free to enter",
+      "One of the most special NPS experiences anywhere"
+    ],
+    "links": {
+      "website": "https://www.nps.gov/care/planyourvisit/fruita.htm"
+    },
+    "corridor": true,
+    "featured": true,
+    "tags": ["free-to-enter", "u-pick", "historic", "in-season", "capitol-reef"]
+  }
+]

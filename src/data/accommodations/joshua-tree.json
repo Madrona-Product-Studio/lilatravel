@@ -103,7 +103,7 @@
     "name": "Skylight Joshua Tree",
     "type": "cabin",
     "stayStyle": "elemental",
-    "budgetTier": "balanced",
+    "budgetTier": "moderate",
     "priceRange": "$150–300/night",
     "location": "Near the park's north edge, Twentynine Palms",
     "groupFit": ["solo", "couple", "friends"],
@@ -128,7 +128,7 @@
     "name": "Hicksville Trailer Palace",
     "type": "boutique",
     "stayStyle": "elemental",
-    "budgetTier": "balanced",
+    "budgetTier": "moderate",
     "priceRange": "$150–250/night",
     "location": "Near the park's west entrance, Joshua Tree town",
     "groupFit": ["couple", "friends"],
@@ -153,7 +153,7 @@
     "name": "29 Palms Inn",
     "type": "inn",
     "stayStyle": "rooted",
-    "budgetTier": "balanced",
+    "budgetTier": "moderate",
     "priceRange": "$120–250/night",
     "location": "Twentynine Palms, near the north entrance",
     "groupFit": ["solo", "couple", "friends", "family"],
@@ -178,7 +178,7 @@
     "name": "Spin & Margie's Desert Hideaway",
     "type": "boutique",
     "stayStyle": "rooted",
-    "budgetTier": "balanced",
+    "budgetTier": "moderate",
     "priceRange": "$130–220/night",
     "location": "Joshua Tree town",
     "groupFit": ["solo", "couple"],
@@ -199,36 +199,11 @@
     "tags": ["vintage", "art", "garden", "walkable", "intimate"]
   },
   {
-    "id": "pioneertown-motel",
-    "name": "Pioneertown Motel",
-    "type": "motel",
-    "stayStyle": "rooted",
-    "budgetTier": "balanced",
-    "priceRange": "$120–200/night",
-    "location": "Pioneertown",
-    "groupFit": ["solo", "couple", "friends"],
-    "highlights": [
-      "The only place to sleep in Pioneertown itself",
-      "Walking distance to Pappy & Harriet's",
-      "Atmospheric bar connected to the motel",
-      "Desert art on the walls"
-    ],
-    "amenities": ["on-site bar", "wifi", "parking"],
-    "bookingWindow": "Book 1–2 months ahead for weekends, especially when Pappy's has a big show.",
-    "links": {
-      "website": "https://www.pioneertownmotel.com/",
-      "booking": null
-    },
-    "seasonalNotes": "Year-round. Basic but atmospheric. Book around Pappy & Harriet's show calendar for maximum experience.",
-    "lilaPick": false,
-    "tags": ["pioneertown", "walkable", "pappys", "atmospheric", "on-site-bar"]
-  },
-  {
     "id": "sacred-sands",
     "name": "Sacred Sands",
     "type": "boutique",
     "stayStyle": "rooted",
-    "budgetTier": "balanced",
+    "budgetTier": "moderate",
     "priceRange": "$200–350/night",
     "location": "Joshua Tree town",
     "groupFit": ["solo", "couple"],
@@ -247,6 +222,32 @@
     "seasonalNotes": "Year-round. Full moon weekends are especially popular and book far ahead.",
     "lilaPick": false,
     "tags": ["boutique", "two-rooms-only", "meditation-garden", "intimate", "desert-views"]
+  },
+  {
+    "id": "pioneertown-motel",
+    "name": "Pioneertown Motel",
+    "type": "motel",
+    "stayStyle": "rooted",
+    "budgetTier": "moderate",
+    "priceRange": "$120–200/night",
+    "location": "Pioneertown",
+    "groupFit": ["solo", "couple", "friends"],
+    "highlights": [
+      "The only place to sleep in Pioneertown itself",
+      "Walking distance to Pappy & Harriet's",
+      "Atmospheric bar connected to the motel",
+      "Desert art on the walls"
+    ],
+    "amenities": ["on-site bar", "wifi", "parking"],
+    "bookingWindow": "Book 1–2 months ahead for weekends, especially when Pappy's has a big show.",
+    "links": {
+      "website": "https://www.pioneertownmotel.com/",
+      "booking": null
+    },
+    "seasonalNotes": "Year-round. Basic but atmospheric. Book around Pappy & Harriet's show calendar for maximum experience.",
+    "corridor": true,
+    "lilaPick": false,
+    "tags": ["pioneertown", "walkable", "pappys", "atmospheric", "on-site-bar"]
   },
   {
     "id": "two-bunch-palms",
@@ -270,6 +271,7 @@
       "booking": null
     },
     "seasonalNotes": "Year-round. Summer can be extremely hot — the springs are still a draw but the surrounding heat is intense.",
+    "corridor": true,
     "lilaPick": true,
     "tags": ["hot-springs", "historic", "spa", "grotto", "hollywood-hideaway", "decompression"]
   },
@@ -295,6 +297,7 @@
       "booking": null
     },
     "seasonalNotes": "Year-round. Peak season Jan–Apr. Summer rates drop significantly but temperatures soar.",
+    "corridor": true,
     "lilaPick": false,
     "tags": ["mid-century", "palm-springs", "pool", "spa", "architecture", "refined"]
   },
@@ -320,6 +323,7 @@
       "booking": null
     },
     "seasonalNotes": "Year-round. Peak is Jan–Apr. Norma's for brunch is an institution.",
+    "corridor": true,
     "lilaPick": true,
     "tags": ["design-forward", "palm-springs", "pool-culture", "jonathan-adler", "restaurants", "13-acres"]
   },
@@ -328,7 +332,7 @@
     "name": "Arrive Palm Springs",
     "type": "boutique hotel",
     "stayStyle": "premium",
-    "budgetTier": "balanced",
+    "budgetTier": "moderate",
     "priceRange": "$200–400/night",
     "location": "Palm Springs, ~45 min from Joshua Tree",
     "groupFit": ["solo", "couple", "friends"],
@@ -345,6 +349,7 @@
       "booking": null
     },
     "seasonalNotes": "Year-round. A great base for a night in PS before or after the park.",
+    "corridor": true,
     "lilaPick": false,
     "tags": ["palm-springs", "pool", "bar", "design", "accessible-luxury", "walkable"]
   }

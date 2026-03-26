@@ -1,0 +1,467 @@
+[
+  {
+    "id": "sierra-mar",
+    "name": "Sierra Mar",
+    "cuisine": "California prix fixe",
+    "location": "Big Sur (Post Ranch Inn)",
+    "priceRange": "$$$$",
+    "budgetTier": "luxury",
+    "groupFit": ["couple"],
+    "energy": "refined",
+    "highlights": [
+      "Floor-to-ceiling glass 1,200 feet above the Pacific",
+      "Four-course prix fixe dinner",
+      "Prix-fixe lunch at a more accessible price point",
+      "Open to non-guests for both meals"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": false,
+      "notes": "Tasting menu — dietary accommodations with advance notice"
+    },
+    "hours": "Lunch and dinner; check seasonal schedule",
+    "reservations": "essential — book weeks or months ahead",
+    "links": {
+      "website": "https://www.postranchinn.com/dining/",
+      "maps": null
+    },
+    "lilaPick": true,
+    "tags": ["fine-dining", "prix-fixe", "ocean-view", "special-occasion", "reservations-essential"],
+    "months": "all"
+  },
+  {
+    "id": "sur-house",
+    "name": "Sur House",
+    "cuisine": "Sustainable coastal",
+    "location": "Big Sur (Alila Ventana Big Sur)",
+    "priceRange": "$$$",
+    "budgetTier": "premium",
+    "groupFit": ["couple", "friends"],
+    "energy": "refined",
+    "highlights": [
+      "Pacific-sourced seafood from local fishermen",
+      "Forager-sourced produce",
+      "10,000-bottle Central Coast wine cellar",
+      "Terrace overlooking canyon and ocean",
+      "Open to non-guests for dinner"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": false,
+      "notes": null
+    },
+    "hours": "Dinner; check seasonal schedule",
+    "reservations": "recommended",
+    "links": {
+      "website": "https://www.alilahotels.com/ventana-big-sur/sur-house",
+      "maps": null
+    },
+    "lilaPick": true,
+    "tags": ["dinner", "ocean-view", "sustainable", "wine-program", "local-sourcing"],
+    "months": "all"
+  },
+  {
+    "id": "nepenthe",
+    "name": "Nepenthe",
+    "cuisine": "American",
+    "location": "Big Sur (Highway 1)",
+    "priceRange": "$$",
+    "budgetTier": "moderate",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "lively",
+    "highlights": [
+      "Iconic Big Sur terrace since 1949",
+      "The Ambrosia burger — a pilgrimage food",
+      "Unobstructed Pacific horizon from the deck",
+      "Built on land Henry Miller once owned"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": false,
+      "notes": null
+    },
+    "hours": "Lunch and dinner daily",
+    "reservations": "walk-in only — arrive early or late to avoid waits",
+    "links": {
+      "website": "https://www.nepenthe.com/",
+      "maps": null
+    },
+    "lilaPick": true,
+    "tags": ["lunch", "dinner", "iconic", "ocean-view", "no-reservations", "outdoor-terrace"],
+    "months": "all"
+  },
+  {
+    "id": "big-sur-bakery",
+    "name": "Big Sur Bakery",
+    "cuisine": "Bakery & brunch",
+    "location": "Big Sur (Highway 1)",
+    "priceRange": "$$",
+    "budgetTier": "moderate",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "relaxed",
+    "highlights": [
+      "Converted house surrounded by redwoods",
+      "Wood-fired pastries",
+      "Fresh eggs, excellent coffee",
+      "Pastry case sells out — arrive early",
+      "Local institution"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": false,
+      "notes": null
+    },
+    "hours": "Breakfast and lunch; Friday–Tuesday only (closed Wed–Thu)",
+    "reservations": "walk-in",
+    "links": {
+      "website": "https://www.bigsurbakery.com/",
+      "maps": null
+    },
+    "lilaPick": true,
+    "tags": ["breakfast", "brunch", "bakery", "coffee", "local-favorite", "limited-days"],
+    "months": "all"
+  },
+  {
+    "id": "big-sur-river-inn",
+    "name": "Big Sur River Inn Restaurant",
+    "cuisine": "American",
+    "location": "Big Sur (Highway 1)",
+    "priceRange": "$$",
+    "budgetTier": "moderate",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "lively",
+    "highlights": [
+      "Riverside deck over the Big Sur River",
+      "Patrons sit in chairs in the river during warm months",
+      "Gathering place for the local community",
+      "Classic American fare, cold drinks"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": false,
+      "notes": null
+    },
+    "hours": "Lunch and dinner daily; check seasonal hours",
+    "reservations": "walk-in",
+    "links": {
+      "website": "https://www.bigsurriverinn.com/",
+      "maps": null
+    },
+    "lilaPick": false,
+    "tags": ["lunch", "dinner", "riverside", "outdoor-seating", "local-community"],
+    "months": "all"
+  },
+  {
+    "id": "fernwood-tavern",
+    "name": "Fernwood Tavern Bar & Grill",
+    "cuisine": "American pub",
+    "location": "Big Sur (Fernwood Resort)",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "friends"],
+    "energy": "lively",
+    "highlights": [
+      "The de facto local pub of Big Sur",
+      "Live music some weekends",
+      "Cold beer, burgers, pool table",
+      "Community institution"
+    ],
+    "dietary": {
+      "vegetarian": false,
+      "vegan": false,
+      "glutenFree": false,
+      "notes": "Limited dietary options"
+    },
+    "hours": "Lunch and dinner; check seasonal hours",
+    "reservations": "walk-in",
+    "links": {
+      "website": "https://www.fernwoodbigsur.com/",
+      "maps": null
+    },
+    "lilaPick": false,
+    "tags": ["bar", "pub", "live-music", "casual", "local-hangout"],
+    "months": "all"
+  },
+  {
+    "id": "aubergine",
+    "name": "Aubergine",
+    "cuisine": "Fine dining tasting menu",
+    "location": "Carmel-by-the-Sea (L'Auberge Carmel)",
+    "priceRange": "$$$$",
+    "budgetTier": "luxury",
+    "groupFit": ["couple"],
+    "energy": "refined",
+    "highlights": [
+      "One Michelin star",
+      "Tasting menu format",
+      "Intimate dining room",
+      "Wine program anchored on local producers",
+      "The special occasion restaurant of the orbit"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": false,
+      "notes": "Tasting menu — dietary accommodations with advance notice"
+    },
+    "hours": "Dinner; check schedule",
+    "reservations": "essential",
+    "links": {
+      "website": "https://www.laubergecarmel.com/aubergine/",
+      "maps": null
+    },
+    "lilaPick": true,
+    "tags": ["fine-dining", "michelin-star", "tasting-menu", "special-occasion", "reservations-essential"],
+    "months": "all"
+  },
+  {
+    "id": "la-bicyclette",
+    "name": "La Bicyclette",
+    "cuisine": "French bistro / California",
+    "location": "Carmel-by-the-Sea",
+    "priceRange": "$$$",
+    "budgetTier": "premium",
+    "groupFit": ["couple", "friends"],
+    "energy": "lively",
+    "highlights": [
+      "Seasonal menu, wood-fired oven",
+      "French bistro sensibility with California ingredients",
+      "Mushroom appetizer regularly on best-of lists",
+      "Walk-in bar seating available"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": false,
+      "notes": null
+    },
+    "hours": "Lunch and dinner",
+    "reservations": "recommended — walk-in bar seating available",
+    "links": {
+      "website": "https://www.labicycletterestaurant.com/",
+      "maps": null
+    },
+    "lilaPick": false,
+    "tags": ["french", "wood-fired", "dinner", "lunch", "bar-seating"],
+    "months": "all"
+  },
+  {
+    "id": "casanova",
+    "name": "Casanova",
+    "cuisine": "French / Italian",
+    "location": "Carmel-by-the-Sea",
+    "priceRange": "$$$",
+    "budgetTier": "premium",
+    "groupFit": ["couple"],
+    "energy": "intimate",
+    "highlights": [
+      "Vintage Carmel farmhouse",
+      "Legendary wine cellar",
+      "Low-beamed ceilings, candlelight, garden patio",
+      "One of the most atmospheric dining rooms in California"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": false,
+      "notes": null
+    },
+    "hours": "Dinner; check schedule",
+    "reservations": "recommended",
+    "links": {
+      "website": "https://www.casanovacarmel.com/",
+      "maps": null
+    },
+    "lilaPick": true,
+    "tags": ["dinner", "romantic", "wine-cellar", "historic", "garden-patio"],
+    "months": "all"
+  },
+  {
+    "id": "mission-ranch",
+    "name": "Mission Ranch Restaurant",
+    "cuisine": "American",
+    "location": "Carmel-by-the-Sea",
+    "priceRange": "$$$",
+    "budgetTier": "premium",
+    "groupFit": ["couple", "friends", "family"],
+    "energy": "relaxed",
+    "highlights": [
+      "Carmel landmark owned by Clint Eastwood since 1986",
+      "Sheep meadow, Carmel River lagoon views",
+      "Point Lobos visible from dining room",
+      "Classic American — earned through authenticity"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": false,
+      "notes": null
+    },
+    "hours": "Dinner; check schedule",
+    "reservations": "recommended",
+    "links": {
+      "website": "https://www.missionranchcarmel.com/",
+      "maps": null
+    },
+    "lilaPick": false,
+    "tags": ["dinner", "scenic-view", "historic", "american"],
+    "months": "all"
+  },
+  {
+    "id": "carmel-belle",
+    "name": "Carmel Belle",
+    "cuisine": "Café & provisions",
+    "location": "Carmel-by-the-Sea (Doud Craft Studios)",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple"],
+    "energy": "relaxed",
+    "highlights": [
+      "The morning anchor before heading south",
+      "Coffee, breakfast bowls, local provisions",
+      "Inside the Doud Craft Studios"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": false,
+      "notes": null
+    },
+    "hours": "Breakfast and lunch daily",
+    "reservations": "walk-in",
+    "links": {
+      "website": "https://www.carmelbelle.com/",
+      "maps": null
+    },
+    "lilaPick": false,
+    "tags": ["breakfast", "coffee", "cafe", "provisions"],
+    "months": "all"
+  },
+  {
+    "id": "coastal-kitchen-monterey",
+    "name": "Coastal Kitchen Monterey",
+    "cuisine": "Seafood tasting menu",
+    "location": "Monterey",
+    "priceRange": "$$$",
+    "budgetTier": "premium",
+    "groupFit": ["couple", "friends"],
+    "energy": "refined",
+    "highlights": [
+      "Multi-course tasting format",
+      "Sustainable seafood-centric",
+      "Show kitchen",
+      "Among the most serious culinary offerings on the Central Coast"
+    ],
+    "dietary": {
+      "vegetarian": false,
+      "vegan": false,
+      "glutenFree": false,
+      "notes": "Seafood-focused tasting menu — contact for dietary needs"
+    },
+    "hours": "Dinner; check schedule",
+    "reservations": "recommended",
+    "links": {
+      "website": null,
+      "maps": null
+    },
+    "lilaPick": true,
+    "tags": ["fine-dining", "tasting-menu", "seafood", "sustainable", "show-kitchen"],
+    "months": "all"
+  },
+  {
+    "id": "stokes-adobe",
+    "name": "Stokes Adobe",
+    "cuisine": "California-Mexican",
+    "location": "Monterey",
+    "priceRange": "$$",
+    "budgetTier": "moderate",
+    "groupFit": ["couple", "friends"],
+    "energy": "relaxed",
+    "highlights": [
+      "Historic adobe building",
+      "California-Mexican cuisine with genuine craft",
+      "Outdoor fire pits — natural evening gathering place"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": false,
+      "notes": null
+    },
+    "hours": "Dinner; check schedule",
+    "reservations": "recommended",
+    "links": {
+      "website": null,
+      "maps": null
+    },
+    "lilaPick": false,
+    "tags": ["dinner", "historic", "fire-pit", "outdoor"],
+    "months": "all"
+  },
+  {
+    "id": "old-fishermans-grotto",
+    "name": "Old Fisherman's Grotto",
+    "cuisine": "Seafood",
+    "location": "Monterey (Fisherman's Wharf)",
+    "priceRange": "$$",
+    "budgetTier": "moderate",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "lively",
+    "highlights": [
+      "Fisherman's Wharf, harbor views",
+      "Fresh-caught local seafood",
+      "Clam chowder and Dungeness crab are the real deal"
+    ],
+    "dietary": {
+      "vegetarian": false,
+      "vegan": false,
+      "glutenFree": false,
+      "notes": "Seafood-focused"
+    },
+    "hours": "Lunch and dinner daily",
+    "reservations": "walk-in",
+    "links": {
+      "website": "https://www.oldfishermansgrotto.com/",
+      "maps": null
+    },
+    "lilaPick": false,
+    "tags": ["lunch", "dinner", "seafood", "harbor-view", "family-friendly"],
+    "months": "all"
+  },
+  {
+    "id": "alta-bakery",
+    "name": "Alta Bakery",
+    "cuisine": "Bakery & café",
+    "location": "Monterey (Downtown)",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple"],
+    "energy": "relaxed",
+    "highlights": [
+      "Best coffee stop in Monterey",
+      "Sunny back courtyard",
+      "Excellent pastries",
+      "Genuine neighborhood café energy"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": false,
+      "notes": null
+    },
+    "hours": "Morning and afternoon; check hours",
+    "reservations": "walk-in",
+    "links": {
+      "website": null,
+      "maps": null
+    },
+    "lilaPick": false,
+    "tags": ["coffee", "bakery", "courtyard", "morning"],
+    "months": "all"
+  }
+]

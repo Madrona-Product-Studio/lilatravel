@@ -1,0 +1,331 @@
+[
+  {
+    "id": "haena-beach-park",
+    "name": "Haena Beach Park Camping",
+    "type": "camping",
+    "stayStyle": "elemental",
+    "budgetTier": "mindful",
+    "priceRange": "$18–30/night",
+    "location": "Hāʻena (North Shore) — near Kalalau trailhead",
+    "groupFit": ["solo", "couple", "friends"],
+    "highlights": [
+      "Closest camping to the Kalalau trailhead",
+      "Five campsites on the beach at Hāʻena",
+      "Short walk from Ke'e Beach and Limahuli Garden",
+      "One of the most atmospheric camping locations in the state"
+    ],
+    "amenities": ["restrooms", "showers", "picnic tables"],
+    "bookingWindow": "Reservations through Hawaii State Parks (dlnr.hawaii.gov/dsp)",
+    "links": {
+      "website": "https://dlnr.hawaii.gov/dsp/parks/kauai/",
+      "booking": null
+    },
+    "seasonalNotes": "Year-round. North shore surf is rough in winter — beach conditions change dramatically by season.",
+    "lilaPick": true,
+    "tags": ["beachfront", "kalalau-trailhead", "north-shore", "atmospheric"]
+  },
+  {
+    "id": "kokee-cabins",
+    "name": "Kōkeʻe State Park Cabins",
+    "type": "cabin",
+    "stayStyle": "elemental",
+    "budgetTier": "mindful",
+    "priceRange": "$60–100/night",
+    "location": "Kōkeʻe State Park — highlands above Waimea Canyon (3,600 ft)",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "highlights": [
+      "Rustic cabins in the highlands",
+      "Cool temperatures at 3,600 feet",
+      "Access to Waimea Canyon and Alaka'i Swamp trails",
+      "Birdsong from species found nowhere else on Earth",
+      "Extremely affordable"
+    ],
+    "amenities": ["kitchen", "beds", "basic furnishings"],
+    "bookingWindow": "Reservations through kokee.net",
+    "links": {
+      "website": "https://www.kokee.net/",
+      "booking": null
+    },
+    "seasonalNotes": "Year-round. Cool and misty — bring layers. A completely different Kauaʻi from the coast.",
+    "lilaPick": true,
+    "tags": ["highland", "rustic", "canyon-access", "endemic-birds", "budget"]
+  },
+  {
+    "id": "polihale-camping",
+    "name": "Polihale State Park Camping",
+    "type": "camping",
+    "stayStyle": "elemental",
+    "budgetTier": "mindful",
+    "priceRange": "$18–30/night",
+    "location": "Polihale (West Shore) — remote, end-of-road",
+    "groupFit": ["solo", "couple", "friends"],
+    "highlights": [
+      "Remote camping on the westernmost beach on Kauaʻi",
+      "17 miles of empty beach backed by Nā Pali cliffs",
+      "Exceptional darkness for stargazing",
+      "The best sunsets on the island"
+    ],
+    "amenities": ["pit toilets", "basic facilities"],
+    "bookingWindow": "Reservations through state park system",
+    "links": {
+      "website": "https://dlnr.hawaii.gov/dsp/parks/kauai/",
+      "booking": null
+    },
+    "seasonalNotes": "Year-round. Rough dirt road in — 4WD or high clearance recommended in wet conditions.",
+    "lilaPick": false,
+    "tags": ["remote", "dark-sky", "sunset", "na-pali-views", "primitive"]
+  },
+  {
+    "id": "hanalei-colony-resort",
+    "name": "Hanalei Colony Resort",
+    "type": "resort",
+    "stayStyle": "rooted",
+    "budgetTier": "moderate",
+    "priceRange": "$250–500/night",
+    "location": "Hanalei (North Shore) — beachfront",
+    "groupFit": ["couple", "friends", "family"],
+    "highlights": [
+      "Only true beachfront property in Hanalei",
+      "No TVs, no phones in rooms",
+      "Simple condos facing the beach",
+      "Best base for Kalalau Trail day hikers"
+    ],
+    "amenities": ["beachfront", "kitchen", "pool", "no-tv"],
+    "bookingWindow": "Book 3–6 months ahead for peak season",
+    "links": {
+      "website": "https://www.hcr.com/",
+      "booking": null
+    },
+    "seasonalNotes": "Year-round. North Shore location means bigger winter surf — summer is calmer for swimming.",
+    "lilaPick": true,
+    "tags": ["beachfront", "no-tv", "kalalau-base", "north-shore", "unplugged"]
+  },
+  {
+    "id": "kauai-inn",
+    "name": "Kauaʻi Inn",
+    "type": "hotel",
+    "stayStyle": "rooted",
+    "budgetTier": "mindful",
+    "priceRange": "$80–150/night",
+    "location": "Lihue (near airport)",
+    "groupFit": ["solo", "couple"],
+    "highlights": [
+      "Most practical affordable hotel on the island",
+      "Well-located near the airport",
+      "Clean, simple, operated with care",
+      "Good first and last night option"
+    ],
+    "amenities": ["parking", "Wi-Fi"],
+    "bookingWindow": "Book 1–2 months ahead for peak season",
+    "links": {
+      "website": "https://www.kauai-inn.com/",
+      "booking": null
+    },
+    "seasonalNotes": "Year-round. Practical, not scenic — a base, not a destination.",
+    "lilaPick": false,
+    "tags": ["budget", "airport-proximity", "practical", "first-night"]
+  },
+  {
+    "id": "na-pali-coast-cottages",
+    "name": "Na Pali Coast Cottages",
+    "type": "cottage",
+    "stayStyle": "rooted",
+    "budgetTier": "moderate",
+    "priceRange": "$200–400/night",
+    "location": "Hanalei area (North Shore)",
+    "groupFit": ["couple", "friends"],
+    "highlights": [
+      "Small independent cottage rentals on the north shore",
+      "Locally owned, long-established",
+      "The north shore cottage experience is a Kauaʻi original"
+    ],
+    "amenities": ["kitchen", "garden", "privacy"],
+    "bookingWindow": "Book 2–4 months ahead — varies by property",
+    "links": {
+      "website": null,
+      "booking": null
+    },
+    "seasonalNotes": "Year-round. Quality and character vary — look for locally owned, long-established listings.",
+    "lilaPick": false,
+    "tags": ["cottage", "north-shore", "locally-owned", "private"]
+  },
+  {
+    "id": "waimea-plantation-cottages",
+    "name": "Waimea Plantation Cottages",
+    "type": "cottage",
+    "stayStyle": "rooted",
+    "budgetTier": "moderate",
+    "priceRange": "$200–400/night",
+    "location": "Waimea (West Side) — coconut grove near black-sand beach",
+    "groupFit": ["couple", "friends", "family"],
+    "highlights": [
+      "Restored plantation-era cottages from the early 1900s",
+      "Spread across a coconut grove",
+      "Steps from the black-sand beach at Waimea",
+      "Best base for Waimea Canyon and Kōkeʻe exploration",
+      "Sunsets over Niʻihau from the beach are unmatched"
+    ],
+    "amenities": ["kitchen", "porch", "pool", "beach access"],
+    "bookingWindow": "Book 2–4 months ahead for peak season",
+    "links": {
+      "website": "https://www.waimea-plantation.com/",
+      "booking": null
+    },
+    "seasonalNotes": "Year-round. No resort amenities, no crowds — just history, stillness, and the garden isle as it was.",
+    "lilaPick": true,
+    "tags": ["historic", "plantation-era", "coconut-grove", "canyon-base", "sunset"]
+  },
+  {
+    "id": "aston-poipu-kai",
+    "name": "Aston at Poipū Kai",
+    "type": "resort",
+    "stayStyle": "rooted",
+    "budgetTier": "moderate",
+    "priceRange": "$200–400/night",
+    "location": "Poipū (South Shore) — near Brennecke's Beach",
+    "groupFit": ["couple", "friends", "family"],
+    "highlights": [
+      "Condo-style resort in a 110-acre tropical setting",
+      "Full kitchens — practical for families and longer stays",
+      "Quieter and more affordable than beachfront resorts",
+      "Walking distance to south shore's best beaches and restaurants"
+    ],
+    "amenities": ["pool", "kitchen", "tennis", "tropical grounds"],
+    "bookingWindow": "Book 2–3 months ahead for peak season",
+    "links": {
+      "website": "https://www.astonhotels.com/",
+      "booking": null
+    },
+    "seasonalNotes": "Year-round. Budget-friendly south shore base with more space than a hotel room.",
+    "lilaPick": false,
+    "tags": ["condo", "family-friendly", "south-shore", "full-kitchen", "affordable"]
+  },
+  {
+    "id": "grand-hyatt-kauai",
+    "name": "Grand Hyatt Kauaʻi Resort & Spa",
+    "type": "resort",
+    "stayStyle": "premium",
+    "budgetTier": "luxury",
+    "priceRange": "$500–1,200/night",
+    "location": "Poipū (South Shore) — beachfront at Shipwreck Beach",
+    "groupFit": ["couple", "friends", "family"],
+    "highlights": [
+      "The grandest property on the island",
+      "Lagoon pools, full Anara Spa with Hawaiian healing traditions",
+      "Beachfront access to Shipwreck Beach",
+      "The south shore's most complete luxury experience"
+    ],
+    "amenities": ["spa", "lagoon pools", "restaurants", "beach access", "golf", "fitness center"],
+    "bookingWindow": "Reserve well ahead for peak season",
+    "links": {
+      "website": "https://www.hyatt.com/",
+      "booking": null
+    },
+    "seasonalNotes": "Year-round. Anara Spa's lomilomi and pohaku treatments are grounded in Hawaiian tradition.",
+    "lilaPick": true,
+    "tags": ["luxury", "spa", "lagoon-pools", "hawaiian-healing", "beachfront"]
+  },
+  {
+    "id": "timbers-kauai",
+    "name": "Timbers Kauaʻi",
+    "type": "resort",
+    "stayStyle": "premium",
+    "budgetTier": "luxury",
+    "priceRange": "$600–1,500/night",
+    "location": "Hōkūala, Lihue (eastern coast)",
+    "groupFit": ["couple", "friends"],
+    "highlights": [
+      "Newer luxury property on a former plantation estate",
+      "Organic farm on-site",
+      "Direct ocean access, considered design",
+      "Less crowded than Poipū — a quieter base"
+    ],
+    "amenities": ["farm-to-table", "pool", "ocean access", "golf", "fitness"],
+    "bookingWindow": "Book 2–4 months ahead for peak season",
+    "links": {
+      "website": "https://www.timberskauai.com/",
+      "booking": null
+    },
+    "seasonalNotes": "Year-round. The organic farm is a genuine differentiator — not marketing.",
+    "lilaPick": false,
+    "tags": ["luxury", "farm-on-site", "plantation-estate", "quiet", "design"]
+  },
+  {
+    "id": "1-hotel-hanalei-bay",
+    "name": "1 Hotel Hanalei Bay",
+    "type": "resort",
+    "stayStyle": "luxury",
+    "budgetTier": "luxury",
+    "priceRange": "$800–2,000/night",
+    "location": "Princeville (North Shore) — bluff above Hanalei Bay",
+    "groupFit": ["couple"],
+    "highlights": [
+      "Former St. Regis Princeville, comprehensively renovated",
+      "North Shore's defining luxury property",
+      "Perched on a bluff above Hanalei Bay with Nā Pali views",
+      "Sustainability-focused: reclaimed materials, farm-to-table, on-site garden",
+      "Spa rooted in Hawaiian and plant-based practices",
+      "Pū Poa Beach below — one of the best on the island"
+    ],
+    "amenities": ["spa", "pool", "restaurants", "beach access", "garden", "fitness"],
+    "bookingWindow": "Reserve well ahead — the only full-service luxury on the North Shore",
+    "links": {
+      "website": "https://www.1hotels.com/hanalei-bay",
+      "booking": null
+    },
+    "seasonalNotes": "Year-round. The renovation brought genuine sustainability ethos, not just branding.",
+    "lilaPick": true,
+    "tags": ["luxury", "sustainability", "na-pali-views", "north-shore", "spa", "farm-to-table"]
+  },
+  {
+    "id": "koloa-landing",
+    "name": "Koloa Landing Resort",
+    "type": "resort",
+    "stayStyle": "premium",
+    "budgetTier": "premium",
+    "priceRange": "$400–800/night",
+    "location": "Poipū (South Shore)",
+    "groupFit": ["couple", "friends", "family"],
+    "highlights": [
+      "Best pool facilities on the island",
+      "Multiple lagoon-style pools, lazy river, water slides",
+      "Adults-only infinity pool",
+      "Villa-style units with full kitchens",
+      "Walking distance to Poipū Beach and Kukuiʻula Village"
+    ],
+    "amenities": ["pools", "lazy river", "water slides", "kitchen", "fitness", "spa"],
+    "bookingWindow": "Book 2–4 months ahead for peak season",
+    "links": {
+      "website": "https://www.koloalandingresort.com/",
+      "booking": null
+    },
+    "seasonalNotes": "Year-round. Strong choice for families with children on the south shore.",
+    "lilaPick": false,
+    "tags": ["family-friendly", "pools", "south-shore", "full-kitchen", "villa-style"]
+  },
+  {
+    "id": "outrigger-kauai",
+    "name": "Outrigger Kauaʻi Beach Resort & Spa",
+    "type": "resort",
+    "stayStyle": "premium",
+    "budgetTier": "premium",
+    "priceRange": "$350–700/night",
+    "location": "Poipū (South Shore) — direct beachfront",
+    "groupFit": ["couple", "friends", "family"],
+    "highlights": [
+      "Beachfront on Poipū Beach — walk from room to water in under a minute",
+      "Recently renovated rooms",
+      "On-site dining and full spa",
+      "Reliable snorkeling and turtle sightings"
+    ],
+    "amenities": ["beach access", "spa", "restaurant", "pool", "fitness"],
+    "bookingWindow": "Book 2–3 months ahead for peak season",
+    "links": {
+      "website": "https://www.outrigger.com/",
+      "booking": null
+    },
+    "seasonalNotes": "Year-round. Less grand than Grand Hyatt, more accessible — solid middle-luxury option.",
+    "lilaPick": false,
+    "tags": ["beachfront", "snorkeling", "turtles", "south-shore", "renovated"]
+  }
+]

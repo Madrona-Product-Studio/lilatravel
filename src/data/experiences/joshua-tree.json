@@ -1,0 +1,197 @@
+[
+  {
+    "id": "pioneertown",
+    "name": "Pioneertown",
+    "type": "historic-site",
+    "location": "Pioneertown, CA",
+    "description": "The whole town is an artifact. Built as a movie set in 1946, it never entirely stopped performing. Walk Mane Street — the original set thoroughfare. Surreal and atmospheric.",
+    "highlights": [
+      "Built as a movie set in 1946",
+      "Walk Mane Street — the original set thoroughfare",
+      "Surreal, atmospheric, and free to explore"
+    ],
+    "links": {
+      "website": null
+    },
+    "corridor": true,
+    "featured": true,
+    "tags": ["movie-set", "historic", "free", "atmospheric"]
+  },
+  {
+    "id": "high-desert-test-sites",
+    "name": "High Desert Test Sites",
+    "type": "art",
+    "location": "Scattered across the high desert",
+    "description": "An ongoing art initiative founded in 2002 by Andrea Zittel. Site-specific works scattered across the high desert landscape. HDTS has seeded a generation of artists coming to the desert to make work.",
+    "highlights": [
+      "Founded in 2002 by Andrea Zittel",
+      "Site-specific art installations across the desert",
+      "Has seeded a generation of desert artists",
+      "Free and open"
+    ],
+    "links": {
+      "website": "https://www.highdeserttestsites.com/"
+    },
+    "featured": true,
+    "tags": ["site-specific-art", "contemporary", "free", "andrea-zittel"]
+  },
+  {
+    "id": "palm-springs-art-museum",
+    "name": "Palm Springs Art Museum",
+    "type": "gallery",
+    "location": "Palm Springs",
+    "description": "World-class collection with strong desert Southwest emphasis. Architecture, photography, and modern art all represented. The building itself is striking.",
+    "highlights": [
+      "World-class collection with desert Southwest emphasis",
+      "Architecture, photography, and modern art",
+      "The building itself is striking"
+    ],
+    "links": {
+      "website": "https://www.psmuseum.org/"
+    },
+    "corridor": true,
+    "featured": false,
+    "tags": ["museum", "modern-art", "architecture", "palm-springs"]
+  },
+  {
+    "id": "modernism-week",
+    "name": "Modernism Week",
+    "type": "festival",
+    "location": "Palm Springs — mid-to-late February",
+    "description": "The largest celebration of mid-century modern architecture and design in the world. Home tours, lectures, parties.",
+    "highlights": [
+      "Largest mid-century modern architecture celebration in the world",
+      "Home tours, lectures, parties",
+      "Mid-to-late February annually"
+    ],
+    "links": {
+      "website": "https://www.modernismweek.com/"
+    },
+    "corridor": true,
+    "seasonalNotes": "Annual event — mid-to-late February. Book accommodation well in advance.",
+    "featured": true,
+    "tags": ["architecture", "mid-century", "february", "festival", "palm-springs"]
+  },
+  {
+    "id": "pappys-live-music",
+    "name": "Pappy & Harriet's Live Music",
+    "type": "music",
+    "location": "Pioneertown",
+    "description": "The essential live music destination in this entire orbit. Touring artists of serious caliber play here regularly — past performers include Paul McCartney, Robert Plant, Arctic Monkeys.",
+    "highlights": [
+      "Touring artists of serious caliber",
+      "Past performers: Paul McCartney, Robert Plant, Arctic Monkeys",
+      "Year-round programming"
+    ],
+    "links": {
+      "website": "https://www.pappyandharriets.com/"
+    },
+    "corridor": true,
+    "featured": true,
+    "tags": ["live-music", "pioneertown", "year-round", "iconic"]
+  },
+  {
+    "id": "art-queen",
+    "name": "Art Queen",
+    "type": "gallery",
+    "location": "Joshua Tree town",
+    "description": "Gallery and art supply in Joshua Tree town. A hub of the local creative community. Rotating exhibitions.",
+    "highlights": [
+      "Gallery and art supply shop",
+      "Hub of the local creative community",
+      "Rotating exhibitions"
+    ],
+    "links": {
+      "website": null
+    },
+    "featured": false,
+    "tags": ["gallery", "art-supply", "local", "rotating-exhibitions"]
+  },
+  {
+    "id": "coyote-corner",
+    "name": "Coyote Corner",
+    "type": "landmark",
+    "location": "Joshua Tree town",
+    "description": "The landmark local gift shop. Rocks, crystals, desert goods, maps, information. A genuine local institution.",
+    "highlights": [
+      "The landmark local gift shop",
+      "Rocks, crystals, desert goods, maps",
+      "A genuine local institution"
+    ],
+    "links": {
+      "website": null
+    },
+    "featured": false,
+    "tags": ["gift-shop", "crystals", "institution", "local"]
+  },
+  {
+    "id": "twentynine-palms-art-gallery",
+    "name": "Twentynine Palms Art Gallery",
+    "type": "gallery",
+    "location": "Twentynine Palms",
+    "description": "Rotating shows featuring work by local and regional desert artists. Run by a nonprofit since 1944.",
+    "highlights": [
+      "Rotating shows by local and regional artists",
+      "Nonprofit since 1944",
+      "The longest-running art gallery in the region"
+    ],
+    "links": {
+      "website": null
+    },
+    "featured": false,
+    "tags": ["gallery", "nonprofit", "since-1944", "regional-art"]
+  },
+  {
+    "id": "mojave-desert-land-trust",
+    "name": "Mojave Desert Land Trust",
+    "type": "conservation",
+    "location": "Joshua Tree, CA",
+    "description": "Based in Joshua Tree, MDLT protects the California desert through land acquisition, habitat restoration, and a native plant seed bank — including growing thousands of Joshua trees for replanting in the park.",
+    "highlights": [
+      "Land acquisition and habitat restoration",
+      "Native plant seed bank program",
+      "Growing thousands of Joshua trees for replanting",
+      "Volunteer on land monitoring hikes"
+    ],
+    "links": {
+      "website": "https://www.mdlt.org"
+    },
+    "featured": false,
+    "tags": ["conservation", "donate", "volunteer", "seed-bank", "joshua-tree-replanting"]
+  },
+  {
+    "id": "native-american-land-conservancy",
+    "name": "Native American Land Conservancy",
+    "type": "conservation",
+    "location": "Joshua Tree region",
+    "description": "A partner in MDLT's Joshua tree conservation coalition, bringing Indigenous cultural knowledge to desert stewardship. To Indigenous communities in this region, the Joshua tree — Humwichawa — is a family member, not a landmark.",
+    "highlights": [
+      "Indigenous cultural knowledge applied to desert stewardship",
+      "The Joshua tree — Humwichawa — is a family member, not a landmark",
+      "Partner in the Joshua tree conservation coalition"
+    ],
+    "links": {
+      "website": "https://www.nativeamericanlandconservancy.org"
+    },
+    "featured": false,
+    "tags": ["conservation", "donate", "indigenous", "cultural-stewardship"]
+  },
+  {
+    "id": "joshua-tree-np-volunteer-program",
+    "name": "Joshua Tree National Park Volunteer Program",
+    "type": "conservation",
+    "location": "Joshua Tree National Park",
+    "description": "The most direct option for visitors who want to give time rather than money. Trail maintenance, restoration, and education programs run directly through the park.",
+    "highlights": [
+      "Trail maintenance and restoration",
+      "Education programs",
+      "Run directly through the park",
+      "The most direct way to give back"
+    ],
+    "links": {
+      "website": "https://www.nps.gov/jotr/getinvolved/volunteer.htm"
+    },
+    "featured": false,
+    "tags": ["volunteer", "trail-maintenance", "nps", "give-back"]
+  }
+]

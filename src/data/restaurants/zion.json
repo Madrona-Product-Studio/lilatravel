@@ -9,10 +9,9 @@
     "groupFit": ["solo", "couple", "friends", "family"],
     "energy": "lively",
     "highlights": [
-      "Huevos rancheros",
-      "Burgers",
-      "Hearty portions",
-      "Outdoor seating"
+      "Big portions, excellent huevos rancheros",
+      "The local gathering spot",
+      "Outdoor seating with canyon views"
     ],
     "dietary": {
       "vegetarian": true,
@@ -26,6 +25,7 @@
       "website": "https://www.oscarscafe.com/",
       "maps": null
     },
+    "lilaPick": false,
     "tags": ["breakfast", "lunch", "outdoor-seating", "local-favorite", "weekend-wait"],
     "months": "all"
   },
@@ -41,7 +41,8 @@
     "highlights": [
       "Creative Mexican-inspired dishes",
       "Good vegetarian options",
-      "Covered patio dining"
+      "Covered patio dining",
+      "Solid margaritas, reasonable for Springdale"
     ],
     "dietary": {
       "vegetarian": true,
@@ -55,7 +56,8 @@
       "website": "https://www.whiptailgrillzion.com/",
       "maps": null
     },
-    "tags": ["lunch", "dinner", "patio", "vegetarian-friendly"],
+    "lilaPick": false,
+    "tags": ["lunch", "dinner", "patio", "vegetarian-friendly", "margaritas"],
     "months": "all"
   },
   {
@@ -85,7 +87,39 @@
       "website": null,
       "maps": null
     },
+    "lilaPick": false,
     "tags": ["breakfast", "brunch", "smoothies", "locally-sourced", "cozy"],
+    "months": "all"
+  },
+  {
+    "id": "deep-creek-coffee",
+    "name": "Deep Creek Coffee",
+    "cuisine": "Coffee & light fare",
+    "location": "Springdale",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "relaxed",
+    "highlights": [
+      "The first stop every morning",
+      "Single-origin pour-overs and house-baked pastries",
+      "Opens early for pre-hike fuel",
+      "Post-hike recovery spot"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": false,
+      "notes": "Light fare; smoothies and pastries"
+    },
+    "hours": "Opens early morning; year-round",
+    "reservations": "walk-in",
+    "links": {
+      "website": null,
+      "maps": null
+    },
+    "lilaPick": false,
+    "tags": ["coffee", "pastries", "pre-hike", "post-hike", "early-open", "pour-over"],
     "months": "all"
   },
   {
@@ -94,7 +128,7 @@
     "cuisine": "Southwest-American",
     "location": "Springdale",
     "priceRange": "$$",
-    "budgetTier": "balanced",
+    "budgetTier": "moderate",
     "groupFit": ["couple", "friends"],
     "energy": "intimate",
     "highlights": [
@@ -115,53 +149,83 @@
       "website": "https://bitandspur.com/",
       "maps": null
     },
+    "lilaPick": true,
     "tags": ["dinner", "cocktails", "date-night", "southwest", "reservations-recommended"],
     "months": "all"
   },
   {
-    "id": "deep-creek-coffee",
-    "name": "Deep Creek Coffee",
-    "cuisine": "Coffee & light fare",
+    "id": "zion-canyon-brew-pub",
+    "name": "Zion Canyon Brew Pub",
+    "cuisine": "Brewpub",
     "location": "Springdale",
-    "priceRange": "$",
-    "budgetTier": "mindful",
-    "groupFit": ["solo", "couple", "friends", "family"],
-    "energy": "relaxed",
+    "priceRange": "$$",
+    "budgetTier": "moderate",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "lively",
     "highlights": [
-      "Best coffee in Springdale",
-      "Good pastries",
-      "Opens early for pre-hike fuel",
-      "Post-hike recovery spot",
-      "Smoothies"
+      "Southern Utah's first brewery",
+      "Outdoor patio on the Virgin River with canyon views",
+      "Live music Tuesdays, Fridays, and weekends",
+      "Still the best post-hike spot in town"
     ],
     "dietary": {
       "vegetarian": true,
       "vegan": false,
       "glutenFree": false,
-      "notes": "Light fare; smoothies and pastries"
+      "notes": null
     },
-    "hours": "Opens early morning; year-round",
+    "hours": "Lunch & dinner; check live music schedule",
     "reservations": "walk-in",
     "links": {
-      "website": null,
+      "website": "https://zionbrewery.com/",
       "maps": null
     },
-    "tags": ["coffee", "pastries", "pre-hike", "post-hike", "early-open", "recovery"],
+    "lilaPick": true,
+    "tags": ["craft-beer", "live-music", "outdoor-patio", "riverside", "post-hike"],
+    "months": "all"
+  },
+  {
+    "id": "spotted-dog-cafe",
+    "name": "Spotted Dog Cafe",
+    "cuisine": "Organic American",
+    "location": "Springdale (at Flanigan's Resort)",
+    "priceRange": "$$",
+    "budgetTier": "moderate",
+    "groupFit": ["couple", "friends"],
+    "energy": "relaxed",
+    "highlights": [
+      "Inside Flanigan's lodge",
+      "Organic, local, elevated comfort food"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": false,
+      "notes": null
+    },
+    "hours": "Dinner; check schedule",
+    "reservations": "recommended",
+    "links": {
+      "website": "https://flanigans.com/",
+      "maps": null
+    },
+    "lilaPick": false,
+    "tags": ["dinner", "organic", "hotel-restaurant", "elevated-comfort"],
     "months": "all"
   },
   {
     "id": "kings-landing-bistro",
     "name": "King's Landing Bistro",
-    "cuisine": "Upscale American",
+    "cuisine": "Upscale American / Southwest",
     "location": "Springdale (at Driftwood Lodge)",
     "priceRange": "$$$",
     "budgetTier": "premium",
     "groupFit": ["couple", "friends"],
     "energy": "intimate",
     "highlights": [
-      "Nicest dinner in Springdale",
-      "Upscale atmosphere",
-      "Located at Driftwood Lodge"
+      "The canyon's most celebrated table",
+      "Seasonal, Southwest-rooted menu",
+      "Reserve ahead — fills consistently"
     ],
     "dietary": {
       "vegetarian": true,
@@ -170,43 +234,14 @@
       "notes": null
     },
     "hours": "Dinner; check winter hours",
-    "reservations": "recommended",
+    "reservations": "essential",
     "links": {
       "website": "https://www.kingslanding-zion.com/",
       "maps": null
     },
-    "tags": ["dinner", "upscale", "date-night", "hotel-restaurant"],
+    "lilaPick": true,
+    "tags": ["dinner", "upscale", "date-night", "southwest", "reservations-essential"],
     "months": "all"
-  },
-  {
-    "id": "hells-backbone-grill",
-    "name": "Hell's Backbone Grill",
-    "cuisine": "Farm-to-table American",
-    "location": "Boulder, UT (~2.5 hrs from Zion)",
-    "priceRange": "$$$",
-    "budgetTier": "premium",
-    "groupFit": ["couple", "friends"],
-    "energy": "intimate",
-    "highlights": [
-      "James Beard-recognized",
-      "Ingredients from their own farm",
-      "Worth the drive toward Capitol Reef/Bryce",
-      "One of the best meals in southern Utah"
-    ],
-    "dietary": {
-      "vegetarian": true,
-      "vegan": true,
-      "glutenFree": true,
-      "notes": "Farm-sourced; accommodates most dietary needs — call ahead"
-    },
-    "hours": "Dinner; seasonal (Apr–Nov)",
-    "reservations": "required",
-    "links": {
-      "website": null,
-      "maps": null
-    },
-    "tags": ["dinner", "farm-to-table", "james-beard", "destination-dining", "regional", "seasonal"],
-    "months": "Apr–Nov"
   },
   {
     "id": "switchback-grille",
@@ -214,7 +249,7 @@
     "cuisine": "Steaks & American",
     "location": "Springdale",
     "priceRange": "$$",
-    "budgetTier": "balanced",
+    "budgetTier": "moderate",
     "groupFit": ["solo", "couple", "friends", "family"],
     "energy": "relaxed",
     "highlights": [
@@ -234,6 +269,7 @@
       "website": null,
       "maps": null
     },
+    "lilaPick": false,
     "tags": ["dinner", "steaks", "american", "reliable"],
     "months": "all"
   },
@@ -247,10 +283,9 @@
     "groupFit": ["solo", "couple", "friends", "family"],
     "energy": "relaxed",
     "highlights": [
-      "Trail snacks",
-      "Sandwiches",
-      "Basic groceries",
-      "Small but well-stocked"
+      "Small but mighty grocery",
+      "Good sandwiches for the trail",
+      "Cold drinks, local provisions"
     ],
     "dietary": {
       "vegetarian": true,
@@ -264,6 +299,7 @@
       "website": null,
       "maps": null
     },
+    "lilaPick": false,
     "tags": ["market", "provisions", "trail-snacks", "groceries", "self-catering"],
     "months": "all"
   },
@@ -294,7 +330,103 @@
       "website": null,
       "maps": null
     },
+    "lilaPick": false,
     "tags": ["smoothies", "fruit", "snacks", "quick-stop", "post-hike", "seasonal"],
+    "months": "Mar–Nov"
+  },
+  {
+    "id": "bryce-canyon-lodge-restaurant",
+    "name": "The Lodge at Bryce Canyon Restaurant",
+    "cuisine": "American / Sustainable",
+    "location": "Inside Bryce Canyon National Park",
+    "priceRange": "$$",
+    "budgetTier": "moderate",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "relaxed",
+    "highlights": [
+      "High-beam ceilings, stone fireplace, towering pines",
+      "Elk chili, buffalo sirloin, almond-crusted trout",
+      "Organic and sustainable ingredients",
+      "The most atmospheric dining room in the corridor"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": false,
+      "notes": null
+    },
+    "hours": "Dinner; seasonal (Apr–Nov)",
+    "reservations": "recommended",
+    "links": {
+      "website": "https://www.visitbrycecanyon.com/dining",
+      "maps": null
+    },
+    "corridor": true,
+    "lilaPick": true,
+    "tags": ["dinner", "inside-park", "sustainable", "atmospheric", "seasonal", "bryce-canyon"],
+    "months": "Apr–Nov"
+  },
+  {
+    "id": "bryce-canyon-pines",
+    "name": "Bryce Canyon Pines Restaurant",
+    "cuisine": "Classic American",
+    "location": "Highway 12, near Bryce Canyon",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "relaxed",
+    "highlights": [
+      "A beloved Utah roadside institution",
+      "Hearty breakfasts, elk burgers, rib-eyes, rainbow trout",
+      "Homemade pie in more flavors than you can count"
+    ],
+    "dietary": {
+      "vegetarian": false,
+      "vegan": false,
+      "glutenFree": false,
+      "notes": null
+    },
+    "hours": "Breakfast & dinner; check seasonal hours",
+    "reservations": "walk-in",
+    "links": {
+      "website": "https://www.brycecanyonmotel.com/",
+      "maps": null
+    },
+    "corridor": true,
+    "lilaPick": false,
+    "tags": ["breakfast", "dinner", "pie", "roadside-institution", "classic", "bryce-canyon"],
+    "months": "all"
+  },
+  {
+    "id": "hells-backbone-grill",
+    "name": "Hell's Backbone Grill & Farm",
+    "cuisine": "Farm-to-table American",
+    "location": "Boulder, UT — Scenic Byway 12",
+    "priceRange": "$$$",
+    "budgetTier": "premium",
+    "groupFit": ["couple", "friends"],
+    "energy": "intimate",
+    "highlights": [
+      "The most celebrated restaurant between Zion and Moab",
+      "Chef-owners Jen Castle and Blake Spalding follow Buddhist principles of sustainability",
+      "Organic farm on-site, James Beard semifinalist since 2017",
+      "Worth the detour"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": true,
+      "glutenFree": true,
+      "notes": "Farm-sourced; accommodates most dietary needs — call ahead"
+    },
+    "hours": "Dinner; seasonal (mid-March through November)",
+    "reservations": "required",
+    "links": {
+      "website": "https://www.hellsbackbonegrill.com/",
+      "maps": null
+    },
+    "corridor": true,
+    "lilaPick": true,
+    "tags": ["dinner", "farm-to-table", "james-beard", "destination-dining", "buddhist-principles", "seasonal", "byway-12"],
     "months": "Mar–Nov"
   }
 ]

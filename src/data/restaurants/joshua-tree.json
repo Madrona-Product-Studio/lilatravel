@@ -26,7 +26,8 @@
       "website": "https://www.lacopinekitchen.com/",
       "maps": null
     },
-    "tags": ["brunch", "lunch", "farm-sourced", "destination-dining", "reservations-essential", "featured"],
+    "lilaPick": true,
+    "tags": ["brunch", "lunch", "farm-sourced", "destination-dining", "reservations-essential"],
     "months": "all"
   },
   {
@@ -41,7 +42,7 @@
     "highlights": [
       "The local gathering spot",
       "Good coffee, eggs, benedicts, fresh-squeezed juice",
-      "Community bulletin board that tells you more about the town than any guidebook"
+      "Community bulletin board tells you more about the town than any guidebook"
     ],
     "dietary": {
       "vegetarian": true,
@@ -55,6 +56,7 @@
       "website": null,
       "maps": null
     },
+    "lilaPick": false,
     "tags": ["breakfast", "lunch", "local-favorite", "community-hub"],
     "months": "all"
   },
@@ -84,6 +86,7 @@
       "website": null,
       "maps": null
     },
+    "lilaPick": false,
     "tags": ["breakfast", "lunch", "vegetarian", "vegan", "smoothies", "healthy"],
     "months": "all"
   },
@@ -113,6 +116,7 @@
       "website": null,
       "maps": null
     },
+    "lilaPick": false,
     "tags": ["coffee", "pastries", "pre-hike", "early-open", "community"],
     "months": "all"
   },
@@ -142,6 +146,7 @@
       "website": null,
       "maps": null
     },
+    "lilaPick": false,
     "tags": ["pizza", "casual", "by-the-slice", "hiker-fuel", "outdoor-seating"],
     "months": "all"
   },
@@ -151,7 +156,7 @@
     "cuisine": "Farm-to-table American",
     "location": "Twentynine Palms",
     "priceRange": "$$",
-    "budgetTier": "balanced",
+    "budgetTier": "moderate",
     "groupFit": ["solo", "couple", "friends", "family"],
     "energy": "relaxed",
     "highlights": [
@@ -171,6 +176,7 @@
       "website": "https://29palmsinn.com/",
       "maps": null
     },
+    "lilaPick": false,
     "tags": ["breakfast", "dinner", "farm-to-table", "garden", "outdoor-seating", "historic"],
     "months": "all"
   },
@@ -200,6 +206,7 @@
       "website": null,
       "maps": null
     },
+    "lilaPick": false,
     "tags": ["breakfast", "lunch", "local-favorite", "hearty", "affordable"],
     "months": "all"
   },
@@ -228,6 +235,7 @@
       "website": null,
       "maps": null
     },
+    "lilaPick": false,
     "tags": ["bar", "grill", "casual", "cold-drinks", "post-hike"],
     "months": "all"
   },
@@ -237,7 +245,7 @@
     "cuisine": "BBQ & American",
     "location": "Pioneertown",
     "priceRange": "$$",
-    "budgetTier": "balanced",
+    "budgetTier": "moderate",
     "groupFit": ["solo", "couple", "friends", "family"],
     "energy": "lively",
     "highlights": [
@@ -258,7 +266,9 @@
       "website": "https://www.pappyandharriets.com/",
       "maps": null
     },
-    "tags": ["bbq", "live-music", "honky-tonk", "pioneertown", "iconic", "destination-dining", "featured"],
+    "corridor": true,
+    "lilaPick": true,
+    "tags": ["bbq", "live-music", "honky-tonk", "pioneertown", "iconic", "destination-dining"],
     "months": "all"
   },
   {
@@ -287,6 +297,8 @@
       "website": "https://www.pioneertownmotel.com/",
       "maps": null
     },
+    "corridor": true,
+    "lilaPick": false,
     "tags": ["bar", "cocktails", "atmospheric", "pioneertown", "evening"],
     "months": "all"
   },
@@ -316,6 +328,8 @@
       "website": "https://www.workshoppalmsprings.com/",
       "maps": null
     },
+    "corridor": true,
+    "lilaPick": true,
     "tags": ["dinner", "farm-to-table", "design-forward", "palm-springs", "date-night"],
     "months": "all"
   },
@@ -325,7 +339,7 @@
     "cuisine": "Brunch",
     "location": "Palm Springs",
     "priceRange": "$$",
-    "budgetTier": "balanced",
+    "budgetTier": "moderate",
     "groupFit": ["solo", "couple", "friends"],
     "energy": "lively",
     "highlights": [
@@ -345,6 +359,8 @@
       "website": null,
       "maps": null
     },
+    "corridor": true,
+    "lilaPick": false,
     "tags": ["brunch", "seasonal-menu", "palm-springs", "weekend-wait", "rotating"],
     "months": "all"
   },
@@ -374,6 +390,8 @@
       "website": null,
       "maps": null
     },
+    "corridor": true,
+    "lilaPick": false,
     "tags": ["coffee", "local-chain", "palm-springs", "early-open", "multiple-locations"],
     "months": "all"
   },
@@ -403,6 +421,7 @@
       "website": null,
       "maps": null
     },
+    "lilaPick": false,
     "tags": ["market", "provisions", "natural", "organic", "trail-snacks", "self-catering"],
     "months": "all"
   },
@@ -431,6 +450,7 @@
       "website": null,
       "maps": null
     },
+    "lilaPick": false,
     "tags": ["grocery", "supermarket", "provisions", "north-entrance"],
     "months": "all"
   }

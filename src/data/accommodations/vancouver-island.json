@@ -1,0 +1,180 @@
+[
+  {
+    "id": "green-point-campground",
+    "name": "Green Point Campground",
+    "type": "camping",
+    "stayStyle": "elemental",
+    "budgetTier": "mindful",
+    "priceRange": "$28–42 CAD/night",
+    "location": "Pacific Rim National Park Reserve — Long Beach unit",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "highlights": [
+      "Only campground inside the Long Beach unit",
+      "Clifftop sites above the Pacific — ocean sound all night",
+      "Generator-free zone",
+      "Lighthouse loop 200 meters from the sites"
+    ],
+    "amenities": ["restrooms", "showers", "fire rings", "picnic tables", "firewood"],
+    "bookingWindow": "Reservations open in February at pc.gc.ca — fills in hours. Plan months ahead.",
+    "links": {
+      "website": "https://www.pc.gc.ca/en/pn-np/bc/pacificrim",
+      "booking": "https://reservation.pc.gc.ca/"
+    },
+    "seasonalNotes": "Seasonal — typically May through October. Winter camping not available.",
+    "lilaPick": true,
+    "tags": ["clifftop", "ocean-sound", "generator-free", "pacific-rim", "reservations-essential"]
+  },
+  {
+    "id": "wya-point-resort",
+    "name": "Wya Point Resort",
+    "type": "glamping",
+    "stayStyle": "elemental",
+    "budgetTier": "moderate",
+    "priceRange": "$100–250 CAD/night (yurts); $30–50 CAD/night (tent camping)",
+    "location": "Ucluelet — Yuułuʔiłʔatḥ First Nation territory",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "highlights": [
+      "Owned and operated by the Yuułuʔiłʔatḥ First Nation",
+      "Oceanfront yurts, tent camping, and rustic lodging",
+      "600 acres of old-growth forest on an exclusive beach",
+      "Sleeping on land cared for by the Nation for 10,000 years"
+    ],
+    "amenities": ["beach access", "fire pits", "communal kitchen", "washrooms"],
+    "bookingWindow": "Book 2–4 months ahead for summer",
+    "links": {
+      "website": "https://www.wyapoint.com/",
+      "booking": null
+    },
+    "seasonalNotes": "Year-round. One of the most distinctive and purposeful stays on the coast.",
+    "lilaPick": true,
+    "tags": ["indigenous-owned", "yurts", "old-growth", "beachfront", "first-nation"]
+  },
+  {
+    "id": "clayoquot-wilderness-resort",
+    "name": "Clayoquot Wilderness Resort",
+    "type": "glamping",
+    "stayStyle": "luxury",
+    "budgetTier": "luxury",
+    "priceRange": "$2,000–5,000 CAD/night (all-inclusive)",
+    "location": "Bedwell River, Clayoquot Sound — fly-in/boat-in only",
+    "groupFit": ["couple"],
+    "highlights": [
+      "Remote safari tents on the shores of Bedwell River",
+      "No road access — fly-in from Tofino or boat-in",
+      "All-inclusive: meals, kayaking, surfing, bear watching",
+      "Indigenous cultural experiences with Tla-o-qui-aht guides",
+      "Extreme privacy, extreme nature"
+    ],
+    "amenities": ["all-inclusive", "guided experiences", "spa", "dining", "wilderness access"],
+    "bookingWindow": "Book 6–12 months ahead",
+    "links": {
+      "website": "https://www.clayoquot.com/",
+      "booking": null
+    },
+    "seasonalNotes": "Seasonal — typically May through September. The most remote stay in the region.",
+    "lilaPick": true,
+    "tags": ["fly-in", "all-inclusive", "safari-tents", "wilderness", "indigenous-cultural"]
+  },
+  {
+    "id": "pacific-sands",
+    "name": "Pacific Sands Beach Resort",
+    "type": "resort",
+    "stayStyle": "rooted",
+    "budgetTier": "moderate",
+    "priceRange": "$200–500 CAD/night",
+    "location": "Tofino — Cox Bay (directly on surf break)",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "highlights": [
+      "Directly on a consistent surf break at Cox Bay",
+      "Self-catering suites and cabins with fireplaces",
+      "Boards available, wetsuit rinse stations",
+      "Location is hard to beat for surfers"
+    ],
+    "amenities": ["fireplace", "kitchen", "surf access", "wetsuit rinse", "BBQ"],
+    "bookingWindow": "Book 3–6 months ahead for summer",
+    "links": {
+      "website": "https://www.pacificsands.com/",
+      "booking": null
+    },
+    "seasonalNotes": "Year-round. Storm watching packages in winter. Surf is biggest September–November.",
+    "lilaPick": false,
+    "tags": ["surf", "beachfront", "self-catering", "fireplace", "cox-bay"]
+  },
+  {
+    "id": "long-beach-lodge",
+    "name": "Long Beach Lodge Resort",
+    "type": "resort",
+    "stayStyle": "rooted",
+    "budgetTier": "premium",
+    "priceRange": "$300–700 CAD/night",
+    "location": "Tofino — Cox Bay",
+    "groupFit": ["couple", "friends"],
+    "highlights": [
+      "Directly on the beach at Cox Bay",
+      "Dedicated surf camp operation",
+      "Well-regarded dining room (The Pointe Restaurant)",
+      "Great room with a fireplace the size of a car and Pacific views"
+    ],
+    "amenities": ["restaurant", "surf camp", "fireplace", "beach access", "lounge"],
+    "bookingWindow": "Book 3–6 months ahead for summer",
+    "links": {
+      "website": "https://www.longbeachlodgeresort.com/",
+      "booking": null
+    },
+    "seasonalNotes": "Year-round. Storm watching from the great room is a winter tradition.",
+    "lilaPick": true,
+    "tags": ["beachfront", "surf-camp", "dining", "great-room", "cox-bay"]
+  },
+  {
+    "id": "pluvio-rooms",
+    "name": "Pluvio Restaurant + Rooms",
+    "type": "inn",
+    "stayStyle": "rooted",
+    "budgetTier": "premium",
+    "priceRange": "$250–450 CAD/night",
+    "location": "Ucluelet",
+    "groupFit": ["couple"],
+    "highlights": [
+      "Six rooms above the best restaurant in Ucluelet",
+      "Small, thoughtfully furnished, quiet",
+      "Book room + dinner as a package",
+      "James Beard-nominated restaurant downstairs"
+    ],
+    "amenities": ["restaurant", "quiet setting"],
+    "bookingWindow": "Book 2–4 months ahead — only 6 rooms",
+    "links": {
+      "website": "https://www.pluviorestaurant.com/",
+      "booking": null
+    },
+    "seasonalNotes": "Year-round. Six rooms total — intimate and hard to get. Book early.",
+    "lilaPick": true,
+    "tags": ["james-beard", "intimate", "restaurant-attached", "ucluelet", "6-rooms"]
+  },
+  {
+    "id": "wickaninnish-inn",
+    "name": "Wickaninnish Inn",
+    "type": "resort",
+    "stayStyle": "luxury",
+    "budgetTier": "luxury",
+    "priceRange": "$500–1,500 CAD/night",
+    "location": "Tofino — Chesterman Beach",
+    "groupFit": ["couple"],
+    "highlights": [
+      "Defining luxury property on the outer coast of British Columbia",
+      "Every room faces the Pacific with floor-to-ceiling windows",
+      "On-beach access to Chesterman Beach",
+      "Ancient Cedars Spa",
+      "The Pointe Restaurant overlooking the ocean",
+      "One of the few truly world-class lodges in Canada"
+    ],
+    "amenities": ["spa", "restaurant", "beach access", "storm watching", "fireplace"],
+    "bookingWindow": "Reserve 6–12 months ahead for peak season",
+    "links": {
+      "website": "https://www.wickinn.com/",
+      "booking": null
+    },
+    "seasonalNotes": "Year-round. Storm watching season (Nov–Mar) is as compelling as summer — book the storm packages.",
+    "lilaPick": true,
+    "tags": ["world-class", "storm-watching", "spa", "beachfront", "floor-to-ceiling-windows"]
+  }
+]
