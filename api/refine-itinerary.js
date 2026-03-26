@@ -422,7 +422,8 @@ function buildLocationScaffold(tripLogistics, parsedItinerary) {
   }
 
   // --- Departure day ---
-  if (returnFlight) {
+  // Fire if there's a return flight OR an outbound flight (they need to get back to the arrival airport)
+  if (returnFlight || (outbound && departureAirport)) {
     lines.push(`**Day ${numDays} (departure day):**`);
     const lastHotel = hotel2 || hotel1;
     const lastHotelCity = hotel2City || hotel1City;
@@ -441,8 +442,10 @@ function buildLocationScaffold(tripLogistics, parsedItinerary) {
         lines.push(`- Return rental car at ${returnLocation}`);
       }
     }
-    if (returnFlight.departureTime) {
+    if (returnFlight?.departureTime) {
       lines.push(`- Flight departs at ${returnFlight.departureTime} — wrap up all activities with enough time for the drive + car return + 2 hrs buffer`);
+    } else {
+      lines.push(`- The traveler must reach ${departureAirport} airport for their return flight. Wrap up destination activities by early afternoon to allow time for the drive + car return.`);
     }
     lines.push('');
   }
