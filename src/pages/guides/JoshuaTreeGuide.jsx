@@ -1288,7 +1288,7 @@ export default function JoshuaTreeGuide() {
 
             <div>
               <ExpandableList initialCount={5} label="places to stay">
-                {accommodations.filter(a => !a.corridor).map(a => (
+                {accommodations.filter(a => !a.corridor).sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).map(a => (
                   <StayItem
                     key={a.id}
                     name={a.name}
@@ -1311,7 +1311,7 @@ export default function JoshuaTreeGuide() {
                     color: C.warmGray, marginTop: 32, marginBottom: 12 }}>
                     Regional Corridor
                   </p>
-                  {accommodations.filter(a => a.corridor).map(a => (
+                  {accommodations.filter(a => a.corridor).sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).map(a => (
                     <StayItem
                       key={a.id}
                       name={a.name}
@@ -1570,7 +1570,7 @@ export default function JoshuaTreeGuide() {
             </FadeIn>
             <FadeIn delay={0.08}>
               <ExpandableList initialCount={6} label="places to eat">
-                {restaurants.filter(r => !r.corridor).map(r => (
+                {restaurants.filter(r => !r.corridor).sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).map(r => (
                   <ListItem
                     key={r.id}
                     name={r.name}
@@ -1592,7 +1592,7 @@ export default function JoshuaTreeGuide() {
                       color: C.warmGray, marginTop: 32, marginBottom: 12 }}>
                       Regional Corridor
                     </p>
-                    {restaurants.filter(r => r.corridor).map(r => (
+                    {restaurants.filter(r => r.corridor).sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).map(r => (
                       <ListItem
                         key={r.id}
                         name={r.name}

@@ -1111,7 +1111,7 @@ export default function KauaiGuide() {
 
             <div>
               <ExpandableList initialCount={5} label="places to stay">
-                {accommodations.filter(a => !a.corridor).map(a => (
+                {accommodations.filter(a => !a.corridor).sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).map(a => (
                   <StayItem
                     key={a.id}
                     name={a.name}
@@ -1360,7 +1360,7 @@ export default function KauaiGuide() {
 
             <FadeIn delay={0.1}>
               <ExpandableList initialCount={5} label="places to eat">
-                {restaurants.filter(r => !r.corridor).map(r => (
+                {restaurants.filter(r => !r.corridor).sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).map(r => (
                   <ListItem
                     key={r.id}
                     name={r.name}
