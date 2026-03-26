@@ -70,7 +70,6 @@
 @media (max-width: 600px) {
   .journey-grid { grid-template-columns: 1fr !important; }
   .nav-links { display: none !important; }
-  nav { padding: 18px 24px !important; }
   .hero-mountains { height: 45% !important; }
   .hero-content { padding-bottom: 15vh !important; }
   .dest-section { padding: 64px 0 !important; }

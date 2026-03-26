@@ -167,7 +167,7 @@ export default function CelestialDrawer({ destination, isMobile, breathValueRef 
   if (npsAlerts?.length > 0) teasers.push(`${npsAlerts.length} Alert${npsAlerts.length > 1 ? 's' : ''}`);
 
   return (
-    <div style={{ position: 'relative', zIndex: open ? 95 : 'auto', backgroundColor: breathValueRef ? 'transparent' : C.stone, borderBottom: `1px solid ${C.stone}` }}>
+    <div style={{ position: 'relative', zIndex: open ? 95 : 'auto', background: breathValueRef ? 'transparent' : C.stone, borderBottom: `1px solid ${C.stone}` }}>
       <div style={{ height: NAV_HEIGHT + 14 }} />
 
       {/* Teaser bar */}
