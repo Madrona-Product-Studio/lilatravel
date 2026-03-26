@@ -205,6 +205,20 @@ function ListItem({ name, detail, note, tags, featured, url, isMobile, onOpenShe
   );
 }
 
+function sortByTierDiversity(items) {
+  const tierOrder = ['elemental', 'rooted', 'premium', 'luxury'];
+  const picks = [];
+  const seen = new Set();
+  for (const tier of tierOrder) {
+    const pick = items.find(a => a.lilaPick && a.stayStyle === tier && !seen.has(a.id));
+    if (pick) { picks.push(pick); seen.add(pick.id); }
+  }
+  for (const a of items) {
+    if (a.lilaPick && !seen.has(a.id)) { picks.push(a); seen.add(a.id); }
+  }
+  return [...picks, ...items.filter(a => !seen.has(a.id))];
+}
+
 function StayItem({ name, location, tier, detail, tags, url, featured, isMobile, onOpenSheet, priceRange, amenities, bookingWindow, seasonalNotes, groupFit }) {
   const styles = {
     elemental: { color: C.seaGlass, label: "Elemental", bg: `${C.seaGlass}15` },
@@ -1161,7 +1175,7 @@ export default function KauaiGuide() {
 
             <div>
               <ExpandableList initialCount={5} label="places to stay">
-                {accommodations.filter(a => !a.corridor).sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).map(a => (
+                {sortByTierDiversity(accommodations.filter(a => !a.corridor)).map(a => (
                   <StayItem
                     key={a.id}
                     name={a.name}

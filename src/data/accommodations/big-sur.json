@@ -98,7 +98,7 @@
       "booking": null
     },
     "seasonalNotes": "Year-round. The Human Nest is a singular experience — book early.",
-    "lilaPick": true,
+    "lilaPick": false,
     "tags": ["yurts", "ocean-view", "pool", "human-nest", "unique"]
   },
   {
@@ -331,7 +331,7 @@
       "booking": null
     },
     "seasonalNotes": "Year-round. Strong base for exploring both Carmel and Big Sur corridor.",
-    "lilaPick": false,
+    "lilaPick": true,
     "tags": ["ocean-view", "cliffside", "infinity-pool", "fireplace"]
   }
 ]
