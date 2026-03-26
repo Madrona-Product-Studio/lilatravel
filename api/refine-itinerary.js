@@ -247,7 +247,7 @@ const AIRPORT_CITIES = {
   OAK: 'Oakland', SFO: 'San Francisco', SJC: 'San Jose',
   LAX: 'Los Angeles', ONT: 'Ontario', BUR: 'Burbank', LGB: 'Long Beach', SNA: 'Orange County',
   LAS: 'Las Vegas', OGG: 'Kahului (Maui)', LIH: 'Lihue (Kauai)',
-  SEA: 'Seattle', PDX: 'Portland', YVR: 'Vancouver',
+  SEA: 'Seattle', PDX: 'Portland', YVR: 'Vancouver', BLI: 'Bellingham',
   SLC: 'Salt Lake City', PHX: 'Phoenix', DEN: 'Denver',
   JFK: 'New York', EWR: 'Newark', LGA: 'New York',
   ORD: 'Chicago', ATL: 'Atlanta', DFW: 'Dallas', IAH: 'Houston',
@@ -284,6 +284,7 @@ function buildLocationScaffold(tripLogistics, parsedItinerary) {
   const lines = [];
   lines.push('## ITINERARY STRUCTURE — TREAT AS HARD CONSTRAINTS\n');
   lines.push('The following day-by-day location scaffold is derived from the traveler\'s confirmed bookings. **Each day\'s activities MUST be anchored to the location specified below.** Do not place activities in a different city than where the traveler is staying that night. Confirmed reservations and bookings are FIXED events — schedule other activities around them, not the reverse.\n');
+  lines.push('**IMPORTANT:** When a hotel/accommodation city is not explicitly listed, use your knowledge of the property to determine its geographic location (city/area) and anchor that day\'s activities accordingly. For example, "Asilomar Conference Grounds" is in Pacific Grove near Monterey, "Glen Oaks Big Sur" is in Big Sur, etc.\n');
 
   // Determine arrival info
   const outbound = flights.length > 0 ? flights[0] : null;
@@ -297,8 +298,8 @@ function buildLocationScaffold(tripLogistics, parsedItinerary) {
   // If we have dates, use them. Otherwise, split days evenly.
   const hotel1 = sortedAccom[0] || null;
   const hotel2 = sortedAccom.length >= 2 ? sortedAccom[1] : null;
-  const hotel1City = extractCity(hotel1) || (hotel1?.name ? hotel1.name.split(/[,\-–—]/)[0].trim() : null);
-  const hotel2City = hotel2 ? (extractCity(hotel2) || hotel2.name.split(/[,\-–—]/)[0].trim()) : null;
+  const hotel1City = extractCity(hotel1);
+  const hotel2City = hotel2 ? extractCity(hotel2) : null;
 
   // Determine transition day index (0-based)
   let transitionDayIndex = null;
@@ -339,10 +340,14 @@ function buildLocationScaffold(tripLogistics, parsedItinerary) {
   lines.push(`**Day 1 (arrival day):**`);
   if (arrivalAirport) {
     lines.push(`- Flight lands at ${arrivalAirport} (${arrivalAirportCity})`);
-    if (hotel1City) {
-      const driveMin = lookupDriveTime(arrivalAirport, hotel1City) || lookupDriveTime(arrivalAirportCity, hotel1City);
+    if (hotel1) {
+      const cityLabel = hotel1City || null;
+      const driveMin = cityLabel ? (lookupDriveTime(arrivalAirport, cityLabel) || lookupDriveTime(arrivalAirportCity, cityLabel)) : null;
       const driveStr = formatDriveTime(driveMin);
-      lines.push(`- Drive from ${arrivalAirportCity} (${arrivalAirport}) to ${hotel1.name}${hotel1City ? `, ${hotel1City}` : ''}${driveStr ? ` (${driveStr})` : ''}`);
+      lines.push(`- Drive from ${arrivalAirportCity} (${arrivalAirport}) to ${hotel1.name}${cityLabel ? ` in ${cityLabel}` : ''}${driveStr ? ` (${driveStr})` : ''}`);
+      if (!driveStr) {
+        lines.push(`  → Estimate the drive time from ${arrivalAirportCity} to ${hotel1.name} using your knowledge and include it in the timeline`);
+      }
     }
     if (outbound?.arrivalTime) {
       lines.push(`- Flight arrives at ${outbound.arrivalTime} — do not schedule activities before realistic arrival at hotel`);
@@ -363,19 +368,22 @@ function buildLocationScaffold(tripLogistics, parsedItinerary) {
     if (hotel1City) {
       lines.push(`- Remaining Day 1 activities must be in or near **${hotel1City}**`);
       lines.push(`- Day 1 title must reflect the arrival city: **${hotel1City}**`);
+    } else {
+      lines.push(`- Determine the city/area for "${hotel1.name}" from your knowledge. All remaining Day 1 activities must be in or near that area.`);
+      lines.push(`- Day 1 title must reflect the actual arrival area (NOT a generic destination name like "Carmel" or "Big Sur" unless that's where the hotel actually is)`);
     }
   }
   lines.push('');
 
   // --- Middle days at hotel 1 ---
-  if (hotel1City) {
+  {
     const lastHotel1Day = transitionDayIndex !== null ? transitionDayIndex : numDays;
     if (lastHotel1Day > 1) {
       const endDay = hotel2 ? lastHotel1Day : (returnFlight ? numDays - 1 : numDays);
       if (endDay > 1) {
         lines.push(`**Days 2–${endDay}${hotel2 ? '' : (returnFlight ? ' (pre-departure)' : '')}:**`);
-        lines.push(`- Traveler is based at ${hotel1.name}, ${hotel1City}`);
-        lines.push(`- All activities must be within reach of **${hotel1City}**`);
+        lines.push(`- Traveler is based at ${hotel1.name}${hotel1City ? `, ${hotel1City}` : ''}`);
+        lines.push(`- All activities must be within reach of ${hotel1City ? `**${hotel1City}**` : `the area where "${hotel1.name}" is located`}`);
         lines.push(`- Use "${hotel1.name}" as the stay pick name`);
         lines.push('');
       }
@@ -385,14 +393,19 @@ function buildLocationScaffold(tripLogistics, parsedItinerary) {
   // --- Transition day ---
   if (hotel2 && transitionDayIndex !== null) {
     const transitionDay = transitionDayIndex + 1; // 1-indexed
-    const driveMin = lookupDriveTime(hotel1City, hotel2City);
+    const driveMin = (hotel1City && hotel2City) ? lookupDriveTime(hotel1City, hotel2City) : null;
     const driveStr = formatDriveTime(driveMin);
     lines.push(`**Day ${transitionDay} (hotel transition):**`);
     lines.push(`- Check out of ${hotel1.name}${hotel1City ? ` (${hotel1City})` : ''}`);
-    lines.push(`- Drive from ${hotel1City || hotel1.name} to ${hotel2.name}${hotel2City ? `, ${hotel2City}` : ''}${driveStr ? ` (${driveStr})` : ''}`);
+    lines.push(`- Drive from ${hotel1.name} to ${hotel2.name}${driveStr ? ` (${driveStr})` : ''}`);
+    if (!driveStr) {
+      lines.push(`  → Estimate the drive time between these two properties using your knowledge`);
+    }
     lines.push(`- Check in at ${hotel2.name}`);
     if (hotel2City) {
       lines.push(`- Remaining activities on this day must be in or near **${hotel2City}**`);
+    } else {
+      lines.push(`- Remaining activities on this day must be in or near the area where "${hotel2.name}" is located`);
     }
     lines.push('');
 
@@ -402,7 +415,7 @@ function buildLocationScaffold(tripLogistics, parsedItinerary) {
     if (hotel2StartDay <= hotel2EndDay) {
       lines.push(`**Days ${hotel2StartDay}–${hotel2EndDay}:**`);
       lines.push(`- Traveler is based at ${hotel2.name}${hotel2City ? `, ${hotel2City}` : ''}`);
-      lines.push(`- All activities must be within reach of **${hotel2City || hotel2.name}**`);
+      lines.push(`- All activities must be within reach of ${hotel2City ? `**${hotel2City}**` : `the area where "${hotel2.name}" is located`}`);
       lines.push(`- Use "${hotel2.name}" as the stay pick name`);
       lines.push('');
     }
@@ -414,9 +427,12 @@ function buildLocationScaffold(tripLogistics, parsedItinerary) {
     const lastHotel = hotel2 || hotel1;
     const lastHotelCity = hotel2City || hotel1City;
     if (lastHotel && departureAirport) {
-      const driveMin = lookupDriveTime(lastHotelCity, departureAirport) || lookupDriveTime(lastHotelCity, departureAirportCity);
+      const driveMin = lastHotelCity ? (lookupDriveTime(lastHotelCity, departureAirport) || lookupDriveTime(lastHotelCity, departureAirportCity)) : null;
       const driveStr = formatDriveTime(driveMin);
       lines.push(`- Drive from ${lastHotel.name}${lastHotelCity ? ` (${lastHotelCity})` : ''} to ${departureAirport} airport${driveStr ? ` (${driveStr})` : ''}`);
+      if (!driveStr) {
+        lines.push(`  → Estimate the drive time from ${lastHotel.name} to ${departureAirport} airport using your knowledge`);
+      }
     }
     // Rental car return
     if (rental) {

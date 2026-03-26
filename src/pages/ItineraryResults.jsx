@@ -3360,7 +3360,7 @@ const REFINING_STEPS = [
   'Finalizing your revision',
 ];
 
-function RefiningOverlay({ visible, iteration = 0, days = 4, apiDone, onDismiss }) {
+function RefiningOverlay({ visible, iteration = 0, days = 4, apiDone, onDismiss, error, onRetry }) {
   const [completedIndex, setCompletedIndex] = useState(-1);
   const [breathPhase, setBreathPhase] = useState(0);
   const allDone = completedIndex >= REFINING_STEPS.length - 1;
@@ -3428,6 +3428,38 @@ function RefiningOverlay({ visible, iteration = 0, days = 4, apiDone, onDismiss 
   const ringScale = 0.9 + breathPhase * 0.1;
   const maxFree = 10;
   const remaining = maxFree - iteration;
+
+  // Error state — shown inside the overlay so it's unmissable
+  if (error) {
+    return (
+      <div style={{
+        position: 'fixed', inset: 0, zIndex: 200,
+        display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+        background: `linear-gradient(180deg, ${C.cream} 0%, ${C.white} 40%, ${C.cream} 100%)`,
+        padding: '40px 28px',
+      }}>
+        <div style={{ width: 56, height: 56, borderRadius: '50%', background: `${C.sunSalmon}12`, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 20 }}>
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={C.sunSalmon} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" />
+          </svg>
+        </div>
+        <div style={{ fontFamily: F_SERIF, fontSize: 'clamp(20px, 5vw, 26px)', fontWeight: 300, color: C.slate, marginBottom: 8, textAlign: 'center' }}>
+          Refinement didn't go through
+        </div>
+        <div style={{ fontFamily: F, fontSize: 14, fontWeight: 400, color: `${C.slate}90`, lineHeight: 1.5, textAlign: 'center', maxWidth: 320, marginBottom: 28 }}>
+          {error}
+        </div>
+        <div style={{ display: 'flex', gap: 12 }}>
+          <button onClick={onRetry} style={{ fontFamily: F, fontSize: 14, fontWeight: 600, color: C.white, background: C.oceanTeal, border: 'none', borderRadius: 24, padding: '10px 24px', cursor: 'pointer', WebkitTapHighlightColor: 'transparent' }}>
+            Try again
+          </button>
+          <button onClick={() => onDismissRef.current?.()} style={{ fontFamily: F, fontSize: 14, fontWeight: 500, color: `${C.slate}80`, background: 'none', border: `1px solid ${C.slate}20`, borderRadius: 24, padding: '10px 24px', cursor: 'pointer', WebkitTapHighlightColor: 'transparent' }}>
+            Dismiss
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div style={{
@@ -4751,9 +4783,8 @@ export default function ItineraryResults() {
       console.error('Refinement failed:', err);
       const isTimeout = err.name === 'AbortError';
       trackEvent('refinement_failed', { iteration: nextIteration, error_type: isTimeout ? 'timeout' : (err.message || 'unknown') });
-      setRefineError(isTimeout ? 'Refinement timed out — please try again.' : 'Something went wrong refining your trip. Please try again.');
-      // On error, dismiss overlay immediately
-      setRefining(false);
+      setRefineError(isTimeout ? 'The refinement timed out. This can happen with complex logistics — try again and it usually works on the second attempt.' : 'Something went wrong refining your trip. Please try again.');
+      // Keep overlay visible — error state is shown inside the overlay
       setRefineApiDone(false);
     }
   };
@@ -4831,13 +4862,21 @@ export default function ItineraryResults() {
         @keyframes bottomSheetBackdropIn { from { opacity: 0; } to { opacity: 1; } }
       `}</style>
       <RefiningOverlay
-        visible={refining}
+        visible={refining || !!refineError}
         iteration={iteration}
         days={itinerary?.days?.length || 4}
         apiDone={refineApiDone}
+        error={refineError}
+        onRetry={() => {
+          setRefineError(null);
+          setRefining(false);
+          setRefineApiDone(false);
+          setTimeout(() => handleRefine(), 100);
+        }}
         onDismiss={() => {
           setRefining(false);
           setRefineApiDone(false);
+          setRefineError(null);
           setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 50);
         }}
       />
@@ -5070,13 +5109,7 @@ export default function ItineraryResults() {
                   </div>
                 )}
 
-                {/* Refinement error */}
-                {refineError && (
-                  <div style={{ background: `${C.sunSalmon}10`, border: `1px solid ${C.sunSalmon}25`, borderRadius: 12, padding: '12px 16px', marginTop: 16, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10 }}>
-                    <span style={{ fontFamily: F, fontSize: 14, fontWeight: 500, color: C.sunSalmon, lineHeight: 1.4 }}>{refineError}</span>
-                    <button onClick={() => setRefineError(null)} style={{ fontFamily: F, fontSize: 12, fontWeight: 600, color: `${C.sunSalmon}80`, background: 'none', border: 'none', cursor: 'pointer', padding: '4px 8px', flexShrink: 0, WebkitTapHighlightColor: 'transparent' }}>Dismiss</button>
-                  </div>
-                )}
+                {/* Refinement errors now shown inside RefiningOverlay */}
 
                 {/* Refine CTA / Premium Gate */}
                 <RefineCTA iteration={iteration} hasFeedback={hasFeedback} onRefine={requestRefine} pulse={pulse}
