@@ -145,7 +145,7 @@ function SectionIcon({ type }) {
   );
 }
 
-function ListItem({ name, detail, note, tags, featured, url, isMobile, onOpenSheet, location }) {
+function ListItem({ name, detail, note, tags, featured, url, isMobile, onOpenSheet, location, cuisine, priceRange, reservations, dietary, energy }) {
   const nameEl = onOpenSheet ? (
     <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 15, fontWeight: 600, color: C.darkInk }}>{name}</span>
   ) : url ? (
@@ -164,7 +164,7 @@ function ListItem({ name, detail, note, tags, featured, url, isMobile, onOpenShe
 
   return (
     <div
-      onClick={onOpenSheet ? () => onOpenSheet({ type: 'list', name, detail, note, tags, featured, url, location }) : undefined}
+      onClick={onOpenSheet ? () => onOpenSheet({ type: 'list', name, detail, note, tags, featured, url, location, cuisine, priceRange, reservations, dietary, energy }) : undefined}
       style={{
         display: "flex", flexDirection: isMobile ? "column" : "row", alignItems: isMobile ? "flex-start" : "center", gap: 14, padding: "16px 0", borderBottom: `1px solid ${C.stone}`,
         ...(onOpenSheet ? { cursor: 'pointer', transition: 'background 0.15s' } : {}),
@@ -418,6 +418,59 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
           fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 600,
           color: C.oceanTeal, marginBottom: 14,
         }}>{item.note}</div>
+      )}
+
+      {/* Restaurant info grid */}
+      {item.type === 'list' && (item.cuisine || item.priceRange || item.reservations || item.energy) && (
+        <div style={{
+          display: 'grid', gridTemplateColumns: '1fr 1fr',
+          gap: '10px 16px', marginBottom: 18,
+          padding: '14px 0',
+          borderTop: `1px solid ${C.stone}`,
+          borderBottom: `1px solid ${C.stone}`,
+        }}>
+          {item.cuisine && (
+            <div>
+              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#7A857E', marginBottom: 3 }}>Cuisine</div>
+              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 500, color: C.darkInk, lineHeight: 1.5 }}>{item.cuisine}</div>
+            </div>
+          )}
+          {item.priceRange && (
+            <div>
+              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#7A857E', marginBottom: 3 }}>Price</div>
+              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 500, color: C.darkInk, lineHeight: 1.5 }}>{item.priceRange}</div>
+            </div>
+          )}
+          {item.energy && (
+            <div>
+              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#7A857E', marginBottom: 3 }}>Vibe</div>
+              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 500, color: C.darkInk, lineHeight: 1.5 }}>{item.energy}</div>
+            </div>
+          )}
+          {item.reservations && (
+            <div>
+              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#7A857E', marginBottom: 3 }}>Reservations</div>
+              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 500, color: C.darkInk, lineHeight: 1.5 }}>{item.reservations}</div>
+            </div>
+          )}
+          {item.location && (
+            <div style={{ gridColumn: '1 / -1' }}>
+              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#7A857E', marginBottom: 3 }}>Location</div>
+              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 500, color: C.darkInk, lineHeight: 1.5 }}>{item.location}</div>
+            </div>
+          )}
+          {item.dietary && (item.dietary.vegetarian || item.dietary.vegan || item.dietary.glutenFree) && (
+            <div style={{ gridColumn: '1 / -1' }}>
+              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#7A857E', marginBottom: 3 }}>Dietary</div>
+              <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+                {item.dietary.vegetarian && <span style={{ padding: '2px 8px', background: `${C.seaGlass}15`, fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600, color: C.seaGlass }}>vegetarian</span>}
+                {item.dietary.vegan && <span style={{ padding: '2px 8px', background: `${C.seaGlass}15`, fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600, color: C.seaGlass }}>vegan</span>}
+                {item.dietary.glutenFree && <span style={{ padding: '2px 8px', background: `${C.seaGlass}15`, fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600, color: C.seaGlass }}>gluten-free</span>}
+              </div>
+              {item.dietary.notes && <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 400, color: '#7A857E', marginTop: 4, lineHeight: 1.5 }}>{item.dietary.notes}</div>}
+            </div>
+          )}
+        </div>
       )}
 
       {/* Accommodation info grid */}
@@ -1587,6 +1640,11 @@ export default function VancouverIslandGuide() {
                     featured={r.lilaPick}
                     url={r.links?.website}
                     location={r.location}
+                    cuisine={r.cuisine}
+                    priceRange={r.priceRange}
+                    reservations={r.reservations}
+                    dietary={r.dietary}
+                    energy={r.energy}
                     isMobile={isMobile}
                     onOpenSheet={openSheet('Food & Culture')}
                   />
