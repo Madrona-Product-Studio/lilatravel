@@ -1779,7 +1779,7 @@ export default function ZionGuide() {
     return () => window.removeEventListener("resize", check);
   }, []);
 
-  const breathConfig = BREATH_CONFIG.zion;
+  const breathConfig = isMobile ? null : BREATH_CONFIG.zion;
   const breathWrapperRef = useRef(null);
   const breathValueRef = useBreathCanvas(breathConfig, breathWrapperRef);
 
@@ -1827,11 +1827,11 @@ export default function ZionGuide() {
       <Nav breathConfig={breathConfig} />
 
       {/* ══ CELESTIAL DRAWER ═══════════════════════════════════════════════ */}
-      <div ref={breathWrapperRef} style={{ background: C.warmWhite }}>
+      <div ref={breathWrapperRef} style={{ background: breathConfig ? C.warmWhite : undefined }}>
           <CelestialDrawer destination="zion" isMobile={isMobile} breathValueRef={breathValueRef} />
 
           {/* ══ TITLE MASTHEAD ═══════════════════════════════════════════════════ */}
-          <section style={{ background: 'transparent' }}>
+          <section style={{ background: breathConfig ? 'transparent' : C.cream }}>
         <div style={{ padding: isMobile ? "28px 20px 24px" : "44px 52px 40px", maxWidth: 920, margin: "0 auto" }}>
           <FadeIn from="bottom" delay={0.1}>
 

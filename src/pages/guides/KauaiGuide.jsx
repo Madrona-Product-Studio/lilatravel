@@ -877,7 +877,7 @@ function GuideNav({ isMobile }) {
 
 export default function KauaiGuide() {
   const [isMobile, setIsMobile] = useState(false);
-  const breathConfig = BREATH_CONFIG.kauai;
+  const breathConfig = isMobile ? null : BREATH_CONFIG.kauai;
   const breathWrapperRef = useRef(null);
   const breathValueRef = useBreathCanvas(breathConfig, breathWrapperRef);
   useEffect(() => {
@@ -919,11 +919,11 @@ export default function KauaiGuide() {
       <Nav breathConfig={breathConfig} />
 
       {/* ══ CELESTIAL DRAWER ═══════════════════════════════════════════════ */}
-      <div ref={breathWrapperRef} style={{ background: C.warmWhite }}>
+      <div ref={breathWrapperRef} style={{ background: breathConfig ? C.warmWhite : undefined }}>
           <CelestialDrawer destination="kauai" isMobile={isMobile} breathValueRef={breathValueRef} />
 
           {/* ══ TITLE MASTHEAD ═══════════════════════════════════════════════════ */}
-          <section style={{ background: 'transparent' }}>
+          <section style={{ background: breathConfig ? 'transparent' : C.cream }}>
         <div style={{ padding: isMobile ? "28px 20px 24px" : "44px 52px 40px", maxWidth: 920, margin: "0 auto" }}>
           <FadeIn from="bottom" delay={0.1}>
 

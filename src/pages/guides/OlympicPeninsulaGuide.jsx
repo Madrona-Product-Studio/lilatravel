@@ -934,7 +934,7 @@ function GuideNav({ isMobile }) {
 
 export default function OlympicPeninsulaGuide() {
   const [isMobile, setIsMobile] = useState(false);
-  const breathConfig = BREATH_CONFIG.olympic;
+  const breathConfig = isMobile ? null : BREATH_CONFIG.olympic;
   const breathWrapperRef = useRef(null);
   const breathValueRef = useBreathCanvas(breathConfig, breathWrapperRef);
   useEffect(() => {
@@ -986,11 +986,11 @@ export default function OlympicPeninsulaGuide() {
         <meta name="twitter:image" content="https://lilatrips.com/og-image.png" />
       </Helmet>
       <Nav breathConfig={breathConfig} />
-      <div ref={breathWrapperRef} style={{ background: C.warmWhite }}>
+      <div ref={breathWrapperRef} style={{ background: breathConfig ? C.warmWhite : undefined }}>
           <CelestialDrawer destination="olympic-peninsula" isMobile={isMobile} breathValueRef={breathValueRef} />
 
           {/* ══ TITLE MASTHEAD ═══════════════════════════════════════════════════ */}
-          <section style={{ background: 'transparent' }}>
+          <section style={{ background: breathConfig ? 'transparent' : C.cream }}>
         <div style={{
           padding: isMobile ? "28px 20px 24px" : "44px 52px 40px",
           maxWidth: 920, margin: "0 auto",
