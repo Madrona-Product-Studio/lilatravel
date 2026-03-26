@@ -7,35 +7,21 @@ function easeInOutSine(t) {
   return -(Math.cos(Math.PI * t) - 1) / 2;
 }
 
-export default function useBreathCanvas(config, canvasRef, wrapperRef, { opacityScale = 1, opaqueBase = false, flat = false } = {}) {
+/**
+ * Drives a breath-color animation directly on the wrapper element's
+ * backgroundImage style. No <canvas> — avoids mobile Safari stacking bugs.
+ */
+export default function useBreathCanvas(config, wrapperRef, { opacityScale = 1, flat = false } = {}) {
   const breathValueRef = useRef(0);
 
   useEffect(() => {
     if (!config) return;
-
-    const canvas = canvasRef.current;
     const wrapper = wrapperRef.current;
-    if (!canvas || !wrapper) return;
+    if (!wrapper) return;
 
-    const ctx = canvas.getContext('2d');
     let raf;
     let phase = 0;
     let startTime = null;
-
-    function resize() {
-      const rect = wrapper.getBoundingClientRect();
-      const dpr = window.devicePixelRatio || 1;
-      canvas.width = rect.width * dpr;
-      canvas.height = rect.height * dpr;
-      canvas.style.width = rect.width + 'px';
-      canvas.style.height = rect.height + 'px';
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    }
-
-    const ro = new ResizeObserver(resize);
-    ro.observe(wrapper);
-    resize();
-
     let lastTime = performance.now();
 
     function tick(now) {
@@ -55,31 +41,16 @@ export default function useBreathCanvas(config, canvasRef, wrapperRef, { opacity
       phase = (phase + dt / config.pace) % 1;
       const triangle = 1 - Math.abs(2 * phase - 1);
       const breath = easeInOutSine(triangle);
-
       breathValueRef.current = breath;
-
-      // Paint
-      const w = wrapper.getBoundingClientRect().width;
-      const h = wrapper.getBoundingClientRect().height;
-      ctx.clearRect(0, 0, w, h);
-
-      if (opaqueBase) {
-        ctx.fillStyle = '#faf8f4';
-        ctx.fillRect(0, 0, w, h);
-      }
 
       const alpha = globalAlpha * breath * 0.46 * opacityScale;
       const [r, g, b] = config.rgb;
 
       if (flat) {
-        ctx.fillStyle = `rgba(${r},${g},${b},${alpha})`;
+        wrapper.style.backgroundImage = `linear-gradient(rgba(${r},${g},${b},${alpha}),rgba(${r},${g},${b},${alpha}))`;
       } else {
-        const grad = ctx.createLinearGradient(w * 0.5, 0, w * 0.5, h);
-        grad.addColorStop(0, `rgba(${r},${g},${b},${alpha})`);
-        grad.addColorStop(1, `rgba(${r},${g},${b},0)`);
-        ctx.fillStyle = grad;
+        wrapper.style.backgroundImage = `linear-gradient(to bottom,rgba(${r},${g},${b},${alpha}),rgba(${r},${g},${b},0))`;
       }
-      ctx.fillRect(0, 0, w, h);
 
       raf = requestAnimationFrame(tick);
     }
@@ -88,9 +59,9 @@ export default function useBreathCanvas(config, canvasRef, wrapperRef, { opacity
 
     return () => {
       cancelAnimationFrame(raf);
-      ro.disconnect();
+      if (wrapper) wrapper.style.backgroundImage = '';
     };
-  }, [config, canvasRef, wrapperRef, opacityScale, opaqueBase, flat]);
+  }, [config, wrapperRef, opacityScale, flat]);
 
   return config ? breathValueRef : null;
 }

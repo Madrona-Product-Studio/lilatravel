@@ -285,9 +285,8 @@ export default function Nav({ transparent = false, breathConfig = null }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const navCanvasRef = useRef(null);
   const navRef = useRef(null);
-  useBreathCanvas(breathConfig, navCanvasRef, navRef, { opacityScale: 0.85, opaqueBase: true, flat: true });
+  useBreathCanvas(breathConfig, navRef, { opacityScale: 0.85, flat: true });
 
   // Multi-trip state
   const [trips, setTrips] = useState(() => {
@@ -416,12 +415,11 @@ export default function Nav({ transparent = false, breathConfig = null }) {
     <>
       <nav ref={navRef} style={{
         position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
-        background: breathConfig ? "transparent" : (showSolid ? "rgba(250,248,244,0.97)" : "transparent"),
+        background: breathConfig ? C.warmWhite : (showSolid ? "rgba(250,248,244,0.97)" : "transparent"),
         backdropFilter: breathConfig ? "none" : (showSolid ? "blur(16px)" : "none"),
         borderBottom: breathConfig ? "none" : (showSolid ? `1px solid ${C.stone}` : "none"),
         transition: "all 0.4s ease",
       }}>
-        {breathConfig && <canvas ref={navCanvasRef} style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }} />}
         <div className="nav-inner" style={{
           position: 'relative',
           padding: "20px 52px",

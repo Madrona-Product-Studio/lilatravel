@@ -97,14 +97,13 @@ function SwellIntensityBar({ intensity }) {
   );
 }
 
-export default function CelestialDrawer({ destination, isMobile, breathValueRef, breathConfig }) {
+export default function CelestialDrawer({ destination, isMobile, breathValueRef }) {
   const [open, setOpen] = useState(false);
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const contentRef = useRef(null);
   const [contentHeight, setContentHeight] = useState(0);
   const pipRef = useRef(null);
-  const containerRef = useRef(null);
 
   const configKey = CONFIG_KEYS[destination] || destination;
   const label = DESTINATION_LABELS[destination] || destination;
@@ -133,16 +132,11 @@ export default function CelestialDrawer({ destination, isMobile, breathValueRef,
         pipRef.current.style.transform = `scale(${0.75 + v * 0.25})`;
         pipRef.current.style.opacity = 0.5 + v * 0.5;
       }
-      if (containerRef.current && breathConfig) {
-        const [r, g, b] = breathConfig.rgb;
-        const alpha = v * 0.46;
-        containerRef.current.style.backgroundImage = `linear-gradient(to bottom, rgba(${r},${g},${b},${alpha}), rgba(${r},${g},${b},0))`;
-      }
       raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [breathValueRef, breathConfig]);
+  }, [breathValueRef]);
 
   useEffect(() => {
     if (document.getElementById('celestial-pulse-style')) return;
@@ -156,7 +150,7 @@ export default function CelestialDrawer({ destination, isMobile, breathValueRef,
   const NAV_HEIGHT = isMobile ? 58 : 64;
 
   if (loading || !data) return (
-    <div style={{ position: 'relative', background: C.warmWhite, borderBottom: `1px solid ${C.stone}` }}>
+    <div style={{ position: 'relative', background: breathValueRef ? 'transparent' : C.warmWhite, borderBottom: `1px solid ${C.stone}` }}>
       <div style={{ height: NAV_HEIGHT + 14 }} />
       <div style={{ height: 44 }} />
     </div>
@@ -173,7 +167,7 @@ export default function CelestialDrawer({ destination, isMobile, breathValueRef,
   if (npsAlerts?.length > 0) teasers.push(`${npsAlerts.length} Alert${npsAlerts.length > 1 ? 's' : ''}`);
 
   return (
-    <div ref={containerRef} style={{ position: 'relative', zIndex: open ? 95 : 'auto', backgroundColor: C.warmWhite, borderBottom: `1px solid ${C.stone}` }}>
+    <div style={{ position: 'relative', zIndex: open ? 95 : 'auto', backgroundColor: breathValueRef ? 'transparent' : C.warmWhite, borderBottom: `1px solid ${C.stone}` }}>
       <div style={{ height: NAV_HEIGHT + 14 }} />
 
       {/* Teaser bar */}
