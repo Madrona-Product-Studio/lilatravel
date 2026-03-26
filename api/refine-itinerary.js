@@ -37,11 +37,19 @@ function buildFeedbackSummary(dayFeedback, days) {
     const dayLabel = days?.[i]?.label || `Day ${i + 1}`;
     const dayTitle = days?.[i]?.title || '';
 
-    if (fb.status === 'approved') {
+    // Support both legacy status-based and current reaction-based feedback
+    const isApproved = fb.status === 'approved' || fb.reaction === 'spot-on';
+    const isAdjust = fb.status === 'adjust' || fb.reaction === 'needs-work';
+
+    if (isApproved) {
       return `- **${dayLabel}** ("${dayTitle}"): APPROVED — traveler is happy, preserve this day as-is.`;
     }
-    if (fb.status === 'adjust') {
-      return `- **${dayLabel}** ("${dayTitle}"): ADJUST — traveler note: "${fb.note}"`;
+    if (isAdjust) {
+      return `- **${dayLabel}** ("${dayTitle}"): ADJUST${fb.note ? ` — traveler note: "${fb.note}"` : ''}`;
+    }
+    // If there's a note but no explicit reaction, still include it
+    if (fb.note) {
+      return `- **${dayLabel}** ("${dayTitle}"): traveler note: "${fb.note}"`;
     }
     return null;
   }).filter(Boolean);
