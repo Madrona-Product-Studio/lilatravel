@@ -2393,7 +2393,7 @@ export default function PlanMyTrip() {
     sessionStorage.removeItem('lila_raw_itinerary');
     sessionStorage.removeItem('lila_form_data');
     sessionStorage.removeItem('lila_metadata');
-    const { signal, clear } = fetchWithTimeout(240000);
+    const { signal, clear } = fetchWithTimeout(310000);
     try {
       const apiBody = translateFormToApi(data);
       const response = await fetch('/api/generate-itinerary', {

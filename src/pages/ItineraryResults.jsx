@@ -4685,7 +4685,7 @@ export default function ItineraryResults() {
   const handleLoadMore = async (thumbId) => {
     setLoadingMoreAlts(thumbId);
     const destSlug = metadata?.destination || formData?.destination;
-    const { signal, clear } = fetchWithTimeout(60000);
+    const { signal, clear } = fetchWithTimeout(310000);
     try {
       const res = await fetch('/api/generate-alternatives', {
         method: 'POST',
@@ -4794,7 +4794,7 @@ export default function ItineraryResults() {
     setRefining(true);
     setRefineApiDone(false);
     setRefineError(null);
-    const { signal, clear } = fetchWithTimeout(180000);
+    const { signal, clear } = fetchWithTimeout(310000);
     try {
       const response = await fetch('/api/refine-itinerary', {
         method: 'POST',
