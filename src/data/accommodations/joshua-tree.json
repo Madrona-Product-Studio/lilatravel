@@ -21,7 +21,7 @@
       "booking": null
     },
     "seasonalNotes": "Open year-round. No water — bring your own. Cold winter nights can drop below freezing.",
-    "lilaPick": false,
+    "lilaPick": true,
     "tags": ["inside-park", "first-come", "boulders", "dark-sky", "no-water"]
   },
   {
@@ -50,55 +50,6 @@
     "tags": ["inside-park", "first-come", "intimate", "bouldering", "no-water"]
   },
   {
-    "id": "white-tank-campground",
-    "name": "White Tank Campground",
-    "type": "camping",
-    "stayStyle": "elemental",
-    "budgetTier": "mindful",
-    "priceRange": "$15–25/night",
-    "location": "Inside Joshua Tree National Park, high desert",
-    "groupFit": ["solo", "couple"],
-    "highlights": [
-      "15 sites — the quietest campground in the park",
-      "Adjacent to Arch Rock nature trail",
-      "Less trafficked, more solitude"
-    ],
-    "amenities": ["vault toilets", "picnic tables", "fire grates"],
-    "bookingWindow": "No reservations — first-come, first-served. Easier to find a site than Jumbo Rocks or Hidden Valley.",
-    "links": {
-      "website": "https://www.nps.gov/jotr/planyourvisit/campgrounds.htm",
-      "booking": null
-    },
-    "seasonalNotes": "Open year-round. No water. Small and peaceful.",
-    "lilaPick": false,
-    "tags": ["inside-park", "first-come", "quiet", "solitude", "no-water"]
-  },
-  {
-    "id": "cottonwood-campground",
-    "name": "Cottonwood Campground",
-    "type": "camping",
-    "stayStyle": "elemental",
-    "budgetTier": "mindful",
-    "priceRange": "$15–30/night",
-    "location": "Inside Joshua Tree National Park, south entrance, Colorado Desert",
-    "groupFit": ["solo", "couple", "friends", "family"],
-    "highlights": [
-      "South entrance — Colorado Desert section",
-      "Good for early-season desert blooms",
-      "Water available",
-      "First-come or reservation depending on season"
-    ],
-    "amenities": ["vault toilets", "picnic tables", "fire grates", "drinking water"],
-    "bookingWindow": "Some sites reservable at recreation.gov, others first-come first-served.",
-    "links": {
-      "website": "https://www.nps.gov/jotr/planyourvisit/campgrounds.htm",
-      "booking": "https://www.recreation.gov/camping/campgrounds/10100375"
-    },
-    "seasonalNotes": "Open year-round. Water available. Warmer than high desert campgrounds in winter.",
-    "lilaPick": false,
-    "tags": ["inside-park", "water-available", "colorado-desert", "wildflowers"]
-  },
-  {
     "id": "skylight-joshua-tree",
     "name": "Skylight Joshua Tree",
     "type": "cabin",
@@ -122,31 +73,6 @@
     "seasonalNotes": "Year-round. Spring and fall most comfortable. Summer requires AC units that some cabins have.",
     "lilaPick": true,
     "tags": ["design", "stargazing", "off-grid-feel", "outdoor-tub", "dark-sky"]
-  },
-  {
-    "id": "hicksville-trailer-palace",
-    "name": "Hicksville Trailer Palace",
-    "type": "boutique",
-    "stayStyle": "elemental",
-    "budgetTier": "moderate",
-    "priceRange": "$150–250/night",
-    "location": "Near the park's west entrance, Joshua Tree town",
-    "groupFit": ["couple", "friends"],
-    "highlights": [
-      "Vintage trailers on a small ranch — each uniquely themed",
-      "Hot tub, pool, fire pit",
-      "Playful, adult, deeply Joshua Tree in spirit",
-      "Community bar and communal spaces"
-    ],
-    "amenities": ["pool", "hot tub", "fire pit", "communal kitchen", "wifi"],
-    "bookingWindow": "Book 1–2 months ahead for weekends. Whole-property buyouts available for groups.",
-    "links": {
-      "website": "https://www.hicksville.com/",
-      "booking": null
-    },
-    "seasonalNotes": "Year-round. Pool is seasonal. Hot tub year-round. Adults-only vibe.",
-    "lilaPick": false,
-    "tags": ["vintage-trailers", "themed", "pool", "hot-tub", "adults-only", "quirky"]
   },
   {
     "id": "29-palms-inn",
@@ -174,31 +100,6 @@
     "tags": ["historic", "oasis", "gardens", "on-site-dining", "timeless", "north-entrance"]
   },
   {
-    "id": "spin-margies-desert-hideaway",
-    "name": "Spin & Margie's Desert Hideaway",
-    "type": "boutique",
-    "stayStyle": "rooted",
-    "budgetTier": "moderate",
-    "priceRange": "$130–220/night",
-    "location": "Joshua Tree town",
-    "groupFit": ["solo", "couple"],
-    "highlights": [
-      "Small collection of vintage-styled rooms",
-      "Art everywhere, garden courtyard",
-      "Walking distance to the best coffee and galleries",
-      "Intimate and personal"
-    ],
-    "amenities": ["garden courtyard", "kitchenette", "wifi", "parking"],
-    "bookingWindow": "Book 2–3 weeks ahead for weekends.",
-    "links": {
-      "website": null,
-      "booking": null
-    },
-    "seasonalNotes": "Year-round. Spring is the most charming season with garden in bloom.",
-    "lilaPick": false,
-    "tags": ["vintage", "art", "garden", "walkable", "intimate"]
-  },
-  {
     "id": "sacred-sands",
     "name": "Sacred Sands",
     "type": "boutique",
@@ -220,34 +121,8 @@
       "booking": null
     },
     "seasonalNotes": "Year-round. Full moon weekends are especially popular and book far ahead.",
-    "lilaPick": false,
+    "lilaPick": true,
     "tags": ["boutique", "two-rooms-only", "meditation-garden", "intimate", "desert-views"]
-  },
-  {
-    "id": "pioneertown-motel",
-    "name": "Pioneertown Motel",
-    "type": "motel",
-    "stayStyle": "rooted",
-    "budgetTier": "moderate",
-    "priceRange": "$120–200/night",
-    "location": "Pioneertown",
-    "groupFit": ["solo", "couple", "friends"],
-    "highlights": [
-      "The only place to sleep in Pioneertown itself",
-      "Walking distance to Pappy & Harriet's",
-      "Atmospheric bar connected to the motel",
-      "Desert art on the walls"
-    ],
-    "amenities": ["on-site bar", "wifi", "parking"],
-    "bookingWindow": "Book 1–2 months ahead for weekends, especially when Pappy's has a big show.",
-    "links": {
-      "website": "https://www.pioneertownmotel.com/",
-      "booking": null
-    },
-    "seasonalNotes": "Year-round. Basic but atmospheric. Book around Pappy & Harriet's show calendar for maximum experience.",
-    "corridor": true,
-    "lilaPick": false,
-    "tags": ["pioneertown", "walkable", "pappys", "atmospheric", "on-site-bar"]
   },
   {
     "id": "two-bunch-palms",
@@ -276,81 +151,81 @@
     "tags": ["hot-springs", "historic", "spa", "grotto", "hollywood-hideaway", "decompression"]
   },
   {
-    "id": "lhorizon-resort",
-    "name": "L'Horizon Resort & Spa",
-    "type": "resort",
-    "stayStyle": "premium",
-    "budgetTier": "premium",
-    "priceRange": "$400–800/night",
-    "location": "Palm Springs, ~45 min from Joshua Tree",
-    "groupFit": ["couple"],
-    "highlights": [
-      "William Cody, 1952 — mid-century masterpiece",
-      "Small pool-centric property",
-      "Intimate and refined",
-      "Part of the Hyatt portfolio"
-    ],
-    "amenities": ["pool", "spa", "on-site restaurant", "fitness center", "wifi", "valet parking"],
-    "bookingWindow": "Book 2–4 weeks ahead. Palm Springs high season is Jan–Apr.",
-    "links": {
-      "website": "https://www.lhorizonpalmsprings.com/",
-      "booking": null
-    },
-    "seasonalNotes": "Year-round. Peak season Jan–Apr. Summer rates drop significantly but temperatures soar.",
-    "corridor": true,
-    "lilaPick": false,
-    "tags": ["mid-century", "palm-springs", "pool", "spa", "architecture", "refined"]
-  },
-  {
-    "id": "parker-palm-springs",
-    "name": "Parker Palm Springs",
-    "type": "resort",
-    "stayStyle": "premium",
-    "budgetTier": "premium",
-    "priceRange": "$450–900/night",
-    "location": "Palm Springs, ~45 min from Joshua Tree",
-    "groupFit": ["couple", "friends"],
-    "highlights": [
-      "Jonathan Adler-designed, 13 acres",
-      "The most design-forward major property in the valley",
-      "Pool culture, strong restaurant (Norma's), unhurried pace",
-      "PSYCH Spa with Gene Autry-era vibes"
-    ],
-    "amenities": ["multiple pools", "spa", "on-site restaurants", "tennis", "petanque", "croquet", "wifi"],
-    "bookingWindow": "Book 1–2 months ahead for peak season. Last-minute summer deals available.",
-    "links": {
-      "website": "https://www.parkerpalmsprings.com/",
-      "booking": null
-    },
-    "seasonalNotes": "Year-round. Peak is Jan–Apr. Norma's for brunch is an institution.",
-    "corridor": true,
-    "lilaPick": true,
-    "tags": ["design-forward", "palm-springs", "pool-culture", "jonathan-adler", "restaurants", "13-acres"]
-  },
-  {
-    "id": "arrive-palm-springs",
-    "name": "Arrive Palm Springs",
+    "id": "reset-hotel",
+    "name": "Reset Hotel",
     "type": "boutique hotel",
     "stayStyle": "premium",
-    "budgetTier": "moderate",
-    "priceRange": "$200–400/night",
-    "location": "Palm Springs, ~45 min from Joshua Tree",
+    "budgetTier": "premium",
+    "priceRange": "$250–450/night",
+    "location": "7000 Split Rock Ave, Twentynine Palms — 5 min from north park entrance",
     "groupFit": ["solo", "couple", "friends"],
     "highlights": [
-      "Smaller, hipper, more affordable entry to the PS hotel scene",
-      "Good bar and pool scene",
-      "Good location on North Palm Canyon Drive",
-      "Design-conscious without the ultra-luxury price"
+      "First new-build hotel in the Morongo Basin in 15 years",
+      "65 rooms on 180 acres — 170 acres left deliberately undeveloped",
+      "Every room has a private patio with Solo Stove fire pit and desert views",
+      "Cedar sauna, cold plunge, saltwater pool, Celestron telescope for stargazing",
+      "Designed around the question: what would a hotel on Mars look like, built in connection to nature"
     ],
-    "amenities": ["pool", "on-site bar", "wifi", "parking", "bikes"],
-    "bookingWindow": "Book 2–3 weeks ahead for weekends. More accessible than Parker or L'Horizon.",
+    "amenities": ["saltwater pool", "cedar sauna", "cold plunge", "on-site restaurant", "fire pits", "wifi", "EV charging"],
+    "bookingWindow": "Book 2–4 weeks ahead for weekends. Spring and fall fill fastest.",
     "links": {
-      "website": "https://www.arrivehotels.com/palm-springs",
-      "booking": null
+      "website": "https://www.stayreset.com/",
+      "booking": "https://www.stayreset.com/rooms"
     },
-    "seasonalNotes": "Year-round. A great base for a night in PS before or after the park.",
-    "corridor": true,
+    "seasonalNotes": "Open year-round. Summer pool season April–October. Winter evenings ideal for stargazing with Celestron telescopes.",
+    "lilaPick": true,
+    "tags": ["new-build", "design-forward", "dark-sky", "stargazing", "sauna", "cold-plunge", "minimalist", "180-acres"]
+  },
+  {
+    "id": "hotel-wren",
+    "name": "Hotel Wren",
+    "type": "boutique hotel",
+    "stayStyle": "rooted",
+    "budgetTier": "moderate",
+    "priceRange": "$275–450/night",
+    "location": "Twentynine Palms — 10 min from north park entrance",
+    "groupFit": ["solo", "couple"],
+    "highlights": [
+      "Woman-owned, design-led 12-room hideaway in a reimagined 1940s roadside motel",
+      "No televisions — designed intentionally for presence and reflection",
+      "Hand-carved woodwork, custom millwork, bookshelves with astronomy and geology titles",
+      "Saltwater pool and hot tub, private patios, Windsong desert provisions bodega on-site",
+      "21+ property — a quiet, considered retreat"
+    ],
+    "amenities": ["saltwater pool", "hot tub", "private patios", "breakfast included", "on-site shop", "wifi", "EV charging"],
+    "bookingWindow": "Book 3–6 weeks ahead. Only 12 rooms — fills quickly for full moon weekends and spring.",
+    "links": {
+      "website": "https://www.hotelwren29.com/",
+      "booking": "https://www.hotelwren29.com/"
+    },
+    "seasonalNotes": "Open year-round. 21+ only. No televisions in rooms by design. Spring wildflower season is peak.",
     "lilaPick": false,
-    "tags": ["palm-springs", "pool", "bar", "design", "accessible-luxury", "walkable"]
+    "tags": ["woman-owned", "1940s-motel", "design-forward", "no-tv", "boutique", "21-plus", "intimate"]
+  },
+  {
+    "id": "bungalows-joshua-tree-retreat-center",
+    "name": "The Bungalows at Joshua Tree Retreat Center",
+    "type": "retreat",
+    "stayStyle": "rooted",
+    "budgetTier": "moderate",
+    "priceRange": "$150–350/night",
+    "location": "59700 29 Palms Highway, Joshua Tree — minutes from the park's west entrance",
+    "groupFit": ["solo", "couple", "friends"],
+    "highlights": [
+      "14 mid-century suites on the historic Joshua Tree Retreat Center campus",
+      "Buildings designed by Lloyd Wright (Frank Lloyd Wright's son) using sacred geometry",
+      "Access to retreat center's meditation areas, pool, hot pool, and vegetarian café",
+      "On-site vortex energy sites — the reason this land was selected in the 1940s",
+      "Floor-to-ceiling windows, private patios, desert views in all directions"
+    ],
+    "amenities": ["pool", "hot pool", "meditation areas", "on-site café", "fire pits", "wifi", "kitchenette"],
+    "bookingWindow": "Book through retreat.homesteadmodern.com. 2–4 weeks ahead for weekends. Full buyout available for groups.",
+    "links": {
+      "website": "https://retreat.homesteadmodern.com",
+      "booking": "https://retreat.homesteadmodern.com"
+    },
+    "seasonalNotes": "Open year-round. The vegetarian Food for Thought Café is on-site. Spring and fall most pleasant.",
+    "lilaPick": false,
+    "tags": ["lloyd-wright", "sacred-geometry", "retreat-center", "meditation", "mid-century", "vortex", "vegetarian-cafe"]
   }
 ]

@@ -47,7 +47,7 @@
       "booking": null
     },
     "seasonalNotes": "Year-round. Cool and misty — bring layers. A completely different Kauaʻi from the coast.",
-    "lilaPick": false,
+    "lilaPick": true,
     "tags": ["highland", "rustic", "canyon-access", "endemic-birds", "budget"]
   },
   {
@@ -101,31 +101,6 @@
     "tags": ["beachfront", "no-tv", "kalalau-base", "north-shore", "unplugged"]
   },
   {
-    "id": "kauai-inn",
-    "name": "Kauaʻi Inn",
-    "type": "hotel",
-    "stayStyle": "rooted",
-    "budgetTier": "mindful",
-    "priceRange": "$80–150/night",
-    "location": "Lihue (near airport)",
-    "groupFit": ["solo", "couple"],
-    "highlights": [
-      "Most practical affordable hotel on the island",
-      "Well-located near the airport",
-      "Clean, simple, operated with care",
-      "Good first and last night option"
-    ],
-    "amenities": ["parking", "Wi-Fi"],
-    "bookingWindow": "Book 1–2 months ahead for peak season",
-    "links": {
-      "website": "https://www.kauai-inn.com/",
-      "booking": null
-    },
-    "seasonalNotes": "Year-round. Practical, not scenic — a base, not a destination.",
-    "lilaPick": false,
-    "tags": ["budget", "airport-proximity", "practical", "first-night"]
-  },
-  {
     "id": "na-pali-coast-cottages",
     "name": "Na Pali Coast Cottages",
     "type": "cottage",
@@ -172,33 +147,8 @@
       "booking": null
     },
     "seasonalNotes": "Year-round. No resort amenities, no crowds — just history, stillness, and the garden isle as it was.",
-    "lilaPick": false,
+    "lilaPick": true,
     "tags": ["historic", "plantation-era", "coconut-grove", "canyon-base", "sunset"]
-  },
-  {
-    "id": "aston-poipu-kai",
-    "name": "Aston at Poipū Kai",
-    "type": "resort",
-    "stayStyle": "rooted",
-    "budgetTier": "moderate",
-    "priceRange": "$200–400/night",
-    "location": "Poipū (South Shore) — near Brennecke's Beach",
-    "groupFit": ["couple", "friends", "family"],
-    "highlights": [
-      "Condo-style resort in a 110-acre tropical setting",
-      "Full kitchens — practical for families and longer stays",
-      "Quieter and more affordable than beachfront resorts",
-      "Walking distance to south shore's best beaches and restaurants"
-    ],
-    "amenities": ["pool", "kitchen", "tennis", "tropical grounds"],
-    "bookingWindow": "Book 2–3 months ahead for peak season",
-    "links": {
-      "website": "https://www.astonhotels.com/",
-      "booking": null
-    },
-    "seasonalNotes": "Year-round. Budget-friendly south shore base with more space than a hotel room.",
-    "lilaPick": false,
-    "tags": ["condo", "family-friendly", "south-shore", "full-kitchen", "affordable"]
   },
   {
     "id": "grand-hyatt-kauai",
@@ -247,14 +197,14 @@
       "booking": null
     },
     "seasonalNotes": "Year-round. The organic farm is a genuine differentiator — not marketing.",
-    "lilaPick": false,
+    "lilaPick": true,
     "tags": ["luxury", "farm-on-site", "plantation-estate", "quiet", "design"]
   },
   {
     "id": "1-hotel-hanalei-bay",
     "name": "1 Hotel Hanalei Bay",
     "type": "resort",
-    "stayStyle": "luxury",
+    "stayStyle": "premium",
     "budgetTier": "luxury",
     "priceRange": "$800–2,000/night",
     "location": "Princeville (North Shore) — bluff above Hanalei Bay",
@@ -274,58 +224,59 @@
       "booking": null
     },
     "seasonalNotes": "Year-round. The renovation brought genuine sustainability ethos, not just branding.",
-    "lilaPick": false,
+    "lilaPick": true,
     "tags": ["luxury", "sustainability", "na-pali-views", "north-shore", "spa", "farm-to-table"]
   },
   {
-    "id": "koloa-landing",
-    "name": "Koloa Landing Resort",
-    "type": "resort",
-    "stayStyle": "premium",
-    "budgetTier": "premium",
-    "priceRange": "$400–800/night",
-    "location": "Poipū (South Shore)",
-    "groupFit": ["couple", "friends", "family"],
+    "id": "hanalei-bay-resort",
+    "name": "Hanalei Bay Resort",
+    "type": "condo resort",
+    "stayStyle": "rooted",
+    "budgetTier": "moderate",
+    "priceRange": "$150–350/night",
+    "location": "Princeville, North Shore — shared beach with 1 Hotel Hanalei Bay",
+    "groupFit": ["solo", "couple", "friends", "family"],
     "highlights": [
-      "Best pool facilities on the island",
-      "Multiple lagoon-style pools, lazy river, water slides",
-      "Adults-only infinity pool",
-      "Villa-style units with full kitchens",
-      "Walking distance to Poipū Beach and Kukuiʻula Village"
+      "22 acres of tropical gardens with cascading pools and lava rock waterfalls",
+      "Steps from Puʻu Poa Beach on Hanalei Bay — one of Hawaii's most beautiful white sand beaches",
+      "Condo-style units with full kitchens — good for longer stays",
+      "Lagoon-style pool with waterfall and grotto hot tub",
+      "Sweeping views of Nā Pali mountains and Hanalei Bay from most units"
     ],
-    "amenities": ["pools", "lazy river", "water slides", "kitchen", "fitness", "spa"],
-    "bookingWindow": "Book 2–4 months ahead for peak season",
+    "amenities": ["two pools", "hot tub", "beach shuttle", "tennis courts", "full kitchens", "concierge", "wifi"],
+    "bookingWindow": "Book through individual unit owners or Parrish Collection Kauai. 2–4 weeks ahead for peak season.",
     "links": {
-      "website": "https://www.koloalandingresort.com/",
-      "booking": null
+      "website": "https://www.hanaleibayresort.com/",
+      "booking": "https://www.parrishkauai.com/kauai-condos/hanalei-bay-resort/"
     },
-    "seasonalNotes": "Year-round. Strong choice for families with children on the south shore.",
+    "seasonalNotes": "Open year-round. Avoid units undergoing renovation — read individual unit reviews before booking. Summer (June–Aug) offers calm water and ideal beach conditions.",
     "lilaPick": false,
-    "tags": ["family-friendly", "pools", "south-shore", "full-kitchen", "villa-style"]
+    "tags": ["north-shore", "hanalei-bay", "full-kitchen", "condo", "gardens", "beach-access", "mountain-views"]
   },
   {
-    "id": "outrigger-kauai",
-    "name": "Outrigger Kauaʻi Beach Resort & Spa",
-    "type": "resort",
-    "stayStyle": "premium",
-    "budgetTier": "premium",
-    "priceRange": "$350–700/night",
-    "location": "Poipū (South Shore) — direct beachfront",
-    "groupFit": ["couple", "friends", "family"],
+    "id": "the-palmwood",
+    "name": "The Palmwood",
+    "type": "inn",
+    "stayStyle": "rooted",
+    "budgetTier": "moderate",
+    "priceRange": "$200–350/night",
+    "location": "Moloaʻa Hills, North Shore — secluded 5-acre estate",
+    "groupFit": ["solo", "couple"],
     "highlights": [
-      "Beachfront on Poipū Beach — walk from room to water in under a minute",
-      "Recently renovated rooms",
-      "On-site dining and full spa",
-      "Reliable snorkeling and turtle sightings"
+      "Intimate B&B on a secluded 5-acre estate in the Moloaʻa hills",
+      "Inspired by the mountain country inns of Japan — Eastern-influenced design with warm, cozy rooms",
+      "Lush grounds close to some of the island's finest north shore attractions",
+      "Personal touch of a genuine B&B — Auntie Eddi's breakfast is legendary among guests",
+      "Quiet, off-the-resort-trail alternative on the north shore"
     ],
-    "amenities": ["beach access", "spa", "restaurant", "pool", "fitness"],
-    "bookingWindow": "Book 2–3 months ahead for peak season",
+    "amenities": ["breakfast included", "gardens", "wifi", "parking", "concierge"],
+    "bookingWindow": "Book 4–6 weeks ahead. Small property — fills quickly for winter whale season and spring.",
     "links": {
-      "website": "https://www.outrigger.com/",
-      "booking": null
+      "website": "https://www.thepalmwood.com/",
+      "booking": "https://www.thepalmwood.com/"
     },
-    "seasonalNotes": "Year-round. Less grand than Grand Hyatt, more accessible — solid middle-luxury option.",
+    "seasonalNotes": "Open year-round. North shore road (Highway 560) can close during high surf — check conditions in winter.",
     "lilaPick": false,
-    "tags": ["beachfront", "snorkeling", "turtles", "south-shore", "renovated"]
+    "tags": ["japanese-inspired", "b-and-b", "secluded", "north-shore", "intimate", "5-acres", "gardens"]
   }
 ]

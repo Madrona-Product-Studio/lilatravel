@@ -46,38 +46,14 @@
       "booking": null
     },
     "seasonalNotes": "Year-round. Rainforest is most atmospheric in winter — mosses saturated, river running high.",
-    "lilaPick": false,
+    "lilaPick": true,
     "tags": ["rainforest", "mossy", "elk", "quiet", "immersive"]
-  },
-  {
-    "id": "sol-duc-campground",
-    "name": "Sol Duc Campground",
-    "type": "camping",
-    "stayStyle": "elemental",
-    "budgetTier": "mindful",
-    "priceRange": "$22–24/night",
-    "location": "Olympic National Park — Sol Duc Valley",
-    "groupFit": ["solo", "couple", "friends", "family"],
-    "highlights": [
-      "Forested campground adjacent to the hot springs resort",
-      "Hot springs are a short walk from your tent",
-      "One of the park's best campground-to-experience ratios"
-    ],
-    "amenities": ["restrooms", "drinking water", "fire rings", "picnic tables"],
-    "bookingWindow": "First-come-first-served; arrive early in peak season",
-    "links": {
-      "website": "https://www.nps.gov/olym/planyourvisit/campgrounds.htm",
-      "booking": null
-    },
-    "seasonalNotes": "Seasonal — Memorial Day through early October. Hot springs day use available.",
-    "lilaPick": false,
-    "tags": ["forested", "hot-springs-adjacent", "first-come"]
   },
   {
     "id": "quileute-oceanside-resort",
     "name": "Quileute Oceanside Resort",
     "type": "cabin",
-    "stayStyle": "elemental",
+    "stayStyle": "rooted",
     "budgetTier": "moderate",
     "priceRange": "$150–300/night",
     "location": "La Push — directly on First Beach",
@@ -95,14 +71,14 @@
       "booking": null
     },
     "seasonalNotes": "Year-round. Winter storms and summer beach walks are both worth it.",
-    "lilaPick": false,
+    "lilaPick": true,
     "tags": ["indigenous-owned", "beachfront", "sea-stacks", "first-beach", "quileute"]
   },
   {
     "id": "lake-crescent-lodge",
     "name": "Lake Crescent Lodge",
     "type": "lodge",
-    "stayStyle": "rooted",
+    "stayStyle": "premium",
     "budgetTier": "moderate",
     "priceRange": "$150–350/night",
     "location": "Olympic National Park — Lake Crescent",
@@ -150,31 +126,6 @@
     "tags": ["bluff-top", "ocean-view", "historic-landmark", "cabins", "restaurant"]
   },
   {
-    "id": "palace-hotel",
-    "name": "Palace Hotel",
-    "type": "hotel",
-    "stayStyle": "rooted",
-    "budgetTier": "moderate",
-    "priceRange": "$100–200/night",
-    "location": "Port Townsend (historic district)",
-    "groupFit": ["solo", "couple", "friends"],
-    "highlights": [
-      "Restored Victorian hotel in Port Townsend's historic district",
-      "Individually decorated rooms, original woodwork",
-      "Above a lively arts town",
-      "Good base for the park's eastern zones"
-    ],
-    "amenities": ["historic building", "walkable downtown"],
-    "bookingWindow": "Book 1–2 months ahead for summer",
-    "links": {
-      "website": null,
-      "booking": null
-    },
-    "seasonalNotes": "Year-round. Port Townsend's arts and music scene adds cultural depth to a park trip.",
-    "lilaPick": false,
-    "tags": ["victorian", "historic", "arts-town", "walkable", "budget-friendly"]
-  },
-  {
     "id": "domaine-madeleine",
     "name": "Domaine Madeleine",
     "type": "bed-and-breakfast",
@@ -201,28 +152,107 @@
     "tags": ["waterfront", "b-and-b", "french", "kayaks", "views-to-canada", "intimate"]
   },
   {
-    "id": "manresa-castle",
-    "name": "Manresa Castle",
-    "type": "hotel",
-    "stayStyle": "premium",
+    "id": "sol-duc-hot-springs-resort",
+    "name": "Sol Duc Hot Springs Resort",
+    "type": "resort",
+    "stayStyle": "rooted",
     "budgetTier": "moderate",
-    "priceRange": "$150–300/night",
-    "location": "Port Townsend",
-    "groupFit": ["couple", "friends"],
+    "priceRange": "$200–350/night",
+    "location": "12 miles into Olympic National Park on Sol Duc Road — no phone or internet service",
+    "groupFit": ["solo", "couple", "friends", "family"],
     "highlights": [
-      "Historic castle hotel above Port Townsend",
-      "Restored Victorian grandeur",
-      "Views of Puget Sound",
-      "Architecturally distinct park stay"
+      "32 rustic cabins steps from three naturally heated mineral spring pools (98–107°F) in old-growth forest",
+      "No phone service or internet by design — complete disconnection inside the park",
+      "Hot springs heated by volcanic gases from deep beneath the Olympic Peninsula",
+      "Springs Restaurant serving farm-to-fork Northwest cuisine — open breakfast, lunch, dinner",
+      "Hiking trails depart directly from the resort, including the short walk to Sol Duc Falls"
     ],
-    "amenities": ["restaurant", "bar", "historic building", "views"],
-    "bookingWindow": "Book 1–2 months ahead for summer",
+    "amenities": ["three mineral hot spring pools", "freshwater pool", "spa services", "on-site restaurant", "gift shop", "parking"],
+    "bookingWindow": "Book through olympicnationalparks.com. 4–8 weeks ahead for summer. Open late March to late October only.",
     "links": {
-      "website": null,
-      "booking": null
+      "website": "https://www.olympicnationalparks.com/lodging/sol-duc-hot-springs-resort/",
+      "booking": "https://www.olympicnationalparks.com/lodging/sol-duc-hot-springs-resort/"
     },
-    "seasonalNotes": "Year-round. The Victorian setting is a counterpoint to the wilderness.",
+    "seasonalNotes": "Open late March to late October only — closed in winter. No WiFi or cell service on property. Pool fee included in cabin rate.",
+    "lilaPick": true,
+    "tags": ["hot-springs", "inside-park", "no-wifi", "no-cell", "mineral-pools", "old-growth", "sol-duc-valley", "seasonal"]
+  },
+  {
+    "id": "lake-quinault-lodge",
+    "name": "Lake Quinault Lodge",
+    "type": "historic lodge",
+    "stayStyle": "rooted",
+    "budgetTier": "moderate",
+    "priceRange": "$170–320/night",
+    "location": "345 S Shore Rd, Quinault — inside Olympic National Forest, Quinault Rainforest",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "highlights": [
+      "Built in 1926; President Roosevelt lunched here in 1937 — believed to have influenced creation of Olympic National Park",
+      "No cell service or WiFi — set on the shore of a lake surrounded by temperate rainforest",
+      "Roosevelt Dining Room with panoramic lake views; indoor pool and sauna",
+      "Guided Quinault Rainforest tours and boat rentals depart from the lodge",
+      "On the National Register of Historic Places — one of the great park lodges of the American West"
+    ],
+    "amenities": ["indoor pool", "sauna", "on-site restaurant", "boat rentals", "game rooms", "gift shop", "parking"],
+    "bookingWindow": "Book through olympicnationalparks.com. 4–8 weeks ahead for summer. Open year-round.",
+    "links": {
+      "website": "https://www.olympicnationalparks.com/lake-quinault-lodge",
+      "booking": "https://www.olympicnationalparks.com/lake-quinault-lodge"
+    },
+    "seasonalNotes": "Open year-round. No cell service or WiFi on property. Roosevelt Dining Room closes periodically — check website before travel.",
+    "lilaPick": true,
+    "tags": ["historic-lodge", "1926", "lake-view", "roosevelt", "no-wifi", "quinault-rainforest", "national-register", "inside-forest"]
+  },
+  {
+    "id": "colettes-bed-breakfast",
+    "name": "Colette's Bed & Breakfast",
+    "type": "inn",
+    "stayStyle": "premium",
+    "budgetTier": "premium",
+    "priceRange": "$385–785/night",
+    "location": "339 Finn Hall Road, Port Angeles — 10-acre oceanfront estate above Strait of Juan de Fuca",
+    "groupFit": ["couple"],
+    "highlights": [
+      "Five suites on a 10-acre estate with 400 feet of ocean frontage facing British Columbia and the San Juan Islands",
+      "Gardens featured in Fine Gardening magazine — meticulously landscaped with winding paths and cedar groves",
+      "Multi-course gourmet Pacific Northwest breakfast included each morning",
+      "Every suite has a fireplace, two-person Jacuzzi spa, and private entrance from the gardens",
+      "Electric bike rentals on-site for Olympic Discovery Trail — trailhead less than one mile away"
+    ],
+    "amenities": ["gourmet breakfast included", "fireplace suites", "two-person jacuzzi", "garden access", "electric bikes", "wifi", "parking"],
+    "bookingWindow": "Book 4–8 weeks ahead. Adults-only (16+). Two-person maximum per room. Check-in 4–7 PM only.",
+    "links": {
+      "website": "https://colettes.com/",
+      "booking": "https://colettes.com/"
+    },
+    "seasonalNotes": "Open year-round. Adults-only — no children under 16. Gourmet breakfast changes daily. Summer lavender season in Sequim pairs well with a stay here.",
     "lilaPick": false,
-    "tags": ["castle", "victorian", "historic", "puget-sound-views"]
+    "tags": ["oceanfront", "10-acres", "gardens", "five-suites", "adults-only", "gourmet-breakfast", "strait-views", "electric-bikes"]
+  },
+  {
+    "id": "hoh-valley-cabins",
+    "name": "Hoh Valley Cabins",
+    "type": "cabin",
+    "stayStyle": "elemental",
+    "budgetTier": "mindful",
+    "priceRange": "$120–180/night",
+    "location": "5843 Upper Hoh Road, Forks — heart of the Hoh Rainforest, minutes from the park entrance",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "highlights": [
+      "Four modern northwest contemporary cabins in a forested meadow — elk are regular visitors at dawn",
+      "Private hiking trail on the property leads directly into the rainforest",
+      "The best base for reaching the Hoh early and beating the crowds",
+      "Family-owned by descendants of area pioneers; no pretension, genuine place",
+      "EV charging on-site; cedar deck with propane grill; full kitchenette"
+    ],
+    "amenities": ["kitchenette", "propane fireplace", "cedar deck", "BBQ grill", "private hiking trail", "EV charging", "parking"],
+    "bookingWindow": "Book through hohvalleycabins.com. 2–4 weeks ahead for summer. Often available midweek.",
+    "links": {
+      "website": "https://www.hohvalleycabins.com",
+      "booking": "https://www.hohvalleycabins.com"
+    },
+    "seasonalNotes": "Open year-round. No WiFi on property. Cell service limited to Verizon. Elk most visible at dawn in fall and winter.",
+    "lilaPick": false,
+    "tags": ["hoh-rainforest", "elk", "pioneer-family", "private-trail", "early-access", "modern-cabin", "ev-charging", "kitchenette"]
   }
 ]

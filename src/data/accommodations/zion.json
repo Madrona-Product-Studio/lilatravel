@@ -25,54 +25,6 @@
     "tags": ["inside-park", "riverside", "stargazing", "reservations-required", "immersive"]
   },
   {
-    "id": "south-campground",
-    "name": "South Campground",
-    "type": "camping",
-    "stayStyle": "elemental",
-    "budgetTier": "mindful",
-    "priceRange": "$20–30/night",
-    "location": "Inside Zion National Park, near Visitor Center",
-    "groupFit": ["solo", "couple", "friends"],
-    "highlights": [
-      "Walk-in, first-come-first-served — no reservations",
-      "Smaller and quieter than Watchman",
-      "More solitude-oriented"
-    ],
-    "amenities": ["restrooms", "drinking water", "fire rings", "picnic tables"],
-    "bookingWindow": "No reservations — first-come-first-served. Arrive early (before noon) in peak season.",
-    "links": {
-      "website": "https://www.nps.gov/zion/planyourvisit/campgrounds.htm",
-      "booking": null
-    },
-    "seasonalNotes": "Year-round. Same winter/summer considerations as Watchman. Fills early in spring/fall.",
-    "lilaPick": false,
-    "tags": ["inside-park", "first-come", "quiet", "solitude", "no-reservations"]
-  },
-  {
-    "id": "zion-canyon-campground",
-    "name": "Zion Canyon Campground & RV Resort",
-    "type": "camping",
-    "stayStyle": "elemental",
-    "budgetTier": "mindful",
-    "priceRange": "$30–55/night",
-    "location": "Springdale, just outside park entrance",
-    "groupFit": ["solo", "couple", "friends", "family"],
-    "highlights": [
-      "Private campground with full amenities",
-      "Steps from the park entrance",
-      "Good fallback when NPS campgrounds are full"
-    ],
-    "amenities": ["showers", "laundry", "camp store", "wifi", "restrooms", "electric hookups"],
-    "bookingWindow": "Reservations recommended in peak season. Walk-ins sometimes available.",
-    "links": {
-      "website": null,
-      "booking": null
-    },
-    "seasonalNotes": "Year-round. More comfortable than NPS campgrounds due to showers and amenities.",
-    "lilaPick": false,
-    "tags": ["springdale", "private-campground", "full-amenities", "rv-friendly", "fallback"]
-  },
-  {
     "id": "cable-mountain-lodge",
     "name": "Cable Mountain Lodge",
     "type": "lodge",
@@ -101,7 +53,7 @@
     "id": "cliffrose-lodge",
     "name": "Cliffrose Springdale",
     "type": "boutique",
-    "stayStyle": "rooted",
+    "stayStyle": "premium",
     "budgetTier": "moderate",
     "priceRange": "$200–350/night",
     "location": "Springdale, riverside — five acres of gardens on the Virgin River",
@@ -122,55 +74,6 @@
     "seasonalNotes": "Year-round. The riverside grounds are magical in fall (cottonwood color) and spring (wildflowers).",
     "lilaPick": true,
     "tags": ["springdale", "riverside", "yoga-friendly", "beautiful-grounds", "boutique-feel", "spa", "restaurant"]
-  },
-  {
-    "id": "desert-pearl-inn",
-    "name": "Desert Pearl Inn",
-    "type": "inn",
-    "stayStyle": "rooted",
-    "budgetTier": "moderate",
-    "priceRange": "$150–280/night",
-    "location": "Springdale, riverside",
-    "groupFit": ["solo", "couple", "friends", "family"],
-    "highlights": [
-      "Family-owned 20+ years",
-      "Built with reclaimed Douglas fir from a century-old railroad trestle",
-      "Rated #1 in Springdale on TripAdvisor",
-      "Kitchenettes in every room"
-    ],
-    "amenities": ["kitchenette", "pool", "hot tub", "riverside", "wifi", "parking"],
-    "bookingWindow": "2–3 months ahead for peak season.",
-    "links": {
-      "website": "https://www.desertpearl.com/",
-      "booking": null
-    },
-    "seasonalNotes": "Year-round. Loyal following — books earlier than you'd expect.",
-    "lilaPick": false,
-    "tags": ["springdale", "family-owned", "riverside", "kitchenette", "reclaimed-wood"]
-  },
-  {
-    "id": "driftwood-lodge",
-    "name": "Driftwood Lodge",
-    "type": "lodge",
-    "stayStyle": "rooted",
-    "budgetTier": "moderate",
-    "priceRange": "$130–220/night",
-    "location": "Springdale, central location",
-    "groupFit": ["solo", "couple", "friends", "family"],
-    "highlights": [
-      "Clean, well-located, reliable",
-      "Home to King's Landing Bistro (upscale dinner on-site)",
-      "Solid no-surprises option"
-    ],
-    "amenities": ["on-site restaurant", "pool", "wifi", "parking", "shuttle access"],
-    "bookingWindow": "1–2 months ahead for peak season. Easier to book than Cliffrose.",
-    "links": {
-      "website": "https://www.driftwoodlodge.net/",
-      "booking": null
-    },
-    "seasonalNotes": "Year-round. King's Landing Bistro may have reduced winter hours.",
-    "lilaPick": false,
-    "tags": ["springdale", "on-site-dining", "reliable", "central-location"]
   },
   {
     "id": "flanigans-resort",
@@ -201,7 +104,7 @@
     "id": "under-canvas-zion",
     "name": "Under Canvas Zion",
     "type": "glamping",
-    "stayStyle": "premium",
+    "stayStyle": "elemental",
     "budgetTier": "premium",
     "priceRange": "$300–600/night",
     "location": "Virgin, UT — 196 acres, ~30 min drive from park",
@@ -222,30 +125,6 @@
     "seasonalNotes": "Seasonal: typically March–November. Closed in winter. No AC — fans only in summer (can be hot June–Aug).",
     "lilaPick": true,
     "tags": ["glamping", "dark-sky", "stargazing", "immersive", "desert", "seasonal", "signature-stay"]
-  },
-  {
-    "id": "autocamp-zion",
-    "name": "AutoCamp Zion",
-    "type": "glamping",
-    "stayStyle": "elemental",
-    "budgetTier": "moderate",
-    "priceRange": "$200–400/night",
-    "location": "Virgin, UT",
-    "groupFit": ["solo", "couple", "friends"],
-    "highlights": [
-      "Climate-controlled Airstream suites with midcentury design",
-      "Retro charm, modern comfort",
-      "Hilton Honors points eligible"
-    ],
-    "amenities": ["climate control", "private bathroom", "fire pit", "pool", "general store"],
-    "bookingWindow": "2–3 months ahead for peak season.",
-    "links": {
-      "website": "https://autocamp.com/zion/",
-      "booking": null
-    },
-    "seasonalNotes": "Year-round. Climate-controlled units mean year-round comfort — an advantage over tent glamping.",
-    "lilaPick": true,
-    "tags": ["airstreams", "climate-controlled", "hilton-points", "midcentury", "design"]
   },
   {
     "id": "open-sky-zion",
@@ -269,14 +148,14 @@
       "booking": null
     },
     "seasonalNotes": "Year-round. The wellness programming is a genuine differentiator — not an add-on.",
-    "lilaPick": false,
+    "lilaPick": true,
     "tags": ["luxury-glamping", "farm-to-table", "wellness", "immersive", "private"]
   },
   {
     "id": "zion-lodge",
     "name": "Zion Lodge",
     "type": "lodge",
-    "stayStyle": "premium",
+    "stayStyle": "rooted",
     "budgetTier": "premium",
     "priceRange": "$250–400/night",
     "location": "Inside Zion National Park — the only in-park lodge",
@@ -294,39 +173,14 @@
       "booking": null
     },
     "seasonalNotes": "Year-round. Winter is quieter and easier to book. Summer sells out far in advance.",
-    "lilaPick": false,
+    "lilaPick": true,
     "tags": ["inside-park", "historic", "only-in-park-lodge", "book-early", "iconic"]
-  },
-  {
-    "id": "inn-at-entrada",
-    "name": "The Inn at Entrada",
-    "type": "resort",
-    "stayStyle": "premium",
-    "budgetTier": "premium",
-    "priceRange": "$300–600/night",
-    "location": "St. George, UT — near Snow Canyon State Park",
-    "groupFit": ["couple", "friends"],
-    "highlights": [
-      "Luxury casitas near Snow Canyon",
-      "Red rock panoramas, championship golf",
-      "Full-service spa",
-      "40 minutes from Zion — a different landscape"
-    ],
-    "amenities": ["spa", "golf", "pool", "restaurant", "fitness center"],
-    "bookingWindow": "2–3 months ahead for peak season.",
-    "links": {
-      "website": "https://www.innatentrada.com/",
-      "booking": null
-    },
-    "seasonalNotes": "Year-round. Warmer than Springdale in winter — a good base for Snow Canyon + Zion.",
-    "lilaPick": false,
-    "tags": ["casitas", "golf", "spa", "red-rock", "snow-canyon"]
   },
   {
     "id": "amangiri",
     "name": "Amangiri",
     "type": "resort",
-    "stayStyle": "luxury",
+    "stayStyle": "premium",
     "budgetTier": "luxury",
     "priceRange": "$2,000–5,000/night",
     "location": "Canyon Point, UT — 90 minutes from Zion",
@@ -372,14 +226,14 @@
     },
     "seasonalNotes": "Seasonal — typically April through October. The most atmospheric stay in the Bryce corridor.",
     "corridor": true,
-    "lilaPick": true,
+    "lilaPick": false,
     "tags": ["inside-park", "historic-lodge", "cabins", "rim-access", "no-tv", "bryce-canyon"]
   },
   {
     "id": "clear-sky-resorts",
     "name": "Clear Sky Resorts",
     "type": "glamping",
-    "stayStyle": "premium",
+    "stayStyle": "elemental",
     "budgetTier": "premium",
     "priceRange": "$250–500/night",
     "location": "Cannonville, UT — Scenic Byway 12, 15 min from Bryce Canyon",
@@ -402,36 +256,10 @@
     "tags": ["dark-sky", "geodesic-domes", "stargazing", "byway-12", "astrotourism", "bryce-canyon"]
   },
   {
-    "id": "stone-canyon-inn",
-    "name": "Stone Canyon Inn",
-    "type": "inn",
-    "stayStyle": "rooted",
-    "budgetTier": "moderate",
-    "priceRange": "$150–280/night",
-    "location": "Tropic, UT — 6 miles from Bryce Canyon",
-    "groupFit": ["couple", "friends"],
-    "highlights": [
-      "Boutique lodge with sweeping canyon views from every cottage",
-      "Award-winning service",
-      "No two rooms alike",
-      "A quiet, beautifully situated base"
-    ],
-    "amenities": ["breakfast included", "cottages", "canyon views", "wifi"],
-    "bookingWindow": "2–3 months ahead for peak season.",
-    "links": {
-      "website": "https://www.stonecanyoninn.com/",
-      "booking": null
-    },
-    "seasonalNotes": "Year-round. Quieter and more personal than anything in Springdale.",
-    "corridor": true,
-    "lilaPick": false,
-    "tags": ["boutique", "canyon-views", "cottages", "tropic", "bryce-canyon"]
-  },
-  {
     "id": "capitol-reef-resort",
     "name": "Capitol Reef Resort",
     "type": "resort",
-    "stayStyle": "premium",
+    "stayStyle": "rooted",
     "budgetTier": "premium",
     "priceRange": "$200–450/night",
     "location": "Torrey, UT — 1 mile from Capitol Reef National Park",
@@ -450,14 +278,14 @@
     },
     "seasonalNotes": "Year-round. The teepees and wagons are seasonal — check availability.",
     "corridor": true,
-    "lilaPick": true,
+    "lilaPick": false,
     "tags": ["luxury-cabins", "teepees", "wagons", "pool", "llama-hikes", "capitol-reef"]
   },
   {
     "id": "skyview-hotel",
     "name": "Skyview Hotel",
     "type": "hotel",
-    "stayStyle": "rooted",
+    "stayStyle": "elemental",
     "budgetTier": "moderate",
     "priceRange": "$150–280/night",
     "location": "Torrey, UT — first Dark Sky designated community in Utah",
@@ -476,7 +304,7 @@
     },
     "seasonalNotes": "Year-round. The dark sky designation is real — exceptional stargazing.",
     "corridor": true,
-    "lilaPick": false,
+    "lilaPick": true,
     "tags": ["dark-sky", "glamping-domes", "boutique", "minimalist", "rooftop-stargazing", "capitol-reef"]
   }
 ]

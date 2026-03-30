@@ -48,7 +48,7 @@
       "booking": "https://www.recreation.gov/"
     },
     "seasonalNotes": "Year-round. 30 miles south of Pfeiffer — the southern Big Sur corridor.",
-    "lilaPick": false,
+    "lilaPick": true,
     "tags": ["clifftop", "ocean-view", "stargazing", "primitive", "bortle-2"]
   },
   {
@@ -80,7 +80,7 @@
     "id": "treebones-resort",
     "name": "Treebones Resort",
     "type": "glamping",
-    "stayStyle": "elemental",
+    "stayStyle": "rooted",
     "budgetTier": "moderate",
     "priceRange": "$250–500/night",
     "location": "Big Sur — Southern corridor (coastal ridge)",
@@ -98,14 +98,14 @@
       "booking": null
     },
     "seasonalNotes": "Year-round. The Human Nest is a singular experience — book early.",
-    "lilaPick": false,
+    "lilaPick": true,
     "tags": ["yurts", "ocean-view", "pool", "human-nest", "unique"]
   },
   {
     "id": "glen-oaks-big-sur",
     "name": "Glen Oaks Big Sur",
     "type": "cabin",
-    "stayStyle": "elemental",
+    "stayStyle": "rooted",
     "budgetTier": "premium",
     "priceRange": "$300–600/night",
     "location": "Big Sur — Highway 1 (redwoods, riverside)",
@@ -154,31 +154,6 @@
     "tags": ["inside-park", "budget", "hikers", "trailhead-access"]
   },
   {
-    "id": "fernwood-resort",
-    "name": "Fernwood Resort",
-    "type": "lodge",
-    "stayStyle": "rooted",
-    "budgetTier": "mindful",
-    "priceRange": "$100–250/night (motel/cabin); $50–75/night (camping)",
-    "location": "Big Sur — Highway 1",
-    "groupFit": ["solo", "couple", "friends"],
-    "highlights": [
-      "Full-service community hub of Big Sur",
-      "Motel rooms, cabins, glamping tents, campground",
-      "Fernwood Tavern and general store on-site",
-      "The most social place to stay on the coast"
-    ],
-    "amenities": ["bar", "general store", "live music", "campground", "cabins"],
-    "bookingWindow": "Book 2–3 months ahead for peak season",
-    "links": {
-      "website": "https://www.fernwoodbigsur.com/",
-      "booking": null
-    },
-    "seasonalNotes": "Year-round. Nothing exceptional individually, but the sum is more than its parts.",
-    "lilaPick": false,
-    "tags": ["motel", "cabins", "camping", "community", "tavern", "social"]
-  },
-  {
     "id": "asilomar",
     "name": "Asilomar State Beach & Conference Grounds",
     "type": "lodge",
@@ -206,61 +181,10 @@
     "tags": ["historic", "julia-morgan", "beachfront", "state-park", "no-tv", "underrated"]
   },
   {
-    "id": "lauberge-carmel",
-    "name": "L'Auberge Carmel",
-    "type": "inn",
-    "stayStyle": "rooted",
-    "budgetTier": "premium",
-    "priceRange": "$500–900/night",
-    "location": "Carmel-by-the-Sea (village center)",
-    "groupFit": ["couple"],
-    "highlights": [
-      "Relais & Châteaux property in a 1929 building",
-      "20 rooms with antique furnishings and fireplaces",
-      "Aubergine restaurant (one Michelin star) downstairs",
-      "The right base for exploring Carmel and Big Sur"
-    ],
-    "amenities": ["restaurant", "fireplace", "concierge"],
-    "bookingWindow": "Book 2–4 months ahead for peak season",
-    "links": {
-      "website": "https://www.laubergecarmel.com/",
-      "booking": null
-    },
-    "seasonalNotes": "Year-round. Intimate and refined — 20 rooms total.",
-    "lilaPick": false,
-    "tags": ["relais-chateaux", "michelin", "historic", "village-center", "intimate"]
-  },
-  {
-    "id": "bernardus-lodge",
-    "name": "Bernardus Lodge & Spa",
-    "type": "resort",
-    "stayStyle": "rooted",
-    "budgetTier": "premium",
-    "priceRange": "$400–800/night",
-    "location": "Carmel Valley (15 miles inland)",
-    "groupFit": ["couple", "friends"],
-    "highlights": [
-      "Vineyard estate in Carmel Valley wine country",
-      "Full-service spa, heated pool, croquet lawns",
-      "Lucia restaurant built around estate wine and local produce",
-      "Warm, dry, sun-drenched when the coastal fog is thick",
-      "Big Sur and Carmel a 20-minute drive away"
-    ],
-    "amenities": ["spa", "pool", "restaurant", "wine tasting", "croquet", "garden"],
-    "bookingWindow": "Book 2–4 months ahead for peak season",
-    "links": {
-      "website": "https://www.bernarduslodge.com/",
-      "booking": null
-    },
-    "seasonalNotes": "Year-round. The counterpoint to the coast — warm when the fog rolls in.",
-    "lilaPick": false,
-    "tags": ["vineyard", "wine-country", "spa", "pool", "inland"]
-  },
-  {
     "id": "post-ranch-inn",
     "name": "Post Ranch Inn",
     "type": "resort",
-    "stayStyle": "luxury",
+    "stayStyle": "premium",
     "budgetTier": "luxury",
     "priceRange": "$1,200–3,500/night",
     "location": "Big Sur — Highway 1 (cliffside)",
@@ -287,7 +211,7 @@
     "id": "alila-ventana-big-sur",
     "name": "Alila Ventana Big Sur",
     "type": "resort",
-    "stayStyle": "luxury",
+    "stayStyle": "premium",
     "budgetTier": "luxury",
     "priceRange": "$1,000–2,500/night",
     "location": "Big Sur — Redwood canyon above the Pacific",
@@ -306,32 +230,7 @@
       "booking": null
     },
     "seasonalNotes": "Year-round. All-inclusive means no surprise costs — everything is in the rate.",
-    "lilaPick": false,
-    "tags": ["all-inclusive", "adults-only", "spa", "japanese-baths", "redwood-canyon"]
-  },
-  {
-    "id": "hyatt-carmel-highlands",
-    "name": "Hyatt Carmel Highlands",
-    "type": "hotel",
-    "stayStyle": "premium",
-    "budgetTier": "premium",
-    "priceRange": "$400–800/night",
-    "location": "Carmel Highlands (10 miles south of Carmel)",
-    "groupFit": ["couple", "friends"],
-    "highlights": [
-      "Cliffside above Big Sur and Carmel",
-      "Panoramic ocean views, fireplaces in most rooms",
-      "Infinity pool",
-      "Less stratospheric price than Post Ranch with similar view quality"
-    ],
-    "amenities": ["infinity pool", "fireplace", "restaurant", "ocean views"],
-    "bookingWindow": "Book 2–3 months ahead for peak season",
-    "links": {
-      "website": "https://www.hyatt.com/",
-      "booking": null
-    },
-    "seasonalNotes": "Year-round. Strong base for exploring both Carmel and Big Sur corridor.",
     "lilaPick": true,
-    "tags": ["ocean-view", "cliffside", "infinity-pool", "fireplace"]
+    "tags": ["all-inclusive", "adults-only", "spa", "japanese-baths", "redwood-canyon"]
   }
 ]

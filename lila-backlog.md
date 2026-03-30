@@ -1,6 +1,6 @@
 # Lila Trips — Product Backlog
 
-_Last updated: March 29, 2026. Living document — update as items are completed or added._
+_Last updated: March 30, 2026. Living document — update as items are completed or added._
 
 ---
 
@@ -131,6 +131,7 @@ _Last updated: March 29, 2026. Living document — update as items are completed
 - [x] CSS sticky nav + mobile TOC across all 6 guides
 - [x] WhisperBar CTA deep-linking to trip planner
 - [x] Ambient breath animation on guide pages (CSS backgroundImage approach, mobile Safari fixed)
+- [x] **Accommodation audit** (Mar 30) — all six destination guides updated with revised picks, tier assignments (elemental/rooted/premium), new properties (Reset Hotel, Hotel Wren, JT Retreat Center Bungalows, Hanalei Bay Resort, The Palmwood, Tin Wis Resort, Ocean Village Resort, Crystal Cove, Sol Duc Hot Springs Resort, Lake Quinault Lodge, Colette's B&B, Hoh Valley Cabins), and verified links
 
 ### Practices & Wisdom
 - [x] Updated quotes for Kirtan, Threshold Ceremony, Talking Circle

@@ -46,14 +46,14 @@
       "booking": null
     },
     "seasonalNotes": "Year-round. One of the most distinctive and purposeful stays on the coast.",
-    "lilaPick": false,
+    "lilaPick": true,
     "tags": ["indigenous-owned", "yurts", "old-growth", "beachfront", "first-nation"]
   },
   {
     "id": "clayoquot-wilderness-resort",
     "name": "Clayoquot Wilderness Resort",
     "type": "glamping",
-    "stayStyle": "luxury",
+    "stayStyle": "premium",
     "budgetTier": "luxury",
     "priceRange": "$2,000–5,000 CAD/night (all-inclusive)",
     "location": "Bedwell River, Clayoquot Sound — fly-in/boat-in only",
@@ -72,14 +72,14 @@
       "booking": null
     },
     "seasonalNotes": "Seasonal — typically May through September. The most remote stay in the region.",
-    "lilaPick": false,
+    "lilaPick": true,
     "tags": ["fly-in", "all-inclusive", "safari-tents", "wilderness", "indigenous-cultural"]
   },
   {
     "id": "pacific-sands",
     "name": "Pacific Sands Beach Resort",
     "type": "resort",
-    "stayStyle": "rooted",
+    "stayStyle": "elemental",
     "budgetTier": "moderate",
     "priceRange": "$200–500 CAD/night",
     "location": "Tofino — Cox Bay (directly on surf break)",
@@ -154,7 +154,7 @@
     "id": "wickaninnish-inn",
     "name": "Wickaninnish Inn",
     "type": "resort",
-    "stayStyle": "luxury",
+    "stayStyle": "premium",
     "budgetTier": "luxury",
     "priceRange": "$500–1,500 CAD/night",
     "location": "Tofino — Chesterman Beach",
@@ -176,5 +176,83 @@
     "seasonalNotes": "Year-round. Storm watching season (Nov–Mar) is as compelling as summer — book the storm packages.",
     "lilaPick": true,
     "tags": ["world-class", "storm-watching", "spa", "beachfront", "floor-to-ceiling-windows"]
+  },
+  {
+    "id": "tin-wis-resort",
+    "name": "Tin Wis Resort",
+    "type": "resort",
+    "stayStyle": "rooted",
+    "budgetTier": "moderate",
+    "priceRange": "$180–320/night",
+    "location": "1119 Pacific Rim Hwy, Tofino — on tinwis (MacKenzie) Beach, 3km from Tofino",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "highlights": [
+      "Owned and operated by the Tla-o-qui-aht First Nation on ancestral village land occupied for tens of thousands of years",
+      "Every room faces the ocean — tinwis means 'calm waters' in Tla-o-qui-aht language",
+      "Hosts naaʔuu: a cultural feast series with traditional food, art, song, and dance — proceeds fund language revitalization",
+      "Connected to Tla-o-qui-aht Tribal Parks; aligned with ʔiisaak pledge for respectful stewardship",
+      "Petitioning to restore the original Indigenous name tinwis to MacKenzie Beach"
+    ],
+    "amenities": ["ocean-view rooms", "hot tub", "on-site restaurant", "breakfast included", "surf rentals", "wifi", "parking"],
+    "bookingWindow": "Book 3–6 weeks ahead for peak summer and storm-watching season (Nov–Jan).",
+    "links": {
+      "website": "https://tinwis.ca/",
+      "booking": "https://tinwis.ca/accomodations/"
+    },
+    "seasonalNotes": "Open year-round. Storm-watching season Nov–Jan is special. Summer surf season brings higher rates. naaʔuu cultural events run periodically — check the website.",
+    "lilaPick": false,
+    "tags": ["first-nations-owned", "tla-o-qui-aht", "cultural-programming", "beachfront", "ocean-view", "language-revitalization", "tribal-parks"]
+  },
+  {
+    "id": "ocean-village-resort",
+    "name": "Ocean Village Resort",
+    "type": "cabin resort",
+    "stayStyle": "rooted",
+    "budgetTier": "moderate",
+    "priceRange": "$150–280/night",
+    "location": "MacKenzie Beach, Tofino — 5 min from town",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "highlights": [
+      "Original Tofino resort — cedar cabins built in 1976 using timber from the property",
+      "Admired for their distinctive 'beehive' design and direct beachfront location",
+      "Campfire on the beach steps from your cabin; indoor heated pool (only one in Tofino)",
+      "Full kitchens in every unit — designed for settling in and staying a while",
+      "Pet-friendly; family-oriented; the antidote to the resort experience"
+    ],
+    "amenities": ["indoor heated pool", "hot tub", "full kitchens", "beach access", "BBQ", "laundry", "wifi", "parking"],
+    "bookingWindow": "Book 4–8 weeks ahead for summer and fall. Winter rates drop significantly.",
+    "links": {
+      "website": "https://oceanvillageresort.com/",
+      "booking": "https://oceanvillageresort.com/book-online/"
+    },
+    "seasonalNotes": "Open year-round. Summer is peak; winter is storm-watching season. Beach fires are permitted with required fire appliances.",
+    "lilaPick": true,
+    "tags": ["original-tofino", "1976", "cedar-cabins", "beachfront", "beehive-design", "pet-friendly", "full-kitchen", "indoor-pool"]
+  },
+  {
+    "id": "crystal-cove-beach-resort",
+    "name": "Crystal Cove Beach Resort",
+    "type": "cabin resort",
+    "stayStyle": "elemental",
+    "budgetTier": "moderate",
+    "priceRange": "$180–380/night",
+    "location": "MacKenzie Beach, Tofino — 3km from Tofino centre",
+    "groupFit": ["couple", "friends", "family"],
+    "highlights": [
+      "34 modern log cabins set among ancient cedars at the edge of the Pacific",
+      "From beachfront cabins with private hot tubs to rainforest cottages with cedar barrel saunas",
+      "Highest-rated accommodation on MacKenzie Beach; #1 Hotel in Canada for Families (TripAdvisor)",
+      "Acknowledges traditional and unceded territory of the Tla-o-qui-aht First Nation",
+      "The full spectrum of Tofino — beach, forest, surf, and stillness all within the property"
+    ],
+    "amenities": ["private hot tubs (select cabins)", "cedar barrel saunas", "fire pits", "full kitchens", "BBQ", "adventure playground", "wifi", "parking"],
+    "bookingWindow": "Book 6–10 weeks ahead for summer. Storm-watching winter weekends also fill early.",
+    "links": {
+      "website": "https://www.crystalcove.ca/",
+      "booking": "https://www.crystalcove.ca/tofino-reservations/"
+    },
+    "seasonalNotes": "Open year-round. Beachfront cabins with hot tubs book earliest. Cedar barrel sauna cabins available year-round. Glamping trailers and RV sites also available.",
+    "lilaPick": false,
+    "tags": ["log-cabins", "cedar-barrel-sauna", "private-hot-tubs", "beachfront", "rainforest", "family-friendly", "mackenzie-beach"]
   }
 ]
