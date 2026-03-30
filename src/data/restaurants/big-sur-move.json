@@ -1,0 +1,402 @@
+[
+  {
+    "id": "mcway-falls",
+    "name": "McWay Falls Overlook Trail",
+    "type": "hike",
+    "subtype": "trail",
+    "moveTier": "hike",
+    "location": "Big Sur",
+    "difficulty": "easy",
+    "duration": null,
+    "distance": "0.5 miles round trip",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "active",
+    "highlights": [
+      "80-foot waterfall onto a protected cove beach. Wheelchair-accessible."
+    ],
+    "links": {
+      "website": "https://www.parks.ca.gov/JuliaPfeifferBurns",
+      "booking": null
+    },
+    "lilaPick": false,
+    "tags": ["waterfall", "wheelchair-accessible", "cove", "easy"],
+    "months": "all"
+  },
+  {
+    "id": "partington-cove",
+    "name": "Partington Cove Trail",
+    "type": "hike",
+    "subtype": "trail",
+    "moveTier": "hike",
+    "location": "Big Sur",
+    "difficulty": "moderate",
+    "duration": null,
+    "distance": "1.1 miles round trip",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "active",
+    "highlights": [
+      "Hidden rocky cove through a hand-carved tunnel in the cliffside."
+    ],
+    "links": {
+      "website": "https://www.parks.ca.gov/JuliaPfeifferBurns",
+      "booking": null
+    },
+    "lilaPick": false,
+    "tags": ["cove", "tunnel", "hidden", "moderate"],
+    "months": "all"
+  },
+  {
+    "id": "pfeiffer-falls",
+    "name": "Pfeiffer Falls & Valley View Trail",
+    "type": "hike",
+    "subtype": "trail",
+    "moveTier": "hike",
+    "location": "Big Sur",
+    "difficulty": "moderate",
+    "duration": null,
+    "distance": "2 miles round trip",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "active",
+    "highlights": [
+      "The definitive redwood hike in Big Sur. 60-foot waterfall, valley viewpoint."
+    ],
+    "links": {
+      "website": "https://www.parks.ca.gov/PfeifferBigSur",
+      "booking": null
+    },
+    "lilaPick": false,
+    "tags": ["redwood", "waterfall", "valley-view", "moderate"],
+    "months": "all"
+  },
+  {
+    "id": "soberanes-point",
+    "name": "Soberanes Point & Whale Peak",
+    "type": "hike",
+    "subtype": "trail",
+    "moveTier": "hike",
+    "location": "Big Sur",
+    "difficulty": "easy",
+    "duration": null,
+    "distance": "1.8 miles loop",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "active",
+    "highlights": [
+      "Coastal bluff loop with sweeping Pacific views. Sea otters, seals, migrating whales."
+    ],
+    "links": {
+      "website": "https://www.parks.ca.gov/GarrapataSP",
+      "booking": null
+    },
+    "lilaPick": false,
+    "tags": ["coastal", "bluff", "wildlife", "whales", "easy"],
+    "months": "all"
+  },
+  {
+    "id": "creamery-meadow-loop",
+    "name": "Creamery Meadow / Bluffs / Panorama Loop",
+    "type": "hike",
+    "subtype": "trail",
+    "moveTier": "hike",
+    "location": "Big Sur",
+    "difficulty": "strenuous",
+    "duration": null,
+    "distance": "8 miles loop",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "active",
+    "highlights": [
+      "Most complete single-day experience in Big Sur. Meadows, bluffs, redwood canyons, remote beach."
+    ],
+    "links": {
+      "website": "https://www.parks.ca.gov/AndrewMolera",
+      "booking": null
+    },
+    "lilaPick": false,
+    "tags": ["loop", "meadow", "bluffs", "redwood", "beach", "strenuous"],
+    "months": "all"
+  },
+  {
+    "id": "tanbark-tin-house",
+    "name": "Tanbark Trail & Tin House Loop",
+    "type": "hike",
+    "subtype": "trail",
+    "moveTier": "hike",
+    "location": "Big Sur",
+    "difficulty": "strenuous",
+    "duration": null,
+    "distance": "6.4 miles loop",
+    "elevationGain": "2,000 ft",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "active",
+    "highlights": [
+      "Hardest and most rewarding hike. 360-degree views from ruins of the Tin House."
+    ],
+    "links": {
+      "website": "https://www.parks.ca.gov/JuliaPfeifferBurns",
+      "booking": null
+    },
+    "lilaPick": true,
+    "tags": ["strenuous", "tin-house", "panorama", "ruins", "challenging"],
+    "months": "all"
+  },
+  {
+    "id": "buzzards-roost",
+    "name": "Buzzard's Roost Trail",
+    "type": "hike",
+    "subtype": "trail",
+    "moveTier": "hike",
+    "location": "Big Sur",
+    "difficulty": "moderate",
+    "duration": null,
+    "distance": "2.6 miles",
+    "elevationGain": "700 ft",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "active",
+    "highlights": [
+      "Local favorite for sunset. Ridge viewpoint overlooking the Pacific."
+    ],
+    "links": {
+      "website": "https://www.parks.ca.gov/PfeifferBigSur",
+      "booking": null
+    },
+    "lilaPick": false,
+    "tags": ["sunset", "ridge", "pacific-view", "moderate"],
+    "months": "all"
+  },
+  {
+    "id": "cypress-grove-trail",
+    "name": "Cypress Grove Trail (Point Lobos)",
+    "type": "hike",
+    "subtype": "trail",
+    "moveTier": "hike",
+    "location": "Point Lobos State Natural Reserve",
+    "difficulty": "easy",
+    "duration": null,
+    "distance": "0.8 miles loop",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "active",
+    "highlights": [
+      "One of only two remaining native Monterey cypress forests on Earth."
+    ],
+    "links": {
+      "website": "https://www.parks.ca.gov/pointlobos",
+      "booking": null
+    },
+    "lilaPick": false,
+    "tags": ["monterey-cypress", "point-lobos", "rare", "easy"],
+    "months": "all"
+  },
+  {
+    "id": "bird-island-trail",
+    "name": "Bird Island Trail / China Cove (Point Lobos)",
+    "type": "hike",
+    "subtype": "trail",
+    "moveTier": "hike",
+    "location": "Point Lobos State Natural Reserve",
+    "difficulty": "easy",
+    "duration": null,
+    "distance": "0.8 miles round trip",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "active",
+    "highlights": [
+      "Most photographed spot in Point Lobos. Deep emerald bowl framed by white cliffs."
+    ],
+    "links": {
+      "website": "https://www.parks.ca.gov/pointlobos",
+      "booking": null
+    },
+    "lilaPick": false,
+    "tags": ["china-cove", "point-lobos", "photography", "easy"],
+    "months": "all"
+  },
+  {
+    "id": "south-shore-trail",
+    "name": "South Shore Trail (Point Lobos)",
+    "type": "hike",
+    "subtype": "trail",
+    "moveTier": "hike",
+    "location": "Point Lobos State Natural Reserve",
+    "difficulty": "moderate",
+    "duration": null,
+    "distance": "2.6 miles round trip",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "active",
+    "highlights": [
+      "Longer coastal route. Hidden Beach and Weston Beach tide pools."
+    ],
+    "links": {
+      "website": "https://www.parks.ca.gov/pointlobos",
+      "booking": null
+    },
+    "lilaPick": false,
+    "tags": ["coastal", "tide-pools", "point-lobos", "moderate"],
+    "months": "all"
+  },
+  {
+    "id": "kayaking-monterey-bay",
+    "name": "Kayaking Monterey Bay",
+    "type": "water",
+    "subtype": "kayak",
+    "moveTier": "water",
+    "location": "Cannery Row, Monterey — launches from Breakwater Cove",
+    "difficulty": "easy",
+    "duration": "2–3 hrs guided",
+    "distance": null,
+    "priceRange": "$$",
+    "budgetTier": "moderate",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "active",
+    "highlights": [
+      "Sea otters rest in the kelp beds of Monterey Bay and regularly approach kayaks — the most intimate wildlife encounter in the orbit",
+      "Monterey Bay Kayaks is the established operator, launching from Breakwater Cove near the aquarium",
+      "Guided tours available for first-timers; rental for experienced paddlers",
+      "Water temperature is 50–55°F year-round — layers under a wetsuit are essential"
+    ],
+    "operator": "Monterey Bay Kayaks",
+    "bookingWindow": "Book at montereybaykayaks.com — guided tours recommended for first visit",
+    "links": {
+      "website": "https://www.montereybaykayaks.com/",
+      "booking": "https://www.montereybaykayaks.com/"
+    },
+    "lilaPick": true,
+    "tags": ["kayak", "sea-otters", "kelp-forest", "guided", "monterey", "cold-water"],
+    "months": "all"
+  },
+  {
+    "id": "scuba-diving-point-lobos",
+    "name": "Scuba Diving — Point Lobos & Monastery Beach",
+    "type": "water",
+    "subtype": "dive",
+    "moveTier": "water",
+    "location": "Point Lobos State Natural Reserve and Monastery Beach, Carmel",
+    "difficulty": "technical",
+    "duration": "half-day",
+    "distance": null,
+    "priceRange": "$$$",
+    "budgetTier": "premium",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "active",
+    "highlights": [
+      "Among the richest dive environments in North America — the kelp forests of Point Lobos are exceptional",
+      "Nudibranchs, rockfish, lingcod, harbor seals, and sea otters in the same dive",
+      "Point Lobos requires advance dive permit (831-624-8413 — only Whalers and Bluefish Coves)",
+      "Drysuit strongly recommended — 50°F water year-round"
+    ],
+    "bookingWindow": "Point Lobos dive permit: 831-624-8413. Gear rental from Aquarius Dive Shop in Monterey.",
+    "links": {
+      "website": "https://www.parks.ca.gov/pointlobos",
+      "booking": null
+    },
+    "lilaPick": false,
+    "tags": ["scuba", "kelp-forest", "point-lobos", "permit-required", "cold-water", "drysuit"],
+    "months": "all"
+  },
+  {
+    "id": "sup-carmel-beach",
+    "name": "SUP & Swimming — Carmel Beach",
+    "type": "water",
+    "subtype": "sup",
+    "moveTier": "water",
+    "location": "Carmel Beach, Carmel-by-the-Sea",
+    "difficulty": "easy",
+    "duration": "1–3 hrs",
+    "distance": null,
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "active",
+    "highlights": [
+      "White sand, dog-friendly, bonfires permitted in the evening — the most beautiful beach in the orbit",
+      "Calm in summer; the cove provides some protection from swell",
+      "SUP rentals available in Carmel; swimming is cold but the clarity is extraordinary",
+      "Carmel River Lagoon at the south end is a separate birding and photography destination"
+    ],
+    "bookingWindow": "Self-guided — beach access free. SUP rentals from local shops.",
+    "links": {
+      "website": "https://www.carmelcalifornia.com/",
+      "booking": null
+    },
+    "lilaPick": false,
+    "tags": ["sup", "swimming", "carmel-beach", "bonfires", "dog-friendly", "white-sand"],
+    "months": "May–Oct"
+  },
+  {
+    "id": "highway-1-cycling",
+    "name": "Highway 1 — Road Cycling",
+    "type": "ride",
+    "subtype": "road-cycling",
+    "moveTier": "ride",
+    "location": "Carmel → Big Sur corridor, Highway 1",
+    "difficulty": "strenuous",
+    "duration": "full day",
+    "distance": "Up to 90 miles full corridor; Carmel → Nepenthe is 47 miles",
+    "elevationGain": "significant — rolling coastal hills throughout",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "active",
+    "highlights": [
+      "One of the great road rides in the world — 90 miles of Pacific Coast Highway with the Santa Lucia Mountains on one side and open ocean on the other",
+      "Carmel to Big Sur River Inn (26 miles) is the most manageable day ride; Carmel to Nepenthe (47 miles) for the full epic",
+      "Light vehicle traffic outside summer weekends; wide shoulders on most sections; Bixby Creek Bridge at mile 13 is the iconic photo stop",
+      "Bike rental from Sports Basement in Monterey or Joselyn's Bicycles in Carmel"
+    ],
+    "bookingWindow": "Self-guided — road bike rental from Joselyn's Bicycles (Carmel) or Sports Basement (Monterey)",
+    "links": {
+      "website": "https://www.bigsurcalifornia.org/",
+      "booking": null
+    },
+    "lilaPick": true,
+    "tags": ["road-cycling", "highway-1", "coastal-cliffs", "bixby-bridge", "epic-ride", "world-class"],
+    "months": "all"
+  },
+  {
+    "id": "17-mile-drive-cycling",
+    "name": "17-Mile Drive — Cycling",
+    "type": "ride",
+    "subtype": "road-cycling",
+    "moveTier": "ride",
+    "location": "Pebble Beach, Monterey Peninsula",
+    "difficulty": "easy",
+    "duration": "2–3 hrs",
+    "distance": "17 miles",
+    "elevationGain": "minimal",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "active",
+    "highlights": [
+      "Cyclists enter free (vehicles pay $12.25) — one of the few advantages cyclists have over drivers",
+      "Wind through Del Monte Forest past Ghost Tree, Seal Rock, Bird Rock, and the Lone Cypress",
+      "Quieter by bike than by car; you can stop at every pull-out without worrying about traffic",
+      "Start from the Pacific Grove gate for a natural Monterey-to-Carmel arc"
+    ],
+    "bookingWindow": "Self-guided — cyclists enter free at any gate",
+    "links": {
+      "website": "https://www.pebblebeach.com/visit/17-mile-drive/",
+      "booking": null
+    },
+    "lilaPick": false,
+    "tags": ["road-cycling", "17-mile-drive", "lone-cypress", "pebble-beach", "cyclists-free", "monterey-cypress"],
+    "months": "all"
+  }
+]

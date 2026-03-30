@@ -32,9 +32,9 @@ export const ZION_URLS = {
   "Bit & Spur":               "https://bitandspur.com/",
 
   // ── Trails & Hikes ────────────────────────────────────────────────────────
-  "Angels Landing":           "https://www.nps.gov/zion/planyourvisit/angels-landing-702702.htm",
+  "Angels Landing":           "https://www.nps.gov/zion/planyourvisit/angels-landing-permit.htm",
   "The Narrows":              "https://www.nps.gov/zion/planyourvisit/thenarrows.htm",
-  "The Subway":               "https://www.nps.gov/zion/planyourvisit/the-subway.htm",
+  "The Subway":               "https://www.nps.gov/zion/planyourvisit/thesubway.htm",
   "Observation Point":        "https://www.nps.gov/zion/planyourvisit/zion-canyon-trail-descriptions.htm",
   "Canyon Overlook":          "https://www.nps.gov/zion/planyourvisit/zion-canyon-trail-descriptions.htm",
   "Emerald Pools":            "https://www.nps.gov/zion/planyourvisit/zion-canyon-trail-descriptions.htm",
@@ -43,6 +43,12 @@ export const ZION_URLS = {
   "Pa'rus Trail":             "https://www.nps.gov/zion/planyourvisit/zion-canyon-trail-descriptions.htm",
   "Kolob Arch":               "https://www.nps.gov/zion/planyourvisit/kolob-canyons-wilderness-hiking-trails.htm",
   "Snow Canyon":              "https://stateparks.utah.gov/parks/snow-canyon/",
+
+  // ── Move (Rides, Canyoneering) ─────────────────────────────────────────────
+  "Zion Canyon E-Bike":       "https://www.zionguru.com/rentals/electric-bikes",
+  "Zion Guru E-Bike":         "https://www.zionguru.com/rentals/electric-bikes",
+  "Gooseberry Mesa":          "https://www.blm.gov/visit/gooseberry-mesa",
+  "Keyhole Canyon":           "https://www.nps.gov/zion/planyourvisit/canyoneering.htm",
 
   // ── Wellness ───────────────────────────────────────────────────────────────
   "Zion Guru Skydeck Yoga":   "https://www.zionguru.com/classes/yoga",

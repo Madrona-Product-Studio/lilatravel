@@ -134,6 +134,7 @@ _Last updated: March 30, 2026. Living document — update as items are completed
 - [x] **Accommodation audit** (Mar 30) — all six destination guides updated with revised picks, tier assignments (elemental/rooted/premium), new properties (Reset Hotel, Hotel Wren, JT Retreat Center Bungalows, Hanalei Bay Resort, The Palmwood, Tin Wis Resort, Ocean Village Resort, Crystal Cove, Sol Duc Hot Springs Resort, Lake Quinault Lodge, Colette's B&B, Hoh Valley Cabins), and verified links
 - [x] **Food/Culture split** (Mar 30) — all six destinations migrated to separate Eat and Experience JSON files (`*-eat.json` + `*-experience.json`), culled restaurants, updated lilaPick values, created 36 new experience entries with full URL registry updates
 - [x] **Breathe section** (Mar 30) — all six destinations migrated to `*-breathe.json` with Practice/Soak/Restore tier framework, designated picks, and new yoga studios added (Earth Yoga & Spa JT, Olympic Iyengar Yoga OP, Black Coral Yoga KA, Yoga Shala by the Sea BS)
+- [x] **Move section** (Mar 30) — all six destinations restructured into per-destination Hike/Water/Ride/Climb sections with new `*-move.json` files. New entries: Zion e-bike + canyoneering, JT rock climbing + cycling, Big Sur kayaking + Highway 1 cycling, Kauai surfing + coastal path, VI surfing + bike path, OP tide pools + Hurricane Ridge cycling
 
 ### Practices & Wisdom
 - [x] Updated quotes for Kirtan, Threshold Ceremony, Talking Circle

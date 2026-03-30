@@ -108,6 +108,12 @@ export const BIG_SUR_URLS = {
 
   // ── Water Activities ───────────────────────────────────────────────────────
   "Monterey Bay Kayaks":        "https://www.montereybaykayaks.com/",
+  "Kayaking Monterey Bay":      "https://www.montereybaykayaks.com/",
+
+  // ── Cycling & Rides ────────────────────────────────────────────────────────
+  "Highway 1 Cycling":          "https://www.bigsurcalifornia.org/",
+  "17-Mile Drive Cycling":      "https://www.pebblebeach.com/visit/17-mile-drive/",
+  "Joselyn's Bicycles":         "https://www.joselynsbicycles.com/",
 };
 
 // Alias map for fuzzy matching — handles common AI variations

@@ -40,10 +40,10 @@ export const JOSHUA_TREE_URLS = {
   // ── Trails & Hikes (NPS sourced) ──────────────────────────────────────────
   "Barker Dam":                "https://www.nps.gov/jotr/planyourvisit/barkerdam.htm",
   "Hidden Valley Trail":       "https://www.nps.gov/jotr/planyourvisit/hiddenvalley.htm",
-  "Ryan Mountain":             "https://www.nps.gov/jotr/planyourvisit/ryanmountain.htm",
+  "Ryan Mountain":             "https://www.nps.gov/jotr/index.htm",
   "Skull Rock":                "https://www.nps.gov/jotr/planyourvisit/skull-rock.htm",
   "Cholla Cactus Garden":      "https://www.nps.gov/jotr/planyourvisit/chollacactusgarden.htm",
-  "Lost Palms Oasis":          "https://www.nps.gov/jotr/planyourvisit/lostpalms.htm",
+  "Lost Palms Oasis":          "https://www.nps.gov/jotr/index.htm",
   "Keys View":                 "https://www.nps.gov/jotr/planyourvisit/keys-view.htm",
   "Fortynine Palms Oasis":     "https://www.nps.gov/jotr/planyourvisit/fortyninepalms.htm",
   "Mastodon Peak":             "https://www.nps.gov/jotr/planyourvisit/mastodonpeak.htm",
@@ -54,6 +54,10 @@ export const JOSHUA_TREE_URLS = {
   "Black Rock Canyon":         "https://www.nps.gov/jotr/planyourvisit/black-rock-area-hiking.htm",
   "Warren Peak":               "https://www.nps.gov/jotr/planyourvisit/black-rock-area-hiking.htm",
   "Wall Street Mill":          "https://www.nps.gov/jotr/planyourvisit/hiking.htm",
+  "Hidden Valley Climbing":    "https://verticaladventures.com/joshua-tree-rock-climbing",
+  "Vertical Adventures":       "https://verticaladventures.com/joshua-tree-rock-climbing",
+  "Geology Tour Road":         "https://www.nps.gov/jotr/planyourvisit/geology-tour-road.htm",
+  "Intersection Rock":         "https://www.nps.gov/jotr/index.htm",
 
   // ── Wellness ───────────────────────────────────────────────────────────────
   "Earth Yoga & Spa":          "https://www.earthyogaandspa.com/",

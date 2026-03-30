@@ -1,0 +1,272 @@
+[
+  {
+    "id": "kalalau-trail",
+    "name": "Kalalau Trail to Hanakāpīʻai Beach",
+    "type": "hike",
+    "subtype": "trail",
+    "moveTier": "hike",
+    "location": "Hāʻena State Park, North Shore",
+    "difficulty": "strenuous",
+    "duration": "3–4 hrs",
+    "distance": "4 miles round trip",
+    "elevationGain": "800 ft",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "active",
+    "highlights": [
+      "Most iconic trail in Hawaii; first 2 mi to beach open to day hikers; advance reservation required via gohaena.com",
+      "Dramatic Nā Pali Coast cliffs and ocean views the entire way",
+      "The beach at Hanakāpīʻai is wild, remote, and unforgettable",
+      "Limited daily permits keep the trail uncrowded — book early"
+    ],
+    "bookingWindow": "Advance reservation required via gohaena.com — book as early as possible",
+    "links": {
+      "website": "https://www.gohaena.com/",
+      "booking": null
+    },
+    "lilaPick": true,
+    "tags": ["napali-coast", "iconic", "permit-required", "beach", "cliffs", "north-shore"],
+    "months": "all"
+  },
+  {
+    "id": "awaawapuhi-trail",
+    "name": "Awaʻawapuhi Trail",
+    "type": "hike",
+    "subtype": "trail",
+    "moveTier": "hike",
+    "location": "Kōkeʻe State Park, West Side",
+    "difficulty": "strenuous",
+    "duration": "4–5 hrs",
+    "distance": "6.5 miles round trip",
+    "elevationGain": "1,600 ft",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "active",
+    "highlights": [
+      "Finest ridge trail on the island; knife-edge viewpoint 2,500 ft above Nā Pali Coast",
+      "The descent through native forest is lush and quiet — the viewpoint at the end is staggering",
+      "No permit required; far fewer hikers than the Kalalau Trail",
+      "The return climb is the crux — save energy for the uphill back"
+    ],
+    "bookingWindow": "No permit required",
+    "links": {
+      "website": "https://dlnr.hawaii.gov/dsp/parks/kauai/kokee-state-park/",
+      "booking": null
+    },
+    "lilaPick": false,
+    "tags": ["ridge-trail", "napali-views", "kokee", "knife-edge", "west-side"],
+    "months": "all"
+  },
+  {
+    "id": "pihea-trail",
+    "name": "Pihea Trail (Kōkeʻe to Alakaʻi Swamp)",
+    "type": "hike",
+    "subtype": "trail",
+    "moveTier": "hike",
+    "location": "Kōkeʻe State Park, West Side",
+    "difficulty": "moderate",
+    "duration": "2–3 hrs",
+    "distance": "3.8 miles round trip",
+    "elevationGain": "500 ft",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "active",
+    "highlights": [
+      "World's highest tropical swamp at 4,000 ft; rare endemic birds (apapane, iiwi, pueo)",
+      "Boardwalk section through the Alakaʻi Swamp is otherworldly — dense moss, cloud forest, endemic plants",
+      "Views into Kalalau Valley from the Pihea overlook at the trailhead",
+      "Can be muddy — sturdy footwear essential"
+    ],
+    "bookingWindow": "No permit required",
+    "links": {
+      "website": "https://dlnr.hawaii.gov/dsp/parks/kauai/kokee-state-park/",
+      "booking": null
+    },
+    "lilaPick": false,
+    "tags": ["swamp", "endemic-birds", "boardwalk", "cloud-forest", "kokee", "west-side"],
+    "months": "all"
+  },
+  {
+    "id": "sleeping-giant",
+    "name": "Sleeping Giant (Nounou Mountain)",
+    "type": "hike",
+    "subtype": "trail",
+    "moveTier": "hike",
+    "location": "Kapaa, East Shore",
+    "difficulty": "moderate",
+    "duration": "2–3 hrs",
+    "distance": "3.3 miles round trip",
+    "elevationGain": "1,000 ft",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "active",
+    "highlights": [
+      "Local's hike above Kapaa; panoramic views; less crowded than north shore trails",
+      "Summit views stretch from the ocean to the interior mountains",
+      "Three trailhead options (east, west, Kuamoo) — east side is most popular",
+      "Best done early morning before the trade winds and heat build"
+    ],
+    "bookingWindow": "No permit required",
+    "links": {
+      "website": "https://dlnr.hawaii.gov/dsp/parks/kauai/nounou-mountain-east-side/",
+      "booking": null
+    },
+    "lilaPick": false,
+    "tags": ["local-favorite", "panoramic-views", "east-shore", "kapaa", "summit"],
+    "months": "all"
+  },
+  {
+    "id": "waimea-canyon-trail",
+    "name": "Waimea Canyon Trail",
+    "type": "hike",
+    "subtype": "trail",
+    "moveTier": "hike",
+    "location": "Waimea Canyon State Park, West Side",
+    "difficulty": "moderate",
+    "duration": "3–5 hrs",
+    "distance": "varies",
+    "elevationGain": "varies",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "active",
+    "highlights": [
+      "Primary canyon trail along the rim; detour to top of Waipoo Falls (800 ft cascade)",
+      "The Grand Canyon of the Pacific — deep red and green canyon walls, layered volcanic geology",
+      "Multiple lookout points along the canyon rim road for shorter visits",
+      "Cooler temperatures at elevation make this a good midday hike"
+    ],
+    "bookingWindow": "No permit required",
+    "links": {
+      "website": "https://dlnr.hawaii.gov/dsp/parks/kauai/waimea-canyon-state-park/",
+      "booking": null
+    },
+    "lilaPick": false,
+    "tags": ["canyon", "waterfall", "waipoo-falls", "rim-trail", "west-side", "geology"],
+    "months": "all"
+  },
+  {
+    "id": "surfing-hanalei-bay",
+    "name": "Surfing — Hanalei Bay",
+    "type": "water",
+    "subtype": "surf",
+    "moveTier": "water",
+    "location": "Hanalei Bay (North Shore)",
+    "difficulty": "easy",
+    "duration": "2–3 hrs lesson",
+    "distance": null,
+    "priceRange": "$$",
+    "budgetTier": "moderate",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "active",
+    "highlights": [
+      "The most beautiful bay in Hawaii — surfing here is a genuinely elemental experience",
+      "Summer (May–September) is the beginner season — small, consistent swell, warm water, long slow rides",
+      "Multiple surf schools operate from the pier end; lessons run 2 hours with board and wetsuit included",
+      "Winter swells (November–March) make this an expert-only break — come to watch, not paddle out"
+    ],
+    "operator": "Hanalei Surf School / Hawaiian Surfing Adventures",
+    "bookingWindow": "Book lessons in advance; walk-in possible in shoulder season",
+    "links": {
+      "website": "https://www.hawaiiansurfingadventures.com/",
+      "booking": "https://www.hawaiiansurfingadventures.com/"
+    },
+    "lilaPick": true,
+    "tags": ["surfing", "hanalei-bay", "lessons", "beginner-summer", "expert-winter", "north-shore"],
+    "months": "May–Sep"
+  },
+  {
+    "id": "napali-boat-tour",
+    "name": "Nā Pali Coast — Boat Tour",
+    "type": "water",
+    "subtype": "boat-tour",
+    "moveTier": "water",
+    "location": "Departs Port Allen (South Shore) or Hanalei (North Shore)",
+    "difficulty": "easy",
+    "duration": "4–6 hrs",
+    "distance": null,
+    "priceRange": "$$$",
+    "budgetTier": "premium",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "active",
+    "highlights": [
+      "The only way to see Nā Pali's sea caves, waterfalls, and 4,000-foot cliffs from the water",
+      "Spinner dolphins escort boats regularly; humpback whales visible November–March",
+      "Captain Andy's and Blue Dolphin are the established operators",
+      "North shore departures (Hanalei) run May–September only; south shore (Port Allen) year-round"
+    ],
+    "operator": "Captain Andy's",
+    "bookingWindow": "Book at captainandy.com — popular tours sell out weeks ahead in summer",
+    "links": {
+      "website": "https://www.captainandy.com/",
+      "booking": "https://www.captainandy.com/"
+    },
+    "lilaPick": false,
+    "tags": ["boat-tour", "napali-coast", "sea-caves", "dolphins", "humpbacks", "cliffs"],
+    "months": "all"
+  },
+  {
+    "id": "ke-ala-hele-makalae",
+    "name": "Ke Ala Hele Makalae Coastal Path",
+    "type": "ride",
+    "subtype": "road-cycling",
+    "moveTier": "ride",
+    "location": "East Shore — Lydgate Beach Park to Anahola, 16+ miles",
+    "difficulty": "easy",
+    "duration": "2–4 hrs",
+    "distance": "16+ miles one way",
+    "elevationGain": "minimal",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "active",
+    "highlights": [
+      "Paved multi-use coastal path with ocean views the entire way — one of the best cycling corridors in Hawaii",
+      "Flat, accessible, family-friendly; passes Lydgate Beach Park, Kapaa town, and several snorkel spots",
+      "Bike rentals available in Kapaa town within steps of the path; e-bikes also available",
+      "Early morning before trade winds pick up is the best window"
+    ],
+    "bookingWindow": "Self-guided — bike rental from Coconut Coasters in Kapaa or similar",
+    "links": {
+      "website": "https://www.kauai.gov/Government/Departments-Agencies/Parks-Recreation/Bike-Path",
+      "booking": null
+    },
+    "lilaPick": true,
+    "tags": ["cycling", "coastal-path", "paved", "family-friendly", "east-shore", "ocean-views", "e-bike-available"],
+    "months": "all"
+  },
+  {
+    "id": "waimea-canyon-road-cycling",
+    "name": "Waimea Canyon Road — Cycling",
+    "type": "ride",
+    "subtype": "road-cycling",
+    "moveTier": "ride",
+    "location": "Waimea → Koke'e State Park, West Side",
+    "difficulty": "strenuous",
+    "duration": "3–5 hrs",
+    "distance": "18 miles one way",
+    "elevationGain": "3,600 ft",
+    "priceRange": "free",
+    "budgetTier": "free",
+    "groupFit": ["solo", "friends"],
+    "energy": "active",
+    "highlights": [
+      "The road climbs 3,600 feet from sea level to the canyon rim — the Pacific Ocean visible over your shoulder the entire way",
+      "Light vehicle traffic outside peak visitor hours; the descent is exceptional",
+      "At the top: Waimea Canyon Lookout (the Grand Canyon of the Pacific) and Koke'e State Park",
+      "Road bike or hybrid required — the grade is sustained throughout"
+    ],
+    "bookingWindow": "Self-guided — no permit. Bike rental from Kapaa or Poipu shops.",
+    "links": {
+      "website": "https://www.kauai.gov/",
+      "booking": null
+    },
+    "lilaPick": false,
+    "tags": ["road-cycling", "waimea-canyon", "3600ft-climb", "ocean-views", "strenuous", "descent"],
+    "months": "all"
+  }
+]

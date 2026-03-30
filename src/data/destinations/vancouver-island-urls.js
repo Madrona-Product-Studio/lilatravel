@@ -66,8 +66,13 @@ export const VANCOUVER_URLS = {
 
   // ── Tours & Activities ───────────────────────────────────────────────────
   "Pacific Surf School":        "https://www.pacificsurfschool.com/",
+  "Surfing Cox Bay":            "https://www.pacificsurfschool.com/",
   "Remote Passages":            "https://www.remotepassages.com/",
   "Tofino Sea Kayaking Company": "https://www.tofino-kayaking.com/",
+  "Tofino Bike Company":        "https://www.tofinobike.com/",
+
+  // ── Cycling ──────────────────────────────────────────────────────────────
+  "Tofino Long Beach Bike Path": "https://www.tourismtofino.com/",
 
   // ── Conservation & Stewardship ───────────────────────────────────────────
   "Clayoquot Biosphere Trust":  "https://www.clayoquotbiosphere.org/",

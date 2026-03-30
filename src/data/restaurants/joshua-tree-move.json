@@ -1,0 +1,238 @@
+[
+  {
+    "id": "lost-palms-oasis",
+    "name": "Lost Palms Oasis Trail",
+    "type": "hike",
+    "subtype": "trail",
+    "moveTier": "hike",
+    "location": "Cottonwood area, Joshua Tree National Park",
+    "difficulty": "moderate",
+    "duration": "3–4 hrs",
+    "distance": "7.5 miles round trip",
+    "elevationGain": "500 ft",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "active",
+    "highlights": [
+      "The largest collection of native California fan palms in the park — an oasis at the end of a desert traverse",
+      "The approach through open desert is meditative; the arrival at the palms is genuinely moving",
+      "Bighorn sheep are regularly seen on the canyon walls above the oasis",
+      "Least-crowded significant trail in JT — the south entrance sees a fraction of the north's traffic"
+    ],
+    "bookingWindow": "No permit required — south entrance, Cottonwood Visitor Center",
+    "links": {
+      "website": "https://www.nps.gov/jotr/index.htm",
+      "booking": null
+    },
+    "lilaPick": true,
+    "tags": ["oasis", "fan-palms", "desert", "bighorn-sheep", "south-entrance", "uncrowded"],
+    "months": "Oct–Apr"
+  },
+  {
+    "id": "skull-rock-nature-trail",
+    "name": "Skull Rock Nature Trail",
+    "type": "hike",
+    "subtype": "trail",
+    "moveTier": "hike",
+    "location": "Jumbo Rocks, Joshua Tree National Park",
+    "difficulty": "easy",
+    "duration": "1 hr",
+    "distance": "1.7 miles",
+    "elevationGain": "minimal",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "active",
+    "highlights": [
+      "The best short introduction to Joshua Tree's geology — monzogranite boulder formations, desert wash, and the landmark Skull Rock",
+      "Interpretive signs throughout explain the 100-million-year process that created the park's distinctive rocks",
+      "Good for sunset — the boulders glow orange in late afternoon light",
+      "Easy, family-accessible, no shuttle required"
+    ],
+    "bookingWindow": "No permit required",
+    "links": {
+      "website": "https://www.nps.gov/jotr/index.htm",
+      "booking": null
+    },
+    "lilaPick": false,
+    "tags": ["geology", "family-friendly", "sunset", "boulders", "interpretive", "short-hike"],
+    "months": "Oct–May"
+  },
+  {
+    "id": "ryan-mountain",
+    "name": "Ryan Mountain Trail",
+    "type": "hike",
+    "subtype": "trail",
+    "moveTier": "hike",
+    "location": "Ryan Campground area, Joshua Tree National Park",
+    "difficulty": "moderate",
+    "duration": "2–3 hrs",
+    "distance": "3 miles round trip",
+    "elevationGain": "1,000 ft",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "active",
+    "highlights": [
+      "The best summit view in JT — 360-degree panorama of the Wonderland of Rocks, Queen Valley, and the Coachella Valley beyond",
+      "Short enough to complete before the desert heats up in winter and spring",
+      "Rocky trail through distinctive JT formations — requires some scrambling near the summit"
+    ],
+    "bookingWindow": "No permit required",
+    "links": {
+      "website": "https://www.nps.gov/jotr/index.htm",
+      "booking": null
+    },
+    "lilaPick": false,
+    "tags": ["summit", "360-views", "scramble", "short-hike", "morning-recommended"],
+    "months": "Oct–Apr"
+  },
+  {
+    "id": "49-palms-oasis",
+    "name": "49 Palms Oasis Trail",
+    "type": "hike",
+    "subtype": "trail",
+    "moveTier": "hike",
+    "location": "North park area, near 29 Palms entrance",
+    "difficulty": "moderate",
+    "duration": "2–3 hrs",
+    "distance": "3 miles round trip",
+    "elevationGain": "300 ft",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "active",
+    "highlights": [
+      "A hidden grove of native fan palms in a canyon — one of the park's quieter secrets",
+      "The trail climbs through open desert before dropping suddenly into a shaded palm canyon",
+      "Coyotes and roadrunners are frequently spotted on the approach"
+    ],
+    "bookingWindow": "No permit required",
+    "links": {
+      "website": "https://www.nps.gov/jotr/index.htm",
+      "booking": null
+    },
+    "lilaPick": false,
+    "tags": ["oasis", "fan-palms", "canyon", "quiet", "wildlife"],
+    "months": "Oct–Apr"
+  },
+  {
+    "id": "hidden-valley-climbing",
+    "name": "Rock Climbing — Hidden Valley with Vertical Adventures",
+    "type": "climb",
+    "subtype": "rock-climbing",
+    "moveTier": "climb",
+    "location": "Hidden Valley, Joshua Tree National Park",
+    "difficulty": "moderate",
+    "duration": "half-day or full day",
+    "distance": null,
+    "priceRange": "$$$",
+    "budgetTier": "premium",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "active",
+    "highlights": [
+      "Joshua Tree is one of the great rock climbing destinations in the world — over 8,000 routes on high-friction quartz monzonite granite",
+      "Hidden Valley Campground is the cultural heart of JT climbing — formations rise directly from the campsites, and the crack climbing here is world-class",
+      "Vertical Adventures has guided JT since 1983 — AMGA-certified guides, max 5:1 ratio, all gear provided",
+      "The October–May season makes JT a genuine winter climbing escape when the rest of the country is iced over"
+    ],
+    "operator": "Vertical Adventures",
+    "bookingWindow": "Book at verticaladventures.com — half-day and full-day guided climbs available 7 days a week",
+    "links": {
+      "website": "https://verticaladventures.com/joshua-tree-rock-climbing",
+      "booking": "https://verticaladventures.com/joshua-tree-rock-climbing"
+    },
+    "lilaPick": true,
+    "tags": ["rock-climbing", "crack-climbing", "guided", "hidden-valley", "amga-certified", "beginner-to-advanced", "winter-season"],
+    "months": "Oct–May"
+  },
+  {
+    "id": "intersection-rock-bouldering",
+    "name": "Intersection Rock — Bouldering",
+    "type": "climb",
+    "subtype": "bouldering",
+    "moveTier": "climb",
+    "location": "Intersection Rock parking area, Hidden Valley",
+    "difficulty": "moderate",
+    "duration": "2–4 hrs",
+    "distance": null,
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "active",
+    "highlights": [
+      "The most accessible climbing area in JT — formations start 1 minute from the parking lot",
+      "Hundreds of boulder problems ranging from beginner to expert on the same small formation",
+      "No guide or gear required for bouldering — just shoes (rentable from Nomad Ventures in Joshua Tree town) and a crash pad",
+      "The central hub for the JT climbing community — people gather here at dawn before dispersing into the park"
+    ],
+    "bookingWindow": "Self-guided — no permit or booking required. Shoe rentals from Nomad Ventures.",
+    "links": {
+      "website": "https://www.nps.gov/jotr/index.htm",
+      "booking": null
+    },
+    "lilaPick": false,
+    "tags": ["bouldering", "self-guided", "beginner-friendly", "no-gear-required", "intersection-rock", "community"],
+    "months": "Oct–May"
+  },
+  {
+    "id": "geology-tour-road-cycling",
+    "name": "Geology Tour Road — Cycling",
+    "type": "ride",
+    "subtype": "road-cycling",
+    "moveTier": "ride",
+    "location": "Geology Tour Road, Joshua Tree National Park",
+    "difficulty": "easy",
+    "duration": "2–3 hrs",
+    "distance": "18 miles round trip",
+    "elevationGain": "minimal",
+    "priceRange": "free",
+    "budgetTier": "free",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "active",
+    "highlights": [
+      "The most immersive way to experience JT's geology — a dirt road cycling through the park's most dramatic formations without the crowds of main park roads",
+      "Passes Pleasant Valley, Squaw Tank, and the White Tank area — each a distinct geological chapter",
+      "Low traffic, flat terrain, and the silence of the open desert; bring your own bike or rent in the town of Joshua Tree",
+      "Dawn cycling before the desert heats up is one of the most elemental experiences in the park"
+    ],
+    "bookingWindow": "Self-guided — no permit. Bike rental from Joshua Tree town shops.",
+    "links": {
+      "website": "https://www.nps.gov/jotr/planyourvisit/geology-tour-road.htm",
+      "booking": null
+    },
+    "lilaPick": true,
+    "tags": ["cycling", "dirt-road", "geology", "open-desert", "dawn", "low-traffic", "self-guided"],
+    "months": "Oct–Apr"
+  },
+  {
+    "id": "queen-valley-bike-loop",
+    "name": "Queen Valley — Road Loop",
+    "type": "ride",
+    "subtype": "road-cycling",
+    "moveTier": "ride",
+    "location": "Queen Valley, Joshua Tree National Park",
+    "difficulty": "easy",
+    "duration": "1–2 hrs",
+    "distance": "6–12 miles depending on route",
+    "elevationGain": "minimal",
+    "priceRange": "free",
+    "budgetTier": "free",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "active",
+    "highlights": [
+      "Paved park road through the heart of Joshua tree country — the namesake trees are densest here",
+      "Light vehicle traffic, multiple pull-outs, and the cleanest views of the Wonderland of Rocks from the saddle",
+      "The right choice when Geology Tour Road is too rough for road bikes"
+    ],
+    "bookingWindow": "Self-guided — no permit required",
+    "links": {
+      "website": "https://www.nps.gov/jotr/index.htm",
+      "booking": null
+    },
+    "lilaPick": false,
+    "tags": ["cycling", "road", "family-friendly", "joshua-trees", "queen-valley"],
+    "months": "Oct–Apr"
+  }
+]

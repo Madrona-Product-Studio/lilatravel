@@ -1,0 +1,321 @@
+[
+  {
+    "id": "hurricane-hill",
+    "name": "Hurricane Hill Trail",
+    "type": "hike",
+    "subtype": "trail",
+    "moveTier": "hike",
+    "location": "Hurricane Ridge, Olympic National Park",
+    "difficulty": "moderate",
+    "duration": null,
+    "distance": "3.2 miles round trip",
+    "elevationGain": "800 ft",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "active",
+    "highlights": [
+      "Finest panoramic summit accessible by trail"
+    ],
+    "links": {
+      "website": "https://www.nps.gov/olym/index.htm",
+      "booking": null
+    },
+    "lilaPick": false,
+    "tags": ["panoramic", "summit", "hurricane-ridge", "moderate"],
+    "months": "all"
+  },
+  {
+    "id": "hall-of-mosses",
+    "name": "Hall of Mosses Trail",
+    "type": "hike",
+    "subtype": "trail",
+    "moveTier": "hike",
+    "location": "Hoh Rain Forest, Olympic National Park",
+    "difficulty": "easy",
+    "duration": null,
+    "distance": "0.8 mile loop",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "active",
+    "highlights": [
+      "Rainforest's most iconic walk; cathedral canopy of moss-draped maples"
+    ],
+    "links": {
+      "website": "https://www.nps.gov/olym/index.htm",
+      "booking": null
+    },
+    "lilaPick": true,
+    "tags": ["rainforest", "moss", "old-growth", "easy", "hoh"],
+    "months": "all"
+  },
+  {
+    "id": "hoh-river-trail",
+    "name": "Hoh River Trail",
+    "type": "hike",
+    "subtype": "trail",
+    "moveTier": "hike",
+    "location": "Hoh Rain Forest, Olympic National Park",
+    "difficulty": "moderate-strenuous",
+    "duration": null,
+    "distance": "up to 17 miles",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "active",
+    "highlights": [
+      "Runs 17 mi up-valley toward Mt Olympus; One Square Inch of Silence"
+    ],
+    "links": {
+      "website": "https://www.nps.gov/olym/index.htm",
+      "booking": null
+    },
+    "lilaPick": false,
+    "tags": ["backcountry", "rainforest", "one-square-inch", "mt-olympus"],
+    "months": "all"
+  },
+  {
+    "id": "second-beach",
+    "name": "Second Beach (La Push)",
+    "type": "hike",
+    "subtype": "trail",
+    "moveTier": "hike",
+    "location": "La Push, Olympic National Park (wild coast)",
+    "difficulty": "easy",
+    "duration": null,
+    "distance": "1.4 miles round trip",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "active",
+    "highlights": [
+      "Defining Olympic coast experience; black sand and sea stacks"
+    ],
+    "links": {
+      "website": "https://www.nps.gov/olym/index.htm",
+      "booking": null
+    },
+    "lilaPick": false,
+    "tags": ["beach", "sea-stacks", "la-push", "wild-coast", "easy"],
+    "months": "all"
+  },
+  {
+    "id": "ozette-triangle",
+    "name": "Ozette Triangle (Cape Alava / Sand Point Loop)",
+    "type": "hike",
+    "subtype": "trail",
+    "moveTier": "hike",
+    "location": "Ozette, Olympic National Park",
+    "difficulty": "moderate",
+    "duration": null,
+    "distance": "9 mile loop",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "active",
+    "highlights": [
+      "Cape Alava is westernmost point in contiguous US; Wedding Rocks petroglyphs"
+    ],
+    "links": {
+      "website": "https://www.nps.gov/olym/index.htm",
+      "booking": null
+    },
+    "lilaPick": false,
+    "tags": ["cape-alava", "petroglyphs", "westernmost-point", "beach", "moderate"],
+    "months": "all"
+  },
+  {
+    "id": "sol-duc-falls-hike",
+    "name": "Sol Duc Falls",
+    "type": "hike",
+    "subtype": "trail",
+    "moveTier": "hike",
+    "location": "Sol Duc Valley, Olympic National Park",
+    "difficulty": "easy",
+    "duration": null,
+    "distance": "1.6 miles round trip",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "active",
+    "highlights": [
+      "Three-pronged waterfall into basalt gorge"
+    ],
+    "links": {
+      "website": "https://www.nps.gov/olym/index.htm",
+      "booking": null
+    },
+    "lilaPick": false,
+    "tags": ["waterfall", "basalt", "sol-duc", "easy"],
+    "months": "all"
+  },
+  {
+    "id": "marymere-falls",
+    "name": "Marymere Falls Trail",
+    "type": "hike",
+    "subtype": "trail",
+    "moveTier": "hike",
+    "location": "Lake Crescent, Olympic National Park",
+    "difficulty": "easy",
+    "duration": null,
+    "distance": "1.8 miles round trip",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "active",
+    "highlights": [
+      "Old-growth conifers to a 90-foot waterfall"
+    ],
+    "links": {
+      "website": "https://www.nps.gov/olym/index.htm",
+      "booking": null
+    },
+    "lilaPick": false,
+    "tags": ["waterfall", "old-growth", "lake-crescent", "easy"],
+    "months": "all"
+  },
+  {
+    "id": "mount-storm-king",
+    "name": "Mount Storm King",
+    "type": "hike",
+    "subtype": "scramble",
+    "moveTier": "hike",
+    "location": "Lake Crescent, Olympic National Park",
+    "difficulty": "strenuous",
+    "duration": null,
+    "distance": "scramble",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "active",
+    "highlights": [
+      "Steepest and most dramatic day hike; exposed scrambling, rope-assisted"
+    ],
+    "links": {
+      "website": "https://www.nps.gov/olym/index.htm",
+      "booking": null
+    },
+    "lilaPick": false,
+    "tags": ["scramble", "exposed", "strenuous", "lake-crescent", "rope-assisted"],
+    "months": "all"
+  },
+  {
+    "id": "rialto-beach-tide-pools",
+    "name": "Rialto Beach & Hole-in-the-Wall — Tide Pools",
+    "type": "water",
+    "subtype": "tide-pools",
+    "moveTier": "water",
+    "location": "Rialto Beach, La Push, Olympic National Park (wild coast)",
+    "difficulty": "easy",
+    "duration": "2–4 hrs",
+    "distance": "3 miles round trip to Hole-in-the-Wall",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "active",
+    "highlights": [
+      "The most dramatic tidepool habitat in the contiguous US — sea stacks, surge channels, and arches carved from volcanic basalt",
+      "Hole-in-the-Wall is a natural arch only accessible at low tide — check tide tables before arriving",
+      "Ochre sea stars, purple urchins, giant green anemones, and hermit crabs in extraordinary density",
+      "Bald eagles perch on the drift logs; grey whales visible offshore in spring"
+    ],
+    "bookingWindow": "Self-guided — park entry fee. Check tide tables at tidesandcurrents.noaa.gov.",
+    "links": {
+      "website": "https://www.nps.gov/olym/planyourvisit/rialto-beach.htm",
+      "booking": null
+    },
+    "lilaPick": true,
+    "tags": ["tide-pools", "sea-stacks", "hole-in-the-wall", "low-tide-required", "la-push", "wild-coast", "bald-eagles"],
+    "months": "all"
+  },
+  {
+    "id": "la-push-surfing",
+    "name": "Surfing — First Beach (La Push)",
+    "type": "water",
+    "subtype": "surf",
+    "moveTier": "water",
+    "location": "First Beach, La Push, Quileute Reservation",
+    "difficulty": "moderate",
+    "duration": "2–4 hrs",
+    "distance": null,
+    "priceRange": "free",
+    "budgetTier": "free",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "active",
+    "highlights": [
+      "Surfing at the base of sea stacks on the Quileute Reservation — one of the most atmospheric surf breaks in the Pacific Northwest",
+      "Cold (10–12°C), consistent, and uncrowded; a 5/4mm wetsuit is mandatory",
+      "No surf school operates here — bring your own board and wetsuit, or this is not your spot",
+      "The Quileute Ocean Dunes Resort provides accommodation within walking distance of the break"
+    ],
+    "bookingWindow": "Self-guided — no booking. Bring all gear.",
+    "links": {
+      "website": "https://www.nps.gov/olym/index.htm",
+      "booking": null
+    },
+    "lilaPick": false,
+    "tags": ["surfing", "first-beach", "la-push", "quileute", "sea-stacks", "experienced-only", "cold-water"],
+    "months": "Oct–Apr"
+  },
+  {
+    "id": "hurricane-ridge-road-cycling",
+    "name": "Hurricane Ridge Road — Cycling",
+    "type": "ride",
+    "subtype": "road-cycling",
+    "moveTier": "ride",
+    "location": "Port Angeles → Hurricane Ridge Visitor Center, Olympic National Park",
+    "difficulty": "strenuous",
+    "duration": "3–5 hrs up; 45 min down",
+    "distance": "17 miles one way",
+    "elevationGain": "5,200 ft",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "friends"],
+    "energy": "active",
+    "highlights": [
+      "One of the great cycling ascents in the Pacific Northwest — 5,200 feet from sea level to subalpine meadows in 17 miles",
+      "The Strait of Juan de Fuca and Vancouver Island appear behind you as the elevation builds; the Olympic Range unfolds ahead",
+      "Light vehicle traffic in early morning; the descent back to Port Angeles takes under an hour",
+      "Bring extra layers — the ridge sits at 5,242 ft and temperatures drop significantly from town"
+    ],
+    "bookingWindow": "Self-guided — park entry fee applies. Bike rental from Sound Bikes & Kayaks in Port Angeles.",
+    "links": {
+      "website": "https://www.nps.gov/olym/planyourvisit/hurricane-ridge.htm",
+      "booking": null
+    },
+    "lilaPick": true,
+    "tags": ["road-cycling", "5200ft-climb", "hurricane-ridge", "subalpine", "descent", "port-angeles", "epic-ascent"],
+    "months": "Jun–Oct"
+  },
+  {
+    "id": "olympic-discovery-trail",
+    "name": "Olympic Discovery Trail — Cycling",
+    "type": "ride",
+    "subtype": "road-cycling",
+    "moveTier": "ride",
+    "location": "Port Townsend → Sequim → Port Angeles sections",
+    "difficulty": "easy",
+    "duration": "2–6 hrs depending on section",
+    "distance": "130 miles total; rideable in day sections",
+    "elevationGain": "minimal on most sections",
+    "priceRange": "free",
+    "budgetTier": "free",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "active",
+    "highlights": [
+      "130-mile multi-use trail crossing the entire Olympic Peninsula from Port Townsend to La Push",
+      "The Port Townsend → Sequim section (30 miles) is the most scenic and family-accessible",
+      "Passes the Dungeness National Wildlife Refuge, lavender farms in Sequim, and the Dungeness Valley",
+      "E-bike rentals available in Port Townsend and Port Angeles for non-cyclists"
+    ],
+    "bookingWindow": "Self-guided — free, no permit. Bike rental from various peninsula shops.",
+    "links": {
+      "website": "https://olympicdiscoverytrail.com/",
+      "booking": null
+    },
+    "lilaPick": false,
+    "tags": ["cycling", "multi-use-trail", "port-townsend", "sequim", "dungeness-valley", "e-bike-available", "family-friendly"],
+    "months": "all"
+  }
+]

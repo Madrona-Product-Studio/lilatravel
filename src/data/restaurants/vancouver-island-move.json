@@ -1,0 +1,281 @@
+[
+  {
+    "id": "long-beach",
+    "name": "Long Beach",
+    "type": "hike",
+    "subtype": "trail",
+    "moveTier": "hike",
+    "location": "Pacific Rim National Park Reserve",
+    "difficulty": "easy",
+    "duration": "varies",
+    "distance": "16 km stretch",
+    "elevationGain": "minimal",
+    "priceRange": "free",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "active",
+    "highlights": [
+      "16 km stretch of wild Pacific coastline, longest beach in Canada accessible by road"
+    ],
+    "bookingWindow": "No permit required",
+    "links": {
+      "website": "https://www.pc.gc.ca/en/pn-np/bc/pacificrim",
+      "booking": null
+    },
+    "lilaPick": false,
+    "tags": ["beach", "coastline", "pacific-rim", "easy", "family-friendly"],
+    "months": "all"
+  },
+  {
+    "id": "rainforest-trail",
+    "name": "Rainforest Trail",
+    "type": "hike",
+    "subtype": "trail",
+    "moveTier": "hike",
+    "location": "Pacific Rim National Park Reserve",
+    "difficulty": "easy",
+    "duration": "30–60 min",
+    "distance": "two short loops",
+    "elevationGain": "minimal",
+    "priceRange": "free",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "active",
+    "highlights": [
+      "Two short loop trails through western red cedar and Sitka spruce old-growth"
+    ],
+    "bookingWindow": "No permit required",
+    "links": {
+      "website": "https://www.pc.gc.ca/en/pn-np/bc/pacificrim",
+      "booking": null
+    },
+    "lilaPick": false,
+    "tags": ["old-growth", "rainforest", "cedar", "spruce", "loop", "easy"],
+    "months": "all"
+  },
+  {
+    "id": "wild-pacific-trail",
+    "name": "Wild Pacific Trail",
+    "type": "hike",
+    "subtype": "trail",
+    "moveTier": "hike",
+    "location": "Ucluelet",
+    "difficulty": "easy",
+    "duration": "2–4 hrs",
+    "distance": "10 km total",
+    "elevationGain": "minimal",
+    "priceRange": "free",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "active",
+    "highlights": [
+      "10 km trail hugging Ucluth Peninsula; Lighthouse Loop and Ancient Cedars section"
+    ],
+    "bookingWindow": "No permit required",
+    "links": {
+      "website": "https://bcparks.ca/",
+      "booking": null
+    },
+    "lilaPick": false,
+    "tags": ["ucluelet", "lighthouse", "coastal", "ancient-cedars", "easy"],
+    "months": "all"
+  },
+  {
+    "id": "meares-island-big-tree-trail",
+    "name": "Meares Island Big Tree Trail",
+    "type": "hike",
+    "subtype": "trail",
+    "moveTier": "hike",
+    "location": "Meares Island, Tofino",
+    "difficulty": "moderate",
+    "duration": "2–3 hrs",
+    "distance": "varies",
+    "elevationGain": "minimal",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "active",
+    "highlights": [
+      "Water-taxi to largest remaining intact temperate rainforest; Tla-o-qui-aht Tribal Park"
+    ],
+    "bookingWindow": "Water taxi from Tofino waterfront — no advance permit required",
+    "links": {
+      "website": "https://www.pc.gc.ca/en/pn-np/bc/pacificrim",
+      "booking": null
+    },
+    "lilaPick": false,
+    "tags": ["meares-island", "old-growth", "water-taxi", "tribal-park", "moderate"],
+    "months": "all"
+  },
+  {
+    "id": "west-coast-trail",
+    "name": "West Coast Trail",
+    "type": "hike",
+    "subtype": "trail",
+    "moveTier": "hike",
+    "location": "Pacific Rim National Park Reserve",
+    "difficulty": "technical",
+    "duration": "5–7 days",
+    "distance": "75 km multi-day",
+    "elevationGain": "significant",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "friends"],
+    "energy": "active",
+    "highlights": [
+      "75 km multi-day, most demanding trail on VI; permit required, open May-Sep"
+    ],
+    "bookingWindow": "Permit required — book at reservation.pc.gc.ca, opens in January",
+    "links": {
+      "website": "https://www.pc.gc.ca/en/pn-np/bc/pacificrim",
+      "booking": "https://reservation.pc.gc.ca/"
+    },
+    "lilaPick": true,
+    "tags": ["multi-day", "permit-required", "technical", "coastal", "backpacking", "may-sep"],
+    "months": "May–Sep"
+  },
+  {
+    "id": "juan-de-fuca-marine-trail",
+    "name": "Juan de Fuca Marine Trail",
+    "type": "hike",
+    "subtype": "trail",
+    "moveTier": "hike",
+    "location": "Juan de Fuca Provincial Park",
+    "difficulty": "moderate",
+    "duration": "varies",
+    "distance": "day-hike sections",
+    "elevationGain": "varies",
+    "priceRange": "free",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "active",
+    "highlights": [
+      "Day hike sections including Mystic Beach and Botanical Beach; dramatic tide pools"
+    ],
+    "bookingWindow": "No permit required",
+    "links": {
+      "website": "https://bcparks.ca/",
+      "booking": null
+    },
+    "lilaPick": false,
+    "tags": ["marine-trail", "mystic-beach", "botanical-beach", "tide-pools", "day-hike"],
+    "months": "all"
+  },
+  {
+    "id": "schooner-cove-trail",
+    "name": "Schooner Cove Trail",
+    "type": "hike",
+    "subtype": "trail",
+    "moveTier": "hike",
+    "location": "Pacific Rim National Park Reserve",
+    "difficulty": "easy",
+    "duration": "30–60 min",
+    "distance": "2 km",
+    "elevationGain": "minimal",
+    "priceRange": "free",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "active",
+    "highlights": [
+      "2 km trail to secluded cove on Long Beach's north end; tide pools at low tide"
+    ],
+    "bookingWindow": "No permit required",
+    "links": {
+      "website": "https://www.pc.gc.ca/en/pn-np/bc/pacificrim",
+      "booking": null
+    },
+    "lilaPick": false,
+    "tags": ["cove", "tide-pools", "secluded", "short-hike", "easy"],
+    "months": "all"
+  },
+  {
+    "id": "surfing-cox-bay",
+    "name": "Surfing — Cox Bay",
+    "type": "water",
+    "subtype": "surf",
+    "moveTier": "water",
+    "location": "Cox Bay, Tofino",
+    "difficulty": "easy",
+    "duration": "2–3 hrs lesson",
+    "distance": null,
+    "priceRange": "$$",
+    "budgetTier": "moderate",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "active",
+    "highlights": [
+      "The beginner break at Tofino — consistent, long, forgiving waves on a wide sandy bay",
+      "Cold water (10–14°C year-round) and real surf culture — this is not a resort amenity",
+      "Multiple surf schools including Pacific Surf School and Tofino Surf Adventures; 4/3mm wetsuit mandatory",
+      "September through November brings the biggest consistent swells for advancing surfers"
+    ],
+    "operator": "Pacific Surf School",
+    "bookingWindow": "Book at pacificsurfschool.com — walk-in for rentals",
+    "links": {
+      "website": "https://www.pacificsurfschool.com/",
+      "booking": "https://www.pacificsurfschool.com/"
+    },
+    "lilaPick": true,
+    "tags": ["surfing", "cox-bay", "lessons", "cold-water", "wetsuit-required", "beginner", "year-round"],
+    "months": "all"
+  },
+  {
+    "id": "kayaking-clayoquot-sound-move",
+    "name": "Kayaking — Clayoquot Sound",
+    "type": "water",
+    "subtype": "kayak",
+    "moveTier": "water",
+    "location": "Clayoquot Sound — launches from Tofino waterfront",
+    "difficulty": "moderate",
+    "duration": "half-day or full day",
+    "distance": null,
+    "priceRange": "$$",
+    "budgetTier": "moderate",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "active",
+    "highlights": [
+      "350,000 hectares of UNESCO Biosphere Reserve islands, inlets, and old-growth shores — wilderness within 20 minutes of Tofino",
+      "Grey whales, black bears, and Steller sea lions visible from the water",
+      "Remote Passages and Tofino Sea Kayaking Company are the established operators; independent rental for experienced paddlers",
+      "Multi-day expeditions possible with proper experience"
+    ],
+    "operator": "Remote Passages",
+    "bookingWindow": "Book at remotepassages.com — guided half-day tours most accessible",
+    "links": {
+      "website": "https://www.remotepassages.com/",
+      "booking": "https://www.remotepassages.com/"
+    },
+    "lilaPick": false,
+    "tags": ["kayak", "clayoquot-sound", "grey-whales", "bears", "old-growth", "guided", "biosphere-reserve"],
+    "months": "May–Oct"
+  },
+  {
+    "id": "tofino-long-beach-bike-path",
+    "name": "Tofino to Long Beach — Bike Path",
+    "type": "ride",
+    "subtype": "road-cycling",
+    "moveTier": "ride",
+    "location": "Tofino townsite → Cox Bay → Long Beach (Pacific Rim Highway)",
+    "difficulty": "easy",
+    "duration": "1–2 hrs each way",
+    "distance": "12 km one way",
+    "elevationGain": "minimal",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "active",
+    "highlights": [
+      "Separated multi-use path connecting Tofino to Long Beach through the park — the most pleasant way to move between town and the beach without a car",
+      "Passes Cox Bay, Chesterman Beach, and enters Pacific Rim National Park Reserve",
+      "E-bikes and standard bikes available from multiple Tofino operators; flat and accessible for all fitness levels",
+      "Sunset ride back into Tofino along the inlet is one of the great low-key experiences on the coast"
+    ],
+    "bookingWindow": "Self-guided — bike rental from Tofino Bike Company or similar operators in town",
+    "links": {
+      "website": "https://www.tourismtofino.com/",
+      "booking": null
+    },
+    "lilaPick": true,
+    "tags": ["cycling", "bike-path", "tofino", "long-beach", "family-friendly", "flat", "e-bike-available", "sunset"],
+    "months": "all"
+  }
+]

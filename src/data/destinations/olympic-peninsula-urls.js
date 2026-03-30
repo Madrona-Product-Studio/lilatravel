@@ -81,6 +81,12 @@ export const OLYMPIC_URLS = {
   "Kalaloch":                   "https://www.nps.gov/olym/planyourvisit/kalaloch-area.htm",
   "La Push":                    "https://www.nps.gov/olym/planyourvisit/la-push-area.htm",
 
+  // ── Water & Ride Activities ────────────────────────────────────────────────
+  "La Push Surfing":             "https://www.nps.gov/olym/index.htm",
+  "First Beach La Push":         "https://www.nps.gov/olym/index.htm",
+  "Hurricane Ridge Road Cycling": "https://www.nps.gov/olym/planyourvisit/hurricane-ridge.htm",
+  "Olympic Discovery Trail":     "https://olympicdiscoverytrail.com/",
+
   // ── Conservation & Volunteering ────────────────────────────────────────────
   "Washington Trails Association": "https://www.wta.org/",
   "Friends of the Hoh":         "https://www.friendsofthehoh.org/",
@@ -141,6 +147,14 @@ export const OLYMPIC_ALIASES = {
   "Elwha Dam Removal":          "Elwha River Restoration",
   "Jamestown S'Klallam":        "Jamestown S'Klallam Tribe",
   "Quileute":                   "Quileute Nation",
+
+  // Water & Ride
+  "Surfing La Push":            "La Push Surfing",
+  "First Beach Surfing":        "La Push Surfing",
+  "Hurricane Ridge Cycling":    "Hurricane Ridge Road Cycling",
+  "Hurricane Ridge Bike":       "Hurricane Ridge Road Cycling",
+  "Discovery Trail":            "Olympic Discovery Trail",
+  "ODT":                        "Olympic Discovery Trail",
 
   // Parks
   "Olympic":                    "Olympic National Park",

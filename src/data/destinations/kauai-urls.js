@@ -75,6 +75,14 @@ export const KAUAI_URLS = {
   "Kilauea Point National Wildlife Refuge": "https://www.fws.gov/refuge/kilauea-point",
   "Hanalei National Wildlife Refuge": "https://www.fws.gov/refuge/hanalei/",
 
+  // ── Surfing ───────────────────────────────────────────────────────────────
+  "Surfing Hanalei Bay":        "https://www.hawaiiansurfingadventures.com/",
+  "Hawaiian Surfing Adventures": "https://www.hawaiiansurfingadventures.com/",
+
+  // ── Cycling ──────────────────────────────────────────────────────────────
+  "Ke Ala Hele Makalae":        "https://www.kauai.gov/Government/Departments-Agencies/Parks-Recreation/Bike-Path",
+  "Waimea Canyon Road Cycling": "https://www.kauai.gov/",
+
   // ── Tours & Activities ───────────────────────────────────────────────────
   "Na Pali Coast Boat Tour":    "https://www.captainandy.com/",
   "Captain Andy's":             "https://www.captainandy.com/",
