@@ -1,0 +1,112 @@
+[
+  {
+    "id": "pioneertown",
+    "name": "Pioneertown",
+    "type": "historic-site",
+    "location": "Pioneertown, CA — 20 min from Joshua Tree town",
+    "priceRange": "free",
+    "budgetTier": "free",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "cultural",
+    "highlights": [
+      "Built in 1946 as a functioning Hollywood Western movie set",
+      "Walk Mane Street past original facades used in 50+ films and TV shows",
+      "Surreal collision of desert landscape and American myth-making",
+      "Still feels genuinely off the grid — no chain anything"
+    ],
+    "hours": "Open access at all times",
+    "admission": "free",
+    "links": { "website": "https://www.pioneertown.com/", "maps": null },
+    "lilaPick": true,
+    "tags": ["historic", "1940s", "movie-set", "western", "atmospheric", "free"],
+    "months": "all"
+  },
+  {
+    "id": "high-desert-test-sites",
+    "name": "High Desert Test Sites",
+    "type": "art-initiative",
+    "location": "Joshua Tree and surrounding high desert",
+    "priceRange": "free",
+    "budgetTier": "free",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "contemplative",
+    "highlights": [
+      "Ongoing site-specific art initiative founded by Andrea Zittel in 2002",
+      "Artworks embedded in the desert landscape across a wide area",
+      "Annual open studios in October — most accessible window to engage the work",
+      "One of the most distinctive art ecosystems in America, built on desert solitude"
+    ],
+    "hours": "Varies by artwork; October open studios are the primary public event",
+    "admission": "free",
+    "links": { "website": "https://www.highdesert.org/", "maps": null },
+    "lilaPick": true,
+    "tags": ["art", "site-specific", "andrea-zittel", "desert", "annual-event", "landscape"],
+    "months": "all"
+  },
+  {
+    "id": "pappy-harriets-live-music",
+    "name": "Pappy & Harriet's Pioneertown Palace",
+    "type": "cultural-site",
+    "location": "Pioneertown, CA — 20 min from Joshua Tree town",
+    "priceRange": "$$",
+    "budgetTier": "moderate",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "lively",
+    "highlights": [
+      "Legendary desert roadhouse and live music venue since 1982",
+      "Paul McCartney, Robert Plant, and Arctic Monkeys have played unannounced",
+      "BBQ, cold beer, sawdust floors, and open desert air",
+      "Check the show calendar — big acts appear with very little notice"
+    ],
+    "hours": "Thu–Sun; show nights vary — check calendar",
+    "admission": "paid (cover charge for shows)",
+    "links": { "website": "https://www.pappyandharriets.com/", "maps": null },
+    "lilaPick": true,
+    "tags": ["live-music", "roadhouse", "bbq", "desert", "legendary", "pioneertown"],
+    "months": "all"
+  },
+  {
+    "id": "modernism-week",
+    "name": "Modernism Week",
+    "type": "cultural-site",
+    "location": "Palm Springs, CA — 45 min from Joshua Tree",
+    "priceRange": "$$$",
+    "budgetTier": "premium",
+    "groupFit": ["couple", "friends"],
+    "energy": "cultural",
+    "highlights": [
+      "The largest celebration of mid-century modern architecture in the world",
+      "10 days in February — tours, talks, films, and home tours throughout Palm Springs",
+      "Access to private homes and estates normally closed to the public",
+      "The lens through which Palm Springs's built environment comes fully into focus"
+    ],
+    "hours": "February only — 10-day festival; book tickets well in advance",
+    "admission": "paid (varies by event)",
+    "links": { "website": "https://www.modernismweek.com/", "maps": null },
+    "lilaPick": false,
+    "tags": ["mid-century", "architecture", "palm-springs", "february-only", "festival", "annual"],
+    "months": "Feb",
+    "corridor": true
+  },
+  {
+    "id": "coyote-corner",
+    "name": "Coyote Corner",
+    "type": "gallery",
+    "location": "Joshua Tree town",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "cultural",
+    "highlights": [
+      "Landmark local shop since the 1970s — rocks, crystals, desert minerals, maps",
+      "A genuine local institution that hasn't been gentrified into irrelevance",
+      "The best place to orient yourself to the high desert's geology"
+    ],
+    "hours": "Daily; check hours",
+    "admission": "free",
+    "links": { "website": null, "maps": null },
+    "lilaPick": false,
+    "tags": ["rocks", "crystals", "maps", "local-institution", "geology", "desert"],
+    "months": "all"
+  }
+]

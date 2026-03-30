@@ -80,7 +80,9 @@ export const BIG_SUR_URLS = {
   "Cannery Row":                "https://www.canneryrow.com/",
   "Lovers Point":               "https://www.seemonterey.com/things-to-do/parks/lovers-point/",
   "Lovers Point Park":          "https://www.seemonterey.com/things-to-do/parks/lovers-point/",
-  "Carmel Mission Basilica":    "https://www.carmelmission.org/",
+  "Robinson Jeffers' Tor House": "https://www.torhouse.org/",
+  "Point Lobos State Natural Reserve": "https://www.parks.ca.gov/?page_id=571",
+  "Carmel Mission Basilica":    "https://carmelmission.org/",
   "Carmel Mission":             "https://www.carmelmission.org/",
 
   // ── Parks & Resources ──────────────────────────────────────────────────────

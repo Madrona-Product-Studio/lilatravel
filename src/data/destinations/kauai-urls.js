@@ -20,7 +20,7 @@ export const KAUAI_URLS = {
   // ── Beaches & Coast ──────────────────────────────────────────────────────
   "Ke'e Beach":                 "https://www.gohaena.com/",
   "Hāʻena State Park":         "https://www.gohaena.com/",
-  "Tunnels Reef":               "https://www.gohaena.com/",
+  "Tunnels Reef":               "https://gohaena.com/",
   "Poipū Beach":                "https://www.poipubeach.org/",
   "Shipwreck Beach":            "https://www.poipubeach.org/",
   "Polihale State Park":        "https://dlnr.hawaii.gov/dsp/parks/kauai/polihale-state-park/",
@@ -57,22 +57,26 @@ export const KAUAI_URLS = {
   "Kauaʻi Yoga":               "https://www.kauaiyoga.com/",
 
   // ── Sacred Practice & Culture ────────────────────────────────────────────
-  "Kauai Aadheenam":            "https://www.himalayanacademy.com/",
-  "Kauaʻi's Hindu Monastery":  "https://www.himalayanacademy.com/",
+  "Kauai Aadheenam":            "https://www.himalayanacademy.com/visit/",
+  "Kauaʻi's Hindu Monastery":  "https://www.himalayanacademy.com/visit/",
+  "Kauai's Hindu Monastery":    "https://www.himalayanacademy.com/visit/",
   "Kadavul Temple":             "https://www.himalayanacademy.com/",
-  "Lydgate Farms":              "https://www.lydgatefarms.com/",
+  "Lydgate Farms":              "https://lydgatefarms.com/chocolate-farm-tour/",
+  "Lydgate Farms Chocolate Tour": "https://lydgatefarms.com/chocolate-farm-tour/",
 
   // ── Gardens & Nature ─────────────────────────────────────────────────────
   "Limahuli Garden":            "https://ntbg.org/gardens/limahuli/",
   "Limahuli Garden & Preserve": "https://ntbg.org/gardens/limahuli/",
   "McBryde Garden":             "https://ntbg.org/gardens/mcbryde/",
   "National Tropical Botanical Garden": "https://ntbg.org/",
-  "Kīlauea Lighthouse":        "https://www.fws.gov/refuge/kilauea-point/",
-  "Kilauea Lighthouse":         "https://www.fws.gov/refuge/kilauea-point/",
+  "Kīlauea Lighthouse":        "https://www.fws.gov/refuge/kilauea-point",
+  "Kilauea Lighthouse":         "https://www.fws.gov/refuge/kilauea-point",
+  "Kilauea Point National Wildlife Refuge": "https://www.fws.gov/refuge/kilauea-point",
   "Hanalei National Wildlife Refuge": "https://www.fws.gov/refuge/hanalei/",
 
   // ── Tours & Activities ───────────────────────────────────────────────────
-  "Captain Andy's":             "https://www.napali.com/",
+  "Na Pali Coast Boat Tour":    "https://www.captainandy.com/",
+  "Captain Andy's":             "https://www.captainandy.com/",
   "Blue Dolphin Charters":      "https://www.bluedolphinkauai.com/",
   "Blue Hawaiian Helicopters":  "https://www.bluehawaiian.com/kauai/",
   "Jack Harter Helicopters":    "https://www.helicopters-kauai.com/",
@@ -80,9 +84,11 @@ export const KAUAI_URLS = {
   "Wailua Kayak Adventures":    "https://www.wailuakayak.com/",
 
   // ── Give Back & Stewardship ──────────────────────────────────────────────
-  "Waipa Foundation":           "https://www.waipafoundation.org/",
+  "Waipa Foundation":           "https://waipafoundation.org/",
+  "Waipā Foundation":           "https://waipafoundation.org/",
   "Surfrider Foundation Kauaʻi": "https://www.surfrider.org/chapters/kauai",
   "Malama Kauaʻi":             "https://www.malamakauai.org/",
+  "Malama i na Honu":           "https://www.pacificwhale.org/",
 
   // ── Art & Culture ────────────────────────────────────────────────────────
   "Hanapepe":                   "https://www.hanapepe.org/",

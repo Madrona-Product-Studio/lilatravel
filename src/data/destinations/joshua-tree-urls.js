@@ -62,7 +62,9 @@ export const JOSHUA_TREE_URLS = {
   "Bhakti Yoga Shala":         "https://www.bhaktiyogashala.com/",
 
   // ── Culture & Art ─────────────────────────────────────────────────────────
-  "High Desert Test Sites":    "https://www.highdeserttestsites.com/",
+  "Pioneertown":               "https://www.pioneertown.com/",
+  "High Desert Test Sites":    "https://www.highdesert.org/",
+  "Pappy & Harriet's Pioneertown Palace": "https://www.pappyandharriets.com/",
   "Palm Springs Art Museum":   "https://www.psmuseum.org/",
   "Modernism Week":            "https://www.modernismweek.com/",
   "Desert Institute":          "https://www.joshuatree.org/",

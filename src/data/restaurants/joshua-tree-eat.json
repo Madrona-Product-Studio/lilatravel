@@ -1,0 +1,184 @@
+[
+  {
+    "id": "la-copine",
+    "name": "La Copine",
+    "cuisine": "Farm-sourced California",
+    "location": "Joshua Tree town",
+    "priceRange": "$$$",
+    "budgetTier": "premium",
+    "groupFit": ["couple", "friends"],
+    "energy": "intimate",
+    "highlights": [
+      "The destination restaurant — converted house in the high desert",
+      "Farm-sourced, frequently changing menu",
+      "Written about in every major food publication",
+      "Reservations essential and often difficult"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": true,
+      "glutenFree": true,
+      "notes": "Seasonal menu accommodates most dietary needs — mention when booking"
+    },
+    "hours": "Brunch & lunch; limited dinner seatings. Closed Mon–Tue. Check current schedule.",
+    "reservations": "required",
+    "links": {
+      "website": "https://www.lacopinekitchen.com/",
+      "maps": null
+    },
+    "lilaPick": true,
+    "tags": ["brunch", "lunch", "farm-sourced", "destination-dining", "reservations-essential"],
+    "months": "all"
+  },
+  {
+    "id": "crossroads-cafe",
+    "name": "Crossroads Cafe",
+    "cuisine": "American breakfast & lunch",
+    "location": "Joshua Tree town",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "lively",
+    "highlights": [
+      "The local gathering spot",
+      "Good coffee, eggs, benedicts, fresh-squeezed juice",
+      "Community bulletin board tells you more about the town than any guidebook"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": false,
+      "notes": null
+    },
+    "hours": "Breakfast & lunch daily",
+    "reservations": "walk-in",
+    "links": {
+      "website": null,
+      "maps": null
+    },
+    "lilaPick": false,
+    "tags": ["breakfast", "lunch", "local-favorite", "community-hub"],
+    "months": "all"
+  },
+  {
+    "id": "natural-sisters-cafe",
+    "name": "Natural Sisters Cafe",
+    "cuisine": "Vegetarian & vegan",
+    "location": "Joshua Tree town",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "relaxed",
+    "highlights": [
+      "Vegetarian and vegan-friendly",
+      "Smoothies, bowls, wraps",
+      "A reliable healthy option near the west entrance"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": true,
+      "glutenFree": true,
+      "notes": "Fully vegetarian menu; many vegan and gluten-free options"
+    },
+    "hours": "Breakfast & lunch daily",
+    "reservations": "walk-in",
+    "links": {
+      "website": null,
+      "maps": null
+    },
+    "lilaPick": false,
+    "tags": ["breakfast", "lunch", "vegetarian", "vegan", "smoothies", "healthy"],
+    "months": "all"
+  },
+  {
+    "id": "29-palms-inn-restaurant",
+    "name": "29 Palms Inn Restaurant",
+    "cuisine": "Farm-to-table American",
+    "location": "Twentynine Palms",
+    "priceRange": "$$",
+    "budgetTier": "moderate",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "relaxed",
+    "highlights": [
+      "On the grounds of the historic inn near the north entrance",
+      "Farm-to-table — uses their own garden produce",
+      "Sit outside if weather permits"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": true,
+      "notes": "Garden-sourced; can accommodate most dietary needs"
+    },
+    "hours": "Breakfast and dinner; check seasonal hours",
+    "reservations": "recommended",
+    "links": {
+      "website": "https://29palmsinn.com/",
+      "maps": null
+    },
+    "lilaPick": true,
+    "tags": ["breakfast", "dinner", "farm-to-table", "garden", "outdoor-seating", "historic"],
+    "months": "all"
+  },
+  {
+    "id": "pappy-and-harriets",
+    "name": "Pappy & Harriet's Pioneertown Palace",
+    "cuisine": "BBQ & American",
+    "location": "Pioneertown",
+    "priceRange": "$$",
+    "budgetTier": "moderate",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "lively",
+    "highlights": [
+      "Legendary roadhouse — part BBQ joint, part honky-tonk, part live music venue",
+      "Red-checkered tablecloths, mesquite-smoked meats",
+      "Touring artists of serious caliber play here regularly",
+      "Don't miss it"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": false,
+      "notes": "Primarily BBQ; some vegetarian options available"
+    },
+    "hours": "Dinner Thu–Sun; check music calendar for special events",
+    "reservations": "walk-in",
+    "links": {
+      "website": "https://www.pappyandharriets.com/",
+      "maps": null
+    },
+    "corridor": true,
+    "lilaPick": true,
+    "tags": ["bbq", "live-music", "honky-tonk", "pioneertown", "iconic", "destination-dining"],
+    "months": "all"
+  },
+  {
+    "id": "stater-bros",
+    "name": "Stater Bros.",
+    "cuisine": "Grocery",
+    "location": "Twentynine Palms",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "relaxed",
+    "highlights": [
+      "Largest grocery option near the north entrance",
+      "Full supermarket for serious provisioning"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": true,
+      "glutenFree": true,
+      "notes": "Full grocery store"
+    },
+    "hours": "Daytime; daily",
+    "reservations": "walk-in",
+    "links": {
+      "website": null,
+      "maps": null
+    },
+    "lilaPick": false,
+    "tags": ["grocery", "supermarket", "provisions", "north-entrance"],
+    "months": "all"
+  }
+]

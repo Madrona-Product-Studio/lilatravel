@@ -1,0 +1,134 @@
+[
+  {
+    "id": "sequim-lavender-trail",
+    "name": "Sequim Lavender Trail",
+    "type": "farm-tour",
+    "location": "Sequim (rain shadow / east side)",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "contemplative",
+    "highlights": [
+      "A cluster of family-owned lavender farms in Sequim's unique rain shadow microclimate",
+      "U-pick at peak bloom mid-July — the Sequim Lavender Festival is held the third weekend of July",
+      "The contrast between lavender fields and the Olympic Mountains behind them is genuinely striking",
+      "Farms include Purple Haze, Graysmarsh, and several others; most offer u-pick and products"
+    ],
+    "hours": "Peak season June–August; u-pick mid-July; check individual farm hours",
+    "admission": "free to visit; u-pick by weight",
+    "links": { "website": "https://www.lavenderfestival.com/", "maps": null },
+    "lilaPick": true,
+    "tags": ["lavender", "u-pick", "sequim", "family-farms", "july-festival", "rain-shadow", "agricultural"],
+    "months": "Jun–Aug"
+  },
+  {
+    "id": "dungeness-spit",
+    "name": "Dungeness Spit — National Wildlife Refuge",
+    "type": "wildlife",
+    "location": "Sequim (Strait of Juan de Fuca)",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "contemplative",
+    "highlights": [
+      "The longest natural sand spit in the United States — 5.5 miles of undeveloped shoreline",
+      "Over 250 bird species including black brant, dunlin, and western grebe in migration",
+      "New Dungeness Lighthouse at the tip — staffed by volunteer lighthouse keepers",
+      "A 10-mile round-trip walk; serene, wind-swept, elemental"
+    ],
+    "hours": "Daily sunrise to sunset; small entry fee",
+    "admission": "paid (small fee per family)",
+    "links": { "website": "https://www.fws.gov/refuge/dungeness", "maps": null },
+    "lilaPick": true,
+    "tags": ["wildlife-refuge", "sand-spit", "birdwatching", "lighthouse", "sequim", "10-mile-walk"],
+    "months": "all"
+  },
+  {
+    "id": "makah-museum-cape-flattery",
+    "name": "Makah Museum & Cape Flattery",
+    "type": "cultural-site",
+    "location": "Neah Bay (Makah Reservation — northwest tip of Olympic Peninsula)",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "contemplative",
+    "highlights": [
+      "Makah Cultural and Research Center houses artifacts from the Ozette archaeological excavation — a 500-year-old Makah village preserved under a mudslide",
+      "Cape Flattery is the northwesternmost point in the contiguous United States — a Makah Tribe permit ($10/vehicle) is required",
+      "The 0.75-mile Cape Flattery trail ends at a sea stack viewpoint overlooking Tatoosh Island",
+      "Two of the most profound Sacred Terrain experiences on the peninsula, 10 minutes apart"
+    ],
+    "hours": "Museum: Wed–Mon 10am–5pm; Cape Flattery: permit required ($10/vehicle) from Makah Tribe",
+    "admission": "paid (museum admission + cape permit)",
+    "links": { "website": "https://www.makah.com/makah-museum/", "maps": null },
+    "lilaPick": true,
+    "tags": ["makah", "indigenous", "ozette-excavation", "cape-flattery", "northwesternmost-point", "permit-required"],
+    "months": "all"
+  },
+  {
+    "id": "elwha-river-restoration",
+    "name": "Elwha River Restoration",
+    "type": "historic-site",
+    "location": "Elwha Valley (west of Port Angeles)",
+    "priceRange": "free",
+    "budgetTier": "free",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "contemplative",
+    "highlights": [
+      "The largest dam removal project in US history — two dams removed 2011–2014",
+      "Led by the Lower Elwha Klallam Tribe to restore salmon runs blocked for 100 years",
+      "The Elwha now runs free to the Strait of Juan de Fuca for the first time since 1913",
+      "Visitor pullouts along Highway 112 show the recovering river; interpretive signs tell the full story"
+    ],
+    "hours": "Open access at all times; Elwha Klallam Heritage Center in Port Angeles has additional exhibits",
+    "admission": "free",
+    "links": { "website": "https://www.nps.gov/olym/learn/nature/elwha-ecosystem-restoration.htm", "maps": null },
+    "lilaPick": true,
+    "tags": ["dam-removal", "salmon", "lower-elwha-klallam", "river-restoration", "us-history", "indigenous-led"],
+    "months": "all"
+  },
+  {
+    "id": "jamestown-sklallam-tribe",
+    "name": "Jamestown S\u02bbklallam Tribe — 7 Cedars Resort",
+    "type": "cultural-site",
+    "location": "Sequim",
+    "priceRange": "free",
+    "budgetTier": "free",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "cultural",
+    "highlights": [
+      "Tribally owned and operated resort on the Olympic Peninsula",
+      "Hand-carved totem poles by Jamestown S\u02bbklallam artists on the grounds",
+      "Cultural programming and events throughout the year — check website",
+      "Revenue from the resort funds tribal cultural and language preservation programs"
+    ],
+    "hours": "Resort open daily; cultural programming varies",
+    "admission": "free to visit grounds",
+    "links": { "website": "https://www.7cedarsresort.com/", "maps": null },
+    "lilaPick": false,
+    "tags": ["jamestown-sklallam", "totem-poles", "tribal-owned", "cultural-programming", "sequim"],
+    "months": "all"
+  },
+  {
+    "id": "port-townsend-victorian-seaport",
+    "name": "Port Townsend — Victorian Seaport",
+    "type": "historic-site",
+    "location": "Port Townsend (northeast peninsula)",
+    "priceRange": "free",
+    "budgetTier": "free",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "cultural",
+    "highlights": [
+      "One of the most architecturally intact Victorian seaports in the US — largely unchanged since the 1890s",
+      "Independent bookstores, galleries, and working studios throughout the historic downtown",
+      "Olympic Music Festival performs in a barn in the surrounding hills July–September",
+      "The slow-travel alternative to rushing the park — a full day spent here rewards"
+    ],
+    "hours": "Open access; shops and galleries vary",
+    "admission": "free",
+    "links": { "website": "https://enjoypt.com/", "maps": null },
+    "lilaPick": false,
+    "tags": ["victorian", "historic-seaport", "bookstores", "galleries", "music-festival", "port-townsend"],
+    "months": "all"
+  }
+]

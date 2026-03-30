@@ -50,7 +50,8 @@ export const OLYMPIC_URLS = {
   "Olympic Hot Springs":        "https://www.nps.gov/olym/planyourvisit/elwha-area.htm",
 
   // ── Culture & Heritage ────────────────────────────────────────────────────
-  "Makah Museum":               "https://www.makahmuseum.com/",
+  "Makah Museum":               "https://www.makah.com/makah-museum/",
+  "Makah Cultural and Research Center": "https://www.makah.com/makah-museum/",
   "Makah Nation":               "https://www.makah.com/",
   "Cape Flattery":              "https://www.makah.com/",
   "Feiro Marine Life Center":   "https://www.feiromarinelifecenter.org/",
@@ -60,8 +61,9 @@ export const OLYMPIC_URLS = {
 
   // ── Indigenous Heritage ────────────────────────────────────────────────────
   "Lower Elwha Klallam Tribe":  "https://www.elwha.org/",
-  "Elwha River Restoration":    "https://www.elwha.org/",
+  "Elwha River Restoration":    "https://www.nps.gov/olym/learn/nature/elwha-ecosystem-restoration.htm",
   "Jamestown S'Klallam Tribe":  "https://www.jamestowntribe.org/",
+  "7 Cedars Resort":            "https://www.7cedarsresort.com/",
   "Quileute Nation":            "https://www.quileutenation.org/",
 
   // ── Parks & Areas ──────────────────────────────────────────────────────────
@@ -82,7 +84,8 @@ export const OLYMPIC_URLS = {
   "Swain's General Store":      "https://www.swainsinc.com/",
 
   // ── Farm & Landscape ─────────────────────────────────────────────────────
-  "Sequim Lavender Trail":      "https://www.sequimlavender.org/",
+  "Sequim Lavender Trail":      "https://www.lavenderfestival.com/",
+  "Sequim Lavender Festival":   "https://www.lavenderfestival.com/",
   "Jardin du Soleil":           "https://www.jardindusoleil.com/",
   "Purple Haze Lavender":       "https://www.purplehazelavender.com/",
   "Dungeness Spit":             "https://www.fws.gov/refuge/dungeness/",

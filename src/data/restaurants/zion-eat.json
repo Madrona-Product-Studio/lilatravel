@@ -1,0 +1,218 @@
+[
+  {
+    "id": "oscars-cafe",
+    "name": "Oscar's Cafe",
+    "cuisine": "American breakfast & lunch",
+    "location": "Springdale",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "lively",
+    "highlights": [
+      "Big portions, excellent huevos rancheros",
+      "The local gathering spot",
+      "Outdoor seating with canyon views"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": false,
+      "notes": null
+    },
+    "hours": "Breakfast & lunch daily; may have reduced winter hours",
+    "reservations": "walk-in",
+    "links": {
+      "website": "https://www.oscarscafe.com/",
+      "maps": null
+    },
+    "lilaPick": false,
+    "tags": ["breakfast", "lunch", "outdoor-seating", "local-favorite", "weekend-wait"],
+    "months": "all"
+  },
+  {
+    "id": "deep-creek-coffee",
+    "name": "Deep Creek Coffee",
+    "cuisine": "Coffee & light fare",
+    "location": "Springdale",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "relaxed",
+    "highlights": [
+      "The first stop every morning",
+      "Single-origin pour-overs and house-baked pastries",
+      "Opens early for pre-hike fuel",
+      "Post-hike recovery spot"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": false,
+      "notes": "Light fare; smoothies and pastries"
+    },
+    "hours": "Opens early morning; year-round",
+    "reservations": "walk-in",
+    "links": {
+      "website": null,
+      "maps": null
+    },
+    "lilaPick": false,
+    "tags": ["coffee", "pastries", "pre-hike", "post-hike", "early-open", "pour-over"],
+    "months": "all"
+  },
+  {
+    "id": "bit-and-spur",
+    "name": "Bit & Spur",
+    "cuisine": "Southwest-American",
+    "location": "Springdale",
+    "priceRange": "$$",
+    "budgetTier": "moderate",
+    "groupFit": ["couple", "friends"],
+    "energy": "intimate",
+    "highlights": [
+      "Creative cocktail program",
+      "Southwest-inspired dinner menu",
+      "Date-night atmosphere",
+      "Local institution"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": false,
+      "notes": null
+    },
+    "hours": "Dinner nightly; year-round",
+    "reservations": "recommended",
+    "links": {
+      "website": "https://bitandspur.com/",
+      "maps": null
+    },
+    "lilaPick": false,
+    "tags": ["dinner", "cocktails", "date-night", "southwest", "reservations-recommended"],
+    "months": "all"
+  },
+  {
+    "id": "kings-landing-bistro",
+    "name": "King's Landing Bistro",
+    "cuisine": "Upscale American / Southwest",
+    "location": "Springdale (at Driftwood Lodge)",
+    "priceRange": "$$$",
+    "budgetTier": "premium",
+    "groupFit": ["couple", "friends"],
+    "energy": "intimate",
+    "highlights": [
+      "The canyon's most celebrated table",
+      "Seasonal, Southwest-rooted menu",
+      "Reserve ahead — fills consistently"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": false,
+      "notes": null
+    },
+    "hours": "Dinner; check winter hours",
+    "reservations": "essential",
+    "links": {
+      "website": "https://www.kingslanding-zion.com/",
+      "maps": null
+    },
+    "lilaPick": true,
+    "tags": ["dinner", "upscale", "date-night", "southwest", "reservations-essential"],
+    "months": "all"
+  },
+  {
+    "id": "sol-foods-market",
+    "name": "Sol Foods Market",
+    "cuisine": "Market & provisions",
+    "location": "Springdale",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "relaxed",
+    "highlights": [
+      "Small but mighty grocery",
+      "Good sandwiches for the trail",
+      "Cold drinks, local provisions"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": true,
+      "glutenFree": true,
+      "notes": "Grocery store — wide range of options available"
+    },
+    "hours": "Daytime; year-round",
+    "reservations": "walk-in",
+    "links": {
+      "website": null,
+      "maps": null
+    },
+    "lilaPick": false,
+    "tags": ["market", "provisions", "trail-snacks", "groceries", "self-catering"],
+    "months": "all"
+  },
+  {
+    "id": "bryce-canyon-lodge-restaurant",
+    "name": "The Lodge at Bryce Canyon Restaurant",
+    "cuisine": "American / Sustainable",
+    "location": "Inside Bryce Canyon National Park",
+    "priceRange": "$$",
+    "budgetTier": "moderate",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "relaxed",
+    "highlights": [
+      "High-beam ceilings, stone fireplace, towering pines",
+      "Elk chili, buffalo sirloin, almond-crusted trout",
+      "Organic and sustainable ingredients",
+      "The most atmospheric dining room in the corridor"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": false,
+      "notes": null
+    },
+    "hours": "Dinner; seasonal (Apr–Nov)",
+    "reservations": "recommended",
+    "links": {
+      "website": "https://www.visitbrycecanyon.com/dining",
+      "maps": null
+    },
+    "corridor": true,
+    "lilaPick": false,
+    "tags": ["dinner", "inside-park", "sustainable", "atmospheric", "seasonal", "bryce-canyon"],
+    "months": "Apr–Nov"
+  },
+  {
+    "id": "hells-backbone-grill",
+    "name": "Hell's Backbone Grill & Farm",
+    "cuisine": "Farm-to-table American",
+    "location": "Boulder, UT — Scenic Byway 12",
+    "priceRange": "$$$",
+    "budgetTier": "premium",
+    "groupFit": ["couple", "friends"],
+    "energy": "intimate",
+    "highlights": [
+      "The most celebrated restaurant between Zion and Moab",
+      "Chef-owners Jen Castle and Blake Spalding follow Buddhist principles of sustainability",
+      "Organic farm on-site, James Beard semifinalist since 2017",
+      "Worth the detour"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": true,
+      "glutenFree": true,
+      "notes": "Farm-sourced; accommodates most dietary needs — call ahead"
+    },
+    "hours": "Dinner; seasonal (mid-March through November)",
+    "reservations": "required",
+    "links": {
+      "website": "https://www.hellsbackbonegrill.com/",
+      "maps": null
+    },
+    "corridor": true,
+    "lilaPick": true,
+    "tags": ["dinner", "farm-to-table", "james-beard", "destination-dining", "buddhist-principles", "seasonal", "byway-12"],
+    "months": "Mar–Nov"
+  }
+]

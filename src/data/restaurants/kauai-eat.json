@@ -1,0 +1,217 @@
+[
+  {
+    "id": "bar-acuda",
+    "name": "Bar Acuda",
+    "cuisine": "Tapas / local fish",
+    "location": "Hanalei (North Shore)",
+    "priceRange": "$$$",
+    "budgetTier": "premium",
+    "groupFit": ["couple", "friends"],
+    "energy": "lively",
+    "highlights": [
+      "The North Shore's finest dinner",
+      "Tapas format — local fish, charcuterie, island produce",
+      "European sensibility with Hawaiian ingredients",
+      "Small room, focused menu, excellent wine list"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": false,
+      "notes": null
+    },
+    "hours": "Dinner; check schedule",
+    "reservations": "essential — reserve ahead",
+    "links": {
+      "website": "https://www.baracuda.com/",
+      "maps": null
+    },
+    "lilaPick": true,
+    "tags": ["dinner", "tapas", "local-fish", "wine-list", "reservations-essential"],
+    "months": "all"
+  },
+  {
+    "id": "dolphin-restaurant",
+    "name": "Dolphin Restaurant",
+    "cuisine": "Seafood",
+    "location": "Hanalei (North Shore)",
+    "priceRange": "$$",
+    "budgetTier": "moderate",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "relaxed",
+    "highlights": [
+      "Hanalei's anchor fish restaurant",
+      "Fresh off the boat — simple, honest, good",
+      "Setting on the Hanalei River"
+    ],
+    "dietary": {
+      "vegetarian": false,
+      "vegan": false,
+      "glutenFree": false,
+      "notes": "Seafood-focused"
+    },
+    "hours": "Lunch and dinner; check hours",
+    "reservations": "walk-in",
+    "links": {
+      "website": null,
+      "maps": null
+    },
+    "lilaPick": false,
+    "tags": ["lunch", "dinner", "seafood", "riverside", "local-catch"],
+    "months": "all"
+  },
+  {
+    "id": "hanalei-taro-juice",
+    "name": "Hanalei Taro & Juice Co.",
+    "cuisine": "Hawaiian plate lunch / juice bar",
+    "location": "Hanalei (North Shore)",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "relaxed",
+    "highlights": [
+      "North shore institution",
+      "Taro smoothies, local plate lunch, shave ice",
+      "Order the taro hummus",
+      "A meal for under $20 that connects you to the land"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": true,
+      "glutenFree": true,
+      "notes": "Strong plant-based options"
+    },
+    "hours": "Breakfast and lunch; check hours",
+    "reservations": "walk-in",
+    "links": {
+      "website": null,
+      "maps": null
+    },
+    "lilaPick": true,
+    "tags": ["breakfast", "lunch", "taro", "plate-lunch", "local-institution", "budget-friendly"],
+    "months": "all"
+  },
+  {
+    "id": "beach-house-restaurant",
+    "name": "The Beach House Restaurant",
+    "cuisine": "Hawaiian regional / seafood",
+    "location": "Poipū (South Shore)",
+    "priceRange": "$$$",
+    "budgetTier": "premium",
+    "groupFit": ["couple", "friends"],
+    "energy": "refined",
+    "highlights": [
+      "Oceanfront dining above Lāwaʻi Beach",
+      "Local seafood, sunset views",
+      "Reliable upscale option on the south shore",
+      "Arrive for the sunset"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": false,
+      "notes": null
+    },
+    "hours": "Dinner; check schedule",
+    "reservations": "recommended",
+    "links": {
+      "website": null,
+      "maps": null
+    },
+    "lilaPick": false,
+    "tags": ["dinner", "oceanfront", "sunset", "seafood", "south-shore"],
+    "months": "all"
+  },
+  {
+    "id": "kukuiula-farmers-market",
+    "name": "Kukuiʻula Village Farmers Market",
+    "cuisine": "Market / prepared food",
+    "location": "Poipū (South Shore)",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "lively",
+    "highlights": [
+      "Every Wednesday afternoon",
+      "Best local produce and prepared food on the south shore",
+      "Poke, artisan goods, talk to the farmers"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": true,
+      "glutenFree": true,
+      "notes": "Wide variety of dietary options"
+    },
+    "hours": "Wednesday afternoons only",
+    "reservations": "walk-in",
+    "links": {
+      "website": null,
+      "maps": null
+    },
+    "lilaPick": false,
+    "tags": ["market", "farmers-market", "local-produce", "poke", "wednesday-only"],
+    "months": "all"
+  },
+  {
+    "id": "hanapepe-cafe",
+    "name": "Hanappe'e Café",
+    "cuisine": "Farm-to-table",
+    "location": "Hanapepe (West Side)",
+    "priceRange": "$$",
+    "budgetTier": "moderate",
+    "groupFit": ["couple", "friends"],
+    "energy": "intimate",
+    "highlights": [
+      "In the small art town of Hanapepe",
+      "Creative farm-to-table menu",
+      "Genuinely local feel",
+      "BYOB, cash only — worth planning around"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": false,
+      "notes": null
+    },
+    "hours": "Dinner; check schedule — limited days",
+    "reservations": "recommended",
+    "links": {
+      "website": null,
+      "maps": null
+    },
+    "lilaPick": false,
+    "tags": ["dinner", "farm-to-table", "byob", "cash-only", "art-town"],
+    "months": "all"
+  },
+  {
+    "id": "healthy-hut",
+    "name": "Healthy Hut",
+    "cuisine": "Natural foods / smoothies / deli",
+    "location": "Hanalei (North Shore)",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple"],
+    "energy": "relaxed",
+    "highlights": [
+      "North shore's best grocery stop for quality food",
+      "Organic and local selection",
+      "Smoothies and deli items",
+      "Stock up before heading to Ke'e Beach"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": true,
+      "glutenFree": true,
+      "notes": "Extensive natural/organic selection"
+    },
+    "hours": "Daytime; check hours",
+    "reservations": "walk-in",
+    "links": {
+      "website": null,
+      "maps": null
+    },
+    "lilaPick": false,
+    "tags": ["provisions", "smoothies", "organic", "deli", "natural-foods"],
+    "months": "all"
+  }
+]

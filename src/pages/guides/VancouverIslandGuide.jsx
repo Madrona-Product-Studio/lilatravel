@@ -20,7 +20,7 @@ import { trackEvent } from '@utils/analytics';
 import { CelestialDrawer } from '@components';
 import { Helmet } from 'react-helmet-async';
 import accommodations from '../../data/accommodations/vancouver-island.json';
-import restaurants from '../../data/restaurants/vancouver-island.json';
+import restaurants from '../../data/restaurants/vancouver-island-eat.json';
 import { BREATH_CONFIG } from '@data/breathConfig';
 import useBreathCanvas from '@hooks/useBreathCanvas';
 

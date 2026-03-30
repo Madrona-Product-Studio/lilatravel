@@ -1,0 +1,135 @@
+[
+  {
+    "id": "house-of-himwitsa",
+    "name": "House of Himwitsa",
+    "type": "gallery",
+    "location": "Tofino",
+    "priceRange": "free",
+    "budgetTier": "free",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "cultural",
+    "highlights": [
+      "Nuu-chah-nulth-owned gallery showcasing West Coast Indigenous art since 1991",
+      "Paintings, carvings, jewelry, and weavings by artists from the five Tofino-area First Nations",
+      "Purchasing here directly supports Indigenous artists and community economies",
+      "One of the few places to buy authentic, artist-sourced Northwest Coast art in Tofino"
+    ],
+    "hours": "Daily; check seasonal hours",
+    "admission": "free",
+    "links": { "website": "https://www.houseofhimwitsa.com/", "maps": null },
+    "lilaPick": true,
+    "tags": ["gallery", "indigenous-art", "nuu-chah-nulth", "first-nations", "tofino", "authentic"],
+    "months": "all"
+  },
+  {
+    "id": "roy-henry-vickers-gallery",
+    "name": "Roy Henry Vickers Gallery",
+    "type": "gallery",
+    "location": "Tofino",
+    "priceRange": "free",
+    "budgetTier": "free",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "contemplative",
+    "highlights": [
+      "Tsimshian-Stolo artist Roy Henry Vickers's primary gallery since 1986",
+      "The gallery building itself is designed in traditional Northwest Coast form — a longhouse aesthetic",
+      "Limited-edition prints, original paintings, and ceremonial works",
+      "Vickers is among the most celebrated Indigenous artists in Canada"
+    ],
+    "hours": "Daily; check seasonal hours",
+    "admission": "free",
+    "links": { "website": "https://www.royhenryvickers.com/", "maps": null },
+    "lilaPick": true,
+    "tags": ["gallery", "tsimshian", "northwest-coast", "longhouse", "limited-editions", "tofino"],
+    "months": "all"
+  },
+  {
+    "id": "tla-o-qui-aht-tribal-parks",
+    "name": "Tla-o-qui-aht Tribal Parks",
+    "type": "cultural-site",
+    "location": "Tofino / Clayoquot Sound",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "contemplative",
+    "highlights": [
+      "In 1984, the Tla-o-qui-aht Nation declared Meares Island a Tribal Park — the first Indigenous land protection action in Canada",
+      "The declaration came in response to a logging company's plans to clear-cut the old-growth",
+      "76,000 hectares now protected under Indigenous governance across Clayoquot Sound",
+      "Traveling in this territory is entering actively stewarded Indigenous land — the ʔiisaak pledge invites respectful engagement"
+    ],
+    "hours": "Open territory — no visitor center; engage through tourismtofino.com",
+    "admission": "free (water taxi to Meares Island has a fee)",
+    "links": { "website": "https://www.tourismtofino.com/activity/indigenous-experiences", "maps": null },
+    "lilaPick": true,
+    "tags": ["indigenous-governance", "tribal-parks", "meares-island", "land-protection", "tla-o-qui-aht", "first-nations"],
+    "months": "all"
+  },
+  {
+    "id": "umista-cultural-centre",
+    "name": "Uʼmista Cultural Centre",
+    "type": "cultural-site",
+    "location": "Alert Bay (North Vancouver Island — accessible by ferry from Port McNeill)",
+    "priceRange": "$$",
+    "budgetTier": "moderate",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "contemplative",
+    "highlights": [
+      "Repository of Kwakwaka'wakw cultural heritage including the repatriated potlatch collection",
+      "The masks, coppers, and ceremonial objects here were confiscated by the Canadian government when potlatching was criminalized (1885–1951)",
+      "Uʼmista means 'the return of something important' — the centre is named for the return of these objects",
+      "One of the most significant Indigenous cultural institutions in Canada"
+    ],
+    "hours": "Mon–Sat 9am–5pm; check seasonal hours",
+    "admission": "paid",
+    "links": { "website": "https://www.umista.ca/", "maps": null },
+    "lilaPick": true,
+    "tags": ["potlatch-collection", "kwakwakawakw", "repatriation", "cultural-heritage", "alert-bay", "ferry-required"],
+    "months": "all"
+  },
+  {
+    "id": "clayoquot-biosphere-trust",
+    "name": "Clayoquot Biosphere Trust",
+    "type": "cultural-site",
+    "location": "Tofino",
+    "priceRange": "free",
+    "budgetTier": "free",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "contemplative",
+    "highlights": [
+      "The science and stewardship body for the Clayoquot Sound UNESCO Biosphere Reserve",
+      "Supports research, education, and conservation across the 350,000-hectare reserve",
+      "Donations fund work that protects the old-growth, marine ecosystems, and Indigenous cultural landscapes you came to experience",
+      "Educational resources and local research available through the website"
+    ],
+    "hours": "Office hours vary — engage through website",
+    "admission": "free",
+    "links": { "website": "https://www.clayoquotbiosphere.org/", "maps": null },
+    "lilaPick": true,
+    "tags": ["biosphere", "unesco", "conservation", "clayoquot-sound", "old-growth", "stewardship"],
+    "months": "all"
+  },
+  {
+    "id": "butchart-gardens",
+    "name": "The Butchart Gardens",
+    "type": "cultural-site",
+    "location": "Brentwood Bay — 30 min north of Victoria",
+    "priceRange": "$$$",
+    "budgetTier": "premium",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "contemplative",
+    "highlights": [
+      "55 acres of five distinct gardens in a former limestone quarry — reclaimed since 1904",
+      "Jennie Butchart began transforming her husband's exhausted cement plant; the family still owns it",
+      "Over a million bedding plants in 900 varieties in continuous bloom from spring through fall",
+      "Saturday summer evenings include fireworks and live music; afternoon tea in the historic dining room"
+    ],
+    "hours": "Year-round; hours vary by season — check butchartgardens.com",
+    "admission": "paid — book online",
+    "links": { "website": "https://www.butchartgardens.com/", "maps": null },
+    "lilaPick": false,
+    "tags": ["gardens", "victoria", "national-historic-site", "former-quarry", "family-owned", "afternoon-tea"],
+    "months": "all",
+    "corridor": true
+  }
+]

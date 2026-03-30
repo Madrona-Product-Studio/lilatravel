@@ -1,0 +1,159 @@
+[
+  {
+    "id": "wolf-in-the-fog",
+    "name": "Wolf in the Fog",
+    "cuisine": "Pacific Northwest / farm and ocean",
+    "location": "Tofino",
+    "priceRange": "$$$",
+    "budgetTier": "premium",
+    "groupFit": ["couple", "friends"],
+    "energy": "lively",
+    "highlights": [
+      "The anchor restaurant of Tofino's dining scene since 2013",
+      "Farm and ocean-driven menu — Clayoquot Sound seafood, Vancouver Island farms",
+      "James Beard semifinalist; consistently one of Canada's best restaurants",
+      "Reserve well ahead — fills every night in summer"
+    ],
+    "dietary": { "vegetarian": true, "vegan": false, "glutenFree": false, "notes": null },
+    "hours": "Dinner nightly; lunch in summer",
+    "reservations": "essential",
+    "links": { "website": "https://www.wolfinthefog.com/", "maps": null },
+    "lilaPick": true,
+    "tags": ["dinner", "farm-to-table", "seafood", "james-beard", "tofino", "reservations-essential"],
+    "months": "all"
+  },
+  {
+    "id": "pluvio-restaurant",
+    "name": "Pluvio Restaurant + Rooms",
+    "cuisine": "Pacific Northwest / seafood-forward",
+    "location": "Ucluelet",
+    "priceRange": "$$$",
+    "budgetTier": "premium",
+    "groupFit": ["couple", "friends"],
+    "energy": "intimate",
+    "highlights": [
+      "The best restaurant in Ucluelet — 8 tables, intimate and focused",
+      "James Beard-nominated; chef Warren Barr's seafood-forward tasting menu",
+      "Stays upstairs make dinner a full overnight experience",
+      "The counterpoint to Wolf in the Fog — quieter, more intimate, south coast"
+    ],
+    "dietary": { "vegetarian": true, "vegan": false, "glutenFree": true, "notes": "GF accommodated with notice" },
+    "hours": "Dinner Wed–Sun; check seasonal schedule",
+    "reservations": "essential",
+    "links": { "website": "https://www.pluviorestaurant.com/", "maps": null },
+    "lilaPick": true,
+    "tags": ["dinner", "tasting-menu", "james-beard", "ucluelet", "intimate", "reservations-essential"],
+    "months": "all"
+  },
+  {
+    "id": "common-loaf-bake-shop",
+    "name": "Common Loaf Bake Shop",
+    "cuisine": "Bakery / coffee",
+    "location": "Tofino",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "relaxed",
+    "highlights": [
+      "Tofino's original bakery since the 1970s — the soul of the town's food culture",
+      "Sourdough, cinnamon buns, strong coffee, and a counter that hasn't changed",
+      "Arrive by 9am for the best selection — sells out daily",
+      "The unhurried way to start a Tofino morning"
+    ],
+    "dietary": { "vegetarian": true, "vegan": false, "glutenFree": false, "notes": "Bakery — limited GF options" },
+    "hours": "Morning daily; opens 7:30am",
+    "reservations": "walk-in",
+    "links": { "website": "https://www.commonloaf.com/", "maps": null },
+    "lilaPick": true,
+    "tags": ["breakfast", "bakery", "sourdough", "coffee", "since-1970s", "local-institution"],
+    "months": "all"
+  },
+  {
+    "id": "shelter-restaurant",
+    "name": "Shelter Restaurant",
+    "cuisine": "Pacific Northwest / seafood",
+    "location": "Tofino",
+    "priceRange": "$$$",
+    "budgetTier": "premium",
+    "groupFit": ["couple", "friends"],
+    "energy": "relaxed",
+    "highlights": [
+      "Consistent, warm, locally sourced — Pacific halibut, Clayoquot Sound oysters",
+      "A reliable alternative when Wolf in the Fog is fully booked",
+      "Cozy room with fireplace; good wine list"
+    ],
+    "dietary": { "vegetarian": true, "vegan": false, "glutenFree": false, "notes": null },
+    "hours": "Dinner nightly",
+    "reservations": "recommended",
+    "links": { "website": "https://www.shelterrestaurant.com/", "maps": null },
+    "lilaPick": false,
+    "tags": ["dinner", "seafood", "oysters", "halibut", "tofino", "fireplace"],
+    "months": "all"
+  },
+  {
+    "id": "1909-kitchen",
+    "name": "1909 Kitchen",
+    "cuisine": "Japanese-influenced Pacific Northwest",
+    "location": "Tofino",
+    "priceRange": "$$$",
+    "budgetTier": "premium",
+    "groupFit": ["couple", "friends"],
+    "energy": "relaxed",
+    "highlights": [
+      "Japanese-influenced approach to local seafood — clean, precise, interesting",
+      "Dock views at sunset from the dining room",
+      "The most distinctive culinary perspective in Tofino"
+    ],
+    "dietary": { "vegetarian": true, "vegan": false, "glutenFree": false, "notes": null },
+    "hours": "Dinner; check seasonal hours",
+    "reservations": "recommended",
+    "links": { "website": "https://www.tofinoresortandmarina.com/dine/", "maps": null },
+    "lilaPick": false,
+    "tags": ["dinner", "japanese-influenced", "seafood", "dock-views", "tofino"],
+    "months": "all"
+  },
+  {
+    "id": "heartwood-kitchen",
+    "name": "Heartwood Kitchen",
+    "cuisine": "Locally sourced breakfast and lunch",
+    "location": "Ucluelet",
+    "priceRange": "$$",
+    "budgetTier": "moderate",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "relaxed",
+    "highlights": [
+      "Daily staple for Ucluelet visitors — casual, locally sourced, consistently good",
+      "Best breakfast in Ucluelet; excellent coffee",
+      "The practical morning anchor before heading to the Wild Pacific Trail"
+    ],
+    "dietary": { "vegetarian": true, "vegan": true, "glutenFree": false, "notes": null },
+    "hours": "Breakfast and lunch daily",
+    "reservations": "walk-in",
+    "links": { "website": "https://www.heartwoodkitchen.ca/", "maps": null },
+    "lilaPick": false,
+    "tags": ["breakfast", "lunch", "ucluelet", "locally-sourced", "casual"],
+    "months": "all"
+  },
+  {
+    "id": "tofino-co-op-grocery",
+    "name": "Tofino Co-op Grocery",
+    "cuisine": "Grocery / provisions",
+    "location": "Tofino",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "relaxed",
+    "highlights": [
+      "The primary grocery store on the outer coast — essential for self-catering stays",
+      "Co-op structure means it's community-owned; local products well represented",
+      "Stock up here before heading to remote campgrounds or cabins"
+    ],
+    "dietary": { "vegetarian": true, "vegan": true, "glutenFree": true, "notes": "Full grocery store" },
+    "hours": "Daily",
+    "reservations": "walk-in",
+    "links": { "website": null, "maps": null },
+    "lilaPick": false,
+    "tags": ["grocery", "provisions", "co-op", "self-catering", "tofino"],
+    "months": "all"
+  }
+]

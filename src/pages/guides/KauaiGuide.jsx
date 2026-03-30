@@ -19,7 +19,7 @@ import { trackEvent } from '@utils/analytics';
 import { CelestialDrawer } from '@components';
 import { Helmet } from 'react-helmet-async';
 import accommodations from '../../data/accommodations/kauai.json';
-import restaurants from '../../data/restaurants/kauai.json';
+import restaurants from '../../data/restaurants/kauai-eat.json';
 import { BREATH_CONFIG } from '@data/breathConfig';
 import useBreathCanvas from '@hooks/useBreathCanvas';
 

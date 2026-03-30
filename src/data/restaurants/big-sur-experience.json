@@ -1,0 +1,112 @@
+[
+  {
+    "id": "monterey-bay-aquarium",
+    "name": "Monterey Bay Aquarium",
+    "type": "cultural-site",
+    "location": "Monterey",
+    "priceRange": "$$$",
+    "budgetTier": "premium",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "immersive",
+    "highlights": [
+      "One of the world's great marine science institutions — opened 1984 on the site of a historic sardine cannery",
+      "Living Kelp Forest exhibit: a three-story tank of the actual ecosystem you swim above in Monterey Bay",
+      "Sea Otter Program rehabilitates and releases wild otters — often visible in the Great Tide Pool",
+      "Seafood Watch app helps travelers make sustainable seafood choices at restaurants everywhere"
+    ],
+    "hours": "Daily 10am–5pm; check seasonal hours",
+    "admission": "paid — book online in advance",
+    "links": { "website": "https://www.montereybayaquarium.org/", "maps": null },
+    "lilaPick": true,
+    "tags": ["marine-science", "kelp-forest", "sea-otters", "conservation", "monterey", "world-class"],
+    "months": "all"
+  },
+  {
+    "id": "henry-miller-memorial-library",
+    "name": "Henry Miller Memorial Library",
+    "type": "cultural-site",
+    "location": "Big Sur (Highway 1)",
+    "priceRange": "free",
+    "budgetTier": "free",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "contemplative",
+    "highlights": [
+      "A clearing in the redwoods — bookshop, gallery, and community gathering place",
+      "Regular readings, concerts, and film screenings in the outdoor amphitheater",
+      "Curated selection of Miller's work and books about the Big Sur experience",
+      "The cultural soul of Big Sur, maintained by volunteers since 1981"
+    ],
+    "hours": "Daily 11am–6pm; event schedule varies",
+    "admission": "free (events may charge)",
+    "links": { "website": "https://www.henrymiller.org/", "maps": null },
+    "lilaPick": true,
+    "tags": ["literary", "bookshop", "events", "redwoods", "community", "henry-miller"],
+    "months": "all"
+  },
+  {
+    "id": "robinson-jeffers-tor-house",
+    "name": "Robinson Jeffers' Tor House",
+    "type": "historic-site",
+    "location": "Carmel-by-the-Sea",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "contemplative",
+    "highlights": [
+      "Stone cottage and Hawk Tower built entirely by hand by poet Robinson Jeffers, 1914–1963",
+      "Jeffers carried each stone up from Carmel Beach and set them himself — the house is a poem",
+      "Saturday tours only; small groups; advance reservation required",
+      "Jeffers's poetry defined the Big Sur coast as sacred terrain — this is the source"
+    ],
+    "hours": "Saturday tours only, 10am–3pm; reservations required",
+    "admission": "paid — reserve through Tor House Foundation",
+    "links": { "website": "https://www.torhouse.org/", "maps": null },
+    "lilaPick": true,
+    "tags": ["poetry", "historic-house", "hand-built", "carmel", "saturday-only", "reservation-required"],
+    "months": "all"
+  },
+  {
+    "id": "point-lobos-foundation",
+    "name": "Point Lobos State Natural Reserve",
+    "type": "cultural-site",
+    "location": "Carmel — 3 miles south of Carmel-by-the-Sea",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "contemplative",
+    "highlights": [
+      "Called 'the greatest meeting of land and water in the world' by landscape photographer Edward Weston",
+      "One of only two remaining groves of native Monterey cypress on Earth",
+      "Sea lions, harbor seals, sea otters, and migrating gray whales visible from shore",
+      "Reservation required for parking — book well in advance in summer"
+    ],
+    "hours": "Daily 8am–7pm (summer), 8am–5pm (winter); parking reservation required",
+    "admission": "paid",
+    "links": { "website": "https://www.parks.ca.gov/?page_id=571", "maps": null },
+    "lilaPick": true,
+    "tags": ["nature-reserve", "monterey-cypress", "sea-otters", "seals", "reservation-required", "point-lobos"],
+    "months": "all"
+  },
+  {
+    "id": "carmel-mission-basilica",
+    "name": "Carmel Mission Basilica",
+    "type": "historic-site",
+    "location": "Carmel-by-the-Sea",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "contemplative",
+    "highlights": [
+      "Founded in 1771 by Father Junípero Serra — the most historically significant site in the orbit",
+      "Serra is buried here; the mission was the headquarters of the California mission system",
+      "Museum with original artifacts; the basilica itself is architecturally stunning",
+      "Rose garden and courtyard offer quiet even during busy periods"
+    ],
+    "hours": "Daily 9:30am–5pm",
+    "admission": "paid (suggested donation)",
+    "links": { "website": "https://carmelmission.org/", "maps": null },
+    "lilaPick": false,
+    "tags": ["historic", "mission", "1771", "junipero-serra", "california-history", "museum"],
+    "months": "all"
+  }
+]

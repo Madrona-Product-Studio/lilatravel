@@ -65,6 +65,13 @@ export const ZION_URLS = {
   // ── Stargazing ─────────────────────────────────────────────────────────────
   "Stargazing in Zion":       "https://www.nps.gov/thingstodo/stargazing-in-zion.htm",
   "Stargazing at Bryce":      "https://www.nps.gov/thingstodo/stargazing-at-bryce-canyon.htm",
+
+  // ── Experience / Cultural ─────────────────────────────────────────────────
+  "Paiute Cultural Heritage":       "https://www.utahpaiutes.org/",
+  "Pipe Spring National Monument":  "https://www.nps.gov/pisp/index.htm",
+  "Fruita Orchards at Capitol Reef": "https://www.nps.gov/care/planyourvisit/fruita.htm",
+  "Parowan Gap Petroglyphs":        "https://www.blm.gov/visit/parowan-gap",
+  "Conserve Southwest Utah":        "https://www.conservesouthwestutah.org/",
 };
 
 // Alias map for fuzzy matching — handles common AI variations

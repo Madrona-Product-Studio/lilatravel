@@ -20,7 +20,7 @@ import { CelestialDrawer } from '@components';
 import { getNPSData, buildNPSLookup, findNPSMatch } from '@services/npsService';
 import { Helmet } from 'react-helmet-async';
 import accommodations from '../../data/accommodations/joshua-tree.json';
-import restaurants from '../../data/restaurants/joshua-tree.json';
+import restaurants from '../../data/restaurants/joshua-tree-eat.json';
 import { BREATH_CONFIG } from '@data/breathConfig';
 import useBreathCanvas from '@hooks/useBreathCanvas';
 

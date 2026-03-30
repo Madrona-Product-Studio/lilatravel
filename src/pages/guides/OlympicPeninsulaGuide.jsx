@@ -20,7 +20,7 @@ import { CelestialDrawer } from '@components';
 import { getNPSData, buildNPSLookup, findNPSMatch } from '@services/npsService';
 import { Helmet } from 'react-helmet-async';
 import accommodations from '../../data/accommodations/olympic-peninsula.json';
-import restaurants from '../../data/restaurants/olympic-peninsula.json';
+import restaurants from '../../data/restaurants/olympic-peninsula-eat.json';
 import { BREATH_CONFIG } from '@data/breathConfig';
 import useBreathCanvas from '@hooks/useBreathCanvas';
 

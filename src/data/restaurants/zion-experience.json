@@ -1,0 +1,133 @@
+[
+  {
+    "id": "paiute-cultural-heritage",
+    "name": "Paiute Cultural Heritage",
+    "type": "cultural-site",
+    "location": "Cedar City, UT — 60 min from Zion",
+    "priceRange": "free",
+    "budgetTier": "free",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "contemplative",
+    "highlights": [
+      "Southern Paiute Tribe preserves language, oral history, and ancestral traditions",
+      "Annual Restoration Powwow held in Cedar City each June",
+      "One of the few active Indigenous cultural preservation programs in the Zion corridor"
+    ],
+    "hours": "Varies — check with Paiute Indian Tribe of Utah",
+    "admission": "free",
+    "links": { "website": "https://www.utahpaiutes.org/", "maps": null },
+    "lilaPick": true,
+    "tags": ["indigenous", "language-preservation", "powwow", "southern-paiute", "cultural"],
+    "months": "all"
+  },
+  {
+    "id": "pipe-spring-national-monument",
+    "name": "Pipe Spring National Monument",
+    "type": "historic-site",
+    "location": "Moccasin, AZ — 50 min from Zion",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "contemplative",
+    "highlights": [
+      "Jointly managed by NPS and the Kaibab Band of Paiute Indians",
+      "Desert oasis with a layered story of water, sovereignty, and Indigenous land",
+      "Living history programs and ranger-led tours on the Kaibab Paiute story",
+      "One of the most historically textured sites in the Zion corridor"
+    ],
+    "hours": "Daily 8am–5pm; check seasonal hours",
+    "admission": "paid",
+    "links": { "website": "https://www.nps.gov/pisp/index.htm", "maps": null },
+    "lilaPick": true,
+    "tags": ["indigenous", "nps", "kaibab-paiute", "water", "sovereignty", "living-history"],
+    "months": "all"
+  },
+  {
+    "id": "fruita-orchards-capitol-reef",
+    "name": "Fruita Orchards at Capitol Reef",
+    "type": "farm-tour",
+    "location": "Capitol Reef National Park — 2.5 hrs from Zion via Highway 12",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "immersive",
+    "highlights": [
+      "Historic pioneer orchards from the 1880s — apricot, cherry, peach, pear, apple",
+      "U-pick in season, pay by the pound — one of the most singular experiences in the national park system",
+      "Orchards managed by NPS; harvest calendar varies by variety and year",
+      "Surrounded by Waterpocket Fold geology and Fremont cultural sites"
+    ],
+    "hours": "Dawn to dusk; u-pick season May–October depending on variety",
+    "admission": "paid (nominal — by the pound)",
+    "links": { "website": "https://www.nps.gov/care/planyourvisit/fruita.htm", "maps": null },
+    "lilaPick": true,
+    "tags": ["u-pick", "orchards", "pioneer", "nps", "capitol-reef", "seasonal", "highway-12"],
+    "months": "May–Oct",
+    "corridor": true
+  },
+  {
+    "id": "parowan-gap-petroglyphs",
+    "name": "Parowan Gap Petroglyphs",
+    "type": "cultural-site",
+    "location": "Near Cedar City, UT — 75 min from Zion",
+    "priceRange": "free",
+    "budgetTier": "free",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "contemplative",
+    "highlights": [
+      "Free open-air gallery of ancient Fremont rock art in a natural wind gap",
+      "Believed to function as a solar and lunar calendar by Fremont peoples",
+      "BLM-managed; roadside accessible, no trail required",
+      "Among the most significant petroglyph sites in southern Utah"
+    ],
+    "hours": "Open 24 hours; BLM land",
+    "admission": "free",
+    "links": { "website": "https://www.blm.gov/visit/parowan-gap", "maps": null },
+    "lilaPick": false,
+    "tags": ["petroglyphs", "fremont", "blm", "rock-art", "free", "solar-calendar"],
+    "months": "all"
+  },
+  {
+    "id": "tribal-arts-zion",
+    "name": "Tribal Arts Zion",
+    "type": "gallery",
+    "location": "Springdale",
+    "priceRange": "free",
+    "budgetTier": "free",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "cultural",
+    "highlights": [
+      "Native American art and jewelry sourced directly from tribal artists",
+      "One of the few galleries in Springdale with direct-from-artist provenance",
+      "Navajo, Hopi, Zuni, and other Southwest nations represented"
+    ],
+    "hours": "Daily; check seasonal hours",
+    "admission": "free",
+    "links": { "website": null, "maps": null },
+    "lilaPick": false,
+    "tags": ["indigenous-art", "jewelry", "gallery", "direct-from-artist", "southwest"],
+    "months": "all"
+  },
+  {
+    "id": "conserve-southwest-utah",
+    "name": "Conserve Southwest Utah",
+    "type": "volunteer",
+    "location": "St. George, UT — 30 min from Zion",
+    "priceRange": "free",
+    "budgetTier": "free",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "active",
+    "highlights": [
+      "Hands-on desert habitat restoration in the Mojave",
+      "Protecting desert tortoise habitat and native plant communities",
+      "5,000+ native plants restored through volunteer programs",
+      "One-day volunteer opportunities available for visitors"
+    ],
+    "hours": "Volunteer days scheduled throughout the year — check website",
+    "admission": "free",
+    "links": { "website": "https://www.conservesouthwestutah.org/", "maps": null },
+    "lilaPick": true,
+    "tags": ["volunteer", "habitat-restoration", "desert-tortoise", "mojave", "native-plants"],
+    "months": "Oct–Apr"
+  }
+]
