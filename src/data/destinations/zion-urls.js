@@ -45,15 +45,19 @@ export const ZION_URLS = {
   "Snow Canyon":              "https://stateparks.utah.gov/parks/snow-canyon/",
 
   // ── Wellness ───────────────────────────────────────────────────────────────
+  "Zion Guru Skydeck Yoga":   "https://www.zionguru.com/classes/yoga",
+  "Zion Guru Yoga":           "https://www.zionguru.com/classes/yoga",
+  "Hillside Yoga at Flanigan's": "https://flanigans.com/spa/mind-body-spirit/",
+  "Open Sky Wellness":        "https://openskyhotels.com/zion/wellness/",
   "Deep Canyon Spa":          "https://flanigans.com/spa/",
   "Zion Guru":                "https://www.zionguru.com/",
   "Zion Canyon Hot Springs":  "https://www.zioncanyonhotsprings.com/",
-  "True North Float":         "https://www.tnfloat.com/",
+  "True North Float":         "https://www.truenorthfloat.com/",
   "Cable Mountain Spa":       "https://cablemountainspa.com/",
   "Homebody Healing":         "https://www.homebodyhealing.love/",
   "Cosmic Flow Yoga":         "https://www.yogainzion.com/",
   "Zion Yogis":               "https://www.zionyogis.com/",
-  "Amangiri Spa":             "https://www.aman.com/hotels/amangiri",
+  "Amangiri Spa":             "https://www.aman.com/resorts/amangiri/amangiri-spa",
   "Elite Float Spa":          "",
 
   // ── Parks & Resources ──────────────────────────────────────────────────────

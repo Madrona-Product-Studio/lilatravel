@@ -56,7 +56,10 @@ export const JOSHUA_TREE_URLS = {
   "Wall Street Mill":          "https://www.nps.gov/jotr/planyourvisit/hiking.htm",
 
   // ── Wellness ───────────────────────────────────────────────────────────────
-  "Joshua Tree Retreat Center": "https://www.jtrcc.org/",
+  "Earth Yoga & Spa":          "https://www.earthyogaandspa.com/",
+  "Integratron Sound Bath":    "https://www.integratron.com/sound-baths",
+  "Joshua Tree Retreat Center": "https://jtrcc.org/",
+  "Two Bunch Palms Hot Springs": "https://www.twobunchpalms.com/",
   "Integratron":               "https://www.integratron.com/",
   "Miracle Springs Resort":    "https://www.miraclesprings.com/",
   "Bhakti Yoga Shala":         "https://www.bhaktiyogashala.com/",

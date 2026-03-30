@@ -1,0 +1,196 @@
+[
+  {
+    "id": "yoga-shala-by-the-sea",
+    "name": "Yoga Shala by the Sea",
+    "type": "studio",
+    "subtype": "yoga",
+    "breatheTier": "practice",
+    "tradition": "Hatha",
+    "location": "Cottage #18, San Carlos & 10th Ave, Carmel-by-the-Sea",
+    "priceRange": "$$",
+    "budgetTier": "moderate",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "active",
+    "highlights": [
+      "The most characterful drop-in studio in Carmel — operating continuously since 1988 in a cottage setting",
+      "Hatha, Restorative, Gentle, Vinyasa, Yoga Nidra, sound therapy, and Pranayama throughout the week",
+      "Outdoor classes held in the Sunset Center courtyard directly outside the shala",
+      "Walk-ins welcome; preregistration appreciated — the community here is genuinely old-school"
+    ],
+    "bookingWindow": "Walk-in or preregister at yogashalabythesea.com",
+    "hours": "Daily; check schedule",
+    "links": {
+      "website": "https://www.yogashalabythesea.com/",
+      "booking": "https://www.yogashalabythesea.com/"
+    },
+    "lilaPick": true,
+    "pickTier": "practice",
+    "tags": ["yoga", "hatha", "since-1988", "carmel", "outdoor-classes", "drop-in", "community"],
+    "months": "all"
+  },
+  {
+    "id": "mount-madonna-center",
+    "name": "Mount Madonna Center",
+    "type": "retreat",
+    "subtype": "yoga",
+    "breatheTier": "practice",
+    "tradition": "Ashtanga",
+    "location": "445 Summit Rd, Watsonville — 45 min from Carmel-by-the-Sea",
+    "priceRange": "$$$",
+    "budgetTier": "premium",
+    "groupFit": ["solo", "couple"],
+    "energy": "immersive",
+    "highlights": [
+      "380-acre intentional community founded in the lineage of master yogi Baba Hari Dass — one of the most significant yoga communities on the West Coast",
+      "Classical Ashtanga Yoga (eight-limbed path), Bhakti tradition, and Ayurveda in a working community setting",
+      "A Hanuman temple on the grounds where arati (fire ceremony) is performed twice daily — visitors are welcome",
+      "Personal retreats available with lodging, meals, yoga classes, and Ayurvedic treatments"
+    ],
+    "bookingWindow": "Book personal retreats at mountmadonna.org — programs fill in advance",
+    "hours": "Year-round; temple visits Tuesday and Saturday for non-residents",
+    "links": {
+      "website": "https://www.mountmadonna.org/",
+      "booking": "https://www.mountmadonna.org/personal-retreats/"
+    },
+    "lilaPick": false,
+    "tags": ["yoga", "ashtanga", "bhakti", "intentional-community", "ayurveda", "hanuman-temple", "personal-retreat"],
+    "months": "all"
+  },
+  {
+    "id": "seaside-yoga-sanctuary",
+    "name": "Seaside Yoga Sanctuary",
+    "type": "studio",
+    "subtype": "yoga",
+    "breatheTier": "practice",
+    "tradition": "Mixed",
+    "location": "Carmel Plaza, Ocean Ave & Mission St, 3rd Floor, Carmel-by-the-Sea",
+    "priceRange": "$$",
+    "budgetTier": "moderate",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "active",
+    "highlights": [
+      "Voted best yoga studio in Monterey County eleven consecutive years — a rare and reliable signal",
+      "All-level classes including sunrise sessions; complimentary mats and props provided",
+      "Drop-in welcome; day passes and class packs available for visitors"
+    ],
+    "bookingWindow": "Drop-in or book ahead at seasideyogasanctuary.com",
+    "hours": "Daily; multiple class times — check schedule",
+    "links": {
+      "website": "https://www.seasideyogasanctuary.com/",
+      "booking": "https://www.seasideyogasanctuary.com/"
+    },
+    "lilaPick": false,
+    "tags": ["yoga", "carmel", "drop-in", "all-levels", "sunrise-sessions", "eleven-years-best"],
+    "months": "all"
+  },
+  {
+    "id": "refuge-carmel",
+    "name": "Refuge Carmel",
+    "type": "spa",
+    "subtype": "cold-plunge",
+    "breatheTier": "soak",
+    "location": "One Old Ranch Rd, Carmel-by-the-Sea (adjacent to Carmel Valley Athletic Club)",
+    "priceRange": "$$$",
+    "budgetTier": "premium",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "restorative",
+    "highlights": [
+      "Nordic thermotherapy cycle — the definitive contrast therapy destination on the California coast",
+      "Finnish cedar sauna with Himalayan salt wall, eucalyptus steam rooms, hot pools, and glacial cold plunge",
+      "Strictly enforced silence and no-phone policy — genuinely one of the quietest places in the orbit",
+      "2-acre outdoor co-ed spa with fire pits, stone walls, and waterfall features; repeat the cycle 3–5 times"
+    ],
+    "bookingWindow": "Reservations required at therefuge.com — book 1–2 weeks ahead for weekends",
+    "hours": "Daily; check hours at therefuge.com",
+    "links": {
+      "website": "https://www.therefuge.com/",
+      "booking": "https://www.therefuge.com/"
+    },
+    "lilaPick": true,
+    "pickTier": "soak",
+    "tags": ["contrast-therapy", "nordic-sauna", "cold-plunge", "no-phones", "silence", "carmel", "outdoor-spa"],
+    "months": "all"
+  },
+  {
+    "id": "esalen-institute",
+    "name": "Esalen Institute",
+    "type": "retreat",
+    "subtype": "yoga",
+    "breatheTier": "restore",
+    "location": "55000 Highway 1, Big Sur — 53 miles south of Carmel",
+    "priceRange": "$$$$",
+    "budgetTier": "premium",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "immersive",
+    "highlights": [
+      "Founded in 1962 — the origin of the human potential movement in America. Maslow, Watts, Perls, and Kesey all came through here.",
+      "600+ workshops annually on yoga, somatic practice, meditation, ecology, psychology, and consciousness",
+      "Geothermal hot springs at 119°F flow into cliffside communal tubs overlooking the Pacific — access for guests only",
+      "27 acres on the Big Sur cliffs; no day visitors — access by workshop registration or residential stay only"
+    ],
+    "bookingWindow": "Book workshops and residential stays at esalen.org — popular workshops sell out months ahead",
+    "hours": "Residential and workshop access only — no day visits",
+    "links": {
+      "website": "https://www.esalen.org/",
+      "booking": "https://www.esalen.org/workshops"
+    },
+    "lilaPick": true,
+    "pickTier": "restore",
+    "tags": ["retreat", "human-potential", "hot-springs", "cliffside", "workshops", "residential", "1962"],
+    "months": "all"
+  },
+  {
+    "id": "big-sur-river-gorge",
+    "name": "Big Sur River Gorge — Contemplative Practice",
+    "type": "self-guided",
+    "subtype": "contemplative",
+    "breatheTier": "restore",
+    "location": "Pfeiffer Big Sur State Park — Gorge Trail from main campground",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple"],
+    "energy": "contemplative",
+    "highlights": [
+      "Natural pools carved into granite riverbed — a cold plunge in a redwood canyon setting",
+      "Flat sun-warmed rocks between pools invite stillness; the sound of moving water cuts through everything",
+      "1-mile walk from the campground entrance to near-solitude on most weekday mornings",
+      "Best after winter rains when pools are deep; the Gorge Trail is short and accessible"
+    ],
+    "bookingWindow": "Self-guided — park entry fee ($8/vehicle)",
+    "hours": "Sunrise to sunset; Gorge Trail from Pfeiffer Big Sur State Park",
+    "links": {
+      "website": "https://www.parks.ca.gov/PfeifferBigSur",
+      "booking": null
+    },
+    "lilaPick": false,
+    "tags": ["self-guided", "cold-plunge", "river-gorge", "redwood", "contemplative", "natural-pools"],
+    "months": "all"
+  },
+  {
+    "id": "point-lobos-contemplative-walk",
+    "name": "Point Lobos — Contemplative Walk",
+    "type": "self-guided",
+    "subtype": "forest-bathing",
+    "breatheTier": "practice",
+    "location": "Point Lobos State Natural Reserve — 3 miles south of Carmel",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple"],
+    "energy": "contemplative",
+    "highlights": [
+      "The Cypress Grove and South Shore trails are suited to slow, attentive walking and nature journaling",
+      "Ancient Monterey cypress, crashing surf, and protected coves create a natural rhythm for contemplative practice",
+      "Arrive before 9am for near-solitude — later arrivals share the trails with crowds",
+      "Bring a sketchbook or journal; China Cove overlook rewards stillness"
+    ],
+    "bookingWindow": "Self-guided — $10/vehicle, parking reservation recommended on weekends at parks.ca.gov",
+    "hours": "Daily 8am–7pm (DST), 8am–sunset (winter)",
+    "links": {
+      "website": "https://www.parks.ca.gov/pointlobos",
+      "booking": null
+    },
+    "lilaPick": false,
+    "tags": ["self-guided", "contemplative", "nature-journaling", "monterey-cypress", "point-lobos", "early-morning"],
+    "months": "all"
+  }
+]

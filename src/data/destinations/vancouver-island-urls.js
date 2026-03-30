@@ -36,7 +36,9 @@ export const VANCOUVER_URLS = {
 
   // ── Soaking & Thermal ────────────────────────────────────────────────────
   "Hot Springs Cove":           "https://bcparks.ca/maquinna-park/",
+  "Maquinna Hot Springs":       "https://bcparks.ca/maquinna-park/",
   "Ancient Cedars Spa":         "https://www.wickinn.com/ancient-cedars-spa/",
+  "Cold Water Immersion":       "https://www.tourismtofino.com/activities/beaches",
 
   // ── Dining — Tofino ──────────────────────────────────────────────────────
   "Wolf in the Fog":            "https://www.wolfinthefog.com/",
@@ -49,6 +51,11 @@ export const VANCOUVER_URLS = {
   "Pluvio Restaurant + Rooms":  "https://www.pluviorestaurant.com/",
   "Pluvio":                     "https://www.pluviorestaurant.com/",
   "Heartwood Kitchen":          "https://www.heartwoodkitchen.ca/",
+
+  // ── Breathe Experiences ───────────────────────────────────────────────────
+  "Meares Island Cultural Walk": "https://www.tourismtofino.com/activity/indigenous-experiences",
+  "Cathedral Grove Forest Bathing": "https://bcparks.ca/macmillan-park/",
+  "Kayaking Clayoquot Sound":   "https://www.tofino-kayaking.com/",
 
   // ── Indigenous Culture & Heritage ────────────────────────────────────────
   "House of Himwitsa":          "https://www.houseofhimwitsa.com/",
@@ -114,7 +121,6 @@ export const VANCOUVER_ALIASES = {
 
   // Soaking
   "Hot Springs":                "Hot Springs Cove",
-  "Maquinna Hot Springs":       "Hot Springs Cove",
   "Maquinna":                   "Hot Springs Cove",
   "Wickaninnish Spa":           "Ancient Cedars Spa",
 

@@ -10,8 +10,8 @@
 export const OLYMPIC_URLS = {
   // ── Accommodation ──────────────────────────────────────────────────────────
   "Lake Crescent Lodge":        "https://www.olympicnationalparks.com/lodging/lake-crescent-lodge/",
-  "Kalaloch Lodge":             "https://www.olympicnationalparks.com/lodging/kalaloch-lodge/",
-  "Sol Duc Hot Springs Resort": "https://www.olympicnationalparks.com/lodging/sol-duc-hot-springs-resort/",
+  "Kalaloch Lodge":             "https://www.thekalalochlodge.com/",
+  "Sol Duc Hot Springs Resort": "https://www.olympicnationalparks.com/sol-duc-hot-springs-resort",
   "Quileute Oceanside Resort":  "https://www.quileuteoceanside.com/",
   "Domaine Madeleine":          "https://www.domainemadeleine.com/",
   "Palace Hotel":               "https://www.palacehotelpt.com/",
@@ -45,9 +45,14 @@ export const OLYMPIC_URLS = {
   "Cape Alava":                 "https://www.nps.gov/olym/planyourvisit/ozette-area.htm",
   "Sol Duc Falls":              "https://www.nps.gov/olym/planyourvisit/sol-duc-area.htm",
 
+  // ── Breathe & Wellness ─────────────────────────────────────────────────────
+  "Olympic Iyengar Yoga":       "https://www.olympiciyengaryoga.com/",
+  "One Square Inch of Silence": "https://onesquareinch.org/",
+  "Hoh Rainforest One Square Inch": "https://onesquareinch.org/",
+
   // ── Soaking & Thermal ──────────────────────────────────────────────────────
-  "Sol Duc Hot Springs":        "https://www.olympicnationalparks.com/lodging/sol-duc-hot-springs-resort/",
-  "Olympic Hot Springs":        "https://www.nps.gov/olym/planyourvisit/elwha-area.htm",
+  "Sol Duc Hot Springs":        "https://www.olympicnationalparks.com/sol-duc-hot-springs-resort",
+  "Olympic Hot Springs":        "https://www.nps.gov/olym/planyourvisit/visiting-the-elwha-valley.htm",
 
   // ── Culture & Heritage ────────────────────────────────────────────────────
   "Makah Museum":               "https://www.makah.com/makah-museum/",

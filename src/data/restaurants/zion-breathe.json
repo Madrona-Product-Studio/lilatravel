@@ -1,0 +1,245 @@
+[
+  {
+    "id": "zion-guru-skydeck-yoga",
+    "name": "Zion Guru Skydeck Yoga",
+    "type": "studio",
+    "subtype": "yoga",
+    "breatheTier": "practice",
+    "tradition": "Vinyasa",
+    "location": "Zion Guru, Springdale (Anasazi Plateau)",
+    "priceRange": "$$",
+    "budgetTier": "moderate",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "active",
+    "highlights": [
+      "Open-air deck with the Watchman as backdrop — the most Lila-specific yoga setting in the Zion corridor",
+      "Morning sessions catch first light on the canyon walls — arrive as the sandstone ignites",
+      "Vinyasa, Restorative, Yoga Nidra, Yin, Kirtan, and Pranayama — taught by Jennifer Goodman",
+      "Private and group sessions available; seasonal schedule for visitors"
+    ],
+    "bookingWindow": "Book ahead via zionguru.com — popular sessions fill",
+    "hours": "Seasonal schedule; morning and evening sessions — check website",
+    "links": {
+      "website": "https://www.zionguru.com/classes/yoga",
+      "booking": "https://www.zionguru.com/classes/yoga"
+    },
+    "lilaPick": true,
+    "pickTier": "practice",
+    "tags": ["yoga", "outdoor", "skydeck", "watchman", "vinyasa", "morning", "canyon-views"],
+    "months": "Mar–Nov"
+  },
+  {
+    "id": "hillside-yoga-flanigans",
+    "name": "Hillside Yoga at Flanigan's",
+    "type": "studio",
+    "subtype": "yoga",
+    "breatheTier": "practice",
+    "tradition": "Mixed",
+    "location": "Flanigan's Resort & Spa, Springdale",
+    "priceRange": "$$",
+    "budgetTier": "moderate",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "active",
+    "highlights": [
+      "Gentle yoga with sound bath on a terrace overlooking Zion — all levels welcome",
+      "Mind, body, and spirit sessions combining yoga, Wim Hof breathwork, and cold immersion",
+      "Private sessions tailored for groups, families, or couples"
+    ],
+    "bookingWindow": "Book through Flanigan's front desk or flanigans.com",
+    "hours": "Scheduled sessions — check flanigans.com",
+    "links": {
+      "website": "https://flanigans.com/spa/mind-body-spirit/",
+      "booking": "https://flanigans.com/spa/mind-body-spirit/"
+    },
+    "lilaPick": false,
+    "tags": ["yoga", "sound-bath", "terrace", "zion-views", "all-levels", "private-sessions"],
+    "months": "all"
+  },
+  {
+    "id": "zion-canyon-hot-springs",
+    "name": "Zion Canyon Hot Springs",
+    "type": "hot-springs",
+    "subtype": "thermal",
+    "breatheTier": "soak",
+    "location": "La Verkin, UT — 15 min from Zion's south entrance",
+    "priceRange": "$$",
+    "budgetTier": "moderate",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "restorative",
+    "highlights": [
+      "32 individual geothermal hot springs fed by a natural aquifer",
+      "Finnish dry saunas, cold plunge pools — full contrast therapy circuit",
+      "21+ Premier area for adults seeking deeper stillness",
+      "One of the largest hot spring facilities in the American Southwest"
+    ],
+    "bookingWindow": "Book online at zioncanyonhotsprings.com — weekends fill ahead",
+    "hours": "Daily; check seasonal hours",
+    "links": {
+      "website": "https://www.zioncanyonhotsprings.com/",
+      "booking": "https://www.zioncanyonhotsprings.com/"
+    },
+    "lilaPick": true,
+    "pickTier": "soak",
+    "tags": ["hot-springs", "geothermal", "sauna", "cold-plunge", "contrast-therapy", "21-plus"],
+    "months": "all"
+  },
+  {
+    "id": "open-sky-wellness",
+    "name": "Open Sky Zion — Wellness Programs",
+    "type": "retreat",
+    "subtype": "yoga",
+    "breatheTier": "restore",
+    "location": "Open Sky Zion, outside Zion (private glamping property)",
+    "priceRange": "$$$",
+    "budgetTier": "premium",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "immersive",
+    "highlights": [
+      "Multi-day immersive yoga, meditation, and sound healing programs off-grid",
+      "Yoga nidra, breathwork, and somatic practice in the desert landscape",
+      "Combines with glamping stay at Open Sky for a complete Lila integration experience"
+    ],
+    "bookingWindow": "Book through openskyhotels.com — programs require advance reservation",
+    "hours": "Multi-day residential programs — check schedule",
+    "links": {
+      "website": "https://openskyhotels.com/zion/wellness/",
+      "booking": "https://openskyhotels.com/zion/wellness/"
+    },
+    "lilaPick": false,
+    "tags": ["retreat", "multi-day", "yoga-nidra", "sound-healing", "breathwork", "off-grid"],
+    "months": "Mar–Nov"
+  },
+  {
+    "id": "amangiri-spa",
+    "name": "Amangiri Spa",
+    "type": "spa",
+    "subtype": "bodywork",
+    "breatheTier": "restore",
+    "location": "Amangiri, Canyon Point, UT — 90 min from Zion",
+    "priceRange": "$$$$",
+    "budgetTier": "premium",
+    "groupFit": ["solo", "couple"],
+    "energy": "restorative",
+    "highlights": [
+      "Desert spa rooted in Navajo healing traditions — flotation therapy, desert clay wraps, ceremonial treatments",
+      "The flotation pool is built directly into the desert rock formation",
+      "Navajo-inspired treatments include healing stone massage, cedar smoke cleanse, and red ochre body ritual",
+      "90 minutes from Springdale — the drive via Page, AZ adds a full day but is worth planning"
+    ],
+    "bookingWindow": "Must be an Amangiri guest — book spa with accommodation reservation",
+    "hours": "Daily for resort guests",
+    "links": {
+      "website": "https://www.aman.com/resorts/amangiri/amangiri-spa",
+      "booking": "https://www.aman.com/resorts/amangiri"
+    },
+    "lilaPick": true,
+    "pickTier": "restore",
+    "tags": ["spa", "navajo-healing", "flotation", "desert-clay", "ceremonial", "ultra-luxury", "guests-only"],
+    "months": "all"
+  },
+  {
+    "id": "true-north-float",
+    "name": "True North Float",
+    "type": "float",
+    "subtype": "contemplative",
+    "breatheTier": "restore",
+    "location": "St. George, UT — 30 min from Zion",
+    "priceRange": "$$",
+    "budgetTier": "moderate",
+    "groupFit": ["solo", "couple"],
+    "energy": "contemplative",
+    "highlights": [
+      "Sensory deprivation float tanks — 90 minutes of zero sensory input in skin-temperature saltwater",
+      "Fire and ice suite combining infrared sauna with cold plunge",
+      "Vibroacoustic therapy — sound frequencies transmitted through a specialized bed",
+      "Southern Utah's most complete float and contrast therapy facility"
+    ],
+    "bookingWindow": "Book online at truenorthfloat.com",
+    "hours": "Daily; check schedule",
+    "links": {
+      "website": "https://www.truenorthfloat.com/",
+      "booking": "https://www.truenorthfloat.com/"
+    },
+    "lilaPick": false,
+    "tags": ["float", "sensory-deprivation", "infrared-sauna", "cold-plunge", "vibroacoustic", "st-george"],
+    "months": "all"
+  },
+  {
+    "id": "sunrise-meditation-canyon-junction",
+    "name": "Sunrise Meditation at Canyon Junction",
+    "type": "self-guided",
+    "subtype": "meditation",
+    "breatheTier": "practice",
+    "location": "Pine Creek Bridge, Canyon Junction, Zion National Park",
+    "priceRange": "free",
+    "budgetTier": "free",
+    "groupFit": ["solo", "couple"],
+    "energy": "contemplative",
+    "highlights": [
+      "Arrive before the shuttles. Sit at the Pine Creek bridge. Watch the canyon walls ignite one layer at a time.",
+      "The most elemental meditation in the park — no programming, no instruction, just presence and stone",
+      "Best in spring and fall when first light hits the Watchman and East Temple simultaneously"
+    ],
+    "bookingWindow": "Self-guided — no booking required. Arrive 30 min before sunrise.",
+    "hours": "Sunrise — check NPS sunrise times for Zion",
+    "links": {
+      "website": "https://www.nps.gov/zion/index.htm",
+      "booking": null
+    },
+    "lilaPick": false,
+    "tags": ["self-guided", "meditation", "sunrise", "canyon-junction", "free", "zion"],
+    "months": "all"
+  },
+  {
+    "id": "earthing-canyon-floor",
+    "name": "Earthing on the Canyon Floor",
+    "type": "self-guided",
+    "subtype": "contemplative",
+    "breatheTier": "practice",
+    "location": "Zion Canyon floor — anywhere along the Pa'rus Trail",
+    "priceRange": "free",
+    "budgetTier": "free",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "contemplative",
+    "highlights": [
+      "Take your shoes off. Stand on the Navajo sandstone. Feel 200 million years of warmth.",
+      "The most Lila thing in any of the six guides — free, specific, unrepeatable",
+      "The Pa'rus Trail provides the flattest, most accessible stretch of canyon floor"
+    ],
+    "bookingWindow": "Self-guided — no booking required.",
+    "hours": "Dawn to dusk",
+    "links": {
+      "website": "https://www.nps.gov/zion/index.htm",
+      "booking": null
+    },
+    "lilaPick": false,
+    "tags": ["self-guided", "earthing", "barefoot", "sandstone", "parus-trail", "free"],
+    "months": "all"
+  },
+  {
+    "id": "journaling-virgin-river",
+    "name": "Journaling at the Virgin River",
+    "type": "self-guided",
+    "subtype": "contemplative",
+    "breatheTier": "practice",
+    "location": "Pa'rus Trail benches, Zion National Park",
+    "priceRange": "free",
+    "budgetTier": "free",
+    "groupFit": ["solo"],
+    "energy": "contemplative",
+    "highlights": [
+      "Find a bench along the Pa'rus Trail. The sound of the river is its own teacher.",
+      "The integration practice for the day's hike — where the body's experience becomes language",
+      "Early morning before the shuttles start is the quietest window"
+    ],
+    "bookingWindow": "Self-guided — no booking required.",
+    "hours": "Dawn to dusk",
+    "links": {
+      "website": "https://www.nps.gov/zion/index.htm",
+      "booking": null
+    },
+    "lilaPick": false,
+    "tags": ["self-guided", "journaling", "virgin-river", "parus-trail", "free", "integration"],
+    "months": "all"
+  }
+]

@@ -1,0 +1,195 @@
+[
+  {
+    "id": "meares-island-cultural-walk",
+    "name": "Meares Island Cultural Walk",
+    "type": "forest",
+    "subtype": "forest-bathing",
+    "breatheTier": "practice",
+    "tradition": "Indigenous",
+    "location": "Meares Island, Tla-o-qui-aht Tribal Park — water taxi from Tofino government dock",
+    "priceRange": "$$",
+    "budgetTier": "moderate",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "contemplative",
+    "highlights": [
+      "Guided walks with Tla-o-qui-aht knowledge keepers — traditional plant knowledge, cultural history, and relationship to the old-growth forest",
+      "The most deeply Lila practice experience on Vancouver Island — Ancient Practices as Indigenous ecological knowledge",
+      "Walking the Hanging Garden Tree cedar grove with a Tla-o-qui-aht guide transforms the experience from forest hike to living teaching",
+      "Water taxi crosses from Tofino to Meares Island; guides meet at the dock"
+    ],
+    "bookingWindow": "Book through Tourism Tofino or directly with Tla-o-qui-aht Tribal Parks operators",
+    "hours": "By arrangement; check tourismtofino.com for current guided walk offerings",
+    "links": {
+      "website": "https://www.tourismtofino.com/activity/indigenous-experiences",
+      "booking": "https://www.tourismtofino.com/activity/indigenous-experiences"
+    },
+    "lilaPick": true,
+    "pickTier": "practice",
+    "tags": ["indigenous", "tla-o-qui-aht", "plant-knowledge", "old-growth", "cultural-walk", "water-taxi", "tribal-park"],
+    "months": "May–Oct"
+  },
+  {
+    "id": "hot-springs-cove",
+    "name": "Hot Springs Cove — Maquinna Marine Provincial Park",
+    "type": "hot-springs",
+    "subtype": "thermal",
+    "breatheTier": "soak",
+    "location": "Maquinna Marine Provincial Park — 37 km north of Tofino; boat or seaplane access only",
+    "priceRange": "$$$",
+    "budgetTier": "premium",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "immersive",
+    "highlights": [
+      "Natural geothermal pools cascading in tiers directly into the Pacific — nowhere else quite like this",
+      "A 2-kilometer boardwalk through old-growth rainforest leads from the dock to the springs",
+      "Boat access only (zodiac or water taxi, ~90 min from Tofino) or seaplane; the journey is part of the experience",
+      "Hot pool above, cool Pacific tidal surge below — the contrast cycle is natural and raw"
+    ],
+    "bookingWindow": "Book boat transport through Remote Passages, Ahous Adventures, or Tofino water taxi operators",
+    "hours": "Day trips only; depart Tofino early morning",
+    "links": {
+      "website": "https://bcparks.ca/maquinna-park/",
+      "booking": "https://www.remotepassages.com/"
+    },
+    "lilaPick": true,
+    "pickTier": "soak",
+    "tags": ["hot-springs", "geothermal", "pacific", "boat-access-only", "old-growth-boardwalk", "tidal-contrast", "maquinna"],
+    "months": "all"
+  },
+  {
+    "id": "ancient-cedars-spa",
+    "name": "Ancient Cedars Spa",
+    "type": "spa",
+    "subtype": "bodywork",
+    "breatheTier": "restore",
+    "location": "Wickaninnish Inn, Chesterman Beach, Tofino",
+    "priceRange": "$$$$",
+    "budgetTier": "premium",
+    "groupFit": ["solo", "couple"],
+    "energy": "restorative",
+    "highlights": [
+      "Cedar steam, seaweed wraps using local Clayoquot Sound kelp, and treatments with botanicals foraged from the surrounding old-growth",
+      "Treatment rooms with old-growth forest and ocean views — the setting is the practice",
+      "Signature treatments include the Coastal Cedar Experience and Wild Pacific Healing Ritual",
+      "All three braids present in a single treatment: Sacred Terrain (forest materials), Ancient Practices (traditional botanicals), Elemental Encounters (Pacific elements)"
+    ],
+    "bookingWindow": "Book at wickinn.com — open to non-guests for treatments with availability",
+    "hours": "Daily; check availability at wickinn.com",
+    "links": {
+      "website": "https://www.wickinn.com/ancient-cedars-spa/",
+      "booking": "https://www.wickinn.com/ancient-cedars-spa/"
+    },
+    "lilaPick": true,
+    "pickTier": "restore",
+    "tags": ["spa", "cedar-steam", "seaweed-wrap", "old-growth", "ocean-views", "botanicals", "tofino", "wickaninnish"],
+    "months": "all"
+  },
+  {
+    "id": "cathedral-grove-forest-bathing",
+    "name": "Cathedral Grove Forest Bathing",
+    "type": "self-guided",
+    "subtype": "forest-bathing",
+    "breatheTier": "practice",
+    "location": "MacMillan Provincial Park (Cathedral Grove), Highway 4 — midway between Port Alberni and Tofino",
+    "priceRange": "free",
+    "budgetTier": "free",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "contemplative",
+    "highlights": [
+      "Roadside old-growth stand of Douglas firs up to 800 years old — the most accessible old-growth on the island",
+      "Arriving here before most day trippers (before 9am) allows for genuine forest bathing in near-silence",
+      "The Threshold moment — most visitors pass through quickly; slow down, sit at the base of a fir, look up",
+      "Free and accessible; a natural pause point on the Highway 4 crossing"
+    ],
+    "bookingWindow": "Self-guided — pull over on Highway 4, no reservation needed",
+    "hours": "Open 24 hours; BC Parks day use area",
+    "links": {
+      "website": "https://bcparks.ca/macmillan-park/",
+      "booking": null
+    },
+    "lilaPick": false,
+    "tags": ["self-guided", "forest-bathing", "old-growth", "douglas-fir", "800-years", "highway-4", "free"],
+    "months": "all"
+  },
+  {
+    "id": "kayaking-clayoquot-sound",
+    "name": "Kayaking Clayoquot Sound",
+    "type": "self-guided",
+    "subtype": "contemplative",
+    "breatheTier": "practice",
+    "location": "Clayoquot Sound — launches from Tofino waterfront",
+    "priceRange": "$$",
+    "budgetTier": "moderate",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "active",
+    "highlights": [
+      "Paddling into 350,000 hectares of islands, inlets, and old-growth shores — wilderness within 20 minutes of Tofino",
+      "Multiple operators offer guided tours; independent rental available for experienced paddlers",
+      "Grey whales, bears, and seabirds visible from the water — a completely different perspective on the Sound",
+      "Tofino Sea Kayaking Company and Remote Passages are the most established operators"
+    ],
+    "bookingWindow": "Book guided tours at tofino-kayaking.com or remotepassages.com",
+    "hours": "Morning departures recommended; book 1–2 days ahead",
+    "links": {
+      "website": "https://www.tofino-kayaking.com/",
+      "booking": "https://www.tofino-kayaking.com/"
+    },
+    "lilaPick": false,
+    "tags": ["kayaking", "clayoquot-sound", "old-growth", "grey-whales", "guided-tour", "tofino"],
+    "months": "May–Oct"
+  },
+  {
+    "id": "cold-water-immersion-tofino",
+    "name": "Cold Water Immersion — Chesterman Beach",
+    "type": "self-guided",
+    "subtype": "cold-plunge",
+    "breatheTier": "soak",
+    "location": "Chesterman Beach or Long Beach, Tofino",
+    "priceRange": "free",
+    "budgetTier": "free",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "active",
+    "highlights": [
+      "The Pacific at Chesterman and Long Beach runs 10–14°C year-round — a deliberate practice in any season",
+      "Walk in to chest depth, breathe through the shock, and stay for two minutes — the body adapts",
+      "Storm season (November–January) in particular: entering cold surf is a genuinely Elemental Encounter",
+      "No facilities, no instruction — just the Pacific doing what it does"
+    ],
+    "bookingWindow": "Self-guided — no booking. Free.",
+    "hours": "Dawn to dusk; any season",
+    "links": {
+      "website": "https://www.tourismtofino.com/activities/beaches",
+      "booking": null
+    },
+    "lilaPick": false,
+    "tags": ["cold-water-immersion", "self-guided", "pacific", "chesterman-beach", "deliberate-practice", "free", "year-round"],
+    "months": "all"
+  },
+  {
+    "id": "surfing-tofino",
+    "name": "Surfing at Tofino",
+    "type": "self-guided",
+    "subtype": "contemplative",
+    "breatheTier": "practice",
+    "location": "Cox Bay and Chesterman Beach, Tofino",
+    "priceRange": "$$",
+    "budgetTier": "moderate",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "active",
+    "highlights": [
+      "Cold water, real waves — surfing here is an elemental practice, not a resort amenity",
+      "Cox Bay is the beginner-friendly break; multiple surf schools offer lessons for all levels",
+      "Wetsuits (4/3mm minimum, 5/4mm in winter) and boards available from Pacific Surf School and others",
+      "Year-round surfing; storm season (Sept–Nov) brings the biggest consistent swells"
+    ],
+    "bookingWindow": "Book lessons at pacificsurfschool.com or walk-in for rentals",
+    "hours": "Daily; surf school lessons typically morning",
+    "links": {
+      "website": "https://www.pacificsurfschool.com/",
+      "booking": "https://www.pacificsurfschool.com/"
+    },
+    "lilaPick": false,
+    "tags": ["surfing", "cold-water", "cox-bay", "chesterman", "lessons", "year-round", "elemental"],
+    "months": "all"
+  }
+]

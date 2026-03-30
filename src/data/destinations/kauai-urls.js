@@ -53,7 +53,8 @@ export const KAUAI_URLS = {
 
   // ── Yoga & Wellness ──────────────────────────────────────────────────────
   "Black Coral Yoga":           "https://www.blackcoralyoga.com/",
-  "Anara Spa":                  "https://www.hyatt.com/grand-hyatt/en-US/kauai",
+  "Anara Spa":                  "https://www.hyatt.com/en-US/hotel/hawaii/grand-hyatt-kauai-resort-and-spa/kauai/spa",
+  "Anara Spa at Grand Hyatt Kauai": "https://www.hyatt.com/en-US/hotel/hawaii/grand-hyatt-kauai-resort-and-spa/kauai/spa",
   "Kauaʻi Yoga":               "https://www.kauaiyoga.com/",
 
   // ── Sacred Practice & Culture ────────────────────────────────────────────
@@ -82,6 +83,8 @@ export const KAUAI_URLS = {
   "Jack Harter Helicopters":    "https://www.helicopters-kauai.com/",
   "Kayak Kauai":                "https://www.kayakkauai.com/",
   "Wailua Kayak Adventures":    "https://www.wailuakayak.com/",
+  "Kayaking the Wailua River":  "https://www.kayakwailua.com/",
+  "Kayak Wailua":               "https://www.kayakwailua.com/",
 
   // ── Give Back & Stewardship ──────────────────────────────────────────────
   "Waipa Foundation":           "https://waipafoundation.org/",

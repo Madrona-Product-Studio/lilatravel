@@ -60,12 +60,12 @@ export const BIG_SUR_URLS = {
 
   // ── Yoga & Studios ──────────────────────────────────────────────────────────
   "Yoga Shala by the Sea":       "https://www.yogashalabythesea.com/",
-  "Mount Madonna Center":        "https://mountmadonna.org/",
-  "Mount Madonna":               "https://mountmadonna.org/",
-  "Seaside Yoga Sanctuary":      "https://seasideyogasanctuary.com/",
+  "Mount Madonna Center":        "https://www.mountmadonna.org/",
+  "Mount Madonna":               "https://www.mountmadonna.org/",
+  "Seaside Yoga Sanctuary":      "https://www.seasideyogasanctuary.com/",
 
   // ── Wellness & Practices ──────────────────────────────────────────────────
-  "Refuge Carmel":               "https://www.refuge.com/",
+  "Refuge Carmel":               "https://www.therefuge.com/",
   "Esalen Institute":           "https://www.esalen.org/",
   "Esalen Hot Springs":         "https://www.esalen.org/visit/campus-features",
   "Spa Alila":                  "https://www.ventanabigsur.com/spa/",
@@ -87,6 +87,7 @@ export const BIG_SUR_URLS = {
 
   // ── Parks & Resources ──────────────────────────────────────────────────────
   "Big Sur":                    "https://www.bigsurcalifornia.org/",
+  "Big Sur River Gorge":         "https://www.parks.ca.gov/PfeifferBigSur",
   "Pfeiffer Big Sur State Park": "https://www.parks.ca.gov/PfeifferBigSur",
   "Julia Pfeiffer Burns State Park": "https://www.parks.ca.gov/JuliaPfeifferBurns",
   "Andrew Molera State Park":   "https://www.parks.ca.gov/AndrewMolera",

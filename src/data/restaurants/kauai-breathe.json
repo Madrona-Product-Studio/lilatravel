@@ -1,0 +1,142 @@
+[
+  {
+    "id": "black-coral-yoga",
+    "name": "Black Coral Yoga",
+    "type": "studio",
+    "subtype": "yoga",
+    "breatheTier": "practice",
+    "tradition": "Ashtanga",
+    "location": "Hanalei Center, 5-5161 Kuhio Hwy Suite 204E, Hanalei (North Shore)",
+    "priceRange": "$$",
+    "budgetTier": "moderate",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "active",
+    "highlights": [
+      "The anchor yoga studio on Kauai's North Shore — voted #1 yoga studio on the island",
+      "Ashtanga lineage in a historic building with wraparound lanai and mountain and waterfall views of Hanalei",
+      "Infrared Vinyasa, Yin, Restorative, Athletic Sculpt, Meditation (Vipassana tradition), Breathwork, and Sound Bath",
+      "World-class teaching team — serious practitioners who make the practice accessible to all levels",
+      "Advance registration required; popular morning classes sell out"
+    ],
+    "bookingWindow": "Advance registration required at blackcoralyoga.com — book morning classes 12+ hrs ahead",
+    "hours": "Mon–Fri 7am–6:30pm, Sat 7am–11:30am, Sun 7:45am–6pm",
+    "links": {
+      "website": "https://www.blackcoralyoga.com/",
+      "booking": "https://www.blackcoralyoga.com/book-a-class"
+    },
+    "lilaPick": true,
+    "pickTier": "practice",
+    "tags": ["yoga", "ashtanga", "infrared", "vipassana", "sound-bath", "breathwork", "hanalei", "mountain-views", "no1-kauai"],
+    "months": "all"
+  },
+  {
+    "id": "anara-spa-grand-hyatt",
+    "name": "Anara Spa at Grand Hyatt Kauai",
+    "type": "spa",
+    "subtype": "bodywork",
+    "breatheTier": "soak",
+    "location": "Grand Hyatt Kauai Resort & Spa, Poipū (South Shore)",
+    "priceRange": "$$$",
+    "budgetTier": "premium",
+    "groupFit": ["solo", "couple"],
+    "energy": "restorative",
+    "highlights": [
+      "The island's most developed spa — built around genuine Hawaiian healing traditions, not just a hotel amenity",
+      "Lomilomi massage (traditional Hawaiian bodywork using continuous flowing strokes) and pohaku hot stone therapy",
+      "Day access available for non-guests who book a treatment — one of the best spa day options on the island",
+      "Outdoor treatment hales (huts), lava rock soaking pools, and a waterfall hydrotherapy circuit"
+    ],
+    "bookingWindow": "Book at hyatt.com or call directly — day access requires treatment booking",
+    "hours": "Daily; check hours",
+    "links": {
+      "website": "https://www.hyatt.com/en-US/hotel/hawaii/grand-hyatt-kauai-resort-and-spa/kauai/spa",
+      "booking": "https://www.hyatt.com/en-US/hotel/hawaii/grand-hyatt-kauai-resort-and-spa/kauai/spa"
+    },
+    "lilaPick": true,
+    "pickTier": "soak",
+    "tags": ["spa", "lomilomi", "pohaku-hot-stone", "hawaiian-healing", "day-access", "lava-rock-pools", "south-shore"],
+    "months": "all"
+  },
+  {
+    "id": "limahuli-garden-preserve",
+    "name": "Limahuli Garden & Preserve",
+    "type": "forest",
+    "subtype": "forest-bathing",
+    "breatheTier": "restore",
+    "location": "Hāʻena (North Shore) — end of Highway 560",
+    "priceRange": "$$",
+    "budgetTier": "moderate",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "contemplative",
+    "highlights": [
+      "NTBG property on ancient Hawaiian agricultural terraces — among the most intact in the state",
+      "Walking the terraces through native plant collections is a genuinely restorative practice — the landscape carries 1,000+ years of cultivation",
+      "Self-guided and guided tours available; guided tours provide deep context on Hawaiian ethnobotany and land stewardship",
+      "The stream corridor and valley backdrop make this the most meditative natural environment on the North Shore"
+    ],
+    "bookingWindow": "Book guided tours at ntbg.org — self-guided tours available Tue–Sat 9:30am–4pm",
+    "hours": "Tue–Sat 9:30am–4pm; guided tours by reservation",
+    "links": {
+      "website": "https://ntbg.org/gardens/limahuli/",
+      "booking": "https://ntbg.org/gardens/limahuli/"
+    },
+    "lilaPick": true,
+    "pickTier": "restore",
+    "tags": ["forest-bathing", "ancient-terraces", "native-plants", "ntbg", "north-shore", "guided-tours", "ethnobotany"],
+    "months": "all"
+  },
+  {
+    "id": "kayaking-wailua-river",
+    "name": "Kayaking the Wailua River",
+    "type": "self-guided",
+    "subtype": "contemplative",
+    "breatheTier": "soak",
+    "location": "Wailua River, East Side (Kapaa area)",
+    "priceRange": "$$",
+    "budgetTier": "moderate",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "active",
+    "highlights": [
+      "The only navigable river in Hawaii — sacred to Native Hawaiians as a highway connecting mountain to sea",
+      "Guided kayak to Uluwehi (Secret) Falls — a two-tier waterfall accessible only by paddle and short hike",
+      "Multiple operators offer guided half-day tours; kayak rentals available for self-guided exploration",
+      "One of the most consistently rewarding half-day experiences on the island"
+    ],
+    "bookingWindow": "Book guided tours through operators like Kayak Wailua or Ali'i Kayaks",
+    "hours": "Morning departures recommended; book 1–2 days ahead",
+    "links": {
+      "website": "https://www.kayakwailua.com/",
+      "booking": "https://www.kayakwailua.com/"
+    },
+    "lilaPick": false,
+    "tags": ["kayaking", "wailua-river", "sacred", "uluwehi-falls", "guided-tour", "east-side"],
+    "months": "all"
+  },
+  {
+    "id": "sup-hanalei-bay",
+    "name": "Stand-Up Paddleboarding — Hanalei Bay",
+    "type": "self-guided",
+    "subtype": "contemplative",
+    "breatheTier": "practice",
+    "location": "Hanalei Bay (North Shore)",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "active",
+    "highlights": [
+      "Summer (May–September) flat-water SUP on a protected crescent bay — one of the most beautiful in Hawaii",
+      "Green sea turtles (honu) visible in the shallow reef areas — the most accessible turtle encounter on the North Shore",
+      "Multiple rental operators around the bay; board and paddle available by the hour",
+      "Morning is glassiest; afternoon trade winds pick up"
+    ],
+    "bookingWindow": "Rentals available walk-in from multiple operators at the bay",
+    "hours": "Rental operators open daily; morning recommended",
+    "links": {
+      "website": null,
+      "booking": null
+    },
+    "lilaPick": false,
+    "tags": ["sup", "paddleboarding", "hanalei-bay", "sea-turtles", "summer", "flat-water"],
+    "months": "May–Sep"
+  }
+]

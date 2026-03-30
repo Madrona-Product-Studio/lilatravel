@@ -1,0 +1,167 @@
+[
+  {
+    "id": "olympic-iyengar-yoga",
+    "name": "Olympic Iyengar Yoga",
+    "type": "studio",
+    "subtype": "yoga",
+    "breatheTier": "practice",
+    "tradition": "Iyengar",
+    "location": "Downtown Port Angeles, WA — in a 1932 drugstore building on South Lincoln Street",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "active",
+    "highlights": [
+      "Founded by Robin Popinski in 2005 in a 1932 building — 20 years of Iyengar tradition on the peninsula",
+      "Iyengar method: precise alignment, prop-supported practice, and careful sequencing for all levels and physical conditions",
+      "Classes for beginners, Level I and II, Recovery, and Over 55 — the most inclusive yoga offering on the peninsula",
+      "Walk-in rate $20; small classes with genuine personal attention"
+    ],
+    "bookingWindow": "Walk-in welcome; contact Robin at olympiciyengaryoga.com for schedule",
+    "hours": "Weekday classes year-round; check current schedule",
+    "links": {
+      "website": "https://www.olympiciyengaryoga.com/",
+      "booking": "https://www.olympiciyengaryoga.com/olympic_iyengar_yoga_schedule__fees.php"
+    },
+    "lilaPick": true,
+    "pickTier": "practice",
+    "tags": ["yoga", "iyengar", "props", "alignment", "1932-building", "port-angeles", "all-levels", "recovery"],
+    "months": "all"
+  },
+  {
+    "id": "sol-duc-hot-springs-breathe",
+    "name": "Sol Duc Hot Springs Resort",
+    "type": "hot-springs",
+    "subtype": "thermal",
+    "breatheTier": "soak",
+    "location": "Olympic National Park, Sol Duc Valley — 12 miles from Highway 101 on Sol Duc Road",
+    "priceRange": "$$",
+    "budgetTier": "moderate",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "restorative",
+    "highlights": [
+      "Three naturally heated mineral spring pools (98–107°F) in old-growth forest — operational since 1912",
+      "The warm spring water filters through ancient volcanic rock heated by geological forces deep beneath the Olympics",
+      "No phone service or internet on property by nature of the location — complete disconnection inside the park",
+      "Pool fee included in cabin rate; day access available for non-guests"
+    ],
+    "bookingWindow": "Book cabins at olympicnationalparks.com; day pool access walk-in ($19/adult)",
+    "hours": "Open late March to late October only — closed in winter",
+    "links": {
+      "website": "https://www.olympicnationalparks.com/sol-duc-hot-springs-resort",
+      "booking": "https://www.olympicnationalparks.com/lodging/sol-duc-hot-springs-resort/"
+    },
+    "lilaPick": true,
+    "pickTier": "soak",
+    "tags": ["hot-springs", "geothermal", "mineral-pools", "inside-park", "no-wifi", "old-growth", "since-1912", "seasonal"],
+    "months": "Mar–Oct"
+  },
+  {
+    "id": "hoh-rainforest-one-square-inch",
+    "name": "Hoh Rainforest — One Square Inch of Silence",
+    "type": "self-guided",
+    "subtype": "meditation",
+    "breatheTier": "restore",
+    "location": "Hoh Rainforest, Olympic National Park — 19 miles from Hoh River Visitor Center via Hoh River Trail",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo"],
+    "energy": "contemplative",
+    "highlights": [
+      "Soundscape ecologist Gordon Hempton designated this the quietest place in the Western Hemisphere — a red pebble on a moss-covered log marks it",
+      "Reaching One Square Inch requires a 19-mile round-trip hike — the journey through old-growth is the practice",
+      "The Hoh receives 140+ inches of rain per year; the acoustic environment is extraordinary — rain on moss, the river, and near-zero human noise",
+      "A Lila Restore experience unlike any other in the guides: restoration through radical silence"
+    ],
+    "bookingWindow": "Self-guided — park entry fee applies. Check trail conditions at nps.gov/olym",
+    "hours": "Dawn to dusk; full-day commitment required",
+    "links": {
+      "website": "https://onesquareinch.org/",
+      "booking": null
+    },
+    "lilaPick": true,
+    "pickTier": "restore",
+    "tags": ["self-guided", "silence", "one-square-inch", "hoh-rainforest", "gordon-hempton", "19-mile-hike", "acoustic-quiet"],
+    "months": "May–Oct"
+  },
+  {
+    "id": "olympic-hot-springs-dispersed",
+    "name": "Olympic Hot Springs (Dispersed)",
+    "type": "hot-springs",
+    "subtype": "thermal",
+    "breatheTier": "soak",
+    "location": "Elwha Valley, Olympic National Park — 2.5-mile hike from the Boulder Creek trailhead",
+    "priceRange": "free",
+    "budgetTier": "free",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "active",
+    "highlights": [
+      "Remote primitive pools — no facilities, no lifeguard, no fee",
+      "The contrast with Sol Duc is the point: raw, hike-in, natural, and completely different in character",
+      "Multiple small pools of varying temperatures; some dry up in late summer — check conditions",
+      "The 2.5-mile trail runs through old-growth forest alongside Boulder Creek"
+    ],
+    "bookingWindow": "Self-guided — no booking. Park entry fee applies.",
+    "hours": "Dawn to dusk; seasonal — pools may be reduced in late summer",
+    "links": {
+      "website": "https://www.nps.gov/olym/planyourvisit/visiting-the-elwha-valley.htm",
+      "booking": null
+    },
+    "lilaPick": false,
+    "tags": ["hot-springs", "primitive", "hike-in", "free", "elwha", "natural-pools", "no-facilities"],
+    "months": "Jun–Sep"
+  },
+  {
+    "id": "hurricane-ridge-dawn-meditation",
+    "name": "Hurricane Ridge — Dawn Alpine Meditation",
+    "type": "self-guided",
+    "subtype": "meditation",
+    "breatheTier": "practice",
+    "location": "Hurricane Ridge, Olympic National Park — 17 miles from Port Angeles via Hurricane Ridge Road",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple"],
+    "energy": "contemplative",
+    "highlights": [
+      "Arrive before the visitor center opens at dawn — subalpine meadows, glaciers, and the full Olympic Range in silence",
+      "The light at sunrise on Hurricane Hill is extraordinary — the Strait of Juan de Fuca glows below, Vancouver Island visible to the north",
+      "Winter snowshoe access adds another dimension: the silence deepens after snowfall"
+    ],
+    "bookingWindow": "Self-guided — park entry fee applies. Timed entry may be required in peak summer.",
+    "hours": "Road open year-round (weather permitting); visitor center 9am–5pm",
+    "links": {
+      "website": "https://www.nps.gov/olym/planyourvisit/hurricane-ridge.htm",
+      "booking": null
+    },
+    "lilaPick": false,
+    "tags": ["self-guided", "meditation", "alpine", "dawn", "hurricane-ridge", "glaciers", "subalpine-meadows"],
+    "months": "all"
+  },
+  {
+    "id": "kalaloch-coastal-stillness",
+    "name": "Kalaloch Lodge — Coastal Stillness",
+    "type": "self-guided",
+    "subtype": "contemplative",
+    "breatheTier": "restore",
+    "location": "Kalaloch Beach, Olympic National Park (wild coast)",
+    "priceRange": "free",
+    "budgetTier": "free",
+    "groupFit": ["solo", "couple"],
+    "energy": "contemplative",
+    "highlights": [
+      "No formal wellness programming — the wild beach with its sea stacks and driftwood invites stillness on its own terms",
+      "The Kalaloch bluff at dawn, before any other guests are awake, is as restorative as any spa treatment",
+      "Walk south from the lodge to find isolation; the beach is miles long and almost empty outside summer",
+      "This is restoration through absence — no instruction, no structure, just the Pacific"
+    ],
+    "bookingWindow": "Self-guided — stay at Kalaloch Lodge or campground, or day-visit from Highway 101",
+    "hours": "Open access; dawn is the ideal window",
+    "links": {
+      "website": "https://www.thekalalochlodge.com/",
+      "booking": null
+    },
+    "lilaPick": false,
+    "tags": ["self-guided", "coastal-stillness", "wild-coast", "sea-stacks", "dawn", "driftwood", "restoration-through-absence"],
+    "months": "all"
+  }
+]

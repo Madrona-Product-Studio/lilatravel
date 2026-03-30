@@ -1,0 +1,196 @@
+[
+  {
+    "id": "earth-yoga-spa",
+    "name": "Earth Yoga & Spa",
+    "type": "studio",
+    "subtype": "yoga",
+    "breatheTier": "practice",
+    "tradition": "Mixed",
+    "location": "57272 29 Palms Hwy, Yucca Valley — 10 min from Joshua Tree town",
+    "priceRange": "$$",
+    "budgetTier": "moderate",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "active",
+    "highlights": [
+      "The most complete yoga and wellness studio in the high desert — yoga, sound baths, infrared sauna, cold plunge, massage, and acupuncture under one roof",
+      "Classes from 7am daily — Vinyasa, Yin, Restorative, sound healing, breathwork, and meditation",
+      "Infrared sauna + cold plunge contrast circuit available without a class booking",
+      "Teacher-owned, community-rooted, the kind of studio that anchors a place"
+    ],
+    "bookingWindow": "Book classes and spa services at earthyogaandspa.com",
+    "hours": "Mon–Thu 7am–8pm, Fri–Sun 9am–5pm",
+    "links": {
+      "website": "https://www.earthyogaandspa.com/",
+      "booking": "https://www.earthyogaandspa.com/"
+    },
+    "lilaPick": true,
+    "pickTier": "practice",
+    "tags": ["yoga", "infrared-sauna", "cold-plunge", "sound-bath", "acupuncture", "massage", "yucca-valley"],
+    "months": "all"
+  },
+  {
+    "id": "integratron-sound-bath",
+    "name": "Integratron Sound Bath",
+    "type": "sound-bath",
+    "subtype": "sound-healing",
+    "breatheTier": "soak",
+    "location": "Landers, CA — 25 min north of Joshua Tree town",
+    "priceRange": "$$",
+    "budgetTier": "moderate",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "contemplative",
+    "highlights": [
+      "One-of-a-kind acoustic sound bath inside a resonant all-wood dome built on a geomagnetic vortex",
+      "Constructed in the 1950s using sacred geometry — the dome was designed as a time machine and youth rejuvenation chamber",
+      "Crystal singing bowls create a physical sound immersion unlike anything else — guests report altered states, deep release, and profound stillness",
+      "Public sound baths run on weekends; private sessions available; sells out months in advance"
+    ],
+    "bookingWindow": "Book well ahead at integratron.com — weekend public sessions sell out months in advance",
+    "hours": "Weekend sound baths; private sessions by arrangement",
+    "links": {
+      "website": "https://www.integratron.com/",
+      "booking": "https://www.integratron.com/sound-baths"
+    },
+    "lilaPick": true,
+    "pickTier": "soak",
+    "tags": ["sound-bath", "crystal-bowls", "sacred-geometry", "vortex", "dome", "landers", "sells-out"],
+    "months": "all"
+  },
+  {
+    "id": "joshua-tree-retreat-center",
+    "name": "Joshua Tree Retreat Center",
+    "type": "retreat",
+    "subtype": "meditation",
+    "breatheTier": "restore",
+    "location": "59700 29 Palms Hwy, Joshua Tree — near the park's west entrance",
+    "priceRange": "$$$",
+    "budgetTier": "premium",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "immersive",
+    "highlights": [
+      "150-acre campus with structures designed by Lloyd Wright (Frank Lloyd Wright's son) using sacred geometry — the land itself was chosen for its documented vortex energy",
+      "Founded in 1941 by the Institute of Mentalphysics — one of the oldest western spiritual retreat centers in California",
+      "Personal retreats available with lodging, meals, meditation facilities, pool, and Qi Gong programs",
+      "Yoga, breathwork, and meditation classes open to day visitors and retreatants"
+    ],
+    "bookingWindow": "Personal retreats booked at jtrcc.org — day visits welcome during operating hours",
+    "hours": "Retreat center open daily; check individual program schedules",
+    "links": {
+      "website": "https://jtrcc.org/",
+      "booking": "https://jtrcc.org/visit/"
+    },
+    "lilaPick": true,
+    "pickTier": "restore",
+    "tags": ["retreat", "lloyd-wright", "sacred-geometry", "vortex", "meditation", "personal-retreat", "qi-gong"],
+    "months": "all"
+  },
+  {
+    "id": "two-bunch-palms-hot-springs",
+    "name": "Two Bunch Palms Hot Springs",
+    "type": "hot-springs",
+    "subtype": "thermal",
+    "breatheTier": "soak",
+    "location": "Desert Hot Springs, CA — 45 min from Joshua Tree town",
+    "priceRange": "$$$",
+    "budgetTier": "premium",
+    "groupFit": ["solo", "couple"],
+    "energy": "restorative",
+    "highlights": [
+      "Historic mineral hot springs fed by a natural geothermal aquifer since 1930",
+      "Grotto pools, outdoor mineral soaking pools, and a full spa with couples treatments",
+      "Long a Hollywood hideaway — Al Capone reportedly used it as a refuge",
+      "Day access available for non-guests; book a treatment to guarantee pool entry"
+    ],
+    "bookingWindow": "Book at twobunchpalms.com — day access sells out on weekends",
+    "hours": "Daily; check hours for day visitors",
+    "links": {
+      "website": "https://www.twobunchpalms.com/",
+      "booking": "https://www.twobunchpalms.com/"
+    },
+    "lilaPick": false,
+    "tags": ["hot-springs", "mineral-pools", "grotto", "historic", "hollywood-hideaway", "desert-hot-springs"],
+    "months": "all"
+  },
+  {
+    "id": "bhakti-yoga-shala",
+    "name": "Bhakti Yoga Shala",
+    "type": "studio",
+    "subtype": "yoga",
+    "breatheTier": "practice",
+    "tradition": "Bhakti",
+    "location": "Palm Springs, CA — 45 min from Joshua Tree town",
+    "priceRange": "$$",
+    "budgetTier": "moderate",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "active",
+    "highlights": [
+      "One of the Coachella Valley's most respected yoga studios — rooted in the Bhakti tradition of devotional practice",
+      "Strong community of dedicated practitioners; serious lineage instruction",
+      "Vinyasa, Ashtanga, Yin, Restorative, meditation, and kirtan classes throughout the week",
+      "The right studio for travelers who want to maintain a real practice during a JT trip"
+    ],
+    "bookingWindow": "Drop-in welcome; book ahead for popular classes at bhaktiyogashala.com",
+    "hours": "Daily; check schedule",
+    "links": {
+      "website": "https://www.bhaktiyogashala.com/",
+      "booking": "https://www.bhaktiyogashala.com/"
+    },
+    "lilaPick": false,
+    "tags": ["yoga", "bhakti", "devotional", "palm-springs", "kirtan", "lineage", "vinyasa"],
+    "months": "all"
+  },
+  {
+    "id": "sunrise-yoga-ryan-mountain",
+    "name": "Sunrise Yoga at Ryan Mountain Trailhead",
+    "type": "self-guided",
+    "subtype": "yoga",
+    "breatheTier": "practice",
+    "tradition": "Mixed",
+    "location": "Ryan Mountain Trailhead, Joshua Tree National Park",
+    "priceRange": "free",
+    "budgetTier": "free",
+    "groupFit": ["solo", "couple"],
+    "energy": "active",
+    "highlights": [
+      "Set up your mat at the trailhead before sunrise — the desert light for sun salutations is unrepeatable",
+      "East-facing exposure catches first light on the Mojave; Joshua trees silhouetted against the glow",
+      "Bring your own mat; early arrival secures the best position before day hikers arrive"
+    ],
+    "bookingWindow": "Self-guided — no booking. Arrive 30 min before sunrise.",
+    "hours": "Sunrise",
+    "links": {
+      "website": "https://www.nps.gov/jotr/index.htm",
+      "booking": null
+    },
+    "lilaPick": false,
+    "tags": ["self-guided", "yoga", "sunrise", "ryan-mountain", "desert-light", "free"],
+    "months": "Oct–May"
+  },
+  {
+    "id": "desert-silence-practice",
+    "name": "Desert Silence as Practice",
+    "type": "self-guided",
+    "subtype": "meditation",
+    "breatheTier": "practice",
+    "location": "29 Palms backcountry and Wonderland of Rocks, Joshua Tree National Park",
+    "priceRange": "free",
+    "budgetTier": "free",
+    "groupFit": ["solo"],
+    "energy": "contemplative",
+    "highlights": [
+      "The high desert has measurable acoustic quiet — one of the few places in Southern California with near-zero ambient noise",
+      "The Wonderland of Rocks provides natural shelter from wind; find a boulder alcove and sit",
+      "Early morning before 8am in the 29 Palms backcountry corridor is the quietest window",
+      "This is not a programmed practice — it's the desert doing what it does best"
+    ],
+    "bookingWindow": "Self-guided — no booking. Park entry fee applies.",
+    "hours": "Dawn to dusk",
+    "links": {
+      "website": "https://www.nps.gov/jotr/index.htm",
+      "booking": null
+    },
+    "lilaPick": false,
+    "tags": ["self-guided", "meditation", "silence", "wonderland-of-rocks", "acoustic-quiet", "free"],
+    "months": "Oct–May"
+  }
+]
