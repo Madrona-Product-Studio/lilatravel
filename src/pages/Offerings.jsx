@@ -102,34 +102,23 @@ export default function OfferingsPage() {
       {/* ══════════════════════════════════════════════════════════════════════
           CONVERGENCE — A Day With Lila
       ══════════════════════════════════════════════════════════════════════ */}
-      <section style={{ padding: "80px 52px", background: C.cream }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+      <section className="px-6 py-16 md:px-[52px] md:py-20 bg-cream">
+        <div className="max-w-[1100px] mx-auto">
           <FadeIn>
-            <div style={{ textAlign: "center", marginBottom: 48 }}>
+            <div className="text-center mb-12">
               {/* Visual convergence — three colored lines */}
-              <div style={{
-                display: "flex", justifyContent: "center", alignItems: "center",
-                gap: 16, marginBottom: 28,
-              }}>
-                <div style={{ width: 48, height: 1, background: C.goldenAmber }} />
-                <div style={{ width: 48, height: 1, background: C.seaGlass }} />
-                <div style={{ width: 48, height: 1, background: C.sunSalmon }} />
+              <div className="flex justify-center items-center gap-4 mb-7">
+                <div className="w-12 h-px bg-golden-amber" />
+                <div className="w-12 h-px bg-sea-glass" />
+                <div className="w-12 h-px bg-sun-salmon" />
               </div>
-              <span style={{
-                fontFamily: "'Quicksand'", fontSize: 11, fontWeight: 700,
-                letterSpacing: "0.22em", textTransform: "uppercase",
-                color: C.oceanTeal, display: "block", marginBottom: 12,
-              }}>Woven Together</span>
-              <h2 style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontSize: "clamp(28px, 4vw, 42px)", fontWeight: 300,
-                color: C.darkInk, marginBottom: 16,
-              }}>A day with Lila</h2>
-              <p style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontSize: 18, fontStyle: "normal", color: "#5a6a78",
-                maxWidth: 480, margin: "0 auto",
-              }}>
+              <span className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-ocean-teal block mb-3">
+                Woven Together
+              </span>
+              <h2 className="font-serif text-[clamp(28px,4vw,42px)] font-light text-dark-ink mb-4">
+                A day with Lila
+              </h2>
+              <p className="font-serif text-lg text-[#5a6a78] max-w-[480px] mx-auto">
                 Here's what it looks like when the threads come together. Every day is a composition — not a schedule.
               </p>
             </div>
@@ -137,98 +126,67 @@ export default function OfferingsPage() {
 
           {/* Sample itinerary card */}
           <FadeIn delay={0.15}>
-            <div style={{
-              maxWidth: 680,
-              margin: "0 auto",
-              background: "white",
-              border: `1px solid ${C.stone || '#e0dbd4'}`,
-              overflow: "hidden",
-            }}>
+            <div className="max-w-[680px] mx-auto bg-white border border-stone overflow-hidden">
               {/* Itinerary header */}
-              <div style={{
-                padding: "28px 40px",
-                borderBottom: `1px solid ${C.stone || '#e0dbd4'}`,
-                display: "flex", alignItems: "baseline", gap: 12,
-              }}>
-                <span style={{
-                  fontFamily: "'Cormorant Garamond', serif",
-                  fontSize: 14, fontWeight: 400,
-                  color: "#9aa8b2", fontStyle: "normal",
-                }}>Sample day</span>
-                <span style={{ fontSize: 12, color: "#c0c8cd" }}>·</span>
-                <span style={{
-                  fontFamily: "'Cormorant Garamond', serif",
-                  fontSize: 14, fontWeight: 400,
-                  color: "#9aa8b2", fontStyle: "normal",
-                }}>Zion Canyon, Utah</span>
+              <div className="py-7 px-6 md:px-10 border-b border-stone flex items-baseline gap-3">
+                <span className="font-serif text-sm font-normal text-[#9aa8b2]">
+                  Sample day
+                </span>
+                <span className="text-xs text-[#c0c8cd]">·</span>
+                <span className="font-serif text-sm font-normal text-[#9aa8b2]">
+                  Zion Canyon, Utah
+                </span>
               </div>
 
               {/* Timeline */}
-              <div style={{ padding: "32px 40px" }}>
+              <div className="py-8 px-6 md:px-10">
                 {sampleItinerary.map((item, i) => (
-                  <div key={i} style={{
-                    display: "grid",
-                    gridTemplateColumns: "68px 6px 1fr",
-                    gap: 18,
-                    alignItems: "start",
-                    paddingBottom: i < sampleItinerary.length - 1 ? 24 : 0,
-                  }}>
+                  <div
+                    key={i}
+                    className="grid grid-cols-[68px_6px_1fr] gap-[18px] items-start"
+                    style={{ paddingBottom: i < sampleItinerary.length - 1 ? 24 : 0 }}
+                  >
                     {/* Time */}
-                    <span style={{
-                      fontFamily: "'Quicksand'",
-                      fontSize: 12, fontWeight: 600,
-                      color: "#9aa8b2",
-                      letterSpacing: "0.06em",
-                      paddingTop: 2,
-                      textAlign: "right",
-                    }}>{item.time}</span>
+                    <span className="font-body text-xs font-semibold text-[#9aa8b2] tracking-[0.06em] pt-0.5 text-right">
+                      {item.time}
+                    </span>
 
                     {/* Dot + connector */}
-                    <div style={{
-                      display: "flex", flexDirection: "column",
-                      alignItems: "center", paddingTop: 5,
-                    }}>
-                      <div style={{
-                        width: 6, height: 6, borderRadius: "50%",
-                        background: item.color, flexShrink: 0,
-                      }} />
+                    <div className="flex flex-col items-center pt-[5px]">
+                      <div
+                        className="w-1.5 h-1.5 rounded-full shrink-0"
+                        style={{ background: item.color }}
+                      />
                       {i < sampleItinerary.length - 1 && (
-                        <div style={{
-                          width: 1, flex: 1, minHeight: 20,
-                          background: `linear-gradient(to bottom, ${item.color}40, ${sampleItinerary[i+1].color}40)`,
-                        }} />
+                        <div
+                          className="w-px flex-1 min-h-[20px]"
+                          style={{
+                            background: `linear-gradient(to bottom, ${item.color}40, ${sampleItinerary[i+1].color}40)`,
+                          }}
+                        />
                       )}
                     </div>
 
                     {/* Description */}
-                    <span style={{
-                      fontFamily: "'Quicksand'",
-                      fontSize: 14, fontWeight: 400,
-                      color: C.darkInk, lineHeight: 1.6,
-                    }}>{item.title}</span>
+                    <span className="font-body text-sm font-normal text-dark-ink leading-[1.6]">
+                      {item.title}
+                    </span>
                   </div>
                 ))}
               </div>
 
               {/* Thread legend */}
-              <div style={{
-                padding: "20px 40px",
-                borderTop: `1px solid ${C.stone || '#e0dbd4'}`,
-                display: "flex", gap: 24, flexWrap: "wrap",
-              }}>
+              <div className="py-5 px-6 md:px-10 border-t border-stone flex gap-6 flex-wrap">
                 {[
                   { name: "Sacred Terrain", color: C.goldenAmber },
                   { name: "The Practice", color: C.seaGlass },
                   { name: "The Ritual", color: C.sunSalmon },
                 ].map(t => (
-                  <div key={t.name} style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                    <div style={{ width: 6, height: 6, borderRadius: "50%", background: t.color }} />
-                    <span style={{
-                      fontFamily: "'Quicksand'",
-                      fontSize: 11, fontWeight: 600,
-                      letterSpacing: "0.12em", textTransform: "uppercase",
-                      color: "#9aa8b2",
-                    }}>{t.name}</span>
+                  <div key={t.name} className="flex items-center gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full" style={{ background: t.color }} />
+                    <span className="font-body text-[11px] font-semibold tracking-[0.12em] uppercase text-[#9aa8b2]">
+                      {t.name}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -245,126 +203,76 @@ export default function OfferingsPage() {
       {/* ══════════════════════════════════════════════════════════════════════
           UPCOMING THRESHOLD TRIPS
       ══════════════════════════════════════════════════════════════════════ */}
-      <section id="upcoming" style={{ padding: "80px 52px", background: C.cream }}>
-        <div style={{ maxWidth: 1000, margin: "0 auto" }}>
+      <section id="upcoming" className="px-6 py-16 md:px-[52px] md:py-20 bg-cream">
+        <div className="max-w-[1000px] mx-auto">
           <FadeIn>
-            <div style={{ textAlign: "center", marginBottom: 56 }}>
-              <span style={{
-                fontFamily: "'Quicksand'", fontSize: 11, fontWeight: 700,
-                letterSpacing: "0.22em", textTransform: "uppercase",
-                color: C.sunSalmon, display: "block", marginBottom: 12,
-              }}>Upcoming Experiences</span>
-              <h2 style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontSize: "clamp(28px, 4vw, 42px)", fontWeight: 300,
-                color: C.darkInk, marginBottom: 16,
-              }}>Threshold Trips</h2>
-              <p style={{
-                fontFamily: "'Quicksand'", fontSize: 15, color: "#5a6a78",
-                lineHeight: 1.8, maxWidth: 580, margin: "0 auto",
-              }}>
+            <div className="text-center mb-14">
+              <span className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-sun-salmon block mb-3">
+                Upcoming Experiences
+              </span>
+              <h2 className="font-serif text-[clamp(28px,4vw,42px)] font-light text-dark-ink mb-4">
+                Threshold Trips
+              </h2>
+              <p className="font-body text-[15px] text-[#5a6a78] leading-[1.8] max-w-[580px] mx-auto">
                 Journeys timed to equinoxes, solstices, and seasonal turning points —
                 when a place crosses into its most powerful window.
               </p>
             </div>
           </FadeIn>
 
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-            gap: 28,
-          }}>
+          <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-7">
             {upcomingTrips.map((trip, i) => (
               <FadeIn key={trip.slug} delay={i * 0.1}>
                 <Link
                   to={`/trips/${trip.slug}`}
-                  style={{ textDecoration: "none", display: "block" }}
+                  className="no-underline block"
                 >
-                  <div style={{
-                    background: "white",
-                    overflow: "hidden",
-                    transition: "transform 0.4s ease, box-shadow 0.4s ease",
-                    cursor: "pointer",
-                    position: "relative",
-                  }}
-                  onMouseEnter={e => {
-                    e.currentTarget.style.transform = "translateY(-4px)";
-                    e.currentTarget.style.boxShadow = "0 12px 40px rgba(0,0,0,0.08)";
-                  }}
-                  onMouseLeave={e => {
-                    e.currentTarget.style.transform = "translateY(0)";
-                    e.currentTarget.style.boxShadow = "none";
-                  }}
-                  >
+                  <div className="bg-white overflow-hidden transition-all duration-400 cursor-pointer relative hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(0,0,0,0.08)]">
                     {/* Photo placeholder with gradient */}
-                    <div style={{
-                      height: 200,
-                      background: trip.gradient,
-                      display: "flex",
-                      alignItems: "flex-end",
-                      padding: 20,
-                      position: "relative",
-                    }}>
-                      <div style={{
-                        position: "absolute", top: 16, right: 16,
-                        background: "rgba(255,255,255,0.92)",
-                        backdropFilter: "blur(8px)",
-                        padding: "6px 14px",
-                        fontSize: 10, fontFamily: "'Quicksand'", fontWeight: 700,
-                        letterSpacing: "0.18em", textTransform: "uppercase",
-                        color: C.darkInk,
-                      }}>
+                    <div
+                      className="h-[200px] flex items-end p-5 relative"
+                      style={{ background: trip.gradient }}
+                    >
+                      <div className="absolute top-4 right-4 bg-white/[0.92] backdrop-blur-[8px] py-1.5 px-3.5 text-[10px] font-body font-bold tracking-[0.18em] uppercase text-dark-ink">
                         Coming Soon
                       </div>
                       <div>
-                        <p style={{
-                          fontFamily: "'Quicksand'", fontSize: 12, fontWeight: 600,
-                          letterSpacing: "0.15em", textTransform: "uppercase",
-                          color: "rgba(255,255,255,0.7)", marginBottom: 4,
-                        }}>{trip.location}</p>
-                        <h3 style={{
-                          fontFamily: "'Cormorant Garamond', serif",
-                          fontSize: 28, fontWeight: 300, color: "white",
-                          lineHeight: 1.2,
-                        }}>{trip.destination}</h3>
+                        <p className="font-body text-xs font-semibold tracking-[0.15em] uppercase text-white/70 mb-1">
+                          {trip.location}
+                        </p>
+                        <h3 className="font-serif text-[28px] font-light text-white leading-[1.2]">
+                          {trip.destination}
+                        </h3>
                       </div>
                     </div>
 
-                    <div style={{ padding: "24px 24px 28px" }}>
-                      <span style={{
-                        fontFamily: "'Quicksand'", fontSize: 10, fontWeight: 700,
-                        letterSpacing: "0.2em", textTransform: "uppercase",
-                        color: trip.accent,
-                        display: "inline-block",
-                        padding: "4px 10px",
-                        border: `1px solid ${trip.accent}`,
-                        marginBottom: 12,
-                      }}>{trip.threshold}</span>
-
-                      <p style={{
-                        fontFamily: "'Quicksand'", fontSize: 13, fontWeight: 600,
-                        color: "#5a6a78", letterSpacing: "0.04em",
-                        marginBottom: 10,
-                      }}>{trip.window}</p>
-                      <p style={{
-                        fontFamily: "'Cormorant Garamond', serif",
-                        fontSize: 16, fontStyle: "normal",
-                        color: "#5a6a78", lineHeight: 1.7,
-                        marginBottom: 16,
-                      }}>{trip.tagline}</p>
-                      <div style={{
-                        display: "flex", justifyContent: "space-between",
-                        alignItems: "center",
-                      }}>
-                        <span style={{
-                          fontFamily: "'Quicksand'", fontSize: 12,
-                          color: "#8a96a3", letterSpacing: "0.04em",
-                        }}>{trip.spots} spots</span>
-                        <span style={{
-                          fontFamily: "'Quicksand'", fontSize: 11, fontWeight: 700,
-                          letterSpacing: "0.18em", textTransform: "uppercase",
+                    <div className="p-[24px_24px_28px]">
+                      <span
+                        className="font-body text-[10px] font-bold tracking-[0.2em] uppercase inline-block py-1 px-2.5 mb-3"
+                        style={{
                           color: trip.accent,
-                        }}>Learn More →</span>
+                          border: `1px solid ${trip.accent}`,
+                        }}
+                      >
+                        {trip.threshold}
+                      </span>
+
+                      <p className="font-body text-[13px] font-semibold text-[#5a6a78] tracking-[0.04em] mb-2.5">
+                        {trip.window}
+                      </p>
+                      <p className="font-serif text-base text-[#5a6a78] leading-[1.7] mb-4">
+                        {trip.tagline}
+                      </p>
+                      <div className="flex justify-between items-center">
+                        <span className="font-body text-xs text-[#8a96a3] tracking-[0.04em]">
+                          {trip.spots} spots
+                        </span>
+                        <span
+                          className="font-body text-[11px] font-bold tracking-[0.18em] uppercase"
+                          style={{ color: trip.accent }}
+                        >
+                          Learn More →
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -376,19 +284,21 @@ export default function OfferingsPage() {
       </section>
 
       {/* ── BOTTOM CTA ── */}
-      <section style={{ padding: "0 52px 80px", background: C.cream }}>
-        <div style={{ maxWidth: 900, margin: "0 auto" }}>
+      <section className="px-6 pb-16 md:px-[52px] md:pb-20 bg-cream">
+        <div className="max-w-[900px] mx-auto">
           <FadeIn delay={0.2}>
-            <div style={{
-              padding: "48px 40px",
-              background: C.darkInk, textAlign: "center",
-            }}>
-              <span className="eyebrow" style={{ color: C.skyBlue }}>Not sure where to start?</span>
-              <h3 style={{
-                fontFamily: "'Quicksand', sans-serif",
-                fontSize: "clamp(22px, 3vw, 32px)", fontWeight: 300, color: "white", marginBottom: 20,
-              }}>Pick a destination. The guide is free.</h3>
-              <Link to="/destinations" className="underline-link underline-link-light" onClick={() => trackEvent('offering_cta_clicked', { offering: 'explore_destinations' })}>Explore Destinations</Link>
+            <div className="p-[48px_24px] md:p-[48px_40px] bg-dark-ink text-center">
+              <span className="eyebrow text-sky-blue">Not sure where to start?</span>
+              <h3 className="font-body text-[clamp(22px,3vw,32px)] font-light text-white mb-5">
+                Pick a destination. The guide is free.
+              </h3>
+              <Link
+                to="/destinations"
+                className="underline-link underline-link-light"
+                onClick={() => trackEvent('offering_cta_clicked', { offering: 'explore_destinations' })}
+              >
+                Explore Destinations
+              </Link>
             </div>
           </FadeIn>
         </div>

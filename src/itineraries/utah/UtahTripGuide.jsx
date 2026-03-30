@@ -330,13 +330,10 @@ const UtahTripGuide = () => {
       <div className="w-full max-w-md">
         {/* Main Card with animations */}
         <div 
-          className="bg-white rounded-2xl shadow-2xl overflow-hidden"
+          className="bg-white rounded-2xl shadow-2xl overflow-hidden animate-[fadeIn_0.5s_ease-in]"
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
-          style={{
-            animation: 'fadeIn 0.5s ease-in'
-          }}
         >
           {/* Card Header with smooth transitions */}
           <div 
@@ -351,8 +348,8 @@ const UtahTripGuide = () => {
                   {page.icon}
                 </div>
                 <h1 className="text-4xl font-bold mb-2 animate-fadeIn">{page.title}</h1>
-                <h2 className="text-2xl font-light mb-4 animate-fadeIn" style={{ animationDelay: '0.1s' }}>{page.subtitle}</h2>
-                <p className="text-lg opacity-90 animate-fadeIn" style={{ animationDelay: '0.2s' }}>{page.date}</p>
+                <h2 className="text-2xl font-light mb-4 animate-fadeIn [animation-delay:0.1s]">{page.subtitle}</h2>
+                <p className="text-lg opacity-90 animate-fadeIn [animation-delay:0.2s]">{page.date}</p>
               </div>
             ) : (
               <div>
@@ -370,9 +367,8 @@ const UtahTripGuide = () => {
           {/* Card Content with scroll container */}
           <div 
             ref={contentRef}
-            className="p-6 overflow-y-auto transition-all duration-500" 
-            style={{ 
-              maxHeight: '500px',
+            className="p-6 overflow-y-auto transition-all duration-500 max-h-[500px]"
+            style={{ /* dynamic */
               animation: direction === 'next' ? 'slideInRight 0.4s ease-out' : 'slideInLeft 0.4s ease-out'
             }}
           >
@@ -384,12 +380,11 @@ const UtahTripGuide = () => {
             <button
               onClick={(e) => { e.preventDefault(); prevPage(); }}
               disabled={currentPage === 0}
-              className={`p-3 rounded-full transition-all duration-200 touch-manipulation flex items-center justify-center ${
+              className={`p-3 rounded-full transition-all duration-200 touch-manipulation flex items-center justify-center min-w-[48px] min-h-[48px] ${
                 currentPage === 0
                   ? 'text-gray-300 cursor-not-allowed'
                   : 'text-sky-blue hover:bg-sandstone active:scale-95 active:bg-sandstone/60'
               }`}
-              style={{ WebkitTapHighlightColor: 'transparent', minWidth: '48px', minHeight: '48px' }}
             >
               <ChevronLeft className="w-7 h-7" />
             </button>
@@ -410,12 +405,11 @@ const UtahTripGuide = () => {
             <button
               onClick={(e) => { e.preventDefault(); nextPage(); }}
               disabled={currentPage === pages.length - 1}
-              className={`p-3 rounded-full transition-all duration-200 touch-manipulation flex items-center justify-center ${
+              className={`p-3 rounded-full transition-all duration-200 touch-manipulation flex items-center justify-center min-w-[48px] min-h-[48px] ${
                 currentPage === pages.length - 1
                   ? 'text-gray-300 cursor-not-allowed'
                   : 'text-sky-blue hover:bg-sandstone active:scale-95 active:bg-sandstone/60'
               }`}
-              style={{ WebkitTapHighlightColor: 'transparent', minWidth: '48px', minHeight: '48px' }}
             >
               <ChevronRight className="w-7 h-7" />
             </button>

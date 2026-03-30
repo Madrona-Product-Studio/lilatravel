@@ -14,24 +14,9 @@ import { getCelestialSnapshot } from '@services/celestialService';
 
 // ─── Shared Typography ──────────────────────────────────────────────────────
 
-const LABEL = {
-  fontFamily: "'Quicksand', sans-serif",
-  fontSize: 10, fontWeight: 700,
-  letterSpacing: "0.2em", textTransform: "uppercase",
-  color: "#b8b0a8", marginBottom: 6,
-};
-
-const VALUE = {
-  fontFamily: "'Quicksand', sans-serif",
-  fontSize: 14, fontWeight: 600,
-  color: C.darkInk, lineHeight: 1.4,
-};
-
-const DETAIL = {
-  fontFamily: "'Quicksand', sans-serif",
-  fontSize: 12, fontWeight: 400,
-  color: "#8a9098", lineHeight: 1.5,
-};
+const LABEL = "font-body text-[10px] font-bold tracking-[0.2em] uppercase text-[#b8b0a8] mb-1.5";
+const VALUE = "font-body text-sm font-semibold text-dark-ink leading-[1.4]";
+const DETAIL = "font-body text-xs font-normal text-[#8a9098] leading-[1.5]";
 
 
 // ─── SVG Helpers ─────────────────────────────────────────────────────────────
@@ -51,7 +36,7 @@ function SunArc({ progress }) {
   const dotY = cy - r * Math.sin(angle);
 
   return (
-    <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`} style={{ display: "block", margin: "6px auto 2px" }}>
+    <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`} className="block mx-auto mt-1.5 mb-0.5">
       {/* Full semicircle background */}
       <path d={arcPath} fill="none" stroke={C.stone} strokeWidth="1.5" />
       {progress > 0 && progress < 1 && (
@@ -126,12 +111,10 @@ function MoonDisc({ illumination, phaseName, r = 14 }) {
 
 function QualityDots({ rating, max = 5 }) {
   return (
-    <span style={{ display: "inline-flex", gap: 3 }}>
+    <span className="inline-flex gap-[3px]">
       {Array.from({ length: max }, (_, i) => (
-        <span key={i} style={{
-          width: 6, height: 6, borderRadius: "50%",
+        <span key={i} className="w-1.5 h-1.5 rounded-full transition-colors duration-300" style={{
           background: i < rating ? C.goldenAmber : C.stone,
-          transition: "background 0.3s",
         }} />
       ))}
     </span>
@@ -142,10 +125,10 @@ function RiverBar({ level }) {
   const colors = { low: C.seaGlass, moderate: C.skyBlue, high: C.goldenAmber, dangerous: C.sunSalmon };
   const widths = { low: "25%", moderate: "50%", high: "75%", dangerous: "100%" };
   return (
-    <div style={{ height: 4, background: C.stone, width: "100%", marginTop: 6 }}>
-      <div style={{
-        height: "100%", width: widths[level],
-        background: colors[level], transition: "width 0.5s, background 0.5s",
+    <div className="h-1 bg-stone w-full mt-1.5">
+      <div className="h-full transition-all duration-500" style={{
+        width: widths[level],
+        background: colors[level],
       }} />
     </div>
   );
@@ -157,9 +140,7 @@ function RiverBar({ level }) {
 function RiverDot({ level }) {
   const colors = { low: C.seaGlass, moderate: C.skyBlue, high: C.goldenAmber, dangerous: C.sunSalmon };
   return (
-    <span style={{
-      display: "inline-block",
-      width: 10, height: 10, borderRadius: "50%",
+    <span className="inline-block w-2.5 h-2.5 rounded-full" style={{
       background: colors[level] || C.stone,
     }} />
   );
@@ -171,12 +152,7 @@ function RiverDot({ level }) {
 function CollapsedView({ data, onExpand }) {
   const { weather, moon, sky, river, destinationName } = data;
 
-  const CELL_LABEL = {
-    fontFamily: "'Quicksand', sans-serif",
-    fontSize: 10, fontWeight: 700,
-    letterSpacing: "0.18em", textTransform: "uppercase",
-    color: "#b8b0a8", marginTop: 6,
-  };
+  const CELL_LABEL = "font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[#b8b0a8] mt-1.5";
 
   const riverColors = { low: C.seaGlass, moderate: C.skyBlue, high: C.goldenAmber, dangerous: C.sunSalmon };
   const riverLabels = { low: "Low", moderate: "OK", high: "High", dangerous: "High" };
@@ -184,65 +160,50 @@ function CollapsedView({ data, onExpand }) {
   const cells = [];
   if (weather) cells.push({ key: "temp", content: (
     <>
-      <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 28, fontWeight: 300, color: C.darkInk, lineHeight: 1 }}>
+      <span className="font-serif text-[28px] font-light text-dark-ink leading-none">
         {weather.temp}°
       </span>
-      <span style={CELL_LABEL}>{weather.condition}</span>
+      <span className={CELL_LABEL}>{weather.condition}</span>
     </>
   )});
   if (moon) cells.push({ key: "moon", content: (
     <>
       <MoonDisc illumination={moon.phase} phaseName={moon.name} r={10} />
-      <span style={CELL_LABEL}>{moon.name.split(" ")[0]}</span>
+      <span className={CELL_LABEL}>{moon.name.split(" ")[0]}</span>
     </>
   )});
   if (sky) cells.push({ key: "sky", content: (
     <>
-      <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 15, fontWeight: 600, color: C.goldenAmber }}>{sky.label}</span>
-      <span style={CELL_LABEL}>Sky</span>
+      <span className="font-body text-[15px] font-semibold text-golden-amber">{sky.label}</span>
+      <span className={CELL_LABEL}>Sky</span>
     </>
   )});
   if (river) cells.push({ key: "river", content: (
     <>
-      <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+      <div className="flex items-center gap-1.5">
         <RiverDot level={river.level} />
-        <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 600, color: riverColors[river.level] || C.stone }}>
+        <span className="font-body text-xs font-semibold" style={{ color: riverColors[river.level] || C.stone }}>
           {riverLabels[river.level] || river.label}
         </span>
       </div>
-      <span style={CELL_LABEL}>River</span>
+      <span className={CELL_LABEL}>River</span>
     </>
   )});
 
   return (
     <>
       {/* Header */}
-      <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4 }}>
-        <span style={{
-          width: 8, height: 8, borderRadius: "50%",
-          background: C.seaGlass,
-          animation: "celestialPulse 2s ease-in-out infinite",
-        }} />
-        <span style={{
-          fontFamily: "'Cormorant Garamond', serif",
-          fontSize: 20, fontWeight: 300,
-          color: C.darkInk, lineHeight: 1.2,
-        }}>Celestial Snapshot</span>
+      <div className="flex items-center gap-2 mb-1">
+        <span className="w-2 h-2 rounded-full bg-sea-glass animate-celestial-pulse" />
+        <span className="font-serif text-xl font-light text-dark-ink leading-[1.2]">Celestial Snapshot</span>
       </div>
-      <div style={{
-        fontFamily: "'Quicksand', sans-serif",
-        fontSize: 12, fontWeight: 400,
-        color: "#8a9098", marginBottom: 16,
-      }}>{destinationName} — right now</div>
+      <div className="font-body text-xs font-normal text-[#8a9098] mb-4">{destinationName} — right now</div>
 
       {/* 4-across flex grid */}
       {cells.length > 0 && (
-        <div style={{ display: "flex", flexWrap: "wrap", marginBottom: 14 }}>
+        <div className="flex flex-wrap mb-3.5">
           {cells.map((cell, i) => (
-            <div key={cell.key} style={{
-              flex: "1 1 auto", minWidth: 60,
-              display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
-              padding: "14px 12px 12px",
+            <div key={cell.key} className="flex-auto min-w-[60px] flex flex-col items-center justify-center py-3.5 px-3" style={{
               borderRight: i < cells.length - 1 ? `1px solid ${C.stone}` : "none",
             }}>
               {cell.content}
@@ -254,13 +215,7 @@ function CollapsedView({ data, onExpand }) {
       {/* Expand button */}
       <button
         onClick={onExpand}
-        style={{
-          background: "none", border: "none", padding: 0, cursor: "pointer",
-          fontFamily: "'Quicksand', sans-serif",
-          fontSize: 11, fontWeight: 700,
-          letterSpacing: "0.14em", textTransform: "uppercase",
-          color: C.oceanTeal,
-        }}
+        className="bg-transparent border-none p-0 cursor-pointer font-body text-[11px] font-bold tracking-[0.14em] uppercase text-ocean-teal"
       >Full conditions ▼</button>
     </>
   );
@@ -275,37 +230,21 @@ function ExpandedView({ data, onCollapse }) {
   return (
     <>
       {/* Header */}
-      <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4 }}>
-        <span style={{
-          width: 8, height: 8, borderRadius: "50%",
-          background: C.seaGlass,
-          animation: "celestialPulse 2s ease-in-out infinite",
-        }} />
-        <span style={{
-          fontFamily: "'Cormorant Garamond', serif",
-          fontSize: 20, fontWeight: 300,
-          color: C.darkInk, lineHeight: 1.2,
-        }}>Celestial Snapshot</span>
+      <div className="flex items-center gap-2 mb-1">
+        <span className="w-2 h-2 rounded-full bg-sea-glass animate-celestial-pulse" />
+        <span className="font-serif text-xl font-light text-dark-ink leading-[1.2]">Celestial Snapshot</span>
       </div>
-      <div style={{
-        fontFamily: "'Quicksand', sans-serif",
-        fontSize: 12, fontWeight: 400,
-        color: "#8a9098", marginBottom: 16,
-      }}>{destinationName} — right now</div>
+      <div className="font-body text-xs font-normal text-[#8a9098] mb-4">{destinationName} — right now</div>
 
       {/* 1. Conditions */}
       {weather && (
-        <div style={{ borderBottom: `1px solid ${C.stone}`, padding: "14px 0" }}>
-          <div style={LABEL}>CONDITIONS</div>
-          <div style={{ display: "flex", alignItems: "baseline", gap: 10 }}>
-            <span style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontSize: 32, fontWeight: 300,
-              color: C.darkInk, lineHeight: 1,
-            }}>{weather.temp}°</span>
-            <span style={VALUE}>{weather.condition}</span>
+        <div className="border-b border-stone py-3.5">
+          <div className={LABEL}>CONDITIONS</div>
+          <div className="flex items-baseline gap-2.5">
+            <span className="font-serif text-[32px] font-light text-dark-ink leading-none">{weather.temp}°</span>
+            <span className={VALUE}>{weather.condition}</span>
           </div>
-          <div style={{ ...DETAIL, marginTop: 6 }}>
+          <div className={`${DETAIL} mt-1.5`}>
             H {weather.high}° / L {weather.low}° · Wind {weather.wind} mph
           </div>
         </div>
@@ -313,23 +252,21 @@ function ExpandedView({ data, onCollapse }) {
 
       {/* 2. Daylight */}
       {sun && (
-        <div style={{ borderBottom: `1px solid ${C.stone}`, padding: "14px 0" }}>
-          <div style={LABEL}>DAYLIGHT</div>
+        <div className="border-b border-stone py-3.5">
+          <div className={LABEL}>DAYLIGHT</div>
           <SunArc progress={sun.progress} />
-          <div style={{ ...VALUE, fontSize: 13, textAlign: "center" }}>{sun.daylight}</div>
-          <div style={{
-            display: "flex", justifyContent: "space-between",
-            marginTop: 8, padding: "8px 10px",
+          <div className={`${VALUE} text-[13px] text-center`}>{sun.daylight}</div>
+          <div className="flex justify-between mt-2 py-2 px-2.5" style={{
             background: `${C.goldenAmber}08`,
             border: `1px solid ${C.goldenAmber}18`,
           }}>
-            <div style={{ textAlign: "left" }}>
-              <div style={{ ...LABEL, fontSize: 9, marginBottom: 2 }}>SUNRISE</div>
-              <div style={{ ...VALUE, fontSize: 14 }}>{sun.rise}</div>
+            <div className="text-left">
+              <div className={`${LABEL} !text-[9px] !mb-0.5`}>SUNRISE</div>
+              <div className={`${VALUE} text-sm`}>{sun.rise}</div>
             </div>
-            <div style={{ textAlign: "right" }}>
-              <div style={{ ...LABEL, fontSize: 9, marginBottom: 2 }}>SUNSET</div>
-              <div style={{ ...VALUE, fontSize: 14 }}>{sun.set}</div>
+            <div className="text-right">
+              <div className={`${LABEL} !text-[9px] !mb-0.5`}>SUNSET</div>
+              <div className={`${VALUE} text-sm`}>{sun.set}</div>
             </div>
           </div>
         </div>
@@ -337,13 +274,13 @@ function ExpandedView({ data, onCollapse }) {
 
       {/* 3. Moon */}
       {moon && (
-        <div style={{ borderBottom: `1px solid ${C.stone}`, padding: "14px 0" }}>
-          <div style={LABEL}>MOON</div>
-          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+        <div className="border-b border-stone py-3.5">
+          <div className={LABEL}>MOON</div>
+          <div className="flex items-center gap-2.5">
             <MoonDisc illumination={moon.phase} phaseName={moon.name} />
             <div>
-              <div style={VALUE}>{moon.name}</div>
-              <div style={DETAIL}>{moon.phase}% illuminated</div>
+              <div className={VALUE}>{moon.name}</div>
+              <div className={DETAIL}>{moon.phase}% illuminated</div>
             </div>
           </div>
         </div>
@@ -351,13 +288,13 @@ function ExpandedView({ data, onCollapse }) {
 
       {/* 4. Tonight's Sky */}
       {sky && (
-        <div style={{ borderBottom: `1px solid ${C.stone}`, padding: "14px 0" }}>
-          <div style={LABEL}>{"TONIGHT'S SKY"}</div>
-          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-            <span style={{ ...VALUE, color: C.goldenAmber }}>{sky.label}</span>
+        <div className="border-b border-stone py-3.5">
+          <div className={LABEL}>{"TONIGHT'S SKY"}</div>
+          <div className="flex items-center gap-2.5">
+            <span className={`${VALUE} !text-golden-amber`}>{sky.label}</span>
             <QualityDots rating={sky.quality} />
           </div>
-          <div style={{ ...DETAIL, marginTop: 6 }}>
+          <div className={`${DETAIL} mt-1.5`}>
             Bortle Class {sky.bortle}
             {sky.milkyWayVisible && sky.milkyWayWindow && (
               <> · Milky Way {sky.milkyWayWindow}</>
@@ -370,13 +307,13 @@ function ExpandedView({ data, onCollapse }) {
 
       {/* 5. Virgin River */}
       {river && (
-        <div style={{ borderBottom: `1px solid ${C.stone}`, padding: "14px 0" }}>
-          <div style={LABEL}>RIVER</div>
-          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+        <div className="border-b border-stone py-3.5">
+          <div className={LABEL}>RIVER</div>
+          <div className="flex items-center gap-2.5">
             <RiverDot level={river.level} />
-            <span style={VALUE}>{river.label}</span>
+            <span className={VALUE}>{river.label}</span>
           </div>
-          <div style={{ ...DETAIL, marginTop: 6 }}>
+          <div className={`${DETAIL} mt-1.5`}>
             {river.cfs} cfs · Water temp {river.tempF}°F
           </div>
         </div>
@@ -384,45 +321,34 @@ function ExpandedView({ data, onCollapse }) {
 
       {/* 6. Next Celestial Event */}
       {nextEvent && (
-        <div style={{ borderBottom: `1px solid ${C.stone}`, padding: "14px 0" }}>
-          <div style={LABEL}>NEXT CELESTIAL EVENT</div>
-          <div style={VALUE}>{nextEvent.name}</div>
-          <div style={{ ...DETAIL, marginTop: 4 }}>
+        <div className="border-b border-stone py-3.5">
+          <div className={LABEL}>NEXT CELESTIAL EVENT</div>
+          <div className={VALUE}>{nextEvent.name}</div>
+          <div className={`${DETAIL} mt-1`}>
             {nextEvent.date} · {nextEvent.daysAway} day{nextEvent.daysAway !== 1 ? "s" : ""} away
           </div>
-          <div style={{ ...DETAIL, marginTop: 4, fontStyle: "normal" }}>{nextEvent.detail}</div>
+          <div className={`${DETAIL} mt-1`}>{nextEvent.detail}</div>
         </div>
       )}
 
       {/* Collapse button */}
       <button
         onClick={onCollapse}
-        style={{
-          background: "none", border: "none", padding: 0, cursor: "pointer",
-          fontFamily: "'Quicksand', sans-serif",
-          fontSize: 11, fontWeight: 700,
-          letterSpacing: "0.14em", textTransform: "uppercase",
-          color: C.oceanTeal, marginTop: 14,
-        }}
+        className="bg-transparent border-none p-0 cursor-pointer font-body text-[11px] font-bold tracking-[0.14em] uppercase text-ocean-teal mt-3.5"
       >Show less ▲</button>
 
       {/* NPS Alerts */}
       {alerts && alerts.length > 0 && (
-        <div style={{
-          padding: "10px 12px", marginTop: 14,
+        <div className="py-2.5 px-3 mt-3.5" style={{
           background: `${C.sunSalmon}10`,
           border: `1px solid ${C.sunSalmon}25`,
         }}>
           {alerts.map((alert, i) => (
-            <div key={i} style={{
-              display: "flex", gap: 8, alignItems: "flex-start",
+            <div key={i} className="flex gap-2 items-start" style={{
               marginBottom: i < alerts.length - 1 ? 8 : 0,
             }}>
-              <span style={{
-                width: 5, height: 5, borderRadius: "50%",
-                background: C.sunSalmon, marginTop: 4, flexShrink: 0,
-              }} />
-              <span style={{ ...DETAIL, fontSize: 12, color: "#5a6a78" }}>{alert}</span>
+              <span className="w-[5px] h-[5px] rounded-full bg-sun-salmon mt-1 shrink-0" />
+              <span className={`${DETAIL} !text-[#5a6a78]`}>{alert}</span>
             </div>
           ))}
         </div>
@@ -436,32 +362,25 @@ function ExpandedView({ data, onCollapse }) {
 
 function CardSkeleton() {
   return (
-    <div style={{
-      width: "100%",
-      padding: "20px 22px",
-      background: C.warmWhite,
-      border: `1px solid ${C.stone}`,
-    }}>
+    <div className="w-full px-[22px] py-5 bg-warm-white border border-stone">
       {/* Header skeleton */}
-      <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4 }}>
-        <div style={{ width: 8, height: 8, borderRadius: "50%", background: C.stone, opacity: 0.4 }} />
-        <div style={{ width: 140, height: 14, background: C.stone, opacity: 0.3 }} />
+      <div className="flex items-center gap-2 mb-1">
+        <div className="w-2 h-2 rounded-full bg-stone opacity-40" />
+        <div className="w-[140px] h-3.5 bg-stone opacity-30" />
       </div>
-      <div style={{ width: 120, height: 8, background: C.stone, opacity: 0.25, marginBottom: 16 }} />
+      <div className="w-[120px] h-2 bg-stone opacity-25 mb-4" />
       {/* Grid skeleton */}
-      <div style={{ display: "flex", gap: 0, marginBottom: 14 }}>
+      <div className="flex gap-0 mb-3.5">
         {[1, 2, 3, 4].map(i => (
-          <div key={i} style={{
-            flex: "1 1 auto", display: "flex", alignItems: "center", justifyContent: "center",
-            padding: "8px 0",
+          <div key={i} className="flex-auto flex items-center justify-center py-2" style={{
             borderRight: i < 4 ? `1px solid ${C.stone}` : "none",
           }}>
-            <div style={{ width: 24, height: 16, background: C.stone, opacity: 0.2 }} />
+            <div className="w-6 h-4 bg-stone opacity-20" />
           </div>
         ))}
       </div>
       {/* Button skeleton */}
-      <div style={{ width: 100, height: 8, background: C.stone, opacity: 0.2 }} />
+      <div className="w-[100px] h-2 bg-stone opacity-20" />
     </div>
   );
 }
@@ -493,31 +412,11 @@ export default function CelestialSnapshot({ destination = "zion" }) {
     return () => clearInterval(interval);
   }, [fetchData]);
 
-  // Inject pulse animation
-  useEffect(() => {
-    if (document.getElementById("celestial-pulse-style")) return;
-    const style = document.createElement("style");
-    style.id = "celestial-pulse-style";
-    style.textContent = `
-      @keyframes celestialPulse {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0.4; }
-      }
-    `;
-    document.head.appendChild(style);
-    return () => { style.remove(); };
-  }, []);
-
   if (loading) return <CardSkeleton />;
   if (!data) return null;
 
   return (
-    <div style={{
-      width: "100%",
-      padding: "20px 22px",
-      background: C.warmWhite,
-      border: `1px solid ${C.stone}`,
-    }}>
+    <div className="w-full px-[22px] py-5 bg-warm-white border border-stone">
       {expanded
         ? <ExpandedView data={data} onCollapse={() => setExpanded(false)} />
         : <CollapsedView data={data} onExpand={() => setExpanded(true)} />

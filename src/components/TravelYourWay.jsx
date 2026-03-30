@@ -1,12 +1,10 @@
 // ─── TravelYourWay.jsx ────────────────────────────────────────────────────────
 // "Travel Your Way" four-card grid used on Homepage and HowItWorks page.
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { C } from "@data/brand";
 import { trackEvent } from "@utils/analytics";
-
-const cardBg = "#FEFEFE";
 
 const offerings = [
   {
@@ -60,39 +58,20 @@ const offerings = [
 
 export default function TravelYourWay({ showHeading = true }) {
   const [hovered, setHovered] = useState(null);
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth <= 768);
-    check();
-    window.addEventListener("resize", check);
-    return () => window.removeEventListener("resize", check);
-  }, []);
 
   return (
-    <section style={{ padding: isMobile ? "64px 20px" : "96px 48px", background: C.cream }}>
-      <div style={{ maxWidth: 1080, margin: "0 auto" }}>
+    <section className="px-5 py-16 md:px-12 md:py-24 bg-cream">
+      <div className="max-w-[1080px] mx-auto">
 
         {showHeading && (
-          <div style={{ marginBottom: 56, maxWidth: 480 }}>
-            <span style={{
-              fontFamily: "Quicksand, sans-serif",
-              fontSize: 11, fontWeight: 700,
-              letterSpacing: "0.22em", textTransform: "uppercase",
-              color: C.sunSalmon, display: "block", marginBottom: 16,
-            }}>Your Path</span>
-            <h2 style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontSize: "clamp(30px, 3.5vw, 44px)",
-              fontWeight: 300, lineHeight: 1.15,
-              color: C.darkInk, margin: "0 0 18px",
-            }}>Travel your way</h2>
-            <p style={{
-              fontFamily: "Quicksand, sans-serif",
-              fontSize: 14, fontWeight: 400,
-              color: "#6a7a84", lineHeight: 1.8,
-              margin: 0,
-            }}>
+          <div className="mb-14 max-w-[480px]">
+            <span className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-sun-salmon block mb-4">
+              Your Path
+            </span>
+            <h2 className="font-serif text-[clamp(30px,3.5vw,44px)] font-light leading-[1.15] text-dark-ink m-0 mb-[18px]">
+              Travel your way
+            </h2>
+            <p className="font-body text-sm font-normal text-[#6a7a84] leading-[1.8] m-0">
               From free guides to fully custom itineraries —<br />
               every level of support, however deep you want to go.
             </p>
@@ -100,11 +79,7 @@ export default function TravelYourWay({ showHeading = true }) {
         )}
 
         {/* Cards */}
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: isMobile ? "1fr" : "repeat(4, 1fr)",
-          gap: isMobile ? 14 : 16,
-        }}>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3.5 md:gap-4">
           {offerings.map((o, i) => {
             const isHov = hovered === i;
 
@@ -113,107 +88,66 @@ export default function TravelYourWay({ showHeading = true }) {
                 key={o.label}
                 onMouseEnter={() => setHovered(i)}
                 onMouseLeave={() => setHovered(null)}
+                className="flex flex-col cursor-default transition-[border-color,background] duration-[0.25s]"
                 style={{
+                  /* dynamic — border/bg color driven by card data */
                   padding: "32px 24px 28px",
                   border: `1px solid ${isHov ? o.color : "#D6CFC4"}`,
-                  background: isHov ? "#FFFFFF" : cardBg,
-                  display: "flex",
-                  flexDirection: "column",
-                  transition: "border-color 0.25s, background 0.25s",
-                  cursor: "default",
+                  background: isHov ? "#FFFFFF" : "#FEFEFE",
                 }}
               >
                 {/* Top row: icon + status tag */}
-                <div style={{
-                  display: "flex", justifyContent: "space-between",
-                  alignItems: "flex-start", marginBottom: 28,
-                }}>
-                  <div style={{
-                    fontFamily: "serif",
-                    fontSize: 24, color: o.color,
-                    lineHeight: 1,
-                    opacity: isHov ? 1 : 0.7,
-                    transition: "opacity 0.25s",
-                  }}>{o.icon}</div>
+                <div className="flex justify-between items-start mb-7">
+                  <div
+                    className="font-serif text-2xl leading-none transition-opacity duration-[0.25s]"
+                    style={{ color: o.color, opacity: isHov ? 1 : 0.7 }}
+                  >{o.icon}</div>
                   {o.beta && (
-                    <span style={{
-                      fontFamily: "Quicksand, sans-serif",
-                      fontSize: 9, fontWeight: 700,
-                      letterSpacing: "0.12em", textTransform: "uppercase",
-                      color: C.oceanTeal,
-                      border: `1px solid ${C.oceanTeal}`,
-                      padding: "3px 7px",
-                    }}>Beta</span>
+                    <span
+                      className="font-body text-[9px] font-bold tracking-[0.12em] uppercase text-ocean-teal px-[7px] py-[3px]"
+                      style={{ border: `1px solid ${C.oceanTeal}` }}
+                    >Beta</span>
                   )}
                   {o.inDev && (
-                    <span style={{
-                      fontFamily: "Quicksand, sans-serif",
-                      fontSize: 9, fontWeight: 700,
-                      letterSpacing: "0.12em", textTransform: "uppercase",
-                      color: "#aab0b8",
-                      border: "1px solid #d0d5d9",
-                      padding: "3px 7px",
-                    }}>In Dev</span>
+                    <span className="font-body text-[9px] font-bold tracking-[0.12em] uppercase text-[#aab0b8] border border-[#d0d5d9] px-[7px] py-[3px]">
+                      In Dev
+                    </span>
                   )}
                 </div>
 
                 {/* Eyebrow */}
-                <span style={{
-                  fontFamily: "Quicksand, sans-serif",
-                  fontSize: 10, fontWeight: 700,
-                  letterSpacing: "0.22em", textTransform: "uppercase",
-                  color: o.color, display: "block", marginBottom: 10,
-                }}>{o.label}</span>
+                <span
+                  className="font-body text-[10px] font-bold tracking-[0.22em] uppercase block mb-2.5"
+                  style={{ color: o.color }}
+                >{o.label}</span>
 
                 {/* Title */}
-                <h3 style={{
-                  fontFamily: "Quicksand, sans-serif",
-                  fontSize: 15, fontWeight: 600,
-                  color: C.darkInk, margin: "0 0 14px",
-                  letterSpacing: "0.01em", lineHeight: 1.3,
-                }}>
+                <h3 className="font-body text-[15px] font-semibold text-dark-ink m-0 mb-3.5 tracking-[0.01em] leading-[1.3]">
                   {o.title}
                 </h3>
 
                 {/* Desc */}
-                <p style={{
-                  fontFamily: "Quicksand, sans-serif",
-                  fontSize: 13, fontWeight: 400,
-                  color: "#6a7a84", lineHeight: 1.85,
-                  flex: 1, margin: 0,
-                }}>{o.desc}</p>
+                <p className="font-body text-[13px] font-normal text-[#6a7a84] leading-[1.85] flex-1 m-0">
+                  {o.desc}
+                </p>
 
                 {/* CTA */}
-                <div style={{ marginTop: 28 }}>
+                <div className="mt-7">
                   <Link
                     to={o.ctaLink}
                     onClick={() => trackEvent("offering_cta_clicked", { offering: o.offeringType, destination_url: o.ctaLink })}
+                    className="w-full block text-center font-body text-[10px] font-bold tracking-[0.18em] uppercase text-white no-underline cursor-pointer mb-2.5 transition-opacity duration-[0.25s] box-border"
                     style={{
-                      width: "100%",
+                      /* dynamic — bg color from card data */
                       padding: "11px 16px",
                       background: o.color,
-                      border: "none",
-                      fontFamily: "Quicksand, sans-serif",
-                      fontSize: 10, fontWeight: 700,
-                      letterSpacing: "0.18em", textTransform: "uppercase",
-                      color: "white",
-                      cursor: "pointer",
-                      display: "block",
-                      marginBottom: 10,
                       opacity: isHov ? 1 : 0.88,
-                      transition: "opacity 0.25s",
-                      textDecoration: "none",
-                      textAlign: "center",
-                      boxSizing: "border-box",
                     }}
                   >{o.cta}</Link>
-                  <span style={{
-                    fontFamily: "Quicksand, sans-serif",
-                    fontSize: 11, color: "#aab0b8",
-                    display: "block",
-                  }}>{o.detail}</span>
+                  <span className="font-body text-[11px] text-[#aab0b8] block">
+                    {o.detail}
+                  </span>
                 </div>
-
               </div>
             );
           })}

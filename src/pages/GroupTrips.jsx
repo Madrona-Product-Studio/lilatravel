@@ -28,36 +28,20 @@ export default function GroupTrips() {
       />
 
       {/* Trip Grid */}
-      <section style={{
-        padding: "48px 0 96px",
-        background: C.cream,
-      }}>
-        <div className="trips-grid-container" style={{
-          maxWidth: 1100, margin: "0 auto", padding: "0 52px",
-        }}>
-          <div className="trips-grid" style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gap: 28,
-          }}>
+      <section className="pt-12 pb-24 bg-cream">
+        <div className="max-w-[1100px] mx-auto px-6 md:px-[52px]">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-7">
             {allTrips.map((trip, i) => (
               <FadeIn key={trip.slug} delay={i * 0.08}>
-                <div style={{ position: "relative", height: "100%" }}>
+                <div className="relative h-full">
                   {/* Disable click-through by intercepting pointer events */}
-                  <div style={{ pointerEvents: "none", opacity: 0.75, height: "100%" }}>
+                  <div className="pointer-events-none opacity-75 h-full">
                     <TripCard trip={trip} />
                   </div>
                   {/* Coming Soon badge */}
-                  <div style={{
-                    position: "absolute", top: 14, right: 14, zIndex: 2,
-                    fontFamily: "'Quicksand', sans-serif",
-                    fontSize: 10, fontWeight: 700,
-                    letterSpacing: "0.18em", textTransform: "uppercase",
-                    color: C.darkInk,
-                    background: "rgba(255,255,255,0.92)",
-                    backdropFilter: "blur(8px)",
-                    padding: "5px 12px",
-                  }}>Coming Soon</div>
+                  <div className="absolute top-3.5 right-3.5 z-2 font-body text-[10px] font-bold tracking-[0.18em] uppercase text-dark-ink bg-white/92 backdrop-blur-[8px] py-[5px] px-3">
+                    Coming Soon
+                  </div>
                 </div>
               </FadeIn>
             ))}
@@ -66,30 +50,15 @@ export default function GroupTrips() {
       </section>
 
       {/* Bottom CTA */}
-      <section style={{
-        padding: "64px 52px",
-        background: C.darkInk,
-        textAlign: "center",
-      }}>
+      <section className="py-16 px-6 md:px-[52px] bg-dark-ink text-center">
         <FadeIn>
-          <p style={{
-            fontFamily: "'Cormorant Garamond', serif",
-            fontSize: 22, fontWeight: 300, fontStyle: "normal",
-            color: "rgba(255,255,255,0.5)", marginBottom: 24,
-          }}>
+          <p className="font-serif text-[22px] font-light not-italic text-white/50 mb-6">
             Can't find the right dates?
           </p>
-          <Link to="/contact" style={{
-            fontFamily: "'Quicksand', sans-serif",
-            fontSize: 11, fontWeight: 700,
-            letterSpacing: "0.2em", textTransform: "uppercase",
-            color: "white", padding: "12px 28px",
-            border: "1px solid rgba(255,255,255,0.35)",
-            textDecoration: "none", transition: "all 0.3s",
-          }}
-          onClick={() => trackEvent('group_trip_contact_clicked', {})}
-          onMouseEnter={e => { e.target.style.background = "rgba(255,255,255,0.1)"; e.target.style.borderColor = "rgba(255,255,255,0.6)"; }}
-          onMouseLeave={e => { e.target.style.background = "transparent"; e.target.style.borderColor = "rgba(255,255,255,0.35)"; }}
+          <Link
+            to="/contact"
+            className="font-body text-[11px] font-bold tracking-[0.2em] uppercase text-white py-3 px-7 border border-white/35 no-underline transition-all duration-300 hover:bg-white/10 hover:border-white/60"
+            onClick={() => trackEvent('group_trip_contact_clicked', {})}
           >
             Get in Touch
           </Link>
@@ -97,16 +66,6 @@ export default function GroupTrips() {
       </section>
 
       <Footer />
-
-      <style>{`
-        @media (max-width: 900px) {
-          .trips-grid { grid-template-columns: repeat(2, 1fr) !important; }
-          .trips-grid-container { padding: 0 24px !important; }
-        }
-        @media (max-width: 600px) {
-          .trips-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
-        }
-      `}</style>
     </>
   );
 }

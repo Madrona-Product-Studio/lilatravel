@@ -35,9 +35,7 @@ function readTrips() {
 function SuitcaseIcon({ color, size = 20 }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      {/* Slim curved handle */}
       <path d="M9.5 7V5a2.5 2.5 0 0 1 5 0v2" />
-      {/* Rounded body */}
       <rect x="4" y="7" width="16" height="14" rx="3" />
     </svg>
   );
@@ -48,72 +46,43 @@ function SuitcaseIcon({ color, size = 20 }) {
 function TripDropdown({ trips, onSelect, onDelete, onNewTrip, onClose }) {
   const [confirmId, setConfirmId] = useState(null);
   return (
-    <div style={{
-      position: 'absolute', top: 'calc(100% + 10px)', right: 0,
-      width: 280, maxHeight: 360, overflowY: 'auto',
-      background: C.warmWhite, border: `1px solid ${C.stone}`,
-      borderRadius: 8, boxShadow: '0 8px 32px rgba(0,0,0,0.10)',
-      zIndex: 200, fontFamily: "'Quicksand', sans-serif",
-    }}>
+    <div className="absolute top-[calc(100%+10px)] right-0 w-[280px] max-h-[360px] overflow-y-auto bg-warm-white border border-stone rounded-lg shadow-[0_8px_32px_rgba(0,0,0,0.10)] z-[200] font-body">
       {/* Header */}
-      <div style={{
-        padding: '14px 16px 8px', fontSize: 10, fontWeight: 700,
-        letterSpacing: '0.18em', textTransform: 'uppercase',
-        color: '#8a8278',
-      }}>
+      <div className="px-4 pt-3.5 pb-2 text-[10px] font-bold tracking-[0.18em] uppercase text-[#8a8278]">
         My Trips
       </div>
 
       {/* Trip rows */}
       {trips.length === 0 && (
-        <div style={{ padding: '12px 16px 16px', fontSize: 13, color: '#8a8278' }}>
+        <div className="px-4 pt-3 pb-4 text-[13px] text-[#8a8278]">
           No trips yet
         </div>
       )}
       {trips.map(trip => (
         <div
           key={trip.id}
-          style={{
-            display: 'flex', alignItems: 'center', padding: '10px 16px',
-            cursor: 'pointer', transition: 'background 0.15s',
-            borderBottom: `1px solid ${C.stone}`,
-          }}
+          className="flex items-center px-4 py-2.5 cursor-pointer transition-colors border-b border-stone hover:bg-black/[0.03]"
           onClick={() => onSelect(trip)}
-          onMouseEnter={e => e.currentTarget.style.background = 'rgba(0,0,0,0.03)'}
-          onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
         >
-          <div style={{ flex: 1, minWidth: 0 }}>
-            <div style={{
-              fontSize: 14, fontWeight: 600, color: C.darkInk,
-              whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
-            }}>
+          <div className="flex-1 min-w-0">
+            <div className="text-sm font-semibold text-dark-ink whitespace-nowrap overflow-hidden text-ellipsis">
               {trip.title || trip.destination || 'Your Trip'}
             </div>
-            <div style={{ fontSize: 11, color: '#8a8278', marginTop: 2 }}>
+            <div className="text-[11px] text-[#8a8278] mt-0.5">
               {timeAgo(trip.generatedAt)}
             </div>
           </div>
           {confirmId === trip.id ? (
-            <div style={{ display: 'flex', gap: 6, flexShrink: 0 }} onClick={e => e.stopPropagation()}>
+            <div className="flex gap-1.5 shrink-0" onClick={e => e.stopPropagation()}>
               <button
                 onClick={() => { onDelete(trip.id); setConfirmId(null); }}
-                style={{
-                  background: 'none', border: 'none', cursor: 'pointer',
-                  padding: '2px 6px', fontSize: 11, fontWeight: 600,
-                  fontFamily: "'Quicksand', sans-serif",
-                  color: '#b55', borderRadius: 4, transition: 'opacity 0.15s',
-                }}
+                className="bg-none border-none cursor-pointer px-1.5 py-0.5 text-[11px] font-semibold font-body text-[#b55] rounded transition-opacity"
               >
                 Remove
               </button>
               <button
                 onClick={() => setConfirmId(null)}
-                style={{
-                  background: 'none', border: 'none', cursor: 'pointer',
-                  padding: '2px 6px', fontSize: 11, fontWeight: 600,
-                  fontFamily: "'Quicksand', sans-serif",
-                  color: '#8a8278', borderRadius: 4, transition: 'opacity 0.15s',
-                }}
+                className="bg-none border-none cursor-pointer px-1.5 py-0.5 text-[11px] font-semibold font-body text-[#8a8278] rounded transition-opacity"
               >
                 Keep
               </button>
@@ -121,14 +90,7 @@ function TripDropdown({ trips, onSelect, onDelete, onNewTrip, onClose }) {
           ) : (
             <button
               onClick={e => { e.stopPropagation(); setConfirmId(trip.id); }}
-              style={{
-                background: 'none', border: 'none', cursor: 'pointer',
-                padding: '4px 6px', fontSize: 16, color: '#8a8278',
-                lineHeight: 1, flexShrink: 0, borderRadius: 4,
-                transition: 'color 0.15s',
-              }}
-              onMouseEnter={e => e.currentTarget.style.color = C.darkInk}
-              onMouseLeave={e => e.currentTarget.style.color = '#8a8278'}
+              className="bg-none border-none cursor-pointer px-1.5 py-1 text-base text-[#8a8278] leading-none shrink-0 rounded transition-colors hover:text-dark-ink"
               title="Remove trip"
             >
               ×
@@ -138,18 +100,10 @@ function TripDropdown({ trips, onSelect, onDelete, onNewTrip, onClose }) {
       ))}
 
       {/* Footer */}
-      <div style={{ padding: '12px 16px 14px' }}>
+      <div className="px-4 pt-3 pb-3.5">
         <button
           onClick={onNewTrip}
-          style={{
-            width: '100%', padding: '10px 0', border: `1px solid ${C.darkInk}`,
-            background: 'transparent', cursor: 'pointer', borderRadius: 4,
-            fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700,
-            letterSpacing: '0.16em', textTransform: 'uppercase', color: C.darkInk,
-            transition: 'all 0.2s',
-          }}
-          onMouseEnter={e => { e.currentTarget.style.background = C.darkInk; e.currentTarget.style.color = 'white'; }}
-          onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = C.darkInk; }}
+          className="w-full py-2.5 border border-dark-ink bg-transparent cursor-pointer rounded font-body text-[11px] font-bold tracking-[0.16em] uppercase text-dark-ink transition-all hover:bg-dark-ink hover:text-white"
         >
           Plan a New Trip
         </button>
@@ -161,12 +115,11 @@ function TripDropdown({ trips, onSelect, onDelete, onNewTrip, onClose }) {
 // ─── Animated Hamburger Icon ─────────────────────────────────────────────────
 function HamburgerIcon({ open, color }) {
   return (
-    <div style={{ width: 22, height: 16, position: "relative" }}>
+    <div className="w-[22px] h-4 relative">
       {[0, 1, 2].map(i => (
-        <span key={i} style={{
-          position: "absolute", left: 0, height: 1.5,
-          background: color, borderRadius: 1,
-          transition: "all 0.35s cubic-bezier(0.4, 0, 0.2, 1)",
+        <span key={i} className="absolute left-0 h-[1.5px] rounded-sm transition-all duration-350 ease-[cubic-bezier(0.4,0,0.2,1)]" style={{
+          /* dynamic — position/rotation driven by open state */
+          background: color,
           ...(i === 0 ? {
             top: open ? 7 : 0, width: 22,
             transform: open ? "rotate(45deg)" : "none",
@@ -186,7 +139,6 @@ function HamburgerIcon({ open, color }) {
 
 // ─── Mobile Menu Overlay ─────────────────────────────────────────────────────
 function MobileMenu({ open, links, onClose }) {
-  // Prevent body scroll when menu is open
   useEffect(() => {
     if (open) {
       document.body.style.overflow = "hidden";
@@ -197,52 +149,32 @@ function MobileMenu({ open, links, onClose }) {
   }, [open]);
 
   return (
-    <div style={{
-      position: "fixed", top: 0, left: 0, right: 0, bottom: 0,
-      zIndex: 99, pointerEvents: open ? "auto" : "none",
-    }}>
+    <div className="fixed inset-0 z-[99]" style={{ pointerEvents: open ? "auto" : "none" }}>
       {/* Backdrop */}
       <div
         onClick={onClose}
-        style={{
-          position: "absolute", inset: 0,
-          background: "rgba(0,0,0,0.35)",
-          opacity: open ? 1 : 0,
-          transition: "opacity 0.4s ease",
-        }}
+        className="absolute inset-0 bg-black/35 transition-opacity duration-400 ease-out"
+        style={{ opacity: open ? 1 : 0 }}
       />
 
       {/* Slide-in panel */}
-      <div style={{
-        position: "absolute",
-        top: 0, right: 0, bottom: 0,
-        width: "min(340px, 85vw)",
-        background: C.warmWhite,
-        transform: open ? "translateX(0)" : "translateX(100%)",
-        transition: "transform 0.45s cubic-bezier(0.4, 0, 0.2, 1)",
-        display: "flex", flexDirection: "column",
-        boxShadow: open ? "-8px 0 40px rgba(0,0,0,0.12)" : "none",
-      }}>
-        {/* Top padding (aligns with nav bar height) */}
-        <div style={{ height: 80, flexShrink: 0 }} />
+      <div
+        className="absolute top-0 right-0 bottom-0 w-[min(340px,85vw)] bg-warm-white flex flex-col transition-transform duration-[0.45s] ease-[cubic-bezier(0.4,0,0.2,1)]"
+        style={{
+          transform: open ? "translateX(0)" : "translateX(100%)",
+          boxShadow: open ? "-8px 0 40px rgba(0,0,0,0.12)" : "none",
+        }}
+      >
+        <div className="h-20 shrink-0" />
 
-        {/* Nav links */}
-        <div style={{
-          flex: 1, display: "flex", flexDirection: "column",
-          justifyContent: "center", padding: "0 48px",
-        }}>
+        <div className="flex-1 flex flex-col justify-center px-12">
           {links.map((link, i) => (
             <Link
               key={link.label}
               to={link.to}
               onClick={() => { trackEvent('nav_clicked', { label: link.label.toLowerCase(), to: link.to, page: window.location.pathname }); onClose(); }}
+              className="font-body text-xl font-medium tracking-[0.08em] text-dark-ink no-underline py-5"
               style={{
-                fontFamily: "'Quicksand', sans-serif",
-                fontSize: 20, fontWeight: 500,
-                letterSpacing: "0.08em",
-                color: C.darkInk,
-                textDecoration: "none",
-                padding: "20px 0",
                 borderBottom: i < links.length - 1 ? `1px solid ${C.stone}` : "none",
                 opacity: open ? 1 : 0,
                 transform: open ? "translateX(0)" : "translateX(24px)",
@@ -254,22 +186,14 @@ function MobileMenu({ open, links, onClose }) {
           ))}
         </div>
 
-        {/* CTA button at bottom */}
-        <div style={{
-          padding: "32px 48px 56px",
+        <div className="px-12 pt-8 pb-14" style={{
           opacity: open ? 1 : 0,
           transform: open ? "translateY(0)" : "translateY(12px)",
           transition: `opacity 0.4s ease ${0.15 + links.length * 0.06}s, transform 0.4s ease ${0.15 + links.length * 0.06}s`,
         }}>
-          <Link to="/plan" onClick={() => { trackEvent('nav_clicked', { label: 'plan_a_trip', to: '/plan', page: window.location.pathname }); onClose(); }} style={{
-            display: "block",
-            fontFamily: "'Quicksand', sans-serif",
-            fontSize: 12, fontWeight: 700,
-            letterSpacing: "0.2em", textTransform: "uppercase",
-            color: "white", background: C.darkInk,
-            textAlign: "center", padding: "16px 24px",
-            textDecoration: "none", transition: "opacity 0.25s",
-          }}>
+          <Link to="/plan" onClick={() => { trackEvent('nav_clicked', { label: 'plan_a_trip', to: '/plan', page: window.location.pathname }); onClose(); }}
+            className="block font-body text-xs font-bold tracking-[0.2em] uppercase text-white bg-dark-ink text-center py-4 px-6 no-underline transition-opacity duration-[0.25s]"
+          >
             Plan a Trip
           </Link>
         </div>
@@ -290,7 +214,6 @@ export default function Nav({ transparent = false, breathConfig = null }) {
 
   // Multi-trip state
   const [trips, setTrips] = useState(() => {
-    // Migrate legacy single-trip format
     try {
       const legacy = localStorage.getItem('lila_active_trip');
       if (legacy) {
@@ -306,7 +229,6 @@ export default function Nav({ transparent = false, breathConfig = null }) {
 
   const [tripsOpen, setTripsOpen] = useState(false);
 
-  // Sync trips from localStorage on focus and custom event
   useEffect(() => {
     const sync = () => setTrips(readTrips());
     window.addEventListener('focus', sync);
@@ -317,7 +239,6 @@ export default function Nav({ transparent = false, breathConfig = null }) {
     };
   }, []);
 
-  // Click-outside to close dropdown (uses data attribute to find container)
   useEffect(() => {
     if (!tripsOpen) return;
     const handler = (e) => {
@@ -336,7 +257,6 @@ export default function Nav({ transparent = false, breathConfig = null }) {
     return () => window.removeEventListener("scroll", h);
   }, []);
 
-  // Close menu + dropdown on route change
   useEffect(() => {
     setMenuOpen(false);
     setTripsOpen(false);
@@ -374,27 +294,18 @@ export default function Nav({ transparent = false, breathConfig = null }) {
   const suitcaseColor = C.goldenAmber;
 
   const renderSuitcase = () => (
-    <div data-trips-container style={{ position: 'relative', display: 'inline-flex' }}>
+    <div data-trips-container className="relative inline-flex">
       <button
         onClick={() => { setTripsOpen(prev => !prev); }}
-        style={{
-          position: 'relative', display: 'flex', alignItems: 'center',
-          background: 'none', border: 'none', cursor: 'pointer', padding: 4,
-        }}
+        className="relative flex items-center bg-none border-none cursor-pointer p-1"
         title="My Trips"
       >
         <SuitcaseIcon color={suitcaseColor} />
         {trips.length > 0 && (
-          <span style={{
-            position: 'absolute', top: -5, right: -7,
-            minWidth: 16, height: 16, borderRadius: 8,
-            background: C.goldenAmber,
-            border: `1.5px solid ${showSolid ? C.warmWhite : 'rgba(0,0,0,0.3)'}`,
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            fontSize: 9, fontWeight: 700, color: 'white',
-            fontFamily: "'Quicksand', sans-serif",
-            padding: '0 4px',
-          }}>
+          <span
+            className="absolute -top-[5px] -right-[7px] min-w-4 h-4 rounded-full bg-golden-amber flex items-center justify-center text-[9px] font-bold text-white font-body px-1"
+            style={{ border: `1.5px solid ${showSolid ? C.warmWhite : 'rgba(0,0,0,0.3)'}` }}
+          >
             {trips.length}
           </span>
         )}
@@ -413,40 +324,31 @@ export default function Nav({ transparent = false, breathConfig = null }) {
 
   return (
     <>
-      <nav ref={navRef} style={{
-        position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
+      <nav ref={navRef} className="fixed top-0 left-0 right-0 z-[100] transition-all duration-400 ease-out" style={{
+        /* dynamic — background depends on scroll + transparent prop + breathConfig */
         background: breathConfig ? C.warmWhite : (showSolid ? "rgba(250,248,244,0.97)" : "transparent"),
         backdropFilter: breathConfig ? "none" : (showSolid ? "blur(16px)" : "none"),
-        borderBottom: "none",
-        transition: "all 0.4s ease",
       }}>
-        <div className="nav-inner" style={{
-          position: 'relative',
-          padding: "20px 52px",
-          display: "flex", alignItems: "center", justifyContent: "space-between",
+        <div className="relative px-6 py-[18px] md:px-[52px] md:py-5 flex items-center justify-between" style={{
           borderBottom: breathConfig && showSolid ? '1px solid rgba(26,37,48,0.08)' : (showSolid ? `1px solid ${C.stone}` : "none"),
         }}>
-        <Link to="/" style={{
-          fontFamily: "'Quicksand', sans-serif",
-          fontSize: 22, fontWeight: 500, letterSpacing: "0.08em",
+        <Link to="/" className="font-body text-[22px] font-medium tracking-[0.08em] no-underline transition-colors duration-400" style={{
+          /* dynamic — color depends on showSolid */
           color: showSolid ? C.darkInk : "white",
-          transition: "color 0.4s", textDecoration: "none",
         }}>
           Lila Trips
         </Link>
 
         {/* Desktop links */}
-        <div className="nav-links" style={{ display: "flex", gap: 34, alignItems: "center" }}>
+        <div className="hidden md:flex gap-[34px] items-center">
           {links.map(link => (
             <Link key={link.label} to={link.to}
               onClick={() => trackEvent('nav_clicked', { label: link.label.toLowerCase(), to: link.to, page: location.pathname })}
+              className="font-body text-xs font-semibold tracking-[0.18em] uppercase no-underline transition-opacity duration-200 py-2.5 px-1.5"
               style={{
-                fontFamily: "'Quicksand'", fontSize: 12, fontWeight: 600,
-                letterSpacing: "0.18em", textTransform: "uppercase",
+                /* dynamic — color/opacity depend on showSolid + active route */
                 color: showSolid ? C.darkInk : "rgba(255,255,255,0.75)",
-                transition: "opacity 0.2s", textDecoration: "none",
                 opacity: location.pathname.startsWith(link.to) ? 1 : 0.75,
-                padding: "10px 6px",
               }}
               onMouseEnter={e => e.currentTarget.style.opacity = "0.55"}
               onMouseLeave={e => e.currentTarget.style.opacity = location.pathname.startsWith(link.to) ? "1" : "0.75"}
@@ -459,13 +361,11 @@ export default function Nav({ transparent = false, breathConfig = null }) {
 
           <Link to="/plan"
             onClick={() => trackEvent('nav_clicked', { label: 'plan_a_trip', to: '/plan', page: location.pathname })}
+            className="font-body text-[11px] font-bold tracking-[0.2em] uppercase no-underline py-[9px] px-5 transition-all duration-300"
             style={{
-              fontFamily: "'Quicksand'", fontSize: 11, fontWeight: 700,
-              letterSpacing: "0.2em", textTransform: "uppercase",
+              /* dynamic — color/border depend on showSolid */
               color: showSolid ? C.darkInk : "white",
-              padding: "9px 20px", textDecoration: "none",
               border: showSolid ? `1px solid ${C.darkInk}` : "1px solid rgba(255,255,255,0.55)",
-              transition: "all 0.3s",
             }}
             onMouseEnter={e => { e.currentTarget.style.background = C.darkInk; e.currentTarget.style.color = "white"; e.currentTarget.style.borderColor = C.darkInk; }}
             onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = showSolid ? C.darkInk : "white"; e.currentTarget.style.borderColor = showSolid ? C.darkInk : "rgba(255,255,255,0.55)"; }}
@@ -475,14 +375,11 @@ export default function Nav({ transparent = false, breathConfig = null }) {
         </div>
 
         {/* Mobile: suitcase + hamburger */}
-        <div
-          className="nav-mobile-toggle"
-          style={{ display: "none", alignItems: "center", gap: 16, zIndex: 101 }}
-        >
+        <div className="flex md:hidden items-center gap-4 z-[101]">
           {trips.length > 0 && renderSuitcase()}
           <div
             onClick={() => { setMenuOpen(!menuOpen); setTripsOpen(false); }}
-            style={{ padding: 8, cursor: "pointer" }}
+            className="p-2 cursor-pointer"
           >
             <HamburgerIcon open={menuOpen} color={showSolid ? C.darkInk : "white"} />
           </div>
@@ -490,17 +387,7 @@ export default function Nav({ transparent = false, breathConfig = null }) {
         </div>
       </nav>
 
-      {/* Mobile menu overlay */}
       <MobileMenu open={menuOpen} links={links} onClose={() => setMenuOpen(false)} />
-
-      {/* Responsive styles */}
-      <style>{`
-        @media (max-width: 900px) {
-          .nav-inner { padding: 18px 24px !important; }
-          .nav-links { display: none !important; }
-          .nav-mobile-toggle { display: flex !important; }
-        }
-      `}</style>
     </>
   );
 }

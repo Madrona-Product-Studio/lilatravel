@@ -85,14 +85,10 @@ export default function TripPage() {
     return (
       <>
         <Nav />
-        <div style={{
-          padding: "160px 52px 120px", background: C.cream,
-          textAlign: "center", minHeight: "60vh",
-        }}>
-          <h1 style={{
-            fontFamily: "'Cormorant Garamond', serif",
-            fontSize: 36, fontWeight: 300, color: C.darkInk, marginBottom: 20,
-          }}>Trip not found</h1>
+        <div className="pt-[160px] px-[52px] pb-[120px] bg-cream text-center min-h-[60vh]">
+          <h1 className="font-serif text-[36px] font-light text-dark-ink mb-5">
+            Trip not found
+          </h1>
           <Link to="/offerings" className="underline-link">Back to Offerings</Link>
         </div>
         <Footer />
@@ -105,120 +101,93 @@ export default function TripPage() {
       <Nav />
 
       {/* ── Hero ── */}
-      <section style={{
-        height: "60vh", minHeight: 420,
-        background: trip.gradient,
-        display: "flex", alignItems: "flex-end",
-        padding: "0 52px 60px",
-        position: "relative",
-      }}>
-        <div style={{
-          position: "absolute", top: 0, left: 0, right: 0, bottom: 0,
-          background: "rgba(0,0,0,0.15)",
-        }} />
-        <div style={{ position: "relative", zIndex: 1, maxWidth: 700 }}>
+      <section
+        className="h-[60vh] min-h-[420px] flex items-end px-[52px] pb-[60px] relative"
+        style={{ background: trip.gradient }}
+      >
+        <div className="absolute inset-0 bg-black/15" />
+        <div className="relative z-1 max-w-[700px]">
           {/* Threshold badge */}
-          <div style={{
-            display: "inline-block",
-            background: "rgba(255,255,255,0.92)",
-            backdropFilter: "blur(8px)",
-            padding: "8px 18px",
-            marginBottom: 20,
-          }}>
-            <span style={{
-              fontFamily: "'Quicksand'", fontSize: 11, fontWeight: 700,
-              letterSpacing: "0.2em", textTransform: "uppercase",
-              color: C.darkInk,
-            }}>Coming Soon · {trip.threshold}</span>
+          <div className="inline-block bg-white/92 backdrop-blur-[8px] px-[18px] py-2 mb-5">
+            <span className="font-body text-[11px] font-bold tracking-[0.2em] uppercase text-dark-ink">
+              Coming Soon · {trip.threshold}
+            </span>
           </div>
-          <p style={{
-            fontFamily: "'Quicksand'", fontSize: 12, fontWeight: 600,
-            letterSpacing: "0.18em", textTransform: "uppercase",
-            color: "rgba(255,255,255,0.6)", marginBottom: 8,
-          }}>{trip.location}</p>
-          <h1 style={{
-            fontFamily: "'Cormorant Garamond', serif",
-            fontSize: "clamp(36px, 6vw, 64px)", fontWeight: 300,
-            color: "white", lineHeight: 1.1, marginBottom: 16,
-          }}>{trip.destination}</h1>
-          <p style={{
-            fontFamily: "'Cormorant Garamond', serif",
-            fontSize: 20, fontStyle: "normal",
-            color: "rgba(255,255,255,0.8)", lineHeight: 1.5,
-          }}>{trip.tagline}</p>
+          <p className="font-body text-[12px] font-semibold tracking-[0.18em] uppercase text-white/60 mb-2">
+            {trip.location}
+          </p>
+          <h1 className="font-serif text-[clamp(36px,6vw,64px)] font-light text-white leading-[1.1] mb-4">
+            {trip.destination}
+          </h1>
+          <p className="font-serif text-[20px] text-white/80 leading-[1.5]">
+            {trip.tagline}
+          </p>
         </div>
       </section>
 
       {/* ── Details ── */}
-      <section style={{ padding: "80px 52px", background: C.cream }}>
-        <div style={{ maxWidth: 800, margin: "0 auto" }}>
+      <section className="py-[80px] px-[52px] bg-cream">
+        <div className="max-w-[800px] mx-auto">
 
           {/* Threshold + Date + Price bar */}
           <FadeIn>
-            <div style={{
-              display: "flex", justifyContent: "space-between", alignItems: "center",
-              padding: "24px 0 40px",
-              borderBottom: `1px solid ${C.stone}`,
-              marginBottom: 48,
-              flexWrap: "wrap", gap: 16,
-            }}>
+            <div
+              className="flex justify-between items-center pt-6 pb-10 mb-12 flex-wrap gap-4"
+              style={{ borderBottom: `1px solid ${C.stone}` }}
+            >
               <div>
-                <span style={{
-                  fontFamily: "'Quicksand'", fontSize: 11, fontWeight: 700,
-                  letterSpacing: "0.2em", textTransform: "uppercase",
-                  color: trip.accent, display: "block", marginBottom: 6,
-                }}>Threshold · {trip.threshold}</span>
-                <span style={{
-                  fontFamily: "'Quicksand'", fontSize: 18, fontWeight: 400,
-                  color: C.darkInk,
-                }}>{trip.window}</span>
+                <span
+                  className="font-body text-[11px] font-bold tracking-[0.2em] uppercase block mb-1.5"
+                  style={{ color: trip.accent }}
+                >Threshold · {trip.threshold}</span>
+                <span className="font-body text-[18px] font-normal text-dark-ink">
+                  {trip.window}
+                </span>
               </div>
-              <div style={{ textAlign: "right" }}>
-                <span style={{
-                  fontFamily: "'Quicksand'", fontSize: 11, fontWeight: 700,
-                  letterSpacing: "0.2em", textTransform: "uppercase",
-                  color: trip.accent, display: "block", marginBottom: 6,
-                }}>Price</span>
-                <span style={{
-                  fontFamily: "'Quicksand'", fontSize: 18, fontWeight: 400,
-                  color: C.darkInk,
-                }}>{trip.price}</span>
+              <div className="text-right">
+                <span
+                  className="font-body text-[11px] font-bold tracking-[0.2em] uppercase block mb-1.5"
+                  style={{ color: trip.accent }}
+                >Price</span>
+                <span className="font-body text-[18px] font-normal text-dark-ink">
+                  {trip.price}
+                </span>
               </div>
             </div>
           </FadeIn>
 
           {/* Description */}
           <FadeIn delay={0.1}>
-            <p style={{
-              fontFamily: "'Quicksand'", fontSize: 16, color: "#5a6a78",
-              lineHeight: 2, marginBottom: 56,
-            }}>{trip.description}</p>
+            <p className="font-body text-[16px] text-[#5a6a78] leading-[2] mb-14">
+              {trip.description}
+            </p>
           </FadeIn>
 
           {/* Highlights */}
           <FadeIn delay={0.15}>
-            <div style={{ marginBottom: 56 }}>
-              <span style={{
-                fontFamily: "'Quicksand'", fontSize: 11, fontWeight: 700,
-                letterSpacing: "0.22em", textTransform: "uppercase",
-                color: trip.accent, display: "block", marginBottom: 20,
-              }}>What's Included</span>
-              <div style={{ display: "grid", gap: 16 }}>
+            <div className="mb-14">
+              <span
+                className="font-body text-[11px] font-bold tracking-[0.22em] uppercase block mb-5"
+                style={{ color: trip.accent }}
+              >What's Included</span>
+              <div className="grid gap-4">
                 {trip.highlights.map((h, i) => (
-                  <div key={i} style={{
-                    display: "flex", alignItems: "baseline", gap: 14,
-                    padding: "12px 0",
-                    borderBottom: i < trip.highlights.length - 1 ? `1px solid ${C.stone}` : "none",
-                  }}>
-                    <span style={{
-                      fontFamily: "'Cormorant Garamond', serif",
-                      fontSize: 18, fontWeight: 300, color: trip.accent,
-                      flexShrink: 0,
-                    }}>·</span>
-                    <span style={{
-                      fontFamily: "'Quicksand'", fontSize: 15, color: "#5a6a78",
-                      lineHeight: 1.7,
-                    }}>{h}</span>
+                  <div
+                    key={i}
+                    className="flex items-baseline gap-3.5 py-3"
+                    style={{
+                      borderBottom: i < trip.highlights.length - 1
+                        ? `1px solid ${C.stone}`
+                        : "none",
+                    }}
+                  >
+                    <span
+                      className="font-serif text-[18px] font-light shrink-0"
+                      style={{ color: trip.accent }}
+                    >·</span>
+                    <span className="font-body text-[15px] text-[#5a6a78] leading-[1.7]">
+                      {h}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -227,30 +196,23 @@ export default function TripPage() {
 
           {/* Waitlist CTA */}
           <FadeIn delay={0.2}>
-            <div style={{
-              padding: "48px 40px",
-              background: C.darkInk, textAlign: "center",
-            }}>
-              <span style={{
-                fontFamily: "'Quicksand'", fontSize: 11, fontWeight: 700,
-                letterSpacing: "0.22em", textTransform: "uppercase",
-                color: trip.accent, display: "block", marginBottom: 12,
-              }}>Coming Soon · {trip.threshold}</span>
-              <h3 style={{
-                fontFamily: "'Quicksand', sans-serif",
-                fontSize: "clamp(20px, 3vw, 28px)", fontWeight: 300,
-                color: "white", marginBottom: 8,
-              }}>{trip.spots} spots · {trip.window}</h3>
-              <p style={{
-                fontFamily: "'Quicksand'", fontSize: 14, color: "rgba(255,255,255,0.5)",
-                marginBottom: 24,
-              }}>Booking opens soon. Check back or explore our guides in the meantime.</p>
+            <div className="py-12 px-10 bg-dark-ink text-center">
+              <span
+                className="font-body text-[11px] font-bold tracking-[0.22em] uppercase block mb-3"
+                style={{ color: trip.accent }}
+              >Coming Soon · {trip.threshold}</span>
+              <h3 className="font-body text-[clamp(20px,3vw,28px)] font-light text-white mb-2">
+                {trip.spots} spots · {trip.window}
+              </h3>
+              <p className="font-body text-[14px] text-white/50 mb-6">
+                Booking opens soon. Check back or explore our guides in the meantime.
+              </p>
               <Link to="/destinations" className="underline-link underline-link-light" onClick={() => trackEvent('trip_cta_clicked', { action: 'explore_destinations', trip_slug: slug })}>Explore Destinations</Link>
             </div>
           </FadeIn>
 
           {/* Back link */}
-          <div style={{ textAlign: "center", marginTop: 48 }}>
+          <div className="text-center mt-12">
             <Link to="/offerings" className="underline-link" onClick={() => trackEvent('trip_cta_clicked', { action: 'back_to_offerings', trip_slug: slug })}>← Back to Offerings</Link>
           </div>
         </div>

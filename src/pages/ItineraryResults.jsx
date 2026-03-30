@@ -85,9 +85,6 @@ const PICK_STYLES = {
   wellness: { label: 'Wellness',  color: C.seaGlass },
 };
 
-const F = "'Quicksand', sans-serif";
-const F_SERIF = "'Cormorant Garamond', 'Georgia', serif";
-
 const TRADITION_GLYPHS = {
   hinduism: 'ॐ',
   buddhism: '☸',
@@ -483,7 +480,8 @@ function CelestialSnapshot({ snapshot, celestial, weather, month, destination })
     } catch { return null; }
   })();
 
-  const eyebrow = { fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.22em', textTransform: 'uppercase', color: `${C.sage}88`, marginBottom: 8 };
+  const eyebrowCls = 'font-body text-[9px] font-bold tracking-[0.22em] uppercase mb-2';
+const eyebrow = { color: `${C.sage}88` };
 
   // Don't render if truly nothing
   if (!sky && !snapshot?.seasonalNote) return null;
@@ -497,7 +495,7 @@ function CelestialSnapshot({ snapshot, celestial, weather, month, destination })
       {/* 1. Sky name */}
       <div style={{ padding: '18px 20px 16px', borderBottom: `1px solid ${C.border}` }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
-          <div style={{ fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.24em', textTransform: 'uppercase', color: `${C.sage}88` }}>
+          <div className="font-body text-[9px] font-bold tracking-[0.24em] uppercase" style={{ color: `${C.sage}88` }}>
             Sky & Season · {MONTH_LABELS[monthKey] || monthKey}
           </div>
           <button
@@ -512,7 +510,7 @@ function CelestialSnapshot({ snapshot, celestial, weather, month, destination })
             </svg>
           </button>
         </div>
-        <div style={{ fontFamily: F_SERIF, fontSize: 24, fontWeight: 300, color: C.ink, lineHeight: 1.1 }}>{sky}</div>
+        <div className="font-serif text-[24px] font-light leading-[1.1]" style={{ color: C.ink }}>{sky}</div>
       </div>
 
       {/* 2. Temperature + Sunlight — side by side */}
@@ -525,12 +523,12 @@ function CelestialSnapshot({ snapshot, celestial, weather, month, destination })
                 <div style={{ height: 3, borderRadius: 2, background: 'linear-gradient(to right, #7aaec8, #D4A853, #E8856A)', marginBottom: 6 }} />
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
                   <div>
-                    <div style={{ fontFamily: F_SERIF, fontSize: 20, fontWeight: 300, color: '#7aaec8', lineHeight: 1 }}>{avgLow}°</div>
+                    <div className="font-serif text-[20px] font-light leading-none" style={{ color: '#7aaec8' }}>{avgLow}°</div>
                     <div style={{ fontSize: 9, color: C.muted, marginTop: 1 }}>low</div>
                   </div>
                   <div style={{ fontSize: 9, color: 'rgba(26,37,48,0.3)' }}>avg</div>
                   <div style={{ textAlign: 'right' }}>
-                    <div style={{ fontFamily: F_SERIF, fontSize: 20, fontWeight: 300, color: '#E8856A', lineHeight: 1 }}>{avgHigh}°</div>
+                    <div className="font-serif text-[20px] font-light leading-none" style={{ color: '#E8856A' }}>{avgHigh}°</div>
                     <div style={{ fontSize: 9, color: C.muted, marginTop: 1 }}>high</div>
                   </div>
                 </div>
@@ -588,7 +586,7 @@ function CelestialSnapshot({ snapshot, celestial, weather, month, destination })
                           <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
                             <circle cx="12" cy="12" r="9" fill={iconFill} stroke={iconStroke} strokeWidth="1.2"/>
                           </svg>
-                          <span style={{ fontFamily: F_SERIF, fontSize: 15, fontWeight: 400, color: C.ink }}>{ev.name}</span>
+                          <span className="font-serif text-[15px] font-normal" style={{ color: C.ink }}>{ev.name}</span>
                           <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.06em', color: C.amber }}>{ev.date}</span>
                         </div>
                         <div style={{ fontSize: 11, color: C.muted, lineHeight: 1.55, paddingLeft: 22 }}>{ev.note}</div>
@@ -609,7 +607,7 @@ function CelestialSnapshot({ snapshot, celestial, weather, month, destination })
                   {starEvents.map((ev, i) => (
                     <div key={i}>
                       <div style={{ display: 'flex', alignItems: 'baseline', gap: 8 }}>
-                        <span style={{ fontFamily: F_SERIF, fontSize: 15, fontWeight: 400, color: C.ink }}>{ev.name}</span>
+                        <span className="font-serif text-[15px] font-normal" style={{ color: C.ink }}>{ev.name}</span>
                         <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.06em', color: C.amber }}>{ev.date}</span>
                       </div>
                       <div style={{ fontSize: 11, color: C.muted, lineHeight: 1.55 }}>{ev.note}</div>
@@ -629,12 +627,12 @@ function CelestialSnapshot({ snapshot, celestial, weather, month, destination })
 
             {/* Swell */}
             <div>
-              <div style={{ fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.22em', textTransform: 'uppercase', color: `${C.sage}88`, marginBottom: 10 }}>Swell</div>
-              <div style={{ fontFamily: F_SERIF, fontSize: 15, fontWeight: 400, color: C.ink, marginBottom: 6 }}>{oceanData.swell.name}</div>
+              <div className="font-body text-[9px] font-bold tracking-[0.22em] uppercase mb-[10px]" style={{ color: `${C.sage}88` }}>Swell</div>
+              <div className="font-serif text-[15px] font-normal mb-1.5" style={{ color: C.ink }}>{oceanData.swell.name}</div>
               <SwellIntensityBar intensity={oceanData.swell.intensity} />
-              <div style={{ fontFamily: F, fontSize: 9, color: C.muted, marginBottom: 6 }}>{oceanData.swell.range} typical</div>
+              <div className="font-body text-[9px] mb-1.5" style={{ color: C.muted }}>{oceanData.swell.range} typical</div>
               <div style={{ height: 1, background: 'rgba(28,28,26,0.05)', marginBottom: 6 }} />
-              <div style={{ fontFamily: F, fontSize: 11, color: C.muted, lineHeight: 1.6 }}>{oceanData.swell.note}</div>
+              <div className="font-body text-[11px] leading-[1.6]" style={{ color: C.muted }}>{oceanData.swell.note}</div>
             </div>
 
             {/* Divider */}
@@ -642,8 +640,8 @@ function CelestialSnapshot({ snapshot, celestial, weather, month, destination })
 
             {/* Tides */}
             <div>
-              <div style={{ fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.22em', textTransform: 'uppercase', color: `${C.sage}88`, marginBottom: 10 }}>Tides</div>
-              <div style={{ fontFamily: F_SERIF, fontSize: 15, fontWeight: 400, color: C.ink, marginBottom: 6 }}>{oceanData.tides.name}</div>
+              <div className="font-body text-[9px] font-bold tracking-[0.22em] uppercase mb-[10px]" style={{ color: `${C.sage}88` }}>Tides</div>
+              <div className="font-serif text-[15px] font-normal mb-1.5" style={{ color: C.ink }}>{oceanData.tides.name}</div>
               <div style={{ position: 'relative', height: 7, borderRadius: 4, background: 'rgba(122,174,200,0.12)', marginBottom: 4 }}>
                 <div style={{
                   position: 'absolute', left: 0, top: 0, height: 7, borderRadius: 4,
@@ -652,11 +650,11 @@ function CelestialSnapshot({ snapshot, celestial, weather, month, destination })
                 }} />
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
-                <div style={{ fontFamily: F, fontSize: 9, color: 'rgba(122,174,200,0.55)' }}>{oceanData.tides.low}</div>
-                <div style={{ fontFamily: F, fontSize: 9, fontWeight: 600, color: '#7aaec8' }}>{oceanData.tides.high}</div>
+                <div className="font-body text-[9px]" style={{ color: 'rgba(122,174,200,0.55)' }}>{oceanData.tides.low}</div>
+                <div className="font-body text-[9px] font-semibold" style={{ color: '#7aaec8' }}>{oceanData.tides.high}</div>
               </div>
               <div style={{ height: 1, background: 'rgba(28,28,26,0.05)', marginBottom: 6 }} />
-              <div style={{ fontFamily: F, fontSize: 11, color: C.muted, lineHeight: 1.6 }}>{oceanData.tides.note}</div>
+              <div className="font-body text-[11px] leading-[1.6]" style={{ color: C.muted }}>{oceanData.tides.note}</div>
             </div>
 
           </div>
@@ -672,7 +670,7 @@ function CelestialSnapshot({ snapshot, celestial, weather, month, destination })
               <div key={i}>
                 {i > 0 && <div style={{ height: 1, background: 'rgba(28,28,26,0.05)', marginBottom: 8 }} />}
                 <div style={{ display: 'flex', alignItems: 'baseline', gap: 10 }}>
-                  <span style={{ fontFamily: F_SERIF, fontSize: 15, fontWeight: 400, color: C.ink, minWidth: 110 }}>{ev.name}</span>
+                  <span className="font-serif text-[15px] font-normal min-w-[110px]" style={{ color: C.ink }}>{ev.name}</span>
                   <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.06em', color: C.amber, minWidth: 36 }}>{ev.date}</span>
                   <span style={{ fontSize: 11, color: C.muted, lineHeight: 1.5 }}>{ev.note}</span>
                 </div>
@@ -685,8 +683,8 @@ function CelestialSnapshot({ snapshot, celestial, weather, month, destination })
       {/* 6. Pack */}
       {skySeasonOpen && snapshot?.packingHint && (
         <div style={{ padding: '11px 20px', display: 'flex', alignItems: 'baseline', gap: 10 }}>
-          <span style={{ fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: C.muted, flexShrink: 0 }}>Pack</span>
-          <span style={{ fontFamily: F, fontSize: 12, color: 'rgba(26,37,48,0.55)', lineHeight: 1.6 }}>{snapshot.packingHint}</span>
+          <span className="font-body text-[9px] font-bold tracking-[0.18em] uppercase shrink-0" style={{ color: C.muted }}>Pack</span>
+          <span className="font-body text-[12px] leading-[1.6]" style={{ color: 'rgba(26,37,48,0.55)' }}>{snapshot.packingHint}</span>
         </div>
       )}
     </div>
@@ -725,12 +723,11 @@ function TripProfileSummary({ formData }) {
 
   return (
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: 7, alignItems: 'center', paddingBottom: 20, marginBottom: 20, borderBottom: `1px solid ${C.border}` }}>
-      <span style={{ fontFamily: F, fontSize: 10, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: C.muted, marginRight: 4 }}>Built for you</span>
+      <span className="font-body text-[10px] font-bold tracking-[0.18em] uppercase mr-1" style={{ color: C.muted }}>Built for you</span>
       {chips.map((chip, i) => (
-        <span key={i} style={{
-          fontFamily: F, fontSize: 12, fontWeight: 500, color: C.body,
-          background: C.white, border: `1px solid ${C.border}`,
-          borderRadius: 20, padding: '4px 12px', whiteSpace: 'nowrap',
+        <span key={i} className="font-body text-[12px] font-medium whitespace-nowrap" style={{
+          color: C.body, background: C.white, border: `1px solid ${C.border}`,
+          borderRadius: 20, padding: '4px 12px',
         }}>{chip}</span>
       ))}
     </div>
@@ -763,12 +760,7 @@ function DifficultyBar({ difficulty = 'moderate' }) {
           }} />
         ))}
       </div>
-      <span style={{
-        fontFamily: F, fontSize: 11, fontWeight: 700,
-        letterSpacing: '0.06em',
-        color: cfg.color,
-        textTransform: 'capitalize',
-      }}>
+      <span className="font-body text-[11px] font-bold tracking-[0.06em] capitalize" style={{ color: cfg.color }}>
         {cfg.label}
       </span>
     </div>
@@ -787,18 +779,10 @@ function TrailStatChip({ icon, label, value, accent }) {
     }}>
       {icon}
       <div>
-        <div style={{
-          fontFamily: F, fontSize: 10, fontWeight: 700,
-          letterSpacing: '0.1em', textTransform: 'uppercase',
-          color: `${C.sage}99`, lineHeight: 1,
-          marginBottom: 2,
-        }}>
+        <div className="font-body text-[10px] font-bold tracking-[0.1em] uppercase leading-none mb-0.5" style={{ color: `${C.sage}99` }}>
           {label}
         </div>
-        <div style={{
-          fontFamily: F, fontSize: 13, fontWeight: 700,
-          color: accent || C.ink, lineHeight: 1,
-        }}>
+        <div className="font-body text-[13px] font-bold leading-none" style={{ color: accent || C.ink }}>
           {value}
         </div>
       </div>
@@ -811,15 +795,12 @@ function TrailStatChip({ icon, label, value, accent }) {
 
 function MetaChip({ label, color }) {
   return (
-    <span style={{
-      fontFamily: F, fontSize: 11, fontWeight: 600,
+    <span className="font-body text-[11px] font-semibold tracking-[0.04em] whitespace-nowrap" style={{
       color: color || C.muted,
       background: color ? `${color}12` : `${C.sage}0c`,
       border: `1px solid ${color ? `${color}25` : `${C.sage}18`}`,
       borderRadius: 3,
       padding: '2px 7px',
-      letterSpacing: '0.04em',
-      whiteSpace: 'nowrap',
     }}>
       {label}
     </span>
@@ -889,11 +870,8 @@ function ActivityActions({ id, lockedItems, onLock, onAlternatives }) {
     <div onClick={e => e.stopPropagation()} style={{ display: 'flex', alignItems: 'center', gap: 0, marginTop: 6, marginBottom: 12 }}>
       {isLocked ? (
         lockEntry.source === 'user' && (
-          <button onClick={e => { e.stopPropagation(); onLock(id); }} style={{
-            background: 'none', border: 'none', cursor: 'pointer', padding: 0,
-            display: 'flex', alignItems: 'center', gap: 4,
-            fontFamily: F, fontSize: 11, fontWeight: 500, color: C.muted,
-            WebkitTapHighlightColor: 'transparent',
+          <button onClick={e => { e.stopPropagation(); onLock(id); }} className="font-body text-[11px] font-medium flex items-center gap-1 bg-transparent border-none cursor-pointer p-0" style={{
+            color: C.muted, WebkitTapHighlightColor: 'transparent',
           }}>
             <UnlockIcon size={11} color={C.muted} />
             <span>Unlock</span>
@@ -901,21 +879,15 @@ function ActivityActions({ id, lockedItems, onLock, onAlternatives }) {
         )
       ) : (
         <>
-          <button onClick={e => { e.stopPropagation(); onLock(id); }} style={{
-            background: 'none', border: 'none', cursor: 'pointer', padding: 0,
-            display: 'flex', alignItems: 'center', gap: 4,
-            fontFamily: F, fontSize: 11, fontWeight: 600, color: C.goldenAmber,
-            WebkitTapHighlightColor: 'transparent',
+          <button onClick={e => { e.stopPropagation(); onLock(id); }} className="font-body text-[11px] font-semibold flex items-center gap-1 bg-transparent border-none cursor-pointer p-0" style={{
+            color: C.goldenAmber, WebkitTapHighlightColor: 'transparent',
           }}>
             <LockIcon size={11} color={C.goldenAmber} />
             <span>Lock this in</span>
           </button>
-          <span style={{ fontFamily: F, fontSize: 11, color: C.muted, margin: '0 8px' }}>|</span>
-          <button onClick={e => { e.stopPropagation(); onAlternatives(id); }} style={{
-            background: 'none', border: 'none', cursor: 'pointer', padding: 0,
-            display: 'flex', alignItems: 'center', gap: 4,
-            fontFamily: F, fontSize: 11, fontWeight: 600, color: C.sage,
-            WebkitTapHighlightColor: 'transparent',
+          <span className="font-body text-[11px] mx-2" style={{ color: C.muted }}>|</span>
+          <button onClick={e => { e.stopPropagation(); onAlternatives(id); }} className="font-body text-[11px] font-semibold flex items-center gap-1 bg-transparent border-none cursor-pointer p-0" style={{
+            color: C.sage, WebkitTapHighlightColor: 'transparent',
           }}>
             <SwapIcon size={11} color={C.sage} />
             <span>Show alternatives</span>
@@ -970,23 +942,23 @@ function CompanionPanelContent({ type, data, id }) {
       {/* Type badge */}
       <div style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '4px 11px', borderRadius: 20, background: `${accent}0e`, border: `1px solid ${accent}18`, marginBottom: 10 }}>
         {isTeaching ? <TeachingIcon size={11} color={accent} /> : <PracticeIconSimple size={11} color={accent} />}
-        <span style={{ fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: accent }}>{isTeaching ? "Today's Teaching" : "Today's Practice"}</span>
+        <span className="font-body text-[10px] font-semibold tracking-[0.1em] uppercase" style={{ color: accent }}>{isTeaching ? "Today's Teaching" : "Today's Practice"}</span>
       </div>
 
       {/* Tradition */}
       {data.tradition && (
-        <div style={{ fontFamily: F, fontSize: 11, fontWeight: 500, color: C.muted, marginBottom: 6 }}>{data.tradition} tradition</div>
+        <div className="font-body text-[11px] font-medium mb-1.5" style={{ color: C.muted }}>{data.tradition} tradition</div>
       )}
 
       {/* Title */}
-      <h1 style={{ fontFamily: F_SERIF, fontSize: 'clamp(20px, 5vw, 24px)', fontWeight: 300, color: C.ink, lineHeight: 1.25, marginBottom: 4 }}>{data.title}</h1>
+      <h1 className="font-serif text-[clamp(20px,5vw,24px)] font-light leading-[1.25] mb-1" style={{ color: C.ink }}>{data.title}</h1>
 
       {/* Summary / essence */}
-      <p style={{ fontFamily: F, fontSize: 14, color: C.body, lineHeight: 1.7, marginBottom: 20 }}>{isTeaching ? data.essence : data.description}</p>
+      <p className="font-body text-[14px] leading-[1.7] mb-5" style={{ color: C.body }}>{isTeaching ? data.essence : data.description}</p>
 
       {/* Deeper content */}
       {data.deeper && (
-        <p style={{ fontFamily: F, fontSize: 14, color: C.body, lineHeight: 1.7, marginBottom: 20 }}>{data.deeper}</p>
+        <p className="font-body text-[14px] leading-[1.7] mb-5" style={{ color: C.body }}>{data.deeper}</p>
       )}
 
       {/* Quote */}
@@ -998,14 +970,11 @@ function CompanionPanelContent({ type, data, id }) {
           marginBottom: 24,
           padding: '14px 0 14px 16px',
         }}>
-          <p style={{
-            fontFamily: F, fontSize: 16, fontWeight: 500,
+          <p className="font-body text-[16px] font-medium leading-[1.65] tracking-[-0.01em] m-0" style={{
             fontStyle: 'normal', color: `${C.ink}CC`,
-            lineHeight: 1.65, margin: 0, letterSpacing: '-0.01em',
           }}>{data.quote.text}</p>
-          <p style={{
-            fontFamily: F, fontSize: 12, fontWeight: 600,
-            color: `${C.ink}66`, margin: '8px 0 0', letterSpacing: '0.02em',
+          <p className="font-body text-[12px] font-semibold tracking-[0.02em] mt-2" style={{
+            color: `${C.ink}66`,
           }}>— {data.quote.author || data.quote.source}{data.quote.role ? `, ${data.quote.role}` : ''}</p>
         </div>
       )}
@@ -1017,21 +986,21 @@ function CompanionPanelContent({ type, data, id }) {
             <div style={{ display: 'flex', alignItems: 'center', gap: 7, marginBottom: (data.when || data.howTo) ? 10 : 0 }}>
               <ClockIcon size={12} color={C.seaGlass} />
               <div>
-                <div style={{ fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: C.muted, marginBottom: 1 }}>Duration</div>
-                <div style={{ fontFamily: F, fontSize: 14, fontWeight: 500, color: C.ink }}>{data.duration}</div>
+                <div className="font-body text-[10px] font-semibold tracking-[0.08em] uppercase mb-px" style={{ color: C.muted }}>Duration</div>
+                <div className="font-body text-[14px] font-medium" style={{ color: C.ink }}>{data.duration}</div>
               </div>
             </div>
           )}
           {data.when && (
             <div style={{ borderTop: data.duration ? `1px solid ${C.sage}08` : 'none', paddingTop: data.duration ? 10 : 0, marginBottom: data.howTo ? 10 : 0 }}>
-              <div style={{ fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: C.muted, marginBottom: 1 }}>When</div>
-              <div style={{ fontFamily: F, fontSize: 14, fontWeight: 500, color: C.body, lineHeight: 1.45 }}>{data.when}</div>
+              <div className="font-body text-[10px] font-semibold tracking-[0.08em] uppercase mb-px" style={{ color: C.muted }}>When</div>
+              <div className="font-body text-[14px] font-medium leading-[1.45]" style={{ color: C.body }}>{data.when}</div>
             </div>
           )}
           {data.howTo && (
             <div style={{ borderTop: (data.duration || data.when) ? `1px solid ${C.sage}08` : 'none', paddingTop: (data.duration || data.when) ? 10 : 0 }}>
-              <div style={{ fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: C.muted, marginBottom: 3 }}>How To</div>
-              <div style={{ fontFamily: F, fontSize: 14, fontWeight: 400, color: C.body, lineHeight: 1.6 }}>{data.howTo}</div>
+              <div className="font-body text-[10px] font-semibold tracking-[0.08em] uppercase mb-[3px]" style={{ color: C.muted }}>How To</div>
+              <div className="font-body text-[14px] font-normal leading-[1.6]" style={{ color: C.body }}>{data.howTo}</div>
             </div>
           )}
         </div>
@@ -1040,9 +1009,9 @@ function CompanionPanelContent({ type, data, id }) {
       {/* Sources */}
       {data.sources && data.sources.length > 0 && (
         <div style={{ marginBottom: 20 }}>
-          <div style={{ fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: C.muted, marginBottom: 8 }}>Sources</div>
+          <div className="font-body text-[10px] font-semibold tracking-[0.1em] uppercase mb-2" style={{ color: C.muted }}>Sources</div>
           {data.sources.map((s, i) => (
-            <div key={i} style={{ fontFamily: F, fontSize: 13, color: C.body, lineHeight: 1.5, marginBottom: 4 }}>
+            <div key={i} className="font-body text-[13px] leading-[1.5] mb-1" style={{ color: C.body }}>
               {s.author && <span style={{ fontWeight: 600 }}>{s.author}</span>}
               {s.author && s.text && ', '}
               {s.text && <em>{s.text}</em>}
@@ -1063,11 +1032,8 @@ function TrailDetailContent({ data, thumbId, lockedItems, onLock, onAlternatives
   const resolvedUrl = url || trailData.npsUrl || lookupUrl(title);
 
   // Consistent label style used throughout
-  const labelStyle = {
-    fontFamily: F, fontSize: 10, fontWeight: 600,
-    letterSpacing: '0.1em', textTransform: 'uppercase',
-    color: C.muted,
-  };
+  const labelCls = 'font-body text-[10px] font-semibold tracking-[0.1em] uppercase';
+const labelStyle = { color: C.muted };
 
   return (
     <div style={{ maxWidth: 500, margin: '0 auto', padding: '20px 20px 60px' }}>
@@ -1076,18 +1042,18 @@ function TrailDetailContent({ data, thumbId, lockedItems, onLock, onAlternatives
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
         <div style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '4px 11px', borderRadius: 20, background: `${C.teal}08`, border: `1px solid ${C.teal}18` }}>
           <MountainIcon size={12} color={C.teal} />
-          <span style={{ ...labelStyle, color: C.teal }}>Trail</span>
+          <span className={labelCls} style={{ color: C.teal }}>Trail</span>
         </div>
         {time && (
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '4px 11px', borderRadius: 20, background: `${C.teal}06`, border: `1px solid ${C.teal}12` }}>
             <ClockIcon size={10} color={C.muted} />
-            <span style={{ fontFamily: F, fontSize: 11, fontWeight: 500, color: C.body }}>{time}</span>
+            <span className="font-body text-[11px] font-medium" style={{ color: C.body }}>{time}</span>
           </div>
         )}
       </div>
 
       {/* Title */}
-      <h1 style={{ fontFamily: F_SERIF, fontSize: 'clamp(20px, 5vw, 24px)', fontWeight: 300, color: C.ink, lineHeight: 1.2, marginBottom: 4 }}>
+      <h1 className="font-serif text-[clamp(20px,5vw,24px)] font-light leading-[1.2] mb-1" style={{ color: C.ink }}>
         {resolvedUrl ? (
           <a href={resolvedUrl} target="_blank" rel="noopener noreferrer"
             style={{ color: 'inherit', textDecoration: 'none', borderBottom: `1px solid ${C.teal}30` }}>
@@ -1100,7 +1066,7 @@ function TrailDetailContent({ data, thumbId, lockedItems, onLock, onAlternatives
       <ActivityActions id={thumbId} lockedItems={lockedItems} onLock={onLock} onAlternatives={onAlternatives} />
 
       {/* Summary */}
-      <p style={{ fontFamily: F, fontSize: 14, color: C.body, lineHeight: 1.7, marginBottom: 16 }}>{summary}</p>
+      <p className="font-body text-[14px] leading-[1.7] mb-4" style={{ color: C.body }}>{summary}</p>
 
       {/* STAT GRID */}
       {(trailData.distance || trailData.elevationGain || trailData.trailType || trailData.difficulty) && (
@@ -1112,20 +1078,20 @@ function TrailDetailContent({ data, thumbId, lockedItems, onLock, onAlternatives
         }}>
           {trailData.distance && (
             <div style={{ padding: '10px 12px', background: C.white, border: `1px solid ${C.border}`, borderRadius: 8 }}>
-              <div style={{ ...labelStyle, marginBottom: 4 }}>Distance</div>
-              <div style={{ fontFamily: F, fontSize: 14, fontWeight: 500, color: C.ink }}>{trailData.distance}</div>
+              <div className={labelCls + ' mb-1'} style={labelStyle}>Distance</div>
+              <div className="font-body text-[14px] font-medium" style={{ color: C.ink }}>{trailData.distance}</div>
             </div>
           )}
           {trailData.elevationGain && (
             <div style={{ padding: '10px 12px', background: C.white, border: `1px solid ${C.border}`, borderRadius: 8 }}>
-              <div style={{ ...labelStyle, marginBottom: 4 }}>Elevation</div>
-              <div style={{ fontFamily: F, fontSize: 14, fontWeight: 500, color: C.ink }}>{trailData.elevationGain}</div>
+              <div className={labelCls + ' mb-1'} style={labelStyle}>Elevation</div>
+              <div className="font-body text-[14px] font-medium" style={{ color: C.ink }}>{trailData.elevationGain}</div>
             </div>
           )}
           {trailData.trailType && (
             <div style={{ padding: '10px 12px', background: C.white, border: `1px solid ${C.border}`, borderRadius: 8 }}>
-              <div style={{ ...labelStyle, marginBottom: 4 }}>Route Type</div>
-              <div style={{ fontFamily: F, fontSize: 14, fontWeight: 500, color: C.ink, textTransform: 'capitalize' }}>{trailData.trailType}</div>
+              <div className={labelCls + ' mb-1'} style={labelStyle}>Route Type</div>
+              <div className="font-body text-[14px] font-medium capitalize" style={{ color: C.ink }}>{trailData.trailType}</div>
             </div>
           )}
           {trailData.difficulty && (
@@ -1152,9 +1118,9 @@ function TrailDetailContent({ data, thumbId, lockedItems, onLock, onAlternatives
             }}>
               <PermitIcon size={13} color={C.amber} />
               <div>
-                <div style={{ ...labelStyle, color: C.amber, marginBottom: 2 }}>Permit Required</div>
+                <div className={labelCls + ' mb-0.5'} style={{ color: C.amber }}>Permit Required</div>
                 {trailData.permitNote && (
-                  <div style={{ fontFamily: F, fontSize: 13, color: C.body, lineHeight: 1.5 }}>{trailData.permitNote}</div>
+                  <div className="font-body text-[13px] leading-[1.5]" style={{ color: C.body }}>{trailData.permitNote}</div>
                 )}
               </div>
             </div>
@@ -1168,7 +1134,7 @@ function TrailDetailContent({ data, thumbId, lockedItems, onLock, onAlternatives
               display: 'flex', alignItems: 'center', gap: 8,
             }}>
               <CheckIcon size={12} color={C.sea} />
-              <span style={{ fontFamily: F, fontSize: 13, color: C.body, lineHeight: 1.5 }}>{trailData.permitNote}</span>
+              <span className="font-body text-[13px] leading-[1.5]" style={{ color: C.body }}>{trailData.permitNote}</span>
             </div>
           )}
 
@@ -1178,8 +1144,8 @@ function TrailDetailContent({ data, thumbId, lockedItems, onLock, onAlternatives
               padding: '10px 14px',
               borderBottom: (trailData.bestStartTime || trailData.conditions) ? `1px solid ${C.border}` : 'none',
             }}>
-              <div style={{ ...labelStyle, marginBottom: 3 }}>Trailhead Access</div>
-              <div style={{ fontFamily: F, fontSize: 13, color: C.body, lineHeight: 1.5 }}>{trailData.trailheadAccess}</div>
+              <div className={labelCls + ' mb-[3px]'} style={labelStyle}>Trailhead Access</div>
+              <div className="font-body text-[13px] leading-[1.5]" style={{ color: C.body }}>{trailData.trailheadAccess}</div>
             </div>
           )}
 
@@ -1189,16 +1155,16 @@ function TrailDetailContent({ data, thumbId, lockedItems, onLock, onAlternatives
               padding: '10px 14px',
               borderBottom: trailData.conditions ? `1px solid ${C.border}` : 'none',
             }}>
-              <div style={{ ...labelStyle, marginBottom: 3 }}>Best Start Time</div>
-              <div style={{ fontFamily: F, fontSize: 13, color: C.body, lineHeight: 1.5 }}>{trailData.bestStartTime}</div>
+              <div className={labelCls + ' mb-[3px]'} style={labelStyle}>Best Start Time</div>
+              <div className="font-body text-[13px] leading-[1.5]" style={{ color: C.body }}>{trailData.bestStartTime}</div>
             </div>
           )}
 
           {/* Conditions */}
           {trailData.conditions && (
             <div style={{ padding: '10px 14px' }}>
-              <div style={{ ...labelStyle, marginBottom: 3 }}>Trail Conditions</div>
-              <div style={{ fontFamily: F, fontSize: 13, color: C.body, lineHeight: 1.5 }}>{trailData.conditions}</div>
+              <div className={labelCls + ' mb-[3px]'} style={labelStyle}>Trail Conditions</div>
+              <div className="font-body text-[13px] leading-[1.5]" style={{ color: C.body }}>{trailData.conditions}</div>
             </div>
           )}
         </div>
@@ -1206,10 +1172,7 @@ function TrailDetailContent({ data, thumbId, lockedItems, onLock, onAlternatives
 
       {/* Freeform details */}
       {details && (
-        <div style={{
-          fontFamily: F, fontSize: 14, color: C.body, lineHeight: 1.7,
-          marginBottom: 16,
-        }}>
+        <div className="font-body text-[14px] leading-[1.7] mb-4" style={{ color: C.body }}>
           {renderInlineBlock(details)}
         </div>
       )}
@@ -1219,16 +1182,14 @@ function TrailDetailContent({ data, thumbId, lockedItems, onLock, onAlternatives
         <div style={{ marginBottom: 16 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginBottom: 10 }}>
             <ExternalLinkIcon size={9} color={C.muted} />
-            <span style={{ fontFamily: F, fontSize: 11, fontWeight: 500, color: C.muted, lineHeight: 1.4 }}>
+            <span className="font-body text-[11px] font-medium leading-[1.4]" style={{ color: C.muted }}>
               Trail info sourced from NPS. Verify conditions before your visit.
             </span>
           </div>
           <a href={resolvedUrl} target="_blank" rel="noopener noreferrer"
             onClick={() => trackEvent('external_link_clicked', { name: title, url: resolvedUrl, link_type: 'trail_nps' })}
-            style={{
-              display: 'inline-flex', alignItems: 'center', gap: 6,
-              fontFamily: F, fontSize: 12, fontWeight: 600,
-              color: C.teal, textDecoration: 'none',
+            className="font-body text-[12px] font-semibold no-underline inline-flex items-center gap-1.5" style={{
+              color: C.teal,
               padding: '7px 14px',
               border: `1px solid ${C.teal}25`,
               background: `${C.teal}06`,
@@ -1282,14 +1243,10 @@ function DetailBlock({ category, pick, color }) {
           padding: '10px 14px', gap: 12,
           borderBottom: i < rows.length - 1 ? `1px solid ${color}10` : 'none',
         }}>
-          <span style={{
-            fontFamily: F, fontSize: 11, fontWeight: 700,
-            letterSpacing: '0.1em', textTransform: 'uppercase',
-            color: C.muted, minWidth: 90, flexShrink: 0,
-          }}>
+          <span className="font-body text-[11px] font-bold tracking-[0.1em] uppercase min-w-[90px] shrink-0" style={{ color: C.muted }}>
             {label}
           </span>
-          <span style={{ fontFamily: F, fontSize: 14, fontWeight: 500, color: C.ink }}>
+          <span className="font-body text-[14px] font-medium" style={{ color: C.ink }}>
             {value}
           </span>
         </div>
@@ -1331,24 +1288,24 @@ function WisdomDetailContent({ entry }) {
           background: `${accent}14`, border: `1px solid ${accent}25`,
           marginBottom: 12,
         }}>
-          <span style={{ fontFamily: F, fontSize: 10, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: accent }}>{typeLabel}</span>
+          <span className="font-body text-[10px] font-bold tracking-[0.12em] uppercase" style={{ color: accent }}>{typeLabel}</span>
         </div>
 
         {/* Tradition subtitle */}
-        <div style={{ fontFamily: F, fontSize: 11, fontWeight: 500, color: C.muted, marginBottom: 6 }}>{tradition?.name || entry.tradition}</div>
+        <div className="font-body text-[11px] font-medium mb-1.5" style={{ color: C.muted }}>{tradition?.name || entry.tradition}</div>
 
         {/* Title */}
-        <h1 style={{ fontFamily: F_SERIF, fontSize: 'clamp(20px, 5vw, 24px)', fontWeight: 300, color: C.ink, lineHeight: 1.25, margin: 0 }}>{entry.name}</h1>
+        <h1 className="font-serif text-[clamp(20px,5vw,24px)] font-light leading-[1.25] m-0" style={{ color: C.ink }}>{entry.name}</h1>
       </div>
 
       {/* Body */}
       <div style={{ padding: '20px 20px 60px' }}>
         {/* Summary */}
-        <p style={{ fontFamily: F, fontSize: 14, color: C.body, lineHeight: 1.7, marginBottom: 20 }}>{entry.summary}</p>
+        <p className="font-body text-[14px] leading-[1.7] mb-5" style={{ color: C.body }}>{entry.summary}</p>
 
         {/* Deeper */}
         {entry.deeper && (
-          <p style={{ fontFamily: F, fontSize: 14, color: C.body, lineHeight: 1.7, marginBottom: 20 }}>{entry.deeper}</p>
+          <p className="font-body text-[14px] leading-[1.7] mb-5" style={{ color: C.body }}>{entry.deeper}</p>
         )}
 
         {/* Quote block */}
@@ -1359,14 +1316,11 @@ function WisdomDetailContent({ entry }) {
             marginTop: 18,
             marginBottom: 20,
           }}>
-            <p style={{
-              fontFamily: F_SERIF, fontSize: 15, fontWeight: 300,
-              fontStyle: 'italic', color: `${C.ink}A6`,
-              lineHeight: 1.6, margin: 0,
+            <p className="font-serif text-[15px] font-light italic leading-[1.6] m-0" style={{
+              color: `${C.ink}A6`,
             }}>{entry.quote.text}</p>
-            <p style={{
-              fontFamily: F, fontSize: 11, fontWeight: 500,
-              color: `${C.ink}73`, margin: '6px 0 0',
+            <p className="font-body text-[11px] font-medium mt-1.5" style={{
+              color: `${C.ink}73`,
             }}>— {entry.quote.author || entry.quote.source}{entry.quote.role ? `, ${entry.quote.role}` : ''}</p>
           </div>
         )}
@@ -1376,20 +1330,20 @@ function WisdomDetailContent({ entry }) {
           <div style={{ background: C.white, borderRadius: 8, border: `1px solid ${C.sage}12`, padding: '13px 15px', marginBottom: 20 }}>
             {entry.duration && (
               <div style={{ marginBottom: (entry.when || entry.howTo) ? 10 : 0 }}>
-                <div style={{ fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: C.muted, marginBottom: 1 }}>Duration</div>
-                <div style={{ fontFamily: F, fontSize: 14, fontWeight: 500, color: C.ink }}>{entry.duration}</div>
+                <div className="font-body text-[10px] font-semibold tracking-[0.08em] uppercase mb-px" style={{ color: C.muted }}>Duration</div>
+                <div className="font-body text-[14px] font-medium" style={{ color: C.ink }}>{entry.duration}</div>
               </div>
             )}
             {entry.when && (
               <div style={{ borderTop: entry.duration ? `1px solid ${C.sage}08` : 'none', paddingTop: entry.duration ? 10 : 0, marginBottom: entry.howTo ? 10 : 0 }}>
-                <div style={{ fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: C.muted, marginBottom: 1 }}>When</div>
-                <div style={{ fontFamily: F, fontSize: 14, fontWeight: 500, color: C.body, lineHeight: 1.45 }}>{entry.when}</div>
+                <div className="font-body text-[10px] font-semibold tracking-[0.08em] uppercase mb-px" style={{ color: C.muted }}>When</div>
+                <div className="font-body text-[14px] font-medium leading-[1.45]" style={{ color: C.body }}>{entry.when}</div>
               </div>
             )}
             {entry.howTo && (
               <div style={{ borderTop: (entry.duration || entry.when) ? `1px solid ${C.sage}08` : 'none', paddingTop: (entry.duration || entry.when) ? 10 : 0 }}>
-                <div style={{ fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: C.muted, marginBottom: 3 }}>How To</div>
-                <div style={{ fontFamily: F, fontSize: 14, fontWeight: 400, color: C.body, lineHeight: 1.6 }}>{entry.howTo}</div>
+                <div className="font-body text-[10px] font-semibold tracking-[0.08em] uppercase mb-[3px]" style={{ color: C.muted }}>How To</div>
+                <div className="font-body text-[14px] font-normal leading-[1.6]" style={{ color: C.body }}>{entry.howTo}</div>
               </div>
             )}
           </div>
@@ -1397,7 +1351,7 @@ function WisdomDetailContent({ entry }) {
 
         {/* Attribution */}
         {entry.sources?.[0] && (
-          <div style={{ fontFamily: F, fontSize: 12, color: C.muted, lineHeight: 1.5 }}>
+          <div className="font-body text-[12px] leading-[1.5]" style={{ color: C.muted }}>
             — {entry.sources[0].author && <span style={{ fontWeight: 600 }}>{entry.sources[0].author}</span>}
             {entry.sources[0].author && entry.sources[0].text && ', '}
             {entry.sources[0].text && <em>{entry.sources[0].text}</em>}
@@ -1434,50 +1388,51 @@ function DetailPanelContent({ item, lockedItems, onLock, onAlternatives, alterna
       console.warn(`[DetailPanel] alternatives is undefined for accommodation: ${accom?.name}`);
     }
     const alts = item.alternatives || [];
-    const accomLabel = { fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: C.muted };
+    const accomLabelCls = 'font-body text-[10px] font-semibold tracking-[0.1em] uppercase';
+const accomLabel = { color: C.muted };
     return (
       <div style={{ maxWidth: 500, margin: '0 auto', padding: '20px 20px 60px' }}>
         {/* Badges */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap', marginBottom: 10 }}>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '4px 11px', borderRadius: 20, background: `${s.color}0e`, border: `1px solid ${s.color}18` }}>
             <CategoryIcon category="stay" color={s.color} size={12} />
-            <span style={{ ...accomLabel, color: s.color }}>{s.label}</span>
+            <span className={accomLabelCls} style={{ color: s.color }}>{s.label}</span>
           </div>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: 4, padding: '3px 8px', borderRadius: 20, border: `1px solid ${s.color}20`, background: `${s.color}04` }}>
             <LilaStar size={9} color={s.color} />
-            <span style={{ fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: s.color }}>Lila Pick</span>
+            <span className="font-body text-[9px] font-bold tracking-[0.08em] uppercase" style={{ color: s.color }}>Lila Pick</span>
           </div>
         </div>
 
         {/* Title + location */}
-        <h1 style={{ fontFamily: F_SERIF, fontSize: 'clamp(20px, 5vw, 24px)', fontWeight: 300, color: C.ink, lineHeight: 1.2, marginBottom: 4 }}>{accom.name}</h1>
+        <h1 className="font-serif text-[clamp(20px,5vw,24px)] font-light leading-[1.2] mb-1" style={{ color: C.ink }}>{accom.name}</h1>
         {accom.location && (
-          <div style={{ fontFamily: F, fontSize: 12, fontWeight: 500, color: C.muted, marginBottom: 6 }}>{accom.location}</div>
+          <div className="font-body text-[12px] font-medium mb-1.5" style={{ color: C.muted }}>{accom.location}</div>
         )}
-        {accom.vibe && <div style={{ fontFamily: F, fontSize: 13, fontWeight: 500, fontStyle: 'italic', color: C.sage, lineHeight: 1.4, marginBottom: 14 }}>{accom.vibe}</div>}
+        {accom.vibe && <div className="font-body text-[13px] font-medium italic leading-[1.4] mb-3.5" style={{ color: C.sage }}>{accom.vibe}</div>}
 
         {/* Why */}
-        <p style={{ fontFamily: F, fontSize: 14, color: C.body, lineHeight: 1.7, marginBottom: 16 }}>{accom.why}</p>
+        <p className="font-body text-[14px] leading-[1.7] mb-4" style={{ color: C.body }}>{accom.why}</p>
 
         {/* Stat grid — matches trail panel style */}
         {(accom.stayType || accom.priceRange || accom.distanceFromPark) && (
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 8, marginBottom: 16 }}>
             {accom.stayType && (
               <div style={{ padding: '10px 12px', background: C.white, border: `1px solid ${C.border}`, borderRadius: 8 }}>
-                <div style={{ ...accomLabel, marginBottom: 4 }}>Type</div>
-                <div style={{ fontFamily: F, fontSize: 14, fontWeight: 500, color: C.ink }}>{accom.stayType}</div>
+                <div className={accomLabelCls + ' mb-1'} style={accomLabel}>Type</div>
+                <div className="font-body text-[14px] font-medium" style={{ color: C.ink }}>{accom.stayType}</div>
               </div>
             )}
             {accom.priceRange && (
               <div style={{ padding: '10px 12px', background: C.white, border: `1px solid ${C.border}`, borderRadius: 8 }}>
-                <div style={{ ...accomLabel, marginBottom: 4 }}>Price</div>
-                <div style={{ fontFamily: F, fontSize: 14, fontWeight: 500, color: C.ink }}>{accom.priceRange}</div>
+                <div className={accomLabelCls + ' mb-1'} style={accomLabel}>Price</div>
+                <div className="font-body text-[14px] font-medium" style={{ color: C.ink }}>{accom.priceRange}</div>
               </div>
             )}
             {accom.distanceFromPark && (
               <div style={{ padding: '10px 12px', background: C.white, border: `1px solid ${C.border}`, borderRadius: 8, gridColumn: 'span 2' }}>
-                <div style={{ ...accomLabel, marginBottom: 4 }}>Distance from Park</div>
-                <div style={{ fontFamily: F, fontSize: 14, fontWeight: 500, color: C.ink }}>{accom.distanceFromPark}</div>
+                <div className={accomLabelCls + ' mb-1'} style={accomLabel}>Distance from Park</div>
+                <div className="font-body text-[14px] font-medium" style={{ color: C.ink }}>{accom.distanceFromPark}</div>
               </div>
             )}
           </div>
@@ -1486,29 +1441,29 @@ function DetailPanelContent({ item, lockedItems, onLock, onAlternatives, alterna
         {/* Alternatives */}
         {alts.length > 0 ? (
           <div style={{ marginBottom: 20 }}>
-            <div style={{ ...accomLabel, marginBottom: 10 }}>Other Options</div>
+            <div className={accomLabelCls + ' mb-2.5'} style={accomLabel}>Other Options</div>
             {alts.map((alt, i) => (
               <div key={i} style={{ padding: '14px 16px', borderRadius: 8, background: C.white, border: `1px solid ${C.border}`, marginBottom: 8 }}>
                 <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 8, marginBottom: 4 }}>
-                  <div style={{ fontFamily: F, fontSize: 14, fontWeight: 600, color: C.ink }}>{alt.name}</div>
+                  <div className="font-body text-[14px] font-semibold" style={{ color: C.ink }}>{alt.name}</div>
                   {alt.priceRange && (
-                    <span style={{ fontFamily: F, fontSize: 11, fontWeight: 600, color: s.color, letterSpacing: '0.02em', flexShrink: 0 }}>{alt.priceRange}</span>
+                    <span className="font-body text-[11px] font-semibold tracking-[0.02em] shrink-0" style={{ color: s.color }}>{alt.priceRange}</span>
                   )}
                 </div>
-                {alt.vibe && <div style={{ fontFamily: F, fontSize: 12, fontWeight: 500, fontStyle: 'italic', color: C.sage, marginBottom: 6 }}>{alt.vibe}</div>}
-                <div style={{ fontFamily: F, fontSize: 13, color: C.body, lineHeight: 1.55 }}>{alt.why}</div>
+                {alt.vibe && <div className="font-body text-[12px] font-medium italic mb-1.5" style={{ color: C.sage }}>{alt.vibe}</div>}
+                <div className="font-body text-[13px] leading-[1.55]" style={{ color: C.body }}>{alt.why}</div>
               </div>
             ))}
           </div>
         ) : alternativesLoading && (
           <div style={{ marginBottom: 20 }}>
-            <div style={{ ...accomLabel, marginBottom: 10 }}>Other Options</div>
+            <div className={accomLabelCls + ' mb-2.5'} style={accomLabel}>Other Options</div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '8px 0' }}>
               <div style={{
                 width: 14, height: 14, border: `2px solid ${C.sage}30`, borderTopColor: C.sage,
                 borderRadius: '50%', animation: 'lila-spin 0.8s linear infinite',
               }} />
-              <span style={{ fontFamily: F, fontSize: 13, fontWeight: 400, color: C.muted }}>Loading alternatives...</span>
+              <span className="font-body text-[13px] font-normal" style={{ color: C.muted }}>Loading alternatives...</span>
               </div>
           </div>
         )}
@@ -1550,9 +1505,7 @@ function DetailPanelContent({ item, lockedItems, onLock, onAlternatives, alterna
           {/* Lotus + label */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16 }}>
             <IconLotus size={38} color="#4A9B9F" />
-            <span style={{
-              fontFamily: F, fontSize: 10, fontWeight: 700,
-              letterSpacing: '0.22em', textTransform: 'uppercase',
+            <span className="font-body text-[10px] font-bold tracking-[0.22em] uppercase" style={{
               color: '#4A9B9F',
             }}>Mindfulness Practice</span>
           </div>
@@ -1565,9 +1518,7 @@ function DetailPanelContent({ item, lockedItems, onLock, onAlternatives, alterna
               background: `${accent}10`, border: `1px solid ${accent}20`,
             }}>
               <span style={{ fontSize: 12, lineHeight: 1 }}>{glyph}</span>
-              <span style={{
-                fontFamily: F, fontSize: 10, fontWeight: 600,
-                letterSpacing: '0.08em', textTransform: 'uppercase',
+              <span className="font-body text-[10px] font-semibold tracking-[0.08em] uppercase" style={{
                 color: accent,
               }}>{tradition?.name || data.tradition}</span>
             </div>
@@ -1579,32 +1530,26 @@ function DetailPanelContent({ item, lockedItems, onLock, onAlternatives, alterna
               {data.type === 'teaching'
                 ? <TeachingIcon size={10} color={accent} />
                 : <PracticeIconSimple size={10} color={accent} />}
-              <span style={{
-                fontFamily: F, fontSize: 10, fontWeight: 600,
-                letterSpacing: '0.08em', textTransform: 'uppercase',
+              <span className="font-body text-[10px] font-semibold tracking-[0.08em] uppercase" style={{
                 color: accent,
               }}>{typeLabel}</span>
             </div>
           </div>
 
           {/* Title */}
-          <h1 style={{
-            fontFamily: F_SERIF, fontSize: 'clamp(20px, 5vw, 24px)', fontWeight: 300,
-            color: '#1a2530', lineHeight: 1.3, marginBottom: 6,
+          <h1 className="font-serif text-[clamp(20px,5vw,24px)] font-light leading-[1.3] mb-1.5" style={{
+            color: '#1a2530',
           }}>{data.name}</h1>
 
           {/* Essence */}
-          <p style={{
-            fontFamily: F, fontSize: 14, fontWeight: 400,
-            color: C.body, lineHeight: 1.7, margin: '0 0 16px',
+          <p className="font-body text-[14px] font-normal leading-[1.7] mb-4" style={{
+            color: C.body,
           }}>{data.essence}</p>
 
           {/* Connection — italic */}
           {data.connection && (
-            <p style={{
-              fontFamily: F, fontSize: 14, fontWeight: 400,
-              fontStyle: 'italic', color: '#3D5A6B', opacity: 0.8,
-              lineHeight: 1.6, margin: '0 0 20px',
+            <p className="font-body text-[14px] font-normal italic leading-[1.6] mb-5" style={{
+              color: '#3D5A6B', opacity: 0.8,
             }}>{data.connection}</p>
           )}
 
@@ -1616,14 +1561,11 @@ function DetailPanelContent({ item, lockedItems, onLock, onAlternatives, alterna
               marginTop: 18,
               marginBottom: 20,
             }}>
-              <p style={{
-                fontFamily: F_SERIF, fontSize: 15, fontWeight: 300,
-                fontStyle: 'italic', color: `${C.ink}A6`,
-                lineHeight: 1.6, margin: 0,
+              <p className="font-serif text-[15px] font-light italic leading-[1.6] m-0" style={{
+                color: `${C.ink}A6`,
               }}>{data.quote.text}</p>
-              <p style={{
-                fontFamily: F, fontSize: 11, fontWeight: 500,
-                color: `${C.ink}73`, margin: '6px 0 0',
+              <p className="font-body text-[11px] font-medium mt-1.5" style={{
+                color: `${C.ink}73`,
               }}>— {data.quote.author || data.quote.source}{data.quote.role ? `, ${data.quote.role}` : ''}</p>
             </div>
           )}
@@ -1631,14 +1573,11 @@ function DetailPanelContent({ item, lockedItems, onLock, onAlternatives, alterna
           {/* How to practice */}
           {data.howTo && (
             <div style={{ marginBottom: 20 }}>
-              <div style={{
-                fontFamily: F, fontSize: 10, fontWeight: 600,
-                letterSpacing: '0.1em', textTransform: 'uppercase',
-                color: `${accent}cc`, marginBottom: 8,
+              <div className="font-body text-[10px] font-semibold tracking-[0.1em] uppercase mb-2" style={{
+                color: `${accent}cc`,
               }}>How to practice</div>
-              <p style={{
-                fontFamily: F, fontSize: 14, fontWeight: 400,
-                color: C.body, lineHeight: 1.7, margin: 0,
+              <p className="font-body text-[14px] font-normal leading-[1.7] m-0" style={{
+                color: C.body,
               }}>{data.howTo}</p>
             </div>
           )}
@@ -1651,8 +1590,7 @@ function DetailPanelContent({ item, lockedItems, onLock, onAlternatives, alterna
               background: `${accent}0a`, border: `1px solid ${accent}18`,
             }}>
               <ClockIcon size={10} color={accent} />
-              <span style={{
-                fontFamily: F, fontSize: 12, fontWeight: 600,
+              <span className="font-body text-[12px] font-semibold" style={{
                 color: accent,
               }}>{data.duration}</span>
             </div>
@@ -1684,21 +1622,21 @@ function DetailPanelContent({ item, lockedItems, onLock, onAlternatives, alterna
         {data.time && (
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '4px 11px', borderRadius: 20, background: `${dot}0e`, border: `1px solid ${dot}18`, marginBottom: 10 }}>
             <ClockIcon size={10} color={dot} />
-            <span style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: '0.08em', color: dot }}>{data.time}</span>
+            <span className="font-body text-[11px] font-semibold tracking-[0.08em]" style={{ color: dot }}>{data.time}</span>
           </div>
         )}
 
         {/* Title */}
-        <h1 style={{ fontFamily: F_SERIF, fontSize: 'clamp(20px, 5vw, 24px)', fontWeight: 300, color: C.ink, lineHeight: 1.25, marginBottom: 4 }}>{data.title}</h1>
+        <h1 className="font-serif text-[clamp(20px,5vw,24px)] font-light leading-[1.25] mb-1" style={{ color: C.ink }}>{data.title}</h1>
 
         <ActivityActions id={thumbId} lockedItems={lockedItems} onLock={onLock} onAlternatives={onAlternatives} />
 
         {/* Summary */}
-        <p style={{ fontFamily: F, fontSize: 14, color: C.body, lineHeight: 1.7, marginBottom: 20 }}>{data.summary}</p>
+        <p className="font-body text-[14px] leading-[1.7] mb-5" style={{ color: C.body }}>{data.summary}</p>
 
         {/* Details */}
         {data.details && (
-          <div style={{ fontFamily: F, fontSize: 14, color: C.body, lineHeight: 1.7, padding: '6px 0', paddingLeft: 13, borderLeft: `3px solid ${dot}30`, marginBottom: 20 }}>
+          <div className="font-body text-[14px] leading-[1.7] mb-5" style={{ color: C.body, padding: '6px 0', paddingLeft: 13, borderLeft: `3px solid ${dot}30` }}>
             {renderInlineBlock(data.details)}
           </div>
         )}
@@ -1707,9 +1645,9 @@ function DetailPanelContent({ item, lockedItems, onLock, onAlternatives, alterna
         {data.url && (
           <a href={data.url} target="_blank" rel="noopener noreferrer"
             onClick={() => trackEvent('external_link_clicked', { name: data.title, url: data.url, link_type: 'activity' })}
+            className="font-body text-[13px] font-semibold"
             style={{
               display: 'inline-flex', alignItems: 'center', gap: 5,
-              fontFamily: F, fontSize: 13, fontWeight: 600,
               color: C.oceanTeal, textDecoration: 'none',
               padding: '8px 16px',
               background: `${C.oceanTeal}08`, borderRadius: 20,
@@ -1734,17 +1672,17 @@ function DetailPanelContent({ item, lockedItems, onLock, onAlternatives, alterna
       <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10 }}>
         <div style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '4px 11px', borderRadius: 20, background: `${s.color}0e`, border: `1px solid ${s.color}18` }}>
           <CategoryIcon category={type} color={s.color} size={12} />
-          <span style={{ fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: s.color }}>{s.label}</span>
+          <span className="font-body text-[10px] font-semibold tracking-[0.1em] uppercase" style={{ color: s.color }}>{s.label}</span>
         </div>
         <div style={{ display: 'inline-flex', alignItems: 'center', gap: 4, padding: '3px 8px', borderRadius: 20, border: `1px solid ${s.color}20`, background: `${s.color}04` }}>
           <LilaStar size={9} color={s.color} />
-          <span style={{ fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: s.color }}>Lila Pick</span>
+          <span className="font-body text-[9px] font-bold tracking-[0.08em] uppercase" style={{ color: s.color }}>Lila Pick</span>
         </div>
       </div>
 
       {/* Pick name */}
-      <h1 style={{ fontFamily: F_SERIF, fontSize: 'clamp(20px, 5vw, 24px)', fontWeight: 300, color: C.ink, lineHeight: 1.25, marginBottom: 4 }}>
-        <LinkedName name={data.name} url={data.url} linkType="pick" style={{ fontFamily: F, fontSize: 'inherit', fontWeight: 'inherit', color: 'inherit' }} />
+      <h1 className="font-serif text-[clamp(20px,5vw,24px)] font-light leading-[1.25] mb-1" style={{ color: C.ink }}>
+        <LinkedName name={data.name} url={data.url} linkType="pick" className="font-body" style={{ fontSize: 'inherit', fontWeight: 'inherit', color: 'inherit' }} />
         {(data.url || lookupUrl(data.name)) && <> <ExternalLinkIcon size={12} color={`${C.sage}40`} /></>}
       </h1>
 
@@ -1752,21 +1690,20 @@ function DetailPanelContent({ item, lockedItems, onLock, onAlternatives, alterna
 
       {/* Vibe line */}
       {data.vibe && (
-        <div style={{
-          fontFamily: F, fontSize: 13, fontWeight: 500,
-          fontStyle: 'italic', color: C.sage, lineHeight: 1.4, marginBottom: 14,
-        }}>
+        <div className="font-body text-[13px] font-medium italic leading-[1.4] mb-3.5" style={{ color: C.sage }}>
           {data.vibe}
         </div>
       )}
 
       {/* Why */}
-      <p style={{ fontFamily: F, fontSize: 14, color: C.body, lineHeight: 1.7, marginBottom: 20 }}>{data.why}</p>
+      <p className="font-body text-[14px] leading-[1.7] mb-5" style={{ color: C.body }}>{data.why}</p>
 
       {/* Stat grid */}
       {(() => {
-        const gridLabel = { fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: C.muted, marginBottom: 4 };
-        const gridValue = { fontFamily: F, fontSize: 14, fontWeight: 500, color: C.ink };
+        const gridLabelCls = 'font-body text-[10px] font-semibold tracking-[0.1em] uppercase mb-1';
+        const gridLabel = { color: C.muted };
+        const gridValueCls = 'font-body text-[14px] font-medium';
+        const gridValue = { color: C.ink };
         const tile = { padding: '10px 12px', background: C.white, border: `1px solid ${C.border}`, borderRadius: 8 };
         let cells = [];
         if (type === 'stay') {
@@ -1790,8 +1727,8 @@ function DetailPanelContent({ item, lockedItems, onLock, onAlternatives, alterna
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 8, marginBottom: 16 }}>
             {cells.map((c, i) => (
               <div key={i} style={{ ...tile, ...(c.span ? { gridColumn: 'span 2' } : {}) }}>
-                <div style={gridLabel}>{c.label}</div>
-                <div style={gridValue}>{c.value}</div>
+                <div className={gridLabelCls} style={gridLabel}>{c.label}</div>
+                <div className={gridValueCls} style={gridValue}>{c.value}</div>
               </div>
             ))}
           </div>
@@ -1805,9 +1742,9 @@ function DetailPanelContent({ item, lockedItems, onLock, onAlternatives, alterna
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => trackEvent('external_link_clicked', { name: data.name, link_type: type })}
+          className="font-body text-[13px] font-semibold"
           style={{
             display: 'inline-flex', alignItems: 'center', gap: 7,
-            fontFamily: F, fontSize: 13, fontWeight: 600,
             color: s.color, textDecoration: 'none',
             padding: '8px 16px',
             border: `1.5px solid ${s.color}35`,
@@ -1825,23 +1762,23 @@ function DetailPanelContent({ item, lockedItems, onLock, onAlternatives, alterna
       {/* Alternatives listed flat */}
       {alternatives.length > 0 ? (
         <div style={{ marginBottom: 20 }}>
-          <div style={{ fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: C.muted, marginBottom: 10 }}>Other Options</div>
+          <div className="font-body text-[10px] font-semibold tracking-[0.1em] uppercase mb-2.5" style={{ color: C.muted }}>Other Options</div>
           {alternatives.map((alt, i) => (
             <div key={i} style={{ padding: '14px 16px', borderRadius: 8, background: C.white, border: `1px solid ${C.border}`, marginBottom: 8 }}>
               <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 8, marginBottom: 4 }}>
-                <div style={{ fontFamily: F, fontSize: 14, fontWeight: 600, color: C.ink }}>{alt.name}</div>
+                <div className="font-body text-[14px] font-semibold" style={{ color: C.ink }}>{alt.name}</div>
                 {alt.priceRange && (
-                  <span style={{ fontFamily: F, fontSize: 11, fontWeight: 600, color: s.color, letterSpacing: '0.02em', flexShrink: 0 }}>{alt.priceRange}</span>
+                  <span className="font-body text-[11px] font-semibold tracking-[0.02em] shrink-0" style={{ color: s.color }}>{alt.priceRange}</span>
                 )}
               </div>
               {alt.vibe && (
-                <div style={{ fontFamily: F, fontSize: 12, fontWeight: 500, fontStyle: 'italic', color: C.sage, marginBottom: 6 }}>
+                <div className="font-body text-[12px] font-medium italic mb-1.5" style={{ color: C.sage }}>
                   {alt.vibe}
                 </div>
               )}
-              <div style={{ fontFamily: F, fontSize: 13, color: C.body, lineHeight: 1.55 }}>{alt.why}</div>
+              <div className="font-body text-[13px] leading-[1.55]" style={{ color: C.body }}>{alt.why}</div>
               {(alt.duration || alt.whereToGet) && (
-                <div style={{ fontFamily: F, fontSize: 12, color: C.muted, marginTop: 6 }}>
+                <div className="font-body text-[12px] mt-1.5" style={{ color: C.muted }}>
                   {[alt.duration, alt.whereToGet].filter(Boolean).join(' · ')}
                 </div>
               )}
@@ -1850,13 +1787,13 @@ function DetailPanelContent({ item, lockedItems, onLock, onAlternatives, alterna
         </div>
       ) : alternativesLoading && (
         <div style={{ marginBottom: 20 }}>
-          <div style={{ fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: C.muted, marginBottom: 10 }}>Other Options</div>
+          <div className="font-body text-[10px] font-semibold tracking-[0.1em] uppercase mb-2.5" style={{ color: C.muted }}>Other Options</div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '8px 0' }}>
             <div style={{
               width: 14, height: 14, border: `2px solid ${C.sage}30`, borderTopColor: C.sage,
               borderRadius: '50%', animation: 'lila-spin 0.8s linear infinite',
             }} />
-            <span style={{ fontFamily: F, fontSize: 13, fontWeight: 400, color: C.muted }}>Loading alternatives...</span>
+            <span className="font-body text-[13px] font-normal" style={{ color: C.muted }}>Loading alternatives...</span>
           </div>
         </div>
       )}
@@ -1867,8 +1804,10 @@ function DetailPanelContent({ item, lockedItems, onLock, onAlternatives, alterna
 
 /* ── logistics form panels ─────────────────────────────────────────────── */
 
-const logisticsLabelStyle = { fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: C.muted, marginBottom: 4, display: 'block' };
-const logisticsInputStyle = { width: '100%', padding: '9px 12px', fontFamily: F, fontSize: 13, color: C.ink, background: C.white, border: `1px solid ${C.border}`, borderRadius: 8, outline: 'none', boxSizing: 'border-box' };
+const logisticsLabelCls = 'font-body text-[10px] font-semibold tracking-[0.12em] uppercase mb-1 block';
+const logisticsLabelStyle = { color: C.muted };
+const logisticsInputCls = 'w-full font-body text-[13px] outline-none box-border';
+const logisticsInputStyle = { padding: '9px 12px', color: C.ink, background: C.white, border: `1px solid ${C.border}`, borderRadius: 8 };
 
 function FlightFormPanel({ data, logistics, onSave, bookingIndex, highlightFields: initialHighlights }) {
   const [form, setForm] = useState(data || { airline: '', flightNumber: '', departureAirport: '', arrivalAirport: logistics?.arrivalAirport || '', date: '', departureTime: '', arrivalTime: '', confirmationNumber: '' });
@@ -1892,18 +1831,18 @@ function FlightFormPanel({ data, logistics, onSave, bookingIndex, highlightField
       <div style={{ maxWidth: 500, margin: '0 auto', padding: '20px 20px 60px' }}>
         <div style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '4px 11px', borderRadius: 20, background: `${C.teal}0e`, border: `1px solid ${C.teal}18`, marginBottom: 10 }}>
           <PlaneIcon size={12} color={C.teal} />
-          <span style={{ fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: C.teal }}>Flights</span>
+          <span className="font-body text-[10px] font-semibold tracking-[0.1em] uppercase" style={{ color: C.teal }}>Flights</span>
         </div>
-        <h1 style={{ fontFamily: F_SERIF, fontSize: 'clamp(20px, 5vw, 24px)', fontWeight: 300, color: C.ink, lineHeight: 1.25, marginBottom: 16 }}>Your Flight Details</h1>
+        <h1 className="font-serif text-[clamp(20px,5vw,24px)] font-light leading-[1.25] mb-4" style={{ color: C.ink }}>Your Flight Details</h1>
         <div style={{ ...CARD_STYLE, padding: '16px 18px', marginBottom: 16 }}>
-          <div style={{ fontFamily: F, fontSize: 14, fontWeight: 600, color: C.ink, marginBottom: 6 }}>{data.airline} {data.flightNumber}</div>
-          <div style={{ fontFamily: F, fontSize: 13, color: C.body, lineHeight: 1.6 }}>
+          <div className="font-body text-[14px] font-semibold mb-1.5" style={{ color: C.ink }}>{data.airline} {data.flightNumber}</div>
+          <div className="font-body text-[13px] leading-[1.6]" style={{ color: C.body }}>
             {data.departureAirport && <>{data.departureAirport} → {data.arrivalAirport}<br /></>}
             {data.date && <>{data.date}{data.departureTime ? ` · Departs ${data.departureTime}` : ''}{data.arrivalTime ? ` · Arrives ${data.arrivalTime}` : ''}<br /></>}
             {data.confirmationNumber && <>Conf: {data.confirmationNumber}</>}
           </div>
         </div>
-        <button onClick={() => setForm({ ...data, _editing: true })} style={{ fontFamily: F, fontSize: 13, fontWeight: 600, color: C.teal, background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>Edit →</button>
+        <button onClick={() => setForm({ ...data, _editing: true })} className="font-body text-[13px] font-semibold bg-transparent border-none cursor-pointer p-0" style={{ color: C.teal }}>Edit →</button>
       </div>
     );
   }
@@ -1917,30 +1856,30 @@ function FlightFormPanel({ data, logistics, onSave, bookingIndex, highlightField
     <div style={{ maxWidth: 500, margin: '0 auto', padding: '20px 20px 60px' }}>
       <div style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '4px 11px', borderRadius: 20, background: `${C.teal}0e`, border: `1px solid ${C.teal}18`, marginBottom: 10 }}>
         <PlaneIcon size={12} color={C.teal} />
-        <span style={{ fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: C.teal }}>Flights</span>
+        <span className="font-body text-[10px] font-semibold tracking-[0.1em] uppercase" style={{ color: C.teal }}>Flights</span>
       </div>
-      <h1 style={{ fontFamily: F_SERIF, fontSize: 'clamp(20px, 5vw, 24px)', fontWeight: 300, color: C.ink, lineHeight: 1.25, marginBottom: 20 }}>Your Flight Details</h1>
+      <h1 className="font-serif text-[clamp(20px,5vw,24px)] font-light leading-[1.25] mb-5" style={{ color: C.ink }}>Your Flight Details</h1>
       <BookingUploadTrigger onExtracted={handleExtracted} onError={setUploadError} />
-      {uploadError && <div style={{ fontFamily: F, fontSize: 12, color: C.salmon, marginTop: 8 }}>{uploadError}</div>}
+      {uploadError && <div className="font-body text-[12px] mt-2" style={{ color: C.salmon }}>{uploadError}</div>}
       <div style={{ display: 'flex', alignItems: 'center', gap: 12, margin: '18px 0' }}>
         <div style={{ flex: 1, height: 1, background: C.border }} />
-        <span style={{ fontFamily: F, fontSize: 11, color: C.muted, whiteSpace: 'nowrap' }}>or enter manually</span>
+        <span className="font-body text-[11px] whitespace-nowrap" style={{ color: C.muted }}>or enter manually</span>
         <div style={{ flex: 1, height: 1, background: C.border }} />
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-        <div><label style={logisticsLabelStyle}>Airline</label><input style={{ ...logisticsInputStyle, ...highlight('airline') }} value={form.airline} onChange={e => set('airline', e.target.value)} placeholder="e.g. United Airlines" /></div>
-        <div><label style={logisticsLabelStyle}>Flight Number</label><input style={{ ...logisticsInputStyle, ...highlight('flightNumber') }} value={form.flightNumber} onChange={e => set('flightNumber', e.target.value)} placeholder="e.g. UA 1234" /></div>
-        <div><label style={logisticsLabelStyle}>Confirmation Number</label><input style={{ ...logisticsInputStyle, ...highlight('confirmationNumber') }} value={form.confirmationNumber} onChange={e => set('confirmationNumber', e.target.value)} placeholder="e.g. ABC123" /></div>
+        <div><label className={logisticsLabelCls} style={logisticsLabelStyle}>Airline</label><input className={logisticsInputCls} style={{ ...logisticsInputStyle, ...highlight('airline') }} value={form.airline} onChange={e => set('airline', e.target.value)} placeholder="e.g. United Airlines" /></div>
+        <div><label className={logisticsLabelCls} style={logisticsLabelStyle}>Flight Number</label><input className={logisticsInputCls} style={{ ...logisticsInputStyle, ...highlight('flightNumber') }} value={form.flightNumber} onChange={e => set('flightNumber', e.target.value)} placeholder="e.g. UA 1234" /></div>
+        <div><label className={logisticsLabelCls} style={logisticsLabelStyle}>Confirmation Number</label><input className={logisticsInputCls} style={{ ...logisticsInputStyle, ...highlight('confirmationNumber') }} value={form.confirmationNumber} onChange={e => set('confirmationNumber', e.target.value)} placeholder="e.g. ABC123" /></div>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
-          <div><label style={logisticsLabelStyle}>Departure Airport</label><input style={{ ...logisticsInputStyle, ...highlight('departureAirport') }} value={form.departureAirport} onChange={e => set('departureAirport', e.target.value)} placeholder="e.g. SFO" /></div>
-          <div><label style={logisticsLabelStyle}>Arrival Airport</label><input style={{ ...logisticsInputStyle, ...highlight('arrivalAirport') }} value={form.arrivalAirport} onChange={e => set('arrivalAirport', e.target.value)} placeholder="e.g. LAS" /></div>
+          <div><label className={logisticsLabelCls} style={logisticsLabelStyle}>Departure Airport</label><input className={logisticsInputCls} style={{ ...logisticsInputStyle, ...highlight('departureAirport') }} value={form.departureAirport} onChange={e => set('departureAirport', e.target.value)} placeholder="e.g. SFO" /></div>
+          <div><label className={logisticsLabelCls} style={logisticsLabelStyle}>Arrival Airport</label><input className={logisticsInputCls} style={{ ...logisticsInputStyle, ...highlight('arrivalAirport') }} value={form.arrivalAirport} onChange={e => set('arrivalAirport', e.target.value)} placeholder="e.g. LAS" /></div>
         </div>
-        <div><label style={logisticsLabelStyle}>Date</label><input style={{ ...logisticsInputStyle, ...highlight('date') }} value={form.date} onChange={e => set('date', e.target.value)} placeholder="e.g. Mar 15, 2026" /></div>
+        <div><label className={logisticsLabelCls} style={logisticsLabelStyle}>Date</label><input className={logisticsInputCls} style={{ ...logisticsInputStyle, ...highlight('date') }} value={form.date} onChange={e => set('date', e.target.value)} placeholder="e.g. Mar 15, 2026" /></div>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
-          <div><label style={logisticsLabelStyle}>Departure Time</label><input style={{ ...logisticsInputStyle, ...highlight('departureTime') }} value={form.departureTime} onChange={e => set('departureTime', e.target.value)} placeholder="e.g. 8:30 AM" /></div>
-          <div><label style={logisticsLabelStyle}>Arrival Time</label><input style={{ ...logisticsInputStyle, ...highlight('arrivalTime') }} value={form.arrivalTime} onChange={e => set('arrivalTime', e.target.value)} placeholder="e.g. 10:15 AM" /></div>
+          <div><label className={logisticsLabelCls} style={logisticsLabelStyle}>Departure Time</label><input className={logisticsInputCls} style={{ ...logisticsInputStyle, ...highlight('departureTime') }} value={form.departureTime} onChange={e => set('departureTime', e.target.value)} placeholder="e.g. 8:30 AM" /></div>
+          <div><label className={logisticsLabelCls} style={logisticsLabelStyle}>Arrival Time</label><input className={logisticsInputCls} style={{ ...logisticsInputStyle, ...highlight('arrivalTime') }} value={form.arrivalTime} onChange={e => set('arrivalTime', e.target.value)} placeholder="e.g. 10:15 AM" /></div>
         </div>
-        <button onClick={handleSave} style={{ fontFamily: F, fontSize: 14, fontWeight: 600, color: C.white, background: C.teal, border: 'none', borderRadius: 20, padding: '10px 28px', cursor: 'pointer', alignSelf: 'flex-start', marginTop: 4 }}>Save Flight</button>
+        <button onClick={handleSave} className="font-body text-[14px] font-semibold border-none cursor-pointer self-start mt-1" style={{ color: C.white, background: C.teal, borderRadius: 20, padding: '10px 28px' }}>Save Flight</button>
       </div>
     </div>
   );
@@ -1968,18 +1907,18 @@ function RentalFormPanel({ data, logistics, onSave, bookingIndex, highlightField
       <div style={{ maxWidth: 500, margin: '0 auto', padding: '20px 20px 60px' }}>
         <div style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '4px 11px', borderRadius: 20, background: `${C.teal}0e`, border: `1px solid ${C.teal}18`, marginBottom: 10 }}>
           <CarIcon size={12} color={C.teal} />
-          <span style={{ fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: C.teal }}>Rental Car</span>
+          <span className="font-body text-[10px] font-semibold tracking-[0.1em] uppercase" style={{ color: C.teal }}>Rental Car</span>
         </div>
-        <h1 style={{ fontFamily: F_SERIF, fontSize: 'clamp(20px, 5vw, 24px)', fontWeight: 300, color: C.ink, lineHeight: 1.25, marginBottom: 16 }}>Your Rental Details</h1>
+        <h1 className="font-serif text-[clamp(20px,5vw,24px)] font-light leading-[1.25] mb-4" style={{ color: C.ink }}>Your Rental Details</h1>
         <div style={{ ...CARD_STYLE, padding: '16px 18px', marginBottom: 16 }}>
-          <div style={{ fontFamily: F, fontSize: 14, fontWeight: 600, color: C.ink, marginBottom: 6 }}>{data.company}</div>
-          <div style={{ fontFamily: F, fontSize: 13, color: C.body, lineHeight: 1.6 }}>
+          <div className="font-body text-[14px] font-semibold mb-1.5" style={{ color: C.ink }}>{data.company}</div>
+          <div className="font-body text-[13px] leading-[1.6]" style={{ color: C.body }}>
             {data.confirmationNumber && <>Conf: {data.confirmationNumber}<br /></>}
             {data.pickupLocation && <>Pickup: {data.pickupLocation}<br /></>}
             {data.pickupDate && <>{data.pickupDate}{data.returnDate ? ` → ${data.returnDate}` : ''}</>}
           </div>
         </div>
-        <button onClick={() => setForm({ ...data, _editing: true })} style={{ fontFamily: F, fontSize: 13, fontWeight: 600, color: C.teal, background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>Edit →</button>
+        <button onClick={() => setForm({ ...data, _editing: true })} className="font-body text-[13px] font-semibold bg-transparent border-none cursor-pointer p-0" style={{ color: C.teal }}>Edit →</button>
       </div>
     );
   }
@@ -1993,25 +1932,25 @@ function RentalFormPanel({ data, logistics, onSave, bookingIndex, highlightField
     <div style={{ maxWidth: 500, margin: '0 auto', padding: '20px 20px 60px' }}>
       <div style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '4px 11px', borderRadius: 20, background: `${C.teal}0e`, border: `1px solid ${C.teal}18`, marginBottom: 10 }}>
         <CarIcon size={12} color={C.teal} />
-        <span style={{ fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: C.teal }}>Rental Car</span>
+        <span className="font-body text-[10px] font-semibold tracking-[0.1em] uppercase" style={{ color: C.teal }}>Rental Car</span>
       </div>
-      <h1 style={{ fontFamily: F_SERIF, fontSize: 'clamp(20px, 5vw, 24px)', fontWeight: 300, color: C.ink, lineHeight: 1.25, marginBottom: 20 }}>Your Rental Details</h1>
+      <h1 className="font-serif text-[clamp(20px,5vw,24px)] font-light leading-[1.25] mb-5" style={{ color: C.ink }}>Your Rental Details</h1>
       <BookingUploadTrigger onExtracted={handleExtracted} onError={setUploadError} />
-      {uploadError && <div style={{ fontFamily: F, fontSize: 12, color: C.salmon, marginTop: 8 }}>{uploadError}</div>}
+      {uploadError && <div className="font-body text-[12px] mt-2" style={{ color: C.salmon }}>{uploadError}</div>}
       <div style={{ display: 'flex', alignItems: 'center', gap: 12, margin: '18px 0' }}>
         <div style={{ flex: 1, height: 1, background: C.border }} />
-        <span style={{ fontFamily: F, fontSize: 11, color: C.muted, whiteSpace: 'nowrap' }}>or enter manually</span>
+        <span className="font-body text-[11px] whitespace-nowrap" style={{ color: C.muted }}>or enter manually</span>
         <div style={{ flex: 1, height: 1, background: C.border }} />
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-        <div><label style={logisticsLabelStyle}>Rental Company</label><input style={{ ...logisticsInputStyle, ...highlight('company') }} value={form.company} onChange={e => set('company', e.target.value)} placeholder="e.g. Enterprise" /></div>
-        <div><label style={logisticsLabelStyle}>Confirmation Number</label><input style={{ ...logisticsInputStyle, ...highlight('confirmationNumber') }} value={form.confirmationNumber} onChange={e => set('confirmationNumber', e.target.value)} placeholder="e.g. ABC123456" /></div>
-        <div><label style={logisticsLabelStyle}>Pickup Location</label><input style={{ ...logisticsInputStyle, ...highlight('pickupLocation') }} value={form.pickupLocation} onChange={e => set('pickupLocation', e.target.value)} placeholder="e.g. LAS Airport" /></div>
+        <div><label className={logisticsLabelCls} style={logisticsLabelStyle}>Rental Company</label><input className={logisticsInputCls} style={{ ...logisticsInputStyle, ...highlight('company') }} value={form.company} onChange={e => set('company', e.target.value)} placeholder="e.g. Enterprise" /></div>
+        <div><label className={logisticsLabelCls} style={logisticsLabelStyle}>Confirmation Number</label><input className={logisticsInputCls} style={{ ...logisticsInputStyle, ...highlight('confirmationNumber') }} value={form.confirmationNumber} onChange={e => set('confirmationNumber', e.target.value)} placeholder="e.g. ABC123456" /></div>
+        <div><label className={logisticsLabelCls} style={logisticsLabelStyle}>Pickup Location</label><input className={logisticsInputCls} style={{ ...logisticsInputStyle, ...highlight('pickupLocation') }} value={form.pickupLocation} onChange={e => set('pickupLocation', e.target.value)} placeholder="e.g. LAS Airport" /></div>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
-          <div><label style={logisticsLabelStyle}>Pickup Date</label><input style={{ ...logisticsInputStyle, ...highlight('pickupDate') }} value={form.pickupDate} onChange={e => set('pickupDate', e.target.value)} placeholder="e.g. Mar 15, 2026" /></div>
-          <div><label style={logisticsLabelStyle}>Return Date</label><input style={{ ...logisticsInputStyle, ...highlight('returnDate') }} value={form.returnDate} onChange={e => set('returnDate', e.target.value)} placeholder="e.g. Mar 20, 2026" /></div>
+          <div><label className={logisticsLabelCls} style={logisticsLabelStyle}>Pickup Date</label><input className={logisticsInputCls} style={{ ...logisticsInputStyle, ...highlight('pickupDate') }} value={form.pickupDate} onChange={e => set('pickupDate', e.target.value)} placeholder="e.g. Mar 15, 2026" /></div>
+          <div><label className={logisticsLabelCls} style={logisticsLabelStyle}>Return Date</label><input className={logisticsInputCls} style={{ ...logisticsInputStyle, ...highlight('returnDate') }} value={form.returnDate} onChange={e => set('returnDate', e.target.value)} placeholder="e.g. Mar 20, 2026" /></div>
         </div>
-        <button onClick={handleSave} style={{ fontFamily: F, fontSize: 14, fontWeight: 600, color: C.white, background: C.teal, border: 'none', borderRadius: 20, padding: '10px 28px', cursor: 'pointer', alignSelf: 'flex-start', marginTop: 4 }}>Save Rental</button>
+        <button onClick={handleSave} className="font-body text-[14px] font-semibold border-none cursor-pointer self-start mt-1" style={{ color: C.white, background: C.teal, borderRadius: 20, padding: '10px 28px' }}>Save Rental</button>
       </div>
     </div>
   );
@@ -2079,12 +2018,12 @@ function BookingUploadTrigger({ onExtracted, onError }) {
       <button
         onClick={() => fileRef.current?.click()}
         disabled={uploading}
+        className="w-full font-body text-[12px] font-medium flex items-center justify-center gap-2 bg-transparent"
         style={{
-          width: '100%', padding: '14px 12px',
-          background: 'none', cursor: uploading ? 'default' : 'pointer',
+          padding: '14px 12px',
+          cursor: uploading ? 'default' : 'pointer',
           border: `1.5px dashed ${C.sage}40`, borderRadius: 8,
-          fontFamily: F, fontSize: 12, fontWeight: 500, color: C.sage,
-          display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+          color: C.sage,
           WebkitTapHighlightColor: 'transparent',
         }}
       >
@@ -2149,28 +2088,26 @@ function BookingCard({ booking, badge, onClick, onRemove }) {
       {onRemove && (
         <button
           onClick={(e) => { e.stopPropagation(); onRemove(); }}
+          className="font-body text-[11px] absolute top-1.5 right-2 bg-transparent border-none cursor-pointer"
           style={{
-            position: 'absolute', top: 6, right: 8,
-            background: 'none', border: 'none', cursor: 'pointer',
-            fontFamily: F, fontSize: 11, color: `${C.muted}80`, padding: '2px 4px',
+            color: `${C.muted}80`, padding: '2px 4px',
             WebkitTapHighlightColor: 'transparent',
           }}
           aria-label="Remove"
         >✕</button>
       )}
       <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 3 }}>
-        <span style={{ fontFamily: F, fontSize: 13, fontWeight: 600, color: C.ink }}>{title}</span>
+        <span className="font-body text-[13px] font-semibold" style={{ color: C.ink }}>{title}</span>
         {badge && (
-          <span style={{
-            fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase',
+          <span className="font-body text-[9px] font-bold tracking-[0.06em] uppercase" style={{
             color: C.teal, background: `${C.teal}0e`, border: `1px solid ${C.teal}18`,
             padding: '2px 7px', borderRadius: 10,
           }}>{badge}</span>
         )}
       </div>
-      {subtitle && <div style={{ fontFamily: F, fontSize: 11, color: C.muted, lineHeight: 1.4 }}>{subtitle}</div>}
+      {subtitle && <div className="font-body text-[11px] leading-[1.4]" style={{ color: C.muted }}>{subtitle}</div>}
       {hasUncertain && (
-        <div style={{ fontFamily: F, fontSize: 10, fontWeight: 500, color: C.amber, marginTop: 4 }}>
+        <div className="font-body text-[10px] font-medium mt-1" style={{ color: C.amber }}>
           ⚠ Review: {booking._uncertain.join(', ')}
         </div>
       )}
@@ -2200,19 +2137,19 @@ function AccommodationFormPanel({ data, onSave, bookingIndex, highlightFields: i
       <div style={{ maxWidth: 500, margin: '0 auto', padding: '20px 20px 60px' }}>
         <div style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '4px 11px', borderRadius: 20, background: `${C.teal}0e`, border: `1px solid ${C.teal}18`, marginBottom: 10 }}>
           <CategoryIcon category="stay" color={C.teal} size={12} />
-          <span style={{ fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: C.teal }}>Accommodation</span>
+          <span className="font-body text-[10px] font-semibold tracking-[0.1em] uppercase" style={{ color: C.teal }}>Accommodation</span>
         </div>
-        <h1 style={{ fontFamily: F_SERIF, fontSize: 'clamp(20px, 5vw, 24px)', fontWeight: 300, color: C.ink, lineHeight: 1.25, marginBottom: 16 }}>Your Reservation</h1>
+        <h1 className="font-serif text-[clamp(20px,5vw,24px)] font-light leading-[1.25] mb-4" style={{ color: C.ink }}>Your Reservation</h1>
         <div style={{ ...CARD_STYLE, padding: '16px 18px', marginBottom: 16 }}>
-          <div style={{ fontFamily: F, fontSize: 14, fontWeight: 600, color: C.ink, marginBottom: 6 }}>{data.name}</div>
-          <div style={{ fontFamily: F, fontSize: 13, color: C.body, lineHeight: 1.6 }}>
+          <div className="font-body text-[14px] font-semibold mb-1.5" style={{ color: C.ink }}>{data.name}</div>
+          <div className="font-body text-[13px] leading-[1.6]" style={{ color: C.body }}>
             {data.confirmationNumber && <>Conf: {data.confirmationNumber}<br /></>}
             {data.checkIn && data.checkOut && <>{data.checkIn} → {data.checkOut}<br /></>}
             {data.address && <>{data.address}<br /></>}
             {data.phone && <>{data.phone}</>}
           </div>
         </div>
-        <button onClick={() => setForm({ ...data, _editing: true })} style={{ fontFamily: F, fontSize: 13, fontWeight: 600, color: C.teal, background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>Edit →</button>
+        <button onClick={() => setForm({ ...data, _editing: true })} className="font-body text-[13px] font-semibold bg-transparent border-none cursor-pointer p-0" style={{ color: C.teal }}>Edit →</button>
       </div>
     );
   }
@@ -2226,26 +2163,26 @@ function AccommodationFormPanel({ data, onSave, bookingIndex, highlightFields: i
     <div style={{ maxWidth: 500, margin: '0 auto', padding: '20px 20px 60px' }}>
       <div style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '4px 11px', borderRadius: 20, background: `${C.teal}0e`, border: `1px solid ${C.teal}18`, marginBottom: 10 }}>
         <CategoryIcon category="stay" color={C.teal} size={12} />
-        <span style={{ fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: C.teal }}>Accommodation</span>
+        <span className="font-body text-[10px] font-semibold tracking-[0.1em] uppercase" style={{ color: C.teal }}>Accommodation</span>
       </div>
-      <h1 style={{ fontFamily: F_SERIF, fontSize: 'clamp(20px, 5vw, 24px)', fontWeight: 300, color: C.ink, lineHeight: 1.25, marginBottom: 20 }}>Your Reservation</h1>
+      <h1 className="font-serif text-[clamp(20px,5vw,24px)] font-light leading-[1.25] mb-5" style={{ color: C.ink }}>Your Reservation</h1>
       <BookingUploadTrigger onExtracted={handleExtracted} onError={setUploadError} />
-      {uploadError && <div style={{ fontFamily: F, fontSize: 12, color: C.salmon, marginTop: 8 }}>{uploadError}</div>}
+      {uploadError && <div className="font-body text-[12px] mt-2" style={{ color: C.salmon }}>{uploadError}</div>}
       <div style={{ display: 'flex', alignItems: 'center', gap: 12, margin: '18px 0' }}>
         <div style={{ flex: 1, height: 1, background: C.border }} />
-        <span style={{ fontFamily: F, fontSize: 11, color: C.muted, whiteSpace: 'nowrap' }}>or enter manually</span>
+        <span className="font-body text-[11px] whitespace-nowrap" style={{ color: C.muted }}>or enter manually</span>
         <div style={{ flex: 1, height: 1, background: C.border }} />
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-        <div><label style={logisticsLabelStyle}>Property Name</label><input style={{ ...logisticsInputStyle, ...highlight('name') }} value={form.name} onChange={e => set('name', e.target.value)} placeholder="e.g. Desert Rose Inn" /></div>
-        <div><label style={logisticsLabelStyle}>Confirmation Number</label><input style={{ ...logisticsInputStyle, ...highlight('confirmationNumber') }} value={form.confirmationNumber} onChange={e => set('confirmationNumber', e.target.value)} placeholder="e.g. HTL-789012" /></div>
+        <div><label className={logisticsLabelCls} style={logisticsLabelStyle}>Property Name</label><input className={logisticsInputCls} style={{ ...logisticsInputStyle, ...highlight('name') }} value={form.name} onChange={e => set('name', e.target.value)} placeholder="e.g. Desert Rose Inn" /></div>
+        <div><label className={logisticsLabelCls} style={logisticsLabelStyle}>Confirmation Number</label><input className={logisticsInputCls} style={{ ...logisticsInputStyle, ...highlight('confirmationNumber') }} value={form.confirmationNumber} onChange={e => set('confirmationNumber', e.target.value)} placeholder="e.g. HTL-789012" /></div>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
-          <div><label style={logisticsLabelStyle}>Check-In</label><input style={{ ...logisticsInputStyle, ...highlight('checkIn') }} value={form.checkIn} onChange={e => set('checkIn', e.target.value)} placeholder="e.g. Mar 15, 2026" /></div>
-          <div><label style={logisticsLabelStyle}>Check-Out</label><input style={{ ...logisticsInputStyle, ...highlight('checkOut') }} value={form.checkOut} onChange={e => set('checkOut', e.target.value)} placeholder="e.g. Mar 20, 2026" /></div>
+          <div><label className={logisticsLabelCls} style={logisticsLabelStyle}>Check-In</label><input className={logisticsInputCls} style={{ ...logisticsInputStyle, ...highlight('checkIn') }} value={form.checkIn} onChange={e => set('checkIn', e.target.value)} placeholder="e.g. Mar 15, 2026" /></div>
+          <div><label className={logisticsLabelCls} style={logisticsLabelStyle}>Check-Out</label><input className={logisticsInputCls} style={{ ...logisticsInputStyle, ...highlight('checkOut') }} value={form.checkOut} onChange={e => set('checkOut', e.target.value)} placeholder="e.g. Mar 20, 2026" /></div>
         </div>
-        <div><label style={logisticsLabelStyle}>Address (optional)</label><input style={{ ...logisticsInputStyle, ...highlight('address') }} value={form.address} onChange={e => set('address', e.target.value)} placeholder="e.g. 123 Canyon Rd, Springdale UT" /></div>
-        <div><label style={logisticsLabelStyle}>Phone (optional)</label><input style={{ ...logisticsInputStyle, ...highlight('phone') }} value={form.phone} onChange={e => set('phone', e.target.value)} placeholder="e.g. (435) 555-0123" /></div>
-        <button onClick={handleSave} style={{ fontFamily: F, fontSize: 14, fontWeight: 600, color: C.white, background: C.teal, border: 'none', borderRadius: 20, padding: '10px 28px', cursor: 'pointer', alignSelf: 'flex-start', marginTop: 4 }}>Save Reservation</button>
+        <div><label className={logisticsLabelCls} style={logisticsLabelStyle}>Address (optional)</label><input className={logisticsInputCls} style={{ ...logisticsInputStyle, ...highlight('address') }} value={form.address} onChange={e => set('address', e.target.value)} placeholder="e.g. 123 Canyon Rd, Springdale UT" /></div>
+        <div><label className={logisticsLabelCls} style={logisticsLabelStyle}>Phone (optional)</label><input className={logisticsInputCls} style={{ ...logisticsInputStyle, ...highlight('phone') }} value={form.phone} onChange={e => set('phone', e.target.value)} placeholder="e.g. (435) 555-0123" /></div>
+        <button onClick={handleSave} className="font-body text-[14px] font-semibold border-none cursor-pointer self-start mt-1" style={{ color: C.white, background: C.teal, borderRadius: 20, padding: '10px 28px' }}>Save Reservation</button>
       </div>
     </div>
   );
@@ -2258,34 +2195,34 @@ function ReservationFormPanel({ data, onSave, bookingIndex }) {
   if (data && !form._editing && bookingIndex !== undefined) {
     return (
       <div style={{ maxWidth: 500, margin: '0 auto', padding: '20px 20px 60px' }}>
-        <h1 style={{ fontFamily: F_SERIF, fontSize: 'clamp(20px,5vw,24px)', fontWeight: 300, color: C.ink, lineHeight: 1.25, marginBottom: 16 }}>{data.name || 'Your Booking'}</h1>
+        <h1 className="font-serif text-[clamp(20px,5vw,24px)] font-light leading-[1.25] mb-4" style={{ color: C.ink }}>{data.name || 'Your Booking'}</h1>
         <div style={{ ...CARD_STYLE, padding: '16px 18px', marginBottom: 16 }}>
-          <div style={{ fontFamily: F, fontSize: 14, fontWeight: 600, color: C.ink, marginBottom: 6 }}>{data.name}</div>
-          <div style={{ fontFamily: F, fontSize: 13, color: C.body, lineHeight: 1.6 }}>
+          <div className="font-body text-[14px] font-semibold mb-1.5" style={{ color: C.ink }}>{data.name}</div>
+          <div className="font-body text-[13px] leading-[1.6]" style={{ color: C.body }}>
             {data.type && <>{data.type}<br /></>}
             {data.date && <>{data.date}{data.time ? ` · ${data.time}` : ''}<br /></>}
             {data.confirmationNumber && <>Conf: {data.confirmationNumber}</>}
           </div>
-          {data.notes && <div style={{ fontFamily: F, fontSize: 12, color: C.muted, marginTop: 8, fontStyle: 'italic' }}>{data.notes}</div>}
+          {data.notes && <div className="font-body text-[12px] italic mt-2" style={{ color: C.muted }}>{data.notes}</div>}
         </div>
-        <button onClick={() => setForm({ ...data, _editing: true })} style={{ fontFamily: F, fontSize: 13, fontWeight: 600, color: C.teal, background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>Edit →</button>
+        <button onClick={() => setForm({ ...data, _editing: true })} className="font-body text-[13px] font-semibold bg-transparent border-none cursor-pointer p-0" style={{ color: C.teal }}>Edit →</button>
       </div>
     );
   }
 
   return (
     <div style={{ maxWidth: 500, margin: '0 auto', padding: '20px 20px 60px' }}>
-      <h1 style={{ fontFamily: F_SERIF, fontSize: 'clamp(20px,5vw,24px)', fontWeight: 300, color: C.ink, lineHeight: 1.25, marginBottom: 20 }}>Add a Booking</h1>
+      <h1 className="font-serif text-[clamp(20px,5vw,24px)] font-light leading-[1.25] mb-5" style={{ color: C.ink }}>Add a Booking</h1>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-        <div><label style={logisticsLabelStyle}>What is it?</label><input style={logisticsInputStyle} value={form.name} onChange={e => set('name', e.target.value)} placeholder="e.g. Dinner at Spotted Dog, Morning Yoga" /></div>
-        <div><label style={logisticsLabelStyle}>Type</label><input style={logisticsInputStyle} value={form.type} onChange={e => set('type', e.target.value)} placeholder="e.g. Dinner, Yoga Class, Guided Tour, Spa" /></div>
+        <div><label className={logisticsLabelCls} style={logisticsLabelStyle}>What is it?</label><input className={logisticsInputCls} style={logisticsInputStyle} value={form.name} onChange={e => set('name', e.target.value)} placeholder="e.g. Dinner at Spotted Dog, Morning Yoga" /></div>
+        <div><label className={logisticsLabelCls} style={logisticsLabelStyle}>Type</label><input className={logisticsInputCls} style={logisticsInputStyle} value={form.type} onChange={e => set('type', e.target.value)} placeholder="e.g. Dinner, Yoga Class, Guided Tour, Spa" /></div>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
-          <div><label style={logisticsLabelStyle}>Date</label><input style={logisticsInputStyle} value={form.date} onChange={e => set('date', e.target.value)} placeholder="e.g. Oct 14" /></div>
-          <div><label style={logisticsLabelStyle}>Time</label><input style={logisticsInputStyle} value={form.time} onChange={e => set('time', e.target.value)} placeholder="e.g. 7:00 PM" /></div>
+          <div><label className={logisticsLabelCls} style={logisticsLabelStyle}>Date</label><input className={logisticsInputCls} style={logisticsInputStyle} value={form.date} onChange={e => set('date', e.target.value)} placeholder="e.g. Oct 14" /></div>
+          <div><label className={logisticsLabelCls} style={logisticsLabelStyle}>Time</label><input className={logisticsInputCls} style={logisticsInputStyle} value={form.time} onChange={e => set('time', e.target.value)} placeholder="e.g. 7:00 PM" /></div>
         </div>
-        <div><label style={logisticsLabelStyle}>Confirmation Number</label><input style={logisticsInputStyle} value={form.confirmationNumber} onChange={e => set('confirmationNumber', e.target.value)} placeholder="Optional" /></div>
-        <div><label style={logisticsLabelStyle}>Notes</label><input style={logisticsInputStyle} value={form.notes} onChange={e => set('notes', e.target.value)} placeholder="e.g. Ask for window table" /></div>
-        <button onClick={() => { const { _editing, ...clean } = form; onSave(clean); }} style={{ fontFamily: F, fontSize: 14, fontWeight: 600, color: C.white, background: C.teal, border: 'none', borderRadius: 20, padding: '10px 28px', cursor: 'pointer', alignSelf: 'flex-start', marginTop: 4 }}>Save Booking</button>
+        <div><label className={logisticsLabelCls} style={logisticsLabelStyle}>Confirmation Number</label><input className={logisticsInputCls} style={logisticsInputStyle} value={form.confirmationNumber} onChange={e => set('confirmationNumber', e.target.value)} placeholder="Optional" /></div>
+        <div><label className={logisticsLabelCls} style={logisticsLabelStyle}>Notes</label><input className={logisticsInputCls} style={logisticsInputStyle} value={form.notes} onChange={e => set('notes', e.target.value)} placeholder="e.g. Ask for window table" /></div>
+        <button onClick={() => { const { _editing, ...clean } = form; onSave(clean); }} className="font-body text-[14px] font-semibold border-none cursor-pointer self-start mt-1" style={{ color: C.white, background: C.teal, borderRadius: 20, padding: '10px 28px' }}>Save Booking</button>
       </div>
     </div>
   );
@@ -2349,12 +2286,9 @@ function DetailPanel({ item, onClose, lockedItems, onLock, onAlternatives, alter
             display: 'flex', justifyContent: 'flex-end',
             padding: '12px 14px 0 0',
           }}>
-            <button onClick={onClose} style={{
-              width: 32, height: 32,
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
+            <button onClick={onClose} className="font-body text-[15px] leading-none flex items-center justify-center w-8 h-8 cursor-pointer" style={{
               background: `${C.white}e0`, border: `1px solid ${C.sage}15`,
-              borderRadius: '50%', cursor: 'pointer',
-              fontFamily: F, fontSize: 15, color: C.sage, lineHeight: 1,
+              borderRadius: '50%', color: C.sage,
               WebkitTapHighlightColor: 'transparent',
               boxShadow: `0 2px 8px ${C.ink}08`,
             }} aria-label="Close">✕</button>
@@ -2400,13 +2334,9 @@ function DetailPanel({ item, onClose, lockedItems, onLock, onAlternatives, alter
           }} />
 
           {/* Close button */}
-          <button onClick={(e) => { e.stopPropagation(); onClose(); }} style={{
-            position: 'absolute', top: 8, right: 14,
-            width: 36, height: 36,
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
+          <button onClick={(e) => { e.stopPropagation(); onClose(); }} className="font-body text-[15px] leading-none absolute top-2 right-3.5 flex items-center justify-center w-9 h-9 cursor-pointer" style={{
             background: `${C.white}e0`, border: `1px solid ${C.sage}15`,
-            borderRadius: '50%', cursor: 'pointer',
-            fontFamily: F, fontSize: 15, color: C.sage, lineHeight: 1,
+            borderRadius: '50%', color: C.sage,
             WebkitTapHighlightColor: 'transparent',
             boxShadow: `0 2px 8px ${C.ink}08`,
           }} aria-label="Close">✕</button>
@@ -2601,12 +2531,11 @@ function LogisticsPanel({ destination, sticky = true, tripLogistics, onOpenPanel
     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
         {icon}
-        <span style={{ fontFamily: F_SERIF, fontSize: 14, fontWeight: 400, color: C.ink }}>{label}</span>
+        <span className="font-serif text-[14px] font-normal" style={{ color: C.ink }}>{label}</span>
       </div>
       {onAdd && (
-        <button onClick={onAdd} style={{
-          fontFamily: F, fontSize: 11, fontWeight: 600, color: C.teal,
-          background: 'none', border: 'none', cursor: 'pointer', padding: '2px 4px',
+        <button onClick={onAdd} className="font-body text-[11px] font-semibold bg-transparent border-none cursor-pointer" style={{
+          color: C.teal, padding: '2px 4px',
           WebkitTapHighlightColor: 'transparent',
         }}>+ Add</button>
       )}
@@ -2620,8 +2549,8 @@ function LogisticsPanel({ destination, sticky = true, tripLogistics, onOpenPanel
     }}>
       {/* Header */}
       <div style={{ padding: '14px 16px 12px', borderBottom: `1px solid ${C.border}` }}>
-        <div style={{ fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: C.muted, marginBottom: 2 }}>Your Trip</div>
-        <div style={{ fontFamily: F_SERIF, fontSize: 18, fontWeight: 300, color: C.ink }}>Logistics</div>
+        <div className="font-body text-[9px] font-bold tracking-[0.18em] uppercase mb-0.5" style={{ color: C.muted }}>Your Trip</div>
+        <div className="font-serif text-[18px] font-light" style={{ color: C.ink }}>Logistics</div>
       </div>
 
       {/* Flights */}
@@ -2634,7 +2563,7 @@ function LogisticsPanel({ destination, sticky = true, tripLogistics, onOpenPanel
             ))}
           </div>
         ) : (
-          <div style={{ fontFamily: F, fontSize: 12, fontStyle: 'italic', color: `${C.muted}99`, lineHeight: 1.5 }}>
+          <div className="font-body text-[12px] italic leading-[1.5]" style={{ color: `${C.muted}99` }}>
             Add your flight for timing-aware scheduling
           </div>
         )}
@@ -2663,12 +2592,12 @@ function LogisticsPanel({ destination, sticky = true, tripLogistics, onOpenPanel
           }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginBottom: 4 }}>
               <LilaStar size={8} color={PICK_STYLES.stay.color} />
-              <span style={{ fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: PICK_STYLES.stay.color }}>Lila Pick</span>
+              <span className="font-body text-[9px] font-bold tracking-[0.08em] uppercase" style={{ color: PICK_STYLES.stay.color }}>Lila Pick</span>
             </div>
-            <div style={{ fontFamily: F, fontSize: 13, fontWeight: 600, color: C.ink, marginBottom: 2 }}>{accomName}</div>
-            {accom.location && <div style={{ fontFamily: F, fontSize: 11, fontWeight: 500, color: C.muted, marginBottom: 2 }}>{accom.location}</div>}
-            {accom.vibe && <div style={{ fontFamily: F, fontSize: 11, fontWeight: 500, fontStyle: 'italic', color: C.sage, lineHeight: 1.4 }}>{accom.vibe}</div>}
-            {accom.priceRange && <div style={{ fontFamily: F, fontSize: 10, fontWeight: 600, color: PICK_STYLES.stay.color, marginTop: 4 }}>{accom.priceRange}</div>}
+            <div className="font-body text-[13px] font-semibold mb-0.5" style={{ color: C.ink }}>{accomName}</div>
+            {accom.location && <div className="font-body text-[11px] font-medium mb-0.5" style={{ color: C.muted }}>{accom.location}</div>}
+            {accom.vibe && <div className="font-body text-[11px] font-medium italic leading-[1.4]" style={{ color: C.sage }}>{accom.vibe}</div>}
+            {accom.priceRange && <div className="font-body text-[10px] font-semibold mt-1" style={{ color: PICK_STYLES.stay.color }}>{accom.priceRange}</div>}
           </div>
         )}
       </div>
@@ -2683,7 +2612,7 @@ function LogisticsPanel({ destination, sticky = true, tripLogistics, onOpenPanel
             ))}
           </div>
         ) : (
-          <div style={{ fontFamily: F, fontSize: 12, fontStyle: 'italic', color: `${C.muted}99`, lineHeight: 1.5 }}>
+          <div className="font-body text-[12px] italic leading-[1.5]" style={{ color: `${C.muted}99` }}>
             Add your rental confirmation to keep it handy
           </div>
         )}
@@ -2703,7 +2632,7 @@ function LogisticsPanel({ destination, sticky = true, tripLogistics, onOpenPanel
             ))}
           </div>
         ) : (
-          <div style={{ fontFamily: F, fontSize: 12, fontStyle: 'italic', color: `${C.muted}99`, lineHeight: 1.5 }}>
+          <div className="font-body text-[12px] italic leading-[1.5]" style={{ color: `${C.muted}99` }}>
             Dinner reservations, spa bookings, tours...
           </div>
         )}
@@ -2719,10 +2648,10 @@ function LogisticsPanel({ destination, sticky = true, tripLogistics, onOpenPanel
         }}>
           <button
             onClick={onRefine}
+            className="font-body text-[12px] font-semibold bg-transparent cursor-pointer"
             style={{
-              fontFamily: F, fontSize: 12, fontWeight: 600, color: C.amber,
-              background: 'none', border: `1px solid ${C.amber}40`,
-              borderRadius: 16, padding: '7px 16px', cursor: 'pointer',
+              color: C.amber, border: `1px solid ${C.amber}40`,
+              borderRadius: 16, padding: '7px 16px',
               WebkitTapHighlightColor: 'transparent',
             }}
           >
@@ -2777,7 +2706,7 @@ function DayFeedbackStrip({ dayIndex, feedback, onFeedback }) {
               transition: 'all 0.2s',
             }}>
               {r.icon}
-              <span style={{ fontFamily: F, fontSize: 11, fontWeight: active ? 600 : 500, color: active ? r.color : C.muted }}>{r.label}</span>
+              <span className="font-body text-[11px]" style={{ fontWeight: active ? 600 : 500, color: active ? r.color : C.muted }}>{r.label}</span>
             </button>
           );
         })}
@@ -2788,9 +2717,10 @@ function DayFeedbackStrip({ dayIndex, feedback, onFeedback }) {
         onBlur={commitNote}
         placeholder="Add a note for this day..."
         rows={1}
+        className="font-body text-[13px] font-normal"
         style={{
           width: '100%', marginTop: 8, padding: '7px 0',
-          fontFamily: F, fontSize: 13, fontWeight: 400, color: C.body,
+          color: C.body,
           background: 'transparent', border: 'none',
           borderBottom: `1px solid ${noteFocused ? `${C.sage}30` : C.border}`,
           resize: 'none', overflow: 'hidden', lineHeight: 1.5,
@@ -2814,15 +2744,8 @@ function DayCard({ day, dayIndex = 0, onOpenPanel, lockedItems, onLock, onAltern
     }}>
       {/* Header */}
       <div style={{ padding: '14px 18px 10px' }}>
-        <div style={{
-          fontFamily: F, fontSize: 11, fontWeight: 600,
-          letterSpacing: '0.12em', textTransform: 'uppercase',
-          color: color, marginBottom: 4,
-        }}>DAY {dayIndex + 1} &middot; {day.label}</div>
-        <div style={{
-          fontFamily: F_SERIF, fontSize: 22, fontWeight: 300,
-          color: C.ink, lineHeight: 1.15,
-        }}>{day.title}</div>
+        <div className="font-body text-[11px] font-semibold tracking-[0.12em] uppercase mb-1" style={{ color: color }}>DAY {dayIndex + 1} &middot; {day.label}</div>
+        <div className="font-serif text-[22px] font-light leading-[1.15]" style={{ color: C.ink }}>{day.title}</div>
       </div>
 
       {/* Mindfulness Practice callout — opens detail panel on click */}
@@ -2881,29 +2804,18 @@ function DayCard({ day, dayIndex = 0, onOpenPanel, lockedItems, onLock, onAltern
               <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
                 <IconLotus size={32} color="#4A9B9F" />
                 <div style={{ flex: 1, minWidth: 0 }}>
-                  <div style={{
-                    fontFamily: F, fontSize: 10, fontWeight: 700,
-                    letterSpacing: '0.22em', textTransform: 'uppercase',
-                    color: '#4A9B9F', marginBottom: 4,
-                  }}>Mindfulness Practice</div>
-                  <div style={{
-                    fontFamily: F_SERIF, fontSize: 17, fontWeight: 300,
-                    color: '#1a2530', lineHeight: 1.3,
-                  }}>{name}</div>
+                  <div className="font-body text-[10px] font-bold tracking-[0.22em] uppercase mb-1" style={{ color: '#4A9B9F' }}>Mindfulness Practice</div>
+                  <div className="font-serif text-[17px] font-light leading-[1.3]" style={{ color: '#1a2530' }}>{name}</div>
                   {essence && (
-                    <div style={{
-                      fontFamily: F, fontSize: 13, fontWeight: 400,
-                      color: C.body, lineHeight: 1.5, marginTop: 4,
-                      overflow: 'hidden', textOverflow: 'ellipsis',
+                    <div className="font-body text-[13px] font-normal leading-[1.5] mt-1 overflow-hidden text-ellipsis" style={{
+                      color: C.body,
                       display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical',
                     }}>{essence}</div>
                   )}
                   {glyph && tradition && (
                     <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginTop: 6 }}>
                       <span style={{ fontSize: 11, lineHeight: 1 }}>{glyph}</span>
-                      <span style={{
-                        fontFamily: F, fontSize: 10, fontWeight: 600,
-                        letterSpacing: '0.08em', textTransform: 'uppercase',
+                      <span className="font-body text-[10px] font-semibold tracking-[0.08em] uppercase" style={{
                         color: `${tradition.color || C.sage}99`,
                       }}>{tradition.name}</span>
                     </div>
@@ -2968,11 +2880,7 @@ function DayCard({ day, dayIndex = 0, onOpenPanel, lockedItems, onLock, onAltern
             onMouseLeave={e => { if (!tint) e.currentTarget.style.background = 'transparent'; }}
           >
             {/* Time */}
-            <div style={{
-              fontFamily: F, fontSize: 11, fontWeight: 400,
-              color: C.muted, lineHeight: 1.3,
-              textAlign: 'right', paddingTop: 2,
-            }}>{b.time || ''}</div>
+            <div className="font-body text-[11px] font-normal leading-[1.3] text-right pt-0.5" style={{ color: C.muted }}>{b.time || ''}</div>
 
             {/* Content */}
             <div style={{ minWidth: 0 }}>
@@ -3003,18 +2911,10 @@ function DayCard({ day, dayIndex = 0, onOpenPanel, lockedItems, onLock, onAltern
                 })()}
 
                 {/* Title */}
-                <div style={{
-                  fontFamily: F_SERIF, fontSize: 17, fontWeight: 400,
-                  color: C.ink, lineHeight: 1.25,
-                }}>
+                <div className="font-serif text-[17px] font-normal leading-[1.25]" style={{ color: C.ink }}>
                   {displayTitle}
                   {isItemLocked && (
-                    <span style={{
-                      display: 'inline-flex', alignItems: 'center', gap: 3,
-                      fontSize: 9, fontWeight: 700, letterSpacing: '0.07em',
-                      textTransform: 'uppercase', color: C.goldenAmber,
-                      fontFamily: F, marginLeft: 6,
-                    }}>{lockLabel}</span>
+                    <span className="font-body text-[9px] font-bold tracking-[0.07em] uppercase inline-flex items-center gap-[3px] ml-1.5" style={{ color: C.goldenAmber }}>{lockLabel}</span>
                   )}
                 </div>
               </div>
@@ -3054,10 +2954,7 @@ function DayCard({ day, dayIndex = 0, onOpenPanel, lockedItems, onLock, onAltern
 
               {/* Summary — always visible */}
               {displaySummary && (
-                <div style={{
-                  fontFamily: F, fontSize: 12, fontWeight: 400,
-                  color: C.muted, lineHeight: 1.65, paddingLeft: 22,
-                }}>{displaySummary}</div>
+                <div className="font-body text-[12px] font-normal leading-[1.65] pl-[22px]" style={{ color: C.muted }}>{displaySummary}</div>
               )}
             </div>
 
@@ -3067,13 +2964,13 @@ function DayCard({ day, dayIndex = 0, onOpenPanel, lockedItems, onLock, onAltern
                 <button
                   onClick={e => { e.stopPropagation(); onLock(thumbId); }}
                   title="Lock this in"
+                  className="font-body"
                   style={{
                     display: 'flex', alignItems: 'center', gap: 4,
                     background: lockedItems?.[thumbId] ? `${C.goldenAmber}18` : `${C.goldenAmber}08`,
                     border: `1px solid ${lockedItems?.[thumbId] ? `${C.goldenAmber}60` : `${C.goldenAmber}30`}`,
                     borderRadius: 6, padding: '5px 8px',
                     color: '#B8922A', cursor: 'pointer', transition: 'all 0.15s',
-                    fontFamily: F,
                   }}
                 >
                   <svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="#B8922A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -3087,13 +2984,13 @@ function DayCard({ day, dayIndex = 0, onOpenPanel, lockedItems, onLock, onAltern
                 <button
                   onClick={e => { e.stopPropagation(); handleShowAlternatives(thumbId); }}
                   title="See alternatives"
+                  className="font-body"
                   style={{
                     display: 'flex', alignItems: 'center', gap: 4,
                     background: 'transparent',
                     border: `1px solid rgba(28,28,26,0.1)`,
                     borderRadius: 6, padding: '5px 8px',
                     color: C.muted, cursor: 'pointer', transition: 'all 0.15s',
-                    fontFamily: F,
                   }}
                 >
                   <svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke={C.muted} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -3127,8 +3024,8 @@ function TripPulse({ overallNote, setOverallNote, pulse, setPulse, onPulseSelect
 
   return (
     <div style={{ background: C.white, borderRadius: 2, border: `1.5px solid ${C.sage}14`, boxShadow: `0 4px 20px ${C.amber}0a`, padding: '22px 20px', marginTop: 20 }}>
-      <div style={{ fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: `${C.sage}90`, marginBottom: 4 }}>Overall Feeling</div>
-      <div style={{ fontFamily: F, fontSize: 14, fontWeight: 400, fontStyle: 'normal', color: `${C.slate}65`, marginBottom: 16 }}>How's this trip shaping up?</div>
+      <div className="font-body text-[10px] font-semibold tracking-[0.18em] uppercase mb-1" style={{ color: `${C.sage}90` }}>Overall Feeling</div>
+      <div className="font-body text-[14px] font-normal mb-4" style={{ fontStyle: 'normal', color: `${C.slate}65` }}>How's this trip shaping up?</div>
 
       <div style={{ display: 'flex', gap: 8 }}>
         {options.map(o => {
@@ -3142,8 +3039,8 @@ function TripPulse({ overallNote, setOverallNote, pulse, setPulse, onPulseSelect
               cursor: 'pointer', WebkitTapHighlightColor: 'transparent', transition: 'all 0.25s',
             }}>
               {o.icon}
-              <span style={{ fontFamily: F, fontSize: 13, fontWeight: 600, color: active ? o.color : `${C.slate}90` }}>{o.label}</span>
-              <span style={{ fontFamily: F, fontSize: 11, fontWeight: 400, color: active ? `${o.color}90` : `${C.slate}35` }}>{o.sub}</span>
+              <span className="font-body text-[13px] font-semibold" style={{ color: active ? o.color : `${C.slate}90` }}>{o.label}</span>
+              <span className="font-body text-[11px] font-normal" style={{ color: active ? `${o.color}90` : `${C.slate}35` }}>{o.sub}</span>
             </button>
           );
         })}
@@ -3154,7 +3051,7 @@ function TripPulse({ overallNote, setOverallNote, pulse, setPulse, onPulseSelect
           <textarea value={overallNote} onChange={e => setOverallNote(e.target.value)}
             onBlur={e => { if (e.target.value.trim()) trackEvent('overall_note_entered', { pulse, note_length: e.target.value.trim().length }); }}
             placeholder={pulse === 'close' ? 'What\'s close but not quite right?' : 'What direction would feel better?'}
-            style={{ width: '100%', minHeight: 72, padding: '10px 12px', fontFamily: F, fontSize: 14, fontWeight: 400, color: C.slate, background: C.white, border: `1px solid ${C.sage}15`, borderRadius: 10, resize: 'vertical', lineHeight: 1.55, outline: 'none', boxSizing: 'border-box' }}
+            className="font-body text-[14px] font-normal leading-[1.55]" style={{ width: '100%', minHeight: 72, padding: '10px 12px', color: C.slate, background: C.white, border: `1px solid ${C.sage}15`, borderRadius: 10, resize: 'vertical', outline: 'none', boxSizing: 'border-box' }}
           />
         </div>
       )}
@@ -3179,25 +3076,23 @@ function RefineConfirmModal({ onConfirm, onCancel, feedbackCount }) {
         padding: '32px 28px 28px',
         boxShadow: '0 12px 48px rgba(0,0,0,0.15)',
       }} onClick={e => e.stopPropagation()}>
-        <div style={{ fontFamily: F, fontSize: 10, fontWeight: 700, letterSpacing: '0.22em', textTransform: 'uppercase', color: '#8C8C80', marginBottom: 14 }}>Refine</div>
-        <h3 style={{ fontFamily: F, fontSize: 18, fontWeight: 600, color: '#1C1C1A', lineHeight: 1.3, marginBottom: 8 }}>Ready to refine your itinerary?</h3>
-        <p style={{ fontFamily: F, fontSize: 13, fontWeight: 400, color: '#3D3D38', lineHeight: 1.6, marginBottom: 24 }}>
+        <div className="font-body text-[10px] font-bold tracking-[0.22em] uppercase mb-3.5" style={{ color: '#8C8C80' }}>Refine</div>
+        <h3 className="font-body text-[18px] font-semibold leading-[1.3] mb-2" style={{ color: '#1C1C1A' }}>Ready to refine your itinerary?</h3>
+        <p className="font-body text-[13px] font-normal leading-[1.6] mb-6" style={{ color: '#3D3D38' }}>
           {feedbackCount > 0
             ? `We'll apply your ${feedbackCount} ${feedbackCount === 1 ? 'input' : 'inputs'} and generate an updated version.`
             : "We'll generate an updated version based on your feedback."}
         </p>
         <div style={{ display: 'flex', gap: 10 }}>
-          <button onClick={onCancel} style={{
+          <button onClick={onCancel} className="font-body text-[12px] font-semibold" style={{
             flex: 1, padding: '11px 0',
-            fontFamily: F, fontSize: 12, fontWeight: 600,
             letterSpacing: '0.08em', textTransform: 'uppercase',
             color: '#1C1C1A', background: 'transparent',
             border: '1px solid #e8e2d9', borderRadius: 0,
             cursor: 'pointer', transition: 'all 0.2s',
           }}>Cancel</button>
-          <button onClick={onConfirm} style={{
+          <button onClick={onConfirm} className="font-body text-[12px] font-semibold" style={{
             flex: 1, padding: '11px 0',
-            fontFamily: F, fontSize: 12, fontWeight: 600,
             letterSpacing: '0.08em', textTransform: 'uppercase',
             color: '#faf8f4', background: '#1a2530',
             border: '1px solid #1a2530', borderRadius: 0,
@@ -3249,9 +3144,9 @@ function RefineCTA({ iteration, hasFeedback, onRefine, pulse, onGateShown, onUpg
       <div style={{ textAlign: 'center', padding: '28px 20px 0' }}>
         <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, padding: '10px 20px', borderRadius: 24, background: `${C.seaGlass}10`, border: `1px solid ${C.seaGlass}25` }}>
           <CheckIcon size={14} color={C.seaGlass} />
-          <span style={{ fontFamily: F, fontSize: 14, fontWeight: 600, color: C.seaGlass }}>Trip locked in</span>
+          <span className="font-body text-[14px] font-semibold" style={{ color: C.seaGlass }}>Trip locked in</span>
         </div>
-        <p style={{ fontFamily: F, fontSize: 13, color: `${C.slate}65`, marginTop: 10, lineHeight: 1.5 }}>You can still make changes anytime — just update your day notes above.</p>
+        <p className="font-body text-[13px] leading-[1.5] mt-2.5" style={{ color: `${C.slate}65` }}>You can still make changes anytime — just update your day notes above.</p>
       </div>
     );
   }
@@ -3259,12 +3154,11 @@ function RefineCTA({ iteration, hasFeedback, onRefine, pulse, onGateShown, onUpg
   if (isPremiumGated) {
     return (
       <div style={{ textAlign: 'center', padding: '24px 20px 0' }}>
-        <p style={{ fontFamily: F, fontSize: 13, fontWeight: 400, color: C.muted, lineHeight: 1.6, maxWidth: 360, margin: '0 auto' }}>
+        <p className="font-body text-[13px] font-normal leading-[1.6]" style={{ color: C.muted, maxWidth: 360, margin: '0 auto' }}>
           You're in early access — refinements are unlimited for now. Paid plans coming soon.
         </p>
         <div style={{ marginTop: 14 }}>
-          <button onClick={onRefine} disabled={!hasFeedback || isRefining} style={{
-            fontFamily: F, fontSize: 14, fontWeight: 600,
+          <button onClick={onRefine} disabled={!hasFeedback || isRefining} className="font-body text-[14px] font-semibold" style={{
             color: hasFeedback && !isRefining ? C.white : `${C.sage}80`,
             background: hasFeedback && !isRefining ? C.oceanTeal : `${C.sage}08`,
             border: hasFeedback && !isRefining ? 'none' : `1px solid ${C.sage}15`,
@@ -3279,7 +3173,7 @@ function RefineCTA({ iteration, hasFeedback, onRefine, pulse, onGateShown, onUpg
             {isRefining ? 'Refining...' : (feedbackCount > 0 ? `Refine this trip · ${feedbackCount}` : 'Refine this trip')}
           </button>
           {feedbackCount > 0 && !isRefining && (
-            <p style={{ fontFamily: F, fontSize: 11, color: '#aaa', marginTop: 6, textAlign: 'center', letterSpacing: '0.04em' }}>
+            <p className="font-body text-[11px] tracking-[0.04em] mt-1.5 text-center" style={{ color: '#aaa' }}>
               {feedbackCount} {feedbackCount === 1 ? 'input' : 'inputs'} ready to apply
             </p>
           )}
@@ -3291,10 +3185,10 @@ function RefineCTA({ iteration, hasFeedback, onRefine, pulse, onGateShown, onUpg
       <div style={{ background: C.white, borderRadius: 2, border: `1px solid ${C.oceanTeal}20`, boxShadow: `0 2px 16px ${C.oceanTeal}08`, padding: '24px 20px', marginTop: 20, textAlign: 'center' }}>
         <div style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '4px 12px', borderRadius: 8, background: `${C.oceanTeal}10`, border: `1px solid ${C.oceanTeal}20`, marginBottom: 14 }}>
           <SparkleIcon size={12} color={C.oceanTeal} />
-          <span style={{ fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: C.oceanTeal }}>Lila Pro</span>
+          <span className="font-body text-[10px] font-semibold tracking-[0.12em] uppercase" style={{ color: C.oceanTeal }}>Lila Pro</span>
         </div>
-        <h3 style={{ fontFamily: F, fontSize: 18, fontWeight: 600, color: C.slate, marginBottom: 6 }}>Keep refining your perfect trip</h3>
-        <p style={{ fontFamily: F, fontSize: 14, color: `${C.slate}99`, lineHeight: 1.6, maxWidth: 380, margin: '0 auto 18px' }}>
+        <h3 className="font-body text-[18px] font-semibold mb-1.5" style={{ color: C.slate }}>Keep refining your perfect trip</h3>
+        <p className="font-body text-[14px] leading-[1.6]" style={{ color: `${C.slate}99`, maxWidth: 380, margin: '0 auto 18px' }}>
           You've used your {maxFree} free refinements. Upgrade to continue iterating and unlock the full trip planning toolkit.
         </p>
         <div ref={featuresRef} style={{ display: 'flex', flexDirection: 'column', gap: 8, maxWidth: 300, margin: '0 auto 20px', textAlign: 'left' }}>
@@ -3306,14 +3200,14 @@ function RefineCTA({ iteration, hasFeedback, onRefine, pulse, onGateShown, onUpg
           ].map((f, i) => (
             <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '4px 0' }}>
               <div style={{ width: 28, height: 28, borderRadius: 8, background: `${C.oceanTeal}08`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{f.icon}</div>
-              <span style={{ fontFamily: F, fontSize: 14, fontWeight: 500, color: `${C.slate}AA` }}>{f.text}</span>
+              <span className="font-body text-[14px] font-medium" style={{ color: `${C.slate}AA` }}>{f.text}</span>
             </div>
           ))}
         </div>
-        <button onClick={onUpgradeClick} style={{ fontFamily: F, fontSize: 14, fontWeight: 600, color: C.white, background: C.oceanTeal, border: 'none', borderRadius: 24, padding: '12px 28px', cursor: 'pointer', WebkitTapHighlightColor: 'transparent', boxShadow: `0 2px 12px ${C.oceanTeal}25`, transition: 'all 0.2s' }}>
+        <button onClick={onUpgradeClick} className="font-body text-[14px] font-semibold" style={{ color: C.white, background: C.oceanTeal, border: 'none', borderRadius: 24, padding: '12px 28px', cursor: 'pointer', WebkitTapHighlightColor: 'transparent', boxShadow: `0 2px 12px ${C.oceanTeal}25`, transition: 'all 0.2s' }}>
           Upgrade to Lila Pro
         </button>
-        <div style={{ fontFamily: F, fontSize: 12, color: `${C.slate}65`, marginTop: 8 }}>Starting at $9/trip</div>
+        <div className="font-body text-[12px] mt-2" style={{ color: `${C.slate}65` }}>Starting at $9/trip</div>
       </div>
     );
     ────────────────────────────────────────────────────────────────────── */
@@ -3321,8 +3215,7 @@ function RefineCTA({ iteration, hasFeedback, onRefine, pulse, onGateShown, onUpg
 
   return (
     <div style={{ textAlign: 'center', padding: '24px 20px 0' }}>
-      <button onClick={onRefine} disabled={!hasFeedback || isRefining} style={{
-        fontFamily: F, fontSize: 14, fontWeight: 600,
+      <button onClick={onRefine} disabled={!hasFeedback || isRefining} className="font-body text-[14px] font-semibold" style={{
         color: hasFeedback && !isRefining ? C.white : `${C.sage}80`,
         background: hasFeedback && !isRefining ? C.oceanTeal : `${C.sage}08`,
         border: hasFeedback && !isRefining ? 'none' : `1px solid ${C.sage}15`,
@@ -3336,15 +3229,15 @@ function RefineCTA({ iteration, hasFeedback, onRefine, pulse, onGateShown, onUpg
         <SparkleIcon size={14} color={hasFeedback && !isRefining ? C.white : `${C.sage}40`} />
         {isRefining ? 'Refining...' : (feedbackCount > 0 ? `Refine this trip · ${feedbackCount}` : 'Refine this trip')}
       </button>
-      <div style={{ fontFamily: F, fontSize: 12, color: `${C.slate}65`, marginTop: 8 }}>
+      <div className="font-body text-[12px] mt-2" style={{ color: `${C.slate}65` }}>
         {remaining} free refinement{remaining !== 1 ? 's' : ''} remaining
       </div>
       {feedbackCount > 0 && !isRefining ? (
-        <p style={{ fontFamily: F, fontSize: 11, color: '#aaa', marginTop: 4, textAlign: 'center', letterSpacing: '0.04em' }}>
+        <p className="font-body text-[11px] tracking-[0.04em] mt-1 text-center" style={{ color: '#aaa' }}>
           {feedbackCount} {feedbackCount === 1 ? 'input' : 'inputs'} ready to apply
         </p>
       ) : !hasFeedback && (
-        <div style={{ fontFamily: F, fontSize: 12, color: `${C.sage}90`, marginTop: 4, fontStyle: 'normal' }}>
+        <div className="font-body text-[12px] mt-1" style={{ color: `${C.sage}90`, fontStyle: 'normal' }}>
           Add day feedback or rate the overall trip to enable refinement
         </div>
       )}
@@ -3441,17 +3334,17 @@ function RefiningOverlay({ visible, iteration = 0, days = 4, apiDone, onDismiss,
             <circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" />
           </svg>
         </div>
-        <div style={{ fontFamily: F_SERIF, fontSize: 'clamp(20px, 5vw, 26px)', fontWeight: 300, color: C.slate, marginBottom: 8, textAlign: 'center' }}>
+        <div className="font-serif text-[clamp(20px,5vw,26px)] font-light mb-2 text-center" style={{ color: C.slate }}>
           Refinement didn't go through
         </div>
-        <div style={{ fontFamily: F, fontSize: 14, fontWeight: 400, color: `${C.slate}90`, lineHeight: 1.5, textAlign: 'center', maxWidth: 320, marginBottom: 28 }}>
+        <div className="font-body text-[14px] font-normal leading-[1.5] text-center mb-7" style={{ color: `${C.slate}90`, maxWidth: 320 }}>
           {error}
         </div>
         <div style={{ display: 'flex', gap: 12 }}>
-          <button onClick={onRetry} style={{ fontFamily: F, fontSize: 14, fontWeight: 600, color: C.white, background: C.oceanTeal, border: 'none', borderRadius: 24, padding: '10px 24px', cursor: 'pointer', WebkitTapHighlightColor: 'transparent' }}>
+          <button onClick={onRetry} className="font-body text-[14px] font-semibold" style={{ color: C.white, background: C.oceanTeal, border: 'none', borderRadius: 24, padding: '10px 24px', cursor: 'pointer', WebkitTapHighlightColor: 'transparent' }}>
             Try again
           </button>
-          <button onClick={() => onDismissRef.current?.()} style={{ fontFamily: F, fontSize: 14, fontWeight: 500, color: `${C.slate}80`, background: 'none', border: `1px solid ${C.slate}20`, borderRadius: 24, padding: '10px 24px', cursor: 'pointer', WebkitTapHighlightColor: 'transparent' }}>
+          <button onClick={() => onDismissRef.current?.()} className="font-body text-[14px] font-medium" style={{ color: `${C.slate}80`, background: 'none', border: `1px solid ${C.slate}20`, borderRadius: 24, padding: '10px 24px', cursor: 'pointer', WebkitTapHighlightColor: 'transparent' }}>
             Dismiss
           </button>
         </div>
@@ -3491,18 +3384,13 @@ function RefiningOverlay({ visible, iteration = 0, days = 4, apiDone, onDismiss,
       </div>
 
       {/* Headline */}
-      <div style={{
-        fontFamily: F_SERIF,
-        fontSize: 'clamp(22px, 5.5vw, 28px)', fontWeight: 300,
-        color: C.slate, marginBottom: 6, textAlign: 'center',
+      <div className="font-serif text-[clamp(22px,5.5vw,28px)] font-light mb-1.5 text-center" style={{
+        color: C.slate,
       }}>Refining your trip</div>
 
       {/* Subtitle */}
-      <div style={{
-        fontFamily: F,
-        fontSize: 14, fontWeight: 400,
+      <div className="font-body text-[14px] font-normal mb-7 text-center" style={{
         color: C.sage, opacity: 0.75,
-        marginBottom: 28, textAlign: 'center',
       }}>Incorporating your feedback into a new draft.</div>
 
       {/* Step indicators — dots + labels */}
@@ -3524,8 +3412,8 @@ function RefiningOverlay({ visible, iteration = 0, days = 4, apiDone, onDismiss,
                 background: isComplete ? C.oceanTeal : isActive ? C.oceanTeal : `${C.sage}30`,
                 transition: 'background 0.5s',
               }} />
-              <span style={{
-                fontFamily: F, fontSize: 13, fontWeight: isActive ? 600 : 400,
+              <span className="font-body text-[13px]" style={{
+                fontWeight: isActive ? 600 : 400,
                 color: isActive ? C.slate : C.sage,
                 transition: 'all 0.5s',
               }}>{step}</span>
@@ -3550,22 +3438,15 @@ function RefiningOverlay({ visible, iteration = 0, days = 4, apiDone, onDismiss,
       </div>
 
       {/* Step counter */}
-      <div style={{
-        fontFamily: F,
-        fontSize: 11, fontWeight: 500,
-        letterSpacing: '0.12em', textTransform: 'uppercase',
+      <div className="font-body text-[11px] font-medium tracking-[0.12em] uppercase mt-2" style={{
         color: `${C.sage}99`,
-        marginTop: 8,
       }}>
         {allDone ? 'Finalizing...' : `${Math.max(0, completedIndex + 1)} of ${REFINING_STEPS.length}`}
       </div>
 
       {/* Refinement quota callout */}
-      <div style={{
-        fontFamily: F,
-        fontSize: 12, fontWeight: 400,
+      <div className="font-body text-[12px] font-normal mt-5 text-center" style={{
         color: C.muted,
-        marginTop: 20, textAlign: 'center',
       }}>
         {remaining > 0
           ? `You have ${remaining} free refinement${remaining !== 1 ? 's' : ''} remaining after this`
@@ -3582,7 +3463,7 @@ function VersionBadge({ iteration }) {
   return (
     <div style={{ display: 'inline-flex', alignItems: 'center', gap: 4, padding: '3px 10px', borderRadius: 8, background: `${C.oceanTeal}08`, border: `1px solid ${C.oceanTeal}15`, marginBottom: 8 }}>
       <SparkleIcon size={10} color={C.oceanTeal} />
-      <span style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: '0.06em', color: C.oceanTeal }}>Revision {iteration}</span>
+      <span className="font-body text-[11px] font-semibold tracking-[0.06em]" style={{ color: C.oceanTeal }}>Revision {iteration}</span>
     </div>
   );
 }
@@ -3626,24 +3507,24 @@ function MarkdownContent({ content }) {
     if (line.trim() === '---' || line.trim() === '***') {
       elements.push(<hr key={key++} style={{ border: 'none', borderTop: `1px solid ${C.sage}15`, margin: '28px 0' }} />);
     } else if (/^# [^#]/.test(line)) {
-      elements.push(<h1 key={key++} style={{ fontFamily: F, fontSize: 'clamp(26px, 7vw, 34px)', fontWeight: 600, color: C.slate, lineHeight: 1.2, margin: '28px 0 10px' }}>{renderInline(line.slice(2))}</h1>);
+      elements.push(<h1 key={key++} className="font-body text-[clamp(26px,7vw,34px)] font-semibold leading-[1.2]" style={{ color: C.slate, margin: '28px 0 10px' }}>{renderInline(line.slice(2))}</h1>);
     } else if (/^## [^#]/.test(line)) {
-      elements.push(<h2 key={key++} style={{ fontFamily: F, fontSize: 'clamp(20px, 5.5vw, 26px)', fontWeight: 600, color: C.slate, margin: '24px 0 8px' }}>{renderInline(line.slice(3))}</h2>);
+      elements.push(<h2 key={key++} className="font-body text-[clamp(20px,5.5vw,26px)] font-semibold" style={{ color: C.slate, margin: '24px 0 8px' }}>{renderInline(line.slice(3))}</h2>);
     } else if (/^### /.test(line)) {
-      elements.push(<h3 key={key++} style={{ fontFamily: F, fontSize: 14, fontWeight: 700, color: C.sage, margin: '18px 0 6px' }}>{renderInline(line.slice(4))}</h3>);
+      elements.push(<h3 key={key++} className="font-body text-[14px] font-bold" style={{ color: C.sage, margin: '18px 0 6px' }}>{renderInline(line.slice(4))}</h3>);
     } else if (/^\s*[-*] /.test(line)) {
-      elements.push(<div key={key++} style={{ display: 'flex', gap: 8, padding: '3px 0' }}><span style={{ color: C.sage, flexShrink: 0 }}>•</span><span style={{ fontFamily: F, fontSize: 14, color: C.slate, lineHeight: 1.65 }}>{renderInline(line.replace(/^\s*[-*] /, ''))}</span></div>);
+      elements.push(<div key={key++} style={{ display: 'flex', gap: 8, padding: '3px 0' }}><span style={{ color: C.sage, flexShrink: 0 }}>•</span><span className="font-body text-[14px] leading-[1.65]" style={{ color: C.slate }}>{renderInline(line.replace(/^\s*[-*] /, ''))}</span></div>);
     } else if (/^\d+\.\s/.test(line)) {
       const numMatch = line.match(/^(\d+)\.\s(.*)/);
       if (numMatch) {
-        elements.push(<div key={key++} style={{ display: 'flex', gap: 8, padding: '3px 0' }}><span style={{ fontFamily: F, fontSize: 13, color: C.sage, fontWeight: 700, flexShrink: 0, minWidth: 18 }}>{numMatch[1]}.</span><span style={{ fontFamily: F, fontSize: 14, color: C.slate, lineHeight: 1.65 }}>{renderInline(numMatch[2])}</span></div>);
+        elements.push(<div key={key++} style={{ display: 'flex', gap: 8, padding: '3px 0' }}><span className="font-body text-[13px] font-bold shrink-0 min-w-[18px]" style={{ color: C.sage }}>{numMatch[1]}.</span><span className="font-body text-[14px] leading-[1.65]" style={{ color: C.slate }}>{renderInline(numMatch[2])}</span></div>);
       }
     } else if (/^>\s/.test(line)) {
-      elements.push(<div key={key++} style={{ borderLeft: `3px solid ${C.oceanTeal}30`, paddingLeft: 14, margin: '12px 0', fontFamily: F, fontSize: 'clamp(15px, 4vw, 18px)', fontStyle: 'normal', color: `${C.slate}AA`, lineHeight: 1.6 }}>{renderInline(line.slice(2))}</div>);
+      elements.push(<div key={key++} className="font-body text-[clamp(15px,4vw,18px)] leading-[1.6]" style={{ borderLeft: `3px solid ${C.oceanTeal}30`, paddingLeft: 14, margin: '12px 0', fontStyle: 'normal', color: `${C.slate}AA` }}>{renderInline(line.slice(2))}</div>);
     } else if (line.trim() === '') {
       elements.push(<div key={key++} style={{ height: 6 }} />);
     } else {
-      elements.push(<p key={key++} style={{ fontFamily: F, fontSize: 14, color: C.slate, lineHeight: 1.75, margin: '5px 0' }}>{renderInline(line)}</p>);
+      elements.push(<p key={key++} className="font-body text-[14px] leading-[1.75]" style={{ color: C.slate, margin: '5px 0' }}>{renderInline(line)}</p>);
     }
   }
   return <>{elements}</>;
@@ -3723,20 +3604,20 @@ function FirstDraftModal({ onDismiss }) {
         </button>
 
         {/* Wordmark */}
-        <div style={{ fontFamily: F, fontSize: 10, fontWeight: 700, letterSpacing: '0.22em', textTransform: 'uppercase', color: `${C.sage}75`, marginBottom: 22 }}>Lila Trips</div>
+        <div className="font-body text-[10px] font-bold tracking-[0.22em] uppercase mb-5" style={{ color: `${C.sage}75` }}>Lila Trips</div>
 
         {/* Headline */}
-        <h2 style={{ fontFamily: F_SERIF, fontSize: 'clamp(22px, 5.5vw, 28px)', fontWeight: 300, color: C.ink, lineHeight: 1.25, letterSpacing: '-0.02em', marginBottom: 12 }}>Your itinerary is ready to explore.</h2>
+        <h2 className="font-serif text-[clamp(22px,5.5vw,28px)] font-light leading-[1.25] tracking-[-0.02em] mb-3" style={{ color: C.ink }}>Your itinerary is ready to explore.</h2>
 
         {/* Body */}
-        <p style={{ fontFamily: F, fontSize: 14, fontWeight: 400, color: `${C.slate}D9`, lineHeight: 1.75, marginBottom: 28 }}>We built this around what you shared with us. Read through it, react to what stands out, and we'll keep shaping it until it's yours.</p>
+        <p className="font-body text-[14px] font-normal leading-[1.75] mb-7" style={{ color: `${C.slate}D9` }}>We built this around what you shared with us. Read through it, react to what stands out, and we'll keep shaping it until it's yours.</p>
 
         {/* Divider */}
         <div style={{ height: 1, background: `${C.sage}10`, marginBottom: 24 }} />
 
         {/* Section header */}
-        <div style={{ fontFamily: F, fontSize: 15, fontWeight: 700, color: C.ink, marginBottom: 4 }}>As you read, tell us how it's landing.</div>
-        <div style={{ fontFamily: F, fontSize: 13, fontWeight: 400, color: `${C.slate}99`, lineHeight: 1.6, marginBottom: 16 }}>Each activity has three reactions — use them as you go.</div>
+        <div className="font-body text-[15px] font-bold mb-1" style={{ color: C.ink }}>As you read, tell us how it's landing.</div>
+        <div className="font-body text-[13px] font-normal leading-[1.6] mb-4" style={{ color: `${C.slate}99` }}>Each activity has three reactions — use them as you go.</div>
 
         {/* Reaction rows */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 0 }}>
@@ -3751,9 +3632,9 @@ function FirstDraftModal({ onDismiss }) {
                   flexShrink: 0,
                 }}>
                   <Ic size={13} color={r.color} active />
-                  <span style={{ fontFamily: F, fontSize: 11, fontWeight: 600, color: r.color }}>{r.label}</span>
+                  <span className="font-body text-[11px] font-semibold" style={{ color: r.color }}>{r.label}</span>
                 </div>
-                <span style={{ fontFamily: F, fontSize: 13, fontWeight: 500, color: `${C.slate}CC` }}>{r.desc}</span>
+                <span className="font-body text-[13px] font-medium" style={{ color: `${C.slate}CC` }}>{r.desc}</span>
               </div>
             );
           })}
@@ -3763,14 +3644,14 @@ function FirstDraftModal({ onDismiss }) {
         <div style={{ height: 1, background: `${C.sage}10`, marginTop: 28, marginBottom: 20 }} />
 
         {/* Logistics note */}
-        <p style={{ fontFamily: F, fontSize: 12, fontWeight: 400, color: `${C.darkInk}8C`, lineHeight: 1.6, textAlign: 'center', maxWidth: 320, margin: '0 auto 24px' }}>
+        <p className="font-body text-[12px] font-normal leading-[1.6] text-center" style={{ color: `${C.darkInk}8C`, maxWidth: 320, margin: '0 auto 24px' }}>
           Add flights, hotel confirmations, or restaurant reservations in the logistics panel — we'll build around them.
         </p>
 
         {/* CTA */}
-        <button onClick={onDismiss} style={{
+        <button onClick={onDismiss} className="font-body text-[13px] font-bold" style={{
           width: '100%', padding: '14px 0',
-          fontFamily: F, fontSize: 13, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase',
+          letterSpacing: '0.08em', textTransform: 'uppercase',
           color: C.cream, background: C.slate,
           border: 'none', borderRadius: 2,
           cursor: 'pointer', WebkitTapHighlightColor: 'transparent',
@@ -3822,35 +3703,35 @@ function RefinementModal({ onDismiss, iteration, changes = [] }) {
         </button>
 
         {/* Top label */}
-        <div style={{ fontFamily: F, fontSize: 9, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: `${C.sage}75`, marginBottom: 22 }}>Refinement {iteration}</div>
+        <div className="font-body text-[9px] font-bold tracking-[0.2em] uppercase mb-5" style={{ color: `${C.sage}75` }}>Refinement {iteration}</div>
 
         {/* Headline */}
-        <h2 style={{ fontFamily: F_SERIF, fontSize: 'clamp(22px, 5.5vw, 28px)', fontWeight: 300, color: C.ink, lineHeight: 1.25, letterSpacing: '-0.02em', marginBottom: 12 }}>Your itinerary has been updated.</h2>
+        <h2 className="font-serif text-[clamp(22px,5.5vw,28px)] font-light leading-[1.25] tracking-[-0.02em] mb-3" style={{ color: C.ink }}>Your itinerary has been updated.</h2>
 
         {/* Divider */}
         <div style={{ height: 1, background: `${C.sage}10`, marginBottom: 24 }} />
 
         {/* Changes section header */}
-        <div style={{ fontFamily: F, fontSize: 10, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: `${C.sage}75`, marginBottom: 14 }}>What we adjusted</div>
+        <div className="font-body text-[10px] font-bold tracking-[0.15em] uppercase mb-3.5" style={{ color: `${C.sage}75` }}>What we adjusted</div>
 
         {/* Changes list */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 28 }}>
           {changes.length > 0 ? changes.map((c, i) => (
             <div key={i} style={{ display: 'flex', gap: 8, alignItems: 'baseline' }}>
-              <span style={{ fontFamily: F, fontSize: 13, color: `${C.goldenAmber}99`, flexShrink: 0 }}>{'\u25C8'}</span>
-              <span style={{ fontFamily: F, fontSize: 13, fontWeight: 400, color: `${C.darkInk}B3`, lineHeight: 1.6 }}>{c}</span>
+              <span className="font-body text-[13px] shrink-0" style={{ color: `${C.goldenAmber}99` }}>{'\u25C8'}</span>
+              <span className="font-body text-[13px] font-normal leading-[1.6]" style={{ color: `${C.darkInk}B3` }}>{c}</span>
             </div>
           )) : (
-            <div style={{ fontFamily: F, fontSize: 13, fontWeight: 400, color: `${C.darkInk}B3`, lineHeight: 1.6 }}>
+            <div className="font-body text-[13px] font-normal leading-[1.6]" style={{ color: `${C.darkInk}B3` }}>
               We've reshaped your itinerary based on your feedback.
             </div>
           )}
         </div>
 
         {/* CTA */}
-        <button onClick={onDismiss} style={{
+        <button onClick={onDismiss} className="font-body text-[13px] font-bold" style={{
           width: '100%', padding: '14px 0',
-          fontFamily: F, fontSize: 13, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase',
+          letterSpacing: '0.08em', textTransform: 'uppercase',
           color: C.cream, background: C.slate,
           border: 'none', borderRadius: 2,
           cursor: 'pointer', WebkitTapHighlightColor: 'transparent',
@@ -3914,7 +3795,7 @@ function SwapModal({ isOpen, onClose, activityTitle, alternatives, onConfirm, al
       }}>
         {/* Header */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
-          <span style={{ fontFamily: F, fontSize: 13, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: `${C.sage}90` }}>Explore alternatives</span>
+          <span className="font-body text-[13px] font-bold tracking-[0.12em] uppercase" style={{ color: `${C.sage}90` }}>Explore alternatives</span>
           <button onClick={onClose} style={{
             width: 28, height: 28, borderRadius: '50%',
             background: 'none', border: `1px solid ${C.sage}18`,
@@ -3927,13 +3808,13 @@ function SwapModal({ isOpen, onClose, activityTitle, alternatives, onConfirm, al
 
         {/* Currently planned */}
         <div style={{ marginBottom: 20 }}>
-          <div style={{ fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: C.muted, marginBottom: 6 }}>Currently planned</div>
-          <div style={{ fontFamily: F_SERIF, fontSize: 17, fontWeight: 400, color: C.ink, lineHeight: 1.3 }}>{activityTitle}</div>
+          <div className="font-body text-[10px] font-semibold tracking-[0.12em] uppercase mb-1.5" style={{ color: C.muted }}>Currently planned</div>
+          <div className="font-serif text-[17px] font-normal leading-[1.3]" style={{ color: C.ink }}>{activityTitle}</div>
         </div>
 
         {/* Alternatives */}
         <div style={{ marginBottom: 18 }}>
-          <div style={{ fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: C.muted, marginBottom: 10 }}>Alternatives</div>
+          <div className="font-body text-[10px] font-semibold tracking-[0.12em] uppercase mb-2.5" style={{ color: C.muted }}>Alternatives</div>
           {hasAlts ? alternatives.map((alt, i) => {
             const isSelected = selected === i;
             return (
@@ -3947,8 +3828,8 @@ function SwapModal({ isOpen, onClose, activityTitle, alternatives, onConfirm, al
                 transition: 'all 0.15s',
                 WebkitTapHighlightColor: 'transparent',
               }}>
-                <div style={{ fontFamily: F, fontSize: 14, fontWeight: 600, color: C.ink, marginBottom: 3 }}>{alt.title}</div>
-                <div style={{ fontFamily: F, fontSize: 13, fontWeight: 400, color: C.body, lineHeight: 1.5 }}>{alt.summary}</div>
+                <div className="font-body text-[14px] font-semibold mb-[3px]" style={{ color: C.ink }}>{alt.title}</div>
+                <div className="font-body text-[13px] font-normal leading-[1.5]" style={{ color: C.body }}>{alt.summary}</div>
               </div>
             );
           }) : alternativesLoading ? (
@@ -3957,10 +3838,10 @@ function SwapModal({ isOpen, onClose, activityTitle, alternatives, onConfirm, al
                 width: 16, height: 16, border: `2px solid ${C.sage}30`, borderTopColor: C.sage,
                 borderRadius: '50%', animation: 'lila-spin 0.8s linear infinite',
               }} />
-              <span style={{ fontFamily: F, fontSize: 13, fontWeight: 400, color: C.muted }}>Loading alternatives...</span>
+              <span className="font-body text-[13px] font-normal" style={{ color: C.muted }}>Loading alternatives...</span>
               </div>
           ) : (
-            <div style={{ fontFamily: F, fontSize: 13, fontWeight: 400, color: C.muted, lineHeight: 1.6, padding: '8px 0' }}>
+            <div className="font-body text-[13px] font-normal leading-[1.6] py-2" style={{ color: C.muted }}>
               No alternatives available — your feedback will be noted in the next refinement.
             </div>
           )}
@@ -3971,10 +3852,11 @@ function SwapModal({ isOpen, onClose, activityTitle, alternatives, onConfirm, al
           <button
             disabled={loadingMore}
             onClick={() => onLoadMore?.()}
+            className="font-body text-[12px] font-semibold"
             style={{
               background: 'none', border: `1px solid ${C.sage}25`, borderRadius: 8,
               padding: '8px 14px', cursor: loadingMore ? 'default' : 'pointer',
-              fontFamily: F, fontSize: 12, fontWeight: 600, color: C.sage,
+              color: C.sage,
               display: 'flex', alignItems: 'center', gap: 6,
               marginBottom: 8, opacity: loadingMore ? 0.6 : 1,
               transition: 'opacity 0.2s',
@@ -4005,9 +3887,9 @@ function SwapModal({ isOpen, onClose, activityTitle, alternatives, onConfirm, al
             onChange={e => setNote(e.target.value)}
             placeholder="Looking for something specific? (optional)"
             rows={2}
+            className="font-body text-[13px] font-normal"
             style={{
               width: '100%', padding: '10px 12px',
-              fontFamily: F, fontSize: 13, fontWeight: 400,
               color: C.ink, background: C.warm,
               border: `1px solid ${C.sage}25`, borderRadius: 8,
               resize: 'vertical', lineHeight: 1.5,
@@ -4018,8 +3900,7 @@ function SwapModal({ isOpen, onClose, activityTitle, alternatives, onConfirm, al
 
         {/* Footer */}
         <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 10 }}>
-          <button onClick={onClose} style={{
-            fontFamily: F, fontSize: 13, fontWeight: 600,
+          <button onClick={onClose} className="font-body text-[13px] font-semibold" style={{
             color: C.muted, background: 'none',
             border: 'none', cursor: 'pointer', padding: '10px 16px',
             WebkitTapHighlightColor: 'transparent',
@@ -4031,8 +3912,8 @@ function SwapModal({ isOpen, onClose, activityTitle, alternatives, onConfirm, al
                 onConfirm(alternatives[selected], note);
               }
             }}
+            className="font-body text-[13px] font-bold"
             style={{
-              fontFamily: F, fontSize: 13, fontWeight: 700,
               color: (hasAlts && selected !== null) ? '#9a7530' : C.muted,
               background: (hasAlts && selected !== null) ? `${C.goldenAmber}12` : `${C.sage}08`,
               border: `1.5px solid ${(hasAlts && selected !== null) ? C.goldenAmber : `${C.sage}20`}`,
@@ -4065,10 +3946,9 @@ function Toast({ message, onDone }) {
   if (!message) return null;
 
   return (
-    <div style={{
+    <div className="font-body text-[14px] font-semibold" style={{
       position: 'fixed', bottom: 32, left: '50%', transform: 'translateX(-50%)',
       zIndex: 9998,
-      fontFamily: F, fontSize: 14, fontWeight: 600,
       color: C.ink, background: C.white,
       padding: '10px 22px', borderRadius: 10,
       boxShadow: '0 4px 20px rgba(0,0,0,0.12)',
@@ -4874,25 +4754,11 @@ export default function ItineraryResults() {
 
   // Render loading / error screen while fetching a shared trip via /trip/:token
   if (loadingShared || shareError) return (
-    <div style={{
-      fontFamily: "'Quicksand', sans-serif",
+    <div className="font-body min-h-screen flex flex-col items-center justify-center gap-3 px-6 text-center" style={{
       background: C.warm,
-      minHeight: '100vh',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
       color: C.sage,
-      gap: 12,
-      padding: '0 24px',
-      textAlign: 'center',
     }}>
-      <div style={{
-        fontFamily: "'Cormorant Garamond', serif",
-        fontSize: 'clamp(22px, 5.5vw, 28px)',
-        fontWeight: 300,
-        color: C.slate,
-      }}>{shareError ? 'Couldn\u2019t load this trip' : 'Loading your trip'}</div>
+      <div className="font-serif text-[clamp(22px,5.5vw,28px)] font-light" style={{ color: C.slate }}>{shareError ? 'Couldn\u2019t load this trip' : 'Loading your trip'}</div>
       <div style={{ fontSize: 13, opacity: 0.7 }}>
         {shareError || 'Fetching itinerary\u2026'}
       </div>
@@ -4900,24 +4766,20 @@ export default function ItineraryResults() {
         <div style={{ display: 'flex', gap: 12, marginTop: 8 }}>
           <button
             onClick={() => fetchSharedTrip(shareToken)}
+            className="font-body text-[12px] font-bold tracking-[0.1em] uppercase border-none cursor-pointer"
             style={{
-              fontFamily: "'Quicksand', sans-serif",
-              fontSize: 12, fontWeight: 700, letterSpacing: '0.1em',
-              textTransform: 'uppercase',
               padding: '12px 24px',
               background: C.slate, color: C.warm,
-              border: 'none', borderRadius: 2, cursor: 'pointer',
+              borderRadius: 2,
             }}
           >Try again</button>
           <button
             onClick={() => navigate('/plan')}
+            className="font-body text-[12px] font-bold tracking-[0.1em] uppercase bg-transparent cursor-pointer"
             style={{
-              fontFamily: "'Quicksand', sans-serif",
-              fontSize: 12, fontWeight: 700, letterSpacing: '0.1em',
-              textTransform: 'uppercase',
               padding: '12px 24px',
-              background: 'none', color: C.sage,
-              border: `1px solid ${C.sage}40`, borderRadius: 2, cursor: 'pointer',
+              color: C.sage,
+              border: `1px solid ${C.sage}40`, borderRadius: 2,
             }}
           >Plan a new trip</button>
         </div>
@@ -4928,7 +4790,7 @@ export default function ItineraryResults() {
   if (!rawItinerary) return null;
 
   return (
-    <div style={{ fontFamily: F, background: C.warm, minHeight: '100vh' }}>
+    <div className="font-body min-h-screen" style={{ background: C.warm }}>
       <style>{`
         @keyframes lila-spin { to { transform: rotate(360deg); } }
         @keyframes practiceBreath {
@@ -5038,10 +4900,8 @@ export default function ItineraryResults() {
         {isStructured && (
           <div style={{ textAlign: 'left', padding: '18px 8px 28px' }}>
             <VersionBadge iteration={iteration} />
-            <div style={{
-              fontFamily: F, fontSize: 11, fontWeight: 700,
-              letterSpacing: '0.22em', textTransform: 'uppercase',
-              color: C.teal, marginBottom: 8,
+            <div className="font-body text-[11px] font-bold tracking-[0.22em] uppercase mb-2" style={{
+              color: C.teal,
             }}>Your Itinerary</div>
             {editingHeroTitle ? (
               <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
@@ -5051,8 +4911,9 @@ export default function ItineraryResults() {
                   onChange={e => setDraftHeroTitle(e.target.value)}
                   onBlur={commitHeroTitle}
                   onKeyDown={handleHeroTitleKeyDown}
+                  className="font-serif"
                   style={{
-                    fontFamily: F_SERIF, fontSize: 'clamp(26px, 4.5vw, 36px)', fontWeight: 300,
+                    fontSize: 'clamp(26px, 4.5vw, 36px)', fontWeight: 300,
                     color: C.ink, lineHeight: 1.15,
                     background: 'transparent', border: 'none',
                     borderBottom: `1px solid ${BrandC.goldenAmber}`,
@@ -5073,8 +4934,9 @@ export default function ItineraryResults() {
               <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, marginBottom: 8 }}>
                 <h1
                   onClick={handleHeroTitleClick}
+                  className="font-serif"
                   style={{
-                    fontFamily: F_SERIF, fontSize: 'clamp(26px, 4.5vw, 36px)', fontWeight: 300,
+                    fontSize: 'clamp(26px, 4.5vw, 36px)', fontWeight: 300,
                     color: C.ink, lineHeight: 1.15,
                     cursor: 'text', borderBottom: '1px dashed transparent',
                     transition: 'border-color 0.2s',
@@ -5094,10 +4956,10 @@ export default function ItineraryResults() {
               </div>
             )}
             {itinerary.subtitle && (
-              <p style={{ fontFamily: F_SERIF, fontSize: 14, color: C.muted, fontStyle: 'italic', fontWeight: 400 }}>{itinerary.subtitle}</p>
+              <p className="font-serif text-[14px] italic font-normal" style={{ color: C.muted }}>{itinerary.subtitle}</p>
             )}
             {itinerary.intro && (
-              <p style={{ fontFamily: F, fontSize: 14, color: C.body, lineHeight: 1.75, maxWidth: 600, marginTop: 14, fontWeight: 400 }}>{itinerary.intro}</p>
+              <p className="font-body text-[14px] font-normal leading-[1.75] max-w-[600px] mt-3.5" style={{ color: C.body }}>{itinerary.intro}</p>
             )}
           </div>
         )}
@@ -5148,10 +5010,8 @@ export default function ItineraryResults() {
 
         {/* Day by Day label */}
         {isStructured && (
-          <div style={{
-            fontFamily: F, fontSize: 10, fontWeight: 700,
-            letterSpacing: '0.18em', textTransform: 'uppercase',
-            color: 'rgba(28,28,26,0.4)', marginBottom: 14, paddingLeft: 8,
+          <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase mb-3.5 pl-2" style={{
+            color: 'rgba(28,28,26,0.4)',
           }}>Day by Day</div>
         )}
 
@@ -5181,11 +5041,11 @@ export default function ItineraryResults() {
                 {/* Before You Go */}
                 {itinerary.beforeYouGo && (
                   <div ref={beforeYouGoRef} style={{ background: `linear-gradient(180deg, ${C.white}, ${C.cream}30)`, borderRadius: 2, border: `1px solid ${C.sage}18`, padding: '18px 20px', marginTop: 6, boxShadow: `0 1px 8px ${C.sage}08` }}>
-                    <div style={{ fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: C.sage, marginBottom: 12 }}>Before You Go</div>
+                    <div className="font-body text-[10px] font-semibold tracking-[0.18em] uppercase mb-3" style={{ color: C.sage }}>Before You Go</div>
                     {itinerary.beforeYouGo.map((item, i) => (
                       <div key={i} style={{ display: 'flex', gap: 8, padding: '5px 0', borderBottom: i < itinerary.beforeYouGo.length - 1 ? `1px solid ${C.sage}06` : 'none' }}>
                         <span style={{ color: `${C.sage}80`, flexShrink: 0, fontSize: 11, marginTop: 2 }}>{"●\uFE0E"}</span>
-                        <span style={{ fontFamily: F, fontSize: 14, color: `${C.slate}85`, lineHeight: 1.65 }}>{renderInline(item)}</span>
+                        <span className="font-body text-[14px] leading-[1.65]" style={{ color: `${C.slate}85` }}>{renderInline(item)}</span>
                       </div>
                     ))}
                   </div>
@@ -5198,7 +5058,7 @@ export default function ItineraryResults() {
                 {/* Closing Note */}
                 {itinerary.closingNote && (
                   <div style={{ textAlign: 'center', padding: '28px 20px 0' }}>
-                    <p style={{ fontFamily: F, fontSize: 15, fontWeight: 400, color: `${C.slate}90`, lineHeight: 1.6, fontStyle: 'normal' }}>{itinerary.closingNote}</p>
+                    <p className="font-body text-[15px] font-normal leading-[1.6]" style={{ color: `${C.slate}90`, fontStyle: 'normal' }}>{itinerary.closingNote}</p>
                   </div>
                 )}
 
@@ -5252,8 +5112,7 @@ export default function ItineraryResults() {
 
         {/* Bottom nav */}
         <div style={{ textAlign: 'center', marginTop: 24, paddingBottom: 16 }}>
-          <button onClick={() => { clearSession(); trackEvent('new_trip_clicked', { source: 'start_over' }); navigate('/plan'); }} style={{
-            fontFamily: F, fontSize: 12, fontWeight: 500,
+          <button onClick={() => { clearSession(); trackEvent('new_trip_clicked', { source: 'start_over' }); navigate('/plan'); }} className="font-body text-[12px] font-medium" style={{
             color: `${C.sage}90`, background: 'none',
             border: 'none', cursor: 'pointer', padding: '8px 16px',
             WebkitTapHighlightColor: 'transparent',

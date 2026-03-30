@@ -19,6 +19,32 @@
   --color-coral-blush: #F2D9D0;
   --color-pacific-slate: #2C3E50;
   --color-sandstone: #F5E6D3;
+
+  --font-body: 'Quicksand', sans-serif;
+  --font-serif: 'Cormorant Garamond', serif;
+  --font-script: 'Comforter', cursive;
+
+  --animate-celestial-pulse: celestialPulse 3s ease-in-out infinite;
+  --animate-lila-modal-in: lilaModalIn 0.25s ease-out both;
+  --animate-itnav-pulse: itnav-pulse 1.5s ease-in-out infinite;
+  --animate-lila-spin: lila-spin 1s linear infinite;
+}
+
+/* ─── Global keyframe animations ─────────────────────────────────────────── */
+@keyframes celestialPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+@keyframes lilaModalIn {
+  from { opacity: 0; transform: scale(0.96) translateY(6px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+@keyframes itnav-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+@keyframes lila-spin {
+  to { transform: rotate(360deg); }
 }
 
 /* ─── Base overrides (applied after Tailwind's Preflight) ───────────────────── */

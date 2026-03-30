@@ -1,7 +1,3 @@
-// ═══════════════════════════════════════════════════════════════════════════════
-// PAGE: RITUALS LANDING — "The Threads Between"
-// ═══════════════════════════════════════════════════════════════════════════════
-
 import { Link } from 'react-router-dom';
 import { Nav, Footer, FadeIn } from '@components';
 import { C } from '@data/brand';
@@ -11,90 +7,73 @@ export default function RitualsPage() {
   return (
     <>
       <Nav />
-      {/* ── Hero with background image ─────────────────────────────────── */}
-      <section style={{
-        position: "relative", minHeight: "55vh", overflow: "hidden",
-        display: "flex", alignItems: "flex-end", background: C.darkInk,
-      }}>
+
+      <section className="relative min-h-[55vh] overflow-hidden flex items-end bg-dark-ink">
         <img
           src="/images/rituals-hero.jpg"
           alt=""
-          style={{
-            position: "absolute", inset: 0, width: "100%", height: "100%",
-            objectFit: "cover", objectPosition: "center 70%",
-          }}
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ objectPosition: "center 70%" }}
         />
-        <div style={{
-          position: "absolute", inset: 0,
-          background: "linear-gradient(to bottom, rgba(15,30,42,0.3) 0%, rgba(15,30,42,0.65) 70%, rgba(15,30,42,0.85) 100%)",
-        }} />
-        <div style={{
-          position: "relative", zIndex: 2,
-          padding: "64px 52px", maxWidth: 900, width: "100%",
-        }}>
+        <div
+          className="absolute inset-0"
+          style={{ background: "linear-gradient(to bottom, rgba(15,30,42,0.3) 0%, rgba(15,30,42,0.65) 70%, rgba(15,30,42,0.85) 100%)" }}
+        />
+        <div className="relative z-[2] p-16 px-7 md:px-[52px] max-w-[900px] w-full">
           <FadeIn from="bottom" delay={0.1}>
             <span className="eyebrow" style={{ color: "#6BA4B8" }}>Rituals</span>
-            <h1 style={{
-              fontFamily: "'Quicksand', sans-serif",
-              fontSize: "clamp(32px, 5vw, 52px)", fontWeight: 300,
-              color: "white", lineHeight: 1.2, marginBottom: 12,
-            }}>
+            <h1
+              className="font-body font-light text-white leading-[1.2] mb-3"
+              style={{ fontSize: "clamp(32px, 5vw, 52px)" }}
+            >
               {ritualsIntro.headline}
             </h1>
-            <p style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontSize: "clamp(16px, 2vw, 20px)", fontWeight: 300, fontStyle: "normal",
-              color: "rgba(255,255,255,0.7)", lineHeight: 1.6, maxWidth: 560,
-            }}>
+            <p
+              className="font-serif font-light not-italic leading-[1.6] max-w-[560px]"
+              style={{
+                fontSize: "clamp(16px, 2vw, 20px)",
+                color: "rgba(255,255,255,0.7)",
+              }}
+            >
               {ritualsIntro.subtitle}
             </p>
           </FadeIn>
         </div>
       </section>
 
-      {/* ── Philosophical Introduction ──────────────────────────────────── */}
-      <section style={{ padding: "80px 52px", background: C.cream }}>
-        <div style={{ maxWidth: 760, margin: "0 auto" }}>
+      <section className="py-20 px-7 md:px-[52px] bg-cream">
+        <div className="max-w-[760px] mx-auto">
           <FadeIn>
-            <p style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontSize: "clamp(20px, 2.5vw, 26px)", fontWeight: 300, fontStyle: "normal",
-              color: "#4a6070", lineHeight: 1.9, marginBottom: 0,
-            }}>
+            <p
+              className="font-serif font-light not-italic text-[#4a6070] leading-[1.9] mb-0"
+              style={{ fontSize: "clamp(20px, 2.5vw, 26px)" }}
+            >
               {ritualsIntro.body}
             </p>
           </FadeIn>
 
-          {/* Tradition markers */}
           <FadeIn delay={0.15}>
-            <div style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(6, 1fr)",
-              gap: "28px 0",
-              marginTop: 48, paddingTop: 48,
-              borderTop: `1px solid ${C.stone}`,
-            }}>
+            <div className="grid grid-cols-6 gap-y-7 gap-x-0 mt-12 pt-12 border-t border-stone">
               {traditions.map((t, i) => (
-                <div key={t.name} style={{
-                  display: "flex", alignItems: "center", gap: 12,
-                  gridColumn: i < 3
-                    ? `${i * 2 + 1} / span 2`
-                    : i === 3 ? "2 / span 2" : "4 / span 2",
-                }}>
-                  <span style={{
-                    fontSize: 28, color: t.color, opacity: 0.7,
-                    lineHeight: 1, fontFamily: "serif",
-                  }}>{t.symbol}</span>
+                <div
+                  key={t.name}
+                  className="flex items-center gap-3"
+                  style={{
+                    gridColumn: i < 3
+                      ? `${i * 2 + 1} / span 2`
+                      : i === 3 ? "2 / span 2" : "4 / span 2",
+                  }}
+                >
+                  <span className="text-[28px] opacity-70 leading-none font-serif" style={{ color: t.color }}>
+                    {t.symbol}
+                  </span>
                   <div>
-                    <span style={{
-                      fontFamily: "'Quicksand'", fontSize: 13, fontWeight: 700,
-                      letterSpacing: "0.12em", textTransform: "uppercase",
-                      color: C.darkInk, display: "block",
-                    }}>{t.name}</span>
-                    <span style={{
-                      fontFamily: "'Quicksand'", fontSize: 12, fontWeight: 400,
-                      color: "#9aabba",
-                    }}>{t.origin} · {t.age}</span>
+                    <span className="font-body text-[13px] font-bold tracking-[0.12em] uppercase text-dark-ink block">
+                      {t.name}
+                    </span>
+                    <span className="font-body text-xs font-normal text-[#9aabba]">
+                      {t.origin} &middot; {t.age}
+                    </span>
                   </div>
                 </div>
               ))}
@@ -103,47 +82,36 @@ export default function RitualsPage() {
         </div>
       </section>
 
-      {/* ── The Four Principles ─────────────────────────────────────────── */}
-      <section className="page-content" style={{ padding: "40px 52px 80px", background: C.cream }}>
-        <div style={{ maxWidth: 900, margin: "0 auto" }}>
+      <section className="page-content pt-10 pb-20 px-7 md:px-[52px] bg-cream">
+        <div className="max-w-[900px] mx-auto">
           {ritualsPillars.map((pillar, i) => (
             <FadeIn key={pillar.slug} delay={i * 0.1}>
-              <Link to={`/rituals/${pillar.slug}`} style={{ display: "block", textDecoration: "none" }}>
-                <div style={{
-                  display: "grid", gridTemplateColumns: "120px 1fr", gap: 40,
-                  padding: "48px 0",
-                  borderBottom: i < ritualsPillars.length - 1 ? `1px solid ${C.stone}` : "none",
-                  cursor: "pointer", transition: "padding-left 0.3s",
-                }}
-                onMouseEnter={e => e.currentTarget.style.paddingLeft = "12px"}
-                onMouseLeave={e => e.currentTarget.style.paddingLeft = "0"}
+              <Link to={`/rituals/${pillar.slug}`} className="block no-underline">
+                <div
+                  className="grid grid-cols-[120px_1fr] gap-10 py-12 cursor-pointer transition-[padding-left] duration-300 hover:pl-3"
+                  style={{
+                    borderBottom: i < ritualsPillars.length - 1 ? `1px solid ${C.stone}` : "none",
+                  }}
                 >
-                  {/* Icon column */}
-                  <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 12 }}>
-                    <span style={{ fontSize: 36, color: pillar.color, opacity: 0.7 }}>{pillar.icon}</span>
-                    <span style={{
-                      fontFamily: "'Quicksand'", fontSize: 13, fontWeight: 700,
-                      letterSpacing: "0.2em", textTransform: "uppercase", color: pillar.color,
-                    }}>{pillar.word}</span>
+                  <div className="flex flex-col items-center gap-3">
+                    <span className="text-4xl opacity-70" style={{ color: pillar.color }}>{pillar.icon}</span>
+                    <span className="font-body text-[13px] font-bold tracking-[0.2em] uppercase" style={{ color: pillar.color }}>
+                      {pillar.word}
+                    </span>
                   </div>
 
-                  {/* Content column */}
                   <div>
-                    <p style={{
-                      fontFamily: "'Quicksand', sans-serif",
-                      fontSize: 16, fontWeight: 400, color: "#5a6a78", lineHeight: 2.0, marginBottom: 20,
-                    }}>{pillar.desc}</p>
+                    <p className="font-body text-base font-normal text-[#5a6a78] leading-[2.0] mb-5">
+                      {pillar.desc}
+                    </p>
 
-                    {/* Tradition concepts preview */}
-                    <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 16 }}>
+                    <div className="flex gap-3 flex-wrap mb-4">
                       {pillar.traditions.map((t, j) => (
-                        <span key={j} style={{
-                          fontFamily: "'Quicksand'", fontSize: 12, fontWeight: 500,
-                          letterSpacing: "0.04em", color: "#7a8a9a",
-                          padding: "6px 14px", border: `1px solid ${C.stone}`,
-                          display: "flex", alignItems: "center", gap: 6,
-                        }}>
-                          <span style={{ fontSize: 14, opacity: 0.5 }}>
+                        <span
+                          key={j}
+                          className="font-body text-xs font-medium tracking-[0.04em] text-[#7a8a9a] py-1.5 px-3.5 border border-stone flex items-center gap-1.5"
+                        >
+                          <span className="text-sm opacity-50">
                             {traditions.find(tr => tr.name === t.name)?.symbol}
                           </span>
                           {t.concept}
@@ -151,26 +119,21 @@ export default function RitualsPage() {
                       ))}
                     </div>
 
-                    {/* Quote */}
-                    <p style={{
-                      fontFamily: "'Cormorant Garamond', serif",
-                      fontSize: 17, fontWeight: 300, fontStyle: "normal",
-                      color: "#7a8a9a", lineHeight: 1.6, marginBottom: 20,
-                    }}>
-                      "{pillar.quote}"
+                    <p className="font-serif text-[17px] font-light not-italic text-[#7a8a9a] leading-[1.6] mb-5">
+                      &ldquo;{pillar.quote}&rdquo;
                       <br />
-                      <span style={{
-                        fontFamily: "'Quicksand'", fontSize: 11, fontWeight: 600,
-                        fontStyle: "normal", letterSpacing: "0.08em",
-                        color: pillar.color, opacity: 0.7,
-                      }}>— {pillar.quoteAuthor}</span>
+                      <span
+                        className="font-body text-[11px] font-semibold not-italic tracking-[0.08em] opacity-70"
+                        style={{ color: pillar.color }}
+                      >
+                        &mdash; {pillar.quoteAuthor}
+                      </span>
                     </p>
 
                     <div>
-                      <span style={{
-                        fontFamily: "'Quicksand'", fontSize: 12, fontWeight: 700,
-                        letterSpacing: "0.18em", textTransform: "uppercase", color: pillar.color,
-                      }}>Explore This Principle →</span>
+                      <span className="font-body text-xs font-bold tracking-[0.18em] uppercase" style={{ color: pillar.color }}>
+                        Explore This Principle &rarr;
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -180,28 +143,25 @@ export default function RitualsPage() {
         </div>
       </section>
 
-      {/* ── Convergence Statement ──────────────────────────────────────── */}
-      <section style={{
-        padding: "80px 52px",
-        background: `linear-gradient(165deg, ${C.darkInk}, #1a3040)`,
-      }}>
-        <div style={{ maxWidth: 700, margin: "0 auto", textAlign: "center" }}>
+      <section
+        className="py-20 px-7 md:px-[52px]"
+        style={{ background: `linear-gradient(165deg, ${C.darkInk}, #1a3040)` }}
+      >
+        <div className="max-w-[700px] mx-auto text-center">
           <FadeIn>
-            <span className="eyebrow" style={{ color: "#6BA4B8", marginBottom: 24, display: "block" }}>
+            <span className="eyebrow mb-6 block" style={{ color: "#6BA4B8" }}>
               The Convergence
             </span>
-            <p style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontSize: "clamp(18px, 2.5vw, 24px)", fontWeight: 300, fontStyle: "normal",
-              color: "rgba(255,255,255,0.75)", lineHeight: 1.9, marginBottom: 40,
-            }}>
+            <p
+              className="font-serif font-light not-italic leading-[1.9] mb-10"
+              style={{
+                fontSize: "clamp(18px, 2.5vw, 24px)",
+                color: "rgba(255,255,255,0.75)",
+              }}
+            >
               {ritualsIntro.convergence}
             </p>
-            <p style={{
-              fontFamily: "'Quicksand', sans-serif",
-              fontSize: 15, fontWeight: 400,
-              color: "rgba(255,255,255,0.55)", lineHeight: 1.9,
-            }}>
+            <p className="font-body text-[15px] font-normal leading-[1.9]" style={{ color: "rgba(255,255,255,0.55)" }}>
               {ritualsIntro.closing}
             </p>
           </FadeIn>

@@ -1,24 +1,7 @@
-// ═══════════════════════════════════════════════════════════════════════════════
-// PRACTICES EXPLORER — /philosophy/practices
-// ═══════════════════════════════════════════════════════════════════════════════
-//
-// Full interactive explorer for the Lila Trips Wisdom Layer.
-// Browse teachings, practices, and ceremonies across five traditions
-// mapped to four foundational principles.
-//
-// Route: /ethos/practices
-// Parent: Ethos (/ethos)
-//
-// Imports:
-//   - Nav, Footer, PageHero from @components
-//   - C, FONTS from @data/brand
-//   - Full data + helpers from @services/practicesService
-//
-
 import { useState, useMemo, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Nav, Footer, PageHeader } from "@components";
-import { C, FONTS } from "@data/brand";
+import { C } from "@data/brand";
 import {
   TRADITIONS,
   PRINCIPLES,
@@ -30,24 +13,19 @@ import {
 
 const V = { ink: '#1E2825', body: '#4A5650', muted: '#7A857E', sage: '#5A7068', amber: '#B8863A', warm: '#D4A95A' };
 
-// ═══════════════════════════════════════════════════════════════════════════════
-// SUB-COMPONENTS
-// ═══════════════════════════════════════════════════════════════════════════════
-
 function PrinciplePill({ id, active, onClick }) {
   const p = PRINCIPLES[id];
   return (
-    <button onClick={onClick} style={{
-      display: "inline-flex", alignItems: "center", gap: 6,
-      padding: "7px 14px", borderRadius: 10,
-      background: active ? `${p.color}15` : "transparent",
-      border: `1.5px solid ${active ? p.color : `${V.sage}18`}`,
-      cursor: "pointer", transition: "all 0.25s",
-      fontFamily: FONTS.body, fontSize: 13, fontWeight: 700,
-      color: active ? p.color : V.body,
-      letterSpacing: "0.12em",
-    }}>
-      <span style={{ fontSize: 14, lineHeight: 1 }}>{p.glyph}</span>
+    <button
+      onClick={onClick}
+      className="inline-flex items-center gap-1.5 py-[7px] px-3.5 rounded-[10px] cursor-pointer transition-all duration-[250ms] font-body text-[13px] font-bold tracking-[0.12em]"
+      style={{
+        background: active ? `${p.color}15` : "transparent",
+        border: `1.5px solid ${active ? p.color : `${V.sage}18`}`,
+        color: active ? p.color : V.body,
+      }}
+    >
+      <span className="text-sm leading-none">{p.glyph}</span>
       {p.name}
     </button>
   );
@@ -56,22 +34,17 @@ function PrinciplePill({ id, active, onClick }) {
 function TraditionTab({ id, active, onClick, count }) {
   const t = TRADITIONS[id];
   return (
-    <button onClick={onClick} style={{
-      padding: "10px 16px", borderRadius: 10,
-      background: active ? `${t.color}12` : "transparent",
-      border: active ? `1.5px solid ${t.color}30` : "1.5px solid transparent",
-      cursor: "pointer", transition: "all 0.25s",
-      fontFamily: FONTS.body, fontSize: 13, fontWeight: 700,
-      color: active ? t.color : V.body,
-      display: "flex", flexDirection: "column", alignItems: "center", gap: 3,
-      minWidth: 72,
-    }}>
-      <span style={{ fontFamily: FONTS.body, fontSize: 15, fontWeight: 500 }}>
-        {t.shortName}
-      </span>
-      <span style={{ fontSize: 10, fontWeight: 500, opacity: 0.6 }}>
-        {count} entries
-      </span>
+    <button
+      onClick={onClick}
+      className="py-2.5 px-4 rounded-[10px] cursor-pointer transition-all duration-[250ms] font-body text-[13px] font-bold flex flex-col items-center gap-[3px] min-w-[72px]"
+      style={{
+        background: active ? `${t.color}12` : "transparent",
+        border: active ? `1.5px solid ${t.color}30` : "1.5px solid transparent",
+        color: active ? t.color : V.body,
+      }}
+    >
+      <span className="font-body text-[15px] font-medium">{t.shortName}</span>
+      <span className="text-[10px] font-medium opacity-60">{count} entries</span>
     </button>
   );
 }
@@ -79,248 +52,211 @@ function TraditionTab({ id, active, onClick, count }) {
 function TypeBadge({ type }) {
   const m = TYPE_META[type];
   return (
-    <span style={{
-      display: "inline-flex", alignItems: "center", gap: 4,
-      padding: "3px 10px", borderRadius: 10,
-      background: `${m.color}12`, fontSize: 11, fontWeight: 700,
-      color: m.color, letterSpacing: "0.12em", textTransform: "uppercase",
-      fontFamily: FONTS.body,
-    }}>
-      <span style={{ fontSize: 13 }}>{m.icon}</span> {m.label}
+    <span
+      className="inline-flex items-center gap-1 py-[3px] px-2.5 rounded-[10px] text-[11px] font-bold tracking-[0.12em] uppercase font-body"
+      style={{ background: `${m.color}12`, color: m.color }}
+    >
+      <span className="text-[13px]">{m.icon}</span> {m.label}
     </span>
   );
 }
 
-// ─── Tradition glyphs (matches Philosophy page) ────────────────────────────
 const TRADITION_GLYPHS = {
-  hinduism: "ॐ\uFE0E",
-  buddhism: "✿\uFE0E",
-  taoism: "☯\uFE0E",
-  shinto: "⛩\uFE0E",
-  stoicism: "△\uFE0E",
+  hinduism: "\u0950\uFE0E",
+  buddhism: "\u273F\uFE0E",
+  taoism: "\u262F\uFE0E",
+  shinto: "\u26E9\uFE0E",
+  stoicism: "\u25B3\uFE0E",
 };
 
 
 function EntryCard({ entry, expanded, onToggle }) {
   const t = TRADITIONS[entry.tradition];
   return (
-    <div style={{
-      background: `linear-gradient(180deg, ${C.cream}40, #FFFFFF 60%)`, borderRadius: 10,
-      border: `1px solid ${expanded ? `${t.color}25` : `${V.sage}18`}`,
-      boxShadow: expanded
-        ? `0 4px 20px ${V.amber}08`
-        : `0 1px 6px ${V.amber}06`,
-      overflow: "hidden", transition: "all 0.3s", marginBottom: 10,
-    }}>
-      {/* Card Header — clickable */}
-      <button onClick={onToggle} style={{
-        width: "100%", display: "flex", alignItems: "flex-start", gap: 12,
-        padding: "16px 18px", background: "none", border: "none",
-        cursor: "pointer", textAlign: "left",
-      }}>
-        {/* Tradition icon */}
-        <div style={{
-          width: 36, height: 36, borderRadius: 10,
-          background: `${t.color}10`, border: `1px solid ${t.color}18`,
-          display: "flex", alignItems: "center", justifyContent: "center",
-          flexShrink: 0, fontFamily: FONTS.body,
-          fontSize: 16, fontWeight: 600, color: t.color,
-        }}>
+    <div
+      className="rounded-[10px] overflow-hidden transition-all duration-300 mb-2.5"
+      style={{
+        background: `linear-gradient(180deg, ${C.cream}40, #FFFFFF 60%)`,
+        border: `1px solid ${expanded ? `${t.color}25` : `${V.sage}18`}`,
+        boxShadow: expanded
+          ? `0 4px 20px ${V.amber}08`
+          : `0 1px 6px ${V.amber}06`,
+      }}
+    >
+      <button
+        onClick={onToggle}
+        className="w-full flex items-start gap-3 py-4 px-[18px] bg-none border-none cursor-pointer text-left"
+      >
+        <div
+          className="w-9 h-9 rounded-[10px] flex items-center justify-center shrink-0 font-body text-base font-semibold"
+          style={{
+            background: `${t.color}10`,
+            border: `1px solid ${t.color}18`,
+            color: t.color,
+          }}
+        >
           {TRADITION_GLYPHS[entry.tradition] || t.shortName.charAt(0)}
         </div>
 
-        <div style={{ flex: 1, minWidth: 0 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap", marginBottom: 4 }}>
-            <span style={{ fontFamily: FONTS.body, fontSize: 17, fontWeight: 500, color: V.ink }}>
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-2 flex-wrap mb-1">
+            <span className="font-body text-[17px] font-medium" style={{ color: V.ink }}>
               {entry.name}
             </span>
             <TypeBadge type={entry.type} />
           </div>
-          <p style={{
-            fontFamily: FONTS.body, fontSize: 13,
-            color: V.body,
-            lineHeight: 1.55, margin: 0,
-          }}>
+          <p className="font-body text-[13px] leading-[1.55] m-0" style={{ color: V.body }}>
             {entry.summary}
           </p>
 
-          {/* Principle + level tags */}
-          <div style={{ display: "flex", gap: 4, flexWrap: "wrap", marginTop: 8 }}>
+          <div className="flex gap-1 flex-wrap mt-2">
             {entry.principles.map(p => (
-              <span key={p} style={{
-                padding: "2px 8px", borderRadius: 10,
-                background: `${PRINCIPLES[p].color}10`,
-                fontSize: 10, fontWeight: 700, color: PRINCIPLES[p].color,
-                letterSpacing: "0.12em", textTransform: "uppercase",
-                fontFamily: FONTS.body,
-              }}>
+              <span
+                key={p}
+                className="py-0.5 px-2 rounded-[10px] text-[10px] font-bold tracking-[0.12em] uppercase font-body"
+                style={{
+                  background: `${PRINCIPLES[p].color}10`,
+                  color: PRINCIPLES[p].color,
+                }}
+              >
                 {PRINCIPLES[p].name}
               </span>
             ))}
             {entry.practiceLevel > 0 && (
-              <span style={{
-                padding: "2px 8px", borderRadius: 10,
-                background: `${V.sage}08`, fontSize: 10, fontWeight: 700,
-                color: V.body, fontFamily: FONTS.body,
-                letterSpacing: "0.12em",
-              }}>
+              <span
+                className="py-0.5 px-2 rounded-[10px] text-[10px] font-bold tracking-[0.12em] font-body"
+                style={{ background: `${V.sage}08`, color: V.body }}
+              >
                 Level {entry.practiceLevel}
               </span>
             )}
           </div>
         </div>
 
-        {/* Chevron */}
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"
+        <svg
+          width="14" height="14" viewBox="0 0 16 16" fill="none"
           stroke={`${V.sage}60`} strokeWidth="1.5" strokeLinecap="round"
-          style={{
-            transform: expanded ? "rotate(180deg)" : "rotate(0)",
-            transition: "transform 0.3s", flexShrink: 0, marginTop: 4,
-          }}>
+          className="shrink-0 mt-1 transition-transform duration-300"
+          style={{ transform: expanded ? "rotate(180deg)" : "rotate(0)" }}
+        >
           <polyline points="4.5,6 8,9.5 11.5,6" />
         </svg>
       </button>
 
-      {/* Expanded detail */}
       {expanded && (
-        <div style={{ padding: "0 18px 18px", borderTop: `1.5px solid ${V.sage}14` }}>
-          {/* Going Deeper */}
-          <div style={{ padding: "14px 0 0" }}>
-            <div style={{
-              fontFamily: FONTS.body, fontSize: 10, fontWeight: 700,
-              letterSpacing: "0.14em", textTransform: "uppercase",
-              color: t.color, marginBottom: 8,
-            }}>
+        <div className="px-[18px] pb-[18px]" style={{ borderTop: `1.5px solid ${V.sage}14` }}>
+          <div className="pt-3.5">
+            <div
+              className="font-body text-[10px] font-bold tracking-[0.14em] uppercase mb-2"
+              style={{ color: t.color }}
+            >
               Going Deeper
             </div>
-            <p style={{
-              fontFamily: FONTS.body, fontSize: 14,
-              color: V.body,
-              lineHeight: 1.7, margin: 0,
-            }}>
+            <p className="font-body text-sm leading-[1.7] m-0" style={{ color: V.body }}>
               {entry.deeper}
             </p>
           </div>
 
-          {/* Quote */}
           {entry.quote?.text && (
-            <div style={{
-              marginTop: 16, padding: '14px 18px',
-              borderLeft: `2px solid ${t.color}30`,
-              background: `${t.color}04`,
-              borderRadius: '0 8px 8px 0',
-            }}>
-              <div style={{
-                fontFamily: FONTS.serif, fontSize: 17, fontWeight: 400,
-                color: V.ink, lineHeight: 1.65, letterSpacing: '0.01em',
-              }}>
-                "{entry.quote.text}"
+            <div
+              className="mt-4 py-3.5 px-[18px] rounded-r-lg"
+              style={{
+                borderLeft: `2px solid ${t.color}30`,
+                background: `${t.color}04`,
+              }}
+            >
+              <div
+                className="font-serif text-[17px] font-normal leading-[1.65] tracking-[0.01em]"
+                style={{ color: V.ink }}
+              >
+                &ldquo;{entry.quote.text}&rdquo;
               </div>
-              <div style={{
-                fontFamily: FONTS.body, fontSize: 11, fontWeight: 600,
-                color: `${t.color}cc`, marginTop: 8, letterSpacing: '0.04em',
-              }}>
-                — {entry.quote.author}{entry.quote.role ? `, ${entry.quote.role}` : ''}
+              <div
+                className="font-body text-[11px] font-semibold mt-2 tracking-[0.04em]"
+                style={{ color: `${t.color}cc` }}
+              >
+                &mdash; {entry.quote.author}{entry.quote.role ? `, ${entry.quote.role}` : ''}
               </div>
             </div>
           )}
 
-          {/* Trip Context */}
           {entry.tripContext && (
-            <div style={{
-              marginTop: 14, padding: "10px 14px", borderRadius: 10,
-              background: `${C.goldenAmber}10`,
-              border: `1px solid ${C.goldenAmber}18`,
-            }}>
-              <div style={{
-                fontFamily: FONTS.body, fontSize: 10, fontWeight: 700,
-                letterSpacing: "0.12em", textTransform: "uppercase",
-                color: C.goldenAmber, marginBottom: 4,
-              }}>
+            <div
+              className="mt-3.5 py-2.5 px-3.5 rounded-[10px]"
+              style={{
+                background: `${C.goldenAmber}10`,
+                border: `1px solid ${C.goldenAmber}18`,
+              }}
+            >
+              <div className="font-body text-[10px] font-bold tracking-[0.12em] uppercase text-golden-amber mb-1">
                 Trip Context
               </div>
-              <p style={{
-                fontFamily: FONTS.body, fontSize: 13,
-                color: V.body,
-                lineHeight: 1.55, margin: 0,
-              }}>
+              <p className="font-body text-[13px] leading-[1.55] m-0" style={{ color: V.body }}>
                 {entry.tripContext}
               </p>
             </div>
           )}
 
-          {/* Time / Duration */}
           {(entry.timeOfDay || entry.duration) && (
-            <div style={{ display: "flex", gap: 12, marginTop: 10 }}>
+            <div className="flex gap-3 mt-2.5">
               {entry.timeOfDay && (
-                <span style={{ fontFamily: FONTS.body, fontSize: 12, color: V.body }}>
-                  ⏰ {entry.timeOfDay}
+                <span className="font-body text-xs" style={{ color: V.body }}>
+                  &#9200; {entry.timeOfDay}
                 </span>
               )}
               {entry.duration && (
-                <span style={{ fontFamily: FONTS.body, fontSize: 12, color: V.body }}>
-                  ⏱ {entry.duration}
+                <span className="font-body text-xs" style={{ color: V.body }}>
+                  &#9201; {entry.duration}
                 </span>
               )}
             </div>
           )}
 
-          {/* Sources */}
           {entry.sources && entry.sources.length > 0 && (
-            <div style={{
-              marginTop: 14, padding: "12px 14px", borderRadius: 10,
-              background: `${t.color}05`,
-              border: `1.5px solid ${V.sage}14`,
-            }}>
-              <div style={{
-                fontFamily: FONTS.body, fontSize: 10, fontWeight: 700,
-                letterSpacing: "0.12em", textTransform: "uppercase",
-                color: t.color, marginBottom: 8,
-              }}>
+            <div
+              className="mt-3.5 py-3 px-3.5 rounded-[10px]"
+              style={{
+                background: `${t.color}05`,
+                border: `1.5px solid ${V.sage}14`,
+              }}
+            >
+              <div
+                className="font-body text-[10px] font-bold tracking-[0.12em] uppercase mb-2"
+                style={{ color: t.color }}
+              >
                 Sources
               </div>
               {entry.sources.map((src, i) => (
-                <div key={i} style={{
-                  padding: i > 0 ? "8px 0 0" : "0",
-                  borderTop: i > 0 ? `1.5px solid ${V.sage}14` : "none",
-                  marginTop: i > 0 ? 8 : 0,
-                }}>
-                  <div style={{ display: "flex", alignItems: "baseline", gap: 6, flexWrap: "wrap" }}>
-                    <span style={{
-                      fontFamily: FONTS.body, fontSize: 13, fontWeight: 500,
-                      color: V.ink,
-                    }}>
+                <div
+                  key={i}
+                  style={{
+                    padding: i > 0 ? "8px 0 0" : "0",
+                    borderTop: i > 0 ? `1.5px solid ${V.sage}14` : "none",
+                    marginTop: i > 0 ? 8 : 0,
+                  }}
+                >
+                  <div className="flex items-baseline gap-1.5 flex-wrap">
+                    <span className="font-body text-[13px] font-medium" style={{ color: V.ink }}>
                       {src.text}
                     </span>
                     {src.section && (
-                      <span style={{
-                        fontFamily: FONTS.body, fontSize: 11, color: t.color,
-                        fontWeight: 600,
-                      }}>
+                      <span className="font-body text-[11px] font-semibold" style={{ color: t.color }}>
                         {src.section}
                       </span>
                     )}
                     {src.era && (
-                      <span style={{
-                        fontFamily: FONTS.body, fontSize: 11, color: V.muted,
-                      }}>
+                      <span className="font-body text-[11px]" style={{ color: V.muted }}>
                         ({src.era})
                       </span>
                     )}
                   </div>
                   {src.author && (
-                    <div style={{
-                      fontFamily: FONTS.body, fontSize: 11, fontWeight: 600,
-                      color: V.body, marginTop: 1,
-                    }}>
+                    <div className="font-body text-[11px] font-semibold mt-px" style={{ color: V.body }}>
                       {src.author}
                     </div>
                   )}
                   {src.note && (
-                    <p style={{
-                      fontFamily: FONTS.body, fontSize: 12, color: V.muted,
-                      lineHeight: 1.5, margin: "3px 0 0",
-                    }}>
+                    <p className="font-body text-xs leading-[1.5] mt-[3px] mb-0" style={{ color: V.muted }}>
                       {src.note}
                     </p>
                   )}
@@ -334,10 +270,6 @@ function EntryCard({ entry, expanded, onToggle }) {
   );
 }
 
-
-// ═══════════════════════════════════════════════════════════════════════════════
-// MATRIX VIEW
-// ═══════════════════════════════════════════════════════════════════════════════
 
 function MatrixView({ onCellClick }) {
   const traditions = Object.keys(TRADITIONS);
@@ -355,21 +287,18 @@ function MatrixView({ onCellClick }) {
   }, []);
 
   return (
-    <div style={{ overflowX: "auto", padding: "0 4px" }}>
-      <table style={{ width: "100%", borderCollapse: "separate", borderSpacing: 4, minWidth: 500 }}>
+    <div className="overflow-x-auto px-1">
+      <table className="w-full min-w-[500px]" style={{ borderCollapse: "separate", borderSpacing: 4 }}>
         <thead>
           <tr>
-            <th style={{ width: 100 }} />
+            <th className="w-[100px]" />
             {principles.map(p => (
-              <th key={p} style={{
-                padding: "8px 4px", textAlign: "center",
-                fontFamily: FONTS.body, fontSize: 11, fontWeight: 700,
-                letterSpacing: "0.12em", textTransform: "uppercase",
-                color: PRINCIPLES[p].color,
-              }}>
-                <span style={{ fontSize: 16, display: "block", marginBottom: 2 }}>
-                  {PRINCIPLES[p].glyph}
-                </span>
+              <th
+                key={p}
+                className="py-2 px-1 text-center font-body text-[11px] font-bold tracking-[0.12em] uppercase"
+                style={{ color: PRINCIPLES[p].color }}
+              >
+                <span className="text-base block mb-0.5">{PRINCIPLES[p].glyph}</span>
                 {PRINCIPLES[p].name}
               </th>
             ))}
@@ -378,24 +307,19 @@ function MatrixView({ onCellClick }) {
         <tbody>
           {traditions.map(t => (
             <tr key={t}>
-              <td style={{
-                padding: "8px 6px", fontFamily: FONTS.body,
-                fontSize: 14, fontWeight: 500, color: TRADITIONS[t].color,
-                verticalAlign: "middle",
-              }}>
+              <td className="py-2 px-1.5 font-body text-sm font-medium align-middle" style={{ color: TRADITIONS[t].color }}>
                 {TRADITIONS[t].shortName}
               </td>
               {principles.map(p => {
                 const entries = matrix[t][p];
                 return (
-                  <td key={p}
+                  <td
+                    key={p}
                     onClick={() => entries.length > 0 && onCellClick?.(t, p)}
+                    className="p-1.5 align-top rounded-[10px] text-center transition-colors duration-200"
                     style={{
-                      padding: 6, verticalAlign: "top",
                       background: entries.length > 0 ? `${TRADITIONS[t].color}06` : "transparent",
-                      borderRadius: 10, textAlign: "center",
                       cursor: entries.length > 0 ? "pointer" : "default",
-                      transition: "background 0.2s",
                     }}
                     onMouseEnter={e => {
                       if (entries.length > 0) e.currentTarget.style.background = `${TRADITIONS[t].color}12`;
@@ -405,21 +329,18 @@ function MatrixView({ onCellClick }) {
                     }}
                   >
                     {entries.length > 0 ? (
-                      <div style={{ display: "flex", flexDirection: "column", gap: 2, alignItems: "center" }}>
-                        <span style={{
-                          fontFamily: FONTS.body, fontSize: 18, fontWeight: 700,
-                          color: TRADITIONS[t].color,
-                        }}>
+                      <div className="flex flex-col gap-0.5 items-center">
+                        <span className="font-body text-lg font-bold" style={{ color: TRADITIONS[t].color }}>
                           {entries.length}
                         </span>
-                        <div style={{ display: "flex", gap: 2, justifyContent: "center", flexWrap: "wrap" }}>
+                        <div className="flex gap-0.5 justify-center flex-wrap">
                           {entries.slice(0, 3).map(e => (
-                            <span key={e.id} style={{ fontSize: 11 }}>{TYPE_META[e.type].icon}</span>
+                            <span key={e.id} className="text-[11px]">{TYPE_META[e.type].icon}</span>
                           ))}
                         </div>
                       </div>
                     ) : (
-                      <span style={{ fontSize: 12, color: `${V.sage}60` }}>—</span>
+                      <span className="text-xs" style={{ color: `${V.sage}60` }}>&mdash;</span>
                     )}
                   </td>
                 );
@@ -433,10 +354,6 @@ function MatrixView({ onCellClick }) {
 }
 
 
-// ═══════════════════════════════════════════════════════════════════════════════
-// STATS BAR
-// ═══════════════════════════════════════════════════════════════════════════════
-
 function StatsBar() {
   const stats = useMemo(() => ({
     total: ENTRIES.length,
@@ -446,28 +363,18 @@ function StatsBar() {
   }), []);
 
   return (
-    <div style={{
-      display: "flex", gap: 32, flexWrap: "wrap",
-      justifyContent: "center", padding: "24px 0 8px",
-    }}>
+    <div className="flex gap-8 flex-wrap justify-center pt-6 pb-2">
       {[
         { label: "Total Entries", value: stats.total, color: C.darkInk },
         { label: "Teachings", value: stats.teachings, color: TYPE_META.teaching.color },
         { label: "Practices", value: stats.practices, color: TYPE_META.practice.color },
         { label: "Ceremonies", value: stats.ceremonies, color: TYPE_META.ceremony.color },
       ].map(s => (
-        <div key={s.label} style={{ textAlign: "center" }}>
-          <div style={{
-            fontFamily: FONTS.body, fontSize: 28, fontWeight: 700,
-            color: s.color, lineHeight: 1,
-          }}>
+        <div key={s.label} className="text-center">
+          <div className="font-body text-[28px] font-bold leading-none" style={{ color: s.color }}>
             {s.value}
           </div>
-          <div style={{
-            fontFamily: FONTS.body, fontSize: 10, fontWeight: 700,
-            letterSpacing: "0.14em", textTransform: "uppercase",
-            color: V.muted, marginTop: 4,
-          }}>
+          <div className="font-body text-[10px] font-bold tracking-[0.14em] uppercase mt-1" style={{ color: V.muted }}>
             {s.label}
           </div>
         </div>
@@ -477,10 +384,6 @@ function StatsBar() {
 }
 
 
-// ═══════════════════════════════════════════════════════════════════════════════
-// TRADITION DETAIL PANEL — shown above browse when a tradition is selected
-// ═══════════════════════════════════════════════════════════════════════════════
-
 function TraditionDetail({ traditionId }) {
   const t = TRADITIONS[traditionId];
   const [showSources, setShowSources] = useState(false);
@@ -489,119 +392,96 @@ function TraditionDetail({ traditionId }) {
   if (!t) return null;
 
   return (
-    <div style={{
-      padding: "20px 22px", borderRadius: 10, marginBottom: 16,
-      background: `${t.color}06`,
-      border: `1px solid ${t.color}12`,
-    }}>
-      {/* Header */}
-      <div style={{ display: "flex", alignItems: "baseline", gap: 12, marginBottom: 6 }}>
-        <h3 style={{
-          fontFamily: FONTS.body, fontSize: 20, fontWeight: 400,
-          color: V.ink, margin: 0,
-        }}>
+    <div
+      className="py-5 px-[22px] rounded-[10px] mb-4"
+      style={{
+        background: `${t.color}06`,
+        border: `1px solid ${t.color}12`,
+      }}
+    >
+      <div className="flex items-baseline gap-3 mb-1.5">
+        <h3 className="font-body text-xl font-normal m-0" style={{ color: V.ink }}>
           {t.name}
         </h3>
-        <span style={{
-          fontFamily: FONTS.body, fontSize: 11, color: V.muted,
-          fontWeight: 500,
-        }}>
+        <span className="font-body text-[11px] font-medium" style={{ color: V.muted }}>
           {t.origin}
         </span>
       </div>
 
-      {/* Essence */}
-      <p style={{
-        fontFamily: FONTS.body, fontSize: 14, color: V.body,
-        lineHeight: 1.65, margin: "0 0 12px",
-      }}>
+      <p className="font-body text-sm leading-[1.65] mt-0 mb-3" style={{ color: V.body }}>
         {t.essence}
       </p>
 
-      {/* Core texts */}
-      <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 14 }}>
+      <div className="flex gap-1.5 flex-wrap mb-3.5">
         {t.coreTexts.map(text => (
-          <span key={text} style={{
-            padding: "3px 10px", borderRadius: 10,
-            background: `${t.color}10`, fontFamily: FONTS.body,
-            fontSize: 12, fontWeight: 500, color: t.color,
-          }}>
+          <span
+            key={text}
+            className="py-[3px] px-2.5 rounded-[10px] font-body text-xs font-medium"
+            style={{ background: `${t.color}10`, color: t.color }}
+          >
             {text}
           </span>
         ))}
       </div>
 
-      {/* Toggle buttons */}
-      <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+      <div className="flex gap-2 flex-wrap">
         {t.primarySources && t.primarySources.length > 0 && (
-          <button onClick={() => { setShowSources(!showSources); setShowTerms(false); }} style={{
-            fontFamily: FONTS.body, fontSize: 11, fontWeight: 700,
-            letterSpacing: "0.12em", textTransform: "uppercase",
-            padding: "6px 14px", borderRadius: 10, cursor: "pointer",
-            background: showSources ? `${t.color}15` : "transparent",
-            border: `1px solid ${showSources ? t.color : `${t.color}25`}`,
-            color: showSources ? t.color : V.muted,
-            transition: "all 0.2s",
-          }}>
-            📚 Sources {showSources ? "▾" : "▸"}
+          <button
+            onClick={() => { setShowSources(!showSources); setShowTerms(false); }}
+            className="font-body text-[11px] font-bold tracking-[0.12em] uppercase py-1.5 px-3.5 rounded-[10px] cursor-pointer transition-all duration-200"
+            style={{
+              background: showSources ? `${t.color}15` : "transparent",
+              border: `1px solid ${showSources ? t.color : `${t.color}25`}`,
+              color: showSources ? t.color : V.muted,
+            }}
+          >
+            &#128218; Sources {showSources ? "\u25BE" : "\u25B8"}
           </button>
         )}
         {t.keyTerms && Object.keys(t.keyTerms).length > 0 && (
-          <button onClick={() => { setShowTerms(!showTerms); setShowSources(false); }} style={{
-            fontFamily: FONTS.body, fontSize: 11, fontWeight: 700,
-            letterSpacing: "0.12em", textTransform: "uppercase",
-            padding: "6px 14px", borderRadius: 10, cursor: "pointer",
-            background: showTerms ? `${t.color}15` : "transparent",
-            border: `1px solid ${showTerms ? t.color : `${t.color}25`}`,
-            color: showTerms ? t.color : V.muted,
-            transition: "all 0.2s",
-          }}>
-            🔤 Key Terms {showTerms ? "▾" : "▸"}
+          <button
+            onClick={() => { setShowTerms(!showTerms); setShowSources(false); }}
+            className="font-body text-[11px] font-bold tracking-[0.12em] uppercase py-1.5 px-3.5 rounded-[10px] cursor-pointer transition-all duration-200"
+            style={{
+              background: showTerms ? `${t.color}15` : "transparent",
+              border: `1px solid ${showTerms ? t.color : `${t.color}25`}`,
+              color: showTerms ? t.color : V.muted,
+            }}
+          >
+            &#128292; Key Terms {showTerms ? "\u25BE" : "\u25B8"}
           </button>
         )}
       </div>
 
-      {/* Primary Sources Panel */}
       {showSources && t.primarySources && (
-        <div style={{
-          marginTop: 14, padding: "16px 18px", borderRadius: 10,
-          background: "white", border: `1.5px solid ${V.sage}14`,
-        }}>
-          <div style={{
-            fontFamily: FONTS.body, fontSize: 10, fontWeight: 700,
-            letterSpacing: "0.14em", textTransform: "uppercase",
-            color: t.color, marginBottom: 12,
-          }}>
+        <div
+          className="mt-3.5 py-4 px-[18px] rounded-[10px] bg-white"
+          style={{ border: `1.5px solid ${V.sage}14` }}
+        >
+          <div
+            className="font-body text-[10px] font-bold tracking-[0.14em] uppercase mb-3"
+            style={{ color: t.color }}
+          >
             Primary Sources
           </div>
           {t.primarySources.map((src, i) => (
-            <div key={i} style={{
-              padding: "10px 0",
-              borderTop: i > 0 ? `1.5px solid ${V.sage}14` : "none",
-            }}>
-              <div style={{ display: "flex", alignItems: "baseline", gap: 8, flexWrap: "wrap" }}>
-                <span style={{
-                  fontFamily: FONTS.body, fontSize: 14, fontWeight: 500,
-                  color: V.ink,
-                }}>
+            <div
+              key={i}
+              className="py-2.5"
+              style={{ borderTop: i > 0 ? `1.5px solid ${V.sage}14` : "none" }}
+            >
+              <div className="flex items-baseline gap-2 flex-wrap">
+                <span className="font-body text-sm font-medium" style={{ color: V.ink }}>
                   {src.work}
                 </span>
-                <span style={{
-                  fontFamily: FONTS.body, fontSize: 11, color: V.muted,
-                }}>
+                <span className="font-body text-[11px]" style={{ color: V.muted }}>
                   {src.era}
                 </span>
               </div>
-              <div style={{
-                fontFamily: FONTS.body, fontSize: 12, fontWeight: 600,
-                color: V.body, marginTop: 2,
-              }}>
+              <div className="font-body text-xs font-semibold mt-0.5" style={{ color: V.body }}>
                 {src.author}
               </div>
-              <p style={{
-                fontFamily: FONTS.body, fontSize: 13, color: V.muted,
-                lineHeight: 1.5, margin: "4px 0 0",
-              }}>
+              <p className="font-body text-[13px] leading-[1.5] mt-1 mb-0" style={{ color: V.muted }}>
                 {src.note}
               </p>
             </div>
@@ -609,37 +489,29 @@ function TraditionDetail({ traditionId }) {
         </div>
       )}
 
-      {/* Key Terms Panel */}
       {showTerms && t.keyTerms && (
-        <div style={{
-          marginTop: 14, padding: "16px 18px", borderRadius: 10,
-          background: "white", border: `1.5px solid ${V.sage}14`,
-        }}>
-          <div style={{
-            fontFamily: FONTS.body, fontSize: 10, fontWeight: 700,
-            letterSpacing: "0.14em", textTransform: "uppercase",
-            color: t.color, marginBottom: 12,
-          }}>
+        <div
+          className="mt-3.5 py-4 px-[18px] rounded-[10px] bg-white"
+          style={{ border: `1.5px solid ${V.sage}14` }}
+        >
+          <div
+            className="font-body text-[10px] font-bold tracking-[0.14em] uppercase mb-3"
+            style={{ color: t.color }}
+          >
             Key Terms
           </div>
-          <div style={{ display: "grid", gap: 8 }}>
+          <div className="grid gap-2">
             {Object.entries(t.keyTerms).map(([term, definition]) => (
-              <div key={term} style={{
-                padding: "8px 12px", borderRadius: 10,
-                background: `${t.color}04`,
-              }}>
-                <span style={{
-                  fontFamily: FONTS.body, fontSize: 14, fontWeight: 600,
-                  color: t.color,
-                  textTransform: "capitalize",
-                }}>
+              <div
+                key={term}
+                className="py-2 px-3 rounded-[10px]"
+                style={{ background: `${t.color}04` }}
+              >
+                <span className="font-body text-sm font-semibold capitalize" style={{ color: t.color }}>
                   {term.replace(/([A-Z])/g, ' $1').trim()}
                 </span>
-                <span style={{
-                  fontFamily: FONTS.body, fontSize: 13, color: V.body,
-                  marginLeft: 8, lineHeight: 1.5,
-                }}>
-                  — {definition}
+                <span className="font-body text-[13px] ml-2 leading-[1.5]" style={{ color: V.body }}>
+                  &mdash; {definition}
                 </span>
               </div>
             ))}
@@ -651,10 +523,6 @@ function TraditionDetail({ traditionId }) {
 }
 
 
-// ═══════════════════════════════════════════════════════════════════════════════
-// MAIN PAGE COMPONENT
-// ═══════════════════════════════════════════════════════════════════════════════
-
 export default function PracticesExplorerPage() {
   const [view, setView] = useState("browse");
   const [activeTradition, setActiveTradition] = useState(null);
@@ -662,7 +530,6 @@ export default function PracticesExplorerPage() {
   const [activeType, setActiveType] = useState(null);
   const [expandedId, setExpandedId] = useState(null);
 
-  // Scroll to top on mount
   useEffect(() => { window.scrollTo(0, 0); }, []);
 
   const togglePrinciple = (id) => {
@@ -673,7 +540,6 @@ export default function PracticesExplorerPage() {
     });
   };
 
-  // Principle ordering: oneness → flow → presence → reverence
   const PRINCIPLE_ORDER = { oneness: 0, flow: 1, presence: 2, reverence: 3 };
 
   const filtered = useMemo(() => {
@@ -685,11 +551,9 @@ export default function PracticesExplorerPage() {
         return true;
       })
       .sort((a, b) => {
-        // Sort by primary principle first, then interleave traditions within each principle
         const aPrimary = PRINCIPLE_ORDER[a.principles[0]] ?? 99;
         const bPrimary = PRINCIPLE_ORDER[b.principles[0]] ?? 99;
         if (aPrimary !== bPrimary) return aPrimary - bPrimary;
-        // Within the same principle, alternate traditions for variety
         const aTrad = Object.keys(TRADITIONS).indexOf(a.tradition);
         const bTrad = Object.keys(TRADITIONS).indexOf(b.tradition);
         return aTrad - bTrad;
@@ -704,7 +568,6 @@ export default function PracticesExplorerPage() {
     return counts;
   }, []);
 
-  // Matrix cell click → switch to browse with filters applied
   const handleMatrixCellClick = (tradition, principle) => {
     setActiveTradition(tradition);
     setActivePrinciples(new Set([principle]));
@@ -712,7 +575,6 @@ export default function PracticesExplorerPage() {
     setView("browse");
   };
 
-  // Clear all filters
   const clearFilters = () => {
     setActiveTradition(null);
     setActivePrinciples(new Set());
@@ -726,92 +588,73 @@ export default function PracticesExplorerPage() {
     <>
       <Nav />
 
-      {/* ── Page Header ── */}
       <PageHeader
         eyebrow="Wisdom Layer"
         title="Practices Explorer"
         subtitle="Five traditions, four principles — teachings, practices, and ceremonies for transformative travel."
       />
 
-      {/* ── Stats ── */}
-      <section style={{
-        maxWidth: 680, margin: "0 auto",
-        padding: "0 24px",
-      }}>
+      <section className="max-w-[680px] mx-auto px-6">
         <StatsBar />
       </section>
 
-      {/* ── Explorer Body ── */}
-      <section className="section-padded" style={{
-        maxWidth: 680, margin: "0 auto",
-        padding: "32px 24px 80px",
-      }}>
+      <section className="section-padded max-w-[680px] mx-auto px-6 pt-8 pb-20">
 
-        {/* View Toggle + Clear */}
-        <div style={{
-          display: "flex", justifyContent: "space-between",
-          alignItems: "center", marginBottom: 20,
-        }}>
-          <div style={{ display: "flex", gap: 6 }}>
+        <div className="flex justify-between items-center mb-5">
+          <div className="flex gap-1.5">
             {[
-              { key: "browse", label: "Browse", icon: "📋" },
-              { key: "matrix", label: "Matrix", icon: "🔢" },
+              { key: "browse", label: "Browse", icon: "\uD83D\uDCCB" },
+              { key: "matrix", label: "Matrix", icon: "\uD83D\uDD22" },
             ].map(v => (
-              <button key={v.key} onClick={() => setView(v.key)} style={{
-                padding: "8px 16px", borderRadius: 10,
-                background: view === v.key ? `${C.oceanTeal}12` : "transparent",
-                border: `1.5px solid ${view === v.key ? `${C.oceanTeal}30` : `${V.sage}18`}`,
-                fontFamily: FONTS.body, fontSize: 12, fontWeight: 700,
-                color: view === v.key ? C.oceanTeal : V.muted,
-                letterSpacing: "0.12em",
-                cursor: "pointer",
-              }}>
+              <button
+                key={v.key}
+                onClick={() => setView(v.key)}
+                className="py-2 px-4 rounded-[10px] font-body text-xs font-bold tracking-[0.12em] cursor-pointer"
+                style={{
+                  background: view === v.key ? `${C.oceanTeal}12` : "transparent",
+                  border: `1.5px solid ${view === v.key ? `${C.oceanTeal}30` : `${V.sage}18`}`,
+                  color: view === v.key ? C.oceanTeal : V.muted,
+                }}
+              >
                 {v.icon} {v.label}
               </button>
             ))}
           </div>
 
           {hasFilters && (
-            <button onClick={clearFilters} style={{
-              fontFamily: FONTS.body, fontSize: 11, fontWeight: 700,
-              letterSpacing: "0.12em", textTransform: "uppercase",
-              color: C.sunSalmon, background: "none", border: "none",
-              cursor: "pointer", padding: "4px 8px",
-            }}>
+            <button
+              onClick={clearFilters}
+              className="font-body text-[11px] font-bold tracking-[0.12em] uppercase text-sun-salmon bg-none border-none cursor-pointer py-1 px-2"
+            >
               Clear Filters
             </button>
           )}
         </div>
 
-        {/* ── Matrix View ── */}
         {view === "matrix" && (
           <>
-            <p style={{
-              fontFamily: FONTS.body, fontSize: 13, color: V.muted,
-              marginBottom: 16, lineHeight: 1.5,
-            }}>
+            <p className="font-body text-[13px] mb-4 leading-[1.5]" style={{ color: V.muted }}>
               Click any cell to browse its entries.
             </p>
             <MatrixView onCellClick={handleMatrixCellClick} />
           </>
         )}
 
-        {/* ── Browse View ── */}
         {view === "browse" && (
           <>
-            {/* Tradition Filter */}
-            <div style={{
-              display: "flex", gap: 4, overflowX: "auto",
-              paddingBottom: 8, marginBottom: 8,
-              WebkitOverflowScrolling: "touch",
-            }}>
-              <button onClick={() => setActiveTradition(null)} style={{
-                padding: "10px 14px", borderRadius: 10,
-                background: !activeTradition ? `${C.oceanTeal}12` : "transparent",
-                border: !activeTradition ? `1.5px solid ${C.oceanTeal}30` : "1.5px solid transparent",
-                cursor: "pointer", fontFamily: FONTS.body, fontSize: 12, fontWeight: 700,
-                color: !activeTradition ? C.oceanTeal : V.muted, minWidth: 48,
-              }}>
+            <div
+              className="flex gap-1 overflow-x-auto pb-2 mb-2"
+              style={{ WebkitOverflowScrolling: "touch" }}
+            >
+              <button
+                onClick={() => setActiveTradition(null)}
+                className="py-2.5 px-3.5 rounded-[10px] cursor-pointer font-body text-xs font-bold min-w-[48px]"
+                style={{
+                  background: !activeTradition ? `${C.oceanTeal}12` : "transparent",
+                  border: !activeTradition ? `1.5px solid ${C.oceanTeal}30` : "1.5px solid transparent",
+                  color: !activeTradition ? C.oceanTeal : V.muted,
+                }}
+              >
                 All
               </button>
               {Object.keys(TRADITIONS).map(id => (
@@ -823,11 +666,9 @@ export default function PracticesExplorerPage() {
               ))}
             </div>
 
-            {/* Tradition Detail (when selected) */}
             {activeTradition && <TraditionDetail traditionId={activeTradition} />}
 
-            {/* Principle Filter */}
-            <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 8 }}>
+            <div className="flex gap-1.5 flex-wrap mb-2">
               {Object.keys(PRINCIPLES).map(id => (
                 <PrinciplePill key={id} id={id}
                   active={activePrinciples.has(id)}
@@ -836,19 +677,16 @@ export default function PracticesExplorerPage() {
               ))}
             </div>
 
-            {/* Type Filter */}
-            <div style={{ display: "flex", gap: 6, marginBottom: 16 }}>
+            <div className="flex gap-1.5 mb-4">
               {["teaching", "practice", "ceremony"].map(type => (
-                <button key={type}
+                <button
+                  key={type}
                   onClick={() => setActiveType(activeType === type ? null : type)}
+                  className="inline-flex items-center gap-1 py-[5px] px-3 rounded-[10px] cursor-pointer text-xs font-bold font-body"
                   style={{
-                    display: "inline-flex", alignItems: "center", gap: 4,
-                    padding: "5px 12px", borderRadius: 10,
                     background: activeType === type ? `${TYPE_META[type].color}12` : "transparent",
                     border: `1px solid ${activeType === type ? `${TYPE_META[type].color}25` : `${V.sage}18`}`,
-                    cursor: "pointer", fontSize: 12, fontWeight: 700,
                     color: activeType === type ? TYPE_META[type].color : V.muted,
-                    fontFamily: FONTS.body,
                   }}
                 >
                   {TYPE_META[type].icon} {TYPE_META[type].label}s
@@ -856,15 +694,10 @@ export default function PracticesExplorerPage() {
               ))}
             </div>
 
-            {/* Results count */}
-            <div style={{
-              fontFamily: FONTS.body, fontSize: 12,
-              color: V.muted, marginBottom: 12,
-            }}>
+            <div className="font-body text-xs mb-3" style={{ color: V.muted }}>
               {filtered.length} {filtered.length === 1 ? "entry" : "entries"}
             </div>
 
-            {/* Entry Cards — grouped by principle */}
             {filtered.map((entry, i) => {
               const primaryPrinciple = entry.principles[0];
               const prevPrinciple = i > 0 ? filtered[i - 1].principles[0] : null;
@@ -874,23 +707,17 @@ export default function PracticesExplorerPage() {
               return (
                 <div key={entry.id}>
                   {showDivider && p && (
-                    <div style={{
-                      display: "flex", alignItems: "center", gap: 10,
-                      padding: i > 0 ? "24px 0 12px" : "0 0 12px",
-                    }}>
-                      <span style={{ fontSize: 16, color: p.color, opacity: 0.5 }}>
+                    <div
+                      className="flex items-center gap-2.5"
+                      style={{ padding: i > 0 ? "24px 0 12px" : "0 0 12px" }}
+                    >
+                      <span className="text-base opacity-50" style={{ color: p.color }}>
                         {p.glyph}
                       </span>
-                      <span style={{
-                        fontFamily: FONTS.body, fontSize: 16, fontWeight: 400,
-                        color: p.color,
-                      }}>
+                      <span className="font-body text-base font-normal" style={{ color: p.color }}>
                         {p.name}
                       </span>
-                      <div style={{
-                        flex: 1, height: 1,
-                        background: `${p.color}20`,
-                      }} />
+                      <div className="flex-1 h-px" style={{ background: `${p.color}20` }} />
                     </div>
                   )}
                   <EntryCard entry={entry}
@@ -901,19 +728,15 @@ export default function PracticesExplorerPage() {
               );
             })}
 
-            {/* Empty state */}
             {filtered.length === 0 && (
-              <div style={{ textAlign: "center", padding: "40px 20px", color: V.muted }}>
-                <div style={{ fontSize: 24, marginBottom: 8 }}>🔍</div>
-                <p style={{ fontFamily: FONTS.body, fontSize: 14 }}>
-                  No entries match these filters.
-                </p>
-                <button onClick={clearFilters} style={{
-                  marginTop: 12, fontFamily: FONTS.body, fontSize: 12,
-                  fontWeight: 700, color: C.oceanTeal, background: "none",
-                  border: `1px solid ${C.oceanTeal}30`, borderRadius: 10,
-                  padding: "8px 16px", cursor: "pointer",
-                }}>
+              <div className="text-center py-10 px-5" style={{ color: V.muted }}>
+                <div className="text-2xl mb-2">&#128269;</div>
+                <p className="font-body text-sm">No entries match these filters.</p>
+                <button
+                  onClick={clearFilters}
+                  className="mt-3 font-body text-xs font-bold text-ocean-teal bg-none py-2 px-4 rounded-[10px] cursor-pointer"
+                  style={{ border: `1px solid ${C.oceanTeal}30` }}
+                >
                   Clear All Filters
                 </button>
               </div>
@@ -922,13 +745,12 @@ export default function PracticesExplorerPage() {
         )}
       </section>
 
-      {/* ── Back to Our Approach CTA ── */}
-      <section style={{
-        textAlign: "center", padding: "48px 24px 64px",
-        borderTop: `1.5px solid ${V.sage}18`,
-      }}>
+      <section
+        className="text-center pt-12 pb-16 px-6"
+        style={{ borderTop: `1.5px solid ${V.sage}18` }}
+      >
         <Link to="/ethos" className="underline-link">
-          ← Back to Our Ethos
+          &larr; Back to Our Ethos
         </Link>
       </section>
 

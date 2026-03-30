@@ -13,26 +13,6 @@ const CATEGORIES = [
   { value: "General", detail: "Questions, feedback, or just to say hello" },
 ];
 
-const INPUT_STYLE = {
-  width: "100%",
-  padding: "12px 16px",
-  border: `1px solid ${C.stone}`,
-  background: "#fff",
-  fontFamily: "'Quicksand', sans-serif",
-  fontSize: 14, fontWeight: 400,
-  color: C.darkInk,
-  outline: "none",
-  transition: "border-color 0.2s",
-  boxSizing: "border-box",
-};
-
-const LABEL_STYLE = {
-  fontFamily: "'Quicksand', sans-serif",
-  fontSize: 11, fontWeight: 700,
-  letterSpacing: "0.18em", textTransform: "uppercase",
-  color: "#7A857E", marginBottom: 8, display: "block",
-};
-
 export default function ContactPage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -67,80 +47,45 @@ export default function ContactPage() {
       <Nav />
 
       {/* Hero */}
-      <section className="contact-hero" style={{
-        background: C.darkInk,
-        padding: "160px 52px 80px",
-        textAlign: "center",
-      }}>
+      <section className="bg-dark-ink pt-[140px] px-5 pb-[60px] md:pt-[160px] md:px-[52px] md:pb-20 text-center">
         <FadeIn from="bottom" delay={0.1}>
-          <span style={{
-            fontFamily: "'Quicksand', sans-serif",
-            fontSize: 12, fontWeight: 700,
-            letterSpacing: "0.28em", textTransform: "uppercase",
-            color: C.goldenAmber, display: "block", marginBottom: 20,
-          }}>Get in Touch</span>
-          <h1 style={{
-            fontFamily: "'Cormorant Garamond', serif",
-            fontSize: "clamp(36px, 6vw, 56px)", fontWeight: 300,
-            color: "white", lineHeight: 1.1,
-            margin: "0 0 20px", letterSpacing: "-0.02em",
-          }}>
+          <span className="font-body text-xs font-bold tracking-[0.28em] uppercase text-golden-amber block mb-5">
+            Get in Touch
+          </span>
+          <h1 className="font-serif text-[clamp(36px,6vw,56px)] font-light text-white leading-[1.1] mb-5 -tracking-[0.02em]">
             We'd love to hear from you.
           </h1>
-          <p style={{
-            fontFamily: "'Quicksand', sans-serif",
-            fontSize: "clamp(14px, 1.8vw, 16px)", fontWeight: 400,
-            color: "rgba(255,255,255,0.55)", lineHeight: 1.7,
-            maxWidth: 480, margin: "0 auto",
-          }}>
+          <p className="font-body text-[clamp(14px,1.8vw,16px)] font-normal text-white/55 leading-[1.7] max-w-[480px] mx-auto">
             Whether you have a question about a destination, want help planning a trip, or just want to say hello — we're here.
           </p>
         </FadeIn>
       </section>
 
       {/* Contact Form */}
-      <section className="contact-body" style={{
-        padding: "80px 52px 100px",
-        background: C.cream,
-      }}>
-        <div style={{ maxWidth: 520, margin: "0 auto" }}>
+      <section className="px-5 pt-[60px] pb-20 md:px-[52px] md:pt-20 md:pb-[100px] bg-cream">
+        <div className="max-w-[520px] mx-auto">
           <FadeIn delay={0.15}>
 
             {status === "sent" ? (
-              <div style={{
-                padding: "60px 36px",
-                border: `1px solid ${C.stone}`,
-                background: C.warmWhite,
-                textAlign: "center",
-              }}>
-                <div style={{
-                  fontFamily: "'Quicksand', sans-serif",
-                  fontSize: 11, fontWeight: 700,
-                  letterSpacing: "0.22em", textTransform: "uppercase",
-                  color: C.seaGlass, marginBottom: 16,
-                }}>Message Sent</div>
-                <div style={{
-                  fontFamily: "'Cormorant Garamond', serif",
-                  fontSize: "clamp(22px, 3vw, 28px)", fontWeight: 400,
-                  color: C.darkInk, marginBottom: 12,
-                }}>Thanks for reaching out.</div>
-                <p style={{
-                  fontFamily: "'Quicksand', sans-serif",
-                  fontSize: 14, fontWeight: 400,
-                  color: "#7A857E", lineHeight: 1.65, margin: 0,
-                }}>We'll get back to you soon — usually within a day.</p>
+              <div className="p-[60px_36px] border border-stone bg-warm-white text-center">
+                <div className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-sea-glass mb-4">
+                  Message Sent
+                </div>
+                <div className="font-serif text-[clamp(22px,3vw,28px)] font-normal text-dark-ink mb-3">
+                  Thanks for reaching out.
+                </div>
+                <p className="font-body text-sm font-normal text-[#7A857E] leading-[1.65] m-0">
+                  We'll get back to you soon — usually within a day.
+                </p>
               </div>
             ) : (
               <form onSubmit={handleSubmit}>
                 {/* Category selector */}
-                <div style={{ marginBottom: 28 }}>
-                  <label style={LABEL_STYLE}>What's this about?</label>
-                  <div className="contact-grid" style={{
-                    display: "grid",
-                    gridTemplateColumns: "repeat(3, 1fr)",
-                    gap: 0,
-                    border: `1px solid ${C.stone}`,
-                  }}>
+                <div className="mb-7">
+                  <label className="font-body text-[11px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-2 block">
+                    What's this about?
+                  </label>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 border border-stone">
                     {CATEGORIES.map((cat, i) => {
                       const isActive = category === cat.value;
                       return (
@@ -148,29 +93,24 @@ export default function ContactPage() {
                           key={cat.value}
                           type="button"
                           onClick={() => setCategory(cat.value)}
+                          className="py-[18px] px-3 border-none cursor-pointer text-center transition-all duration-200 sm:[&:not(:last-child)]:border-r sm:border-r-stone"
                           style={{
-                            padding: "18px 12px",
-                            borderRight: i < 2 ? `1px solid ${C.stone}` : "none",
-                            border: "none",
                             borderBottom: `2px solid ${isActive ? C.oceanTeal : "transparent"}`,
                             background: isActive ? `${C.oceanTeal}08` : C.warmWhite,
-                            cursor: "pointer",
-                            textAlign: "center",
-                            transition: "all 0.2s",
                           }}
                         >
-                          <div style={{
-                            fontFamily: "'Quicksand', sans-serif",
-                            fontSize: 12, fontWeight: isActive ? 700 : 600,
-                            letterSpacing: "0.12em", textTransform: "uppercase",
-                            color: isActive ? C.oceanTeal : "#7A857E",
-                            marginBottom: 4,
-                          }}>{cat.value}</div>
-                          <div style={{
-                            fontFamily: "'Quicksand', sans-serif",
-                            fontSize: 12, fontWeight: 400,
-                            color: "#7A857E", lineHeight: 1.4,
-                          }}>{cat.detail}</div>
+                          <div
+                            className="font-body text-xs tracking-[0.12em] uppercase mb-1"
+                            style={{
+                              fontWeight: isActive ? 700 : 600,
+                              color: isActive ? C.oceanTeal : "#7A857E",
+                            }}
+                          >
+                            {cat.value}
+                          </div>
+                          <div className="font-body text-xs font-normal text-[#7A857E] leading-[1.4]">
+                            {cat.detail}
+                          </div>
                         </button>
                       );
                     })}
@@ -178,54 +118,46 @@ export default function ContactPage() {
                 </div>
 
                 {/* Name + Email row */}
-                <div style={{
-                  display: "grid", gridTemplateColumns: "1fr 1fr",
-                  gap: 16, marginBottom: 20,
-                }}>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5">
                   <div>
-                    <label style={LABEL_STYLE}>Name</label>
+                    <label className="font-body text-[11px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-2 block">
+                      Name
+                    </label>
                     <input
                       type="text"
                       placeholder="Your name"
                       value={name}
                       onChange={e => setName(e.target.value)}
-                      style={INPUT_STYLE}
-                      onFocus={e => e.target.style.borderColor = C.oceanTeal}
-                      onBlur={e => e.target.style.borderColor = C.stone}
+                      className="w-full py-3 px-4 border border-stone bg-white font-body text-sm font-normal text-dark-ink outline-none transition-colors duration-200 box-border focus:border-ocean-teal"
                     />
                   </div>
                   <div>
-                    <label style={LABEL_STYLE}>Email *</label>
+                    <label className="font-body text-[11px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-2 block">
+                      Email *
+                    </label>
                     <input
                       type="email"
                       required
                       placeholder="your@email.com"
                       value={email}
                       onChange={e => setEmail(e.target.value)}
-                      style={INPUT_STYLE}
-                      onFocus={e => e.target.style.borderColor = C.oceanTeal}
-                      onBlur={e => e.target.style.borderColor = C.stone}
+                      className="w-full py-3 px-4 border border-stone bg-white font-body text-sm font-normal text-dark-ink outline-none transition-colors duration-200 box-border focus:border-ocean-teal"
                     />
                   </div>
                 </div>
 
                 {/* Message */}
-                <div style={{ marginBottom: 28 }}>
-                  <label style={LABEL_STYLE}>Message *</label>
+                <div className="mb-7">
+                  <label className="font-body text-[11px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-2 block">
+                    Message *
+                  </label>
                   <textarea
                     required
                     placeholder="What's on your mind?"
                     value={message}
                     onChange={e => setMessage(e.target.value)}
                     rows={6}
-                    style={{
-                      ...INPUT_STYLE,
-                      resize: "vertical",
-                      minHeight: 120,
-                      lineHeight: 1.65,
-                    }}
-                    onFocus={e => e.target.style.borderColor = C.oceanTeal}
-                    onBlur={e => e.target.style.borderColor = C.stone}
+                    className="w-full py-3 px-4 border border-stone bg-white font-body text-sm font-normal text-dark-ink outline-none transition-colors duration-200 box-border resize-y min-h-[120px] leading-[1.65] focus:border-ocean-teal"
                   />
                 </div>
 
@@ -233,32 +165,21 @@ export default function ContactPage() {
                 <button
                   type="submit"
                   disabled={!canSubmit || status === "sending"}
+                  className="w-full py-3.5 px-7 border-none font-body text-[13px] font-bold tracking-[0.18em] uppercase transition-all duration-250 hover:opacity-85 disabled:cursor-default disabled:hover:opacity-100"
                   style={{
-                    width: "100%",
-                    padding: "14px 28px",
                     background: canSubmit ? C.darkInk : C.stone,
-                    border: "none",
                     color: canSubmit ? "#fff" : "#7A857E",
-                    fontFamily: "'Quicksand', sans-serif",
-                    fontSize: 13, fontWeight: 700,
-                    letterSpacing: "0.18em", textTransform: "uppercase",
                     cursor: canSubmit ? "pointer" : "default",
-                    transition: "all 0.25s",
                     opacity: status === "sending" ? 0.6 : 1,
                   }}
-                  onMouseEnter={e => { if (canSubmit) e.currentTarget.style.opacity = "0.85"; }}
-                  onMouseLeave={e => { if (canSubmit) e.currentTarget.style.opacity = "1"; }}
                 >
                   {status === "sending" ? "Sending..." : "Send Message"}
                 </button>
 
                 {status === "error" && (
-                  <p style={{
-                    fontFamily: "'Quicksand', sans-serif",
-                    fontSize: 13, fontWeight: 500,
-                    color: C.sunSalmon, textAlign: "center",
-                    marginTop: 12,
-                  }}>Something went wrong. Please try again or email us directly.</p>
+                  <p className="font-body text-[13px] font-medium text-sun-salmon text-center mt-3">
+                    Something went wrong. Please try again or email us directly.
+                  </p>
                 )}
               </form>
             )}
@@ -267,18 +188,6 @@ export default function ContactPage() {
       </section>
 
       <Footer />
-
-      <style>{`
-        @media (max-width: 600px) {
-          .contact-grid { grid-template-columns: 1fr !important; }
-          .contact-grid > button { border-right: none !important; border-bottom: 1px solid ${C.stone}; }
-          .contact-grid > button:last-child { border-bottom: none !important; }
-        }
-        @media (max-width: 768px) {
-          .contact-hero { padding: 140px 20px 60px !important; }
-          .contact-body { padding: 60px 20px 80px !important; }
-        }
-      `}</style>
     </>
   );
 }

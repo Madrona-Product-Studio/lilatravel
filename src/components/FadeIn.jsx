@@ -14,6 +14,7 @@ export default function FadeIn({ children, delay = 0, from = "bottom", style = {
 
   return (
     <div ref={ref} className={className} style={{
+      /* dynamic — opacity/transform driven by intersection observer */
       opacity: inView ? 1 : 0,
       transform: inView ? "none" : translate,
       transition: `opacity 0.8s ${delay}s ease, transform 0.8s ${delay}s ease`,

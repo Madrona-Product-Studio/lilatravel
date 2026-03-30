@@ -7,41 +7,26 @@ import FadeIn from './FadeIn';
 
 export default function PageHero({ eyebrow, title, subtitle, photo, gradient, accentColor = C.skyBlue, height = "60vh" }) {
   return (
-    <section className="page-hero" style={{
-      position: "relative", minHeight: height, overflow: "hidden",
-      display: "flex", alignItems: "flex-end",
-    }}>
+    <section className="page-hero relative overflow-hidden flex items-end" style={{ minHeight: height }}>
       {photo ? (
-        <img src={photo} alt="" style={{
-          position: "absolute", inset: 0, width: "100%", height: "100%",
-          objectFit: "cover", objectPosition: "center",
-        }} />
+        <img src={photo} alt="" className="absolute inset-0 w-full h-full object-cover object-center" />
       ) : gradient ? (
-        <div style={{ position: "absolute", inset: 0, background: gradient }} />
+        <div className="absolute inset-0" style={{ background: gradient }} />
       ) : (
-        <div style={{ position: "absolute", inset: 0, background: `linear-gradient(165deg, ${C.slate}, ${C.darkInk})` }} />
+        <div className="absolute inset-0" style={{ background: `linear-gradient(165deg, ${C.slate}, ${C.darkInk})` }} />
       )}
-      <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(10,18,26,0.75) 0%, rgba(10,18,26,0.2) 50%, rgba(10,18,26,0.1) 100%)" }} />
+      <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(10,18,26,0.75) 0%, rgba(10,18,26,0.2) 50%, rgba(10,18,26,0.1) 100%)" }} />
 
-      <div style={{
-        position: "relative", zIndex: 2,
-        padding: "64px 52px", maxWidth: 900, width: "100%",
-      }}>
+      <div className="relative z-[2] px-[52px] py-16 max-w-[900px] w-full">
         <FadeIn from="bottom" delay={0.1}>
           {eyebrow && <span className="eyebrow" style={{ color: accentColor }}>{eyebrow}</span>}
-          <h1 style={{
-            fontFamily: "'Quicksand', sans-serif",
-            fontSize: "clamp(32px, 6vw, 64px)", fontWeight: 300,
-            color: "white", lineHeight: 1.1, marginBottom: subtitle ? 16 : 0,
-          }}>
+          <h1 className="font-body text-[clamp(32px,6vw,64px)] font-light text-white leading-[1.1]"
+            style={{ marginBottom: subtitle ? 16 : 0 }}
+          >
             {title}
           </h1>
           {subtitle && (
-            <p style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontSize: "clamp(17px, 2.5vw, 24px)", fontWeight: 300, fontStyle: "normal",
-              color: "rgba(255,255,255,0.6)", lineHeight: 1.6, maxWidth: 600,
-            }}>
+            <p className="font-serif text-[clamp(17px,2.5vw,24px)] font-light text-white/60 leading-[1.6] max-w-[600px]">
               {subtitle}
             </p>
           )}

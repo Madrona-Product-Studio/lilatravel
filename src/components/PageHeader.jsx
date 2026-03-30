@@ -6,7 +6,7 @@
 //   eyebrow      — small uppercase label
 //   title        — main heading (can include JSX)
 //   subtitle     — descriptive line beneath the title
-//   accentColor  — colored accent for the eyebrow line
+//   accentColor  — colored accent for the eyebrow line (dynamic)
 //   align        — "left" (default) or "center"
 //   children     — optional content rendered below the subtitle (e.g. braids)
 //
@@ -27,79 +27,45 @@ export default function PageHeader({
   const isCenter = align === "center";
 
   return (
-    <section style={{
-      padding: children ? "120px 52px 48px" : "120px 52px 0",
-      background: C.cream,
-    }}>
-      <div style={{
-        maxWidth: 1100,
-        margin: "0 auto",
-        textAlign: isCenter ? "center" : "left",
-      }}>
+    <section
+      className={`bg-cream ${children ? "px-[52px] pt-[120px] pb-12" : "px-[52px] pt-[120px] pb-0"}`}
+    >
+      <div className={`max-w-[1100px] mx-auto ${isCenter ? "text-center" : "text-left"}`}>
         <FadeIn from="bottom" delay={0.05}>
           {/* Accent line + eyebrow */}
-          <div style={{
-            display: "flex",
-            alignItems: "center",
-            gap: 12,
-            marginBottom: 16,
-            justifyContent: isCenter ? "center" : "flex-start",
-          }}>
-            <div style={{
-              width: 32,
-              height: 1.5,
-              background: accentColor,
-              opacity: 0.7,
-            }} />
-            <span style={{
-              fontFamily: "'Quicksand', sans-serif",
-              fontSize: 11,
-              fontWeight: 700,
-              letterSpacing: "0.22em",
-              textTransform: "uppercase",
-              color: accentColor,
-            }}>
+          <div className={`flex items-center gap-3 mb-4 ${isCenter ? "justify-center" : "justify-start"}`}>
+            <div
+              className="w-8 h-[1.5px] opacity-70"
+              style={{ background: accentColor }}
+            />
+            <span
+              className="font-body text-[11px] font-bold tracking-[0.22em] uppercase"
+              style={{ color: accentColor }}
+            >
               {eyebrow}
             </span>
             {tag && (
-              <span style={{
-                fontFamily: "'Quicksand', sans-serif",
-                fontSize: 11,
-                fontWeight: 700,
-                letterSpacing: "0.14em",
-                textTransform: "uppercase",
-                color: "#7a8a9a",
-                border: "1.5px solid #b0b8c0",
-                padding: "4px 10px",
-              }}>{tag}</span>
+              <span className="font-body text-[11px] font-bold tracking-[0.14em] uppercase text-[#7a8a9a] border-[1.5px] border-[#b0b8c0] px-2.5 py-1">
+                {tag}
+              </span>
             )}
           </div>
 
           {/* Title */}
-          <h1 style={{
-            fontFamily: "'Cormorant Garamond', serif",
-            fontSize: "clamp(32px, 5vw, 52px)",
-            fontWeight: 300,
-            color: C.darkInk,
-            lineHeight: 1.2,
-            letterSpacing: "-0.01em",
-            maxWidth: isCenter ? 680 : 600,
-            margin: isCenter ? "0 auto 12px" : "0 0 12px 0",
-          }}>
+          <h1
+            className={`font-serif text-[clamp(32px,5vw,52px)] font-light text-dark-ink leading-[1.2] tracking-[-0.01em] ${
+              isCenter ? "max-w-[680px] mx-auto mb-3" : "max-w-[600px] mb-3"
+            }`}
+          >
             {title}
           </h1>
 
           {/* Subtitle */}
-          <p style={{
-            fontFamily: "'Quicksand', sans-serif",
-            fontSize: "clamp(14px, 1.5vw, 16px)",
-            fontWeight: 400,
-            color: "#7a8a9a",
-            lineHeight: 1.8,
-            maxWidth: isCenter ? 520 : 520,
-            margin: isCenter ? "0 auto" : 0,
-            letterSpacing: "0.01em",
-          }}>
+          <p
+            className={`font-body text-[clamp(14px,1.5vw,16px)] font-normal text-[#7a8a9a] leading-[1.8] max-w-[520px] tracking-[0.01em] ${
+              isCenter ? "mx-auto" : "m-0"
+            }`}
+          >
             {subtitle}
           </p>
 

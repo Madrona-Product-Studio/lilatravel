@@ -12,6 +12,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { Nav, Footer, FadeIn, WhisperBar } from '@components';
+import { SectionLabel, SectionTitle, SectionSub, Divider, SectionIcon } from '@components/guide';
 import { C } from '@data/brand';
 import { P } from '@data/photos';
 import { trackEvent } from '@utils/analytics';
@@ -24,181 +25,49 @@ import useBreathCanvas from '@hooks/useBreathCanvas';
 
 
 // ─── Guide-Specific Components ───────────────────────────────────────────────
+// SectionLabel, SectionTitle, SectionSub, Divider, SectionIcon imported from @components/guide
+const ACCENT = C.oceanTeal;
 
-function SectionLabel({ children }) {
-  return (
-    <div style={{
-      fontFamily: "'Quicksand', sans-serif",
-      fontSize: 12, fontWeight: 700,
-      letterSpacing: "0.28em", textTransform: "uppercase",
-      color: C.oceanTeal, marginBottom: 12,
-      textAlign: "center",
-    }}>{children}</div>
-  );
-}
-
-function SectionTitle({ children }) {
-  return (
-    <h2 style={{
-      fontFamily: "'Cormorant Garamond', serif",
-      fontSize: "clamp(24px, 4vw, 32px)", fontWeight: 400,
-      color: C.darkInk, margin: "0 0 6px", lineHeight: 1.2,
-      textAlign: "center",
-    }}>{children}</h2>
-  );
-}
-
-function SectionSub({ children, isMobile }) {
-  return (
-    <p style={{
-      fontFamily: "'Quicksand', sans-serif",
-      fontSize: isMobile ? 15 : "clamp(14px, 1.8vw, 15px)", fontWeight: 400,
-      color: "#4A5650", margin: "0 auto 28px", lineHeight: 1.7,
-      textAlign: isMobile ? "left" : "center", maxWidth: isMobile ? "100%" : 520,
-    }}>{children}</p>
-  );
-}
-
-function Divider() {
-  return <div style={{ height: 1, background: C.stone, margin: 0 }} />;
-}
-
-function SectionIcon({ type }) {
-  const size = 28;
-  const icons = {
-    move: (
-      <svg width={size} height={size} viewBox="0 0 28 28" fill="none">
-        <rect x="14" y="2" width="15" height="15" rx="2" transform="rotate(45 14 2)"
-          stroke={C.oceanTeal} strokeWidth="1.5" fill="none" />
-      </svg>
-    ),
-    breathe: (
-      <svg width={size} height={size} viewBox="0 0 28 28" fill="none">
-        <circle cx="14" cy="14" r="10"
-          stroke={C.seaGlass} strokeWidth="1.5" fill="none" />
-      </svg>
-    ),
-    awaken: (
-      <svg width={size} height={size} viewBox="0 0 28 28" fill="none">
-        <path d="M14 3 L16 11 L24 14 L16 17 L14 25 L12 17 L4 14 L12 11 Z"
-          stroke={C.oceanTeal} strokeWidth="1.5" fill="none" strokeLinejoin="round" />
-      </svg>
-    ),
-    connect: (
-      <svg width={size} height={size} viewBox="0 0 32 28" fill="none">
-        <circle cx="12" cy="14" r="9" stroke={C.skyBlue} strokeWidth="1.5" fill="none" />
-        <circle cx="20" cy="14" r="9" stroke={C.skyBlue} strokeWidth="1.5" fill="none" />
-      </svg>
-    ),
-    stay: (
-      <svg width={size} height={size} viewBox="0 0 28 28" fill="none">
-        <path d="M4 14 L14 5 L24 14" stroke={C.oceanTeal} strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M7 13 L7 23 L21 23 L21 13" stroke={C.oceanTeal} strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    ),
-    windows: (
-      <svg width={size} height={size} viewBox="0 0 28 28" fill="none">
-        <rect x="4" y="4" width="20" height="20" rx="2" stroke={C.oceanTeal} strokeWidth="1.5" fill="none" />
-        <line x1="14" y1="4" x2="14" y2="24" stroke={C.oceanTeal} strokeWidth="1.5" />
-        <line x1="4" y1="14" x2="24" y2="14" stroke={C.oceanTeal} strokeWidth="1.5" />
-      </svg>
-    ),
-    threshold: (
-      <svg width={size} height={size} viewBox="0 0 28 28" fill="none">
-        <path d="M18 6 A10 10 0 1 0 18 22 A7 7 0 1 1 18 6 Z"
-          stroke={C.oceanTeal} strokeWidth="1.5" fill="none" />
-      </svg>
-    ),
-    plan: (
-      <svg width={size} height={size} viewBox="0 0 28 28" fill="none">
-        <circle cx="14" cy="14" r="11" stroke={C.oceanTeal} strokeWidth="1.5" fill="none" />
-        <path d="M11 17 L13 13 L17 11 L15 15 Z" stroke={C.oceanTeal} strokeWidth="1.5" fill="none" strokeLinejoin="round" />
-      </svg>
-    ),
-    group: (
-      <svg width={size} height={size} viewBox="0 0 28 28" fill="none">
-        <circle cx="10" cy="10" r="3.5" stroke={C.oceanTeal} strokeWidth="1.5" fill="none" />
-        <circle cx="18" cy="10" r="3.5" stroke={C.oceanTeal} strokeWidth="1.5" fill="none" />
-        <path d="M4 22 C4 17 7 15 10 15 C11.5 15 12.5 15.5 14 16.5 C15.5 15.5 16.5 15 18 15 C21 15 24 17 24 22" stroke={C.oceanTeal} strokeWidth="1.5" fill="none" strokeLinecap="round" />
-      </svg>
-    ),
-    giveback: (
-      <svg width={size} height={size} viewBox="0 0 28 28" fill="none">
-        <path d="M14 24 C14 24 4 17 4 11 C4 7.7 6.7 5 10 5 C11.8 5 13.3 5.9 14 7.2 C14.7 5.9 16.2 5 18 5 C21.3 5 24 7.7 24 11 C24 17 14 24 14 24 Z"
-          stroke={C.seaGlass} strokeWidth="1.5" fill="none" />
-      </svg>
-    ),
-    discover: (
-      <svg width={size} height={size} viewBox="0 0 28 28" fill="none">
-        <circle cx="14" cy="14" r="11" stroke={C.oceanTeal} strokeWidth="1.5" fill="none" />
-        <path d="M10 14 L14 6 L18 14 L14 22 Z" stroke={C.oceanTeal} strokeWidth="1.5" fill="none" strokeLinejoin="round" />
-      </svg>
-    ),
-  };
-  return (
-    <div style={{ display: "flex", justifyContent: "center", marginBottom: 12 }}>
-      {icons[type]}
-    </div>
-  );
-}
-
-function ListItem({ name, detail, note, tags, featured, url, isMobile, onOpenSheet, location, cuisine, priceRange, reservations, dietary, energy }) {
+function ListItem({ name, detail, note, tags, featured, url, onOpenSheet, location, cuisine, priceRange, reservations, dietary, energy }) {
   const nameEl = onOpenSheet ? (
-    <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 15, fontWeight: 600, color: C.darkInk }}>{name}</span>
+    <span className="font-body text-[15px] font-semibold text-dark-ink">{name}</span>
   ) : url ? (
-    <a href={url} target="_blank" rel="noopener noreferrer" style={{
-      fontFamily: "'Quicksand', sans-serif", fontSize: 15, fontWeight: 600,
-      color: C.darkInk, textDecoration: "none",
-      borderBottom: `1px solid ${C.stone}`, transition: "border-color 0.2s, color 0.2s",
-    }} onMouseEnter={e => { e.target.style.borderColor = C.oceanTeal; e.target.style.color = C.slate || "#3D5A6B"; }}
-       onMouseLeave={e => { e.target.style.borderColor = C.stone; e.target.style.color = C.darkInk; }}>
+    <a href={url} target="_blank" rel="noopener noreferrer"
+      className="font-body text-[15px] font-semibold text-dark-ink no-underline transition-[border-color,color] duration-200"
+      style={{ borderBottom: `1px solid ${C.stone}` }}
+      onMouseEnter={e => { e.target.style.borderColor = C.oceanTeal; e.target.style.color = C.slate || "#3D5A6B"; }}
+      onMouseLeave={e => { e.target.style.borderColor = C.stone; e.target.style.color = C.darkInk; }}>
       {name}
-      <span style={{ fontSize: 12, marginLeft: 4, color: "#7A857E" }}>{"↗"}</span>
+      <span className="text-[12px] ml-1 text-[#7A857E]">{"↗"}</span>
     </a>
   ) : (
-    <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 15, fontWeight: 600, color: C.darkInk }}>{name}</span>
+    <span className="font-body text-[15px] font-semibold text-dark-ink">{name}</span>
   );
 
   return (
     <div
       onClick={onOpenSheet ? () => onOpenSheet({ type: 'list', name, detail, note, tags, featured, url, location, cuisine, priceRange, reservations, dietary, energy }) : undefined}
-      style={{
-        display: "flex", flexDirection: isMobile ? "column" : "row", alignItems: isMobile ? "flex-start" : "center", gap: 14, padding: "16px 0", borderBottom: `1px solid ${C.stone}`,
-        ...(onOpenSheet ? { cursor: 'pointer', transition: 'background 0.15s' } : {}),
-      }}
+      className={`flex flex-col md:flex-row items-start md:items-center gap-3.5 py-4 border-b border-stone ${onOpenSheet ? 'cursor-pointer transition-[background] duration-150' : ''}`}
       onMouseEnter={onOpenSheet ? e => { e.currentTarget.style.background = `${C.stone}30`; } : undefined}
       onMouseLeave={onOpenSheet ? e => { e.currentTarget.style.background = 'transparent'; } : undefined}
     >
-      <div style={{ flex: 1, minWidth: 0 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap", marginBottom: 3 }}>
+      <div className="flex-1 min-w-0">
+        <div className="flex items-center gap-2 flex-wrap mb-[3px]">
           {nameEl}
           {featured && (
-            <span style={{
-              padding: "2px 10px", border: `1px solid ${C.oceanTeal}40`,
-              fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700,
-              letterSpacing: "0.18em", textTransform: "uppercase", color: C.oceanTeal,
-            }}>{"Lila Pick"}</span>
+            <span className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-ocean-teal px-2.5 py-0.5"
+              style={{ border: `1px solid ${C.oceanTeal}40` }}>{"Lila Pick"}</span>
           )}
         </div>
-        <div style={{
-          fontFamily: "'Quicksand', sans-serif",
-          fontSize: isMobile ? 14 : "clamp(14px, 1.5vw, 14px)", fontWeight: 400,
-          color: "#4A5650", lineHeight: 1.65,
-        }}>{detail}</div>
+        <div className="font-body text-[14px] font-normal text-[#4A5650] leading-[1.65]">{detail}</div>
         {note && (
-          <div style={{
-            fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 600,
-            color: C.oceanTeal, marginTop: 4,
-          }}>{note}</div>
+          <div className="font-body text-[12px] font-semibold text-ocean-teal mt-1">{note}</div>
         )}
         {tags && tags.length > 0 && (
-          <div style={{ display: "flex", gap: 5, marginTop: 7, flexWrap: "wrap" }}>
+          <div className="flex gap-[5px] mt-[7px] flex-wrap">
             {tags.map((t, i) => (
-              <span key={i} style={{
-                padding: "2px 8px", background: C.stone + "60",
-                fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600,
-                color: "#7A857E",
-              }}>{t}</span>
+              <span key={i} className="font-body text-[11px] font-semibold text-[#7A857E] px-2 py-0.5"
+                style={{ background: C.stone + "60" }}>{t}</span>
             ))}
           </div>
         )}
@@ -221,7 +90,7 @@ function sortByTierDiversity(items) {
   return [...picks, ...items.filter(a => !seen.has(a.id))];
 }
 
-function StayItem({ name, location, tier, detail, tags, url, featured, isMobile, onOpenSheet, priceRange, amenities, bookingWindow, seasonalNotes, groupFit }) {
+function StayItem({ name, location, tier, detail, tags, url, featured, onOpenSheet, priceRange, amenities, bookingWindow, seasonalNotes, groupFit }) {
   const styles = {
     elemental: { color: C.seaGlass, label: "Elemental", bg: `${C.seaGlass}15` },
     rooted: { color: C.oceanTeal, label: "Rooted", bg: `${C.oceanTeal}12` },
@@ -230,63 +99,44 @@ function StayItem({ name, location, tier, detail, tags, url, featured, isMobile,
   };
   const s = styles[tier] || styles.rooted;
   const nameEl = onOpenSheet ? (
-    <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 15, fontWeight: 600, color: C.darkInk }}>{name}</span>
+    <span className="font-body text-[15px] font-semibold text-dark-ink">{name}</span>
   ) : url ? (
-    <a href={url} target="_blank" rel="noopener noreferrer" style={{
-      fontFamily: "'Quicksand', sans-serif", fontSize: 15, fontWeight: 600,
-      color: C.darkInk, textDecoration: "none",
-      borderBottom: `1px solid ${C.stone}`, transition: "border-color 0.2s",
-    }} onMouseEnter={e => e.target.style.borderColor = C.oceanTeal}
-       onMouseLeave={e => e.target.style.borderColor = C.stone}>
+    <a href={url} target="_blank" rel="noopener noreferrer"
+      className="font-body text-[15px] font-semibold text-dark-ink no-underline transition-[border-color] duration-200"
+      style={{ borderBottom: `1px solid ${C.stone}` }}
+      onMouseEnter={e => e.target.style.borderColor = C.oceanTeal}
+      onMouseLeave={e => e.target.style.borderColor = C.stone}>
       {name}
-      <span style={{ fontSize: 12, marginLeft: 4, color: "#7A857E" }}>{"↗"}</span>
+      <span className="text-[12px] ml-1 text-[#7A857E]">{"↗"}</span>
     </a>
   ) : (
-    <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 15, fontWeight: 600, color: C.darkInk }}>{name}</span>
+    <span className="font-body text-[15px] font-semibold text-dark-ink">{name}</span>
   );
 
   return (
     <div
       onClick={onOpenSheet ? () => onOpenSheet({ type: 'stay', name, location, tier, detail, tags, featured, url, priceRange, amenities, bookingWindow, seasonalNotes, groupFit }) : undefined}
-      style={{
-        display: "flex", flexDirection: isMobile ? "column" : "row", alignItems: isMobile ? "stretch" : "center", gap: 14, padding: "18px 0", borderBottom: `1px solid ${C.stone}`,
-        ...(onOpenSheet ? { cursor: 'pointer', transition: 'background 0.15s' } : {}),
-      }}
+      className={`flex flex-col md:flex-row items-stretch md:items-center gap-3.5 py-[18px] border-b border-stone ${onOpenSheet ? 'cursor-pointer transition-[background] duration-150' : ''}`}
       onMouseEnter={onOpenSheet ? e => { e.currentTarget.style.background = `${C.stone}30`; } : undefined}
       onMouseLeave={onOpenSheet ? e => { e.currentTarget.style.background = 'transparent'; } : undefined}
     >
-      <div style={{ flex: 1, minWidth: 0 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 3, flexWrap: "wrap" }}>
-          <span style={{
-            padding: "2px 10px", background: s.bg,
-            fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700,
-            letterSpacing: "0.18em", textTransform: "uppercase", color: s.color,
-          }}>{s.label}</span>
-          <span style={{
-            fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 500, color: "#7A857E",
-          }}>{location}</span>
+      <div className="flex-1 min-w-0">
+        <div className="flex items-center gap-2 mb-[3px] flex-wrap">
+          <span className="font-body text-[10px] font-bold tracking-[0.18em] uppercase px-2.5 py-0.5"
+            style={{ background: s.bg, color: s.color }}>{s.label}</span>
+          <span className="font-body text-[12px] font-medium text-[#7A857E]">{location}</span>
           {featured && (
-            <span style={{
-              padding: "2px 10px", border: `1px solid ${C.oceanTeal}40`,
-              fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700,
-              letterSpacing: "0.18em", textTransform: "uppercase", color: C.oceanTeal,
-            }}>{"Lila Pick"}</span>
+            <span className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-ocean-teal px-2.5 py-0.5"
+              style={{ border: `1px solid ${C.oceanTeal}40` }}>{"Lila Pick"}</span>
           )}
         </div>
-        <div style={{ marginBottom: 3 }}>{nameEl}</div>
-        <div style={{
-          fontFamily: "'Quicksand', sans-serif",
-          fontSize: isMobile ? 14 : "clamp(14px, 1.5vw, 14px)", fontWeight: 400,
-          color: "#4A5650", lineHeight: 1.65,
-        }}>{detail}</div>
+        <div className="mb-[3px]">{nameEl}</div>
+        <div className="font-body text-[14px] font-normal text-[#4A5650] leading-[1.65]">{detail}</div>
         {tags && (
-          <div style={{ display: "flex", gap: 5, marginTop: 7, flexWrap: "wrap" }}>
+          <div className="flex gap-[5px] mt-[7px] flex-wrap">
             {tags.map((t, i) => (
-              <span key={i} style={{
-                padding: "2px 8px", background: C.stone + "60",
-                fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600,
-                color: "#7A857E",
-              }}>{t}</span>
+              <span key={i} className="font-body text-[11px] font-semibold text-[#7A857E] px-2 py-0.5"
+                style={{ background: C.stone + "60" }}>{t}</span>
             ))}
           </div>
         )}
@@ -307,27 +157,11 @@ function ExpandableList({ children, initialCount = 5, label = "more" }) {
       {hasMore && (
         <button
           onClick={() => setExpanded(!expanded)}
-          style={{
-            display: "inline-flex", alignItems: "center", gap: 8,
-            margin: "20px 0 0", padding: "8px 0", paddingBottom: 4,
-            background: "none", border: "none",
-            borderBottom: `1px solid ${C.darkInk}`,
-            cursor: "pointer",
-            fontFamily: "'Quicksand', sans-serif",
-            fontSize: 12, fontWeight: 700,
-            letterSpacing: "0.2em", textTransform: "uppercase",
-            color: C.darkInk, transition: "opacity 0.2s",
-          }}
-          onMouseEnter={e => e.currentTarget.style.opacity = "0.55"}
-          onMouseLeave={e => e.currentTarget.style.opacity = "1"}
+          className="inline-flex items-center gap-2 mt-5 pt-2 pb-1 bg-transparent border-none border-b border-dark-ink cursor-pointer font-body text-[12px] font-bold tracking-[0.2em] uppercase text-dark-ink transition-opacity duration-200 hover:opacity-55"
         >
           {expanded ? "Show less" : `Show ${items.length - initialCount} more ${label}`}
-          <span style={{
-            display: "inline-block",
-            transition: "transform 0.25s ease",
-            transform: expanded ? "rotate(180deg)" : "rotate(0deg)",
-            fontSize: 11,
-          }}>{"▼"}</span>
+          <span className="inline-block transition-transform duration-[250ms] ease-in-out text-[11px]"
+            style={{ transform: expanded ? "rotate(180deg)" : "rotate(0deg)" }}>{"▼"}</span>
         </button>
       )}
     </div>
@@ -363,103 +197,78 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
   };
 
   const content = (
-    <div style={{ maxWidth: 500, margin: '0 auto', padding: '26px 20px 60px' }}>
+    <div className="max-w-[500px] mx-auto px-5 pt-[26px] pb-[60px]">
       {item.type === 'stay' && item.tier && tierStyles[item.tier] && (
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10, flexWrap: 'wrap' }}>
-          <span style={{
-            padding: '2px 10px', background: tierStyles[item.tier].bg,
-            fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700,
-            letterSpacing: '0.18em', textTransform: 'uppercase', color: tierStyles[item.tier].color,
-          }}>{tierStyles[item.tier].label}</span>
+        <div className="flex items-center gap-2 mb-2.5 flex-wrap">
+          <span className="font-body text-[10px] font-bold tracking-[0.18em] uppercase px-2.5 py-0.5"
+            style={{ background: tierStyles[item.tier].bg, color: tierStyles[item.tier].color }}>{tierStyles[item.tier].label}</span>
           {item.location && (
-            <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 500, color: '#7A857E' }}>{item.location}</span>
+            <span className="font-body text-[12px] font-medium text-[#7A857E]">{item.location}</span>
           )}
         </div>
       )}
       {item.type === 'list' && item.section && (
-        <span style={{
-          display: 'inline-block', padding: '2px 10px', background: `${C.oceanTeal}15`,
-          fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700,
-          letterSpacing: '0.18em', textTransform: 'uppercase', color: C.oceanTeal, marginBottom: 10,
-        }}>{item.section}</span>
+        <span className="inline-block font-body text-[10px] font-bold tracking-[0.18em] uppercase text-ocean-teal mb-2.5 px-2.5 py-0.5"
+          style={{ background: `${C.oceanTeal}15` }}>{item.section}</span>
       )}
 
-      <h3 style={{
-        fontFamily: "'Cormorant Garamond', serif",
-        fontSize: 'clamp(22px, 4vw, 28px)', fontWeight: 400,
-        color: C.darkInk, margin: '0 0 10px', lineHeight: 1.2,
-      }}>{item.name}</h3>
+      <h3 className="font-serif text-[clamp(22px,4vw,28px)] font-normal text-dark-ink mb-2.5 leading-[1.2] mt-0">{item.name}</h3>
 
       {item.featured && (
-        <span style={{
-          display: 'inline-block', padding: '2px 10px', border: `1px solid ${C.oceanTeal}40`,
-          fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700,
-          letterSpacing: '0.18em', textTransform: 'uppercase', color: C.oceanTeal, marginBottom: 14,
-        }}>Lila Pick</span>
+        <span className="inline-block font-body text-[10px] font-bold tracking-[0.18em] uppercase text-ocean-teal mb-3.5 px-2.5 py-0.5"
+          style={{ border: `1px solid ${C.oceanTeal}40` }}>Lila Pick</span>
       )}
 
       {item.detail && (
-        <p style={{
-          fontFamily: "'Quicksand', sans-serif", fontSize: 14, fontWeight: 400,
-          color: '#4A5650', lineHeight: 1.7, margin: '0 0 14px',
-        }}>{item.detail}</p>
+        <p className="font-body text-[14px] font-normal text-[#4A5650] leading-[1.7] mt-0 mb-3.5">{item.detail}</p>
       )}
 
       {item.note && (
-        <div style={{
-          fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 600,
-          color: C.oceanTeal, marginBottom: 14,
-        }}>{item.note}</div>
+        <div className="font-body text-[13px] font-semibold text-ocean-teal mb-3.5">{item.note}</div>
       )}
 
       {/* Restaurant info grid */}
       {item.type === 'list' && (item.cuisine || item.priceRange || item.reservations || item.energy) && (
-        <div style={{
-          display: 'grid', gridTemplateColumns: '1fr 1fr',
-          gap: '10px 16px', marginBottom: 18,
-          padding: '14px 0',
-          borderTop: `1px solid ${C.stone}`,
-          borderBottom: `1px solid ${C.stone}`,
-        }}>
+        <div className="grid grid-cols-2 gap-x-4 gap-y-2.5 mb-[18px] py-3.5 border-y border-stone">
           {item.cuisine && (
             <div>
-              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#7A857E', marginBottom: 3 }}>Cuisine</div>
-              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 500, color: C.darkInk, lineHeight: 1.5 }}>{item.cuisine}</div>
+              <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-[3px]">Cuisine</div>
+              <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.cuisine}</div>
             </div>
           )}
           {item.priceRange && (
             <div>
-              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#7A857E', marginBottom: 3 }}>Price</div>
-              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 500, color: C.darkInk, lineHeight: 1.5 }}>{item.priceRange}</div>
+              <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-[3px]">Price</div>
+              <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.priceRange}</div>
             </div>
           )}
           {item.energy && (
             <div>
-              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#7A857E', marginBottom: 3 }}>Vibe</div>
-              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 500, color: C.darkInk, lineHeight: 1.5 }}>{item.energy}</div>
+              <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-[3px]">Vibe</div>
+              <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.energy}</div>
             </div>
           )}
           {item.reservations && (
             <div>
-              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#7A857E', marginBottom: 3 }}>Reservations</div>
-              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 500, color: C.darkInk, lineHeight: 1.5 }}>{item.reservations}</div>
+              <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-[3px]">Reservations</div>
+              <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.reservations}</div>
             </div>
           )}
           {item.location && (
-            <div style={{ gridColumn: '1 / -1' }}>
-              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#7A857E', marginBottom: 3 }}>Location</div>
-              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 500, color: C.darkInk, lineHeight: 1.5 }}>{item.location}</div>
+            <div className="col-span-full">
+              <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-[3px]">Location</div>
+              <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.location}</div>
             </div>
           )}
           {item.dietary && (item.dietary.vegetarian || item.dietary.vegan || item.dietary.glutenFree) && (
-            <div style={{ gridColumn: '1 / -1' }}>
-              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#7A857E', marginBottom: 3 }}>Dietary</div>
-              <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
-                {item.dietary.vegetarian && <span style={{ padding: '2px 8px', background: `${C.seaGlass}15`, fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600, color: C.seaGlass }}>vegetarian</span>}
-                {item.dietary.vegan && <span style={{ padding: '2px 8px', background: `${C.seaGlass}15`, fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600, color: C.seaGlass }}>vegan</span>}
-                {item.dietary.glutenFree && <span style={{ padding: '2px 8px', background: `${C.seaGlass}15`, fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600, color: C.seaGlass }}>gluten-free</span>}
+            <div className="col-span-full">
+              <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-[3px]">Dietary</div>
+              <div className="flex gap-1.5 flex-wrap">
+                {item.dietary.vegetarian && <span className="font-body text-[11px] font-semibold text-sea-glass px-2 py-0.5" style={{ background: `${C.seaGlass}15` }}>vegetarian</span>}
+                {item.dietary.vegan && <span className="font-body text-[11px] font-semibold text-sea-glass px-2 py-0.5" style={{ background: `${C.seaGlass}15` }}>vegan</span>}
+                {item.dietary.glutenFree && <span className="font-body text-[11px] font-semibold text-sea-glass px-2 py-0.5" style={{ background: `${C.seaGlass}15` }}>gluten-free</span>}
               </div>
-              {item.dietary.notes && <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 400, color: '#7A857E', marginTop: 4, lineHeight: 1.5 }}>{item.dietary.notes}</div>}
+              {item.dietary.notes && <div className="font-body text-[12px] font-normal text-[#7A857E] mt-1 leading-[1.5]">{item.dietary.notes}</div>}
             </div>
           )}
         </div>
@@ -467,35 +276,29 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
 
       {/* Accommodation info grid */}
       {item.type === 'stay' && (item.priceRange || item.bookingWindow || item.seasonalNotes || item.groupFit) && (
-        <div style={{
-          display: 'grid', gridTemplateColumns: '1fr 1fr',
-          gap: '10px 16px', marginBottom: 18,
-          padding: '14px 0',
-          borderTop: `1px solid ${C.stone}`,
-          borderBottom: `1px solid ${C.stone}`,
-        }}>
+        <div className="grid grid-cols-2 gap-x-4 gap-y-2.5 mb-[18px] py-3.5 border-y border-stone">
           {item.priceRange && (
             <div>
-              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#7A857E', marginBottom: 3 }}>Price Range</div>
-              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 500, color: C.darkInk, lineHeight: 1.5 }}>{item.priceRange}</div>
+              <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-[3px]">Price Range</div>
+              <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.priceRange}</div>
             </div>
           )}
           {item.groupFit && (
             <div>
-              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#7A857E', marginBottom: 3 }}>Good For</div>
-              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 500, color: C.darkInk, lineHeight: 1.5 }}>{item.groupFit.join(', ')}</div>
+              <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-[3px]">Good For</div>
+              <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.groupFit.join(', ')}</div>
             </div>
           )}
           {item.bookingWindow && (
-            <div style={{ gridColumn: '1 / -1' }}>
-              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#7A857E', marginBottom: 3 }}>Booking</div>
-              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 500, color: C.darkInk, lineHeight: 1.5 }}>{item.bookingWindow}</div>
+            <div className="col-span-full">
+              <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-[3px]">Booking</div>
+              <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.bookingWindow}</div>
             </div>
           )}
           {item.seasonalNotes && (
-            <div style={{ gridColumn: '1 / -1' }}>
-              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#7A857E', marginBottom: 3 }}>Season</div>
-              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 500, color: C.darkInk, lineHeight: 1.5 }}>{item.seasonalNotes}</div>
+            <div className="col-span-full">
+              <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-[3px]">Season</div>
+              <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.seasonalNotes}</div>
             </div>
           )}
         </div>
@@ -503,38 +306,32 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
 
       {/* Amenities */}
       {item.type === 'stay' && item.amenities && item.amenities.length > 0 && (
-        <div style={{ marginBottom: 18 }}>
-          <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#7A857E', marginBottom: 8 }}>Amenities</div>
-          <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+        <div className="mb-[18px]">
+          <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-2">Amenities</div>
+          <div className="flex gap-1.5 flex-wrap">
             {item.amenities.map((a, i) => (
-              <span key={i} style={{ padding: '3px 10px', background: `${C.oceanTeal}10`, fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 600, color: C.oceanTeal }}>{a}</span>
+              <span key={i} className="font-body text-[12px] font-semibold text-ocean-teal py-[3px] px-2.5" style={{ background: `${C.oceanTeal}10` }}>{a}</span>
             ))}
           </div>
         </div>
       )}
 
       {item.tags && item.tags.length > 0 && (
-        <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 20 }}>
+        <div className="flex gap-1.5 flex-wrap mb-5">
           {item.tags.map((t, i) => (
-            <span key={i} style={{
-              padding: '3px 10px', background: C.stone + '60',
-              fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 600, color: '#7A857E',
-            }}>{t}</span>
+            <span key={i} className="font-body text-[12px] font-semibold text-[#7A857E] py-[3px] px-2.5"
+              style={{ background: C.stone + '60' }}>{t}</span>
           ))}
         </div>
       )}
 
       {item.url && (
-        <a href={item.url} target="_blank" rel="noopener noreferrer" style={{
-          display: 'inline-flex', alignItems: 'center', gap: 6,
-          padding: '10px 20px', border: `1.5px solid ${C.oceanTeal}`,
-          fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 700,
-          letterSpacing: '0.16em', textTransform: 'uppercase',
-          color: C.oceanTeal, textDecoration: 'none', transition: 'all 0.25s',
-        }}
-        onMouseEnter={e => { e.currentTarget.style.background = C.oceanTeal; e.currentTarget.style.color = '#fff'; }}
-        onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = C.oceanTeal; }}
-        >Visit Website <span style={{ fontSize: 13 }}>↗</span></a>
+        <a href={item.url} target="_blank" rel="noopener noreferrer"
+          className="inline-flex items-center gap-1.5 py-2.5 px-5 font-body text-[12px] font-bold tracking-[0.16em] uppercase text-ocean-teal no-underline transition-all duration-[250ms]"
+          style={{ border: `1.5px solid ${C.oceanTeal}` }}
+          onMouseEnter={e => { e.currentTarget.style.background = C.oceanTeal; e.currentTarget.style.color = '#fff'; }}
+          onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = C.oceanTeal; }}
+        >Visit Website <span className="text-[13px]">↗</span></a>
       )}
     </div>
   );
@@ -546,10 +343,10 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
           @keyframes guideSheetSlideIn { from { transform: translateX(100%); } to { transform: translateX(0); } }
           @keyframes guideSheetBackdropIn { from { opacity: 0; } to { opacity: 1; } }
         `}</style>
-        <div onClick={onClose} style={{ position: 'fixed', inset: 0, zIndex: 249, background: 'rgba(0,0,0,0.3)', animation: 'guideSheetBackdropIn 0.25s ease' }} />
-        <div style={{ position: 'fixed', top: 0, right: 0, bottom: 0, width: 440, zIndex: 250, background: C.cream, overflowY: 'auto', animation: 'guideSheetSlideIn 0.3s ease', boxShadow: '-4px 0 24px rgba(0,0,0,0.08)' }}>
-          <div style={{ position: 'sticky', top: 0, zIndex: 10, display: 'flex', justifyContent: 'flex-end', padding: '12px 14px 0 0' }}>
-            <button onClick={onClose} style={{ width: 32, height: 32, display: 'flex', alignItems: 'center', justifyContent: 'center', background: `${C.warmWhite}e0`, border: `1px solid ${C.stone}15`, borderRadius: '50%', cursor: 'pointer', fontFamily: "'Quicksand', sans-serif", fontSize: 15, color: '#7A857E', lineHeight: 1, WebkitTapHighlightColor: 'transparent', boxShadow: `0 2px 8px ${C.darkInk}08` }} aria-label="Close">✕</button>
+        <div onClick={onClose} className="fixed inset-0 z-[249]" style={{ background: 'rgba(0,0,0,0.3)', animation: 'guideSheetBackdropIn 0.25s ease' }} />
+        <div className="fixed top-0 right-0 bottom-0 w-[440px] z-[250] bg-cream overflow-y-auto" style={{ animation: 'guideSheetSlideIn 0.3s ease', boxShadow: '-4px 0 24px rgba(0,0,0,0.08)' }}>
+          <div className="sticky top-0 z-10 flex justify-end pr-3.5 pt-3">
+            <button onClick={onClose} className="w-8 h-8 flex items-center justify-center rounded-full cursor-pointer font-body text-[15px] text-[#7A857E] leading-none" style={{ background: `${C.warmWhite}e0`, border: `1px solid ${C.stone}15`, WebkitTapHighlightColor: 'transparent', boxShadow: `0 2px 8px ${C.darkInk}08` }} aria-label="Close">✕</button>
           </div>
           {content}
         </div>
@@ -563,13 +360,13 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
         @keyframes guideSheetSlideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
         @keyframes guideSheetBackdropIn { from { opacity: 0; } to { opacity: 1; } }
       `}</style>
-      <div onClick={onClose} style={{ position: 'fixed', inset: 0, zIndex: 249, background: 'rgba(0,0,0,0.3)', animation: 'guideSheetBackdropIn 0.25s ease' }} />
-      <div ref={sheetRef} style={{ position: 'fixed', bottom: 0, left: 0, right: 0, height: '82vh', zIndex: 250, background: C.cream, borderRadius: '16px 16px 0 0', animation: 'guideSheetSlideUp 0.3s ease', boxShadow: '0 -4px 24px rgba(0,0,0,0.1)', display: 'flex', flexDirection: 'column' }}>
-        <div onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd} style={{ padding: '10px 14px 6px', flexShrink: 0, position: 'relative', zIndex: 10 }}>
-          <div style={{ width: 36, height: 4, borderRadius: 2, background: `#7A857E30`, margin: '0 auto 8px' }} />
-          <button onClick={(e) => { e.stopPropagation(); onClose(); }} style={{ position: 'absolute', top: 8, right: 14, width: 36, height: 36, display: 'flex', alignItems: 'center', justifyContent: 'center', background: `${C.warmWhite}e0`, border: `1px solid #7A857E15`, borderRadius: '50%', cursor: 'pointer', fontFamily: "'Quicksand', sans-serif", fontSize: 15, color: '#7A857E', lineHeight: 1, WebkitTapHighlightColor: 'transparent', boxShadow: `0 2px 8px ${C.darkInk}08` }} aria-label="Close">✕</button>
+      <div onClick={onClose} className="fixed inset-0 z-[249]" style={{ background: 'rgba(0,0,0,0.3)', animation: 'guideSheetBackdropIn 0.25s ease' }} />
+      <div ref={sheetRef} className="fixed bottom-0 left-0 right-0 h-[82vh] z-[250] bg-cream rounded-t-2xl flex flex-col" style={{ animation: 'guideSheetSlideUp 0.3s ease', boxShadow: '0 -4px 24px rgba(0,0,0,0.1)' }}>
+        <div onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd} className="px-3.5 pt-2.5 pb-1.5 shrink-0 relative z-10">
+          <div className="w-9 h-1 rounded-sm mx-auto mb-2" style={{ background: '#7A857E30' }} />
+          <button onClick={(e) => { e.stopPropagation(); onClose(); }} className="absolute top-2 right-3.5 w-9 h-9 flex items-center justify-center rounded-full cursor-pointer font-body text-[15px] text-[#7A857E] leading-none" style={{ background: `${C.warmWhite}e0`, border: `1px solid #7A857E15`, WebkitTapHighlightColor: 'transparent', boxShadow: `0 2px 8px ${C.darkInk}08` }} aria-label="Close">✕</button>
         </div>
-        <div style={{ overflowY: 'auto', flex: 1, WebkitOverflowScrolling: 'touch' }}>
+        <div className="overflow-y-auto flex-1" style={{ WebkitOverflowScrolling: 'touch' }}>
           {content}
         </div>
       </div>
@@ -635,7 +432,7 @@ const PARKS = [
   },
 ];
 
-function ParkCard({ park, isExpanded, onToggle, isMobile }) {
+function ParkCard({ park, isExpanded, onToggle }) {
   const DESIGNATION_LABELS = {
     "us-national-park": "National Park",
     "canadian-national-park": "National Park Reserve",
@@ -646,88 +443,62 @@ function ParkCard({ park, isExpanded, onToggle, isMobile }) {
   };
   const chips = [park.acreage, park.elevation, park.attribute].filter(Boolean);
   return (
-    <div style={{
-      borderLeft: `4px solid ${park.accent}`,
-      border: `1px solid ${isExpanded ? park.accent + "40" : C.stone}`,
-      borderLeftWidth: 4, borderLeftColor: park.accent,
-      background: isExpanded ? `${park.accent}06` : C.cream,
-      transition: "border-color 0.2s, background 0.2s",
-      marginBottom: 6,
-    }}>
+    <div className="mb-1.5 transition-[border-color,background] duration-200"
+      style={{
+        borderLeft: `4px solid ${park.accent}`,
+        border: `1px solid ${isExpanded ? park.accent + "40" : C.stone}`,
+        borderLeftWidth: 4, borderLeftColor: park.accent,
+        background: isExpanded ? `${park.accent}06` : C.cream,
+      }}>
       <button
         onClick={onToggle}
-        style={{
-          width: "100%", padding: isMobile ? "14px 14px" : "16px 20px",
-          background: "none", border: "none", cursor: "pointer",
-          display: "flex", alignItems: "center", gap: 12,
-          textAlign: "left",
-        }}
+        className="w-full p-3.5 md:px-5 md:py-4 bg-transparent border-none cursor-pointer flex items-center gap-3 text-left"
       >
-        <div style={{ flex: 1, minWidth: 0 }}>
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 4 }}>
-            <div style={{
-              fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700,
-              letterSpacing: "0.22em", textTransform: "uppercase", color: park.accent,
-            }}>
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center justify-between mb-1">
+            <div className="font-body text-[10px] font-bold tracking-[0.22em] uppercase"
+              style={{ color: park.accent }}>
               {DESIGNATION_LABELS[park.designation] || park.designation}{park.established ? ` · Est. ${park.established}` : ""}
             </div>
             {!park.isAnchor && park.driveFrom && (
-              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 600, letterSpacing: "0.08em", color: "#7A857E" }}>
+              <div className="font-body text-[10px] font-semibold tracking-[0.08em] text-[#7A857E]">
                 {park.driveFrom}
               </div>
             )}
           </div>
-          <div style={{
-            fontFamily: "'Cormorant Garamond', serif",
-            fontSize: "clamp(18px, 2.5vw, 22px)", fontWeight: 400,
-            color: C.darkInk, lineHeight: 1.15, marginBottom: chips.length ? 8 : 0,
-          }}>{park.name}</div>
+          <div className="font-serif text-[clamp(18px,2.5vw,22px)] font-normal text-dark-ink leading-[1.15]"
+            style={{ marginBottom: chips.length ? 8 : 0 }}>{park.name}</div>
           {chips.length > 0 && (
-            <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
+            <div className="flex gap-1.5 flex-wrap">
               {chips.map((chip, i) => (
-                <span key={i} style={{
-                  padding: "2px 10px", background: `${park.accent}10`,
-                  fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600,
-                  color: "#4A5650", whiteSpace: "nowrap",
-                }}>{chip}</span>
+                <span key={i} className="font-body text-[11px] font-semibold text-[#4A5650] whitespace-nowrap px-2.5 py-0.5"
+                  style={{ background: `${park.accent}10` }}>{chip}</span>
               ))}
             </div>
           )}
         </div>
-        <div style={{ display: "flex", alignItems: "center", gap: 8, flexShrink: 0 }}>
+        <div className="flex items-center gap-2 shrink-0">
           <DesignationIcon designation={park.designation} size={16} color={park.accent} />
-          <span style={{
-            display: "inline-block", fontSize: 14, color: "#7A857E", lineHeight: 1,
-            transform: isExpanded ? "rotate(180deg)" : "rotate(0deg)",
-            transition: "transform 0.3s ease",
-          }}>▾</span>
+          <span className="inline-block text-[14px] text-[#7A857E] leading-none transition-transform duration-300 ease-in-out"
+            style={{ transform: isExpanded ? "rotate(180deg)" : "rotate(0deg)" }}>▾</span>
         </div>
       </button>
-      <div style={{
-        maxHeight: isExpanded ? 400 : 0, overflow: "hidden",
-        transition: "max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
-      }}>
-        <div style={{ padding: isMobile ? "0 14px 16px" : "0 20px 18px" }}>
-          <div style={{
-            fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 400,
-            color: "#4A5650", lineHeight: 1.7, fontStyle: "italic",
-            marginBottom: 12, paddingTop: 2,
-          }}>
+      <div className="overflow-hidden transition-[max-height] duration-400 ease-[cubic-bezier(0.4,0,0.2,1)]"
+        style={{ maxHeight: isExpanded ? 400 : 0 }}>
+        <div className="px-3.5 pb-4 md:px-5 md:pb-[18px]">
+          <div className="font-body text-[13px] font-normal text-[#4A5650] leading-[1.7] italic mb-3 pt-0.5">
             {"◈ "}{park.soul}
           </div>
           {park.facts.map((fact, i) => (
-            <div key={i} style={{ display: "flex", gap: 8, marginBottom: 5, alignItems: "flex-start" }}>
-              <div style={{ width: 4, height: 4, borderRadius: "50%", background: park.accent, opacity: 0.6, marginTop: 7, flexShrink: 0 }} />
-              <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 400, color: "#4A5650", lineHeight: 1.65 }}>{fact}</span>
+            <div key={i} className="flex gap-2 mb-[5px] items-start">
+              <div className="w-1 h-1 rounded-full opacity-60 mt-[7px] shrink-0" style={{ background: park.accent }} />
+              <span className="font-body text-[12px] font-normal text-[#4A5650] leading-[1.65]">{fact}</span>
             </div>
           ))}
           {park.infoUrl && (
-            <a href={park.infoUrl} target="_blank" rel="noopener noreferrer" style={{
-              display: "inline-block", marginTop: 10,
-              fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700,
-              letterSpacing: "0.18em", textTransform: "uppercase",
-              color: park.accent, textDecoration: "none",
-            }}>
+            <a href={park.infoUrl} target="_blank" rel="noopener noreferrer"
+              className="inline-block mt-2.5 font-body text-[10px] font-bold tracking-[0.18em] uppercase no-underline"
+              style={{ color: park.accent }}>
               {park.designation === "canadian-national-park" ? "Parks Canada" : park.designation === "us-national-park" ? "NPS Page" : "Park Info"} ↗
             </a>
           )}
@@ -782,52 +553,20 @@ function GuideNav({ isMobile }) {
 
   if (isMobile) {
     return (
-      <div style={{
-        margin: "0 20px 24px",
-        border: `1px solid ${C.stone}`,
-        padding: "16px 18px",
-        background: C.cream,
-      }}>
-        <div style={{
-          display: "flex", alignItems: "center", justifyContent: "space-between",
-          marginBottom: 14,
-        }}>
-          <span style={{
-            fontFamily: "'Quicksand', sans-serif",
-            fontSize: 10, fontWeight: 700,
-            letterSpacing: "0.22em", textTransform: "uppercase",
-            color: "#7A857E",
-          }}>In this guide</span>
-          <span style={{
-            fontFamily: "'Quicksand', sans-serif",
-            fontSize: 10, fontWeight: 500,
-            color: "#b8b0a8", letterSpacing: "0.06em",
-          }}>{GUIDE_SECTIONS.length} sections</span>
+      <div className="mx-5 mb-6 border border-stone p-4 px-[18px] bg-cream">
+        <div className="flex items-center justify-between mb-3.5">
+          <span className="font-body text-[10px] font-bold tracking-[0.22em] uppercase text-[#7A857E]">In this guide</span>
+          <span className="font-body text-[10px] font-medium text-[#b8b0a8] tracking-[0.06em]">{GUIDE_SECTIONS.length} sections</span>
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2px 16px" }}>
+        <div className="grid grid-cols-2 gap-x-4 gap-y-0.5">
           {GUIDE_SECTIONS.map((section, i) => (
             <button
               key={section.id}
               onClick={() => handleClick(section.id)}
-              style={{
-                display: "flex", alignItems: "center", gap: 8,
-                padding: "7px 0",
-                background: "none", border: "none", cursor: "pointer",
-                textAlign: "left",
-              }}
+              className="flex items-center gap-2 py-[7px] bg-transparent border-none cursor-pointer text-left"
             >
-              <span style={{
-                fontFamily: "'Quicksand', sans-serif",
-                fontSize: 9, fontWeight: 700,
-                letterSpacing: "0.1em", color: "#b8b0a8",
-                minWidth: 16,
-              }}>{String(i + 1).padStart(2, "0")}</span>
-              <span style={{
-                fontFamily: "'Quicksand', sans-serif",
-                fontSize: 11, fontWeight: 600,
-                letterSpacing: "0.08em", textTransform: "uppercase",
-                color: "#4A5650",
-              }}>{section.label}</span>
+              <span className="font-body text-[9px] font-bold tracking-[0.1em] text-[#b8b0a8] min-w-4">{String(i + 1).padStart(2, "0")}</span>
+              <span className="font-body text-[11px] font-semibold tracking-[0.08em] uppercase text-[#4A5650]">{section.label}</span>
             </button>
           ))}
         </div>
@@ -836,29 +575,23 @@ function GuideNav({ isMobile }) {
   }
 
   return (
-    <nav style={{
-      position: "sticky", top: 72, zIndex: 90,
-      background: "rgba(250, 247, 243, 0.97)",
-      borderTop: `1px solid ${C.stone}`,
-      borderBottom: `1px solid ${C.stone}`,
-    }}>
-      <div style={{ maxWidth: 1120, margin: "0 auto", padding: "4px 40px 0", display: "flex", alignItems: "center" }}>
-        <div style={{ flex: 1, minWidth: 0, position: "relative" }}>
-          <div ref={scrollContainerRef} className="guide-nav-scroll" style={{ display: "flex", alignItems: "center", gap: 0, overflowX: "auto", scrollbarWidth: "none", msOverflowStyle: "none" }}>
+    <nav className="sticky top-[72px] z-90 border-y border-stone" style={{ background: "rgba(250, 247, 243, 0.97)" }}>
+      <div className="max-w-[1120px] mx-auto pt-1 px-10 flex items-center">
+        <div className="flex-1 min-w-0 relative">
+          <div ref={scrollContainerRef} className="guide-nav-scroll flex items-center overflow-x-auto" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
           <style>{`.guide-nav-scroll::-webkit-scrollbar { display: none; }`}</style>
           {GUIDE_SECTIONS.map((section) => {
             const isActive = activeId === section.id;
             return (
-              <button key={section.id} onClick={() => handleClick(section.id)} className="guide-nav-scroll" style={{
-                padding: "0 14px", height: 44, background: "none", border: "none",
-                borderBottom: `2px solid ${isActive ? C.oceanTeal : "transparent"}`,
-                cursor: "pointer", fontFamily: "'Quicksand', sans-serif", fontSize: 11,
-                fontWeight: isActive ? 700 : 600, letterSpacing: "0.14em", textTransform: "uppercase",
-                color: isActive ? C.oceanTeal : "#7A857E", whiteSpace: "nowrap", flexShrink: 0,
-                transition: "color 0.25s ease, border-color 0.25s ease", position: "relative",
-              }}
-              onMouseEnter={e => { if (!isActive) { e.currentTarget.style.color = C.darkInk; e.currentTarget.style.borderBottomColor = C.stone; } }}
-              onMouseLeave={e => { if (!isActive) { e.currentTarget.style.color = "#7A857E"; e.currentTarget.style.borderBottomColor = "transparent"; } }}
+              <button key={section.id} onClick={() => handleClick(section.id)}
+                className="guide-nav-scroll px-3.5 h-11 bg-transparent border-none cursor-pointer font-body text-[11px] tracking-[0.14em] uppercase whitespace-nowrap shrink-0 transition-[color,border-color] duration-[250ms] ease-in-out relative"
+                style={{
+                  borderBottom: `2px solid ${isActive ? C.oceanTeal : "transparent"}`,
+                  fontWeight: isActive ? 700 : 600,
+                  color: isActive ? C.oceanTeal : "#7A857E",
+                }}
+                onMouseEnter={e => { if (!isActive) { e.currentTarget.style.color = C.darkInk; e.currentTarget.style.borderBottomColor = C.stone; } }}
+                onMouseLeave={e => { if (!isActive) { e.currentTarget.style.color = "#7A857E"; e.currentTarget.style.borderBottomColor = "transparent"; } }}
               >
                 {section.label}
               </button>
@@ -923,61 +656,43 @@ export default function KauaiGuide() {
 
           {/* ══ TITLE MASTHEAD ═══════════════════════════════════════════════════ */}
           <section style={{ background: breathConfig ? 'transparent' : C.cream }}>
-        <div style={{ padding: isMobile ? "28px 20px 24px" : "44px 52px 40px", maxWidth: 920, margin: "0 auto" }}>
+        <div className="py-7 px-5 md:py-11 md:px-[52px] md:pb-10 max-w-[920px] mx-auto">
           <FadeIn from="bottom" delay={0.1}>
 
-            <div style={{
-              display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 320px", gap: isMobile ? 28 : 52, alignItems: "start",
-              marginTop: 0,
-            }}>
+            <div className="grid grid-cols-1 md:grid-cols-[1fr_320px] gap-7 md:gap-[52px] items-start">
 
               {/* ── Left: Title + description ── */}
               <div>
-                <span className="eyebrow" style={{ color: C.oceanTeal, marginBottom: 14, display: "block" }}>Destination Guide</span>
+                <span className="eyebrow text-ocean-teal mb-3.5 block">Destination Guide</span>
 
-                <h1 style={{
-                  fontFamily: "'Cormorant Garamond', serif",
-                  fontSize: "clamp(38px, 6vw, 64px)", fontWeight: 300,
-                  color: C.darkInk, lineHeight: 1.0,
-                  margin: "0 0 22px", letterSpacing: "-0.02em",
-                }}>
+                <h1 className="font-serif text-[clamp(38px,6vw,64px)] font-light text-dark-ink leading-none mb-[22px] tracking-[-0.02em] mt-0">
                   {"Kauaʻi — The Garden Isle"}
                 </h1>
 
-                <p style={{
-                  fontFamily: "'Quicksand', sans-serif",
-                  fontSize: "clamp(14px, 1.6vw, 14px)", fontWeight: 400,
-                  color: "#4A5650", lineHeight: 1.75, maxWidth: 460,
-                  margin: "0 0 14px",
-                }}>
+                <p className="font-body text-[clamp(14px,1.6vw,14px)] font-normal text-[#4A5650] leading-[1.75] max-w-[460px] mt-0 mb-3.5">
                   {"Kauaʻi is the oldest of the main Hawaiian Islands — five million years old, worn into shapes the other islands haven't had time to become yet. The Nā Pali Coast is an argument for the word sublime. The Waimea Canyon earned the name \"Grand Canyon of the Pacific\" without apology."}
                 </p>
 
-                <p style={{
-                  fontFamily: "'Quicksand', sans-serif",
-                  fontSize: "clamp(14px, 1.6vw, 14px)", fontWeight: 400,
-                  color: "#4A5650", lineHeight: 1.75, maxWidth: 460,
-                  margin: 0,
-                }}>
+                <p className="font-body text-[clamp(14px,1.6vw,14px)] font-normal text-[#4A5650] leading-[1.75] max-w-[460px] m-0">
                   {"The island is small enough that you can understand its geography from a single lookout but rich enough that a week barely touches the surface. We built this guide to help you find it."}
                 </p>
               </div>
 
               {/* ── Right: This Guide Covers ── */}
-              <div style={isMobile ? { borderTop: `1px solid ${C.stone}`, paddingTop: 28 } : { borderLeft: `1px solid ${C.stone}`, paddingLeft: 28 }}>
-                <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: "#7A857E", marginBottom: 18 }}>This guide covers</div>
+              <div className="border-t md:border-t-0 md:border-l border-stone pt-7 md:pt-0 md:pl-7">
+                <div className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-[#7A857E] mb-[18px]">This guide covers</div>
 
-                <div style={{ marginBottom: 16 }}>
-                  <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: C.oceanTeal, marginBottom: 10 }}>Island Areas</div>
+                <div className="mb-4">
+                  <div className="font-body text-[11px] font-bold tracking-[0.2em] uppercase text-ocean-teal mb-2.5">Island Areas</div>
                   {["North Shore (Hanalei)", "South Shore (Poipū)", "West Side (Waimea)", "East Side (Kapaʻa / Līhuʻe)"].map((area, i) => (
-                    <div key={i} style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 7 }}>
-                      <div style={{ width: 5, height: 5, borderRadius: "50%", background: C.oceanTeal, opacity: 0.5 }} />
-                      <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 600, letterSpacing: "0.02em", color: C.darkInk }}>{area}</span>
+                    <div key={i} className="flex items-center gap-2.5 mb-[7px]">
+                      <div className="w-[5px] h-[5px] rounded-full bg-ocean-teal opacity-50" />
+                      <span className="font-body text-[12px] font-semibold tracking-[0.02em] text-dark-ink">{area}</span>
                     </div>
                   ))}
                 </div>
 
-                <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 500, letterSpacing: "0.06em", color: "#7A857E", marginTop: 14, paddingTop: 12, borderTop: `1px solid ${C.stone}` }}>
+                <div className="font-body text-[11px] font-medium tracking-[0.06em] text-[#7A857E] mt-3.5 pt-3 border-t border-stone">
                   Updated 2026
                 </div>
               </div>
@@ -991,37 +706,19 @@ export default function KauaiGuide() {
       <GuideNav isMobile={isMobile} />
 
       {/* ══ IMAGE STRIP ════════════════════════════════════════════════════ */}
-      <section style={{ position: "relative" }}>
-        <div style={{
-          display: "flex", gap: 2,
-          overflowX: "auto", scrollSnapType: "x mandatory",
-          WebkitOverflowScrolling: "touch",
-          scrollbarWidth: "none",
-        }}>
+      <section className="relative">
+        <div className="flex gap-0.5 overflow-x-auto snap-x snap-mandatory" style={{ WebkitOverflowScrolling: "touch", scrollbarWidth: "none" }}>
           {[
             { src: P.kauaiNapaliCoast,   alt: "Nā Pali Coast trail",         caption: "Nā Pali Coast — the trail begins",     width: 420 },
             { src: P.kauaiGardens,        alt: "Kauaʻi gardens at golden hour", caption: "Garden light at golden hour",          width: 280 },
             { src: P.kauaiKalalauValley,  alt: "Kalalau Valley overlook",     caption: "Kalalau Valley — from the rim",         width: 420 },
             { src: P.kauaiWaimeaCanyon,   alt: "Waimea Canyon waterfall",     caption: "Waimea Canyon — the Pacific's Grand Canyon", width: 360 },
           ].map((img, i) => (
-            <div key={i} style={{
-              flex: "0 0 auto", width: isMobile ? "85vw" : img.width,
-              scrollSnapAlign: "start", position: "relative", overflow: "hidden",
-            }}>
-              <img src={img.src} alt={img.alt} style={{
-                width: "100%", height: 320, objectFit: "cover", display: "block",
-              }} />
-              <div style={{
-                position: "absolute", bottom: 0, left: 0, right: 0,
-                padding: "32px 16px 14px",
-                background: "linear-gradient(to top, rgba(10,18,26,0.7), transparent)",
-              }}>
-                <span style={{
-                  fontFamily: "'Quicksand', sans-serif",
-                  fontSize: 11, fontWeight: 600,
-                  letterSpacing: "0.08em",
-                  color: "rgba(255,255,255,0.8)",
-                }}>{img.caption}</span>
+            <div key={i} className="flex-none snap-start relative overflow-hidden"
+              style={{ width: isMobile ? "85vw" : img.width }}>
+              <img src={img.src} alt={img.alt} className="w-full h-80 object-cover block" />
+              <div className="absolute bottom-0 left-0 right-0 pt-8 px-4 pb-3.5" style={{ background: "linear-gradient(to top, rgba(10,18,26,0.7), transparent)" }}>
+                <span className="font-body text-[11px] font-semibold tracking-[0.08em] text-white/80">{img.caption}</span>
               </div>
             </div>
           ))}
@@ -1029,46 +726,30 @@ export default function KauaiGuide() {
       </section>
 
       {/* ══ GUIDE CONTENT ═══════════════════════════════════════════════════ */}
-      <section style={{ padding: isMobile ? "32px 20px 60px" : "48px 52px 80px", background: C.cream }}>
-        <div style={{ maxWidth: 680, margin: "0 auto" }}>
+      <section className="py-8 px-5 pb-[60px] md:py-12 md:px-[52px] md:pb-20 bg-cream">
+        <div className="max-w-[680px] mx-auto">
 
 
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* SENSE OF PLACE                                                */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="sense-of-place" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
+          <section id="sense-of-place" className="scroll-mt-[126px] py-11">
             <FadeIn>
-              <SectionLabel>Sense of Place</SectionLabel>
-              <p style={{
-                fontFamily: "'Quicksand', sans-serif",
-                fontSize: "clamp(14px, 1.8vw, 15px)", lineHeight: 1.8,
-                fontWeight: 400, color: "#4A5650", margin: "0 0 16px",
-              }}>
+              <SectionLabel accentColor={ACCENT}>Sense of Place</SectionLabel>
+              <p className="font-body text-[clamp(14px,1.8vw,15px)] leading-[1.8] font-normal text-[#4A5650] mt-0 mb-4">
                 {"Kauaʻi is the oldest of the main Hawaiian Islands — five million years old, worn into shapes the other islands haven't had time to become yet. The Nā Pali Coast in the northwest is an argument for the word sublime: fluted sea cliffs rising 4,000 feet directly from the Pacific, draped in waterfalls, inaccessible by road. The Waimea Canyon cuts 14 miles through the island's interior — red rock, green forest, silver river."}
               </p>
-              <p style={{
-                fontFamily: "'Quicksand', sans-serif",
-                fontSize: "clamp(14px, 1.8vw, 15px)", lineHeight: 1.8,
-                fontWeight: 400, color: "#4A5650", margin: "0 0 16px",
-              }}>
+              <p className="font-body text-[clamp(14px,1.8vw,15px)] leading-[1.8] font-normal text-[#4A5650] mt-0 mb-4">
                 {"The island is wetter than the other islands — Mount Waiʻaleʻale, near the center, receives an average of 450 inches of rain a year, making it one of the wettest places on Earth. That rain feeds waterfalls visible from the road, keeps the vegetation impossibly green, and defines the character of the land."}
               </p>
-              <p style={{
-                fontFamily: "'Quicksand', sans-serif",
-                fontSize: "clamp(14px, 1.8vw, 15px)", lineHeight: 1.8,
-                fontWeight: 400, color: "#4A5650", margin: "0 0 28px",
-              }}>
+              <p className="font-body text-[clamp(14px,1.8vw,15px)] leading-[1.8] font-normal text-[#4A5650] mt-0 mb-7">
                 {"The Hawaiian people have called Kauaʻi home for over 1,500 years. Place names carry history: Hanalei means \"crescent bay\"; Waimea means \"reddish water\"; Poipū is a place of crashing waves. The island avoided many of the worst impacts of tourism development through a building-height ordinance — no structure taller than a palm tree — and through active Native Hawaiian advocacy. That restraint shapes what Kauaʻi still is."}
               </p>
             </FadeIn>
 
             {/* ── At a Glance ── */}
             <FadeIn delay={0.06}>
-              <div style={{
-                display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))",
-                gap: isMobile ? 12 : 16, padding: isMobile ? 16 : 20,
-                background: C.cream, border: `1px solid ${C.stone}`, marginBottom: 20,
-              }}>
+              <div className="grid grid-cols-[repeat(auto-fit,minmax(130px,1fr))] gap-3 md:gap-4 p-4 md:p-5 bg-cream border border-stone mb-5">
                 {[
                   { l: "Recommended", v: "5–7 days" },
                   { l: "Nearest Airport", v: "Lihue (LIH)" },
@@ -1076,8 +757,8 @@ export default function KauaiGuide() {
                   { l: "Best Times", v: "Apr–Oct" },
                 ].map((s, i) => (
                   <div key={i}>
-                    <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: C.oceanTeal, marginBottom: 3 }}>{s.l}</div>
-                    <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 14, fontWeight: 600, color: C.darkInk }}>{s.v}</div>
+                    <div className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-ocean-teal mb-[3px]">{s.l}</div>
+                    <div className="font-body text-[14px] font-semibold text-dark-ink">{s.v}</div>
                   </div>
                 ))}
               </div>
@@ -1085,14 +766,13 @@ export default function KauaiGuide() {
 
             {/* ── Park Cards ── */}
             <FadeIn delay={0.08}>
-              <div style={{ marginBottom: 4 }}>
+              <div className="mb-1">
                 {PARKS.map(park => (
                   <ParkCard
                     key={park.id}
                     park={park}
                     isExpanded={expandedPark === park.id}
                     onToggle={() => setExpandedPark(expandedPark === park.id ? null : park.id)}
-                    isMobile={isMobile}
                   />
                 ))}
               </div>
@@ -1105,28 +785,28 @@ export default function KauaiGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* WHEN TO GO                                                    */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="when-to-go" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
+          <section id="when-to-go" className="scroll-mt-[126px] py-11">
             <FadeIn>
-              <SectionIcon type="windows" />
-              <SectionLabel>Magic Windows</SectionLabel>
+              <SectionIcon type="windows" color={ACCENT} />
+              <SectionLabel accentColor={ACCENT}>Magic Windows</SectionLabel>
               <SectionTitle>When to go</SectionTitle>
-              <SectionSub isMobile={isMobile}>{"Kauaʻi rewards every season differently. These are the moments when the island is most alive."}</SectionSub>
+              <SectionSub>{"Kauaʻi rewards every season differently. These are the moments when the island is most alive."}</SectionSub>
             </FadeIn>
             <FadeIn delay={0.08}>
               <div>
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('When to Go')} name="Humpback Whale Season" featured
+                <ListItem onOpenSheet={openSheet('When to Go')} name="Humpback Whale Season" featured
                   detail={"Humpbacks arrive in December and peak January through March. Best viewed from the cliffs above Poipū or Kīlauea Lighthouse headland. Whale spouts visible by moonlight from the south shore overlooks."}
                   tags={["Dec – Apr", "Wildlife", "Magic Window"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('When to Go')} name="Kalalau Trail in Spring" featured
+                <ListItem onOpenSheet={openSheet('When to Go')} name="Kalalau Trail in Spring" featured
                   detail={"April through May: optimal conditions before summer crowds and heat. Nā Pali sea conditions improving for boat tours. Waimea Canyon wildflowers."}
                   tags={["Apr – May", "Hiking", "Fewer Crowds"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('When to Go')} name="Summer — North Shore Calm"
+                <ListItem onOpenSheet={openSheet('When to Go')} name="Summer — North Shore Calm"
                   detail={"Hanalei Bay calms down for swimming, kayaking, and SUP. The bay is one of the finest flat-water environments in the Pacific. Milky Way visible from dark beaches."}
                   tags={["Jun – Sep", "Swimming", "Stargazing"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('When to Go')} name="Makahiki Season"
+                <ListItem onOpenSheet={openSheet('When to Go')} name="Makahiki Season"
                   detail={"The traditional Hawaiian winter — November through January — a time of rest, ceremony, and renewal in the Hawaiian calendar. A meaningful cultural context for a visit."}
                   tags={["Nov – Jan", "Hawaiian Culture", "Ceremony"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('When to Go')} name="Fall Shoulder Season"
+                <ListItem onOpenSheet={openSheet('When to Go')} name="Fall Shoulder Season"
                   detail={"October and November: least crowded season. Weather unpredictable but some of the best trade wind conditions. Prices lower."}
                   tags={["Oct – Nov", "Value", "Trade Winds"]} />
               </div>
@@ -1140,58 +820,38 @@ export default function KauaiGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* TREAD LIGHTLY                                                 */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="tread-lightly" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
+          <section id="tread-lightly" className="scroll-mt-[126px] py-11">
             <FadeIn>
-              <SectionIcon type="awaken" />
-              <SectionLabel>Tread Lightly</SectionLabel>
+              <SectionIcon type="awaken" color={ACCENT} />
+              <SectionLabel accentColor={ACCENT}>Tread Lightly</SectionLabel>
               <SectionTitle>Traveling responsibly.</SectionTitle>
-              <SectionSub isMobile={isMobile}>Hawaiʻi receives more visitors per resident than almost anywhere on earth. Travel with that in mind.</SectionSub>
+              <SectionSub>Hawaiʻi receives more visitors per resident than almost anywhere on earth. Travel with that in mind.</SectionSub>
             </FadeIn>
 
             <FadeIn delay={0.1}>
-              <div style={{ marginTop: 8 }}>
-                <div style={{ paddingTop: 16 }}>
-                  <div style={{
-                    fontFamily: "'Quicksand', sans-serif",
-                    fontSize: 11, fontWeight: 700,
-                    letterSpacing: "0.14em", textTransform: "uppercase",
-                    color: "#7A857E", marginBottom: 2,
-                  }}>Visitor Density · 10M Arrivals</div>
-                  <ListItem isMobile={isMobile} name="Hawaiʻi receives more visitors per resident than almost anywhere on earth."
+              <div className="mt-2">
+                <div className="pt-4">
+                  <div className="font-body text-[11px] font-bold tracking-[0.14em] uppercase text-[#7A857E] mb-0.5">Visitor Density · 10M Arrivals</div>
+                  <ListItem name="Hawaiʻi receives more visitors per resident than almost anywhere on earth."
                     detail="Hawaiʻi hit a record 10.4 million visitors in 2019 — for a resident population of 1.4 million, on a chain of islands with finite resources. Kauaʻi is the least developed of the major islands and absorbs this pressure on a smaller infrastructure. The tension between residents and visitors is real and documented. Traveling with awareness of that dynamic — not just the landscape — is part of what it means to visit respectfully."
                     tags={["Visitor pressure", "Resident tension", "Travel mindfully"]} />
                 </div>
-                <div style={{ paddingTop: 16 }}>
-                  <div style={{
-                    fontFamily: "'Quicksand', sans-serif",
-                    fontSize: 11, fontWeight: 700,
-                    letterSpacing: "0.14em", textTransform: "uppercase",
-                    color: "#7A857E", marginBottom: 2,
-                  }}>Heiau · Sacred Sites</div>
-                  <ListItem isMobile={isMobile} name="Some places are not on the map. They shouldn't be."
+                <div className="pt-4">
+                  <div className="font-body text-[11px] font-bold tracking-[0.14em] uppercase text-[#7A857E] mb-0.5">Heiau · Sacred Sites</div>
+                  <ListItem name="Some places are not on the map. They shouldn't be."
                     detail="Heiau — ancient Hawaiian temples, fishing shrines, and ceremonial platforms — have been desecrated in their use and misuse as tourist attractions, and hundreds have been destroyed for resort development. Several heiau on Kauaʻi are known to locals and deliberately kept off visitor maps. We do not put these places on itineraries. If you encounter a site that looks ceremonial or marked, leave it undisturbed and do not photograph it."
                     tags={["Sacred sites", "No photography", "Leave undisturbed"]} />
                 </div>
-                <div style={{ paddingTop: 16 }}>
-                  <div style={{
-                    fontFamily: "'Quicksand', sans-serif",
-                    fontSize: 11, fontWeight: 700,
-                    letterSpacing: "0.14em", textTransform: "uppercase",
-                    color: "#7A857E", marginBottom: 2,
-                  }}>Nā Pali Coast · Trail Safety</div>
-                  <ListItem isMobile={isMobile} name="Rescues on the Kalalau Trail are common. Go prepared or don't go."
+                <div className="pt-4">
+                  <div className="font-body text-[11px] font-bold tracking-[0.14em] uppercase text-[#7A857E] mb-0.5">Nā Pali Coast · Trail Safety</div>
+                  <ListItem name="Rescues on the Kalalau Trail are common. Go prepared or don't go."
                     detail="The Kalalau Trail is one of the most spectacular and most dangerous trails in the United States. Flash flooding, steep unprotected sections, and difficult river crossings have killed experienced hikers. Permits are required and limited. If you don't have one, the legal beaches are accessible by kayak or boat tour. We route around unpermitted sections entirely."
                     note="◈ Day hiking to Hanakāpīʻai Beach (2 miles) requires no permit — the full 11-mile Kalalau Trail requires a camping permit"
                     tags={["Permit required", "Flash flood risk", "Know your limits"]} />
                 </div>
-                <div style={{ paddingTop: 16 }}>
-                  <div style={{
-                    fontFamily: "'Quicksand', sans-serif",
-                    fontSize: 11, fontWeight: 700,
-                    letterSpacing: "0.14em", textTransform: "uppercase",
-                    color: "#7A857E", marginBottom: 2,
-                  }}>Hāʻena State Park · Community-Managed Access</div>
-                  <ListItem isMobile={isMobile} name="The north shore developed a new model. Follow it."
+                <div className="pt-4">
+                  <div className="font-body text-[11px] font-bold tracking-[0.14em] uppercase text-[#7A857E] mb-0.5">Hāʻena State Park · Community-Managed Access</div>
+                  <ListItem name="The north shore developed a new model. Follow it."
                     detail="Hāʻena State Park was the first in Hawaiʻi to set a daily visitor cap, managed by two nonprofits led by Native Hawaiian lineal descendants. Nonresidents must reserve and pay for entry. This is what responsible access looks like in practice — a community-led system built because the alternative was losing the place entirely. Book your reservation, pay the fee, and recognize the system as the point."
                     tags={["Reservation required", "Community-managed", "Daily visitor cap"]} />
                 </div>
@@ -1205,28 +865,24 @@ export default function KauaiGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* STAY                                                          */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="where-to-stay" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
+          <section id="where-to-stay" className="scroll-mt-[126px] py-11">
             <FadeIn>
-              <SectionIcon type="stay" />
-              <SectionLabel>Sleep</SectionLabel>
+              <SectionIcon type="stay" color={ACCENT} />
+              <SectionLabel accentColor={ACCENT}>Sleep</SectionLabel>
               <SectionTitle>Where to sleep</SectionTitle>
-              <SectionSub isMobile={isMobile}>{"How you inhabit a place matters. From beach camping under the Nā Pali cliffs to the island's grandest resort."}</SectionSub>
+              <SectionSub>{"How you inhabit a place matters. From beach camping under the Nā Pali cliffs to the island's grandest resort."}</SectionSub>
             </FadeIn>
 
             <FadeIn delay={0.05}>
-              <div style={{
-                padding: "14px 16px", background: C.cream,
-                border: `1px solid ${C.stone}`, marginBottom: 20,
-                display: "flex", flexDirection: isMobile ? "column" : "row", gap: isMobile ? 10 : 16, flexWrap: "wrap",
-              }}>
+              <div className="p-3.5 px-4 bg-cream border border-stone mb-5 flex flex-col md:flex-row gap-2.5 md:gap-4 flex-wrap">
                 {[
                   { label: "Elemental", desc: "In the landscape", color: C.seaGlass },
                   { label: "Rooted", desc: "Boutique, local", color: C.oceanTeal },
                   { label: "Premium", desc: "Elevated experience", color: C.goldenAmber },
                 ].map((t, i) => (
-                  <div key={i} style={{ flex: isMobile ? "0 0 auto" : "1 1 140px" }}>
-                    <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 700, letterSpacing: "0.1em", color: t.color }}>{t.label}</span>
-                    <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 400, color: "#4A5650", marginLeft: 6 }}>{t.desc}</span>
+                  <div key={i} className="flex-none md:flex-[1_1_140px]">
+                    <span className="font-body text-[12px] font-bold tracking-[0.1em]" style={{ color: t.color }}>{t.label}</span>
+                    <span className="font-body text-[13px] font-normal text-[#4A5650] ml-1.5">{t.desc}</span>
                   </div>
                 ))}
               </div>
@@ -1244,7 +900,6 @@ export default function KauaiGuide() {
                     tags={a.tags}
                     url={a.links?.booking || a.links?.website}
                     featured={a.lilaPick}
-                    isMobile={isMobile}
                     onOpenSheet={setActiveSheet}
                     priceRange={a.priceRange}
                     amenities={a.amenities}
@@ -1263,29 +918,29 @@ export default function KauaiGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* TRAILS                                                        */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="trails" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
+          <section id="trails" className="scroll-mt-[126px] py-11">
             <FadeIn>
-              <SectionIcon type="move" />
-              <SectionLabel>Move</SectionLabel>
+              <SectionIcon type="move" color={ACCENT} />
+              <SectionLabel accentColor={ACCENT}>Move</SectionLabel>
               <SectionTitle>{"Trails, coast & canyon"}</SectionTitle>
-              <SectionSub isMobile={isMobile}>{"From the Nā Pali Coast's fluted sea cliffs to the red rock of Waimea Canyon. Every trail here earns its reputation."}</SectionSub>
+              <SectionSub>{"From the Nā Pali Coast's fluted sea cliffs to the red rock of Waimea Canyon. Every trail here earns its reputation."}</SectionSub>
             </FadeIn>
 
             {/* ── Nā Pali Coast ── */}
             <FadeIn delay={0.06}>
-              <div style={{ marginBottom: 8 }}>
-                <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: C.oceanTeal, marginBottom: 16 }}>{"Nā Pali Coast"}</div>
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Trails')} name={"Kalalau Trail to Hanakāpīʻai Beach"} featured
+              <div className="mb-2">
+                <div className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-ocean-teal mb-4">{"Nā Pali Coast"}</div>
+                <ListItem onOpenSheet={openSheet('Trails')} name={"Kalalau Trail to Hanakāpīʻai Beach"} featured
                   url="https://dlnr.hawaii.gov/dsp/parks/kauai/napali-coast-state-wilderness-park/"
                   detail={"The most iconic trail in Hawaiʻi. First two miles — to Hanakāpīʻai Beach — open to day hikers without camping permit. Cliffs, jungle, switchbacks above the Pacific. The beach is dangerous for swimming — come to see it, not to enter it. Advance reservation required through gohaena.com."}
                   note="4 mi RT · 800 ft gain · Moderate · 2.5–3 hrs"
                   tags={["Coastal Cliffs", "Jungle", "Photography", "Reservation Required"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Trails')} name={"Kalalau Trail — Full (Permitted Overnight)"}
+                <ListItem onOpenSheet={openSheet('Trails')} name={"Kalalau Trail — Full (Permitted Overnight)"}
                   url="https://dlnr.hawaii.gov/dsp/parks/kauai/napali-coast-state-wilderness-park/"
                   detail={"The complete 11-mile route traverses five valleys and ends at Kalalau Beach, one of the most remote beaches accessible on foot in the United States. Camping permits required, available 90 days in advance — they sell out in minutes for peak dates."}
                   note="22 mi RT · Strenuous · 2–4 days"
                   tags={["Backpacking", "Wilderness", "Permit Required", "Apr–Sep"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Trails')} name={"Awaʻawapuhi Trail"} featured
+                <ListItem onOpenSheet={openSheet('Trails')} name={"Awaʻawapuhi Trail"} featured
                   url="https://dlnr.hawaii.gov/dsp/parks/kauai/kokee-state-park/"
                   detail={"The finest ridge trail on the island — through native forest to a knife-edge viewpoint 2,500 feet above the ocean on the Nā Pali Coast. The final viewpoint looks directly down into the fluted valleys. Exceptional."}
                   note="6.4 mi RT · 1,500 ft gain · Strenuous · 3–4 hrs"
@@ -1295,14 +950,14 @@ export default function KauaiGuide() {
 
             {/* ── Waimea Canyon & Kōkeʻe ── */}
             <FadeIn delay={0.1}>
-              <div style={{ marginTop: 28, marginBottom: 8 }}>
-                <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: C.oceanTeal, marginBottom: 16 }}>{"Waimea Canyon & Kōkeʻe"}</div>
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Trails')} name="Waimea Canyon Trail"
+              <div className="mt-7 mb-2">
+                <div className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-ocean-teal mb-4">{"Waimea Canyon & Kōkeʻe"}</div>
+                <ListItem onOpenSheet={openSheet('Trails')} name="Waimea Canyon Trail"
                   url="https://dlnr.hawaii.gov/dsp/parks/kauai/waimea-canyon-state-park/"
                   detail={"The primary canyon trail runs along the rim with a detour to the top of Waipoʻo Falls — an 800-foot cascade. The views of the red-rock canyon layers are remarkable from close range."}
                   note="3.6 mi RT · Moderate · 2–3 hrs"
                   tags={["Canyon", "Waterfall", "Geology", "Photography"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Trails')} name={"Pihea Trail (Kōkeʻe to Alakaʻi Swamp)"} featured
+                <ListItem onOpenSheet={openSheet('Trails')} name={"Pihea Trail (Kōkeʻe to Alakaʻi Swamp)"} featured
                   url="https://dlnr.hawaii.gov/dsp/parks/kauai/kokee-state-park/"
                   detail={"From Puʻu o Kila Lookout into the Alakaʻi Swamp — the world's highest tropical swamp (4,000 feet), home to rare native birds found nowhere else on Earth (ʻapapane, ʻiʻiwi, pueo). The trailhead overlooks the Kalalau Valley."}
                   note="7.6 mi RT · Moderate · 3–4 hrs · Often muddy"
@@ -1312,13 +967,13 @@ export default function KauaiGuide() {
 
             {/* ── North Shore ── */}
             <FadeIn delay={0.14}>
-              <div style={{ marginTop: 28, marginBottom: 8 }}>
-                <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: C.oceanTeal, marginBottom: 16 }}>North Shore</div>
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Trails')} name={"Hāʻena State Park — Keʻe Beach & Reef Walk"}
+              <div className="mt-7 mb-2">
+                <div className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-ocean-teal mb-4">North Shore</div>
+                <ListItem onOpenSheet={openSheet('Trails')} name={"Hāʻena State Park — Keʻe Beach & Reef Walk"}
                   url="https://www.gohaena.com/"
                   detail={"The beach at the end of the highway — where the road literally stops. A calm reef lagoon in summer creates protected snorkeling with excellent visibility. In winter, the water is rough. Reservations required through gohaena.com. Arrive early."}
                   tags={["Snorkeling", "Beach", "Reef", "Reservation Required"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Trails')} name="Sleeping Giant (Nounou Mountain)"
+                <ListItem onOpenSheet={openSheet('Trails')} name="Sleeping Giant (Nounou Mountain)"
                   url="https://dlnr.hawaii.gov/dsp/parks/kauai/nounou-mountain-east-side/"
                   detail={"A local's hike above Kapaʻa. Panoramic views of the East Shore, Mount Waiʻaleʻale, and the Pacific. Less crowded than north shore trails, more revealing as a view of the island's interior."}
                   note="3.4 mi RT · 1,000 ft gain · Moderate · 2–2.5 hrs"
@@ -1328,13 +983,13 @@ export default function KauaiGuide() {
 
             {/* ── Scenic Drives ── */}
             <FadeIn delay={0.18}>
-              <div style={{ marginTop: 28 }}>
-                <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: C.oceanTeal, marginBottom: 16 }}>Scenic Drives</div>
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Trails')} name="Waimea Canyon Drive (Highway 550)"
+              <div className="mt-7">
+                <div className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-ocean-teal mb-4">Scenic Drives</div>
+                <ListItem onOpenSheet={openSheet('Trails')} name="Waimea Canyon Drive (Highway 550)"
                   url="https://dlnr.hawaii.gov/dsp/parks/kauai/waimea-canyon-state-park/"
                   detail={"20-mile scenic road from Waimea town to the end of Kōkeʻe State Park. Five overlooks with increasingly dramatic canyon and coast views. The final two — Kalalau Lookout and Puʻu o Kila — look directly into the Kalalau Valley. Drive it top to bottom, stopping at every lookout."}
                   tags={["20 Miles", "5 Overlooks", "Canyon + Coast"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Trails')} name="North Shore Road (Highway 56 / 560)"
+                <ListItem onOpenSheet={openSheet('Trails')} name="North Shore Road (Highway 56 / 560)"
                   detail={"From Līhuʻe to Hāʻena: 40 miles of the island's most dramatic coastal beauty. The road narrows past Hanalei, crosses one-lane bridges over rivers and taro fields, passes ancient ahupuaʻa boundaries, and ends at Keʻe Beach. The taro fields of the Hanalei National Wildlife Refuge are extraordinary."}
                   tags={["40 Miles", "One-Lane Bridges", "Taro Fields"]} />
               </div>
@@ -1347,37 +1002,37 @@ export default function KauaiGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* WELLNESS                                                      */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="wellness" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
+          <section id="wellness" className="scroll-mt-[126px] py-11">
             <FadeIn>
-              <SectionIcon type="breathe" />
-              <SectionLabel>Breathe</SectionLabel>
+              <SectionIcon type="breathe" color={ACCENT} />
+              <SectionLabel accentColor={ACCENT}>Breathe</SectionLabel>
               <SectionTitle>{"Yoga, water & contemplation"}</SectionTitle>
-              <SectionSub isMobile={isMobile}>{"The island's pace makes practice feel less like effort and more like returning to something you already knew."}</SectionSub>
+              <SectionSub>{"The island's pace makes practice feel less like effort and more like returning to something you already knew."}</SectionSub>
             </FadeIn>
             <FadeIn delay={0.08}>
               <ExpandableList initialCount={5} label="wellness experiences">
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Wellness')} name="Black Coral Yoga" featured
+                <ListItem onOpenSheet={openSheet('Wellness')} name="Black Coral Yoga" featured
                   url="https://www.blackcoralyoga.com/"
                   detail={"The anchor yoga studio on Kauaʻi's North Shore — on the second floor of the historic Hanalei Center with a wraparound lānai facing mountain and waterfall views. Lineage rooted in Patanjali's Yoga Sūtras and Ashtanga Vinyāsa. Classes range from infrared-heated Vinyāsa and Hot 90 to Hatha, Yin, Restorative, breathwork, and sound. Pre-registration required; early morning classes fill fast."}
                   note="Hanalei — reserve early"
                   tags={["Yoga", "Sound", "Infrared", "Lineage-Based"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Wellness')} name={"Anara Spa at Grand Hyatt Kauaʻi"} featured
+                <ListItem onOpenSheet={openSheet('Wellness')} name={"Anara Spa at Grand Hyatt Kauaʻi"} featured
                   url="https://www.hyatt.com/grand-hyatt/en-US/kauai"
                   detail={"The island's most developed spa facility. Traditional Hawaiian healing practices — lomilomi massage, pōhaku hot stone treatment — alongside standard spa programming. Day access to outdoor facilities available for non-guests. Grand in scale; grounded in Hawaiian tradition."}
                   note="Poipū — day access available"
                   tags={["Lomilomi", "Hot Stone", "Pools", "Garden"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Wellness')} name={"Kauaʻi Yoga"}
+                <ListItem onOpenSheet={openSheet('Wellness')} name={"Kauaʻi Yoga"}
                   url="https://www.kauaiyoga.com/"
                   detail={"A long-running island-wide yoga community. Drop-in classes offered across Poipū, Kapaʻa, and Princeville."}
                   tags={["Drop-In", "Multiple Locations", "Community"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Wellness')} name={"Stand-Up Paddleboarding — Hanalei Bay"}
+                <ListItem onOpenSheet={openSheet('Wellness')} name={"Stand-Up Paddleboarding — Hanalei Bay"}
                   detail={"Hanalei Bay in summer is one of the finest flat-water SUP environments in the Pacific: a protected crescent bay with mountain backdrop, calm water, and turtles visible below the board on clear days. Multiple rental and lesson operators on the beach. An elemental morning."}
                   tags={["Summer", "Flat Water", "Turtles", "Rentals"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Wellness')} name="Kayaking the Wailua River" featured
+                <ListItem onOpenSheet={openSheet('Wellness')} name="Kayaking the Wailua River" featured
                   detail={"The only navigable river in Hawaiʻi. A guided kayak tour up the river through thick jungle to Uluwehi (Secret) Falls — a 100-foot waterfall into a plunge pool. One of the most consistently rewarding half-days on the island."}
                   note="Operators: Kayak Kauai, Wailua Kayak Adventures"
                   tags={["River Kayak", "Waterfall", "Half Day", "Guided"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Wellness')} name={"Limahuli Garden & Preserve"} featured
+                <ListItem onOpenSheet={openSheet('Wellness')} name={"Limahuli Garden & Preserve"} featured
                   url="https://ntbg.org/gardens/limahuli/"
                   detail={"A National Tropical Botanical Garden property tucked into a valley on the north shore, built on the footprint of ancient Hawaiian agricultural terraces. Ancient loʻi (taro paddies), native plant collections, and one of the most biodiverse valleys in Hawaiʻi. Self-guided tours available; guided tours recommended for cultural depth."}
                   tags={["Botanical Garden", "Hawaiian Terraces", "Contemplative"]} />
@@ -1395,47 +1050,47 @@ export default function KauaiGuide() {
       </section>
 
       {/* Night Sky section with full-width dark background */}
-      <section id="light-sky" style={{ scrollMarginTop: 126, padding: isMobile ? "52px 20px" : "64px 52px", background: C.darkInk }}>
-        <div style={{ maxWidth: 680, margin: "0 auto" }}>
+      <section id="light-sky" className="scroll-mt-[126px] py-[52px] px-5 md:py-16 md:px-[52px] bg-dark-ink">
+        <div className="max-w-[680px] mx-auto">
           <FadeIn>
-            <SectionIcon type="awaken" />
-            <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 700, letterSpacing: "0.28em", textTransform: "uppercase", color: C.oceanTeal, marginBottom: 12, textAlign: "center" }}>Night Sky</div>
-            <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(24px, 4vw, 32px)", fontWeight: 400, color: "#fff", margin: "0 0 6px", lineHeight: 1.2, textAlign: "center" }}>{"Light & sky"}</h2>
-            <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: isMobile ? 15 : "clamp(14px, 1.8vw, 15px)", fontWeight: 400, color: "rgba(255,255,255,0.7)", margin: "0 auto 28px", lineHeight: 1.7, textAlign: isMobile ? "left" : "center", maxWidth: isMobile ? "100%" : 520 }}>
+            <SectionIcon type="awaken" color={ACCENT} />
+            <div className="font-body text-[12px] font-bold tracking-[0.28em] uppercase text-ocean-teal mb-3 text-center">Night Sky</div>
+            <h2 className="font-serif text-[clamp(24px,4vw,32px)] font-normal text-white m-0 mb-1.5 leading-[1.2] text-center">{"Light & sky"}</h2>
+            <p className="font-body text-[15px] md:text-[clamp(14px,1.8vw,15px)] font-normal text-white/70 mx-auto mb-7 leading-[1.7] text-left md:text-center max-w-full md:max-w-[520px]">
               {"No IDA designation, but the island's building-height law and low development density create genuinely dark conditions on the south and west shores. The Milky Way core is visible from the coast on moonless nights between April and October."}
             </p>
           </FadeIn>
 
           <FadeIn delay={0.06}>
-            <div style={{ marginBottom: 32 }}>
-              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: C.oceanTeal, marginBottom: 16 }}>Best Viewing Locations</div>
+            <div className="mb-8">
+              <div className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-ocean-teal mb-4">Best Viewing Locations</div>
               {[
                 { name: "Poipū Beach / Shipwreck Beach (South Shore)", note: "Open horizon to the south and west, minimal coastal light. Best for Milky Way core viewing." },
                 { name: "Polihale State Park (West Shore)", note: "The most remote and darkest beach accessible by road on Kauaʻi. Open horizon, no development for miles. Bortle 3." },
                 { name: "Kīlauea Lighthouse headland (North Shore)", note: "Faces open ocean north; best for star trails and Milky Way arcing overhead." },
               ].map((area, i) => (
-                <div key={i} style={{ padding: "14px 0", borderBottom: `1px solid rgba(255,255,255,0.1)` }}>
-                  <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 14, fontWeight: 600, color: "#fff", marginBottom: 4 }}>{area.name}</div>
-                  <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 400, color: "rgba(255,255,255,0.55)", lineHeight: 1.6 }}>{area.note}</div>
+                <div key={i} className="py-3.5 border-b border-white/10">
+                  <div className="font-body text-[14px] font-semibold text-white mb-1">{area.name}</div>
+                  <div className="font-body text-[13px] font-normal text-white/55 leading-[1.6]">{area.note}</div>
                 </div>
               ))}
             </div>
           </FadeIn>
 
           <FadeIn delay={0.1}>
-            <div style={{ marginBottom: 32 }}>
-              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: C.oceanTeal, marginBottom: 16 }}>Calendar Anchors</div>
-              <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: 12 }}>
+            <div className="mb-8">
+              <div className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-ocean-teal mb-4">Calendar Anchors</div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {[
                   { event: "Milky Way Core", timing: "Apr – Oct", detail: "Best from June–August when the core is highest" },
                   { event: "Perseid Meteor Shower", timing: "Mid-August", detail: "Peak around the 12th — best from dark beaches" },
                   { event: "Whale Spouts by Moonlight", timing: "Dec – Apr", detail: "Rare pairing: whale spouts visible from south shore overlooks" },
                   { event: "Humpback Peak", timing: "Jan – Mar", detail: "Best from Kīlauea Lighthouse or Poipū clifftops" },
                 ].map((cal, i) => (
-                  <div key={i} style={{ padding: "14px 16px", border: `1px solid rgba(255,255,255,0.12)`, background: "rgba(255,255,255,0.03)" }}>
-                    <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 14, fontWeight: 600, color: "#fff", marginBottom: 3 }}>{cal.event}</div>
-                    <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: C.oceanTeal, marginBottom: 4 }}>{cal.timing}</div>
-                    <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 400, color: "rgba(255,255,255,0.5)" }}>{cal.detail}</div>
+                  <div key={i} className="p-3.5 px-4 border border-white/[0.12]" style={{ background: "rgba(255,255,255,0.03)" }}>
+                    <div className="font-body text-[14px] font-semibold text-white mb-[3px]">{cal.event}</div>
+                    <div className="font-body text-[11px] font-bold tracking-[0.14em] uppercase text-ocean-teal mb-1">{cal.timing}</div>
+                    <div className="font-body text-[12px] font-normal text-white/50">{cal.detail}</div>
                   </div>
                 ))}
               </div>
@@ -1443,9 +1098,9 @@ export default function KauaiGuide() {
           </FadeIn>
 
           <FadeIn delay={0.14}>
-            <div style={{ padding: "16px 18px", border: `1px solid rgba(255,255,255,0.12)`, background: "rgba(255,255,255,0.03)" }}>
-              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: C.oceanTeal, marginBottom: 10 }}>Marine Layer Note</div>
-              <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 400, color: "rgba(255,255,255,0.6)", lineHeight: 1.7, margin: 0 }}>
+            <div className="p-4 px-[18px] border border-white/[0.12]" style={{ background: "rgba(255,255,255,0.03)" }}>
+              <div className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-ocean-teal mb-2.5">Marine Layer Note</div>
+              <p className="font-body text-[13px] font-normal text-white/60 leading-[1.7] m-0">
                 {"Cloud cover can roll in quickly at night from the north and east. South and west shore locations (Poipū, Polihale) tend to be clearest. Check Clear Outside before committing to a late drive to Polihale."}
               </p>
             </div>
@@ -1454,31 +1109,31 @@ export default function KauaiGuide() {
       </section>
 
       {/* Continue guide content */}
-      <section style={{ padding: isMobile ? "0 20px 60px" : "0 52px 80px", background: C.cream }}>
-        <div style={{ maxWidth: 680, margin: "0 auto" }}>
+      <section className="px-5 pb-[60px] md:px-[52px] md:pb-20 bg-cream">
+        <div className="max-w-[680px] mx-auto">
 
 
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* FOOD & CULTURE                                                */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="food-culture" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
+          <section id="food-culture" className="scroll-mt-[126px] py-11">
             <FadeIn>
-              <SectionIcon type="connect" />
-              <SectionLabel>Food & Culture</SectionLabel>
+              <SectionIcon type="connect" color={ACCENT} />
+              <SectionLabel accentColor={ACCENT}>Food & Culture</SectionLabel>
               <SectionTitle>{"Food, culture & stewardship"}</SectionTitle>
-              <SectionSub isMobile={isMobile}>{"From sacred practice to farm culture to the island's best kitchens. The connections here go deeper than a meal."}</SectionSub>
+              <SectionSub>{"From sacred practice to farm culture to the island's best kitchens. The connections here go deeper than a meal."}</SectionSub>
             </FadeIn>
 
             {/* ── Sacred Practice & Farm Culture ── */}
             <FadeIn delay={0.06}>
-              <div style={{ marginBottom: 8 }}>
-                <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: C.oceanTeal, marginBottom: 16 }}>{"Sacred Practice & Farm Culture"}</div>
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Culture')} name={"Kauaʻi's Hindu Monastery — Kauai Aadheenam"} featured
+              <div className="mb-2">
+                <div className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-ocean-teal mb-4">{"Sacred Practice & Farm Culture"}</div>
+                <ListItem onOpenSheet={openSheet('Culture')} name={"Kauaʻi's Hindu Monastery — Kauai Aadheenam"} featured
                   url="https://www.himalayanacademy.com/"
                   detail={"A 382-acre monastery and temple complex on the Wailua River — one of the most unexpected and quietly profound places in all of Hawaiʻi. The Kadavul Temple houses 108 golden statues of Nataraja and a 700-pound naturally formed crystal Śivaliṅgam. The under-construction Iraivan Temple is the first all-stone Hindu temple in the Western Hemisphere. Visitors welcome daily 9 AM–noon; 9 AM puja open to all. Dress modestly."}
                   note="Kapaʻa — reservation required for temple"
                   tags={["Sacred Practice", "Meditation", "Pilgrimage", "Free"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Culture')} name="Lydgate Farms — Chocolate Farm Tour" featured
+                <ListItem onOpenSheet={openSheet('Culture')} name="Lydgate Farms — Chocolate Farm Tour" featured
                   url="https://www.lydgatefarms.com/"
                   detail={"A fifth-generation Kauaʻi family farming since 1865. Three-hour guided tour through botanical gardens and award-winning cacao fields — recognized three times by Cocoa of Excellence in Paris. The full arc from tree to bar: tropical fruit tasting, vanilla, honey, and craft chocolate. The concept of mālama ʻāina — caring for the land — is embedded in how they operate."}
                   note="Kapaʻa East Side — 3 hrs, reservation required"
@@ -1503,7 +1158,6 @@ export default function KauaiGuide() {
                     reservations={r.reservations}
                     dietary={r.dietary}
                     energy={r.energy}
-                    isMobile={isMobile}
                     onOpenSheet={openSheet('Food')}
                   />
                 ))}
@@ -1512,28 +1166,28 @@ export default function KauaiGuide() {
 
             {/* ── Discover ── */}
             <FadeIn delay={0.26}>
-              <div style={{ marginTop: 28, marginBottom: 8 }}>
-                <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: C.oceanTeal, marginBottom: 16 }}>{"Land, Water & Discovery"}</div>
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Discover')} name={"Nā Pali Coast — Boat Tour"} featured
+              <div className="mt-7 mb-2">
+                <div className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-ocean-teal mb-4">{"Land, Water & Discovery"}</div>
+                <ListItem onOpenSheet={openSheet('Discover')} name={"Nā Pali Coast — Boat Tour"} featured
                   detail={"The coast is only accessible by land for the first two miles of the Kalalau Trail; everything beyond is best seen from the water. Rigid-inflatable raft tours navigate into sea caves, under waterfalls, and along the base of the pali. Captain Andy's and Blue Dolphin Charters have the longest track records."}
                   note="May–September · Book weeks ahead for summer"
                   tags={["Sea Caves", "Waterfalls", "6 Hours", "May–Sep"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Discover')} name={"Helicopter Flight — Waimea Canyon & Interior"}
+                <ListItem onOpenSheet={openSheet('Discover')} name={"Helicopter Flight — Waimea Canyon & Interior"}
                   detail={"Kauaʻi's interior — the Mt. Waiʻaleʻale crater and the rivers that flow from it — is almost completely inaccessible on foot. A helicopter flight is the only way to see the inner waterfalls. Blue Hawaiian and Jack Harter fly doors-off tours. Expensive and genuinely unlike anything else."}
                   tags={["Helicopter", "Doors-Off", "Inner Waterfalls"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Discover')} name={"Snorkeling — Tunnels Reef (Hāʻena)"}
+                <ListItem onOpenSheet={openSheet('Discover')} name={"Snorkeling — Tunnels Reef (Hāʻena)"}
                   url="https://www.gohaena.com/"
                   detail={"One of the finest snorkel sites in Hawaiʻi — a large lava reef system with Hawaiian green sea turtles (honu), reef fish, and in summer, manta rays at dusk. Best in summer when the north shore is calm."}
                   tags={["Snorkeling", "Sea Turtles", "Summer", "Reservation Required"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Discover')} name={"Kīlauea Lighthouse & Wildlife Refuge"}
+                <ListItem onOpenSheet={openSheet('Discover')} name={"Kīlauea Lighthouse & Wildlife Refuge"}
                   url="https://www.fws.gov/refuge/kilauea-point/"
                   detail={"A century-old lighthouse on a headland above the Pacific. The refuge supports nesting colonies of red-footed boobies, frigatebirds, Laysan albatross, and wedge-tailed shearwaters. Humpbacks visible offshore in winter."}
                   tags={["Lighthouse", "Seabirds", "Whale Watching", "North Shore"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Discover')} name={"Hanapepe — Art Town"}
+                <ListItem onOpenSheet={openSheet('Discover')} name={"Hanapepe — Art Town"}
                   url="https://www.hanapepe.org/"
                   detail={"A small former plantation town that has become a genuine artist community. Friday Art Night opens galleries along the main street. The Hanapepe Swinging Bridge spans the river behind town."}
                   tags={["Art Galleries", "Friday Night", "Swinging Bridge"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Discover')} name="McBryde Garden (NTBG)"
+                <ListItem onOpenSheet={openSheet('Discover')} name="McBryde Garden (NTBG)"
                   url="https://ntbg.org/gardens/mcbryde/"
                   detail={"The south shore companion to Limahuli — a major botanical collection with the largest assembly of native Hawaiian plants in the world, plus tropical collections from across the Pacific. Guided tours strongly recommended."}
                   tags={["Botanical Garden", "Native Plants", "Guided Tours"]} />
@@ -1542,28 +1196,28 @@ export default function KauaiGuide() {
 
             {/* ── Give Back & Cultural Stewardship ── */}
             <FadeIn delay={0.3}>
-              <div style={{ marginTop: 28 }}>
-                <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: C.oceanTeal, marginBottom: 16 }}>{"Hawaiian Cultural Stewardship"}</div>
-                <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: "clamp(14px, 1.5vw, 14px)", fontWeight: 400, color: "#4A5650", lineHeight: 1.7, margin: "0 0 16px" }}>
+              <div className="mt-7">
+                <div className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-ocean-teal mb-4">{"Hawaiian Cultural Stewardship"}</div>
+                <p className="font-body text-[clamp(14px,1.5vw,14px)] font-normal text-[#4A5650] leading-[1.7] mt-0 mb-4">
                   {"Kauaʻi's culture and landscape are sustained by the work of organizations rooted in the concept of mālama — to care for. The most meaningful travel here engages with that care directly."}
                 </p>
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Stewardship')} name="Waipa Foundation" featured
+                <ListItem onOpenSheet={openSheet('Stewardship')} name="Waipa Foundation" featured
                   url="https://www.waipafoundation.org/"
                   detail={"A Native Hawaiian community center on the north shore, working to restore the cultural and ecological relationship between people and ʻāina (land). Thursday morning Poi Day: community workday in the loʻi followed by traditional food preparation. One of the most authentic cultural engagement opportunities in Hawaiʻi."}
                   tags={["Loʻi Kalo", "Poi Day", "Community", "Hanalei"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Stewardship')} name={"Surfrider Foundation Kauaʻi"}
+                <ListItem onOpenSheet={openSheet('Stewardship')} name={"Surfrider Foundation Kauaʻi"}
                   url="https://www.surfrider.org/chapters/kauai"
                   detail={"Weekly beach cleanups and net patrols across the island. Wednesday cleanups at 3:30 PM (rotating locations). Saturday cleanups at Lydgate Beach Park 8:30–10:30 AM. Show up, sign in, work alongside whoever's there. No advance registration required."}
                   tags={["Beach Cleanup", "Weekly", "No Registration"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Stewardship')} name={"Limahuli Garden — Volunteer Program"}
+                <ListItem onOpenSheet={openSheet('Stewardship')} name={"Limahuli Garden — Volunteer Program"}
                   url="https://ntbg.org/gardens/limahuli/"
                   detail={"Limahuli welcomes volunteers for invasive species removal, native plant propagation, and habitat restoration. The work is ecological and cultural simultaneously."}
                   tags={["Volunteer", "Native Plants", "Invasive Species"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Stewardship')} name={"Malama Kauaʻi"}
+                <ListItem onOpenSheet={openSheet('Stewardship')} name={"Malama Kauaʻi"}
                   url="https://www.malamakauai.org/"
                   detail={"A broad volunteer network addressing local food production, invasive species, and access to fresh food on the island. Opportunities include harvesting, trail clearing, and food forest work."}
                   tags={["Volunteer", "Food Systems", "Trail Clearing"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Stewardship')} name={"Malama i nā Honu — Sea Turtle Protection"}
+                <ListItem onOpenSheet={openSheet('Stewardship')} name={"Malama i nā Honu — Sea Turtle Protection"}
                   detail={"Hawaiian green sea turtles (honu) rest on Poipū Beach nightly. Volunteers protect turtles and educate visitors during hauling events. For shorter stays: stay 15 feet back, no flash photography, no disturbance."}
                   tags={["Sea Turtles", "Poipū Beach", "Protection"]} />
               </div>
@@ -1576,60 +1230,40 @@ export default function KauaiGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* GIVE BACK                                                     */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="give-back" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
+          <section id="give-back" className="scroll-mt-[126px] py-11">
             <FadeIn>
-              <SectionIcon type="threshold" />
-              <SectionLabel>Give Back</SectionLabel>
+              <SectionIcon type="threshold" color={ACCENT} />
+              <SectionLabel accentColor={ACCENT}>Give Back</SectionLabel>
               <SectionTitle>Leave it better than you found it.</SectionTitle>
-              <SectionSub isMobile={isMobile}>Mālama — to care for. These organizations make that concrete.</SectionSub>
+              <SectionSub>Mālama — to care for. These organizations make that concrete.</SectionSub>
             </FadeIn>
 
             <FadeIn delay={0.1}>
-              <div style={{ marginTop: 8 }}>
-                <div style={{ paddingTop: 16 }}>
-                  <div style={{
-                    fontFamily: "'Quicksand', sans-serif",
-                    fontSize: 11, fontWeight: 700,
-                    letterSpacing: "0.14em", textTransform: "uppercase",
-                    color: "#7A857E", marginBottom: 2,
-                  }}>Conservation</div>
-                  <ListItem isMobile={isMobile} name="Mālama Hawaiʻi"
+              <div className="mt-2">
+                <div className="pt-4">
+                  <div className="font-body text-[11px] font-bold tracking-[0.14em] uppercase text-[#7A857E] mb-0.5">Conservation</div>
+                  <ListItem name="Mālama Hawaiʻi"
                     url="https://www.gohawaii.com/malama"
                     detail="A statewide program connecting visitors to volunteer opportunities — beach cleanups, native tree planting, cultural preservation projects. Several participating hotels offer a complimentary night in exchange for a volunteer day. One of the cleanest models in regenerative tourism anywhere."
                     tags={["Volunteer", "Book a Mālama Stay"]} />
                 </div>
-                <div style={{ paddingTop: 16 }}>
-                  <div style={{
-                    fontFamily: "'Quicksand', sans-serif",
-                    fontSize: 11, fontWeight: 700,
-                    letterSpacing: "0.14em", textTransform: "uppercase",
-                    color: "#7A857E", marginBottom: 2,
-                  }}>Conservation</div>
-                  <ListItem isMobile={isMobile} name="Hawaiʻi Conservation Alliance"
+                <div className="pt-4">
+                  <div className="font-body text-[11px] font-bold tracking-[0.14em] uppercase text-[#7A857E] mb-0.5">Conservation</div>
+                  <ListItem name="Hawaiʻi Conservation Alliance"
                     url="https://www.hawaiiconservation.org"
                     detail="Provides unified scientific and community leadership to conserve and restore native ecosystems across the islands, guided by Hawaiian values and practice. Donations support watershed protection and native species restoration."
                     tags={["Donate"]} />
                 </div>
-                <div style={{ paddingTop: 16 }}>
-                  <div style={{
-                    fontFamily: "'Quicksand', sans-serif",
-                    fontSize: 11, fontWeight: 700,
-                    letterSpacing: "0.14em", textTransform: "uppercase",
-                    color: "#7A857E", marginBottom: 2,
-                  }}>Indigenous Giving</div>
-                  <ListItem isMobile={isMobile} name="Malama Kauai"
+                <div className="pt-4">
+                  <div className="font-body text-[11px] font-bold tracking-[0.14em] uppercase text-[#7A857E] mb-0.5">Indigenous Giving</div>
+                  <ListItem name="Malama Kauai"
                     url="https://malamakauai.org"
                     detail="Kauaʻi-based community organization running local food, land stewardship, and cultural programs rooted in Native Hawaiian relationships to ʻāina. Beach cleanup events, native planting, and community food programs are open to visitors."
                     tags={["Volunteer", "Donate"]} />
                 </div>
-                <div style={{ paddingTop: 16 }}>
-                  <div style={{
-                    fontFamily: "'Quicksand', sans-serif",
-                    fontSize: 11, fontWeight: 700,
-                    letterSpacing: "0.14em", textTransform: "uppercase",
-                    color: "#7A857E", marginBottom: 2,
-                  }}>Indigenous Giving</div>
-                  <ListItem isMobile={isMobile} name="Hawaiʻi Natural Area Reserves System"
+                <div className="pt-4">
+                  <div className="font-body text-[11px] font-bold tracking-[0.14em] uppercase text-[#7A857E] mb-0.5">Indigenous Giving</div>
+                  <ListItem name="Hawaiʻi Natural Area Reserves System"
                     url="https://dlnr.hawaii.gov/ecosystems/nars/donate"
                     detail="Direct donations fund protection of critical watersheds and native habitats — including culturally significant areas not open to visitors that depend entirely on funding to survive. One of the most direct conservation giving options in the state."
                     tags={["Donate"]} />
@@ -1644,24 +1278,16 @@ export default function KauaiGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* CTA                                                           */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="cta" style={{ scrollMarginTop: 126, padding: "56px 0 72px", textAlign: "center" }}>
+          <section id="cta" className="scroll-mt-[126px] pt-14 pb-[72px] text-center">
             <FadeIn>
-              <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 700, letterSpacing: "0.28em", textTransform: "uppercase", color: C.oceanTeal, display: "block", marginBottom: 16 }}>Begin</span>
-              <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(28px, 5vw, 42px)", fontWeight: 300, color: C.darkInk, margin: "0 0 10px", lineHeight: 1.2 }}>{"Your island trip starts here"}</h3>
-              <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: "clamp(14px, 1.6vw, 14px)", fontWeight: 400, color: "#4A5650", maxWidth: 460, margin: "0 auto 36px", lineHeight: 1.65 }}>
+              <span className="font-body text-[12px] font-bold tracking-[0.28em] uppercase text-ocean-teal block mb-4">Begin</span>
+              <h3 className="font-serif text-[clamp(28px,5vw,42px)] font-light text-dark-ink m-0 mb-2.5 leading-[1.2]">{"Your island trip starts here"}</h3>
+              <p className="font-body text-[clamp(14px,1.6vw,14px)] font-normal text-[#4A5650] max-w-[460px] mx-auto mb-9 leading-[1.65]">
                 {"Choose your path — build it yourself with our Trip Planner, or let us craft something personalized for you."}
               </p>
-              <Link to="/plan" style={{
-                padding: "14px 36px", border: "none",
-                background: C.darkInk, color: "#fff",
-                textAlign: "center", display: "inline-block",
-                fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 700,
-                letterSpacing: "0.2em", textTransform: "uppercase",
-                cursor: "pointer", transition: "opacity 0.2s", textDecoration: "none",
-              }}
-              onClick={() => trackEvent('guide_cta_clicked', { action: 'plan_a_trip', destination: 'kauai' })}
-              onMouseEnter={e => e.currentTarget.style.opacity = "0.85"}
-              onMouseLeave={e => e.currentTarget.style.opacity = "1"}
+              <Link to="/plan"
+                className="py-3.5 px-9 border-none bg-dark-ink text-white text-center inline-block font-body text-[12px] font-bold tracking-[0.2em] uppercase cursor-pointer transition-opacity duration-200 no-underline hover:opacity-85"
+                onClick={() => trackEvent('guide_cta_clicked', { action: 'plan_a_trip', destination: 'kauai' })}
               >{"Plan a Trip"}</Link>
             </FadeIn>
           </section>
@@ -1669,12 +1295,12 @@ export default function KauaiGuide() {
           {/* ── Also Explore ────────────────────────────────────────────── */}
           <Divider />
           <FadeIn>
-            <div style={{ padding: "44px 0" }}>
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 12, marginBottom: 16 }}>
-                <span className="eyebrow" style={{ color: "#7A857E" }}>Also Explore</span>
-                <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 600, letterSpacing: "0.1em", color: "#7A857E" }}>Guides available for each destination</span>
+            <div className="py-11">
+              <div className="flex items-center justify-between flex-wrap gap-3 mb-4">
+                <span className="eyebrow text-[#7A857E]">Also Explore</span>
+                <span className="font-body text-[12px] font-semibold tracking-[0.1em] text-[#7A857E]">Guides available for each destination</span>
               </div>
-              <div style={{ display: "flex", gap: 16, flexWrap: "wrap", marginTop: 16 }}>
+              <div className="flex gap-4 flex-wrap mt-4">
                 {[
                   { name: "Zion Canyon", slug: "zion-canyon", accent: C.sunSalmon },
                   { name: "Joshua Tree", slug: "joshua-tree", accent: C.goldenAmber },
@@ -1682,16 +1308,13 @@ export default function KauaiGuide() {
                   { name: "Big Sur", slug: "big-sur", accent: C.seaGlass },
                   { name: "Vancouver Island", slug: "vancouver-island", accent: C.oceanTeal },
                 ].map(other => (
-                  <Link key={other.slug} to={`/destinations/${other.slug}`} style={{
-                    display: "flex", alignItems: "center", gap: 12,
-                    padding: "12px 20px", border: `1px solid ${C.stone}`,
-                    transition: "all 0.25s", background: C.warmWhite, textDecoration: "none",
-                  }}
-                  onMouseEnter={e => { e.currentTarget.style.borderColor = other.accent; }}
-                  onMouseLeave={e => { e.currentTarget.style.borderColor = C.stone; }}
+                  <Link key={other.slug} to={`/destinations/${other.slug}`}
+                    className="flex items-center gap-3 py-3 px-5 border border-stone transition-all duration-[250ms] bg-warm-white no-underline"
+                    onMouseEnter={e => { e.currentTarget.style.borderColor = other.accent; }}
+                    onMouseLeave={e => { e.currentTarget.style.borderColor = C.stone; }}
                   >
-                    <div style={{ width: 8, height: 8, borderRadius: "50%", background: other.accent, opacity: 0.6 }} />
-                    <span style={{ fontFamily: "'Quicksand'", fontSize: 13, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: C.darkInk }}>{other.name}</span>
+                    <div className="w-2 h-2 rounded-full opacity-60" style={{ background: other.accent }} />
+                    <span className="font-body text-[13px] font-semibold tracking-[0.1em] uppercase text-dark-ink">{other.name}</span>
                   </Link>
                 ))}
               </div>

@@ -12,6 +12,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { Nav, Footer, FadeIn, WhisperBar } from '@components';
+import { SectionLabel, SectionTitle, SectionSub, Divider, SectionIcon } from '@components/guide';
 import { C } from '@data/brand';
 import { P } from '@data/photos';
 import { trackEvent } from '@utils/analytics';
@@ -25,132 +26,8 @@ import useBreathCanvas from '@hooks/useBreathCanvas';
 
 
 // ─── Guide-Specific Components ───────────────────────────────────────────────
-
-function SectionLabel({ children }) {
-  return (
-    <div style={{
-      fontFamily: "'Quicksand', sans-serif",
-      fontSize: 12, fontWeight: 700,
-      letterSpacing: "0.28em", textTransform: "uppercase",
-      color: C.goldenAmber, marginBottom: 12,
-      textAlign: "center",
-    }}>{children}</div>
-  );
-}
-
-function SectionTitle({ children }) {
-  return (
-    <h2 style={{
-      fontFamily: "'Cormorant Garamond', serif",
-      fontSize: "clamp(24px, 4vw, 32px)", fontWeight: 400,
-      color: C.darkInk, margin: "0 0 6px", lineHeight: 1.2,
-      textAlign: "center",
-    }}>{children}</h2>
-  );
-}
-
-function SectionSub({ children, isMobile }) {
-  return (
-    <p style={{
-      fontFamily: "'Quicksand', sans-serif",
-      fontSize: isMobile ? 15 : "clamp(14px, 1.8vw, 15px)", fontWeight: 400,
-      color: "#4A5650", margin: "0 auto 28px", lineHeight: 1.7,
-      textAlign: isMobile ? "left" : "center", maxWidth: isMobile ? "100%" : 520,
-    }}>{children}</p>
-  );
-}
-
-function Divider() {
-  return <div style={{ height: 1, background: C.stone, margin: 0 }} />;
-}
-
-function SectionIcon({ type }) {
-  const size = 28;
-  const icons = {
-    move: (
-      <svg width={size} height={size} viewBox="0 0 28 28" fill="none">
-        <rect x="14" y="2" width="15" height="15" rx="2" transform="rotate(45 14 2)"
-          stroke={C.goldenAmber} strokeWidth="1.5" fill="none" />
-      </svg>
-    ),
-    breathe: (
-      <svg width={size} height={size} viewBox="0 0 28 28" fill="none">
-        <circle cx="14" cy="14" r="10"
-          stroke={C.seaGlass} strokeWidth="1.5" fill="none" />
-      </svg>
-    ),
-    awaken: (
-      <svg width={size} height={size} viewBox="0 0 28 28" fill="none">
-        <path d="M14 3 L16 11 L24 14 L16 17 L14 25 L12 17 L4 14 L12 11 Z"
-          stroke={C.goldenAmber} strokeWidth="1.5" fill="none" strokeLinejoin="round" />
-      </svg>
-    ),
-    connect: (
-      <svg width={size} height={size} viewBox="0 0 32 28" fill="none">
-        <circle cx="12" cy="14" r="9" stroke={C.skyBlue} strokeWidth="1.5" fill="none" />
-        <circle cx="20" cy="14" r="9" stroke={C.skyBlue} strokeWidth="1.5" fill="none" />
-      </svg>
-    ),
-    stay: (
-      <svg width={size} height={size} viewBox="0 0 28 28" fill="none">
-        <path d="M4 14 L14 5 L24 14" stroke={C.oceanTeal} strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M7 13 L7 23 L21 23 L21 13" stroke={C.oceanTeal} strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    ),
-    windows: (
-      <svg width={size} height={size} viewBox="0 0 28 28" fill="none">
-        <rect x="4" y="4" width="20" height="20" rx="2" stroke={C.goldenAmber} strokeWidth="1.5" fill="none" />
-        <line x1="14" y1="4" x2="14" y2="24" stroke={C.goldenAmber} strokeWidth="1.5" />
-        <line x1="4" y1="14" x2="24" y2="14" stroke={C.goldenAmber} strokeWidth="1.5" />
-      </svg>
-    ),
-    threshold: (
-      <svg width={size} height={size} viewBox="0 0 28 28" fill="none">
-        <path d="M18 6 A10 10 0 1 0 18 22 A7 7 0 1 1 18 6 Z"
-          stroke={C.goldenAmber} strokeWidth="1.5" fill="none" />
-      </svg>
-    ),
-    plan: (
-      <svg width={size} height={size} viewBox="0 0 28 28" fill="none">
-        <circle cx="14" cy="14" r="11" stroke={C.oceanTeal} strokeWidth="1.5" fill="none" />
-        <path d="M11 17 L13 13 L17 11 L15 15 Z" stroke={C.oceanTeal} strokeWidth="1.5" fill="none" strokeLinejoin="round" />
-      </svg>
-    ),
-    group: (
-      <svg width={size} height={size} viewBox="0 0 28 28" fill="none">
-        <circle cx="10" cy="10" r="3.5" stroke={C.goldenAmber} strokeWidth="1.5" fill="none" />
-        <circle cx="18" cy="10" r="3.5" stroke={C.goldenAmber} strokeWidth="1.5" fill="none" />
-        <path d="M4 22 C4 17 7 15 10 15 C11.5 15 12.5 15.5 14 16.5 C15.5 15.5 16.5 15 18 15 C21 15 24 17 24 22" stroke={C.goldenAmber} strokeWidth="1.5" fill="none" strokeLinecap="round" />
-      </svg>
-    ),
-    darksky: (
-      <svg width={size} height={size} viewBox="0 0 28 28" fill="none">
-        <path d="M18 6 A10 10 0 1 0 18 22 A7 7 0 1 1 18 6 Z"
-          stroke={C.goldenAmber} strokeWidth="1.5" fill="none" />
-        <circle cx="22" cy="6" r="1" fill={C.goldenAmber} opacity="0.6" />
-        <circle cx="8" cy="5" r="0.8" fill={C.goldenAmber} opacity="0.5" />
-        <circle cx="24" cy="12" r="0.6" fill={C.goldenAmber} opacity="0.4" />
-      </svg>
-    ),
-    discover: (
-      <svg width={size} height={size} viewBox="0 0 28 28" fill="none">
-        <circle cx="14" cy="14" r="11" stroke={C.goldenAmber} strokeWidth="1.5" fill="none" />
-        <path d="M10 14 L14 6 L18 14 L14 22 Z" stroke={C.goldenAmber} strokeWidth="1.5" fill="none" strokeLinejoin="round" />
-      </svg>
-    ),
-    giveback: (
-      <svg width={size} height={size} viewBox="0 0 28 28" fill="none">
-        <path d="M14 24 C14 24 4 17 4 11 C4 7.7 6.7 5 10 5 C11.8 5 13.3 5.9 14 7.2 C14.7 5.9 16.2 5 18 5 C21.3 5 24 7.7 24 11 C24 17 14 24 14 24 Z"
-          stroke={C.seaGlass} strokeWidth="1.5" fill="none" />
-      </svg>
-    ),
-  };
-  return (
-    <div style={{ display: "flex", justifyContent: "center", marginBottom: 12 }}>
-      {icons[type]}
-    </div>
-  );
-}
+// SectionLabel, SectionTitle, SectionSub, Divider, SectionIcon imported from @components/guide
+const ACCENT = C.goldenAmber;
 
 function NPSArrowhead({ size = 14, color = "#2D5F2B" }) {
   return (
@@ -161,73 +38,52 @@ function NPSArrowhead({ size = 14, color = "#2D5F2B" }) {
   );
 }
 
-function ListItem({ name, detail, note, tags, featured, url, isMobile, onOpenSheet, location, hasNPS, cuisine, priceRange, reservations, dietary, energy }) {
+function ListItem({ name, detail, note, tags, featured, url, onOpenSheet, location, hasNPS, cuisine, priceRange, reservations, dietary, energy }) {
   const nameEl = onOpenSheet ? (
-    <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 15, fontWeight: 600, color: C.darkInk }}>{name}</span>
+    <span className="font-body text-[15px] font-semibold text-dark-ink">{name}</span>
   ) : url ? (
-    <a href={url} target="_blank" rel="noopener noreferrer" style={{
-      fontFamily: "'Quicksand', sans-serif", fontSize: 15, fontWeight: 600,
-      color: C.darkInk, textDecoration: "none",
-      borderBottom: `1px solid ${C.stone}`, transition: "border-color 0.2s, color 0.2s",
-    }} onMouseEnter={e => { e.target.style.borderColor = C.oceanTeal; e.target.style.color = C.slate || "#3D5A6B"; }}
-       onMouseLeave={e => { e.target.style.borderColor = C.stone; e.target.style.color = C.darkInk; }}>
+    <a href={url} target="_blank" rel="noopener noreferrer"
+      className="font-body text-[15px] font-semibold text-dark-ink no-underline transition-[border-color,color] duration-200"
+      style={{ borderBottom: `1px solid ${C.stone}` }}
+      onMouseEnter={e => { e.target.style.borderColor = C.oceanTeal; e.target.style.color = C.slate || "#3D5A6B"; }}
+      onMouseLeave={e => { e.target.style.borderColor = C.stone; e.target.style.color = C.darkInk; }}>
       {name}
-      <span style={{ fontSize: 12, marginLeft: 4, color: "#7A857E" }}>{"↗"}</span>
+      <span className="text-[12px] ml-1 text-[#7A857E]">{"↗"}</span>
     </a>
   ) : (
-    <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 15, fontWeight: 600, color: C.darkInk }}>{name}</span>
+    <span className="font-body text-[15px] font-semibold text-dark-ink">{name}</span>
   );
 
   return (
     <div
       onClick={onOpenSheet ? () => onOpenSheet({ type: 'list', name, detail, note, tags, featured, url, location, cuisine, priceRange, reservations, dietary, energy }) : undefined}
-      style={{
-        display: "flex", flexDirection: isMobile ? "column" : "row", alignItems: isMobile ? "flex-start" : "center", gap: 14, padding: "16px 0", borderBottom: `1px solid ${C.stone}`,
-        ...(onOpenSheet ? { cursor: 'pointer', transition: 'background 0.15s' } : {}),
-      }}
+      className={`flex flex-col md:flex-row items-start md:items-center gap-3.5 py-4 border-b border-stone ${onOpenSheet ? 'cursor-pointer transition-[background] duration-150' : ''}`}
       onMouseEnter={onOpenSheet ? e => { e.currentTarget.style.background = `${C.stone}30`; } : undefined}
       onMouseLeave={onOpenSheet ? e => { e.currentTarget.style.background = 'transparent'; } : undefined}
     >
-      <div style={{ flex: 1, minWidth: 0 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap", marginBottom: 3 }}>
+      <div className="flex-1 min-w-0">
+        <div className="flex items-center gap-2 flex-wrap mb-[3px]">
           {nameEl}
           {featured && (
-            <span style={{
-              padding: "2px 10px", border: `1px solid ${C.goldenAmber}40`,
-              fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700,
-              letterSpacing: "0.18em", textTransform: "uppercase", color: C.goldenAmber,
-            }}>{"Lila Pick"}</span>
+            <span className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-golden-amber px-2.5 py-0.5"
+              style={{ border: `1px solid ${C.goldenAmber}40` }}>{"Lila Pick"}</span>
           )}
           {hasNPS && (
-            <span style={{
-              display: "inline-flex", alignItems: "center", gap: 4,
-              padding: "2px 8px", background: "#2D5F2B10",
-              fontFamily: "'Quicksand', sans-serif", fontSize: 9, fontWeight: 700,
-              letterSpacing: "0.14em", textTransform: "uppercase", color: "#2D5F2B",
-            }}>
+            <span className="inline-flex items-center gap-1 px-2 py-0.5 font-body text-[9px] font-bold tracking-[0.14em] uppercase text-[#2D5F2B]"
+              style={{ background: "#2D5F2B10" }}>
               <NPSArrowhead size={10} />NPS
             </span>
           )}
         </div>
-        <div style={{
-          fontFamily: "'Quicksand', sans-serif",
-          fontSize: isMobile ? 14 : "clamp(14px, 1.5vw, 14px)", fontWeight: 400,
-          color: "#4A5650", lineHeight: 1.65,
-        }}>{detail}</div>
+        <div className="font-body text-[14px] font-normal text-[#4A5650] leading-[1.65]">{detail}</div>
         {note && (
-          <div style={{
-            fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 600,
-            color: C.oceanTeal, marginTop: 4,
-          }}>{note}</div>
+          <div className="font-body text-[12px] font-semibold text-ocean-teal mt-1">{note}</div>
         )}
         {tags && tags.length > 0 && (
-          <div style={{ display: "flex", gap: 5, marginTop: 7, flexWrap: "wrap" }}>
+          <div className="flex gap-[5px] mt-[7px] flex-wrap">
             {tags.map((t, i) => (
-              <span key={i} style={{
-                padding: "2px 8px", background: C.stone + "60",
-                fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600,
-                color: "#7A857E",
-              }}>{t}</span>
+              <span key={i} className="font-body text-[11px] font-semibold text-[#7A857E] px-2 py-0.5"
+                style={{ background: C.stone + "60" }}>{t}</span>
             ))}
           </div>
         )}
@@ -250,7 +106,7 @@ function sortByTierDiversity(items) {
   return [...picks, ...items.filter(a => !seen.has(a.id))];
 }
 
-function StayItem({ name, location, tier, detail, tags, url, featured, isMobile, onOpenSheet, priceRange, amenities, bookingWindow, seasonalNotes, groupFit }) {
+function StayItem({ name, location, tier, detail, tags, url, featured, onOpenSheet, priceRange, amenities, bookingWindow, seasonalNotes, groupFit }) {
   const styles = {
     elemental: { color: C.seaGlass, label: "Elemental", bg: `${C.seaGlass}15` },
     rooted: { color: C.oceanTeal, label: "Rooted", bg: `${C.oceanTeal}12` },
@@ -259,63 +115,44 @@ function StayItem({ name, location, tier, detail, tags, url, featured, isMobile,
   };
   const s = styles[tier] || styles.rooted;
   const nameEl = onOpenSheet ? (
-    <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 15, fontWeight: 600, color: C.darkInk }}>{name}</span>
+    <span className="font-body text-[15px] font-semibold text-dark-ink">{name}</span>
   ) : url ? (
-    <a href={url} target="_blank" rel="noopener noreferrer" style={{
-      fontFamily: "'Quicksand', sans-serif", fontSize: 15, fontWeight: 600,
-      color: C.darkInk, textDecoration: "none",
-      borderBottom: `1px solid ${C.stone}`, transition: "border-color 0.2s",
-    }} onMouseEnter={e => e.target.style.borderColor = C.oceanTeal}
-       onMouseLeave={e => e.target.style.borderColor = C.stone}>
+    <a href={url} target="_blank" rel="noopener noreferrer"
+      className="font-body text-[15px] font-semibold text-dark-ink no-underline transition-[border-color] duration-200"
+      style={{ borderBottom: `1px solid ${C.stone}` }}
+      onMouseEnter={e => e.target.style.borderColor = C.oceanTeal}
+      onMouseLeave={e => e.target.style.borderColor = C.stone}>
       {name}
-      <span style={{ fontSize: 12, marginLeft: 4, color: "#7A857E" }}>{"↗"}</span>
+      <span className="text-[12px] ml-1 text-[#7A857E]">{"↗"}</span>
     </a>
   ) : (
-    <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 15, fontWeight: 600, color: C.darkInk }}>{name}</span>
+    <span className="font-body text-[15px] font-semibold text-dark-ink">{name}</span>
   );
 
   return (
     <div
       onClick={onOpenSheet ? () => onOpenSheet({ type: 'stay', name, location, tier, detail, tags, featured, url, priceRange, amenities, bookingWindow, seasonalNotes, groupFit }) : undefined}
-      style={{
-        display: "flex", flexDirection: isMobile ? "column" : "row", alignItems: isMobile ? "stretch" : "center", gap: 14, padding: "18px 0", borderBottom: `1px solid ${C.stone}`,
-        ...(onOpenSheet ? { cursor: 'pointer', transition: 'background 0.15s' } : {}),
-      }}
+      className={`flex flex-col md:flex-row items-stretch md:items-center gap-3.5 py-[18px] border-b border-stone ${onOpenSheet ? 'cursor-pointer transition-[background] duration-150' : ''}`}
       onMouseEnter={onOpenSheet ? e => { e.currentTarget.style.background = `${C.stone}30`; } : undefined}
       onMouseLeave={onOpenSheet ? e => { e.currentTarget.style.background = 'transparent'; } : undefined}
     >
-      <div style={{ flex: 1, minWidth: 0 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 3, flexWrap: "wrap" }}>
-          <span style={{
-            padding: "2px 10px", background: s.bg,
-            fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700,
-            letterSpacing: "0.18em", textTransform: "uppercase", color: s.color,
-          }}>{s.label}</span>
-          <span style={{
-            fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 500, color: "#7A857E",
-          }}>{location}</span>
+      <div className="flex-1 min-w-0">
+        <div className="flex items-center gap-2 mb-[3px] flex-wrap">
+          <span className="font-body text-[10px] font-bold tracking-[0.18em] uppercase px-2.5 py-0.5"
+            style={{ background: s.bg, color: s.color }}>{s.label}</span>
+          <span className="font-body text-[12px] font-medium text-[#7A857E]">{location}</span>
           {featured && (
-            <span style={{
-              padding: "2px 10px", border: `1px solid ${C.goldenAmber}40`,
-              fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700,
-              letterSpacing: "0.18em", textTransform: "uppercase", color: C.goldenAmber,
-            }}>{"Lila Pick"}</span>
+            <span className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-golden-amber px-2.5 py-0.5"
+              style={{ border: `1px solid ${C.goldenAmber}40` }}>{"Lila Pick"}</span>
           )}
         </div>
-        <div style={{ marginBottom: 3 }}>{nameEl}</div>
-        <div style={{
-          fontFamily: "'Quicksand', sans-serif",
-          fontSize: isMobile ? 14 : "clamp(14px, 1.5vw, 14px)", fontWeight: 400,
-          color: "#4A5650", lineHeight: 1.65,
-        }}>{detail}</div>
+        <div className="mb-[3px]">{nameEl}</div>
+        <div className="font-body text-[14px] font-normal text-[#4A5650] leading-[1.65]">{detail}</div>
         {tags && (
-          <div style={{ display: "flex", gap: 5, marginTop: 7, flexWrap: "wrap" }}>
+          <div className="flex gap-[5px] mt-[7px] flex-wrap">
             {tags.map((t, i) => (
-              <span key={i} style={{
-                padding: "2px 8px", background: C.stone + "60",
-                fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600,
-                color: "#7A857E",
-              }}>{t}</span>
+              <span key={i} className="font-body text-[11px] font-semibold text-[#7A857E] px-2 py-0.5"
+                style={{ background: C.stone + "60" }}>{t}</span>
             ))}
           </div>
         )}
@@ -336,27 +173,11 @@ function ExpandableList({ children, initialCount = 5, label = "more" }) {
       {hasMore && (
         <button
           onClick={() => setExpanded(!expanded)}
-          style={{
-            display: "inline-flex", alignItems: "center", gap: 8,
-            margin: "20px 0 0", padding: "8px 0", paddingBottom: 4,
-            background: "none", border: "none",
-            borderBottom: `1px solid ${C.darkInk}`,
-            cursor: "pointer",
-            fontFamily: "'Quicksand', sans-serif",
-            fontSize: 12, fontWeight: 700,
-            letterSpacing: "0.2em", textTransform: "uppercase",
-            color: C.darkInk, transition: "opacity 0.2s",
-          }}
-          onMouseEnter={e => e.currentTarget.style.opacity = "0.55"}
-          onMouseLeave={e => e.currentTarget.style.opacity = "1"}
+          className="inline-flex items-center gap-2 mt-5 pt-2 pb-1 bg-transparent border-none border-b border-dark-ink cursor-pointer font-body text-[12px] font-bold tracking-[0.2em] uppercase text-dark-ink transition-opacity duration-200 hover:opacity-55"
         >
           {expanded ? "Show less" : `Show ${items.length - initialCount} more ${label}`}
-          <span style={{
-            display: "inline-block",
-            transition: "transform 0.25s ease",
-            transform: expanded ? "rotate(180deg)" : "rotate(0deg)",
-            fontSize: 11,
-          }}>{"▼"}</span>
+          <span className="inline-block transition-transform duration-[250ms] ease-in-out text-[11px]"
+            style={{ transform: expanded ? "rotate(180deg)" : "rotate(0deg)" }}>{"▼"}</span>
         </button>
       )}
     </div>
@@ -420,93 +241,79 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
   }
 
   const content = (
-    <div style={{ maxWidth: 500, margin: '0 auto', padding: '26px 20px 60px' }}>
+    <div className="max-w-[500px] mx-auto px-5 pt-[26px] pb-[60px]">
       {item.type === 'stay' && item.tier && tierStyles[item.tier] && (
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10, flexWrap: 'wrap' }}>
-          <span style={{
-            padding: '2px 10px', background: tierStyles[item.tier].bg,
-            fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700,
-            letterSpacing: '0.18em', textTransform: 'uppercase', color: tierStyles[item.tier].color,
-          }}>{tierStyles[item.tier].label}</span>
+        <div className="flex items-center gap-2 mb-2.5 flex-wrap">
+          <span className="font-body text-[10px] font-bold tracking-[0.18em] uppercase px-2.5 py-0.5"
+            style={{ background: tierStyles[item.tier].bg, color: tierStyles[item.tier].color }}>{tierStyles[item.tier].label}</span>
           {item.location && (
-            <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 500, color: '#7A857E' }}>{item.location}</span>
+            <span className="font-body text-[12px] font-medium text-[#7A857E]">{item.location}</span>
           )}
         </div>
       )}
       {item.type === 'list' && item.section && (
-        <span style={{
-          display: 'inline-block', padding: '2px 10px', background: `${C.goldenAmber}15`,
-          fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700,
-          letterSpacing: '0.18em', textTransform: 'uppercase', color: C.goldenAmber, marginBottom: 10,
-        }}>{item.section}</span>
+        <span className="inline-block font-body text-[10px] font-bold tracking-[0.18em] uppercase text-golden-amber mb-2.5 px-2.5 py-0.5"
+          style={{ background: `${C.goldenAmber}15` }}>{item.section}</span>
       )}
 
-      <h3 style={{
-        fontFamily: "'Cormorant Garamond', serif",
-        fontSize: 'clamp(22px, 4vw, 28px)', fontWeight: 400,
-        color: C.darkInk, margin: '0 0 10px', lineHeight: 1.2,
-      }}>{item.name}</h3>
+      <h3 className="font-serif text-[clamp(22px,4vw,28px)] font-normal text-dark-ink mb-2.5 leading-[1.2] mt-0">{item.name}</h3>
 
       {item.featured && (
-        <span style={{
-          display: 'inline-block', padding: '2px 10px', border: `1px solid ${C.goldenAmber}40`,
-          fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700,
-          letterSpacing: '0.18em', textTransform: 'uppercase', color: C.goldenAmber, marginBottom: 14,
-        }}>Lila Pick</span>
+        <span className="inline-block font-body text-[10px] font-bold tracking-[0.18em] uppercase text-golden-amber mb-3.5 px-2.5 py-0.5"
+          style={{ border: `1px solid ${C.goldenAmber}40` }}>Lila Pick</span>
       )}
 
       {nps && (
         <>
           {npsPrimaryImage && (
-            <div style={{ margin: '0 -20px 18px', position: 'relative' }}>
+            <div className="mx-[-20px] mb-[18px] relative">
               <img src={npsPrimaryImage.url} alt={npsPrimaryImage.altText || item.name}
-                style={{ width: '100%', height: 220, objectFit: 'cover', display: 'block' }} />
+                className="w-full h-[220px] object-cover block" />
               {(npsPrimaryImage.caption || npsPrimaryImage.credit) && (
-                <div style={{ padding: '6px 20px', fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 400, color: '#7A857E', lineHeight: 1.5 }}>
+                <div className="px-5 py-1.5 font-body text-[11px] font-normal text-[#7A857E] leading-[1.5]">
                   {npsPrimaryImage.caption && <span>{npsPrimaryImage.caption}</span>}
                   {npsPrimaryImage.credit && (
-                    <span style={{ fontStyle: 'italic' }}>{npsPrimaryImage.caption ? ' · ' : ''}Photo: {npsPrimaryImage.credit}</span>
+                    <span className="italic">{npsPrimaryImage.caption ? ' · ' : ''}Photo: {npsPrimaryImage.credit}</span>
                   )}
                 </div>
               )}
               {npsImages.length > 1 && (
-                <div style={{ display: 'flex', gap: 3, padding: '0 20px', overflowX: 'auto', scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+                <div className="flex gap-[3px] px-5 overflow-x-auto" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
                   {npsImages.slice(1, 5).map((img, i) => (
-                    <img key={i} src={img.url} alt={img.altText || ''} style={{ width: 60, height: 42, objectFit: 'cover', opacity: 0.8 }} />
+                    <img key={i} src={img.url} alt={img.altText || ''} className="w-[60px] h-[42px] object-cover opacity-80" />
                   ))}
                 </div>
               )}
             </div>
           )}
 
-          <a href={nps.url} target="_blank" rel="noopener noreferrer" style={{
-            display: 'flex', alignItems: 'center', gap: 10, padding: '10px 14px', marginBottom: 18,
-            background: '#2D5F2B0D', border: '1px solid #2D5F2B18', textDecoration: 'none', transition: 'background 0.2s',
-          }}
-          onMouseEnter={e => e.currentTarget.style.background = '#2D5F2B18'}
-          onMouseLeave={e => e.currentTarget.style.background = '#2D5F2B0D'}>
+          <a href={nps.url} target="_blank" rel="noopener noreferrer"
+            className="flex items-center gap-2.5 px-3.5 py-2.5 mb-[18px] no-underline transition-[background] duration-200"
+            style={{ background: '#2D5F2B0D', border: '1px solid #2D5F2B18' }}
+            onMouseEnter={e => e.currentTarget.style.background = '#2D5F2B18'}
+            onMouseLeave={e => e.currentTarget.style.background = '#2D5F2B0D'}>
             <NPSArrowhead size={20} color="#2D5F2B" />
             <div>
-              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 500, color: '#2D5F2B', lineHeight: 1.5 }}>
+              <div className="font-body text-[12px] font-medium text-[#2D5F2B] leading-[1.5]">
                 Trail information provided by the <strong>National Park Service</strong>
               </div>
-              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#2D5F2B', opacity: 0.6, marginTop: 2 }}>View on NPS.gov ↗</div>
+              <div className="font-body text-[10px] font-semibold tracking-[0.12em] uppercase text-[#2D5F2B] opacity-60 mt-0.5">View on NPS.gov ↗</div>
             </div>
           </a>
 
           {(nps.longDescription || nps.shortDescription) && (
-            <div style={{ marginBottom: 18 }}>
-              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#2D5F2B', marginBottom: 8 }}>NPS Description</div>
-              <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 14, fontWeight: 400, color: '#4A5650', lineHeight: 1.75, margin: 0 }}>{stripHTML(nps.longDescription || nps.shortDescription)}</p>
+            <div className="mb-[18px]">
+              <div className="font-body text-[10px] font-bold tracking-[0.2em] uppercase text-[#2D5F2B] mb-2">NPS Description</div>
+              <p className="font-body text-[14px] font-normal text-[#4A5650] leading-[1.75] m-0">{stripHTML(nps.longDescription || nps.shortDescription)}</p>
             </div>
           )}
 
           {npsInfoRows.length > 0 && (
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px 16px', marginBottom: 20, padding: '14px 0', borderTop: `1px solid ${C.stone}`, borderBottom: `1px solid ${C.stone}` }}>
+            <div className="grid grid-cols-2 gap-x-4 gap-y-2.5 mb-5 py-3.5 border-y border-stone">
               {npsInfoRows.map((row, i) => (
-                <div key={i} style={row.label === 'Location' ? { gridColumn: '1 / -1' } : {}}>
-                  <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#7A857E', marginBottom: 3 }}>{row.label}</div>
-                  <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 500, color: C.darkInk, lineHeight: 1.5 }}>{row.value}</div>
+                <div key={i} className={row.label === 'Location' ? 'col-span-full' : ''}>
+                  <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-[3px]">{row.label}</div>
+                  <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{row.value}</div>
                 </div>
               ))}
             </div>
@@ -520,9 +327,9 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
               const text = clean(html);
               if (!text) return null;
               return (
-                <div style={{ marginBottom: 20 }}>
-                  <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#7A857E', marginBottom: 8 }}>Accessibility</div>
-                  <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 400, color: '#4A5650', lineHeight: 1.6, margin: 0 }}>{text}</p>
+                <div className="mb-5">
+                  <div className="font-body text-[10px] font-bold tracking-[0.2em] uppercase text-[#7A857E] mb-2">Accessibility</div>
+                  <p className="font-body text-[13px] font-normal text-[#4A5650] leading-[1.6] m-0">{text}</p>
                 </div>
               );
             }
@@ -541,35 +348,36 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
             const footnoteMatch = html.match(/<p>([\s\S]*?)<\/p>/i);
             const footnote = footnoteMatch ? clean(footnoteMatch[1]) : null;
             return (
-              <div style={{ marginBottom: 20 }}>
-                <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#7A857E', marginBottom: 10 }}>Trail Accessibility</div>
-                <div style={{ border: `1px solid ${C.stone}`, background: `${C.stone}18` }}>
+              <div className="mb-5">
+                <div className="font-body text-[10px] font-bold tracking-[0.2em] uppercase text-[#7A857E] mb-2.5">Trail Accessibility</div>
+                <div className="border border-stone" style={{ background: `${C.stone}18` }}>
                   {rows.map((row, i) => (
-                    <div key={i} style={{ padding: '9px 14px', borderBottom: `1px solid ${C.stone}` }}>
-                      {row.label && (<div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, color: C.darkInk, marginBottom: 3 }}>{row.label}</div>)}
+                    <div key={i} className="px-3.5 py-[9px] border-b border-stone">
+                      {row.label && (<div className="font-body text-[11px] font-bold text-dark-ink mb-[3px]">{row.label}</div>)}
                       {row.values.map((val, j) => (
-                        <div key={j} style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 400, color: '#4A5650', lineHeight: 1.6 }}>{val}</div>
+                        <div key={j} className="font-body text-[12px] font-normal text-[#4A5650] leading-[1.6]">{val}</div>
                       ))}
                     </div>
                   ))}
-                  {footnote && (<div style={{ padding: '8px 14px', fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 400, fontStyle: 'italic', color: '#7A857E', lineHeight: 1.5 }}>{footnote}</div>)}
+                  {footnote && (<div className="px-3.5 py-2 font-body text-[11px] font-normal italic text-[#7A857E] leading-[1.5]">{footnote}</div>)}
                 </div>
               </div>
             );
           })()}
 
           {(item.detail || item.note) && (
-            <div style={{ padding: '14px 16px', marginBottom: 18, background: `${C.goldenAmber}08`, borderLeft: `3px solid ${C.goldenAmber}40` }}>
-              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: C.goldenAmber, marginBottom: 8 }}>Our Take</div>
-              {item.detail && (<p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 14, fontWeight: 400, color: '#4A5650', lineHeight: 1.7, margin: '0 0 6px' }}>{item.detail}</p>)}
-              {item.note && (<div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 600, color: C.oceanTeal }}>{item.note}</div>)}
+            <div className="px-4 py-3.5 mb-[18px]" style={{ background: `${C.goldenAmber}08`, borderLeft: `3px solid ${C.goldenAmber}40` }}>
+              <div className="font-body text-[10px] font-bold tracking-[0.2em] uppercase text-golden-amber mb-2">Our Take</div>
+              {item.detail && (<p className="font-body text-[14px] font-normal text-[#4A5650] leading-[1.7] mt-0 mb-1.5">{item.detail}</p>)}
+              {item.note && (<div className="font-body text-[12px] font-semibold text-ocean-teal">{item.note}</div>)}
             </div>
           )}
 
           {item.tags && item.tags.length > 0 && (
-            <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 20 }}>
+            <div className="flex gap-1.5 flex-wrap mb-5">
               {item.tags.map((t, i) => (
-                <span key={i} style={{ padding: '3px 10px', background: C.stone + '60', fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 600, color: '#7A857E' }}>{t}</span>
+                <span key={i} className="font-body text-[12px] font-semibold text-[#7A857E] py-[3px] px-2.5"
+                  style={{ background: C.stone + '60' }}>{t}</span>
               ))}
             </div>
           )}
@@ -578,57 +386,51 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
 
       {!nps && (
         <>
-          {item.detail && (<p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 14, fontWeight: 400, color: '#4A5650', lineHeight: 1.7, margin: '0 0 14px' }}>{item.detail}</p>)}
-          {item.note && (<div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 600, color: C.oceanTeal, marginBottom: 14 }}>{item.note}</div>)}
+          {item.detail && (<p className="font-body text-[14px] font-normal text-[#4A5650] leading-[1.7] mt-0 mb-3.5">{item.detail}</p>)}
+          {item.note && (<div className="font-body text-[13px] font-semibold text-ocean-teal mb-3.5">{item.note}</div>)}
 
           {/* Restaurant info grid */}
           {item.type === 'list' && (item.cuisine || item.priceRange || item.reservations || item.energy) && (
-            <div style={{
-              display: 'grid', gridTemplateColumns: '1fr 1fr',
-              gap: '10px 16px', marginBottom: 18,
-              padding: '14px 0',
-              borderTop: `1px solid ${C.stone}`,
-              borderBottom: `1px solid ${C.stone}`,
-            }}>
+            <div className="grid grid-cols-2 gap-x-4 gap-y-2.5 mb-[18px] py-3.5 border-y border-stone">
               {item.cuisine && (
                 <div>
-                  <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#7A857E', marginBottom: 3 }}>Cuisine</div>
-                  <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 500, color: C.darkInk, lineHeight: 1.5 }}>{item.cuisine}</div>
+                  <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-[3px]">Cuisine</div>
+                  <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.cuisine}</div>
                 </div>
               )}
               {item.priceRange && (
                 <div>
-                  <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#7A857E', marginBottom: 3 }}>Price</div>
-                  <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 500, color: C.darkInk, lineHeight: 1.5 }}>{item.priceRange}</div>
+                  <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-[3px]">Price</div>
+                  <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.priceRange}</div>
                 </div>
               )}
               {item.energy && (
                 <div>
-                  <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#7A857E', marginBottom: 3 }}>Vibe</div>
-                  <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 500, color: C.darkInk, lineHeight: 1.5 }}>{item.energy}</div>
+                  <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-[3px]">Vibe</div>
+                  <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.energy}</div>
                 </div>
               )}
               {item.reservations && (
                 <div>
-                  <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#7A857E', marginBottom: 3 }}>Reservations</div>
-                  <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 500, color: C.darkInk, lineHeight: 1.5 }}>{item.reservations}</div>
+                  <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-[3px]">Reservations</div>
+                  <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.reservations}</div>
                 </div>
               )}
               {item.location && (
-                <div style={{ gridColumn: '1 / -1' }}>
-                  <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#7A857E', marginBottom: 3 }}>Location</div>
-                  <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 500, color: C.darkInk, lineHeight: 1.5 }}>{item.location}</div>
+                <div className="col-span-full">
+                  <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-[3px]">Location</div>
+                  <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.location}</div>
                 </div>
               )}
               {item.dietary && (item.dietary.vegetarian || item.dietary.vegan || item.dietary.glutenFree) && (
-                <div style={{ gridColumn: '1 / -1' }}>
-                  <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#7A857E', marginBottom: 3 }}>Dietary</div>
-                  <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
-                    {item.dietary.vegetarian && <span style={{ padding: '2px 8px', background: `${C.seaGlass}15`, fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600, color: C.seaGlass }}>vegetarian</span>}
-                    {item.dietary.vegan && <span style={{ padding: '2px 8px', background: `${C.seaGlass}15`, fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600, color: C.seaGlass }}>vegan</span>}
-                    {item.dietary.glutenFree && <span style={{ padding: '2px 8px', background: `${C.seaGlass}15`, fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600, color: C.seaGlass }}>gluten-free</span>}
+                <div className="col-span-full">
+                  <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-[3px]">Dietary</div>
+                  <div className="flex gap-1.5 flex-wrap">
+                    {item.dietary.vegetarian && <span className="font-body text-[11px] font-semibold text-sea-glass px-2 py-0.5" style={{ background: `${C.seaGlass}15` }}>vegetarian</span>}
+                    {item.dietary.vegan && <span className="font-body text-[11px] font-semibold text-sea-glass px-2 py-0.5" style={{ background: `${C.seaGlass}15` }}>vegan</span>}
+                    {item.dietary.glutenFree && <span className="font-body text-[11px] font-semibold text-sea-glass px-2 py-0.5" style={{ background: `${C.seaGlass}15` }}>gluten-free</span>}
                   </div>
-                  {item.dietary.notes && <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 400, color: '#7A857E', marginTop: 4, lineHeight: 1.5 }}>{item.dietary.notes}</div>}
+                  {item.dietary.notes && <div className="font-body text-[12px] font-normal text-[#7A857E] mt-1 leading-[1.5]">{item.dietary.notes}</div>}
                 </div>
               )}
             </div>
@@ -636,35 +438,29 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
 
           {/* Accommodation info grid */}
           {item.type === 'stay' && (item.priceRange || item.bookingWindow || item.seasonalNotes || item.groupFit) && (
-            <div style={{
-              display: 'grid', gridTemplateColumns: '1fr 1fr',
-              gap: '10px 16px', marginBottom: 18,
-              padding: '14px 0',
-              borderTop: `1px solid ${C.stone}`,
-              borderBottom: `1px solid ${C.stone}`,
-            }}>
+            <div className="grid grid-cols-2 gap-x-4 gap-y-2.5 mb-[18px] py-3.5 border-y border-stone">
               {item.priceRange && (
                 <div>
-                  <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#7A857E', marginBottom: 3 }}>Price Range</div>
-                  <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 500, color: C.darkInk, lineHeight: 1.5 }}>{item.priceRange}</div>
+                  <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-[3px]">Price Range</div>
+                  <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.priceRange}</div>
                 </div>
               )}
               {item.groupFit && (
                 <div>
-                  <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#7A857E', marginBottom: 3 }}>Good For</div>
-                  <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 500, color: C.darkInk, lineHeight: 1.5 }}>{item.groupFit.join(', ')}</div>
+                  <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-[3px]">Good For</div>
+                  <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.groupFit.join(', ')}</div>
                 </div>
               )}
               {item.bookingWindow && (
-                <div style={{ gridColumn: '1 / -1' }}>
-                  <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#7A857E', marginBottom: 3 }}>Booking</div>
-                  <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 500, color: C.darkInk, lineHeight: 1.5 }}>{item.bookingWindow}</div>
+                <div className="col-span-full">
+                  <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-[3px]">Booking</div>
+                  <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.bookingWindow}</div>
                 </div>
               )}
               {item.seasonalNotes && (
-                <div style={{ gridColumn: '1 / -1' }}>
-                  <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#7A857E', marginBottom: 3 }}>Season</div>
-                  <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 500, color: C.darkInk, lineHeight: 1.5 }}>{item.seasonalNotes}</div>
+                <div className="col-span-full">
+                  <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-[3px]">Season</div>
+                  <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.seasonalNotes}</div>
                 </div>
               )}
             </div>
@@ -672,20 +468,21 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
 
           {/* Amenities */}
           {item.type === 'stay' && item.amenities && item.amenities.length > 0 && (
-            <div style={{ marginBottom: 18 }}>
-              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#7A857E', marginBottom: 8 }}>Amenities</div>
-              <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+            <div className="mb-[18px]">
+              <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-2">Amenities</div>
+              <div className="flex gap-1.5 flex-wrap">
                 {item.amenities.map((a, i) => (
-                  <span key={i} style={{ padding: '3px 10px', background: `${C.oceanTeal}10`, fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 600, color: C.oceanTeal }}>{a}</span>
+                  <span key={i} className="font-body text-[12px] font-semibold text-ocean-teal py-[3px] px-2.5" style={{ background: `${C.oceanTeal}10` }}>{a}</span>
                 ))}
               </div>
             </div>
           )}
 
           {item.tags && item.tags.length > 0 && (
-            <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 20 }}>
+            <div className="flex gap-1.5 flex-wrap mb-5">
               {item.tags.map((t, i) => (
-                <span key={i} style={{ padding: '3px 10px', background: C.stone + '60', fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 600, color: '#7A857E' }}>{t}</span>
+                <span key={i} className="font-body text-[12px] font-semibold text-[#7A857E] py-[3px] px-2.5"
+                  style={{ background: C.stone + '60' }}>{t}</span>
               ))}
             </div>
           )}
@@ -693,16 +490,12 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
       )}
 
       {item.url && !nps && (
-        <a href={item.url} target="_blank" rel="noopener noreferrer" style={{
-          display: 'inline-flex', alignItems: 'center', gap: 6,
-          padding: '10px 20px', border: `1.5px solid ${C.oceanTeal}`,
-          fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 700,
-          letterSpacing: '0.16em', textTransform: 'uppercase',
-          color: C.oceanTeal, textDecoration: 'none', transition: 'all 0.25s',
-        }}
-        onMouseEnter={e => { e.currentTarget.style.background = C.oceanTeal; e.currentTarget.style.color = '#fff'; }}
-        onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = C.oceanTeal; }}
-        >Visit Website <span style={{ fontSize: 13 }}>↗</span></a>
+        <a href={item.url} target="_blank" rel="noopener noreferrer"
+          className="inline-flex items-center gap-1.5 py-2.5 px-5 font-body text-[12px] font-bold tracking-[0.16em] uppercase text-ocean-teal no-underline transition-all duration-[250ms]"
+          style={{ border: `1.5px solid ${C.oceanTeal}` }}
+          onMouseEnter={e => { e.currentTarget.style.background = C.oceanTeal; e.currentTarget.style.color = '#fff'; }}
+          onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = C.oceanTeal; }}
+        >Visit Website <span className="text-[13px]">↗</span></a>
       )}
     </div>
   );
@@ -714,10 +507,10 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
           @keyframes guideSheetSlideIn { from { transform: translateX(100%); } to { transform: translateX(0); } }
           @keyframes guideSheetBackdropIn { from { opacity: 0; } to { opacity: 1; } }
         `}</style>
-        <div onClick={onClose} style={{ position: 'fixed', inset: 0, zIndex: 249, background: 'rgba(0,0,0,0.3)', animation: 'guideSheetBackdropIn 0.25s ease' }} />
-        <div style={{ position: 'fixed', top: 0, right: 0, bottom: 0, width: 440, zIndex: 250, background: C.cream, overflowY: 'auto', animation: 'guideSheetSlideIn 0.3s ease', boxShadow: '-4px 0 24px rgba(0,0,0,0.08)' }}>
-          <div style={{ position: 'sticky', top: 0, zIndex: 10, display: 'flex', justifyContent: 'flex-end', padding: '12px 14px 0 0' }}>
-            <button onClick={onClose} style={{ width: 32, height: 32, display: 'flex', alignItems: 'center', justifyContent: 'center', background: `${C.warmWhite}e0`, border: `1px solid ${C.stone}15`, borderRadius: '50%', cursor: 'pointer', fontFamily: "'Quicksand', sans-serif", fontSize: 15, color: '#7A857E', lineHeight: 1, WebkitTapHighlightColor: 'transparent', boxShadow: `0 2px 8px ${C.darkInk}08` }} aria-label="Close">✕</button>
+        <div onClick={onClose} className="fixed inset-0 z-[249]" style={{ background: 'rgba(0,0,0,0.3)', animation: 'guideSheetBackdropIn 0.25s ease' }} />
+        <div className="fixed top-0 right-0 bottom-0 w-[440px] z-[250] bg-cream overflow-y-auto" style={{ animation: 'guideSheetSlideIn 0.3s ease', boxShadow: '-4px 0 24px rgba(0,0,0,0.08)' }}>
+          <div className="sticky top-0 z-10 flex justify-end pr-3.5 pt-3">
+            <button onClick={onClose} className="w-8 h-8 flex items-center justify-center rounded-full cursor-pointer font-body text-[15px] text-[#7A857E] leading-none" style={{ background: `${C.warmWhite}e0`, border: `1px solid ${C.stone}15`, WebkitTapHighlightColor: 'transparent', boxShadow: `0 2px 8px ${C.darkInk}08` }} aria-label="Close">✕</button>
           </div>
           {content}
         </div>
@@ -731,13 +524,13 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
         @keyframes guideSheetSlideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
         @keyframes guideSheetBackdropIn { from { opacity: 0; } to { opacity: 1; } }
       `}</style>
-      <div onClick={onClose} style={{ position: 'fixed', inset: 0, zIndex: 249, background: 'rgba(0,0,0,0.3)', animation: 'guideSheetBackdropIn 0.25s ease' }} />
-      <div ref={sheetRef} style={{ position: 'fixed', bottom: 0, left: 0, right: 0, height: '82vh', zIndex: 250, background: C.cream, borderRadius: '16px 16px 0 0', animation: 'guideSheetSlideUp 0.3s ease', boxShadow: '0 -4px 24px rgba(0,0,0,0.1)', display: 'flex', flexDirection: 'column' }}>
-        <div onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd} style={{ padding: '10px 14px 6px', flexShrink: 0, position: 'relative', zIndex: 10 }}>
-          <div style={{ width: 36, height: 4, borderRadius: 2, background: `#7A857E30`, margin: '0 auto 8px' }} />
-          <button onClick={(e) => { e.stopPropagation(); onClose(); }} style={{ position: 'absolute', top: 8, right: 14, width: 36, height: 36, display: 'flex', alignItems: 'center', justifyContent: 'center', background: `${C.warmWhite}e0`, border: `1px solid #7A857E15`, borderRadius: '50%', cursor: 'pointer', fontFamily: "'Quicksand', sans-serif", fontSize: 15, color: '#7A857E', lineHeight: 1, WebkitTapHighlightColor: 'transparent', boxShadow: `0 2px 8px ${C.darkInk}08` }} aria-label="Close">✕</button>
+      <div onClick={onClose} className="fixed inset-0 z-[249]" style={{ background: 'rgba(0,0,0,0.3)', animation: 'guideSheetBackdropIn 0.25s ease' }} />
+      <div ref={sheetRef} className="fixed bottom-0 left-0 right-0 h-[82vh] z-[250] bg-cream rounded-t-2xl flex flex-col" style={{ animation: 'guideSheetSlideUp 0.3s ease', boxShadow: '0 -4px 24px rgba(0,0,0,0.1)' }}>
+        <div onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd} className="px-3.5 pt-2.5 pb-1.5 shrink-0 relative z-10">
+          <div className="w-9 h-1 rounded-sm mx-auto mb-2" style={{ background: '#7A857E30' }} />
+          <button onClick={(e) => { e.stopPropagation(); onClose(); }} className="absolute top-2 right-3.5 w-9 h-9 flex items-center justify-center rounded-full cursor-pointer font-body text-[15px] text-[#7A857E] leading-none" style={{ background: `${C.warmWhite}e0`, border: `1px solid #7A857E15`, WebkitTapHighlightColor: 'transparent', boxShadow: `0 2px 8px ${C.darkInk}08` }} aria-label="Close">✕</button>
         </div>
-        <div style={{ overflowY: 'auto', flex: 1, WebkitOverflowScrolling: 'touch' }}>
+        <div className="overflow-y-auto flex-1" style={{ WebkitOverflowScrolling: 'touch' }}>
           {content}
         </div>
       </div>
@@ -745,14 +538,14 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
   );
 }
 
-function WildlifeEntry({ name, season, detail, isMobile }) {
+function WildlifeEntry({ name, season, detail }) {
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: 4, padding: "16px 0", borderBottom: `1px solid ${C.stone}` }}>
-      <div style={{ display: "flex", alignItems: "baseline", gap: 10, flexWrap: "wrap" }}>
-        <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 14, fontWeight: 600, color: C.darkInk }}>{name}</span>
-        <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: C.goldenAmber }}>{season}</span>
+    <div className="flex flex-col gap-1 py-4 border-b border-stone">
+      <div className="flex items-baseline gap-2.5 flex-wrap">
+        <span className="font-body text-[14px] font-semibold text-dark-ink">{name}</span>
+        <span className="font-body text-[11px] font-bold tracking-[0.16em] uppercase text-golden-amber">{season}</span>
       </div>
-      <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: "clamp(14px, 1.5vw, 14px)", fontWeight: 400, color: "#4A5650", lineHeight: 1.7, margin: 0 }}>{detail}</p>
+      <p className="font-body text-[14px] font-normal text-[#4A5650] leading-[1.7] m-0">{detail}</p>
     </div>
   );
 }
@@ -775,7 +568,7 @@ function DesignationIcon({ designation, size = 14, color = "#2D5F2B" }) {
   return null;
 }
 
-function ParkCard({ park, isExpanded, onToggle, isMobile }) {
+function ParkCard({ park, isExpanded, onToggle }) {
   const DESIGNATION_LABELS = {
     "us-national-park": "National Park",
     "canadian-national-park": "National Park Reserve",
@@ -786,88 +579,62 @@ function ParkCard({ park, isExpanded, onToggle, isMobile }) {
   };
   const chips = [park.acreage, park.elevation, park.attribute].filter(Boolean);
   return (
-    <div style={{
-      borderLeft: `4px solid ${park.accent}`,
-      border: `1px solid ${isExpanded ? park.accent + "40" : C.stone}`,
-      borderLeftWidth: 4, borderLeftColor: park.accent,
-      background: isExpanded ? `${park.accent}06` : C.cream,
-      transition: "border-color 0.2s, background 0.2s",
-      marginBottom: 6,
-    }}>
+    <div className="mb-1.5 transition-[border-color,background] duration-200"
+      style={{
+        borderLeft: `4px solid ${park.accent}`,
+        border: `1px solid ${isExpanded ? park.accent + "40" : C.stone}`,
+        borderLeftWidth: 4, borderLeftColor: park.accent,
+        background: isExpanded ? `${park.accent}06` : C.cream,
+      }}>
       <button
         onClick={onToggle}
-        style={{
-          width: "100%", padding: isMobile ? "14px 14px" : "16px 20px",
-          background: "none", border: "none", cursor: "pointer",
-          display: "flex", alignItems: "center", gap: 12,
-          textAlign: "left",
-        }}
+        className="w-full p-3.5 md:px-5 md:py-4 bg-transparent border-none cursor-pointer flex items-center gap-3 text-left"
       >
-        <div style={{ flex: 1, minWidth: 0 }}>
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 4 }}>
-            <div style={{
-              fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700,
-              letterSpacing: "0.22em", textTransform: "uppercase", color: park.accent,
-            }}>
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center justify-between mb-1">
+            <div className="font-body text-[10px] font-bold tracking-[0.22em] uppercase"
+              style={{ color: park.accent }}>
               {DESIGNATION_LABELS[park.designation] || park.designation}{park.established ? ` · Est. ${park.established}` : ""}
             </div>
             {!park.isAnchor && park.driveFrom && (
-              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 600, letterSpacing: "0.08em", color: "#7A857E" }}>
+              <div className="font-body text-[10px] font-semibold tracking-[0.08em] text-[#7A857E]">
                 {park.driveFrom}
               </div>
             )}
           </div>
-          <div style={{
-            fontFamily: "'Cormorant Garamond', serif",
-            fontSize: "clamp(18px, 2.5vw, 22px)", fontWeight: 400,
-            color: C.darkInk, lineHeight: 1.15, marginBottom: chips.length ? 8 : 0,
-          }}>{park.name}</div>
+          <div className="font-serif text-[clamp(18px,2.5vw,22px)] font-normal text-dark-ink leading-[1.15]"
+            style={{ marginBottom: chips.length ? 8 : 0 }}>{park.name}</div>
           {chips.length > 0 && (
-            <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
+            <div className="flex gap-1.5 flex-wrap">
               {chips.map((chip, i) => (
-                <span key={i} style={{
-                  padding: "2px 10px", background: `${park.accent}10`,
-                  fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600,
-                  color: "#4A5650", whiteSpace: "nowrap",
-                }}>{chip}</span>
+                <span key={i} className="font-body text-[11px] font-semibold text-[#4A5650] whitespace-nowrap px-2.5 py-0.5"
+                  style={{ background: `${park.accent}10` }}>{chip}</span>
               ))}
             </div>
           )}
         </div>
-        <div style={{ display: "flex", alignItems: "center", gap: 8, flexShrink: 0 }}>
+        <div className="flex items-center gap-2 shrink-0">
           <DesignationIcon designation={park.designation} size={16} color={park.accent} />
-          <span style={{
-            display: "inline-block", fontSize: 14, color: "#7A857E", lineHeight: 1,
-            transform: isExpanded ? "rotate(180deg)" : "rotate(0deg)",
-            transition: "transform 0.3s ease",
-          }}>▾</span>
+          <span className="inline-block text-[14px] text-[#7A857E] leading-none transition-transform duration-300 ease-in-out"
+            style={{ transform: isExpanded ? "rotate(180deg)" : "rotate(0deg)" }}>▾</span>
         </div>
       </button>
-      <div style={{
-        maxHeight: isExpanded ? 400 : 0, overflow: "hidden",
-        transition: "max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
-      }}>
-        <div style={{ padding: isMobile ? "0 14px 16px" : "0 20px 18px" }}>
-          <div style={{
-            fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 400,
-            color: "#4A5650", lineHeight: 1.7, fontStyle: "italic",
-            marginBottom: 12, paddingTop: 2,
-          }}>
+      <div className="overflow-hidden transition-[max-height] duration-400 ease-[cubic-bezier(0.4,0,0.2,1)]"
+        style={{ maxHeight: isExpanded ? 400 : 0 }}>
+        <div className="px-3.5 pb-4 md:px-5 md:pb-[18px]">
+          <div className="font-body text-[13px] font-normal text-[#4A5650] leading-[1.7] italic mb-3 pt-0.5">
             {"◈ "}{park.soul}
           </div>
           {park.facts.map((fact, i) => (
-            <div key={i} style={{ display: "flex", gap: 8, marginBottom: 5, alignItems: "flex-start" }}>
-              <div style={{ width: 4, height: 4, borderRadius: "50%", background: park.accent, opacity: 0.6, marginTop: 7, flexShrink: 0 }} />
-              <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 400, color: "#4A5650", lineHeight: 1.65 }}>{fact}</span>
+            <div key={i} className="flex gap-2 mb-[5px] items-start">
+              <div className="w-1 h-1 rounded-full opacity-60 mt-[7px] shrink-0" style={{ background: park.accent }} />
+              <span className="font-body text-[12px] font-normal text-[#4A5650] leading-[1.65]">{fact}</span>
             </div>
           ))}
           {park.infoUrl && (
-            <a href={park.infoUrl} target="_blank" rel="noopener noreferrer" style={{
-              display: "inline-block", marginTop: 10,
-              fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700,
-              letterSpacing: "0.18em", textTransform: "uppercase",
-              color: park.accent, textDecoration: "none",
-            }}>
+            <a href={park.infoUrl} target="_blank" rel="noopener noreferrer"
+              className="inline-block mt-2.5 font-body text-[10px] font-bold tracking-[0.18em] uppercase no-underline"
+              style={{ color: park.accent }}>
               {park.designation === "canadian-national-park" ? "Parks Canada" : park.designation === "us-national-park" ? "NPS Page" : "Park Info"} ↗
             </a>
           )}
@@ -924,52 +691,20 @@ function GuideNav({ isMobile }) {
 
   if (isMobile) {
     return (
-      <div style={{
-        margin: "0 20px 24px",
-        border: `1px solid ${C.stone}`,
-        padding: "16px 18px",
-        background: C.cream,
-      }}>
-        <div style={{
-          display: "flex", alignItems: "center", justifyContent: "space-between",
-          marginBottom: 14,
-        }}>
-          <span style={{
-            fontFamily: "'Quicksand', sans-serif",
-            fontSize: 10, fontWeight: 700,
-            letterSpacing: "0.22em", textTransform: "uppercase",
-            color: "#7A857E",
-          }}>In this guide</span>
-          <span style={{
-            fontFamily: "'Quicksand', sans-serif",
-            fontSize: 10, fontWeight: 500,
-            color: "#b8b0a8", letterSpacing: "0.06em",
-          }}>{GUIDE_SECTIONS.length} sections</span>
+      <div className="mx-5 mb-6 border border-stone p-4 px-[18px] bg-cream">
+        <div className="flex items-center justify-between mb-3.5">
+          <span className="font-body text-[10px] font-bold tracking-[0.22em] uppercase text-[#7A857E]">In this guide</span>
+          <span className="font-body text-[10px] font-medium text-[#b8b0a8] tracking-[0.06em]">{GUIDE_SECTIONS.length} sections</span>
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2px 16px" }}>
+        <div className="grid grid-cols-2 gap-x-4 gap-y-0.5">
           {GUIDE_SECTIONS.map((section, i) => (
             <button
               key={section.id}
               onClick={() => handleClick(section.id)}
-              style={{
-                display: "flex", alignItems: "center", gap: 8,
-                padding: "7px 0",
-                background: "none", border: "none", cursor: "pointer",
-                textAlign: "left",
-              }}
+              className="flex items-center gap-2 py-[7px] bg-transparent border-none cursor-pointer text-left"
             >
-              <span style={{
-                fontFamily: "'Quicksand', sans-serif",
-                fontSize: 9, fontWeight: 700,
-                letterSpacing: "0.1em", color: "#b8b0a8",
-                minWidth: 16,
-              }}>{String(i + 1).padStart(2, "0")}</span>
-              <span style={{
-                fontFamily: "'Quicksand', sans-serif",
-                fontSize: 11, fontWeight: 600,
-                letterSpacing: "0.08em", textTransform: "uppercase",
-                color: "#4A5650",
-              }}>{section.label}</span>
+              <span className="font-body text-[9px] font-bold tracking-[0.1em] text-[#b8b0a8] min-w-4">{String(i + 1).padStart(2, "0")}</span>
+              <span className="font-body text-[11px] font-semibold tracking-[0.08em] uppercase text-[#4A5650]">{section.label}</span>
             </button>
           ))}
         </div>
@@ -978,29 +713,23 @@ function GuideNav({ isMobile }) {
   }
 
   return (
-    <nav style={{
-      position: "sticky", top: 72, zIndex: 90,
-      background: "rgba(250, 247, 243, 0.97)",
-      borderTop: `1px solid ${C.stone}`,
-      borderBottom: `1px solid ${C.stone}`,
-    }}>
-      <div style={{ maxWidth: 1120, margin: "0 auto", padding: "4px 40px 0", display: "flex", alignItems: "center" }}>
-        <div style={{ flex: 1, minWidth: 0, position: "relative" }}>
-          <div ref={scrollContainerRef} className="guide-nav-scroll" style={{ display: "flex", alignItems: "center", gap: 0, overflowX: "auto", scrollbarWidth: "none", msOverflowStyle: "none" }}>
+    <nav className="sticky top-[72px] z-90 border-y border-stone" style={{ background: "rgba(250, 247, 243, 0.97)" }}>
+      <div className="max-w-[1120px] mx-auto pt-1 px-10 flex items-center">
+        <div className="flex-1 min-w-0 relative">
+          <div ref={scrollContainerRef} className="guide-nav-scroll flex items-center overflow-x-auto" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
           <style>{`.guide-nav-scroll::-webkit-scrollbar { display: none; }`}</style>
           {GUIDE_SECTIONS.map((section) => {
             const isActive = activeId === section.id;
             return (
-              <button key={section.id} onClick={() => handleClick(section.id)} className="guide-nav-scroll" style={{
-                padding: "0 14px", height: 44, background: "none", border: "none",
-                borderBottom: `2px solid ${isActive ? C.goldenAmber : "transparent"}`,
-                cursor: "pointer", fontFamily: "'Quicksand', sans-serif", fontSize: 11,
-                fontWeight: isActive ? 700 : 600, letterSpacing: "0.14em", textTransform: "uppercase",
-                color: isActive ? C.goldenAmber : "#7A857E", whiteSpace: "nowrap", flexShrink: 0,
-                transition: "color 0.25s ease, border-color 0.25s ease", position: "relative",
-              }}
-              onMouseEnter={e => { if (!isActive) { e.currentTarget.style.color = C.darkInk; e.currentTarget.style.borderBottomColor = C.stone; } }}
-              onMouseLeave={e => { if (!isActive) { e.currentTarget.style.color = "#7A857E"; e.currentTarget.style.borderBottomColor = "transparent"; } }}
+              <button key={section.id} onClick={() => handleClick(section.id)}
+                className="guide-nav-scroll px-3.5 h-11 bg-transparent border-none cursor-pointer font-body text-[11px] tracking-[0.14em] uppercase whitespace-nowrap shrink-0 transition-[color,border-color] duration-[250ms] ease-in-out relative"
+                style={{
+                  borderBottom: `2px solid ${isActive ? C.goldenAmber : "transparent"}`,
+                  fontWeight: isActive ? 700 : 600,
+                  color: isActive ? C.goldenAmber : "#7A857E",
+                }}
+                onMouseEnter={e => { if (!isActive) { e.currentTarget.style.color = C.darkInk; e.currentTarget.style.borderBottomColor = C.stone; } }}
+                onMouseLeave={e => { if (!isActive) { e.currentTarget.style.color = "#7A857E"; e.currentTarget.style.borderBottomColor = "transparent"; } }}
               >
                 {section.label}
               </button>
@@ -1091,69 +820,51 @@ export default function JoshuaTreeGuide() {
 
           {/* ══ TITLE MASTHEAD ═══════════════════════════════════════════════════ */}
           <section style={{ background: breathConfig ? 'transparent' : C.cream }}>
-        <div style={{ padding: isMobile ? "28px 20px 24px" : "44px 52px 40px", maxWidth: 920, margin: "0 auto" }}>
+        <div className="py-7 px-5 md:py-11 md:px-[52px] md:pb-10 max-w-[920px] mx-auto">
           <FadeIn from="bottom" delay={0.1}>
 
-            <div style={{
-              display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 320px", gap: isMobile ? 28 : 52, alignItems: "start",
-              marginTop: 0,
-            }}>
+            <div className="grid grid-cols-1 md:grid-cols-[1fr_320px] gap-7 md:gap-[52px] items-start">
 
               {/* ── Left: Title + description ── */}
               <div>
-                <span className="eyebrow" style={{ color: C.goldenAmber, marginBottom: 14, display: "block" }}>Destination Guide</span>
+                <span className="eyebrow text-golden-amber mb-3.5 block">Destination Guide</span>
 
-                <h1 style={{
-                  fontFamily: "'Cormorant Garamond', serif",
-                  fontSize: "clamp(38px, 6vw, 64px)", fontWeight: 300,
-                  color: C.darkInk, lineHeight: 1.0,
-                  margin: "0 0 22px", letterSpacing: "-0.02em",
-                }}>
+                <h1 className="font-serif text-[clamp(38px,6vw,64px)] font-light text-dark-ink leading-none mb-[22px] tracking-[-0.02em] mt-0">
                   Joshua Tree
                 </h1>
 
-                <p style={{
-                  fontFamily: "'Quicksand', sans-serif",
-                  fontSize: "clamp(14px, 1.6vw, 14px)", fontWeight: 400,
-                  color: "#4A5650", lineHeight: 1.75, maxWidth: 460,
-                  margin: "0 0 14px",
-                }}>
+                <p className="font-body text-[clamp(14px,1.6vw,14px)] font-normal text-[#4A5650] leading-[1.75] max-w-[460px] mt-0 mb-3.5">
                   Joshua Tree sits at the convergence of two deserts — the Mojave and the Colorado — and that collision is part of what makes it singular. The high desert is cool and boulder-studded. The silence here has weight.
                 </p>
 
-                <p style={{
-                  fontFamily: "'Quicksand', sans-serif",
-                  fontSize: "clamp(14px, 1.6vw, 14px)", fontWeight: 400,
-                  color: "#4A5650", lineHeight: 1.75, maxWidth: 460,
-                  margin: 0,
-                }}>
+                <p className="font-body text-[clamp(14px,1.6vw,14px)] font-normal text-[#4A5650] leading-[1.75] max-w-[460px] m-0">
                   This is a place for people who want to feel small in the best possible way. We built this guide to help you find it.
                 </p>
               </div>
 
               {/* ── Right: This Guide Covers ── */}
-              <div style={isMobile ? { borderTop: `1px solid ${C.stone}`, paddingTop: 28 } : { borderLeft: `1px solid ${C.stone}`, paddingLeft: 28 }}>
-                <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: "#7A857E", marginBottom: 18 }}>This guide covers</div>
+              <div className="border-t md:border-t-0 md:border-l border-stone pt-7 md:pt-0 md:pl-7">
+                <div className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-[#7A857E] mb-[18px]">This guide covers</div>
 
-                <div style={{ marginBottom: 16 }}>
-                  <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: C.seaGlass, marginBottom: 10 }}>Park</div>
-                  <a href="https://www.nps.gov/jotr/" target="_blank" rel="noopener noreferrer" style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 7, textDecoration: "none" }}>
-                    <div style={{ width: 5, height: 5, borderRadius: "50%", background: C.seaGlass, opacity: 0.5 }} />
-                    <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 600, letterSpacing: "0.02em", color: C.darkInk }}>Joshua Tree National Park</span>
+                <div className="mb-4">
+                  <div className="font-body text-[11px] font-bold tracking-[0.2em] uppercase text-sea-glass mb-2.5">Park</div>
+                  <a href="https://www.nps.gov/jotr/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2.5 mb-[7px] no-underline">
+                    <div className="w-[5px] h-[5px] rounded-full bg-sea-glass opacity-50" />
+                    <span className="font-body text-[12px] font-semibold tracking-[0.02em] text-dark-ink">Joshua Tree National Park</span>
                   </a>
                 </div>
 
-                <div style={{ marginBottom: 16 }}>
-                  <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: C.goldenAmber, marginBottom: 10 }}>Orbit Towns</div>
+                <div className="mb-4">
+                  <div className="font-body text-[11px] font-bold tracking-[0.2em] uppercase text-golden-amber mb-2.5">Orbit Towns</div>
                   {["Joshua Tree town", "Twentynine Palms", "Pioneertown", "Palm Springs"].map((town, i) => (
-                    <div key={i} style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 7 }}>
-                      <div style={{ width: 5, height: 5, borderRadius: "50%", background: C.goldenAmber, opacity: 0.5 }} />
-                      <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 600, letterSpacing: "0.02em", color: C.darkInk }}>{town}</span>
+                    <div key={i} className="flex items-center gap-2.5 mb-[7px]">
+                      <div className="w-[5px] h-[5px] rounded-full bg-golden-amber opacity-50" />
+                      <span className="font-body text-[12px] font-semibold tracking-[0.02em] text-dark-ink">{town}</span>
                     </div>
                   ))}
                 </div>
 
-                <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 500, letterSpacing: "0.06em", color: "#7A857E", marginTop: 14, paddingTop: 12, borderTop: `1px solid ${C.stone}` }}>
+                <div className="font-body text-[11px] font-medium tracking-[0.06em] text-[#7A857E] mt-3.5 pt-3 border-t border-stone">
                   Updated 2026
                 </div>
               </div>
@@ -1167,37 +878,19 @@ export default function JoshuaTreeGuide() {
       <GuideNav isMobile={isMobile} />
 
       {/* ══ IMAGE STRIP ════════════════════════════════════════════════════ */}
-      <section style={{ position: "relative" }}>
-        <div style={{
-          display: "flex", gap: 2,
-          overflowX: "auto", scrollSnapType: "x mandatory",
-          WebkitOverflowScrolling: "touch",
-          scrollbarWidth: "none",
-        }}>
+      <section className="relative">
+        <div className="flex gap-0.5 overflow-x-auto snap-x snap-mandatory" style={{ WebkitOverflowScrolling: "touch", scrollbarWidth: "none" }}>
           {[
             { src: P.joshuaTreeDawn,     alt: "Joshua Tree at dawn",            caption: "First light in the high desert",     width: 420 },
             { src: P.joshuaTreeCholla,    alt: "Cholla Cactus Garden",           caption: "Cholla Cactus Garden at golden hour", width: 280 },
             { src: P.joshuaTreeBoulders,  alt: "Joshua Tree boulder formations", caption: "Jumbo Rocks — ancient granite",       width: 420 },
             { src: P.joshuaTreeNightSky,  alt: "Night sky over Joshua Tree",     caption: "Bortle Class 2 darkness",            width: 360 },
           ].map((img, i) => (
-            <div key={i} style={{
-              flex: "0 0 auto", width: isMobile ? "85vw" : img.width,
-              scrollSnapAlign: "start", position: "relative", overflow: "hidden",
-            }}>
-              <img src={img.src} alt={img.alt} style={{
-                width: "100%", height: 320, objectFit: "cover", display: "block",
-              }} />
-              <div style={{
-                position: "absolute", bottom: 0, left: 0, right: 0,
-                padding: "32px 16px 14px",
-                background: "linear-gradient(to top, rgba(10,18,26,0.7), transparent)",
-              }}>
-                <span style={{
-                  fontFamily: "'Quicksand', sans-serif",
-                  fontSize: 11, fontWeight: 600,
-                  letterSpacing: "0.08em",
-                  color: "rgba(255,255,255,0.8)",
-                }}>{img.caption}</span>
+            <div key={i} className="flex-none snap-start relative overflow-hidden"
+              style={{ width: isMobile ? "85vw" : img.width }}>
+              <img src={img.src} alt={img.alt} className="w-full h-80 object-cover block" />
+              <div className="absolute bottom-0 left-0 right-0 pt-8 px-4 pb-3.5" style={{ background: "linear-gradient(to top, rgba(10,18,26,0.7), transparent)" }}>
+                <span className="font-body text-[11px] font-semibold tracking-[0.08em] text-white/80">{img.caption}</span>
               </div>
             </div>
           ))}
@@ -1205,39 +898,27 @@ export default function JoshuaTreeGuide() {
       </section>
 
       {/* ══ GUIDE CONTENT ═══════════════════════════════════════════════════ */}
-      <section style={{ padding: isMobile ? "32px 20px 60px" : "48px 52px 80px", background: C.cream }}>
-        <div style={{ maxWidth: 680, margin: "0 auto" }}>
+      <section className="py-8 px-5 pb-[60px] md:py-12 md:px-[52px] md:pb-20 bg-cream">
+        <div className="max-w-[680px] mx-auto">
 
 
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* THE PLACE                                                     */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="sense-of-place" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
+          <section id="sense-of-place" className="scroll-mt-[126px] py-11">
             <FadeIn>
-              <SectionLabel>Sense of Place</SectionLabel>
-              <p style={{
-                fontFamily: "'Quicksand', sans-serif",
-                fontSize: "clamp(14px, 1.8vw, 15px)", lineHeight: 1.8,
-                fontWeight: 400, color: "#4A5650", margin: "0 0 16px",
-              }}>
+              <SectionLabel accentColor={ACCENT}>Sense of Place</SectionLabel>
+              <p className="font-body text-[clamp(14px,1.8vw,15px)] leading-[1.8] font-normal text-[#4A5650] mt-0 mb-4">
                 {"Joshua Tree sits at the convergence of two deserts — the Mojave and the Colorado — and that collision is part of what makes it singular. The high desert is cool and boulder-studded, carpeted in the alien silhouettes of Yucca brevifolia. Drop below the transition zone into the Colorado Desert and the landscape shifts: more open, more stark, warmer. The park covers 800,000 acres. Most visitors see a fraction of it."}
               </p>
-              <p style={{
-                fontFamily: "'Quicksand', sans-serif",
-                fontSize: "clamp(14px, 1.8vw, 15px)", lineHeight: 1.8,
-                fontWeight: 400, color: "#4A5650", margin: "0 0 28px",
-              }}>
+              <p className="font-body text-[clamp(14px,1.8vw,15px)] leading-[1.8] font-normal text-[#4A5650] mt-0 mb-7">
                 {"The surrounding communities each add a distinct layer. The town of Joshua Tree is small, arty, and increasingly a destination in itself. Twentynine Palms is the working town with the quietest skies. Pioneertown was built as a movie set in 1946 and never entirely stopped performing. Palm Springs is 45 minutes south: mid-century architecture, serious spas, a counterpoint when you want polished comfort after days in the dust."}
               </p>
             </FadeIn>
 
             {/* ── At a Glance ── */}
             <FadeIn delay={0.06}>
-              <div style={{
-                display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))",
-                gap: isMobile ? 12 : 16, padding: isMobile ? 16 : 20,
-                background: C.cream, border: `1px solid ${C.stone}`, marginBottom: 20,
-              }}>
+              <div className="grid grid-cols-[repeat(auto-fit,minmax(130px,1fr))] gap-3 md:gap-4 p-4 md:p-5 bg-cream border border-stone mb-5">
                 {[
                   { l: "Recommended", v: "3–5 days" },
                   { l: "Nearest Airport", v: "Palm Springs (PSP) or LAX" },
@@ -1245,8 +926,8 @@ export default function JoshuaTreeGuide() {
                   { l: "Best Times", v: "Oct–Apr" },
                 ].map((s, i) => (
                   <div key={i}>
-                    <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: C.goldenAmber, marginBottom: 3 }}>{s.l}</div>
-                    <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 14, fontWeight: 600, color: C.darkInk }}>{s.v}</div>
+                    <div className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-golden-amber mb-[3px]">{s.l}</div>
+                    <div className="font-body text-[14px] font-semibold text-dark-ink">{s.v}</div>
                   </div>
                 ))}
               </div>
@@ -1254,14 +935,13 @@ export default function JoshuaTreeGuide() {
 
             {/* ── Park Cards ── */}
             <FadeIn delay={0.08}>
-              <div style={{ marginBottom: 4 }}>
+              <div className="mb-1">
                 {PARKS.map(park => (
                   <ParkCard
                     key={park.id}
                     park={park}
                     isExpanded={expandedPark === park.id}
                     onToggle={() => setExpandedPark(expandedPark === park.id ? null : park.id)}
-                    isMobile={isMobile}
                   />
                 ))}
               </div>
@@ -1269,13 +949,13 @@ export default function JoshuaTreeGuide() {
 
             {/* ── Wildlife Section ── */}
             <FadeIn delay={0.1}>
-              <div style={{ border: `1px solid ${C.stone}`, background: C.cream, marginTop: 28, padding: isMobile ? "18px" : "22px" }}>
-                <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "0.24em", textTransform: "uppercase", color: C.seaGlass, marginBottom: 8 }}>Desert Wildlife</div>
-                <WildlifeEntry isMobile={isMobile} name="Desert Bighorn Sheep" season="Year-round" detail="Most visible at dawn and dusk near water sources. Barker Dam and Lost Palms Oasis are reliable sighting zones." />
-                <WildlifeEntry isMobile={isMobile} name="Desert Tortoise" season="Spring – Fall" detail="Threatened species — do not approach or handle if encountered. Most active in spring after rain. Found in the Colorado Desert section." />
-                <WildlifeEntry isMobile={isMobile} name="Coyote" season="Year-round" detail="Listen for them at dusk. Their calls across the open desert are part of the sound of this place." />
-                <WildlifeEntry isMobile={isMobile} name="Roadrunner" season="Year-round" detail="Fast, curious, and frequently spotted along park roads and at campground edges." />
-                <WildlifeEntry isMobile={isMobile} name="Sidewinder Rattlesnake" season="Warm months" detail="Watch where you step and reach, especially in rocky areas. They're shy but present." />
+              <div className="border border-stone bg-cream mt-7 p-[18px] md:p-[22px]">
+                <div className="font-body text-[10px] font-bold tracking-[0.24em] uppercase text-sea-glass mb-2">Desert Wildlife</div>
+                <WildlifeEntry name="Desert Bighorn Sheep" season="Year-round" detail="Most visible at dawn and dusk near water sources. Barker Dam and Lost Palms Oasis are reliable sighting zones." />
+                <WildlifeEntry name="Desert Tortoise" season="Spring – Fall" detail="Threatened species — do not approach or handle if encountered. Most active in spring after rain. Found in the Colorado Desert section." />
+                <WildlifeEntry name="Coyote" season="Year-round" detail="Listen for them at dusk. Their calls across the open desert are part of the sound of this place." />
+                <WildlifeEntry name="Roadrunner" season="Year-round" detail="Fast, curious, and frequently spotted along park roads and at campground edges." />
+                <WildlifeEntry name="Sidewinder Rattlesnake" season="Warm months" detail="Watch where you step and reach, especially in rocky areas. They're shy but present." />
               </div>
             </FadeIn>
           </section>
@@ -1286,25 +966,25 @@ export default function JoshuaTreeGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* WHEN TO GO                                                    */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="when-to-go" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
+          <section id="when-to-go" className="scroll-mt-[126px] py-11">
             <FadeIn>
-              <SectionIcon type="windows" />
-              <SectionLabel>Magic Windows</SectionLabel>
+              <SectionIcon type="windows" color={ACCENT} />
+              <SectionLabel accentColor={ACCENT}>Magic Windows</SectionLabel>
               <SectionTitle>When to go</SectionTitle>
-              <SectionSub isMobile={isMobile}>The desert transforms with the seasons. These are the moments when the land is most alive.</SectionSub>
+              <SectionSub>The desert transforms with the seasons. These are the moments when the land is most alive.</SectionSub>
             </FadeIn>
             <FadeIn delay={0.08}>
               <div>
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('When to Go')} name="Spring Wildflower Bloom" featured
+                <ListItem onOpenSheet={openSheet('When to Go')} name="Spring Wildflower Bloom" featured
                   detail="After wet winters, the desert erupts in color — poppies, lupine, desert lilies. Intensity varies year to year. When it happens, it's unforgettable."
                   tags={["Late Feb – Apr", "Weather-Dependent", "Magic Window"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('When to Go')} name="Autumn Light"
+                <ListItem onOpenSheet={openSheet('When to Go')} name="Autumn Light"
                   detail="Second-best window. Crowds thinner than spring. The color is subtle but the light is extraordinary — amber and pink at golden hour."
                   tags={["Oct – Nov", "Golden Light", "Fewer Crowds"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('When to Go')} name="Dark Sky Season" featured
+                <ListItem onOpenSheet={openSheet('When to Go')} name="Dark Sky Season" featured
                   detail="Winter's long nights and dry, stable air create the park's best stargazing conditions. The winter solstice provides the longest dark window of the year."
                   tags={["Nov – Feb", "Milky Way", "Geminids"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('When to Go')} name="Perseid Meteor Shower"
+                <ListItem onOpenSheet={openSheet('When to Go')} name="Perseid Meteor Shower"
                   detail="Mid-August. Up to 100 meteors per hour at peak. Best viewed from the backcountry or Pinto Basin Road pullouts after midnight."
                   tags={["Aug 12–13 Peak", "Night Sky", "Summer"]} />
               </div>
@@ -1318,58 +998,38 @@ export default function JoshuaTreeGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* TREAD LIGHTLY                                                 */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="tread-lightly" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
+          <section id="tread-lightly" className="scroll-mt-[126px] py-11">
             <FadeIn>
-              <SectionIcon type="awaken" />
-              <SectionLabel>Tread Lightly</SectionLabel>
+              <SectionIcon type="awaken" color={ACCENT} />
+              <SectionLabel accentColor={ACCENT}>Tread Lightly</SectionLabel>
               <SectionTitle>Traveling responsibly.</SectionTitle>
-              <SectionSub isMobile={isMobile}>The desert moves slowly. So should you.</SectionSub>
+              <SectionSub>The desert moves slowly. So should you.</SectionSub>
             </FadeIn>
 
             <FadeIn delay={0.1}>
-              <div style={{ marginTop: 8 }}>
-                <div style={{ paddingTop: 16 }}>
-                  <div style={{
-                    fontFamily: "'Quicksand', sans-serif",
-                    fontSize: 11, fontWeight: 700,
-                    letterSpacing: "0.14em", textTransform: "uppercase",
-                    color: "#7A857E", marginBottom: 2,
-                  }}>Joshua Trees · Age & Fragility</div>
-                  <ListItem isMobile={isMobile} name="The trees you're walking past are older than anyone you know."
+              <div className="mt-2">
+                <div className="pt-4">
+                  <div className="font-body text-[11px] font-bold tracking-[0.14em] uppercase text-[#7A857E] mb-0.5">Joshua Trees · Age & Fragility</div>
+                  <ListItem name="The trees you're walking past are older than anyone you know."
                     detail="Joshua trees grow roughly an inch a year — the ones lining the trail may be a century old or more. Off-trail movement compacts soil that took millennia to develop and damages root systems that aren't visible from the surface. Stay on trail without exception. The desert floor looks empty. It isn't."
                     tags={["Stay on trail", "Soil compaction", "Desert fragility"]} />
                 </div>
-                <div style={{ paddingTop: 16 }}>
-                  <div style={{
-                    fontFamily: "'Quicksand', sans-serif",
-                    fontSize: 11, fontWeight: 700,
-                    letterSpacing: "0.14em", textTransform: "uppercase",
-                    color: "#7A857E", marginBottom: 2,
-                  }}>Dark Sky · IDA Certification</div>
-                  <ListItem isMobile={isMobile} name="One of the last truly dark horizons in Southern California."
+                <div className="pt-4">
+                  <div className="font-body text-[11px] font-bold tracking-[0.14em] uppercase text-[#7A857E] mb-0.5">Dark Sky · IDA Certification</div>
+                  <ListItem name="One of the last truly dark horizons in Southern California."
                     detail="Joshua Tree sits sandwiched between the Inland Empire's 4 million residents to the west and the last pool of natural darkness in Southern California to the east. The park earned International Dark Sky Park designation in 2017. That status depends on visitors using red-filtered lights at night, staying in designated stargazing areas, and not pulling off-road into undisturbed terrain. The darker you let it stay, the more sky you get."
                     note="◈ Head east into the park for the darkest skies — away from Palm Springs light pollution"
                     tags={["IDA dark sky park", "Red light only", "Stay on designated areas"]} />
                 </div>
-                <div style={{ paddingTop: 16 }}>
-                  <div style={{
-                    fontFamily: "'Quicksand', sans-serif",
-                    fontSize: 11, fontWeight: 700,
-                    letterSpacing: "0.14em", textTransform: "uppercase",
-                    color: "#7A857E", marginBottom: 2,
-                  }}>Peregrine Falcons · Seasonal Closures</div>
-                  <ListItem isMobile={isMobile} name="Some trails close in spring. That's not an inconvenience — it's conservation."
+                <div className="pt-4">
+                  <div className="font-body text-[11px] font-bold tracking-[0.14em] uppercase text-[#7A857E] mb-0.5">Peregrine Falcons · Seasonal Closures</div>
+                  <ListItem name="Some trails close in spring. That's not an inconvenience — it's conservation."
                     detail="In spring, certain trails and rock-climbing routes close to protect nesting peregrine falcons. These closures are temporary and specific. Respecting them is the difference between a falcon pair successfully nesting and abandoning the site entirely. Check the NPS alerts page before you arrive — route closures shift year to year."
                     tags={["Seasonal closures", "Nesting protection", "Check before you go"]} />
                 </div>
-                <div style={{ paddingTop: 16 }}>
-                  <div style={{
-                    fontFamily: "'Quicksand', sans-serif",
-                    fontSize: 11, fontWeight: 700,
-                    letterSpacing: "0.14em", textTransform: "uppercase",
-                    color: "#7A857E", marginBottom: 2,
-                  }}>Camping · Fire & Waste</div>
-                  <ListItem isMobile={isMobile} name="The 2019 shutdown showed what happens without rangers."
+                <div className="pt-4">
+                  <div className="font-body text-[11px] font-bold tracking-[0.14em] uppercase text-[#7A857E] mb-0.5">Camping · Fire & Waste</div>
+                  <ListItem name="The 2019 shutdown showed what happens without rangers."
                     detail="During the 2019 government shutdown, visitors camped illegally in sensitive areas and drove off-road vehicles over fragile landscapes, creating new roads in previously undisturbed terrain. The damage took months to recover from. Camp only in designated sites. Pack out all waste. Never build fires outside established rings — desert scrub ignites fast and the park has limited suppression capacity."
                     tags={["Designated camping only", "Pack it out", "No off-road"]} />
                 </div>
@@ -1383,28 +1043,24 @@ export default function JoshuaTreeGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* WHERE TO SLEEP                                                */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="where-to-stay" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
+          <section id="where-to-stay" className="scroll-mt-[126px] py-11">
             <FadeIn>
-              <SectionIcon type="stay" />
-              <SectionLabel>Sleep</SectionLabel>
+              <SectionIcon type="stay" color={ACCENT} />
+              <SectionLabel accentColor={ACCENT}>Sleep</SectionLabel>
               <SectionTitle>Where to sleep</SectionTitle>
-              <SectionSub isMobile={isMobile}>How you inhabit a place matters. Options across the full spectrum — from sleeping under the stars to Palm Springs luxury.</SectionSub>
+              <SectionSub>How you inhabit a place matters. Options across the full spectrum — from sleeping under the stars to Palm Springs luxury.</SectionSub>
             </FadeIn>
 
             <FadeIn delay={0.05}>
-              <div style={{
-                padding: "14px 16px", background: C.cream,
-                border: `1px solid ${C.stone}`, marginBottom: 20,
-                display: "flex", flexDirection: isMobile ? "column" : "row", gap: isMobile ? 10 : 16, flexWrap: "wrap",
-              }}>
+              <div className="p-3.5 px-4 bg-cream border border-stone mb-5 flex flex-col md:flex-row gap-2.5 md:gap-4 flex-wrap">
                 {[
                   { label: "Elemental", desc: "In the landscape", color: C.seaGlass },
                   { label: "Rooted", desc: "Boutique, local", color: C.oceanTeal },
                   { label: "Premium", desc: "Elevated experience", color: C.goldenAmber },
                 ].map((t, i) => (
-                  <div key={i} style={{ flex: isMobile ? "0 0 auto" : "1 1 140px" }}>
-                    <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 700, letterSpacing: "0.1em", color: t.color }}>{t.label}</span>
-                    <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 400, color: "#4A5650", marginLeft: 6 }}>{t.desc}</span>
+                  <div key={i} className="flex-none md:flex-[1_1_140px]">
+                    <span className="font-body text-[12px] font-bold tracking-[0.1em]" style={{ color: t.color }}>{t.label}</span>
+                    <span className="font-body text-[13px] font-normal text-[#4A5650] ml-1.5">{t.desc}</span>
                   </div>
                 ))}
               </div>
@@ -1422,7 +1078,6 @@ export default function JoshuaTreeGuide() {
                     tags={a.tags}
                     url={a.links?.booking || a.links?.website}
                     featured={a.lilaPick}
-                    isMobile={isMobile}
                     onOpenSheet={setActiveSheet}
                     priceRange={a.priceRange}
                     amenities={a.amenities}
@@ -1435,9 +1090,7 @@ export default function JoshuaTreeGuide() {
 
               {accommodations.filter(a => a.corridor).length > 0 && (
                 <>
-                  <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 600,
-                    letterSpacing: '0.08em', textTransform: 'uppercase',
-                    color: C.warmGray, marginTop: 32, marginBottom: 12 }}>
+                  <p className="font-body text-[13px] font-semibold tracking-[0.08em] uppercase mt-8 mb-3" style={{ color: C.warmGray }}>
                     Regional Corridor
                   </p>
                   {sortByTierDiversity(accommodations.filter(a => a.corridor)).map(a => (
@@ -1450,7 +1103,6 @@ export default function JoshuaTreeGuide() {
                       tags={a.tags}
                       url={a.links?.booking || a.links?.website}
                       featured={a.lilaPick}
-                      isMobile={isMobile}
                       onOpenSheet={setActiveSheet}
                     />
                   ))}
@@ -1465,56 +1117,56 @@ export default function JoshuaTreeGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* MOVE                                                          */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="trails" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
+          <section id="trails" className="scroll-mt-[126px] py-11">
             <FadeIn>
-              <SectionIcon type="move" />
-              <SectionLabel>Move</SectionLabel>
+              <SectionIcon type="move" color={ACCENT} />
+              <SectionLabel accentColor={ACCENT}>Move</SectionLabel>
               <SectionTitle>{"Hikes, trails & landscape"}</SectionTitle>
-              <SectionSub isMobile={isMobile}>{"From easy desert loops to world-class climbing. The terrain teaches you something new at every turn."}</SectionSub>
+              <SectionSub>{"From easy desert loops to world-class climbing. The terrain teaches you something new at every turn."}</SectionSub>
             </FadeIn>
             <FadeIn delay={0.08}>
               <ExpandableList initialCount={5} label="trails & adventures">
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Trails')} name="Barker Dam Loop" featured
+                <ListItem onOpenSheet={openSheet('Trails')} name="Barker Dam Loop" featured
                   hasNPS={checkNPS("Barker Dam")}
                   url="https://www.nps.gov/jotr/planyourvisit/barkerdam.htm"
                   detail="A former ranching dam reflecting sky and cliff. Rock art on the canyon walls. Bighorn sheep territory at dawn and dusk."
                   tags={["1.3 mi", "Easy", "Rock Art", "Bighorn Sheep"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Trails')} name="Ryan Mountain" featured
+                <ListItem onOpenSheet={openSheet('Trails')} name="Ryan Mountain" featured
                   hasNPS={checkNPS("Ryan Mountain")}
                   url="https://www.nps.gov/jotr/planyourvisit/ryanmountain.htm"
                   detail="The best panoramic summit in the park. Views of both desert systems, the Little San Bernardino Mountains, and on clear days, the Salton Sea. Sunrise from here is transformative."
                   tags={["3 mi RT", "Moderate", "1,050 ft gain", "Sunrise"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Trails')} name="Hidden Valley Trail"
+                <ListItem onOpenSheet={openSheet('Trails')} name="Hidden Valley Trail"
                   hasNPS={checkNPS("Hidden Valley")}
                   url="https://www.nps.gov/jotr/planyourvisit/hiddenvalley.htm"
                   detail="Enclosed by massive boulder formations — the valley floor feels like a secret the desert kept. A legendary bouldering area."
                   tags={["1 mi Loop", "Easy", "Bouldering"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Trails')} name="Cholla Cactus Garden" featured
+                <ListItem onOpenSheet={openSheet('Trails')} name="Cholla Cactus Garden" featured
                   hasNPS={checkNPS("Cholla Cactus Garden")}
                   url="https://www.nps.gov/jotr/planyourvisit/chollacactusgarden.htm"
                   detail="Walking through cholla forest at golden hour is one of the park's most otherworldly experiences. Do not touch."
                   tags={["0.25 mi", "Flat", "Golden Hour", "Photography"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Trails')} name="Skull Rock Nature Trail"
+                <ListItem onOpenSheet={openSheet('Trails')} name="Skull Rock Nature Trail"
                   hasNPS={checkNPS("Skull Rock")}
                   url="https://www.nps.gov/jotr/planyourvisit/skull-rock.htm"
                   detail="The signature rock formation, but the trail earns its length — good for tuning in to desert micro-ecosystems."
                   tags={["1.7 mi", "Easy", "Iconic"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Trails')} name="Lost Palms Oasis" featured
+                <ListItem onOpenSheet={openSheet('Trails')} name="Lost Palms Oasis" featured
                   hasNPS={checkNPS("Lost Palms Oasis")}
                   url="https://www.nps.gov/jotr/planyourvisit/lostpalms.htm"
                   detail="The park's largest fan palm oasis, deep in the Colorado Desert. Bighorn sheep, a genuine sense of wilderness. Carry more water than you think you need."
                   tags={["7.5 mi RT", "Moderate–Strenuous", "Oasis", "Wilderness"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Trails')} name="Keys View"
+                <ListItem onOpenSheet={openSheet('Trails')} name="Keys View"
                   hasNPS={checkNPS("Keys View")}
                   url="https://www.nps.gov/jotr/planyourvisit/keys-view.htm"
                   detail="Drive-up overlook. Views of the Coachella Valley, the San Andreas Fault, and the Salton Sea. Best in morning before haze builds."
                   tags={["Drive-Up", "Overlook", "San Andreas Fault"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Trails')} name="Fortynine Palms Oasis"
+                <ListItem onOpenSheet={openSheet('Trails')} name="Fortynine Palms Oasis"
                   hasNPS={checkNPS("Fortynine Palms Oasis")}
                   url="https://www.nps.gov/jotr/planyourvisit/fortyninepalms.htm"
                   detail="A surprise: a lush palm oasis tucked into otherwise arid hills. The contrast is visceral."
                   tags={["3 mi RT", "Moderate", "Oasis"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Trails')} name="Mastodon Peak Loop"
+                <ListItem onOpenSheet={openSheet('Trails')} name="Mastodon Peak Loop"
                   hasNPS={checkNPS("Mastodon Peak")}
                   url="https://www.nps.gov/jotr/planyourvisit/mastodonpeak.htm"
                   detail="Gold mine ruins, Cottonwood Spring oasis, bighorn territory. A layered walk."
@@ -1524,18 +1176,18 @@ export default function JoshuaTreeGuide() {
 
             {/* ── Bouldering & Climbing ── */}
             <FadeIn delay={0.12}>
-              <div style={{ marginTop: 36 }}>
-                <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: C.goldenAmber, marginBottom: 16 }}>Bouldering & Climbing</div>
-                <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: "clamp(14px, 1.5vw, 14px)", fontWeight: 400, color: "#4A5650", lineHeight: 1.7, margin: "0 0 16px" }}>
+              <div className="mt-9">
+                <div className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-golden-amber mb-4">Bouldering & Climbing</div>
+                <p className="font-body text-[clamp(14px,1.5vw,14px)] font-normal text-[#4A5650] leading-[1.7] mt-0 mb-4">
                   Joshua Tree is one of the world's great trad climbing destinations — over 8,000 established routes on 400+ formations. The rock is monzogranite, coarse-textured and grippy. For non-climbers, watching skilled climbers work the boulders is its own kind of meditation.
                 </p>
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Climbing')} name="Intersection Rock"
+                <ListItem onOpenSheet={openSheet('Climbing')} name="Intersection Rock"
                   detail="The social hub. All levels. Walk-ups visible from the road." tags={["All Levels", "Social", "Accessible"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Climbing')} name="Dome Rock"
+                <ListItem onOpenSheet={openSheet('Climbing')} name="Dome Rock"
                   detail="Towering. Impressive even to watch." tags={["Advanced", "Trad", "Impressive"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Climbing')} name="Jumbo Rocks Area"
+                <ListItem onOpenSheet={openSheet('Climbing')} name="Jumbo Rocks Area"
                   detail="Accessible bouldering with iconic formations. Adjacent to the campground." tags={["Bouldering", "All Levels", "Iconic"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Climbing')} name="Joshua Tree Rock Climbing School"
+                <ListItem onOpenSheet={openSheet('Climbing')} name="Joshua Tree Rock Climbing School"
                   detail="Established since 1988. Half and full-day instruction for all levels."
                   tags={["Instruction", "Half/Full Day", "Since 1988"]} />
               </div>
@@ -1548,42 +1200,42 @@ export default function JoshuaTreeGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* BREATHE                                                       */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="wellness" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
+          <section id="wellness" className="scroll-mt-[126px] py-11">
             <FadeIn>
-              <SectionIcon type="breathe" />
-              <SectionLabel>Breathe</SectionLabel>
+              <SectionIcon type="breathe" color={ACCENT} />
+              <SectionLabel accentColor={ACCENT}>Breathe</SectionLabel>
               <SectionTitle>{"Yoga, breathwork & wellness"}</SectionTitle>
-              <SectionSub isMobile={isMobile}>{"The desert climate itself is the elemental encounter here — daytime heat, night cold, low humidity. The elemental contrast is between day and night, sun and shade."}</SectionSub>
+              <SectionSub>{"The desert climate itself is the elemental encounter here — daytime heat, night cold, low humidity. The elemental contrast is between day and night, sun and shade."}</SectionSub>
             </FadeIn>
             <FadeIn delay={0.08}>
               <ExpandableList initialCount={5} label="wellness options">
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Wellness')} name="Integratron Sound Bath" featured
+                <ListItem onOpenSheet={openSheet('Wellness')} name="Integratron Sound Bath" featured
                   url="https://www.integratron.com/"
                   detail="A one-of-a-kind acoustic sound bath inside a resonant wood dome built in the 1950s by George Van Tassel. Rooted in fringe science but the experience is genuinely resonant. Bookings fill quickly — reserve well ahead."
                   note="Landers, ~25 min north — book well ahead"
                   tags={["Sound Bath", "Acoustic Dome", "Unique", "Reserve Early"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Wellness')} name="Joshua Tree Retreat Center" featured
+                <ListItem onOpenSheet={openSheet('Wellness')} name="Joshua Tree Retreat Center" featured
                   url="https://www.jtrcc.org/"
                   detail="Long-established retreat venue with meditation halls, healing arts practitioners, and residential programs. About 2 miles from the park's west entrance."
                   tags={["Retreat", "Meditation", "Healing Arts", "Residential"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Wellness')} name="Two Bunch Palms Hot Springs" featured
+                <ListItem onOpenSheet={openSheet('Wellness')} name="Two Bunch Palms Hot Springs" featured
                   url="https://www.twobunchpalms.com/"
                   detail="Historic mineral hot springs spa fed by a natural geothermal aquifer. Grotto pools, couples treatments, serious relaxation. The counterpoint to a strenuous park day."
                   note="Desert Hot Springs, ~45 min"
                   tags={["Hot Springs", "Spa", "Grotto", "Historic"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Wellness')} name="Bhakti Yoga Shala"
+                <ListItem onOpenSheet={openSheet('Wellness')} name="Bhakti Yoga Shala"
                   url="https://www.bhaktiyogashala.com/"
                   detail="One of the Coachella Valley's most respected studios. Consistent instruction, strong community."
                   note="Palm Springs, ~45 min"
                   tags={["Yoga Studio", "Palm Springs", "Community"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Wellness')} name="Miracle Springs Resort"
+                <ListItem onOpenSheet={openSheet('Wellness')} name="Miracle Springs Resort"
                   url="https://www.miraclesprings.com/"
                   detail="More affordable than Two Bunch. Eight mineral pools ranging from warm to hot. Good for a long afternoon soak."
                   tags={["Mineral Pools", "Affordable", "Desert Hot Springs"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Wellness')} name="Sunrise Yoga at Ryan Mountain Trailhead"
+                <ListItem onOpenSheet={openSheet('Wellness')} name="Sunrise Yoga at Ryan Mountain Trailhead"
                   detail="Before the hike. The early desert light — rose, amber, then white — provides natural rhythm for a sun salutation sequence. Bring your own mat."
                   tags={["Free", "Self-Guided", "Sunrise", "Solo"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Wellness')} name="Desert Silence as Practice"
+                <ListItem onOpenSheet={openSheet('Wellness')} name="Desert Silence as Practice"
                   detail="The high desert has measurable acoustic quiet. 29 Palms backcountry and the Wonderland of Rocks both offer conditions where ambient sound drops to near-zero. For breath-centered practice, there are few better natural environments."
                   tags={["Free", "Meditation", "Solitude", "Self-Guided"]} />
               </ExpandableList>
@@ -1597,30 +1249,30 @@ export default function JoshuaTreeGuide() {
       </section>
 
       {/* Night Sky section with full-width dark background */}
-      <section id="light-sky" style={{ scrollMarginTop: 126, padding: isMobile ? "52px 20px" : "64px 52px", background: C.darkInk }}>
-        <div style={{ maxWidth: 680, margin: "0 auto" }}>
+      <section id="light-sky" className="scroll-mt-[126px] py-[52px] px-5 md:py-16 md:px-[52px] bg-dark-ink">
+        <div className="max-w-[680px] mx-auto">
           <FadeIn>
-            <SectionIcon type="darksky" />
-            <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 700, letterSpacing: "0.28em", textTransform: "uppercase", color: C.goldenAmber, marginBottom: 12, textAlign: "center" }}>Night Sky</div>
-            <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(24px, 4vw, 32px)", fontWeight: 400, color: "#fff", margin: "0 0 6px", lineHeight: 1.2, textAlign: "center" }}>The night sky here is extraordinary</h2>
-            <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: isMobile ? 15 : "clamp(14px, 1.8vw, 15px)", fontWeight: 400, color: "rgba(255,255,255,0.7)", margin: "0 auto 28px", lineHeight: 1.7, textAlign: isMobile ? "left" : "center", maxWidth: isMobile ? "100%" : 520 }}>
+            <SectionIcon type="darksky" color={ACCENT} />
+            <div className="font-body text-[12px] font-bold tracking-[0.28em] uppercase text-golden-amber mb-3 text-center">Night Sky</div>
+            <h2 className="font-serif text-[clamp(24px,4vw,32px)] font-normal text-white mt-0 mb-1.5 leading-[1.2] text-center">The night sky here is extraordinary</h2>
+            <p className="font-body text-[15px] md:text-[clamp(14px,1.8vw,15px)] font-normal text-white/70 mx-auto mb-7 leading-[1.7] text-left md:text-center max-w-full md:max-w-[520px] mt-0">
               Joshua Tree is a certified International Dark Sky Park. Bortle Class 2 conditions in the backcountry — among the darkest accessible skies in Southern California.
             </p>
           </FadeIn>
 
           <FadeIn delay={0.06}>
             {/* Best Viewing Areas */}
-            <div style={{ marginBottom: 32 }}>
-              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: C.goldenAmber, marginBottom: 16 }}>Best Viewing Areas</div>
+            <div className="mb-8">
+              <div className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-golden-amber mb-4">Best Viewing Areas</div>
               {[
                 { name: "Cholla Cactus Garden parking area", note: "Colorado Desert — minimal tree obstruction. Silhouetted cactus against the Milky Way." },
                 { name: "Jumbo Rocks Campground", note: "High desert, open sky. Dark sky conditions excellent from your campsite." },
                 { name: "Pinto Basin Road pullouts", note: "The least-trafficked corridor. Darkest skies accessible by car." },
                 { name: "Cap Rock area", note: "Open sky, easy access. Good for meteor shower viewing." },
               ].map((area, i) => (
-                <div key={i} style={{ padding: "14px 0", borderBottom: `1px solid rgba(255,255,255,0.1)` }}>
-                  <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 14, fontWeight: 600, color: "#fff", marginBottom: 4 }}>{area.name}</div>
-                  <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 400, color: "rgba(255,255,255,0.55)", lineHeight: 1.6 }}>{area.note}</div>
+                <div key={i} className="py-3.5 border-b border-white/10">
+                  <div className="font-body text-[14px] font-semibold text-white mb-1">{area.name}</div>
+                  <div className="font-body text-[13px] font-normal text-white/55 leading-[1.6]">{area.note}</div>
                 </div>
               ))}
             </div>
@@ -1628,19 +1280,19 @@ export default function JoshuaTreeGuide() {
 
           <FadeIn delay={0.1}>
             {/* Calendar Anchors */}
-            <div style={{ marginBottom: 32 }}>
-              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: C.goldenAmber, marginBottom: 16 }}>Calendar Anchors</div>
-              <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: 12 }}>
+            <div className="mb-8">
+              <div className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-golden-amber mb-4">Calendar Anchors</div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {[
                   { event: "New Moon Windows", timing: "Monthly", detail: "Plan around them for optimal stargazing" },
                   { event: "Perseid Meteor Shower", timing: "Aug 12–13 peak", detail: "Up to 100 meteors/hour" },
                   { event: "Geminid Meteor Shower", timing: "Dec 13–14 peak", detail: "Often the year's best — up to 150/hour" },
                   { event: "Milky Way Core", timing: "May – August", detail: "Best overhead viewing after midnight" },
                 ].map((cal, i) => (
-                  <div key={i} style={{ padding: "14px 16px", border: `1px solid rgba(255,255,255,0.12)`, background: "rgba(255,255,255,0.03)" }}>
-                    <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 14, fontWeight: 600, color: "#fff", marginBottom: 3 }}>{cal.event}</div>
-                    <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: C.goldenAmber, marginBottom: 4 }}>{cal.timing}</div>
-                    <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 400, color: "rgba(255,255,255,0.5)" }}>{cal.detail}</div>
+                  <div key={i} className="p-3.5 px-4 border border-white/[0.12] bg-white/[0.03]">
+                    <div className="font-body text-[14px] font-semibold text-white mb-[3px]">{cal.event}</div>
+                    <div className="font-body text-[11px] font-bold tracking-[0.14em] uppercase text-golden-amber mb-1">{cal.timing}</div>
+                    <div className="font-body text-[12px] font-normal text-white/50">{cal.detail}</div>
                   </div>
                 ))}
               </div>
@@ -1649,9 +1301,9 @@ export default function JoshuaTreeGuide() {
 
           <FadeIn delay={0.14}>
             {/* Practical Notes */}
-            <div style={{ padding: "16px 18px", border: `1px solid rgba(255,255,255,0.12)`, background: "rgba(255,255,255,0.03)" }}>
-              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: C.goldenAmber, marginBottom: 10 }}>Practical Notes</div>
-              <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 400, color: "rgba(255,255,255,0.6)", lineHeight: 1.7, margin: 0 }}>
+            <div className="p-4 px-[18px] border border-white/[0.12] bg-white/[0.03]">
+              <div className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-golden-amber mb-2.5">Practical Notes</div>
+              <p className="font-body text-[13px] font-normal text-white/60 leading-[1.7] m-0">
                 Allow 20–30 minutes for eyes to fully dark-adapt. Use a red-lens headlamp — white light ruins night vision for everyone nearby. Download a stargazing app (Sky Guide, Stellarium) before entering the park — there's no cell service. Pair dark sky sessions with Cholla Cactus Garden for the surreal combination of silhouetted cactus against the Milky Way.
               </p>
             </div>
@@ -1659,22 +1311,20 @@ export default function JoshuaTreeGuide() {
 
           <FadeIn delay={0.18}>
             {/* Sky's the Limit Callout */}
-            <div style={{ marginTop: 28, padding: "20px 22px", borderLeft: `3px solid ${C.goldenAmber}`, background: "rgba(255,255,255,0.04)" }}>
-              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: C.goldenAmber, marginBottom: 6 }}>Local Spotlight</div>
-              <a href="https://skysthelimit29.org/" target="_blank" rel="noopener noreferrer" style={{
-                fontFamily: "'Cormorant Garamond', serif", fontSize: 20, fontWeight: 400,
-                color: "#fff", textDecoration: "none", display: "inline-block", marginBottom: 8,
-                borderBottom: "1px solid rgba(255,255,255,0.25)", transition: "border-color 0.2s",
-              }}
-              onMouseEnter={e => e.currentTarget.style.borderColor = C.goldenAmber}
-              onMouseLeave={e => e.currentTarget.style.borderColor = "rgba(255,255,255,0.25)"}
-              >Sky's the Limit Observatory & Nature Center <span style={{ fontSize: 14 }}>↗</span></a>
-              <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 400, color: "rgba(255,255,255,0.6)", lineHeight: 1.7, margin: 0 }}>
+            <div className="mt-7 p-5 px-[22px] bg-white/[0.04]" style={{ borderLeft: `3px solid ${C.goldenAmber}` }}>
+              <div className="font-body text-[11px] font-bold tracking-[0.14em] uppercase text-golden-amber mb-1.5">Local Spotlight</div>
+              <a href="https://skysthelimit29.org/" target="_blank" rel="noopener noreferrer"
+                className="font-serif text-[20px] font-normal text-white no-underline inline-block mb-2 transition-[border-color] duration-200"
+                style={{ borderBottom: "1px solid rgba(255,255,255,0.25)" }}
+                onMouseEnter={e => e.currentTarget.style.borderColor = C.goldenAmber}
+                onMouseLeave={e => e.currentTarget.style.borderColor = "rgba(255,255,255,0.25)"}
+              >Sky's the Limit Observatory & Nature Center <span className="text-[14px]">{"↗"}</span></a>
+              <p className="font-body text-[13px] font-normal text-white/60 leading-[1.7] m-0">
                 A volunteer-run observatory and dark sky education center in Twentynine Palms — right at the edge of the park. Free public star parties every Saturday night with research-grade telescopes, knowledgeable astronomers, and one of the best night sky experiences available anywhere in Southern California. No reservation needed.
               </p>
-              <div style={{ display: "flex", gap: 6, marginTop: 10, flexWrap: "wrap" }}>
+              <div className="flex gap-1.5 mt-2.5 flex-wrap">
                 {["Free Admission", "Saturday Star Parties", "Twentynine Palms"].map((t, i) => (
-                  <span key={i} style={{ padding: "3px 9px", background: "rgba(255,255,255,0.08)", fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600, color: "rgba(255,255,255,0.5)" }}>{t}</span>
+                  <span key={i} className="py-[3px] px-[9px] bg-white/[0.08] font-body text-[11px] font-semibold text-white/50">{t}</span>
                 ))}
               </div>
             </div>
@@ -1683,19 +1333,19 @@ export default function JoshuaTreeGuide() {
       </section>
 
       {/* Continue guide content */}
-      <section style={{ padding: isMobile ? "0 20px 60px" : "0 52px 80px", background: C.cream }}>
-        <div style={{ maxWidth: 680, margin: "0 auto" }}>
+      <section className="px-5 pb-[60px] md:px-[52px] md:pb-20 bg-cream">
+        <div className="max-w-[680px] mx-auto">
 
 
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* FOOD & CULTURE                                                */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="food-culture" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
+          <section id="food-culture" className="scroll-mt-[126px] py-11">
             <FadeIn>
-              <SectionIcon type="connect" />
-              <SectionLabel>Food & Culture</SectionLabel>
+              <SectionIcon type="connect" color={ACCENT} />
+              <SectionLabel accentColor={ACCENT}>Food & Culture</SectionLabel>
               <SectionTitle>Where to eat</SectionTitle>
-              <SectionSub isMobile={isMobile}>{"From the desert's most celebrated kitchen to roadhouse BBQ and pre-hike espresso."}</SectionSub>
+              <SectionSub>{"From the desert's most celebrated kitchen to roadhouse BBQ and pre-hike espresso."}</SectionSub>
             </FadeIn>
             <FadeIn delay={0.08}>
               <ExpandableList initialCount={6} label="places to eat">
@@ -1714,16 +1364,13 @@ export default function JoshuaTreeGuide() {
                     reservations={r.reservations}
                     dietary={r.dietary}
                     energy={r.energy}
-                    isMobile={isMobile}
                     onOpenSheet={openSheet('Food')}
                   />
                 ))}
 
                 {restaurants.filter(r => r.corridor).length > 0 && (
                   <>
-                    <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 600,
-                      letterSpacing: '0.08em', textTransform: 'uppercase',
-                      color: C.warmGray, marginTop: 32, marginBottom: 12 }}>
+                    <p className="font-body text-[13px] font-semibold tracking-[0.08em] uppercase mt-8 mb-3" style={{ color: C.warmGray }}>
                       Regional Corridor
                     </p>
                     {restaurants.filter(r => r.corridor).sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).map(r => (
@@ -1741,7 +1388,6 @@ export default function JoshuaTreeGuide() {
                         reservations={r.reservations}
                         dietary={r.dietary}
                         energy={r.energy}
-                        isMobile={isMobile}
                         onOpenSheet={openSheet('Food')}
                       />
                     ))}
@@ -1757,43 +1403,43 @@ export default function JoshuaTreeGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* DISCOVER                                                      */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="discover" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
+          <section id="discover" className="scroll-mt-[126px] py-11">
             <FadeIn>
-              <SectionIcon type="discover" />
-              <SectionLabel>Discover</SectionLabel>
+              <SectionIcon type="discover" color={ACCENT} />
+              <SectionLabel accentColor={ACCENT}>Discover</SectionLabel>
               <SectionTitle>{"Art, architecture & music"}</SectionTitle>
-              <SectionSub isMobile={isMobile}>{"The desert has drawn artists, architects, and musicians for decades. These are the places where that creative energy is most alive."}</SectionSub>
+              <SectionSub>{"The desert has drawn artists, architects, and musicians for decades. These are the places where that creative energy is most alive."}</SectionSub>
             </FadeIn>
             <FadeIn delay={0.08}>
               <ExpandableList initialCount={5} label="cultural experiences">
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Culture')} name="Pioneertown" featured
+                <ListItem onOpenSheet={openSheet('Culture')} name="Pioneertown" featured
                   detail="The whole town is an artifact. Built as a movie set in 1946, it never entirely stopped performing. Walk Mane Street — the original set thoroughfare. Surreal and atmospheric."
                   tags={["Movie Set", "Historic", "Free"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Culture')} name="High Desert Test Sites" featured
+                <ListItem onOpenSheet={openSheet('Culture')} name="High Desert Test Sites" featured
                   url="https://www.highdeserttestsites.com/"
                   detail="An ongoing art initiative founded in 2002 by Andrea Zittel. Site-specific works scattered across the high desert landscape. HDTS has seeded a generation of artists coming to the desert to make work."
                   tags={["Site-Specific Art", "Contemporary", "Free"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Culture')} name="Palm Springs Art Museum"
+                <ListItem onOpenSheet={openSheet('Culture')} name="Palm Springs Art Museum"
                   url="https://www.psmuseum.org/"
                   detail="World-class collection with strong desert Southwest emphasis. Architecture, photography, and modern art all represented. The building itself is striking."
                   note="Palm Springs orbit"
                   tags={["Museum", "Modern Art", "Architecture", "$$"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Culture')} name="Modernism Week" featured
+                <ListItem onOpenSheet={openSheet('Culture')} name="Modernism Week" featured
                   url="https://www.modernismweek.com/"
                   detail="The largest celebration of mid-century modern architecture and design in the world. Home tours, lectures, parties. Mid-to-late February."
                   note="Palm Springs — February"
                   tags={["Architecture", "Mid-Century", "February", "$–$$$"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Culture')} name={"Pappy & Harriet's Live Music"} featured
+                <ListItem onOpenSheet={openSheet('Culture')} name={"Pappy & Harriet's Live Music"} featured
                   url="https://www.pappyandharriets.com/"
                   detail="The essential live music destination in this entire orbit. Touring artists of serious caliber play here regularly — past performers include Paul McCartney, Robert Plant, Arctic Monkeys."
                   tags={["Live Music", "Pioneertown", "Year-Round"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Culture')} name="Art Queen"
+                <ListItem onOpenSheet={openSheet('Culture')} name="Art Queen"
                   detail="Gallery and art supply in Joshua Tree town. A hub of the local creative community. Rotating exhibitions."
                   tags={["Gallery", "Art Supply", "Local"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Culture')} name="Coyote Corner"
+                <ListItem onOpenSheet={openSheet('Culture')} name="Coyote Corner"
                   detail="The landmark local gift shop. Rocks, crystals, desert goods, maps, information. A genuine local institution."
                   tags={["Gift Shop", "Crystals", "Institution"]} />
-                <ListItem isMobile={isMobile} onOpenSheet={openSheet('Culture')} name="Twentynine Palms Art Gallery"
+                <ListItem onOpenSheet={openSheet('Culture')} name="Twentynine Palms Art Gallery"
                   detail="Rotating shows featuring work by local and regional desert artists. Run by a nonprofit since 1944."
                   tags={["Gallery", "Nonprofit", "Since 1944"]} />
               </ExpandableList>
@@ -1806,47 +1452,32 @@ export default function JoshuaTreeGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* GIVE BACK                                                     */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="give-back" style={{ scrollMarginTop: 126, padding: "44px 0" }}>
+          <section id="give-back" className="scroll-mt-[126px] py-11">
             <FadeIn>
-              <SectionIcon type="giveback" />
-              <SectionLabel>Give Back</SectionLabel>
+              <SectionIcon type="giveback" color={ACCENT} />
+              <SectionLabel accentColor={ACCENT}>Give Back</SectionLabel>
               <SectionTitle>Leave it better than you found it.</SectionTitle>
-              <SectionSub isMobile={isMobile}>The desert sustains itself slowly. These organizations help it along.</SectionSub>
+              <SectionSub>The desert sustains itself slowly. These organizations help it along.</SectionSub>
             </FadeIn>
             <FadeIn delay={0.1}>
-              <div style={{ marginTop: 8 }}>
-                <div style={{ paddingTop: 16 }}>
-                  <div style={{
-                    fontFamily: "'Quicksand', sans-serif",
-                    fontSize: 11, fontWeight: 700,
-                    letterSpacing: "0.14em", textTransform: "uppercase",
-                    color: "#7A857E", marginBottom: 2,
-                  }}>Conservation</div>
-                  <ListItem isMobile={isMobile} name="Mojave Desert Land Trust"
+              <div className="mt-2">
+                <div className="pt-4">
+                  <div className="font-body text-[11px] font-bold tracking-[0.14em] uppercase text-[#7A857E] mb-0.5">Conservation</div>
+                  <ListItem name="Mojave Desert Land Trust"
                     url="https://www.mdlt.org"
                     detail="Based in Joshua Tree, MDLT protects the California desert through land acquisition, habitat restoration, and a native plant seed bank — including growing thousands of Joshua trees for replanting in the park. Volunteer on land monitoring hikes or donate to their seed bank program."
                     tags={["Donate", "Volunteer"]} />
                 </div>
-                <div style={{ paddingTop: 16 }}>
-                  <div style={{
-                    fontFamily: "'Quicksand', sans-serif",
-                    fontSize: 11, fontWeight: 700,
-                    letterSpacing: "0.14em", textTransform: "uppercase",
-                    color: "#7A857E", marginBottom: 2,
-                  }}>Indigenous Giving</div>
-                  <ListItem isMobile={isMobile} name="Native American Land Conservancy"
+                <div className="pt-4">
+                  <div className="font-body text-[11px] font-bold tracking-[0.14em] uppercase text-[#7A857E] mb-0.5">Indigenous Giving</div>
+                  <ListItem name="Native American Land Conservancy"
                     url="https://www.nativeamericanlandconservancy.org"
                     detail="A partner in MDLT's Joshua tree conservation coalition, bringing Indigenous cultural knowledge to desert stewardship. To Indigenous communities in this region, the Joshua tree — Humwichawa — is a family member, not a landmark."
                     tags={["Donate"]} />
                 </div>
-                <div style={{ paddingTop: 16 }}>
-                  <div style={{
-                    fontFamily: "'Quicksand', sans-serif",
-                    fontSize: 11, fontWeight: 700,
-                    letterSpacing: "0.14em", textTransform: "uppercase",
-                    color: "#7A857E", marginBottom: 2,
-                  }}>Trail Stewardship</div>
-                  <ListItem isMobile={isMobile} name="Joshua Tree National Park Volunteer Program"
+                <div className="pt-4">
+                  <div className="font-body text-[11px] font-bold tracking-[0.14em] uppercase text-[#7A857E] mb-0.5">Trail Stewardship</div>
+                  <ListItem name="Joshua Tree National Park Volunteer Program"
                     url="https://www.nps.gov/jotr/getinvolved/volunteer.htm"
                     detail="The most direct option for visitors who want to give time rather than money. Trail maintenance, restoration, and education programs run directly through the park."
                     tags={["Volunteer"]} />
@@ -1861,24 +1492,16 @@ export default function JoshuaTreeGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* CTA                                                           */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="cta" style={{ scrollMarginTop: 126, padding: "56px 0 72px", textAlign: "center" }}>
+          <section id="cta" className="scroll-mt-[126px] pt-14 pb-[72px] text-center">
             <FadeIn>
-              <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 700, letterSpacing: "0.28em", textTransform: "uppercase", color: C.goldenAmber, display: "block", marginBottom: 16 }}>Begin</span>
-              <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(28px, 5vw, 42px)", fontWeight: 300, color: C.darkInk, margin: "0 0 10px", lineHeight: 1.2 }}>Your desert trip starts here</h3>
-              <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: "clamp(14px, 1.6vw, 14px)", fontWeight: 400, color: "#4A5650", maxWidth: 460, margin: "0 auto 36px", lineHeight: 1.65 }}>
+              <span className="font-body text-[12px] font-bold tracking-[0.28em] uppercase text-golden-amber block mb-4">Begin</span>
+              <h3 className="font-serif text-[clamp(28px,5vw,42px)] font-light text-dark-ink mt-0 mb-2.5 leading-[1.2]">Your desert trip starts here</h3>
+              <p className="font-body text-[clamp(14px,1.6vw,14px)] font-normal text-[#4A5650] max-w-[460px] mx-auto mb-9 leading-[1.65] mt-0">
                 Choose your path — build it yourself with our Trip Planner, or let us craft something personalized for you.
               </p>
-              <Link to="/plan" style={{
-                padding: "14px 36px", border: "none",
-                background: C.darkInk, color: "#fff",
-                textAlign: "center", display: "inline-block",
-                fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 700,
-                letterSpacing: "0.2em", textTransform: "uppercase",
-                cursor: "pointer", transition: "opacity 0.2s", textDecoration: "none",
-              }}
-              onClick={() => trackEvent('guide_cta_clicked', { action: 'plan_a_trip', destination: 'joshua-tree' })}
-              onMouseEnter={e => e.currentTarget.style.opacity = "0.85"}
-              onMouseLeave={e => e.currentTarget.style.opacity = "1"}
+              <Link to="/plan"
+                className="py-3.5 px-9 border-none bg-dark-ink text-white text-center inline-block font-body text-[12px] font-bold tracking-[0.2em] uppercase cursor-pointer transition-opacity duration-200 no-underline hover:opacity-85"
+                onClick={() => trackEvent('guide_cta_clicked', { action: 'plan_a_trip', destination: 'joshua-tree' })}
               >{"Plan a Trip"}</Link>
             </FadeIn>
           </section>
@@ -1886,12 +1509,12 @@ export default function JoshuaTreeGuide() {
           {/* ── Also Explore ────────────────────────────────────────────── */}
           <Divider />
           <FadeIn>
-            <div style={{ padding: "44px 0" }}>
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 12, marginBottom: 16 }}>
-                <span className="eyebrow" style={{ color: "#7A857E" }}>Also Explore</span>
-                <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 600, letterSpacing: "0.1em", color: "#7A857E" }}>Guides available for each destination</span>
+            <div className="py-11">
+              <div className="flex items-center justify-between flex-wrap gap-3 mb-4">
+                <span className="eyebrow text-[#7A857E]">Also Explore</span>
+                <span className="font-body text-[12px] font-semibold tracking-[0.1em] text-[#7A857E]">Guides available for each destination</span>
               </div>
-              <div style={{ display: "flex", gap: 16, flexWrap: "wrap", marginTop: 16 }}>
+              <div className="flex gap-4 flex-wrap mt-4">
                 {[
                   { name: "Zion Canyon", slug: "zion-canyon", accent: C.sunSalmon },
                   { name: "Olympic Peninsula", slug: "olympic-peninsula", accent: C.skyBlue },
@@ -1899,16 +1522,13 @@ export default function JoshuaTreeGuide() {
                   { name: "Vancouver Island", slug: "vancouver-island", accent: C.oceanTeal },
                   { name: "Kauai", slug: "kauai", accent: C.oceanTeal },
                 ].map(other => (
-                  <Link key={other.slug} to={`/destinations/${other.slug}`} style={{
-                    display: "flex", alignItems: "center", gap: 12,
-                    padding: "12px 20px", border: `1px solid ${C.stone}`,
-                    transition: "all 0.25s", background: C.warmWhite, textDecoration: "none",
-                  }}
-                  onMouseEnter={e => { e.currentTarget.style.borderColor = other.accent; }}
-                  onMouseLeave={e => { e.currentTarget.style.borderColor = C.stone; }}
+                  <Link key={other.slug} to={`/destinations/${other.slug}`}
+                    className="flex items-center gap-3 py-3 px-5 border border-stone transition-all duration-[250ms] bg-warm-white no-underline"
+                    onMouseEnter={e => { e.currentTarget.style.borderColor = other.accent; }}
+                    onMouseLeave={e => { e.currentTarget.style.borderColor = C.stone; }}
                   >
-                    <div style={{ width: 8, height: 8, borderRadius: "50%", background: other.accent, opacity: 0.6 }} />
-                    <span style={{ fontFamily: "'Quicksand'", fontSize: 13, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: C.darkInk }}>{other.name}</span>
+                    <div className="w-2 h-2 rounded-full opacity-60" style={{ background: other.accent }} />
+                    <span className="font-body text-[13px] font-semibold tracking-[0.1em] uppercase text-dark-ink">{other.name}</span>
                   </Link>
                 ))}
               </div>

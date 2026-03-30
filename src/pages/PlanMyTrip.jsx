@@ -527,9 +527,10 @@ function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
 
 function StepIndicator({ current, total }) {
   return (
-    <div style={{ display: "flex", gap: 6, justifyContent: "center", marginBottom: 32, padding: "0 24px" }}>
+    <div className="flex gap-1.5 justify-center mb-8 px-6">
       {Array.from({ length: total }, (_, i) => (
         <div key={i} style={{
+          /* dynamic */
           width: i === current ? 28 : 8, height: 8, borderRadius: 4,
           background: i === current ? C.oceanTeal : i < current ? C.sage : `${C.sage}30`,
           transition: "all 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
@@ -541,26 +542,20 @@ function StepIndicator({ current, total }) {
 
 function NavButtons({ onBack, onNext, nextLabel = "Continue", nextDisabled = false, showBack = true, topPadding }) {
   return (
-    <div style={{ display: "flex", gap: 12, justifyContent: "center", padding: `${topPadding ?? 40}px 24px` }}>
+    <div className="flex gap-3 justify-center" style={{ padding: `${topPadding ?? 40}px 24px` }}>
       {showBack && (
-        <button onClick={onBack} style={{
-          fontFamily: "'Quicksand', sans-serif",
-          fontSize: 14, fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase",
-          background: "none", border: `1.5px solid ${C.sage}40`,
+        <button onClick={onBack} className="font-body text-[14px] font-semibold tracking-[0.12em] uppercase bg-none cursor-pointer transition-all duration-300 min-h-[48px]" style={{
+          border: `1.5px solid ${C.sage}40`,
           color: C.sage, padding: "14px 28px", borderRadius: 40,
-          cursor: "pointer", transition: "all 0.3s",
-          minHeight: 48, WebkitTapHighlightColor: "transparent",
         }}>Back</button>
       )}
-      <button onClick={onNext} disabled={nextDisabled} style={{
-        fontFamily: "'Quicksand', sans-serif",
-        fontSize: 14, fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase",
+      <button onClick={onNext} disabled={nextDisabled} className="font-body text-[14px] font-semibold tracking-[0.12em] uppercase border-none transition-all duration-300 min-h-[48px]" style={{
+        /* dynamic */
         background: nextDisabled ? `${C.oceanTeal}30` : C.oceanTeal,
-        border: "none", color: C.white, padding: "14px 36px", borderRadius: 40,
+        color: C.white, padding: "14px 36px", borderRadius: 40,
         cursor: nextDisabled ? "not-allowed" : "pointer",
-        transition: "all 0.3s", opacity: nextDisabled ? 0.5 : 1,
+        opacity: nextDisabled ? 0.5 : 1,
         boxShadow: nextDisabled ? "none" : `0 4px 20px ${C.oceanTeal}30`,
-        minHeight: 48, WebkitTapHighlightColor: "transparent",
       }}>{nextLabel}</button>
     </div>
   );
@@ -568,24 +563,16 @@ function NavButtons({ onBack, onNext, nextLabel = "Continue", nextDisabled = fal
 
 function StepTitle({ eyebrow, title, subtitle }) {
   return (
-    <div style={{ textAlign: "center", marginBottom: 32, padding: "0 24px" }}>
+    <div className="text-center mb-8 px-6">
       {eyebrow && (
-        <span style={{
-          fontFamily: "'Quicksand', sans-serif",
-          fontSize: 12, fontWeight: 700, letterSpacing: "0.3em", textTransform: "uppercase",
-          color: C.oceanTeal, display: "block", marginBottom: 14,
-        }}>{eyebrow}</span>
+        <span className="font-body text-[12px] font-bold tracking-[0.3em] uppercase block mb-3.5 text-ocean-teal">{eyebrow}</span>
       )}
-      <h2 style={{
-        fontFamily: "'Cormorant Garamond', serif",
-        fontSize: "clamp(28px, 6vw, 36px)", fontWeight: 300, lineHeight: 1.2,
-        color: C.slate, marginBottom: subtitle ? 12 : 0,
+      <h2 className="font-serif text-[clamp(28px,6vw,36px)] font-light leading-[1.2] text-dark-ink" style={{
+        marginBottom: subtitle ? 12 : 0,
       }}>{title}</h2>
       {subtitle && (
-        <p style={{
-          fontFamily: "'Quicksand', sans-serif",
-          fontSize: "clamp(14px, 3.5vw, 15px)", fontWeight: 400, color: `${C.slate}BB`,
-          lineHeight: 1.6, maxWidth: 480, margin: "0 auto",
+        <p className="font-body text-[clamp(14px,3.5vw,15px)] font-normal leading-[1.6] max-w-[480px] mx-auto" style={{
+          color: `${C.slate}BB`,
         }}>{subtitle}</p>
       )}
     </div>
@@ -706,13 +693,12 @@ function WelcomePathCard({ icon: IconComp, title, subtitle, description, buttonL
       onClick={onClick}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
+      className="relative bg-white cursor-pointer"
       style={{
-        position: "relative",
-        background: C.white,
+        /* dynamic */
         border: isPrimary ? `2px solid ${C.sage}30` : `1px solid ${C.sage}15`,
         borderRadius: 2,
         padding: isPrimary ? "32px 28px 28px" : "24px 24px 22px",
-        cursor: "pointer",
         transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
         opacity: visible ? 1 : 0,
         transform: visible ? (hovered ? "translateY(-2px)" : "translateY(0)") : "translateY(16px)",
@@ -720,53 +706,44 @@ function WelcomePathCard({ icon: IconComp, title, subtitle, description, buttonL
         boxShadow: isPrimary
           ? (hovered ? `0 12px 48px ${C.sage}18, 0 4px 12px ${C.sage}10` : `0 8px 40px ${C.sage}12, 0 2px 8px ${C.sage}08`)
           : (hovered ? `0 6px 24px ${C.sage}12` : `0 2px 12px ${C.sage}06`),
-        WebkitTapHighlightColor: "transparent",
       }}
     >
       {tag && (
-        <div style={{
-          position: "absolute", top: -10, left: 24,
+        <div className="absolute font-body text-[11px] font-bold tracking-[0.15em] uppercase" style={{
+          top: -10, left: 24,
           background: tagColor || C.oceanTeal,
           color: C.white,
-          fontFamily: "'Quicksand', sans-serif",
-          fontSize: 11, fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase",
           padding: "4px 14px", borderRadius: 20,
         }}>{tag}</div>
       )}
-      <div style={{ display: "flex", alignItems: "flex-start", gap: isPrimary ? 20 : 16 }}>
-        <div style={{
+      <div className="flex items-start" style={{ gap: isPrimary ? 20 : 16 }}>
+        <div className="flex items-center justify-center shrink-0" style={{
+          /* dynamic */
           width: isPrimary ? 52 : 44, height: isPrimary ? 52 : 44,
           borderRadius: 14,
           background: isPrimary ? `${C.oceanTeal}10` : `${C.sage}08`,
-          display: "flex", alignItems: "center", justifyContent: "center",
-          flexShrink: 0,
         }}>
           <IconComp size={isPrimary ? 26 : 22} color={isPrimary ? C.oceanTeal : C.sage} />
         </div>
-        <div style={{ flex: 1, minWidth: 0 }}>
-          <div style={{
-            fontFamily: "'Quicksand', sans-serif",
-            fontSize: 11, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase",
+        <div className="flex-1 min-w-0">
+          <div className="font-body text-[11px] font-bold tracking-[0.2em] uppercase mb-1" style={{
+            /* dynamic */
             color: isPrimary ? C.oceanTeal : `${C.sage}AA`,
-            marginBottom: 4,
           }}>{subtitle}</div>
-          <h3 style={{
-            fontFamily: "'Cormorant Garamond', serif",
+          <h3 className="font-serif font-normal leading-[1.2] text-dark-ink" style={{
+            /* dynamic */
             fontSize: isPrimary ? "clamp(22px, 5vw, 26px)" : "clamp(18px, 4.5vw, 22px)",
-            fontWeight: 400, lineHeight: 1.2,
-            color: C.slate, margin: "2px 0 0",
+            margin: "2px 0 0",
           }}>{title}</h3>
-          <p style={{
-            fontFamily: "'Quicksand', sans-serif",
-            fontSize: isPrimary ? 14 : 13, fontWeight: 400,
-            color: `${C.slate}99`, lineHeight: 1.55,
+          <p className="font-body font-normal leading-[1.55]" style={{
+            /* dynamic */
+            fontSize: isPrimary ? 14 : 13,
+            color: `${C.slate}99`,
             margin: "8px 0 0",
           }}>{description}</p>
           <div style={{ marginTop: isPrimary ? 20 : 14 }}>
-            <span style={{
-              display: "inline-flex", alignItems: "center", gap: 8,
-              fontFamily: "'Quicksand', sans-serif",
-              fontSize: 13, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase",
+            <span className="inline-flex items-center gap-2 font-body text-[13px] font-bold tracking-[0.12em] uppercase" style={{
+              /* dynamic */
               ...(isPrimary ? {
                 background: "none",
                 color: C.oceanTeal,
@@ -798,31 +775,26 @@ function StepWelcome({ onNext }) {
   const [visible, setVisible] = useState(false);
   useEffect(() => { setTimeout(() => setVisible(true), 100); }, []);
   return (
-    <div style={{
-      display: "flex", flexDirection: "column", alignItems: "center",
-      minHeight: "100vh", padding: "min(10vh, 120px) 20px 40px", textAlign: "center",
+    <div className="flex flex-col items-center min-h-screen text-center" style={{
+      padding: "min(10vh, 120px) 20px 40px",
     }}>
       {/* Hero */}
       <div style={{
+        /* dynamic */
         opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(20px)",
         transition: "all 0.8s cubic-bezier(0.4, 0, 0.2, 1)",
         marginBottom: 8,
       }}>
-        <div style={{ marginBottom: 10, opacity: 0.45, display: "flex", justifyContent: "center" }}>
+        <div className="mb-2.5 flex justify-center" style={{ opacity: 0.45 }}>
           <IconEnso size={32} color={C.sage} />
         </div>
-        <h1 style={{
-          fontFamily: "'Cormorant Garamond', serif",
-          fontSize: "clamp(32px, 7.5vw, 42px)", fontWeight: 300, lineHeight: 1.15,
-          color: C.slate, marginBottom: 16, maxWidth: 460, margin: "0 auto",
+        <h1 className="font-serif text-[clamp(32px,7.5vw,42px)] font-light leading-[1.15] text-dark-ink max-w-[460px] mx-auto" style={{
+          marginBottom: 16,
         }}>Let's design<br />your journey</h1>
       </div>
 
       {/* Three paths */}
-      <div style={{
-        display: "flex", flexDirection: "column", gap: 16,
-        marginTop: 24, width: "100%", maxWidth: 520,
-      }}>
+      <div className="flex flex-col gap-4 mt-6 w-full max-w-[520px]">
         {/* PRIMARY: DIY Path */}
         <WelcomePathCard
           icon={IconCircleDot}
@@ -839,7 +811,7 @@ function StepWelcome({ onNext }) {
         />
 
         {/* SECONDARY ROW */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
+        <div className="grid grid-cols-2 gap-3">
           {/* Group Trips */}
           {[
             {
@@ -861,59 +833,41 @@ function StepWelcome({ onNext }) {
             return (
               <div key={card.eyebrow}
                 onClick={card.onClick}
+                className="relative bg-white cursor-pointer text-center"
                 style={{
-                  position: "relative",
-                  background: C.white,
+                  /* dynamic */
                   border: `1px solid ${C.sage}15`,
                   borderRadius: 2,
                   padding: "22px 20px",
-                  cursor: "pointer",
                   transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
                   opacity: visible ? 1 : 0,
                   transform: visible ? "translateY(0)" : "translateY(16px)",
                   transitionDelay: card.delay,
                   boxShadow: `0 2px 12px ${C.sage}06`,
-                  textAlign: "center",
-                  WebkitTapHighlightColor: "transparent",
                 }}
               >
-                <div style={{
-                  position: "absolute", top: -9, left: "50%", transform: "translateX(-50%)",
-                  fontFamily: "'Quicksand', sans-serif",
-                  fontSize: 9, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase",
+                <div className="absolute font-body text-[9px] font-bold tracking-[0.12em] uppercase bg-white" style={{
+                  top: -9, left: "50%", transform: "translateX(-50%)",
                   color: "#aab0b8",
                   border: "1px solid #d0d5d9",
-                  background: C.white,
                   padding: "3px 7px",
                 }}>In Dev</div>
-                <div style={{
+                <div className="flex items-center justify-center mx-auto mb-3.5" style={{
+                  /* dynamic */
                   width: 44, height: 44, borderRadius: 12,
                   background: `${card.color}10`,
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  margin: "0 auto 14px",
                 }}>
                   <Ic size={22} color={card.color} />
                 </div>
-                <div style={{
-                  fontFamily: "'Quicksand', sans-serif",
-                  fontSize: 11, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase",
-                  color: card.color, marginBottom: 6,
+                <div className="font-body text-[11px] font-bold tracking-[0.18em] uppercase mb-1.5" style={{
+                  color: card.color,
                 }}>{card.eyebrow}</div>
-                <h3 style={{
-                  fontFamily: "'Cormorant Garamond', serif",
-                  fontSize: "clamp(17px, 4vw, 20px)", fontWeight: 400, lineHeight: 1.2,
-                  color: C.slate, margin: 0,
-                }}>{card.title}</h3>
-                <p style={{
-                  fontFamily: "'Quicksand', sans-serif",
-                  fontSize: 13, fontWeight: 400,
-                  color: `${C.slate}99`, lineHeight: 1.5,
+                <h3 className="font-serif text-[clamp(17px,4vw,20px)] font-normal leading-[1.2] text-dark-ink m-0">{card.title}</h3>
+                <p className="font-body text-[13px] font-normal leading-[1.5]" style={{
+                  color: `${C.slate}99`,
                   margin: "8px 0 0",
                 }}>{card.desc}</p>
-                <div style={{
-                  marginTop: 14, display: "inline-flex", alignItems: "center", gap: 6,
-                  fontFamily: "'Quicksand', sans-serif",
-                  fontSize: 12, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase",
+                <div className="mt-3.5 inline-flex items-center gap-1.5 font-body text-[12px] font-bold tracking-[0.1em] uppercase" style={{
                   color: card.color,
                 }}>
                   {card.cta} <IconArrowRight size={12} color={card.color} />
@@ -925,33 +879,26 @@ function StepWelcome({ onNext }) {
       </div>
 
       {/* Trust bar */}
-      <div style={{
+      <div className="pt-5 mt-6 w-full max-w-[520px] text-center" style={{
+        /* dynamic */
         opacity: visible ? 1 : 0,
         transition: "opacity 0.8s 0.6s",
         borderTop: `1px solid ${C.sage}12`,
-        paddingTop: 20, marginTop: 24, width: "100%", maxWidth: 520,
-        textAlign: "center",
       }}>
-        <div style={{
-          fontFamily: "'Quicksand', sans-serif",
-          fontSize: 11, fontWeight: 600, letterSpacing: "0.18em", textTransform: "uppercase",
-          color: `${C.sage}99`, marginBottom: 12,
+        <div className="font-body text-[11px] font-semibold tracking-[0.18em] uppercase mb-3" style={{
+          color: `${C.sage}99`,
         }}>Powered by</div>
-        <div style={{
-          display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "6px 16px",
-        }}>
+        <div className="flex flex-wrap justify-center gap-[6px_16px]">
           {[
             "National Park Service Data",
             "Real-Time Weather",
             "Lunar Cycle Timing",
             "Local Partner Network",
           ].map(item => (
-            <span key={item} style={{
-              fontFamily: "'Quicksand', sans-serif",
-              fontSize: 12, fontWeight: 500, color: `${C.slate}99`,
-              display: "flex", alignItems: "center", gap: 5,
+            <span key={item} className="font-body text-[12px] font-medium flex items-center gap-[5px]" style={{
+              color: `${C.slate}99`,
             }}>
-              <span style={{ width: 3, height: 3, borderRadius: "50%", background: `${C.oceanTeal}40`, flexShrink: 0 }} />
+              <span className="shrink-0" style={{ width: 3, height: 3, borderRadius: "50%", background: `${C.oceanTeal}40` }} />
               {item}
             </span>
           ))}
@@ -982,7 +929,7 @@ function StepDestination({ data, onChange, onNext, onBack }) {
   return (
     <div>
       <StepTitle eyebrow="Where" title="Where is calling you?" subtitle="Choose the landscape that stirs something." />
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(140px, 1fr))", gap: 12, maxWidth: 560, margin: "0 auto", padding: "0 20px" }}>
+      <div className="grid gap-3 max-w-[560px] mx-auto px-5" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(140px, 1fr))" }}>
         {DESTINATIONS.map(d => {
           const sel = data.destination === d.id;
           const available = AVAILABLE.has(d.id);
@@ -990,70 +937,55 @@ function StepDestination({ data, onChange, onNext, onBack }) {
           return (
             <button key={d.id}
               onClick={() => available && onChange({ destination: d.id })}
+              className="relative text-center min-h-[110px] transition-all duration-300"
               style={{
-                position: "relative",
+                /* dynamic */
                 background: !available ? `${C.sage}06` : sel ? `${C.oceanTeal}10` : C.white,
                 border: `2px solid ${!available ? `${C.sage}10` : sel ? C.oceanTeal : `${C.sage}18`}`,
                 borderRadius: 16, padding: "22px 14px",
                 cursor: available ? "pointer" : "default",
-                transition: "all 0.3s",
-                textAlign: "center", minHeight: 110,
                 boxShadow: sel ? `0 4px 20px ${C.sage}15` : "0 1px 4px rgba(0,0,0,0.04)",
                 transform: sel ? "scale(1.02)" : "scale(1)",
                 opacity: available ? 1 : 0.45,
-                WebkitTapHighlightColor: "transparent",
               }}>
               {!available && (
-                <div style={{
-                  position: "absolute", top: 8, right: 8,
-                  fontFamily: "'Quicksand', sans-serif",
-                  fontSize: 9, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase",
+                <div className="absolute font-body text-[9px] font-bold tracking-[0.12em] uppercase" style={{
+                  top: 8, right: 8,
                   color: C.sage, background: `${C.sage}12`,
                   padding: "3px 7px", borderRadius: 6,
                 }}>Soon</div>
               )}
-              <div style={{ display: "flex", justifyContent: "center", marginBottom: 10 }}>
+              <div className="flex justify-center mb-2.5">
                 <Ic size={28} color={sel ? C.oceanTeal : d.color} />
               </div>
-              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(16px, 4vw, 18px)", fontWeight: 600, color: C.slate, marginBottom: 3 }}>{d.name}</div>
-              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, color: `${C.slate}99`, lineHeight: 1.3 }}>{d.subtitle}</div>
+              <div className="font-serif text-[clamp(16px,4vw,18px)] font-semibold text-dark-ink mb-[3px]">{d.name}</div>
+              <div className="font-body text-[12px] leading-[1.3]" style={{ color: `${C.slate}99` }}>{d.subtitle}</div>
             </button>
           );
         })}
       </div>
 
       {/* Two-button row: Surprise Me + Continue */}
-      <div style={{ display: "flex", gap: 12, justifyContent: "center", alignItems: "center", padding: "40px 24px" }}>
+      <div className="flex gap-3 justify-center items-center" style={{ padding: "40px 24px" }}>
         {hasPick ? (
-          <button onClick={handleSurprise} style={{
-            fontFamily: "'Quicksand', sans-serif",
-            fontSize: 13, fontWeight: 500,
-            background: "none", border: "none",
-            color: C.sage, cursor: "pointer",
-            textDecoration: "underline", textUnderlineOffset: 3,
+          <button onClick={handleSurprise} className="font-body text-[13px] font-medium bg-none border-none cursor-pointer underline" style={{
+            color: C.sage,
+            textUnderlineOffset: 3,
             padding: "14px 8px",
-            WebkitTapHighlightColor: "transparent",
           }}>or surprise me</button>
         ) : (
-          <button onClick={handleSurprise} style={{
-            fontFamily: "'Quicksand', sans-serif",
-            fontSize: 14, fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase",
-            background: "transparent",
+          <button onClick={handleSurprise} className="font-body text-[14px] font-semibold tracking-[0.12em] uppercase bg-transparent cursor-pointer transition-all duration-300 min-h-[48px]" style={{
             border: `1.5px solid ${C.oceanTeal}`,
             color: C.oceanTeal, padding: "14px 28px", borderRadius: 40,
-            cursor: "pointer", transition: "all 0.3s",
-            minHeight: 48, WebkitTapHighlightColor: "transparent",
           }}>Surprise me</button>
         )}
-        <button onClick={onNext} disabled={!hasPick} style={{
-          fontFamily: "'Quicksand', sans-serif",
-          fontSize: 14, fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase",
+        <button onClick={onNext} disabled={!hasPick} className="font-body text-[14px] font-semibold tracking-[0.12em] uppercase border-none transition-all duration-300 min-h-[48px]" style={{
+          /* dynamic */
           background: !hasPick ? `${C.oceanTeal}30` : C.oceanTeal,
-          border: "none", color: C.white, padding: "14px 36px", borderRadius: 40,
+          color: C.white, padding: "14px 36px", borderRadius: 40,
           cursor: !hasPick ? "not-allowed" : "pointer",
-          transition: "all 0.3s", opacity: !hasPick ? 0.5 : 1,
+          opacity: !hasPick ? 0.5 : 1,
           boxShadow: !hasPick ? "none" : `0 4px 20px ${C.oceanTeal}30`,
-          minHeight: 48, WebkitTapHighlightColor: "transparent",
         }}>Continue</button>
       </div>
     </div>
@@ -1198,41 +1130,34 @@ function StepMonth({ data, onChange, onNext, onBack }) {
         title="When are you going?"
         subtitle="Each month has its own character. We'll match your trip to the season."
       />
-      <div style={{
-        display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)',
-        gap: 10, maxWidth: 480, margin: '0 auto', padding: '0 20px',
-      }}>
+      <div className="grid grid-cols-3 gap-2.5 max-w-[480px] mx-auto px-5">
         {MONTHS.map(m => {
           const sel = data.month === m.id;
           const isGolden = goldenMonths.has(m.id);
           return (
-            <button key={m.id} onClick={() => { onChange({ month: m.id }); if (showDates) { onChange({ month: m.id, dateStart: null, dateEnd: null }); setShowDates(false); } }} style={{
-              position: 'relative',
-              background: sel ? `${m.color}18` : C.white,
-              border: `2px solid ${sel ? m.color : isGolden ? `${C.goldenAmber}35` : `${C.sage}18`}`,
-              borderRadius: 14, padding: '14px 10px',
-              cursor: 'pointer', transition: 'all 0.3s',
-              textAlign: 'center', minHeight: 72,
-              boxShadow: sel ? `0 3px 16px ${m.color}20` : isGolden ? `0 1px 8px ${C.goldenAmber}12` : '0 1px 4px rgba(0,0,0,0.04)',
-              transform: sel ? 'scale(1.03)' : 'scale(1)',
-              WebkitTapHighlightColor: 'transparent',
-            }}>
+            <button key={m.id} onClick={() => { onChange({ month: m.id }); if (showDates) { onChange({ month: m.id, dateStart: null, dateEnd: null }); setShowDates(false); } }}
+              className="relative cursor-pointer transition-all duration-300 text-center min-h-[72px]"
+              style={{
+                /* dynamic */
+                background: sel ? `${m.color}18` : C.white,
+                border: `2px solid ${sel ? m.color : isGolden ? `${C.goldenAmber}35` : `${C.sage}18`}`,
+                borderRadius: 14, padding: '14px 10px',
+                boxShadow: sel ? `0 3px 16px ${m.color}20` : isGolden ? `0 1px 8px ${C.goldenAmber}12` : '0 1px 4px rgba(0,0,0,0.04)',
+                transform: sel ? 'scale(1.03)' : 'scale(1)',
+              }}>
               {isGolden && (
-                <div style={{
-                  position: 'absolute', top: 6, right: 6,
+                <div className="absolute" style={{
+                  top: 6, right: 6,
                   width: 7, height: 7, borderRadius: '50%',
                   background: C.goldenAmber, opacity: 0.6,
                 }} />
               )}
-              <div style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontSize: 'clamp(15px, 3.8vw, 17px)', fontWeight: 600,
-                color: sel ? C.slate : `${C.slate}BB`, marginBottom: 3,
+              <div className="font-serif text-[clamp(15px,3.8vw,17px)] font-semibold mb-[3px]" style={{
+                /* dynamic */
+                color: sel ? C.slate : `${C.slate}BB`,
               }}>{m.label}</div>
-              <div style={{
-                fontFamily: "'Quicksand', sans-serif",
-                fontSize: 10, fontWeight: 600, letterSpacing: '0.08em',
-                textTransform: 'uppercase',
+              <div className="font-body text-[10px] font-semibold tracking-[0.08em] uppercase" style={{
+                /* dynamic */
                 color: sel ? m.color : `${C.sage}90`,
               }}>{(DESTINATION_WINDOWS[data.destination] || {})[m.id] || m.window}</div>
             </button>
@@ -1242,23 +1167,18 @@ function StepMonth({ data, onChange, onNext, onBack }) {
 
       {/* Exact dates toggle */}
       {data.month && (
-        <div style={{ maxWidth: 480, margin: '0 auto', padding: '0 20px' }}>
-          <button onClick={toggleDates} style={{
-            display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
-            width: '100%', padding: '12px 16px',
-            background: 'none', border: 'none', cursor: 'pointer',
-            fontFamily: "'Quicksand', sans-serif",
-            fontSize: 13, fontWeight: 600, letterSpacing: '0.06em',
+        <div className="max-w-[480px] mx-auto px-5">
+          <button onClick={toggleDates} className="flex items-center justify-center gap-2 w-full bg-none border-none cursor-pointer font-body text-[13px] font-semibold tracking-[0.06em]" style={{
+            /* dynamic */
+            padding: '12px 16px',
             color: showDates ? C.oceanTeal : `${C.sage}70`,
-            WebkitTapHighlightColor: 'transparent',
           }}>
-            <div style={{
+            <div className="flex items-center justify-center shrink-0" style={{
+              /* dynamic */
               width: 16, height: 16, borderRadius: 4,
               border: `1.5px solid ${showDates ? C.oceanTeal : `${C.sage}40`}`,
               background: showDates ? C.oceanTeal : 'transparent',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
               transition: 'all 0.2s',
-              flexShrink: 0,
             }}>
               {showDates && (
                 <svg width="10" height="10" viewBox="0 0 14 14" fill="none">
@@ -1270,35 +1190,28 @@ function StepMonth({ data, onChange, onNext, onBack }) {
           </button>
 
           {showDates && (
-            <div style={{
-              display: 'flex', gap: 12, marginTop: 12, marginBottom: 8,
+            <div className="flex gap-3 mt-3 mb-2" style={{
               animation: 'fadeScale 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
             }}>
-              <div style={{ flex: 1 }}>
-                <label style={{
-                  display: 'block', marginBottom: 6,
-                  fontFamily: "'Quicksand', sans-serif",
-                  fontSize: 11, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase',
+              <div className="flex-1">
+                <label className="block mb-1.5 font-body text-[11px] font-bold tracking-[0.15em] uppercase" style={{
                   color: `${C.sage}AA`,
                 }}>Start date</label>
                 <input
                   type="date"
                   value={data.dateStart || ''}
                   onChange={e => handleDateChange({ dateStart: e.target.value })}
+                  className="w-full font-body text-[14px] bg-white outline-none box-border"
                   style={{
-                    width: '100%', padding: '14px 14px',
-                    fontFamily: "'Quicksand', sans-serif", fontSize: 14, color: C.slate,
-                    background: C.white, border: `1.5px solid ${C.sage}20`, borderRadius: 12,
-                    outline: 'none', boxSizing: 'border-box',
+                    padding: '14px 14px',
+                    color: C.slate,
+                    border: `1.5px solid ${C.sage}20`, borderRadius: 12,
                     WebkitAppearance: 'none',
                   }}
                 />
               </div>
-              <div style={{ flex: 1 }}>
-                <label style={{
-                  display: 'block', marginBottom: 6,
-                  fontFamily: "'Quicksand', sans-serif",
-                  fontSize: 11, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase',
+              <div className="flex-1">
+                <label className="block mb-1.5 font-body text-[11px] font-bold tracking-[0.15em] uppercase" style={{
                   color: `${C.sage}AA`,
                 }}>End date</label>
                 <input
@@ -1306,11 +1219,11 @@ function StepMonth({ data, onChange, onNext, onBack }) {
                   value={data.dateEnd || ''}
                   min={data.dateStart || ''}
                   onChange={e => handleDateChange({ dateEnd: e.target.value })}
+                  className="w-full font-body text-[14px] bg-white outline-none box-border"
                   style={{
-                    width: '100%', padding: '14px 14px',
-                    fontFamily: "'Quicksand', sans-serif", fontSize: 14, color: C.slate,
-                    background: C.white, border: `1.5px solid ${C.sage}20`, borderRadius: 12,
-                    outline: 'none', boxSizing: 'border-box',
+                    padding: '14px 14px',
+                    color: C.slate,
+                    border: `1.5px solid ${C.sage}20`, borderRadius: 12,
                     WebkitAppearance: 'none',
                   }}
                 />
@@ -1320,7 +1233,7 @@ function StepMonth({ data, onChange, onNext, onBack }) {
         </div>
       )}
 
-      <div style={{ marginTop: 0 }}>
+      <div>
         <NavButtons onBack={onBack} onNext={onNext} nextDisabled={!data.month} topPadding={showDates ? 24 : 8} />
       </div>
     </div>
@@ -1336,25 +1249,25 @@ function StepIntention({ data, onChange, onNext, onBack }) {
   return (
     <div>
       <StepTitle eyebrow="Intention" title="Set your intention" subtitle="What is this journey for? Choose all that resonate." />
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, maxWidth: 480, margin: "0 auto", padding: "0 20px" }}>
+      <div className="grid grid-cols-2 gap-3 max-w-[480px] mx-auto px-5">
         {INTENTIONS.map(item => {
           const active = selected.includes(item.id);
           const Ic = item.icon;
           return (
-            <button key={item.id} onClick={() => toggle(item.id)} style={{
-              background: active ? `${item.color}12` : C.white,
-              border: `2px solid ${active ? item.color : `${C.sage}18`}`,
-              borderRadius: 16, padding: "24px 16px",
-              cursor: "pointer", transition: "all 0.35s",
-              textAlign: "center", minHeight: 140,
-              boxShadow: active ? `0 4px 20px ${item.color}20` : "0 1px 4px rgba(0,0,0,0.04)",
-              WebkitTapHighlightColor: "transparent",
-            }}>
-              <div style={{ display: "flex", justifyContent: "center", marginBottom: 10, transition: "opacity 0.3s", opacity: 1 }}>
+            <button key={item.id} onClick={() => toggle(item.id)}
+              className="cursor-pointer transition-all duration-[350ms] text-center min-h-[140px]"
+              style={{
+                /* dynamic */
+                background: active ? `${item.color}12` : C.white,
+                border: `2px solid ${active ? item.color : `${C.sage}18`}`,
+                borderRadius: 16, padding: "24px 16px",
+                boxShadow: active ? `0 4px 20px ${item.color}20` : "0 1px 4px rgba(0,0,0,0.04)",
+              }}>
+              <div className="flex justify-center mb-2.5 transition-opacity duration-300 opacity-100">
                 <Ic size={30} color={item.color} />
               </div>
-              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(16px, 4vw, 18px)", fontWeight: 600, color: C.slate, marginBottom: 3 }}>{item.label}</div>
-              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, color: `${C.slate}99`, lineHeight: 1.3 }}>{item.desc}</div>
+              <div className="font-serif text-[clamp(16px,4vw,18px)] font-semibold text-dark-ink mb-[3px]">{item.label}</div>
+              <div className="font-body text-[12px] leading-[1.3]" style={{ color: `${C.slate}99` }}>{item.desc}</div>
             </button>
           );
         })}
@@ -1378,26 +1291,27 @@ function StepMovement({ data, onChange, onNext, onBack }) {
   return (
     <div>
       <StepTitle eyebrow="Movement" title="How physically intense?" subtitle="From restorative mornings to summit-level effort." />
-      <div style={{ maxWidth: 440, margin: "0 auto", padding: "0 28px" }}>
-        <div style={{ textAlign: "center", marginBottom: 32 }}>
-          <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(32px, 8vw, 40px)", fontWeight: 300, color: C.sage, marginBottom: 6 }}>{labels[labelIndex]}</div>
-          <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 14, color: `${C.slate}99`, lineHeight: 1.6 }}>{descriptions[labelIndex]}</p>
+      <div className="max-w-[440px] mx-auto px-7">
+        <div className="text-center mb-8">
+          <div className="font-serif text-[clamp(32px,8vw,40px)] font-light mb-1.5" style={{ color: C.sage }}>{labels[labelIndex]}</div>
+          <p className="font-body text-[14px] leading-[1.6]" style={{ color: `${C.slate}99` }}>{descriptions[labelIndex]}</p>
         </div>
-        <div style={{ position: "relative", padding: "16px 0" }}>
-          <div style={{ position: "absolute", top: "50%", left: 0, right: 0, height: 6, background: `${C.sage}18`, borderRadius: 3, transform: "translateY(-50%)" }} />
-          <div style={{ position: "absolute", top: "50%", left: 0, width: `${val}%`, height: 6, background: `linear-gradient(90deg, ${C.oceanTeal}, ${C.goldenAmber}, ${C.sunSalmon})`, borderRadius: 3, transform: "translateY(-50%)", transition: "width 0.15s" }} />
+        <div className="relative" style={{ padding: "16px 0" }}>
+          <div className="absolute left-0 right-0" style={{ top: "50%", height: 6, background: `${C.sage}18`, borderRadius: 3, transform: "translateY(-50%)" }} />
+          <div className="absolute" style={{ top: "50%", left: 0, width: `${val}%`, height: 6, background: `linear-gradient(90deg, ${C.oceanTeal}, ${C.goldenAmber}, ${C.sunSalmon})`, borderRadius: 3, transform: "translateY(-50%)", transition: "width 0.15s" }} />
           <input type="range" min={0} max={100} value={val}
             onChange={e => onChange({ movement: Number(e.target.value) })}
-            style={{ width: "100%", appearance: "none", WebkitAppearance: "none", background: "transparent", cursor: "pointer", position: "relative", zIndex: 2, height: 44, WebkitTapHighlightColor: "transparent" }}
+            className="w-full appearance-none bg-transparent cursor-pointer relative z-[2]"
+            style={{ height: 44, WebkitAppearance: "none" }}
           />
         </div>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: 8 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+        <div className="flex justify-between items-center mt-2">
+          <div className="flex items-center gap-1.5">
             <IconYinYang size={16} color={C.oceanTeal} />
-            <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: C.oceanTeal }}>Yin</span>
+            <span className="font-body text-[12px] font-semibold tracking-[0.1em] uppercase text-ocean-teal">Yin</span>
           </div>
-          <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-            <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: C.sunSalmon }}>Yang</span>
+          <div className="flex items-center gap-1.5">
+            <span className="font-body text-[12px] font-semibold tracking-[0.1em] uppercase" style={{ color: C.sunSalmon }}>Yang</span>
             <IconFlame size={16} color={C.sunSalmon} />
           </div>
         </div>
@@ -1445,48 +1359,41 @@ function StepPracticeLevel({ data, onChange, onNext, onBack }) {
         title="How deep into your wellness practice do you want to go?"
         subtitle="This helps us know how much yoga, meditation, and wellness to weave into your days."
       />
-      <div style={{ maxWidth: 460, margin: "0 auto", padding: "0 28px" }}>
+      <div className="max-w-[460px] mx-auto px-7">
         {/* Current level display */}
-        <div style={{ textAlign: "center", marginBottom: 28 }}>
-          <div style={{ display: "flex", justifyContent: "center", marginBottom: 12 }}>
+        <div className="text-center mb-7">
+          <div className="flex justify-center mb-3">
             <Ic size={32} color={C.oceanTeal} />
           </div>
-          <div style={{
-            fontFamily: "'Cormorant Garamond', serif",
-            fontSize: "clamp(24px, 6vw, 32px)", fontWeight: 300, color: C.sage, marginBottom: 8,
-          }}>{current.label}</div>
-          <p style={{
-            fontFamily: "'Quicksand', sans-serif",
-            fontSize: "clamp(13px, 3.2vw, 14px)", color: `${C.slate}AA`, lineHeight: 1.65,
-            minHeight: 48,
+          <div className="font-serif text-[clamp(24px,6vw,32px)] font-light mb-2" style={{ color: C.sage }}>{current.label}</div>
+          <p className="font-body text-[clamp(13px,3.2vw,14px)] leading-[1.65] min-h-[48px]" style={{
+            color: `${C.slate}AA`,
           }}>{current.desc}</p>
         </div>
 
         {/* Slider */}
-        <div style={{ position: "relative", padding: "16px 0" }}>
-          <div style={{ position: "absolute", top: "50%", left: 0, right: 0, height: 6, background: `${C.sage}18`, borderRadius: 3, transform: "translateY(-50%)" }} />
-          <div style={{
-            position: "absolute", top: "50%", left: 0,
+        <div className="relative" style={{ padding: "16px 0" }}>
+          <div className="absolute left-0 right-0" style={{ top: "50%", height: 6, background: `${C.sage}18`, borderRadius: 3, transform: "translateY(-50%)" }} />
+          <div className="absolute" style={{
+            /* dynamic */
+            top: "50%", left: 0,
             width: `${(level / 3) * 100}%`, height: 6,
             background: `linear-gradient(90deg, ${C.seaGlass}, ${C.oceanTeal})`,
             borderRadius: 3, transform: "translateY(-50%)", transition: "width 0.2s",
           }} />
           <input type="range" min={0} max={3} step={1} value={level}
             onChange={e => onChange({ practiceLevel: Number(e.target.value) })}
-            style={{
-              width: "100%", appearance: "none", WebkitAppearance: "none",
-              background: "transparent", cursor: "pointer", position: "relative", zIndex: 2,
-              height: 44, WebkitTapHighlightColor: "transparent",
-            }}
+            className="w-full appearance-none bg-transparent cursor-pointer relative z-[2]"
+            style={{ height: 44, WebkitAppearance: "none" }}
           />
         </div>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: 4 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
+        <div className="flex justify-between items-center mt-1">
+          <div className="flex items-center gap-[5px]">
             <IconBodhiLeaf size={14} color={C.seaGlass} />
-            <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600, letterSpacing: "0.06em", color: C.seaGlass }}>Curious</span>
+            <span className="font-body text-[11px] font-semibold tracking-[0.06em] text-sea-glass">Curious</span>
           </div>
-          <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
-            <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600, letterSpacing: "0.06em", color: C.oceanTeal }}>Deep</span>
+          <div className="flex items-center gap-[5px]">
+            <span className="font-body text-[11px] font-semibold tracking-[0.06em] text-ocean-teal">Deep</span>
             <IconUnalome size={14} color={C.oceanTeal} />
           </div>
         </div>
@@ -1510,30 +1417,27 @@ function StepPracticeInterests({ data, onChange, onNext, onBack }) {
         title="What jumps out?"
         subtitle="Select any practices you'd like woven into your trip. Choose as many as you like."
       />
-      <div style={{ maxWidth: 460, margin: "0 auto", padding: "0 28px" }}>
-        <div style={{
-          display: "grid", gridTemplateColumns: "repeat(4, 1fr)",
-          gap: 10, maxWidth: 420, margin: "0 auto",
-        }}>
+      <div className="max-w-[460px] mx-auto px-7">
+        <div className="grid grid-cols-4 gap-2.5 max-w-[420px] mx-auto">
           {PRACTICES.map(p => {
             const active = selected.includes(p.id);
             const Pic = p.icon;
             return (
-              <button key={p.id} onClick={() => toggle(p.id)} style={{
-                background: active ? `${p.color}12` : C.white,
-                border: `1.5px solid ${active ? p.color : `${C.sage}15`}`,
-                borderRadius: 14, padding: "18px 8px",
-                cursor: "pointer", transition: "all 0.3s",
-                textAlign: "center", minHeight: 80,
-                boxShadow: active ? `0 3px 14px ${p.color}15` : "0 1px 4px rgba(0,0,0,0.04)",
-                WebkitTapHighlightColor: "transparent",
-              }}>
-                <div style={{ display: "flex", justifyContent: "center", marginBottom: 6 }}>
+              <button key={p.id} onClick={() => toggle(p.id)}
+                className="cursor-pointer transition-all duration-300 text-center min-h-[80px]"
+                style={{
+                  /* dynamic */
+                  background: active ? `${p.color}12` : C.white,
+                  border: `1.5px solid ${active ? p.color : `${C.sage}15`}`,
+                  borderRadius: 14, padding: "18px 8px",
+                  boxShadow: active ? `0 3px 14px ${p.color}15` : "0 1px 4px rgba(0,0,0,0.04)",
+                }}>
+                <div className="flex justify-center mb-1.5">
                   <Pic size={24} color={active ? p.color : `${C.sage}50`} />
                 </div>
-                <div style={{
-                  fontFamily: "'Quicksand', sans-serif",
-                  fontSize: 12, fontWeight: 600, color: active ? C.slate : `${C.slate}AA`, lineHeight: 1.2,
+                <div className="font-body text-[12px] font-semibold leading-[1.2]" style={{
+                  /* dynamic */
+                  color: active ? C.slate : `${C.slate}AA`,
                 }}>{p.label}</div>
               </button>
             );
@@ -1558,26 +1462,27 @@ function StepPacing({ data, onChange, onNext, onBack }) {
   return (
     <div>
       <StepTitle eyebrow="Rhythm" title="How packed should each day be?" subtitle="Your daily schedule density — from wide-open mornings to dawn-to-dark adventures." />
-      <div style={{ maxWidth: 440, margin: "0 auto", padding: "0 28px" }}>
-        <div style={{ textAlign: "center", marginBottom: 32 }}>
-          <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(32px, 8vw, 40px)", fontWeight: 300, color: C.sage, marginBottom: 6 }}>{labels[labelIndex]}</div>
-          <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 14, color: `${C.slate}99`, lineHeight: 1.6 }}>{descriptions[labelIndex]}</p>
+      <div className="max-w-[440px] mx-auto px-7">
+        <div className="text-center mb-8">
+          <div className="font-serif text-[clamp(32px,8vw,40px)] font-light mb-1.5" style={{ color: C.sage }}>{labels[labelIndex]}</div>
+          <p className="font-body text-[14px] leading-[1.6]" style={{ color: `${C.slate}99` }}>{descriptions[labelIndex]}</p>
         </div>
-        <div style={{ position: "relative", padding: "16px 0" }}>
-          <div style={{ position: "absolute", top: "50%", left: 0, right: 0, height: 6, background: `${C.sage}18`, borderRadius: 3, transform: "translateY(-50%)" }} />
-          <div style={{ position: "absolute", top: "50%", left: 0, width: `${val}%`, height: 6, background: `linear-gradient(90deg, ${C.oceanTeal}, ${C.goldenAmber})`, borderRadius: 3, transform: "translateY(-50%)", transition: "width 0.15s" }} />
+        <div className="relative" style={{ padding: "16px 0" }}>
+          <div className="absolute left-0 right-0" style={{ top: "50%", height: 6, background: `${C.sage}18`, borderRadius: 3, transform: "translateY(-50%)" }} />
+          <div className="absolute" style={{ top: "50%", left: 0, width: `${val}%`, height: 6, background: `linear-gradient(90deg, ${C.oceanTeal}, ${C.goldenAmber})`, borderRadius: 3, transform: "translateY(-50%)", transition: "width 0.15s" }} />
           <input type="range" min={0} max={100} value={val}
             onChange={e => onChange({ pacing: Number(e.target.value) })}
-            style={{ width: "100%", appearance: "none", WebkitAppearance: "none", background: "transparent", cursor: "pointer", position: "relative", zIndex: 2, height: 44, WebkitTapHighlightColor: "transparent" }}
+            className="w-full appearance-none bg-transparent cursor-pointer relative z-[2]"
+            style={{ height: 44, WebkitAppearance: "none" }}
           />
         </div>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: 8 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+        <div className="flex justify-between items-center mt-2">
+          <div className="flex items-center gap-1.5">
             <IconWave size={16} color={C.oceanTeal} />
-            <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 600, letterSpacing: "0.08em", color: C.oceanTeal }}>Spacious</span>
+            <span className="font-body text-[12px] font-semibold tracking-[0.08em] text-ocean-teal">Spacious</span>
           </div>
-          <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-            <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 600, letterSpacing: "0.08em", color: C.goldenAmber }}>Full</span>
+          <div className="flex items-center gap-1.5">
+            <span className="font-body text-[12px] font-semibold tracking-[0.08em]" style={{ color: C.goldenAmber }}>Full</span>
             <IconFlame size={16} color={C.goldenAmber} />
           </div>
         </div>
@@ -1601,26 +1506,27 @@ function StepRange({ data, onChange, onNext, onBack }) {
   return (
     <div>
       <StepTitle eyebrow="Territory" title="How far do you want to roam?" subtitle="Some trips go deep in one place. Others cover ground." />
-      <div style={{ maxWidth: 440, margin: "0 auto", padding: "0 28px" }}>
-        <div style={{ textAlign: "center", marginBottom: 32 }}>
-          <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(32px, 8vw, 40px)", fontWeight: 300, color: C.sage, marginBottom: 6 }}>{labels[labelIndex]}</div>
-          <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 14, color: `${C.slate}99`, lineHeight: 1.6 }}>{descriptions[labelIndex]}</p>
+      <div className="max-w-[440px] mx-auto px-7">
+        <div className="text-center mb-8">
+          <div className="font-serif text-[clamp(32px,8vw,40px)] font-light mb-1.5" style={{ color: C.sage }}>{labels[labelIndex]}</div>
+          <p className="font-body text-[14px] leading-[1.6]" style={{ color: `${C.slate}99` }}>{descriptions[labelIndex]}</p>
         </div>
-        <div style={{ position: "relative", padding: "16px 0" }}>
-          <div style={{ position: "absolute", top: "50%", left: 0, right: 0, height: 6, background: `${C.sage}18`, borderRadius: 3, transform: "translateY(-50%)" }} />
-          <div style={{ position: "absolute", top: "50%", left: 0, width: `${val}%`, height: 6, background: `linear-gradient(90deg, ${C.seaGlass}, ${C.skyBlue}, ${C.goldenAmber})`, borderRadius: 3, transform: "translateY(-50%)", transition: "width 0.15s" }} />
+        <div className="relative" style={{ padding: "16px 0" }}>
+          <div className="absolute left-0 right-0" style={{ top: "50%", height: 6, background: `${C.sage}18`, borderRadius: 3, transform: "translateY(-50%)" }} />
+          <div className="absolute" style={{ top: "50%", left: 0, width: `${val}%`, height: 6, background: `linear-gradient(90deg, ${C.seaGlass}, ${C.skyBlue}, ${C.goldenAmber})`, borderRadius: 3, transform: "translateY(-50%)", transition: "width 0.15s" }} />
           <input type="range" min={0} max={100} value={val}
             onChange={e => onChange({ range: Number(e.target.value) })}
-            style={{ width: "100%", appearance: "none", WebkitAppearance: "none", background: "transparent", cursor: "pointer", position: "relative", zIndex: 2, height: 44, WebkitTapHighlightColor: "transparent" }}
+            className="w-full appearance-none bg-transparent cursor-pointer relative z-[2]"
+            style={{ height: 44, WebkitAppearance: "none" }}
           />
         </div>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: 8 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+        <div className="flex justify-between items-center mt-2">
+          <div className="flex items-center gap-1.5">
             <IconMountain size={16} color={C.seaGlass} />
-            <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 600, letterSpacing: "0.08em", color: C.seaGlass }}>Rooted</span>
+            <span className="font-body text-[12px] font-semibold tracking-[0.08em] text-sea-glass">Rooted</span>
           </div>
-          <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-            <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 600, letterSpacing: "0.08em", color: C.goldenAmber }}>Drift</span>
+          <div className="flex items-center gap-1.5">
+            <span className="font-body text-[12px] font-semibold tracking-[0.08em]" style={{ color: C.goldenAmber }}>Drift</span>
             <IconTorii size={16} color={C.goldenAmber} />
           </div>
         </div>
@@ -1655,42 +1561,35 @@ function StepDuration({ data, onChange, onNext, onBack }) {
         title="How many days?"
         subtitle="We recommend 4–7 days for a full experience."
       />
-      <div style={{ maxWidth: 440, margin: '0 auto', padding: '0 28px' }}>
+      <div className="max-w-[440px] mx-auto px-7">
         {/* Large number display */}
-        <div style={{ textAlign: 'center', marginBottom: 32 }}>
-          <div style={{
-            fontFamily: "'Cormorant Garamond', serif",
-            fontSize: 'clamp(64px, 16vw, 80px)', fontWeight: 300,
-            color: C.slate, lineHeight: 1,
+        <div className="text-center mb-8">
+          <div className="font-serif text-[clamp(64px,16vw,80px)] font-light text-dark-ink leading-[1]" style={{
             transition: 'transform 0.12s',
           }}>{days}</div>
-          <div style={{
-            fontFamily: "'Quicksand', sans-serif",
-            fontSize: 11, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase',
-            color: `${C.sage}AA`, marginTop: 4,
+          <div className="font-body text-[11px] font-bold tracking-[0.2em] uppercase mt-1" style={{
+            color: `${C.sage}AA`,
           }}>days</div>
-          <div style={{
-            fontFamily: "'Quicksand', sans-serif",
-            fontSize: 12, fontWeight: 400,
-            color: `${C.sage}88`, marginTop: 2,
+          <div className="font-body text-[12px] font-normal mt-0.5" style={{
+            color: `${C.sage}88`,
           }}>{days - 1} night{days - 1 !== 1 ? 's' : ''}</div>
-          <div style={{
-            fontFamily: "'Cormorant Garamond', serif",
-            fontStyle: 'italic', fontSize: 18, fontWeight: 300,
+          <div className="font-serif italic text-[18px] font-light mt-2.5 min-h-[26px]" style={{
+            /* dynamic */
             color: DURATION_LABELS[days].sweet ? C.oceanTeal : `${C.slate}55`,
-            marginTop: 10, minHeight: 26, transition: 'color 0.2s',
+            transition: 'color 0.2s',
           }}>{DURATION_LABELS[days].text}</div>
         </div>
 
         {/* Slider track */}
-        <div style={{ position: 'relative', padding: '16px 0' }}>
-          <div style={{
-            position: 'absolute', top: '50%', left: 0, right: 0,
+        <div className="relative" style={{ padding: '16px 0' }}>
+          <div className="absolute left-0 right-0" style={{
+            top: '50%',
             height: 4, background: `${C.sage}18`, borderRadius: 2,
             transform: 'translateY(-50%)',
           }} />
-          <div style={{
-            position: 'absolute', top: '50%', left: 0,
+          <div className="absolute" style={{
+            /* dynamic */
+            top: '50%', left: 0,
             width: `${((days - 2) / 8) * 100}%`,
             height: 4, background: C.oceanTeal, borderRadius: 2,
             transform: 'translateY(-50%)', transition: 'width 0.15s',
@@ -1699,28 +1598,22 @@ function StepDuration({ data, onChange, onNext, onBack }) {
             id="duration-slider"
             type="range" min={2} max={10} step={1} value={days}
             onChange={e => onChange({ duration: Number(e.target.value) })}
-            style={{
-              width: '100%', appearance: 'none', WebkitAppearance: 'none',
-              background: 'transparent', cursor: 'pointer',
-              position: 'relative', zIndex: 2, height: 44,
-              WebkitTapHighlightColor: 'transparent',
-            }}
+            className="w-full appearance-none bg-transparent cursor-pointer relative z-[2]"
+            style={{ height: 44, WebkitAppearance: 'none' }}
           />
         </div>
 
         {/* Min/max labels */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 8 }}>
-          <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600, color: `${C.slate}40` }}>2 days</span>
-          <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 600, color: `${C.slate}40` }}>10 days</span>
+        <div className="flex justify-between mt-2">
+          <span className="font-body text-[11px] font-semibold" style={{ color: `${C.slate}40` }}>2 days</span>
+          <span className="font-body text-[11px] font-semibold" style={{ color: `${C.slate}40` }}>10 days</span>
         </div>
 
         {/* Sweet spot badge */}
-        <div style={{ textAlign: 'center', marginTop: 20, minHeight: 28 }}>
+        <div className="text-center mt-5 min-h-[28px]">
           {DURATION_LABELS[days].sweet && (
-            <span style={{
-              fontFamily: "'Quicksand', sans-serif",
-              fontSize: 11, fontWeight: 600, letterSpacing: '0.1em',
-              background: `${C.oceanTeal}10`, color: C.oceanTeal,
+            <span className="font-body text-[11px] font-semibold tracking-[0.1em] text-ocean-teal" style={{
+              background: `${C.oceanTeal}10`,
               padding: '5px 16px', borderRadius: 20,
             }}>✦ Sweet spot</span>
           )}
@@ -1749,63 +1642,54 @@ function StepGroup({ data, onChange, onNext, onBack }) {
   return (
     <div>
       <StepTitle eyebrow="Travel Party" title="Who's coming?" subtitle="This shapes everything — pace, dining, activities, lodging." />
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, maxWidth: 480, margin: "0 auto", padding: "0 20px" }}>
+      <div className="grid grid-cols-2 gap-3 max-w-[480px] mx-auto px-5">
         {GROUP_TYPES.map(item => {
           const active = selected === item.id;
           const Ic = item.icon;
           return (
-            <button key={item.id} onClick={() => handleSelect(item.id)} style={{
-              background: active ? `${item.color}12` : C.white,
-              border: `2px solid ${active ? item.color : `${C.sage}18`}`,
-              borderRadius: 16, padding: "24px 16px",
-              cursor: "pointer", transition: "all 0.35s",
-              textAlign: "center", minHeight: 140,
-              boxShadow: active ? `0 4px 20px ${item.color}20` : "0 1px 4px rgba(0,0,0,0.04)",
-              WebkitTapHighlightColor: "transparent",
-            }}>
-              <div style={{ display: "flex", justifyContent: "center", marginBottom: 10, transition: "opacity 0.3s", opacity: 1 }}>
+            <button key={item.id} onClick={() => handleSelect(item.id)}
+              className="cursor-pointer transition-all duration-[350ms] text-center min-h-[140px]"
+              style={{
+                /* dynamic */
+                background: active ? `${item.color}12` : C.white,
+                border: `2px solid ${active ? item.color : `${C.sage}18`}`,
+                borderRadius: 16, padding: "24px 16px",
+                boxShadow: active ? `0 4px 20px ${item.color}20` : "0 1px 4px rgba(0,0,0,0.04)",
+              }}>
+              <div className="flex justify-center mb-2.5 transition-opacity duration-300 opacity-100">
                 <Ic size={30} color={item.color} />
               </div>
-              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(16px, 4vw, 18px)", fontWeight: 600, color: C.slate, marginBottom: 3 }}>{item.label}</div>
-              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, color: `${C.slate}99`, lineHeight: 1.3 }}>{item.desc}</div>
+              <div className="font-serif text-[clamp(16px,4vw,18px)] font-semibold text-dark-ink mb-[3px]">{item.label}</div>
+              <div className="font-body text-[12px] leading-[1.3]" style={{ color: `${C.slate}99` }}>{item.desc}</div>
             </button>
           );
         })}
       </div>
       {showCounter && (
-        <div style={{
-          maxWidth: 480, margin: "12px auto 0", padding: "0 20px",
+        <div className="max-w-[480px] mx-auto px-5" style={{
+          marginTop: 12,
           animation: "fadeScale 0.35s cubic-bezier(0.4, 0, 0.2, 1)",
         }}>
-          <div style={{
-            background: C.white, borderRadius: 2, padding: "16px 24px",
+          <div className="bg-white" style={{
+            borderRadius: 2, padding: "16px 24px",
             border: `1px solid ${C.sage}12`,
           }}>
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 28 }}>
-              <button onClick={() => onChange({ groupSize: Math.max(2, groupSize - 1) })} style={{
+            <div className="flex items-center justify-center gap-7">
+              <button onClick={() => onChange({ groupSize: Math.max(2, groupSize - 1) })} className="flex items-center justify-center bg-transparent cursor-pointer font-body text-[20px]" style={{
                 width: 48, height: 48, borderRadius: "50%",
-                background: "transparent", border: `2px solid ${C.sage}25`,
-                cursor: "pointer", fontSize: 20, color: C.sage,
-                display: "flex", alignItems: "center", justifyContent: "center",
-                fontFamily: "'Quicksand', sans-serif", WebkitTapHighlightColor: "transparent",
+                border: `2px solid ${C.sage}25`,
+                color: C.sage,
               }}>−</button>
-              <div style={{ textAlign: "center", minWidth: 60 }}>
-                <div style={{
-                  fontFamily: "'Cormorant Garamond', serif",
-                  fontSize: "clamp(48px, 12vw, 60px)", fontWeight: 300, color: C.slate, lineHeight: 1,
-                }}>{groupSize}</div>
-                <div style={{
-                  fontFamily: "'Quicksand', sans-serif",
-                  fontSize: 12, fontWeight: 600, letterSpacing: "0.15em", textTransform: "uppercase",
-                  color: `${C.sage}AA`, marginTop: 2,
+              <div className="text-center min-w-[60px]">
+                <div className="font-serif text-[clamp(48px,12vw,60px)] font-light text-dark-ink leading-[1]">{groupSize}</div>
+                <div className="font-body text-[12px] font-semibold tracking-[0.15em] uppercase mt-0.5" style={{
+                  color: `${C.sage}AA`,
                 }}>travelers</div>
               </div>
-              <button onClick={() => onChange({ groupSize: Math.min(8, groupSize + 1) })} style={{
+              <button onClick={() => onChange({ groupSize: Math.min(8, groupSize + 1) })} className="flex items-center justify-center bg-transparent cursor-pointer font-body text-[20px]" style={{
                 width: 48, height: 48, borderRadius: "50%",
-                background: "transparent", border: `2px solid ${C.sage}25`,
-                cursor: "pointer", fontSize: 20, color: C.sage,
-                display: "flex", alignItems: "center", justifyContent: "center",
-                fontFamily: "'Quicksand', sans-serif", WebkitTapHighlightColor: "transparent",
+                border: `2px solid ${C.sage}25`,
+                color: C.sage,
               }}>+</button>
             </div>
           </div>
@@ -1826,35 +1710,26 @@ function StepBudget({ data, onChange, onNext, onBack }) {
         title="What budget feels right?"
         subtitle="This helps us match accommodations, dining, and experiences to your comfort."
       />
-      <div style={{ maxWidth: 480, margin: "0 auto", padding: "0 20px" }}>
-        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+      <div className="max-w-[480px] mx-auto px-5">
+        <div className="flex flex-col gap-2">
           {BUDGET_TIERS.map(tier => {
             const active = data.budget === tier.id;
             return (
-              <button key={tier.id} onClick={() => onChange({ budget: tier.id })} style={{
-                display: "flex", alignItems: "center", gap: 14,
-                background: active ? `${tier.color}08` : C.white,
-                border: `1.5px solid ${active ? tier.color : `${C.sage}18`}`,
-                borderRadius: 14, padding: "18px 20px",
-                cursor: "pointer", transition: "all 0.25s",
-                minHeight: 60, WebkitTapHighlightColor: "transparent",
-                boxShadow: active ? `0 3px 16px ${tier.color}15` : "0 1px 4px rgba(0,0,0,0.04)",
-                textAlign: "left",
-              }}>
-                <div style={{
-                  fontFamily: "'Quicksand', sans-serif",
-                  fontSize: 14, fontWeight: 700, color: active ? tier.color : tier.color,
-                  flexShrink: 0, minWidth: 40, textAlign: "center",
+              <button key={tier.id} onClick={() => onChange({ budget: tier.id })}
+                className="flex items-center gap-3.5 cursor-pointer transition-all duration-[250ms] min-h-[60px] text-left"
+                style={{
+                  /* dynamic */
+                  background: active ? `${tier.color}08` : C.white,
+                  border: `1.5px solid ${active ? tier.color : `${C.sage}18`}`,
+                  borderRadius: 14, padding: "18px 20px",
+                  boxShadow: active ? `0 3px 16px ${tier.color}15` : "0 1px 4px rgba(0,0,0,0.04)",
+                }}>
+                <div className="font-body text-[14px] font-bold shrink-0 min-w-[40px] text-center" style={{
+                  color: tier.color,
                 }}>{tier.range}</div>
-                <div style={{ flex: 1 }}>
-                  <span style={{
-                    fontFamily: "'Cormorant Garamond', serif",
-                    fontSize: "clamp(16px, 4vw, 18px)", fontWeight: 600, color: C.slate,
-                  }}>{tier.label}</span>
-                  <span style={{
-                    fontFamily: "'Quicksand', sans-serif",
-                    fontSize: 13, color: `${C.slate}99`, marginLeft: 8,
-                  }}>{tier.desc}</span>
+                <div className="flex-1">
+                  <span className="font-serif text-[clamp(16px,4vw,18px)] font-semibold text-dark-ink">{tier.label}</span>
+                  <span className="font-body text-[13px] ml-2" style={{ color: `${C.slate}99` }}>{tier.desc}</span>
                 </div>
               </button>
             );
@@ -1876,39 +1751,32 @@ function StepStay({ data, onChange, onNext, onBack }) {
         title="How do you want to stay?"
         subtitle="From sleeping under the stars to design-forward retreats — we'll match your lodging to your vibe."
       />
-      <div style={{ maxWidth: 480, margin: "0 auto", padding: "0 20px" }}>
-        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+      <div className="max-w-[480px] mx-auto px-5">
+        <div className="flex flex-col gap-2">
           {STAY_STYLES.map(style => {
             const active = data.stayStyle === style.id;
             const Ic = style.icon;
             return (
-              <button key={style.id} onClick={() => onChange({ stayStyle: style.id })} style={{
-                display: "flex", alignItems: "center", gap: 14,
-                background: active ? `${style.color}08` : C.white,
-                border: `1.5px solid ${active ? style.color : `${C.sage}18`}`,
-                borderRadius: 14, padding: "18px 20px",
-                cursor: "pointer", transition: "all 0.25s",
-                minHeight: 60, WebkitTapHighlightColor: "transparent",
-                boxShadow: active ? `0 3px 16px ${style.color}15` : "0 1px 4px rgba(0,0,0,0.04)",
-                textAlign: "left",
-              }}>
-                <div style={{
+              <button key={style.id} onClick={() => onChange({ stayStyle: style.id })}
+                className="flex items-center gap-3.5 cursor-pointer transition-all duration-[250ms] min-h-[60px] text-left"
+                style={{
+                  /* dynamic */
+                  background: active ? `${style.color}08` : C.white,
+                  border: `1.5px solid ${active ? style.color : `${C.sage}18`}`,
+                  borderRadius: 14, padding: "18px 20px",
+                  boxShadow: active ? `0 3px 16px ${style.color}15` : "0 1px 4px rgba(0,0,0,0.04)",
+                }}>
+                <div className="flex items-center justify-center shrink-0" style={{
+                  /* dynamic */
                   width: 40, height: 40, borderRadius: 12,
                   background: active ? `${style.color}12` : `${C.sage}08`,
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  flexShrink: 0, transition: "background 0.25s",
+                  transition: "background 0.25s",
                 }}>
                   <Ic size={20} color={style.color} />
                 </div>
-                <div style={{ flex: 1, minWidth: 0 }}>
-                  <span style={{
-                    fontFamily: "'Cormorant Garamond', serif",
-                    fontSize: "clamp(16px, 4vw, 18px)", fontWeight: 600, color: C.slate,
-                  }}>{style.label}</span>
-                  <div style={{
-                    fontFamily: "'Quicksand', sans-serif",
-                    fontSize: 13, color: `${C.slate}99`, lineHeight: 1.4, marginTop: 2,
-                  }}>{style.desc}</div>
+                <div className="flex-1 min-w-0">
+                  <span className="font-serif text-[clamp(16px,4vw,18px)] font-semibold text-dark-ink">{style.label}</span>
+                  <div className="font-body text-[13px] leading-[1.4] mt-0.5" style={{ color: `${C.slate}99` }}>{style.desc}</div>
                 </div>
               </button>
             );
@@ -1923,46 +1791,45 @@ function StepStay({ data, onChange, onNext, onBack }) {
 // ─── Profiles Modal ──────────────────────────────────────────────────────────
 function ProfilesModal({ personas, currentId, onClose }) {
   return (
-    <div style={{ position: 'fixed', inset: 0, zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center"
          onClick={onClose}>
-      <div style={{ position: 'absolute', inset: 0, background: 'rgba(26,37,48,0.6)' }} />
-      <div onClick={e => e.stopPropagation()} style={{
-        position: 'relative', background: '#FAF6F0', borderRadius: 0,
-        width: '90vw', maxWidth: 520, maxHeight: '85vh', overflowY: 'auto',
+      <div className="absolute inset-0" style={{ background: 'rgba(26,37,48,0.6)' }} />
+      <div onClick={e => e.stopPropagation()} className="relative w-[90vw] max-w-[520px] max-h-[85vh] overflow-y-auto" style={{
+        background: '#FAF6F0',
         padding: '32px 24px',
         animation: 'fadeScale 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
       }}>
-        <button onClick={onClose} style={{
-          position: 'absolute', top: 12, right: 12,
-          width: 44, height: 44, background: 'none', border: 'none',
-          fontSize: 20, color: C.sage, cursor: 'pointer',
+        <button onClick={onClose} className="absolute bg-none border-none cursor-pointer text-[20px]" style={{
+          top: 12, right: 12,
+          width: 44, height: 44,
+          color: C.sage,
         }}>×</button>
-        <div style={{ textAlign: 'center', marginBottom: 24 }}>
-          <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 24, fontWeight: 300, color: C.slate }}>
+        <div className="text-center mb-6">
+          <div className="font-serif text-[24px] font-light text-dark-ink">
             Travel Spirits
           </div>
         </div>
         {personas.map(p => (
-          <div key={p.id} style={{
+          <div key={p.id} className="mb-3" style={{
+            /* dynamic */
             borderLeft: `3px solid ${p.color}`,
-            padding: '16px 20px', marginBottom: 12,
+            padding: '16px 20px',
             background: p.id === currentId ? `${p.color}08` : 'transparent',
           }}>
             {p.id === currentId && (
-              <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700,
-                letterSpacing: '0.15em', textTransform: 'uppercase', color: p.color, marginBottom: 4 }}>
+              <div className="font-body text-[10px] font-bold tracking-[0.15em] uppercase mb-1" style={{ color: p.color }}>
                 Your profile
               </div>
             )}
-            <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 20, fontWeight: 300, color: C.slate }}>
+            <div className="font-serif text-[20px] font-light text-dark-ink">
               {p.name}
             </div>
-            <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 700,
-              letterSpacing: '0.2em', textTransform: 'uppercase', color: p.color, marginTop: 2 }}>
+            <div className="font-body text-[10px] font-bold tracking-[0.2em] uppercase mt-0.5" style={{ color: p.color }}>
               {p.subtitle}
             </div>
-            <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 400,
-              color: `${C.slate}99`, lineHeight: 1.55, marginTop: 8, marginBottom: 0 }}>
+            <p className="font-body text-[13px] font-normal leading-[1.55] mt-2 mb-0" style={{
+              color: `${C.slate}99`,
+            }}>
               {p.desc}
             </p>
           </div>
@@ -1999,44 +1866,42 @@ function StepProfile({ data, onBack, onUnlock, generating }) {
 
   return (
     <div style={{
+      /* dynamic */
       opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(20px)",
       transition: "all 0.8s cubic-bezier(0.4, 0, 0.2, 1)",
     }}>
       <StepTitle eyebrow="Your Travel Spirit" />
 
       {/* Persona card */}
-      <div style={{ maxWidth: 480, margin: "0 auto 6px", padding: "0 20px" }}>
-        <div style={{
-          position: "relative",
-          background: C.white, borderRadius: 2, padding: "20px 20px",
+      <div className="max-w-[480px] mx-auto px-5" style={{ marginBottom: 6 }}>
+        <div className="relative bg-white text-center" style={{
+          /* dynamic */
+          borderRadius: 2, padding: "20px 20px",
           border: `2px solid ${persona.color}25`, boxShadow: `0 4px 24px ${persona.color}12`,
-          textAlign: "center",
         }}>
           {/* Info icon — opens profiles modal */}
-          <button onClick={() => setShowProfilesModal(true)} style={{
-            position: "absolute", top: 10, right: 10,
+          <button onClick={() => setShowProfilesModal(true)} className="absolute flex items-center justify-center bg-transparent cursor-pointer p-0" style={{
+            top: 10, right: 10,
             width: 20, height: 20, borderRadius: "50%",
-            border: "1px solid rgba(26,37,48,0.2)", background: "transparent",
-            display: "flex", alignItems: "center", justifyContent: "center",
-            cursor: "pointer", color: "rgba(26,37,48,0.4)", padding: 0,
-            WebkitTapHighlightColor: "transparent",
+            border: "1px solid rgba(26,37,48,0.2)",
+            color: "rgba(26,37,48,0.4)",
           }}>
             <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" width="10" height="10">
               <circle cx="6" cy="6" r="5"/><line x1="6" y1="5.5" x2="6" y2="8.5"/><circle cx="6" cy="3.5" r="0.5" fill="currentColor" stroke="none"/>
             </svg>
           </button>
-          <div style={{ display: "flex", justifyContent: "center", marginBottom: 10 }}>
-            <div style={{
+          <div className="flex justify-center mb-2.5">
+            <div className="flex items-center justify-center" style={{
+              /* dynamic */
               width: 44, height: 44, borderRadius: "50%",
               background: `${persona.color}12`, border: `1.5px solid ${persona.color}30`,
-              display: "flex", alignItems: "center", justifyContent: "center",
             }}>
               <PersonaIcon size={22} color={persona.color} />
             </div>
           </div>
-          <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.25em", textTransform: "uppercase", color: persona.color, marginBottom: 6 }}>{persona.subtitle}</div>
-          <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(24px, 6vw, 30px)", fontWeight: 300, color: C.slate, marginBottom: 4, lineHeight: 1.1 }}>{persona.name}</div>
-          <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: "clamp(13px, 3.2vw, 14px)", fontWeight: 400, color: `${C.slate}AA`, lineHeight: 1.55, marginTop: 10 }}>{persona.desc}</p>
+          <div className="font-body text-[11px] font-bold tracking-[0.25em] uppercase mb-1.5" style={{ color: persona.color }}>{persona.subtitle}</div>
+          <div className="font-serif text-[clamp(24px,6vw,30px)] font-light text-dark-ink mb-1 leading-[1.1]">{persona.name}</div>
+          <p className="font-body text-[clamp(13px,3.2vw,14px)] font-normal leading-[1.55] mt-2.5" style={{ color: `${C.slate}AA` }}>{persona.desc}</p>
         </div>
       </div>
 
@@ -2044,33 +1909,29 @@ function StepProfile({ data, onBack, onUnlock, generating }) {
         <ProfilesModal personas={PERSONAS} currentId={persona.id} onClose={() => setShowProfilesModal(false)} />
       )}
 
-      <div style={{ display: "flex", justifyContent: "center", marginBottom: 4, padding: "0 20px" }}>
+      <div className="flex justify-center mb-1 px-5">
         <RadarChart values={radarValues} size={190} />
       </div>
 
-      <div style={{ textAlign: "center", marginTop: 4, padding: "0 28px 20px" }}>
-        <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: "clamp(14px, 3.5vw, 14px)", color: `${C.slate}99`, maxWidth: 380, margin: "0 auto 16px", lineHeight: 1.6 }}>
+      <div className="text-center mt-1" style={{ padding: "0 28px 20px" }}>
+        <p className="font-body text-[clamp(14px,3.5vw,14px)] leading-[1.6] max-w-[380px] mx-auto mb-4" style={{ color: `${C.slate}99` }}>
           A custom {data.duration || 4}-day {monthName ? `${monthName} ` : ''}plan for {destName} — built around your pace, your practices, and your intentions.
         </p>
-        <button onClick={onUnlock} disabled={generating} style={{
-          fontFamily: "'Quicksand', sans-serif",
-          fontSize: 14, fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase",
+        <button onClick={onUnlock} disabled={generating} className="font-body text-[14px] font-semibold tracking-[0.12em] uppercase border-none transition-all duration-300 min-h-[56px]" style={{
+          /* dynamic */
           background: generating
             ? `${C.sage}60`
             : `linear-gradient(135deg, ${C.sage}, ${C.oceanTeal})`,
-          border: "none", color: C.white,
+          color: C.white,
           padding: "18px 44px", borderRadius: 40, cursor: generating ? "wait" : "pointer",
-          transition: "all 0.3s", boxShadow: generating ? "none" : `0 6px 28px ${C.oceanTeal}30`,
-          minHeight: 56, WebkitTapHighlightColor: "transparent",
+          boxShadow: generating ? "none" : `0 6px 28px ${C.oceanTeal}30`,
           opacity: generating ? 0.8 : 1,
         }}>{generating ? 'Creating your journey...' : 'Build My Itinerary'}</button>
-        <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, color: `${C.sage}AA`, marginTop: 12 }}>Fully customizable · Powered by Lila Trips</div>
-        <div style={{ marginTop: 14 }}>
-          <button onClick={onBack} style={{
-            fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 500, color: `${C.sage}AA`,
-            background: "none", border: "none", cursor: "pointer",
-            textDecoration: "underline", textUnderlineOffset: 3, padding: 12, minHeight: 44,
-            WebkitTapHighlightColor: "transparent",
+        <div className="font-body text-[13px] mt-3" style={{ color: `${C.sage}AA` }}>Fully customizable · Powered by Lila Trips</div>
+        <div className="mt-3.5">
+          <button onClick={onBack} className="font-body text-[13px] font-medium bg-none border-none cursor-pointer underline min-h-[44px]" style={{
+            color: `${C.sage}AA`,
+            textUnderlineOffset: 3, padding: 12,
           }}>← Adjust my preferences</button>
         </div>
       </div>
@@ -2143,20 +2004,15 @@ function GeneratingScreen({ destination, days = 4 }) {
   const ringScale = 0.9 + breathPhase * 0.1;
 
   return (
-    <div style={{
-      position: "fixed", inset: 0, zIndex: 200,
-      display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
+    <div className="fixed inset-0 z-[200] flex flex-col items-center justify-center" style={{
       background: `linear-gradient(180deg, ${C.cream} 0%, ${C.white} 40%, ${C.cream} 100%)`,
       padding: "40px 28px",
     }}>
       {/* Breathing Ensō */}
-      <div style={{
-        position: "relative", width: 80, height: 80,
-        display: "flex", alignItems: "center", justifyContent: "center",
-        marginBottom: 24,
-      }}>
-        <div style={{
-          position: "absolute", inset: -12,
+      <div className="relative flex items-center justify-center mb-6" style={{ width: 80, height: 80 }}>
+        <div className="absolute" style={{
+          /* dynamic */
+          inset: -12,
           borderRadius: "50%",
           background: `radial-gradient(circle, ${C.oceanTeal}${Math.round((0.06 + breathPhase * 0.1) * 255).toString(16).padStart(2, '0')} 0%, transparent 70%)`,
           transform: `scale(${ringScale})`,
@@ -2174,26 +2030,14 @@ function GeneratingScreen({ destination, days = 4 }) {
       </div>
 
       {/* Title */}
-      <div style={{
-        fontFamily: "'Cormorant Garamond', serif",
-        fontSize: "clamp(22px, 5.5vw, 28px)", fontWeight: 300,
-        color: C.slate, marginBottom: 6, textAlign: "center",
-      }}>{destName ? `Crafting your ${destName} trip` : 'Preparing your journey'}</div>
+      <div className="font-serif text-[clamp(22px,5.5vw,28px)] font-light text-dark-ink mb-1.5 text-center">{destName ? `Crafting your ${destName} trip` : 'Preparing your journey'}</div>
 
-      <div style={{
-        fontFamily: "'Quicksand', sans-serif",
-        fontSize: "clamp(12px, 3vw, 14px)", fontWeight: 400,
+      <div className="font-body text-[clamp(12px,3vw,14px)] font-normal mb-7 text-center leading-[1.6]" style={{
         color: C.sage, opacity: 0.75,
-        marginBottom: 28, textAlign: "center",
-        lineHeight: 1.6,
       }}>{estimateLabel(days)}<br/>Sit tight — it's worth the wait.</div>
 
       {/* Checklist — compact with collapsing completed items */}
-      <div style={{
-        display: "flex", flexDirection: "column",
-        alignItems: "center",
-        width: "100%", maxWidth: 300,
-      }}>
+      <div className="flex flex-col items-center w-full max-w-[300px]">
         {GENERATING_STEPS.map((step, i) => {
           const StepIcon = step.icon;
           const isComplete = i <= completedIndex;
@@ -2201,24 +2045,21 @@ function GeneratingScreen({ destination, days = 4 }) {
           const isFuture = i > activeIndex;
 
           return (
-            <div key={i} style={{
-              display: "flex", alignItems: "center",
+            <div key={i} className="flex items-center justify-center overflow-hidden" style={{
+              /* dynamic */
               gap: isComplete ? 6 : 10,
-              justifyContent: "center",
               height: isComplete ? 20 : isActive ? 38 : 26,
               opacity: isComplete ? 0.35 : isFuture ? 0.22 : 1,
               transition: "all 0.7s cubic-bezier(0.4, 0, 0.2, 1)",
-              overflow: "hidden",
             }}>
-              <div style={{
+              <div className="flex items-center justify-center shrink-0" style={{
+                /* dynamic */
                 width: isComplete ? 16 : isActive ? 30 : 20,
                 height: isComplete ? 16 : isActive ? 30 : 20,
                 borderRadius: "50%",
-                display: "flex", alignItems: "center", justifyContent: "center",
                 background: isComplete ? "transparent" : isActive ? `${C.oceanTeal}10` : "transparent",
                 border: isComplete ? "none" : isActive ? `1.5px solid ${C.oceanTeal}40` : `1px solid ${C.sage}20`,
                 transition: "all 0.6s",
-                flexShrink: 0,
               }}>
                 {isComplete ? (
                   <svg width="10" height="10" viewBox="0 0 14 14" fill="none">
@@ -2229,14 +2070,13 @@ function GeneratingScreen({ destination, days = 4 }) {
                 )}
               </div>
 
-              <div style={{
-                fontFamily: "'Quicksand', sans-serif",
+              <div className="font-body whitespace-nowrap" style={{
+                /* dynamic */
                 fontSize: isComplete ? 10 : isActive ? 13.5 : 11.5,
                 fontWeight: isActive ? 600 : 400,
                 color: isComplete ? C.sage : isActive ? C.slate : C.sage,
                 letterSpacing: isActive ? "0.03em" : "0.01em",
                 transition: "all 0.6s",
-                whiteSpace: "nowrap",
               }}>
                 {step.text}
                 {isActive && <span style={{ opacity: 0.4 }}><DotAnimation /></span>}
@@ -2247,14 +2087,12 @@ function GeneratingScreen({ destination, days = 4 }) {
       </div>
 
       {/* Thin progress bar */}
-      <div style={{
-        width: "100%", maxWidth: 200,
+      <div className="w-full max-w-[200px] mt-6 overflow-hidden" style={{
         height: 2, borderRadius: 1,
         background: `${C.sage}12`,
-        marginTop: 24,
-        overflow: "hidden",
       }}>
         <div style={{
+          /* dynamic */
           height: "100%", borderRadius: 1,
           background: C.oceanTeal,
           width: `${Math.min(100, ((completedIndex + 1) / GENERATING_STEPS.length) * 100)}%`,
@@ -2263,12 +2101,8 @@ function GeneratingScreen({ destination, days = 4 }) {
       </div>
 
       {/* Step count */}
-      <div style={{
-        fontFamily: "'Quicksand', sans-serif",
-        fontSize: 11, fontWeight: 500,
-        letterSpacing: "0.12em", textTransform: "uppercase",
+      <div className="font-body text-[11px] font-medium tracking-[0.12em] uppercase mt-2" style={{
         color: `${C.sage}70`,
-        marginTop: 8,
       }}>
         {allDone ? "Finalizing..." : `${Math.max(0, completedIndex + 1)} of ${GENERATING_STEPS.length}`}
       </div>
@@ -2284,7 +2118,7 @@ function DotAnimation() {
     }, 500);
     return () => clearInterval(interval);
   }, []);
-  return <span style={{ display: "inline-block", width: 16, textAlign: "left" }}>{dots}</span>;
+  return <span className="inline-block w-4 text-left">{dots}</span>;
 }
 
 // ═══════════════════════════════════════════════════════════════════════════════
@@ -2464,10 +2298,8 @@ export default function PlanMyTrip() {
   };
 
   return (
-    <div ref={containerRef} style={{
-      fontFamily: "'Quicksand', sans-serif",
+    <div ref={containerRef} className="font-body min-h-screen overflow-y-auto relative" style={{
       background: `linear-gradient(180deg, ${C.cream} 0%, ${C.white} 50%, ${C.cream} 100%)`,
-      minHeight: "100vh", overflowY: "auto", position: "relative",
     }}>
       <Helmet>
         <title>Plan Your Trip — Custom Itineraries for Mindful Adventure | Lila Trips</title>
@@ -2484,24 +2316,17 @@ export default function PlanMyTrip() {
         <meta name="twitter:description" content="Answer a few questions about how you want to feel, and we'll build a personalized itinerary around your intentions, pace, and the land you're entering." />
         <meta name="twitter:image" content="https://lilatrips.com/og-image.png" />
       </Helmet>
-      <div style={{
-        position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
-        display: "flex", justifyContent: "space-between", alignItems: "center",
+      <div className="fixed top-0 left-0 right-0 z-[100] flex justify-between items-center pointer-events-none" style={{
+        /* dynamic */
         padding: "16px 20px",
         background: step === 0 ? "transparent" : `linear-gradient(180deg, ${C.cream}ee 0%, ${C.cream}00 100%)`,
-        pointerEvents: "none", transition: "background 0.4s",
+        transition: "background 0.4s",
       }}>
-        <Link to="/" style={{
-          fontFamily: "'Quicksand', sans-serif",
-          fontSize: "clamp(18px, 4.5vw, 22px)", fontWeight: 500, letterSpacing: "0.08em",
-          color: C.slate, pointerEvents: "auto", textDecoration: "none",
-        }}>Lila Trips</Link>
-        <button onClick={handleClose} aria-label="Close" style={{
-          pointerEvents: "auto", width: 40, height: 40, borderRadius: "50%",
+        <Link to="/" className="font-body text-[clamp(18px,4.5vw,22px)] font-medium tracking-[0.08em] text-dark-ink pointer-events-auto no-underline">Lila Trips</Link>
+        <button onClick={handleClose} aria-label="Close" className="pointer-events-auto flex items-center justify-center cursor-pointer" style={{
+          width: 40, height: 40, borderRadius: "50%",
           background: `${C.white}90`, border: `1px solid ${C.sage}18`,
-          cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center",
           backdropFilter: "blur(8px)", WebkitBackdropFilter: "blur(8px)",
-          WebkitTapHighlightColor: "transparent",
         }}>
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke={C.sage} strokeWidth="1.8" strokeLinecap="round">
             <line x1="1" y1="1" x2="13" y2="13" /><line x1="13" y1="1" x2="1" y2="13" />
@@ -2544,8 +2369,8 @@ export default function PlanMyTrip() {
       {/* Generating overlay */}
       {generating && <GeneratingScreen destination={data.destination} days={data.duration || 4} />}
 
-      <div style={{
-        maxWidth: 640, margin: "0 auto",
+      <div className="max-w-[640px] mx-auto" style={{
+        /* dynamic */
         padding: step === 0 ? 0 : "76px 0 0",
         opacity: transitioning ? 0 : 1,
         transform: transitioning ? "translateY(12px)" : "translateY(0)",

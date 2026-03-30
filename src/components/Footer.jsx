@@ -3,7 +3,6 @@
 // ═══════════════════════════════════════════════════════════════════════════════
 
 import { Link } from 'react-router-dom';
-import { C } from '@data/brand';
 import { trackEvent } from '@utils/analytics';
 
 export default function Footer() {
@@ -16,51 +15,29 @@ export default function Footer() {
   ];
 
   return (
-    <footer style={{ padding: "48px 52px", background: C.darkInk }}>
-      <div style={{
-        maxWidth: 1100, margin: "0 auto",
-        display: "flex", justifyContent: "space-between",
-        alignItems: "center", flexWrap: "wrap", gap: 24,
-      }}>
+    <footer className="px-[52px] py-12 bg-dark-ink">
+      <div className="max-w-[1100px] mx-auto flex justify-between items-center flex-wrap gap-6">
         <div>
-          <Link to="/" style={{
-            fontFamily: "'Quicksand', sans-serif",
-            fontSize: 20, fontWeight: 500, letterSpacing: "0.08em",
-            color: "rgba(255,255,255,0.7)", marginBottom: 5, display: "block",
-            textDecoration: "none",
-          }}>
+          <Link to="/" className="font-body text-xl font-medium tracking-[0.08em] text-white/70 mb-[5px] block no-underline">
             Lila Trips
           </Link>
-          <p style={{
-            fontFamily: "'Quicksand'", fontSize: 11,
-            color: "rgba(255,255,255,0.25)", letterSpacing: "0.1em",
-          }}>
+          <p className="font-body text-[11px] text-white/25 tracking-[0.1em]">
             Less noise. More magic.
           </p>
         </div>
 
-        <div style={{ display: "flex", gap: 32, flexWrap: "wrap" }}>
+        <div className="flex gap-8 flex-wrap">
           {links.map(link => (
             <Link key={link.label} to={link.to}
               onClick={() => trackEvent('footer_link_clicked', { label: link.label.toLowerCase(), to: link.to })}
-              style={{
-              fontFamily: "'Quicksand'", fontSize: 11, fontWeight: 600,
-              letterSpacing: "0.18em", textTransform: "uppercase",
-              color: "rgba(255,255,255,0.28)", transition: "color 0.25s",
-              textDecoration: "none",
-            }}
-            onMouseEnter={e => e.target.style.color = "rgba(255,255,255,0.7)"}
-            onMouseLeave={e => e.target.style.color = "rgba(255,255,255,0.28)"}
+              className="font-body text-[11px] font-semibold tracking-[0.18em] uppercase text-white/[0.28] hover:text-white/70 transition-colors no-underline"
             >
               {link.label}
             </Link>
           ))}
         </div>
 
-        <p style={{
-          fontFamily: "'Quicksand'", fontSize: 11,
-          color: "rgba(255,255,255,0.16)", letterSpacing: "0.06em",
-        }}>
+        <p className="font-body text-[11px] text-white/[0.16] tracking-[0.06em]">
           © 2026 Lila Trips
         </p>
       </div>

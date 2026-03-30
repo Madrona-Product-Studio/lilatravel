@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { C, FONTS } from "@data/brand";
 
 export default function LilaModal({
   open,
@@ -31,78 +30,31 @@ export default function LilaModal({
 
   const isConfirm = variant === "confirm";
 
-  const btnBase = {
-    fontFamily: FONTS.body,
-    fontSize: 14,
-    fontWeight: 600,
-    letterSpacing: "0.08em",
-    textTransform: "uppercase",
-    border: "none",
-    borderRadius: 2,
-    cursor: "pointer",
-    padding: "12px 28px",
-    transition: "opacity 0.2s",
-  };
-
   return (
     <div
       onClick={onClose}
-      style={{
-        position: "fixed",
-        inset: 0,
-        zIndex: 9999,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        background: "rgba(0,0,0,0.4)",
-        padding: 20,
-      }}
+      className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/40 p-5"
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        style={{
-          background: C.warmWhite,
-          borderRadius: 2,
-          padding: "36px 32px",
-          maxWidth: 400,
-          width: "100%",
-          boxShadow: "0 20px 60px rgba(0,0,0,0.15)",
-          animation: "lilaModalIn 0.2s ease-out",
-        }}
+        className="bg-warm-white rounded-sm px-8 py-9 max-w-[400px] w-full shadow-[0_20px_60px_rgba(0,0,0,0.15)] animate-lila-modal-in"
       >
-        <style>{`
-          @keyframes lilaModalIn {
-            from { opacity: 0; transform: scale(0.96) translateY(6px); }
-            to   { opacity: 1; transform: scale(1) translateY(0); }
-          }
-        `}</style>
-
-        <p style={{
-          fontFamily: FONTS.body,
-          fontSize: 15,
-          lineHeight: 1.7,
-          color: C.darkInk,
-          margin: "0 0 28px",
-        }}>
+        <p className="font-body text-[15px] leading-[1.7] text-dark-ink m-0 mb-7">
           {message}
         </p>
 
-        <div style={{
-          display: "flex",
-          gap: 12,
-          justifyContent: "flex-end",
-        }}>
+        <div className="flex gap-3 justify-end">
           {isConfirm ? (
             <>
               <button
                 onClick={onClose}
-                style={{ ...btnBase, background: C.stone, color: C.darkInk }}
+                className="font-body text-sm font-semibold tracking-[0.08em] uppercase border-none rounded-sm cursor-pointer px-7 py-3 transition-opacity duration-200 bg-stone text-dark-ink"
               >
                 {cancelLabel}
               </button>
               <button
                 onClick={onConfirm}
-                style={{ ...btnBase, background: C.slate, color: C.warmWhite }}
+                className="font-body text-sm font-semibold tracking-[0.08em] uppercase border-none rounded-sm cursor-pointer px-7 py-3 transition-opacity duration-200 bg-slate text-warm-white"
               >
                 {confirmLabel}
               </button>
@@ -110,7 +62,7 @@ export default function LilaModal({
           ) : (
             <button
               onClick={onClose}
-              style={{ ...btnBase, background: C.slate, color: C.warmWhite }}
+              className="font-body text-sm font-semibold tracking-[0.08em] uppercase border-none rounded-sm cursor-pointer px-7 py-3 transition-opacity duration-200 bg-slate text-warm-white"
             >
               {dismissLabel}
             </button>

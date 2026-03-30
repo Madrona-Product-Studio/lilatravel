@@ -95,8 +95,8 @@ export default function DestinationsPage() {
         }
       `}</style>
 
-      <section className="page-content" style={{ padding: "48px 52px 80px", background: C.cream }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+      <section className="page-content px-6 pt-12 pb-20 md:px-[52px] md:pt-12 md:pb-20 bg-cream">
+        <div className="max-w-[1100px] mx-auto">
           <div className="bento-grid">
             {destinations.map((d, i) => {
 
@@ -104,48 +104,31 @@ export default function DestinationsPage() {
                 <FadeIn key={d.slug} delay={i * 0.06}>
                   <Link
                     to={`/destinations/${d.slug}`}
-                    className="bento-tile"
-                    style={{ height: '100%' }}
+                    className="bento-tile h-full"
                     onClick={() => trackEvent('destination_selected', { destination: d.slug })}
                   >
                     {d.photo ? (
                       <img src={d.photo} alt={d.name} />
                     ) : (
-                      <div style={{ width: "100%", height: "100%", background: d.gradient, filter: "brightness(0.65) saturate(1.3)" }} />
+                      <div className="w-full h-full brightness-[0.65] saturate-[1.3]" style={{ background: d.gradient }} />
                     )}
                     <div className="bento-overlay" />
-                    <div style={{
-                      position: "absolute", bottom: 0, left: 0, right: 0,
-                      padding: "24px 24px",
-                    }}>
+                    <div className="absolute bottom-0 left-0 right-0 p-6">
                       {/* Golden Windows + Guide status */}
-                      <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 6, flexWrap: "wrap" }}>
-                        <div style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
-                          <div style={{ width: 16, height: 1, background: d.accent, boxShadow: "0 0 4px rgba(0,0,0,0.3)" }} />
-                          <span style={{
-                            fontFamily: "'Quicksand'", fontSize: 10, fontWeight: 700,
-                            letterSpacing: "0.22em", textTransform: "uppercase",
-                            color: "rgba(255,255,255,0.92)",
-                            textShadow: "0 1px 6px rgba(0,0,0,0.5), 0 0 2px rgba(0,0,0,0.3)",
-                          }}>Golden Windows</span>
+                      <div className="flex items-center gap-2.5 mb-1.5 flex-wrap">
+                        <div className="inline-flex items-center gap-2">
+                          <div className="w-4 h-px shadow-[0_0_4px_rgba(0,0,0,0.3)]" style={{ background: d.accent }} />
+                          <span className="font-body text-[10px] font-bold tracking-[0.22em] uppercase text-white/[0.92] [text-shadow:0_1px_6px_rgba(0,0,0,0.5),0_0_2px_rgba(0,0,0,0.3)]">
+                            Golden Windows
+                          </span>
                         </div>
                       </div>
 
                       {/* Season pills */}
                       {d.windows && (
-                        <div style={{ display: "flex", gap: 4, flexWrap: "wrap", marginBottom: 10 }}>
+                        <div className="flex gap-1 flex-wrap mb-2.5">
                           {d.windows.map((w, wi) => (
-                            <span key={wi} style={{
-                              fontFamily: "'Quicksand'", fontSize: 9, fontWeight: 600,
-                              letterSpacing: "0.04em",
-                              color: "rgba(255,255,255,0.9)",
-                              padding: "3px 8px",
-                              border: "1px solid rgba(255,255,255,0.2)",
-                              backdropFilter: "blur(4px)",
-                              background: "rgba(0,0,0,0.15)",
-                              lineHeight: 1,
-                              whiteSpace: "nowrap",
-                            }}>
+                            <span key={wi} className="font-body text-[9px] font-semibold tracking-[0.04em] text-white/90 py-[3px] px-2 border border-white/20 backdrop-blur-[4px] bg-black/15 leading-none whitespace-nowrap">
                               {w.season} · {w.months}
                             </span>
                           ))}
@@ -153,26 +136,20 @@ export default function DestinationsPage() {
                       )}
 
                       {/* Name */}
-                      <h3 style={{
-                        fontFamily: "'Cormorant Garamond', serif",
-                        fontSize: "clamp(22px, 3vw, 30px)",
-                        fontWeight: 300, color: "white", lineHeight: 1.1, marginBottom: 4,
-                      }}>{d.slug === 'zion-canyon' ? 'Zion & Orbit' : d.name}</h3>
+                      <h3 className="font-serif text-[clamp(22px,3vw,30px)] font-light text-white leading-[1.1] mb-1">
+                        {d.slug === 'zion-canyon' ? 'Zion & Orbit' : d.name}
+                      </h3>
 
                       {/* Location */}
-                      <p style={{
-                        fontFamily: "'Quicksand'", fontSize: 11, fontWeight: 600,
-                        letterSpacing: "0.18em", textTransform: "uppercase",
-                        color: "rgba(255,255,255,0.5)", marginBottom: 0,
-                      }}>{d.location}</p>
+                      <p className="font-body text-[11px] font-semibold tracking-[0.18em] uppercase text-white/50 mb-0">
+                        {d.location}
+                      </p>
 
                       {/* Description on hover */}
                       <div className="bento-desc">
-                        <p style={{
-                          fontFamily: "'Cormorant Garamond', serif",
-                          fontSize: 14, fontWeight: 300, fontStyle: "normal",
-                          color: "rgba(255,255,255,0.7)", lineHeight: 1.6, marginTop: 8,
-                        }}>{d.description}</p>
+                        <p className="font-serif text-sm font-light text-white/70 leading-[1.6] mt-2">
+                          {d.description}
+                        </p>
                       </div>
                     </div>
                   </Link>

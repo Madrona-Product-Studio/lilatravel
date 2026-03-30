@@ -274,56 +274,41 @@ function DestCarousel() {
 
   return (
     <div ref={swipeRef}>
-      <div className="carousel-grid" style={{
-        display: "grid", gridTemplateColumns: "55% 45%",
-        minHeight: 560, overflow: "hidden",
-        opacity: fading ? 0 : 1, transition: "opacity 0.35s ease",
+      <div className="carousel-grid grid grid-cols-[55%_45%] min-h-[560px] overflow-hidden transition-opacity duration-350 ease-in-out" style={{
+        opacity: fading ? 0 : 1,
       }}>
         {/* Photo */}
-        <Link to={`/destinations/${d.slug}`} style={{ position: "relative", overflow: "hidden", minHeight: 320, display: "block" }}>
+        <Link to={`/destinations/${d.slug}`} className="relative overflow-hidden min-h-[320px] block">
           {d.photo ? (
-            <img src={d.photo} alt={d.name} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }} />
+            <img src={d.photo} alt={d.name} className="w-full h-full object-cover object-center block" />
           ) : (
-            <div style={{ width: "100%", height: "100%", minHeight: 200, background: d.gradient, filter: "brightness(0.65)" }} />
+            <div className="w-full h-full min-h-[200px] brightness-[0.65]" style={{ background: d.gradient }} />
           )}
-          <div style={{ position: "absolute", bottom: 16, left: 0, right: 0, display: "flex", justifyContent: "center", gap: 8, zIndex: 2 }}>
+          <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2 z-[2]">
             {destinations.map((_, i) => (
-              <button key={i} onClick={(e) => { e.preventDefault(); e.stopPropagation(); go(i); }} style={{
-                width: i === active ? 24 : 8, height: 8, borderRadius: 4,
+              <button key={i} onClick={(e) => { e.preventDefault(); e.stopPropagation(); go(i); }} className="h-2 border-none cursor-pointer transition-all duration-300 p-0" style={{
+                width: i === active ? 24 : 8, borderRadius: 4,
                 background: i === active ? "white" : "rgba(255,255,255,0.4)",
-                border: "none", cursor: "pointer", transition: "all 0.3s ease", padding: 0,
               }} />
             ))}
           </div>
         </Link>
 
         {/* Info panel */}
-        <div className="dest-card-content" style={{
-          background: C.warmWhite, padding: "64px 56px",
-          display: "flex", flexDirection: "column", justifyContent: "center",
-          borderTop: `1px solid ${C.stone}`, borderRight: `1px solid ${C.stone}`, borderBottom: `1px solid ${C.stone}`,
-        }}>
-          <div style={{ marginBottom: 24 }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 14, flexWrap: "wrap" }}>
-              <div style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
-                <div style={{ width: 20, height: 1, background: d.accent }} />
-                <span style={{ fontFamily: "'Quicksand'", fontSize: 10, fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: d.accent }}>
+        <div className="dest-card-content bg-warm-white px-14 py-16 flex flex-col justify-center border-t border-r border-b border-stone">
+          <div className="mb-6">
+            <div className="flex items-center gap-3 mb-3.5 flex-wrap">
+              <div className="inline-flex items-center gap-2">
+                <div className="w-5 h-px" style={{ background: d.accent }} />
+                <span className="font-body text-[10px] font-bold tracking-[0.22em] uppercase" style={{ color: d.accent }}>
                   Golden Windows
                 </span>
               </div>
             </div>
             {d.windows && (
-              <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
+              <div className="flex gap-1.5 flex-wrap">
                 {d.windows.map((w, wi) => (
-                  <span key={wi} style={{
-                    fontFamily: "'Quicksand'", fontSize: 10, fontWeight: 500,
-                    letterSpacing: "0.06em",
-                    color: "#7a90a0",
-                    padding: "4px 10px",
-                    border: `1px solid ${C.stone}`,
-                    lineHeight: 1,
-                    whiteSpace: "nowrap",
-                  }}>
+                  <span key={wi} className="font-body text-[10px] font-medium tracking-[0.06em] text-[#7a90a0] px-2.5 py-1 border border-stone leading-none whitespace-nowrap">
                     {w.season} · {w.months}
                   </span>
                 ))}
@@ -331,34 +316,21 @@ function DestCarousel() {
             )}
           </div>
 
-          <h3 style={{
-            fontFamily: "'Cormorant Garamond', serif",
-            fontSize: "clamp(32px, 4vw, 54px)", fontWeight: 300,
-            color: C.darkInk, lineHeight: 1.0, marginBottom: 8, letterSpacing: "-0.01em",
-          }}>
+          <h3 className="font-serif text-[clamp(32px,4vw,54px)] font-light text-dark-ink leading-none mb-2 tracking-[-0.01em]">
             {d.name}
           </h3>
-          <p style={{
-            fontFamily: "'Quicksand'", fontSize: 11, fontWeight: 600,
-            letterSpacing: "0.18em", textTransform: "uppercase", color: "#9aabba", marginBottom: 24,
-          }}>
+          <p className="font-body text-[11px] font-semibold tracking-[0.18em] uppercase text-[#9aabba] mb-6">
             {d.location}
           </p>
 
-          <p style={{
-            fontFamily: "'Cormorant Garamond', serif",
-            fontSize: "clamp(17px, 2vw, 22px)", fontWeight: 300, fontStyle: "normal",
-            color: "#5a7080", lineHeight: 1.75, marginBottom: 36,
-          }}>
+          <p className="font-serif text-[clamp(17px,2vw,22px)] font-light not-italic text-[#5a7080] leading-[1.75] mb-9">
             {d.description}
           </p>
 
-          <Link to={`/destinations/${d.slug}`} style={{
-            display: "inline-flex", alignItems: "center", gap: 10,
-            fontFamily: "'Quicksand'", fontSize: 11, fontWeight: 700,
-            letterSpacing: "0.2em", textTransform: "uppercase",
+          <Link to={`/destinations/${d.slug}`} className="inline-flex items-center font-body text-[11px] font-bold tracking-[0.2em] uppercase w-fit no-underline" style={{
+            gap: 10,
             color: C.darkInk, paddingBottom: 4, borderBottom: `1px solid ${C.darkInk}`,
-            width: "fit-content", transition: "gap 0.25s, color 0.25s", textDecoration: "none",
+            transition: "gap 0.25s, color 0.25s",
           }}
           onMouseEnter={e => { e.currentTarget.style.gap = "16px"; e.currentTarget.style.color = d.accent; e.currentTarget.style.borderColor = d.accent; }}
           onMouseLeave={e => { e.currentTarget.style.gap = "10px"; e.currentTarget.style.color = C.darkInk; e.currentTarget.style.borderColor = C.darkInk; }}
@@ -369,16 +341,14 @@ function DestCarousel() {
       </div>
 
       {/* Pills + arrows */}
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", paddingTop: 24 }}>
-        <div className="dest-pills" style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
+      <div className="flex items-center justify-between pt-6">
+        <div className="dest-pills flex gap-1.5 flex-wrap">
           {destinations.map((dest, i) => (
-            <button key={i} onClick={() => go(i)} style={{
-              fontFamily: "'Quicksand'", fontSize: 10, fontWeight: 600,
-              letterSpacing: "0.14em", textTransform: "uppercase", padding: "6px 14px",
+            <button key={i} onClick={() => go(i)} className="font-body text-[10px] font-semibold tracking-[0.14em] uppercase px-3.5 py-1.5 cursor-pointer transition-all duration-250" style={{
               background: i === active ? C.darkInk : "transparent",
               color: i === active ? "white" : "#9aabba",
               border: `1px solid ${i === active ? C.darkInk : C.stone}`,
-              cursor: "pointer", transition: "all 0.25s", borderRadius: 1,
+              borderRadius: 1,
             }}
             onMouseEnter={e => { if (i !== active) { e.currentTarget.style.borderColor = "#9aabba"; e.currentTarget.style.color = C.darkInk; }}}
             onMouseLeave={e => { if (i !== active) { e.currentTarget.style.borderColor = C.stone; e.currentTarget.style.color = "#9aabba"; }}}
@@ -387,12 +357,11 @@ function DestCarousel() {
             </button>
           ))}
         </div>
-        <div style={{ display: "flex", gap: 8, flexShrink: 0 }}>
+        <div className="flex gap-2 shrink-0">
           {[{ fn: prev, label: "←" }, { fn: next, label: "→" }].map(({ fn, label }) => (
-            <button key={label} onClick={fn} style={{
-              width: 40, height: 40, background: "transparent",
-              border: `1px solid ${C.stone}`, cursor: "pointer", fontSize: 15, color: C.slate,
-              display: "flex", alignItems: "center", justifyContent: "center", transition: "all 0.2s",
+            <button key={label} onClick={fn} className="w-10 h-10 cursor-pointer text-[15px] flex items-center justify-center transition-all duration-200" style={{
+              background: "transparent",
+              border: `1px solid ${C.stone}`, color: C.slate,
             }}
             onMouseEnter={e => { e.currentTarget.style.background = C.darkInk; e.currentTarget.style.color = "white"; e.currentTarget.style.borderColor = C.darkInk; }}
             onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = C.slate; e.currentTarget.style.borderColor = C.stone; }}
@@ -441,66 +410,45 @@ const approachBraids = [
 
 function ApproachSectionHome() {
   return (
-    <section className="approach-braids-section-mobile" style={{ padding: "72px 0 64px", background: C.darkInk }}>
-      <div className="section-padded" style={{ maxWidth: 1100, margin: "0 auto", padding: "0 52px" }}>
+    <section className="bg-dark-ink py-12 md:pt-[72px] md:pb-16">
+      <div className="section-padded max-w-[1100px] mx-auto px-6 md:px-[52px]">
         <FadeIn>
-          <div style={{ marginBottom: 40 }}>
+          <div className="mb-10">
             <span className="eyebrow" style={{ color: C.skyBlue }}>Ethos</span>
-            <h2 style={{
-              fontFamily: "'Quicksand', sans-serif",
-              fontSize: "clamp(24px, 3.5vw, 38px)", fontWeight: 300,
-              color: "white", lineHeight: 1.25, margin: 0,
-            }}>
+            <h2 className="font-body text-[clamp(24px,3.5vw,38px)] font-light text-white leading-[1.25] m-0">
               What makes a Lila trip.
             </h2>
           </div>
         </FadeIn>
 
-        <div className="approach-braids-grid" style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr 1fr",
-          gap: 0,
-        }}>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-0">
           {approachBraids.map((b, i) => (
             <FadeIn key={b.label} delay={i * 0.07}>
-              <div style={{
-                padding: "32px 28px 36px",
+              <div className="px-5 md:px-7 py-6 md:pt-8 md:pb-9 border-b md:border-b-0 border-b-white/6 last:border-b-0" style={{
                 borderRight: i < 2 ? "1px solid rgba(255,255,255,0.06)" : "none",
               }}>
                 {/* Icon + Label */}
-                <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 20 }}>
-                  <span style={{ fontSize: 18, color: b.color, lineHeight: 1 }}>{b.icon}</span>
-                  <span style={{
-                    fontFamily: "'Quicksand', sans-serif",
-                    fontSize: 10, fontWeight: 700,
-                    letterSpacing: "0.18em", textTransform: "uppercase",
+                <div className="flex items-center gap-2.5 mb-5">
+                  <span className="text-lg leading-none" style={{ color: b.color }}>{b.icon}</span>
+                  <span className="font-body text-[10px] font-bold tracking-[0.18em] uppercase" style={{
                     color: b.color,
                   }}>{b.label}</span>
                 </div>
 
                 {/* Headline */}
-                <h3 style={{
-                  fontFamily: "'Quicksand', sans-serif",
-                  fontSize: "clamp(15px, 1.6vw, 18px)", fontWeight: 400,
-                  color: "rgba(255,255,255,0.65)", lineHeight: 1.5,
-                  marginBottom: 24, marginTop: 0, letterSpacing: "0.01em",
-                }}>{b.headline}</h3>
+                <h3 className="font-body text-[clamp(15px,1.6vw,18px)] font-normal text-white/65 leading-[1.5] mb-6 mt-0 tracking-[0.01em]">{b.headline}</h3>
 
                 {/* Tag chips */}
-                <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+                <div className="flex flex-wrap gap-2">
                   {b.tags.map((tag, j) => {
                     const isObj = typeof tag === "object";
                     const text = isObj ? tag.text : tag;
                     const tagColor = isObj ? tag.color : b.color;
                     return (
-                      <span key={j} style={{
-                        fontFamily: "'Quicksand', sans-serif",
-                        fontSize: 11, fontWeight: 600, letterSpacing: "0.06em",
+                      <span key={j} className="font-body text-[11px] font-semibold tracking-[0.06em] px-3 md:px-4 py-1.5 md:py-2 transition-all duration-250 ease-in-out" style={{
                         color: `${tagColor}cc`,
-                        padding: "8px 16px",
                         border: `1px solid ${tagColor}25`,
                         background: `${tagColor}08`,
-                        transition: "all 0.25s ease",
                       }}
                       onMouseEnter={e => {
                         e.currentTarget.style.background = `${tagColor}18`;
@@ -522,37 +470,11 @@ function ApproachSectionHome() {
         </div>
 
         <FadeIn delay={0.25}>
-          <div style={{
-            borderTop: "1px solid rgba(255,255,255,0.06)",
-            paddingTop: 32, marginTop: 4,
-          }}>
+          <div className="border-t border-t-white/6 pt-8 mt-1">
             <Link to="/ethos" className="underline-link underline-link-light">Explore Our Ethos</Link>
           </div>
         </FadeIn>
       </div>
-
-      <style>{`
-        @media (max-width: 860px) {
-          .approach-braids-grid {
-            grid-template-columns: 1fr !important;
-          }
-          .approach-braids-grid > div > div {
-            border-right: none !important;
-            border-bottom: 1px solid rgba(255,255,255,0.06);
-            padding: 24px 20px 28px !important;
-          }
-          .approach-braids-grid > div:last-child > div {
-            border-bottom: none;
-          }
-          .approach-braids-section-mobile {
-            padding-top: 48px !important;
-            padding-bottom: 40px !important;
-          }
-          .approach-braids-grid span[style*="padding: 8px 16px"] {
-            padding: 6px 12px !important;
-          }
-        }
-      `}</style>
     </section>
   );
 }
@@ -746,74 +668,52 @@ export default function HomePage() {
       </section>
 
       {/* ══ 2. WHY WE EXIST ══════════════════════════════════════════════ */}
-      <section style={{ padding: "0", background: C.warmWhite }}>
-        <div className="story-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", minHeight: 680 }}>
-          <div className="story-panel" style={{ padding: "100px 72px", display: "flex", flexDirection: "column", justifyContent: "flex-start", maxWidth: 600 }}>
+      <section className="p-0 bg-warm-white">
+        <div className="story-grid grid grid-cols-[1fr_1fr] min-h-[680px]">
+          <div className="story-panel px-[72px] py-[100px] flex flex-col justify-start max-w-[600px]">
             <FadeIn from="left">
               <span className="eyebrow" style={{ color: C.skyBlue }}>We Are Travelers</span>
-              <h2 style={{
-                fontFamily: "'Quicksand', sans-serif",
-                fontSize: "clamp(15px, 2vw, 22px)", fontWeight: 600, color: C.darkInk,
-                lineHeight: 1.6, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 48,
-              }}>
+              <h2 className="font-body text-[clamp(15px,2vw,22px)] font-semibold text-dark-ink leading-[1.6] tracking-[0.12em] uppercase mb-12">
                 Wild places have the<br />power to change us.
               </h2>
-              <div style={{
-                fontFamily: "'Quicksand', sans-serif",
-                fontSize: "clamp(13px, 1.4vw, 15px)", fontWeight: 400,
-                color: "#5a6a78", lineHeight: 2.1, letterSpacing: "0.03em",
-              }}>
-                <p style={{ marginBottom: 20 }}>We go because something in us knows these places hold something we need.</p>
-                <p style={{ marginBottom: 20 }}>What we find there resists description. A stillness. A vastness. A sense that we're part of something much older and larger than our daily lives.</p>
-                <p style={{ marginBottom: 32 }}>That's where we meet our truest selves — not weighed down by the past or an imagined future, but here, right now, fully alive, like a dance.</p>
-                <p style={{ marginBottom: 6 }}>
-                  <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(28px, 3.2vw, 38px)", fontWeight: 400, fontStyle: "normal", color: C.skyBlue }}>Līlā</span>
-                  {" "}<span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(20px, 2.2vw, 26px)", fontWeight: 300, fontStyle: "normal", color: "rgba(90,106,120,0.65)" }}>लीला</span>
-                  {" "}<span style={{ color: "rgba(90,106,120,0.6)", fontSize: "clamp(13px, 1.5vw, 15px)" }}>/lee·lah/</span>
+              <div className="font-body text-[clamp(13px,1.4vw,15px)] font-normal text-[#5a6a78] leading-[2.1] tracking-[0.03em]">
+                <p className="mb-5">We go because something in us knows these places hold something we need.</p>
+                <p className="mb-5">What we find there resists description. A stillness. A vastness. A sense that we're part of something much older and larger than our daily lives.</p>
+                <p className="mb-8">That's where we meet our truest selves — not weighed down by the past or an imagined future, but here, right now, fully alive, like a dance.</p>
+                <p className="mb-1.5">
+                  <span className="font-serif text-[clamp(28px,3.2vw,38px)] font-normal not-italic" style={{ color: C.skyBlue }}>Līlā</span>
+                  {" "}<span className="font-serif text-[clamp(20px,2.2vw,26px)] font-light not-italic text-[rgba(90,106,120,0.65)]">लीला</span>
+                  {" "}<span className="text-[rgba(90,106,120,0.6)] text-[clamp(13px,1.5vw,15px)]">/lee·lah/</span>
                 </p>
-                <p style={{ marginBottom: 0, color: "#5a6a78" }}>
-                  A Hindu concept meaning <span style={{ color: C.skyBlue, fontWeight: 600 }}>"divine or cosmic play"</span>.<br />It suggests life is like a dance — joyous and light.<br />Learning to live this way is our living practice.
+                <p className="mb-0 text-[#5a6a78]">
+                  A Hindu concept meaning <span style={{ color: C.skyBlue }} className="font-semibold">"divine or cosmic play"</span>.<br />It suggests life is like a dance — joyous and light.<br />Learning to live this way is our living practice.
                 </p>
               </div>
             </FadeIn>
           </div>
-          <div className="story-panel-dark" style={{
-            background: C.darkInk, padding: "100px 72px",
-            display: "flex", flexDirection: "column", justifyContent: "flex-start", minHeight: 680,
-          }}>
+          <div className="story-panel-dark bg-dark-ink px-[72px] py-[100px] flex flex-col justify-start min-h-[680px]">
             <FadeIn from="right" delay={0.15}>
               <span className="eyebrow" style={{ color: C.skyBlue }}>Introducing Lila Trips</span>
-              <h2 style={{
-                fontFamily: "'Quicksand', sans-serif",
-                fontSize: "clamp(15px, 2vw, 22px)", fontWeight: 600, color: "white",
-                lineHeight: 1.6, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 48,
-              }}>
+              <h2 className="font-body text-[clamp(15px,2vw,22px)] font-semibold text-white leading-[1.6] tracking-[0.12em] uppercase mb-12">
                 We build itineraries<br />that let them.
               </h2>
-              <div style={{
-                fontFamily: "'Quicksand', sans-serif", fontSize: "clamp(13px, 1.4vw, 15px)",
-                fontWeight: 400, color: "rgba(255,255,255,0.55)", lineHeight: 2.1, letterSpacing: "0.03em",
-              }}>
-                <p style={{ marginBottom: 20, color: "rgba(255,255,255,0.7)" }}>Our mission is simple and important: put you in the best possible position to have an experience that stays with you.</p>
-                <p style={{ marginBottom: 20, color: "rgba(255,255,255,0.7)" }}>We weave together the terrain, the elements, and ancient wisdom from traditions that have understood these places for centuries.</p>
-                <p style={{ marginBottom: 20, color: "rgba(255,255,255,0.7)" }}>Custom itineraries built around your intention. Everything not worth your time, gone.</p>
-                <p style={{ marginBottom: 0, color: "rgba(255,255,255,0.7)" }}>DIY or full service. Solo or group. Your trip, your way.</p>
+              <div className="font-body text-[clamp(13px,1.4vw,15px)] font-normal text-white/55 leading-[2.1] tracking-[0.03em]">
+                <p className="mb-5 text-white/70">Our mission is simple and important: put you in the best possible position to have an experience that stays with you.</p>
+                <p className="mb-5 text-white/70">We weave together the terrain, the elements, and ancient wisdom from traditions that have understood these places for centuries.</p>
+                <p className="mb-5 text-white/70">Custom itineraries built around your intention. Everything not worth your time, gone.</p>
+                <p className="mb-0 text-white/70">DIY or full service. Solo or group. Your trip, your way.</p>
 
-                <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: 28, marginTop: 36 }}>
+                <div className="border-t border-t-white/8 pt-7 mt-9">
                   {[
                     { label: "Sacred Terrain", icon: "△\uFE0E", color: "#7DB8A0" },
                     { label: "Ancient Practices", icon: "◎\uFE0E", color: "#D4A853" },
                     { label: "Elemental Encounters", icon: "✦\uFE0E", color: "#6BA4B8" },
                   ].map((callout, i) => (
-                    <div key={i} style={{
-                      display: "flex", alignItems: "center", gap: 14,
-                      marginBottom: i < 2 ? 24 : 0, paddingLeft: 16,
+                    <div key={i} className="flex items-center gap-3.5 pl-4" style={{
+                      marginBottom: i < 2 ? 24 : 0,
                     }}>
-                      <span style={{ color: callout.color, fontSize: 22, lineHeight: 1, flexShrink: 0 }}>{callout.icon}</span>
-                      <span style={{
-                        fontFamily: "'Quicksand', sans-serif",
-                        fontSize: 12, fontWeight: 700,
-                        letterSpacing: "0.18em", textTransform: "uppercase",
+                      <span className="text-[22px] leading-none shrink-0" style={{ color: callout.color }}>{callout.icon}</span>
+                      <span className="font-body text-xs font-bold tracking-[0.18em] uppercase" style={{
                         color: callout.color,
                       }}>{callout.label}</span>
                     </div>
@@ -884,8 +784,8 @@ export default function HomePage() {
           }
         }
       `}</style>
-      <section style={{ padding: "0", background: C.cream }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+      <section className="p-0 bg-cream">
+        <div className="max-w-[1200px] mx-auto">
           <FadeIn>
             <div className="bento-grid">
               {[...destinations].sort((a, b) => {
@@ -899,67 +799,42 @@ export default function HomePage() {
                     key={d.slug}
                     to={`/destinations/${d.slug}`}
                     className="bento-tile"
-                    style={{
-                      gridColumn: isHero ? "span 1" : "span 1",
-                      gridRow: isHero ? "span 1" : "span 1",
-                    }}
                   >
                     {d.photo ? (
                       <img src={d.photo} alt={d.name} />
                     ) : (
-                      <div style={{ width: "100%", height: "100%", background: d.gradient, filter: "brightness(0.65)" }} />
+                      <div className="w-full h-full brightness-[0.65]" style={{ background: d.gradient }} />
                     )}
                     <div className="bento-overlay" />
-                    <div style={{
-                      position: "absolute", bottom: 0, left: 0, right: 0,
+                    <div className="absolute bottom-0 left-0 right-0" style={{
                       padding: isHero ? "36px 32px" : "24px 24px",
                     }}>
-                      <div style={{ marginBottom: 10 }}>
-                        <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 6, flexWrap: "wrap" }}>
-                          <div style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
-                            <div style={{ width: 16, height: 1, background: d.accent, boxShadow: "0 0 4px rgba(0,0,0,0.3)" }} />
-                            <span style={{
-                              fontFamily: "'Quicksand'", fontSize: 9, fontWeight: 700,
-                              letterSpacing: "0.22em", textTransform: "uppercase",
-                              color: "rgba(255,255,255,0.92)",
+                      <div className="mb-2.5">
+                        <div className="flex items-center gap-2.5 mb-1.5 flex-wrap">
+                          <div className="inline-flex items-center gap-2">
+                            <div className="w-4 h-px shadow-[0_0_4px_rgba(0,0,0,0.3)]" style={{ background: d.accent }} />
+                            <span className="font-body text-[9px] font-bold tracking-[0.22em] uppercase text-white/92" style={{
                               textShadow: "0 1px 6px rgba(0,0,0,0.5), 0 0 2px rgba(0,0,0,0.3)",
                             }}>Golden Windows</span>
                           </div>
                         </div>
                         {d.windows && (
-                          <div style={{ display: "flex", gap: 4, flexWrap: "wrap" }}>
+                          <div className="flex gap-1 flex-wrap">
                             {d.windows.map((w, wi) => (
-                              <span key={wi} style={{
-                                fontFamily: "'Quicksand'", fontSize: 8, fontWeight: 600,
-                                letterSpacing: "0.04em",
-                                color: "rgba(255,255,255,0.9)",
-                                padding: "3px 8px",
-                                background: "rgba(0,0,0,0.4)",
-                                backdropFilter: "blur(4px)",
-                                lineHeight: 1,
-                                whiteSpace: "nowrap",
-                              }}>
+                              <span key={wi} className="font-body text-[8px] font-semibold tracking-[0.04em] text-white/90 px-2 py-[3px] bg-black/40 backdrop-blur-[4px] leading-none whitespace-nowrap">
                                 {w.season} · {w.months}
                               </span>
                             ))}
                           </div>
                         )}
                       </div>
-                      <h3 style={{
-                        fontFamily: "'Cormorant Garamond', serif",
+                      <h3 className="font-serif font-light text-white leading-[1.1] mb-1" style={{
                         fontSize: isHero ? "clamp(28px, 4vw, 42px)" : "clamp(22px, 3vw, 30px)",
-                        fontWeight: 300, color: "white", lineHeight: 1.1, marginBottom: 4,
                       }}>{d.slug === 'zion-canyon' ? 'Zion & Orbit' : d.name}</h3>
-                      <p style={{
-                        fontFamily: "'Quicksand'", fontSize: 10, fontWeight: 600,
-                        letterSpacing: "0.18em", textTransform: "uppercase",
-                        color: "rgba(255,255,255,0.5)", marginBottom: 8,
-                      }}>{d.location}</p>
+                      <p className="font-body text-[10px] font-semibold tracking-[0.18em] uppercase text-white/50 mb-2">{d.location}</p>
                       <div className="bento-desc">
-                        <p style={{
-                          fontFamily: "'Cormorant Garamond', serif",
-                          fontSize: isHero ? 16 : 14, fontWeight: 300, fontStyle: "normal",
-                          color: "rgba(255,255,255,0.7)", lineHeight: 1.6,
+                        <p className="font-serif font-light not-italic text-white/70 leading-[1.6]" style={{
+                          fontSize: isHero ? 16 : 14,
                         }}>{d.description}</p>
                       </div>
                     </div>
@@ -978,34 +853,18 @@ export default function HomePage() {
       <TravelYourWay />
 
       {/* ══ 6. CTA ═══════════════════════════════════════════════════════ */}
-      <section style={{ position: "relative", overflow: "hidden", minHeight: 600 }}>
-        <img src={P.lilaPainting} alt="" style={{
-          position: "absolute", inset: 0, width: "100%", height: "100%",
-          objectFit: "cover", objectPosition: "center center",
-        }} />
-        <div style={{ position: "absolute", inset: 0, background: "rgba(10,18,26,0.25)" }} />
-        <div style={{
-          position: "relative", zIndex: 1, padding: "100px 52px",
-          display: "flex", alignItems: "center", justifyContent: "center", minHeight: 600,
-        }}>
+      <section className="relative overflow-hidden min-h-[600px]">
+        <img src={P.lilaPainting} alt="" className="absolute inset-0 w-full h-full object-cover object-center" />
+        <div className="absolute inset-0" style={{ background: "rgba(10,18,26,0.25)" }} />
+        <div className="relative z-[1] px-[52px] py-[100px] flex items-center justify-center min-h-[600px]">
           <FadeIn>
-            <div className="cta-inner" style={{
-              background: "rgba(10,18,26,0.78)", backdropFilter: "blur(20px)",
-              padding: "64px 72px", textAlign: "center", maxWidth: 560,
-            }}>
+            <div className="cta-inner bg-[rgba(10,18,26,0.78)] backdrop-blur-[20px] px-[72px] py-16 text-center max-w-[560px]">
               <span className="eyebrow" style={{ color: C.skyBlue }}>Begin</span>
-              <h2 style={{
-                fontFamily: "'Quicksand', sans-serif",
-                fontSize: "clamp(28px, 5vw, 48px)", fontWeight: 300, color: "white", lineHeight: 1.2, marginBottom: 16,
-              }}>
+              <h2 className="font-body text-[clamp(28px,5vw,48px)] font-light text-white leading-[1.2] mb-4">
                 Come dance with<br /><span style={{ color: C.skyBlue }}>the mystery</span>.
               </h2>
-              <p style={{
-                fontFamily: "'Quicksand', sans-serif",
-                fontSize: "clamp(13px, 1.6vw, 16px)", fontWeight: 400,
-                color: "rgba(255,255,255,0.5)", maxWidth: 340, margin: "0 auto 40px", lineHeight: 1.9,
-              }}>We'll show you the way.</p>
-              <div style={{ display: "flex", gap: 24, justifyContent: "center", flexWrap: "wrap" }}>
+              <p className="font-body text-[clamp(13px,1.6vw,16px)] font-normal text-white/50 max-w-[340px] mx-auto mb-10 leading-[1.9]">We'll show you the way.</p>
+              <div className="flex gap-6 justify-center flex-wrap">
                 <Link to="/destinations" className="underline-link underline-link-light">Explore Destinations</Link>
                 <Link to="/plan" className="underline-link underline-link-light" onClick={() => trackEvent('plan_trip_clicked', { source: 'bottom' })}>Plan a Trip</Link>
                 <Link to="/group-trips" className="underline-link underline-link-light">Join a Group Trip</Link>

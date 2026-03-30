@@ -2,13 +2,9 @@ import { useState, useEffect, useRef } from 'react';
 import { C } from '@data/brand';
 import { getCelestialSnapshot } from '@services/celestialService';
 
-const F = "'Quicksand', sans-serif";
-const F_SERIF = "'Cormorant Garamond', serif";
-const SAGE = '#6B8078';
-const BODY_COLOR = 'rgba(26,37,48,0.65)';
-const EYEBROW = { fontFamily: F, fontSize: 10, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: SAGE, marginBottom: 10 };
-const SECTION_BORDER = { borderBottom: `1px solid ${C.stone}`, padding: '12px 0 11px' };
-const SUB = { fontFamily: F, fontSize: 12, fontWeight: 400, color: BODY_COLOR, lineHeight: 1.65 };
+const EYEBROW = "font-body text-[10px] font-bold tracking-[0.2em] uppercase text-[#6B8078] mb-2.5";
+const SECTION_BORDER = "border-b border-stone py-3";
+const SUB = "font-body text-xs font-normal text-dark-ink/65 leading-[1.65]";
 
 const DESTINATION_LABELS = {
   'zion': 'Zion',
@@ -84,10 +80,9 @@ const OCEAN_BY_MONTH = {
 
 function SwellIntensityBar({ intensity }) {
   return (
-    <div style={{ display: 'flex', gap: 3, marginBottom: 4 }}>
+    <div className="flex gap-[3px] mb-1">
       {[1,2,3,4,5].map(i => (
-        <div key={i} style={{
-          height: 7, flex: 1, borderRadius: 1,
+        <div key={i} className="h-[7px] flex-1 rounded-sm" style={{
           background: i <= intensity
             ? `rgba(122,174,200,${0.4 + (i / intensity) * 0.5})`
             : 'rgba(122,174,200,0.12)',
@@ -138,21 +133,12 @@ export default function CelestialDrawer({ destination, isMobile, breathValueRef 
     return () => cancelAnimationFrame(raf);
   }, [breathValueRef]);
 
-  useEffect(() => {
-    if (document.getElementById('celestial-pulse-style')) return;
-    const style = document.createElement('style');
-    style.id = 'celestial-pulse-style';
-    style.textContent = '@keyframes celestialPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }';
-    document.head.appendChild(style);
-    return () => { style.remove(); };
-  }, []);
-
   const NAV_HEIGHT = isMobile ? 58 : 64;
 
   if (loading || !data) return (
-    <div style={{ position: 'relative', background: breathValueRef ? 'transparent' : C.stone, borderBottom: `1px solid ${C.stone}` }}>
+    <div className="relative border-b border-stone" style={{ background: breathValueRef ? 'transparent' : C.stone }}>
       <div style={{ height: NAV_HEIGHT + 14 }} />
-      <div style={{ height: 44 }} />
+      <div className="h-11" />
     </div>
   );
 
@@ -167,89 +153,89 @@ export default function CelestialDrawer({ destination, isMobile, breathValueRef 
   if (npsAlerts?.length > 0) teasers.push(`${npsAlerts.length} Alert${npsAlerts.length > 1 ? 's' : ''}`);
 
   return (
-    <div style={{ position: 'relative', zIndex: open ? 95 : 'auto', background: breathValueRef ? 'transparent' : C.stone, borderBottom: `1px solid ${C.stone}` }}>
+    <div className="relative border-b border-stone" style={{ zIndex: open ? 95 : 'auto', background: breathValueRef ? 'transparent' : C.stone }}>
       <div style={{ height: NAV_HEIGHT + 14 }} />
 
       {/* Teaser bar */}
       <button
         onClick={() => setOpen(!open)}
-        style={{
-          width: '100%', border: 'none', cursor: 'pointer', background: 'transparent',
-          padding: isMobile ? '14px 20px' : '14px 52px',
-          display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
-          transition: 'background 0.2s',
-        }}
-        onMouseEnter={e => e.currentTarget.style.background = 'rgba(0,0,0,0.045)'}
-        onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
+        className="w-full border-none cursor-pointer bg-transparent flex items-center justify-center gap-2 transition-colors duration-200 hover:bg-black/[0.045]"
+        style={{ padding: isMobile ? '14px 20px' : '14px 52px' }}
       >
-        <span ref={pipRef} style={{ width: 5, height: 5, borderRadius: '50%', background: C.seaGlass, flexShrink: 0, ...(breathValueRef ? { animation: 'none', willChange: 'transform, opacity' } : { animation: 'celestialPulse 2s ease-in-out infinite' }) }} />
-        <span style={{ fontFamily: F, fontSize: 11, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#5c6358', flexShrink: 0 }}>
+        <span
+          ref={pipRef}
+          className={`w-[5px] h-[5px] rounded-full bg-sea-glass shrink-0 ${breathValueRef ? 'will-change-[transform,opacity]' : 'animate-celestial-pulse'}`}
+        />
+        <span className="font-body text-[11px] font-bold tracking-[0.18em] uppercase text-[#5c6358] shrink-0">
           {label} Right Now
         </span>
         {!isMobile && teasers.length > 0 && (
-          <span style={{ fontFamily: F, fontSize: 11, fontWeight: 600, color: '#6b6359', letterSpacing: '0.04em' }}>
+          <span className="font-body text-[11px] font-semibold text-[#6b6359] tracking-[0.04em]">
             — {teasers.map((t, i) => (
               <span key={i}>
-                {i > 0 && <span style={{ margin: '0 10px', opacity: 0.55, fontWeight: 300 }}>|</span>}
+                {i > 0 && <span className="mx-2.5 opacity-55 font-light">|</span>}
                 {t}
               </span>
             ))}
           </span>
         )}
         {isMobile && weather && (
-          <span style={{ fontFamily: F, fontSize: 11, fontWeight: 600, color: '#6b6359', letterSpacing: '0.04em' }}>
+          <span className="font-body text-[11px] font-semibold text-[#6b6359] tracking-[0.04em]">
             · {weather.temp}° · {moon?.name}
           </span>
         )}
-        <span style={{ fontSize: 14, color: '#6b6359', transition: 'color 0.3s ease, transform 0.35s ease', marginLeft: 6, flexShrink: 0, display: 'inline-block', lineHeight: 1 }}>
+        <span className="text-sm text-[#6b6359] transition-all duration-300 ml-1.5 shrink-0 inline-block leading-none">
           {open ? '\u2715' : '\u25BE'}
         </span>
       </button>
 
       {/* Expanded content */}
-      <div style={{ position: 'relative', zIndex: 95, maxHeight: open ? contentHeight : 0, overflow: 'hidden', transition: 'max-height 0.5s ease', background: breathValueRef ? C.warmWhite : C.stone }}>
-        <div ref={contentRef} style={{ padding: isMobile ? '16px 20px 24px' : '20px 52px 32px', maxWidth: 920, margin: '0 auto' }}>
+      <div
+        className="relative z-[95] overflow-hidden transition-[max-height] duration-500 ease-in-out"
+        style={{ maxHeight: open ? contentHeight : 0, background: breathValueRef ? C.warmWhite : C.stone }}
+      >
+        <div ref={contentRef} className="max-w-[920px] mx-auto" style={{ padding: isMobile ? '16px 20px 24px' : '20px 52px 32px' }}>
 
           {/* 1. Temperature + Sunlight */}
           {(weather || sun) && (
-            <div style={{ ...SECTION_BORDER, display: 'grid', gridTemplateColumns: '1fr 1px 1fr', gap: '0 20px' }}>
+            <div className={`${SECTION_BORDER} grid grid-cols-[1fr_1px_1fr] gap-x-5`}>
               {weather ? (
                 <div>
-                  <div style={EYEBROW}>Temperature</div>
-                  <div style={{ height: 3, borderRadius: 2, background: 'linear-gradient(to right, #7aaec8, #D4A853, #E8856A)', marginBottom: 6 }} />
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+                  <div className={EYEBROW}>Temperature</div>
+                  <div className="h-[3px] rounded-sm mb-1.5" style={{ background: 'linear-gradient(to right, #7aaec8, #D4A853, #E8856A)' }} />
+                  <div className="flex justify-between items-end">
                     <div>
-                      <div style={{ fontFamily: F_SERIF, fontSize: 22, fontWeight: 400, color: '#7aaec8', lineHeight: 1 }}>{weather.low}°</div>
-                      <div style={{ fontFamily: F, fontSize: 10, color: BODY_COLOR, marginTop: 1 }}>low</div>
+                      <div className="font-serif text-[22px] font-normal text-[#7aaec8] leading-none">{weather.low}°</div>
+                      <div className="font-body text-[10px] text-dark-ink/65 mt-px">low</div>
                     </div>
-                    <div style={{ fontFamily: F, fontSize: 10, color: BODY_COLOR }}>today</div>
-                    <div style={{ textAlign: 'right' }}>
-                      <div style={{ fontFamily: F_SERIF, fontSize: 22, fontWeight: 400, color: '#E8856A', lineHeight: 1 }}>{weather.high}°</div>
-                      <div style={{ fontFamily: F, fontSize: 10, color: BODY_COLOR, marginTop: 1 }}>high</div>
+                    <div className="font-body text-[10px] text-dark-ink/65">today</div>
+                    <div className="text-right">
+                      <div className="font-serif text-[22px] font-normal text-[#E8856A] leading-none">{weather.high}°</div>
+                      <div className="font-body text-[10px] text-dark-ink/65 mt-px">high</div>
                     </div>
                   </div>
                 </div>
               ) : <div />}
-              <div style={{ width: 1, background: C.stone, marginTop: 18, alignSelf: 'stretch' }} />
+              <div className="w-px bg-stone mt-[18px] self-stretch" />
               {sun ? (
                 <div>
-                  <div style={EYEBROW}>Sunlight</div>
-                  <svg width="100%" height="28" viewBox="0 0 140 28" fill="none" style={{ display: 'block', marginBottom: 4 }}>
+                  <div className={EYEBROW}>Sunlight</div>
+                  <svg width="100%" height="28" viewBox="0 0 140 28" fill="none" className="block mb-1">
                     <path d="M10 24 Q70 3 130 24" stroke="rgba(212,168,83,0.15)" strokeWidth="1" strokeLinecap="round" fill="none"/>
                     <path d="M10 24 Q70 3 130 24" stroke="rgba(212,168,83,0.65)" strokeWidth="1.8" strokeLinecap="round" fill="none"/>
                     <circle cx="10" cy="24" r="3" fill="rgba(212,168,83,0.9)"/>
                     <circle cx="130" cy="24" r="3" fill="rgba(212,168,83,0.45)"/>
                     <circle cx="70" cy="3" r="2" fill="rgba(212,168,83,0.35)"/>
                   </svg>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+                  <div className="flex justify-between items-end">
                     <div>
-                      <div style={{ fontFamily: F, fontSize: 12, fontWeight: 600, color: C.darkInk, lineHeight: 1 }}>{sun.rise}</div>
-                      <div style={{ fontFamily: F, fontSize: 10, color: BODY_COLOR, marginTop: 1 }}>sunrise</div>
+                      <div className="font-body text-xs font-semibold text-dark-ink leading-none">{sun.rise}</div>
+                      <div className="font-body text-[10px] text-dark-ink/65 mt-px">sunrise</div>
                     </div>
-                    <div style={{ fontFamily: F, fontSize: 10, color: BODY_COLOR }}>{sun.daylight}</div>
-                    <div style={{ textAlign: 'right' }}>
-                      <div style={{ fontFamily: F, fontSize: 12, fontWeight: 600, color: C.darkInk, lineHeight: 1 }}>{sun.set}</div>
-                      <div style={{ fontFamily: F, fontSize: 10, color: BODY_COLOR, marginTop: 1 }}>sunset</div>
+                    <div className="font-body text-[10px] text-dark-ink/65">{sun.daylight}</div>
+                    <div className="text-right">
+                      <div className="font-body text-xs font-semibold text-dark-ink leading-none">{sun.set}</div>
+                      <div className="font-body text-[10px] text-dark-ink/65 mt-px">sunset</div>
                     </div>
                   </div>
                 </div>
@@ -259,34 +245,34 @@ export default function CelestialDrawer({ destination, isMobile, breathValueRef 
 
           {/* 2. Moon + Stars */}
           {(moon || sky) && (
-            <div style={{ ...SECTION_BORDER, display: 'grid', gridTemplateColumns: '1fr 1px 1fr', gap: '0 20px' }}>
+            <div className={`${SECTION_BORDER} grid grid-cols-[1fr_1px_1fr] gap-x-5`}>
               {moon ? (
                 <div>
-                  <div style={EYEBROW}>Moon</div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 5 }}>
+                  <div className={EYEBROW}>Moon</div>
+                  <div className="flex items-center gap-2 mb-[5px]">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                       <circle cx="12" cy="12" r="9"
                         fill={moon.phase > 50 ? 'rgba(212,168,83,0.35)' : 'rgba(26,37,48,0.12)'}
                         stroke={moon.phase > 50 ? 'rgba(212,168,83,0.5)' : 'rgba(26,37,48,0.2)'}
                         strokeWidth="1.2"/>
                     </svg>
-                    <span style={{ fontFamily: F_SERIF, fontSize: 20, fontWeight: 400, color: C.darkInk, lineHeight: 1.2 }}>{moon.name}</span>
+                    <span className="font-serif text-xl font-normal text-dark-ink leading-[1.2]">{moon.name}</span>
                   </div>
-                  <div style={{ ...SUB, paddingLeft: 22 }}>{moon.phase}% illuminated</div>
+                  <div className={`${SUB} pl-[22px]`}>{moon.phase}% illuminated</div>
                 </div>
               ) : <div />}
-              <div style={{ width: 1, background: C.stone, marginTop: 18, alignSelf: 'stretch' }} />
+              <div className="w-px bg-stone mt-[18px] self-stretch" />
               {sky ? (
                 <div>
-                  <div style={EYEBROW}>Tonight's Sky</div>
-                  <div style={{ fontFamily: F_SERIF, fontSize: 20, fontWeight: 400, color: C.seaGlass, lineHeight: 1.2, marginBottom: 5 }}>{sky.label}</div>
-                  <div style={SUB}>
+                  <div className={EYEBROW}>Tonight's Sky</div>
+                  <div className="font-serif text-xl font-normal text-sea-glass leading-[1.2] mb-[5px]">{sky.label}</div>
+                  <div className={SUB}>
                     Bortle {sky.bortle}
                     {sky.milkyWayVisible && sky.milkyWayWindow && <> · MW {sky.milkyWayWindow}</>}
                   </div>
                   {nextEvent && (
-                    <div style={{ marginTop: 8 }}>
-                      <div style={{ fontFamily: F, fontSize: 11, color: BODY_COLOR }}>{nextEvent.name} · {nextEvent.date} · {nextEvent.daysAway}d away</div>
+                    <div className="mt-2">
+                      <div className="font-body text-[11px] text-dark-ink/65">{nextEvent.name} · {nextEvent.date} · {nextEvent.daysAway}d away</div>
                     </div>
                   )}
                 </div>
@@ -296,33 +282,32 @@ export default function CelestialDrawer({ destination, isMobile, breathValueRef 
 
           {/* 3. Ocean (coastal only) */}
           {isCoastal && oceanData && (
-            <div style={SECTION_BORDER}>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1px 1fr', gap: '0 20px', alignItems: 'start' }}>
+            <div className={SECTION_BORDER}>
+              <div className="grid grid-cols-[1fr_1px_1fr] gap-x-5 items-start">
                 <div>
-                  <div style={EYEBROW}>Swell</div>
-                  <div style={{ fontFamily: F_SERIF, fontSize: 20, fontWeight: 400, color: C.darkInk, lineHeight: 1.2, marginBottom: 5 }}>{oceanData.swell.name}</div>
+                  <div className={EYEBROW}>Swell</div>
+                  <div className="font-serif text-xl font-normal text-dark-ink leading-[1.2] mb-[5px]">{oceanData.swell.name}</div>
                   <SwellIntensityBar intensity={oceanData.swell.intensity} />
-                  <div style={{ fontFamily: F, fontSize: 11, color: BODY_COLOR, marginBottom: 6 }}>{oceanData.swell.range} typical</div>
-                  <div style={{ height: 1, background: 'rgba(28,28,26,0.05)', marginBottom: 6 }} />
-                  <div style={{ fontFamily: F, fontSize: 12, color: BODY_COLOR, lineHeight: 1.65 }}>{oceanData.swell.note}</div>
+                  <div className="font-body text-[11px] text-dark-ink/65 mb-1.5">{oceanData.swell.range} typical</div>
+                  <div className="h-px bg-black/5 mb-1.5" />
+                  <div className="font-body text-xs text-dark-ink/65 leading-[1.65]">{oceanData.swell.note}</div>
                 </div>
-                <div style={{ width: 1, background: C.stone, marginTop: 18, alignSelf: 'stretch' }} />
+                <div className="w-px bg-stone mt-[18px] self-stretch" />
                 <div>
-                  <div style={EYEBROW}>Tides</div>
-                  <div style={{ fontFamily: F_SERIF, fontSize: 20, fontWeight: 400, color: C.darkInk, lineHeight: 1.2, marginBottom: 5 }}>{oceanData.tides.name}</div>
-                  <div style={{ position: 'relative', height: 7, borderRadius: 4, background: 'rgba(122,174,200,0.12)', marginBottom: 4 }}>
-                    <div style={{
-                      position: 'absolute', left: 0, top: 0, height: 7, borderRadius: 4,
+                  <div className={EYEBROW}>Tides</div>
+                  <div className="font-serif text-xl font-normal text-dark-ink leading-[1.2] mb-[5px]">{oceanData.tides.name}</div>
+                  <div className="relative h-[7px] rounded bg-[rgba(122,174,200,0.12)] mb-1">
+                    <div className="absolute left-0 top-0 h-[7px] rounded" style={{
                       width: `${Math.min(95, Math.max(30, (parseFloat(oceanData.tides.high) / 7) * 100))}%`,
                       background: 'linear-gradient(to right, rgba(122,174,200,0.25), rgba(122,174,200,0.65))',
                     }} />
                   </div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
-                    <div style={{ fontFamily: F, fontSize: 10, color: 'rgba(122,174,200,0.7)' }}>{oceanData.tides.low}</div>
-                    <div style={{ fontFamily: F, fontSize: 10, fontWeight: 600, color: '#7aaec8' }}>{oceanData.tides.high}</div>
+                  <div className="flex justify-between mb-1.5">
+                    <div className="font-body text-[10px] text-[rgba(122,174,200,0.7)]">{oceanData.tides.low}</div>
+                    <div className="font-body text-[10px] font-semibold text-[#7aaec8]">{oceanData.tides.high}</div>
                   </div>
-                  <div style={{ height: 1, background: 'rgba(28,28,26,0.05)', marginBottom: 6 }} />
-                  <div style={{ fontFamily: F, fontSize: 12, color: BODY_COLOR, lineHeight: 1.65 }}>{oceanData.tides.note}</div>
+                  <div className="h-px bg-black/5 mb-1.5" />
+                  <div className="font-body text-xs text-dark-ink/65 leading-[1.65]">{oceanData.tides.note}</div>
                 </div>
               </div>
             </div>
@@ -330,27 +315,27 @@ export default function CelestialDrawer({ destination, isMobile, breathValueRef 
 
           {/* 4. River (Zion only) */}
           {river && (
-            <div style={SECTION_BORDER}>
-              <div style={EYEBROW}>Virgin River</div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
-                <span style={{ width: 7, height: 7, borderRadius: '50%', background: riverColors[river.level] || C.stone }} />
-                <span style={{ fontFamily: F, fontSize: 14, fontWeight: 600, color: C.darkInk, lineHeight: 1.3 }}>{river.label}</span>
+            <div className={SECTION_BORDER}>
+              <div className={EYEBROW}>Virgin River</div>
+              <div className="flex items-center gap-2 mb-1">
+                <span className="w-[7px] h-[7px] rounded-full" style={{ background: riverColors[river.level] || C.stone }} />
+                <span className="font-body text-sm font-semibold text-dark-ink leading-[1.3]">{river.label}</span>
               </div>
-              <div style={SUB}>{river.cfs} cfs · {river.tempF}°F water</div>
+              <div className={SUB}>{river.cfs} cfs · {river.tempF}°F water</div>
             </div>
           )}
 
           {/* 5. NPS Alerts */}
           {npsAlerts.length > 0 && (
-            <div style={SECTION_BORDER}>
-              <div style={{ ...EYEBROW, color: C.sunSalmon }}>Active Alerts</div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+            <div className={SECTION_BORDER}>
+              <div className={`${EYEBROW} !text-sun-salmon`}>Active Alerts</div>
+              <div className="flex flex-col gap-2">
                 {npsAlerts.map((alert, i) => (
-                  <div key={i} style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
-                    <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#E8856A', flexShrink: 0, marginTop: 5 }} />
+                  <div key={i} className="flex gap-2.5 items-start">
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#E8856A] shrink-0 mt-[5px]" />
                     <div>
-                      <div style={{ fontFamily: F, fontSize: 13, fontWeight: 700, color: C.darkInk, marginBottom: 3 }}>{alert.title}</div>
-                      {alert.description && <div style={{ fontFamily: F, fontSize: 12, fontWeight: 400, color: BODY_COLOR, lineHeight: 1.6 }}>{alert.description}</div>}
+                      <div className="font-body text-[13px] font-bold text-dark-ink mb-[3px]">{alert.title}</div>
+                      {alert.description && <div className="font-body text-xs font-normal text-dark-ink/65 leading-[1.6]">{alert.description}</div>}
                     </div>
                   </div>
                 ))}

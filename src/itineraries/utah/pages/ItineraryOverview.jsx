@@ -14,8 +14,7 @@ const ItineraryOverview = ({ goToPage }) => ({
           e.preventDefault();
           goToPage(2);
         }}
-        className="w-full bg-white rounded-xl p-5 shadow-md hover:shadow-lg transition-all duration-200 border border-gray-100 hover:border-coral-blush active:scale-95 active:bg-coral-blush/10 active:border-coral-blush group touch-manipulation"
-        style={{ WebkitTapHighlightColor: 'transparent', minHeight: '72px' }}
+        className="w-full bg-white rounded-xl p-5 shadow-md hover:shadow-lg transition-all duration-200 border border-gray-100 hover:border-coral-blush active:scale-95 active:bg-coral-blush/10 active:border-coral-blush group touch-manipulation min-h-[72px]"
       >
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -36,8 +35,7 @@ const ItineraryOverview = ({ goToPage }) => ({
           e.preventDefault();
           goToPage(3);
         }}
-        className="w-full bg-white rounded-xl p-5 shadow-md hover:shadow-lg transition-all duration-200 border border-gray-100 hover:border-sun-salmon active:scale-95 active:bg-sun-salmon/10 active:border-sun-salmon group touch-manipulation"
-        style={{ WebkitTapHighlightColor: 'transparent', minHeight: '72px' }}
+        className="w-full bg-white rounded-xl p-5 shadow-md hover:shadow-lg transition-all duration-200 border border-gray-100 hover:border-sun-salmon active:scale-95 active:bg-sun-salmon/10 active:border-sun-salmon group touch-manipulation min-h-[72px]"
       >
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -58,8 +56,7 @@ const ItineraryOverview = ({ goToPage }) => ({
           e.preventDefault();
           goToPage(4);
         }}
-        className="w-full bg-white rounded-xl p-5 shadow-md hover:shadow-lg transition-all duration-200 border border-gray-100 hover:border-sky-blue active:scale-95 active:bg-ocean-teal/10 active:border-ocean-teal group touch-manipulation"
-        style={{ WebkitTapHighlightColor: 'transparent', minHeight: '72px' }}
+        className="w-full bg-white rounded-xl p-5 shadow-md hover:shadow-lg transition-all duration-200 border border-gray-100 hover:border-sky-blue active:scale-95 active:bg-ocean-teal/10 active:border-ocean-teal group touch-manipulation min-h-[72px]"
       >
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -80,8 +77,7 @@ const ItineraryOverview = ({ goToPage }) => ({
           e.preventDefault();
           goToPage(5);
         }}
-        className="w-full bg-white rounded-xl p-5 shadow-md hover:shadow-lg transition-all duration-200 border border-gray-100 hover:border-sea-glass active:scale-95 active:bg-sea-glass/20 active:border-sea-glass group touch-manipulation"
-        style={{ WebkitTapHighlightColor: 'transparent', minHeight: '72px' }}
+        className="w-full bg-white rounded-xl p-5 shadow-md hover:shadow-lg transition-all duration-200 border border-gray-100 hover:border-sea-glass active:scale-95 active:bg-sea-glass/20 active:border-sea-glass group touch-manipulation min-h-[72px]"
       >
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -102,8 +98,7 @@ const ItineraryOverview = ({ goToPage }) => ({
           e.preventDefault();
           goToPage(6);
         }}
-        className="w-full bg-white rounded-xl p-5 shadow-md hover:shadow-lg transition-all duration-200 border border-gray-100 hover:border-golden-amber active:scale-95 active:bg-golden-amber/10 active:border-golden-amber group touch-manipulation"
-        style={{ WebkitTapHighlightColor: 'transparent', minHeight: '72px' }}
+        className="w-full bg-white rounded-xl p-5 shadow-md hover:shadow-lg transition-all duration-200 border border-gray-100 hover:border-golden-amber active:scale-95 active:bg-golden-amber/10 active:border-golden-amber group touch-manipulation min-h-[72px]"
       >
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -124,8 +119,7 @@ const ItineraryOverview = ({ goToPage }) => ({
           e.preventDefault();
           goToPage(7);
         }}
-        className="w-full bg-white rounded-xl p-5 shadow-md hover:shadow-lg transition-all duration-200 border border-gray-100 hover:border-coral-blush active:scale-95 active:bg-sky-blue/10 active:border-sky-blue group touch-manipulation"
-        style={{ WebkitTapHighlightColor: 'transparent', minHeight: '72px' }}
+        className="w-full bg-white rounded-xl p-5 shadow-md hover:shadow-lg transition-all duration-200 border border-gray-100 hover:border-coral-blush active:scale-95 active:bg-sky-blue/10 active:border-sky-blue group touch-manipulation min-h-[72px]"
       >
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -146,8 +140,7 @@ const ItineraryOverview = ({ goToPage }) => ({
           e.preventDefault();
           goToPage(8);
         }}
-        className="w-full bg-white rounded-xl p-5 shadow-md hover:shadow-lg transition-all duration-200 border border-gray-100 hover:border-golden-amber active:scale-95 active:bg-golden-amber/10 active:border-golden-amber group touch-manipulation"
-        style={{ WebkitTapHighlightColor: 'transparent', minHeight: '72px' }}
+        className="w-full bg-white rounded-xl p-5 shadow-md hover:shadow-lg transition-all duration-200 border border-gray-100 hover:border-golden-amber active:scale-95 active:bg-golden-amber/10 active:border-golden-amber group touch-manipulation min-h-[72px]"
       >
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">

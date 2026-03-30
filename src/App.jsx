@@ -52,16 +52,14 @@ import { C } from '@data/brand';
 // ─── Loading Spinner ─────────────────────────────────────────────────────────
 function LoadingSpinner() {
   return (
-    <div style={{
-      display: 'flex', alignItems: 'center', justifyContent: 'center',
-      minHeight: '100vh', background: C.cream,
-    }}>
-      <div style={{
-        width: 28, height: 28,
-        border: `2px solid ${C.oceanTeal}30`, borderTopColor: C.oceanTeal,
-        borderRadius: '50%', animation: 'lila-spin 0.8s linear infinite',
-      }} />
-      <style>{`@keyframes lila-spin { to { transform: rotate(360deg); } }`}</style>
+    <div className="flex items-center justify-center min-h-screen bg-cream">
+      <div
+        className="w-7 h-7 rounded-full animate-lila-spin"
+        style={{
+          /* dynamic */ border: `2px solid ${C.oceanTeal}30`,
+          /* dynamic */ borderTopColor: C.oceanTeal,
+        }}
+      />
     </div>
   );
 }
@@ -105,12 +103,7 @@ function ScrollToTop() {
 // ─── App ────────────────────────────────────────────────────────────────────
 export default function App() {
   return (
-    <div style={{
-      fontFamily: "'Quicksand', sans-serif",
-      background: C.cream,
-      color: C.darkInk,
-      overflowX: "clip",
-    }}>
+    <div className="font-body bg-cream text-dark-ink overflow-x-clip">
       <BrowserRouter>
         <ScrollToTop />
         <Suspense fallback={<LoadingSpinner />}>

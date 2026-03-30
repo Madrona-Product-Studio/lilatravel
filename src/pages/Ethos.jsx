@@ -1,17 +1,3 @@
-// ═══════════════════════════════════════════════════════════════════════════════
-// PAGE: OUR ETHOS — "What Makes a Lila Trip"
-// ═══════════════════════════════════════════════════════════════════════════════
-//
-// Structure:
-//   1. Hero — "What makes a Lila trip."
-//   2. Sacred Terrain — landscape as teacher (narrative + tags)
-//   3. Ancient Practices — steeped in living tradition (narrative + tags + traditions → principles)
-//   4. Elemental Encounters — where the senses take over (narrative + individually colored tags)
-//   5. Convergence — the threads woven together
-//
-// ═══════════════════════════════════════════════════════════════════════════════
-
-import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Nav, Footer, FadeIn, PageHeader } from '@components';
 import { C } from '@data/brand';
@@ -19,38 +5,36 @@ import { ritualsPillars, traditions, ritualsIntro } from '@data/rituals';
 import { trackEvent } from '@utils/analytics';
 import { Helmet } from 'react-helmet-async';
 
-// ─── Section Data ───────────────────────────────────────────────────────────
-
 const approachBraids = [
   {
     id: "sacred-terrain",
-    icon: "△\uFE0E",
+    icon: "\u25B3\uFE0E",
     label: "Sacred Terrain",
     color: "#7DB8A0",
     headline: "The landscape is the teacher.",
-    body: "We don't choose destinations for their Instagram potential. We choose them for their capacity to dissolve the ordinary — places where canyon walls hold millions of years of silence, where ancient forests hum with something older than language, where the horizon line rearranges something inside you. To be changed by a place is to owe it something. We take that seriously.",
+    body: "We don't choose destinations for their Instagram potential. We choose them for their capacity to dissolve the ordinary \u2014 places where canyon walls hold millions of years of silence, where ancient forests hum with something older than language, where the horizon line rearranges something inside you. To be changed by a place is to owe it something. We take that seriously.",
     tags: ["Seasonal Rhythms", "Tread Lightly", "Give Back", "Canyon & Desert", "Old-Growth Forest", "Wild Coastline", "Mountain Summits"],
     tagLabel: "Way we travel",
     cta: { text: "Explore Destinations", link: "/destinations" },
   },
   {
     id: "ancient-practices",
-    icon: "◎\uFE0E",
+    icon: "\u25CE\uFE0E",
     label: "Ancient Practices",
     color: "#D4A853",
     headline: "Steeped in living tradition.",
-    body: "Across centuries and continents, wisdom traditions have arrived at remarkably similar truths about how to live well. We draw from principles shared across Buddhist, Hindu, Taoist, and Stoic philosophy — oneness, flow, presence, reverence — and weave them into every journey.",
+    body: "Across centuries and continents, wisdom traditions have arrived at remarkably similar truths about how to live well. We draw from principles shared across Buddhist, Hindu, Taoist, and Stoic philosophy \u2014 oneness, flow, presence, reverence \u2014 and weave them into every journey.",
     tags: ["Yoga", "Meditation", "Breathwork", "Mindful Movement", "Forest Bathing", "Contemplation"],
     tagLabel: "What we practice",
     cta: null,
   },
   {
     id: "elemental-encounters",
-    icon: "✦\uFE0E",
+    icon: "\u2726\uFE0E",
     label: "Elemental Encounters",
     color: "#6BA4B8",
     headline: "Where the senses take over.",
-    body: "Before there were words for it, there was this — sunlight, cold water, stone, sky. These elemental forces are the oldest teachers on earth. We design journeys that put you directly in conversation with them.",
+    body: "Before there were words for it, there was this \u2014 sunlight, cold water, stone, sky. These elemental forces are the oldest teachers on earth. We design journeys that put you directly in conversation with them.",
     tags: [
       { text: "Sunlight", color: "#D4A853" },
       { text: "Cold Water", color: "#6BA4B8" },
@@ -66,34 +50,25 @@ const approachBraids = [
 
 const approachPrinciples = [
   {
-    word: "Oneness", icon: "◯", color: "#6BA4B8",
+    word: "Oneness", icon: "\u25EF", color: "#6BA4B8",
     desc: "The boundaries between self and world soften. You stop observing the landscape and become part of it.",
   },
   {
-    word: "Flow", icon: "≈\uFE0E", color: "#7DB8A0",
+    word: "Flow", icon: "\u2248\uFE0E", color: "#7DB8A0",
     desc: "When effort dissolves and everything moves. The trail carries you. The river thinks for you. Time reshapes itself.",
   },
   {
-    word: "Presence", icon: "◉", color: "#D4A853",
+    word: "Presence", icon: "\u25C9", color: "#D4A853",
     desc: "The full weight of now. Not weighed down by what brought you here or pulled toward what comes next.",
   },
   {
-    word: "Reverence", icon: "✧", color: "#E8956A",
+    word: "Reverence", icon: "\u2727", color: "#E8956A",
     desc: "The instinct to bow before something ancient. A canyon. A night sky. The quiet recognition that you are small.",
   },
 ];
 
 
 export default function EthosPage() {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth <= 860);
-    check();
-    window.addEventListener("resize", check);
-    return () => window.removeEventListener("resize", check);
-  }, []);
-
   return (
     <>
       <Helmet>
@@ -113,134 +88,98 @@ export default function EthosPage() {
       </Helmet>
       <Nav />
 
-      {/* ══ HERO ═══════════════════════════════════════════════════════════════ */}
       <PageHeader
         eyebrow="Our Ethos"
         title="What makes a Lila trip."
         subtitle="Every Lila journey is woven from three braids — iconic landscapes that dissolve the ordinary, ancient practices that quiet the noise, and raw elemental encounters that wake you up. Here's how they come together."
         accentColor={C.goldenAmber}
       >
-        {/* Quick-nav braid markers */}
-        <div style={{
-          display: "flex", gap: isMobile ? 24 : 40,
-          flexDirection: isMobile ? "column" : "row",
-          marginTop: 32, paddingTop: 32,
-          borderTop: `1px solid ${C.stone}`,
-        }}>
+        <div className="flex flex-col md:flex-row gap-6 md:gap-10 mt-8 pt-8 border-t border-stone">
           {approachBraids.map((b) => (
             <a
               key={b.id}
               href={`#${b.id}`}
-              style={{
-                display: "flex", alignItems: "center", gap: 12,
-                textDecoration: "none", transition: "opacity 0.3s",
-              }}
-              onMouseEnter={e => e.currentTarget.style.opacity = "0.6"}
-              onMouseLeave={e => e.currentTarget.style.opacity = "1"}
+              className="flex items-center gap-3 no-underline transition-opacity duration-300 hover:opacity-60"
             >
-              <span style={{ fontSize: 20, color: b.color, lineHeight: 1 }}>{b.icon}</span>
-              <span style={{
-                fontFamily: "'Quicksand', sans-serif",
-                fontSize: 12, fontWeight: 700,
-                letterSpacing: "0.16em", textTransform: "uppercase",
-                color: C.darkInk,
-              }}>{b.label}</span>
+              <span className="text-xl leading-none" style={{ color: b.color }}>{b.icon}</span>
+              <span className="font-body text-xs font-bold tracking-[0.16em] uppercase text-dark-ink">
+                {b.label}
+              </span>
             </a>
           ))}
         </div>
       </PageHeader>
 
 
-      {/* ══ BRAID SECTIONS ═════════════════════════════════════════════════════ */}
       {approachBraids.map((b, bi) => {
         const isDark = bi % 2 === 0;
         return (
           <section
             key={b.id}
             id={b.id}
+            className="px-7 py-20 md:px-[52px]"
             style={{
-              padding: "80px 52px",
               background: isDark
                 ? `linear-gradient(165deg, ${C.darkInk}, #1a3040)`
                 : C.cream,
             }}
           >
-            <div style={{ maxWidth: 960, margin: "0 auto" }}>
+            <div className="max-w-[960px] mx-auto">
               <FadeIn>
-                <div style={{
-                  display: "grid",
-                  gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
-                  gap: isMobile ? 40 : 72,
-                  alignItems: "start",
-                }}>
-                  {/* Left: narrative */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-[72px] items-start">
                   <div>
-                    <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 20 }}>
-                      <span style={{ fontSize: 24, color: b.color, opacity: 0.7, lineHeight: 1 }}>{b.icon}</span>
-                      <span style={{
-                        fontFamily: "'Quicksand', sans-serif",
-                        fontSize: 11, fontWeight: 700,
-                        letterSpacing: "0.2em", textTransform: "uppercase",
-                        color: b.color,
-                      }}>{b.label}</span>
+                    <div className="flex items-center gap-2.5 mb-5">
+                      <span className="text-2xl opacity-70 leading-none" style={{ color: b.color }}>{b.icon}</span>
+                      <span className="font-body text-[11px] font-bold tracking-[0.2em] uppercase" style={{ color: b.color }}>
+                        {b.label}
+                      </span>
                     </div>
 
-                    <h2 style={{
-                      fontFamily: "'Quicksand', sans-serif",
-                      fontSize: "clamp(24px, 3.5vw, 36px)",
-                      fontWeight: 300,
-                      color: isDark ? "white" : C.darkInk,
-                      lineHeight: 1.25,
-                      marginBottom: 24,
-                      marginTop: 0,
-                    }}>
+                    <h2
+                      className="font-body font-light leading-[1.25] mb-6 mt-0"
+                      style={{
+                        fontSize: "clamp(24px, 3.5vw, 36px)",
+                        color: isDark ? "white" : C.darkInk,
+                      }}
+                    >
                       {b.headline}
                     </h2>
 
-                    <p style={{
-                      fontFamily: "'Quicksand', sans-serif",
-                      fontSize: "clamp(14px, 1.4vw, 15px)",
-                      fontWeight: 400,
-                      color: isDark ? "rgba(255,255,255,0.55)" : "#5a6a78",
-                      lineHeight: 2.0,
-                      letterSpacing: "0.02em",
-                      marginBottom: b.cta ? 32 : 0,
-                    }}>
+                    <p
+                      className="font-body font-normal leading-[2.0] tracking-[0.02em]"
+                      style={{
+                        fontSize: "clamp(14px, 1.4vw, 15px)",
+                        color: isDark ? "rgba(255,255,255,0.55)" : "#5a6a78",
+                        marginBottom: b.cta ? 32 : 0,
+                      }}
+                    >
                       {b.body}
                     </p>
 
                     {b.cta && (
-                      <Link to={b.cta.link} style={{
-                        display: "inline-flex", alignItems: "center", gap: 10,
-                        fontFamily: "'Quicksand', sans-serif",
-                        fontSize: 12, fontWeight: 700,
-                        letterSpacing: "0.18em", textTransform: "uppercase",
-                        color: b.color, textDecoration: "none",
-                        paddingBottom: 4, borderBottom: `1px solid ${b.color}`,
-                        transition: "gap 0.3s, opacity 0.3s",
-                      }}
-                      onClick={() => trackEvent('ethos_cta_clicked', { action: 'explore_destinations' })}
-                      onMouseEnter={e => { e.currentTarget.style.gap = "14px"; e.currentTarget.style.opacity = "0.7"; }}
-                      onMouseLeave={e => { e.currentTarget.style.gap = "10px"; e.currentTarget.style.opacity = "1"; }}
+                      <Link
+                        to={b.cta.link}
+                        className="inline-flex items-center gap-2.5 font-body text-xs font-bold tracking-[0.18em] uppercase no-underline pb-1 transition-all duration-300 hover:gap-3.5 hover:opacity-70"
+                        style={{
+                          color: b.color,
+                          borderBottom: `1px solid ${b.color}`,
+                        }}
+                        onClick={() => trackEvent('ethos_cta_clicked', { action: 'explore_destinations' })}
                       >
-                        {b.cta.text} <span>→</span>
+                        {b.cta.text} <span>&rarr;</span>
                       </Link>
                     )}
                   </div>
 
-                  {/* Right: tag chips */}
-                  <div style={{ paddingTop: isMobile ? 0 : 48 }}>
-                    <span style={{
-                      fontFamily: "'Quicksand', sans-serif",
-                      fontSize: 11, fontWeight: 700,
-                      letterSpacing: "0.2em", textTransform: "uppercase",
-                      color: isDark ? "rgba(255,255,255,0.25)" : "#9aabba",
-                      display: "block", marginBottom: 20,
-                    }}>
+                  <div className="pt-0 md:pt-12">
+                    <span
+                      className="font-body text-[11px] font-bold tracking-[0.2em] uppercase block mb-5"
+                      style={{ color: isDark ? "rgba(255,255,255,0.25)" : "#9aabba" }}
+                    >
                       {b.tagLabel}
                     </span>
 
-                    <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
+                    <div className="flex flex-wrap gap-2.5">
                       {b.tags.map((tag, j) => {
                         const isObj = typeof tag === "object";
                         const text = isObj ? tag.text : tag;
@@ -248,14 +187,11 @@ export default function EthosPage() {
                         return (
                           <span
                             key={j}
+                            className="font-body text-[13px] font-semibold tracking-[0.06em] px-5 py-2.5 transition-all duration-[250ms] ease-in-out"
                             style={{
-                              fontFamily: "'Quicksand', sans-serif",
-                              fontSize: 13, fontWeight: 600, letterSpacing: "0.06em",
                               color: isDark ? `${tagColor}cc` : tagColor,
-                              padding: "10px 20px",
                               border: `1px solid ${isDark ? `${tagColor}25` : `${tagColor}30`}`,
-                              background: isDark ? `${tagColor}08` : `${tagColor}08`,
-                              transition: "all 0.25s ease",
+                              background: `${tagColor}08`,
                             }}
                             onMouseEnter={(e) => {
                               e.currentTarget.style.background = isDark ? `${tagColor}18` : `${tagColor}15`;
@@ -263,7 +199,7 @@ export default function EthosPage() {
                               e.currentTarget.style.color = tagColor;
                             }}
                             onMouseLeave={(e) => {
-                              e.currentTarget.style.background = isDark ? `${tagColor}08` : `${tagColor}08`;
+                              e.currentTarget.style.background = `${tagColor}08`;
                               e.currentTarget.style.borderColor = isDark ? `${tagColor}25` : `${tagColor}30`;
                               e.currentTarget.style.color = isDark ? `${tagColor}cc` : tagColor;
                             }}
@@ -277,102 +213,56 @@ export default function EthosPage() {
                 </div>
               </FadeIn>
 
-              {/* ─── Ancient Practices: Traditions → Principles ────────────── */}
               {bi === 1 && (
                 <FadeIn delay={0.15}>
-                  <div style={{
-                    marginTop: 48,
-                    paddingTop: 40,
-                    borderTop: `1px solid ${C.stone}`,
-                  }}>
-                    <span style={{
-                      fontFamily: "'Quicksand', sans-serif",
-                      fontSize: 11, fontWeight: 700,
-                      letterSpacing: "0.22em", textTransform: "uppercase",
-                      color: "#9aabba", display: "block", marginBottom: 8,
-                    }}>Five Traditions, Four Principles</span>
-                    <p style={{
-                      fontFamily: "'Quicksand', sans-serif",
-                      fontSize: 14, fontWeight: 400,
-                      color: "#5a6a78", lineHeight: 1.8,
-                      marginBottom: 20, marginTop: 0,
-                    }}>
+                  <div className="mt-12 pt-10 border-t border-stone">
+                    <span className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-[#9aabba] block mb-2">
+                      Five Traditions, Four Principles
+                    </span>
+                    <p className="font-body text-sm font-normal text-[#5a6a78] leading-[1.8] mb-5 mt-0">
                       From five ancient frameworks, we've distilled the principles that guide every Lila journey.
                     </p>
 
-                    {/* Traditions row */}
-                    <div style={{
-                      display: "flex", gap: isMobile ? 16 : 28, flexWrap: "wrap",
-                      marginBottom: 40,
-                    }}>
+                    <div className="flex gap-4 md:gap-7 flex-wrap mb-10">
                       {traditions.map((t) => (
-                        <div key={t.name} style={{
-                          display: "flex", alignItems: "center", gap: 8,
-                        }}>
-                          <span style={{
-                            fontSize: 18, color: t.color, opacity: 0.5,
-                            lineHeight: 1, fontFamily: "serif",
-                          }}>{t.symbol}</span>
-                          <span style={{
-                            fontFamily: "'Quicksand', sans-serif",
-                            fontSize: 11, fontWeight: 700,
-                            letterSpacing: "0.1em", textTransform: "uppercase",
-                            color: "#5a6a78",
-                          }}>{t.name}</span>
+                        <div key={t.name} className="flex items-center gap-2">
+                          <span className="text-lg opacity-50 leading-none font-serif" style={{ color: t.color }}>
+                            {t.symbol}
+                          </span>
+                          <span className="font-body text-[11px] font-bold tracking-[0.1em] uppercase text-[#5a6a78]">
+                            {t.name}
+                          </span>
                         </div>
                       ))}
                     </div>
 
-                    {/* Principles row */}
-                    <div style={{
-                      display: "grid",
-                      gridTemplateColumns: isMobile ? "1fr 1fr" : "1fr 1fr 1fr 1fr",
-                      gap: isMobile ? 24 : 0,
-                    }}>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-0">
                       {approachPrinciples.map((p, pi) => (
-                        <div key={p.word} style={{
-                          padding: isMobile ? "0" : "0 24px",
-                          borderLeft: (!isMobile && pi > 0) ? `1px solid ${C.stone}` : "none",
-                        }}>
-                          <div style={{
-                            display: "flex", alignItems: "center", gap: 8,
-                            marginBottom: 12,
-                          }}>
-                            <span style={{
-                              fontSize: 16, color: p.color, opacity: 0.7,
-                            }}>{p.icon}</span>
-                            <span style={{
-                              fontFamily: "'Quicksand', sans-serif",
-                              fontSize: 12, fontWeight: 700,
-                              letterSpacing: "0.12em", textTransform: "uppercase",
-                              color: p.color,
-                            }}>{p.word}</span>
+                        <div
+                          key={p.word}
+                          className="md:px-6"
+                          style={{ borderLeft: pi > 0 ? `1px solid ${C.stone}` : "none" }}
+                        >
+                          <div className="flex items-center gap-2 mb-3">
+                            <span className="text-base opacity-70" style={{ color: p.color }}>{p.icon}</span>
+                            <span className="font-body text-xs font-bold tracking-[0.12em] uppercase" style={{ color: p.color }}>
+                              {p.word}
+                            </span>
                           </div>
-                          <p style={{
-                            fontFamily: "'Quicksand', sans-serif",
-                            fontSize: 14, fontWeight: 400,
-                            color: "#6a7a8a", lineHeight: 1.8,
-                            margin: 0,
-                          }}>{p.desc}</p>
+                          <p className="font-body text-sm font-normal text-[#6a7a8a] leading-[1.8] m-0">
+                            {p.desc}
+                          </p>
                         </div>
                       ))}
                     </div>
 
-                    <div style={{ marginTop: 32 }}>
-                      <Link to="/ethos/philosophy" style={{
-                        display: "inline-flex", alignItems: "center", gap: 10,
-                        fontFamily: "'Quicksand', sans-serif",
-                        fontSize: 12, fontWeight: 700,
-                        letterSpacing: "0.18em", textTransform: "uppercase",
-                        color: "#D4A853", textDecoration: "none",
-                        paddingBottom: 4, borderBottom: "1px solid #D4A853",
-                        transition: "gap 0.3s, opacity 0.3s",
-                      }}
-                      onClick={() => trackEvent('ethos_cta_clicked', { action: 'explore_philosophy' })}
-                      onMouseEnter={e => { e.currentTarget.style.gap = "14px"; e.currentTarget.style.opacity = "0.7"; }}
-                      onMouseLeave={e => { e.currentTarget.style.gap = "10px"; e.currentTarget.style.opacity = "1"; }}
+                    <div className="mt-8">
+                      <Link
+                        to="/ethos/philosophy"
+                        className="inline-flex items-center gap-2.5 font-body text-xs font-bold tracking-[0.18em] uppercase text-golden-amber no-underline pb-1 border-b border-golden-amber transition-all duration-300 hover:gap-3.5 hover:opacity-70"
+                        onClick={() => trackEvent('ethos_cta_clicked', { action: 'explore_philosophy' })}
                       >
-                        Explore the philosophy <span>→</span>
+                        Explore the philosophy <span>&rarr;</span>
                       </Link>
                     </div>
                   </div>
@@ -384,39 +274,28 @@ export default function EthosPage() {
       })}
 
 
-      {/* ══ CONVERGENCE ═══════════════════════════════════════════════════════ */}
-      <section style={{ padding: "80px 52px", background: C.cream }}>
-        <div style={{ maxWidth: 700, margin: "0 auto", textAlign: "center" }}>
+      <section className="py-20 px-7 md:px-[52px] bg-cream">
+        <div className="max-w-[700px] mx-auto text-center">
           <FadeIn>
-            {/* Visual convergence — three colored lines */}
-            <div style={{
-              display: "flex", justifyContent: "center", alignItems: "center",
-              gap: 16, marginBottom: 28,
-            }}>
-              <div style={{ width: 48, height: 1, background: "#7DB8A0" }} />
-              <div style={{ width: 48, height: 1, background: "#D4A853" }} />
-              <div style={{ width: 48, height: 1, background: "#6BA4B8" }} />
+            <div className="flex justify-center items-center gap-4 mb-7">
+              <div className="w-12 h-px" style={{ background: "#7DB8A0" }} />
+              <div className="w-12 h-px" style={{ background: "#D4A853" }} />
+              <div className="w-12 h-px" style={{ background: "#6BA4B8" }} />
             </div>
 
-            <span className="eyebrow" style={{ color: C.skyBlue, marginBottom: 24, display: "block" }}>
+            <span className="eyebrow text-sky-blue mb-6 block">
               The Convergence
             </span>
-            <p style={{
-              fontFamily: "'Quicksand', sans-serif",
-              fontSize: "clamp(16px, 2vw, 20px)",
-              fontWeight: 400,
-              color: "#4a6070", lineHeight: 1.9, marginBottom: 20,
-            }}>
+            <p
+              className="font-body font-normal text-[#4a6070] leading-[1.9] mb-5"
+              style={{ fontSize: "clamp(16px, 2vw, 20px)" }}
+            >
               When landscape, practice, and element converge — something shifts. You stop performing the trip and start living it. The planning dissolves. The experience takes over. That's the threshold we're always reaching for.
             </p>
-            <p style={{
-              fontFamily: "'Quicksand', sans-serif",
-              fontSize: 14, fontWeight: 400,
-              color: "#7a8a9a", lineHeight: 1.9, marginBottom: 40,
-            }}>
+            <p className="font-body text-sm font-normal text-[#7a8a9a] leading-[1.9] mb-10">
               We handle the logistics so you can cross it.
             </p>
-            <div style={{ display: "flex", gap: 24, justifyContent: "center", flexWrap: "wrap" }}>
+            <div className="flex gap-6 justify-center flex-wrap">
               <Link to="/how-it-works" className="underline-link" onClick={() => trackEvent('ethos_cta_clicked', { action: 'see_how_it_works' })}>See How It Works</Link>
               <Link to="/destinations" className="underline-link" onClick={() => trackEvent('ethos_cta_clicked', { action: 'explore_destinations' })}>Explore Destinations</Link>
             </div>

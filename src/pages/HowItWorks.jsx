@@ -50,25 +50,17 @@ export default function HowItWorksPage() {
       <TravelYourWay showHeading={false} />
 
       {/* ══ A DAY WITH LILA ══════════════════════════════════════════════════ */}
-      <section style={{ padding: "48px 52px 80px", background: C.cream }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+      <section className="pt-[48px] px-[52px] pb-[80px] bg-cream">
+        <div className="max-w-[1100px] mx-auto">
           <FadeIn>
-            <div style={{ textAlign: "center", marginBottom: 48 }}>
-              <span style={{
-                fontFamily: "'Quicksand'", fontSize: 11, fontWeight: 700,
-                letterSpacing: "0.22em", textTransform: "uppercase",
-                color: C.oceanTeal, display: "block", marginBottom: 12,
-              }}>Woven Together</span>
-              <h2 style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontSize: "clamp(28px, 4vw, 42px)", fontWeight: 300,
-                color: C.darkInk, marginBottom: 16,
-              }}>A day with Lila</h2>
-              <p style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontSize: 18, fontStyle: "normal", color: "#5a6a78",
-                maxWidth: 480, margin: "0 auto",
-              }}>
+            <div className="text-center mb-[48px]">
+              <span className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-ocean-teal block mb-3">
+                Woven Together
+              </span>
+              <h2 className="font-serif text-[clamp(28px,4vw,42px)] font-light text-dark-ink mb-4">
+                A day with Lila
+              </h2>
+              <p className="font-serif text-[18px] not-italic text-[#5a6a78] max-w-[480px] mx-auto">
                 Here's what it looks like when the threads come together. Every day is a composition — not a schedule.
               </p>
             </div>
@@ -76,95 +68,67 @@ export default function HowItWorksPage() {
 
           {/* Sample itinerary card */}
           <FadeIn delay={0.15}>
-            <div style={{
-              maxWidth: 680,
-              margin: "0 auto",
-              background: "white",
-              border: `1px solid ${C.stone || '#e0dbd4'}`,
-              overflow: "hidden",
-            }}>
+            <div className="max-w-[680px] mx-auto bg-white border border-stone overflow-hidden">
               {/* Itinerary header */}
-              <div style={{
-                padding: "28px 40px",
-                borderBottom: `1px solid ${C.stone || '#e0dbd4'}`,
-                display: "flex", alignItems: "baseline", gap: 12,
-              }}>
-                <span style={{
-                  fontFamily: "'Cormorant Garamond', serif",
-                  fontSize: 14, fontWeight: 400,
-                  color: "#9aa8b2", fontStyle: "normal",
-                }}>Sample day</span>
-                <span style={{ fontSize: 12, color: "#c0c8cd" }}>·</span>
-                <span style={{
-                  fontFamily: "'Cormorant Garamond', serif",
-                  fontSize: 14, fontWeight: 400,
-                  color: "#9aa8b2", fontStyle: "normal",
-                }}>Zion Canyon, Utah</span>
+              <div className="py-[28px] px-[40px] border-b border-stone flex items-baseline gap-3">
+                <span className="font-serif text-[14px] font-normal text-[#9aa8b2] not-italic">
+                  Sample day
+                </span>
+                <span className="text-[12px] text-[#c0c8cd]">·</span>
+                <span className="font-serif text-[14px] font-normal text-[#9aa8b2] not-italic">
+                  Zion Canyon, Utah
+                </span>
               </div>
 
               {/* Timeline */}
-              <div style={{ padding: "32px 40px" }}>
+              <div className="py-[32px] px-[40px]">
                 {sampleItinerary.map((item, i) => (
-                  <div key={i} style={{
-                    display: "grid",
-                    gridTemplateColumns: "68px 6px 1fr",
-                    gap: 18,
-                    alignItems: "start",
-                    paddingBottom: i < sampleItinerary.length - 1 ? 24 : 0,
-                  }}>
-                    <span style={{
-                      fontFamily: "'Quicksand'",
-                      fontSize: 12, fontWeight: 600,
-                      color: "#9aa8b2",
-                      letterSpacing: "0.06em",
-                      paddingTop: 2,
-                      textAlign: "right",
-                    }}>{item.time}</span>
+                  <div
+                    key={i}
+                    className="grid grid-cols-[68px_6px_1fr] gap-[18px] items-start"
+                    style={{ paddingBottom: i < sampleItinerary.length - 1 ? 24 : 0 }}
+                  >
+                    <span className="font-body text-[12px] font-semibold text-[#9aa8b2] tracking-[0.06em] pt-[2px] text-right">
+                      {item.time}
+                    </span>
 
-                    <div style={{
-                      display: "flex", flexDirection: "column",
-                      alignItems: "center", paddingTop: 5,
-                    }}>
-                      <div style={{
-                        width: 6, height: 6, borderRadius: "50%",
-                        background: item.color, flexShrink: 0,
-                      }} />
+                    <div className="flex flex-col items-center pt-[5px]">
+                      <div
+                        className="w-[6px] h-[6px] rounded-full shrink-0"
+                        style={{ background: item.color }}
+                      />
                       {i < sampleItinerary.length - 1 && (
-                        <div style={{
-                          width: 1, flex: 1, minHeight: 20,
-                          background: `linear-gradient(to bottom, ${item.color}40, ${sampleItinerary[i+1].color}40)`,
-                        }} />
+                        <div
+                          className="w-px flex-1 min-h-[20px]"
+                          style={{
+                            background: `linear-gradient(to bottom, ${item.color}40, ${sampleItinerary[i+1].color}40)`,
+                          }}
+                        />
                       )}
                     </div>
 
-                    <span style={{
-                      fontFamily: "'Quicksand'",
-                      fontSize: 14, fontWeight: 400,
-                      color: C.darkInk, lineHeight: 1.6,
-                    }}>{item.title}</span>
+                    <span className="font-body text-[14px] font-normal text-dark-ink leading-[1.6]">
+                      {item.title}
+                    </span>
                   </div>
                 ))}
               </div>
 
               {/* Thread legend */}
-              <div style={{
-                padding: "20px 40px",
-                borderTop: `1px solid ${C.stone || '#e0dbd4'}`,
-                display: "flex", gap: 24, flexWrap: "wrap",
-              }}>
+              <div className="py-[20px] px-[40px] border-t border-stone flex gap-6 flex-wrap">
                 {[
                   { name: "Sacred Terrain", color: "#7DB8A0" },
                   { name: "Ancient Practices", color: "#D4A853" },
                   { name: "Elemental Encounters", color: "#6BA4B8" },
                 ].map(t => (
-                  <div key={t.name} style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                    <div style={{ width: 6, height: 6, borderRadius: "50%", background: t.color }} />
-                    <span style={{
-                      fontFamily: "'Quicksand'",
-                      fontSize: 11, fontWeight: 600,
-                      letterSpacing: "0.12em", textTransform: "uppercase",
-                      color: "#9aa8b2",
-                    }}>{t.name}</span>
+                  <div key={t.name} className="flex items-center gap-2">
+                    <div
+                      className="w-[6px] h-[6px] rounded-full"
+                      style={{ background: t.color }}
+                    />
+                    <span className="font-body text-[11px] font-semibold tracking-[0.12em] uppercase text-[#9aa8b2]">
+                      {t.name}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -174,35 +138,24 @@ export default function HowItWorksPage() {
       </section>
 
       {/* ══ UPCOMING GROUP TRIPS ═════════════════════════════════════════ */}
-      <section id="upcoming" style={{ padding: "80px 52px", background: C.cream }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+      <section id="upcoming" className="py-[80px] px-[52px] bg-cream">
+        <div className="max-w-[1100px] mx-auto">
           <FadeIn>
-            <div style={{ marginBottom: 40 }}>
-              <span style={{
-                fontFamily: "'Quicksand'", fontSize: 11, fontWeight: 700,
-                letterSpacing: "0.22em", textTransform: "uppercase",
-                color: C.sunSalmon, display: "block", marginBottom: 12,
-              }}>Upcoming Experiences</span>
-              <h2 style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontSize: "clamp(28px, 4vw, 42px)", fontWeight: 300,
-                color: C.darkInk, marginBottom: 16,
-              }}>Tuned to Earth Rhythms</h2>
-              <p style={{
-                fontFamily: "'Quicksand'", fontSize: 15, color: "#5a6a78",
-                lineHeight: 1.8, maxWidth: 580,
-              }}>
+            <div className="mb-[40px]">
+              <span className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-sun-salmon block mb-3">
+                Upcoming Experiences
+              </span>
+              <h2 className="font-serif text-[clamp(28px,4vw,42px)] font-light text-dark-ink mb-4">
+                Tuned to Earth Rhythms
+              </h2>
+              <p className="font-body text-[15px] text-[#5a6a78] leading-[1.8] max-w-[580px]">
                 Journeys timed to equinoxes, solstices, and seasonal turning points —
                 when a place crosses into its most powerful window.
               </p>
             </div>
           </FadeIn>
 
-          <div className="trips-grid" style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gap: 28,
-          }}>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[28px]">
             {allTrips.slice(0, 3).map((trip, i) => (
               <FadeIn key={trip.slug} delay={i * 0.1}>
                 <TripCard trip={trip} />
@@ -211,7 +164,7 @@ export default function HowItWorksPage() {
           </div>
 
           <FadeIn delay={0.3}>
-            <div style={{ marginTop: 36 }}>
+            <div className="mt-[36px]">
               <Link to="/group-trips" className="underline-link" onClick={() => trackEvent('offering_cta_clicked', { offering: 'view_all_trips' })}>View All Trips</Link>
             </div>
           </FadeIn>
@@ -219,18 +172,14 @@ export default function HowItWorksPage() {
       </section>
 
       {/* ══ BOTTOM CTA ═══════════════════════════════════════════════════════ */}
-      <section style={{ padding: "0 52px 80px", background: C.cream }}>
-        <div style={{ maxWidth: 900, margin: "0 auto" }}>
+      <section className="pt-0 px-[52px] pb-[80px] bg-cream">
+        <div className="max-w-[900px] mx-auto">
           <FadeIn delay={0.2}>
-            <div style={{
-              padding: "48px 40px",
-              background: C.darkInk, textAlign: "center",
-            }}>
-              <span className="eyebrow" style={{ color: C.skyBlue }}>Not sure where to start?</span>
-              <h3 style={{
-                fontFamily: "'Quicksand', sans-serif",
-                fontSize: "clamp(22px, 3vw, 32px)", fontWeight: 300, color: "white", marginBottom: 20,
-              }}>Pick a destination. The guide is free.</h3>
+            <div className="py-[48px] px-[40px] bg-dark-ink text-center">
+              <span className="eyebrow text-sky-blue">Not sure where to start?</span>
+              <h3 className="font-body text-[clamp(22px,3vw,32px)] font-light text-white mb-5">
+                Pick a destination. The guide is free.
+              </h3>
               <Link to="/destinations" className="underline-link underline-link-light" onClick={() => trackEvent('offering_cta_clicked', { offering: 'explore_destinations' })}>Explore Destinations</Link>
             </div>
           </FadeIn>
@@ -238,15 +187,6 @@ export default function HowItWorksPage() {
       </section>
 
       <Footer />
-
-      <style>{`
-        @media (max-width: 900px) {
-          .trips-grid { grid-template-columns: repeat(2, 1fr) !important; }
-        }
-        @media (max-width: 600px) {
-          .trips-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
-        }
-      `}</style>
     </>
   );
 }

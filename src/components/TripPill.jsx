@@ -1,16 +1,7 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { C as BrandC } from '@data/brand';
 
-const C = {
-  slate: BrandC.darkInk,
-  ink:   '#1E2825',
-  white: '#FFFFFF',
-};
-
-const F = "'Quicksand', sans-serif";
-
-const ArrowIcon = ({ size = 12, color = C.white }) => (
+const ArrowIcon = ({ size = 12, color = '#FFFFFF' }) => (
   <svg width={size} height={size} viewBox="0 0 16 16" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M3 8h10" /><path d="M9 4l4 4-4 4" />
   </svg>
@@ -35,23 +26,12 @@ export default function TripPill() {
   if (!trip) return null;
 
   return (
-    <button onClick={() => navigate(trip.path)} style={{
-      position: 'fixed', bottom: 24, right: 24, zIndex: 150,
-      display: 'flex', alignItems: 'center', gap: 7,
-      padding: '10px 18px', borderRadius: 24,
-      background: C.slate, color: C.white,
-      border: 'none', cursor: 'pointer',
-      fontFamily: F, fontSize: 13, fontWeight: 600,
-      letterSpacing: '0.04em',
-      boxShadow: `0 4px 20px ${C.ink}25`,
-      WebkitTapHighlightColor: 'transparent',
-      transition: 'transform 0.2s, box-shadow 0.2s',
-    }}
-    onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.boxShadow = `0 6px 24px ${C.ink}30`; }}
-    onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = `0 4px 20px ${C.ink}25`; }}
+    <button
+      onClick={() => navigate(trip.path)}
+      className="fixed bottom-6 right-6 z-[150] flex items-center gap-[7px] px-[18px] py-2.5 rounded-3xl bg-dark-ink text-white border-none cursor-pointer font-body text-[13px] font-semibold tracking-[0.04em] shadow-[0_4px_20px_rgba(30,40,37,0.15)] hover:-translate-y-px hover:shadow-[0_6px_24px_rgba(30,40,37,0.19)] transition-[transform,box-shadow] duration-200"
     >
       Trip in Progress
-      <ArrowIcon size={12} color={C.white} />
+      <ArrowIcon size={12} />
     </button>
   );
 }
