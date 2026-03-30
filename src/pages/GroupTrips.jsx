@@ -7,14 +7,17 @@
 //
 // ═══════════════════════════════════════════════════════════════════════════════
 
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Nav, Footer, FadeIn, PageHeader } from '@components';
+import { Nav, Footer, FadeIn, PageHeader, ExpressInterestModal } from '@components';
 import TripCard from '@components/TripCard';
 import { C } from '@data/brand';
 import { allTrips } from '@data/trips';
 import { trackEvent } from '@utils/analytics';
 
 export default function GroupTrips() {
+  const [interestTrip, setInterestTrip] = useState(null);
+
   return (
     <>
       <Nav />
@@ -38,10 +41,21 @@ export default function GroupTrips() {
                   <div className="pointer-events-none opacity-75 h-full">
                     <TripCard trip={trip} />
                   </div>
-                  {/* Coming Soon badge */}
-                  <div className="absolute top-3.5 right-3.5 z-2 font-body text-[10px] font-bold tracking-[0.18em] uppercase text-dark-ink bg-white/92 backdrop-blur-[8px] py-[5px] px-3">
-                    Coming Soon
+                  {/* In Dev badge */}
+                  <div className="absolute top-3.5 right-3.5 z-2 font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[#aab0b8] border border-[#d0d5d9] bg-white/92 backdrop-blur-[8px] py-[5px] px-3">
+                    In Dev
                   </div>
+                  {/* Express Interest CTA */}
+                  <button
+                    onClick={() => {
+                      trackEvent('express_interest_clicked', { trip_slug: trip.slug });
+                      setInterestTrip(trip);
+                    }}
+                    className="absolute bottom-5 left-6 right-6 z-2 font-body text-[10px] font-bold tracking-[0.18em] uppercase text-white border-none cursor-pointer py-2.5 px-4 transition-opacity duration-200 hover:opacity-85 pointer-events-auto"
+                    style={{ background: trip.color }}
+                  >
+                    Express Interest
+                  </button>
                 </div>
               </FadeIn>
             ))}
@@ -64,6 +78,13 @@ export default function GroupTrips() {
           </Link>
         </FadeIn>
       </section>
+
+      <ExpressInterestModal
+        open={!!interestTrip}
+        onClose={() => setInterestTrip(null)}
+        tripTitle={interestTrip?.title}
+        tripLocation={interestTrip?.location}
+      />
 
       <Footer />
     </>
