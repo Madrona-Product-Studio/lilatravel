@@ -868,15 +868,11 @@ export default function BigSurGuide() {
               <p className="font-body text-[clamp(14px,1.8vw,15px)] leading-[1.8] font-normal text-[#4A5650] mt-0 mb-7">
                 {"What Big Sur asks of you is presence. The road is too narrow and winding for distraction. The vistas demand pause. The fog that rolls in most mornings burns off by noon, and when it does, the light on the water is unrepeatable."}
               </p>
-              <p className="font-serif italic text-[clamp(14px,1.8vw,15px)] leading-[1.8] my-8 pl-4"
-                style={{ color: C.oceanTeal, borderLeft: `1.5px solid ${C.oceanTeal}` }}>
-                {"◈ The place has gravity."}
-              </p>
             </FadeIn>
 
             {/* ── At a Glance ── */}
             <FadeIn delay={0.06}>
-              <div className="grid grid-cols-[repeat(auto-fit,minmax(130px,1fr))] gap-3 md:gap-4 p-4 md:p-5 bg-cream mb-5">
+              <div className="grid grid-cols-[repeat(auto-fit,minmax(130px,1fr))] gap-3 md:gap-4 p-4 md:p-5 bg-cream mb-3">
                 {[
                   { l: "Recommended", v: "3–5 days" },
                   { l: "Nearest Airport", v: "Monterey (MRY) or SFO" },
@@ -896,7 +892,7 @@ export default function BigSurGuide() {
           {/* ================================================================ */}
           {/* THE LAND                                                          */}
           {/* ================================================================ */}
-          <section id="the-land" className="scroll-mt-[126px] pb-11">
+          <section id="the-land" className="scroll-mt-[126px] pt-2 pb-11">
             <FadeIn>
               <div className="flex items-center gap-2.5 mb-4">
                 <div className="w-5 h-px" style={{ background: ACCENT }} />

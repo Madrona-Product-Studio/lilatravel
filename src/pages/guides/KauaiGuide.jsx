@@ -856,15 +856,11 @@ export default function KauaiGuide() {
               <p className="font-body text-[clamp(14px,1.8vw,15px)] leading-[1.8] font-normal text-[#4A5650] mt-0 mb-7">
                 {"The Hawaiian people have called Kauaʻi home for over 1,500 years. Place names carry history: Hanalei means \"crescent bay\"; Waimea means \"reddish water\"; Poipū is a place of crashing waves. The island avoided many of the worst impacts of tourism development through a building-height ordinance — no structure taller than a palm tree — and through active Native Hawaiian advocacy. That restraint shapes what Kauaʻi still is."}
               </p>
-              <p className="font-serif italic text-[clamp(14px,1.8vw,15px)] leading-[1.8] my-8 pl-4"
-                style={{ color: C.oceanTeal, borderLeft: `1.5px solid ${C.oceanTeal}` }}>
-                {"◈ The oldest island — worn into shapes the others haven't had time to become."}
-              </p>
             </FadeIn>
 
             {/* ── At a Glance ── */}
             <FadeIn delay={0.06}>
-              <div className="grid grid-cols-[repeat(auto-fit,minmax(130px,1fr))] gap-3 md:gap-4 p-4 md:p-5 bg-cream mb-5">
+              <div className="grid grid-cols-[repeat(auto-fit,minmax(130px,1fr))] gap-3 md:gap-4 p-4 md:p-5 bg-cream mb-3">
                 {[
                   { l: "Recommended", v: "5–7 days" },
                   { l: "Nearest Airport", v: "Lihue (LIH)" },
@@ -884,7 +880,7 @@ export default function KauaiGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* THE LAND                                                      */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="the-land" className="scroll-mt-[126px] pb-11">
+          <section id="the-land" className="scroll-mt-[126px] pt-2 pb-11">
             <FadeIn>
               <div className="flex items-center gap-2.5 mb-4">
                 <div className="w-5 h-px" style={{ background: ACCENT }} />

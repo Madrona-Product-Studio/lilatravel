@@ -878,15 +878,11 @@ export default function VancouverIslandGuide() {
               <p className="font-body text-[clamp(14px,1.8vw,15px)] leading-[1.8] font-normal text-[#4A5650] mt-0 mb-7">
                 {"Ucluelet sits 40 minutes south — quieter, more weathered, equally compelling. Victoria, at the island's southern tip, is a world apart: architectural, ceremonial, the counterpoint when you want stone buildings and afternoon tea after a week of surf and cedar. Together they make a complete journey."}
               </p>
-              <p className="font-serif italic text-[clamp(14px,1.8vw,15px)] leading-[1.8] my-8 pl-4"
-                style={{ color: C.oceanTeal, borderLeft: `1.5px solid ${C.oceanTeal}` }}>
-                {"◈ A surf town that gets 3,000mm of rain a year — and that's the point."}
-              </p>
             </FadeIn>
 
             {/* ── At a Glance ── */}
             <FadeIn delay={0.06}>
-              <div className="grid grid-cols-[repeat(auto-fit,minmax(130px,1fr))] gap-3 md:gap-4 p-4 md:p-5 bg-cream mb-5">
+              <div className="grid grid-cols-[repeat(auto-fit,minmax(130px,1fr))] gap-3 md:gap-4 p-4 md:p-5 bg-cream mb-3">
                 {[
                   { l: "Recommended", v: "5–8 days" },
                   { l: "Nearest Airport", v: "Victoria (YYJ) or Vancouver (YVR)" },
@@ -906,7 +902,7 @@ export default function VancouverIslandGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* THE LAND                                                      */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="the-land" className="scroll-mt-[126px] pb-11">
+          <section id="the-land" className="scroll-mt-[126px] pt-2 pb-11">
             <FadeIn>
               <div className="flex items-center gap-2.5 mb-4">
                 <div className="w-5 h-px" style={{ background: ACCENT }} />

@@ -1023,15 +1023,11 @@ export default function JoshuaTreeGuide() {
               <p className="font-body text-[clamp(14px,1.8vw,15px)] leading-[1.8] font-normal text-[#4A5650] mt-0 mb-7">
                 {"The surrounding communities each add a distinct layer. The town of Joshua Tree is small, arty, and increasingly a destination in itself. Twentynine Palms is the working town with the quietest skies. Pioneertown was built as a movie set in 1946 and never entirely stopped performing. Palm Springs is 45 minutes south: mid-century architecture, serious spas, a counterpoint when you want polished comfort after days in the dust."}
               </p>
-              <p className="font-serif italic text-[clamp(14px,1.8vw,15px)] leading-[1.8] my-8 pl-4"
-                style={{ color: C.oceanTeal, borderLeft: `1.5px solid ${C.oceanTeal}` }}>
-                {"◈ One of the last truly dark skies in Southern California."}
-              </p>
             </FadeIn>
 
             {/* ── At a Glance ── */}
             <FadeIn delay={0.06}>
-              <div className="grid grid-cols-[repeat(auto-fit,minmax(130px,1fr))] gap-3 md:gap-4 p-4 md:p-5 bg-cream mb-5">
+              <div className="grid grid-cols-[repeat(auto-fit,minmax(130px,1fr))] gap-3 md:gap-4 p-4 md:p-5 bg-cream mb-3">
                 {[
                   { l: "Recommended", v: "3–5 days" },
                   { l: "Nearest Airport", v: "Palm Springs (PSP) or LAX" },
@@ -1051,7 +1047,7 @@ export default function JoshuaTreeGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* THE LAND                                                      */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="the-land" className="scroll-mt-[126px] pb-11">
+          <section id="the-land" className="scroll-mt-[126px] pt-2 pb-11">
             <FadeIn>
               <div className="flex items-center gap-2.5 mb-4">
                 <div className="w-5 h-px" style={{ background: ACCENT }} />

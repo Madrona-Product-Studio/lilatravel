@@ -1427,15 +1427,11 @@ export default function ZionGuide() {
               <p className="font-body text-[clamp(14px,1.8vw,15px)] leading-[1.8] font-normal text-[#4A5650] mt-0 mb-7">
                 This guide covers the full orbit — three parks, three personalities, one continuous landscape. Zion pulls you in. Bryce lifts you up. Capitol Reef reminds you the earth is still becoming.
               </p>
-              <p className="font-serif italic text-[clamp(14px,1.8vw,15px)] leading-[1.8] my-8 pl-4"
-                style={{ color: C.oceanTeal, borderLeft: `1.5px solid ${C.oceanTeal}` }}>
-                {"◈ You stand among these walls of stone and you stop talking."}
-              </p>
             </FadeIn>
 
             {/* ── At a Glance ── */}
             <FadeIn delay={0.06}>
-              <div className="grid grid-cols-[repeat(auto-fit,minmax(130px,1fr))] gap-3 md:gap-4 p-4 md:p-5 bg-cream mb-5">
+              <div className="grid grid-cols-[repeat(auto-fit,minmax(130px,1fr))] gap-3 md:gap-4 p-4 md:p-5 bg-cream mb-3">
                 {[
                   { l: "Recommended", v: "4–7 days" },
                   { l: "Nearest Airport", v: "Las Vegas (LAS)" },
@@ -1455,7 +1451,7 @@ export default function ZionGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* THE LAND                                                      */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="the-land" className="scroll-mt-[126px] pb-11">
+          <section id="the-land" className="scroll-mt-[126px] pt-2 pb-11">
             <FadeIn>
               <div className="flex items-center gap-2.5 mb-4">
                 <div className="w-5 h-px" style={{ background: C.sunSalmon }} />
