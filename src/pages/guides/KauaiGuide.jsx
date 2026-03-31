@@ -499,7 +499,7 @@ const PARKS = [
   },
 ];
 
-function ParkCard({ park, isExpanded, onToggle }) {
+function ParkCard({ park, isExpanded, onToggle, isFirst }) {
   const DESIGNATION_LABELS = {
     "us-national-park": "National Park",
     "canadian-national-park": "National Park Reserve",
@@ -508,67 +508,50 @@ function ParkCard({ park, isExpanded, onToggle }) {
     "national-forest": "National Forest",
     "state-wilderness": "State Wilderness Preserve",
   };
-  const chips = [park.acreage, park.elevation, park.attribute].filter(Boolean);
+  const stats = [park.acreage, park.elevation, park.attribute, park.driveFrom].filter(Boolean);
   return (
-    <div className="mb-1.5 transition-[border-color,background] duration-200"
-      style={{
-        borderLeft: `4px solid ${park.accent}`,
-        border: `1px solid ${isExpanded ? park.accent + "40" : C.stone}`,
-        borderLeftWidth: 4, borderLeftColor: park.accent,
-        background: isExpanded ? `${park.accent}06` : C.cream,
-      }}>
-      <button
-        onClick={onToggle}
-        className="w-full p-3.5 md:px-5 md:py-4 bg-transparent border-none cursor-pointer flex items-center gap-3 text-left"
-      >
-        <div className="flex-1 min-w-0">
-          <div className="flex items-center justify-between mb-1">
-            <div className="font-body text-[10px] font-bold tracking-[0.22em] uppercase"
-              style={{ color: park.accent }}>
-              {DESIGNATION_LABELS[park.designation] || park.designation}{park.established ? ` · Est. ${park.established}` : ""}
-            </div>
-            {!park.isAnchor && park.driveFrom && (
-              <div className="font-body text-[10px] font-semibold tracking-[0.08em] text-[#7A857E]">
-                {park.driveFrom}
+    <div style={{ borderTop: isFirst ? 'none' : `1px solid ${C.stone}` }}>
+      <div className="flex" style={{ minHeight: 0 }}>
+        <div className="shrink-0" style={{ width: 3, background: park.accent }} />
+        <div className="flex-1 min-w-0 py-4 pl-4 pr-1 md:py-5 md:pl-5">
+          <div className="flex items-start justify-between gap-3">
+            <div className="flex-1 min-w-0">
+              <div className="font-body text-[9px] tracking-[0.16em] uppercase text-[#7A857E] mb-1">
+                {DESIGNATION_LABELS[park.designation] || park.designation}{park.established ? ` · Est. ${park.established}` : ""}
               </div>
-            )}
+              <div className="font-serif font-light text-[21px] text-dark-ink leading-[1.2] mb-1.5">{park.name}</div>
+              <p className="font-body text-[13.5px] text-[#4A5650] leading-[1.7] m-0">{park.soul}</p>
+            </div>
+            <div className="shrink-0 pt-4 text-right">
+              <div className="font-body text-[11px] text-[#7A857E] leading-[1.6] whitespace-nowrap">
+                {stats.map((s, i) => <span key={i}>{i > 0 && " · "}{s}</span>)}
+              </div>
+            </div>
           </div>
-          <div className="font-serif text-[clamp(18px,2.5vw,22px)] font-normal text-dark-ink leading-[1.15]"
-            style={{ marginBottom: chips.length ? 8 : 0 }}>{park.name}</div>
-          {chips.length > 0 && (
-            <div className="flex gap-1.5 flex-wrap">
-              {chips.map((chip, i) => (
-                <span key={i} className="font-body text-[11px] font-semibold text-[#4A5650] whitespace-nowrap px-2.5 py-0.5"
-                  style={{ background: `${park.accent}10` }}>{chip}</span>
+          <button
+            onClick={onToggle}
+            className="mt-2.5 bg-transparent border-none cursor-pointer p-0 font-body text-[10px] tracking-[0.12em] uppercase"
+            style={{ color: C.oceanTeal }}>
+            {isExpanded ? "Hide ↑" : "Details ↓"}
+          </button>
+          <div className="overflow-hidden transition-[max-height] duration-400 ease-[cubic-bezier(0.4,0,0.2,1)]"
+            style={{ maxHeight: isExpanded ? 400 : 0 }}>
+            <div className="pt-3">
+              {park.facts.map((fact, i) => (
+                <div key={i} className="flex gap-2 mb-[5px] items-start">
+                  <div className="w-1 h-1 rounded-full opacity-60 mt-[7px] shrink-0" style={{ background: park.accent }} />
+                  <span className="font-body text-[12px] font-normal text-[#4A5650] leading-[1.65]">{fact}</span>
+                </div>
               ))}
+              {park.infoUrl && (
+                <a href={park.infoUrl} target="_blank" rel="noopener noreferrer"
+                  className="inline-block mt-2.5 font-body text-[10px] font-bold tracking-[0.18em] uppercase no-underline"
+                  style={{ color: park.accent }}>
+                  {park.designation === "canadian-national-park" ? "Parks Canada" : park.designation === "us-national-park" ? "NPS Page" : "Park Info"} ↗
+                </a>
+              )}
             </div>
-          )}
-        </div>
-        <div className="flex items-center gap-2 shrink-0">
-          <DesignationIcon designation={park.designation} size={16} color={park.accent} />
-          <span className="inline-block text-[14px] text-[#7A857E] leading-none transition-transform duration-300 ease-in-out"
-            style={{ transform: isExpanded ? "rotate(180deg)" : "rotate(0deg)" }}>▾</span>
-        </div>
-      </button>
-      <div className="overflow-hidden transition-[max-height] duration-400 ease-[cubic-bezier(0.4,0,0.2,1)]"
-        style={{ maxHeight: isExpanded ? 400 : 0 }}>
-        <div className="px-3.5 pb-4 md:px-5 md:pb-[18px]">
-          <div className="font-body text-[13px] font-normal text-[#4A5650] leading-[1.7] italic mb-3 pt-0.5">
-            {"◈ "}{park.soul}
           </div>
-          {park.facts.map((fact, i) => (
-            <div key={i} className="flex gap-2 mb-[5px] items-start">
-              <div className="w-1 h-1 rounded-full opacity-60 mt-[7px] shrink-0" style={{ background: park.accent }} />
-              <span className="font-body text-[12px] font-normal text-[#4A5650] leading-[1.65]">{fact}</span>
-            </div>
-          ))}
-          {park.infoUrl && (
-            <a href={park.infoUrl} target="_blank" rel="noopener noreferrer"
-              className="inline-block mt-2.5 font-body text-[10px] font-bold tracking-[0.18em] uppercase no-underline"
-              style={{ color: park.accent }}>
-              {park.designation === "canadian-national-park" ? "Parks Canada" : park.designation === "us-national-park" ? "NPS Page" : "Park Info"} ↗
-            </a>
-          )}
         </div>
       </div>
     </div>
@@ -879,11 +862,15 @@ export default function KauaiGuide() {
               <p className="font-body text-[clamp(14px,1.8vw,15px)] leading-[1.8] font-normal text-[#4A5650] mt-0 mb-7">
                 {"The Hawaiian people have called Kauaʻi home for over 1,500 years. Place names carry history: Hanalei means \"crescent bay\"; Waimea means \"reddish water\"; Poipū is a place of crashing waves. The island avoided many of the worst impacts of tourism development through a building-height ordinance — no structure taller than a palm tree — and through active Native Hawaiian advocacy. That restraint shapes what Kauaʻi still is."}
               </p>
+              <p className="font-serif italic text-[clamp(14px,1.8vw,15px)] leading-[1.8] my-8 pl-4"
+                style={{ color: C.oceanTeal, borderLeft: `1.5px solid ${C.oceanTeal}` }}>
+                {"◈ The oldest island — worn into shapes the others haven't had time to become."}
+              </p>
             </FadeIn>
 
             {/* ── At a Glance ── */}
             <FadeIn delay={0.06}>
-              <div className="grid grid-cols-[repeat(auto-fit,minmax(130px,1fr))] gap-3 md:gap-4 p-4 md:p-5 bg-cream border border-stone mb-5">
+              <div className="grid grid-cols-[repeat(auto-fit,minmax(130px,1fr))] gap-3 md:gap-4 p-4 md:p-5 bg-cream mb-5">
                 {[
                   { l: "Recommended", v: "5–7 days" },
                   { l: "Nearest Airport", v: "Lihue (LIH)" },
@@ -891,20 +878,32 @@ export default function KauaiGuide() {
                   { l: "Best Times", v: "Apr–Oct" },
                 ].map((s, i) => (
                   <div key={i}>
-                    <div className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-ocean-teal mb-[3px]">{s.l}</div>
-                    <div className="font-body text-[14px] font-semibold text-dark-ink">{s.v}</div>
+                    <div className="font-body text-[11px] tracking-[0.18em] uppercase text-[#7A857E] mb-[3px]">{s.l}</div>
+                    <div className="font-serif font-light text-[22px] text-dark-ink">{s.v}</div>
                   </div>
                 ))}
               </div>
             </FadeIn>
+          </section>
 
-            {/* ── Park Cards ── */}
+
+          {/* ══════════════════════════════════════════════════════════════ */}
+          {/* THE LAND                                                      */}
+          {/* ══════════════════════════════════════════════════════════════ */}
+          <section id="the-land" className="scroll-mt-[126px] pb-11">
+            <FadeIn>
+              <SectionLabel accentColor={ACCENT}>The Land</SectionLabel>
+              <p className="font-body text-[clamp(14px,1.8vw,15px)] leading-[1.8] font-normal text-[#4A5650] mt-0 mb-6">
+                {"Three protected landscapes define Kauaʻi's wild places."}
+              </p>
+            </FadeIn>
             <FadeIn delay={0.08}>
               <div className="mb-1">
-                {PARKS.map(park => (
+                {PARKS.map((park, i) => (
                   <ParkCard
                     key={park.id}
                     park={park}
+                    isFirst={i === 0}
                     isExpanded={expandedPark === park.id}
                     onToggle={() => setExpandedPark(expandedPark === park.id ? null : park.id)}
                   />
