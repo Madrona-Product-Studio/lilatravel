@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import { Nav, Footer, FadeIn, PageHeader } from '@components';
-import { C } from '@data/brand';
+import { Nav, Footer, FadeIn } from '@components';
+import { C, FONTS } from '@data/brand';
 import { ritualsPillars, traditions, ritualsIntro } from '@data/rituals';
 import { trackEvent } from '@utils/analytics';
 import { Helmet } from 'react-helmet-async';
@@ -88,27 +88,146 @@ export default function EthosPage() {
       </Helmet>
       <Nav />
 
-      <PageHeader
-        eyebrow="Our Ethos"
-        title="What makes a Lila trip."
-        subtitle="Every Lila journey is woven from three braids — iconic landscapes that dissolve the ordinary, ancient practices that quiet the noise, and raw elemental encounters that wake you up. Here's how they come together."
-        accentColor={C.goldenAmber}
-      >
-        <div className="flex flex-col md:flex-row gap-6 md:gap-10 mt-8 pt-8 border-t border-stone">
-          {approachBraids.map((b) => (
-            <a
-              key={b.id}
-              href={`#${b.id}`}
-              className="flex items-center gap-3 no-underline transition-opacity duration-300 hover:opacity-60"
-            >
-              <span className="text-xl leading-none" style={{ color: b.color }}>{b.icon}</span>
-              <span className="font-body text-xs font-bold tracking-[0.16em] uppercase text-dark-ink">
-                {b.label}
-              </span>
-            </a>
-          ))}
+      <section style={{ background: C.warmWhite, padding: '80px 28px 60px', position: 'relative' }}>
+        <div style={{ maxWidth: 960, margin: '0 auto' }}>
+          {/* Eyebrow */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20 }}>
+            <div style={{ width: 40, height: 1, background: C.goldenAmber }} />
+            <span style={{
+              fontFamily: FONTS.body,
+              fontSize: 10,
+              letterSpacing: '2.5px',
+              color: C.goldenAmber,
+              fontWeight: 500,
+              textTransform: 'uppercase',
+            }}>
+              OUR ETHOS
+            </span>
+          </div>
+
+          {/* Headline */}
+          <h1 style={{
+            fontFamily: FONTS.serif,
+            fontSize: 'clamp(32px, 6vw, 52px)',
+            fontWeight: 300,
+            color: C.darkInk,
+            lineHeight: 1.1,
+            marginBottom: 12,
+            marginTop: 0,
+          }}>
+            What makes a Lila trip.
+          </h1>
+
+          {/* Intro */}
+          <p style={{
+            fontFamily: FONTS.serif,
+            fontSize: 16,
+            color: C.slate,
+            lineHeight: 1.7,
+            marginBottom: 36,
+            maxWidth: 560,
+            marginTop: 0,
+          }}>
+            Every Lila journey is woven from three braids — iconic landscapes that dissolve
+            the ordinary, ancient practices that quiet the noise, and raw elemental encounters
+            that wake you up.
+          </p>
+
+          {/* Wave SVG */}
+          <svg
+            style={{ display: 'block', width: '100%', marginBottom: 40 }}
+            viewBox="0 0 600 64"
+            preserveAspectRatio="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M 0 22 C 100 22, 150 42, 300 32 C 450 22, 500 10, 600 14"
+              fill="none"
+              stroke={C.oceanTeal}
+              strokeWidth="2.5"
+              opacity="0.8"
+            />
+            <path
+              d="M 0 32 C 100 32, 150 12, 300 22 C 450 32, 500 50, 600 46"
+              fill="none"
+              stroke={C.goldenAmber}
+              strokeWidth="2.5"
+              opacity="0.8"
+            />
+            <path
+              d="M 0 42 C 100 42, 150 58, 300 50 C 450 42, 500 26, 600 30"
+              fill="none"
+              stroke={C.slate}
+              strokeWidth="2.5"
+              opacity="0.8"
+            />
+          </svg>
+
+          {/* Pillar grid */}
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
+            gap: 28,
+          }}>
+            {[
+              {
+                id: 'terrain',
+                name: 'SACRED TERRAIN',
+                color: C.oceanTeal,
+                desc: 'Landscapes that dissolve the ordinary',
+                examples: 'Zion · Big Sur\nKauaʻi · Olympic Peninsula\nVancouver Island · Joshua Tree',
+              },
+              {
+                id: 'practices',
+                name: 'ANCIENT PRACTICES',
+                color: C.goldenAmber,
+                desc: 'Rituals that quiet the noise',
+                examples: 'Yoga · Meditation\nBreathwork · Qi Gong\nStoic reflection · Forest bathing',
+              },
+              {
+                id: 'elemental',
+                name: 'ELEMENTAL ENCOUNTERS',
+                color: C.slate,
+                desc: 'Raw forces that wake you up',
+                examples: 'Storm · Tides · Stars\nCold water · Wind · Fire\nSolstice · Equinox · New moon',
+              },
+            ].map(pillar => (
+              <div key={pillar.id}>
+                <div style={{ height: 3, background: pillar.color, marginBottom: 14 }} />
+                <div style={{
+                  fontFamily: FONTS.body,
+                  fontSize: 9,
+                  letterSpacing: '2px',
+                  fontWeight: 500,
+                  color: pillar.color,
+                  marginBottom: 8,
+                }}>
+                  {pillar.name}
+                </div>
+                <div style={{
+                  fontFamily: FONTS.serif,
+                  fontSize: 16,
+                  fontStyle: 'italic',
+                  color: C.darkInk,
+                  lineHeight: 1.4,
+                  marginBottom: 10,
+                }}>
+                  {pillar.desc}
+                </div>
+                <div style={{
+                  fontFamily: FONTS.serif,
+                  fontSize: 13,
+                  color: C.stone,
+                  lineHeight: 1.7,
+                  whiteSpace: 'pre-line',
+                }}>
+                  {pillar.examples}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
-      </PageHeader>
+      </section>
 
 
       {approachBraids.map((b, bi) => {
