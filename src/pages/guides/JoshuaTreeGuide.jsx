@@ -1175,6 +1175,8 @@ export default function JoshuaTreeGuide() {
                     distance={item.distance}
                     operator={item.operator}
                     light={item.type === 'climb'}
+                    onOpenSheet={openSheet('Move')}
+                    hasNPS={item.type === 'hike' && checkNPS(item.name)}
                   />
                 ))}
               </ExpandableList>
@@ -1212,6 +1214,7 @@ export default function JoshuaTreeGuide() {
                     featured={item.lilaPick}
                     note={item.bookingWindow}
                     tradition={item.tradition}
+                    onOpenSheet={openSheet('Breathe')}
                   />
                 ))}
               </ExpandableList>
@@ -1370,7 +1373,7 @@ export default function JoshuaTreeGuide() {
             <FadeIn delay={0.08}>
               <ExpandableList initialCount={4} label="experiences">
                 {experiences.sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).map(item => (
-                  <ListItem key={item.id} name={item.name} detail={item.highlights?.join('. ')} note={item.hours} tags={item.tags} featured={item.lilaPick} url={item.links?.website} location={item.location} />
+                  <ListItem key={item.id} name={item.name} detail={item.highlights?.join('. ')} note={item.hours} tags={item.tags} featured={item.lilaPick} url={item.links?.website} location={item.location} onOpenSheet={openSheet('Experience')} />
                 ))}
               </ExpandableList>
             </FadeIn>

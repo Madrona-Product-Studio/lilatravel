@@ -1573,6 +1573,8 @@ export default function ZionGuide() {
                     distance={item.distance}
                     operator={item.operator}
                     light={item.type === 'climb'}
+                    onOpenSheet={openSheet('Move')}
+                    hasNPS={item.type === 'hike' && checkNPS(item.name)}
                   />
                 ))}
               </ExpandableList>
@@ -1610,6 +1612,7 @@ export default function ZionGuide() {
                     featured={item.lilaPick}
                     note={item.bookingWindow}
                     tradition={item.tradition}
+                    onOpenSheet={openSheet('Breathe')}
                   />
                 ))}
               </ExpandableList>
@@ -1739,6 +1742,7 @@ export default function ZionGuide() {
                     featured={item.lilaPick}
                     url={item.links?.website}
                     location={item.location}
+                    onOpenSheet={openSheet('Experience')}
                   />
                 ))}
               </ExpandableList>

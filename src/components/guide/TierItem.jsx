@@ -1,28 +1,24 @@
 import { C } from '@data/brand';
 
+function NPSArrowhead({ size = 14, color = "#2D5F2B" }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <path d="M12 2L4 22h3l5-11 5 11h3L12 2z" fill={color} opacity="0.85" />
+      <circle cx="12" cy="16" r="2.5" fill={color} opacity="0.6" />
+    </svg>
+  );
+}
+
 /**
  * TierItem — reusable tier-tagged card for Breathe, Move, and Sleep sections.
  * Follows the exact same visual pattern as StayItem in the guide pages.
- *
- * @param {string} name
- * @param {string} location
- * @param {string} tier - e.g. "practice", "soak", "restore", "hike", "water", "ride", "climb"
- * @param {object} tierStyles - { [tier]: { color, label, bg } }
- * @param {string} detail - joined highlights or description
- * @param {string[]} tags
- * @param {string} url
- * @param {boolean} featured - drives Lila Pick badge
- * @param {string} note - optional (hours, booking window, etc.)
- * @param {string} tradition - optional yoga tradition tag
- * @param {string} duration - optional
- * @param {string} distance - optional
- * @param {string} operator - optional
- * @param {boolean} light - if true, renders lighter card (Climb pattern)
  */
-export default function TierItem({ name, location, tier, tierStyles, detail, tags, url, featured, note, tradition, duration, distance, operator, light }) {
+export default function TierItem({ name, location, tier, tierStyles, detail, tags, url, featured, note, tradition, duration, distance, operator, light, onOpenSheet, hasNPS, sheetData }) {
   const s = tierStyles[tier] || Object.values(tierStyles)[0];
 
-  const nameEl = url ? (
+  const nameEl = onOpenSheet ? (
+    <span className="font-body text-[15px] font-semibold text-dark-ink">{name}</span>
+  ) : url ? (
     <a href={url} target="_blank" rel="noopener noreferrer"
       className="font-body text-[15px] font-semibold text-dark-ink no-underline transition-[border-color] duration-200"
       style={{ borderBottom: `1px solid ${C.stone}` }}
@@ -37,7 +33,12 @@ export default function TierItem({ name, location, tier, tierStyles, detail, tag
 
   if (light) {
     return (
-      <div className="flex flex-col md:flex-row items-start md:items-center gap-3.5 py-4 border-b border-stone">
+      <div
+        onClick={onOpenSheet ? () => onOpenSheet(sheetData || { type: 'list', name, detail, tags, featured, url, location }) : undefined}
+        className={`flex flex-col md:flex-row items-start md:items-center gap-3.5 py-4 border-b border-stone ${onOpenSheet ? 'cursor-pointer transition-[background] duration-150' : ''}`}
+        onMouseEnter={onOpenSheet ? e => { e.currentTarget.style.background = `${C.stone}30`; } : undefined}
+        onMouseLeave={onOpenSheet ? e => { e.currentTarget.style.background = 'transparent'; } : undefined}
+      >
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 flex-wrap mb-[3px]">
             {nameEl}
@@ -62,7 +63,12 @@ export default function TierItem({ name, location, tier, tierStyles, detail, tag
   }
 
   return (
-    <div className="flex flex-col md:flex-row items-stretch md:items-center gap-3.5 py-[18px] border-b border-stone">
+    <div
+      onClick={onOpenSheet ? () => onOpenSheet(sheetData || { type: 'list', name, detail, note, tags, featured, url, location }) : undefined}
+      className={`flex flex-col md:flex-row items-stretch md:items-center gap-3.5 py-[18px] border-b border-stone ${onOpenSheet ? 'cursor-pointer transition-[background] duration-150' : ''}`}
+      onMouseEnter={onOpenSheet ? e => { e.currentTarget.style.background = `${C.stone}30`; } : undefined}
+      onMouseLeave={onOpenSheet ? e => { e.currentTarget.style.background = 'transparent'; } : undefined}
+    >
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2 mb-[3px] flex-wrap">
           <span className="font-body text-[10px] font-bold tracking-[0.18em] uppercase px-2.5 py-0.5"
@@ -71,6 +77,12 @@ export default function TierItem({ name, location, tier, tierStyles, detail, tag
           {featured && (
             <span className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-sun-salmon px-2.5 py-0.5"
               style={{ border: `1px solid ${C.sunSalmon}40` }}>{"Lila Pick"}</span>
+          )}
+          {hasNPS && (
+            <span className="inline-flex items-center gap-1 font-body text-[9px] font-bold tracking-[0.14em] uppercase text-[#2D5F2B] px-2 py-0.5"
+              style={{ background: "#2D5F2B10" }}>
+              <NPSArrowhead size={10} />NPS
+            </span>
           )}
         </div>
         <div className="mb-[3px]">{nameEl}</div>

@@ -1013,6 +1013,7 @@ export default function VancouverIslandGuide() {
                     duration={item.duration}
                     distance={item.distance}
                     operator={item.operator}
+                    onOpenSheet={openSheet('Move')}
                   />
                 ))}
               </ExpandableList>
@@ -1050,6 +1051,7 @@ export default function VancouverIslandGuide() {
                     featured={item.lilaPick}
                     note={item.bookingWindow}
                     tradition={item.tradition}
+                    onOpenSheet={openSheet('Breathe')}
                   />
                 ))}
               </ExpandableList>
@@ -1177,6 +1179,7 @@ export default function VancouverIslandGuide() {
                     featured={item.lilaPick}
                     url={item.links?.website}
                     location={item.location}
+                    onOpenSheet={openSheet('Experience')}
                   />
                 ))}
               </ExpandableList>

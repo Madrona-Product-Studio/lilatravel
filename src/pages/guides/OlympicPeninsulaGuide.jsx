@@ -1109,6 +1109,8 @@ export default function OlympicPeninsulaGuide() {
                     duration={item.duration}
                     distance={item.distance}
                     operator={item.operator}
+                    onOpenSheet={openSheet('Move')}
+                    hasNPS={item.type === 'hike' && checkNPS(item.name)}
                   />
                 ))}
               </ExpandableList>
@@ -1146,6 +1148,7 @@ export default function OlympicPeninsulaGuide() {
                     featured={item.lilaPick}
                     note={item.bookingWindow}
                     tradition={item.tradition}
+                    onOpenSheet={openSheet('Breathe')}
                   />
                 ))}
               </ExpandableList>
@@ -1257,6 +1260,7 @@ export default function OlympicPeninsulaGuide() {
                     featured={item.lilaPick}
                     url={item.links?.website}
                     location={item.location}
+                    onOpenSheet={openSheet('Experience')}
                   />
                 ))}
               </ExpandableList>
