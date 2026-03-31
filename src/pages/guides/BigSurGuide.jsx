@@ -12,7 +12,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { Nav, Footer, FadeIn, WhisperBar } from '@components';
-import { SectionLabel, SectionTitle, SectionSub, Divider, SectionIcon } from '@components/guide';
+import { SectionLabel, SectionTitle, SectionSub, Divider, SectionIcon, TierItem, TierLegend } from '@components/guide';
 import { C } from '@data/brand';
 import { P } from '@data/photos';
 import { trackEvent } from '@utils/analytics';
@@ -20,6 +20,9 @@ import { CelestialDrawer } from '@components';
 import { Helmet } from 'react-helmet-async';
 import accommodations from '../../data/accommodations/big-sur.json';
 import restaurants from '../../data/restaurants/big-sur-eat.json';
+import experiences from '../../data/restaurants/big-sur-experience.json';
+import breatheItems from '../../data/restaurants/big-sur-breathe.json';
+import moveItems from '../../data/restaurants/big-sur-move.json';
 import { BREATH_CONFIG } from '@data/breathConfig';
 import useBreathCanvas from '@hooks/useBreathCanvas';
 
@@ -521,17 +524,44 @@ function ParkCard({ park, isExpanded, onToggle }) {
 }
 
 
+// --- Tier constants (Move / Breathe) ------------------------------------------
+
+const MOVE_TIERS = {
+  hike:  { color: '#e8e2d9', label: 'Hike',  bg: '#e8e2d918' },
+  water: { color: '#7BB8D4', label: 'Water', bg: '#7BB8D415' },
+  ride:  { color: '#D4A853', label: 'Ride',  bg: '#D4A85315' },
+};
+
+const MOVE_TIER_META = {
+  hike:  { label: 'Hike',  desc: 'On foot',          color: '#8a8078' },
+  water: { label: 'Water', desc: 'Surf & paddle',    color: '#7BB8D4' },
+  ride:  { label: 'Ride',  desc: 'Cycle & roll',     color: '#D4A853' },
+};
+const moveLegend = [...new Set(moveItems.map(i => i.moveTier))].map(t => MOVE_TIER_META[t]);
+
+const BREATHE_TIERS = {
+  practice: { color: '#4A9B9F', label: 'Practice', bg: '#4A9B9F15' },
+  soak:     { color: '#7BB8D4', label: 'Soak',     bg: '#7BB8D415' },
+  restore:  { color: '#7BB8A0', label: 'Restore',  bg: '#7BB8A015' },
+};
+const BREATHE_LEGEND = [
+  { label: 'Practice', desc: 'In the tradition', color: '#4A9B9F' },
+  { label: 'Soak',     desc: 'Water & heat',     color: '#7BB8D4' },
+  { label: 'Restore',  desc: 'Integration',      color: '#7BB8A0' },
+];
+
 // --- Guide Section Navigation (sticky anchor bar) ----------------------------
 
 const GUIDE_SECTIONS = [
   { id: "sense-of-place", label: "Sense of Place" },
   { id: "when-to-go",     label: "Magic Windows" },
   { id: "tread-lightly",  label: "Tread Lightly" },
-  { id: "where-to-stay",  label: "Sleep" },
-  { id: "trails",         label: "Move" },
+  { id: "move",           label: "Move" },
   { id: "wellness",       label: "Breathe" },
   { id: "light-sky",      label: "Night Sky" },
-  { id: "food-culture",   label: "Food & Culture" },
+  { id: "eat",            label: "Eat" },
+  { id: "experience",     label: "Experience" },
+  { id: "where-to-stay",  label: "Sleep" },
   { id: "give-back",      label: "Give Back" },
 ];
 
@@ -875,141 +905,38 @@ export default function BigSurGuide() {
           <Divider />
 
           {/* ================================================================ */}
-          {/* STAY                                                              */}
+          {/* MOVE                                                              */}
           {/* ================================================================ */}
-          <section id="where-to-stay" className="scroll-mt-[126px] py-11">
-            <FadeIn>
-              <SectionIcon type="stay" color={ACCENT} />
-              <SectionLabel accentColor={ACCENT}>Sleep</SectionLabel>
-              <SectionTitle>Where to sleep</SectionTitle>
-              <SectionSub>{"How you inhabit a place matters. From clifftop campgrounds above the Pacific to the most acclaimed hotel on the California coast."}</SectionSub>
-            </FadeIn>
-
-            <FadeIn delay={0.05}>
-              <div className="p-3.5 px-4 bg-cream border border-stone mb-5 flex flex-col md:flex-row gap-2.5 md:gap-4 flex-wrap">
-                {[
-                  { label: "Elemental", desc: "In the landscape", color: C.seaGlass },
-                  { label: "Rooted", desc: "Boutique, local", color: C.seaGlass },
-                  { label: "Premium", desc: "Elevated experience", color: C.goldenAmber },
-                ].map((t, i) => (
-                  <div key={i} className="flex-none md:flex-[1_1_140px]">
-                    <span className="font-body text-[12px] font-bold tracking-[0.1em]" style={{ color: t.color }}>{t.label}</span>
-                    <span className="font-body text-[13px] font-normal text-[#4A5650] ml-1.5">{t.desc}</span>
-                  </div>
-                ))}
-              </div>
-            </FadeIn>
-
-            <div>
-              <ExpandableList initialCount={5} label="places to stay">
-                {sortByTierDiversity(accommodations.filter(a => !a.corridor)).map(a => (
-                  <StayItem
-                    key={a.id}
-                    name={a.name}
-                    location={a.location}
-                    tier={a.stayStyle}
-                    detail={a.highlights?.join('. ')}
-                    tags={a.tags}
-                    url={a.links?.booking || a.links?.website}
-                    featured={a.lilaPick}
-                    onOpenSheet={setActiveSheet}
-                    priceRange={a.priceRange}
-                    amenities={a.amenities}
-                    bookingWindow={a.bookingWindow}
-                    seasonalNotes={a.seasonalNotes}
-                    groupFit={a.groupFit}
-                  />
-                ))}
-              </ExpandableList>
-            </div>
-          </section>
-
-
-          <Divider />
-
-          {/* ================================================================ */}
-          {/* TRAILS                                                            */}
-          {/* ================================================================ */}
-          <section id="trails" className="scroll-mt-[126px] py-11">
+          <section id="move" className="scroll-mt-[126px] py-11">
             <FadeIn>
               <SectionIcon type="move" color={ACCENT} />
               <SectionLabel accentColor={ACCENT}>Move</SectionLabel>
-              <SectionTitle>{"Trails, coast & redwoods"}</SectionTitle>
-              <SectionSub>{"From the waterfalls of Julia Pfeiffer Burns to the ancient cypress groves of Point Lobos. Every trail here earns its reputation."}</SectionSub>
+              <SectionTitle>{"Coastal trails, sea kayaking & road cycling"}</SectionTitle>
+              <SectionSub>{"Coastal trails, sea kayaking, and world-class road cycling."}</SectionSub>
             </FadeIn>
-
-            {/* -- Iconic Hikes -- */}
-            <FadeIn delay={0.06}>
-              <div className="mb-2">
-                <div className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-sea-glass mb-4">{"Signature Hikes"}</div>
-                <ListItem onOpenSheet={openSheet('Trails')} name="McWay Falls Overlook Trail" featured
-                  detail={"The most iconic single image in Big Sur — an 80-foot waterfall cascading directly onto the beach of a protected cove, with turquoise water and an arch of eroded rock. The overlook is wheelchair-accessible from the Julia Pfeiffer Burns parking lot. Short, essential."}
-                  note="0.5 mi RT · Easy · 20–30 min"
-                  tags={["Julia Pfeiffer Burns SP", "Waterfall", "Wheelchair Accessible"]} />
-                <ListItem onOpenSheet={openSheet('Trails')} name="Partington Cove Trail"
-                  detail={"A hike down to a hidden rocky cove through a hand-carved tunnel in the cliffside. The tunnel was built by John Partington in the 1880s to haul out tanbark. The cove itself is dramatic: surging water, sea caves, a small footbridge. Short but memorable."}
-                  note="1.1 mi RT · Easy-Moderate · 45 min"
-                  tags={["Sea Caves", "History", "Photography"]} />
-                <ListItem onOpenSheet={openSheet('Trails')} name="Pfeiffer Falls & Valley View Trail" featured
-                  detail={"The definitive redwood hike in Big Sur. The trail winds through coastal redwoods along Pfeiffer Big Sur Creek to a 60-foot waterfall, then climbs to a viewpoint overlooking the Big Sur Valley and Point Sur. Best after significant rainfall."}
-                  note="2 mi RT · 500 ft gain · Easy-Moderate · 1.5–2 hrs"
-                  tags={["Redwoods", "Waterfall", "Valley View"]} />
-                <ListItem onOpenSheet={openSheet('Trails')} name="Tanbark Trail & Tin House Loop" featured
-                  detail={"The hardest hike in this guide and the most rewarding. The loop climbs steeply through redwood canyons and chaparral to the ruins of the Tin House — an old homestead with 360-degree views of the Big Sur coastline stretching in both directions. 2,000+ feet of elevation gain."}
-                  note="6.4 mi loop · 2,000 ft gain · Strenuous · 4–5 hrs"
-                  tags={["Ridge Views", "Strenuous", "Oct–May Best"]} />
-              </div>
+            <FadeIn delay={0.05}>
+              <TierLegend tiers={moveLegend} />
             </FadeIn>
-
-            {/* -- Coastal Walks -- */}
-            <FadeIn delay={0.1}>
-              <div className="mt-7 mb-2">
-                <div className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-sea-glass mb-4">{"Coastal Walks & Bluffs"}</div>
-                <ListItem onOpenSheet={openSheet('Trails')} name="Soberanes Point & Whale Peak" featured
-                  detail={"A coastal bluff loop with sweeping Pacific views and strong wildlife potential — sea otters, seals, and migrating whales visible from the trail. Soberanes Point is considered one of the best photography locations on the coast. Parking is roadside on Highway 1."}
-                  note="1.8 mi loop · 300 ft gain · Easy-Moderate · 1–1.5 hrs"
-                  tags={["Garrapata SP", "Whale Watching", "Photography"]} />
-                <ListItem onOpenSheet={openSheet('Trails')} name="Creamery Meadow / Bluffs / Panorama Loop"
-                  detail={"The most complete single-day experience in Big Sur — meadows, coastal bluffs, redwood canyons, and a remote beach. River crossing required when seasonal footbridge is out (fall through mid-June). Panoramic views from the Ridge Trail stretch up and down the coast."}
-                  note="8 mi loop · ~1,000 ft gain · Moderate-Strenuous · 4–5 hrs"
-                  tags={["Andrew Molera SP", "Full Day", "Check Bridge Status"]} />
-                <ListItem onOpenSheet={openSheet('Trails')} name="Buzzard's Roost Trail"
-                  detail={"A local favorite for sunset. The lollipop loop climbs through tan oaks and redwoods to a ridge viewpoint overlooking the Pacific. Less crowded than coastal trails; deeply wooded and quiet until the summit."}
-                  note="2.6 mi · ~700 ft gain · Moderate · 1.5–2 hrs"
-                  tags={["Pfeiffer Big Sur SP", "Sunset", "Solitude"]} />
-              </div>
-            </FadeIn>
-
-            {/* -- Point Lobos -- */}
-            <FadeIn delay={0.14}>
-              <div className="mt-7 mb-2">
-                <div className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-sea-glass mb-4">{"Point Lobos State Natural Reserve"}</div>
-                <ListItem onOpenSheet={openSheet('Trails')} name="Cypress Grove Trail" featured
-                  detail={"One of only two remaining native Monterey cypress forests on Earth — gnarled, wind-sculpted trees growing from clifftop rocks above a crashing sea. Wildlife at every turn: otters in the coves, cormorants on the rocks, sea lions audible from the water. A short loop with outsized power."}
-                  note="0.8 mi loop · Easy · 30–45 min"
-                  tags={["Monterey Cypress", "Wildlife", "Photography"]} />
-                <ListItem onOpenSheet={openSheet('Trails')} name="Bird Island Trail (China Cove)"
-                  detail={"The trail to China Cove — the most photographed spot in Point Lobos. The cove is a deep emerald bowl of water framed by white cliffs. The trail also passes Pelican Point with long coastal views south toward Big Sur."}
-                  note="0.8 mi RT · Easy · 30 min"
-                  tags={["China Cove", "Photography", "Emerald Water"]} />
-                <ListItem onOpenSheet={openSheet('Trails')} name="South Shore Trail"
-                  detail={"The longer coastal route through the reserve, connecting Hidden Beach and Weston Beach (excellent tide pools) along a rugged south-facing shoreline. Combine with Cypress Grove for a half-day loop."}
-                  note="2.6 mi RT · Easy-Moderate · 1.5 hrs"
-                  tags={["Tide Pools", "Wildlife", "Half-Day Loop"]} />
-              </div>
-            </FadeIn>
-
-            {/* -- Scenic Drives -- */}
-            <FadeIn delay={0.18}>
-              <div className="mt-7">
-                <div className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-sea-glass mb-4">Scenic Drives</div>
-                <ListItem onOpenSheet={openSheet('Trails')} name="Highway 1 — Big Sur Corridor" featured
-                  detail={"The drive itself is the destination. 90 miles between Carmel and San Simeon past Bixby Creek Bridge, through redwood canyons, past sea cliffs hundreds of feet above the Pacific. Stop at every turnout. The drive takes 2–3 hours without stops; plan a full day."}
-                  tags={["90 Miles", "Bixby Bridge", "Full Day"]} />
-                <ListItem onOpenSheet={openSheet('Trails')} name="17-Mile Drive (Pebble Beach)"
-                  detail={"The natural connector between Monterey and Carmel. Toll road ($12.25/vehicle) through Del Monte Forest, past Ghost Tree, Seal Rock, Bird Rock, and the Lone Cypress — the most photographed tree in California. The light at Seal Rock in the late afternoon is extraordinary."}
-                  tags={["Pebble Beach", "Lone Cypress", "$12.25 Toll"]} />
-              </div>
+            <FadeIn delay={0.08}>
+              <ExpandableList initialCount={5} label="activities">
+                {moveItems.sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).map(item => (
+                  <TierItem
+                    key={item.id}
+                    name={item.name}
+                    location={item.location}
+                    tier={item.moveTier}
+                    tierStyles={MOVE_TIERS}
+                    detail={item.highlights?.join('. ')}
+                    tags={item.tags}
+                    url={item.links?.website}
+                    featured={item.lilaPick}
+                    note={item.bookingWindow}
+                    duration={item.duration}
+                    distance={item.distance}
+                    operator={item.operator}
+                  />
+                ))}
+              </ExpandableList>
             </FadeIn>
           </section>
 
@@ -1017,46 +944,35 @@ export default function BigSurGuide() {
           <Divider />
 
           {/* ================================================================ */}
-          {/* WELLNESS                                                          */}
+          {/* BREATHE                                                           */}
           {/* ================================================================ */}
           <section id="wellness" className="scroll-mt-[126px] py-11">
             <FadeIn>
               <SectionIcon type="breathe" color={ACCENT} />
               <SectionLabel accentColor={ACCENT}>Breathe</SectionLabel>
-              <SectionTitle>{"Yoga, soaking & contemplation"}</SectionTitle>
-              <SectionSub>{"The ocean here is not calm. The coast provides both a mirror and a pulse. Practice on the edge of the continent."}</SectionSub>
+              <SectionTitle>{"Yoga, thermal waters & integration"}</SectionTitle>
+              <SectionSub>{"Yoga, thermal waters, and places to integrate the trip."}</SectionSub>
+            </FadeIn>
+            <FadeIn delay={0.05}>
+              <TierLegend tiers={BREATHE_LEGEND} />
             </FadeIn>
             <FadeIn delay={0.08}>
-              <ExpandableList initialCount={5} label="wellness experiences">
-                <ListItem onOpenSheet={openSheet('Wellness')} name="Esalen Institute" featured
-                  detail={"The original. Founded in 1962 where the human potential movement was born — 600+ workshops annually on yoga, somatic practice, meditation, psychology, and consciousness. 27 acres of cliffs above the Pacific. Geothermal hot springs (119°F) flow into cliffside soaking tubs overlooking the ocean. Access by workshop registration only — no day visits. Plan well ahead."}
-                  note="45 miles south of Carmel — workshop registration only"
-                  tags={["Hot Springs", "Workshops", "Yoga", "Meditation"]} />
-                <ListItem onOpenSheet={openSheet('Wellness')} name="Refuge Carmel" featured
-                  detail={"The standout contrast therapy destination in the Carmel orbit — and one of the best in California. Nordic thermotherapy cycle: hot pools, Finnish cedar sauna with Himalayan salt wall, eucalyptus steam rooms, then cold plunge pools. Strictly enforced silence and no-phone policy. Genuinely one of the quietest places in the orbit. Reservations required."}
-                  note="One Old Ranch Rd, Carmel"
-                  tags={["Contrast Therapy", "Silence Policy", "Sauna", "Cold Plunge"]} />
-                <ListItem onOpenSheet={openSheet('Wellness')} name="Seaside Yoga Sanctuary" featured
-                  detail={"The anchor studio for drop-in yoga in the Carmel orbit. Voted best yoga studio in Monterey County eleven consecutive years. Carmel Plaza location (Ocean Ave & Mission St, 3rd floor) — all-level classes including sunrise sessions. Drop-in welcome; complimentary mats and props."}
-                  note="Carmel Plaza, 3rd floor"
-                  tags={["Drop-In", "Sunrise Sessions", "All Levels"]} />
-                <ListItem onOpenSheet={openSheet('Wellness')} name="Yoga Shala by the Sea"
-                  detail={"The most characterful drop-in studio in Carmel — a cottage that has housed yoga practice continuously since 1988, operating for 35+ years. Hatha, restorative, vinyasa, yoga nidra, sound therapy. Walk-ins welcome. Outdoor classes in the courtyard. Unpretentious, community-rooted."}
-                  note="Cottage #18, San Carlos & 10th Ave, Carmel"
-                  tags={["Since 1988", "Walk-In", "Sound Therapy", "Outdoor Classes"]} />
-                <ListItem onOpenSheet={openSheet('Wellness')} name="Mount Madonna Center"
-                  detail={"The most serious yoga retreat destination in the orbit — 380-acre intentional community in the Santa Cruz Mountains overlooking Monterey Bay, founded in the lineage of master yogi Baba Hari Dass. Classical Ashtanga Yoga, Bhakti tradition, Ayurveda, working Hanuman temple. About 45 minutes from Carmel."}
-                  note="445 Summit Rd, Watsonville — personal retreats + programs"
-                  tags={["Retreat Center", "Ayurveda", "Hanuman Temple", "45 min from Carmel"]} />
-                <ListItem onOpenSheet={openSheet('Wellness')} name="Ventana Wellness (Alila Ventana)"
-                  detail={"Complimentary wellness programming for resort guests: daily yoga, guided hikes, forest bathing, Spa Alila treatments, and Japanese-inspired hot baths. The most curated wellness experience in the corridor without a week-long workshop commitment."}
-                  tags={["Resort Guests", "Forest Bathing", "Hot Baths"]} />
-                <ListItem onOpenSheet={openSheet('Wellness')} name="Post Ranch Wellness"
-                  detail={"Daily programming for guests: morning yoga in the yurt, guided forest meditation, naturalist hikes, stargazing sessions, chef's garden tours. Signature Big Sur Jade Stone Therapy uses locally sourced jade, basalt river rocks, and cooled marble."}
-                  tags={["Post Ranch Guests", "Stargazing", "Jade Stone Therapy"]} />
-                <ListItem onOpenSheet={openSheet('Wellness')} name="Big Sur River Gorge — Contemplative Practice"
-                  detail={"The river gorge offers naturally sheltered contemplative spaces: flat rocks above swimming holes, redwood-shaded banks, the sound of moving water cutting through canyon walls. A 1-mile walk from the Pfeiffer Big Sur campground entrance finds you entirely alone on most weekday mornings."}
-                  tags={["Free", "Solitude", "River", "Open-Air Meditation"]} />
+              <ExpandableList initialCount={5} label="wellness options">
+                {breatheItems.sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).map(item => (
+                  <TierItem
+                    key={item.id}
+                    name={item.name}
+                    location={item.location}
+                    tier={item.breatheTier}
+                    tierStyles={BREATHE_TIERS}
+                    detail={item.highlights?.join('. ')}
+                    tags={item.tags}
+                    url={item.links?.website}
+                    featured={item.lilaPick}
+                    note={item.bookingWindow}
+                    tradition={item.tradition}
+                  />
+                ))}
               </ExpandableList>
             </FadeIn>
           </section>
@@ -1136,18 +1052,17 @@ export default function BigSurGuide() {
 
 
           {/* ================================================================ */}
-          {/* FOOD & CULTURE                                                    */}
+          {/* EAT                                                               */}
           {/* ================================================================ */}
-          <section id="food-culture" className="scroll-mt-[126px] py-11">
+          <section id="eat" className="scroll-mt-[126px] py-11">
             <FadeIn>
-              <SectionIcon type="connect" color={C.skyBlue} />
-              <SectionLabel accentColor={ACCENT}>Food & Culture</SectionLabel>
-              <SectionTitle>{"Food, culture & stewardship"}</SectionTitle>
-              <SectionSub>{"From the most spectacular restaurant in California to a chair in the Big Sur River. The connections here go deeper than a meal."}</SectionSub>
+              <SectionIcon type="connect" color={ACCENT} />
+              <SectionLabel accentColor={ACCENT}>Eat</SectionLabel>
+              <SectionTitle>Where to eat</SectionTitle>
+              <SectionSub>{"The restaurants, cafes, and provisions that fuel the trip."}</SectionSub>
             </FadeIn>
-
-            <FadeIn delay={0.06}>
-              <ExpandableList initialCount={5} label="places to eat">
+            <FadeIn delay={0.08}>
+              <ExpandableList initialCount={4} label="places">
                 {restaurants.filter(r => !r.corridor).sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).map(r => (
                   <ListItem
                     key={r.id}
@@ -1158,60 +1073,119 @@ export default function BigSurGuide() {
                     featured={r.lilaPick}
                     url={r.links?.website}
                     location={r.location}
+                    onOpenSheet={openSheet('Eat')}
                     cuisine={r.cuisine}
                     priceRange={r.priceRange}
                     reservations={r.reservations}
                     dietary={r.dietary}
                     energy={r.energy}
-                    onOpenSheet={openSheet('Food')}
+                  />
+                ))}
+                {restaurants.filter(r => r.corridor).length > 0 && (
+                  <>
+                    <p className="font-body text-[13px] font-semibold tracking-[0.08em] uppercase text-warm-gray mt-8 mb-3">
+                      Regional Corridor
+                    </p>
+                    {restaurants.filter(r => r.corridor).sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).map(r => (
+                      <ListItem
+                        key={r.id}
+                        name={r.name}
+                        detail={r.highlights?.join('. ')}
+                        note={r.hours}
+                        tags={r.tags}
+                        featured={r.lilaPick}
+                        url={r.links?.website}
+                        location={r.location}
+                        onOpenSheet={openSheet('Eat')}
+                      />
+                    ))}
+                  </>
+                )}
+              </ExpandableList>
+            </FadeIn>
+          </section>
+
+          <Divider />
+
+          {/* ================================================================ */}
+          {/* EXPERIENCE                                                        */}
+          {/* ================================================================ */}
+          <section id="experience" className="scroll-mt-[126px] py-11">
+            <FadeIn>
+              <SectionIcon type="connect" color={ACCENT} />
+              <SectionLabel accentColor={ACCENT}>Experience</SectionLabel>
+              <SectionTitle>{"Culture, heritage & discovery"}</SectionTitle>
+              <SectionSub>{"Cultural sites, Indigenous heritage, and galleries worth your time."}</SectionSub>
+            </FadeIn>
+            <FadeIn delay={0.08}>
+              <ExpandableList initialCount={4} label="experiences">
+                {experiences.sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).map(item => (
+                  <ListItem
+                    key={item.id}
+                    name={item.name}
+                    detail={item.highlights?.join('. ')}
+                    note={item.hours}
+                    tags={item.tags}
+                    featured={item.lilaPick}
+                    url={item.links?.website}
+                    location={item.location}
                   />
                 ))}
               </ExpandableList>
             </FadeIn>
+          </section>
 
-            {/* -- Discover & Culture -- */}
-            <FadeIn delay={0.18}>
-              <div className="mt-7 mb-2">
-                <div className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-sea-glass mb-4">{"Art, Culture & Discovery"}</div>
-                <ListItem onOpenSheet={openSheet('Discover')} name="Monterey Bay Aquarium" featured
-                  detail={"One of the world's great marine science institutions. The Kelp Forest exhibit, the Sea Otter Program, and the deep-sea collection are extraordinary. A genuine research and conservation organization. The Seafood Watch program has changed how restaurants source fish nationwide."}
-                  tags={["Cannery Row", "Marine Science", "Kelp Forest"]} />
-                <ListItem onOpenSheet={openSheet('Discover')} name="Henry Miller Memorial Library"
-                  detail={"Not a memorial, not a library — Miller himself called it \"a place to hang out.\" A clearing in the redwoods that hosts readings, concerts, and community events. The bookshop carries Miller's work and curated Big Sur literature."}
-                  tags={["Literature", "Concerts", "Community"]} />
-                <ListItem onOpenSheet={openSheet('Discover')} name="Robinson Jeffers' Tor House (Carmel)"
-                  detail={"The stone house and tower that poet Robinson Jeffers built by hand between 1914 and 1963, hauling granite boulders from the Carmel shoreline. One of the most significant literary sites on the California coast. Saturday tours."}
-                  tags={["Poetry", "Stone Tower", "Saturday Tours"]} />
-                <ListItem onOpenSheet={openSheet('Discover')} name="Carmel Mission Basilica"
-                  detail={"The most significant historical site in the Big Sur orbit. Founded in 1771 by Father Junipero Serra, who is buried beneath the sanctuary floor. The walled courtyard garden and fountain are original architecture. Five minutes from village center."}
-                  tags={["History", "Architecture", "1771"]} />
-                <ListItem onOpenSheet={openSheet('Discover')} name="Kayaking & SUP — Monterey Bay"
-                  detail={"Sea otters rest in the kelp beds and occasionally swim up to kayaks. Guided tours launch from Cannery Row. Cold water (50°F year-round) — go with a guide on a first visit. Spring and fall optimal conditions."}
-                  tags={["Sea Otters", "Kelp Beds", "Guided Tours"]} />
-                <ListItem onOpenSheet={openSheet('Discover')} name="Lovers Point Park (Pacific Grove)"
-                  detail={"A small rocky promontory with tide pools, a sandy cove, kelp beds where otters rest. The Monterey Recreation Trail follows the bay to Cannery Row. Cold and calm enough for kayaking and snorkeling among the kelp."}
-                  tags={["Tide Pools", "Otters", "Pacific Grove"]} />
+
+          <Divider />
+
+          {/* ================================================================ */}
+          {/* STAY                                                              */}
+          {/* ================================================================ */}
+          <section id="where-to-stay" className="scroll-mt-[126px] py-11">
+            <FadeIn>
+              <SectionIcon type="stay" color={ACCENT} />
+              <SectionLabel accentColor={ACCENT}>Sleep</SectionLabel>
+              <SectionTitle>Where to sleep</SectionTitle>
+              <SectionSub>{"How you inhabit a place matters. From clifftop campgrounds above the Pacific to the most acclaimed hotel on the California coast."}</SectionSub>
+            </FadeIn>
+
+            <FadeIn delay={0.05}>
+              <div className="p-3.5 px-4 bg-cream border border-stone mb-5 flex flex-col md:flex-row gap-2.5 md:gap-4 flex-wrap">
+                {[
+                  { label: "Elemental", desc: "In the landscape", color: C.seaGlass },
+                  { label: "Rooted", desc: "Boutique, local", color: C.seaGlass },
+                  { label: "Premium", desc: "Elevated experience", color: C.goldenAmber },
+                ].map((t, i) => (
+                  <div key={i} className="flex-none md:flex-[1_1_140px]">
+                    <span className="font-body text-[12px] font-bold tracking-[0.1em]" style={{ color: t.color }}>{t.label}</span>
+                    <span className="font-body text-[13px] font-normal text-[#4A5650] ml-1.5">{t.desc}</span>
+                  </div>
+                ))}
               </div>
             </FadeIn>
 
-            {/* -- Give Back & Stewardship -- */}
-            <FadeIn delay={0.22}>
-              <div className="mt-7">
-                <div className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-sea-glass mb-4">{"Cultural Heritage & Stewardship"}</div>
-                <p className="font-body text-[14px] font-normal text-[#4A5650] leading-[1.7] mt-0 mb-4">
-                  {"The Big Sur coast has been home to the Esselen people for at least 3,000 years. The Esselen Tribe of Monterey County is working to reacquire ancestral land. Esalen Institute takes its name directly from the Esselen people who inhabited the land."}
-                </p>
-                <ListItem onOpenSheet={openSheet('Stewardship')} name="Big Sur Land Trust" featured
-                  detail={"A local nonprofit that has protected over 60,000 acres along the Central Coast since 1978. Volunteer opportunities and land stewardship programs available. The most impactful conservation organization in the corridor."}
-                  tags={["Conservation", "60,000 Acres", "Volunteer"]} />
-                <ListItem onOpenSheet={openSheet('Stewardship')} name="Point Lobos Foundation"
-                  detail={"The nonprofit partner to Point Lobos State Natural Reserve. Supports conservation, volunteer docent programs, and educational initiatives. Volunteer naturalist days are available to the public."}
-                  tags={["Volunteer Docent", "Conservation", "Education"]} />
-                <ListItem onOpenSheet={openSheet('Stewardship')} name="Monterey Bay Aquarium — Seafood Watch"
-                  detail={"A science-based seafood sustainability program that has changed sourcing practices at restaurants and retailers across the country. Download the Seafood Watch app before visiting — it changes how you read a menu everywhere you go after."}
-                  tags={["Sustainability", "App", "Conservation"]} />
-              </div>
-            </FadeIn>
+            <div>
+              <ExpandableList initialCount={5} label="places to stay">
+                {sortByTierDiversity(accommodations.filter(a => !a.corridor)).map(a => (
+                  <StayItem
+                    key={a.id}
+                    name={a.name}
+                    location={a.location}
+                    tier={a.stayStyle}
+                    detail={a.highlights?.join('. ')}
+                    tags={a.tags}
+                    url={a.links?.booking || a.links?.website}
+                    featured={a.lilaPick}
+                    onOpenSheet={setActiveSheet}
+                    priceRange={a.priceRange}
+                    amenities={a.amenities}
+                    bookingWindow={a.bookingWindow}
+                    seasonalNotes={a.seasonalNotes}
+                    groupFit={a.groupFit}
+                  />
+                ))}
+              </ExpandableList>
+            </div>
           </section>
 
 

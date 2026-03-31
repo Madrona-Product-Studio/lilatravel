@@ -12,7 +12,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { Nav, Footer, FadeIn, WhisperBar } from '@components';
-import { SectionLabel, SectionTitle, SectionSub, Divider, SectionIcon } from '@components/guide';
+import { SectionLabel, SectionTitle, SectionSub, Divider, SectionIcon, TierItem, TierLegend } from '@components/guide';
 import { C } from '@data/brand';
 import { P } from '@data/photos';
 import { trackEvent } from '@utils/analytics';
@@ -21,6 +21,9 @@ import { getNPSData, buildNPSLookup, findNPSMatch } from '@services/npsService';
 import { Helmet } from 'react-helmet-async';
 import accommodations from '../../data/accommodations/joshua-tree.json';
 import restaurants from '../../data/restaurants/joshua-tree-eat.json';
+import experiences from '../../data/restaurants/joshua-tree-experience.json';
+import breatheItems from '../../data/restaurants/joshua-tree-breathe.json';
+import moveItems from '../../data/restaurants/joshua-tree-move.json';
 import { BREATH_CONFIG } from '@data/breathConfig';
 import useBreathCanvas from '@hooks/useBreathCanvas';
 
@@ -646,17 +649,44 @@ function ParkCard({ park, isExpanded, onToggle }) {
 
 
 
+// ─── Tier Constants ─────────────────────────────────────────────────────────
+
+const BREATHE_TIERS = {
+  practice: { color: '#4A9B9F', label: 'Practice', bg: '#4A9B9F15' },
+  soak:     { color: '#7BB8D4', label: 'Soak',     bg: '#7BB8D415' },
+  restore:  { color: '#7BB8A0', label: 'Restore',  bg: '#7BB8A015' },
+};
+const BREATHE_LEGEND = [
+  { label: 'Practice', desc: 'In the tradition', color: '#4A9B9F' },
+  { label: 'Soak',     desc: 'Water & heat',     color: '#7BB8D4' },
+  { label: 'Restore',  desc: 'Integration',      color: '#7BB8A0' },
+];
+const MOVE_TIERS = {
+  hike:  { color: '#8a8078', label: 'Hike',  bg: '#e8e2d918' },
+  water: { color: '#7BB8D4', label: 'Water', bg: '#7BB8D415' },
+  ride:  { color: '#D4A853', label: 'Ride',  bg: '#D4A85315' },
+  climb: { color: '#E8A090', label: 'Climb', bg: '#E8A09015' },
+};
+const MOVE_TIER_META = {
+  hike:  { label: 'Hike',  desc: 'On foot',          color: '#8a8078' },
+  water: { label: 'Water', desc: 'Surf & paddle',    color: '#7BB8D4' },
+  ride:  { label: 'Ride',  desc: 'Cycle & roll',     color: '#D4A853' },
+  climb: { label: 'Climb', desc: 'Vertical terrain',  color: '#E8A090' },
+};
+const moveLegend = [...new Set(moveItems.map(i => i.moveTier))].map(t => MOVE_TIER_META[t]);
+
 // ─── Guide Section Navigation (sticky anchor bar) ───────────────────────────
 
 const GUIDE_SECTIONS = [
   { id: "sense-of-place", label: "Sense of Place" },
   { id: "when-to-go",     label: "Magic Windows" },
   { id: "tread-lightly",  label: "Tread Lightly" },
-  { id: "where-to-stay",  label: "Sleep" },
-  { id: "trails",         label: "Move" },
+  { id: "move",           label: "Move" },
   { id: "wellness",       label: "Breathe" },
   { id: "light-sky",      label: "Night Sky" },
-  { id: "food-culture",   label: "Food & Culture" },
+  { id: "eat",            label: "Eat" },
+  { id: "experience",     label: "Experience" },
+  { id: "where-to-stay",  label: "Sleep" },
   { id: "give-back",      label: "Give Back" },
 ];
 
@@ -1041,156 +1071,39 @@ export default function JoshuaTreeGuide() {
           <Divider />
 
           {/* ══════════════════════════════════════════════════════════════ */}
-          {/* WHERE TO SLEEP                                                */}
+          {/* MOVE                                                          */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="where-to-stay" className="scroll-mt-[126px] py-11">
+          <section id="move" className="scroll-mt-[126px] py-11">
             <FadeIn>
-              <SectionIcon type="stay" color={ACCENT} />
-              <SectionLabel accentColor={ACCENT}>Sleep</SectionLabel>
-              <SectionTitle>Where to sleep</SectionTitle>
-              <SectionSub>How you inhabit a place matters. Options across the full spectrum — from sleeping under the stars to Palm Springs luxury.</SectionSub>
+              <SectionIcon type="move" />
+              <SectionLabel>Move</SectionLabel>
+              <SectionTitle>How to get into the landscape</SectionTitle>
+              <SectionSub>Desert hikes, world-class rock climbing, and cycling through the geological record.</SectionSub>
             </FadeIn>
-
             <FadeIn delay={0.05}>
-              <div className="p-3.5 px-4 bg-cream border border-stone mb-5 flex flex-col md:flex-row gap-2.5 md:gap-4 flex-wrap">
-                {[
-                  { label: "Elemental", desc: "In the landscape", color: C.seaGlass },
-                  { label: "Rooted", desc: "Boutique, local", color: C.oceanTeal },
-                  { label: "Premium", desc: "Elevated experience", color: C.goldenAmber },
-                ].map((t, i) => (
-                  <div key={i} className="flex-none md:flex-[1_1_140px]">
-                    <span className="font-body text-[12px] font-bold tracking-[0.1em]" style={{ color: t.color }}>{t.label}</span>
-                    <span className="font-body text-[13px] font-normal text-[#4A5650] ml-1.5">{t.desc}</span>
-                  </div>
-                ))}
-              </div>
+              <TierLegend tiers={moveLegend} />
             </FadeIn>
-
-            <div>
-              <ExpandableList initialCount={5} label="places to stay">
-                {sortByTierDiversity(accommodations.filter(a => !a.corridor)).map(a => (
-                  <StayItem
-                    key={a.id}
-                    name={a.name}
-                    location={a.location}
-                    tier={a.stayStyle}
-                    detail={a.highlights?.join('. ')}
-                    tags={a.tags}
-                    url={a.links?.booking || a.links?.website}
-                    featured={a.lilaPick}
-                    onOpenSheet={setActiveSheet}
-                    priceRange={a.priceRange}
-                    amenities={a.amenities}
-                    bookingWindow={a.bookingWindow}
-                    seasonalNotes={a.seasonalNotes}
-                    groupFit={a.groupFit}
+            <FadeIn delay={0.08}>
+              <ExpandableList initialCount={5} label="activities">
+                {moveItems.sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).map(item => (
+                  <TierItem
+                    key={item.id}
+                    name={item.name}
+                    location={item.location}
+                    tier={item.moveTier}
+                    tierStyles={MOVE_TIERS}
+                    detail={item.highlights?.join('. ')}
+                    tags={item.tags}
+                    url={item.links?.website}
+                    featured={item.lilaPick}
+                    note={item.bookingWindow}
+                    duration={item.duration}
+                    distance={item.distance}
+                    operator={item.operator}
+                    light={item.type === 'climb'}
                   />
                 ))}
               </ExpandableList>
-
-              {accommodations.filter(a => a.corridor).length > 0 && (
-                <>
-                  <p className="font-body text-[13px] font-semibold tracking-[0.08em] uppercase mt-8 mb-3" style={{ color: C.warmGray }}>
-                    Regional Corridor
-                  </p>
-                  {sortByTierDiversity(accommodations.filter(a => a.corridor)).map(a => (
-                    <StayItem
-                      key={a.id}
-                      name={a.name}
-                      location={a.location}
-                      tier={a.stayStyle}
-                      detail={a.highlights?.join('. ')}
-                      tags={a.tags}
-                      url={a.links?.booking || a.links?.website}
-                      featured={a.lilaPick}
-                      onOpenSheet={setActiveSheet}
-                    />
-                  ))}
-                </>
-              )}
-            </div>
-          </section>
-
-
-          <Divider />
-
-          {/* ══════════════════════════════════════════════════════════════ */}
-          {/* MOVE                                                          */}
-          {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="trails" className="scroll-mt-[126px] py-11">
-            <FadeIn>
-              <SectionIcon type="move" color={ACCENT} />
-              <SectionLabel accentColor={ACCENT}>Move</SectionLabel>
-              <SectionTitle>{"Hikes, trails & landscape"}</SectionTitle>
-              <SectionSub>{"From easy desert loops to world-class climbing. The terrain teaches you something new at every turn."}</SectionSub>
-            </FadeIn>
-            <FadeIn delay={0.08}>
-              <ExpandableList initialCount={5} label="trails & adventures">
-                <ListItem onOpenSheet={openSheet('Trails')} name="Barker Dam Loop" featured
-                  hasNPS={checkNPS("Barker Dam")}
-                  url="https://www.nps.gov/jotr/planyourvisit/barkerdam.htm"
-                  detail="A former ranching dam reflecting sky and cliff. Rock art on the canyon walls. Bighorn sheep territory at dawn and dusk."
-                  tags={["1.3 mi", "Easy", "Rock Art", "Bighorn Sheep"]} />
-                <ListItem onOpenSheet={openSheet('Trails')} name="Ryan Mountain" featured
-                  hasNPS={checkNPS("Ryan Mountain")}
-                  url="https://www.nps.gov/jotr/planyourvisit/ryanmountain.htm"
-                  detail="The best panoramic summit in the park. Views of both desert systems, the Little San Bernardino Mountains, and on clear days, the Salton Sea. Sunrise from here is transformative."
-                  tags={["3 mi RT", "Moderate", "1,050 ft gain", "Sunrise"]} />
-                <ListItem onOpenSheet={openSheet('Trails')} name="Hidden Valley Trail"
-                  hasNPS={checkNPS("Hidden Valley")}
-                  url="https://www.nps.gov/jotr/planyourvisit/hiddenvalley.htm"
-                  detail="Enclosed by massive boulder formations — the valley floor feels like a secret the desert kept. A legendary bouldering area."
-                  tags={["1 mi Loop", "Easy", "Bouldering"]} />
-                <ListItem onOpenSheet={openSheet('Trails')} name="Cholla Cactus Garden" featured
-                  hasNPS={checkNPS("Cholla Cactus Garden")}
-                  url="https://www.nps.gov/jotr/planyourvisit/chollacactusgarden.htm"
-                  detail="Walking through cholla forest at golden hour is one of the park's most otherworldly experiences. Do not touch."
-                  tags={["0.25 mi", "Flat", "Golden Hour", "Photography"]} />
-                <ListItem onOpenSheet={openSheet('Trails')} name="Skull Rock Nature Trail"
-                  hasNPS={checkNPS("Skull Rock")}
-                  url="https://www.nps.gov/jotr/planyourvisit/skull-rock.htm"
-                  detail="The signature rock formation, but the trail earns its length — good for tuning in to desert micro-ecosystems."
-                  tags={["1.7 mi", "Easy", "Iconic"]} />
-                <ListItem onOpenSheet={openSheet('Trails')} name="Lost Palms Oasis" featured
-                  hasNPS={checkNPS("Lost Palms Oasis")}
-                  url="https://www.nps.gov/jotr/planyourvisit/lostpalms.htm"
-                  detail="The park's largest fan palm oasis, deep in the Colorado Desert. Bighorn sheep, a genuine sense of wilderness. Carry more water than you think you need."
-                  tags={["7.5 mi RT", "Moderate–Strenuous", "Oasis", "Wilderness"]} />
-                <ListItem onOpenSheet={openSheet('Trails')} name="Keys View"
-                  hasNPS={checkNPS("Keys View")}
-                  url="https://www.nps.gov/jotr/planyourvisit/keys-view.htm"
-                  detail="Drive-up overlook. Views of the Coachella Valley, the San Andreas Fault, and the Salton Sea. Best in morning before haze builds."
-                  tags={["Drive-Up", "Overlook", "San Andreas Fault"]} />
-                <ListItem onOpenSheet={openSheet('Trails')} name="Fortynine Palms Oasis"
-                  hasNPS={checkNPS("Fortynine Palms Oasis")}
-                  url="https://www.nps.gov/jotr/planyourvisit/fortyninepalms.htm"
-                  detail="A surprise: a lush palm oasis tucked into otherwise arid hills. The contrast is visceral."
-                  tags={["3 mi RT", "Moderate", "Oasis"]} />
-                <ListItem onOpenSheet={openSheet('Trails')} name="Mastodon Peak Loop"
-                  hasNPS={checkNPS("Mastodon Peak")}
-                  url="https://www.nps.gov/jotr/planyourvisit/mastodonpeak.htm"
-                  detail="Gold mine ruins, Cottonwood Spring oasis, bighorn territory. A layered walk."
-                  tags={["2.9 mi", "Moderate", "Ruins", "Oasis"]} />
-              </ExpandableList>
-            </FadeIn>
-
-            {/* ── Bouldering & Climbing ── */}
-            <FadeIn delay={0.12}>
-              <div className="mt-9">
-                <div className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-golden-amber mb-4">Bouldering & Climbing</div>
-                <p className="font-body text-[clamp(14px,1.5vw,14px)] font-normal text-[#4A5650] leading-[1.7] mt-0 mb-4">
-                  Joshua Tree is one of the world's great trad climbing destinations — over 8,000 established routes on 400+ formations. The rock is monzogranite, coarse-textured and grippy. For non-climbers, watching skilled climbers work the boulders is its own kind of meditation.
-                </p>
-                <ListItem onOpenSheet={openSheet('Climbing')} name="Intersection Rock"
-                  detail="The social hub. All levels. Walk-ups visible from the road." tags={["All Levels", "Social", "Accessible"]} />
-                <ListItem onOpenSheet={openSheet('Climbing')} name="Dome Rock"
-                  detail="Towering. Impressive even to watch." tags={["Advanced", "Trad", "Impressive"]} />
-                <ListItem onOpenSheet={openSheet('Climbing')} name="Jumbo Rocks Area"
-                  detail="Accessible bouldering with iconic formations. Adjacent to the campground." tags={["Bouldering", "All Levels", "Iconic"]} />
-                <ListItem onOpenSheet={openSheet('Climbing')} name="Joshua Tree Rock Climbing School"
-                  detail="Established since 1988. Half and full-day instruction for all levels."
-                  tags={["Instruction", "Half/Full Day", "Since 1988"]} />
-              </div>
             </FadeIn>
           </section>
 
@@ -1202,42 +1115,31 @@ export default function JoshuaTreeGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           <section id="wellness" className="scroll-mt-[126px] py-11">
             <FadeIn>
-              <SectionIcon type="breathe" color={ACCENT} />
-              <SectionLabel accentColor={ACCENT}>Breathe</SectionLabel>
-              <SectionTitle>{"Yoga, breathwork & wellness"}</SectionTitle>
-              <SectionSub>{"The desert climate itself is the elemental encounter here — daytime heat, night cold, low humidity. The elemental contrast is between day and night, sun and shade."}</SectionSub>
+              <SectionIcon type="breathe" />
+              <SectionLabel>Breathe</SectionLabel>
+              <SectionTitle>{"Yoga, sound baths & desert silence"}</SectionTitle>
+              <SectionSub>{"Yoga, sound baths, and desert silence as practice."}</SectionSub>
+            </FadeIn>
+            <FadeIn delay={0.05}>
+              <TierLegend tiers={BREATHE_LEGEND} />
             </FadeIn>
             <FadeIn delay={0.08}>
               <ExpandableList initialCount={5} label="wellness options">
-                <ListItem onOpenSheet={openSheet('Wellness')} name="Integratron Sound Bath" featured
-                  url="https://www.integratron.com/"
-                  detail="A one-of-a-kind acoustic sound bath inside a resonant wood dome built in the 1950s by George Van Tassel. Rooted in fringe science but the experience is genuinely resonant. Bookings fill quickly — reserve well ahead."
-                  note="Landers, ~25 min north — book well ahead"
-                  tags={["Sound Bath", "Acoustic Dome", "Unique", "Reserve Early"]} />
-                <ListItem onOpenSheet={openSheet('Wellness')} name="Joshua Tree Retreat Center" featured
-                  url="https://www.jtrcc.org/"
-                  detail="Long-established retreat venue with meditation halls, healing arts practitioners, and residential programs. About 2 miles from the park's west entrance."
-                  tags={["Retreat", "Meditation", "Healing Arts", "Residential"]} />
-                <ListItem onOpenSheet={openSheet('Wellness')} name="Two Bunch Palms Hot Springs" featured
-                  url="https://www.twobunchpalms.com/"
-                  detail="Historic mineral hot springs spa fed by a natural geothermal aquifer. Grotto pools, couples treatments, serious relaxation. The counterpoint to a strenuous park day."
-                  note="Desert Hot Springs, ~45 min"
-                  tags={["Hot Springs", "Spa", "Grotto", "Historic"]} />
-                <ListItem onOpenSheet={openSheet('Wellness')} name="Bhakti Yoga Shala"
-                  url="https://www.bhaktiyogashala.com/"
-                  detail="One of the Coachella Valley's most respected studios. Consistent instruction, strong community."
-                  note="Palm Springs, ~45 min"
-                  tags={["Yoga Studio", "Palm Springs", "Community"]} />
-                <ListItem onOpenSheet={openSheet('Wellness')} name="Miracle Springs Resort"
-                  url="https://www.miraclesprings.com/"
-                  detail="More affordable than Two Bunch. Eight mineral pools ranging from warm to hot. Good for a long afternoon soak."
-                  tags={["Mineral Pools", "Affordable", "Desert Hot Springs"]} />
-                <ListItem onOpenSheet={openSheet('Wellness')} name="Sunrise Yoga at Ryan Mountain Trailhead"
-                  detail="Before the hike. The early desert light — rose, amber, then white — provides natural rhythm for a sun salutation sequence. Bring your own mat."
-                  tags={["Free", "Self-Guided", "Sunrise", "Solo"]} />
-                <ListItem onOpenSheet={openSheet('Wellness')} name="Desert Silence as Practice"
-                  detail="The high desert has measurable acoustic quiet. 29 Palms backcountry and the Wonderland of Rocks both offer conditions where ambient sound drops to near-zero. For breath-centered practice, there are few better natural environments."
-                  tags={["Free", "Meditation", "Solitude", "Self-Guided"]} />
+                {breatheItems.sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).map(item => (
+                  <TierItem
+                    key={item.id}
+                    name={item.name}
+                    location={item.location}
+                    tier={item.breatheTier}
+                    tierStyles={BREATHE_TIERS}
+                    detail={item.highlights?.join('. ')}
+                    tags={item.tags}
+                    url={item.links?.website}
+                    featured={item.lilaPick}
+                    note={item.bookingWindow}
+                    tradition={item.tradition}
+                  />
+                ))}
               </ExpandableList>
             </FadeIn>
           </section>
@@ -1338,17 +1240,17 @@ export default function JoshuaTreeGuide() {
 
 
           {/* ══════════════════════════════════════════════════════════════ */}
-          {/* FOOD & CULTURE                                                */}
+          {/* EAT                                                            */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="food-culture" className="scroll-mt-[126px] py-11">
+          <section id="eat" className="scroll-mt-[126px] py-11">
             <FadeIn>
-              <SectionIcon type="connect" color={ACCENT} />
-              <SectionLabel accentColor={ACCENT}>Food & Culture</SectionLabel>
+              <SectionIcon type="connect" />
+              <SectionLabel>Eat</SectionLabel>
               <SectionTitle>Where to eat</SectionTitle>
-              <SectionSub>{"From the desert's most celebrated kitchen to roadhouse BBQ and pre-hike espresso."}</SectionSub>
+              <SectionSub>{"The restaurants, cafés, and provisions that fuel the trip."}</SectionSub>
             </FadeIn>
             <FadeIn delay={0.08}>
-              <ExpandableList initialCount={6} label="places to eat">
+              <ExpandableList initialCount={4} label="places">
                 {restaurants.filter(r => !r.corridor).sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).map(r => (
                   <ListItem
                     key={r.id}
@@ -1359,37 +1261,19 @@ export default function JoshuaTreeGuide() {
                     featured={r.lilaPick}
                     url={r.links?.website}
                     location={r.location}
+                    onOpenSheet={openSheet('Eat')}
                     cuisine={r.cuisine}
                     priceRange={r.priceRange}
                     reservations={r.reservations}
                     dietary={r.dietary}
                     energy={r.energy}
-                    onOpenSheet={openSheet('Food')}
                   />
                 ))}
-
                 {restaurants.filter(r => r.corridor).length > 0 && (
                   <>
-                    <p className="font-body text-[13px] font-semibold tracking-[0.08em] uppercase mt-8 mb-3" style={{ color: C.warmGray }}>
-                      Regional Corridor
-                    </p>
+                    <p className="font-body text-[13px] font-semibold tracking-[0.08em] uppercase text-warm-gray mt-8 mb-3">Regional Corridor</p>
                     {restaurants.filter(r => r.corridor).sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).map(r => (
-                      <ListItem
-                        key={r.id}
-                        name={r.name}
-                        detail={r.highlights?.join('. ')}
-                        note={r.hours}
-                        tags={r.tags}
-                        featured={r.lilaPick}
-                        url={r.links?.website}
-                        location={r.location}
-                        cuisine={r.cuisine}
-                        priceRange={r.priceRange}
-                        reservations={r.reservations}
-                        dietary={r.dietary}
-                        energy={r.energy}
-                        onOpenSheet={openSheet('Food')}
-                      />
+                      <ListItem key={r.id} name={r.name} detail={r.highlights?.join('. ')} note={r.hours} tags={r.tags} featured={r.lilaPick} url={r.links?.website} location={r.location} onOpenSheet={openSheet('Eat')} />
                     ))}
                   </>
                 )}
@@ -1397,55 +1281,99 @@ export default function JoshuaTreeGuide() {
             </FadeIn>
           </section>
 
-
           <Divider />
 
           {/* ══════════════════════════════════════════════════════════════ */}
-          {/* DISCOVER                                                      */}
+          {/* EXPERIENCE                                                    */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="discover" className="scroll-mt-[126px] py-11">
+          <section id="experience" className="scroll-mt-[126px] py-11">
             <FadeIn>
-              <SectionIcon type="discover" color={ACCENT} />
-              <SectionLabel accentColor={ACCENT}>Discover</SectionLabel>
-              <SectionTitle>{"Art, architecture & music"}</SectionTitle>
-              <SectionSub>{"The desert has drawn artists, architects, and musicians for decades. These are the places where that creative energy is most alive."}</SectionSub>
+              <SectionIcon type="connect" />
+              <SectionLabel>Experience</SectionLabel>
+              <SectionTitle>{"Culture, heritage & discovery"}</SectionTitle>
+              <SectionSub>{"Cultural sites, art initiatives, and the desert's creative community."}</SectionSub>
             </FadeIn>
             <FadeIn delay={0.08}>
-              <ExpandableList initialCount={5} label="cultural experiences">
-                <ListItem onOpenSheet={openSheet('Culture')} name="Pioneertown" featured
-                  detail="The whole town is an artifact. Built as a movie set in 1946, it never entirely stopped performing. Walk Mane Street — the original set thoroughfare. Surreal and atmospheric."
-                  tags={["Movie Set", "Historic", "Free"]} />
-                <ListItem onOpenSheet={openSheet('Culture')} name="High Desert Test Sites" featured
-                  url="https://www.highdeserttestsites.com/"
-                  detail="An ongoing art initiative founded in 2002 by Andrea Zittel. Site-specific works scattered across the high desert landscape. HDTS has seeded a generation of artists coming to the desert to make work."
-                  tags={["Site-Specific Art", "Contemporary", "Free"]} />
-                <ListItem onOpenSheet={openSheet('Culture')} name="Palm Springs Art Museum"
-                  url="https://www.psmuseum.org/"
-                  detail="World-class collection with strong desert Southwest emphasis. Architecture, photography, and modern art all represented. The building itself is striking."
-                  note="Palm Springs orbit"
-                  tags={["Museum", "Modern Art", "Architecture", "$$"]} />
-                <ListItem onOpenSheet={openSheet('Culture')} name="Modernism Week" featured
-                  url="https://www.modernismweek.com/"
-                  detail="The largest celebration of mid-century modern architecture and design in the world. Home tours, lectures, parties. Mid-to-late February."
-                  note="Palm Springs — February"
-                  tags={["Architecture", "Mid-Century", "February", "$–$$$"]} />
-                <ListItem onOpenSheet={openSheet('Culture')} name={"Pappy & Harriet's Live Music"} featured
-                  url="https://www.pappyandharriets.com/"
-                  detail="The essential live music destination in this entire orbit. Touring artists of serious caliber play here regularly — past performers include Paul McCartney, Robert Plant, Arctic Monkeys."
-                  tags={["Live Music", "Pioneertown", "Year-Round"]} />
-                <ListItem onOpenSheet={openSheet('Culture')} name="Art Queen"
-                  detail="Gallery and art supply in Joshua Tree town. A hub of the local creative community. Rotating exhibitions."
-                  tags={["Gallery", "Art Supply", "Local"]} />
-                <ListItem onOpenSheet={openSheet('Culture')} name="Coyote Corner"
-                  detail="The landmark local gift shop. Rocks, crystals, desert goods, maps, information. A genuine local institution."
-                  tags={["Gift Shop", "Crystals", "Institution"]} />
-                <ListItem onOpenSheet={openSheet('Culture')} name="Twentynine Palms Art Gallery"
-                  detail="Rotating shows featuring work by local and regional desert artists. Run by a nonprofit since 1944."
-                  tags={["Gallery", "Nonprofit", "Since 1944"]} />
+              <ExpandableList initialCount={4} label="experiences">
+                {experiences.sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).map(item => (
+                  <ListItem key={item.id} name={item.name} detail={item.highlights?.join('. ')} note={item.hours} tags={item.tags} featured={item.lilaPick} url={item.links?.website} location={item.location} />
+                ))}
               </ExpandableList>
             </FadeIn>
           </section>
 
+          <Divider />
+
+          {/* ══════════════════════════════════════════════════════════════ */}
+          {/* WHERE TO SLEEP                                                */}
+          {/* ══════════════════════════════════════════════════════════════ */}
+          <section id="where-to-stay" className="scroll-mt-[126px] py-11">
+            <FadeIn>
+              <SectionIcon type="stay" color={ACCENT} />
+              <SectionLabel accentColor={ACCENT}>Sleep</SectionLabel>
+              <SectionTitle>Where to sleep</SectionTitle>
+              <SectionSub>How you inhabit a place matters. Options across the full spectrum — from sleeping under the stars to Palm Springs luxury.</SectionSub>
+            </FadeIn>
+
+            <FadeIn delay={0.05}>
+              <div className="p-3.5 px-4 bg-cream border border-stone mb-5 flex flex-col md:flex-row gap-2.5 md:gap-4 flex-wrap">
+                {[
+                  { label: "Elemental", desc: "In the landscape", color: C.seaGlass },
+                  { label: "Rooted", desc: "Boutique, local", color: C.oceanTeal },
+                  { label: "Premium", desc: "Elevated experience", color: C.goldenAmber },
+                ].map((t, i) => (
+                  <div key={i} className="flex-none md:flex-[1_1_140px]">
+                    <span className="font-body text-[12px] font-bold tracking-[0.1em]" style={{ color: t.color }}>{t.label}</span>
+                    <span className="font-body text-[13px] font-normal text-[#4A5650] ml-1.5">{t.desc}</span>
+                  </div>
+                ))}
+              </div>
+            </FadeIn>
+
+            <div>
+              <ExpandableList initialCount={5} label="places to stay">
+                {sortByTierDiversity(accommodations.filter(a => !a.corridor)).map(a => (
+                  <StayItem
+                    key={a.id}
+                    name={a.name}
+                    location={a.location}
+                    tier={a.stayStyle}
+                    detail={a.highlights?.join('. ')}
+                    tags={a.tags}
+                    url={a.links?.booking || a.links?.website}
+                    featured={a.lilaPick}
+                    onOpenSheet={setActiveSheet}
+                    priceRange={a.priceRange}
+                    amenities={a.amenities}
+                    bookingWindow={a.bookingWindow}
+                    seasonalNotes={a.seasonalNotes}
+                    groupFit={a.groupFit}
+                  />
+                ))}
+              </ExpandableList>
+
+              {accommodations.filter(a => a.corridor).length > 0 && (
+                <>
+                  <p className="font-body text-[13px] font-semibold tracking-[0.08em] uppercase mt-8 mb-3" style={{ color: C.warmGray }}>
+                    Regional Corridor
+                  </p>
+                  {sortByTierDiversity(accommodations.filter(a => a.corridor)).map(a => (
+                    <StayItem
+                      key={a.id}
+                      name={a.name}
+                      location={a.location}
+                      tier={a.stayStyle}
+                      detail={a.highlights?.join('. ')}
+                      tags={a.tags}
+                      url={a.links?.booking || a.links?.website}
+                      featured={a.lilaPick}
+                      onOpenSheet={setActiveSheet}
+                    />
+                  ))}
+                </>
+              )}
+            </div>
+          </section>
 
           <Divider />
 

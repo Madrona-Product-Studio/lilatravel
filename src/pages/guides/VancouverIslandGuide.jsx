@@ -13,7 +13,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { Nav, Footer, FadeIn, WhisperBar } from '@components';
-import { SectionLabel, SectionTitle, SectionSub, Divider, SectionIcon } from '@components/guide';
+import { SectionLabel, SectionTitle, SectionSub, Divider, SectionIcon, TierItem, TierLegend } from '@components/guide';
 import { C } from '@data/brand';
 import { P } from '@data/photos';
 import { trackEvent } from '@utils/analytics';
@@ -21,6 +21,9 @@ import { CelestialDrawer } from '@components';
 import { Helmet } from 'react-helmet-async';
 import accommodations from '../../data/accommodations/vancouver-island.json';
 import restaurants from '../../data/restaurants/vancouver-island-eat.json';
+import experiences from '../../data/restaurants/vancouver-island-experience.json';
+import breatheItems from '../../data/restaurants/vancouver-island-breathe.json';
+import moveItems from '../../data/restaurants/vancouver-island-move.json';
 import { BREATH_CONFIG } from '@data/breathConfig';
 import useBreathCanvas from '@hooks/useBreathCanvas';
 
@@ -505,17 +508,44 @@ function ParkCard({ park, isExpanded, onToggle }) {
   );
 }
 
+// ─── Tier Constants ─────────────────────────────────────────────────────────
+
+const MOVE_TIERS = {
+  hike:  { color: '#e8e2d9', label: 'Hike',  bg: '#e8e2d918' },
+  water: { color: '#7BB8D4', label: 'Water', bg: '#7BB8D415' },
+  ride:  { color: '#D4A853', label: 'Ride',  bg: '#D4A85315' },
+};
+
+const MOVE_TIER_META = {
+  hike:  { label: 'Hike',  desc: 'On foot',          color: '#8a8078' },
+  water: { label: 'Water', desc: 'Surf & paddle',    color: '#7BB8D4' },
+  ride:  { label: 'Ride',  desc: 'Cycle & roll',     color: '#D4A853' },
+};
+const moveLegend = [...new Set(moveItems.map(i => i.moveTier))].map(t => MOVE_TIER_META[t]);
+
+const BREATHE_TIERS = {
+  practice: { color: '#4A9B9F', label: 'Practice', bg: '#4A9B9F15' },
+  soak:     { color: '#7BB8D4', label: 'Soak',     bg: '#7BB8D415' },
+  restore:  { color: '#7BB8A0', label: 'Restore',  bg: '#7BB8A015' },
+};
+const BREATHE_LEGEND = [
+  { label: 'Practice', desc: 'In the tradition', color: '#4A9B9F' },
+  { label: 'Soak',     desc: 'Water & heat',     color: '#7BB8D4' },
+  { label: 'Restore',  desc: 'Integration',      color: '#7BB8A0' },
+];
+
 // ─── Guide Section Navigation (sticky anchor bar) ───────────────────────────
 
 const GUIDE_SECTIONS = [
   { id: "sense-of-place", label: "Sense of Place" },
   { id: "when-to-go",     label: "Magic Windows" },
   { id: "tread-lightly",  label: "Tread Lightly" },
-  { id: "where-to-stay",  label: "Sleep" },
-  { id: "trails",         label: "Move" },
+  { id: "move",           label: "Move" },
   { id: "wellness",       label: "Breathe" },
   { id: "light-sky",      label: "Night Sky" },
-  { id: "food-culture",   label: "Food & Culture" },
+  { id: "eat",            label: "Eat" },
+  { id: "experience",     label: "Experience" },
+  { id: "where-to-stay",  label: "Sleep" },
   { id: "give-back",      label: "Give Back" },
 ];
 
@@ -901,6 +931,209 @@ export default function VancouverIslandGuide() {
           <Divider />
 
           {/* ══════════════════════════════════════════════════════════════ */}
+          {/* MOVE                                                          */}
+          {/* ══════════════════════════════════════════════════════════════ */}
+          <section id="move" className="scroll-mt-[126px] py-11">
+            <FadeIn>
+              <SectionIcon type="move" color={ACCENT} />
+              <SectionLabel accentColor={ACCENT}>Move</SectionLabel>
+              <SectionTitle>{"How to get into the landscape"}</SectionTitle>
+              <SectionSub>{"Old-growth forest trails, cold-water surfing, and the bike path to Long Beach."}</SectionSub>
+            </FadeIn>
+            <FadeIn delay={0.05}>
+              <TierLegend tiers={moveLegend} />
+            </FadeIn>
+            <FadeIn delay={0.08}>
+              <ExpandableList initialCount={5} label="activities">
+                {moveItems.sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).map(item => (
+                  <TierItem
+                    key={item.id}
+                    name={item.name}
+                    location={item.location}
+                    tier={item.moveTier}
+                    tierStyles={MOVE_TIERS}
+                    detail={item.highlights?.join('. ')}
+                    tags={item.tags}
+                    url={item.links?.website}
+                    featured={item.lilaPick}
+                    note={item.bookingWindow}
+                    duration={item.duration}
+                    distance={item.distance}
+                    operator={item.operator}
+                  />
+                ))}
+              </ExpandableList>
+            </FadeIn>
+          </section>
+
+
+          <Divider />
+
+          {/* ══════════════════════════════════════════════════════════════ */}
+          {/* BREATHE                                                       */}
+          {/* ══════════════════════════════════════════════════════════════ */}
+          <section id="wellness" className="scroll-mt-[126px] py-11">
+            <FadeIn>
+              <SectionIcon type="breathe" color={ACCENT} />
+              <SectionLabel accentColor={ACCENT}>Breathe</SectionLabel>
+              <SectionTitle>{"Soaking, forest bathing & practice"}</SectionTitle>
+              <SectionSub>{"Forest bathing, geothermal springs, and the Pacific as practice."}</SectionSub>
+            </FadeIn>
+            <FadeIn delay={0.05}>
+              <TierLegend tiers={BREATHE_LEGEND} />
+            </FadeIn>
+            <FadeIn delay={0.08}>
+              <ExpandableList initialCount={5} label="wellness options">
+                {breatheItems.sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).map(item => (
+                  <TierItem
+                    key={item.id}
+                    name={item.name}
+                    location={item.location}
+                    tier={item.breatheTier}
+                    tierStyles={BREATHE_TIERS}
+                    detail={item.highlights?.join('. ')}
+                    tags={item.tags}
+                    url={item.links?.website}
+                    featured={item.lilaPick}
+                    note={item.bookingWindow}
+                    tradition={item.tradition}
+                  />
+                ))}
+              </ExpandableList>
+            </FadeIn>
+          </section>
+
+
+          <Divider />
+
+          {/* ══════════════════════════════════════════════════════════════ */}
+          {/* LIGHT & SKY — DISCOVER                                       */}
+          {/* ══════════════════════════════════════════════════════════════ */}
+          <section id="light-sky" className="scroll-mt-[126px] py-11">
+            <FadeIn>
+              <SectionIcon type="awaken" color={ACCENT} />
+              <SectionLabel accentColor={ACCENT}>Night Sky</SectionLabel>
+              <SectionTitle>{"Wildlife, storms & the living coast"}</SectionTitle>
+              <SectionSub>{"Whales offshore. Bears on the shoreline. Storms that shake the windows. The coast at its most alive."}</SectionSub>
+            </FadeIn>
+            <FadeIn delay={0.08}>
+              <ExpandableList initialCount={5} label="experiences">
+                <ListItem onOpenSheet={openSheet('Light & Sky')} name="Whale Watching with Ahous Adventures" featured
+                  url="https://www.ahousadventures.com/"
+                  detail="The Ahousaht Nation-owned tour operator. Gray whales (March-October), humpbacks (summer-fall), occasional orcas. Guides carry Ahousaht cultural knowledge — place names, ecological relationships, history. Visitors are guests in Ahousaht haḥuułii."
+                  note="The recommended operator — every tour is an act of reciprocity"
+                  tags={["Whale Watching", "Ahousaht Nation", "Mar-Oct", "Cultural"]} />
+                <ListItem onOpenSheet={openSheet('Light & Sky')} name="Bear Watching" featured
+                  url="https://www.ahousadventures.com/"
+                  detail="Black bears foraging along the rocky intertidal shores of Clayoquot Sound. Best viewed by zodiac with an experienced guide. Spring through fall is the active season."
+                  tags={["Bear Watching", "Zodiac", "Spring-Fall", "Ahousaht Guides"]} />
+                <ListItem onOpenSheet={openSheet('Light & Sky')} name="Storm Watching" featured
+                  detail="November through January for peak dramatic Pacific storms. The best vantage points are Chesterman Beach, the Wild Pacific Trail in Ucluelet, and from the windows of the Wickaninnish Inn. Many lodges host dedicated storm watching packages."
+                  tags={["Nov-Jan", "Chesterman Beach", "Lodge Packages", "Dramatic"]} />
+                <ListItem onOpenSheet={openSheet('Light & Sky')} name="Tofino Botanical Gardens"
+                  url="https://www.tofinobotanicalgardens.com/"
+                  detail="A 12-acre coastal garden at the edge of Tofino, adjacent to a working estuary. Native plant collections, Pacific Rim ecology exhibits, and seasonal events including the Tofino Food and Wine Festival in October."
+                  tags={["Gardens", "Ecology", "12 Acres", "Year-Round"]} />
+                <ListItem onOpenSheet={openSheet('Light & Sky')} name="Raincoast Education Society"
+                  url="https://www.raincoast.org/"
+                  detail="Tofino-based environmental education nonprofit running guided intertidal ecology walks, marine ecosystem programming, and naturalist-led experiences. One of the better ways to understand what you're looking at on the coast."
+                  tags={["Ecology Walks", "Marine Programs", "Educational", "Seasonal"]} />
+              </ExpandableList>
+            </FadeIn>
+          </section>
+
+
+          <Divider />
+
+          {/* ══════════════════════════════════════════════════════════════ */}
+          {/* EAT                                                           */}
+          {/* ══════════════════════════════════════════════════════════════ */}
+          <section id="eat" className="scroll-mt-[126px] py-11">
+            <FadeIn>
+              <SectionIcon type="connect" color={ACCENT} />
+              <SectionLabel accentColor={ACCENT}>Eat</SectionLabel>
+              <SectionTitle>Where to eat</SectionTitle>
+              <SectionSub>{"The restaurants, cafés, and provisions that fuel the trip."}</SectionSub>
+            </FadeIn>
+            <FadeIn delay={0.08}>
+              <ExpandableList initialCount={4} label="places">
+                {restaurants.filter(r => !r.corridor).sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).map(r => (
+                  <ListItem
+                    key={r.id}
+                    name={r.name}
+                    detail={r.highlights?.join('. ')}
+                    note={r.hours}
+                    tags={r.tags}
+                    featured={r.lilaPick}
+                    url={r.links?.website}
+                    location={r.location}
+                    onOpenSheet={openSheet('Eat')}
+                    cuisine={r.cuisine}
+                    priceRange={r.priceRange}
+                    reservations={r.reservations}
+                    dietary={r.dietary}
+                    energy={r.energy}
+                  />
+                ))}
+                {restaurants.filter(r => r.corridor).length > 0 && (
+                  <>
+                    <p className="font-body text-[13px] font-semibold tracking-[0.08em] uppercase text-warm-gray mt-8 mb-3">
+                      Regional Corridor
+                    </p>
+                    {restaurants.filter(r => r.corridor).sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).map(r => (
+                      <ListItem
+                        key={r.id}
+                        name={r.name}
+                        detail={r.highlights?.join('. ')}
+                        note={r.hours}
+                        tags={r.tags}
+                        featured={r.lilaPick}
+                        url={r.links?.website}
+                        location={r.location}
+                        onOpenSheet={openSheet('Eat')}
+                      />
+                    ))}
+                  </>
+                )}
+              </ExpandableList>
+            </FadeIn>
+          </section>
+
+
+          <Divider />
+
+          {/* ══════════════════════════════════════════════════════════════ */}
+          {/* EXPERIENCE                                                    */}
+          {/* ══════════════════════════════════════════════════════════════ */}
+          <section id="experience" className="scroll-mt-[126px] py-11">
+            <FadeIn>
+              <SectionIcon type="connect" color={ACCENT} />
+              <SectionLabel accentColor={ACCENT}>Experience</SectionLabel>
+              <SectionTitle>{"Culture, heritage & discovery"}</SectionTitle>
+              <SectionSub>{"Cultural sites, Indigenous heritage, and galleries worth your time."}</SectionSub>
+            </FadeIn>
+            <FadeIn delay={0.08}>
+              <ExpandableList initialCount={4} label="experiences">
+                {experiences.sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).map(item => (
+                  <ListItem
+                    key={item.id}
+                    name={item.name}
+                    detail={item.highlights?.join('. ')}
+                    note={item.hours}
+                    tags={item.tags}
+                    featured={item.lilaPick}
+                    url={item.links?.website}
+                    location={item.location}
+                  />
+                ))}
+              </ExpandableList>
+            </FadeIn>
+          </section>
+
+
+          <Divider />
+
+          {/* ══════════════════════════════════════════════════════════════ */}
           {/* STAY                                                          */}
           {/* ══════════════════════════════════════════════════════════════ */}
           <section id="where-to-stay" className="scroll-mt-[126px] py-11">
@@ -948,244 +1181,6 @@ export default function VancouverIslandGuide() {
                 ))}
               </ExpandableList>
             </div>
-          </section>
-
-
-          <Divider />
-
-          {/* ══════════════════════════════════════════════════════════════ */}
-          {/* TRAILS                                                        */}
-          {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="trails" className="scroll-mt-[126px] py-11">
-            <FadeIn>
-              <SectionIcon type="move" color={ACCENT} />
-              <SectionLabel accentColor={ACCENT}>Move</SectionLabel>
-              <SectionTitle>{"Trails, beaches & old-growth"}</SectionTitle>
-              <SectionSub>{"From boardwalks through ancient cedar to the defining coastal wilderness walk of North America."}</SectionSub>
-            </FadeIn>
-            <FadeIn delay={0.08}>
-              <ExpandableList initialCount={5} label="trails & adventures">
-                <ListItem onOpenSheet={openSheet('Trails')} name="Long Beach" featured
-                  url="https://parks.canada.ca/pn-np/bc/pacificrim/activ/activ6"
-                  detail="A 16-kilometer stretch of wild Pacific coastline — the longest beach in Canada accessible by road. Walk it at low tide for the widest expanse; walk it in a storm for the full experience."
-                  tags={["Up to 16 km", "Easy", "Year-Round", "Storm Watching"]} />
-                <ListItem onOpenSheet={openSheet('Trails')} name="Rainforest Trail" featured
-                  url="https://parks.canada.ca/pn-np/bc/pacificrim/activ/activ6"
-                  detail="Two short loop trails through western red cedar and Sitka spruce old-growth forest. Cedar root systems covering the boardwalk, nurse logs supporting entire ecosystems, filtered light through the canopy."
-                  tags={["1 km loops", "Easy", "Old-Growth", "Boardwalk"]} />
-                <ListItem onOpenSheet={openSheet('Trails')} name="Wild Pacific Trail" featured
-                  url="https://www.wildpacifictrail.com/"
-                  detail="A 10-kilometer trail hugging the rocky headland of the Ucluth Peninsula — managed in part by the Yuułuʔiłʔatḥ First Nation. The Lighthouse Loop circles Amphitrite Point with open ocean views; the Ancient Cedars section moves into old-growth."
-                  tags={["2.6-10 km", "Easy-Moderate", "Lighthouse", "Whale Watching"]} />
-                <ListItem onOpenSheet={openSheet('Trails')} name="Meares Island Big Tree Trail" featured
-                  url="https://www.tourismtofino.com/activity/meares-island"
-                  detail="Water-taxi crossing from Tofino to one of the largest remaining intact temperate rainforest stands in Canada. Ancient red cedar and Sitka spruce, some over 1,000 years old. The island is a Tla-o-qui-aht Tribal Park — entering active Indigenous stewardship territory."
-                  note="Water taxi from Tofino's government dock"
-                  tags={["4 km loop", "Easy-Moderate", "Tribal Park", "Ancient Trees"]} />
-                <ListItem onOpenSheet={openSheet('Trails')} name="Schooner Cove Trail"
-                  url="https://parks.canada.ca/pn-np/bc/pacificrim/activ/activ6"
-                  detail="A 2-kilometer trail descending through old-growth spruce and cedar to a secluded cove on Long Beach's north end. Often empty even when Long Beach is busy. Tide pools at low tide."
-                  tags={["2 km RT", "Easy-Moderate", "Secluded", "Tide Pools"]} />
-                <ListItem onOpenSheet={openSheet('Trails')} name="Paradise Meadows & Battleship Lake"
-                  url="https://bcparks.ca/strathcona-park/"
-                  detail="The most accessible introduction to Strathcona's alpine interior. Subalpine meadows, Battleship Lake, Lady Falls. Wildflowers from July through August are exceptional — a completely different landscape from the rainforest coast."
-                  tags={["6 km loop", "Easy-Moderate", "Alpine", "Jul-Sep"]} />
-                <ListItem onOpenSheet={openSheet('Trails')} name="Elk River Trail"
-                  url="https://bcparks.ca/strathcona-park/"
-                  detail="A 10.6-kilometer round-trip hike along the Elk River through old-growth forest to a glacially-fed waterfall. The forest is dense and enormous, the river audible throughout. Turquoise pool at the end."
-                  tags={["10.6 km RT", "Moderate-Strenuous", "Waterfall", "Jun-Oct"]} />
-                <ListItem onOpenSheet={openSheet('Trails')} name="West Coast Trail" featured
-                  url="https://parks.canada.ca/pn-np/bc/pacificrim/activ/activ1"
-                  detail="The most demanding and celebrated multi-day trail on Vancouver Island — 75 km through traditional territories of the Huu-ay-aht, Ditidaht, and Pacheedaht First Nations. Sea caves, suspension bridges, ladders, and the most remote coastline in Canada. The defining coastal wilderness walk in North America."
-                  note="Permit required ($255 CAD) — open May-September"
-                  tags={["75 km", "6-8 Days", "Strenuous", "Permit Required"]} />
-                <ListItem onOpenSheet={openSheet('Trails')} name="Juan de Fuca Marine Trail"
-                  url="https://bcparks.ca/juan-de-fuca-park/"
-                  detail="Day hike sections — particularly Mystic Beach (2.6 km from China Beach) and Botanical Beach near Port Renfrew — remain accessible as spectacular day hikes. Botanical Beach hosts some of the most dramatic tide pools on the island."
-                  note="Check bcparks.ca for current trail conditions"
-                  tags={["Day Hikes", "Tide Pools", "Coastal", "Year-Round"]} />
-              </ExpandableList>
-            </FadeIn>
-
-            {/* ── Scenic Drives ── */}
-            <FadeIn delay={0.12}>
-              <div className="mt-7">
-                <div className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-ocean-teal mb-4">Scenic Drives</div>
-                <ListItem onOpenSheet={openSheet('Scenic Drives')} name="Highway 4 — The Mountain Crossing" featured
-                  detail="Old-growth corridors, Cathedral Grove (a roadside stand of Douglas fir up to 800 years old), and Kennedy Lake before the coast opens below. Budget 2.5 hours without stops; plan 4 with Cathedral Grove and a lunch stop in Port Alberni."
-                  tags={["Parksville to Tofino", "Old-Growth", "Cathedral Grove"]} />
-                <ListItem onOpenSheet={openSheet('Scenic Drives')} name="Pacific Marine Circle Route"
-                  detail="A 280-kilometer loop connecting Victoria, Sooke, Port Renfrew, Lake Cowichan, and back. Includes the Juan de Fuca Trail corridor and old-growth sections inland. A strong 2-day alternative to the more crowded Tofino route."
-                  tags={["280 km Loop", "2 Days", "Victoria Start"]} />
-              </div>
-            </FadeIn>
-          </section>
-
-
-          <Divider />
-
-          {/* ══════════════════════════════════════════════════════════════ */}
-          {/* WELLNESS                                                      */}
-          {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="wellness" className="scroll-mt-[126px] py-11">
-            <FadeIn>
-              <SectionIcon type="breathe" color={ACCENT} />
-              <SectionLabel accentColor={ACCENT}>Breathe</SectionLabel>
-              <SectionTitle>{"Soaking, surf & forest bathing"}</SectionTitle>
-              <SectionSub>{"The Pacific is cold. The rain is constant. The forest is ancient. The elemental encounter here is immersion — in water, in cedar, in weather."}</SectionSub>
-            </FadeIn>
-            <FadeIn delay={0.08}>
-              <ExpandableList initialCount={5} label="wellness experiences">
-                <ListItem onOpenSheet={openSheet('Wellness')} name="Hot Springs Cove — Maquinna Marine Provincial Park" featured
-                  url="https://bcparks.ca/maquinna-park/"
-                  detail="The most spectacular soaking experience on the BC coast. Only accessible by boat (1.5-2 hours through Clayoquot Sound) or seaplane. Natural geothermal pools cascade down basalt shelves into the Pacific. Temperature gradient from scalding to bracingly cold at the tidal fringe."
-                  note="Book through Ahous Adventures (Ahousaht Nation-owned)"
-                  tags={["Boat Access", "Geothermal", "Old-Growth Trail", "Day Trip"]} />
-                <ListItem onOpenSheet={openSheet('Wellness')} name="Ancient Cedars Spa (Wickaninnish Inn)" featured
-                  url="https://www.wickinn.com/ancient-cedars-spa/"
-                  detail="One of the finest spa experiences on the island — designed entirely around the Pacific Rim environment. Cedar steam, seaweed body wraps, and therapies incorporating local botanicals. Set in old-growth forest with ocean views from treatment rooms."
-                  tags={["Spa", "Cedar Steam", "Ocean Views", "Premium"]} />
-                <ListItem onOpenSheet={openSheet('Wellness')} name="Surfing at Tofino"
-                  url="https://www.pacificsurfschool.com/"
-                  detail="Surfing at Tofino is one of the more accessible paths into elemental presence available in Canada. The water is cold, the waves are real. Multiple surf schools operate on Cox Bay and Chesterman Beach. Lessons are 2-3 hours."
-                  tags={["Surf Lessons", "Cox Bay", "Chesterman", "Year-Round"]} />
-                <ListItem onOpenSheet={openSheet('Wellness')} name="Kayaking Clayoquot Sound" featured
-                  url="https://www.remotepassages.com/"
-                  detail="Paddling the labyrinth of islands and inlets in Clayoquot Sound — 350,000 hectares. Routes past Nuu-chah-nulth village sites, through old-growth shorelines, and into complete wilderness within 20 minutes of Tofino."
-                  tags={["Sea Kayak", "Guided", "Multi-Day Available", "Wilderness"]} />
-                <ListItem onOpenSheet={openSheet('Wellness')} name="Cathedral Grove Forest Bathing"
-                  url="https://bcparks.ca/macmillan-park/"
-                  detail="A roadside old-growth forest on Highway 4. Douglas firs up to 800 years old and 9 meters in circumference. Free, accessible, and extraordinary. Arrive early morning before the tour buses."
-                  tags={["Free", "Old-Growth", "Highway 4", "Morning"]} />
-                <ListItem onOpenSheet={openSheet('Wellness')} name="Meares Island Cultural Walk"
-                  url="https://www.tourismtofino.com/activity/meares-island"
-                  detail="Guided walks with Tla-o-qui-aht guides — forest walks that incorporate traditional plant knowledge, cultural history, and the concept of the island as a living Tribal Park. One of the more genuinely immersive cultural-ecological experiences available."
-                  tags={["Indigenous Guided", "Cultural", "Forest Walk", "Tribal Park"]} />
-                <ListItem onOpenSheet={openSheet('Wellness')} name="Tofino Yoga Studio"
-                  detail="The primary public yoga studio in Tofino. Drop-in classes, surf-adjacent scheduling. Community-oriented. Check tourismtofino.com for current listings."
-                  tags={["Yoga", "Drop-In", "Community"]} />
-                <ListItem onOpenSheet={openSheet('Wellness')} name="Cold Water Immersion"
-                  detail="The Pacific at Chesterman Beach or Long Beach runs 10-14°C year-round. Any accessible beach works for a deliberate cold water entry as a practice rather than an accident."
-                  tags={["Free", "Self-Guided", "Pacific Ocean", "10-14°C"]} />
-              </ExpandableList>
-            </FadeIn>
-          </section>
-
-
-          <Divider />
-
-          {/* ══════════════════════════════════════════════════════════════ */}
-          {/* LIGHT & SKY — DISCOVER                                       */}
-          {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="light-sky" className="scroll-mt-[126px] py-11">
-            <FadeIn>
-              <SectionIcon type="awaken" color={ACCENT} />
-              <SectionLabel accentColor={ACCENT}>Night Sky</SectionLabel>
-              <SectionTitle>{"Wildlife, storms & the living coast"}</SectionTitle>
-              <SectionSub>{"Whales offshore. Bears on the shoreline. Storms that shake the windows. The coast at its most alive."}</SectionSub>
-            </FadeIn>
-            <FadeIn delay={0.08}>
-              <ExpandableList initialCount={5} label="experiences">
-                <ListItem onOpenSheet={openSheet('Light & Sky')} name="Whale Watching with Ahous Adventures" featured
-                  url="https://www.ahousadventures.com/"
-                  detail="The Ahousaht Nation-owned tour operator. Gray whales (March-October), humpbacks (summer-fall), occasional orcas. Guides carry Ahousaht cultural knowledge — place names, ecological relationships, history. Visitors are guests in Ahousaht haḥuułii."
-                  note="The recommended operator — every tour is an act of reciprocity"
-                  tags={["Whale Watching", "Ahousaht Nation", "Mar-Oct", "Cultural"]} />
-                <ListItem onOpenSheet={openSheet('Light & Sky')} name="Bear Watching" featured
-                  url="https://www.ahousadventures.com/"
-                  detail="Black bears foraging along the rocky intertidal shores of Clayoquot Sound. Best viewed by zodiac with an experienced guide. Spring through fall is the active season."
-                  tags={["Bear Watching", "Zodiac", "Spring-Fall", "Ahousaht Guides"]} />
-                <ListItem onOpenSheet={openSheet('Light & Sky')} name="Storm Watching" featured
-                  detail="November through January for peak dramatic Pacific storms. The best vantage points are Chesterman Beach, the Wild Pacific Trail in Ucluelet, and from the windows of the Wickaninnish Inn. Many lodges host dedicated storm watching packages."
-                  tags={["Nov-Jan", "Chesterman Beach", "Lodge Packages", "Dramatic"]} />
-                <ListItem onOpenSheet={openSheet('Light & Sky')} name="Tofino Botanical Gardens"
-                  url="https://www.tofinobotanicalgardens.com/"
-                  detail="A 12-acre coastal garden at the edge of Tofino, adjacent to a working estuary. Native plant collections, Pacific Rim ecology exhibits, and seasonal events including the Tofino Food and Wine Festival in October."
-                  tags={["Gardens", "Ecology", "12 Acres", "Year-Round"]} />
-                <ListItem onOpenSheet={openSheet('Light & Sky')} name="Raincoast Education Society"
-                  url="https://www.raincoast.org/"
-                  detail="Tofino-based environmental education nonprofit running guided intertidal ecology walks, marine ecosystem programming, and naturalist-led experiences. One of the better ways to understand what you're looking at on the coast."
-                  tags={["Ecology Walks", "Marine Programs", "Educational", "Seasonal"]} />
-                <ListItem onOpenSheet={openSheet('Light & Sky')} name="Victoria: Butchart Gardens" featured
-                  url="https://www.butchartgardens.com/"
-                  detail="One of the most celebrated gardens in the world — 55 acres carved from a former limestone quarry starting in 1912. Five distinct gardens, over a million bedding plants in 900 varieties. The family still owns and operates it. National Historic Site of Canada."
-                  note="Arrive at opening or late afternoon to avoid peak crowds"
-                  tags={["Victoria Corridor", "National Historic Site", "Year-Round", "Photography"]} />
-                <ListItem onOpenSheet={openSheet('Light & Sky')} name="Victoria: Inner Harbour & Beacon Hill Park"
-                  url="https://www.tourismvictoria.com/"
-                  detail="Parliament Buildings, float planes arriving from Vancouver, whale watching boats at dawn. Beacon Hill Park is 200 acres of old Garry oak meadow — one of the few places where the rare Garry oak ecosystem survives."
-                  tags={["Victoria Corridor", "Free", "Historic", "Garry Oak"]} />
-              </ExpandableList>
-            </FadeIn>
-          </section>
-
-
-          <Divider />
-
-          {/* ══════════════════════════════════════════════════════════════ */}
-          {/* FOOD & CULTURE                                                */}
-          {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="food-culture" className="scroll-mt-[126px] py-11">
-            <FadeIn>
-              <SectionIcon type="connect" color={C.skyBlue} />
-              <SectionLabel accentColor={ACCENT}>Food & Culture</SectionLabel>
-              <SectionTitle>{"Food, culture & stewardship"}</SectionTitle>
-              <SectionSub>{"From Nuu-chah-nulth galleries to James Beard-nominated kitchens. The people and places that turn a visit into a relationship."}</SectionSub>
-            </FadeIn>
-            <FadeIn delay={0.08}>
-              <ExpandableList initialCount={6} label="places & experiences">
-                {/* ── Indigenous Culture ── */}
-                <ListItem onOpenSheet={openSheet('Food & Culture')} name="House of Himwitsa" featured
-                  url="https://www.houseofhimwitsa.com/"
-                  detail="A Nuu-chah-nulth-owned gallery and cultural space specializing in West Coast Indigenous art. Wood carving, print, jewelry, and weaving. Open since 1991 — one of the most respected Indigenous art spaces on the island. A meaningful place to purchase art that directly supports artists and community."
-                  tags={["Indigenous Art", "Gallery", "Since 1991", "Tofino"]} />
-                <ListItem onOpenSheet={openSheet('Food & Culture')} name="Roy Henry Vickers Gallery" featured
-                  url="https://www.royhenryvickers.com/"
-                  detail="The gallery of celebrated Tsimshian-Stó:lō artist Roy Henry Vickers, one of the most recognized Indigenous artists in Canada. The building itself was designed by Vickers and is architecturally grounded in Northwest Coast tradition."
-                  tags={["Indigenous Art", "Architecture", "Prints", "Tofino"]} />
-                <ListItem onOpenSheet={openSheet('Food & Culture')} name="Tla-o-qui-aht Tribal Parks" featured
-                  url="https://www.tourismtofino.com/activity/indigenous-experiences"
-                  detail="Meares Island and surrounding territories were declared a Tribal Park in 1984 — one of the first acts of Indigenous land protection in Canada, in response to planned clear-cutting. An active, living declaration of stewardship. Support Indigenous-guided tours when possible."
-                  tags={["Indigenous Stewardship", "Since 1984", "Tribal Park", "Living Practice"]} />
-
-                {/* ── Dining ── */}
-                {restaurants.filter(r => !r.corridor).sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).map(r => (
-                  <ListItem
-                    key={r.id}
-                    name={r.name}
-                    detail={r.highlights?.join('. ')}
-                    note={r.hours}
-                    tags={r.tags}
-                    featured={r.lilaPick}
-                    url={r.links?.website}
-                    location={r.location}
-                    cuisine={r.cuisine}
-                    priceRange={r.priceRange}
-                    reservations={r.reservations}
-                    dietary={r.dietary}
-                    energy={r.energy}
-                    onOpenSheet={openSheet('Food & Culture')}
-                  />
-                ))}
-
-                {/* ── Stewardship ── */}
-                <ListItem onOpenSheet={openSheet('Food & Culture')} name="Clayoquot Biosphere Trust"
-                  url="https://www.clayoquotbiosphere.org/"
-                  detail="The science and stewardship body for Clayoquot Sound's UNESCO Biosphere Reserve. Accepts donations supporting conservation research, Indigenous stewardship partnerships, and youth environmental education."
-                  tags={["Conservation", "Donations", "UNESCO", "Stewardship"]} />
-                <ListItem onOpenSheet={openSheet('Food & Culture')} name="Pacific Rim Volunteer Programs"
-                  detail="Parks Canada runs seasonal volunteer programs in Pacific Rim including beach cleanups along Long Beach and Florencia Bay, invasive species removal, and trail maintenance. Contact the park at 250-726-3500."
-                  tags={["Volunteer", "Beach Cleanup", "Seasonal", "Parks Canada"]} />
-                <ListItem onOpenSheet={openSheet('Food & Culture')} name="Surfrider Foundation — Tofino Chapter"
-                  detail="Ocean health advocacy and beach cleanup events. Long Beach accumulates significant debris from the open Pacific. Participation is open, informal, and genuinely impactful."
-                  tags={["Volunteer", "Beach Cleanup", "Year-Round", "Open"]} />
-                <ListItem onOpenSheet={openSheet('Food & Culture')} name="U'mista Cultural Centre" featured
-                  url="https://www.umista.ca/"
-                  detail="The major institutional repository of Kwakwaka'wakw culture on Vancouver Island — located in Alert Bay. Home to the renowned potlatch collection: ceremonial objects returned after confiscation during Canada's decades-long ban on the potlatch (1885-1951). If you travel north, this is essential."
-                  note="Alert Bay, North Island — accessible by ferry from Port McNeill"
-                  tags={["Indigenous Heritage", "Museum", "North Island", "Essential"]} />
-              </ExpandableList>
-            </FadeIn>
           </section>
 
 

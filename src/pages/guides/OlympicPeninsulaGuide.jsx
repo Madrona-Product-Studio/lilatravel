@@ -12,7 +12,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { Nav, Footer, FadeIn, WhisperBar } from '@components';
-import { SectionLabel, SectionTitle, SectionSub, Divider, SectionIcon } from '@components/guide';
+import { SectionLabel, SectionTitle, SectionSub, Divider, SectionIcon, TierItem, TierLegend } from '@components/guide';
 import { C } from '@data/brand';
 import { P } from '@data/photos';
 import { trackEvent } from '@utils/analytics';
@@ -21,6 +21,9 @@ import { getNPSData, buildNPSLookup, findNPSMatch } from '@services/npsService';
 import { Helmet } from 'react-helmet-async';
 import accommodations from '../../data/accommodations/olympic-peninsula.json';
 import restaurants from '../../data/restaurants/olympic-peninsula-eat.json';
+import experiences from '../../data/restaurants/olympic-peninsula-experience.json';
+import breatheItems from '../../data/restaurants/olympic-peninsula-breathe.json';
+import moveItems from '../../data/restaurants/olympic-peninsula-move.json';
 import { BREATH_CONFIG } from '@data/breathConfig';
 import useBreathCanvas from '@hooks/useBreathCanvas';
 
@@ -607,17 +610,44 @@ function ParkCard({ park, isExpanded, onToggle }) {
   );
 }
 
+// ─── Tier Constants ─────────────────────────────────────────────────────────
+
+const MOVE_TIERS = {
+  hike:  { color: '#e8e2d9', label: 'Hike',  bg: '#e8e2d918' },
+  water: { color: '#7BB8D4', label: 'Water', bg: '#7BB8D415' },
+  ride:  { color: '#D4A853', label: 'Ride',  bg: '#D4A85315' },
+};
+
+const MOVE_TIER_META = {
+  hike:  { label: 'Hike',  desc: 'On foot',          color: '#8a8078' },
+  water: { label: 'Water', desc: 'Surf & paddle',    color: '#7BB8D4' },
+  ride:  { label: 'Ride',  desc: 'Cycle & roll',     color: '#D4A853' },
+};
+const moveLegend = [...new Set(moveItems.map(i => i.moveTier))].map(t => MOVE_TIER_META[t]);
+
+const BREATHE_TIERS = {
+  practice: { color: '#4A9B9F', label: 'Practice', bg: '#4A9B9F15' },
+  soak:     { color: '#7BB8D4', label: 'Soak',     bg: '#7BB8D415' },
+  restore:  { color: '#7BB8A0', label: 'Restore',  bg: '#7BB8A015' },
+};
+const BREATHE_LEGEND = [
+  { label: 'Practice', desc: 'In the tradition', color: '#4A9B9F' },
+  { label: 'Soak',     desc: 'Water & heat',     color: '#7BB8D4' },
+  { label: 'Restore',  desc: 'Integration',      color: '#7BB8A0' },
+];
+
 // ─── Guide Section Navigation (sticky anchor bar) ───────────────────────────
 
 const GUIDE_SECTIONS = [
   { id: "sense-of-place", label: "Sense of Place" },
   { id: "when-to-go",     label: "Magic Windows" },
   { id: "tread-lightly",  label: "Tread Lightly" },
-  { id: "where-to-stay",  label: "Sleep" },
-  { id: "trails",         label: "Move" },
+  { id: "move",           label: "Move" },
   { id: "wellness",       label: "Breathe" },
   { id: "light-sky",      label: "Night Sky" },
-  { id: "food-culture",   label: "Food & Culture" },
+  { id: "eat",            label: "Eat" },
+  { id: "experience",     label: "Experience" },
+  { id: "where-to-stay",  label: "Sleep" },
   { id: "give-back",      label: "Give Back" },
 ];
 
@@ -997,6 +1027,192 @@ export default function OlympicPeninsulaGuide() {
           <Divider />
 
           {/* ══════════════════════════════════════════════════════════════ */}
+          {/* MOVE                                                          */}
+          {/* ══════════════════════════════════════════════════════════════ */}
+          <section id="move" className="scroll-mt-[126px] py-11">
+            <FadeIn>
+              <SectionIcon type="move" />
+              <SectionLabel>Move</SectionLabel>
+              <SectionTitle>How to get into the landscape</SectionTitle>
+              <SectionSub>Rainforest trails, wild coast tide pools, and the great climb to Hurricane Ridge.</SectionSub>
+            </FadeIn>
+            <FadeIn delay={0.05}>
+              <TierLegend tiers={moveLegend} />
+            </FadeIn>
+            <FadeIn delay={0.08}>
+              <ExpandableList initialCount={5} label="activities">
+                {moveItems.sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).map(item => (
+                  <TierItem
+                    key={item.id}
+                    name={item.name}
+                    location={item.location}
+                    tier={item.moveTier}
+                    tierStyles={MOVE_TIERS}
+                    detail={item.highlights?.join('. ')}
+                    tags={item.tags}
+                    url={item.links?.website}
+                    featured={item.lilaPick}
+                    note={item.bookingWindow}
+                    duration={item.duration}
+                    distance={item.distance}
+                    operator={item.operator}
+                  />
+                ))}
+              </ExpandableList>
+            </FadeIn>
+          </section>
+
+
+          <Divider />
+
+          {/* ══════════════════════════════════════════════════════════════ */}
+          {/* BREATHE                                                       */}
+          {/* ══════════════════════════════════════════════════════════════ */}
+          <section id="wellness" className="scroll-mt-[126px] py-11">
+            <FadeIn>
+              <SectionIcon type="breathe" />
+              <SectionLabel>Breathe</SectionLabel>
+              <SectionTitle>{"Hot springs, radical silence & the Iyengar tradition"}</SectionTitle>
+              <SectionSub>{"Hot springs, radical silence, and the Iyengar tradition."}</SectionSub>
+            </FadeIn>
+            <FadeIn delay={0.05}>
+              <TierLegend tiers={BREATHE_LEGEND} />
+            </FadeIn>
+            <FadeIn delay={0.08}>
+              <ExpandableList initialCount={5} label="wellness options">
+                {breatheItems.sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).map(item => (
+                  <TierItem
+                    key={item.id}
+                    name={item.name}
+                    location={item.location}
+                    tier={item.breatheTier}
+                    tierStyles={BREATHE_TIERS}
+                    detail={item.highlights?.join('. ')}
+                    tags={item.tags}
+                    url={item.links?.website}
+                    featured={item.lilaPick}
+                    note={item.bookingWindow}
+                    tradition={item.tradition}
+                  />
+                ))}
+              </ExpandableList>
+            </FadeIn>
+          </section>
+
+
+          <Divider />
+
+          {/* ══════════════════════════════════════════════════════════════ */}
+          {/* NIGHT SKY                                                     */}
+          {/* ══════════════════════════════════════════════════════════════ */}
+          <section id="light-sky" className="scroll-mt-[126px] py-11">
+            <FadeIn>
+              <SectionIcon type="awaken" />
+              <SectionLabel>Night Sky</SectionLabel>
+              <SectionTitle>After dark on the peninsula.</SectionTitle>
+              <SectionSub>Hurricane Ridge and the coast offer some of the darkest skies in the Pacific Northwest.</SectionSub>
+            </FadeIn>
+
+            {/* Dark Sky Note */}
+            <FadeIn delay={0.1}>
+              <div className="py-5 px-6 bg-dark-ink my-7">
+                <div className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-sky-blue mb-2.5">Dark Sky Note</div>
+                <p className="font-body text-[14px] font-normal text-white/70 leading-[1.7] m-0">
+                  {"No IDA dark sky certification. Consistent cloud cover limits sky access on the west side of the peninsula. The clearest conditions are found on the rain shadow side — Sequim and Dungeness — particularly in summer. When the clouds do break, the lack of development means genuine darkness is available from any park campground."}
+                </p>
+              </div>
+            </FadeIn>
+          </section>
+
+          <Divider />
+
+          {/* ══════════════════════════════════════════════════════════════ */}
+          {/* EAT                                                           */}
+          {/* ══════════════════════════════════════════════════════════════ */}
+          <section id="eat" className="scroll-mt-[126px] py-11">
+            <FadeIn>
+              <SectionIcon type="connect" />
+              <SectionLabel>Eat</SectionLabel>
+              <SectionTitle>Where to eat</SectionTitle>
+              <SectionSub>{"The restaurants, cafes, and provisions that fuel the trip."}</SectionSub>
+            </FadeIn>
+            <FadeIn delay={0.08}>
+              <ExpandableList initialCount={4} label="places">
+                {restaurants.filter(r => !r.corridor).sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).map(r => (
+                  <ListItem
+                    key={r.id}
+                    name={r.name}
+                    detail={r.highlights?.join('. ')}
+                    note={r.hours}
+                    tags={r.tags}
+                    featured={r.lilaPick}
+                    url={r.links?.website}
+                    location={r.location}
+                    onOpenSheet={openSheet('Eat')}
+                    cuisine={r.cuisine}
+                    priceRange={r.priceRange}
+                    reservations={r.reservations}
+                    dietary={r.dietary}
+                    energy={r.energy}
+                  />
+                ))}
+                {restaurants.filter(r => r.corridor).length > 0 && (
+                  <>
+                    <p className="font-body text-[13px] font-semibold tracking-[0.08em] uppercase text-warm-gray mt-8 mb-3">
+                      Regional Corridor
+                    </p>
+                    {restaurants.filter(r => r.corridor).sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).map(r => (
+                      <ListItem
+                        key={r.id}
+                        name={r.name}
+                        detail={r.highlights?.join('. ')}
+                        note={r.hours}
+                        tags={r.tags}
+                        featured={r.lilaPick}
+                        url={r.links?.website}
+                        location={r.location}
+                        onOpenSheet={openSheet('Eat')}
+                      />
+                    ))}
+                  </>
+                )}
+              </ExpandableList>
+            </FadeIn>
+          </section>
+
+          <Divider />
+
+          {/* ══════════════════════════════════════════════════════════════ */}
+          {/* EXPERIENCE                                                    */}
+          {/* ══════════════════════════════════════════════════════════════ */}
+          <section id="experience" className="scroll-mt-[126px] py-11">
+            <FadeIn>
+              <SectionIcon type="connect" />
+              <SectionLabel>Experience</SectionLabel>
+              <SectionTitle>{"Culture, heritage & discovery"}</SectionTitle>
+              <SectionSub>{"Cultural sites, Indigenous heritage, farm tours, and galleries worth your time."}</SectionSub>
+            </FadeIn>
+            <FadeIn delay={0.08}>
+              <ExpandableList initialCount={4} label="experiences">
+                {experiences.sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).map(item => (
+                  <ListItem
+                    key={item.id}
+                    name={item.name}
+                    detail={item.highlights?.join('. ')}
+                    note={item.hours}
+                    tags={item.tags}
+                    featured={item.lilaPick}
+                    url={item.links?.website}
+                    location={item.location}
+                  />
+                ))}
+              </ExpandableList>
+            </FadeIn>
+          </section>
+
+          <Divider />
+
+          {/* ══════════════════════════════════════════════════════════════ */}
           {/* STAY                                                          */}
           {/* ══════════════════════════════════════════════════════════════ */}
           <section id="where-to-stay" className="scroll-mt-[126px] py-11">
@@ -1044,323 +1260,6 @@ export default function OlympicPeninsulaGuide() {
                 ))}
               </ExpandableList>
             </div>
-          </section>
-
-
-          <Divider />
-
-          {/* ══════════════════════════════════════════════════════════════ */}
-          {/* TRAILS                                                        */}
-          {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="trails" className="scroll-mt-[126px] py-11">
-            <FadeIn>
-              <SectionIcon type="move" />
-              <SectionLabel>Move</SectionLabel>
-              <SectionTitle>{"Trails by ecosystem"}</SectionTitle>
-              <SectionSub>{"Olympic's three distinct ecosystems each demand their own section. Choose your entry point based on the landscape that calls you."}</SectionSub>
-            </FadeIn>
-
-            {/* Alpine Zone */}
-            <FadeIn delay={0.06}>
-              <div className="mb-2">
-                <div className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-sky-blue mb-4">{"Alpine Zone — Hurricane Ridge"}</div>
-                <ListItem onOpenSheet={openSheet('Trails')} name="Hurricane Hill Trail" featured hasNPS={checkNPS("Hurricane Hill Trail")}
-                  detail={"The finest panoramic summit accessible by trail in the park. A paved path climbs past wildflower meadows and marmot habitat to a 5,757-foot summit with 360-degree views: the Olympic Range, the Strait of Juan de Fuca, and on clear days, Vancouver Island."}
-                  note="3.2 mi RT · 800 ft gain · Easy-Moderate · 2 hrs"
-                  tags={["Alpine Views", "Wildflowers", "Jul–Oct"]} />
-                <ListItem onOpenSheet={openSheet('Trails')} name="High Divide Trail & Seven Lakes Basin Loop" hasNPS={checkNPS("High Divide Trail")}
-                  detail={"The defining backcountry traverse in the Olympics. The loop climbs from the Sol Duc valley to a ridge with unobstructed views of Mount Olympus's glaciers, descends through subalpine lakes, and returns through old-growth forest. Plan two to three days."}
-                  note="18–19 mi loop · ~3,500 ft gain · Strenuous · 2–3 days"
-                  tags={["Backpacking", "Glaciers", "Alpine Lakes", "Jul–Sep"]} />
-                <ListItem onOpenSheet={openSheet('Trails')} name="Mount Storm King" hasNPS={checkNPS("Mount Storm King")}
-                  detail={"The steepest and most dramatic day hike in the park. The summit involves exposed scrambling and a rope-assisted section near the top. The reward: jaw-dropping views of Lake Crescent's turquoise water far below."}
-                  note="4.4 mi RT · 2,100 ft gain · Strenuous · 3–4 hrs"
-                  tags={["Scrambling", "Lake Crescent Views", "May–Oct"]} />
-                <ListItem onOpenSheet={openSheet('Trails')} name="Marymere Falls Trail" hasNPS={checkNPS("Marymere Falls Trail")}
-                  detail={"Through old-growth conifers to a 90-foot waterfall tucked into a sandstone gorge. Short enough for any level, beautiful enough to anchor a morning."}
-                  note="1.8 mi RT · Easy · 1 hr"
-                  tags={["Waterfall", "Old-Growth", "Year-Round"]} />
-              </div>
-            </FadeIn>
-
-            {/* Rainforest Zone */}
-            <FadeIn delay={0.1}>
-              <div className="mt-7 mb-2">
-                <div className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-sky-blue mb-4">{"Rainforest Zone — Hoh Valley"}</div>
-                <ListItem onOpenSheet={openSheet('Trails')} name="Hall of Mosses Trail" featured hasNPS={checkNPS("Hall of Mosses Trail")}
-                  detail={"The rainforest's most iconic walk. Bigleaf maples draped in club moss form a cathedral canopy — one of the most otherworldly short walks in North America. The Hoh receives up to 140 inches of rain a year, and it shows: every surface is alive with fern, lichen, and moss."}
-                  note="0.8 mi loop · Easy · 30–45 min"
-                  tags={["Iconic", "Photography", "Year-Round"]} />
-                <ListItem onOpenSheet={openSheet('Trails')} name="Hoh River Trail" hasNPS={checkNPS("Hoh River Trail")}
-                  detail={"Runs 17 miles up-valley toward Mount Olympus. Day hikers can go as far as they want. The concept of 'One Square Inch of Silence' was developed here — one of the quietest places in the hemisphere. The deeper you go, the more the forest closes around you."}
-                  note="Varies (2–17 mi one way) · Easy-Moderate"
-                  tags={["Silence", "Forest Bathing", "Backpacking"]} />
-              </div>
-            </FadeIn>
-
-            {/* Coastal Zone */}
-            <FadeIn delay={0.14}>
-              <div className="mt-7 mb-2">
-                <div className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-sky-blue mb-4">{"Coastal Zone — La Push & Rialto"}</div>
-                <ListItem onOpenSheet={openSheet('Trails')} name="Second Beach (La Push)" featured hasNPS={checkNPS("Second Beach")}
-                  detail={"The defining Olympic coast experience. A 0.7-mile trail through forest opens suddenly onto a wild beach of black sand and sea stacks — spires of rock rising from the surf, dense with seabirds. Sunsets here are extraordinary. On the traditional territory of the Quileute Nation."}
-                  note="1.4 mi RT · Easy · 45 min"
-                  tags={["Sea Stacks", "Sunset", "Year-Round"]} />
-                <ListItem onOpenSheet={openSheet('Trails')} name="Hole-in-the-Wall (Rialto Beach)" hasNPS={checkNPS("Hole-in-the-Wall")}
-                  detail={"A natural sea arch carved by the surf, accessible by a 1.5-mile walk north along Rialto Beach. Tide pools, sea stacks, bald eagles, and the sound of the Pacific. Check tides — the final section requires low tide passage."}
-                  note="3 mi RT · Easy (tide-dependent) · 1.5–2 hrs"
-                  tags={["Sea Arch", "Tide Pools", "Check Tides"]} />
-                <ListItem onOpenSheet={openSheet('Trails')} name="Ozette Triangle (Cape Alava / Sand Point Loop)" hasNPS={checkNPS("Ozette Triangle")}
-                  detail={"A 9-mile loop combining a beach segment with ancient cedar boardwalk trails. Cape Alava is the westernmost point in the contiguous United States. The beach passes Wedding Rocks — petroglyphs carved by the Makah people, some of the most significant ancient rock art on the peninsula."}
-                  note="9 mi loop · Moderate · 4–5 hrs"
-                  tags={["Petroglyphs", "Westernmost Point", "Indigenous Heritage"]} />
-              </div>
-            </FadeIn>
-
-            {/* Sol Duc */}
-            <FadeIn delay={0.18}>
-              <div className="mt-7">
-                <div className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-sky-blue mb-4">{"Sol Duc & Scenic Drives"}</div>
-                <ListItem onOpenSheet={openSheet('Trails')} name="Sol Duc Falls" hasNPS={checkNPS("Sol Duc Falls")}
-                  detail={"A short walk through old-growth forest to a powerful three-pronged waterfall dropping into a basalt gorge. Photogenic in any weather, close to the Sol Duc Hot Springs. Combine the two for one of the best half-days in the park."}
-                  note="1.6 mi RT · Easy · 45 min"
-                  tags={["Waterfall", "Old-Growth", "Year-Round"]} />
-                <ListItem onOpenSheet={openSheet('Trails')} name="Hurricane Ridge Road"
-                  detail={"17 miles of switchbacks from Port Angeles to the ridge. The road climbs through old growth, breaks into meadow, and delivers you to a view that stops conversation. Drive it at sunset if you can."}
-                  tags={["17 Miles", "Switchbacks", "Sunset Drive"]} />
-                <ListItem onOpenSheet={openSheet('Trails')} name="US-101 Coastal Loop"
-                  detail={"The highway circles the Olympic Peninsula and offers access to all ecosystems. The stretch between Forks and Kalaloch runs close enough to the coast that you can pull off and walk to the beach repeatedly."}
-                  tags={["Full Day", "All Ecosystems", "Beach Pull-Offs"]} />
-                <ListItem onOpenSheet={openSheet('Trails')} name="Lake Crescent"
-                  detail={"The lake sits in a glacially carved valley 20 miles west of Port Angeles. Turquoise water (low in nutrients, exceptionally clear), old-growth forest framing both shores. The East Beach picnic area, the Storm King trailhead, and Lake Crescent Lodge are all accessible without crowds if you arrive before 10 AM."}
-                  tags={["Turquoise Water", "Old-Growth", "Arrive Early"]} />
-              </div>
-            </FadeIn>
-          </section>
-
-
-          <Divider />
-
-          {/* ══════════════════════════════════════════════════════════════ */}
-          {/* WELLNESS                                                      */}
-          {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="wellness" className="scroll-mt-[126px] py-11">
-            <FadeIn>
-              <SectionIcon type="breathe" />
-              <SectionLabel>Breathe</SectionLabel>
-              <SectionTitle>{"Soaking, silence & contemplation"}</SectionTitle>
-              <SectionSub>{"The peninsula's pace makes practice feel less like effort and more like returning to something you already knew."}</SectionSub>
-            </FadeIn>
-            <FadeIn delay={0.08}>
-              <ExpandableList initialCount={5} label="wellness experiences">
-                <ListItem onOpenSheet={openSheet('Wellness')} name="Sol Duc Hot Springs Resort" featured
-                  url="https://www.olympicnationalparks.com/lodging/sol-duc-hot-springs-resort/"
-                  detail={"Geothermal hot springs deep in the Sol Duc valley, surrounded by old-growth forest. Three soaking pools (98°F to 104°F), a freshwater swimming pool, and access to the Sol Duc River below. The resort has operated here since 1912. Day use from Memorial Day through early October — arrive early, it fills quickly."}
-                  note="Day use: Memorial Day–early Oct · Arrive early"
-                  tags={["Hot Springs", "Old-Growth", "Day Use"]} />
-                <ListItem onOpenSheet={openSheet('Wellness')} name="Olympic Hot Springs (dispersed)"
-                  detail={"A remote soaking experience reached by a 2.5-mile hike or 10-mile bike ride (road closed to vehicles). Small primitive pools along Boulder Creek, fed by geothermal springs. No facilities — pack in and pack out. Check conditions at the Elwha Ranger Station."}
-                  note="2.5 mi hike · Free · Year-round"
-                  tags={["Primitive", "Hike-In", "Free", "Wilderness"]} />
-                <ListItem onOpenSheet={openSheet('Wellness')} name="Hoh Rainforest — One Square Inch of Silence" featured
-                  detail={"Acoustic ecologist Gordon Hempton designated a specific point on the Hoh River Trail as one of the quietest places in the Western Hemisphere. Walking the Hoh with no agenda — no earbuds, no podcast, just the sound of the river and the rain on bigleaf maple — is one of the most genuinely meditative experiences in any national park."}
-                  tags={["Silence", "Forest Bathing", "Meditative"]} />
-                <ListItem onOpenSheet={openSheet('Wellness')} name="Hurricane Ridge — Dawn Alpine Meditation"
-                  detail={"Arrive at Hurricane Ridge before the visitor center opens (typically 9 AM). The parking lot faces the entire Olympic Range. At dawn, light rolls across the glaciers and meadows in waves. No interpretation needed — just a thermos and a place to sit."}
-                  tags={["Sunrise", "Alpine", "Contemplative"]} />
-                <ListItem onOpenSheet={openSheet('Wellness')} name="Port Angeles & Sequim — Local Studios"
-                  detail={"Port Angeles has a small but active wellness community. Studios rotate; search 'yoga Port Angeles' for current offerings. Sequim has additional options, particularly for Pilates and somatic work."}
-                  tags={["Yoga", "Drop-In", "Local Community"]} />
-                <ListItem onOpenSheet={openSheet('Wellness')} name="Kalaloch Lodge — Coastal Stillness"
-                  detail={"No formal wellness programming, but the location — above a sweep of wild beach with sea stacks visible from the windows — invites a particular quality of stillness. Recommended for anyone who wants the coast without camping."}
-                  tags={["Wild Coast", "Contemplative", "No Camping Needed"]} />
-              </ExpandableList>
-            </FadeIn>
-          </section>
-
-
-          <Divider />
-
-          {/* ══════════════════════════════════════════════════════════════ */}
-          {/* NIGHT SKY                                                     */}
-          {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="light-sky" className="scroll-mt-[126px] py-11">
-            <FadeIn>
-              <SectionIcon type="awaken" />
-              <SectionLabel>Night Sky</SectionLabel>
-              <SectionTitle>After dark on the peninsula.</SectionTitle>
-              <SectionSub>Hurricane Ridge and the coast offer some of the darkest skies in the Pacific Northwest.</SectionSub>
-            </FadeIn>
-
-            {/* Dark Sky Note */}
-            <FadeIn delay={0.1}>
-              <div className="py-5 px-6 bg-dark-ink my-7">
-                <div className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-sky-blue mb-2.5">Dark Sky Note</div>
-                <p className="font-body text-[14px] font-normal text-white/70 leading-[1.7] m-0">
-                  {"No IDA dark sky certification. Consistent cloud cover limits sky access on the west side of the peninsula. The clearest conditions are found on the rain shadow side — Sequim and Dungeness — particularly in summer. When the clouds do break, the lack of development means genuine darkness is available from any park campground."}
-                </p>
-              </div>
-            </FadeIn>
-          </section>
-
-          <Divider />
-
-          {/* ══════════════════════════════════════════════════════════════ */}
-          {/* FOOD & CULTURE                                                */}
-          {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="food-culture" className="scroll-mt-[126px] py-11">
-            <FadeIn>
-              <SectionIcon type="connect" />
-              <SectionLabel>Food & Culture</SectionLabel>
-              <SectionTitle>{"Food & Culture"}</SectionTitle>
-              <SectionSub>{"From Indigenous heritage to lavender farms to the peninsula's best kitchens. The connections here go deeper than a meal."}</SectionSub>
-            </FadeIn>
-
-            <FadeIn delay={0.06}>
-              <ExpandableList initialCount={5} label="places to eat">
-                {restaurants.filter(r => !r.corridor).sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).map(r => (
-                  <ListItem
-                    key={r.id}
-                    name={r.name}
-                    detail={r.highlights?.join('. ')}
-                    note={r.hours}
-                    tags={r.tags}
-                    featured={r.lilaPick}
-                    url={r.links?.website}
-                    location={r.location}
-                    cuisine={r.cuisine}
-                    priceRange={r.priceRange}
-                    reservations={r.reservations}
-                    dietary={r.dietary}
-                    energy={r.energy}
-                    onOpenSheet={openSheet('Food')}
-                  />
-                ))}
-              </ExpandableList>
-            </FadeIn>
-
-            {/* Farm & Landscape */}
-            <FadeIn delay={0.18}>
-              <div className="mt-7 mb-2">
-                <div className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-sky-blue mb-4">{"Farm & Landscape"}</div>
-                <ListItem onOpenSheet={openSheet('Discover')} name="Sequim Lavender Trail" featured
-                  url="https://sequimlavender.org"
-                  detail={"A cluster of family-owned lavender farms in the Sequim-Dungeness Valley — sheltered by the Olympic rain shadow, averaging just 17 inches of rain per year. Nine working farms, u-pick fields, essential oil distillation, lavender ice cream. Jardin du Soleil and Purple Haze are the two anchors."}
-                  note="Peak bloom mid-July · Annual festival third weekend of July"
-                  tags={["Lavender", "U-Pick", "Rain Shadow", "Jun–Sep"]} />
-                <ListItem onOpenSheet={openSheet('Discover')} name="Dungeness Spit — National Wildlife Refuge"
-                  detail={"The longest natural sand spit in the United States — nearly seven miles extending into the Strait of Juan de Fuca. Over 250 bird species recorded. At the tip sits the New Dungeness Lighthouse, operating since 1857 — free tours daily."}
-                  note="Up to 10 mi RT · $3/family · Open daily"
-                  tags={["Birdwatching", "Lighthouse", "Coastal Walk"]} />
-              </div>
-            </FadeIn>
-
-            {/* Indigenous Heritage & Discover */}
-            <FadeIn delay={0.22}>
-              <div className="mt-7 mb-2">
-                <div className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-sky-blue mb-4">{"Indigenous Heritage & Discovery"}</div>
-                <ListItem onOpenSheet={openSheet('Culture')} name="Makah Museum & Cape Flattery" featured
-                  url="https://makahmuseum.com"
-                  detail={"The Makah Museum in Neah Bay houses artifacts from the excavation of Ozette — a village buried by a mudslide 500 years ago, remarkably preserved. One of the most significant archaeological finds in North America. Cape Flattery is the northwesternmost point in the contiguous US — a 1.5-mile Makah-managed trail to dramatic sea arch overlooks. $10/vehicle recreation permit."}
-                  note="Plan a dedicated half-day"
-                  tags={["Museum", "Cape Flattery", "Ozette", "Makah Nation"]} />
-                <ListItem onOpenSheet={openSheet('Culture')} name="Elwha River Restoration" featured
-                  url="https://www.elwha.org"
-                  detail={"The largest dam removal project in U.S. history, led by the Lower Elwha Klallam Tribe. Sacred sites submerged for a century were re-exposed. An archaeological site revealing 8,000 years of continuous habitation was uncovered. Drive the Elwha River road and walk to the former dam sites."}
-                  tags={["Dam Removal", "Restoration", "Lower Elwha Klallam"]} />
-                <ListItem onOpenSheet={openSheet('Culture')} name="Jamestown S'Klallam Tribe"
-                  detail={"'The Strong People' — operate the 7 Cedars Resort near Sequim and are known for hand-carved totem poles on their campus. The Jamestown Tribal Library offers cultural programming. The tribe welcomes visitors year-round."}
-                  note="Sequim area"
-                  tags={["Totem Poles", "Cultural Center", "Year-Round"]} />
-                <ListItem onOpenSheet={openSheet('Culture')} name="Port Townsend — Victorian Seaport"
-                  detail={"One of the most architecturally intact Victorian seaports in the Pacific Northwest. Galleries, independent bookstores, live music via the Centrum Foundation. The Olympic Music Festival performs Saturdays in summer — world-class chamber music in a barn."}
-                  tags={["Arts", "Victorian", "Music Festival"]} />
-                <ListItem onOpenSheet={openSheet('Culture')} name="Feiro Marine Life Center"
-                  url="https://www.feiromarinecenter.org/"
-                  detail={"A small, excellent marine science center in Port Angeles focused on species from the Strait of Juan de Fuca and Puget Sound. Touch tanks, knowledgeable volunteers, good complement to coast tide pool experiences."}
-                  note="Port Angeles"
-                  tags={["Marine Science", "Touch Tanks", "Families"]} />
-              </div>
-            </FadeIn>
-
-            {/* Regional Corridor */}
-            <FadeIn delay={0.26}>
-              <div className="mt-7 mb-2">
-                <div className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-sky-blue mb-4">{"Regional Corridor"}</div>
-                <ListItem onOpenSheet={openSheet('Corridor')} name="Cape Flattery & Makah Reservation" featured
-                  url="https://makah.com"
-                  detail={"The northwesternmost point in the contiguous United States — accessible by a 1.5-mile Makah-managed trail through old-growth cedar and hemlock to overlooks above a dramatic sea arch and open Pacific. A $10/vehicle recreation permit is required. Pair with the Makah Museum for one of the most complete Indigenous-land experiences in the Pacific Northwest."}
-                  note="1.5 mi RT · Easy-Moderate · 1 hr · $10/vehicle"
-                  tags={["Makah Nation", "Cape Flattery", "Northwesternmost Point"]} />
-                <ListItem onOpenSheet={openSheet('Corridor')} name="Port Townsend — Victorian Seaport"
-                  detail={"Victorian seaport at the tip of the Quimper Peninsula. Historic architecture, art galleries, serious coffee, and a slower pace than Seattle. The Olympic Music Festival performs Saturdays in summer in a barn — world-class chamber music in a pastoral setting. A strong argument for arriving a day early or leaving a day late."}
-                  tags={["Arts", "Architecture", "Music Festival", "Day Trip"]} />
-              </div>
-            </FadeIn>
-
-            {/* Logistics */}
-            <FadeIn delay={0.28}>
-              <div className="mt-7 mb-2 p-5 border border-stone bg-warm-white">
-                <div className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-sky-blue mb-3.5">{"Logistics & Practical Notes"}</div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <div className="font-body text-[11px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-1">Getting There</div>
-                    <p className="font-body text-[13px] font-normal text-[#4A5650] leading-[1.65] m-0">
-                      {"From Seattle: Bainbridge Island ferry (35 min) + 2-hour drive to Port Angeles — scenic and avoids traffic. Or drive around the south end of Puget Sound (~3 hrs). Rent a car; there is no other practical way to access multiple park zones."}
-                    </p>
-                  </div>
-                  <div>
-                    <div className="font-body text-[11px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-1">Best Base Camps</div>
-                    <p className="font-body text-[13px] font-normal text-[#4A5650] leading-[1.65] m-0">
-                      {"Alpine/Hurricane Ridge: Port Angeles. Rainforest/Hoh: Forks or camp in-park. Coast: La Push or Kalaloch Lodge. Sol Duc: Sol Duc Campground or day trip from Port Angeles."}
-                    </p>
-                  </div>
-                  <div>
-                    <div className="font-body text-[11px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-1">Tide Awareness</div>
-                    <p className="font-body text-[13px] font-normal text-[#4A5650] leading-[1.65] m-0">
-                      {"Critical for coastal hikes. Several trails (Hole-in-the-Wall, Ozette, coastal wilderness route) require low tide passage. Download a tide chart app (Tides Near Me or NOAA) before heading to the coast."}
-                    </p>
-                  </div>
-                  <div>
-                    <div className="font-body text-[11px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-1">Rain & Gear</div>
-                    <p className="font-body text-[13px] font-normal text-[#4A5650] leading-[1.65] m-0">
-                      {"The west-facing rainforest zone receives 140+ inches per year. Waterproof everything — pack layers, bring a dry bag, accept the rain as part of the experience. The east side (Port Angeles, Hurricane Ridge) is significantly drier."}
-                    </p>
-                  </div>
-                  <div>
-                    <div className="font-body text-[11px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-1">Hurricane Ridge Road</div>
-                    <p className="font-body text-[13px] font-normal text-[#4A5650] leading-[1.65] m-0">
-                      {"Open year-round on Saturdays and Sundays (weather permitting); generally open daily July–October. Check the park website before driving — road closures are common."}
-                    </p>
-                  </div>
-                  <div>
-                    <div className="font-body text-[11px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-1">Wildlife Safety</div>
-                    <p className="font-body text-[13px] font-normal text-[#4A5650] leading-[1.65] m-0">
-                      {"Black bear, Roosevelt elk, mountain goat, river otter, harbor seal. Keep 100 yards from elk and bear. Elk are bold and can be dangerous during rut (September–October)."}
-                    </p>
-                  </div>
-                </div>
-                <div className="mt-4 pt-3.5 border-t border-stone">
-                  <div className="font-body text-[11px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-2">Essential Links</div>
-                  <div className="flex gap-3 flex-wrap">
-                    {[
-                      { label: "NPS Park Info", url: "https://www.nps.gov/olym" },
-                      { label: "Hurricane Ridge Status", url: "https://www.nps.gov/olym/planyourvisit/hurricane-ridge.htm" },
-                      { label: "Tide Charts", url: "https://tidesandcurrents.noaa.gov" },
-                      { label: "WTA Trail Reports", url: "https://www.wta.org" },
-                    ].map((link, i) => (
-                      <a key={i} href={link.url} target="_blank" rel="noopener noreferrer"
-                        className="font-body text-[12px] font-semibold text-sky-blue no-underline transition-[border-color] duration-200"
-                        style={{ borderBottom: `1px solid ${C.skyBlue}40` }}
-                        onMouseEnter={e => e.target.style.borderColor = C.skyBlue}
-                        onMouseLeave={e => e.target.style.borderColor = `${C.skyBlue}40`}
-                      >{link.label} <span className="text-[10px]">↗</span></a>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </FadeIn>
-
           </section>
 
 

@@ -12,7 +12,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Nav, Footer, FadeIn, WhisperBar } from '@components';
-import { SectionLabel, SectionTitle, SectionSub, Divider, SectionIcon } from '@components/guide';
+import { SectionLabel, SectionTitle, SectionSub, Divider, SectionIcon, TierItem, TierLegend } from '@components/guide';
 import { C } from '@data/brand';
 import { P } from '@data/photos';
 import { trackEvent } from '@utils/analytics';
@@ -21,6 +21,9 @@ import { getNPSData, buildNPSLookup, findNPSMatch } from '@services/npsService';
 import { Helmet } from 'react-helmet-async';
 import accommodations from '../../data/accommodations/zion.json';
 import restaurants from '../../data/restaurants/zion-eat.json';
+import experiences from '../../data/restaurants/zion-experience.json';
+import breatheItems from '../../data/restaurants/zion-breathe.json';
+import moveItems from '../../data/restaurants/zion-move.json';
 import { BREATH_CONFIG } from '@data/breathConfig';
 import useBreathCanvas from '@hooks/useBreathCanvas';
 
@@ -1023,17 +1026,46 @@ const WILDLIFE_GROUPS = [
   },
 ];
 
+// ─── Move / Breathe Tier Styles ─────────────────────────────────────────────
+
+const MOVE_TIERS = {
+  hike:  { color: '#e8e2d9', label: 'Hike',  bg: '#e8e2d918' },
+  water: { color: '#7BB8D4', label: 'Water', bg: '#7BB8D415' },
+  ride:  { color: '#D4A853', label: 'Ride',  bg: '#D4A85315' },
+  climb: { color: '#E8A090', label: 'Climb', bg: '#E8A09015' },
+};
+
+const MOVE_TIER_META = {
+  hike:  { label: 'Hike',  desc: 'On foot',          color: '#8a8078' },
+  water: { label: 'Water', desc: 'Surf & paddle',    color: '#7BB8D4' },
+  ride:  { label: 'Ride',  desc: 'Cycle & roll',     color: '#D4A853' },
+  climb: { label: 'Climb', desc: 'Vertical terrain',  color: '#E8A090' },
+};
+const moveLegend = [...new Set(moveItems.map(i => i.moveTier))].map(t => MOVE_TIER_META[t]);
+
+const BREATHE_TIERS = {
+  practice: { color: '#4A9B9F', label: 'Practice', bg: '#4A9B9F15' },
+  soak:     { color: '#7BB8D4', label: 'Soak',     bg: '#7BB8D415' },
+  restore:  { color: '#7BB8A0', label: 'Restore',  bg: '#7BB8A015' },
+};
+const BREATHE_LEGEND = [
+  { label: 'Practice', desc: 'In the tradition', color: '#4A9B9F' },
+  { label: 'Soak',     desc: 'Water & heat',     color: '#7BB8D4' },
+  { label: 'Restore',  desc: 'Integration',      color: '#7BB8A0' },
+];
+
 // ─── Guide Section Navigation (sticky anchor bar) ───────────────────────────
 
 const GUIDE_SECTIONS = [
   { id: "sense-of-place", label: "Sense of Place" },
   { id: "when-to-go",     label: "Magic Windows" },
   { id: "tread-lightly",  label: "Tread Lightly" },
-  { id: "where-to-stay",  label: "Sleep" },
-  { id: "trails",         label: "Move" },
+  { id: "move",           label: "Move" },
   { id: "wellness",       label: "Breathe" },
   { id: "light-sky",      label: "Night Sky" },
-  { id: "food-culture",   label: "Food & Culture" },
+  { id: "eat",            label: "Eat" },
+  { id: "experience",     label: "Experience" },
+  { id: "where-to-stay",  label: "Sleep" },
   { id: "give-back",      label: "Give Back" },
 ];
 
@@ -1437,6 +1469,212 @@ export default function ZionGuide() {
           <Divider />
 
           {/* ══════════════════════════════════════════════════════════════ */}
+          {/* MOVE                                                          */}
+          {/* ══════════════════════════════════════════════════════════════ */}
+          <section id="move" className="scroll-mt-[126px] py-11">
+            <FadeIn>
+              <SectionIcon type="move" />
+              <SectionLabel>Move</SectionLabel>
+              <SectionTitle>How to get into the landscape</SectionTitle>
+              <SectionSub>From canyon hikes to e-bikes on the scenic drive to slot canyon canyoneering.</SectionSub>
+            </FadeIn>
+            <FadeIn delay={0.05}>
+              <TierLegend tiers={moveLegend} />
+            </FadeIn>
+            <FadeIn delay={0.08}>
+              <ExpandableList initialCount={5} label="activities">
+                {moveItems.sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).map(item => (
+                  <TierItem
+                    key={item.id}
+                    name={item.name}
+                    location={item.location}
+                    tier={item.moveTier}
+                    tierStyles={MOVE_TIERS}
+                    detail={item.highlights?.join('. ')}
+                    tags={item.tags}
+                    url={item.links?.website}
+                    featured={item.lilaPick}
+                    note={item.bookingWindow}
+                    duration={item.duration}
+                    distance={item.distance}
+                    operator={item.operator}
+                    light={item.type === 'climb'}
+                  />
+                ))}
+              </ExpandableList>
+            </FadeIn>
+          </section>
+
+
+          <Divider />
+
+          {/* ══════════════════════════════════════════════════════════════ */}
+          {/* BREATHE                                                       */}
+          {/* ══════════════════════════════════════════════════════════════ */}
+          <section id="wellness" className="scroll-mt-[126px] py-11">
+            <FadeIn>
+              <SectionIcon type="breathe" />
+              <SectionLabel>Breathe</SectionLabel>
+              <SectionTitle>{"Yoga, thermal waters & integration"}</SectionTitle>
+              <SectionSub>{"Yoga, thermal waters, and places to integrate the trip."}</SectionSub>
+            </FadeIn>
+            <FadeIn delay={0.05}>
+              <TierLegend tiers={BREATHE_LEGEND} />
+            </FadeIn>
+            <FadeIn delay={0.08}>
+              <ExpandableList initialCount={5} label="wellness options">
+                {breatheItems.sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).map(item => (
+                  <TierItem
+                    key={item.id}
+                    name={item.name}
+                    location={item.location}
+                    tier={item.breatheTier}
+                    tierStyles={BREATHE_TIERS}
+                    detail={item.highlights?.join('. ')}
+                    tags={item.tags}
+                    url={item.links?.website}
+                    featured={item.lilaPick}
+                    note={item.bookingWindow}
+                    tradition={item.tradition}
+                  />
+                ))}
+              </ExpandableList>
+            </FadeIn>
+          </section>
+
+
+          <Divider />
+
+          {/* ══════════════════════════════════════════════════════════════ */}
+          {/* AWAKEN                                                        */}
+          {/* ══════════════════════════════════════════════════════════════ */}
+          <section id="light-sky" className="scroll-mt-[126px] py-11">
+            <FadeIn>
+              <SectionIcon type="awaken" />
+              <SectionLabel>Night Sky</SectionLabel>
+              <SectionTitle>{"Light, sky & wonder"}</SectionTitle>
+              <SectionSub>{"The moments that shift something inside you. Sunrise, starlight, the land at its most alive."}</SectionSub>
+            </FadeIn>
+            <FadeIn delay={0.08}>
+              <ExpandableList initialCount={4} label="experiences">
+                <ListItem onOpenSheet={openSheet('Light & Sky')} name="Stargazing from the Canyon Floor" featured
+                  hasNPS={checkNPS("Stargazing")}
+                  url="https://www.nps.gov/thingstodo/stargazing-in-zion.htm"
+                  detail={"Zion is a certified International Dark Sky Park. On a moonless night, the Milky Way arcs directly overhead between the canyon walls. Bring a blanket, lie down, and give yourself an hour."}
+                  tags={["Free", "Night", "Dark Sky Park"]} />
+                <ListItem onOpenSheet={openSheet('Light & Sky')} name="Sunrise at the Watchman" featured
+                  url="https://www.nps.gov/zion/planyourvisit/zion-canyon-trail-descriptions.htm"
+                  detail="Get to the trailhead before first light. Watch the canyon walls ignite one layer at a time. Worth every minute of lost sleep."
+                  tags={["3.3 mi RT", "Moderate", "Early AM"]} />
+                <ListItem onOpenSheet={openSheet('Light & Sky')} name="Drive Historic Highway 12" featured
+                  detail="One of America's most dramatic scenic byways. 124 miles from Bryce Canyon to Capitol Reef through red rock canyons, hogbacks with thousand-foot drops on both sides, and the high forests of Boulder Mountain. Don't rush it."
+                  tags={["Scenic Drive", "Half Day", "Bryce to Capitol Reef"]} />
+                <ListItem onOpenSheet={openSheet('Light & Sky')} name="Drive the Mt. Carmel Tunnel" featured
+                  detail="The 1.1-mile tunnel carved through sandstone in 1930. Emerge on the east side to a completely different landscape — checkerboard mesas, white slickrock, open sky."
+                  tags={["Scenic Drive", "East Side", "Historic"]} />
+                <ListItem onOpenSheet={openSheet('Light & Sky')} name="NPS Ranger Stargazing Program"
+                  url="https://www.nps.gov/zion/planyourvisit/sunset-stargazing.htm"
+                  detail="Free ranger-led night sky programs. Telescopes provided, no reservation needed. Check the park calendar for dates."
+                  tags={["Free", "Ranger-Led", "Seasonal"]} />
+                <ListItem onOpenSheet={openSheet('Light & Sky')} name={"Bryce Canyon Under Stars"}
+                  url="https://www.nps.gov/thingstodo/stargazing-at-bryce-canyon.htm"
+                  detail={"Some of the darkest skies in the country. The hoodoos by starlight are otherworldly. Ranger-led telescope programs available."}
+                  tags={["Day Trip", "Dark Sky", "Telescope Programs"]} />
+              </ExpandableList>
+            </FadeIn>
+          </section>
+
+
+          <Divider />
+
+          {/* ══════════════════════════════════════════════════════════════ */}
+          {/* EAT                                                           */}
+          {/* ══════════════════════════════════════════════════════════════ */}
+          <section id="eat" className="scroll-mt-[126px] py-11">
+            <FadeIn>
+              <SectionIcon type="connect" />
+              <SectionLabel>Eat</SectionLabel>
+              <SectionTitle>Where to eat</SectionTitle>
+              <SectionSub>{"The restaurants, cafés, and provisions that fuel the trip."}</SectionSub>
+            </FadeIn>
+            <FadeIn delay={0.08}>
+              <ExpandableList initialCount={4} label="places">
+                {restaurants.filter(r => !r.corridor).sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).map(r => (
+                  <ListItem
+                    key={r.id}
+                    name={r.name}
+                    detail={r.highlights?.join('. ')}
+                    note={r.hours}
+                    tags={r.tags}
+                    featured={r.lilaPick}
+                    url={r.links?.website}
+                    location={r.location}
+                    onOpenSheet={openSheet('Eat')}
+                    cuisine={r.cuisine}
+                    priceRange={r.priceRange}
+                    reservations={r.reservations}
+                    dietary={r.dietary}
+                    energy={r.energy}
+                  />
+                ))}
+                {restaurants.filter(r => r.corridor).length > 0 && (
+                  <>
+                    <p className="font-body text-[13px] font-semibold tracking-[0.08em] uppercase text-warm-gray mt-8 mb-3">
+                      Regional Corridor
+                    </p>
+                    {restaurants.filter(r => r.corridor).sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).map(r => (
+                      <ListItem
+                        key={r.id}
+                        name={r.name}
+                        detail={r.highlights?.join('. ')}
+                        note={r.hours}
+                        tags={r.tags}
+                        featured={r.lilaPick}
+                        url={r.links?.website}
+                        location={r.location}
+                        onOpenSheet={openSheet('Eat')}
+                      />
+                    ))}
+                  </>
+                )}
+              </ExpandableList>
+            </FadeIn>
+          </section>
+
+          <Divider />
+
+          {/* ══════════════════════════════════════════════════════════════ */}
+          {/* EXPERIENCE                                                    */}
+          {/* ══════════════════════════════════════════════════════════════ */}
+          <section id="experience" className="scroll-mt-[126px] py-11">
+            <FadeIn>
+              <SectionIcon type="connect" />
+              <SectionLabel>Experience</SectionLabel>
+              <SectionTitle>{"Culture, heritage & discovery"}</SectionTitle>
+              <SectionSub>{"Cultural sites, Indigenous heritage, farm tours, and galleries worth your time."}</SectionSub>
+            </FadeIn>
+            <FadeIn delay={0.08}>
+              <ExpandableList initialCount={4} label="experiences">
+                {experiences.sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).map(item => (
+                  <ListItem
+                    key={item.id}
+                    name={item.name}
+                    detail={item.highlights?.join('. ')}
+                    note={item.hours}
+                    tags={item.tags}
+                    featured={item.lilaPick}
+                    url={item.links?.website}
+                    location={item.location}
+                  />
+                ))}
+              </ExpandableList>
+            </FadeIn>
+          </section>
+
+
+          <Divider />
+
+          {/* ══════════════════════════════════════════════════════════════ */}
           {/* STAY                                                          */}
           {/* ══════════════════════════════════════════════════════════════ */}
           <section id="where-to-stay" className="scroll-mt-[126px] py-11">
@@ -1505,384 +1743,6 @@ export default function ZionGuide() {
                 </>
               )}
             </div>
-          </section>
-
-
-          <Divider />
-
-          {/* ══════════════════════════════════════════════════════════════ */}
-          {/* MOVE                                                          */}
-          {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="trails" className="scroll-mt-[126px] py-11">
-            <FadeIn>
-              <SectionIcon type="move" />
-              <SectionLabel>Move</SectionLabel>
-              <SectionTitle>Hikes, trails &amp; adventures</SectionTitle>
-              <SectionSub>{"From easy canyon strolls to world-class challenges. The terrain teaches you something new at every elevation."}</SectionSub>
-            </FadeIn>
-            <FadeIn delay={0.08}>
-              <ExpandableList initialCount={5} label="trails & adventures">
-                <ListItem onOpenSheet={openSheet('Trails')} name="Angels Landing" featured
-                  hasNPS={checkNPS("Angels Landing")}
-                  url="https://www.nps.gov/zion/planyourvisit/zion-canyon-trail-descriptions.htm"
-                  detail={"The iconic chain-assisted ridgeline summit. Exposure, adrenaline, and views that justify every step. Permit required — book 3 months out."}
-                  note="Permit required — recreation.gov · Seasonal lottery"
-                  tags={["5.4 mi RT", "Strenuous", "1,488 ft gain", "Permit"]} />
-                <ListItem onOpenSheet={openSheet('Trails')} name="The Narrows" featured
-                  hasNPS={checkNPS("The Narrows")}
-                  url="https://www.nps.gov/zion/planyourvisit/thenarrows.htm"
-                  detail="Hiking through the Virgin River between thousand-foot walls. Water levels dictate access — check conditions daily. Rent gear in Springdale."
-                  note="River-level dependent — check NPS morning reports"
-                  tags={["Up to 10 mi", "Moderate–Strenuous", "Water Hiking"]} />
-                <ListItem onOpenSheet={openSheet('Trails')} name="The Subway" featured
-                  hasNPS={checkNPS("The Subway")}
-                  url="https://www.nps.gov/zion/planyourvisit/the-subway.htm"
-                  detail="A tunnel-shaped canyon carved by flowing water. Technical bottom-up route or wilderness top-down. Unforgettable geology."
-                  tags={["9 mi RT", "Technical", "Permit Required"]} />
-                <ListItem onOpenSheet={openSheet('Trails')} name="Canyon Overlook Trail"
-                  hasNPS={checkNPS("Canyon Overlook Trail")}
-                  url="https://www.nps.gov/zion/planyourvisit/zion-canyon-trail-descriptions.htm"
-                  detail="Short, punchy, with one of the best views in the park. East side of the tunnel. Arrive early or at sunset."
-                  tags={["1 mi RT", "Easy–Moderate", "Sunset", "Family Friendly"]} />
-                <ListItem onOpenSheet={openSheet('Trails')} name="Observation Point"
-                  hasNPS={checkNPS("Observation Point")}
-                  url="https://www.nps.gov/zion/planyourvisit/zion-canyon-trail-descriptions.htm"
-                  detail="Higher than Angels Landing, quieter, arguably more stunning. Full panorama of Zion Canyon."
-                  tags={["8 mi RT", "Strenuous", "2,150 ft gain"]} />
-                <ListItem onOpenSheet={openSheet('Trails')} name="Kolob Canyons"
-                  hasNPS={checkNPS("Kolob Canyons")}
-                  url="https://www.nps.gov/zion/planyourvisit/kolob-canyons-wilderness-hiking-trails.htm"
-                  detail={"Zion's quiet northern section. Fewer visitors, deeper solitude. Finger canyons of red Navajo sandstone."}
-                  tags={["Multiple Trails", "Remote", "Separate Entrance"]} />
-                <ListItem onOpenSheet={openSheet('Trails')} name="Hidden Canyon"
-                  hasNPS={checkNPS("Hidden Canyon")}
-                  url="https://www.nps.gov/zion/planyourvisit/zion-canyon-trail-descriptions.htm"
-                  detail="A narrow slot canyon reached by a chain-assisted trail. Small, intimate, often overlooked."
-                  tags={["2.4 mi RT", "Moderate–Strenuous", "Chains"]} />
-                <ListItem onOpenSheet={openSheet('Trails')} name="Emerald Pools"
-                  hasNPS={checkNPS("Emerald Pools")}
-                  url="https://www.nps.gov/zion/planyourvisit/zion-canyon-trail-descriptions.htm"
-                  detail="Three tiers of pools and waterfalls, increasingly beautiful as you climb. Upper pool is the reward."
-                  tags={["1–3 mi RT", "Easy–Moderate", "Family Friendly"]} />
-                <ListItem onOpenSheet={openSheet('Trails')} name={"Pa'rus Trail"}
-                  hasNPS={checkNPS("Pa'rus Trail")}
-                  url="https://www.nps.gov/zion/planyourvisit/zion-canyon-trail-descriptions.htm"
-                  detail="Flat, paved riverside trail. Bikes allowed. Perfect for decompression, morning walks, or families."
-                  tags={["3.5 mi RT", "Easy", "Paved", "Bikes OK"]} />
-                <ListItem onOpenSheet={openSheet('Trails')} name="Watchman Trail"
-                  hasNPS={checkNPS("Watchman Trail")}
-                  url="https://www.nps.gov/zion/planyourvisit/zion-canyon-trail-descriptions.htm"
-                  detail="A moderate loop to a viewpoint overlooking the town of Springdale, the Towers of the Virgin, and lower Zion Canyon. Best at sunset when the Watchman ignites."
-                  tags={["3.3 mi RT", "Moderate", "Views", "Sunset"]} />
-                <ListItem onOpenSheet={openSheet('Trails')} name="Snow Canyon State Park"
-                  url="https://stateparks.utah.gov/parks/snow-canyon/"
-                  detail="Red and white sandstone, lava flows, and sand dunes 45 min from Zion. Far fewer crowds."
-                  note="Near St. George — great half-day trip"
-                  tags={["State Park", "Lava Tubes", "Less Crowded"]} />
-                <ListItem onOpenSheet={openSheet('Trails')} name="Scenic Drive to Capitol Reef"
-                  detail="The 2.5-hour drive via Highway 12 is one of the most beautiful roads in America. Make it the journey, not the commute."
-                  tags={["Scenic Drive", "Half Day", "Highway 12"]} />
-
-                {/* ── Bryce Canyon Trails ──────────────────────────── */}
-                <ListItem onOpenSheet={openSheet('Trails')} name="Navajo Loop Trail" location="Bryce Canyon NP" featured
-                  hasNPS={checkNPS("Navajo Loop Trail")}
-                  url="https://www.nps.gov/brca/planyourvisit/navajo-loop-trail.htm"
-                  detail="Drops you into the amphitheater via Wall Street — a narrow slot between hoodoos that blocks the sky. The most visceral way to enter Bryce. Combine with Queen's Garden for the best loop in the park."
-                  tags={["1.4 mi RT", "Moderate", "Hoodoos", "1.5 hrs from Zion"]} />
-                <ListItem onOpenSheet={openSheet('Trails')} name="Queen's Garden Trail" location="Bryce Canyon NP" featured
-                  hasNPS={checkNPS("Queen's Garden Trail")}
-                  url="https://www.nps.gov/brca/planyourvisit/queens-garden-trail.htm"
-                  detail="The easiest route below the rim. Descends into a garden of hoodoos and connects to the Navajo Loop for the park's most popular combination hike. Queen Victoria stands guard."
-                  tags={["1.8 mi RT", "Moderate", "Hoodoos", "Best Combined with Navajo"]} />
-                <ListItem onOpenSheet={openSheet('Trails')} name="Peek-a-Boo Loop Trail" location="Bryce Canyon NP"
-                  hasNPS={checkNPS("Peek-a-Boo Loop Trail")}
-                  url="https://www.nps.gov/brca/planyourvisit/peek-a-boo-loop-trail.htm"
-                  detail="The most strenuous of Bryce's amphitheater trails. Weaves through towering hoodoos, natural arches, and the Wall of Windows. Horse traffic shares the trail. Worth every step of elevation gain."
-                  tags={["5.5 mi Loop", "Strenuous", "1,555 ft gain", "Wall of Windows"]} />
-                <ListItem onOpenSheet={openSheet('Trails')} name="Fairyland Loop" location="Bryce Canyon NP" featured
-                  hasNPS={checkNPS("Fairyland Loop")}
-                  url="https://www.nps.gov/brca/planyourvisit/fairyland-loop-trail.htm"
-                  detail="The park's most rewarding full-day hike. Ridge walks, dense hoodoo forests, Tower Bridge arch, and views of the surrounding valley in every direction. Far fewer people than the main amphitheater trails."
-                  tags={["7.8 mi Loop", "Strenuous", "1,545 ft gain", "Full Day"]} />
-                <ListItem onOpenSheet={openSheet('Trails')} name="Bristlecone Loop" location="Bryce Canyon NP"
-                  hasNPS={checkNPS("Bristlecone Loop")}
-                  url="https://www.nps.gov/brca/planyourvisit/bristlecone-loop-trail.htm"
-                  detail="High-elevation loop through ancient bristlecone pines — some over 1,600 years old. Quiet, meditative, otherworldly. Best panoramic views in the park from Rainbow Point at 9,115 feet."
-                  tags={["1 mi Loop", "Easy", "9,115 ft", "Rainbow Point"]} />
-                <ListItem onOpenSheet={openSheet('Trails')} name="Mossy Cave Trail" location="Bryce Canyon NP"
-                  hasNPS={checkNPS("Mossy Cave Trail")}
-                  url="https://www.nps.gov/brca/planyourvisit/mossycave.htm"
-                  detail="Off the beaten path on the east side of the park. Follows Water Canyon past hoodoos and arches to a small waterfall and ice-filled grotto. Outside the fee station — no park pass needed."
-                  tags={["1 mi RT", "Easy", "Waterfall", "No Fee"]} />
-                <ListItem onOpenSheet={openSheet('Trails')} name="Rim Trail" location="Bryce Canyon NP"
-                  hasNPS={checkNPS("Rim Trail")}
-                  url="https://www.nps.gov/brca/planyourvisit/rimtrail.htm"
-                  detail="A flat walk along the canyon rim connecting all the major viewpoints — Sunrise, Sunset, Inspiration, and Bryce Point. Do segments or all 5.5 miles. Shuttle-assisted for one-way hikes."
-                  tags={["Up to 5.5 mi", "Easy", "Viewpoints", "Shuttle Access"]} />
-
-                {/* ── Capitol Reef Trails ──────────────────────────── */}
-                <ListItem onOpenSheet={openSheet('Trails')} name="Hickman Bridge Trail" location="Capitol Reef NP" featured
-                  hasNPS={checkNPS("Hickman Bridge Trail")}
-                  url="https://www.nps.gov/care/planyourvisit/hickman-bridge.htm"
-                  detail="The park's signature hike. Follows the Fremont River then climbs to a 133-foot natural bridge with a 360-foot drop to the canyon below. Passes ancient Fremont granaries and a pit house ruin on the way up."
-                  tags={["1.8 mi RT", "Moderate", "Natural Bridge", "Fremont Ruins"]} />
-                <ListItem onOpenSheet={openSheet('Trails')} name="Cassidy Arch Trail" location="Capitol Reef NP" featured
-                  hasNPS={checkNPS("Cassidy Arch Trail")}
-                  url="https://www.nps.gov/care/planyourvisit/cassidy-arch.htm"
-                  detail="Named for Butch Cassidy, who hid in these canyons. Climbs steeply from the Grand Wash floor to stand on top of a massive natural arch with vertigo-inducing drop-offs on both sides. The reward-to-effort ratio is exceptional."
-                  tags={["3.4 mi RT", "Strenuous", "870 ft gain", "Arch"]} />
-                <ListItem onOpenSheet={openSheet('Trails')} name="Capitol Gorge Trail" location="Capitol Reef NP"
-                  hasNPS={checkNPS("Capitol Gorge Trail")}
-                  url="https://www.nps.gov/care/planyourvisit/capitol-gorge.htm"
-                  detail="Walks between canyon walls carved with pioneer inscriptions from the 1870s and ancient Fremont petroglyphs. The 'Pioneer Register' and natural water tanks (potholes) are highlights. Flat and easy."
-                  tags={["2.4 mi RT", "Easy", "Petroglyphs", "Pioneer Register"]} />
-                <ListItem onOpenSheet={openSheet('Trails')} name="Navajo Knobs Trail" location="Capitol Reef NP" featured
-                  hasNPS={checkNPS("Navajo Knobs Trail")}
-                  url="https://www.nps.gov/care/planyourvisit/navajoknobbstrail.htm"
-                  detail="The park's finest dayhike. Starts at the Hickman Bridge trailhead and climbs to 360-degree views at 6,979 feet — the Waterpocket Fold, the Henry Mountains, and formations like Pectols Pyramid spread out below. Almost no one does it."
-                  tags={["9.4 mi RT", "Strenuous", "1,620 ft gain", "Best Views"]} />
-                <ListItem onOpenSheet={openSheet('Trails')} name="Cohab Canyon Trail" location="Capitol Reef NP"
-                  hasNPS={checkNPS("Cohab Canyon Trail")}
-                  url="https://www.nps.gov/care/planyourvisit/cohabcanyontrail.htm"
-                  detail="Steep switchbacks climb to sweeping aerial views over Fruita, the orchard, and the Waterpocket Fold. The hidden slot canyons tucked into the walls reward anyone who wanders off the main path."
-                  tags={["3.4 mi RT", "Moderate", "Canyon Views", "Fruita Overlook"]} />
-                <ListItem onOpenSheet={openSheet('Trails')} name="Grand Wash Trail" location="Capitol Reef NP"
-                  hasNPS={checkNPS("Grand Wash Trail")}
-                  url="https://www.nps.gov/care/planyourvisit/grandwash.htm"
-                  detail="A flat walk through the Waterpocket Fold between canyon walls that press to shoulder-width at the Narrows. Connects to the Cassidy Arch Trail for a longer loop. The easiest way to feel the scale of Capitol Reef."
-                  tags={["4.5 mi RT", "Easy", "Slot Canyon", "Connects to Cassidy Arch"]} />
-                <ListItem onOpenSheet={openSheet('Trails')} name="Chimney Rock Trail" location="Capitol Reef NP"
-                  hasNPS={checkNPS("Chimney Rock Trail")}
-                  url="https://www.nps.gov/care/planyourvisit/chimney-rock.htm"
-                  detail="A loop trail circling beneath the park's most recognizable formation. Views of the Waterpocket Fold, Capitol Reef, and the distant Henry Mountains. Excellent wildflowers in spring."
-                  tags={["3.6 mi Loop", "Moderate", "590 ft gain", "Wildflowers"]} />
-                <ListItem onOpenSheet={openSheet('Trails')} name="Sunset Point Trail" location="Capitol Reef NP"
-                  hasNPS={checkNPS("Sunset Point Trail")}
-                  url="https://www.nps.gov/care/planyourvisit/sunset-point.htm"
-                  detail="A short walk to one of the most dramatic viewpoints in the park. The Waterpocket Fold stretches endlessly south. Best in late afternoon when the cliffs glow. Combine with Goosenecks Overlook."
-                  tags={["0.8 mi RT", "Easy", "Sunset Views", "Waterpocket Fold"]} />
-              </ExpandableList>
-            </FadeIn>
-          </section>
-
-
-          <Divider />
-
-          {/* ══════════════════════════════════════════════════════════════ */}
-          {/* BREATHE                                                       */}
-          {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="wellness" className="scroll-mt-[126px] py-11">
-            <FadeIn>
-              <SectionIcon type="breathe" />
-              <SectionLabel>Breathe</SectionLabel>
-              <SectionTitle>{"Yoga, spa & wellness"}</SectionTitle>
-              <SectionSub>{"Slow down. The canyon holds space for stillness just as powerfully as it holds space for adventure. As you move through the corridor, Bryce's high-plateau silence and Capitol Reef's near-total solitude become their own practice — no studio required."}</SectionSub>
-            </FadeIn>
-            <FadeIn delay={0.08}>
-              <ExpandableList initialCount={6} label="wellness options">
-                <ListItem onOpenSheet={openSheet('Wellness')} name={"Hillside Yoga at Flanigan's"} featured
-                  url="https://flanigans.com/spa/"
-                  detail={"Gentle yoga with sound bath on a terrace overlooking Zion. The vibration carries differently at this elevation. All levels welcome — come for the practice, stay for the view."}
-                  note={"At Flanigan's Resort — check schedule for sound bath sessions"}
-                  tags={["Sound Bath", "Canyon Views", "All Levels"]} />
-                <ListItem onOpenSheet={openSheet('Wellness')} name="Zion Guru Skydeck Yoga" featured
-                  url="https://www.zionguru.com/"
-                  detail="Open-air deck with the Watchman as your backdrop. Morning sessions catch first light on the canyon walls."
-                  tags={["Outdoor", "Morning", "All Levels"]} />
-                <ListItem onOpenSheet={openSheet('Wellness')} name="Deep Canyon Spa" featured
-                  url="https://flanigans.com/spa/"
-                  detail={"Full-service spa inside Flanigan's Resort. Massages, body treatments, and facials after long trail days. The canyon's first spa, open since 1994."}
-                  tags={["Full Spa", "Springdale", "Walk-In"]} />
-                <ListItem onOpenSheet={openSheet('Wellness')} name="Open Sky Wellness Programs" featured
-                  url="https://www.openskyzion.com/"
-                  detail="Immersive yoga, meditation, and sound healing in an off-grid desert setting. Multi-day programs available."
-                  tags={["Multi-Day", "Off-Grid", "Immersive"]} />
-                <ListItem onOpenSheet={openSheet('Wellness')} name="Zion Canyon Hot Springs" featured
-                  url="https://www.zioncanyonhotsprings.com/"
-                  detail="32 geothermal hot springs, globally-inspired mineral pools, Finnish barrel saunas, and cold plunges in La Verkin — 30 minutes from the park. The 21+ Premier area has cocktails by the firepit and its own saunas. This is your post-hike recovery circuit."
-                  tags={["Hot Springs", "Sauna", "Cold Plunge", "21+ Area"]} />
-                <ListItem onOpenSheet={openSheet('Wellness')} name="True North Float" featured
-                  url="https://www.tnfloat.com/"
-                  detail="Sensory deprivation float tanks, fire & ice suite (sauna + cold plunge), vibroacoustic therapy, and massage in St. George — 45 minutes from Zion. Founded by a wellness seeker who left corporate life. The real deal."
-                  tags={["Float Tank", "Sauna", "Cold Plunge", "St. George"]} />
-                <ListItem onOpenSheet={openSheet('Wellness')} name="Cable Mountain Spa"
-                  url="https://cablemountainspa.com/"
-                  detail="Full-service spa with sauna at the park entrance. Massage, facials, and body treatments. Walk-in friendly."
-                  tags={["Full Spa", "Sauna", "Springdale"]} />
-                <ListItem onOpenSheet={openSheet('Wellness')} name="Homebody Healing"
-                  url="https://www.homebodyhealing.love/"
-                  detail="Weekly yoga classes at Cable Mountain Spa — vinyasa, hatha, yin, restorative, breathwork, and meditation. Private somatic sessions available. A deeply rooted local teacher."
-                  tags={["Yoga", "Breathwork", "Meditation", "Weekly Classes"]} />
-                <ListItem onOpenSheet={openSheet('Wellness')} name="Cosmic Flow Yoga"
-                  url="https://www.yogainzion.com/"
-                  detail="Yoga, meditation, and sound healing with sessions across Springdale, Kanab, and St. George. Riverside location in Springdale next to the Virgin River. Private group sessions available."
-                  tags={["Yoga", "Sound Healing", "Multiple Locations"]} />
-                <ListItem onOpenSheet={openSheet('Wellness')} name="Zion Yogis"
-                  url="https://www.zionyogis.com/"
-                  detail="Outdoor yoga sessions in and around Zion National Park. Calming flow classes designed as the perfect cool-down after a day on the trails."
-                  tags={["Yoga", "Outdoor", "Post-Hike"]} />
-                <ListItem onOpenSheet={openSheet('Wellness')} name="Amangiri Spa" featured
-                  url="https://www.aman.com/hotels/amangiri"
-                  detail="Aman's desert spa draws from Navajo healing traditions. Flotation therapy, desert clay wraps, and a water pavilion carved into the mesa. A pilgrimage in itself — 90 minutes from Springdale at Canyon Point."
-                  tags={["Ultra-Luxury", "Navajo Traditions", "Float", "Canyon Point"]} />
-                <ListItem onOpenSheet={openSheet('Wellness')} name="Elite Float Spa"
-                  detail="Southern Utah's first float spa in St. George. Floatation therapy, infrared sauna, and massage. Small family-owned operation with deep expertise."
-                  note="St. George, UT — find them on Yelp or TripAdvisor"
-                  tags={["Float Tank", "Infrared Sauna", "St. George"]} />
-                <ListItem onOpenSheet={openSheet('Wellness')} name="Five Petals Spa at the Cliffrose"
-                  url="https://www.cliffroselodge.com/"
-                  detail="Riverfront spa steps from the park. Deep-tissue, hot stone, and custom facials."
-                  tags={["Riverfront", "Hotel Spa"]} />
-                <ListItem onOpenSheet={openSheet('Wellness')} name="Sunrise Meditation at Canyon Junction"
-                  detail="Arrive before the shuttles. Sit at the Pine Creek bridge. Watch the walls ignite in silence. No teacher needed."
-                  tags={["Free", "Early AM", "Solo", "Self-Guided"]} />
-                <ListItem onOpenSheet={openSheet('Wellness')} name="Earthing on the Canyon Floor"
-                  detail="Take your shoes off. Stand on the sandstone. Feel the warmth the rock has been collecting for 200 million years."
-                  tags={["Free", "Grounding", "Self-Guided"]} />
-                <ListItem onOpenSheet={openSheet('Wellness')} name="Journaling at the Virgin River"
-                  detail={"Find a bench along the Pa'rus Trail. The sound of the river is its own kind of teacher."}
-                  tags={["Free", "Contemplative", "Self-Guided"]} />
-              </ExpandableList>
-            </FadeIn>
-          </section>
-
-
-          <Divider />
-
-          {/* ══════════════════════════════════════════════════════════════ */}
-          {/* AWAKEN                                                        */}
-          {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="light-sky" className="scroll-mt-[126px] py-11">
-            <FadeIn>
-              <SectionIcon type="awaken" />
-              <SectionLabel>Night Sky</SectionLabel>
-              <SectionTitle>{"Light, sky & wonder"}</SectionTitle>
-              <SectionSub>{"The moments that shift something inside you. Sunrise, starlight, the land at its most alive."}</SectionSub>
-            </FadeIn>
-            <FadeIn delay={0.08}>
-              <ExpandableList initialCount={4} label="experiences">
-                <ListItem onOpenSheet={openSheet('Light & Sky')} name="Stargazing from the Canyon Floor" featured
-                  hasNPS={checkNPS("Stargazing")}
-                  url="https://www.nps.gov/thingstodo/stargazing-in-zion.htm"
-                  detail={"Zion is a certified International Dark Sky Park. On a moonless night, the Milky Way arcs directly overhead between the canyon walls. Bring a blanket, lie down, and give yourself an hour."}
-                  tags={["Free", "Night", "Dark Sky Park"]} />
-                <ListItem onOpenSheet={openSheet('Light & Sky')} name="Sunrise at the Watchman" featured
-                  url="https://www.nps.gov/zion/planyourvisit/zion-canyon-trail-descriptions.htm"
-                  detail="Get to the trailhead before first light. Watch the canyon walls ignite one layer at a time. Worth every minute of lost sleep."
-                  tags={["3.3 mi RT", "Moderate", "Early AM"]} />
-                <ListItem onOpenSheet={openSheet('Light & Sky')} name="Drive Historic Highway 12" featured
-                  detail="One of America's most dramatic scenic byways. 124 miles from Bryce Canyon to Capitol Reef through red rock canyons, hogbacks with thousand-foot drops on both sides, and the high forests of Boulder Mountain. Don't rush it."
-                  tags={["Scenic Drive", "Half Day", "Bryce to Capitol Reef"]} />
-                <ListItem onOpenSheet={openSheet('Light & Sky')} name="Drive the Mt. Carmel Tunnel" featured
-                  detail="The 1.1-mile tunnel carved through sandstone in 1930. Emerge on the east side to a completely different landscape — checkerboard mesas, white slickrock, open sky."
-                  tags={["Scenic Drive", "East Side", "Historic"]} />
-                <ListItem onOpenSheet={openSheet('Light & Sky')} name="NPS Ranger Stargazing Program"
-                  url="https://www.nps.gov/zion/planyourvisit/sunset-stargazing.htm"
-                  detail="Free ranger-led night sky programs. Telescopes provided, no reservation needed. Check the park calendar for dates."
-                  tags={["Free", "Ranger-Led", "Seasonal"]} />
-                <ListItem onOpenSheet={openSheet('Light & Sky')} name={"Bryce Canyon Under Stars"}
-                  url="https://www.nps.gov/thingstodo/stargazing-at-bryce-canyon.htm"
-                  detail={"Some of the darkest skies in the country. The hoodoos by starlight are otherworldly. Ranger-led telescope programs available."}
-                  tags={["Day Trip", "Dark Sky", "Telescope Programs"]} />
-              </ExpandableList>
-            </FadeIn>
-          </section>
-
-
-          <Divider />
-
-          {/* ══════════════════════════════════════════════════════════════ */}
-          {/* CONNECT                                                       */}
-          {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="food-culture" className="scroll-mt-[126px] py-11">
-            <FadeIn>
-              <SectionIcon type="connect" />
-              <SectionLabel>Food & Culture</SectionLabel>
-              <SectionTitle>{"Food, culture & community"}</SectionTitle>
-              <SectionSub>{"The people and places that turn a visit into a memory. Where to eat, give back, honor the land, and linger."}</SectionSub>
-            </FadeIn>
-            <FadeIn delay={0.08}>
-              <ExpandableList initialCount={4} label="places">
-                {restaurants.filter(r => !r.corridor).sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).map(r => (
-                  <ListItem
-                    key={r.id}
-                    name={r.name}
-                    detail={r.highlights?.join('. ')}
-                    note={r.hours}
-                    tags={r.tags}
-                    featured={r.lilaPick}
-                    url={r.links?.website}
-                    location={r.location}
-                    onOpenSheet={openSheet('Food & Culture')}
-                    cuisine={r.cuisine}
-                    priceRange={r.priceRange}
-                    reservations={r.reservations}
-                    dietary={r.dietary}
-                    energy={r.energy}
-                  />
-                ))}
-
-                {/* ── Cultural Heritage & Service ──────────────────────── */}
-                <ListItem onOpenSheet={openSheet('Food & Culture')} name="Tribal Arts Zion"
-                  detail="Native American art and jewelry sourced directly from tribal artists."
-                  tags={["Native Art", "Jewelry", "Gallery"]} />
-                <ListItem onOpenSheet={openSheet('Food & Culture')} name="David J. West Gallery"
-                  url="https://www.davidjwest.com/"
-                  detail={"Fine art photography of the Southwest in light that makes you question whether you've ever really seen these places."}
-                  tags={["Photography", "Fine Art"]} />
-                <ListItem onOpenSheet={openSheet('Food & Culture')} name="Springdale Farmers Market"
-                  detail="Saturday mornings in season. Local produce, artisan goods."
-                  tags={["Seasonal", "Saturday AM", "Local"]} />
-                <ListItem onOpenSheet={openSheet('Food & Culture')} name="Paiute Cultural Heritage" featured
-                  url="https://pitu.gov/culture/"
-                  detail={"The Southern Paiute called this land Mukuntuweap long before it was Zion. The Paiute Indian Tribe of Utah preserves language, oral history, and traditions through cultural programs and the annual Restoration Powwow in Cedar City each June."}
-                  note="Paiute Indian Tribe of Utah — pitu.gov"
-                  tags={["Indigenous Heritage", "Cultural", "Cedar City"]} />
-                <ListItem onOpenSheet={openSheet('Food & Culture')} name="Pipe Spring National Monument" featured
-                  url="https://www.nps.gov/pisp/"
-                  detail={"Jointly managed by NPS and the Kaibab Band of Paiutes. A desert oasis that tells the layered story of water, sovereignty, and survival — Native, pioneer, and ranching history in one place. The Kaibab Paiutes operate the visitor center."}
-                  tags={["NPS Monument", "Indigenous History", "Day Trip"]} />
-                <ListItem onOpenSheet={openSheet('Food & Culture')} name="Zion Forever Project" featured
-                  url="https://www.zionpark.org/"
-                  detail={"The park's official nonprofit partner. Conservation volunteer days, trail restoration, hanging garden protection, and dark sky preservation. A way to give back to the land that gives so much."}
-                  note="Volunteer opportunities available — zionpark.org"
-                  tags={["Conservation", "Volunteer", "Nonprofit"]} />
-                <ListItem onOpenSheet={openSheet('Food & Culture')} name="Conserve Southwest Utah" featured
-                  url="https://www.conserveswu.org/stewardship"
-                  detail={"Hands-on desert habitat restoration at Red Cliffs NCA near St. George. Planting native shrubs, protecting threatened Mojave desert tortoise habitat, invasive species removal. Over 5,000 native plants restored since 2020."}
-                  note="Regular volunteer days — 45 min from Zion"
-                  tags={["Habitat Restoration", "Volunteer", "Desert Tortoise"]} />
-                <ListItem onOpenSheet={openSheet('Food & Culture')} name="Parowan Gap Petroglyphs"
-                  detail={"A free, open-air gallery of ancient rock art attributed to the Fremont people, near Cedar City. Hundreds of petroglyphs etched into the canyon walls — a contemplative stop that asks nothing but attention."}
-                  tags={["Free", "Ancient Rock Art", "Self-Guided", "Cedar City"]} />
-                <ListItem onOpenSheet={openSheet('Food & Culture')} name="Fruita Orchards at Capitol Reef" location="Capitol Reef NP" featured
-                  url="https://www.nps.gov/care/planyourvisit/fruita.htm"
-                  detail="The park's historic orchard — apricot, cherry, peach, pear, apple — is still harvested by visitors in season. Walk in, pick fruit off the tree, pay by the pound. One of the most quietly extraordinary things you can do in any national park."
-                  tags={["Free to Enter", "U-Pick", "In-Season", "Historic"]} />
-
-                {/* ── Corridor Restaurants ──────────────────────── */}
-                {restaurants.filter(r => r.corridor).length > 0 && (
-                  <>
-                    <p className="font-body text-[13px] font-semibold tracking-[0.08em] uppercase text-warm-gray mt-8 mb-3">
-                      Regional Corridor
-                    </p>
-                    {restaurants.filter(r => r.corridor).sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).map(r => (
-                      <ListItem
-                        key={r.id}
-                        name={r.name}
-                        detail={r.highlights?.join('. ')}
-                        note={r.hours}
-                        tags={r.tags}
-                        featured={r.lilaPick}
-                        url={r.links?.website}
-                        location={r.location}
-                        onOpenSheet={openSheet('Food & Culture')}
-                      />
-                    ))}
-                  </>
-                )}
-              </ExpandableList>
-            </FadeIn>
           </section>
 
 

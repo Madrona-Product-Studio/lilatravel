@@ -12,7 +12,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { Nav, Footer, FadeIn, WhisperBar } from '@components';
-import { SectionLabel, SectionTitle, SectionSub, Divider, SectionIcon } from '@components/guide';
+import { SectionLabel, SectionTitle, SectionSub, Divider, SectionIcon, TierItem, TierLegend } from '@components/guide';
 import { C } from '@data/brand';
 import { P } from '@data/photos';
 import { trackEvent } from '@utils/analytics';
@@ -20,6 +20,9 @@ import { CelestialDrawer } from '@components';
 import { Helmet } from 'react-helmet-async';
 import accommodations from '../../data/accommodations/kauai.json';
 import restaurants from '../../data/restaurants/kauai-eat.json';
+import experiences from '../../data/restaurants/kauai-experience.json';
+import breatheItems from '../../data/restaurants/kauai-breathe.json';
+import moveItems from '../../data/restaurants/kauai-move.json';
 import { BREATH_CONFIG } from '@data/breathConfig';
 import useBreathCanvas from '@hooks/useBreathCanvas';
 
@@ -508,17 +511,46 @@ function ParkCard({ park, isExpanded, onToggle }) {
   );
 }
 
+// ─── Tier Constants ─────────────────────────────────────────────────────────
+
+const MOVE_TIERS = {
+  hike:  { color: '#8a8078', label: 'Hike',  bg: '#e8e2d918' },
+  water: { color: '#7BB8D4', label: 'Water', bg: '#7BB8D415' },
+  ride:  { color: '#D4A853', label: 'Ride',  bg: '#D4A85315' },
+  climb: { color: '#E8A090', label: 'Climb', bg: '#E8A09015' },
+};
+
+const MOVE_TIER_META = {
+  hike:  { label: 'Hike',  desc: 'On foot',          color: '#8a8078' },
+  water: { label: 'Water', desc: 'Surf & paddle',    color: '#7BB8D4' },
+  ride:  { label: 'Ride',  desc: 'Cycle & roll',     color: '#D4A853' },
+  climb: { label: 'Climb', desc: 'Vertical terrain',  color: '#E8A090' },
+};
+const moveLegend = [...new Set(moveItems.map(i => i.moveTier))].map(t => MOVE_TIER_META[t]);
+
+const BREATHE_TIERS = {
+  practice: { color: '#4A9B9F', label: 'Practice', bg: '#4A9B9F15' },
+  soak:     { color: '#7BB8D4', label: 'Soak',     bg: '#7BB8D415' },
+  restore:  { color: '#7BB8A0', label: 'Restore',  bg: '#7BB8A015' },
+};
+const BREATHE_LEGEND = [
+  { label: 'Practice', desc: 'In the tradition', color: '#4A9B9F' },
+  { label: 'Soak',     desc: 'Water & heat',     color: '#7BB8D4' },
+  { label: 'Restore',  desc: 'Integration',      color: '#7BB8A0' },
+];
+
 // ─── Guide Section Navigation (sticky anchor bar) ───────────────────────────
 
 const GUIDE_SECTIONS = [
   { id: "sense-of-place", label: "Sense of Place" },
   { id: "when-to-go",     label: "Magic Windows" },
   { id: "tread-lightly",  label: "Tread Lightly" },
-  { id: "where-to-stay",  label: "Sleep" },
-  { id: "trails",         label: "Move" },
+  { id: "move",           label: "Move" },
   { id: "wellness",       label: "Breathe" },
   { id: "light-sky",      label: "Night Sky" },
-  { id: "food-culture",   label: "Food & Culture" },
+  { id: "eat",            label: "Eat" },
+  { id: "experience",     label: "Experience" },
+  { id: "where-to-stay",  label: "Sleep" },
   { id: "give-back",      label: "Give Back" },
 ];
 
@@ -863,136 +895,39 @@ export default function KauaiGuide() {
           <Divider />
 
           {/* ══════════════════════════════════════════════════════════════ */}
-          {/* STAY                                                          */}
+          {/* MOVE                                                          */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="where-to-stay" className="scroll-mt-[126px] py-11">
+          <section id="move" className="scroll-mt-[126px] py-11">
             <FadeIn>
-              <SectionIcon type="stay" color={ACCENT} />
-              <SectionLabel accentColor={ACCENT}>Sleep</SectionLabel>
-              <SectionTitle>Where to sleep</SectionTitle>
-              <SectionSub>{"How you inhabit a place matters. From beach camping under the Nā Pali cliffs to the island's grandest resort."}</SectionSub>
+              <SectionIcon type="move" />
+              <SectionLabel>Move</SectionLabel>
+              <SectionTitle>How to get into the landscape</SectionTitle>
+              <SectionSub>{"Nā Pali coast hikes, Hanalei surfing, and the best coastal cycling in Hawaii."}</SectionSub>
             </FadeIn>
-
             <FadeIn delay={0.05}>
-              <div className="p-3.5 px-4 bg-cream border border-stone mb-5 flex flex-col md:flex-row gap-2.5 md:gap-4 flex-wrap">
-                {[
-                  { label: "Elemental", desc: "In the landscape", color: C.seaGlass },
-                  { label: "Rooted", desc: "Boutique, local", color: C.oceanTeal },
-                  { label: "Premium", desc: "Elevated experience", color: C.goldenAmber },
-                ].map((t, i) => (
-                  <div key={i} className="flex-none md:flex-[1_1_140px]">
-                    <span className="font-body text-[12px] font-bold tracking-[0.1em]" style={{ color: t.color }}>{t.label}</span>
-                    <span className="font-body text-[13px] font-normal text-[#4A5650] ml-1.5">{t.desc}</span>
-                  </div>
-                ))}
-              </div>
+              <TierLegend tiers={moveLegend} />
             </FadeIn>
-
-            <div>
-              <ExpandableList initialCount={5} label="places to stay">
-                {sortByTierDiversity(accommodations.filter(a => !a.corridor)).map(a => (
-                  <StayItem
-                    key={a.id}
-                    name={a.name}
-                    location={a.location}
-                    tier={a.stayStyle}
-                    detail={a.highlights?.join('. ')}
-                    tags={a.tags}
-                    url={a.links?.booking || a.links?.website}
-                    featured={a.lilaPick}
-                    onOpenSheet={setActiveSheet}
-                    priceRange={a.priceRange}
-                    amenities={a.amenities}
-                    bookingWindow={a.bookingWindow}
-                    seasonalNotes={a.seasonalNotes}
-                    groupFit={a.groupFit}
+            <FadeIn delay={0.08}>
+              <ExpandableList initialCount={5} label="activities">
+                {moveItems.sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).map(item => (
+                  <TierItem
+                    key={item.id}
+                    name={item.name}
+                    location={item.location}
+                    tier={item.moveTier}
+                    tierStyles={MOVE_TIERS}
+                    detail={item.highlights?.join('. ')}
+                    tags={item.tags}
+                    url={item.links?.website}
+                    featured={item.lilaPick}
+                    note={item.bookingWindow}
+                    duration={item.duration}
+                    distance={item.distance}
+                    operator={item.operator}
+                    light={item.type === 'climb'}
                   />
                 ))}
               </ExpandableList>
-            </div>
-          </section>
-
-
-          <Divider />
-
-          {/* ══════════════════════════════════════════════════════════════ */}
-          {/* TRAILS                                                        */}
-          {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="trails" className="scroll-mt-[126px] py-11">
-            <FadeIn>
-              <SectionIcon type="move" color={ACCENT} />
-              <SectionLabel accentColor={ACCENT}>Move</SectionLabel>
-              <SectionTitle>{"Trails, coast & canyon"}</SectionTitle>
-              <SectionSub>{"From the Nā Pali Coast's fluted sea cliffs to the red rock of Waimea Canyon. Every trail here earns its reputation."}</SectionSub>
-            </FadeIn>
-
-            {/* ── Nā Pali Coast ── */}
-            <FadeIn delay={0.06}>
-              <div className="mb-2">
-                <div className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-ocean-teal mb-4">{"Nā Pali Coast"}</div>
-                <ListItem onOpenSheet={openSheet('Trails')} name={"Kalalau Trail to Hanakāpīʻai Beach"} featured
-                  url="https://dlnr.hawaii.gov/dsp/parks/kauai/napali-coast-state-wilderness-park/"
-                  detail={"The most iconic trail in Hawaiʻi. First two miles — to Hanakāpīʻai Beach — open to day hikers without camping permit. Cliffs, jungle, switchbacks above the Pacific. The beach is dangerous for swimming — come to see it, not to enter it. Advance reservation required through gohaena.com."}
-                  note="4 mi RT · 800 ft gain · Moderate · 2.5–3 hrs"
-                  tags={["Coastal Cliffs", "Jungle", "Photography", "Reservation Required"]} />
-                <ListItem onOpenSheet={openSheet('Trails')} name={"Kalalau Trail — Full (Permitted Overnight)"}
-                  url="https://dlnr.hawaii.gov/dsp/parks/kauai/napali-coast-state-wilderness-park/"
-                  detail={"The complete 11-mile route traverses five valleys and ends at Kalalau Beach, one of the most remote beaches accessible on foot in the United States. Camping permits required, available 90 days in advance — they sell out in minutes for peak dates."}
-                  note="22 mi RT · Strenuous · 2–4 days"
-                  tags={["Backpacking", "Wilderness", "Permit Required", "Apr–Sep"]} />
-                <ListItem onOpenSheet={openSheet('Trails')} name={"Awaʻawapuhi Trail"} featured
-                  url="https://dlnr.hawaii.gov/dsp/parks/kauai/kokee-state-park/"
-                  detail={"The finest ridge trail on the island — through native forest to a knife-edge viewpoint 2,500 feet above the ocean on the Nā Pali Coast. The final viewpoint looks directly down into the fluted valleys. Exceptional."}
-                  note="6.4 mi RT · 1,500 ft gain · Strenuous · 3–4 hrs"
-                  tags={["Ridge Walk", "Nā Pali Views", "Native Forest"]} />
-              </div>
-            </FadeIn>
-
-            {/* ── Waimea Canyon & Kōkeʻe ── */}
-            <FadeIn delay={0.1}>
-              <div className="mt-7 mb-2">
-                <div className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-ocean-teal mb-4">{"Waimea Canyon & Kōkeʻe"}</div>
-                <ListItem onOpenSheet={openSheet('Trails')} name="Waimea Canyon Trail"
-                  url="https://dlnr.hawaii.gov/dsp/parks/kauai/waimea-canyon-state-park/"
-                  detail={"The primary canyon trail runs along the rim with a detour to the top of Waipoʻo Falls — an 800-foot cascade. The views of the red-rock canyon layers are remarkable from close range."}
-                  note="3.6 mi RT · Moderate · 2–3 hrs"
-                  tags={["Canyon", "Waterfall", "Geology", "Photography"]} />
-                <ListItem onOpenSheet={openSheet('Trails')} name={"Pihea Trail (Kōkeʻe to Alakaʻi Swamp)"} featured
-                  url="https://dlnr.hawaii.gov/dsp/parks/kauai/kokee-state-park/"
-                  detail={"From Puʻu o Kila Lookout into the Alakaʻi Swamp — the world's highest tropical swamp (4,000 feet), home to rare native birds found nowhere else on Earth (ʻapapane, ʻiʻiwi, pueo). The trailhead overlooks the Kalalau Valley."}
-                  note="7.6 mi RT · Moderate · 3–4 hrs · Often muddy"
-                  tags={["Native Birds", "Swamp Ecology", "Endemic Species", "Solitude"]} />
-              </div>
-            </FadeIn>
-
-            {/* ── North Shore ── */}
-            <FadeIn delay={0.14}>
-              <div className="mt-7 mb-2">
-                <div className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-ocean-teal mb-4">North Shore</div>
-                <ListItem onOpenSheet={openSheet('Trails')} name={"Hāʻena State Park — Keʻe Beach & Reef Walk"}
-                  url="https://www.gohaena.com/"
-                  detail={"The beach at the end of the highway — where the road literally stops. A calm reef lagoon in summer creates protected snorkeling with excellent visibility. In winter, the water is rough. Reservations required through gohaena.com. Arrive early."}
-                  tags={["Snorkeling", "Beach", "Reef", "Reservation Required"]} />
-                <ListItem onOpenSheet={openSheet('Trails')} name="Sleeping Giant (Nounou Mountain)"
-                  url="https://dlnr.hawaii.gov/dsp/parks/kauai/nounou-mountain-east-side/"
-                  detail={"A local's hike above Kapaʻa. Panoramic views of the East Shore, Mount Waiʻaleʻale, and the Pacific. Less crowded than north shore trails, more revealing as a view of the island's interior."}
-                  note="3.4 mi RT · 1,000 ft gain · Moderate · 2–2.5 hrs"
-                  tags={["Panoramic Views", "Local Favorite", "Interior Landscape"]} />
-              </div>
-            </FadeIn>
-
-            {/* ── Scenic Drives ── */}
-            <FadeIn delay={0.18}>
-              <div className="mt-7">
-                <div className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-ocean-teal mb-4">Scenic Drives</div>
-                <ListItem onOpenSheet={openSheet('Trails')} name="Waimea Canyon Drive (Highway 550)"
-                  url="https://dlnr.hawaii.gov/dsp/parks/kauai/waimea-canyon-state-park/"
-                  detail={"20-mile scenic road from Waimea town to the end of Kōkeʻe State Park. Five overlooks with increasingly dramatic canyon and coast views. The final two — Kalalau Lookout and Puʻu o Kila — look directly into the Kalalau Valley. Drive it top to bottom, stopping at every lookout."}
-                  tags={["20 Miles", "5 Overlooks", "Canyon + Coast"]} />
-                <ListItem onOpenSheet={openSheet('Trails')} name="North Shore Road (Highway 56 / 560)"
-                  detail={"From Līhuʻe to Hāʻena: 40 miles of the island's most dramatic coastal beauty. The road narrows past Hanalei, crosses one-lane bridges over rivers and taro fields, passes ancient ahupuaʻa boundaries, and ends at Keʻe Beach. The taro fields of the Hanalei National Wildlife Refuge are extraordinary."}
-                  tags={["40 Miles", "One-Lane Bridges", "Taro Fields"]} />
-              </div>
             </FadeIn>
           </section>
 
@@ -1004,38 +939,31 @@ export default function KauaiGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           <section id="wellness" className="scroll-mt-[126px] py-11">
             <FadeIn>
-              <SectionIcon type="breathe" color={ACCENT} />
-              <SectionLabel accentColor={ACCENT}>Breathe</SectionLabel>
-              <SectionTitle>{"Yoga, water & contemplation"}</SectionTitle>
-              <SectionSub>{"The island's pace makes practice feel less like effort and more like returning to something you already knew."}</SectionSub>
+              <SectionIcon type="breathe" />
+              <SectionLabel>Breathe</SectionLabel>
+              <SectionTitle>{"Yoga, Hawaiian healing & ancient terraces"}</SectionTitle>
+              <SectionSub>{"Yoga, Hawaiian healing traditions, and ancient terraces as practice."}</SectionSub>
+            </FadeIn>
+            <FadeIn delay={0.05}>
+              <TierLegend tiers={BREATHE_LEGEND} />
             </FadeIn>
             <FadeIn delay={0.08}>
-              <ExpandableList initialCount={5} label="wellness experiences">
-                <ListItem onOpenSheet={openSheet('Wellness')} name="Black Coral Yoga" featured
-                  url="https://www.blackcoralyoga.com/"
-                  detail={"The anchor yoga studio on Kauaʻi's North Shore — on the second floor of the historic Hanalei Center with a wraparound lānai facing mountain and waterfall views. Lineage rooted in Patanjali's Yoga Sūtras and Ashtanga Vinyāsa. Classes range from infrared-heated Vinyāsa and Hot 90 to Hatha, Yin, Restorative, breathwork, and sound. Pre-registration required; early morning classes fill fast."}
-                  note="Hanalei — reserve early"
-                  tags={["Yoga", "Sound", "Infrared", "Lineage-Based"]} />
-                <ListItem onOpenSheet={openSheet('Wellness')} name={"Anara Spa at Grand Hyatt Kauaʻi"} featured
-                  url="https://www.hyatt.com/grand-hyatt/en-US/kauai"
-                  detail={"The island's most developed spa facility. Traditional Hawaiian healing practices — lomilomi massage, pōhaku hot stone treatment — alongside standard spa programming. Day access to outdoor facilities available for non-guests. Grand in scale; grounded in Hawaiian tradition."}
-                  note="Poipū — day access available"
-                  tags={["Lomilomi", "Hot Stone", "Pools", "Garden"]} />
-                <ListItem onOpenSheet={openSheet('Wellness')} name={"Kauaʻi Yoga"}
-                  url="https://www.kauaiyoga.com/"
-                  detail={"A long-running island-wide yoga community. Drop-in classes offered across Poipū, Kapaʻa, and Princeville."}
-                  tags={["Drop-In", "Multiple Locations", "Community"]} />
-                <ListItem onOpenSheet={openSheet('Wellness')} name={"Stand-Up Paddleboarding — Hanalei Bay"}
-                  detail={"Hanalei Bay in summer is one of the finest flat-water SUP environments in the Pacific: a protected crescent bay with mountain backdrop, calm water, and turtles visible below the board on clear days. Multiple rental and lesson operators on the beach. An elemental morning."}
-                  tags={["Summer", "Flat Water", "Turtles", "Rentals"]} />
-                <ListItem onOpenSheet={openSheet('Wellness')} name="Kayaking the Wailua River" featured
-                  detail={"The only navigable river in Hawaiʻi. A guided kayak tour up the river through thick jungle to Uluwehi (Secret) Falls — a 100-foot waterfall into a plunge pool. One of the most consistently rewarding half-days on the island."}
-                  note="Operators: Kayak Kauai, Wailua Kayak Adventures"
-                  tags={["River Kayak", "Waterfall", "Half Day", "Guided"]} />
-                <ListItem onOpenSheet={openSheet('Wellness')} name={"Limahuli Garden & Preserve"} featured
-                  url="https://ntbg.org/gardens/limahuli/"
-                  detail={"A National Tropical Botanical Garden property tucked into a valley on the north shore, built on the footprint of ancient Hawaiian agricultural terraces. Ancient loʻi (taro paddies), native plant collections, and one of the most biodiverse valleys in Hawaiʻi. Self-guided tours available; guided tours recommended for cultural depth."}
-                  tags={["Botanical Garden", "Hawaiian Terraces", "Contemplative"]} />
+              <ExpandableList initialCount={5} label="wellness options">
+                {breatheItems.sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).map(item => (
+                  <TierItem
+                    key={item.id}
+                    name={item.name}
+                    location={item.location}
+                    tier={item.breatheTier}
+                    tierStyles={BREATHE_TIERS}
+                    detail={item.highlights?.join('. ')}
+                    tags={item.tags}
+                    url={item.links?.website}
+                    featured={item.lilaPick}
+                    note={item.bookingWindow}
+                    tradition={item.tradition}
+                  />
+                ))}
               </ExpandableList>
             </FadeIn>
           </section>
@@ -1114,35 +1042,17 @@ export default function KauaiGuide() {
 
 
           {/* ══════════════════════════════════════════════════════════════ */}
-          {/* FOOD & CULTURE                                                */}
+          {/* EAT                                                           */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="food-culture" className="scroll-mt-[126px] py-11">
+          <section id="eat" className="scroll-mt-[126px] py-11">
             <FadeIn>
-              <SectionIcon type="connect" color={ACCENT} />
-              <SectionLabel accentColor={ACCENT}>Food & Culture</SectionLabel>
-              <SectionTitle>{"Food, culture & stewardship"}</SectionTitle>
-              <SectionSub>{"From sacred practice to farm culture to the island's best kitchens. The connections here go deeper than a meal."}</SectionSub>
+              <SectionIcon type="connect" />
+              <SectionLabel>Eat</SectionLabel>
+              <SectionTitle>Where to eat</SectionTitle>
+              <SectionSub>{"The restaurants, cafés, and provisions that fuel the trip."}</SectionSub>
             </FadeIn>
-
-            {/* ── Sacred Practice & Farm Culture ── */}
-            <FadeIn delay={0.06}>
-              <div className="mb-2">
-                <div className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-ocean-teal mb-4">{"Sacred Practice & Farm Culture"}</div>
-                <ListItem onOpenSheet={openSheet('Culture')} name={"Kauaʻi's Hindu Monastery — Kauai Aadheenam"} featured
-                  url="https://www.himalayanacademy.com/"
-                  detail={"A 382-acre monastery and temple complex on the Wailua River — one of the most unexpected and quietly profound places in all of Hawaiʻi. The Kadavul Temple houses 108 golden statues of Nataraja and a 700-pound naturally formed crystal Śivaliṅgam. The under-construction Iraivan Temple is the first all-stone Hindu temple in the Western Hemisphere. Visitors welcome daily 9 AM–noon; 9 AM puja open to all. Dress modestly."}
-                  note="Kapaʻa — reservation required for temple"
-                  tags={["Sacred Practice", "Meditation", "Pilgrimage", "Free"]} />
-                <ListItem onOpenSheet={openSheet('Culture')} name="Lydgate Farms — Chocolate Farm Tour" featured
-                  url="https://www.lydgatefarms.com/"
-                  detail={"A fifth-generation Kauaʻi family farming since 1865. Three-hour guided tour through botanical gardens and award-winning cacao fields — recognized three times by Cocoa of Excellence in Paris. The full arc from tree to bar: tropical fruit tasting, vanilla, honey, and craft chocolate. The concept of mālama ʻāina — caring for the land — is embedded in how they operate."}
-                  note="Kapaʻa East Side — 3 hrs, reservation required"
-                  tags={["Farm Tour", "Chocolate", "Mālama ʻĀina", "Kids 7+"]} />
-              </div>
-            </FadeIn>
-
-            <FadeIn delay={0.1}>
-              <ExpandableList initialCount={5} label="places to eat">
+            <FadeIn delay={0.08}>
+              <ExpandableList initialCount={4} label="places">
                 {restaurants.filter(r => !r.corridor).sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).map(r => (
                   <ListItem
                     key={r.id}
@@ -1153,75 +1063,89 @@ export default function KauaiGuide() {
                     featured={r.lilaPick}
                     url={r.links?.website}
                     location={r.location}
+                    onOpenSheet={openSheet('Eat')}
                     cuisine={r.cuisine}
                     priceRange={r.priceRange}
                     reservations={r.reservations}
                     dietary={r.dietary}
                     energy={r.energy}
-                    onOpenSheet={openSheet('Food')}
                   />
                 ))}
               </ExpandableList>
             </FadeIn>
+          </section>
 
-            {/* ── Discover ── */}
-            <FadeIn delay={0.26}>
-              <div className="mt-7 mb-2">
-                <div className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-ocean-teal mb-4">{"Land, Water & Discovery"}</div>
-                <ListItem onOpenSheet={openSheet('Discover')} name={"Nā Pali Coast — Boat Tour"} featured
-                  detail={"The coast is only accessible by land for the first two miles of the Kalalau Trail; everything beyond is best seen from the water. Rigid-inflatable raft tours navigate into sea caves, under waterfalls, and along the base of the pali. Captain Andy's and Blue Dolphin Charters have the longest track records."}
-                  note="May–September · Book weeks ahead for summer"
-                  tags={["Sea Caves", "Waterfalls", "6 Hours", "May–Sep"]} />
-                <ListItem onOpenSheet={openSheet('Discover')} name={"Helicopter Flight — Waimea Canyon & Interior"}
-                  detail={"Kauaʻi's interior — the Mt. Waiʻaleʻale crater and the rivers that flow from it — is almost completely inaccessible on foot. A helicopter flight is the only way to see the inner waterfalls. Blue Hawaiian and Jack Harter fly doors-off tours. Expensive and genuinely unlike anything else."}
-                  tags={["Helicopter", "Doors-Off", "Inner Waterfalls"]} />
-                <ListItem onOpenSheet={openSheet('Discover')} name={"Snorkeling — Tunnels Reef (Hāʻena)"}
-                  url="https://www.gohaena.com/"
-                  detail={"One of the finest snorkel sites in Hawaiʻi — a large lava reef system with Hawaiian green sea turtles (honu), reef fish, and in summer, manta rays at dusk. Best in summer when the north shore is calm."}
-                  tags={["Snorkeling", "Sea Turtles", "Summer", "Reservation Required"]} />
-                <ListItem onOpenSheet={openSheet('Discover')} name={"Kīlauea Lighthouse & Wildlife Refuge"}
-                  url="https://www.fws.gov/refuge/kilauea-point/"
-                  detail={"A century-old lighthouse on a headland above the Pacific. The refuge supports nesting colonies of red-footed boobies, frigatebirds, Laysan albatross, and wedge-tailed shearwaters. Humpbacks visible offshore in winter."}
-                  tags={["Lighthouse", "Seabirds", "Whale Watching", "North Shore"]} />
-                <ListItem onOpenSheet={openSheet('Discover')} name={"Hanapepe — Art Town"}
-                  url="https://www.hanapepe.org/"
-                  detail={"A small former plantation town that has become a genuine artist community. Friday Art Night opens galleries along the main street. The Hanapepe Swinging Bridge spans the river behind town."}
-                  tags={["Art Galleries", "Friday Night", "Swinging Bridge"]} />
-                <ListItem onOpenSheet={openSheet('Discover')} name="McBryde Garden (NTBG)"
-                  url="https://ntbg.org/gardens/mcbryde/"
-                  detail={"The south shore companion to Limahuli — a major botanical collection with the largest assembly of native Hawaiian plants in the world, plus tropical collections from across the Pacific. Guided tours strongly recommended."}
-                  tags={["Botanical Garden", "Native Plants", "Guided Tours"]} />
+          <Divider />
+
+          {/* ══════════════════════════════════════════════════════════════ */}
+          {/* EXPERIENCE                                                    */}
+          {/* ══════════════════════════════════════════════════════════════ */}
+          <section id="experience" className="scroll-mt-[126px] py-11">
+            <FadeIn>
+              <SectionIcon type="connect" />
+              <SectionLabel>Experience</SectionLabel>
+              <SectionTitle>{"Culture, heritage & discovery"}</SectionTitle>
+              <SectionSub>{"Sacred sites, farm tours, Indigenous heritage, and the living culture of Kauaʻi."}</SectionSub>
+            </FadeIn>
+            <FadeIn delay={0.08}>
+              <ExpandableList initialCount={4} label="experiences">
+                {experiences.sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).map(item => (
+                  <ListItem key={item.id} name={item.name} detail={item.highlights?.join('. ')} note={item.hours} tags={item.tags} featured={item.lilaPick} url={item.links?.website} location={item.location} />
+                ))}
+              </ExpandableList>
+            </FadeIn>
+          </section>
+
+          <Divider />
+
+          {/* ══════════════════════════════════════════════════════════════ */}
+          {/* STAY                                                          */}
+          {/* ══════════════════════════════════════════════════════════════ */}
+          <section id="where-to-stay" className="scroll-mt-[126px] py-11">
+            <FadeIn>
+              <SectionIcon type="stay" color={ACCENT} />
+              <SectionLabel accentColor={ACCENT}>Sleep</SectionLabel>
+              <SectionTitle>Where to sleep</SectionTitle>
+              <SectionSub>{"How you inhabit a place matters. From beach camping under the Nā Pali cliffs to the island's grandest resort."}</SectionSub>
+            </FadeIn>
+
+            <FadeIn delay={0.05}>
+              <div className="p-3.5 px-4 bg-cream border border-stone mb-5 flex flex-col md:flex-row gap-2.5 md:gap-4 flex-wrap">
+                {[
+                  { label: "Elemental", desc: "In the landscape", color: C.seaGlass },
+                  { label: "Rooted", desc: "Boutique, local", color: C.oceanTeal },
+                  { label: "Premium", desc: "Elevated experience", color: C.goldenAmber },
+                ].map((t, i) => (
+                  <div key={i} className="flex-none md:flex-[1_1_140px]">
+                    <span className="font-body text-[12px] font-bold tracking-[0.1em]" style={{ color: t.color }}>{t.label}</span>
+                    <span className="font-body text-[13px] font-normal text-[#4A5650] ml-1.5">{t.desc}</span>
+                  </div>
+                ))}
               </div>
             </FadeIn>
 
-            {/* ── Give Back & Cultural Stewardship ── */}
-            <FadeIn delay={0.3}>
-              <div className="mt-7">
-                <div className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-ocean-teal mb-4">{"Hawaiian Cultural Stewardship"}</div>
-                <p className="font-body text-[clamp(14px,1.5vw,14px)] font-normal text-[#4A5650] leading-[1.7] mt-0 mb-4">
-                  {"Kauaʻi's culture and landscape are sustained by the work of organizations rooted in the concept of mālama — to care for. The most meaningful travel here engages with that care directly."}
-                </p>
-                <ListItem onOpenSheet={openSheet('Stewardship')} name="Waipa Foundation" featured
-                  url="https://www.waipafoundation.org/"
-                  detail={"A Native Hawaiian community center on the north shore, working to restore the cultural and ecological relationship between people and ʻāina (land). Thursday morning Poi Day: community workday in the loʻi followed by traditional food preparation. One of the most authentic cultural engagement opportunities in Hawaiʻi."}
-                  tags={["Loʻi Kalo", "Poi Day", "Community", "Hanalei"]} />
-                <ListItem onOpenSheet={openSheet('Stewardship')} name={"Surfrider Foundation Kauaʻi"}
-                  url="https://www.surfrider.org/chapters/kauai"
-                  detail={"Weekly beach cleanups and net patrols across the island. Wednesday cleanups at 3:30 PM (rotating locations). Saturday cleanups at Lydgate Beach Park 8:30–10:30 AM. Show up, sign in, work alongside whoever's there. No advance registration required."}
-                  tags={["Beach Cleanup", "Weekly", "No Registration"]} />
-                <ListItem onOpenSheet={openSheet('Stewardship')} name={"Limahuli Garden — Volunteer Program"}
-                  url="https://ntbg.org/gardens/limahuli/"
-                  detail={"Limahuli welcomes volunteers for invasive species removal, native plant propagation, and habitat restoration. The work is ecological and cultural simultaneously."}
-                  tags={["Volunteer", "Native Plants", "Invasive Species"]} />
-                <ListItem onOpenSheet={openSheet('Stewardship')} name={"Malama Kauaʻi"}
-                  url="https://www.malamakauai.org/"
-                  detail={"A broad volunteer network addressing local food production, invasive species, and access to fresh food on the island. Opportunities include harvesting, trail clearing, and food forest work."}
-                  tags={["Volunteer", "Food Systems", "Trail Clearing"]} />
-                <ListItem onOpenSheet={openSheet('Stewardship')} name={"Malama i nā Honu — Sea Turtle Protection"}
-                  detail={"Hawaiian green sea turtles (honu) rest on Poipū Beach nightly. Volunteers protect turtles and educate visitors during hauling events. For shorter stays: stay 15 feet back, no flash photography, no disturbance."}
-                  tags={["Sea Turtles", "Poipū Beach", "Protection"]} />
-              </div>
-            </FadeIn>
+            <div>
+              <ExpandableList initialCount={5} label="places to stay">
+                {sortByTierDiversity(accommodations.filter(a => !a.corridor)).map(a => (
+                  <StayItem
+                    key={a.id}
+                    name={a.name}
+                    location={a.location}
+                    tier={a.stayStyle}
+                    detail={a.highlights?.join('. ')}
+                    tags={a.tags}
+                    url={a.links?.booking || a.links?.website}
+                    featured={a.lilaPick}
+                    onOpenSheet={setActiveSheet}
+                    priceRange={a.priceRange}
+                    amenities={a.amenities}
+                    bookingWindow={a.bookingWindow}
+                    seasonalNotes={a.seasonalNotes}
+                    groupFit={a.groupFit}
+                  />
+                ))}
+              </ExpandableList>
+            </div>
           </section>
 
 
