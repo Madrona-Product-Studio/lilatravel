@@ -545,12 +545,12 @@ const GUIDE_SECTIONS = [
   { id: "sense-of-place", label: "Sense of Place" },
   { id: "when-to-go",     label: "Magic Windows" },
   { id: "tread-lightly",  label: "Tread Lightly" },
+  { id: "where-to-stay",  label: "Sleep" },
   { id: "move",           label: "Move" },
   { id: "wellness",       label: "Breathe" },
   { id: "light-sky",      label: "Night Sky" },
   { id: "eat",            label: "Eat" },
   { id: "experience",     label: "Experience" },
-  { id: "where-to-stay",  label: "Sleep" },
   { id: "give-back",      label: "Give Back" },
 ];
 
@@ -895,6 +895,59 @@ export default function KauaiGuide() {
           <Divider />
 
           {/* ══════════════════════════════════════════════════════════════ */}
+          {/* STAY                                                          */}
+          {/* ══════════════════════════════════════════════════════════════ */}
+          <section id="where-to-stay" className="scroll-mt-[126px] py-11">
+            <FadeIn>
+              <SectionIcon type="stay" color={ACCENT} />
+              <SectionLabel accentColor={ACCENT}>Sleep</SectionLabel>
+              <SectionTitle>Where to sleep</SectionTitle>
+              <SectionSub>{"How you inhabit a place matters. From beach camping under the Nā Pali cliffs to the island's grandest resort."}</SectionSub>
+            </FadeIn>
+
+            <FadeIn delay={0.05}>
+              <div className="p-3.5 px-4 bg-cream border border-stone mb-5 flex flex-col md:flex-row gap-2.5 md:gap-4 flex-wrap">
+                {[
+                  { label: "Elemental", desc: "In the landscape", color: C.seaGlass },
+                  { label: "Rooted", desc: "Boutique, local", color: C.oceanTeal },
+                  { label: "Premium", desc: "Elevated experience", color: C.goldenAmber },
+                ].map((t, i) => (
+                  <div key={i} className="flex-none md:flex-[1_1_140px]">
+                    <span className="font-body text-[12px] font-bold tracking-[0.1em]" style={{ color: t.color }}>{t.label}</span>
+                    <span className="font-body text-[13px] font-normal text-[#4A5650] ml-1.5">{t.desc}</span>
+                  </div>
+                ))}
+              </div>
+            </FadeIn>
+
+            <div>
+              <ExpandableList initialCount={5} label="places to stay">
+                {sortByTierDiversity(accommodations.filter(a => !a.corridor)).map(a => (
+                  <StayItem
+                    key={a.id}
+                    name={a.name}
+                    location={a.location}
+                    tier={a.stayStyle}
+                    detail={a.highlights?.join('. ')}
+                    tags={a.tags}
+                    url={a.links?.booking || a.links?.website}
+                    featured={a.lilaPick}
+                    onOpenSheet={setActiveSheet}
+                    priceRange={a.priceRange}
+                    amenities={a.amenities}
+                    bookingWindow={a.bookingWindow}
+                    seasonalNotes={a.seasonalNotes}
+                    groupFit={a.groupFit}
+                  />
+                ))}
+              </ExpandableList>
+            </div>
+          </section>
+
+
+          <Divider />
+
+          {/* ══════════════════════════════════════════════════════════════ */}
           {/* MOVE                                                          */}
           {/* ══════════════════════════════════════════════════════════════ */}
           <section id="move" className="scroll-mt-[126px] py-11">
@@ -1094,58 +1147,6 @@ export default function KauaiGuide() {
                 ))}
               </ExpandableList>
             </FadeIn>
-          </section>
-
-          <Divider />
-
-          {/* ══════════════════════════════════════════════════════════════ */}
-          {/* STAY                                                          */}
-          {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="where-to-stay" className="scroll-mt-[126px] py-11">
-            <FadeIn>
-              <SectionIcon type="stay" color={ACCENT} />
-              <SectionLabel accentColor={ACCENT}>Sleep</SectionLabel>
-              <SectionTitle>Where to sleep</SectionTitle>
-              <SectionSub>{"How you inhabit a place matters. From beach camping under the Nā Pali cliffs to the island's grandest resort."}</SectionSub>
-            </FadeIn>
-
-            <FadeIn delay={0.05}>
-              <div className="p-3.5 px-4 bg-cream border border-stone mb-5 flex flex-col md:flex-row gap-2.5 md:gap-4 flex-wrap">
-                {[
-                  { label: "Elemental", desc: "In the landscape", color: C.seaGlass },
-                  { label: "Rooted", desc: "Boutique, local", color: C.oceanTeal },
-                  { label: "Premium", desc: "Elevated experience", color: C.goldenAmber },
-                ].map((t, i) => (
-                  <div key={i} className="flex-none md:flex-[1_1_140px]">
-                    <span className="font-body text-[12px] font-bold tracking-[0.1em]" style={{ color: t.color }}>{t.label}</span>
-                    <span className="font-body text-[13px] font-normal text-[#4A5650] ml-1.5">{t.desc}</span>
-                  </div>
-                ))}
-              </div>
-            </FadeIn>
-
-            <div>
-              <ExpandableList initialCount={5} label="places to stay">
-                {sortByTierDiversity(accommodations.filter(a => !a.corridor)).map(a => (
-                  <StayItem
-                    key={a.id}
-                    name={a.name}
-                    location={a.location}
-                    tier={a.stayStyle}
-                    detail={a.highlights?.join('. ')}
-                    tags={a.tags}
-                    url={a.links?.booking || a.links?.website}
-                    featured={a.lilaPick}
-                    onOpenSheet={setActiveSheet}
-                    priceRange={a.priceRange}
-                    amenities={a.amenities}
-                    bookingWindow={a.bookingWindow}
-                    seasonalNotes={a.seasonalNotes}
-                    groupFit={a.groupFit}
-                  />
-                ))}
-              </ExpandableList>
-            </div>
           </section>
 
 
