@@ -205,11 +205,11 @@ export default function EthosPage() {
                   {pillar.name}
                 </div>
                 <div style={{
-                  fontFamily: FONTS.serif,
-                  fontSize: 16,
-                  fontStyle: 'italic',
+                  fontFamily: FONTS.body,
+                  fontSize: 14,
+                  fontWeight: 300,
                   color: C.darkInk,
-                  lineHeight: 1.4,
+                  lineHeight: 1.5,
                   marginBottom: 10,
                 }}>
                   {pillar.desc}
