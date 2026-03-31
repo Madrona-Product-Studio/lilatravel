@@ -36,22 +36,18 @@ export default function GroupTrips() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-7">
             {allTrips.map((trip, i) => (
               <FadeIn key={trip.slug} delay={i * 0.08}>
-                <div className="relative h-full">
-                  {/* Disable click-through by intercepting pointer events */}
-                  <div className="pointer-events-none opacity-75 h-full">
+                <div className="relative h-full flex flex-col">
+                  {/* Card — slightly dimmed to signal not-yet-bookable */}
+                  <div className="pointer-events-none opacity-75 flex-1">
                     <TripCard trip={trip} />
                   </div>
-                  {/* In Dev badge */}
-                  <div className="absolute top-3.5 right-3.5 z-2 font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[#aab0b8] border border-[#d0d5d9] bg-white/92 backdrop-blur-[8px] py-[5px] px-3">
-                    In Dev
-                  </div>
-                  {/* Express Interest CTA */}
+                  {/* Express Interest CTA — below the card, in flow */}
                   <button
                     onClick={() => {
                       trackEvent('express_interest_clicked', { trip_slug: trip.slug });
                       setInterestTrip(trip);
                     }}
-                    className="absolute bottom-5 left-6 right-6 z-2 font-body text-[10px] font-bold tracking-[0.18em] uppercase text-white border-none cursor-pointer py-2.5 px-4 transition-opacity duration-200 hover:opacity-85 pointer-events-auto"
+                    className="w-full font-body text-[10px] font-bold tracking-[0.18em] uppercase text-white border-none cursor-pointer py-3 px-4 transition-opacity duration-200 hover:opacity-85"
                     style={{ background: trip.color }}
                   >
                     Express Interest
