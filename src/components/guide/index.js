@@ -5,3 +5,4 @@ export { default as Divider } from './Divider';
 export { default as SectionIcon } from './SectionIcon';
 export { default as TierItem } from './TierItem';
 export { default as TierLegend } from './TierLegend';
+export { default as TierFilter } from './TierFilter';

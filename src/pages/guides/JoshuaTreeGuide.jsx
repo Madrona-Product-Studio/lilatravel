@@ -12,7 +12,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { Nav, Footer, FadeIn, WhisperBar } from '@components';
-import { SectionLabel, SectionTitle, SectionSub, Divider, SectionIcon, TierItem, TierLegend } from '@components/guide';
+import { SectionLabel, SectionTitle, SectionSub, Divider, SectionIcon, TierItem, TierLegend, TierFilter } from '@components/guide';
 import { C } from '@data/brand';
 import { P } from '@data/photos';
 import { trackEvent } from '@utils/analytics';
@@ -674,6 +674,12 @@ const MOVE_TIER_META = {
   climb: { label: 'Climb', desc: 'Vertical terrain',  color: '#E8A090' },
 };
 const moveLegend = [...new Set(moveItems.map(i => i.moveTier))].map(t => MOVE_TIER_META[t]);
+const moveFilterTiers = [...new Set(moveItems.map(i => i.moveTier))].map(t => ({ key: t, ...MOVE_TIER_META[t] }));
+const breatheFilterTiers = [
+  { key: 'practice', label: 'Practice', desc: 'In the tradition', color: '#4A9B9F' },
+  { key: 'soak',     label: 'Soak',     desc: 'Water & heat',     color: '#7BB8D4' },
+  { key: 'restore',  label: 'Restore',  desc: 'Integration',      color: '#7BB8A0' },
+];
 
 // ─── Guide Section Navigation (sticky anchor bar) ───────────────────────────
 
@@ -789,6 +795,24 @@ export default function JoshuaTreeGuide() {
 
   const [expandedPark, setExpandedPark] = useState(null);
   const [activeSheet, setActiveSheet] = useState(null);
+  const [activeMoveTiers, setActiveMoveTiers] = useState(() => new Set(moveItems.map(i => i.moveTier)));
+  const [activeBreatheTiers, setActiveBreatheTiers] = useState(() => new Set(['practice', 'soak', 'restore']));
+  const handleMoveToggle = (tierKey) => {
+    setActiveMoveTiers(prev => {
+      if (prev.has(tierKey) && prev.size === 1) return prev;
+      const next = new Set(prev);
+      next.has(tierKey) ? next.delete(tierKey) : next.add(tierKey);
+      return next;
+    });
+  };
+  const handleBreatheToggle = (tierKey) => {
+    setActiveBreatheTiers(prev => {
+      if (prev.has(tierKey) && prev.size === 1) return prev;
+      const next = new Set(prev);
+      next.has(tierKey) ? next.delete(tierKey) : next.add(tierKey);
+      return next;
+    });
+  };
   useEffect(() => {
     if (activeSheet) document.body.style.overflow = 'hidden';
     else document.body.style.overflow = '';
@@ -1155,11 +1179,11 @@ export default function JoshuaTreeGuide() {
               <SectionSub>Desert hikes, world-class rock climbing, and cycling through the geological record.</SectionSub>
             </FadeIn>
             <FadeIn delay={0.05}>
-              <TierLegend tiers={moveLegend} />
+              <TierFilter tiers={moveFilterTiers} activeTiers={activeMoveTiers} onToggle={handleMoveToggle} />
             </FadeIn>
             <FadeIn delay={0.08}>
               <ExpandableList initialCount={5} label="activities">
-                {moveItems.sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).map(item => (
+                {moveItems.filter(item => activeMoveTiers.has(item.moveTier)).sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).map(item => (
                   <TierItem
                     key={item.id}
                     name={item.name}
@@ -1197,11 +1221,11 @@ export default function JoshuaTreeGuide() {
               <SectionSub>{"Yoga, sound baths, and desert silence as practice."}</SectionSub>
             </FadeIn>
             <FadeIn delay={0.05}>
-              <TierLegend tiers={BREATHE_LEGEND} />
+              <TierFilter tiers={breatheFilterTiers} activeTiers={activeBreatheTiers} onToggle={handleBreatheToggle} />
             </FadeIn>
             <FadeIn delay={0.08}>
               <ExpandableList initialCount={5} label="wellness options">
-                {breatheItems.sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).map(item => (
+                {breatheItems.filter(item => activeBreatheTiers.has(item.breatheTier)).sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).map(item => (
                   <TierItem
                     key={item.id}
                     name={item.name}
