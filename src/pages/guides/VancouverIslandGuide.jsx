@@ -512,21 +512,15 @@ function ParkCard({ park, isExpanded, onToggle, isFirst }) {
     <div style={{ borderTop: isFirst ? 'none' : `1px solid ${C.stone}` }}>
       <div className="flex" style={{ minHeight: 0 }}>
         <div className="shrink-0" style={{ width: 3, background: park.accent }} />
-        <div className="flex-1 min-w-0 py-4 pl-4 pr-1 md:py-5 md:pl-5">
-          <div className="flex items-start justify-between gap-3">
-            <div className="flex-1 min-w-0">
-              <div className="font-body text-[9px] tracking-[0.16em] uppercase text-[#7A857E] mb-1">
-                {DESIGNATION_LABELS[park.designation] || park.designation}{park.established ? ` · Est. ${park.established}` : ""}
-              </div>
-              <div className="font-serif font-light text-[21px] text-dark-ink leading-[1.2] mb-1.5">{park.name}</div>
-              <p className="font-body text-[13.5px] text-[#4A5650] leading-[1.7] m-0">{park.soul}</p>
-            </div>
-            <div className="shrink-0 pt-4 text-right">
-              <div className="font-body text-[11px] text-[#7A857E] leading-[1.6] whitespace-nowrap">
-                {stats.map((s, i) => <span key={i}>{i > 0 && " · "}{s}</span>)}
-              </div>
-            </div>
+        <div className="flex-1 min-w-0 py-4 pl-4 pr-0 md:py-5 md:pl-5">
+          <div className="font-body text-[9px] tracking-[0.16em] uppercase text-[#7A857E] mb-1">
+            {DESIGNATION_LABELS[park.designation] || park.designation}{park.established ? ` · Est. ${park.established}` : ""}
           </div>
+          <div className="font-serif font-light text-[21px] text-dark-ink leading-[1.2] mb-1">{park.name}</div>
+          <div className="font-body text-[11px] text-[#7A857E] leading-[1.4] mb-2.5">
+            {stats.map((s, i) => <span key={i}>{i > 0 && " · "}{s}</span>)}
+          </div>
+          <p className="font-body text-[13.5px] text-[#4A5650] leading-[1.7] m-0">{park.soul}</p>
           <button
             onClick={onToggle}
             className="mt-2.5 bg-transparent border-none cursor-pointer p-0 font-body text-[10px] tracking-[0.12em] uppercase"
@@ -914,7 +908,10 @@ export default function VancouverIslandGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           <section id="the-land" className="scroll-mt-[126px] pb-11">
             <FadeIn>
-              <SectionLabel accentColor={ACCENT}>The Land</SectionLabel>
+              <div className="flex items-center gap-2.5 mb-4">
+                <div className="w-5 h-px" style={{ background: ACCENT }} />
+                <span className="font-body text-[10px] font-medium tracking-[0.2em] uppercase" style={{ color: ACCENT }}>The Land</span>
+              </div>
               <p className="font-body text-[clamp(14px,1.8vw,15px)] leading-[1.8] font-normal text-[#4A5650] mt-0 mb-6">
                 {"Two protected areas anchor the island's wild coast and interior."}
               </p>
