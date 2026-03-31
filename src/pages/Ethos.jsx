@@ -88,7 +88,7 @@ export default function EthosPage() {
       </Helmet>
       <Nav />
 
-      <section style={{ background: C.warmWhite, padding: '80px 28px 60px', position: 'relative' }}>
+      <section style={{ background: C.warmWhite, padding: '120px 28px 60px', position: 'relative' }}>
         <div style={{ maxWidth: 960, margin: '0 auto' }}>
           {/* Eyebrow */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20 }}>
@@ -144,21 +144,21 @@ export default function EthosPage() {
               d="M 0 22 C 100 22, 150 42, 300 32 C 450 22, 500 10, 600 14"
               fill="none"
               stroke={C.oceanTeal}
-              strokeWidth="2.5"
+              strokeWidth="1.5"
               opacity="0.8"
             />
             <path
               d="M 0 32 C 100 32, 150 12, 300 22 C 450 32, 500 50, 600 46"
               fill="none"
               stroke={C.goldenAmber}
-              strokeWidth="2.5"
+              strokeWidth="1.5"
               opacity="0.8"
             />
             <path
               d="M 0 42 C 100 42, 150 58, 300 50 C 450 42, 500 26, 600 30"
               fill="none"
               stroke={C.slate}
-              strokeWidth="2.5"
+              strokeWidth="1.5"
               opacity="0.8"
             />
           </svg>
@@ -217,7 +217,7 @@ export default function EthosPage() {
                 <div style={{
                   fontFamily: FONTS.serif,
                   fontSize: 13,
-                  color: C.stone,
+                  color: '#4A5650',
                   lineHeight: 1.7,
                   whiteSpace: 'pre-line',
                 }}>
