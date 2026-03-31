@@ -1123,6 +1123,11 @@ const breatheFilterTiers = [
   { key: 'soak',     label: 'Soak',     desc: 'Water & heat',     color: '#7BB8D4' },
   { key: 'restore',  label: 'Restore',  desc: 'Integration',      color: '#7BB8A0' },
 ];
+const sleepFilterTiers = [
+  { key: 'elemental', label: 'Elemental', desc: 'In the landscape', color: '#7BB8A0' },
+  { key: 'rooted',    label: 'Rooted',    desc: 'Boutique, local',  color: '#4A9B9F' },
+  { key: 'premium',   label: 'Premium',   desc: 'World-class',      color: '#D4A853' },
+];
 
 // ─── Guide Section Navigation (sticky anchor bar) ───────────────────────────
 
@@ -1281,6 +1286,15 @@ export default function ZionGuide() {
   };
   const handleBreatheToggle = (tierKey) => {
     setActiveBreatheTiers(prev => {
+      if (prev.has(tierKey) && prev.size === 1) return prev;
+      const next = new Set(prev);
+      next.has(tierKey) ? next.delete(tierKey) : next.add(tierKey);
+      return next;
+    });
+  };
+  const [activeSleepTiers, setActiveSleepTiers] = useState(() => new Set(['elemental', 'rooted', 'premium', 'luxury']));
+  const handleSleepToggle = (tierKey) => {
+    setActiveSleepTiers(prev => {
       if (prev.has(tierKey) && prev.size === 1) return prev;
       const next = new Set(prev);
       next.has(tierKey) ? next.delete(tierKey) : next.add(tierKey);
@@ -1568,23 +1582,12 @@ export default function ZionGuide() {
             </FadeIn>
 
             <FadeIn delay={0.05}>
-              <div className="p-3.5 bg-cream border border-stone mb-5 flex flex-col md:flex-row gap-2.5 md:gap-4 flex-wrap">
-                {[
-                  { label: "Elemental", desc: "In the landscape", color: C.seaGlass },
-                  { label: "Rooted", desc: "Boutique, local", color: C.oceanTeal },
-                  { label: "Premium", desc: "World-class", color: C.goldenAmber },
-                ].map((t, i) => (
-                  <div key={i} className="flex-none md:flex-[1_1_140px]">
-                    <span className="font-body text-[12px] font-bold tracking-[0.1em]" style={{ color: t.color }}>{t.label}</span>
-                    <span className="font-body text-[13px] font-normal text-[#4A5650] ml-1.5">{t.desc}</span>
-                  </div>
-                ))}
-              </div>
+              <TierFilter tiers={sleepFilterTiers} activeTiers={activeSleepTiers} onToggle={handleSleepToggle} />
             </FadeIn>
 
             <div>
               <ExpandableList initialCount={5} label="places to stay">
-                {sortByTierDiversity(accommodations.filter(a => !a.corridor)).map(a => (
+                {sortByTierDiversity(accommodations.filter(a => !a.corridor && activeSleepTiers.has(a.stayStyle))).map(a => (
                   <StayItem
                     key={a.id}
                     name={a.name}
@@ -1604,12 +1607,12 @@ export default function ZionGuide() {
                 ))}
               </ExpandableList>
 
-              {accommodations.filter(a => a.corridor).length > 0 && (
+              {accommodations.filter(a => a.corridor && activeSleepTiers.has(a.stayStyle)).length > 0 && (
                 <>
                   <p className="font-body text-[13px] font-semibold tracking-[0.08em] uppercase text-warm-gray mt-8 mb-3">
                     Regional Corridor
                   </p>
-                  {sortByTierDiversity(accommodations.filter(a => a.corridor)).map(a => (
+                  {sortByTierDiversity(accommodations.filter(a => a.corridor && activeSleepTiers.has(a.stayStyle))).map(a => (
                     <StayItem
                       key={a.id}
                       name={a.name}
