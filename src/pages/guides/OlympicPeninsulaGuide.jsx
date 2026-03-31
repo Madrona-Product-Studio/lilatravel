@@ -613,7 +613,7 @@ function ParkCard({ park, isExpanded, onToggle }) {
 // ─── Tier Constants ─────────────────────────────────────────────────────────
 
 const MOVE_TIERS = {
-  hike:  { color: '#e8e2d9', label: 'Hike',  bg: '#e8e2d918' },
+  hike:  { color: '#8a8078', label: 'Hike',  bg: '#8a807815' },
   water: { color: '#7BB8D4', label: 'Water', bg: '#7BB8D415' },
   ride:  { color: '#D4A853', label: 'Ride',  bg: '#D4A85315' },
 };

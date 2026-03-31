@@ -1029,7 +1029,7 @@ const WILDLIFE_GROUPS = [
 // ─── Move / Breathe Tier Styles ─────────────────────────────────────────────
 
 const MOVE_TIERS = {
-  hike:  { color: '#e8e2d9', label: 'Hike',  bg: '#e8e2d918' },
+  hike:  { color: '#8a8078', label: 'Hike',  bg: '#8a807815' },
   water: { color: '#7BB8D4', label: 'Water', bg: '#7BB8D415' },
   ride:  { color: '#D4A853', label: 'Ride',  bg: '#D4A85315' },
   climb: { color: '#E8A090', label: 'Climb', bg: '#E8A09015' },
