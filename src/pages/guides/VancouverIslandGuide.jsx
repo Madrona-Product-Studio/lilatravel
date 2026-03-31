@@ -226,6 +226,18 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
           style={{ border: `1px solid ${C.oceanTeal}40` }}>Lila Pick</span>
       )}
 
+      {/* Tier highlights */}
+      {item.type === 'tier' && item.highlights && item.highlights.length > 0 && (
+        <div className="mb-[18px]">
+          {item.highlights.map((h, i) => (
+            <div key={i} className="flex gap-2.5 items-start mb-[7px]">
+              <div className="w-1 h-1 rounded-full mt-[7px] shrink-0" style={{ background: C.skyBlue, opacity: 0.6 }} />
+              <span className="font-body text-[14px] font-normal text-[#4A5650] leading-[1.7]">{h}</span>
+            </div>
+          ))}
+        </div>
+      )}
+
       {/* Detail */}
       {item.detail && (
         <p className="font-body text-[14px] font-normal text-[#4A5650] leading-[1.7] mt-0 mb-3.5">{item.detail}</p>
@@ -234,6 +246,60 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
       {/* Note */}
       {item.note && (
         <div className="font-body text-[13px] font-semibold text-ocean-teal mb-3.5">{item.note}</div>
+      )}
+
+      {/* Tier info grid */}
+      {item.type === 'tier' && (item.difficulty || item.duration || item.distance || item.operator || item.bookingWindow || item.tradition || item.priceRange) && (
+        <div className="grid grid-cols-2 gap-x-4 gap-y-2.5 mb-[18px] py-3.5 border-y border-stone">
+          {item.difficulty && (
+            <div>
+              <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-[3px]">Difficulty</div>
+              <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.difficulty}</div>
+            </div>
+          )}
+          {item.distance && (
+            <div>
+              <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-[3px]">Distance</div>
+              <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.distance}</div>
+            </div>
+          )}
+          {item.duration && (
+            <div>
+              <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-[3px]">Duration</div>
+              <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.duration}</div>
+            </div>
+          )}
+          {item.tradition && (
+            <div>
+              <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-[3px]">Tradition</div>
+              <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.tradition}</div>
+            </div>
+          )}
+          {item.operator && (
+            <div>
+              <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-[3px]">Operator</div>
+              <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.operator}</div>
+            </div>
+          )}
+          {item.priceRange && (
+            <div>
+              <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-[3px]">Price</div>
+              <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.priceRange}</div>
+            </div>
+          )}
+          {item.bookingWindow && (
+            <div className="col-span-full">
+              <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-[3px]">Booking</div>
+              <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.bookingWindow}</div>
+            </div>
+          )}
+          {item.location && (
+            <div className="col-span-full">
+              <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-[3px]">Location</div>
+              <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.location}</div>
+            </div>
+          )}
+        </div>
       )}
 
       {/* Restaurant info grid */}
@@ -1029,7 +1095,11 @@ export default function VancouverIslandGuide() {
                     location={item.location}
                     tier={item.moveTier}
                     tierStyles={MOVE_TIERS}
-                    detail={item.highlights?.join('. ')}
+                    highlights={item.highlights}
+                    difficulty={item.difficulty}
+                    bookingWindow={item.bookingWindow}
+                    priceRange={item.priceRange}
+                    type={item.type}
                     tags={item.tags}
                     url={item.links?.website}
                     featured={item.lilaPick}
@@ -1069,7 +1139,9 @@ export default function VancouverIslandGuide() {
                     location={item.location}
                     tier={item.breatheTier}
                     tierStyles={BREATHE_TIERS}
-                    detail={item.highlights?.join('. ')}
+                    highlights={item.highlights}
+                    bookingWindow={item.bookingWindow}
+                    type={item.type}
                     tags={item.tags}
                     url={item.links?.website}
                     featured={item.lilaPick}
@@ -1197,8 +1269,8 @@ export default function VancouverIslandGuide() {
                   <ListItem
                     key={item.id}
                     name={item.name}
-                    detail={item.highlights?.join('. ')}
-                    note={item.hours}
+                    detail={item.highlights?.[0]}
+                    note={item.admission === 'reservation-required' || item.admission === 'paid' ? item.admission : null}
                     tags={item.tags}
                     featured={item.lilaPick}
                     url={item.links?.website}

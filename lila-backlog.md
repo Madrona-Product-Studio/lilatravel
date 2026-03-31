@@ -137,6 +137,7 @@ _Last updated: March 30, 2026. Living document — update as items are completed
 - [x] **Move section** (Mar 30) — all six destinations restructured into per-destination Hike/Water/Ride/Climb sections with new `*-move.json` files. New entries: Zion e-bike + canyoneering, JT rock climbing + cycling, Big Sur kayaking + Highway 1 cycling, Kauai surfing + coastal path, VI surfing + bike path, OP tide pools + Hurricane Ridge cycling
 - [x] **UI wiring** (Mar 30) — Experience, Breathe, and Move sections now rendering in all six destination guides with tier tag system (TierItem/TierLegend shared components). Food & Culture split into Eat + Experience. Old hardcoded ListItems replaced with JSON-driven content. Section order standardized. Orphaned restaurant JSONs removed.
 - [x] **TierFilter component** (Mar 30) — guide section filter with filled-checkbox design, desktop horizontal / mobile stacked, replaces TierLegend in Move and Breathe sections across all six guides
+- [x] **Content density pass** (Mar 30) — list views trimmed to highlights[0] for Move, Breathe, Experience. Full highlights array rendered as bullet points in detail sheet. Tier info grid (difficulty, distance, duration, tradition, operator, booking) added to detail sheet for Move and Breathe items.
 
 ### Practices & Wisdom
 - [x] Updated quotes for Kirtan, Threshold Ceremony, Talking Circle

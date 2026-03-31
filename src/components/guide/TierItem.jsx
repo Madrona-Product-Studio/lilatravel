@@ -11,10 +11,34 @@ function NPSArrowhead({ size = 14, color = "#2D5F2B" }) {
 
 /**
  * TierItem — reusable tier-tagged card for Breathe, Move, and Sleep sections.
- * Follows the exact same visual pattern as StayItem in the guide pages.
+ *
+ * List view shows highlights[0] only (one line of orienting text).
+ * Full highlights array is passed to the detail sheet via onOpenSheet.
+ * Functional specs (distance, difficulty, duration) shown inline for scanning.
  */
-export default function TierItem({ name, location, tier, tierStyles, detail, tags, url, featured, note, tradition, duration, distance, operator, light, onOpenSheet, hasNPS, sheetData }) {
+export default function TierItem({
+  name, location, tier, tierStyles, detail, highlights, tags, url, featured,
+  note, tradition, duration, distance, difficulty, operator, light,
+  onOpenSheet, hasNPS,
+  // Extra fields passed through to detail sheet
+  bookingWindow, priceRange, hours, admission, type: itemType,
+}) {
   const s = tierStyles[tier] || Object.values(tierStyles)[0];
+
+  // Build sheet data with full highlights for detail view
+  const buildSheetData = () => ({
+    type: 'tier',
+    name, location, tier, tags, featured, url, note,
+    highlights: highlights || (detail ? [detail] : []),
+    tradition, duration, distance, difficulty, operator,
+    bookingWindow, priceRange, hours, admission, itemType,
+  });
+
+  // One-line detail for list view: highlights[0] or truncated detail
+  const listDetail = highlights?.[0] || detail || null;
+
+  // Functional specs line for Move items (distance · difficulty · duration)
+  const specsLine = [distance, difficulty, duration].filter(Boolean).join(' · ');
 
   const nameEl = onOpenSheet ? (
     <span className="font-body text-[15px] font-semibold text-dark-ink">{name}</span>
@@ -31,10 +55,11 @@ export default function TierItem({ name, location, tier, tierStyles, detail, tag
     <span className="font-body text-[15px] font-semibold text-dark-ink">{name}</span>
   );
 
+  // Light card (Climb pattern) — keep as-is, already minimal
   if (light) {
     return (
       <div
-        onClick={onOpenSheet ? () => onOpenSheet(sheetData || { type: 'list', name, detail, tags, featured, url, location }) : undefined}
+        onClick={onOpenSheet ? () => onOpenSheet(buildSheetData()) : undefined}
         className={`flex flex-col md:flex-row items-start md:items-center gap-3.5 py-4 border-b border-stone ${onOpenSheet ? 'cursor-pointer transition-[background] duration-150' : ''}`}
         onMouseEnter={onOpenSheet ? e => { e.currentTarget.style.background = `${C.stone}30`; } : undefined}
         onMouseLeave={onOpenSheet ? e => { e.currentTarget.style.background = 'transparent'; } : undefined}
@@ -64,7 +89,7 @@ export default function TierItem({ name, location, tier, tierStyles, detail, tag
 
   return (
     <div
-      onClick={onOpenSheet ? () => onOpenSheet(sheetData || { type: 'list', name, detail, note, tags, featured, url, location }) : undefined}
+      onClick={onOpenSheet ? () => onOpenSheet(buildSheetData()) : undefined}
       className={`flex flex-col md:flex-row items-stretch md:items-center gap-3.5 py-[18px] border-b border-stone ${onOpenSheet ? 'cursor-pointer transition-[background] duration-150' : ''}`}
       onMouseEnter={onOpenSheet ? e => { e.currentTarget.style.background = `${C.stone}30`; } : undefined}
       onMouseLeave={onOpenSheet ? e => { e.currentTarget.style.background = 'transparent'; } : undefined}
@@ -86,12 +111,14 @@ export default function TierItem({ name, location, tier, tierStyles, detail, tag
           )}
         </div>
         <div className="mb-[3px]">{nameEl}</div>
-        {(duration || distance) && (
+        {specsLine && (
           <div className="font-body text-[12px] font-medium text-[#7A857E] mb-[3px]">
-            {[distance, duration].filter(Boolean).join(' · ')}
+            {specsLine}
           </div>
         )}
-        <div className="font-body text-[14px] font-normal text-[#4A5650] leading-[1.65]">{detail}</div>
+        {listDetail && (
+          <div className="font-body text-[14px] font-normal text-[#4A5650] leading-[1.65]">{listDetail}</div>
+        )}
         {note && <div className="font-body text-[12px] font-semibold text-ocean-teal mt-1">{note}</div>}
         {tags && tags.length > 0 && (
           <div className="flex gap-[5px] mt-[7px] flex-wrap">
