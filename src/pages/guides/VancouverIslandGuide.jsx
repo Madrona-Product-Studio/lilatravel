@@ -172,6 +172,29 @@ function ExpandableList({ children, initialCount = 5, label = "more" }) {
   );
 }
 
+function CollapsibleSection({ id, label, title, teaser, isOpen, onToggle, children }) {
+  const bodyRef = useRef(null);
+  const [bodyHeight, setBodyHeight] = useState(0);
+  useEffect(() => { if (bodyRef.current) setBodyHeight(bodyRef.current.scrollHeight); }, [isOpen, children]);
+  return (
+    <section id={id} className="scroll-mt-[126px]">
+      <button onClick={onToggle} className="w-full flex items-center gap-4 py-6 bg-transparent border-none cursor-pointer text-left group">
+        <div className="flex-1 min-w-0">
+          <div className="font-body text-[10px] font-bold tracking-[0.22em] uppercase text-[#7A857E] mb-1">{label}</div>
+          <div className="font-serif text-[clamp(20px,3vw,26px)] font-light text-dark-ink leading-[1.2]">{title}</div>
+        </div>
+        <div className="flex items-center gap-3 shrink-0">
+          <span className="font-body text-[12px] text-[#7A857E] whitespace-nowrap">{teaser}</span>
+          <span className="inline-block text-[12px] text-[#7A857E] transition-transform duration-300 ease-in-out" style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}>▾</span>
+        </div>
+      </button>
+      <div className="overflow-hidden transition-[max-height] duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]" style={{ maxHeight: isOpen ? bodyHeight + 100 : 0 }}>
+        <div ref={bodyRef} className="pb-6">{children}</div>
+      </div>
+    </section>
+  );
+}
+
 function GuideDetailSheet({ item, onClose, isMobile }) {
   const sheetRef = useRef(null);
   const dragStartY = useRef(null);
@@ -603,7 +626,7 @@ const GUIDE_SECTIONS = [
   { id: "give-back",      label: "Give Back" },
 ];
 
-function GuideNav({ isMobile }) {
+function GuideNav({ isMobile, onOpenSection }) {
   const [activeId, setActiveId] = useState(null);
   const scrollContainerRef = useRef(null);
 
@@ -630,13 +653,14 @@ function GuideNav({ isMobile }) {
   }, [isMobile]);
 
   const handleClick = useCallback((id) => {
+    if (onOpenSection) onOpenSection(id);
     const el = document.getElementById(id);
     if (!el) return;
     const mainNavHeight = isMobile ? 58 : 64;
     const guideNavHeight = isMobile ? 0 : 52;
     const y = el.getBoundingClientRect().top + window.scrollY - guideNavHeight - mainNavHeight - 32;
     window.scrollTo({ top: y, behavior: "smooth" });
-  }, [isMobile]);
+  }, [isMobile, onOpenSection]);
 
   if (isMobile) {
     return (
@@ -736,6 +760,12 @@ export default function VancouverIslandGuide() {
       return next;
     });
   };
+  const [collapsedSections, setCollapsedSections] = useState({
+    'where-to-stay': true, 'move': true, 'wellness': true, 'light-sky': true, 'eat': true, 'experience': true, 'give-back': true,
+  });
+  const toggleSection = useCallback((id) => { setCollapsedSections(prev => ({ ...prev, [id]: !prev[id] })); }, []);
+  const openSection = useCallback((id) => { setCollapsedSections(prev => prev[id] ? { ...prev, [id]: false } : prev); }, []);
+
   useEffect(() => {
     if (activeSheet) document.body.style.overflow = 'hidden';
     else document.body.style.overflow = '';
@@ -836,7 +866,7 @@ export default function VancouverIslandGuide() {
       </div>
 
       {/* ══ GUIDE SECTION NAV ═══════════════════════════════════════════════ */}
-      <GuideNav isMobile={isMobile} />
+      <GuideNav isMobile={isMobile} onOpenSection={openSection} />
 
       {/* ══ IMAGE STRIP ════════════════════════════════════════════════════ */}
       <section className="relative">
@@ -1029,14 +1059,7 @@ export default function VancouverIslandGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* STAY                                                          */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="where-to-stay" className="scroll-mt-[126px] py-11">
-            <FadeIn>
-              <SectionIcon type="stay" color={ACCENT} />
-              <SectionLabel accentColor={ACCENT}>Sleep</SectionLabel>
-              <SectionTitle>Where to sleep</SectionTitle>
-              <SectionSub>From sleeping on First Nations territory to watching storms from your room at the edge of the Pacific.</SectionSub>
-            </FadeIn>
-
+          <CollapsibleSection id="where-to-stay" label="Sleep" title="Where to sleep" teaser={`${accommodations.filter(a => !a.corridor && activeSleepTiers.has(a.stayStyle)).length} places`} isOpen={collapsedSections['where-to-stay']} onToggle={() => toggleSection('where-to-stay')}>
             <FadeIn delay={0.05}>
               <TierFilter tiers={sleepFilterTiers} activeTiers={activeSleepTiers} onToggle={handleSleepToggle} />
             </FadeIn>
@@ -1063,7 +1086,7 @@ export default function VancouverIslandGuide() {
                 ))}
               </ExpandableList>
             </div>
-          </section>
+          </CollapsibleSection>
 
 
           <Divider />
@@ -1071,13 +1094,7 @@ export default function VancouverIslandGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* MOVE                                                          */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="move" className="scroll-mt-[126px] py-11">
-            <FadeIn>
-              <SectionIcon type="move" color={ACCENT} />
-              <SectionLabel accentColor={ACCENT}>Move</SectionLabel>
-              <SectionTitle>{"How to get into the landscape"}</SectionTitle>
-              <SectionSub>{"Old-growth forest trails, cold-water surfing, and the bike path to Long Beach."}</SectionSub>
-            </FadeIn>
+          <CollapsibleSection id="move" label="Move" title="How to get into the landscape" teaser={`${moveItems.filter(item => activeMoveTiers.has(item.moveTier)).length} activities`} isOpen={collapsedSections['move']} onToggle={() => toggleSection('move')}>
             <FadeIn delay={0.05}>
               <TierFilter tiers={moveFilterTiers} activeTiers={activeMoveTiers} onToggle={handleMoveToggle} />
             </FadeIn>
@@ -1107,7 +1124,7 @@ export default function VancouverIslandGuide() {
                 ))}
               </ExpandableList>
             </FadeIn>
-          </section>
+          </CollapsibleSection>
 
 
           <Divider />
@@ -1115,13 +1132,7 @@ export default function VancouverIslandGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* BREATHE                                                       */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="wellness" className="scroll-mt-[126px] py-11">
-            <FadeIn>
-              <SectionIcon type="breathe" color={ACCENT} />
-              <SectionLabel accentColor={ACCENT}>Breathe</SectionLabel>
-              <SectionTitle>{"Soaking, forest bathing & practice"}</SectionTitle>
-              <SectionSub>{"Forest bathing, geothermal springs, and the Pacific as practice."}</SectionSub>
-            </FadeIn>
+          <CollapsibleSection id="wellness" label="Breathe" title="Soaking, forest bathing & practice" teaser={`${breatheItems.filter(item => activeBreatheTiers.has(item.breatheTier)).length} options`} isOpen={collapsedSections['wellness']} onToggle={() => toggleSection('wellness')}>
             <FadeIn delay={0.05}>
               <TierFilter tiers={breatheFilterTiers} activeTiers={activeBreatheTiers} onToggle={handleBreatheToggle} />
             </FadeIn>
@@ -1147,7 +1158,7 @@ export default function VancouverIslandGuide() {
                 ))}
               </ExpandableList>
             </FadeIn>
-          </section>
+          </CollapsibleSection>
 
 
           <Divider />
@@ -1155,13 +1166,7 @@ export default function VancouverIslandGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* LIGHT & SKY — DISCOVER                                       */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="light-sky" className="scroll-mt-[126px] py-11">
-            <FadeIn>
-              <SectionIcon type="awaken" color={ACCENT} />
-              <SectionLabel accentColor={ACCENT}>Night Sky</SectionLabel>
-              <SectionTitle>{"Wildlife, storms & the living coast"}</SectionTitle>
-              <SectionSub>{"Whales offshore. Bears on the shoreline. Storms that shake the windows. The coast at its most alive."}</SectionSub>
-            </FadeIn>
+          <CollapsibleSection id="light-sky" label="Night Sky" title="Wildlife, storms & the living coast" teaser="Whales, bears & storm season" isOpen={collapsedSections['light-sky']} onToggle={() => toggleSection('light-sky')}>
             <FadeIn delay={0.08}>
               <ExpandableList initialCount={5} label="experiences">
                 <ListItem onOpenSheet={openSheet('Light & Sky')} name="Whale Watching with Ahous Adventures" featured
@@ -1186,7 +1191,7 @@ export default function VancouverIslandGuide() {
                   tags={["Ecology Walks", "Marine Programs", "Educational", "Seasonal"]} />
               </ExpandableList>
             </FadeIn>
-          </section>
+          </CollapsibleSection>
 
 
           <Divider />
@@ -1194,13 +1199,7 @@ export default function VancouverIslandGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* EAT                                                           */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="eat" className="scroll-mt-[126px] py-11">
-            <FadeIn>
-              <SectionIcon type="connect" color={ACCENT} />
-              <SectionLabel accentColor={ACCENT}>Eat</SectionLabel>
-              <SectionTitle>Where to eat</SectionTitle>
-              <SectionSub>{"The restaurants, cafés, and provisions that fuel the trip."}</SectionSub>
-            </FadeIn>
+          <CollapsibleSection id="eat" label="Eat" title="Where to eat" teaser={`${restaurants.length} places`} isOpen={collapsedSections['eat']} onToggle={() => toggleSection('eat')}>
             <FadeIn delay={0.08}>
               <ExpandableList initialCount={4} label="places">
                 {restaurants.filter(r => !r.corridor).sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).map(r => (
@@ -1243,7 +1242,7 @@ export default function VancouverIslandGuide() {
                 )}
               </ExpandableList>
             </FadeIn>
-          </section>
+          </CollapsibleSection>
 
 
           <Divider />
@@ -1251,13 +1250,7 @@ export default function VancouverIslandGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* EXPERIENCE                                                    */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="experience" className="scroll-mt-[126px] py-11">
-            <FadeIn>
-              <SectionIcon type="connect" color={ACCENT} />
-              <SectionLabel accentColor={ACCENT}>Experience</SectionLabel>
-              <SectionTitle>{"Culture, heritage & discovery"}</SectionTitle>
-              <SectionSub>{"Cultural sites, Indigenous heritage, and galleries worth your time."}</SectionSub>
-            </FadeIn>
+          <CollapsibleSection id="experience" label="Experience" title="Culture, heritage & discovery" teaser={`${experiences.length} experiences`} isOpen={collapsedSections['experience']} onToggle={() => toggleSection('experience')}>
             <FadeIn delay={0.08}>
               <ExpandableList initialCount={4} label="experiences">
                 {experiences.sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).map(item => (
@@ -1275,7 +1268,7 @@ export default function VancouverIslandGuide() {
                 ))}
               </ExpandableList>
             </FadeIn>
-          </section>
+          </CollapsibleSection>
 
 
 
@@ -1284,14 +1277,7 @@ export default function VancouverIslandGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* GIVE BACK                                                     */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="give-back" className="scroll-mt-[126px] py-11">
-            <FadeIn>
-              <SectionIcon type="threshold" color={ACCENT} />
-              <SectionLabel accentColor={ACCENT}>Give Back</SectionLabel>
-              <SectionTitle>Leave it better than you found it.</SectionTitle>
-              <SectionSub>The old growth is still being logged. These organizations are fighting to stop it — and to restore what's been lost.</SectionSub>
-            </FadeIn>
-
+          <CollapsibleSection id="give-back" label="Give Back" title="Leave it better than you found it." teaser="3 organizations" isOpen={collapsedSections['give-back']} onToggle={() => toggleSection('give-back')}>
             <FadeIn delay={0.1}>
               <div className="mt-2">
                 <div className="pt-4">
@@ -1317,7 +1303,7 @@ export default function VancouverIslandGuide() {
                 </div>
               </div>
             </FadeIn>
-          </section>
+          </CollapsibleSection>
 
 
           <Divider />

@@ -148,6 +148,44 @@ function StayItem({ name, location, tier, detail, tags, url, featured, onOpenShe
   );
 }
 
+function CollapsibleSection({ id, label, title, teaser, isOpen, onToggle, dark, children }) {
+  const bodyRef = useRef(null);
+  const [bodyHeight, setBodyHeight] = useState(0);
+
+  useEffect(() => {
+    if (bodyRef.current) {
+      setBodyHeight(bodyRef.current.scrollHeight);
+    }
+  }, [isOpen, children]);
+
+  return (
+    <section id={id} className="scroll-mt-[126px]">
+      <button
+        onClick={onToggle}
+        className="w-full flex items-center gap-4 py-6 bg-transparent border-none cursor-pointer text-left group"
+      >
+        <div className="flex-1 min-w-0">
+          <div className={`font-body text-[10px] font-bold tracking-[0.22em] uppercase mb-1 ${dark ? 'text-sea-glass' : 'text-[#7A857E]'}`}>{label}</div>
+          <div className={`font-serif text-[clamp(20px,3vw,26px)] font-light leading-[1.2] ${dark ? 'text-white' : 'text-dark-ink'}`}>{title}</div>
+        </div>
+        <div className="flex items-center gap-3 shrink-0">
+          <span className={`font-body text-[12px] whitespace-nowrap ${dark ? 'text-white/50' : 'text-[#7A857E]'}`}>{teaser}</span>
+          <span className={`inline-block text-[12px] transition-transform duration-300 ease-in-out ${dark ? 'text-white/50' : 'text-[#7A857E]'}`}
+            style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}>▾</span>
+        </div>
+      </button>
+      <div
+        className="overflow-hidden transition-[max-height] duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]"
+        style={{ maxHeight: isOpen ? bodyHeight + 100 : 0 }}
+      >
+        <div ref={bodyRef} className="pb-6">
+          {children}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function ExpandableList({ children, initialCount = 5, label = "more" }) {
   const [expanded, setExpanded] = useState(false);
   const items = Array.isArray(children) ? children : [children];
@@ -617,7 +655,7 @@ const GUIDE_SECTIONS = [
   { id: "give-back",      label: "Give Back" },
 ];
 
-function GuideNav({ isMobile }) {
+function GuideNav({ isMobile, onOpenSection }) {
   const [activeId, setActiveId] = useState(null);
   const scrollContainerRef = useRef(null);
 
@@ -638,13 +676,14 @@ function GuideNav({ isMobile }) {
   }, [isMobile]);
 
   const handleClick = useCallback((id) => {
+    if (onOpenSection) onOpenSection(id);
     const el = document.getElementById(id);
     if (!el) return;
     const mainNavHeight = isMobile ? 58 : 64;
     const guideNavHeight = isMobile ? 0 : 52;
     const y = el.getBoundingClientRect().top + window.scrollY - guideNavHeight - mainNavHeight - 32;
     window.scrollTo({ top: y, behavior: "smooth" });
-  }, [isMobile]);
+  }, [isMobile, onOpenSection]);
 
   if (isMobile) {
     return (
@@ -744,6 +783,21 @@ export default function BigSurGuide() {
       return next;
     });
   };
+  const [collapsedSections, setCollapsedSections] = useState({
+    'where-to-stay': true,
+    'move': true,
+    'wellness': true,
+    'light-sky': true,
+    'eat': true,
+    'experience': true,
+    'give-back': true,
+  });
+  const toggleSection = useCallback((id) => {
+    setCollapsedSections(prev => ({ ...prev, [id]: !prev[id] }));
+  }, []);
+  const openSection = useCallback((id) => {
+    setCollapsedSections(prev => prev[id] ? { ...prev, [id]: false } : prev);
+  }, []);
   useEffect(() => {
     if (activeSheet) document.body.style.overflow = 'hidden';
     else document.body.style.overflow = '';
@@ -826,7 +880,7 @@ export default function BigSurGuide() {
       </div>
 
       {/* == GUIDE SECTION NAV =============================================== */}
-      <GuideNav isMobile={isMobile} />
+      <GuideNav isMobile={isMobile} onOpenSection={openSection} />
 
       {/* == IMAGE STRIP ===================================================== */}
       <section className="relative">
@@ -1001,14 +1055,14 @@ export default function BigSurGuide() {
           {/* ================================================================ */}
           {/* STAY                                                              */}
           {/* ================================================================ */}
-          <section id="where-to-stay" className="scroll-mt-[126px] py-11">
-            <FadeIn>
-              <SectionIcon type="stay" color={ACCENT} />
-              <SectionLabel accentColor={ACCENT}>Sleep</SectionLabel>
-              <SectionTitle>Where to sleep</SectionTitle>
-              <SectionSub>{"How you inhabit a place matters. From clifftop campgrounds above the Pacific to the most acclaimed hotel on the California coast."}</SectionSub>
-            </FadeIn>
-
+          <CollapsibleSection
+            id="where-to-stay"
+            label="Sleep"
+            title="Where to sleep"
+            teaser={`${accommodations.filter(a => !a.corridor && activeSleepTiers.has(a.stayStyle)).length} places`}
+            isOpen={!collapsedSections['where-to-stay']}
+            onToggle={() => toggleSection('where-to-stay')}
+          >
             <FadeIn delay={0.05}>
               <TierFilter tiers={sleepFilterTiers} activeTiers={activeSleepTiers} onToggle={handleSleepToggle} />
             </FadeIn>
@@ -1035,7 +1089,7 @@ export default function BigSurGuide() {
                 ))}
               </ExpandableList>
             </div>
-          </section>
+          </CollapsibleSection>
 
 
           <Divider />
@@ -1043,13 +1097,14 @@ export default function BigSurGuide() {
           {/* ================================================================ */}
           {/* MOVE                                                              */}
           {/* ================================================================ */}
-          <section id="move" className="scroll-mt-[126px] py-11">
-            <FadeIn>
-              <SectionIcon type="move" color={ACCENT} />
-              <SectionLabel accentColor={ACCENT}>Move</SectionLabel>
-              <SectionTitle>{"Coastal trails, sea kayaking & road cycling"}</SectionTitle>
-              <SectionSub>{"Coastal trails, sea kayaking, and world-class road cycling."}</SectionSub>
-            </FadeIn>
+          <CollapsibleSection
+            id="move"
+            label="Move"
+            title="Coastal trails, sea kayaking & road cycling"
+            teaser={`${moveItems.filter(item => activeMoveTiers.has(item.moveTier)).length} activities`}
+            isOpen={!collapsedSections['move']}
+            onToggle={() => toggleSection('move')}
+          >
             <FadeIn delay={0.05}>
               <TierFilter tiers={moveFilterTiers} activeTiers={activeMoveTiers} onToggle={handleMoveToggle} />
             </FadeIn>
@@ -1079,7 +1134,7 @@ export default function BigSurGuide() {
                 ))}
               </ExpandableList>
             </FadeIn>
-          </section>
+          </CollapsibleSection>
 
 
           <Divider />
@@ -1087,13 +1142,14 @@ export default function BigSurGuide() {
           {/* ================================================================ */}
           {/* BREATHE                                                           */}
           {/* ================================================================ */}
-          <section id="wellness" className="scroll-mt-[126px] py-11">
-            <FadeIn>
-              <SectionIcon type="breathe" color={ACCENT} />
-              <SectionLabel accentColor={ACCENT}>Breathe</SectionLabel>
-              <SectionTitle>{"Yoga, thermal waters & integration"}</SectionTitle>
-              <SectionSub>{"Yoga, thermal waters, and places to integrate the trip."}</SectionSub>
-            </FadeIn>
+          <CollapsibleSection
+            id="wellness"
+            label="Breathe"
+            title="Yoga, thermal waters & integration"
+            teaser={`${breatheItems.filter(item => activeBreatheTiers.has(item.breatheTier)).length} options`}
+            isOpen={!collapsedSections['wellness']}
+            onToggle={() => toggleSection('wellness')}
+          >
             <FadeIn delay={0.05}>
               <TierFilter tiers={breatheFilterTiers} activeTiers={activeBreatheTiers} onToggle={handleBreatheToggle} />
             </FadeIn>
@@ -1119,7 +1175,7 @@ export default function BigSurGuide() {
                 ))}
               </ExpandableList>
             </FadeIn>
-          </section>
+          </CollapsibleSection>
 
 
           <Divider />
@@ -1131,64 +1187,69 @@ export default function BigSurGuide() {
       </section>
 
       {/* Night Sky section with full-width dark background */}
-      <section id="light-sky" className="scroll-mt-[126px] py-[52px] px-5 md:py-16 md:px-[52px] bg-dark-ink">
-        <div className="max-w-[680px] mx-auto">
-          <FadeIn>
-            <SectionIcon type="awaken" color={ACCENT} />
-            <div className="font-body text-[12px] font-bold tracking-[0.28em] uppercase text-sea-glass mb-3 text-center">Night Sky</div>
-            <h2 className="font-serif text-[clamp(24px,4vw,32px)] font-normal text-white mt-0 mb-1.5 leading-[1.2] text-center">{"Light & sky"}</h2>
+      <div className="bg-dark-ink">
+        <div className="max-w-[680px] mx-auto px-5 md:px-[52px]">
+          <CollapsibleSection
+            id="light-sky"
+            label="Night Sky"
+            title="Light & sky"
+            teaser="Bortle 2 at Pfeiffer — best Jun–Oct"
+            isOpen={!collapsedSections['light-sky']}
+            onToggle={() => toggleSection('light-sky')}
+            dark
+          >
             <p className="font-body text-[15px] md:text-[clamp(14px,1.8vw,15px)] font-normal text-white/70 mx-auto mb-7 leading-[1.7] text-left md:text-center max-w-full md:max-w-[520px] mt-0">
               {"No formal IDA designation, but the skies here are genuinely world-class when conditions align. Pfeiffer Big Sur State Park is rated Bortle Class 2 — darker than most IDA-certified parks. The catch is the marine layer: the strategy is elevation."}
             </p>
-          </FadeIn>
 
-          <FadeIn delay={0.06}>
-            <div className="mb-8">
-              <div className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-sea-glass mb-4">Best Viewing Locations</div>
-              {[
-                { name: "Pfeiffer Beach", note: "Protected cove naturally shielded from highway headlights. Milky Way visible when clear. Bortle 2–3. Day use only — arrive before sunset." },
-                { name: "Kirk Creek Campground", note: "Clifftop above the Pacific with full night sky to south, west, and overhead. One of the few campgrounds where you can watch the Milky Way arc over the ocean. Bortle 2." },
-                { name: "Pfeiffer Ridge / Tin House", note: "The most committed option — 6.4 miles and 3,000 feet up to the ridge above the marine layer. 270-degree views, no light sources. Bortle 1–2 above fog." },
-                { name: "Andrew Molera State Park", note: "Open meadow at the mouth of the Big Sur River. Hike-in campsites are exceptionally dark — no facility lighting. Bortle 2." },
-              ].map((area, i) => (
-                <div key={i} className="py-3.5 border-b border-white/10">
-                  <div className="font-body text-[14px] font-semibold text-white mb-1">{area.name}</div>
-                  <div className="font-body text-[13px] font-normal text-white/55 leading-[1.6]">{area.note}</div>
-                </div>
-              ))}
-            </div>
-          </FadeIn>
-
-          <FadeIn delay={0.1}>
-            <div className="mb-8">
-              <div className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-sea-glass mb-4">Calendar Anchors</div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <FadeIn delay={0.06}>
+              <div className="mb-8">
+                <div className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-sea-glass mb-4">Best Viewing Locations</div>
                 {[
-                  { event: "Milky Way Core", timing: "Mar – Oct", detail: "Best April–July when the galactic center is highest" },
-                  { event: "Perseid Meteor Shower", timing: "Mid-August", detail: "Peak Aug 12–13 — go to ridge to beat marine layer" },
-                  { event: "Bixby Bridge Astro", timing: "New Moon Nights", detail: "The bridge under the Milky Way — iconic astrophotography" },
-                  { event: "Gray Whale + Stars", timing: "Dec – Apr", detail: "Watch migrating whales at dusk, then stay for the stars" },
-                ].map((cal, i) => (
-                  <div key={i} className="p-3.5 px-4 border border-white/[0.12] bg-white/[0.03]">
-                    <div className="font-body text-[14px] font-semibold text-white mb-[3px]">{cal.event}</div>
-                    <div className="font-body text-[11px] font-bold tracking-[0.14em] uppercase text-sea-glass mb-1">{cal.timing}</div>
-                    <div className="font-body text-[12px] font-normal text-white/50">{cal.detail}</div>
+                  { name: "Pfeiffer Beach", note: "Protected cove naturally shielded from highway headlights. Milky Way visible when clear. Bortle 2–3. Day use only — arrive before sunset." },
+                  { name: "Kirk Creek Campground", note: "Clifftop above the Pacific with full night sky to south, west, and overhead. One of the few campgrounds where you can watch the Milky Way arc over the ocean. Bortle 2." },
+                  { name: "Pfeiffer Ridge / Tin House", note: "The most committed option — 6.4 miles and 3,000 feet up to the ridge above the marine layer. 270-degree views, no light sources. Bortle 1–2 above fog." },
+                  { name: "Andrew Molera State Park", note: "Open meadow at the mouth of the Big Sur River. Hike-in campsites are exceptionally dark — no facility lighting. Bortle 2." },
+                ].map((area, i) => (
+                  <div key={i} className="py-3.5 border-b border-white/10">
+                    <div className="font-body text-[14px] font-semibold text-white mb-1">{area.name}</div>
+                    <div className="font-body text-[13px] font-normal text-white/55 leading-[1.6]">{area.note}</div>
                   </div>
                 ))}
               </div>
-            </div>
-          </FadeIn>
+            </FadeIn>
 
-          <FadeIn delay={0.14}>
-            <div className="p-4 px-[18px] border border-white/[0.12] bg-white/[0.03]">
-              <div className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-sea-glass mb-2.5">Marine Layer Note</div>
-              <p className="font-body text-[13px] font-normal text-white/60 leading-[1.7] m-0">
-                {"Summer marine layer (June–August) is the thickest and most persistent, often burning off only to return by midnight. Fall (September–November) offers the most reliable clear nights. Winter has the clearest skies overall but cold temps and shorter windows. Check Clear Outside or Clear Dark Sky forecasts before committing to a ridge hike."}
-              </p>
-            </div>
-          </FadeIn>
+            <FadeIn delay={0.1}>
+              <div className="mb-8">
+                <div className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-sea-glass mb-4">Calendar Anchors</div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  {[
+                    { event: "Milky Way Core", timing: "Mar – Oct", detail: "Best April–July when the galactic center is highest" },
+                    { event: "Perseid Meteor Shower", timing: "Mid-August", detail: "Peak Aug 12–13 — go to ridge to beat marine layer" },
+                    { event: "Bixby Bridge Astro", timing: "New Moon Nights", detail: "The bridge under the Milky Way — iconic astrophotography" },
+                    { event: "Gray Whale + Stars", timing: "Dec – Apr", detail: "Watch migrating whales at dusk, then stay for the stars" },
+                  ].map((cal, i) => (
+                    <div key={i} className="p-3.5 px-4 border border-white/[0.12] bg-white/[0.03]">
+                      <div className="font-body text-[14px] font-semibold text-white mb-[3px]">{cal.event}</div>
+                      <div className="font-body text-[11px] font-bold tracking-[0.14em] uppercase text-sea-glass mb-1">{cal.timing}</div>
+                      <div className="font-body text-[12px] font-normal text-white/50">{cal.detail}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </FadeIn>
+
+            <FadeIn delay={0.14}>
+              <div className="p-4 px-[18px] border border-white/[0.12] bg-white/[0.03]">
+                <div className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-sea-glass mb-2.5">Marine Layer Note</div>
+                <p className="font-body text-[13px] font-normal text-white/60 leading-[1.7] m-0">
+                  {"Summer marine layer (June–August) is the thickest and most persistent, often burning off only to return by midnight. Fall (September–November) offers the most reliable clear nights. Winter has the clearest skies overall but cold temps and shorter windows. Check Clear Outside or Clear Dark Sky forecasts before committing to a ridge hike."}
+                </p>
+              </div>
+            </FadeIn>
+          </CollapsibleSection>
         </div>
-      </section>
+      </div>
 
       {/* Continue guide content */}
       <section className="px-5 pb-[60px] md:px-[52px] md:pb-20 bg-cream">
@@ -1198,13 +1259,14 @@ export default function BigSurGuide() {
           {/* ================================================================ */}
           {/* EAT                                                               */}
           {/* ================================================================ */}
-          <section id="eat" className="scroll-mt-[126px] py-11">
-            <FadeIn>
-              <SectionIcon type="connect" color={ACCENT} />
-              <SectionLabel accentColor={ACCENT}>Eat</SectionLabel>
-              <SectionTitle>Where to eat</SectionTitle>
-              <SectionSub>{"The restaurants, cafes, and provisions that fuel the trip."}</SectionSub>
-            </FadeIn>
+          <CollapsibleSection
+            id="eat"
+            label="Eat"
+            title="Where to eat"
+            teaser={`${restaurants.length} places`}
+            isOpen={!collapsedSections['eat']}
+            onToggle={() => toggleSection('eat')}
+          >
             <FadeIn delay={0.08}>
               <ExpandableList initialCount={4} label="places">
                 {restaurants.filter(r => !r.corridor).sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).map(r => (
@@ -1247,20 +1309,21 @@ export default function BigSurGuide() {
                 )}
               </ExpandableList>
             </FadeIn>
-          </section>
+          </CollapsibleSection>
 
           <Divider />
 
           {/* ================================================================ */}
           {/* EXPERIENCE                                                        */}
           {/* ================================================================ */}
-          <section id="experience" className="scroll-mt-[126px] py-11">
-            <FadeIn>
-              <SectionIcon type="connect" color={ACCENT} />
-              <SectionLabel accentColor={ACCENT}>Experience</SectionLabel>
-              <SectionTitle>{"Culture, heritage & discovery"}</SectionTitle>
-              <SectionSub>{"Cultural sites, Indigenous heritage, and galleries worth your time."}</SectionSub>
-            </FadeIn>
+          <CollapsibleSection
+            id="experience"
+            label="Experience"
+            title="Culture, heritage & discovery"
+            teaser={`${experiences.length} experiences`}
+            isOpen={!collapsedSections['experience']}
+            onToggle={() => toggleSection('experience')}
+          >
             <FadeIn delay={0.08}>
               <ExpandableList initialCount={4} label="experiences">
                 {experiences.sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).map(item => (
@@ -1278,7 +1341,7 @@ export default function BigSurGuide() {
                 ))}
               </ExpandableList>
             </FadeIn>
-          </section>
+          </CollapsibleSection>
 
 
 
@@ -1287,14 +1350,14 @@ export default function BigSurGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* GIVE BACK                                                     */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="give-back" className="scroll-mt-[126px] py-11">
-            <FadeIn>
-              <SectionIcon type="threshold" color={ACCENT} />
-              <SectionLabel accentColor={ACCENT}>Give Back</SectionLabel>
-              <SectionTitle>Leave it better than you found it.</SectionTitle>
-              <SectionSub>The coast and the people who live here need different kinds of support. These organizations cover both.</SectionSub>
-            </FadeIn>
-
+          <CollapsibleSection
+            id="give-back"
+            label="Give Back"
+            title="Leave it better than you found it."
+            teaser="3 organizations"
+            isOpen={!collapsedSections['give-back']}
+            onToggle={() => toggleSection('give-back')}
+          >
             <FadeIn delay={0.1}>
               <div className="mt-2">
                 <div className="pt-4">
@@ -1320,7 +1383,7 @@ export default function BigSurGuide() {
                 </div>
               </div>
             </FadeIn>
-          </section>
+          </CollapsibleSection>
 
 
           <Divider />

@@ -171,6 +171,44 @@ function ExpandableList({ children, initialCount = 5, label = "more" }) {
   );
 }
 
+function CollapsibleSection({ id, label, title, teaser, isOpen, onToggle, children }) {
+  const bodyRef = useRef(null);
+  const [bodyHeight, setBodyHeight] = useState(0);
+
+  useEffect(() => {
+    if (bodyRef.current) {
+      setBodyHeight(bodyRef.current.scrollHeight);
+    }
+  }, [isOpen, children]);
+
+  return (
+    <section id={id} className="scroll-mt-[126px]">
+      <button
+        onClick={onToggle}
+        className="w-full flex items-center gap-4 py-6 bg-transparent border-none cursor-pointer text-left group"
+      >
+        <div className="flex-1 min-w-0">
+          <div className="font-body text-[10px] font-bold tracking-[0.22em] uppercase text-[#7A857E] mb-1">{label}</div>
+          <div className="font-serif text-[clamp(20px,3vw,26px)] font-light text-dark-ink leading-[1.2]">{title}</div>
+        </div>
+        <div className="flex items-center gap-3 shrink-0">
+          <span className="font-body text-[12px] text-[#7A857E] whitespace-nowrap">{teaser}</span>
+          <span className="inline-block text-[12px] text-[#7A857E] transition-transform duration-300 ease-in-out"
+            style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}>▾</span>
+        </div>
+      </button>
+      <div
+        className="overflow-hidden transition-[max-height] duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]"
+        style={{ maxHeight: isOpen ? bodyHeight + 100 : 0 }}
+      >
+        <div ref={bodyRef} className="pb-6">
+          {children}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function GuideDetailSheet({ item, onClose, isMobile }) {
   const sheetRef = useRef(null);
   const dragStartY = useRef(null);
@@ -606,7 +644,7 @@ const GUIDE_SECTIONS = [
   { id: "give-back",      label: "Give Back" },
 ];
 
-function GuideNav({ isMobile }) {
+function GuideNav({ isMobile, onOpenSection }) {
   const [activeId, setActiveId] = useState(null);
   const scrollContainerRef = useRef(null);
 
@@ -633,7 +671,8 @@ function GuideNav({ isMobile }) {
     const guideNavHeight = isMobile ? 0 : 52;
     const y = el.getBoundingClientRect().top + window.scrollY - guideNavHeight - mainNavHeight - 32;
     window.scrollTo({ top: y, behavior: "smooth" });
-  }, [isMobile]);
+    if (onOpenSection) onOpenSection(id);
+  }, [isMobile, onOpenSection]);
 
   if (isMobile) {
     return (
@@ -732,6 +771,21 @@ export default function KauaiGuide() {
       return next;
     });
   };
+  const [collapsedSections, setCollapsedSections] = useState({
+    'where-to-stay': true,
+    'move': true,
+    'wellness': true,
+    'light-sky': true,
+    'eat': true,
+    'experience': true,
+    'give-back': true,
+  });
+  const toggleSection = useCallback((id) => {
+    setCollapsedSections(prev => ({ ...prev, [id]: !prev[id] }));
+  }, []);
+  const openSection = useCallback((id) => {
+    setCollapsedSections(prev => prev[id] ? { ...prev, [id]: false } : prev);
+  }, []);
   useEffect(() => {
     if (activeSheet) document.body.style.overflow = 'hidden';
     else document.body.style.overflow = '';
@@ -814,7 +868,7 @@ export default function KauaiGuide() {
       </div>
 
       {/* ══ GUIDE SECTION NAV ═══════════════════════════════════════════════ */}
-      <GuideNav isMobile={isMobile} />
+      <GuideNav isMobile={isMobile} onOpenSection={openSection} />
 
       {/* ══ IMAGE STRIP ════════════════════════════════════════════════════ */}
       <section className="relative">
@@ -991,14 +1045,14 @@ export default function KauaiGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* STAY                                                          */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="where-to-stay" className="scroll-mt-[126px] py-11">
-            <FadeIn>
-              <SectionIcon type="stay" color={ACCENT} />
-              <SectionLabel accentColor={ACCENT}>Sleep</SectionLabel>
-              <SectionTitle>Where to sleep</SectionTitle>
-              <SectionSub>{"How you inhabit a place matters. From beach camping under the Nā Pali cliffs to the island's grandest resort."}</SectionSub>
-            </FadeIn>
-
+          <CollapsibleSection
+            id="where-to-stay"
+            label="Sleep"
+            title="Where to sleep"
+            teaser={(() => { const filtered = accommodations.filter(a => activeSleepTiers.has(a.stayStyle)).length; const total = accommodations.length; return filtered < total ? `${filtered} of ${total} options` : `${total} options`; })()}
+            isOpen={!collapsedSections['where-to-stay']}
+            onToggle={() => toggleSection('where-to-stay')}
+          >
             <FadeIn delay={0.05}>
               <TierFilter tiers={sleepFilterTiers} activeTiers={activeSleepTiers} onToggle={handleSleepToggle} />
             </FadeIn>
@@ -1025,7 +1079,7 @@ export default function KauaiGuide() {
                 ))}
               </ExpandableList>
             </div>
-          </section>
+          </CollapsibleSection>
 
 
           <Divider />
@@ -1033,13 +1087,14 @@ export default function KauaiGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* MOVE                                                          */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="move" className="scroll-mt-[126px] py-11">
-            <FadeIn>
-              <SectionIcon type="move" />
-              <SectionLabel>Move</SectionLabel>
-              <SectionTitle>How to get into the landscape</SectionTitle>
-              <SectionSub>{"Nā Pali coast hikes, Hanalei surfing, and the best coastal cycling in Hawaii."}</SectionSub>
-            </FadeIn>
+          <CollapsibleSection
+            id="move"
+            label="Move"
+            title="How to get into the landscape"
+            teaser={(() => { const filtered = moveItems.filter(item => activeMoveTiers.has(item.moveTier)).length; const total = moveItems.length; return filtered < total ? `${filtered} of ${total} activities` : `${total} activities`; })()}
+            isOpen={!collapsedSections['move']}
+            onToggle={() => toggleSection('move')}
+          >
             <FadeIn delay={0.05}>
               <TierFilter tiers={moveFilterTiers} activeTiers={activeMoveTiers} onToggle={handleMoveToggle} />
             </FadeIn>
@@ -1070,7 +1125,7 @@ export default function KauaiGuide() {
                 ))}
               </ExpandableList>
             </FadeIn>
-          </section>
+          </CollapsibleSection>
 
 
           <Divider />
@@ -1078,13 +1133,14 @@ export default function KauaiGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* WELLNESS                                                      */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="wellness" className="scroll-mt-[126px] py-11">
-            <FadeIn>
-              <SectionIcon type="breathe" />
-              <SectionLabel>Breathe</SectionLabel>
-              <SectionTitle>{"Yoga, Hawaiian healing & ancient terraces"}</SectionTitle>
-              <SectionSub>{"Yoga, Hawaiian healing traditions, and ancient terraces as practice."}</SectionSub>
-            </FadeIn>
+          <CollapsibleSection
+            id="wellness"
+            label="Breathe"
+            title={"Yoga, Hawaiian healing & ancient terraces"}
+            teaser={(() => { const filtered = breatheItems.filter(item => activeBreatheTiers.has(item.breatheTier)).length; const total = breatheItems.length; return filtered < total ? `${filtered} of ${total} options` : `${total} options`; })()}
+            isOpen={!collapsedSections['wellness']}
+            onToggle={() => toggleSection('wellness')}
+          >
             <FadeIn delay={0.05}>
               <TierFilter tiers={breatheFilterTiers} activeTiers={activeBreatheTiers} onToggle={handleBreatheToggle} />
             </FadeIn>
@@ -1110,7 +1166,7 @@ export default function KauaiGuide() {
                 ))}
               </ExpandableList>
             </FadeIn>
-          </section>
+          </CollapsibleSection>
 
 
           <Divider />
@@ -1122,17 +1178,16 @@ export default function KauaiGuide() {
       </section>
 
       {/* Night Sky section with full-width dark background */}
-      <section id="light-sky" className="scroll-mt-[126px] py-[52px] px-5 md:py-16 md:px-[52px] bg-dark-ink">
+      <div className="bg-dark-ink px-5 md:px-[52px]">
         <div className="max-w-[680px] mx-auto">
-          <FadeIn>
-            <SectionIcon type="awaken" color={ACCENT} />
-            <div className="font-body text-[12px] font-bold tracking-[0.28em] uppercase text-ocean-teal mb-3 text-center">Night Sky</div>
-            <h2 className="font-serif text-[clamp(24px,4vw,32px)] font-normal text-white m-0 mb-1.5 leading-[1.2] text-center">{"Light & sky"}</h2>
-            <p className="font-body text-[15px] md:text-[clamp(14px,1.8vw,15px)] font-normal text-white/70 mx-auto mb-7 leading-[1.7] text-left md:text-center max-w-full md:max-w-[520px]">
-              {"No IDA designation, but the island's building-height law and low development density create genuinely dark conditions on the south and west shores. The Milky Way core is visible from the coast on moonless nights between April and October."}
-            </p>
-          </FadeIn>
-
+          <CollapsibleSection
+            id="light-sky"
+            label="Night Sky"
+            title={"Light & sky"}
+            teaser="Dark shores — best Apr–Oct"
+            isOpen={!collapsedSections['light-sky']}
+            onToggle={() => toggleSection('light-sky')}
+          >
           <FadeIn delay={0.06}>
             <div className="mb-8">
               <div className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-ocean-teal mb-4">Best Viewing Locations</div>
@@ -1177,8 +1232,9 @@ export default function KauaiGuide() {
               </p>
             </div>
           </FadeIn>
+          </CollapsibleSection>
         </div>
-      </section>
+      </div>
 
       {/* Continue guide content */}
       <section className="px-5 pb-[60px] md:px-[52px] md:pb-20 bg-cream">
@@ -1188,13 +1244,14 @@ export default function KauaiGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* EAT                                                           */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="eat" className="scroll-mt-[126px] py-11">
-            <FadeIn>
-              <SectionIcon type="connect" />
-              <SectionLabel>Eat</SectionLabel>
-              <SectionTitle>Where to eat</SectionTitle>
-              <SectionSub>{"The restaurants, cafés, and provisions that fuel the trip."}</SectionSub>
-            </FadeIn>
+          <CollapsibleSection
+            id="eat"
+            label="Eat"
+            title="Where to eat"
+            teaser={`${restaurants.length} places`}
+            isOpen={!collapsedSections['eat']}
+            onToggle={() => toggleSection('eat')}
+          >
             <FadeIn delay={0.08}>
               <ExpandableList initialCount={4} label="places">
                 {restaurants.filter(r => !r.corridor).sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).map(r => (
@@ -1217,20 +1274,21 @@ export default function KauaiGuide() {
                 ))}
               </ExpandableList>
             </FadeIn>
-          </section>
+          </CollapsibleSection>
 
           <Divider />
 
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* EXPERIENCE                                                    */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="experience" className="scroll-mt-[126px] py-11">
-            <FadeIn>
-              <SectionIcon type="connect" />
-              <SectionLabel>Experience</SectionLabel>
-              <SectionTitle>{"Culture, heritage & discovery"}</SectionTitle>
-              <SectionSub>{"Sacred sites, farm tours, Indigenous heritage, and the living culture of Kauaʻi."}</SectionSub>
-            </FadeIn>
+          <CollapsibleSection
+            id="experience"
+            label="Experience"
+            title={"Culture, heritage & discovery"}
+            teaser={`${experiences.length} experiences`}
+            isOpen={!collapsedSections['experience']}
+            onToggle={() => toggleSection('experience')}
+          >
             <FadeIn delay={0.08}>
               <ExpandableList initialCount={4} label="experiences">
                 {experiences.sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).map(item => (
@@ -1238,7 +1296,7 @@ export default function KauaiGuide() {
                 ))}
               </ExpandableList>
             </FadeIn>
-          </section>
+          </CollapsibleSection>
 
 
           <Divider />
@@ -1246,14 +1304,14 @@ export default function KauaiGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* GIVE BACK                                                     */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="give-back" className="scroll-mt-[126px] py-11">
-            <FadeIn>
-              <SectionIcon type="threshold" color={ACCENT} />
-              <SectionLabel accentColor={ACCENT}>Give Back</SectionLabel>
-              <SectionTitle>Leave it better than you found it.</SectionTitle>
-              <SectionSub>Mālama — to care for. These organizations make that concrete.</SectionSub>
-            </FadeIn>
-
+          <CollapsibleSection
+            id="give-back"
+            label="Give Back"
+            title="Leave it better than you found it."
+            teaser="4 organizations"
+            isOpen={!collapsedSections['give-back']}
+            onToggle={() => toggleSection('give-back')}
+          >
             <FadeIn delay={0.1}>
               <div className="mt-2">
                 <div className="pt-4">
@@ -1286,7 +1344,7 @@ export default function KauaiGuide() {
                 </div>
               </div>
             </FadeIn>
-          </section>
+          </CollapsibleSection>
 
 
           <Divider />

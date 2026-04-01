@@ -187,6 +187,29 @@ function ExpandableList({ children, initialCount = 5, label = "more" }) {
   );
 }
 
+function CollapsibleSection({ id, label, title, teaser, isOpen, onToggle, dark, children }) {
+  const bodyRef = useRef(null);
+  const [bodyHeight, setBodyHeight] = useState(0);
+  useEffect(() => { if (bodyRef.current) setBodyHeight(bodyRef.current.scrollHeight); }, [isOpen, children]);
+  return (
+    <section id={id} className="scroll-mt-[126px]">
+      <button onClick={onToggle} className="w-full flex items-center gap-4 py-6 bg-transparent border-none cursor-pointer text-left group">
+        <div className="flex-1 min-w-0">
+          <div className={`font-body text-[10px] font-bold tracking-[0.22em] uppercase mb-1 ${dark ? 'text-golden-amber' : 'text-[#7A857E]'}`}>{label}</div>
+          <div className={`font-serif text-[clamp(20px,3vw,26px)] font-light leading-[1.2] ${dark ? 'text-white' : 'text-dark-ink'}`}>{title}</div>
+        </div>
+        <div className="flex items-center gap-3 shrink-0">
+          <span className={`font-body text-[12px] whitespace-nowrap ${dark ? 'text-white/50' : 'text-[#7A857E]'}`}>{teaser}</span>
+          <span className={`inline-block text-[12px] transition-transform duration-300 ease-in-out ${dark ? 'text-white/50' : 'text-[#7A857E]'}`} style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}>▾</span>
+        </div>
+      </button>
+      <div className="overflow-hidden transition-[max-height] duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]" style={{ maxHeight: isOpen ? bodyHeight + 100 : 0 }}>
+        <div ref={bodyRef} className="pb-6">{children}</div>
+      </div>
+    </section>
+  );
+}
+
 function GuideDetailSheet({ item, onClose, isMobile }) {
   const sheetRef = useRef(null);
   const dragStartY = useRef(null);
@@ -742,7 +765,7 @@ const GUIDE_SECTIONS = [
   { id: "give-back",      label: "Give Back" },
 ];
 
-function GuideNav({ isMobile }) {
+function GuideNav({ isMobile, onOpenSection }) {
   const [activeId, setActiveId] = useState(null);
   const scrollContainerRef = useRef(null);
 
@@ -763,13 +786,14 @@ function GuideNav({ isMobile }) {
   }, [isMobile]);
 
   const handleClick = useCallback((id) => {
+    if (onOpenSection) onOpenSection(id);
     const el = document.getElementById(id);
     if (!el) return;
     const mainNavHeight = isMobile ? 58 : 64;
     const guideNavHeight = isMobile ? 0 : 52;
     const y = el.getBoundingClientRect().top + window.scrollY - guideNavHeight - mainNavHeight - 32;
     window.scrollTo({ top: y, behavior: "smooth" });
-  }, [isMobile]);
+  }, [isMobile, onOpenSection]);
 
   if (isMobile) {
     return (
@@ -868,6 +892,11 @@ export default function JoshuaTreeGuide() {
       return next;
     });
   };
+  const [collapsedSections, setCollapsedSections] = useState({
+    'where-to-stay': true, 'move': true, 'wellness': true, 'light-sky': true, 'eat': true, 'experience': true, 'give-back': true,
+  });
+  const toggleSection = useCallback((id) => { setCollapsedSections(prev => ({ ...prev, [id]: !prev[id] })); }, []);
+  const openSection = useCallback((id) => { setCollapsedSections(prev => prev[id] ? { ...prev, [id]: false } : prev); }, []);
   useEffect(() => {
     if (activeSheet) document.body.style.overflow = 'hidden';
     else document.body.style.overflow = '';
@@ -984,7 +1013,7 @@ export default function JoshuaTreeGuide() {
       </div>
 
       {/* ══ GUIDE SECTION NAV ═══════════════════════════════════════════════ */}
-      <GuideNav isMobile={isMobile} />
+      <GuideNav isMobile={isMobile} onOpenSection={openSection} />
 
       {/* ══ IMAGE STRIP ════════════════════════════════════════════════════ */}
       <section className="relative">
@@ -1167,14 +1196,14 @@ export default function JoshuaTreeGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* WHERE TO SLEEP                                                */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="where-to-stay" className="scroll-mt-[126px] py-11">
-            <FadeIn>
-              <SectionIcon type="stay" color={ACCENT} />
-              <SectionLabel accentColor={ACCENT}>Sleep</SectionLabel>
-              <SectionTitle>Where to sleep</SectionTitle>
-              <SectionSub>How you inhabit a place matters. Options across the full spectrum — from sleeping under the stars to Palm Springs luxury.</SectionSub>
-            </FadeIn>
-
+          <CollapsibleSection
+            id="where-to-stay"
+            label="Sleep"
+            title="Where to sleep"
+            teaser={`${accommodations.filter(a => activeSleepTiers.has(a.stayStyle)).length} places`}
+            isOpen={collapsedSections['where-to-stay']}
+            onToggle={() => toggleSection('where-to-stay')}
+          >
             <FadeIn delay={0.05}>
               <TierFilter tiers={sleepFilterTiers} activeTiers={activeSleepTiers} onToggle={handleSleepToggle} />
             </FadeIn>
@@ -1222,7 +1251,7 @@ export default function JoshuaTreeGuide() {
                 </>
               )}
             </div>
-          </section>
+          </CollapsibleSection>
 
 
           <Divider />
@@ -1230,13 +1259,14 @@ export default function JoshuaTreeGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* MOVE                                                          */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="move" className="scroll-mt-[126px] py-11">
-            <FadeIn>
-              <SectionIcon type="move" />
-              <SectionLabel>Move</SectionLabel>
-              <SectionTitle>How to get into the landscape</SectionTitle>
-              <SectionSub>Desert hikes, world-class rock climbing, and cycling through the geological record.</SectionSub>
-            </FadeIn>
+          <CollapsibleSection
+            id="move"
+            label="Move"
+            title="How to get into the landscape"
+            teaser={`${moveItems.filter(item => activeMoveTiers.has(item.moveTier)).length} activities`}
+            isOpen={collapsedSections['move']}
+            onToggle={() => toggleSection('move')}
+          >
             <FadeIn delay={0.05}>
               <TierFilter tiers={moveFilterTiers} activeTiers={activeMoveTiers} onToggle={handleMoveToggle} />
             </FadeIn>
@@ -1268,7 +1298,7 @@ export default function JoshuaTreeGuide() {
                 ))}
               </ExpandableList>
             </FadeIn>
-          </section>
+          </CollapsibleSection>
 
 
           <Divider />
@@ -1276,13 +1306,14 @@ export default function JoshuaTreeGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* BREATHE                                                       */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="wellness" className="scroll-mt-[126px] py-11">
-            <FadeIn>
-              <SectionIcon type="breathe" />
-              <SectionLabel>Breathe</SectionLabel>
-              <SectionTitle>{"Yoga, sound baths & desert silence"}</SectionTitle>
-              <SectionSub>{"Yoga, sound baths, and desert silence as practice."}</SectionSub>
-            </FadeIn>
+          <CollapsibleSection
+            id="wellness"
+            label="Breathe"
+            title={"Yoga, sound baths & desert silence"}
+            teaser={`${breatheItems.filter(item => activeBreatheTiers.has(item.breatheTier)).length} offerings`}
+            isOpen={collapsedSections['wellness']}
+            onToggle={() => toggleSection('wellness')}
+          >
             <FadeIn delay={0.05}>
               <TierFilter tiers={breatheFilterTiers} activeTiers={activeBreatheTiers} onToggle={handleBreatheToggle} />
             </FadeIn>
@@ -1308,7 +1339,7 @@ export default function JoshuaTreeGuide() {
                 ))}
               </ExpandableList>
             </FadeIn>
-          </section>
+          </CollapsibleSection>
 
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* NIGHT SKY                                                     */}
@@ -1317,17 +1348,17 @@ export default function JoshuaTreeGuide() {
       </section>
 
       {/* Night Sky section with full-width dark background */}
-      <section id="light-sky" className="scroll-mt-[126px] py-[52px] px-5 md:py-16 md:px-[52px] bg-dark-ink">
+      <div className="bg-dark-ink px-5 md:px-[52px]">
         <div className="max-w-[680px] mx-auto">
-          <FadeIn>
-            <SectionIcon type="darksky" color={ACCENT} />
-            <div className="font-body text-[12px] font-bold tracking-[0.28em] uppercase text-golden-amber mb-3 text-center">Night Sky</div>
-            <h2 className="font-serif text-[clamp(24px,4vw,32px)] font-normal text-white mt-0 mb-1.5 leading-[1.2] text-center">The night sky here is extraordinary</h2>
-            <p className="font-body text-[15px] md:text-[clamp(14px,1.8vw,15px)] font-normal text-white/70 mx-auto mb-7 leading-[1.7] text-left md:text-center max-w-full md:max-w-[520px] mt-0">
-              Joshua Tree is a certified International Dark Sky Park. Bortle Class 2 conditions in the backcountry — among the darkest accessible skies in Southern California.
-            </p>
-          </FadeIn>
-
+          <CollapsibleSection
+            id="light-sky"
+            label="Night Sky"
+            title="The night sky here is extraordinary"
+            teaser="IDA Certified — Bortle Class 2–3"
+            isOpen={collapsedSections['light-sky']}
+            onToggle={() => toggleSection('light-sky')}
+            dark
+          >
           <FadeIn delay={0.06}>
             {/* Best Viewing Areas */}
             <div className="mb-8">
@@ -1397,8 +1428,9 @@ export default function JoshuaTreeGuide() {
               </div>
             </div>
           </FadeIn>
+          </CollapsibleSection>
         </div>
-      </section>
+      </div>
 
       {/* Continue guide content */}
       <section className="px-5 pb-[60px] md:px-[52px] md:pb-20 bg-cream">
@@ -1408,13 +1440,14 @@ export default function JoshuaTreeGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* EAT                                                            */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="eat" className="scroll-mt-[126px] py-11">
-            <FadeIn>
-              <SectionIcon type="connect" />
-              <SectionLabel>Eat</SectionLabel>
-              <SectionTitle>Where to eat</SectionTitle>
-              <SectionSub>{"The restaurants, cafés, and provisions that fuel the trip."}</SectionSub>
-            </FadeIn>
+          <CollapsibleSection
+            id="eat"
+            label="Eat"
+            title="Where to eat"
+            teaser={`${restaurants.length} places`}
+            isOpen={collapsedSections['eat']}
+            onToggle={() => toggleSection('eat')}
+          >
             <FadeIn delay={0.08}>
               <ExpandableList initialCount={4} label="places">
                 {restaurants.filter(r => !r.corridor).sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).map(r => (
@@ -1445,20 +1478,21 @@ export default function JoshuaTreeGuide() {
                 )}
               </ExpandableList>
             </FadeIn>
-          </section>
+          </CollapsibleSection>
 
           <Divider />
 
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* EXPERIENCE                                                    */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="experience" className="scroll-mt-[126px] py-11">
-            <FadeIn>
-              <SectionIcon type="connect" />
-              <SectionLabel>Experience</SectionLabel>
-              <SectionTitle>{"Culture, heritage & discovery"}</SectionTitle>
-              <SectionSub>{"Cultural sites, art initiatives, and the desert's creative community."}</SectionSub>
-            </FadeIn>
+          <CollapsibleSection
+            id="experience"
+            label="Experience"
+            title={"Culture, heritage & discovery"}
+            teaser={`${experiences.length} experiences`}
+            isOpen={collapsedSections['experience']}
+            onToggle={() => toggleSection('experience')}
+          >
             <FadeIn delay={0.08}>
               <ExpandableList initialCount={4} label="experiences">
                 {experiences.sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).map(item => (
@@ -1466,20 +1500,21 @@ export default function JoshuaTreeGuide() {
                 ))}
               </ExpandableList>
             </FadeIn>
-          </section>
+          </CollapsibleSection>
 
           <Divider />
 
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* GIVE BACK                                                     */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="give-back" className="scroll-mt-[126px] py-11">
-            <FadeIn>
-              <SectionIcon type="giveback" color={ACCENT} />
-              <SectionLabel accentColor={ACCENT}>Give Back</SectionLabel>
-              <SectionTitle>Leave it better than you found it.</SectionTitle>
-              <SectionSub>The desert sustains itself slowly. These organizations help it along.</SectionSub>
-            </FadeIn>
+          <CollapsibleSection
+            id="give-back"
+            label="Give Back"
+            title="Leave it better than you found it."
+            teaser="3 organizations"
+            isOpen={collapsedSections['give-back']}
+            onToggle={() => toggleSection('give-back')}
+          >
             <FadeIn delay={0.1}>
               <div className="mt-2">
                 <div className="pt-4">
@@ -1505,7 +1540,7 @@ export default function JoshuaTreeGuide() {
                 </div>
               </div>
             </FadeIn>
-          </section>
+          </CollapsibleSection>
 
 
           <Divider />
