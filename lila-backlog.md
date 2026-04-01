@@ -15,6 +15,7 @@ _Last updated: March 30, 2026. Living document — update as items are completed
 - [ ] **`/my-trips` page** — simple page listing a user's saved itineraries as cards (destination, title, date, "View" button). Completes the save loop.
 - [ ] **Verify `feedback_events` writes** — confirm the feedback_events Supabase table is receiving rows on refinement (got sidetracked, never fully confirmed).
 - [ ] **RLS / Supabase security** — write policies that allow anon inserts but block unauthenticated reads. Prerequisite for auth work.
+- [ ] **Apply guide collapsed-sections UX to remaining guides** — Zion is the reference implementation. As guide UX evolves post-launch, track changes here and apply to: Big Sur, Joshua Tree, Kauaʻi, Olympic Peninsula, Vancouver Island. Apply as a batch once Zion pattern is stable.
 
 ---
 
