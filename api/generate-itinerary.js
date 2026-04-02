@@ -83,6 +83,36 @@ export default async function handler(req, res) {
     }
     const t3 = Date.now();
 
+    // Fail fast if output was truncated
+    if (response.stop_reason === 'max_tokens') {
+      console.error(`[GENERATE] Output truncated — hit max_tokens (${messagePayload.max_tokens}) for ${destination}`);
+      clearInterval(keepalive);
+      const errMsg = 'The itinerary was too long and got cut off. Try a shorter trip duration or simpler preferences, then try again.';
+      if (res.headersSent) {
+        res.write(JSON.stringify({ success: false, error: errMsg }) + '\n');
+        return res.end();
+      }
+      return res.status(502).json({ error: errMsg });
+    }
+
+    // Validate response is parseable JSON with days array
+    try {
+      const firstBrace = itinerary.indexOf('{');
+      const lastBrace = itinerary.lastIndexOf('}');
+      if (firstBrace === -1 || lastBrace === -1) throw new Error('No JSON object found');
+      const parsed = JSON.parse(itinerary.slice(firstBrace, lastBrace + 1));
+      if (!parsed.days || !Array.isArray(parsed.days)) throw new Error('Missing days array');
+    } catch (parseErr) {
+      console.error(`[GENERATE] Response failed JSON validation: ${parseErr.message}`);
+      console.error(`[GENERATE] Raw response (first 500 chars): ${itinerary.slice(0, 500)}`);
+      const errMsg = 'The itinerary response was malformed. Please try again — this usually resolves on retry.';
+      if (res.headersSent) {
+        res.write(JSON.stringify({ success: false, error: errMsg }) + '\n');
+        return res.end();
+      }
+      return res.status(502).json({ error: errMsg });
+    }
+
     // Timing breakdown
     const timing = {
       contextAssemblyMs: t1 - t0,

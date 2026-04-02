@@ -671,25 +671,34 @@ Please return the revised itinerary as a complete JSON object. Follow the same o
       .map(block => block.text)
       .join('\n');
 
-    // Check if output was truncated
+    // Fail fast if output was truncated — don't send broken JSON to the frontend
     if (response.stop_reason === 'max_tokens') {
       console.error(`[REFINE] Output truncated — hit max_tokens (${refinementMaxTokens}) for ${numDays}-day trip`);
+      return res.status(502).json({
+        error: 'The refinement response was too long and got cut off. Try simplifying your feedback or reducing locked items, then try again.',
+      });
     }
 
-    // Extract changes array from the response if present
-    let changes = [];
+    // Validate response is parseable JSON with a days array before returning
+    let parsed;
     try {
       const firstBrace = revisedItinerary.indexOf('{');
       const lastBrace = revisedItinerary.lastIndexOf('}');
-      if (firstBrace !== -1 && lastBrace !== -1) {
-        const parsed = JSON.parse(revisedItinerary.slice(firstBrace, lastBrace + 1));
-        if (Array.isArray(parsed.changes)) {
-          changes = parsed.changes.filter(c => typeof c === 'string').slice(0, 6);
-        }
-      }
-    } catch {
-      // If parsing fails, changes stays empty — no error
+      if (firstBrace === -1 || lastBrace === -1) throw new Error('No JSON object found in response');
+      parsed = JSON.parse(revisedItinerary.slice(firstBrace, lastBrace + 1));
+      if (!parsed.days || !Array.isArray(parsed.days)) throw new Error('Response missing days array');
+    } catch (parseErr) {
+      console.error(`[REFINE] Response failed JSON validation: ${parseErr.message}`);
+      console.error(`[REFINE] Raw response (first 500 chars): ${revisedItinerary.slice(0, 500)}`);
+      return res.status(502).json({
+        error: 'The refinement produced an invalid response. Please try again — this usually resolves on retry.',
+      });
     }
+
+    // Extract changes array if present
+    const changes = Array.isArray(parsed.changes)
+      ? parsed.changes.filter(c => typeof c === 'string').slice(0, 6)
+      : [];
 
     return res.status(200).json({
       success: true,

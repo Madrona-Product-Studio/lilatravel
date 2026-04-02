@@ -121,6 +121,14 @@ ${itinerary}`;
       .map(block => block.text)
       .join('\n');
 
+    // Check for truncation
+    if (response.stop_reason === 'max_tokens') {
+      console.error(`[ALTERNATIVES] Output truncated — hit max_tokens (${messagePayload.max_tokens})`);
+      return res.status(502).json({
+        error: 'Alternatives response was truncated. Try again.',
+      });
+    }
+
     // Parse the alternatives JSON
     let alternatives;
     try {
