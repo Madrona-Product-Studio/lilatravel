@@ -1153,7 +1153,7 @@ export default function OlympicPeninsulaGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* STAY                                                          */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <CollapsibleSection id="where-to-stay" label="Sleep" title="Where to sleep" teaser={`${accommodations.filter(a => !a.corridor && activeSleepTiers.has(a.stayStyle)).length} places`} isOpen={collapsedSections['where-to-stay']} onToggle={() => toggleSection('where-to-stay')}>
+          <CollapsibleSection id="where-to-stay" label="Sleep" title="Where to sleep" teaser={`${accommodations.filter(a => !a.corridor && activeSleepTiers.has(a.stayStyle)).length} places`} isOpen={!collapsedSections['where-to-stay']} onToggle={() => toggleSection('where-to-stay')}>
             <FadeIn delay={0.05}>
               <TierFilter tiers={sleepFilterTiers} activeTiers={activeSleepTiers} onToggle={handleSleepToggle} />
             </FadeIn>
@@ -1188,7 +1188,7 @@ export default function OlympicPeninsulaGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* MOVE                                                          */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <CollapsibleSection id="move" label="Move" title="How to get into the landscape" teaser={`${moveItems.filter(item => activeMoveTiers.has(item.moveTier)).length} activities`} isOpen={collapsedSections['move']} onToggle={() => toggleSection('move')}>
+          <CollapsibleSection id="move" label="Move" title="How to get into the landscape" teaser={`${moveItems.filter(item => activeMoveTiers.has(item.moveTier)).length} activities`} isOpen={!collapsedSections['move']} onToggle={() => toggleSection('move')}>
             <FadeIn delay={0.05}>
               <TierFilter tiers={moveFilterTiers} activeTiers={activeMoveTiers} onToggle={handleMoveToggle} />
             </FadeIn>
@@ -1227,7 +1227,7 @@ export default function OlympicPeninsulaGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* BREATHE                                                       */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <CollapsibleSection id="wellness" label="Breathe" title={"Hot springs, radical silence & the Iyengar tradition"} teaser={`${breatheItems.filter(item => activeBreatheTiers.has(item.breatheTier)).length} options`} isOpen={collapsedSections['wellness']} onToggle={() => toggleSection('wellness')}>
+          <CollapsibleSection id="wellness" label="Breathe" title={"Hot springs, radical silence & the Iyengar tradition"} teaser={`${breatheItems.filter(item => activeBreatheTiers.has(item.breatheTier)).length} options`} isOpen={!collapsedSections['wellness']} onToggle={() => toggleSection('wellness')}>
             <FadeIn delay={0.05}>
               <TierFilter tiers={breatheFilterTiers} activeTiers={activeBreatheTiers} onToggle={handleBreatheToggle} />
             </FadeIn>
@@ -1261,7 +1261,7 @@ export default function OlympicPeninsulaGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* NIGHT SKY                                                     */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <CollapsibleSection id="light-sky" label="Night Sky" title="After dark on the peninsula." teaser="Hurricane Ridge — best Jun–Sep" isOpen={collapsedSections['light-sky']} onToggle={() => toggleSection('light-sky')}>
+          <CollapsibleSection id="light-sky" label="Night Sky" title="After dark on the peninsula." teaser="Hurricane Ridge — best Jun–Sep" isOpen={!collapsedSections['light-sky']} onToggle={() => toggleSection('light-sky')}>
             {/* Dark Sky Note */}
             <FadeIn delay={0.1}>
               <div className="py-5 px-6 bg-dark-ink my-7">
@@ -1278,7 +1278,7 @@ export default function OlympicPeninsulaGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* EAT                                                           */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <CollapsibleSection id="eat" label="Eat" title="Where to eat" teaser={`${restaurants.length} places`} isOpen={collapsedSections['eat']} onToggle={() => toggleSection('eat')}>
+          <CollapsibleSection id="eat" label="Eat" title="Where to eat" teaser={`${restaurants.length} places`} isOpen={!collapsedSections['eat']} onToggle={() => toggleSection('eat')}>
             <FadeIn delay={0.08}>
               <ExpandableList initialCount={4} label="places">
                 {restaurants.filter(r => !r.corridor).sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).map(r => (
@@ -1328,7 +1328,7 @@ export default function OlympicPeninsulaGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* EXPERIENCE                                                    */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <CollapsibleSection id="experience" label="Experience" title={"Culture, heritage & discovery"} teaser={`${experiences.length} experiences`} isOpen={collapsedSections['experience']} onToggle={() => toggleSection('experience')}>
+          <CollapsibleSection id="experience" label="Experience" title={"Culture, heritage & discovery"} teaser={`${experiences.length} experiences`} isOpen={!collapsedSections['experience']} onToggle={() => toggleSection('experience')}>
             <FadeIn delay={0.08}>
               <ExpandableList initialCount={4} label="experiences">
                 {experiences.sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).map(item => (
@@ -1354,7 +1354,7 @@ export default function OlympicPeninsulaGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* GIVE BACK                                                     */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <CollapsibleSection id="give-back" label="Give Back" title="Leave it better than you found it." teaser="5 organizations" isOpen={collapsedSections['give-back']} onToggle={() => toggleSection('give-back')}>
+          <CollapsibleSection id="give-back" label="Give Back" title="Leave it better than you found it." teaser="5 organizations" isOpen={!collapsedSections['give-back']} onToggle={() => toggleSection('give-back')}>
             <FadeIn delay={0.1}>
               <div className="mt-2">
                 <div className="pt-4">

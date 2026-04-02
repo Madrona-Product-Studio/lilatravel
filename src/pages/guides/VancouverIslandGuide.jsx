@@ -1059,7 +1059,7 @@ export default function VancouverIslandGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* STAY                                                          */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <CollapsibleSection id="where-to-stay" label="Sleep" title="Where to sleep" teaser={`${accommodations.filter(a => !a.corridor && activeSleepTiers.has(a.stayStyle)).length} places`} isOpen={collapsedSections['where-to-stay']} onToggle={() => toggleSection('where-to-stay')}>
+          <CollapsibleSection id="where-to-stay" label="Sleep" title="Where to sleep" teaser={`${accommodations.filter(a => !a.corridor && activeSleepTiers.has(a.stayStyle)).length} places`} isOpen={!collapsedSections['where-to-stay']} onToggle={() => toggleSection('where-to-stay')}>
             <FadeIn delay={0.05}>
               <TierFilter tiers={sleepFilterTiers} activeTiers={activeSleepTiers} onToggle={handleSleepToggle} />
             </FadeIn>
@@ -1094,7 +1094,7 @@ export default function VancouverIslandGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* MOVE                                                          */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <CollapsibleSection id="move" label="Move" title="How to get into the landscape" teaser={`${moveItems.filter(item => activeMoveTiers.has(item.moveTier)).length} activities`} isOpen={collapsedSections['move']} onToggle={() => toggleSection('move')}>
+          <CollapsibleSection id="move" label="Move" title="How to get into the landscape" teaser={`${moveItems.filter(item => activeMoveTiers.has(item.moveTier)).length} activities`} isOpen={!collapsedSections['move']} onToggle={() => toggleSection('move')}>
             <FadeIn delay={0.05}>
               <TierFilter tiers={moveFilterTiers} activeTiers={activeMoveTiers} onToggle={handleMoveToggle} />
             </FadeIn>
@@ -1132,7 +1132,7 @@ export default function VancouverIslandGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* BREATHE                                                       */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <CollapsibleSection id="wellness" label="Breathe" title="Soaking, forest bathing & practice" teaser={`${breatheItems.filter(item => activeBreatheTiers.has(item.breatheTier)).length} options`} isOpen={collapsedSections['wellness']} onToggle={() => toggleSection('wellness')}>
+          <CollapsibleSection id="wellness" label="Breathe" title="Soaking, forest bathing & practice" teaser={`${breatheItems.filter(item => activeBreatheTiers.has(item.breatheTier)).length} options`} isOpen={!collapsedSections['wellness']} onToggle={() => toggleSection('wellness')}>
             <FadeIn delay={0.05}>
               <TierFilter tiers={breatheFilterTiers} activeTiers={activeBreatheTiers} onToggle={handleBreatheToggle} />
             </FadeIn>
@@ -1166,7 +1166,7 @@ export default function VancouverIslandGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* LIGHT & SKY — DISCOVER                                       */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <CollapsibleSection id="light-sky" label="Night Sky" title="Wildlife, storms & the living coast" teaser="Whales, bears & storm season" isOpen={collapsedSections['light-sky']} onToggle={() => toggleSection('light-sky')}>
+          <CollapsibleSection id="light-sky" label="Night Sky" title="Wildlife, storms & the living coast" teaser="Whales, bears & storm season" isOpen={!collapsedSections['light-sky']} onToggle={() => toggleSection('light-sky')}>
             <FadeIn delay={0.08}>
               <ExpandableList initialCount={5} label="experiences">
                 <ListItem onOpenSheet={openSheet('Light & Sky')} name="Whale Watching with Ahous Adventures" featured
@@ -1199,7 +1199,7 @@ export default function VancouverIslandGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* EAT                                                           */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <CollapsibleSection id="eat" label="Eat" title="Where to eat" teaser={`${restaurants.length} places`} isOpen={collapsedSections['eat']} onToggle={() => toggleSection('eat')}>
+          <CollapsibleSection id="eat" label="Eat" title="Where to eat" teaser={`${restaurants.length} places`} isOpen={!collapsedSections['eat']} onToggle={() => toggleSection('eat')}>
             <FadeIn delay={0.08}>
               <ExpandableList initialCount={4} label="places">
                 {restaurants.filter(r => !r.corridor).sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).map(r => (
@@ -1250,7 +1250,7 @@ export default function VancouverIslandGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* EXPERIENCE                                                    */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <CollapsibleSection id="experience" label="Experience" title="Culture, heritage & discovery" teaser={`${experiences.length} experiences`} isOpen={collapsedSections['experience']} onToggle={() => toggleSection('experience')}>
+          <CollapsibleSection id="experience" label="Experience" title="Culture, heritage & discovery" teaser={`${experiences.length} experiences`} isOpen={!collapsedSections['experience']} onToggle={() => toggleSection('experience')}>
             <FadeIn delay={0.08}>
               <ExpandableList initialCount={4} label="experiences">
                 {experiences.sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).map(item => (
@@ -1277,7 +1277,7 @@ export default function VancouverIslandGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* GIVE BACK                                                     */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <CollapsibleSection id="give-back" label="Give Back" title="Leave it better than you found it." teaser="3 organizations" isOpen={collapsedSections['give-back']} onToggle={() => toggleSection('give-back')}>
+          <CollapsibleSection id="give-back" label="Give Back" title="Leave it better than you found it." teaser="3 organizations" isOpen={!collapsedSections['give-back']} onToggle={() => toggleSection('give-back')}>
             <FadeIn delay={0.1}>
               <div className="mt-2">
                 <div className="pt-4">

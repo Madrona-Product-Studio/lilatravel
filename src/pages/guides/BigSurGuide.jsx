@@ -148,7 +148,7 @@ function StayItem({ name, location, tier, detail, tags, url, featured, onOpenShe
   );
 }
 
-function CollapsibleSection({ id, label, title, teaser, isOpen, onToggle, dark, children }) {
+function CollapsibleSection({ id, label, title, teaser, isOpen, onToggle, children }) {
   const bodyRef = useRef(null);
   const [bodyHeight, setBodyHeight] = useState(0);
 
@@ -165,12 +165,12 @@ function CollapsibleSection({ id, label, title, teaser, isOpen, onToggle, dark, 
         className="w-full flex items-center gap-4 py-6 bg-transparent border-none cursor-pointer text-left group"
       >
         <div className="flex-1 min-w-0">
-          <div className={`font-body text-[10px] font-bold tracking-[0.22em] uppercase mb-1 ${dark ? 'text-sea-glass' : 'text-[#7A857E]'}`}>{label}</div>
-          <div className={`font-serif text-[clamp(20px,3vw,26px)] font-light leading-[1.2] ${dark ? 'text-white' : 'text-dark-ink'}`}>{title}</div>
+          <div className="font-body text-[10px] font-bold tracking-[0.22em] uppercase mb-1 text-[#7A857E]">{label}</div>
+          <div className="font-serif text-[clamp(20px,3vw,26px)] font-light leading-[1.2] text-dark-ink">{title}</div>
         </div>
         <div className="flex items-center gap-3 shrink-0">
-          <span className={`font-body text-[12px] whitespace-nowrap ${dark ? 'text-white/50' : 'text-[#7A857E]'}`}>{teaser}</span>
-          <span className={`inline-block text-[12px] transition-transform duration-300 ease-in-out ${dark ? 'text-white/50' : 'text-[#7A857E]'}`}
+          <span className="font-body text-[12px] whitespace-nowrap text-[#7A857E]">{teaser}</span>
+          <span className="inline-block text-[12px] transition-transform duration-300 ease-in-out text-[#7A857E]"
             style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}>▾</span>
         </div>
       </button>
@@ -1183,12 +1183,7 @@ export default function BigSurGuide() {
           {/* ================================================================ */}
           {/* LIGHT & SKY                                                       */}
           {/* ================================================================ */}
-        </div>
-      </section>
 
-      {/* Night Sky section with full-width dark background */}
-      <div className="bg-dark-ink">
-        <div className="max-w-[680px] mx-auto px-5 md:px-[52px]">
           <CollapsibleSection
             id="light-sky"
             label="Night Sky"
@@ -1196,8 +1191,9 @@ export default function BigSurGuide() {
             teaser="Bortle 2 at Pfeiffer — best Jun–Oct"
             isOpen={!collapsedSections['light-sky']}
             onToggle={() => toggleSection('light-sky')}
-            dark
           >
+            <div className="bg-dark-ink -mx-5 md:-mx-[52px] px-5 md:px-[52px] py-6">
+              <div className="max-w-[680px] mx-auto">
             <p className="font-body text-[15px] md:text-[clamp(14px,1.8vw,15px)] font-normal text-white/70 mx-auto mb-7 leading-[1.7] text-left md:text-center max-w-full md:max-w-[520px] mt-0">
               {"No formal IDA designation, but the skies here are genuinely world-class when conditions align. Pfeiffer Big Sur State Park is rated Bortle Class 2 — darker than most IDA-certified parks. The catch is the marine layer: the strategy is elevation."}
             </p>
@@ -1247,13 +1243,12 @@ export default function BigSurGuide() {
                 </p>
               </div>
             </FadeIn>
+              </div>
+            </div>
           </CollapsibleSection>
-        </div>
-      </div>
 
-      {/* Continue guide content */}
-      <section className="px-5 pb-[60px] md:px-[52px] md:pb-20 bg-cream">
-        <div className="max-w-[680px] mx-auto">
+
+
 
 
           {/* ================================================================ */}

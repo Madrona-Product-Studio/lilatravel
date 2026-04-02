@@ -187,7 +187,7 @@ function ExpandableList({ children, initialCount = 5, label = "more" }) {
   );
 }
 
-function CollapsibleSection({ id, label, title, teaser, isOpen, onToggle, dark, children }) {
+function CollapsibleSection({ id, label, title, teaser, isOpen, onToggle, children }) {
   const bodyRef = useRef(null);
   const [bodyHeight, setBodyHeight] = useState(0);
   useEffect(() => { if (bodyRef.current) setBodyHeight(bodyRef.current.scrollHeight); }, [isOpen, children]);
@@ -195,12 +195,12 @@ function CollapsibleSection({ id, label, title, teaser, isOpen, onToggle, dark, 
     <section id={id} className="scroll-mt-[126px]">
       <button onClick={onToggle} className="w-full flex items-center gap-4 py-6 bg-transparent border-none cursor-pointer text-left group">
         <div className="flex-1 min-w-0">
-          <div className={`font-body text-[10px] font-bold tracking-[0.22em] uppercase mb-1 ${dark ? 'text-golden-amber' : 'text-[#7A857E]'}`}>{label}</div>
-          <div className={`font-serif text-[clamp(20px,3vw,26px)] font-light leading-[1.2] ${dark ? 'text-white' : 'text-dark-ink'}`}>{title}</div>
+          <div className="font-body text-[10px] font-bold tracking-[0.22em] uppercase mb-1 text-[#7A857E]">{label}</div>
+          <div className="font-serif text-[clamp(20px,3vw,26px)] font-light leading-[1.2] text-dark-ink">{title}</div>
         </div>
         <div className="flex items-center gap-3 shrink-0">
-          <span className={`font-body text-[12px] whitespace-nowrap ${dark ? 'text-white/50' : 'text-[#7A857E]'}`}>{teaser}</span>
-          <span className={`inline-block text-[12px] transition-transform duration-300 ease-in-out ${dark ? 'text-white/50' : 'text-[#7A857E]'}`} style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}>▾</span>
+          <span className="font-body text-[12px] whitespace-nowrap text-[#7A857E]">{teaser}</span>
+          <span className="inline-block text-[12px] transition-transform duration-300 ease-in-out text-[#7A857E]" style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}>▾</span>
         </div>
       </button>
       <div className="overflow-hidden transition-[max-height] duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]" style={{ maxHeight: isOpen ? bodyHeight + 100 : 0 }}>
@@ -1344,21 +1344,17 @@ export default function JoshuaTreeGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* NIGHT SKY                                                     */}
           {/* ══════════════════════════════════════════════════════════════ */}
-        </div>
-      </section>
 
-      {/* Night Sky section with full-width dark background */}
-      <div className="bg-dark-ink px-5 md:px-[52px]">
-        <div className="max-w-[680px] mx-auto">
           <CollapsibleSection
             id="light-sky"
             label="Night Sky"
             title="The night sky here is extraordinary"
             teaser="IDA Certified — Bortle Class 2–3"
-            isOpen={collapsedSections['light-sky']}
+            isOpen={!collapsedSections['light-sky']}
             onToggle={() => toggleSection('light-sky')}
-            dark
           >
+            <div className="bg-dark-ink -mx-5 md:-mx-[52px] px-5 md:px-[52px] py-6">
+              <div className="max-w-[680px] mx-auto">
           <FadeIn delay={0.06}>
             {/* Best Viewing Areas */}
             <div className="mb-8">
@@ -1428,13 +1424,12 @@ export default function JoshuaTreeGuide() {
               </div>
             </div>
           </FadeIn>
+              </div>
+            </div>
           </CollapsibleSection>
-        </div>
-      </div>
 
-      {/* Continue guide content */}
-      <section className="px-5 pb-[60px] md:px-[52px] md:pb-20 bg-cream">
-        <div className="max-w-[680px] mx-auto">
+
+
 
 
           {/* ══════════════════════════════════════════════════════════════ */}
