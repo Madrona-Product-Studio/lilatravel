@@ -651,9 +651,13 @@ Please return the revised itinerary as a complete JSON object. Follow the same o
 - "Incorporated dinner reservation at Nepenthe on Day 3"
 `.trim();
 
+    // Scale token budget with trip length (same formula as generate endpoint)
+    const numDays = parsedItinerary?.days?.length || 5;
+    const refinementMaxTokens = Math.min(1500 + numDays * 2600, 20000);
+
     const response = await anthropic.messages.create({
       model: 'claude-sonnet-4-6',
-      max_tokens: 12000,
+      max_tokens: refinementMaxTokens,
       system: [
         { type: 'text', text: systemPrompt, cache_control: { type: 'ephemeral' } },
       ],
@@ -666,6 +670,11 @@ Please return the revised itinerary as a complete JSON object. Follow the same o
       .filter(block => block.type === 'text')
       .map(block => block.text)
       .join('\n');
+
+    // Check if output was truncated
+    if (response.stop_reason === 'max_tokens') {
+      console.error(`[REFINE] Output truncated — hit max_tokens (${refinementMaxTokens}) for ${numDays}-day trip`);
+    }
 
     // Extract changes array from the response if present
     let changes = [];
