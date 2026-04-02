@@ -5,7 +5,7 @@
       "maxDuration": 300
     },
     "api/refine-itinerary.js": {
-      "includeFiles": "prompts/**",
+      "includeFiles": "src/data/destinations/**,prompts/**,src/services/**",
       "maxDuration": 300
     },
     "api/generate-alternatives.js": {

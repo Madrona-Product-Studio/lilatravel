@@ -15,6 +15,7 @@ import Anthropic from '@anthropic-ai/sdk';
 import fs from 'fs';
 import path from 'path';
 import { checkOrigin } from './_utils.js';
+import { loadGuide } from '../src/services/destination-data.js';
 
 const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
@@ -520,6 +521,7 @@ export default async function handler(req, res) {
   }
   if (!checkOrigin(req, res)) return;
 
+  let keepalive;
   try {
     const { itinerary, lockedItems, swappedActivities, dayFeedback, pulse, overallNote, formData, tripLogistics } = req.body;
 
@@ -557,6 +559,18 @@ export default async function handler(req, res) {
 
     if (!hasDayFeedback && !hasLockedItems && !hasSwaps && !hasPulse && !hasBookings && !hasScaffold) {
       return res.status(400).json({ error: 'No feedback provided to refine against' });
+    }
+
+    // Load destination guide so Claude can recommend from it
+    const destination = formData?.destination || null;
+    let guideBlock = '';
+    if (destination) {
+      try {
+        const guide = loadGuide(destination);
+        guideBlock = `## Destination Guide (ONLY recommend from this content)\n\n${guide}`;
+      } catch (err) {
+        console.warn(`[REFINE] Could not load guide for "${destination}": ${err.message}`);
+      }
     }
 
     // Build the refinement prompt
@@ -655,28 +669,50 @@ Please return the revised itinerary as a complete JSON object. Follow the same o
     const numDays = parsedItinerary?.days?.length || 5;
     const refinementMaxTokens = Math.min(1500 + numDays * 2600, 20000);
 
-    const response = await anthropic.messages.create({
-      model: 'claude-sonnet-4-6',
-      max_tokens: refinementMaxTokens,
-      system: [
-        { type: 'text', text: systemPrompt, cache_control: { type: 'ephemeral' } },
-      ],
-      messages: [
-        { role: 'user', content: userMessage },
-      ],
-    });
+    // Build system messages — guide is cached so repeat refinements are fast
+    const systemMessages = [
+      { type: 'text', text: systemPrompt, cache_control: { type: 'ephemeral' } },
+    ];
+    if (guideBlock) {
+      systemMessages.push({ type: 'text', text: guideBlock, cache_control: { type: 'ephemeral' } });
+    }
+
+    // Stream with keepalive pings to prevent mobile/carrier timeouts
+    res.setHeader('Content-Type', 'application/x-ndjson');
+    res.setHeader('Cache-Control', 'no-cache');
+    res.setHeader('X-Accel-Buffering', 'no');
+    res.write('\n');
+    keepalive = setInterval(() => { try { res.write('\n'); } catch {} }, 15000);
+
+    let response;
+    try {
+      response = await anthropic.messages.create({
+        model: 'claude-sonnet-4-6',
+        max_tokens: refinementMaxTokens,
+        system: systemMessages,
+        messages: [
+          { role: 'user', content: userMessage },
+        ],
+      });
+    } finally {
+      clearInterval(keepalive);
+    }
 
     const revisedItinerary = response.content
       .filter(block => block.type === 'text')
       .map(block => block.text)
       .join('\n');
 
+    console.log('[REFINE USAGE]', JSON.stringify(response.usage));
+
     // Fail fast if output was truncated — don't send broken JSON to the frontend
     if (response.stop_reason === 'max_tokens') {
       console.error(`[REFINE] Output truncated — hit max_tokens (${refinementMaxTokens}) for ${numDays}-day trip`);
-      return res.status(502).json({
+      res.write(JSON.stringify({
+        success: false,
         error: 'The refinement response was too long and got cut off. Try simplifying your feedback or reducing locked items, then try again.',
-      });
+      }) + '\n');
+      return res.end();
     }
 
     // Validate response is parseable JSON with a days array before returning
@@ -690,9 +726,11 @@ Please return the revised itinerary as a complete JSON object. Follow the same o
     } catch (parseErr) {
       console.error(`[REFINE] Response failed JSON validation: ${parseErr.message}`);
       console.error(`[REFINE] Raw response (first 500 chars): ${revisedItinerary.slice(0, 500)}`);
-      return res.status(502).json({
+      res.write(JSON.stringify({
+        success: false,
         error: 'The refinement produced an invalid response. Please try again — this usually resolves on retry.',
-      });
+      }) + '\n');
+      return res.end();
     }
 
     // Extract changes array if present
@@ -700,15 +738,24 @@ Please return the revised itinerary as a complete JSON object. Follow the same o
       ? parsed.changes.filter(c => typeof c === 'string').slice(0, 6)
       : [];
 
-    return res.status(200).json({
+    res.write(JSON.stringify({
       success: true,
       itinerary: revisedItinerary,
       changes,
-    });
+    }) + '\n');
+    return res.end();
 
   } catch (error) {
+    if (keepalive) clearInterval(keepalive);
     console.error('Itinerary refinement failed:', error);
 
+    if (res.headersSent) {
+      res.write(JSON.stringify({
+        success: false,
+        error: 'Something went wrong refining your itinerary. Please try again.',
+      }) + '\n');
+      return res.end();
+    }
     return res.status(500).json({
       error: 'Something went wrong refining your itinerary. Please try again.',
     });

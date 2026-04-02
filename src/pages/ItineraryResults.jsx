@@ -4692,9 +4692,18 @@ export default function ItineraryResults() {
         signal,
       });
       clear();
-      const { ok, data: result, error } = await safeJson(response);
-      if (!ok || !result.success) {
-        throw new Error(error || result?.error || 'Refinement failed');
+      // Server sends NDJSON (keepalive newlines + final JSON line)
+      const text = await response.text();
+      const lines = text.split('\n').filter(l => l.trim());
+      const lastLine = lines[lines.length - 1] || '{}';
+      let result;
+      try {
+        result = JSON.parse(lastLine);
+      } catch {
+        throw new Error('Failed to parse refinement response');
+      }
+      if (!result.success) {
+        throw new Error(result?.error || 'Refinement failed');
       }
       setRawItinerary(result.itinerary);
       setRefinementChanges(Array.isArray(result.changes) ? result.changes : []);
