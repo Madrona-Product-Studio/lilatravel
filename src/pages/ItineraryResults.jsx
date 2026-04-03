@@ -4280,17 +4280,20 @@ export default function ItineraryResults() {
         duration_ms: Math.round(performance.now() - pageLoadTime.current),
         day_count: itinerary.days.length,
       });
-      saveItinerary({
-        formData,
-        rawItinerary,
-        destination: formData?.destination,
-        iteration: 0,
-      }).then(id => {
-        if (id) {
-          try { sessionStorage.setItem('lila_itinerary_id', id); } catch { /* quota */ }
-          setItineraryId(id);
-        }
-      });
+      // Don't re-save when loading via share link — the itinerary already exists in the DB
+      if (!shareToken) {
+        saveItinerary({
+          formData,
+          rawItinerary,
+          destination: formData?.destination,
+          iteration: 0,
+        }).then(id => {
+          if (id) {
+            try { sessionStorage.setItem('lila_itinerary_id', id); } catch { /* quota */ }
+            setItineraryId(id);
+          }
+        });
+      }
 
       // Patch trip title in lila_trips array
       const tripId = sessionStorage.getItem('lila_trip_id');
