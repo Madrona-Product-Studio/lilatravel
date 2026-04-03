@@ -15,7 +15,7 @@ import { assignCompanions } from '@services/companionAssigner';
 import { saveItinerary, saveFeedback, updateItineraryTitle } from '@services/feedbackService';
 
 import { clearSession } from '@services/sessionManager';
-import { createShareableUrl } from '@services/shareService';
+import { createShareableUrl, migrateShareToken } from '@services/shareService';
 import { safeJson, fetchWithTimeout } from '@utils/fetchHelpers';
 import SavePill from '@components/SavePill';
 import ItineraryNav from '@components/ItineraryNav';
@@ -4722,7 +4722,8 @@ export default function ItineraryResults() {
         iteration,
       });
 
-      // Save the newly refined itinerary
+      // Save the newly refined itinerary and migrate share token from old row
+      const previousItineraryId = sessionStorage.getItem('lila_itinerary_id');
       saveItinerary({
         formData,
         rawItinerary: result.itinerary,
@@ -4732,6 +4733,8 @@ export default function ItineraryResults() {
         if (id) {
           try { sessionStorage.setItem('lila_itinerary_id', id); } catch { /* quota */ }
           setItineraryId(id);
+          // Move share token to the new row so existing links resolve to latest version
+          if (previousItineraryId) migrateShareToken(previousItineraryId, id);
         }
       });
 

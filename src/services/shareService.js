@@ -41,6 +41,49 @@ export async function createShareableUrl({ itineraryId, rawItinerary, formData, 
   }
 }
 
+/**
+ * After a refinement creates a new itinerary row, move the share token
+ * from the old row to the new one. The URL stays the same — it now
+ * resolves to the latest version. The old row keeps its data intact
+ * (minus share_token) for history.
+ */
+export async function migrateShareToken(oldItineraryId, newItineraryId) {
+  if (!oldItineraryId || !newItineraryId || oldItineraryId === newItineraryId) return;
+  try {
+    // Read the old row's token
+    const { data: oldRow } = await supabase
+      .from('itineraries')
+      .select('share_token')
+      .eq('id', oldItineraryId)
+      .single();
+
+    if (!oldRow?.share_token) return; // nothing to migrate
+
+    // Clear the old row's token
+    await supabase
+      .from('itineraries')
+      .update({ share_token: null })
+      .eq('id', oldItineraryId);
+
+    // Set it on the new row
+    const { error } = await supabase
+      .from('itineraries')
+      .update({ share_token: oldRow.share_token })
+      .eq('id', newItineraryId);
+
+    if (error) {
+      console.error('migrateShareToken: failed to set token on new row', error);
+      // Try to restore the old row's token
+      await supabase
+        .from('itineraries')
+        .update({ share_token: oldRow.share_token })
+        .eq('id', oldItineraryId);
+    }
+  } catch (e) {
+    console.error('migrateShareToken failed:', e);
+  }
+}
+
 export async function sendTripEmail({ email, mode, itineraryUrl, itineraryTitle }) {
   const res = await fetch('/api/send-trip-email', {
     method: 'POST',
