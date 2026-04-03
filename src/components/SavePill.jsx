@@ -60,14 +60,14 @@ export default function SavePill({ isOpen, onClose, itineraryId, rawItinerary, f
 
   useEffect(() => {
     if (!itineraryId) {
-      setShareUrl(window.location.href);
+      setShareUrl('');
       return;
     }
     createShareableUrl({
       itineraryId,
       rawItinerary,
       formData,
-    }).then(url => setShareUrl(url));
+    }).then(url => { if (url) setShareUrl(url); });
   }, [itineraryId]);
 
   // Reset state when panel closes
@@ -79,14 +79,14 @@ export default function SavePill({ isOpen, onClose, itineraryId, rawItinerary, f
   };
 
   const handleSend = async () => {
-    if (!emailValid) return;
+    if (!emailValid || !shareUrl) return;
     setSending(true);
     setSendError(false);
     try {
       await sendTripEmail({
         email,
         mode,
-        itineraryUrl: shareUrl || window.location.href,
+        itineraryUrl: shareUrl,
         itineraryTitle,
       });
       setSent(true);
@@ -99,8 +99,8 @@ export default function SavePill({ isOpen, onClose, itineraryId, rawItinerary, f
   };
 
   const handleCopy = () => {
-    const url = shareUrl || window.location.href;
-    navigator.clipboard.writeText(url).catch(() => {});
+    if (!shareUrl) return;
+    navigator.clipboard.writeText(shareUrl).catch(() => {});
     setCopied(true);
     setTimeout(() => setCopied(false), 2200);
   };
@@ -197,13 +197,13 @@ export default function SavePill({ isOpen, onClose, itineraryId, rawItinerary, f
                 onFocus={e => e.target.style.borderColor = `${C.oceanTeal}40`}
                 onBlur={e => e.target.style.borderColor = `${C.sage}20`}
               />
-              <button onClick={handleSend} disabled={sending || !emailValid} style={{
+              <button onClick={handleSend} disabled={sending || !emailValid || !shareUrl} style={{
                 padding: '9px 14px', borderRadius: 6,
                 fontFamily: F, fontSize: 12, fontWeight: 600,
-                color: (sending || !emailValid) ? `${C.sage}50` : C.white,
-                background: (sending || !emailValid) ? `${C.sage}08` : C.oceanTeal,
-                border: (sending || !emailValid) ? `1px solid ${C.sage}15` : 'none',
-                cursor: (sending || !emailValid) ? 'default' : 'pointer',
+                color: (sending || !emailValid || !shareUrl) ? `${C.sage}50` : C.white,
+                background: (sending || !emailValid || !shareUrl) ? `${C.sage}08` : C.oceanTeal,
+                border: (sending || !emailValid || !shareUrl) ? `1px solid ${C.sage}15` : 'none',
+                cursor: (sending || !emailValid || !shareUrl) ? 'default' : 'pointer',
                 WebkitTapHighlightColor: 'transparent',
                 transition: 'all 0.2s',
                 whiteSpace: 'nowrap',
