@@ -12,7 +12,7 @@ import JSON5 from 'json5';
 import { trackEvent } from '@utils/analytics';
 import { getPracticesForItinerary, TRADITIONS, ENTRIES } from '@services/practicesService';
 import { assignCompanions } from '@services/companionAssigner';
-import { saveItinerary, saveFeedback, updateItineraryTitle } from '@services/feedbackService';
+import { saveItinerary, saveFeedback, updateItineraryTitle, updateTripLogistics } from '@services/feedbackService';
 
 import { clearSession } from '@services/sessionManager';
 import { createShareableUrl } from '@services/shareService';
@@ -4001,6 +4001,15 @@ export default function ItineraryResults() {
     try { if (metadata) sessionStorage.setItem('lila_metadata', JSON.stringify(metadata)); } catch { /* quota */ }
   }, [metadata]);
 
+  // Persist tripLogistics to DB when user adds/edits bookings
+  const logisticsDebounce = useRef(null);
+  useEffect(() => {
+    const hasData = tripLogistics.flights.length || tripLogistics.rentals.length || tripLogistics.accommodations.length || tripLogistics.reservations.length;
+    if (!hasData || !itineraryId) return;
+    clearTimeout(logisticsDebounce.current);
+    logisticsDebounce.current = setTimeout(() => updateTripLogistics(itineraryId, tripLogistics), 1500);
+  }, [tripLogistics, itineraryId]);
+
   // Hydrate via server-side API when accessed via a share link (/trip/:token)
   // Uses the service role key on the server to bypass RLS policies
   const fetchSharedTrip = async (token) => {
@@ -4028,6 +4037,7 @@ export default function ItineraryResults() {
       setItineraryId(data.id);
       setLoadingShared(false);
       if (data.formData) setFormData(data.formData);
+      if (data.tripLogistics) setTripLogistics(data.tripLogistics);
     } catch (e) {
       clear();
       console.error('[SharedTrip] fetch exception', e);
@@ -4287,6 +4297,7 @@ export default function ItineraryResults() {
           rawItinerary,
           destination: formData?.destination,
           iteration: 0,
+          tripLogistics,
         }).then(id => {
           if (id) {
             try { sessionStorage.setItem('lila_itinerary_id', id); } catch { /* quota */ }
@@ -4733,6 +4744,7 @@ export default function ItineraryResults() {
         destination: formData?.destination,
         iteration: nextIteration,
         previousItineraryId,
+        tripLogistics,
       }).then(id => {
         if (id) {
           try { sessionStorage.setItem('lila_itinerary_id', id); } catch { /* quota */ }

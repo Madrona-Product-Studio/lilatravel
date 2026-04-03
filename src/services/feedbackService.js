@@ -1,19 +1,22 @@
 import { supabase } from './supabaseClient';
 import { getOrCreateSession } from './sessionManager';
 
-export async function saveItinerary({ formData, rawItinerary, destination, iteration = 0, previousItineraryId = null }) {
+export async function saveItinerary({ formData, rawItinerary, destination, iteration = 0, previousItineraryId = null, tripLogistics = null }) {
   try {
     const sessionId = await getOrCreateSession(formData);
     if (!sessionId) return null;
 
+    const row = {
+      session_id: sessionId,
+      iteration,
+      raw_itinerary: rawItinerary,
+      destination,
+    };
+    if (tripLogistics) row.trip_logistics = tripLogistics;
+
     const { data, error } = await supabase
       .from('itineraries')
-      .insert({
-        session_id: sessionId,
-        iteration,
-        raw_itinerary: rawItinerary,
-        destination,
-      })
+      .insert(row)
       .select('id')
       .single();
 
@@ -50,6 +53,19 @@ export async function saveItinerary({ formData, rawItinerary, destination, itera
   } catch (e) {
     console.error('saveItinerary exception:', e);
     return null;
+  }
+}
+
+export async function updateTripLogistics(itineraryId, tripLogistics) {
+  if (!itineraryId) return;
+  try {
+    const { error } = await supabase
+      .from('itineraries')
+      .update({ trip_logistics: tripLogistics })
+      .eq('id', itineraryId);
+    if (error) console.error('updateTripLogistics failed:', error);
+  } catch (e) {
+    console.error('updateTripLogistics exception:', e);
   }
 }
 

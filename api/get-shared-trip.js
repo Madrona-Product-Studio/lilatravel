@@ -30,7 +30,7 @@ export default async function handler(req, res) {
     // Fetch itinerary by share token
     const { data, error } = await supabase
       .from('itineraries')
-      .select('id, raw_itinerary, destination, session_id')
+      .select('id, raw_itinerary, destination, session_id, trip_logistics')
       .eq('share_token', token)
       .single();
 
@@ -59,6 +59,7 @@ export default async function handler(req, res) {
       rawItinerary: data.raw_itinerary,
       destination: data.destination,
       formData,
+      tripLogistics: data.trip_logistics || null,
     });
   } catch (err) {
     console.error('get-shared-trip exception:', err);
