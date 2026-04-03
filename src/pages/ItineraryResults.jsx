@@ -4006,7 +4006,7 @@ export default function ItineraryResults() {
   const fetchSharedTrip = async (token) => {
     setShareError(null);
     setLoadingShared(true);
-    const { signal, clear } = fetchWithTimeout(15000);
+    const { signal, clear } = fetchWithTimeout(30000);
     try {
       const res = await fetch(`/api/get-shared-trip?token=${encodeURIComponent(token)}`, { signal });
       clear();
@@ -4114,8 +4114,9 @@ export default function ItineraryResults() {
   }, [activePanel]);
 
   useEffect(() => {
-    // Don't redirect while still loading a shared trip
+    // Don't redirect while still loading a shared trip, or if there's a share error (show error UI instead)
     if (loadingShared) return;
+    if (shareError) return;
     if (!rawItinerary) { navigate('/plan'); return; }
     setTimeout(() => setVisible(true), 100);
     // Append trip to lila_trips array (multi-trip support)
@@ -4137,7 +4138,7 @@ export default function ItineraryResults() {
       sessionStorage.setItem('lila_trip_id', tripId);
       window.dispatchEvent(new Event('lila_trips_changed'));
     } catch {}
-  }, [rawItinerary, navigate, loadingShared, shareToken, formData]);
+  }, [rawItinerary, navigate, loadingShared, shareToken, formData, shareError]);
 
   // Parse itinerary — re-parses only when rawItinerary changes (i.e. after refinement)
   const itinerary = useMemo(() => {
