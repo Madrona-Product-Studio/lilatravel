@@ -1806,7 +1806,7 @@ const accomLabel = { color: C.muted };
 
 const logisticsLabelCls = 'font-body text-[10px] font-semibold tracking-[0.12em] uppercase mb-1 block';
 const logisticsLabelStyle = { color: C.muted };
-const logisticsInputCls = 'w-full font-body text-[13px] outline-none box-border';
+const logisticsInputCls = 'w-full font-body text-[16px] md:text-[13px] outline-none box-border';
 const logisticsInputStyle = { padding: '9px 12px', color: C.ink, background: C.white, border: `1px solid ${C.border}`, borderRadius: 8 };
 
 function FlightFormPanel({ data, logistics, onSave, bookingIndex, highlightFields: initialHighlights }) {
