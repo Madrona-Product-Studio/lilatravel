@@ -5,6 +5,11 @@ import { supabase } from './supabaseClient';
 // create index if not exists itineraries_share_token_idx on itineraries(share_token);
 export async function createShareableUrl({ itineraryId, rawItinerary, formData, destination }) {
   try {
+    if (!itineraryId) {
+      console.error('createShareableUrl: no itineraryId — trip was not saved to database');
+      return null;
+    }
+
     // Check if this itinerary already has a share token
     const { data: existing } = await supabase
       .from('itineraries')
@@ -19,17 +24,20 @@ export async function createShareableUrl({ itineraryId, rawItinerary, formData, 
     // No token yet — generate one and persist it
     const shareToken = crypto.randomUUID();
 
-    const { error } = await supabase
+    const { data: updated, error } = await supabase
       .from('itineraries')
       .update({ share_token: shareToken })
-      .eq('id', itineraryId);
+      .eq('id', itineraryId)
+      .select('id')
+      .single();
 
     if (error) throw error;
+    if (!updated) throw new Error('Update matched zero rows — itineraryId may not exist');
 
     return `${window.location.origin}/trip/${shareToken}`;
   } catch (e) {
     console.error('createShareableUrl failed:', e);
-    return window.location.href;
+    return null;
   }
 }
 

@@ -136,7 +136,7 @@ export default function ItineraryNav({ itinerary, iteration, itineraryId, rawIti
   useEffect(() => {
     if (!itineraryId || saveState !== 'saved') return;
     createShareableUrl({ itineraryId, rawItinerary, formData, destination: formData?.destination })
-      .then(url => setShareUrl(url));
+      .then(url => { if (url) setShareUrl(url); });
   }, [itineraryId]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
@@ -195,6 +195,11 @@ export default function ItineraryNav({ itinerary, iteration, itineraryId, rawIti
     trackEvent('save_trip_clicked', { source: 'itinerary_nav' });
     try {
       const url = await createShareableUrl({ itineraryId, rawItinerary, formData, destination: formData?.destination });
+      if (!url) {
+        console.error('Save failed — could not generate share URL');
+        setSaveState('unsaved');
+        return;
+      }
       setShareUrl(url);
       setSaveState('saved');
 
