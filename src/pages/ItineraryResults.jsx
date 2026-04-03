@@ -4249,24 +4249,51 @@ export default function ItineraryResults() {
       const rentals = tripLogistics?.rentals || [];
       const accoms = tripLogistics?.accommodations || [];
 
+      // Collect airport codes and hotel names from bookings for fuzzy matching
+      const airportCodes = new Set();
+      for (const f of flights) {
+        if (f.departureAirport) airportCodes.add(f.departureAirport.toLowerCase());
+        if (f.arrivalAirport) airportCodes.add(f.arrivalAirport.toLowerCase());
+      }
+      const hotelNames = accoms.map(a => (a.name || '').toLowerCase()).filter(Boolean);
+
       enrichedDays.forEach((day, dayIdx) => {
         if (!day.timeline) return;
         day.timeline.forEach((item, itemIdx) => {
           const title = (item.title || '').toLowerCase();
+          const desc = (item.description || item.summary || '').toLowerCase();
+          const text = `${title} ${desc}`;
           const thumbId = `day_${dayIdx}_timeline_${itemIdx}`;
-          for (const f of flights) {
-            if (title.includes('flight') || title.includes('fly') || title.includes('airport') || title.includes('depart') || title.includes('arrive')) {
+
+          // Flight-related: keyword match or airport code in title
+          if (flights.length > 0) {
+            const flightKeywords = ['flight', 'fly', 'airport', 'depart', 'arrive', 'land at', 'take off', 'board'];
+            const hasKeyword = flightKeywords.some(k => title.includes(k));
+            const hasAirportCode = [...airportCodes].some(code => title.includes(code));
+            if (hasKeyword || hasAirportCode) {
               next[thumbId] = { source: 'booking', bookingType: 'flight' };
             }
           }
-          for (const a of accoms) {
-            const hotelName = (a.name || '').toLowerCase();
-            if (title.includes('check in') || title.includes('check-in') || title.includes('check out') || title.includes('check-out') || (hotelName && title.includes(hotelName))) {
+
+          // Drive/transit tied to logistics: airport-to-destination drives
+          if ((flights.length > 0 || accoms.length > 0) && title.includes('drive') && [...airportCodes].some(code => title.includes(code))) {
+            next[thumbId] = { source: 'booking', bookingType: 'flight' };
+          }
+
+          // Accommodation: check-in/out or hotel name match
+          if (accoms.length > 0) {
+            const accomKeywords = ['check in', 'check-in', 'check out', 'check-out', 'settle in'];
+            const hasKeyword = accomKeywords.some(k => title.includes(k));
+            const hasHotelName = hotelNames.some(name => name.length > 3 && title.includes(name));
+            if (hasKeyword || hasHotelName) {
               next[thumbId] = { source: 'booking', bookingType: 'accommodation' };
             }
           }
-          for (const r of rentals) {
-            if (title.includes('rental') || title.includes('pick up') || title.includes('return car')) {
+
+          // Rental car
+          if (rentals.length > 0) {
+            const rentalKeywords = ['rental', 'pick up', 'pick-up', 'return car', 'car return'];
+            if (rentalKeywords.some(k => text.includes(k))) {
               next[thumbId] = { source: 'booking', bookingType: 'rental' };
             }
           }
