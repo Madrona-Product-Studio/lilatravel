@@ -17,7 +17,7 @@
     "amenities": ["restrooms", "drinking water", "fire rings", "picnic tables", "dump station", "some electric hookups"],
     "bookingWindow": "Book at recreation.gov as soon as available — fills fast in peak season (Mar–Oct)",
     "links": {
-      "website": "https://www.nps.gov/zion/planyourvisit/campgrounds.htm",
+      "website": "https://www.nps.gov/zion/planyourvisit/campgrounds-in-zion.htm",
       "booking": "https://www.recreation.gov/camping/campgrounds/232445"
     },
     "seasonalNotes": "Year-round. Cold winter nights (25–35°F) — bring warm gear. Summer is hot — shade is limited.",
@@ -144,7 +144,7 @@
     "amenities": ["restaurant", "wellness programs", "private tents", "fire pits"],
     "bookingWindow": "2–4 months ahead for peak season.",
     "links": {
-      "website": "https://www.openskyzion.com/",
+      "website": "https://www.stayopensky.com/",
       "booking": null
     },
     "seasonalNotes": "Year-round. The wellness programming is a genuine differentiator — not an add-on.",
@@ -299,7 +299,7 @@
     "amenities": ["rooftop stargazing", "glamping domes", "wifi", "parking"],
     "bookingWindow": "2–3 months ahead for peak season.",
     "links": {
-      "website": "https://skyviewhotel.com/",
+      "website": "https://www.skyviewtorrey.com/",
       "booking": null
     },
     "seasonalNotes": "Year-round. The dark sky designation is real — exceptional stargazing.",

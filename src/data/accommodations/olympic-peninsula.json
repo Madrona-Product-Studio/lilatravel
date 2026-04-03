@@ -17,7 +17,7 @@
     "amenities": ["pit toilets", "drinking water", "fire rings", "picnic tables"],
     "bookingWindow": "Book what you can on recreation.gov; fill in with walk-ups",
     "links": {
-      "website": "https://www.nps.gov/olym/planyourvisit/campgrounds.htm",
+      "website": "https://www.nps.gov/olym/planyourvisit/camping.htm",
       "booking": "https://www.recreation.gov/"
     },
     "seasonalNotes": "Year-round. Winter storms are dramatic from the bluff sites.",
@@ -42,7 +42,7 @@
     "amenities": ["restrooms", "drinking water", "fire rings", "picnic tables"],
     "bookingWindow": "First-come-first-served; arrive early in summer",
     "links": {
-      "website": "https://www.nps.gov/olym/planyourvisit/campgrounds.htm",
+      "website": "https://www.nps.gov/olym/planyourvisit/camping.htm",
       "booking": null
     },
     "seasonalNotes": "Year-round. Rainforest is most atmospheric in winter — mosses saturated, river running high.",

@@ -40,7 +40,7 @@
     "dietary": { "vegetarian": true, "vegan": false, "glutenFree": true, "notes": "GF accommodated with notice" },
     "hours": "Dinner Wed–Sun; check seasonal schedule",
     "reservations": "essential",
-    "links": { "website": "https://www.pluviorestaurant.com/", "maps": null },
+    "links": { "website": "https://www.pluvio.ca/", "maps": null },
     "lilaPick": true,
     "tags": ["dinner", "tasting-menu", "james-beard", "ucluelet", "intimate", "reservations-essential"],
     "months": "all"
@@ -129,7 +129,7 @@
     "dietary": { "vegetarian": true, "vegan": true, "glutenFree": false, "notes": null },
     "hours": "Breakfast and lunch daily",
     "reservations": "walk-in",
-    "links": { "website": "https://www.heartwoodkitchen.ca/", "maps": null },
+    "links": { "website": "https://heartwoodfood.com/", "maps": null },
     "lilaPick": false,
     "tags": ["breakfast", "lunch", "ucluelet", "locally-sourced", "casual"],
     "months": "all"

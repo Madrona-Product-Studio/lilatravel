@@ -22,7 +22,7 @@
     ],
     "bookingWindow": "Permit required for the final chain section — apply via recreation.gov lottery",
     "links": {
-      "website": "https://www.nps.gov/zion/planyourvisit/angels-landing-permit.htm",
+      "website": "https://www.nps.gov/zion/planyourvisit/angels-landing-hiking-permits.htm",
       "booking": "https://www.recreation.gov/"
     },
     "lilaPick": true,
@@ -53,7 +53,7 @@
     "bookingWindow": "No permit for day hike from bottom; gear rental from Zion Guru recommended",
     "links": {
       "website": "https://www.nps.gov/zion/planyourvisit/thenarrows.htm",
-      "booking": "https://www.zionguru.com/rentals"
+      "booking": "https://www.zionguru.com/rentals/narrows/equipment"
     },
     "lilaPick": false,
     "tags": ["slot-canyon", "river-hike", "gear-required", "flash-flood-risk", "iconic"],
@@ -200,7 +200,7 @@
     ],
     "bookingWindow": "Self-guided — no booking. BLM land, free access.",
     "links": {
-      "website": "https://www.blm.gov/visit/gooseberry-mesa",
+      "website": "https://www.blm.gov/programs/recreation/mountainbike/Gooseberry-Mesa-and-Hurricane-Cliffs",
       "booking": null
     },
     "lilaPick": false,

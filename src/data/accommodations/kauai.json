@@ -43,7 +43,7 @@
     "amenities": ["kitchen", "beds", "basic furnishings"],
     "bookingWindow": "Reservations through kokee.net",
     "links": {
-      "website": "https://www.kokee.net/",
+      "website": "https://www.kokeelodge.com/",
       "booking": null
     },
     "seasonalNotes": "Year-round. Cool and misty — bring layers. A completely different Kauaʻi from the coast.",
@@ -143,7 +143,7 @@
     "amenities": ["kitchen", "porch", "pool", "beach access"],
     "bookingWindow": "Book 2–4 months ahead for peak season",
     "links": {
-      "website": "https://www.waimea-plantation.com/",
+      "website": "https://www.coasthotels.com/waimea-plantation-cottages",
       "booking": null
     },
     "seasonalNotes": "Year-round. No resort amenities, no crowds — just history, stillness, and the garden isle as it was.",
@@ -168,7 +168,7 @@
     "amenities": ["spa", "lagoon pools", "restaurants", "beach access", "golf", "fitness center"],
     "bookingWindow": "Reserve well ahead for peak season",
     "links": {
-      "website": "https://www.hyatt.com/",
+      "website": "https://www.hyatt.com/grand-hyatt/en-US/kauai-grand-hyatt-kauai-resort-and-spa",
       "booking": null
     },
     "seasonalNotes": "Year-round. Anara Spa's lomilomi and pohaku treatments are grounded in Hawaiian tradition.",

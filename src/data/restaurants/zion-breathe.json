@@ -102,8 +102,8 @@
     "bookingWindow": "Book through openskyhotels.com — programs require advance reservation",
     "hours": "Multi-day residential programs — check schedule",
     "links": {
-      "website": "https://openskyhotels.com/zion/wellness/",
-      "booking": "https://openskyhotels.com/zion/wellness/"
+      "website": "https://www.stayopensky.com/",
+      "booking": "https://www.stayopensky.com/"
     },
     "lilaPick": false,
     "tags": ["retreat", "multi-day", "yoga-nidra", "sound-healing", "breathwork", "off-grid"],
@@ -157,8 +157,8 @@
     "bookingWindow": "Book online at truenorthfloat.com",
     "hours": "Daily; check schedule",
     "links": {
-      "website": "https://www.truenorthfloat.com/",
-      "booking": "https://www.truenorthfloat.com/"
+      "website": "https://www.tnfloat.com/",
+      "booking": "https://www.tnfloat.com/"
     },
     "lilaPick": false,
     "tags": ["float", "sensory-deprivation", "infrared-sauna", "cold-plunge", "vibroacoustic", "st-george"],

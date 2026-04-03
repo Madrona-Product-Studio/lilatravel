@@ -49,8 +49,8 @@
     "bookingWindow": "Book at hyatt.com or call directly — day access requires treatment booking",
     "hours": "Daily; check hours",
     "links": {
-      "website": "https://www.hyatt.com/en-US/hotel/hawaii/grand-hyatt-kauai-resort-and-spa/kauai/spa",
-      "booking": "https://www.hyatt.com/en-US/hotel/hawaii/grand-hyatt-kauai-resort-and-spa/kauai/spa"
+      "website": "https://www.hyatt.com/grand-hyatt/en-US/kauai-grand-hyatt-kauai-resort-and-spa/spa",
+      "booking": "https://www.hyatt.com/grand-hyatt/en-US/kauai-grand-hyatt-kauai-resort-and-spa/spa"
     },
     "lilaPick": true,
     "pickTier": "soak",

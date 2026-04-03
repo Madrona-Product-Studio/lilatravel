@@ -60,7 +60,7 @@
     ],
     "hours": "Museum: Wed–Mon 10am–5pm; Cape Flattery: permit required ($10/vehicle) from Makah Tribe",
     "admission": "paid (museum admission + cape permit)",
-    "links": { "website": "https://www.makah.com/makah-museum/", "maps": null },
+    "links": { "website": "https://makahmuseum.com/", "maps": null },
     "lilaPick": true,
     "tags": ["makah", "indigenous", "ozette-excavation", "cape-flattery", "northwesternmost-point", "permit-required"],
     "months": "all"
@@ -104,7 +104,7 @@
     ],
     "hours": "Resort open daily; cultural programming varies",
     "admission": "free to visit grounds",
-    "links": { "website": "https://www.7cedarsresort.com/", "maps": null },
+    "links": { "website": "https://7cedars.com/", "maps": null },
     "lilaPick": false,
     "tags": ["jamestown-sklallam", "totem-poles", "tribal-owned", "cultural-programming", "sequim"],
     "months": "all"

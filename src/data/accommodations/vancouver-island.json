@@ -143,7 +143,7 @@
     "amenities": ["restaurant", "quiet setting"],
     "bookingWindow": "Book 2–4 months ahead — only 6 rooms",
     "links": {
-      "website": "https://www.pluviorestaurant.com/",
+      "website": "https://www.pluvio.ca/",
       "booking": null
     },
     "seasonalNotes": "Year-round. Six rooms total — intimate and hard to get. Book early.",
@@ -223,7 +223,7 @@
     "bookingWindow": "Book 4–8 weeks ahead for summer and fall. Winter rates drop significantly.",
     "links": {
       "website": "https://oceanvillageresort.com/",
-      "booking": "https://oceanvillageresort.com/book-online/"
+      "booking": "https://oceanvillageresort.com/"
     },
     "seasonalNotes": "Open year-round. Summer is peak; winter is storm-watching season. Beach fires are permitted with required fire appliances.",
     "lilaPick": true,
@@ -249,7 +249,7 @@
     "bookingWindow": "Book 6–10 weeks ahead for summer. Storm-watching winter weekends also fill early.",
     "links": {
       "website": "https://www.crystalcove.ca/",
-      "booking": "https://www.crystalcove.ca/tofino-reservations/"
+      "booking": "https://www.crystalcove.ca/cabin-availability"
     },
     "seasonalNotes": "Open year-round. Beachfront cabins with hot tubs book earliest. Cedar barrel sauna cabins available year-round. Glamping trailers and RV sites also available.",
     "lilaPick": false,

@@ -19,7 +19,7 @@
     ],
     "bookingWindow": "No permit required",
     "links": {
-      "website": "https://www.pc.gc.ca/en/pn-np/bc/pacificrim",
+      "website": "https://parks.canada.ca/pn-np/bc/pacificrim",
       "booking": null
     },
     "lilaPick": false,
@@ -46,7 +46,7 @@
     ],
     "bookingWindow": "No permit required",
     "links": {
-      "website": "https://www.pc.gc.ca/en/pn-np/bc/pacificrim",
+      "website": "https://parks.canada.ca/pn-np/bc/pacificrim",
       "booking": null
     },
     "lilaPick": false,
@@ -100,7 +100,7 @@
     ],
     "bookingWindow": "Water taxi from Tofino waterfront — no advance permit required",
     "links": {
-      "website": "https://www.pc.gc.ca/en/pn-np/bc/pacificrim",
+      "website": "https://parks.canada.ca/pn-np/bc/pacificrim",
       "booking": null
     },
     "lilaPick": false,
@@ -127,7 +127,7 @@
     ],
     "bookingWindow": "Permit required — book at reservation.pc.gc.ca, opens in January",
     "links": {
-      "website": "https://www.pc.gc.ca/en/pn-np/bc/pacificrim",
+      "website": "https://parks.canada.ca/pn-np/bc/pacificrim",
       "booking": "https://reservation.pc.gc.ca/"
     },
     "lilaPick": true,
@@ -181,7 +181,7 @@
     ],
     "bookingWindow": "No permit required",
     "links": {
-      "website": "https://www.pc.gc.ca/en/pn-np/bc/pacificrim",
+      "website": "https://parks.canada.ca/pn-np/bc/pacificrim",
       "booking": null
     },
     "lilaPick": false,

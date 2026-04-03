@@ -50,7 +50,7 @@
     "hours": "Year-round; temple visits Tuesday and Saturday for non-residents",
     "links": {
       "website": "https://www.mountmadonna.org/",
-      "booking": "https://www.mountmadonna.org/personal-retreats/"
+      "booking": "https://mountmadonna.org/visit/personal-retreats/"
     },
     "lilaPick": false,
     "tags": ["yoga", "ashtanga", "bhakti", "intentional-community", "ayurveda", "hanuman-temple", "personal-retreat"],
@@ -103,8 +103,8 @@
     "bookingWindow": "Reservations required at therefuge.com — book 1–2 weeks ahead for weekends",
     "hours": "Daily; check hours at therefuge.com",
     "links": {
-      "website": "https://www.therefuge.com/",
-      "booking": "https://www.therefuge.com/"
+      "website": "https://www.refuge.com/",
+      "booking": "https://www.refuge.com/"
     },
     "lilaPick": true,
     "pickTier": "soak",

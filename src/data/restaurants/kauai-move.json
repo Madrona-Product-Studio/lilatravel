@@ -112,7 +112,7 @@
     ],
     "bookingWindow": "No permit required",
     "links": {
-      "website": "https://dlnr.hawaii.gov/dsp/parks/kauai/nounou-mountain-east-side/",
+      "website": "https://www.gohawaii.com/islands/kauai/regions/east-side/sleeping-giant",
       "booking": null
     },
     "lilaPick": false,
@@ -202,8 +202,8 @@
     "operator": "Captain Andy's",
     "bookingWindow": "Book at captainandy.com — popular tours sell out weeks ahead in summer",
     "links": {
-      "website": "https://www.captainandy.com/",
-      "booking": "https://www.captainandy.com/"
+      "website": "https://www.napali.com/",
+      "booking": "https://www.napali.com/"
     },
     "lilaPick": false,
     "tags": ["boat-tour", "napali-coast", "sea-caves", "dolphins", "humpbacks", "cliffs"],
