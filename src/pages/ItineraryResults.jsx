@@ -1853,7 +1853,7 @@ function FlightFormPanel({ data, logistics, onSave, bookingIndex, highlightField
   };
 
   return (
-    <div style={{ maxWidth: 500, margin: '0 auto', padding: '20px 20px 60px' }}>
+    <div style={{ maxWidth: 500, margin: '0 auto', padding: '20px 20px 30px' }}>
       <div style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '4px 11px', borderRadius: 20, background: `${C.teal}0e`, border: `1px solid ${C.teal}18`, marginBottom: 10 }}>
         <PlaneIcon size={12} color={C.teal} />
         <span className="font-body text-[10px] font-semibold tracking-[0.1em] uppercase" style={{ color: C.teal }}>Flights</span>
@@ -2313,7 +2313,7 @@ function DetailPanel({ item, onClose, lockedItems, onLock, onAlternatives, alter
       {/* Sheet */}
       <div ref={sheetRef} style={{
         position: 'fixed', bottom: 0, left: 0, right: 0,
-        height: '82vh', zIndex: 250,
+        height: '92vh', zIndex: 250,
         background: panelBg,
         borderRadius: '16px 16px 0 0',
         animation: 'bottomSheetSlideIn 0.3s ease',
