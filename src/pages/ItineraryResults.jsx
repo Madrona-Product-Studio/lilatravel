@@ -4001,6 +4001,14 @@ export default function ItineraryResults() {
     try { if (metadata) sessionStorage.setItem('lila_metadata', JSON.stringify(metadata)); } catch { /* quota */ }
   }, [metadata]);
 
+  // Trip logistics form state — declared early because fetchSharedTrip and persistence effects need it
+  const [tripLogistics, setTripLogistics] = useState({
+    flights: [],
+    rentals: [],
+    accommodations: [],
+    reservations: [],
+  });
+
   // Persist tripLogistics to DB when user adds/edits bookings
   const logisticsDebounce = useRef(null);
   useEffect(() => {
@@ -4068,14 +4076,6 @@ export default function ItineraryResults() {
 
   // Feedback state
   const [dayFeedback, setDayFeedback] = useState({});
-
-  // Trip logistics form state (session-only)
-  const [tripLogistics, setTripLogistics] = useState({
-    flights: [],         // [{ airline, flightNumber, departureAirport, arrivalAirport, date, departureTime, arrivalTime, confirmationNumber }]
-    rentals: [],         // [{ company, confirmationNumber, pickupLocation, pickupDate, returnDate }]
-    accommodations: [],  // [{ name, confirmationNumber, checkIn, checkOut, address, phone }]
-    reservations: [],    // [{ name, type, date, time, confirmationNumber, notes }]
-  });
   const [lockedItems, setLockedItems] = useState({});
   // key: thumbId (e.g. "day_0_timeline_2")
   // value: { source: 'user' | 'booking', bookingType?: 'flight' | 'rental' | 'accommodation' }
