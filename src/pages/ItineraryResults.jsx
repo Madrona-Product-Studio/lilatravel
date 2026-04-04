@@ -2479,7 +2479,7 @@ function extractAccommodation(itinerary) {
 }
 
 function LogisticsPanel({ destination, sticky = true, tripLogistics, onOpenPanel, itinerary, onRefine }) {
-  const [logisticsExpanded, setLogisticsExpanded] = useState(false);
+  const [logisticsExpanded, setLogisticsExpanded] = useState(true);
   const logistics = getLogistics(destination);
   const flights = tripLogistics?.flights || [];
   const rentals = tripLogistics?.rentals || [];
@@ -2637,7 +2637,18 @@ function LogisticsPanel({ destination, sticky = true, tripLogistics, onOpenPanel
               <LilaStar size={8} color={PICK_STYLES.stay.color} />
               <span className="font-body text-[9px] font-bold tracking-[0.08em] uppercase" style={{ color: PICK_STYLES.stay.color }}>Lila Pick</span>
             </div>
-            <div className="font-body text-[13px] font-semibold mb-0.5" style={{ color: C.ink }}>{accomName}</div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+              <div className="font-body text-[13px] font-semibold mb-0.5" style={{ color: C.ink }}>{accomName}</div>
+              {accom.alternatives?.length > 0 && (
+                <button
+                  onClick={(e) => { e.stopPropagation(); openLilaAccom(); }}
+                  className="font-body text-[12px] font-medium"
+                  style={{ color: C.muted, background: 'none', border: 'none', cursor: 'pointer', padding: 0, whiteSpace: 'nowrap', flexShrink: 0 }}
+                >
+                  See options
+                </button>
+              )}
+            </div>
             {accom.location && <div className="font-body text-[11px] font-medium mb-0.5" style={{ color: C.muted }}>{accom.location}</div>}
             {accom.vibe && <div className="font-body text-[11px] font-medium italic leading-[1.4]" style={{ color: C.sage }}>{accom.vibe}</div>}
             {accom.priceRange && <div className="font-body text-[10px] font-semibold mt-1" style={{ color: PICK_STYLES.stay.color }}>{accom.priceRange}</div>}
