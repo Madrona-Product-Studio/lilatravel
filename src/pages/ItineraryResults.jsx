@@ -5032,6 +5032,77 @@ export default function ItineraryResults() {
           />
         )}
 
+        {/* Threshold Moments — day spine with tags + ◈ moment */}
+        {isStructured && (() => {
+          const daysWithMoments = (itinerary.days || []).filter(d => d.thresholdMoment);
+          if (daysWithMoments.length === 0) return null;
+          return (
+            <div style={{ padding: '0 0 32px' }}>
+              {/* ◈ section marker — no label */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '20px', padding: '0 20px' }}>
+                <span style={{ color: C.goldenAmber, fontSize: '16px' }}>◈</span>
+                <div style={{ flex: 1, height: '0.5px', background: 'var(--color-border-tertiary, rgba(28,28,26,0.08))' }} />
+              </div>
+              <div style={{ padding: '0 20px', display: 'flex', flexDirection: 'column', gap: 0 }}>
+                {daysWithMoments.map((day, i) => {
+                  const dayTags = [...new Set(
+                    day.timeline.flatMap(t =>
+                      t.practiceTag == null ? []
+                      : Array.isArray(t.practiceTag) ? t.practiceTag
+                      : [t.practiceTag]
+                    )
+                  )].slice(0, 3);
+                  const isLast = i === daysWithMoments.length - 1;
+                  return (
+                    <div key={day.label} style={{ display: 'flex', gap: '14px', alignItems: 'stretch', paddingBottom: isLast ? 0 : '24px' }}>
+                      {/* Timeline spine */}
+                      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flexShrink: 0 }}>
+                        <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: C.goldenAmber, marginTop: '4px' }} />
+                        {!isLast && (
+                          <div style={{ width: '1px', flex: 1, background: 'var(--color-border-tertiary, rgba(28,28,26,0.08))', marginTop: '5px' }} />
+                        )}
+                      </div>
+                      {/* Day content */}
+                      <div style={{ flex: 1 }}>
+                        <p style={{ fontSize: '11px', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--color-text-tertiary, rgba(28,28,26,0.4))', fontWeight: 500, marginBottom: '3px' }}>
+                          {day.label}
+                        </p>
+                        <p style={{ fontSize: '16px', fontWeight: 500, color: 'var(--color-text-primary, #1C1C1A)', lineHeight: 1.3, marginBottom: '8px' }}>
+                          {day.title}
+                        </p>
+                        {dayTags.length > 0 && (
+                          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '12px' }}>
+                            {dayTags.map(tag => (
+                              <span key={tag} style={{
+                                fontSize: '11px',
+                                padding: '3px 9px',
+                                border: '0.5px solid var(--color-border-secondary, rgba(28,28,26,0.12))',
+                                borderRadius: '999px',
+                                color: 'var(--color-text-secondary, rgba(28,28,26,0.55))',
+                                whiteSpace: 'nowrap'
+                              }}>
+                                {PRACTICE_TAG_LABELS[tag] || tag}
+                              </span>
+                            ))}
+                          </div>
+                        )}
+                        <div style={{ borderLeft: `1.5px solid ${C.goldenAmber}`, paddingLeft: '10px' }}>
+                          <p style={{ fontSize: '11px', letterSpacing: '0.07em', textTransform: 'uppercase', color: C.goldenAmber, fontWeight: 500, marginBottom: '4px' }}>
+                            ◈ {day.thresholdMoment.title}
+                          </p>
+                          <p style={{ fontSize: '13px', color: 'var(--color-text-secondary, rgba(28,28,26,0.55))', lineHeight: 1.5 }}>
+                            {day.thresholdMoment.description}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          );
+        })()}
+
         {/* Logistics panel — mobile only, shown right after celestial snapshot */}
         {isStructured && isMobile && (
           <div style={{ marginBottom: 16 }}>

@@ -116,6 +116,7 @@ Return this structure:
   "snapshot": { "seasonalNote": "1 sentence", "avgHigh": int, "avgLow": int, "sunrise": "time string", "sunset": "time string", "moonPhase": "string", "stargazing": "excellent|good|moderate", "packingHint": "1 sentence" },
   "days": [{
     "label": "Day N", "title": "string", "snapshot": "brief → arrow → summary", "intro": "1 sentence",
+    "thresholdMoment": { "title": "string", "description": "string — max 2 sentences" } | null,
     "timeline": [{
       "time": "HH:MM AM/PM", "timeOfDay": "morning|midday|afternoon|evening|night",
       "title": "string", "summary": "1 sentence", "details": "1-2 sentences with logistics and sensory detail",
@@ -184,6 +185,9 @@ Return this structure:
   - **packingHint**: 1 short sentence listing essential gear for this season
 - **url fields**: Include a "url" on picks and timeline items when the place has a known website. Use URLs from the destination guide's URL Registry section if provided. If no URL is known, omit the field — do NOT invent URLs.
 - **BREVITY IS CRITICAL** — every field has a sentence limit specified above. Exceeding it risks truncating the entire response.
+- **thresholdMoment** — For each day, identify the single most irreplaceable experience — the one thing that makes this specific day on this specific trip worth doing. If one exists, populate `thresholdMoment` with a `title` and a `description` of no more than two sentences. Describe the place or experience concretely. Do not describe how the traveler will feel. Do not use metaphor. Not every day warrants one — arrival days, departure days, and travel-heavy days should typically be `null`. Across the full itinerary, no more than half the days should have a threshold moment.
+  - Good: `"title": "McWay Falls", "description": "A waterfall that drops directly into a sea cove. The definitive image of this coast."`
+  - Bad: `"title": "Cathedral light through old-growth fir at 7 AM", "description": "One of those practices you'll describe for years."` — too editorial, describes feeling rather than place.
 - Include a "mindfulness" pick on EVERY day (always first in picks array), a "stay" pick on day 1, "eat" picks each day, "gear" if relevant on day 1
 - Every name MUST come from the destination guide
 - DO NOT wrap the JSON in code fences or backticks
