@@ -700,6 +700,7 @@ const BUDGET_LABELS = { mindful: 'Mindful', balanced: 'Balanced', premium: 'Prem
 const MONTH_LABELS = { january: 'January', february: 'February', march: 'March', april: 'April', may: 'May', june: 'June', july: 'July', august: 'August', september: 'September', october: 'October', november: 'November', december: 'December' };
 
 function TripProfileSummary({ formData }) {
+  const [tagsExpanded, setTagsExpanded] = useState(false);
   const chips = [];
 
   if (formData.month) chips.push(MONTH_LABELS[formData.month] || formData.month);
@@ -713,23 +714,46 @@ function TripProfileSummary({ formData }) {
   const pacing = formData.pacing ?? 50;
   chips.push(pacing < 25 ? 'Spacious pace' : pacing < 50 ? 'Unhurried pace' : pacing < 75 ? 'Balanced pace' : 'Full pace');
   if (formData.practices?.length > 0) {
-    formData.practices.slice(0, 4).forEach(id => {
+    formData.practices.forEach(id => {
       if (PRACTICE_LABELS[id]) chips.push(PRACTICE_LABELS[id]);
     });
-    if (formData.practices.length > 4) chips.push(`+${formData.practices.length - 4} more`);
   }
 
   if (chips.length === 0) return null;
 
+  const VISIBLE_COUNT = 3;
+  const visibleChips = tagsExpanded ? chips : chips.slice(0, VISIBLE_COUNT);
+  const hiddenCount = chips.length - VISIBLE_COUNT;
+
+  const pillStyle = {
+    color: C.body, background: C.white, border: `1px solid ${C.border}`,
+    borderRadius: 20, padding: '4px 12px',
+  };
+
   return (
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: 7, alignItems: 'center', paddingBottom: 20, marginBottom: 20, borderBottom: `1px solid ${C.border}` }}>
       <span className="font-body text-[10px] font-bold tracking-[0.18em] uppercase mr-1" style={{ color: C.muted }}>Built for you</span>
-      {chips.map((chip, i) => (
-        <span key={i} className="font-body text-[12px] font-medium whitespace-nowrap" style={{
-          color: C.body, background: C.white, border: `1px solid ${C.border}`,
-          borderRadius: 20, padding: '4px 12px',
-        }}>{chip}</span>
+      {visibleChips.map((chip, i) => (
+        <span key={i} className="font-body text-[12px] font-medium whitespace-nowrap" style={pillStyle}>{chip}</span>
       ))}
+      {!tagsExpanded && hiddenCount > 0 && (
+        <span
+          onClick={() => setTagsExpanded(true)}
+          className="font-body text-[12px] font-medium whitespace-nowrap"
+          style={{ ...pillStyle, cursor: 'pointer', borderStyle: 'dashed', color: C.muted }}
+        >
+          + {hiddenCount} more
+        </span>
+      )}
+      {tagsExpanded && chips.length > VISIBLE_COUNT && (
+        <span
+          onClick={() => setTagsExpanded(false)}
+          className="font-body text-[12px] font-medium whitespace-nowrap"
+          style={{ ...pillStyle, cursor: 'pointer', borderStyle: 'dashed', color: C.muted }}
+        >
+          Show less
+        </span>
+      )}
     </div>
   );
 }
