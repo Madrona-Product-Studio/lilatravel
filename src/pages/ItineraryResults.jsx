@@ -5074,7 +5074,7 @@ export default function ItineraryResults() {
               </div>
             )}
             {itinerary.subtitle && (
-              <p className="font-serif text-[14px] italic font-normal" style={{ color: C.muted }}>{itinerary.subtitle}</p>
+              <p className="font-body text-[12px] font-medium tracking-[0.08em] uppercase" style={{ color: C.muted }}>{itinerary.subtitle}</p>
             )}
             {itinerary.intro && (
               <p className="font-body text-[14px] font-normal leading-[1.75] max-w-[600px] mt-3.5" style={{ color: C.body }}>{itinerary.intro}</p>
