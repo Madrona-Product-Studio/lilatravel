@@ -519,7 +519,7 @@ const eyebrow = { color: `${C.sage}88` };
           <div style={{ display: 'grid', gridTemplateColumns: avgHigh !== null && sunrise ? '1fr 1px 1fr' : '1fr', gap: '0 16px', alignItems: 'start' }}>
             {avgHigh !== null && (
               <div>
-                <div style={eyebrow}>Temperature</div>
+                <div className={eyebrowCls} style={eyebrow}>Temperature</div>
                 <div style={{ height: 3, borderRadius: 2, background: 'linear-gradient(to right, #7aaec8, #D4A853, #E8856A)', marginBottom: 6 }} />
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
                   <div>
@@ -539,7 +539,7 @@ const eyebrow = { color: `${C.sage}88` };
             )}
             {sunrise && (
               <div>
-                <div style={eyebrow}>Sunlight</div>
+                <div className={eyebrowCls} style={eyebrow}>Sunlight</div>
                 <svg width="100%" height="32" viewBox="0 0 140 32" fill="none" style={{ display: 'block', marginBottom: 4 }}>
                   <path d="M10 28 Q70 3 130 28" stroke="rgba(212,168,83,0.12)" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
                   <path d="M10 28 Q70 3 130 28" stroke="rgba(212,168,83,0.5)" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
@@ -574,7 +574,7 @@ const eyebrow = { color: `${C.sage}88` };
           <div style={{ display: 'grid', gridTemplateColumns: moonEvents.length > 0 && starEvents.length > 0 ? '1fr 1px 1fr' : '1fr', gap: '0 16px', alignItems: 'start' }}>
             {moonEvents.length > 0 && (
               <div>
-                <div style={eyebrow}>Moon</div>
+                <div className={eyebrowCls} style={eyebrow}>Moon</div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                   {moonEvents.map((ev, i) => {
                     const isFull = ev.name.toLowerCase().includes('full');
@@ -602,7 +602,7 @@ const eyebrow = { color: `${C.sage}88` };
             )}
             {starEvents.length > 0 && (
               <div>
-                <div style={eyebrow}>Stars</div>
+                <div className={eyebrowCls} style={eyebrow}>Stars</div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                   {starEvents.map((ev, i) => (
                     <div key={i}>
@@ -664,7 +664,7 @@ const eyebrow = { color: `${C.sage}88` };
       {/* 5. Season */}
       {skySeasonOpen && seasonEvents.length > 0 && (
         <div style={{ padding: '14px 20px 12px', borderBottom: `1px solid ${C.border}` }}>
-          <div style={eyebrow}>Season</div>
+          <div className={eyebrowCls} style={eyebrow}>Season</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
             {seasonEvents.map((ev, i) => (
               <div key={i}>
