@@ -4009,15 +4009,6 @@ export default function ItineraryResults() {
     reservations: [],
   });
 
-  // Persist tripLogistics to DB when user adds/edits bookings
-  const logisticsDebounce = useRef(null);
-  useEffect(() => {
-    const hasData = tripLogistics.flights.length || tripLogistics.rentals.length || tripLogistics.accommodations.length || tripLogistics.reservations.length;
-    if (!hasData || !itineraryId) return;
-    clearTimeout(logisticsDebounce.current);
-    logisticsDebounce.current = setTimeout(() => updateTripLogistics(itineraryId, tripLogistics), 1500);
-  }, [tripLogistics, itineraryId]);
-
   // Hydrate via server-side API when accessed via a share link (/trip/:token)
   // Uses the service role key on the server to bypass RLS policies
   const fetchSharedTrip = async (token) => {
@@ -4112,6 +4103,15 @@ export default function ItineraryResults() {
   const [itineraryId, setItineraryId] = useState(() =>
     sessionStorage.getItem('lila_itinerary_id') || null
   );
+
+  // Persist tripLogistics to DB when user adds/edits bookings
+  const logisticsDebounce = useRef(null);
+  useEffect(() => {
+    const hasData = tripLogistics.flights.length || tripLogistics.rentals.length || tripLogistics.accommodations.length || tripLogistics.reservations.length;
+    if (!hasData || !itineraryId) return;
+    clearTimeout(logisticsDebounce.current);
+    logisticsDebounce.current = setTimeout(() => updateTripLogistics(itineraryId, tripLogistics), 1500);
+  }, [tripLogistics, itineraryId]);
 
   // Detail panel state — unified for activities, picks, and companion cards
   const [activePanel, setActivePanel] = useState(null); // { type, data, thumbId }
