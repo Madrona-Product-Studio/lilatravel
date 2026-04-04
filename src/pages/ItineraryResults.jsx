@@ -5248,6 +5248,7 @@ export default function ItineraryResults() {
                     </button>
                     {/* Accordion body */}
                     <div style={{ overflow: 'hidden', transition: 'max-height 0.5s cubic-bezier(0.4,0,0.2,1)', maxHeight: isOpen ? 5000 : 0 }}>
+                      {isOpen && <div style={{ height: 1, background: C.border }} />}
                       <DayCard day={day} dayIndex={i} hideHeader
                         feedback={dayFeedback[i]} onFeedback={handleDayFeedback}
                         lockedItems={lockedItems} onLock={handleLock} onAlternatives={handleAlternatives}
