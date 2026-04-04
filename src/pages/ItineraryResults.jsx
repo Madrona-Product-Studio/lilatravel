@@ -5096,12 +5096,7 @@ export default function ItineraryResults() {
               <p style={{ fontSize: '11px', letterSpacing: '0.1em', textTransform: 'uppercase', fontWeight: 500, color: C.muted, padding: '18px 20px 0', marginBottom: '16px' }}>
                 Your trip · At a glance
               </p>
-              {/* ◈ section marker */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '18px 20px 0' }}>
-                <span style={{ color: C.goldenAmber, fontSize: '16px' }}>◈</span>
-                <div style={{ flex: 1, height: '0.5px', background: C.border }} />
-              </div>
-              <div style={{ padding: '16px 20px 20px', display: 'flex', flexDirection: 'column', gap: 0 }}>
+              <div style={{ padding: '0 20px 20px', display: 'flex', flexDirection: 'column', gap: 0 }}>
                 {days.map((day, i) => {
                   const practiceTags = [...new Set(
                     day.timeline.flatMap(t =>
