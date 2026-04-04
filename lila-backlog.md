@@ -106,7 +106,7 @@ _Last updated: March 30, 2026. Living document — update as items are completed
 - [x] Mindfulness picks rendered inline in DayCard
 - [x] "Sleep in" as required alternative for early morning activities
 - [x] Accommodation alternatives in detail panel
-- [x] Threshold moments section — day spine with tags + ◈ moment, generated per day, sits after Sky & Season
+- [x] Threshold moments section — all days shown in spine, travel pills for arrival/departure, white card treatment matching Sky & Season
 - [x] Logistics card collapse — collapsed by default, chevron toggle, matches Sky & Season pattern
 - [x] Built For You pill collapse — show 3 pills + "+ N more" toggle on itinerary results page
 

@@ -5071,52 +5071,67 @@ export default function ItineraryResults() {
         )}
 
         {/* Threshold Moments — day spine with tags + ◈ moment */}
-        {isStructured && (() => {
-          const daysWithMoments = (itinerary.days || []).filter(d => d.thresholdMoment);
-          if (daysWithMoments.length === 0) return null;
+        {isStructured && itinerary.days?.length > 0 && (() => {
+          const TRAVEL_KEYWORDS = [
+            { match: /arriv/i, label: 'Arrival' },
+            { match: /depart|check.out|fly.out|head.home/i, label: 'Departure' },
+            { match: /drive|driving|road/i, label: 'Drive day' },
+            { match: /flight|fly\b/i, label: 'Flight' },
+            { match: /transfer|transit/i, label: 'Transit' },
+          ];
+          const getTravelTags = (title = '', snapshot = '') => {
+            const text = `${title} ${snapshot}`;
+            return TRAVEL_KEYWORDS.filter(k => k.match.test(text)).map(k => k.label);
+          };
+          const days = itinerary.days;
           return (
-            <div style={{ padding: '0 0 32px' }}>
-              {/* ◈ section marker — no label */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '20px', padding: '0 20px' }}>
+            <div style={{ ...CARD_STYLE, overflow: 'hidden', marginBottom: 12 }}>
+              <p style={{ fontSize: '11px', letterSpacing: '0.1em', textTransform: 'uppercase', fontWeight: 500, color: C.muted, padding: '18px 20px 0', marginBottom: '16px' }}>
+                Your trip · At a glance
+              </p>
+              {/* ◈ section marker */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '18px 20px 0' }}>
                 <span style={{ color: C.goldenAmber, fontSize: '16px' }}>◈</span>
-                <div style={{ flex: 1, height: '0.5px', background: 'var(--color-border-tertiary, rgba(28,28,26,0.08))' }} />
+                <div style={{ flex: 1, height: '0.5px', background: C.border }} />
               </div>
-              <div style={{ padding: '0 20px', display: 'flex', flexDirection: 'column', gap: 0 }}>
-                {daysWithMoments.map((day, i) => {
-                  const dayTags = [...new Set(
+              <div style={{ padding: '16px 20px 20px', display: 'flex', flexDirection: 'column', gap: 0 }}>
+                {days.map((day, i) => {
+                  const practiceTags = [...new Set(
                     day.timeline.flatMap(t =>
                       t.practiceTag == null ? []
                       : Array.isArray(t.practiceTag) ? t.practiceTag
                       : [t.practiceTag]
                     )
                   )].slice(0, 3);
-                  const isLast = i === daysWithMoments.length - 1;
+                  const travelTags = getTravelTags(day.title, day.snapshot);
+                  const allTags = [...new Set([...travelTags, ...practiceTags])].slice(0, 3);
+                  const isLast = i === days.length - 1;
                   return (
                     <div key={day.label} style={{ display: 'flex', gap: '14px', alignItems: 'stretch', paddingBottom: isLast ? 0 : '24px' }}>
                       {/* Timeline spine */}
                       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flexShrink: 0 }}>
                         <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: C.goldenAmber, marginTop: '4px' }} />
                         {!isLast && (
-                          <div style={{ width: '1px', flex: 1, background: 'var(--color-border-tertiary, rgba(28,28,26,0.08))', marginTop: '5px' }} />
+                          <div style={{ width: '1px', flex: 1, background: C.border, marginTop: '5px' }} />
                         )}
                       </div>
                       {/* Day content */}
                       <div style={{ flex: 1 }}>
-                        <p style={{ fontSize: '11px', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--color-text-tertiary, rgba(28,28,26,0.4))', fontWeight: 500, marginBottom: '3px' }}>
+                        <p style={{ fontSize: '11px', letterSpacing: '0.08em', textTransform: 'uppercase', color: C.muted, fontWeight: 500, marginBottom: '3px' }}>
                           {day.label}
                         </p>
-                        <p style={{ fontSize: '16px', fontWeight: 500, color: 'var(--color-text-primary, #1C1C1A)', lineHeight: 1.3, marginBottom: '8px' }}>
+                        <p style={{ fontSize: '16px', fontWeight: 500, color: C.ink, lineHeight: 1.3, marginBottom: '8px' }}>
                           {day.title}
                         </p>
-                        {dayTags.length > 0 && (
-                          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '12px' }}>
-                            {dayTags.map(tag => (
+                        {allTags.length > 0 && (
+                          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: day.thresholdMoment ? '12px' : 0 }}>
+                            {allTags.map(tag => (
                               <span key={tag} style={{
                                 fontSize: '11px',
                                 padding: '3px 9px',
-                                border: '0.5px solid var(--color-border-secondary, rgba(28,28,26,0.12))',
+                                border: `0.5px solid ${C.border}`,
                                 borderRadius: '999px',
-                                color: 'var(--color-text-secondary, rgba(28,28,26,0.55))',
+                                color: C.muted,
                                 whiteSpace: 'nowrap'
                               }}>
                                 {PRACTICE_TAG_LABELS[tag] || tag}
@@ -5124,14 +5139,16 @@ export default function ItineraryResults() {
                             ))}
                           </div>
                         )}
-                        <div style={{ borderLeft: `1.5px solid ${C.goldenAmber}`, paddingLeft: '10px' }}>
-                          <p style={{ fontSize: '11px', letterSpacing: '0.07em', textTransform: 'uppercase', color: C.goldenAmber, fontWeight: 500, marginBottom: '4px' }}>
-                            ◈ {day.thresholdMoment.title}
-                          </p>
-                          <p style={{ fontSize: '13px', color: 'var(--color-text-secondary, rgba(28,28,26,0.55))', lineHeight: 1.5 }}>
-                            {day.thresholdMoment.description}
-                          </p>
-                        </div>
+                        {day.thresholdMoment && (
+                          <div style={{ borderLeft: `1.5px solid ${C.goldenAmber}`, paddingLeft: '10px' }}>
+                            <p style={{ fontSize: '11px', letterSpacing: '0.07em', textTransform: 'uppercase', color: C.goldenAmber, fontWeight: 500, marginBottom: '4px' }}>
+                              ◈ {day.thresholdMoment.title}
+                            </p>
+                            <p style={{ fontSize: '13px', color: C.muted, lineHeight: 1.5 }}>
+                              {day.thresholdMoment.description}
+                            </p>
+                          </div>
+                        )}
                       </div>
                     </div>
                   );
