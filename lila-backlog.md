@@ -109,6 +109,7 @@ _Last updated: March 30, 2026. Living document — update as items are completed
 - [x] Threshold moments section — all days shown in spine, travel pills for arrival/departure, white card treatment matching Sky & Season
 - [x] Logistics card collapse — collapsed by default, chevron toggle, matches Sky & Season pattern
 - [x] Built For You pill collapse — show 3 pills + "+ N more" toggle on itinerary results page
+- [x] Sky & Season — collapsed by default, chevron moved to bottom bar, avg temp fix, daylight duration fix
 
 ### Trip Management & Saving
 - [x] Save This Trip moved to header button

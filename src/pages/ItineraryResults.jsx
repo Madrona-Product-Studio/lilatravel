@@ -425,7 +425,7 @@ const MOON_EMOJI = {
 };
 
 function CelestialSnapshot({ snapshot, celestial, weather, month, destination }) {
-  const [skySeasonOpen, setSkySeasonOpen] = useState(true);
+  const [skySeasonOpen, setSkySeasonOpen] = useState(false);
 
   // Resolve data
   const avgHigh   = snapshot?.avgHigh ?? (weather?.length > 0 ? Math.round(weather.map(d=>d.high).reduce((a,b)=>a+b,0)/weather.length) : null);
@@ -469,11 +469,13 @@ function CelestialSnapshot({ snapshot, celestial, weather, month, destination })
       const parseTime = (t) => {
         const [time, period] = t.split(' ');
         let [h, m] = time.split(':').map(Number);
-        if (period === 'pm' && h !== 12) h += 12;
-        if (period === 'am' && h === 12) h = 0;
+        const p = period.toLowerCase();
+        if (p === 'pm' && h !== 12) h += 12;
+        if (p === 'am' && h === 12) h = 0;
         return h * 60 + m;
       };
       const mins = parseTime(sunset) - parseTime(sunrise);
+      if (mins < 480 || mins > 960) return null; // sanity: 8–16h for continental US
       const h = Math.floor(mins / 60);
       const m = mins % 60;
       return `${h}h ${m}m`;
@@ -494,26 +496,13 @@ const eyebrow = { color: `${C.sage}88` };
     }}>
       {/* 1. Sky name */}
       <div style={{ padding: '18px 20px 16px', borderBottom: `1px solid ${C.border}` }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
-          <div className="font-body text-[9px] font-bold tracking-[0.24em] uppercase" style={{ color: `${C.sage}88` }}>
-            Sky & Season · {MONTH_LABELS[monthKey] || monthKey}
-          </div>
-          <button
-            onClick={() => setSkySeasonOpen(o => !o)}
-            aria-label={skySeasonOpen ? 'Collapse Sky & Season' : 'Expand Sky & Season'}
-            style={{ background: 'none', border: 'none', padding: 4, margin: -4, cursor: 'pointer', display: 'flex', alignItems: 'center' }}
-          >
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"
-              stroke={C.sage} strokeWidth="1.5" strokeLinecap="round"
-              style={{ transform: skySeasonOpen ? 'rotate(0deg)' : 'rotate(180deg)', transition: 'transform 0.35s ease' }}>
-              <polyline points="4.5,6 8,9.5 11.5,6" />
-            </svg>
-          </button>
+        <div className="font-body text-[9px] font-bold tracking-[0.24em] uppercase" style={{ color: `${C.sage}88`, marginBottom: 10 }}>
+          Sky & Season · {MONTH_LABELS[monthKey] || monthKey}
         </div>
         <div className="font-serif text-[24px] font-light leading-[1.1]" style={{ color: C.ink }}>{sky}</div>
       </div>
 
-      {/* 2. Temperature + Sunlight — side by side */}
+      {/* 2. Temperature + Sunlight — always visible */}
       {(avgHigh !== null || sunrise) && (
         <div style={{ padding: '14px 20px 13px', borderBottom: `1px solid ${C.border}` }}>
           <div style={{ display: 'grid', gridTemplateColumns: avgHigh !== null && sunrise ? '1fr 1px 1fr' : '1fr', gap: '0 16px', alignItems: 'start' }}>
@@ -526,7 +515,10 @@ const eyebrow = { color: `${C.sage}88` };
                     <div className="font-serif text-[20px] font-light leading-none" style={{ color: '#7aaec8' }}>{avgLow}°</div>
                     <div style={{ fontSize: 9, color: C.muted, marginTop: 1 }}>low</div>
                   </div>
-                  <div style={{ fontSize: 9, color: 'rgba(26,37,48,0.3)' }}>avg</div>
+                  <div style={{ textAlign: 'center' }}>
+                    <div style={{ fontSize: 15, fontWeight: 400, color: 'rgba(26,37,48,0.5)' }}>{avgHigh !== null && avgLow !== null ? Math.round((avgHigh + avgLow) / 2) : ''}°</div>
+                    <div style={{ fontSize: 10, color: 'rgba(26,37,48,0.3)' }}>avg</div>
+                  </div>
                   <div style={{ textAlign: 'right' }}>
                     <div className="font-serif text-[20px] font-light leading-none" style={{ color: '#E8856A' }}>{avgHigh}°</div>
                     <div style={{ fontSize: 9, color: C.muted, marginTop: 1 }}>high</div>
@@ -567,6 +559,21 @@ const eyebrow = { color: `${C.sage}88` };
           </div>
         </div>
       )}
+
+      {/* Chevron toggle bar */}
+      <div
+        onClick={() => setSkySeasonOpen(o => !o)}
+        style={{ padding: '10px 20px 14px', display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}
+      >
+        <div style={{ flex: 1, height: '0.5px', background: C.border }} />
+        <svg
+          width="14" height="14" viewBox="0 0 14 14" fill="none"
+          style={{ transform: skySeasonOpen ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.25s ease', flexShrink: 0 }}
+        >
+          <path d="M2.5 5L7 9.5L11.5 5" stroke={C.muted} strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+        <div style={{ flex: 1, height: '0.5px', background: C.border }} />
+      </div>
 
       {/* 3–5: collapsible detail sections */}
       {skySeasonOpen && (moonEvents.length > 0 || starEvents.length > 0) && (
