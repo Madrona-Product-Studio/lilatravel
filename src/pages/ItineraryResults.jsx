@@ -5221,26 +5221,25 @@ export default function ItineraryResults() {
               <div>
                 {enrichedDays.map((day, i) => {
                   const isOpen = !!expandedDays[i];
+                  const activityCount = day.timeline?.length || 0;
                   return (
-                  <div key={i} ref={el => dayRefs.current[i] = el} style={{ scrollMarginTop: 60 }}>
-                    {/* Divider */}
-                    <div style={{ height: 1, background: C.border }} />
+                  <div key={i} ref={el => dayRefs.current[i] = el} style={{ ...CARD_STYLE, marginBottom: 16, scrollMarginTop: 60 }}>
                     {/* Accordion header */}
                     <button
                       onClick={() => toggleDay(i)}
-                      style={{ width: '100%', display: 'flex', alignItems: 'center', gap: 16, padding: '24px 0', background: 'transparent', border: 'none', cursor: 'pointer', textAlign: 'left' }}
+                      style={{ width: '100%', display: 'flex', alignItems: 'center', gap: 16, padding: '16px 18px', background: 'transparent', border: 'none', cursor: 'pointer', textAlign: 'left' }}
                     >
                       <div style={{ flex: 1, minWidth: 0 }}>
                         <div className="font-body text-[10px] font-bold tracking-[0.22em] uppercase" style={{ color: '#7A857E', marginBottom: 4 }}>
                           {day.label}
                         </div>
-                        <div className="font-serif text-[clamp(20px,3vw,26px)] font-light leading-[1.2]" style={{ color: C.ink }}>
+                        <div className="font-serif text-[clamp(18px,3vw,24px)] font-light leading-[1.2]" style={{ color: C.ink }}>
                           {day.title}
                         </div>
                       </div>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0 }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0 }}>
                         <span className="font-body text-[12px]" style={{ color: '#7A857E', whiteSpace: 'nowrap' }}>
-                          {day.snapshot || `${day.timeline?.length || 0} activities`}
+                          {activityCount} {activityCount === 1 ? 'activity' : 'activities'}
                         </span>
                         <span style={{ display: 'inline-block', fontSize: 12, color: '#7A857E', transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.3s ease' }}>
                           ▾
@@ -5249,16 +5248,14 @@ export default function ItineraryResults() {
                     </button>
                     {/* Accordion body */}
                     <div style={{ overflow: 'hidden', transition: 'max-height 0.5s cubic-bezier(0.4,0,0.2,1)', maxHeight: isOpen ? 5000 : 0 }}>
-                      <div style={{ paddingBottom: 24 }}>
-                        <DayCard day={day} dayIndex={i} hideHeader
-                          feedback={dayFeedback[i]} onFeedback={handleDayFeedback}
-                          lockedItems={lockedItems} onLock={handleLock} onAlternatives={handleAlternatives}
-                          swappedActivities={swappedActivities}
-                          onSwapOpen={(data) => setSwapModal(data)}
-                          onOpenPanel={(panelItem) => {
-                            setActivePanel(panelItem);
-                          }} />
-                      </div>
+                      <DayCard day={day} dayIndex={i} hideHeader
+                        feedback={dayFeedback[i]} onFeedback={handleDayFeedback}
+                        lockedItems={lockedItems} onLock={handleLock} onAlternatives={handleAlternatives}
+                        swappedActivities={swappedActivities}
+                        onSwapOpen={(data) => setSwapModal(data)}
+                        onOpenPanel={(panelItem) => {
+                          setActivePanel(panelItem);
+                        }} />
                     </div>
                   </div>
                   );
