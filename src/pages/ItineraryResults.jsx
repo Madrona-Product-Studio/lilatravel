@@ -2813,8 +2813,7 @@ function DayCard({ day, dayIndex = 0, onOpenPanel, lockedItems, onLock, onAltern
         const wrapperStyle = {
           position: 'relative', overflow: 'hidden',
           background: 'linear-gradient(150deg, #f5f1ea 0%, #ede9e0 100%)',
-          borderTop: '1.5px solid rgba(74,155,159,0.35)',
-          borderBottom: '1.5px solid rgba(74,155,159,0.35)',
+          border: '1.5px solid rgba(74,155,159,0.35)',
           cursor: 'pointer', WebkitTapHighlightColor: 'transparent',
         };
 

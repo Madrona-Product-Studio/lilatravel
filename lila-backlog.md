@@ -113,6 +113,7 @@ _Last updated: March 30, 2026. Living document — update as items are completed
 - [x] Day by Day accordion — collapsible days matching guide page pattern, Day 1 auto-expanded, snapshot summaries
 - [x] Welcome modal redesign — white bg, four-row icon layout, smooth fade-in entry transition
 - [x] Logistics — open by default on first load, alternative accommodations surfaced via existing alternatives panel
+- [x] Mindfulness practice card — full border on all four sides
 
 ### Trip Management & Saving
 - [x] Save This Trip moved to header button
