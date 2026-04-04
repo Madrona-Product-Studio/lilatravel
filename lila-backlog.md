@@ -107,6 +107,7 @@ _Last updated: March 30, 2026. Living document — update as items are completed
 - [x] "Sleep in" as required alternative for early morning activities
 - [x] Accommodation alternatives in detail panel
 - [x] Threshold moments section — day spine with tags + ◈ moment, generated per day, sits after Sky & Season
+- [x] Logistics card collapse — collapsed by default, chevron toggle, matches Sky & Season pattern
 
 ### Trip Management & Saving
 - [x] Save This Trip moved to header button

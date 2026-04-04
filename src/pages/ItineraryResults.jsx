@@ -2448,6 +2448,7 @@ function extractAccommodation(itinerary) {
 }
 
 function LogisticsPanel({ destination, sticky = true, tripLogistics, onOpenPanel, itinerary, onRefine }) {
+  const [logisticsExpanded, setLogisticsExpanded] = useState(false);
   const logistics = getLogistics(destination);
   const flights = tripLogistics?.flights || [];
   const rentals = tripLogistics?.rentals || [];
@@ -2548,11 +2549,22 @@ function LogisticsPanel({ destination, sticky = true, tripLogistics, onOpenPanel
       ...(sticky ? { position: 'sticky', top: 56 } : {}),
     }}>
       {/* Header */}
-      <div style={{ padding: '14px 16px 12px', borderBottom: `1px solid ${C.border}` }}>
-        <div className="font-body text-[9px] font-bold tracking-[0.18em] uppercase mb-0.5" style={{ color: C.muted }}>Your Trip</div>
-        <div className="font-serif text-[18px] font-light" style={{ color: C.ink }}>Logistics</div>
+      <div
+        onClick={() => setLogisticsExpanded(prev => !prev)}
+        style={{ padding: '14px 16px 12px', borderBottom: `1px solid ${C.border}`, cursor: 'pointer', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}
+      >
+        <div>
+          <div className="font-body text-[9px] font-bold tracking-[0.18em] uppercase mb-0.5" style={{ color: C.muted }}>Your Trip</div>
+          <div className="font-serif text-[18px] font-light" style={{ color: C.ink }}>Logistics</div>
+        </div>
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"
+          stroke={C.sage} strokeWidth="1.5" strokeLinecap="round"
+          style={{ transform: logisticsExpanded ? 'rotate(0deg)' : 'rotate(180deg)', transition: 'transform 0.35s ease', marginTop: 8 }}>
+          <polyline points="4.5,6 8,9.5 11.5,6" />
+        </svg>
       </div>
 
+      {logisticsExpanded && (<>
       {/* Flights */}
       <div style={{ padding: '13px 16px', borderBottom: `1px solid ${C.border}` }}>
         {sectionHeader(<PlaneIcon size={12} color={C.muted} />, 'Flights', () => openFlightForm())}
@@ -2637,6 +2649,8 @@ function LogisticsPanel({ destination, sticky = true, tripLogistics, onOpenPanel
           </div>
         )}
       </div>
+
+      </>)}
 
       {/* Refine strip — shown when any bookings exist */}
       {hasAnyBookings && onRefine && (
