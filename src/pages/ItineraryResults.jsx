@@ -2607,7 +2607,7 @@ function LogisticsPanel({ destination, sticky = true, tripLogistics, onOpenPanel
           </div>
         ) : (
           <div className="font-body text-[12px] italic leading-[1.5]" style={{ color: `${C.muted}99` }}>
-            Add your flight for timing-aware scheduling
+            {logistics?.flights || 'Add your flight for timing-aware scheduling'}
           </div>
         )}
       </div>
@@ -2667,7 +2667,7 @@ function LogisticsPanel({ destination, sticky = true, tripLogistics, onOpenPanel
           </div>
         ) : (
           <div className="font-body text-[12px] italic leading-[1.5]" style={{ color: `${C.muted}99` }}>
-            Add your rental confirmation to keep it handy
+            {logistics?.car || 'Add your rental confirmation to keep it handy'}
           </div>
         )}
       </div>
