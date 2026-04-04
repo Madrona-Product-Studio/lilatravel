@@ -3607,13 +3607,33 @@ function tripSessionKey(rawItinerary, formData) {
 
 function FirstDraftModal({ onDismiss }) {
   const [show, setShow] = useState(false);
-  useEffect(() => { const t = setTimeout(() => setShow(true), 120); return () => clearTimeout(t); }, []);
+  useEffect(() => { const t = setTimeout(() => setShow(true), 350); return () => clearTimeout(t); }, []);
 
-  const reactions = [
-    { icon: LockIcon, color: C.goldenAmber, label: 'Lock this in', desc: 'Confirm this — keep it in',
-      bg: `${C.goldenAmber}18`, border: `${C.goldenAmber}40` },
-    { icon: SwapIcon, color: C.oceanTeal, label: 'Show Alternatives', desc: 'See other options and swap',
-      bg: `${C.oceanTeal}15`, border: `${C.oceanTeal}38` },
+  const rows = [
+    {
+      icon: <span style={{ color: C.goldenAmber, fontSize: 14, lineHeight: 1 }}>◈</span>,
+      bg: '#FAEEDA',
+      title: 'Get inspired',
+      desc: 'Sky & season, threshold moments, the shape of your days.',
+    },
+    {
+      icon: <LockIcon size={13} color={C.goldenAmber} />,
+      bg: '#FAEEDA',
+      title: 'Make it yours',
+      desc: "Lock what you love, swap what doesn\u2019t fit. We\u2019ll keep shaping it.",
+    },
+    {
+      icon: <PlaneIcon size={13} color={C.oceanTeal} />,
+      bg: `${C.oceanTeal}12`,
+      title: 'Add your logistics',
+      desc: "Flights, hotel, reservations \u2014 we\u2019ll build your days around what\u2019s already booked.",
+    },
+    {
+      icon: <svg width={13} height={13} viewBox="0 0 24 24" fill="none" stroke={C.sage} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 2L11 13" /><path d="M22 2l-7 20-4-9-9-4z" /></svg>,
+      bg: `${C.sage}12`,
+      title: "Share with whoever\u2019s coming",
+      desc: 'Send it to friends or family \u2014 get their reactions before you commit.',
+    },
   ];
 
   return (
@@ -3624,13 +3644,14 @@ function FirstDraftModal({ onDismiss }) {
       display: 'flex', alignItems: 'center', justifyContent: 'center',
       padding: 20,
     }}>
+      <style>{`@keyframes modalEnter { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }`}</style>
       <div style={{
         position: 'relative',
         maxWidth: 480, margin: '0 auto',
-        background: C.cream, borderRadius: 2,
+        background: BrandC.warmWhite, borderRadius: 2,
         padding: '40px 32px 32px',
         opacity: show ? 1 : 0,
-        transition: 'opacity 0.5s ease',
+        animation: show ? 'modalEnter 0.35s ease-out forwards' : 'none',
       }}>
         {/* Close button */}
         <button onClick={onDismiss} style={{
@@ -3657,46 +3678,33 @@ function FirstDraftModal({ onDismiss }) {
         <p className="font-body text-[14px] font-normal leading-[1.75] mb-7" style={{ color: `${C.slate}D9` }}>We built this around what you shared with us. Read through it, react to what stands out, and we'll keep shaping it until it's yours.</p>
 
         {/* Divider */}
-        <div style={{ height: 1, background: `${C.sage}10`, marginBottom: 24 }} />
+        <div style={{ height: 0.5, background: `${C.sage}18`, marginBottom: 24 }} />
 
-        {/* Section header */}
-        <div className="font-body text-[15px] font-bold mb-1" style={{ color: C.ink }}>As you read, tell us how it's landing.</div>
-        <div className="font-body text-[13px] font-normal leading-[1.6] mb-4" style={{ color: `${C.slate}99` }}>Each activity has three reactions — use them as you go.</div>
-
-        {/* Reaction rows */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 0 }}>
-          {reactions.map((r, i) => {
-            const Ic = r.icon;
-            return (
-              <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                <div style={{
-                  display: 'flex', alignItems: 'center', gap: 5,
-                  padding: '5px 12px', borderRadius: 2,
-                  background: r.bg, border: `1px solid ${r.border}`,
-                  flexShrink: 0,
-                }}>
-                  <Ic size={13} color={r.color} active />
-                  <span className="font-body text-[11px] font-semibold" style={{ color: r.color }}>{r.label}</span>
-                </div>
-                <span className="font-body text-[13px] font-medium" style={{ color: `${C.slate}CC` }}>{r.desc}</span>
+        {/* Four-row feature guide */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 16, marginBottom: 28 }}>
+          {rows.map((r, i) => (
+            <div key={i} style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
+              <div style={{
+                width: 28, height: 28, borderRadius: 4,
+                background: r.bg,
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                flexShrink: 0, marginTop: 1,
+              }}>
+                {r.icon}
               </div>
-            );
-          })}
+              <div>
+                <p className="font-body text-[13px] font-medium" style={{ color: C.ink, marginBottom: 2 }}>{r.title}</p>
+                <p className="font-body text-[12px] font-normal leading-[1.5]" style={{ color: `${C.slate}99` }}>{r.desc}</p>
+              </div>
+            </div>
+          ))}
         </div>
-
-        {/* Divider */}
-        <div style={{ height: 1, background: `${C.sage}10`, marginTop: 28, marginBottom: 20 }} />
-
-        {/* Logistics note */}
-        <p className="font-body text-[12px] font-normal leading-[1.6] text-center" style={{ color: `${C.darkInk}8C`, maxWidth: 320, margin: '0 auto 24px' }}>
-          Add flights, hotel confirmations, or restaurant reservations in the logistics panel — we'll build around them.
-        </p>
 
         {/* CTA */}
         <button onClick={onDismiss} className="font-body text-[13px] font-bold" style={{
           width: '100%', padding: '14px 0',
           letterSpacing: '0.08em', textTransform: 'uppercase',
-          color: C.cream, background: C.slate,
+          color: BrandC.warmWhite, background: C.slate,
           border: 'none', borderRadius: 2,
           cursor: 'pointer', WebkitTapHighlightColor: 'transparent',
           transition: 'opacity 0.2s',

@@ -111,6 +111,7 @@ _Last updated: March 30, 2026. Living document — update as items are completed
 - [x] Built For You pill collapse — show 3 pills + "+ N more" toggle on itinerary results page
 - [x] Sky & Season — collapsed by default, chevron moved to bottom bar, avg temp fix, daylight duration fix
 - [x] Day by Day accordion — collapsible days matching guide page pattern, Day 1 auto-expanded, snapshot summaries
+- [x] Welcome modal redesign — white bg, four-row icon layout, smooth fade-in entry transition
 
 ### Trip Management & Saving
 - [x] Save This Trip moved to header button
