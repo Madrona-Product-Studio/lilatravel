@@ -2779,19 +2779,18 @@ function DayFeedbackStrip({ dayIndex, feedback, onFeedback }) {
 
 /* ── day card (V2 flat) ────────────────────────────────────────────────── */
 
-function DayCard({ day, dayIndex = 0, onOpenPanel, lockedItems, onLock, onAlternatives, feedback, onFeedback, onSwapOpen, swappedActivities }) {
+function DayCard({ day, dayIndex = 0, onOpenPanel, lockedItems, onLock, onAlternatives, feedback, onFeedback, onSwapOpen, swappedActivities, hideHeader }) {
   const color = DAY_COLORS[dayIndex % DAY_COLORS.length];
 
   return (
-    <div style={{
-      ...CARD_STYLE,
-      marginBottom: 16,
-    }}>
-      {/* Header */}
+    <div style={hideHeader ? {} : { ...CARD_STYLE, marginBottom: 16 }}>
+      {/* Header — hidden when rendered inside accordion */}
+      {!hideHeader && (
       <div style={{ padding: '14px 18px 10px' }}>
         <div className="font-body text-[11px] font-semibold tracking-[0.12em] uppercase mb-1" style={{ color: color }}>DAY {dayIndex + 1} &middot; {day.label}</div>
         <div className="font-serif text-[22px] font-light leading-[1.15]" style={{ color: C.ink }}>{day.title}</div>
       </div>
+      )}
 
       {/* Mindfulness Practice callout — opens detail panel on click */}
       {(() => {
@@ -4112,6 +4111,8 @@ export default function ItineraryResults() {
 
   // Feedback state
   const [dayFeedback, setDayFeedback] = useState({});
+  const [expandedDays, setExpandedDays] = useState({ 0: true });
+  const toggleDay = (index) => setExpandedDays(prev => ({ ...prev, [index]: !prev[index] }));
   const [lockedItems, setLockedItems] = useState({});
   // key: thumbId (e.g. "day_0_timeline_2")
   // value: { source: 'user' | 'booking', bookingType?: 'flight' | 'rental' | 'accommodation' }
@@ -5190,13 +5191,6 @@ export default function ItineraryResults() {
           </div>
         )}
 
-        {/* Day by Day label */}
-        {isStructured && (
-          <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase mb-3.5 pl-2" style={{
-            color: 'rgba(28,28,26,0.4)',
-          }}>Day by Day</div>
-        )}
-
         {/* Day Cards + Logistics — two-col grid / Markdown Fallback */}
         {isStructured ? (
           <>
@@ -5205,20 +5199,52 @@ export default function ItineraryResults() {
               gridTemplateColumns: '1fr 240px',
               gap: 20,
             }}>
-              {/* Left: Day cards */}
+              {/* Left: Day cards (accordion) */}
               <div>
-                {enrichedDays.map((day, i) => (
+                {enrichedDays.map((day, i) => {
+                  const isOpen = !!expandedDays[i];
+                  return (
                   <div key={i} ref={el => dayRefs.current[i] = el} style={{ scrollMarginTop: 60 }}>
-                    <DayCard day={day} dayIndex={i}
-                      feedback={dayFeedback[i]} onFeedback={handleDayFeedback}
-                      lockedItems={lockedItems} onLock={handleLock} onAlternatives={handleAlternatives}
-                      swappedActivities={swappedActivities}
-                      onSwapOpen={(data) => setSwapModal(data)}
-                      onOpenPanel={(panelItem) => {
-                        setActivePanel(panelItem);
-                      }} />
+                    {/* Divider */}
+                    <div style={{ height: 1, background: C.border }} />
+                    {/* Accordion header */}
+                    <button
+                      onClick={() => toggleDay(i)}
+                      style={{ width: '100%', display: 'flex', alignItems: 'center', gap: 16, padding: '24px 0', background: 'transparent', border: 'none', cursor: 'pointer', textAlign: 'left' }}
+                    >
+                      <div style={{ flex: 1, minWidth: 0 }}>
+                        <div className="font-body text-[10px] font-bold tracking-[0.22em] uppercase" style={{ color: '#7A857E', marginBottom: 4 }}>
+                          {day.label}
+                        </div>
+                        <div className="font-serif text-[clamp(20px,3vw,26px)] font-light leading-[1.2]" style={{ color: C.ink }}>
+                          {day.title}
+                        </div>
+                      </div>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0 }}>
+                        <span className="font-body text-[12px]" style={{ color: '#7A857E', whiteSpace: 'nowrap' }}>
+                          {day.snapshot || `${day.timeline?.length || 0} activities`}
+                        </span>
+                        <span style={{ display: 'inline-block', fontSize: 12, color: '#7A857E', transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.3s ease' }}>
+                          ▾
+                        </span>
+                      </div>
+                    </button>
+                    {/* Accordion body */}
+                    <div style={{ overflow: 'hidden', transition: 'max-height 0.5s cubic-bezier(0.4,0,0.2,1)', maxHeight: isOpen ? 5000 : 0 }}>
+                      <div style={{ paddingBottom: 24 }}>
+                        <DayCard day={day} dayIndex={i} hideHeader
+                          feedback={dayFeedback[i]} onFeedback={handleDayFeedback}
+                          lockedItems={lockedItems} onLock={handleLock} onAlternatives={handleAlternatives}
+                          swappedActivities={swappedActivities}
+                          onSwapOpen={(data) => setSwapModal(data)}
+                          onOpenPanel={(panelItem) => {
+                            setActivePanel(panelItem);
+                          }} />
+                      </div>
+                    </div>
                   </div>
-                ))}
+                  );
+                })}
 
                 {/* Before You Go */}
                 {itinerary.beforeYouGo && (

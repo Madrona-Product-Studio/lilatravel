@@ -110,6 +110,7 @@ _Last updated: March 30, 2026. Living document — update as items are completed
 - [x] Logistics card collapse — collapsed by default, chevron toggle, matches Sky & Season pattern
 - [x] Built For You pill collapse — show 3 pills + "+ N more" toggle on itinerary results page
 - [x] Sky & Season — collapsed by default, chevron moved to bottom bar, avg temp fix, daylight duration fix
+- [x] Day by Day accordion — collapsible days matching guide page pattern, Day 1 auto-expanded, snapshot summaries
 
 ### Trip Management & Saving
 - [x] Save This Trip moved to header button
