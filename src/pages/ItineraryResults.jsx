@@ -995,17 +995,18 @@ function CompanionPanelContent({ type, data, id }) {
       {/* Quote */}
       {data.quote?.text && (
         <div style={{
-          borderLeft: `3px solid ${BrandC.goldenAmber}60`,
-          paddingLeft: 16,
+          background: `${BrandC.goldenAmber}08`,
+          border: `1px solid ${BrandC.goldenAmber}18`,
+          borderRadius: 6,
+          padding: '20px 20px',
           marginTop: 20,
           marginBottom: 24,
-          padding: '14px 0 14px 16px',
         }}>
-          <p className="font-body text-[16px] font-medium leading-[1.65] tracking-[-0.01em] m-0" style={{
-            fontStyle: 'normal', color: `${C.ink}CC`,
+          <p className="font-serif text-[18px] font-light leading-[1.6] m-0" style={{
+            color: `${C.ink}CC`,
           }}>{data.quote.text}</p>
-          <p className="font-body text-[12px] font-semibold tracking-[0.02em] mt-2" style={{
-            color: `${C.ink}66`,
+          <p className="font-body text-[12px] font-semibold tracking-[0.02em] mt-3" style={{
+            color: `${C.ink}55`,
           }}>— {data.quote.author || data.quote.source}{data.quote.role ? `, ${data.quote.role}` : ''}</p>
         </div>
       )}
@@ -1342,16 +1343,18 @@ function WisdomDetailContent({ entry }) {
         {/* Quote block */}
         {entry.quote?.text && (
           <div style={{
-            borderLeft: `2px solid ${BrandC.goldenAmber}4D`,
-            paddingLeft: 14,
+            background: `${BrandC.goldenAmber}08`,
+            border: `1px solid ${BrandC.goldenAmber}18`,
+            borderRadius: 6,
+            padding: '20px 20px',
             marginTop: 18,
             marginBottom: 20,
           }}>
-            <p className="font-serif text-[15px] font-light italic leading-[1.6] m-0" style={{
-              color: `${C.ink}A6`,
+            <p className="font-serif text-[18px] font-light leading-[1.6] m-0" style={{
+              color: `${C.ink}CC`,
             }}>{entry.quote.text}</p>
-            <p className="font-body text-[11px] font-medium mt-1.5" style={{
-              color: `${C.ink}73`,
+            <p className="font-body text-[12px] font-semibold tracking-[0.02em] mt-3" style={{
+              color: `${C.ink}55`,
             }}>— {entry.quote.author || entry.quote.source}{entry.quote.role ? `, ${entry.quote.role}` : ''}</p>
           </div>
         )}
@@ -1587,16 +1590,18 @@ const accomLabel = { color: C.muted };
           {/* Quote */}
           {data.quote?.text && (
             <div style={{
-              borderLeft: `2px solid ${BrandC.goldenAmber}4D`,
-              paddingLeft: 14,
+              background: `${BrandC.goldenAmber}08`,
+              border: `1px solid ${BrandC.goldenAmber}18`,
+              borderRadius: 6,
+              padding: '20px 20px',
               marginTop: 18,
               marginBottom: 20,
             }}>
-              <p className="font-serif text-[15px] font-light italic leading-[1.6] m-0" style={{
-                color: `${C.ink}A6`,
+              <p className="font-serif text-[18px] font-light leading-[1.6] m-0" style={{
+                color: `${C.ink}CC`,
               }}>{data.quote.text}</p>
-              <p className="font-body text-[11px] font-medium mt-1.5" style={{
-                color: `${C.ink}73`,
+              <p className="font-body text-[12px] font-semibold tracking-[0.02em] mt-3" style={{
+                color: `${C.ink}55`,
               }}>— {data.quote.author || data.quote.source}{data.quote.role ? `, ${data.quote.role}` : ''}</p>
             </div>
           )}
