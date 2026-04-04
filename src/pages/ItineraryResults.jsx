@@ -2423,8 +2423,18 @@ const DESTINATION_LOGISTICS = {
   },
 };
 
+const DESTINATION_KEY_MAP = {
+  bigSur: 'big-sur', bigsur: 'big-sur', 'big-sur': 'big-sur',
+  joshuaTree: 'joshua-tree', joshuatree: 'joshua-tree', 'joshua-tree': 'joshua-tree',
+  olympic: 'olympic-peninsula', 'olympic-peninsula': 'olympic-peninsula',
+  vancouver: 'vancouver-island', 'vancouver-island': 'vancouver-island',
+  zion: 'zion', 'zion-canyon': 'zion',
+  kauai: 'kauai',
+};
+
 function getLogistics(destination) {
-  const key = (destination || '').toLowerCase().replace(/\s+/g, '-');
+  const raw = (destination || '').trim();
+  const key = DESTINATION_KEY_MAP[raw] || DESTINATION_KEY_MAP[raw.toLowerCase()] || raw.toLowerCase().replace(/\s+/g, '-');
   return DESTINATION_LOGISTICS[key] || null;
 }
 
