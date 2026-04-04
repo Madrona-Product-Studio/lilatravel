@@ -183,7 +183,7 @@ Return this structure:
   - **moonPhase**: Approximate moon phase name for the travel dates or mid-month (e.g. "New Moon", "Waxing Crescent", "Full Moon", "Waning Gibbous")
   - **stargazing**: One of "excellent" (new/crescent moon), "good" (quarter moon), "moderate" (gibbous/full)
   - **packingHint**: 1 short sentence listing essential gear for this season
-- **url fields**: Include a "url" on picks and timeline items when the place has a known website. Use URLs from the destination guide's URL Registry section if provided. If no URL is known, omit the field — do NOT invent URLs.
+- **url fields**: Include a "url" on picks and timeline items ONLY when the URL appears in the destination guide's URL Registry section. Do NOT use URLs from your training data — they may be outdated, point to staging servers, or no longer exist. If a place has no URL in the registry, omit the "url" field entirely.
 - **BREVITY IS CRITICAL** — every field has a sentence limit specified above. Exceeding it risks truncating the entire response.
 - **thresholdMoment** — For each day, identify the single most irreplaceable experience — the one thing that makes this specific day on this specific trip worth doing. If one exists, populate `thresholdMoment` with a `title` and a `description` of no more than two sentences. Describe the place or experience concretely. Do not describe how the traveler will feel. Do not use metaphor. Not every day warrants one — arrival days, departure days, and travel-heavy days should typically be `null`. Across the full itinerary, no more than half the days should have a threshold moment.
   - Good: `"title": "McWay Falls", "description": "A waterfall that drops directly into a sea cove. The definitive image of this coast."`

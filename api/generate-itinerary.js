@@ -113,6 +113,39 @@ export default async function handler(req, res) {
       return res.status(502).json({ error: errMsg });
     }
 
+    // Sanitize URLs — strip hallucinated or staging URLs from the response
+    const BLOCKED_URL_PATTERNS = [
+      /wpengine\.com/i,
+      /\.staging\./i,
+      /\.dev\./i,
+      /localhost/i,
+      /127\.0\.0\.1/i,
+      /example\.com/i,
+    ];
+    const sanitizeUrls = (obj) => {
+      if (!obj || typeof obj !== 'object') return obj;
+      if (Array.isArray(obj)) return obj.map(sanitizeUrls);
+      const result = { ...obj };
+      for (const key of Object.keys(result)) {
+        if (key === 'url' || key === 'npsUrl') {
+          if (typeof result[key] === 'string' && BLOCKED_URL_PATTERNS.some(p => p.test(result[key]))) {
+            console.warn(`[SANITIZE] Removed blocked URL: ${result[key]}`);
+            delete result[key];
+          }
+        } else if (typeof result[key] === 'object') {
+          result[key] = sanitizeUrls(result[key]);
+        }
+      }
+      return result;
+    };
+    try {
+      const parsed = JSON.parse(itinerary.slice(itinerary.indexOf('{'), itinerary.lastIndexOf('}') + 1));
+      const sanitized = sanitizeUrls(parsed);
+      itinerary = JSON.stringify(sanitized);
+    } catch (e) {
+      // If sanitization fails, proceed with original — validation already passed above
+    }
+
     // Timing breakdown
     const timing = {
       contextAssemblyMs: t1 - t0,
