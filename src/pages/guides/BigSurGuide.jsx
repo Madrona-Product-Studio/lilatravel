@@ -549,7 +549,7 @@ const PARKS = [
   },
 ];
 
-function ParkCard({ park, isExpanded, onToggle, isFirst }) {
+function ParkCard({ park }) {
   const DESIGNATION_LABELS = {
     "us-national-park": "National Park",
     "canadian-national-park": "National Park Reserve",
@@ -560,44 +560,22 @@ function ParkCard({ park, isExpanded, onToggle, isFirst }) {
   };
   const stats = [park.acreage, park.elevation, park.attribute, park.driveFrom].filter(Boolean);
   return (
-    <div style={{ borderTop: isFirst ? 'none' : `1px solid ${C.stone}` }}>
-      <div className="flex" style={{ minHeight: 0 }}>
-        <div className="shrink-0" style={{ width: 3, background: park.accent }} />
-        <div className="flex-1 min-w-0 py-4 pl-4 pr-0 md:py-5 md:pl-5">
-          <div className="font-body text-[9px] tracking-[0.16em] uppercase text-[#7A857E] mb-1">
-            {DESIGNATION_LABELS[park.designation] || park.designation}{park.established ? ` · Est. ${park.established}` : ""}
-          </div>
-          <div className="font-serif font-light text-[21px] text-dark-ink leading-[1.2] mb-1">{park.name}</div>
-          <div className="font-body text-[11px] text-[#7A857E] leading-[1.4] mb-2.5">
-            {stats.map((s, i) => <span key={i}>{i > 0 && " · "}{s}</span>)}
-          </div>
-          <p className="font-body text-[13.5px] text-[#4A5650] leading-[1.7] m-0">{park.soul}</p>
-          <button
-            onClick={onToggle}
-            className="mt-2.5 bg-transparent border-none cursor-pointer p-0 font-body text-[10px] tracking-[0.12em] uppercase"
-            style={{ color: C.oceanTeal }}>
-            {isExpanded ? "Hide ↑" : "Details ↓"}
-          </button>
-          <div className="overflow-hidden transition-[max-height] duration-400 ease-[cubic-bezier(0.4,0,0.2,1)]"
-            style={{ maxHeight: isExpanded ? 400 : 0 }}>
-            <div className="pt-3">
-              {park.facts.map((fact, i) => (
-                <div key={i} className="flex gap-2 mb-[5px] items-start">
-                  <div className="w-1 h-1 rounded-full opacity-60 mt-[7px] shrink-0" style={{ background: park.accent }} />
-                  <span className="font-body text-[12px] font-normal text-[#4A5650] leading-[1.65]">{fact}</span>
-                </div>
-              ))}
-              {park.infoUrl && (
-                <a href={park.infoUrl} target="_blank" rel="noopener noreferrer"
-                  className="inline-block mt-2.5 font-body text-[10px] font-bold tracking-[0.18em] uppercase no-underline"
-                  style={{ color: park.accent }}>
-                  {park.designation === "canadian-national-park" ? "Parks Canada" : park.designation === "us-national-park" ? "NPS Page" : "Park Info"} ↗
-                </a>
-              )}
-            </div>
-          </div>
-        </div>
+    <div style={{ background: C.warmWhite }} className="p-4 md:p-5">
+      <div className="font-body text-[9px] tracking-[0.16em] uppercase text-[#7A857E] mb-1">
+        {DESIGNATION_LABELS[park.designation] || park.designation}{park.established ? ` · Est. ${park.established}` : ""}
       </div>
+      <div className="font-serif font-normal text-[20px] text-dark-ink leading-[1.2] mb-1">{park.name}</div>
+      <div className="font-body text-[11px] text-[#7A857E] leading-[1.4] mb-3">
+        {stats.map((s, i) => <span key={i}>{i > 0 && " · "}{s}</span>)}
+      </div>
+      <p className="font-body text-[13px] font-normal text-[#4A5650] leading-[1.7] m-0">{park.soul}</p>
+      {park.infoUrl && (
+        <a href={park.infoUrl} target="_blank" rel="noopener noreferrer"
+          className="inline-block mt-3 font-body text-[10px] font-bold tracking-[0.12em] uppercase no-underline"
+          style={{ color: C.goldenAmber, borderBottom: '1px solid rgba(212,168,83,0.3)' }}>
+          {park.infoUrl.includes('nps.gov') ? `nps.gov/${park.infoUrl.split('nps.gov/')[1].replace(/\/$/, '')}` : park.infoUrl.includes('parks.canada.ca') ? 'Parks Canada' : park.infoUrl.includes('parks.ca.gov') ? 'CA State Parks' : park.infoUrl.includes('fs.usda.gov') ? 'US Forest Service' : 'Park Info'} ↗
+        </a>
+      )}
     </div>
   );
 }
@@ -754,7 +732,6 @@ export default function BigSurGuide() {
     return () => window.removeEventListener("resize", check);
   }, []);
 
-  const [expandedPark, setExpandedPark] = useState(null);
   const [activeSheet, setActiveSheet] = useState(null);
   const [activeMoveTiers, setActiveMoveTiers] = useState(() => new Set(moveItems.map(i => i.moveTier)));
   const [activeBreatheTiers, setActiveBreatheTiers] = useState(() => new Set(['practice', 'soak', 'restore']));
@@ -910,7 +887,7 @@ export default function BigSurGuide() {
           {/* ================================================================ */}
           {/* SENSE OF PLACE                                                    */}
           {/* ================================================================ */}
-          <section id="sense-of-place" className="scroll-mt-[126px] py-11">
+          <section id="sense-of-place" className="scroll-mt-[126px] pt-11 pb-4">
             <FadeIn>
               <SectionLabel accentColor={ACCENT}>Sense of Place</SectionLabel>
               <p className="font-body text-[clamp(14px,1.8vw,15px)] leading-[1.8] font-normal text-[#4A5650] mt-0 mb-4">
@@ -926,18 +903,22 @@ export default function BigSurGuide() {
 
             {/* ── At a Glance ── */}
             <FadeIn delay={0.06}>
-              <div className="grid grid-cols-[repeat(auto-fit,minmax(130px,1fr))] gap-3 md:gap-4 p-4 md:p-5 bg-cream mb-3">
-                {[
-                  { l: "Recommended", v: "3–5 days" },
-                  { l: "Nearest Airport", v: "Monterey (MRY) or SFO" },
-                  { l: "From SFO", v: "~3 hours" },
-                  { l: "Best Times", v: "Apr–Oct" },
-                ].map((s, i) => (
-                  <div key={i}>
-                    <div className="font-body text-[11px] tracking-[0.18em] uppercase text-[#7A857E] mb-[3px]">{s.l}</div>
-                    <div className="font-serif font-light text-[22px] text-dark-ink">{s.v}</div>
-                  </div>
-                ))}
+              <div>
+                <div className="h-px" style={{ background: `${C.darkInk}14` }} />
+                <div className="grid grid-cols-2 md:grid-cols-4 py-5">
+                  {[
+                    { l: "Recommended", v: "3–5 days" },
+                    { l: "Nearest Airport", v: "Monterey (MRY)" },
+                    { l: "From SFO", v: "~3 hours" },
+                    { l: "Best Times", v: "Apr–Oct" },
+                  ].map((s, i) => (
+                    <div key={i} className="text-center px-3 py-2 md:py-0" style={{ borderLeft: i > 0 ? `1px solid ${C.darkInk}14` : 'none' }}>
+                      <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-1">{s.l}</div>
+                      <div className="font-body text-[14px] font-medium text-dark-ink leading-[1.3]">{s.v}</div>
+                    </div>
+                  ))}
+                </div>
+                <div className="h-px" style={{ background: `${C.darkInk}14` }} />
               </div>
             </FadeIn>
           </section>
@@ -946,26 +927,59 @@ export default function BigSurGuide() {
           {/* ================================================================ */}
           {/* THE LAND                                                          */}
           {/* ================================================================ */}
-          <section id="the-land" className="scroll-mt-[126px] pt-2 pb-11">
+          <section id="the-land" className="scroll-mt-[126px] pb-11">
+            {/* ── The Parks ── */}
             <FadeIn>
-              <div className="flex items-center gap-2.5 mb-4">
-                <div className="w-5 h-px" style={{ background: ACCENT }} />
-                <span className="font-body text-[10px] font-medium tracking-[0.2em] uppercase" style={{ color: ACCENT }}>The Land</span>
-              </div>
-              <p className="font-body text-[clamp(14px,1.8vw,15px)] leading-[1.8] font-normal text-[#4A5650] mt-0 mb-6">
-                {"Four protected areas anchor Big Sur's ninety-mile coast."}
-              </p>
+              <p className="font-body text-[10px] font-bold tracking-[0.18em] uppercase mb-3.5" style={{ color: C.seaGlass }}>The Parks</p>
             </FadeIn>
             <FadeIn delay={0.08}>
-              <div className="mb-1">
-                {PARKS.map((park, i) => (
-                  <ParkCard
-                    key={park.id}
-                    park={park}
-                    isFirst={i === 0}
-                    isExpanded={expandedPark === park.id}
-                    onToggle={() => setExpandedPark(expandedPark === park.id ? null : park.id)}
-                  />
+              <div className="grid grid-cols-1 gap-px mb-1" style={{ background: `${C.darkInk}0A` }}>
+                {PARKS.map((park) => (
+                  <ParkCard key={park.id} park={park} />
+                ))}
+              </div>
+            </FadeIn>
+
+            {/* ── The Towns ── */}
+            <FadeIn delay={0.09}>
+              <p className="font-body text-[10px] font-bold tracking-[0.18em] uppercase mt-10 mb-3.5" style={{ color: C.goldenAmber }}>The Towns</p>
+              <div className="grid grid-cols-1 gap-px" style={{ background: `${C.darkInk}0A` }}>
+                {[
+                  { name: "Carmel-by-the-Sea", context: "Artistic Village", description: "A one-square-mile village with no street addresses, no chain restaurants, and more than 80 art galleries. The beach at the bottom of Ocean Avenue is one of the most beautiful in California.", accent: C.seaGlass },
+                  { name: "Monterey", context: "Cannery Row & Aquarium", description: "Steinbeck's old fishing town, now anchored by the Monterey Bay Aquarium. The wharf, the coastal trail, and Pacific Grove's Victorian neighborhoods are all walkable from downtown.", accent: C.oceanTeal },
+                  { name: "Big Sur", context: "Highway 1 Corridor", description: "Not a town so much as a state of mind. Sixty miles of coast between Carmel and San Simeon with no traffic lights. Nepenthe, Deetjen's, and the Henry Miller Library are the landmarks.", accent: C.sunSalmon },
+                  { name: "Cambria & San Simeon", context: "Southern Anchor", description: "The quiet end of the coast. Elephant seal rookery at Piedras Blancas, Hearst Castle above the fog line, and Cambria's East Village art scene.", accent: C.goldenAmber },
+                ].map(town => (
+                  <div key={town.name} style={{ background: C.warmWhite }} className="p-4 md:p-5">
+                    <div className="font-body text-[9px] tracking-[0.16em] uppercase text-[#7A857E] mb-1">{town.context}</div>
+                    <div className="font-serif font-normal text-[20px] text-dark-ink leading-[1.2] mb-3">{town.name}</div>
+                    <p className="font-body text-[13px] font-normal text-[#4A5650] leading-[1.7] m-0">{town.description}</p>
+                  </div>
+                ))}
+              </div>
+            </FadeIn>
+
+            {/* ── Divider ── */}
+            <div className="h-px my-10" style={{ background: `${C.darkInk}14` }} />
+
+            {/* ── Places That Stop You ── */}
+            <FadeIn delay={0.1}>
+              <p className="font-body text-[10px] font-bold tracking-[0.18em] uppercase mb-3.5" style={{ color: C.goldenAmber }}>Places That Stop You</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px" style={{ background: `${C.darkInk}0A` }}>
+                {[
+                  { name: "McWay Falls", category: "Waterfall · Cove", blurb: "An 80-foot waterfall that drops directly onto a turquoise cove beach. The definitive image of this coast. Viewable from the overlook trail — no beach access." },
+                  { name: "Bixby Creek Bridge", category: "Landmark · Drive", blurb: "The most photographed bridge in California. 714 feet long, 280 feet above the canyon floor. Best seen from the pullout on the north side at golden hour." },
+                  { name: "Pfeiffer Beach", category: "Beach · Keyhole Rock", blurb: "Purple sand and a natural rock arch that frames the sunset in winter. The unmarked turnoff on Sycamore Canyon Road is easy to miss. That's part of the charm." },
+                  { name: "Ewoldsen Trail", category: "Trail · Redwoods", blurb: "A 4.3-mile loop through old-growth redwoods that opens onto coastal ridge views. The transition from forest floor to exposed ridge happens in a single switchback." },
+                  { name: "Point Lobos", category: "Reserve · Tide Pools", blurb: "The crown jewel of California's state reserves. Sea otters in the kelp, harbor seals on the rocks, and some of the richest tide pools on the coast." },
+                  { name: "Limekiln State Park", category: "Beach · History", blurb: "Four 19th-century lime kilns standing in a redwood canyon, a waterfall at the end of the trail, and a rocky beach with sea stacks. Most visitors never make it this far south." },
+                ].map(h => (
+                  <div key={h.name} style={{ background: C.warmWhite }} className="p-4 md:p-5">
+                    <div className="font-body text-[11px] font-semibold mb-1" style={{ color: C.goldenAmber }}>◈</div>
+                    <div className="font-serif text-[17px] font-normal text-dark-ink leading-[1.3] mb-1">{h.name}</div>
+                    <div className="font-body text-[9px] font-bold tracking-[0.16em] uppercase mb-2" style={{ color: '#7A857E' }}>{h.category}</div>
+                    <p className="font-body text-[12px] font-normal text-[#7A857E] leading-[1.5] m-0">{h.blurb}</p>
+                  </div>
                 ))}
               </div>
             </FadeIn>

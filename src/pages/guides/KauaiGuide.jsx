@@ -537,7 +537,7 @@ const PARKS = [
   },
 ];
 
-function ParkCard({ park, isExpanded, onToggle, isFirst }) {
+function ParkCard({ park }) {
   const DESIGNATION_LABELS = {
     "us-national-park": "National Park",
     "canadian-national-park": "National Park Reserve",
@@ -548,44 +548,22 @@ function ParkCard({ park, isExpanded, onToggle, isFirst }) {
   };
   const stats = [park.acreage, park.elevation, park.attribute, park.driveFrom].filter(Boolean);
   return (
-    <div style={{ borderTop: isFirst ? 'none' : `1px solid ${C.stone}` }}>
-      <div className="flex" style={{ minHeight: 0 }}>
-        <div className="shrink-0" style={{ width: 3, background: park.accent }} />
-        <div className="flex-1 min-w-0 py-4 pl-4 pr-0 md:py-5 md:pl-5">
-          <div className="font-body text-[9px] tracking-[0.16em] uppercase text-[#7A857E] mb-1">
-            {DESIGNATION_LABELS[park.designation] || park.designation}{park.established ? ` · Est. ${park.established}` : ""}
-          </div>
-          <div className="font-serif font-light text-[21px] text-dark-ink leading-[1.2] mb-1">{park.name}</div>
-          <div className="font-body text-[11px] text-[#7A857E] leading-[1.4] mb-2.5">
-            {stats.map((s, i) => <span key={i}>{i > 0 && " · "}{s}</span>)}
-          </div>
-          <p className="font-body text-[13.5px] text-[#4A5650] leading-[1.7] m-0">{park.soul}</p>
-          <button
-            onClick={onToggle}
-            className="mt-2.5 bg-transparent border-none cursor-pointer p-0 font-body text-[10px] tracking-[0.12em] uppercase"
-            style={{ color: C.oceanTeal }}>
-            {isExpanded ? "Hide ↑" : "Details ↓"}
-          </button>
-          <div className="overflow-hidden transition-[max-height] duration-400 ease-[cubic-bezier(0.4,0,0.2,1)]"
-            style={{ maxHeight: isExpanded ? 400 : 0 }}>
-            <div className="pt-3">
-              {park.facts.map((fact, i) => (
-                <div key={i} className="flex gap-2 mb-[5px] items-start">
-                  <div className="w-1 h-1 rounded-full opacity-60 mt-[7px] shrink-0" style={{ background: park.accent }} />
-                  <span className="font-body text-[12px] font-normal text-[#4A5650] leading-[1.65]">{fact}</span>
-                </div>
-              ))}
-              {park.infoUrl && (
-                <a href={park.infoUrl} target="_blank" rel="noopener noreferrer"
-                  className="inline-block mt-2.5 font-body text-[10px] font-bold tracking-[0.18em] uppercase no-underline"
-                  style={{ color: park.accent }}>
-                  {park.designation === "canadian-national-park" ? "Parks Canada" : park.designation === "us-national-park" ? "NPS Page" : "Park Info"} ↗
-                </a>
-              )}
-            </div>
-          </div>
-        </div>
+    <div style={{ background: C.warmWhite }} className="p-4 md:p-5">
+      <div className="font-body text-[9px] tracking-[0.16em] uppercase text-[#7A857E] mb-1">
+        {DESIGNATION_LABELS[park.designation] || park.designation}{park.established ? ` · Est. ${park.established}` : ""}
       </div>
+      <div className="font-serif font-normal text-[20px] text-dark-ink leading-[1.2] mb-1">{park.name}</div>
+      <div className="font-body text-[11px] text-[#7A857E] leading-[1.4] mb-3">
+        {stats.map((s, i) => <span key={i}>{i > 0 && " · "}{s}</span>)}
+      </div>
+      <p className="font-body text-[13px] font-normal text-[#4A5650] leading-[1.7] m-0">{park.soul}</p>
+      {park.infoUrl && (
+        <a href={park.infoUrl} target="_blank" rel="noopener noreferrer"
+          className="inline-block mt-3 font-body text-[10px] font-bold tracking-[0.12em] uppercase no-underline"
+          style={{ color: C.goldenAmber, borderBottom: '1px solid rgba(212,168,83,0.3)' }}>
+          Hawaii DLNR ↗
+        </a>
+      )}
     </div>
   );
 }
@@ -742,7 +720,6 @@ export default function KauaiGuide() {
     return () => window.removeEventListener("resize", check);
   }, []);
 
-  const [expandedPark, setExpandedPark] = useState(null);
   const [activeSheet, setActiveSheet] = useState(null);
   const [activeMoveTiers, setActiveMoveTiers] = useState(() => new Set(moveItems.map(i => i.moveTier)));
   const [activeBreatheTiers, setActiveBreatheTiers] = useState(() => new Set(['practice', 'soak', 'restore']));
@@ -898,7 +875,7 @@ export default function KauaiGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* SENSE OF PLACE                                                */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="sense-of-place" className="scroll-mt-[126px] py-11">
+          <section id="sense-of-place" className="scroll-mt-[126px] pt-11 pb-4">
             <FadeIn>
               <SectionLabel accentColor={ACCENT}>Sense of Place</SectionLabel>
               <p className="font-body text-[clamp(14px,1.8vw,15px)] leading-[1.8] font-normal text-[#4A5650] mt-0 mb-4">
@@ -914,18 +891,22 @@ export default function KauaiGuide() {
 
             {/* ── At a Glance ── */}
             <FadeIn delay={0.06}>
-              <div className="grid grid-cols-[repeat(auto-fit,minmax(130px,1fr))] gap-3 md:gap-4 p-4 md:p-5 bg-cream mb-3">
-                {[
-                  { l: "Recommended", v: "5–7 days" },
-                  { l: "Nearest Airport", v: "Lihue (LIH)" },
-                  { l: "Direct Flights", v: "West Coast" },
-                  { l: "Best Times", v: "Apr–Oct" },
-                ].map((s, i) => (
-                  <div key={i}>
-                    <div className="font-body text-[11px] tracking-[0.18em] uppercase text-[#7A857E] mb-[3px]">{s.l}</div>
-                    <div className="font-serif font-light text-[22px] text-dark-ink">{s.v}</div>
-                  </div>
-                ))}
+              <div>
+                <div className="h-px" style={{ background: `${C.darkInk}14` }} />
+                <div className="grid grid-cols-2 md:grid-cols-4 py-5">
+                  {[
+                    { l: "Recommended", v: "5–7 days" },
+                    { l: "Nearest Airport", v: "Lihue (LIH)" },
+                    { l: "Direct Flights", v: "West Coast" },
+                    { l: "Best Times", v: "Apr–Oct" },
+                  ].map((s, i) => (
+                    <div key={i} className="text-center px-3 py-2 md:py-0" style={{ borderLeft: i > 0 ? `1px solid ${C.darkInk}14` : 'none' }}>
+                      <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-1">{s.l}</div>
+                      <div className="font-body text-[14px] font-medium text-dark-ink leading-[1.3]">{s.v}</div>
+                    </div>
+                  ))}
+                </div>
+                <div className="h-px" style={{ background: `${C.darkInk}14` }} />
               </div>
             </FadeIn>
           </section>
@@ -934,26 +915,59 @@ export default function KauaiGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* THE LAND                                                      */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="the-land" className="scroll-mt-[126px] pt-2 pb-11">
+          <section id="the-land" className="scroll-mt-[126px] pb-11">
+            {/* ── The Parks ── */}
             <FadeIn>
-              <div className="flex items-center gap-2.5 mb-4">
-                <div className="w-5 h-px" style={{ background: ACCENT }} />
-                <span className="font-body text-[10px] font-medium tracking-[0.2em] uppercase" style={{ color: ACCENT }}>The Land</span>
-              </div>
-              <p className="font-body text-[clamp(14px,1.8vw,15px)] leading-[1.8] font-normal text-[#4A5650] mt-0 mb-6">
-                {"Three protected landscapes define Kauaʻi's wild places."}
-              </p>
+              <p className="font-body text-[10px] font-bold tracking-[0.18em] uppercase mb-3.5" style={{ color: C.oceanTeal }}>The Parks</p>
             </FadeIn>
             <FadeIn delay={0.08}>
-              <div className="mb-1">
-                {PARKS.map((park, i) => (
-                  <ParkCard
-                    key={park.id}
-                    park={park}
-                    isFirst={i === 0}
-                    isExpanded={expandedPark === park.id}
-                    onToggle={() => setExpandedPark(expandedPark === park.id ? null : park.id)}
-                  />
+              <div className="grid grid-cols-1 gap-px mb-1" style={{ background: `${C.darkInk}0A` }}>
+                {PARKS.map((park) => (
+                  <ParkCard key={park.id} park={park} />
+                ))}
+              </div>
+            </FadeIn>
+
+            {/* ── The Island ── */}
+            <FadeIn delay={0.09}>
+              <p className="font-body text-[10px] font-bold tracking-[0.18em] uppercase mt-10 mb-3.5" style={{ color: C.goldenAmber }}>The Island</p>
+              <div className="grid grid-cols-1 gap-px" style={{ background: `${C.darkInk}0A` }}>
+                {[
+                  { name: "North Shore (Hanalei)", context: "Beaches & Mountains", description: "Hanalei Bay is the postcard. But the North Shore is also the gateway to the Nā Pali Coast — the Kalalau trailhead starts at Kēʻē Beach. Princeville sits above it all on a bluff with views that never get old.", accent: C.oceanTeal },
+                  { name: "South Shore (Poipū)", context: "Sun & Snorkeling", description: "The dry side of the island. Poipū Beach is consistently rated among Hawaii's best. Spouting Horn blowhole, the McBryde and Allerton botanical gardens, and the best snorkeling conditions on Kauaʻi.", accent: C.sunSalmon },
+                  { name: "West Side (Waimea)", context: "Canyon Country", description: "The gateway to Waimea Canyon and Kōkeʻe State Park. The town of Waimea is where Captain Cook first landed in Hawaii in 1778. Quieter, drier, and closer to the island's geological drama.", accent: C.goldenAmber },
+                  { name: "East Side (Kapaʻa / Līhuʻe)", context: "Services & Culture", description: "The population center and airport town. The coastal path from Kapaʻa north is the island's best bike ride. Līhuʻe has the best poke and plate lunch options. Practical but not without charm.", accent: C.seaGlass },
+                ].map(area => (
+                  <div key={area.name} style={{ background: C.warmWhite }} className="p-4 md:p-5">
+                    <div className="font-body text-[9px] tracking-[0.16em] uppercase text-[#7A857E] mb-1">{area.context}</div>
+                    <div className="font-serif font-normal text-[20px] text-dark-ink leading-[1.2] mb-3">{area.name}</div>
+                    <p className="font-body text-[13px] font-normal text-[#4A5650] leading-[1.7] m-0">{area.description}</p>
+                  </div>
+                ))}
+              </div>
+            </FadeIn>
+
+            {/* ── Divider ── */}
+            <div className="h-px my-10" style={{ background: `${C.darkInk}14` }} />
+
+            {/* ── Places That Stop You ── */}
+            <FadeIn delay={0.1}>
+              <p className="font-body text-[10px] font-bold tracking-[0.18em] uppercase mb-3.5" style={{ color: C.goldenAmber }}>Places That Stop You</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px" style={{ background: `${C.darkInk}0A` }}>
+                {[
+                  { name: "Nā Pali Coast", category: "Coastline · Cliffs", blurb: "Eleven miles of fluted sea cliffs rising 4,000 feet from the ocean. No road reaches them. Boat, helicopter, or the Kalalau Trail — there is no casual way to see this coast." },
+                  { name: "Kalalau Trail", category: "Trail · Permit", blurb: "Eleven miles one-way along the Nā Pali Coast to Kalalau Beach. Permit required for anything past Hanakapi'ai. One of the most dramatic coastal treks in the world." },
+                  { name: "Waimea Canyon Lookout", category: "Viewpoint · Canyon", blurb: "The Grand Canyon of the Pacific from the rim. Fourteen miles long, a mile wide, 3,600 feet deep. The colors shift all day — red at noon, purple at dusk." },
+                  { name: "Kalalau Lookout", category: "Viewpoint · Nā Pali", blurb: "The most photographed view on Kauaʻi — the Kalalau Valley from 4,000 feet above. Get there before 10 AM or the clouds roll in and you see nothing." },
+                  { name: "Tunnels Beach (Makua)", category: "Beach · Reef", blurb: "A crescent of sand backed by mountains with the best reef snorkeling on the North Shore. Sea turtles are common. Named for the lava tube tunnels in the reef." },
+                  { name: "Wailua Falls", category: "Waterfall · Easy Access", blurb: "A twin 173-foot waterfall visible from a roadside overlook. No hike required. The opening shot of Fantasy Island, if that means anything to you." },
+                ].map(h => (
+                  <div key={h.name} style={{ background: C.warmWhite }} className="p-4 md:p-5">
+                    <div className="font-body text-[11px] font-semibold mb-1" style={{ color: C.goldenAmber }}>◈</div>
+                    <div className="font-serif text-[17px] font-normal text-dark-ink leading-[1.3] mb-1">{h.name}</div>
+                    <div className="font-body text-[9px] font-bold tracking-[0.16em] uppercase mb-2" style={{ color: '#7A857E' }}>{h.category}</div>
+                    <p className="font-body text-[12px] font-normal text-[#7A857E] leading-[1.5] m-0">{h.blurb}</p>
+                  </div>
                 ))}
               </div>
             </FadeIn>

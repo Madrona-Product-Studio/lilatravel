@@ -521,7 +521,7 @@ const PARKS = [
   },
 ];
 
-function ParkCard({ park, isExpanded, onToggle, isFirst }) {
+function ParkCard({ park }) {
   const DESIGNATION_LABELS = {
     "us-national-park": "National Park",
     "canadian-national-park": "National Park Reserve",
@@ -532,44 +532,22 @@ function ParkCard({ park, isExpanded, onToggle, isFirst }) {
   };
   const stats = [park.acreage, park.elevation, park.attribute, park.driveFrom].filter(Boolean);
   return (
-    <div style={{ borderTop: isFirst ? 'none' : `1px solid ${C.stone}` }}>
-      <div className="flex" style={{ minHeight: 0 }}>
-        <div className="shrink-0" style={{ width: 3, background: park.accent }} />
-        <div className="flex-1 min-w-0 py-4 pl-4 pr-0 md:py-5 md:pl-5">
-          <div className="font-body text-[9px] tracking-[0.16em] uppercase text-[#7A857E] mb-1">
-            {DESIGNATION_LABELS[park.designation] || park.designation}{park.established ? ` · Est. ${park.established}` : ""}
-          </div>
-          <div className="font-serif font-light text-[21px] text-dark-ink leading-[1.2] mb-1">{park.name}</div>
-          <div className="font-body text-[11px] text-[#7A857E] leading-[1.4] mb-2.5">
-            {stats.map((s, i) => <span key={i}>{i > 0 && " · "}{s}</span>)}
-          </div>
-          <p className="font-body text-[13.5px] text-[#4A5650] leading-[1.7] m-0">{park.soul}</p>
-          <button
-            onClick={onToggle}
-            className="mt-2.5 bg-transparent border-none cursor-pointer p-0 font-body text-[10px] tracking-[0.12em] uppercase"
-            style={{ color: C.oceanTeal }}>
-            {isExpanded ? "Hide ↑" : "Details ↓"}
-          </button>
-          <div className="overflow-hidden transition-[max-height] duration-400 ease-[cubic-bezier(0.4,0,0.2,1)]"
-            style={{ maxHeight: isExpanded ? 400 : 0 }}>
-            <div className="pt-3">
-              {park.facts.map((fact, i) => (
-                <div key={i} className="flex gap-2 mb-[5px] items-start">
-                  <div className="w-1 h-1 rounded-full opacity-60 mt-[7px] shrink-0" style={{ background: park.accent }} />
-                  <span className="font-body text-[12px] font-normal text-[#4A5650] leading-[1.65]">{fact}</span>
-                </div>
-              ))}
-              {park.infoUrl && (
-                <a href={park.infoUrl} target="_blank" rel="noopener noreferrer"
-                  className="inline-block mt-2.5 font-body text-[10px] font-bold tracking-[0.18em] uppercase no-underline"
-                  style={{ color: park.accent }}>
-                  {park.designation === "canadian-national-park" ? "Parks Canada" : park.designation === "us-national-park" ? "NPS Page" : "Park Info"} ↗
-                </a>
-              )}
-            </div>
-          </div>
-        </div>
+    <div style={{ background: C.warmWhite }} className="p-4 md:p-5">
+      <div className="font-body text-[9px] tracking-[0.16em] uppercase text-[#7A857E] mb-1">
+        {DESIGNATION_LABELS[park.designation] || park.designation}{park.established ? ` · Est. ${park.established}` : ""}
       </div>
+      <div className="font-serif font-normal text-[20px] text-dark-ink leading-[1.2] mb-1">{park.name}</div>
+      <div className="font-body text-[11px] text-[#7A857E] leading-[1.4] mb-3">
+        {stats.map((s, i) => <span key={i}>{i > 0 && " · "}{s}</span>)}
+      </div>
+      <p className="font-body text-[13px] font-normal text-[#4A5650] leading-[1.7] m-0">{park.soul}</p>
+      {park.infoUrl && (
+        <a href={park.infoUrl} target="_blank" rel="noopener noreferrer"
+          className="inline-block mt-3 font-body text-[10px] font-bold tracking-[0.12em] uppercase no-underline"
+          style={{ color: C.goldenAmber, borderBottom: '1px solid rgba(212,168,83,0.3)' }}>
+          {park.infoUrl.includes('parks.canada.ca') ? 'Parks Canada' : park.infoUrl.includes('bcparks') ? 'BC Parks' : 'Park Info'} ↗
+        </a>
+      )}
     </div>
   );
 }
@@ -731,7 +709,7 @@ export default function VancouverIslandGuide() {
     return () => window.removeEventListener("resize", check);
   }, []);
 
-  const [expandedPark, setExpandedPark] = useState(null);
+
   const [activeSheet, setActiveSheet] = useState(null);
   const [activeMoveTiers, setActiveMoveTiers] = useState(() => new Set(moveItems.map(i => i.moveTier)));
   const [activeBreatheTiers, setActiveBreatheTiers] = useState(() => new Set(['practice', 'soak', 'restore']));
@@ -896,7 +874,7 @@ export default function VancouverIslandGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* SENSE OF PLACE                                                */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="sense-of-place" className="scroll-mt-[126px] py-11">
+          <section id="sense-of-place" className="scroll-mt-[126px] pt-11 pb-4">
             <FadeIn>
               <SectionLabel accentColor={ACCENT}>Sense of Place</SectionLabel>
               <p className="font-body text-[clamp(14px,1.8vw,15px)] leading-[1.8] font-normal text-[#4A5650] mt-0 mb-4">
@@ -912,18 +890,22 @@ export default function VancouverIslandGuide() {
 
             {/* ── At a Glance ── */}
             <FadeIn delay={0.06}>
-              <div className="grid grid-cols-[repeat(auto-fit,minmax(130px,1fr))] gap-3 md:gap-4 p-4 md:p-5 bg-cream mb-3">
-                {[
-                  { l: "Recommended", v: "5–8 days" },
-                  { l: "Nearest Airport", v: "Victoria (YYJ) or Vancouver (YVR)" },
-                  { l: "From Vancouver", v: "~1.5 hrs ferry" },
-                  { l: "Best Times", v: "Jun–Sep" },
-                ].map((s, i) => (
-                  <div key={i}>
-                    <div className="font-body text-[11px] tracking-[0.18em] uppercase text-[#7A857E] mb-[3px]">{s.l}</div>
-                    <div className="font-serif font-light text-[22px] text-dark-ink">{s.v}</div>
-                  </div>
-                ))}
+              <div>
+                <div className="h-px" style={{ background: `${C.darkInk}14` }} />
+                <div className="grid grid-cols-2 md:grid-cols-4 py-5">
+                  {[
+                    { l: "Recommended", v: "5–8 days" },
+                    { l: "Nearest Airport", v: "Victoria (YYJ)" },
+                    { l: "From Vancouver", v: "~1.5 hrs ferry" },
+                    { l: "Best Times", v: "Jun–Sep" },
+                  ].map((s, i) => (
+                    <div key={i} className="text-center px-3 py-2 md:py-0" style={{ borderLeft: i > 0 ? `1px solid ${C.darkInk}14` : 'none' }}>
+                      <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-1">{s.l}</div>
+                      <div className="font-body text-[14px] font-medium text-dark-ink leading-[1.3]">{s.v}</div>
+                    </div>
+                  ))}
+                </div>
+                <div className="h-px" style={{ background: `${C.darkInk}14` }} />
               </div>
             </FadeIn>
           </section>
@@ -932,26 +914,58 @@ export default function VancouverIslandGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* THE LAND                                                      */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="the-land" className="scroll-mt-[126px] pt-2 pb-11">
+          <section id="the-land" className="scroll-mt-[126px] pb-11">
+            {/* ── The Parks ── */}
             <FadeIn>
-              <div className="flex items-center gap-2.5 mb-4">
-                <div className="w-5 h-px" style={{ background: ACCENT }} />
-                <span className="font-body text-[10px] font-medium tracking-[0.2em] uppercase" style={{ color: ACCENT }}>The Land</span>
-              </div>
-              <p className="font-body text-[clamp(14px,1.8vw,15px)] leading-[1.8] font-normal text-[#4A5650] mt-0 mb-6">
-                {"Two protected areas anchor the island's wild coast and interior."}
-              </p>
+              <p className="font-body text-[10px] font-bold tracking-[0.18em] uppercase mb-3.5" style={{ color: C.oceanTeal }}>The Parks</p>
             </FadeIn>
             <FadeIn delay={0.08}>
-              <div className="mb-1">
-                {PARKS.map((park, i) => (
-                  <ParkCard
-                    key={park.id}
-                    park={park}
-                    isFirst={i === 0}
-                    isExpanded={expandedPark === park.id}
-                    onToggle={() => setExpandedPark(expandedPark === park.id ? null : park.id)}
-                  />
+              <div className="grid grid-cols-1 gap-px mb-1" style={{ background: `${C.darkInk}0A` }}>
+                {PARKS.map((park) => (
+                  <ParkCard key={park.id} park={park} />
+                ))}
+              </div>
+            </FadeIn>
+
+            {/* ── The Towns ── */}
+            <FadeIn delay={0.09}>
+              <p className="font-body text-[10px] font-bold tracking-[0.18em] uppercase mt-10 mb-3.5" style={{ color: C.goldenAmber }}>The Towns</p>
+              <div className="grid grid-cols-1 gap-px" style={{ background: `${C.darkInk}0A` }}>
+                {[
+                  { name: "Tofino", context: "Surf & Storm Capital", description: "Fewer than 2,000 residents at the end of the road. World-class surf at Cox Bay, old-growth forest on Meares Island, and storm watching from November through March. The Wickaninnish Inn set the standard.", accent: C.oceanTeal },
+                  { name: "Ucluelet", context: "Wild Pacific Trail", description: "Forty minutes south of Tofino, quieter and more weathered. The Wild Pacific Trail along the lighthouse peninsula is the best coastal walk on the island. Better value, equal beauty.", accent: C.seaGlass },
+                  { name: "Victoria", context: "Island Capital", description: "The counterpoint to the west coast. Inner Harbour, the Royal BC Museum, afternoon tea at the Empress. Architectural, ceremonial, and the ferry gateway from Vancouver. A different kind of island experience.", accent: C.sunSalmon },
+                ].map(town => (
+                  <div key={town.name} style={{ background: C.warmWhite }} className="p-4 md:p-5">
+                    <div className="font-body text-[9px] tracking-[0.16em] uppercase text-[#7A857E] mb-1">{town.context}</div>
+                    <div className="font-serif font-normal text-[20px] text-dark-ink leading-[1.2] mb-3">{town.name}</div>
+                    <p className="font-body text-[13px] font-normal text-[#4A5650] leading-[1.7] m-0">{town.description}</p>
+                  </div>
+                ))}
+              </div>
+            </FadeIn>
+
+            {/* ── Divider ── */}
+            <div className="h-px my-10" style={{ background: `${C.darkInk}14` }} />
+
+            {/* ── Places That Stop You ── */}
+            <FadeIn delay={0.1}>
+              <p className="font-body text-[10px] font-bold tracking-[0.18em] uppercase mb-3.5" style={{ color: C.goldenAmber }}>Places That Stop You</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px" style={{ background: `${C.darkInk}0A` }}>
+                {[
+                  { name: "Long Beach", category: "Beach · Surf", blurb: "Sixteen kilometers of unbroken sand between Tofino and Ucluelet. The widest, longest beach on Vancouver Island. Storm waves in winter, gentle rollers in summer." },
+                  { name: "Meares Island Big Trees Trail", category: "Forest · Old Growth", blurb: "A boardwalk through 1,500-year-old red cedars on Tla-o-qui-aht First Nation territory. A 15-minute water taxi from Tofino. The trees are cathedral-scale." },
+                  { name: "Hot Springs Cove", category: "Hot Springs · Boat Access", blurb: "Natural hot springs on a rocky shore, accessible only by boat or floatplane from Tofino. The 2-km boardwalk through forest ends at pools carved into coastal rock." },
+                  { name: "Wild Pacific Trail", category: "Trail · Lighthouse", blurb: "A 9-km network of cliff-edge trails around the Ucluelet lighthouse peninsula. Whale watching from shore in March and April. The Amphitrite Point section is the highlight." },
+                  { name: "Cathedral Grove", category: "Forest · Ancient", blurb: "800-year-old Douglas firs in MacMillan Provincial Park, on the road between Nanaimo and Tofino. A cathedral of trees — some 9 feet in diameter. Pull over and walk in silence." },
+                  { name: "Broken Group Islands", category: "Kayak · Archipelago", blurb: "Over 100 islands in Barkley Sound, accessible only by boat. Multi-day kayak camping through sheltered channels, sea caves, and First Nations middens. Permit required." },
+                ].map(h => (
+                  <div key={h.name} style={{ background: C.warmWhite }} className="p-4 md:p-5">
+                    <div className="font-body text-[11px] font-semibold mb-1" style={{ color: C.goldenAmber }}>◈</div>
+                    <div className="font-serif text-[17px] font-normal text-dark-ink leading-[1.3] mb-1">{h.name}</div>
+                    <div className="font-body text-[9px] font-bold tracking-[0.16em] uppercase mb-2" style={{ color: '#7A857E' }}>{h.category}</div>
+                    <p className="font-body text-[12px] font-normal text-[#7A857E] leading-[1.5] m-0">{h.blurb}</p>
+                  </div>
                 ))}
               </div>
             </FadeIn>
