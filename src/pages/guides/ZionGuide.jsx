@@ -726,7 +726,7 @@ function DesignationIcon({ designation, size = 14, color = "#2D5F2B" }) {
   return null;
 }
 
-function ParkCard({ park, isFirst }) {
+function ParkCard({ park }) {
   const DESIGNATION_LABELS = {
     "us-national-park": "National Park",
     "canadian-national-park": "National Park Reserve",
@@ -739,27 +739,24 @@ function ParkCard({ park, isFirst }) {
   const npsCode = NPS_CODES[park.id] || null;
   const stats = [park.acreage, park.elevation, park.attribute, park.driveFrom].filter(Boolean);
   return (
-    <div style={{ borderTop: isFirst ? 'none' : `1px solid ${C.stone}` }}>
-      <div className="flex" style={{ minHeight: 0 }}>
-        <div className="shrink-0" style={{ width: 3, background: park.accent }} />
-        <div className="flex-1 min-w-0 py-4 pl-4 pr-0 md:py-5 md:pl-5">
-          <div className="font-body text-[9px] tracking-[0.16em] uppercase text-[#7A857E] mb-1">
-            {DESIGNATION_LABELS[park.designation] || park.designation}{park.established ? ` · Est. ${park.established}` : ""}
-          </div>
-          <div className="font-serif font-normal text-[22px] text-dark-ink leading-[1.2] mb-1">{park.name}</div>
-          <div className="font-body text-[11px] text-[#7A857E] leading-[1.4] mb-2.5">
-            {stats.map((s, i) => <span key={i}>{i > 0 && " · "}{s}</span>)}
-          </div>
-          <p className="font-serif text-[16px] font-light text-[#4A5650] leading-[1.7] m-0">{park.soul}</p>
-          {npsCode && (
-            <a href={`https://www.nps.gov/${npsCode}/`} target="_blank" rel="noopener noreferrer"
-              className="inline-block mt-3 font-body text-[10px] font-bold tracking-[0.12em] uppercase no-underline"
-              style={{ color: C.goldenAmber, borderBottom: `1px solid rgba(212,168,83,0.3)` }}>
-              nps.gov/{npsCode} ↗
-            </a>
-          )}
+    <div style={{ background: C.warmWhite }} className="p-4 md:p-5">
+      <div style={{ borderLeft: `3px solid ${park.accent}`, paddingLeft: 14 }}>
+        <div className="font-body text-[9px] tracking-[0.16em] uppercase text-[#7A857E] mb-1">
+          {DESIGNATION_LABELS[park.designation] || park.designation}{park.established ? ` · Est. ${park.established}` : ""}
+        </div>
+        <div className="font-serif font-normal text-[22px] text-dark-ink leading-[1.2] mb-1">{park.name}</div>
+        <div className="font-body text-[11px] text-[#7A857E] leading-[1.4] mb-2.5">
+          {stats.map((s, i) => <span key={i}>{i > 0 && " · "}{s}</span>)}
         </div>
       </div>
+      <p className="font-serif text-[16px] font-light text-[#4A5650] leading-[1.7] m-0 mt-3">{park.soul}</p>
+      {npsCode && (
+        <a href={`https://www.nps.gov/${npsCode}/`} target="_blank" rel="noopener noreferrer"
+          className="inline-block mt-3 font-body text-[10px] font-bold tracking-[0.12em] uppercase no-underline"
+          style={{ color: C.goldenAmber, borderBottom: `1px solid rgba(212,168,83,0.3)` }}>
+          nps.gov/{npsCode} ↗
+        </a>
+      )}
     </div>
   );
 }
@@ -1440,9 +1437,9 @@ export default function ZionGuide() {
               <p className="font-body text-[10px] font-bold tracking-[0.18em] uppercase mb-3.5" style={{ color: C.sunSalmon }}>The Parks</p>
             </FadeIn>
             <FadeIn delay={0.08}>
-              <div className="mb-1">
-                {PARKS.map((park, i) => (
-                  <ParkCard key={park.id} park={park} isFirst={i === 0} />
+              <div className="grid grid-cols-1 gap-px mb-1" style={{ background: `${C.darkInk}0A` }}>
+                {PARKS.map((park) => (
+                  <ParkCard key={park.id} park={park} />
                 ))}
               </div>
             </FadeIn>
