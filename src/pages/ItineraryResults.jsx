@@ -18,6 +18,7 @@ import { clearSession } from '@services/sessionManager';
 import { createShareableUrl } from '@services/shareService';
 import { safeJson, fetchWithTimeout } from '@utils/fetchHelpers';
 import SavePill from '@components/SavePill';
+import IterationsPill from '@components/IterationsPill';
 import ItineraryNav from '@components/ItineraryNav';
 // CelestialMonthStrip consolidated into CelestialSnapshot below
 
@@ -4114,6 +4115,7 @@ export default function ItineraryResults() {
       setLoadingShared(false);
       if (data.formData) setFormData(data.formData);
       if (data.tripLogistics) setTripLogistics(data.tripLogistics);
+      if (data.iterations) setIterations(data.iterations);
     } catch (e) {
       clear();
       console.error('[SharedTrip] fetch exception', e);
@@ -4126,6 +4128,15 @@ export default function ItineraryResults() {
     if (!shareToken || rawItinerary) return;
     fetchSharedTrip(shareToken);
   }, [shareToken]);
+
+  // Fetch iterations for non-shared trips once itineraryId is available
+  useEffect(() => {
+    if (!itineraryId || iterations.length > 0) return;
+    fetch(`/api/get-trip-iterations?itineraryId=${encodeURIComponent(itineraryId)}`)
+      .then(r => r.json())
+      .then(d => { if (d.iterations?.length) setIterations(d.iterations); })
+      .catch(() => {});
+  }, [itineraryId]);
 
   // Iteration counter — persisted in sessionStorage keyed to this trip
   const sessionKey = useMemo(
@@ -4174,6 +4185,10 @@ export default function ItineraryResults() {
 
   // Save panel state
   const [savePanelOpen, setSavePanelOpen] = useState(false);
+
+  // Iterations panel state
+  const [iterationsPanelOpen, setIterationsPanelOpen] = useState(false);
+  const [iterations, setIterations] = useState([]);
 
   // Trip title — shared editable state (sync effect is after itinerary useMemo below)
   const [tripTitle, setTripTitle] = useState('');
@@ -4865,6 +4880,11 @@ export default function ItineraryResults() {
         if (id) {
           try { sessionStorage.setItem('lila_itinerary_id', id); } catch { /* quota */ }
           setItineraryId(id);
+          // Refresh iteration list after new row is saved
+          fetch(`/api/get-trip-iterations?itineraryId=${encodeURIComponent(id)}`)
+            .then(r => r.json())
+            .then(d => { if (d.iterations?.length) setIterations(d.iterations); })
+            .catch(() => {});
         }
       });
 
@@ -5025,6 +5045,8 @@ export default function ItineraryResults() {
         rawItinerary={rawItinerary}
         formData={formData}
         onShare={() => setSavePanelOpen(true)}
+        onIterations={() => setIterationsPanelOpen(true)}
+        iterationCount={iterations.length}
         tripTitle={tripTitle}
         onTitleChange={(t) => { setTripTitle(t); persistTitle(t); }}
         feedbackCount={feedbackCount}
@@ -5378,6 +5400,16 @@ export default function ItineraryResults() {
           rawItinerary={rawItinerary}
           formData={formData}
           itineraryTitle={itinerary?.title}
+        />
+      )}
+
+      {/* Iterations panel */}
+      {isStructured && (
+        <IterationsPill
+          isOpen={iterationsPanelOpen}
+          onClose={() => setIterationsPanelOpen(false)}
+          iterations={iterations}
+          currentItineraryId={itineraryId}
         />
       )}
     </div>

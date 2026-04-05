@@ -27,12 +27,22 @@ export default async function handler(req, res) {
   }
 
   try {
-    // Fetch itinerary by share token
-    const { data, error } = await supabase
+    // Try share_token first, fall back to itinerary ID
+    let data, error;
+    ({ data, error } = await supabase
       .from('itineraries')
       .select('id, raw_itinerary, destination, session_id, trip_logistics')
       .eq('share_token', token)
-      .single();
+      .single());
+
+    if (error || !data) {
+      // Fallback: try as itinerary ID
+      ({ data, error } = await supabase
+        .from('itineraries')
+        .select('id, raw_itinerary, destination, session_id, trip_logistics')
+        .eq('id', token)
+        .single());
+    }
 
     if (error) {
       console.error('get-shared-trip query error:', error.code, error.message);
@@ -43,7 +53,7 @@ export default async function handler(req, res) {
       return res.status(404).json({ error: 'Trip not found' });
     }
 
-    // Optionally fetch form_data from sessions
+    // Fetch form_data from sessions
     let formData = null;
     if (data.session_id) {
       const { data: session } = await supabase
@@ -54,12 +64,24 @@ export default async function handler(req, res) {
       if (session?.form_data) formData = session.form_data;
     }
 
+    // Fetch all iterations for this trip via session_id
+    let iterations = [];
+    if (data.session_id) {
+      const { data: iterRows } = await supabase
+        .from('itineraries')
+        .select('id, iteration, created_at')
+        .eq('session_id', data.session_id)
+        .order('iteration', { ascending: true });
+      if (iterRows) iterations = iterRows;
+    }
+
     res.status(200).json({
       id: data.id,
       rawItinerary: data.raw_itinerary,
       destination: data.destination,
       formData,
       tripLogistics: data.trip_logistics || null,
+      iterations,
     });
   } catch (err) {
     console.error('get-shared-trip exception:', err);

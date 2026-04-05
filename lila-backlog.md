@@ -115,6 +115,7 @@ _Last updated: March 30, 2026. Living document — update as items are completed
 - [x] Logistics — open by default on first load, alternative accommodations surfaced via existing alternatives panel
 - [x] Mindfulness practice card — full border on all four sides
 - [x] Logistics — surface destination-specific airport and drive time info in flights and rental car rows
+- [x] Iterations pill — replace Save pill with trip iteration history, ID fallback on share route, logistics baseline fix
 
 ### Trip Management & Saving
 - [x] Save This Trip moved to header button

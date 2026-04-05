@@ -92,7 +92,7 @@ function TripDropdown({ trips, onSelect, onDelete, onNewTrip, onClose }) {
 
 // ─── ItineraryNav Component ─────────────────────────────────────────────────
 
-export default function ItineraryNav({ itinerary, iteration, itineraryId, rawItinerary, formData, onShare, tripTitle, onTitleChange, feedbackCount = 0, onRefine, isRefining }) {
+export default function ItineraryNav({ itinerary, iteration, itineraryId, rawItinerary, formData, onShare, onIterations, iterationCount = 0, tripTitle, onTitleChange, feedbackCount = 0, onRefine, isRefining }) {
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -338,7 +338,21 @@ export default function ItineraryNav({ itinerary, iteration, itineraryId, rawIti
           {isRefining ? 'REFINING...' : (feedbackCount > 0 ? `REFINE · ${feedbackCount}` : 'REFINE')}
         </button>
 
-        {renderSavePill()}
+        {/* Iterations */}
+        <button
+          onClick={() => onIterations?.()}
+          className="flex items-center gap-1.5 px-3 py-1.5 bg-transparent border border-stone rounded-full cursor-pointer font-body text-xs font-semibold text-[#8a8278] transition-all hover:border-[rgba(26,37,48,0.25)]"
+          style={{ WebkitTapHighlightColor: 'transparent' }}
+        >
+          <span className="hidden md:inline">Iterations</span>
+          <span className="md:hidden">v{iterationCount}</span>
+          {iterationCount > 0 && (
+            <span className="inline-flex items-center justify-center min-w-[18px] h-[18px] rounded-full text-[10px] font-bold hidden md:inline-flex"
+              style={{ background: C.goldenAmber, color: '#6B4D1A', padding: '0 5px' }}>
+              {iterationCount}
+            </span>
+          )}
+        </button>
 
         {/* Share */}
         <button
