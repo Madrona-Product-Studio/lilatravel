@@ -1422,7 +1422,7 @@ export default function ZionGuide() {
                   ].map((s, i) => (
                     <div key={i} className="text-center px-3 py-2 md:py-0" style={{ borderLeft: i > 0 ? `1px solid ${C.darkInk}14` : 'none' }}>
                       <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-1">{s.l}</div>
-                      <div className="font-serif font-normal text-[20px] text-dark-ink leading-[1.2]">{s.v}</div>
+                      <div className="font-body text-[14px] font-medium text-dark-ink leading-[1.3]">{s.v}</div>
                     </div>
                   ))}
                 </div>
