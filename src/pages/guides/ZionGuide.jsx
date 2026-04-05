@@ -988,7 +988,7 @@ const TOWNS = [
   {
     name: "Torrey",
     context: "Capitol Reef Gateway",
-    description: "A handful of buildings at the edge of the Waterpocket Fold. The nearest services to Capitol Reef. Café Diablo has been feeding park visitors since 1986. The orchards start just down the road.",
+    description: "A handful of buildings at the edge of the Waterpocket Fold. The nearest services to Capitol Reef. Rim Rock Inn and the Torrey Schoolhouse serve as base camp for the park. The orchards start just down the road.",
     accent: C.seaGlass,
   },
 ];
