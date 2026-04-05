@@ -658,7 +658,7 @@ function DesignationIcon({ designation, size = 14, color = "#2D5F2B" }) {
   return null;
 }
 
-function ParkCard({ park, isExpanded, onToggle, isFirst }) {
+function ParkCard({ park }) {
   const DESIGNATION_LABELS = {
     "us-national-park": "National Park",
     "canadian-national-park": "National Park Reserve",
@@ -669,44 +669,22 @@ function ParkCard({ park, isExpanded, onToggle, isFirst }) {
   };
   const stats = [park.acreage, park.elevation, park.attribute, park.driveFrom].filter(Boolean);
   return (
-    <div style={{ borderTop: isFirst ? 'none' : `1px solid ${C.stone}` }}>
-      <div className="flex" style={{ minHeight: 0 }}>
-        <div className="shrink-0" style={{ width: 3, background: park.accent }} />
-        <div className="flex-1 min-w-0 py-4 pl-4 pr-0 md:py-5 md:pl-5">
-          <div className="font-body text-[9px] tracking-[0.16em] uppercase text-[#7A857E] mb-1">
-            {DESIGNATION_LABELS[park.designation] || park.designation}{park.established ? ` · Est. ${park.established}` : ""}
-          </div>
-          <div className="font-serif font-light text-[21px] text-dark-ink leading-[1.2] mb-1">{park.name}</div>
-          <div className="font-body text-[11px] text-[#7A857E] leading-[1.4] mb-2.5">
-            {stats.map((s, i) => <span key={i}>{i > 0 && " · "}{s}</span>)}
-          </div>
-          <p className="font-body text-[13.5px] text-[#4A5650] leading-[1.7] m-0">{park.soul}</p>
-          <button
-            onClick={onToggle}
-            className="mt-2.5 bg-transparent border-none cursor-pointer p-0 font-body text-[10px] tracking-[0.12em] uppercase"
-            style={{ color: C.oceanTeal }}>
-            {isExpanded ? "Hide ↑" : "Details ↓"}
-          </button>
-          <div className="overflow-hidden transition-[max-height] duration-400 ease-[cubic-bezier(0.4,0,0.2,1)]"
-            style={{ maxHeight: isExpanded ? 400 : 0 }}>
-            <div className="pt-3">
-              {park.facts.map((fact, i) => (
-                <div key={i} className="flex gap-2 mb-[5px] items-start">
-                  <div className="w-1 h-1 rounded-full opacity-60 mt-[7px] shrink-0" style={{ background: park.accent }} />
-                  <span className="font-body text-[12px] font-normal text-[#4A5650] leading-[1.65]">{fact}</span>
-                </div>
-              ))}
-              {park.infoUrl && (
-                <a href={park.infoUrl} target="_blank" rel="noopener noreferrer"
-                  className="inline-block mt-2.5 font-body text-[10px] font-bold tracking-[0.18em] uppercase no-underline"
-                  style={{ color: park.accent }}>
-                  {park.designation === "canadian-national-park" ? "Parks Canada" : park.designation === "us-national-park" ? "NPS Page" : "Park Info"} ↗
-                </a>
-              )}
-            </div>
-          </div>
-        </div>
+    <div style={{ background: C.warmWhite }} className="p-4 md:p-5">
+      <div className="font-body text-[9px] tracking-[0.16em] uppercase text-[#7A857E] mb-1">
+        {DESIGNATION_LABELS[park.designation] || park.designation}{park.established ? ` · Est. ${park.established}` : ""}
       </div>
+      <div className="font-serif font-normal text-[20px] text-dark-ink leading-[1.2] mb-1">{park.name}</div>
+      <div className="font-body text-[11px] text-[#7A857E] leading-[1.4] mb-3">
+        {stats.map((s, i) => <span key={i}>{i > 0 && " · "}{s}</span>)}
+      </div>
+      <p className="font-body text-[13px] font-normal text-[#4A5650] leading-[1.7] m-0">{park.soul}</p>
+      {park.infoUrl && (
+        <a href={park.infoUrl} target="_blank" rel="noopener noreferrer"
+          className="inline-block mt-3 font-body text-[10px] font-bold tracking-[0.12em] uppercase no-underline"
+          style={{ color: C.goldenAmber, borderBottom: '1px solid rgba(212,168,83,0.3)' }}>
+          {park.infoUrl.includes('nps.gov') ? `nps.gov/${park.infoUrl.split('nps.gov/')[1].replace(/\/$/, '')}` : park.infoUrl.includes('parks.canada.ca') ? 'Parks Canada' : park.infoUrl.includes('parks.ca.gov') ? 'CA State Parks' : park.infoUrl.includes('hawaii') ? 'Hawaii DLNR' : park.infoUrl.includes('bcparks') ? 'BC Parks' : 'Park Info'} ↗
+        </a>
+      )}
     </div>
   );
 }
@@ -863,7 +841,6 @@ export default function JoshuaTreeGuide() {
     return () => window.removeEventListener("resize", check);
   }, []);
 
-  const [expandedPark, setExpandedPark] = useState(null);
   const [activeSheet, setActiveSheet] = useState(null);
   const [activeMoveTiers, setActiveMoveTiers] = useState(() => new Set(moveItems.map(i => i.moveTier)));
   const [activeBreatheTiers, setActiveBreatheTiers] = useState(() => new Set(['practice', 'soak', 'restore']));
@@ -932,6 +909,22 @@ export default function JoshuaTreeGuide() {
     infoUrl: "https://www.nps.gov/jotr/",
     driveFrom: null, accent: C.goldenAmber, isAnchor: true,
   }];
+
+  const TOWNS = [
+    { name: "Joshua Tree", context: "Park's North Entrance", description: "A small desert town with a disproportionate creative scene. Art galleries, natural food co-ops, and a Saturday farmers market. The north entrance to the park is a five-minute drive.", accent: C.goldenAmber },
+    { name: "Twentynine Palms", context: "Park Headquarters", description: "The park's main visitor center and administrative hub. Quieter than Joshua Tree town, with easy access to the Oasis of Mara and the park's less-visited eastern half.", accent: C.sunSalmon },
+    { name: "Pioneertown", context: "1940s Film Set, Still Standing", description: "Built in 1946 as a living Old West movie set. Pappy & Harriet's is the reason most people come — live music in a desert honky-tonk. The Mane Street walk is worth the detour.", accent: C.oceanTeal },
+    { name: "Palm Springs", context: "Desert Modernism, 45 Min South", description: "Mid-century architecture, hot springs, and the aerial tramway to the top of San Jacinto. A different kind of desert experience — polished where Joshua Tree is raw.", accent: C.seaGlass },
+  ];
+
+  const HIGHLIGHTS = [
+    { name: "Keys View", category: "Viewpoint · Sunset", blurb: "The Coachella Valley, San Andreas Fault, and the Salton Sea spread below. On clear days, Signal Mountain in Mexico. The single best sunset in the park." },
+    { name: "Skull Rock Loop", category: "Trail · Easy", blurb: "A 1.7-mile loop through a boulder garden with the park's most photographed formation. Easy, flat, and surprisingly uncrowded at dawn." },
+    { name: "Cholla Cactus Garden", category: "Walk · Colorado Desert", blurb: "A quarter-mile boardwalk through a dense field of teddy bear cholla. Backlit at sunset, the spines glow like fiber optics. Stay on the path — they jump." },
+    { name: "Ryan Mountain", category: "Summit · 360° Views", blurb: "Three miles round trip, 1,000 ft of gain. The summit panorama covers both deserts and the entire western park. Best done at sunrise before the heat." },
+    { name: "Arch Rock Trail", category: "Trail · Geology", blurb: "A short scramble to one of the park's signature natural arches. The surrounding boulder formations are the real draw — a playground of monzogranite." },
+    { name: "Milky Way from Cap Rock", category: "Dark Sky · Night", blurb: "Bortle 2 skies on a moonless night. The Milky Way arcs overhead in a way that most Americans have never seen. Bring a red headlamp and patience." },
+  ];
 
   return (
     <>
@@ -1043,7 +1036,7 @@ export default function JoshuaTreeGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* THE PLACE                                                     */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="sense-of-place" className="scroll-mt-[126px] py-11">
+          <section id="sense-of-place" className="scroll-mt-[126px] pt-11 pb-4">
             <FadeIn>
               <SectionLabel accentColor={ACCENT}>Sense of Place</SectionLabel>
               <p className="font-body text-[clamp(14px,1.8vw,15px)] leading-[1.8] font-normal text-[#4A5650] mt-0 mb-4">
@@ -1056,18 +1049,22 @@ export default function JoshuaTreeGuide() {
 
             {/* ── At a Glance ── */}
             <FadeIn delay={0.06}>
-              <div className="grid grid-cols-[repeat(auto-fit,minmax(130px,1fr))] gap-3 md:gap-4 p-4 md:p-5 bg-cream mb-3">
-                {[
-                  { l: "Recommended", v: "3–5 days" },
-                  { l: "Nearest Airport", v: "Palm Springs (PSP) or LAX" },
-                  { l: "Drive from LAX", v: "~2.5 hours" },
-                  { l: "Best Times", v: "Oct–Apr" },
-                ].map((s, i) => (
-                  <div key={i}>
-                    <div className="font-body text-[11px] tracking-[0.18em] uppercase text-[#7A857E] mb-[3px]">{s.l}</div>
-                    <div className="font-serif font-light text-[22px] text-dark-ink">{s.v}</div>
-                  </div>
-                ))}
+              <div>
+                <div className="h-px" style={{ background: `${C.darkInk}14` }} />
+                <div className="grid grid-cols-2 md:grid-cols-4 py-5">
+                  {[
+                    { l: "Recommended", v: "3–5 days" },
+                    { l: "Nearest Airport", v: "Palm Springs (PSP)" },
+                    { l: "Drive from LAX", v: "~2.5 hours" },
+                    { l: "Best Times", v: "Oct–Apr" },
+                  ].map((s, i) => (
+                    <div key={i} className="text-center px-3 py-2 md:py-0" style={{ borderLeft: i > 0 ? `1px solid ${C.darkInk}14` : 'none' }}>
+                      <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-1">{s.l}</div>
+                      <div className="font-body text-[14px] font-medium text-dark-ink leading-[1.3]">{s.v}</div>
+                    </div>
+                  ))}
+                </div>
+                <div className="h-px" style={{ background: `${C.darkInk}14` }} />
               </div>
             </FadeIn>
           </section>
@@ -1076,39 +1073,72 @@ export default function JoshuaTreeGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* THE LAND                                                      */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="the-land" className="scroll-mt-[126px] pt-2 pb-11">
+          <section id="the-land" className="scroll-mt-[126px] pb-11">
+            {/* ── The Park ── */}
             <FadeIn>
-              <div className="flex items-center gap-2.5 mb-4">
-                <div className="w-5 h-px" style={{ background: ACCENT }} />
-                <span className="font-body text-[10px] font-medium tracking-[0.2em] uppercase" style={{ color: ACCENT }}>The Land</span>
-              </div>
-              <p className="font-body text-[clamp(14px,1.8vw,15px)] leading-[1.8] font-normal text-[#4A5650] mt-0 mb-6">
-                {"One national park straddles two deserts at the edge of Southern California."}
-              </p>
+              <p className="font-body text-[10px] font-bold tracking-[0.18em] uppercase mb-3.5" style={{ color: C.goldenAmber }}>The Park</p>
             </FadeIn>
             <FadeIn delay={0.08}>
-              <div className="mb-1">
-                {PARKS.map((park, i) => (
-                  <ParkCard
-                    key={park.id}
-                    park={park}
-                    isFirst={i === 0}
-                    isExpanded={expandedPark === park.id}
-                    onToggle={() => setExpandedPark(expandedPark === park.id ? null : park.id)}
-                  />
+              <div className="grid grid-cols-1 gap-px mb-1" style={{ background: `${C.darkInk}0A` }}>
+                {PARKS.map((park) => (
+                  <ParkCard key={park.id} park={park} />
                 ))}
               </div>
             </FadeIn>
 
-            {/* ── Wildlife Section ── */}
+            {/* ── The Towns ── */}
+            <FadeIn delay={0.09}>
+              <p className="font-body text-[10px] font-bold tracking-[0.18em] uppercase mt-10 mb-3.5" style={{ color: C.sunSalmon }}>The Towns</p>
+              <div className="grid grid-cols-1 gap-px" style={{ background: `${C.darkInk}0A` }}>
+                {TOWNS.map(town => (
+                  <div key={town.name} style={{ background: C.warmWhite }} className="p-4 md:p-5">
+                    <div className="font-body text-[9px] tracking-[0.16em] uppercase text-[#7A857E] mb-1">{town.context}</div>
+                    <div className="font-serif font-normal text-[20px] text-dark-ink leading-[1.2] mb-3">{town.name}</div>
+                    <p className="font-body text-[13px] font-normal text-[#4A5650] leading-[1.7] m-0">{town.description}</p>
+                  </div>
+                ))}
+              </div>
+            </FadeIn>
+
+            {/* ── Divider ── */}
+            <div className="h-px my-10" style={{ background: `${C.darkInk}14` }} />
+
+            {/* ── Places That Stop You ── */}
             <FadeIn delay={0.1}>
-              <div className="border border-stone bg-cream mt-7 p-[18px] md:p-[22px]">
-                <div className="font-body text-[10px] font-bold tracking-[0.24em] uppercase text-sea-glass mb-2">Desert Wildlife</div>
-                <WildlifeEntry name="Desert Bighorn Sheep" season="Year-round" detail="Most visible at dawn and dusk near water sources. Barker Dam and Lost Palms Oasis are reliable sighting zones." />
-                <WildlifeEntry name="Desert Tortoise" season="Spring – Fall" detail="Threatened species — do not approach or handle if encountered. Most active in spring after rain. Found in the Colorado Desert section." />
-                <WildlifeEntry name="Coyote" season="Year-round" detail="Listen for them at dusk. Their calls across the open desert are part of the sound of this place." />
-                <WildlifeEntry name="Roadrunner" season="Year-round" detail="Fast, curious, and frequently spotted along park roads and at campground edges." />
-                <WildlifeEntry name="Sidewinder Rattlesnake" season="Warm months" detail="Watch where you step and reach, especially in rocky areas. They're shy but present." />
+              <p className="font-body text-[10px] font-bold tracking-[0.18em] uppercase mb-3.5" style={{ color: C.goldenAmber }}>Places That Stop You</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px" style={{ background: `${C.darkInk}0A` }}>
+                {HIGHLIGHTS.map(h => (
+                  <div key={h.name} style={{ background: C.warmWhite }} className="p-4 md:p-5">
+                    <div className="font-body text-[11px] font-semibold mb-1" style={{ color: C.goldenAmber }}>◈</div>
+                    <div className="font-serif text-[17px] font-normal text-dark-ink leading-[1.3] mb-1">{h.name}</div>
+                    <div className="font-body text-[9px] font-bold tracking-[0.16em] uppercase mb-2" style={{ color: '#7A857E' }}>{h.category}</div>
+                    <p className="font-body text-[12px] font-normal text-[#7A857E] leading-[1.5] m-0">{h.blurb}</p>
+                  </div>
+                ))}
+              </div>
+            </FadeIn>
+
+            {/* ── Divider ── */}
+            <div className="h-px my-10" style={{ background: `${C.darkInk}14` }} />
+
+            {/* ── Desert Wildlife ── */}
+            <FadeIn delay={0.12}>
+              <p className="font-body text-[10px] font-bold tracking-[0.18em] uppercase mb-3.5" style={{ color: C.seaGlass }}>Desert Wildlife</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-px" style={{ background: `${C.darkInk}0A` }}>
+                {[
+                  { name: "Desert Bighorn Sheep", season: "Year-round", detail: "Most visible at dawn and dusk near water sources. Barker Dam and Lost Palms Oasis are reliable sighting zones." },
+                  { name: "Desert Tortoise", season: "Spring – Fall", detail: "Threatened species — do not approach or handle. Most active in spring after rain. Found in the Colorado Desert section." },
+                  { name: "Coyote", season: "Year-round", detail: "Listen for them at dusk. Their calls across the open desert are part of the sound of this place." },
+                  { name: "Roadrunner", season: "Year-round", detail: "Fast, curious, and frequently spotted along park roads and at campground edges." },
+                  { name: "Sidewinder Rattlesnake", season: "Warm months", detail: "Watch where you step and reach, especially in rocky areas. They're shy but present." },
+                  { name: "Joshua Tree (Yucca brevifolia)", season: "Year-round", detail: "The park's namesake. Not actually a tree — a member of the agave family. Thrives only in the Mojave section above 3,000 ft." },
+                ].map(entry => (
+                  <div key={entry.name} style={{ background: C.warmWhite }} className="p-4 md:p-5">
+                    <div className="font-serif text-[15px] font-medium text-dark-ink leading-[1.3] mb-1">{entry.name}</div>
+                    <div className="font-body text-[9px] font-bold tracking-[0.16em] uppercase mb-2" style={{ color: C.oceanTeal }}>{entry.season}</div>
+                    <p className="font-body text-[11px] font-normal text-[#7A857E] leading-[1.5] m-0">{entry.detail}</p>
+                  </div>
+                ))}
               </div>
             </FadeIn>
           </section>
