@@ -1398,7 +1398,7 @@ export default function ZionGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* SENSE OF PLACE                                                */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="sense-of-place" className="scroll-mt-[126px] py-11">
+          <section id="sense-of-place" className="scroll-mt-[126px] pt-11 pb-4">
             <FadeIn>
               <SectionLabel>Sense of Place</SectionLabel>
               <p className="font-body text-[clamp(14px,1.8vw,15px)] leading-[1.8] font-normal text-[#4A5650] mt-0 mb-4">
@@ -1431,7 +1431,7 @@ export default function ZionGuide() {
           {/* ══════════════════════════════════════════════════════════════ */}
           {/* THE LAND                                                      */}
           {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="the-land" className="scroll-mt-[126px] pt-2 pb-11">
+          <section id="the-land" className="scroll-mt-[126px] pb-11">
             {/* ── The Parks ── */}
             <FadeIn>
               <p className="font-body text-[10px] font-bold tracking-[0.18em] uppercase mb-3.5" style={{ color: C.sunSalmon }}>The Parks</p>
