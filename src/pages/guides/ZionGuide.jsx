@@ -740,16 +740,14 @@ function ParkCard({ park }) {
   const stats = [park.acreage, park.elevation, park.attribute, park.driveFrom].filter(Boolean);
   return (
     <div style={{ background: C.warmWhite }} className="p-4 md:p-5">
-      <div style={{ borderLeft: `3px solid ${park.accent}`, paddingLeft: 14 }}>
-        <div className="font-body text-[9px] tracking-[0.16em] uppercase text-[#7A857E] mb-1">
-          {DESIGNATION_LABELS[park.designation] || park.designation}{park.established ? ` · Est. ${park.established}` : ""}
-        </div>
-        <div className="font-serif font-normal text-[22px] text-dark-ink leading-[1.2] mb-1">{park.name}</div>
-        <div className="font-body text-[11px] text-[#7A857E] leading-[1.4] mb-2.5">
-          {stats.map((s, i) => <span key={i}>{i > 0 && " · "}{s}</span>)}
-        </div>
+      <div className="font-body text-[9px] tracking-[0.16em] uppercase text-[#7A857E] mb-1">
+        {DESIGNATION_LABELS[park.designation] || park.designation}{park.established ? ` · Est. ${park.established}` : ""}
       </div>
-      <p className="font-serif text-[16px] font-light text-[#4A5650] leading-[1.7] m-0 mt-3">{park.soul}</p>
+      <div className="font-serif font-normal text-[20px] text-dark-ink leading-[1.2] mb-1">{park.name}</div>
+      <div className="font-body text-[11px] text-[#7A857E] leading-[1.4] mb-3">
+        {stats.map((s, i) => <span key={i}>{i > 0 && " · "}{s}</span>)}
+      </div>
+      <p className="font-body text-[13px] font-normal text-[#4A5650] leading-[1.7] m-0">{park.soul}</p>
       {npsCode && (
         <a href={`https://www.nps.gov/${npsCode}/`} target="_blank" rel="noopener noreferrer"
           className="inline-block mt-3 font-body text-[10px] font-bold tracking-[0.12em] uppercase no-underline"
@@ -1481,11 +1479,9 @@ export default function ZionGuide() {
               <div className="grid grid-cols-1 gap-px" style={{ background: `${C.darkInk}0A` }}>
                 {TOWNS.map(town => (
                   <div key={town.name} style={{ background: C.warmWhite }} className="p-4 md:p-5">
-                    <div style={{ borderLeft: `3px solid ${town.accent}`, paddingLeft: 14 }}>
-                      <div className="font-body text-[9px] tracking-[0.16em] uppercase text-[#7A857E] mb-1">{town.context}</div>
-                      <div className="font-serif font-normal text-[22px] text-dark-ink leading-[1.2] mb-1">{town.name}</div>
-                    </div>
-                    <p className="font-serif text-[16px] font-light text-[#4A5650] leading-[1.7] m-0 mt-3">{town.description}</p>
+                    <div className="font-body text-[9px] tracking-[0.16em] uppercase text-[#7A857E] mb-1">{town.context}</div>
+                    <div className="font-serif font-normal text-[20px] text-dark-ink leading-[1.2] mb-3">{town.name}</div>
+                    <p className="font-body text-[13px] font-normal text-[#4A5650] leading-[1.7] m-0">{town.description}</p>
                   </div>
                 ))}
               </div>
