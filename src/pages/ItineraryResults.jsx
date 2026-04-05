@@ -4162,6 +4162,16 @@ export default function ItineraryResults() {
   const [refineConfirmOpen, setRefineConfirmOpen] = useState(false);
   const [logisticsBaseline, setLogisticsBaseline] = useState(0); // booking count at last refinement
 
+  // Sync baseline after share link hydration so pre-existing bookings aren't counted as new
+  useEffect(() => {
+    if (!loadingShared && tripLogistics) {
+      const initial = (tripLogistics.flights?.length || 0)
+        + (tripLogistics.rentals?.length || 0)
+        + (tripLogistics.accommodations?.length || 0);
+      if (initial > 0) setLogisticsBaseline(initial);
+    }
+  }, [loadingShared]);
+
   // Save panel state
   const [savePanelOpen, setSavePanelOpen] = useState(false);
 
