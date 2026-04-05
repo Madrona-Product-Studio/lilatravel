@@ -116,6 +116,7 @@ _Last updated: March 30, 2026. Living document — update as items are completed
 - [x] Mindfulness practice card — full border on all four sides
 - [x] Logistics — surface destination-specific airport and drive time info in flights and rental car rows
 - [x] Iterations pill — replace Save pill with trip iteration history, ID fallback on share route, logistics baseline fix
+- [x] Sense of Place redesign (Zion) — inline park cards, NPS links, Places That Stop You highlights, flat wildlife grid
 
 ### Trip Management & Saving
 - [x] Save This Trip moved to header button

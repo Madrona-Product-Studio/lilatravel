@@ -726,7 +726,7 @@ function DesignationIcon({ designation, size = 14, color = "#2D5F2B" }) {
   return null;
 }
 
-function ParkCard({ park, isExpanded, onToggle, isFirst }) {
+function ParkCard({ park, isFirst }) {
   const DESIGNATION_LABELS = {
     "us-national-park": "National Park",
     "canadian-national-park": "National Park Reserve",
@@ -735,6 +735,8 @@ function ParkCard({ park, isExpanded, onToggle, isFirst }) {
     "national-forest": "National Forest",
     "state-wilderness": "State Wilderness Preserve",
   };
+  const NPS_CODES = { zion: "zion", bryce: "brca", "capitol-reef": "care" };
+  const npsCode = NPS_CODES[park.id] || null;
   const stats = [park.acreage, park.elevation, park.attribute, park.driveFrom].filter(Boolean);
   return (
     <div style={{ borderTop: isFirst ? 'none' : `1px solid ${C.stone}` }}>
@@ -744,35 +746,18 @@ function ParkCard({ park, isExpanded, onToggle, isFirst }) {
           <div className="font-body text-[9px] tracking-[0.16em] uppercase text-[#7A857E] mb-1">
             {DESIGNATION_LABELS[park.designation] || park.designation}{park.established ? ` · Est. ${park.established}` : ""}
           </div>
-          <div className="font-serif font-light text-[21px] text-dark-ink leading-[1.2] mb-1">{park.name}</div>
+          <div className="font-serif font-normal text-[22px] text-dark-ink leading-[1.2] mb-1">{park.name}</div>
           <div className="font-body text-[11px] text-[#7A857E] leading-[1.4] mb-2.5">
             {stats.map((s, i) => <span key={i}>{i > 0 && " · "}{s}</span>)}
           </div>
-          <p className="font-body text-[13.5px] text-[#4A5650] leading-[1.7] m-0">{park.soul}</p>
-          <button
-            onClick={onToggle}
-            className="mt-2.5 bg-transparent border-none cursor-pointer p-0 font-body text-[10px] tracking-[0.12em] uppercase"
-            style={{ color: C.oceanTeal }}>
-            {isExpanded ? "Hide ↑" : "Details ↓"}
-          </button>
-          <div className="overflow-hidden transition-[max-height] duration-[400ms] ease-[cubic-bezier(0.4,0,0.2,1)]"
-            style={{ maxHeight: isExpanded ? 400 : 0 }}>
-            <div className="pt-3">
-              {park.facts.map((fact, i) => (
-                <div key={i} className="flex gap-2 mb-[5px] items-start">
-                  <div className="w-1 h-1 rounded-full opacity-60 mt-[7px] shrink-0" style={{ background: park.accent }} />
-                  <span className="font-body text-[12px] font-normal text-[#4A5650] leading-[1.65]">{fact}</span>
-                </div>
-              ))}
-              {park.infoUrl && (
-                <a href={park.infoUrl} target="_blank" rel="noopener noreferrer"
-                  className="inline-block mt-2.5 font-body text-[10px] font-bold tracking-[0.18em] uppercase no-underline"
-                  style={{ color: park.accent }}>
-                  {park.designation === "canadian-national-park" ? "Parks Canada" : park.designation === "us-national-park" ? "NPS Page" : "Park Info"} ↗
-                </a>
-              )}
-            </div>
-          </div>
+          <p className="font-serif text-[16px] font-light text-[#4A5650] leading-[1.7] m-0">{park.soul}</p>
+          {npsCode && (
+            <a href={`https://www.nps.gov/${npsCode}/`} target="_blank" rel="noopener noreferrer"
+              className="inline-block mt-3 font-body text-[10px] font-bold tracking-[0.12em] uppercase no-underline"
+              style={{ color: C.goldenAmber, borderBottom: `1px solid rgba(212,168,83,0.3)` }}>
+              nps.gov/{npsCode} ↗
+            </a>
+          )}
         </div>
       </div>
     </div>
@@ -781,107 +766,18 @@ function ParkCard({ park, isExpanded, onToggle, isFirst }) {
 
 // ─── Wildlife Drawer ────────────────────────────────────────────────────────
 
-function WildlifeDrawer() {
-  const [open, setOpen] = useState(false);
-  const [activeGroup, setActiveGroup] = useState("Mammals");
-  const [expandedEntry, setExpandedEntry] = useState(null);
-
-  const group = WILDLIFE_GROUPS.find(g => g.label === activeGroup);
-
+function WildlifeSection() {
   return (
-    <div className="border border-stone bg-cream mt-7">
-      {/* Trigger */}
-      <button
-        onClick={() => setOpen(o => !o)}
-        className="w-full px-[18px] py-4 md:px-[22px] md:py-[18px] bg-transparent border-none cursor-pointer flex items-center justify-between gap-3"
-      >
-        <div className="flex items-center gap-3">
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-            <path d="M9 2C9 2 3 5 3 10C3 13.3137 5.68629 16 9 16C12.3137 16 15 13.3137 15 10C15 5 9 2 9 2Z"
-              stroke={C.seaGlass} strokeWidth="1.2" fill="none" />
-            <line x1="9" y1="16" x2="9" y2="8" stroke={C.seaGlass} strokeWidth="1.2" />
-            <line x1="9" y1="11" x2="6" y2="9" stroke={C.seaGlass} strokeWidth="1" />
-            <line x1="9" y1="13" x2="12" y2="11" stroke={C.seaGlass} strokeWidth="1" />
-          </svg>
-          <div>
-            <div className="font-body text-[10px] font-bold tracking-[0.24em] uppercase mb-0.5" style={{ color: C.seaGlass }}>
-              The Living Corridor
-            </div>
-            <div className="font-serif text-[17px] md:text-[19px] font-normal text-dark-ink leading-[1.1]">
-              Plants &amp; Wildlife
-            </div>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-px" style={{ background: `${C.darkInk}0A` }}>
+      {WILDLIFE_GROUPS.flatMap(g => g.entries.map(entry => (
+        <div key={entry.name} style={{ background: C.warmWhite }} className="p-4 md:p-5">
+          <div className="font-serif text-[15px] font-medium text-dark-ink leading-[1.3] mb-1">{entry.name}</div>
+          <div className="font-body text-[9px] font-bold tracking-[0.16em] uppercase mb-2" style={{ color: C.oceanTeal }}>
+            {entry.season} · {entry.parks.join(", ")}
           </div>
+          <p className="font-body text-[11px] font-normal text-[#7A857E] leading-[1.5] m-0">{entry.detail}</p>
         </div>
-        <div className="font-body text-[10px] font-semibold tracking-[0.12em] text-[#7A857E] flex items-center gap-1.5">
-          <span>{open ? "Collapse" : "Explore"}</span>
-          <span style={{ display: "inline-block", transform: open ? "rotate(180deg)" : "rotate(0deg)", transition: "transform 0.3s ease", fontSize: 13 }}>↓</span>
-        </div>
-      </button>
-
-      {/* Body */}
-      <div style={{ maxHeight: open ? 1200 : 0, overflow: "hidden", transition: "max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1)" }}>
-        <div className="border-t border-stone">
-          {/* Intro */}
-          <div className="px-[18px] py-4 pb-3 md:px-[22px] md:py-[18px] md:pb-3">
-            <p className="font-body text-[13px] font-normal text-[#4A5650] leading-[1.7] m-0">
-              Zion sits at the crossroads of four ecological zones. Bryce's high plateaus add a fifth dimension. Capitol Reef's Waterpocket Fold creates micro-climates found nowhere else. Together, the corridor hosts 78 mammal species, 291 birds, and plant life that shifts from desert floor to subalpine forest within a single day's drive.
-            </p>
-          </div>
-
-          {/* Tabs */}
-          <div className="flex border-t border-b border-stone">
-            {WILDLIFE_GROUPS.map(g => (
-              <button key={g.label}
-                onClick={() => { setActiveGroup(g.label); setExpandedEntry(null); }}
-                className="flex-1 py-[11px] px-2 border-none cursor-pointer font-body text-[10px] font-bold tracking-[0.18em] uppercase transition-all duration-200"
-                style={{
-                  background: activeGroup === g.label ? `${g.accent}10` : "transparent",
-                  borderBottom: `2px solid ${activeGroup === g.label ? g.accent : "transparent"}`,
-                  color: activeGroup === g.label ? g.accent : "#7A857E",
-                }}
-              >{g.label}</button>
-            ))}
-          </div>
-
-          {/* Entries */}
-          <div className="py-1 pb-2">
-            {group.entries.map((entry, i) => {
-              const isExpanded = expandedEntry === i;
-              return (
-                <div key={i} style={{ borderBottom: i < group.entries.length - 1 ? `1px solid ${C.stone}` : "none" }}>
-                  <button
-                    onClick={() => setExpandedEntry(isExpanded ? null : i)}
-                    className="w-full px-[18px] py-[13px] md:px-[22px] md:py-3.5 border-none cursor-pointer flex items-start justify-between gap-3 text-left"
-                    style={{ background: isExpanded ? `${group.accent}08` : "transparent" }}
-                  >
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2.5 flex-wrap mb-0.5">
-                        <span className="font-body text-[14px] font-semibold text-dark-ink">{entry.name}</span>
-                        <span className="font-body text-[10px] font-bold tracking-[0.16em] uppercase" style={{ color: group.accent }}>{entry.season}</span>
-                      </div>
-                      <div className="flex gap-[5px] flex-wrap">
-                        {entry.parks.map((p, pi) => (
-                          <span key={p} className="font-body text-[10px] font-medium text-[#7A857E] tracking-[0.04em]">
-                            {p}{pi < entry.parks.length - 1 ? " ·" : ""}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                    <span className="inline-block text-[#7A857E] text-[13px] shrink-0 mt-0.5" style={{ transform: isExpanded ? "rotate(180deg)" : "rotate(0deg)", transition: "transform 0.25s" }}>↓</span>
-                  </button>
-                  <div style={{ maxHeight: isExpanded ? 200 : 0, overflow: "hidden", transition: "max-height 0.35s cubic-bezier(0.4,0,0.2,1)" }}>
-                    <div className="px-[18px] pb-4 md:px-[22px]">
-                      <p className="font-body text-[13px] font-normal text-[#4A5650] leading-[1.75] m-0 pl-3" style={{ borderLeft: `2px solid ${group.accent}50` }}>
-                        {entry.detail}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </div>
+      )))}
     </div>
   );
 }
@@ -1070,6 +966,39 @@ const PARKS = [
     ],
     infoUrl: "https://www.nps.gov/care/",
     driveFrom: "~3 hrs from Zion", accent: C.oceanTeal, isAnchor: false,
+  },
+];
+
+const HIGHLIGHTS = [
+  {
+    name: "The Narrows",
+    category: "Canyon · Water",
+    blurb: "Wade the Virgin River through slot canyon walls 2,000 ft tall. Some sections are shoulder-width. The light is unlike anywhere else on earth.",
+  },
+  {
+    name: "Angels Landing",
+    category: "Summit · Exposure",
+    blurb: "The final half-mile is chains bolted to rock with 1,000 ft of air on both sides. Permit required. Unforgettable in the way that changes your baseline.",
+  },
+  {
+    name: "The Subway",
+    category: "Slot Canyon · Permit",
+    blurb: "Left Fork of North Creek forms a perfect cylindrical tunnel. Swimming holes, log jams, emerald pools. One of the park's true hidden chambers.",
+  },
+  {
+    name: "Kolob Arch",
+    category: "Backcountry · Arch",
+    blurb: "One of the world's largest free-standing arches at 287 ft. Most visitors never see it. 14-mile round trip into Kolob Canyons — a completely different Zion.",
+  },
+  {
+    name: "Canyon Overlook",
+    category: "Viewpoint · Easy Access",
+    blurb: "A one-mile round trip that delivers an outsized reward — Pine Creek Canyon spread below, the Great Arch to your left. Best at sunrise before the shuttle crowds arrive.",
+  },
+  {
+    name: "Zion–Mt. Carmel Highway",
+    category: "Drive · Checkerboard Mesa",
+    blurb: "The switchbacks alone are worth it. The tunnel emerges onto slickrock benches of the Colorado Plateau — a completely different landscape. Easy to rush through. Don't.",
   },
 ];
 
@@ -1286,7 +1215,6 @@ export default function ZionGuide() {
   const breathWrapperRef = useRef(null);
   const breathValueRef = useBreathCanvas(breathConfig, breathWrapperRef);
 
-  const [expandedPark, setExpandedPark] = useState(null);
   const [activeSheet, setActiveSheet] = useState(null);
   const [activeMoveTiers, setActiveMoveTiers] = useState(() => new Set(moveItems.map(i => i.moveTier)));
   const [activeBreatheTiers, setActiveBreatheTiers] = useState(() => new Set(['practice', 'soak', 'restore']));
@@ -1507,32 +1435,43 @@ export default function ZionGuide() {
           {/* THE LAND                                                      */}
           {/* ══════════════════════════════════════════════════════════════ */}
           <section id="the-land" className="scroll-mt-[126px] pt-2 pb-11">
+            {/* ── The Parks ── */}
             <FadeIn>
-              <div className="flex items-center gap-2.5 mb-4">
-                <div className="w-5 h-px" style={{ background: C.sunSalmon }} />
-                <span className="font-body text-[10px] font-medium tracking-[0.2em] uppercase" style={{ color: C.sunSalmon }}>The Land</span>
-              </div>
-              <p className="font-body text-[clamp(14px,1.8vw,15px)] leading-[1.8] font-normal text-[#4A5650] mt-0 mb-6">
-                {"Three national parks trace a single geologic story across southern Utah."}
-              </p>
+              <p className="font-body text-[9px] font-semibold tracking-[0.18em] uppercase mb-3.5" style={{ color: C.stone }}>The Parks</p>
             </FadeIn>
             <FadeIn delay={0.08}>
               <div className="mb-1">
                 {PARKS.map((park, i) => (
-                  <ParkCard
-                    key={park.id}
-                    park={park}
-                    isFirst={i === 0}
-                    isExpanded={expandedPark === park.id}
-                    onToggle={() => setExpandedPark(expandedPark === park.id ? null : park.id)}
-                  />
+                  <ParkCard key={park.id} park={park} isFirst={i === 0} />
                 ))}
               </div>
             </FadeIn>
 
-            {/* ── Wildlife Drawer ── */}
+            {/* ── Divider ── */}
+            <div className="h-px my-10" style={{ background: `${C.darkInk}14` }} />
+
+            {/* ── Places That Stop You ── */}
             <FadeIn delay={0.1}>
-              <WildlifeDrawer />
+              <p className="font-body text-[9px] font-semibold tracking-[0.18em] uppercase mb-3.5" style={{ color: C.stone }}>Places That Stop You</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px" style={{ background: `${C.darkInk}0A` }}>
+                {HIGHLIGHTS.map(h => (
+                  <div key={h.name} style={{ background: C.warmWhite }} className="p-4 md:p-5">
+                    <div className="font-body text-[11px] font-semibold mb-1" style={{ color: C.goldenAmber }}>◈</div>
+                    <div className="font-serif text-[17px] font-normal text-dark-ink leading-[1.3] mb-1">{h.name}</div>
+                    <div className="font-body text-[9px] font-bold tracking-[0.16em] uppercase mb-2" style={{ color: C.stone }}>{h.category}</div>
+                    <p className="font-body text-[12px] font-normal text-[#7A857E] leading-[1.5] m-0">{h.blurb}</p>
+                  </div>
+                ))}
+              </div>
+            </FadeIn>
+
+            {/* ── Divider ── */}
+            <div className="h-px my-10" style={{ background: `${C.darkInk}14` }} />
+
+            {/* ── The Living Corridor ── */}
+            <FadeIn delay={0.12}>
+              <p className="font-body text-[9px] font-semibold tracking-[0.18em] uppercase mb-3.5" style={{ color: C.stone }}>The Living Corridor</p>
+              <WildlifeSection />
             </FadeIn>
           </section>
 
