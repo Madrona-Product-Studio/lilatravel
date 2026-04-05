@@ -1411,18 +1411,22 @@ export default function ZionGuide() {
 
             {/* ── At a Glance ── */}
             <FadeIn delay={0.06}>
-              <div className="grid grid-cols-[repeat(auto-fit,minmax(130px,1fr))] gap-3 md:gap-4 p-4 md:p-5 bg-cream mb-3">
-                {[
-                  { l: "Recommended", v: "4–7 days" },
-                  { l: "Nearest Airport", v: "Las Vegas (LAS)" },
-                  { l: "Drive from LAS", v: "~2.5 hours" },
-                  { l: "Best Times", v: "Mar–May, Sep–Nov" },
-                ].map((s, i) => (
-                  <div key={i}>
-                    <div className="font-body text-[11px] tracking-[0.18em] uppercase text-[#7A857E] mb-[3px]">{s.l}</div>
-                    <div className="font-serif font-light text-[22px] text-dark-ink">{s.v}</div>
-                  </div>
-                ))}
+              <div>
+                <div className="h-px" style={{ background: `${C.darkInk}14` }} />
+                <div className="grid grid-cols-2 md:grid-cols-4 py-5">
+                  {[
+                    { l: "Recommended", v: "4–7 days" },
+                    { l: "Nearest Airport", v: "Las Vegas (LAS)" },
+                    { l: "Drive from LAS", v: "~2.5 hours" },
+                    { l: "Best Times", v: "Mar–May, Sep–Nov" },
+                  ].map((s, i) => (
+                    <div key={i} className="text-center px-3 py-2 md:py-0" style={{ borderLeft: i > 0 ? `1px solid ${C.darkInk}14` : 'none' }}>
+                      <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-1">{s.l}</div>
+                      <div className="font-serif font-normal text-[20px] text-dark-ink leading-[1.2]">{s.v}</div>
+                    </div>
+                  ))}
+                </div>
+                <div className="h-px" style={{ background: `${C.darkInk}14` }} />
               </div>
             </FadeIn>
           </section>
