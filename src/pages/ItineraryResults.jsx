@@ -4115,6 +4115,7 @@ export default function ItineraryResults() {
       setLoadingShared(false);
       if (data.formData) setFormData(data.formData);
       if (data.tripLogistics) setTripLogistics(data.tripLogistics);
+      if (data.tripTitle) setTripTitle(data.tripTitle);
       if (data.iterations) setIterations(data.iterations);
     } catch (e) {
       clear();

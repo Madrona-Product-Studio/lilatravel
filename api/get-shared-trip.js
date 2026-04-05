@@ -31,7 +31,7 @@ export default async function handler(req, res) {
     let data, error;
     ({ data, error } = await supabase
       .from('itineraries')
-      .select('id, raw_itinerary, destination, session_id, trip_logistics')
+      .select('id, raw_itinerary, destination, session_id, trip_logistics, title')
       .eq('share_token', token)
       .single());
 
@@ -39,7 +39,7 @@ export default async function handler(req, res) {
       // Fallback: try as itinerary ID
       ({ data, error } = await supabase
         .from('itineraries')
-        .select('id, raw_itinerary, destination, session_id, trip_logistics')
+        .select('id, raw_itinerary, destination, session_id, trip_logistics, title')
         .eq('id', token)
         .single());
     }
@@ -81,6 +81,7 @@ export default async function handler(req, res) {
       destination: data.destination,
       formData,
       tripLogistics: data.trip_logistics || null,
+      tripTitle: data.title || null,
       iterations,
     });
   } catch (err) {
