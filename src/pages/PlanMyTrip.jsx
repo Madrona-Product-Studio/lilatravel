@@ -819,14 +819,14 @@ function StepWelcome({ onNext }) {
               title: "Explore Group Trips",
               desc: "Join others on curated Threshold Trips timed to nature's crescendos.",
               cta: "View Trips", delay: "350ms",
-              onClick: () => navigate('/offerings'),
+              onClick: () => navigate('/group-trips'),
             },
             {
               icon: IconTriangle, color: C.goldenAmber, eyebrow: "Designed for You",
               title: "Expert Planning",
               desc: "Work with a trip designer to build something completely bespoke.",
               cta: "Learn More", delay: "450ms",
-              onClick: () => navigate('/offerings'),
+              onClick: () => navigate('/contact'),
             },
           ].map((card) => {
             const Ic = card.icon;
