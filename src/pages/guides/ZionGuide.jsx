@@ -966,6 +966,33 @@ const PARKS = [
   },
 ];
 
+const TOWNS = [
+  {
+    name: "Springdale",
+    context: "Zion's Front Door",
+    description: "A single-street town pressed against the canyon mouth. Walk to the park entrance. Restaurants, gear shops, and galleries line the half-mile stretch — all of it sandstone red and cottonwood green.",
+    accent: C.sunSalmon,
+  },
+  {
+    name: "Kanab",
+    context: "Film-Set Desert Town",
+    description: "An hour south of Zion on the Utah–Arizona line. Old Western film sets, a growing food scene, and the staging point for permits to The Wave, White Pocket, and Buckskin Gulch.",
+    accent: C.goldenAmber,
+  },
+  {
+    name: "Escalante",
+    context: "Trailhead Town",
+    description: "A one-stoplight town on Scenic Byway 12 that punches above its weight. Slot canyons, petrified forests, and the kind of solitude that the main parks can't offer. Stock up here — services are sparse beyond.",
+    accent: C.oceanTeal,
+  },
+  {
+    name: "Torrey",
+    context: "Capitol Reef Gateway",
+    description: "A handful of buildings at the edge of the Waterpocket Fold. The nearest services to Capitol Reef. Café Diablo has been feeding park visitors since 1986. The orchards start just down the road.",
+    accent: C.seaGlass,
+  },
+];
+
 const HIGHLIGHTS = [
   {
     name: "The Narrows",
@@ -1444,6 +1471,22 @@ export default function ZionGuide() {
               <div className="grid grid-cols-1 gap-px mb-1" style={{ background: `${C.darkInk}0A` }}>
                 {PARKS.map((park) => (
                   <ParkCard key={park.id} park={park} />
+                ))}
+              </div>
+            </FadeIn>
+
+            {/* ── The Towns ── */}
+            <FadeIn delay={0.09}>
+              <p className="font-body text-[10px] font-bold tracking-[0.18em] uppercase mt-10 mb-3.5" style={{ color: C.goldenAmber }}>The Towns</p>
+              <div className="grid grid-cols-1 gap-px" style={{ background: `${C.darkInk}0A` }}>
+                {TOWNS.map(town => (
+                  <div key={town.name} style={{ background: C.warmWhite }} className="p-4 md:p-5">
+                    <div style={{ borderLeft: `3px solid ${town.accent}`, paddingLeft: 14 }}>
+                      <div className="font-body text-[9px] tracking-[0.16em] uppercase text-[#7A857E] mb-1">{town.context}</div>
+                      <div className="font-serif font-normal text-[22px] text-dark-ink leading-[1.2] mb-1">{town.name}</div>
+                    </div>
+                    <p className="font-serif text-[16px] font-light text-[#4A5650] leading-[1.7] m-0 mt-3">{town.description}</p>
+                  </div>
                 ))}
               </div>
             </FadeIn>
