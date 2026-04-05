@@ -1437,7 +1437,7 @@ export default function ZionGuide() {
           <section id="the-land" className="scroll-mt-[126px] pt-2 pb-11">
             {/* ── The Parks ── */}
             <FadeIn>
-              <p className="font-body text-[9px] font-semibold tracking-[0.18em] uppercase mb-3.5" style={{ color: C.stone }}>The Parks</p>
+              <p className="font-body text-[10px] font-bold tracking-[0.18em] uppercase mb-3.5" style={{ color: C.sunSalmon }}>The Parks</p>
             </FadeIn>
             <FadeIn delay={0.08}>
               <div className="mb-1">
@@ -1452,7 +1452,7 @@ export default function ZionGuide() {
 
             {/* ── Places That Stop You ── */}
             <FadeIn delay={0.1}>
-              <p className="font-body text-[9px] font-semibold tracking-[0.18em] uppercase mb-3.5" style={{ color: C.stone }}>Places That Stop You</p>
+              <p className="font-body text-[10px] font-bold tracking-[0.18em] uppercase mb-3.5" style={{ color: C.goldenAmber }}>Places That Stop You</p>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px" style={{ background: `${C.darkInk}0A` }}>
                 {HIGHLIGHTS.map(h => (
                   <div key={h.name} style={{ background: C.warmWhite }} className="p-4 md:p-5">
@@ -1470,7 +1470,7 @@ export default function ZionGuide() {
 
             {/* ── The Living Corridor ── */}
             <FadeIn delay={0.12}>
-              <p className="font-body text-[9px] font-semibold tracking-[0.18em] uppercase mb-3.5" style={{ color: C.stone }}>The Living Corridor</p>
+              <p className="font-body text-[10px] font-bold tracking-[0.18em] uppercase mb-3.5" style={{ color: C.seaGlass }}>The Living Corridor</p>
               <WildlifeSection />
             </FadeIn>
           </section>
