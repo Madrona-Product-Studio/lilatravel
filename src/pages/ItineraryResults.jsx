@@ -4880,12 +4880,27 @@ export default function ItineraryResults() {
     setRefineError(null);
     const { signal, clear } = fetchWithTimeout(310000);
     try {
+      // Auto-lock all untouched timeline items so Claude focuses changes on items with feedback
+      const refineLocks = { ...lockedItems };
+      if (enrichedDays) {
+        enrichedDays.forEach((day, dayIdx) => {
+          const dayFb = dayFeedback[dayIdx];
+          const dayHasFeedback = dayFb?.reaction === 'needs-work' || dayFb?.note;
+          day.timeline?.forEach((_, itemIdx) => {
+            const thumbId = `day_${dayIdx}_timeline_${itemIdx}`;
+            if (!refineLocks[thumbId] && !swappedActivities[thumbId] && !dayHasFeedback) {
+              refineLocks[thumbId] = { source: 'auto', bookingType: null };
+            }
+          });
+        });
+      }
+
       const response = await fetch('/api/refine-itinerary', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           itinerary: rawItinerary,
-          lockedItems,
+          lockedItems: refineLocks,
           dayFeedback,
           swappedActivities,
           pulse,
