@@ -1134,9 +1134,9 @@ export default function JoshuaTreeGuide() {
                   { name: "Joshua Tree (Yucca brevifolia)", season: "Year-round", detail: "The park's namesake. Not actually a tree — a member of the agave family. Thrives only in the Mojave section above 3,000 ft." },
                 ].map(entry => (
                   <div key={entry.name} style={{ background: C.warmWhite }} className="p-4 md:p-5">
-                    <div className="font-serif text-[15px] font-medium text-dark-ink leading-[1.3] mb-1">{entry.name}</div>
+                    <div className="font-serif text-[17px] font-normal text-dark-ink leading-[1.3] mb-1">{entry.name}</div>
                     <div className="font-body text-[9px] font-bold tracking-[0.16em] uppercase mb-2" style={{ color: C.oceanTeal }}>{entry.season}</div>
-                    <p className="font-body text-[11px] font-normal text-[#7A857E] leading-[1.5] m-0">{entry.detail}</p>
+                    <p className="font-body text-[12px] font-normal text-[#7A857E] leading-[1.5] m-0">{entry.detail}</p>
                   </div>
                 ))}
               </div>

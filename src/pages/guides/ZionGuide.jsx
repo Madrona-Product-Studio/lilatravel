@@ -766,11 +766,11 @@ function WildlifeSection() {
     <div className="grid grid-cols-1 md:grid-cols-2 gap-px" style={{ background: `${C.darkInk}0A` }}>
       {WILDLIFE_GROUPS.flatMap(g => g.entries).slice(0, 8).map(entry => (
         <div key={entry.name} style={{ background: C.warmWhite }} className="p-4 md:p-5">
-          <div className="font-serif text-[15px] font-medium text-dark-ink leading-[1.3] mb-1">{entry.name}</div>
+          <div className="font-serif text-[17px] font-normal text-dark-ink leading-[1.3] mb-1">{entry.name}</div>
           <div className="font-body text-[9px] font-bold tracking-[0.16em] uppercase mb-2" style={{ color: C.oceanTeal }}>
             {entry.season} · {entry.parks.join(", ")}
           </div>
-          <p className="font-body text-[11px] font-normal text-[#7A857E] leading-[1.5] m-0">{entry.detail}</p>
+          <p className="font-body text-[12px] font-normal text-[#7A857E] leading-[1.5] m-0">{entry.detail}</p>
         </div>
       ))}
     </div>
