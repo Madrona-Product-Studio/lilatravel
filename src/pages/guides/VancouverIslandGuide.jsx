@@ -174,8 +174,6 @@ function ExpandableList({ children, initialCount = 5, label = "more" }) {
 
 function CollapsibleSection({ id, label, title, teaser, isOpen, onToggle, children }) {
   const bodyRef = useRef(null);
-  const [bodyHeight, setBodyHeight] = useState(0);
-  useEffect(() => { if (bodyRef.current) setBodyHeight(bodyRef.current.scrollHeight); }, [isOpen, children]);
   return (
     <section id={id} className="scroll-mt-[126px]">
       <button onClick={onToggle} className="w-full flex items-center gap-4 py-6 bg-transparent border-none cursor-pointer text-left group">
@@ -188,7 +186,7 @@ function CollapsibleSection({ id, label, title, teaser, isOpen, onToggle, childr
           <span className="inline-block text-[12px] text-[#7A857E] transition-transform duration-300 ease-in-out" style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}>▾</span>
         </div>
       </button>
-      <div className="overflow-hidden transition-[max-height] duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]" style={{ maxHeight: isOpen ? bodyHeight + 100 : 0 }}>
+      <div className="overflow-hidden transition-[max-height] duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]" style={{ maxHeight: isOpen ? 5000 : 0 }}>
         <div ref={bodyRef} className="pb-6">{children}</div>
       </div>
     </section>

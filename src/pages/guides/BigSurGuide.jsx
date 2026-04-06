@@ -150,13 +150,6 @@ function StayItem({ name, location, tier, detail, tags, url, featured, onOpenShe
 
 function CollapsibleSection({ id, label, title, teaser, isOpen, onToggle, children }) {
   const bodyRef = useRef(null);
-  const [bodyHeight, setBodyHeight] = useState(0);
-
-  useEffect(() => {
-    if (bodyRef.current) {
-      setBodyHeight(bodyRef.current.scrollHeight);
-    }
-  }, [isOpen, children]);
 
   return (
     <section id={id} className="scroll-mt-[126px]">
@@ -176,7 +169,7 @@ function CollapsibleSection({ id, label, title, teaser, isOpen, onToggle, childr
       </button>
       <div
         className="overflow-hidden transition-[max-height] duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]"
-        style={{ maxHeight: isOpen ? bodyHeight + 100 : 0 }}
+        style={{ maxHeight: isOpen ? 5000 : 0 }}
       >
         <div ref={bodyRef} className="pb-6">
           {children}
