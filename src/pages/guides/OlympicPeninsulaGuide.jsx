@@ -1274,13 +1274,25 @@ export default function OlympicPeninsulaGuide() {
           {/* NIGHT SKY                                                     */}
           {/* ══════════════════════════════════════════════════════════════ */}
           <CollapsibleSection id="light-sky" label="Night Sky" title="After dark on the peninsula." teaser="Hurricane Ridge — best Jun–Sep" isOpen={!collapsedSections['light-sky']} onToggle={() => toggleSection('light-sky')}>
-            {/* Dark Sky Note */}
-            <FadeIn delay={0.1}>
-              <div className="py-5 px-6 bg-dark-ink my-7">
-                <div className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-sky-blue mb-2.5">Dark Sky Note</div>
-                <p className="font-body text-[14px] font-normal text-white/70 leading-[1.7] m-0">
-                  {"No IDA dark sky certification. Consistent cloud cover limits sky access on the west side of the peninsula. The clearest conditions are found on the rain shadow side — Sequim and Dungeness — particularly in summer. When the clouds do break, the lack of development means genuine darkness is available from any park campground."}
-                </p>
+            <FadeIn delay={0.06}>
+              <p className="font-body text-[13px] font-normal text-[#4A5650] leading-[1.7] mb-6">
+                Olympic isn't IDA-certified, but genuine darkness is available from any park campground away from Port Angeles. The rain shadow side — Sequim and Dungeness — offers the clearest skies, especially in summer when the west side is still clouded over.
+              </p>
+              <div className="mb-8">
+                <div className="font-body text-[10px] font-bold tracking-[0.22em] uppercase mb-4" style={{ color: C.skyBlue }}>Best Viewing Areas</div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-px" style={{ background: `${C.darkInk}0A` }}>
+                  {[
+                    { name: "Hurricane Ridge", note: "Above the clouds at 5,200 ft. When the lowlands are overcast, the ridge is often clear. Summer nights only — road closes in winter." },
+                    { name: "Dungeness Spit area", note: "In the rain shadow — 16 inches of rain versus 170 on the west side. The clearest and driest skies on the peninsula." },
+                    { name: "Kalaloch Beach", note: "Remote coastal darkness. The sound of surf under stars. Accessible year-round from the campground." },
+                    { name: "Deer Park Campground", note: "The highest drive-to point in the park at 5,400 ft. No water, no services, extraordinary sky." },
+                  ].map((area, i) => (
+                    <div key={i} style={{ background: C.warmWhite }} className="p-4 md:p-5">
+                      <div className="font-serif text-[15px] font-normal text-dark-ink leading-[1.3] mb-1">{area.name}</div>
+                      <div className="font-body text-[12px] font-normal text-[#7A857E] leading-[1.5]">{area.note}</div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </FadeIn>
           </CollapsibleSection>

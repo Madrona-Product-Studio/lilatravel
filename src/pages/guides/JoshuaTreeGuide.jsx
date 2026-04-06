@@ -1381,79 +1381,57 @@ export default function JoshuaTreeGuide() {
             isOpen={!collapsedSections['light-sky']}
             onToggle={() => toggleSection('light-sky')}
           >
-            <div className="bg-dark-ink -mx-5 md:-mx-[52px] px-5 md:px-[52px] py-6">
-              <div className="max-w-[680px] mx-auto">
-          <FadeIn delay={0.06}>
-            {/* Best Viewing Areas */}
-            <div className="mb-8">
-              <div className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-golden-amber mb-4">Best Viewing Areas</div>
-              {[
-                { name: "Cholla Cactus Garden parking area", note: "Colorado Desert — minimal tree obstruction. Silhouetted cactus against the Milky Way." },
-                { name: "Jumbo Rocks Campground", note: "High desert, open sky. Dark sky conditions excellent from your campsite." },
-                { name: "Pinto Basin Road pullouts", note: "The least-trafficked corridor. Darkest skies accessible by car." },
-                { name: "Cap Rock area", note: "Open sky, easy access. Good for meteor shower viewing." },
-              ].map((area, i) => (
-                <div key={i} className="py-3.5 border-b border-white/10">
-                  <div className="font-body text-[14px] font-semibold text-white mb-1">{area.name}</div>
-                  <div className="font-body text-[13px] font-normal text-white/55 leading-[1.6]">{area.note}</div>
+            <FadeIn delay={0.06}>
+              <div className="mb-8">
+                <div className="font-body text-[10px] font-bold tracking-[0.22em] uppercase mb-4" style={{ color: C.goldenAmber }}>Best Viewing Areas</div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-px" style={{ background: `${C.darkInk}0A` }}>
+                  {[
+                    { name: "Cholla Cactus Garden parking area", note: "Open desert horizon, easy access. Among the darkest spots reachable by car." },
+                    { name: "Jumbo Rocks Campground", note: "Sleep under Bortle 2 skies. Best experienced during a new moon window." },
+                    { name: "Pinto Basin Road pullouts", note: "The quietest, darkest corridor in the park. Zero light pollution from any direction." },
+                    { name: "Cap Rock area", note: "Iconic rock formations silhouetted against the Milky Way. The classic astrophotography spot." },
+                  ].map((area, i) => (
+                    <div key={i} style={{ background: C.warmWhite }} className="p-4 md:p-5">
+                      <div className="font-serif text-[15px] font-normal text-dark-ink leading-[1.3] mb-1">{area.name}</div>
+                      <div className="font-body text-[12px] font-normal text-[#7A857E] leading-[1.5]">{area.note}</div>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
-          </FadeIn>
-
-          <FadeIn delay={0.1}>
-            {/* Calendar Anchors */}
-            <div className="mb-8">
-              <div className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-golden-amber mb-4">Calendar Anchors</div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                {[
-                  { event: "New Moon Windows", timing: "Monthly", detail: "Plan around them for optimal stargazing" },
-                  { event: "Perseid Meteor Shower", timing: "Aug 12–13 peak", detail: "Up to 100 meteors/hour" },
-                  { event: "Geminid Meteor Shower", timing: "Dec 13–14 peak", detail: "Often the year's best — up to 150/hour" },
-                  { event: "Milky Way Core", timing: "May – August", detail: "Best overhead viewing after midnight" },
-                ].map((cal, i) => (
-                  <div key={i} className="p-3.5 px-4 border border-white/[0.12] bg-white/[0.03]">
-                    <div className="font-body text-[14px] font-semibold text-white mb-[3px]">{cal.event}</div>
-                    <div className="font-body text-[11px] font-bold tracking-[0.14em] uppercase text-golden-amber mb-1">{cal.timing}</div>
-                    <div className="font-body text-[12px] font-normal text-white/50">{cal.detail}</div>
-                  </div>
-                ))}
               </div>
-            </div>
-          </FadeIn>
+            </FadeIn>
 
-          <FadeIn delay={0.14}>
-            {/* Practical Notes */}
-            <div className="p-4 px-[18px] border border-white/[0.12] bg-white/[0.03]">
-              <div className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-golden-amber mb-2.5">Practical Notes</div>
-              <p className="font-body text-[13px] font-normal text-white/60 leading-[1.7] m-0">
-                Allow 20–30 minutes for eyes to fully dark-adapt. Use a red-lens headlamp — white light ruins night vision for everyone nearby. Download a stargazing app (Sky Guide, Stellarium) before entering the park — there's no cell service. Pair dark sky sessions with Cholla Cactus Garden for the surreal combination of silhouetted cactus against the Milky Way.
-              </p>
-            </div>
-          </FadeIn>
+            <FadeIn delay={0.08}>
+              <div className="mb-8">
+                <div className="font-body text-[10px] font-bold tracking-[0.22em] uppercase mb-4" style={{ color: C.goldenAmber }}>Calendar Anchors</div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-px" style={{ background: `${C.darkInk}0A` }}>
+                  {[
+                    { event: "New Moon Windows", timing: "Monthly", detail: "Check the lunar calendar. Plan your visit around the darkest nights." },
+                    { event: "Perseid Meteor Shower", timing: "Aug 12–13 peak", detail: "Up to 100 meteors per hour at peak. Best after midnight, face northeast." },
+                    { event: "Geminid Meteor Shower", timing: "Dec 13–14 peak", detail: "The year's best shower. 120+ per hour. Cold desert nights — dress warm." },
+                    { event: "Milky Way Core", timing: "May–August", detail: "The galactic core rises overhead. Visible to the naked eye from anywhere in the park." },
+                  ].map((item, i) => (
+                    <div key={i} style={{ background: C.warmWhite }} className="p-4 md:p-5">
+                      <div className="font-serif text-[15px] font-normal text-dark-ink leading-[1.3] mb-0.5">{item.event}</div>
+                      <div className="font-body text-[9px] font-bold tracking-[0.16em] uppercase mb-2" style={{ color: C.goldenAmber }}>{item.timing}</div>
+                      <div className="font-body text-[12px] font-normal text-[#7A857E] leading-[1.5]">{item.detail}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </FadeIn>
 
-          <FadeIn delay={0.18}>
-            {/* Sky's the Limit Callout */}
-            <div className="mt-7 p-5 px-[22px] bg-white/[0.04]" style={{ borderLeft: `3px solid ${C.goldenAmber}` }}>
-              <div className="font-body text-[11px] font-bold tracking-[0.14em] uppercase text-golden-amber mb-1.5">Local Spotlight</div>
-              <a href="https://skysthelimit29.org/" target="_blank" rel="noopener noreferrer"
-                className="font-serif text-[20px] font-normal text-white no-underline inline-block mb-2 transition-[border-color] duration-200"
-                style={{ borderBottom: "1px solid rgba(255,255,255,0.25)" }}
-                onMouseEnter={e => e.currentTarget.style.borderColor = C.goldenAmber}
-                onMouseLeave={e => e.currentTarget.style.borderColor = "rgba(255,255,255,0.25)"}
-              >Sky's the Limit Observatory & Nature Center <span className="text-[14px]">{"↗"}</span></a>
-              <p className="font-body text-[13px] font-normal text-white/60 leading-[1.7] m-0">
-                A volunteer-run observatory and dark sky education center in Twentynine Palms — right at the edge of the park. Free public star parties every Saturday night with research-grade telescopes, knowledgeable astronomers, and one of the best night sky experiences available anywhere in Southern California. No reservation needed.
-              </p>
-              <div className="flex gap-1.5 mt-2.5 flex-wrap">
-                {["Free Admission", "Saturday Star Parties", "Twentynine Palms"].map((t, i) => (
-                  <span key={i} className="py-[3px] px-[9px] bg-white/[0.08] font-body text-[11px] font-semibold text-white/50">{t}</span>
-                ))}
+            <FadeIn delay={0.1}>
+              <div className="font-body text-[10px] font-bold tracking-[0.22em] uppercase mb-4" style={{ color: C.goldenAmber }}>Local Spotlight</div>
+              <div style={{ background: C.warmWhite, borderLeft: `3px solid ${C.goldenAmber}` }} className="p-4 md:p-5">
+                <div className="font-serif text-[15px] font-normal text-dark-ink leading-[1.3] mb-1">Sky's the Limit Observatory & Nature Center</div>
+                <div className="font-body text-[12px] font-normal text-[#7A857E] leading-[1.5] mb-2">A volunteer-run observatory in Twentynine Palms offering free public star parties on Saturday nights. Bring binoculars — the volunteers bring the telescopes.</div>
+                <a href="https://www.skysthelimit29.org" target="_blank" rel="noopener noreferrer"
+                  className="font-body text-[10px] font-bold tracking-[0.12em] uppercase no-underline"
+                  style={{ color: C.goldenAmber, borderBottom: '1px solid rgba(212,168,83,0.3)' }}>
+                  skysthelimit29.org ↗
+                </a>
               </div>
-            </div>
-          </FadeIn>
-              </div>
-            </div>
+            </FadeIn>
           </CollapsibleSection>
 
 

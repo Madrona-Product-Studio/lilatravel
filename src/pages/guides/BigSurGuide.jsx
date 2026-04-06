@@ -1199,59 +1199,47 @@ export default function BigSurGuide() {
             isOpen={!collapsedSections['light-sky']}
             onToggle={() => toggleSection('light-sky')}
           >
-            <div className="bg-dark-ink -mx-5 md:-mx-[52px] px-5 md:px-[52px] py-6">
-              <div className="max-w-[680px] mx-auto">
-            <p className="font-body text-[15px] md:text-[clamp(14px,1.8vw,15px)] font-normal text-white/70 mx-auto mb-7 leading-[1.7] text-left md:text-center max-w-full md:max-w-[520px] mt-0">
-              {"No formal IDA designation, but the skies here are genuinely world-class when conditions align. Pfeiffer Big Sur State Park is rated Bortle Class 2 — darker than most IDA-certified parks. The catch is the marine layer: the strategy is elevation."}
-            </p>
-
             <FadeIn delay={0.06}>
+              <p className="font-body text-[13px] font-normal text-[#4A5650] leading-[1.7] mb-6">
+                Big Sur has some of the darkest skies on the California coast — Bortle 2 at Pfeiffer Beach on clear nights. The marine layer is the variable: it can roll in fast and erase the sky, or part dramatically to frame the Milky Way over the ocean.
+              </p>
               <div className="mb-8">
-                <div className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-sea-glass mb-4">Best Viewing Locations</div>
-                {[
-                  { name: "Pfeiffer Beach", note: "Protected cove naturally shielded from highway headlights. Milky Way visible when clear. Bortle 2–3. Day use only — arrive before sunset." },
-                  { name: "Kirk Creek Campground", note: "Clifftop above the Pacific with full night sky to south, west, and overhead. One of the few campgrounds where you can watch the Milky Way arc over the ocean. Bortle 2." },
-                  { name: "Pfeiffer Ridge / Tin House", note: "The most committed option — 6.4 miles and 3,000 feet up to the ridge above the marine layer. 270-degree views, no light sources. Bortle 1–2 above fog." },
-                  { name: "Andrew Molera State Park", note: "Open meadow at the mouth of the Big Sur River. Hike-in campsites are exceptionally dark — no facility lighting. Bortle 2." },
-                ].map((area, i) => (
-                  <div key={i} className="py-3.5 border-b border-white/10">
-                    <div className="font-body text-[14px] font-semibold text-white mb-1">{area.name}</div>
-                    <div className="font-body text-[13px] font-normal text-white/55 leading-[1.6]">{area.note}</div>
-                  </div>
-                ))}
-              </div>
-            </FadeIn>
-
-            <FadeIn delay={0.1}>
-              <div className="mb-8">
-                <div className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-sea-glass mb-4">Calendar Anchors</div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div className="font-body text-[10px] font-bold tracking-[0.22em] uppercase mb-4" style={{ color: C.seaGlass }}>Best Viewing Locations</div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-px" style={{ background: `${C.darkInk}0A` }}>
                   {[
-                    { event: "Milky Way Core", timing: "Mar – Oct", detail: "Best April–July when the galactic center is highest" },
-                    { event: "Perseid Meteor Shower", timing: "Mid-August", detail: "Peak Aug 12–13 — go to ridge to beat marine layer" },
-                    { event: "Bixby Bridge Astro", timing: "New Moon Nights", detail: "The bridge under the Milky Way — iconic astrophotography" },
-                    { event: "Gray Whale + Stars", timing: "Dec – Apr", detail: "Watch migrating whales at dusk, then stay for the stars" },
-                  ].map((cal, i) => (
-                    <div key={i} className="p-3.5 px-4 border border-white/[0.12] bg-white/[0.03]">
-                      <div className="font-body text-[14px] font-semibold text-white mb-[3px]">{cal.event}</div>
-                      <div className="font-body text-[11px] font-bold tracking-[0.14em] uppercase text-sea-glass mb-1">{cal.timing}</div>
-                      <div className="font-body text-[12px] font-normal text-white/50">{cal.detail}</div>
+                    { name: "Pfeiffer Beach", note: "Bortle 2 on clear nights. The keyhole rock silhouetted against the Milky Way is the defining image." },
+                    { name: "Kirk Creek Campground", note: "Clifftop sites with unobstructed ocean horizon. Fall asleep to the sound of surf under open sky." },
+                    { name: "Pfeiffer Ridge / Tin House", note: "Higher elevation, above the marine layer. When the coast is socked in, the ridge is often clear." },
+                    { name: "Andrew Molera State Park", note: "Beach access with minimal light pollution. The meadow near the river mouth opens a wide sky." },
+                  ].map((area, i) => (
+                    <div key={i} style={{ background: C.warmWhite }} className="p-4 md:p-5">
+                      <div className="font-serif text-[15px] font-normal text-dark-ink leading-[1.3] mb-1">{area.name}</div>
+                      <div className="font-body text-[12px] font-normal text-[#7A857E] leading-[1.5]">{area.note}</div>
                     </div>
                   ))}
                 </div>
               </div>
             </FadeIn>
 
-            <FadeIn delay={0.14}>
-              <div className="p-4 px-[18px] border border-white/[0.12] bg-white/[0.03]">
-                <div className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-sea-glass mb-2.5">Marine Layer Note</div>
-                <p className="font-body text-[13px] font-normal text-white/60 leading-[1.7] m-0">
-                  {"Summer marine layer (June–August) is the thickest and most persistent, often burning off only to return by midnight. Fall (September–November) offers the most reliable clear nights. Winter has the clearest skies overall but cold temps and shorter windows. Check Clear Outside or Clear Dark Sky forecasts before committing to a ridge hike."}
-                </p>
+            <FadeIn delay={0.08}>
+              <div className="mb-8">
+                <div className="font-body text-[10px] font-bold tracking-[0.22em] uppercase mb-4" style={{ color: C.seaGlass }}>Calendar Anchors</div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-px" style={{ background: `${C.darkInk}0A` }}>
+                  {[
+                    { event: "Milky Way Core", timing: "Mar–Oct", detail: "Best after midnight in spring, earlier as summer progresses. Check marine layer forecasts." },
+                    { event: "Perseid Meteor Shower", timing: "Mid-August", detail: "Peak viewing from Pfeiffer Beach or Kirk Creek. Warm nights, minimal fog in August." },
+                    { event: "Bixby Bridge Astro", timing: "New Moon Nights", detail: "The bridge lit by starlight only. A pilgrimage shot for astrophotographers." },
+                    { event: "Gray Whale + Stars", timing: "Dec–Apr", detail: "Whale spouts by moonlight from the bluffs. Point Lobos and Andrew Molera are the best vantage points." },
+                  ].map((item, i) => (
+                    <div key={i} style={{ background: C.warmWhite }} className="p-4 md:p-5">
+                      <div className="font-serif text-[15px] font-normal text-dark-ink leading-[1.3] mb-0.5">{item.event}</div>
+                      <div className="font-body text-[9px] font-bold tracking-[0.16em] uppercase mb-2" style={{ color: C.seaGlass }}>{item.timing}</div>
+                      <div className="font-body text-[12px] font-normal text-[#7A857E] leading-[1.5]">{item.detail}</div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </FadeIn>
-              </div>
-            </div>
           </CollapsibleSection>
 
 

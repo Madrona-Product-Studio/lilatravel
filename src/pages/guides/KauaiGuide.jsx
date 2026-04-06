@@ -1184,9 +1184,13 @@ export default function KauaiGuide() {
         </div>
       </section>
 
-      {/* Night Sky section with full-width dark background */}
-      <div className="bg-dark-ink px-5 md:px-[52px]">
+      {/* Continue guide content */}
+      <section className="px-5 pb-[60px] md:px-[52px] md:pb-20 bg-cream">
         <div className="max-w-[680px] mx-auto">
+
+          {/* ══════════════════════════════════════════════════════════════ */}
+          {/* LIGHT & SKY                                                   */}
+          {/* ══════════════════════════════════════════════════════════════ */}
           <CollapsibleSection
             id="light-sky"
             label="Night Sky"
@@ -1195,57 +1199,44 @@ export default function KauaiGuide() {
             isOpen={!collapsedSections['light-sky']}
             onToggle={() => toggleSection('light-sky')}
           >
-          <FadeIn delay={0.06}>
-            <div className="mb-8">
-              <div className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-ocean-teal mb-4">Best Viewing Locations</div>
-              {[
-                { name: "Poipū Beach / Shipwreck Beach (South Shore)", note: "Open horizon to the south and west, minimal coastal light. Best for Milky Way core viewing." },
-                { name: "Polihale State Park (West Shore)", note: "The most remote and darkest beach accessible by road on Kauaʻi. Open horizon, no development for miles. Bortle 3." },
-                { name: "Kīlauea Lighthouse headland (North Shore)", note: "Faces open ocean north; best for star trails and Milky Way arcing overhead." },
-              ].map((area, i) => (
-                <div key={i} className="py-3.5 border-b border-white/10">
-                  <div className="font-body text-[14px] font-semibold text-white mb-1">{area.name}</div>
-                  <div className="font-body text-[13px] font-normal text-white/55 leading-[1.6]">{area.note}</div>
+            <FadeIn delay={0.06}>
+              <div className="mb-8">
+                <div className="font-body text-[10px] font-bold tracking-[0.22em] uppercase mb-4" style={{ color: C.oceanTeal }}>Best Viewing Locations</div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-px" style={{ background: `${C.darkInk}0A` }}>
+                  {[
+                    { name: "Poipū Beach / Shipwreck Beach (South Shore)", note: "Open horizon to the south and west, minimal coastal light. Best for Milky Way core viewing." },
+                    { name: "Polihale State Park (West Shore)", note: "The most remote and darkest beach accessible by road on Kauaʻi. Open horizon, no development for miles. Bortle 3." },
+                    { name: "Kīlauea Lighthouse headland (North Shore)", note: "Faces open ocean north. Best for star trails and Milky Way arcing overhead." },
+                  ].map((area, i) => (
+                    <div key={i} style={{ background: C.warmWhite }} className="p-4 md:p-5">
+                      <div className="font-serif text-[15px] font-normal text-dark-ink leading-[1.3] mb-1">{area.name}</div>
+                      <div className="font-body text-[12px] font-normal text-[#7A857E] leading-[1.5]">{area.note}</div>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
-          </FadeIn>
-
-          <FadeIn delay={0.1}>
-            <div className="mb-8">
-              <div className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-ocean-teal mb-4">Calendar Anchors</div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                {[
-                  { event: "Milky Way Core", timing: "Apr – Oct", detail: "Best from June–August when the core is highest" },
-                  { event: "Perseid Meteor Shower", timing: "Mid-August", detail: "Peak around the 12th — best from dark beaches" },
-                  { event: "Whale Spouts by Moonlight", timing: "Dec – Apr", detail: "Rare pairing: whale spouts visible from south shore overlooks" },
-                  { event: "Humpback Peak", timing: "Jan – Mar", detail: "Best from Kīlauea Lighthouse or Poipū clifftops" },
-                ].map((cal, i) => (
-                  <div key={i} className="p-3.5 px-4 border border-white/[0.12]" style={{ background: "rgba(255,255,255,0.03)" }}>
-                    <div className="font-body text-[14px] font-semibold text-white mb-[3px]">{cal.event}</div>
-                    <div className="font-body text-[11px] font-bold tracking-[0.14em] uppercase text-ocean-teal mb-1">{cal.timing}</div>
-                    <div className="font-body text-[12px] font-normal text-white/50">{cal.detail}</div>
-                  </div>
-                ))}
               </div>
-            </div>
-          </FadeIn>
+            </FadeIn>
 
-          <FadeIn delay={0.14}>
-            <div className="p-4 px-[18px] border border-white/[0.12]" style={{ background: "rgba(255,255,255,0.03)" }}>
-              <div className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-ocean-teal mb-2.5">Marine Layer Note</div>
-              <p className="font-body text-[13px] font-normal text-white/60 leading-[1.7] m-0">
-                {"Cloud cover can roll in quickly at night from the north and east. South and west shore locations (Poipū, Polihale) tend to be clearest. Check Clear Outside before committing to a late drive to Polihale."}
-              </p>
-            </div>
-          </FadeIn>
+            <FadeIn delay={0.08}>
+              <div className="mb-8">
+                <div className="font-body text-[10px] font-bold tracking-[0.22em] uppercase mb-4" style={{ color: C.oceanTeal }}>Calendar Anchors</div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-px" style={{ background: `${C.darkInk}0A` }}>
+                  {[
+                    { event: "Milky Way Core", timing: "Apr–Oct", detail: "Best from the south and west shores where light pollution is lowest." },
+                    { event: "Perseid Meteor Shower", timing: "Mid-August", detail: "Peak viewing from Polihale or Poipū. Warm nights, open horizons." },
+                    { event: "Whale Spouts by Moonlight", timing: "Dec–Apr", detail: "Humpback whales visible from shore. Combine with a new moon night for the full experience." },
+                    { event: "Humpback Peak", timing: "Jan–Mar", detail: "Peak whale season. North Shore and South Shore both offer sightings from clifftop trails." },
+                  ].map((item, i) => (
+                    <div key={i} style={{ background: C.warmWhite }} className="p-4 md:p-5">
+                      <div className="font-serif text-[15px] font-normal text-dark-ink leading-[1.3] mb-0.5">{item.event}</div>
+                      <div className="font-body text-[9px] font-bold tracking-[0.16em] uppercase mb-2" style={{ color: C.oceanTeal }}>{item.timing}</div>
+                      <div className="font-body text-[12px] font-normal text-[#7A857E] leading-[1.5]">{item.detail}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </FadeIn>
           </CollapsibleSection>
-        </div>
-      </div>
-
-      {/* Continue guide content */}
-      <section className="px-5 pb-[60px] md:px-[52px] md:pb-20 bg-cream">
-        <div className="max-w-[680px] mx-auto">
 
 
           {/* ══════════════════════════════════════════════════════════════ */}
