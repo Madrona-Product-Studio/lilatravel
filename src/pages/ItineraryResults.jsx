@@ -5353,7 +5353,7 @@ export default function ItineraryResults() {
                         <div className="font-body text-[10px] font-bold tracking-[0.22em] uppercase" style={{ color: '#7A857E', marginBottom: 4 }}>
                           {day.label}
                         </div>
-                        <div className="font-serif text-[clamp(18px,3vw,24px)] font-light leading-[1.2]" style={{ color: C.ink }}>
+                        <div className="font-serif text-[20px] font-light leading-[1.2]" style={{ color: C.ink }}>
                           {day.title}
                         </div>
                       </div>
