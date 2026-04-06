@@ -505,7 +505,7 @@ const eyebrow = { color: `${C.sage}88` };
 
       {/* 2. Temperature + Sunlight — always visible */}
       {(avgHigh !== null || sunrise) && (
-        <div style={{ padding: '14px 20px 13px', borderBottom: `1px solid ${C.border}` }}>
+        <div style={{ padding: '14px 20px 13px' }}>
           <div style={{ display: 'grid', gridTemplateColumns: avgHigh !== null && sunrise ? '1fr 1px 1fr' : '1fr', gap: '0 16px', alignItems: 'start' }}>
             {avgHigh !== null && (
               <div>
@@ -561,20 +561,20 @@ const eyebrow = { color: `${C.sage}88` };
         </div>
       )}
 
-      {/* Chevron toggle bar */}
-      <div
+      {/* Expand/collapse trigger */}
+      <button
         onClick={() => setSkySeasonOpen(o => !o)}
-        style={{ padding: '10px 20px 14px', display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}
+        className="group"
+        style={{ width: '100%', background: 'none', border: 'none', borderTop: `0.5px solid ${C.border}`, padding: '10px 20px', display: 'flex', alignItems: 'center', gap: 14, cursor: 'pointer' }}
       >
-        <div style={{ flex: 1, height: '0.5px', background: C.border }} />
-        <svg
-          width="14" height="14" viewBox="0 0 14 14" fill="none"
-          style={{ transform: skySeasonOpen ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.25s ease', flexShrink: 0 }}
-        >
-          <path d="M2.5 5L7 9.5L11.5 5" stroke={C.muted} strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
-        <div style={{ flex: 1, height: '0.5px', background: C.border }} />
-      </div>
+        <span style={{ flex: 1, height: '0.5px', background: C.border }} />
+        <span className="font-body text-[10px] tracking-[0.12em] uppercase group-hover:text-dark-ink transition-colors" style={{ color: C.muted, whiteSpace: 'nowrap' }}>
+          {skySeasonOpen
+            ? 'Hide ↑'
+            : `Show Moon, Stars${isCoastal && oceanData ? ', Tides' : ''} & Season ↓`}
+        </span>
+        <span style={{ flex: 1, height: '0.5px', background: C.border }} />
+      </button>
 
       {/* 3–5: collapsible detail sections */}
       {skySeasonOpen && (moonEvents.length > 0 || starEvents.length > 0) && (
