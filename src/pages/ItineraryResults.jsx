@@ -4196,7 +4196,8 @@ export default function ItineraryResults() {
     if (!loadingShared && tripLogistics) {
       const initial = (tripLogistics.flights?.length || 0)
         + (tripLogistics.rentals?.length || 0)
-        + (tripLogistics.accommodations?.length || 0);
+        + (tripLogistics.accommodations?.length || 0)
+        + (tripLogistics.reservations?.length || 0);
       if (initial > 0) setLogisticsBaseline(initial);
     }
   }, [loadingShared]);
