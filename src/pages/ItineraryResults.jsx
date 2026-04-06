@@ -4130,15 +4130,6 @@ export default function ItineraryResults() {
     fetchSharedTrip(shareToken);
   }, [shareToken]);
 
-  // Fetch iterations for non-shared trips once itineraryId is available
-  useEffect(() => {
-    if (!itineraryId || iterations.length > 0) return;
-    fetch(`/api/get-trip-iterations?itineraryId=${encodeURIComponent(itineraryId)}`)
-      .then(r => r.json())
-      .then(d => { if (d.iterations?.length) setIterations(d.iterations); })
-      .catch(() => {});
-  }, [itineraryId]);
-
   // Iteration counter — persisted in sessionStorage keyed to this trip
   const sessionKey = useMemo(
     () => tripSessionKey(location.state?.itinerary || rawItinerary, location.state?.formData || formData),
@@ -4208,6 +4199,15 @@ export default function ItineraryResults() {
   const [itineraryId, setItineraryId] = useState(() =>
     sessionStorage.getItem('lila_itinerary_id') || null
   );
+
+  // Fetch iterations for non-shared trips once itineraryId is available
+  useEffect(() => {
+    if (!itineraryId || iterations.length > 0) return;
+    fetch(`/api/get-trip-iterations?itineraryId=${encodeURIComponent(itineraryId)}`)
+      .then(r => r.json())
+      .then(d => { if (d.iterations?.length) setIterations(d.iterations); })
+      .catch(() => {});
+  }, [itineraryId]);
 
   // Persist tripLogistics to DB when user adds/edits bookings
   const logisticsDebounce = useRef(null);
