@@ -53,9 +53,18 @@ FIELD DEFINITIONS BY BOOKING TYPE:
 - checkOut: Format "Mon DD, YYYY"
 - address, phone
 
+**Reservation** (restaurant, spa, tour, activity, class, or any other booking):
+- name: Business or venue name (e.g. "Refuge Spa", "King's Landing Bistro")
+- type: Category (e.g. "Spa", "Dinner", "Guided Tour", "Yoga Class")
+- date: Format "Mon DD, YYYY"
+- time: Format "H:MM AM/PM"
+- confirmationNumber: Booking reference if visible
+- location: Full address if visible
+- notes: Any special instructions, party size, or relevant details
+
 RESPONSE FORMAT — respond with ONLY valid JSON, no other text:
 {
-  "type": "flight" | "rental" | "accommodation",
+  "type": "flight" | "rental" | "accommodation" | "reservation",
   ...extracted fields for that type...,
   "_uncertain": ["fieldName1", "fieldName2"]
 }
@@ -69,6 +78,9 @@ Flight confirmation screenshot →
 
 Hotel confirmation screenshot →
 {"type":"accommodation","name":"The Ritz-Carlton","confirmationNumber":"92841556","checkIn":"Apr 12, 2026","checkOut":"Apr 15, 2026","address":"1 Ritz-Carlton Dr, Dana Point, CA 92629","phone":"(949) 240-2000","_uncertain":["phone"]}
+
+Spa/restaurant/activity confirmation screenshot →
+{"type":"reservation","name":"Refuge Spa","type":"Spa","date":"Apr 07, 2026","time":"3:00 PM","confirmationNumber":"","location":"27300 Rancho San Carlos Rd, Carmel, CA","notes":"Lisa Koch, Spa Admission Online","_uncertain":[]}
 
 If the image is not a booking confirmation, respond with:
 {"error":"This doesn't appear to be a booking confirmation."}`;

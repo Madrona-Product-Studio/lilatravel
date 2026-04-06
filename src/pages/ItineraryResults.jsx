@@ -2106,9 +2106,9 @@ function BookingCard({ booking, badge, onClick, onRemove }) {
   } else if (booking.type === 'reservation') {
     title = booking.name || 'Booking';
     subtitle = [
-      booking.type !== 'reservation' ? booking.type : '',
       booking.date || '',
       booking.time || '',
+      booking.location || '',
     ].filter(Boolean).join(' · ');
   }
 
@@ -2226,8 +2226,30 @@ function AccommodationFormPanel({ data, onSave, bookingIndex, highlightFields: i
 }
 
 function ReservationFormPanel({ data, onSave, bookingIndex }) {
-  const [form, setForm] = useState(data || { name: '', type: '', date: '', time: '', confirmationNumber: '', notes: '' });
+  const [form, setForm] = useState(data || { name: '', type: '', date: '', time: '', confirmationNumber: '', location: '', notes: '' });
   const set = (k, v) => setForm(prev => ({ ...prev, [k]: v }));
+  const [uploadError, setUploadError] = useState(null);
+  const [highlights, setHighlights] = useState([]);
+
+  const handleExtracted = (booking) => {
+    if (booking.type === 'reservation') {
+      setForm(prev => ({
+        ...prev,
+        name: booking.name || prev.name,
+        type: booking.type || prev.type,
+        date: booking.date || prev.date,
+        time: booking.time || prev.time,
+        confirmationNumber: booking.confirmationNumber || prev.confirmationNumber,
+        location: booking.location || prev.location,
+        notes: booking.notes || prev.notes,
+      }));
+      setHighlights(booking._uncertain || []);
+    } else {
+      setUploadError(`This looks like a ${booking.type} — use the ${booking.type} section instead.`);
+    }
+  };
+
+  const hlStyle = (field) => highlights.includes(field) ? { ...logisticsInputStyle, borderColor: `${C.goldenAmber}80` } : logisticsInputStyle;
 
   if (data && !form._editing && bookingIndex !== undefined) {
     return (
@@ -2238,6 +2260,7 @@ function ReservationFormPanel({ data, onSave, bookingIndex }) {
           <div className="font-body text-[13px] leading-[1.6]" style={{ color: C.body }}>
             {data.type && <>{data.type}<br /></>}
             {data.date && <>{data.date}{data.time ? ` · ${data.time}` : ''}<br /></>}
+            {data.location && <>{data.location}<br /></>}
             {data.confirmationNumber && <>Conf: {data.confirmationNumber}</>}
           </div>
           {data.notes && <div className="font-body text-[12px] italic mt-2" style={{ color: C.muted }}>{data.notes}</div>}
@@ -2251,14 +2274,17 @@ function ReservationFormPanel({ data, onSave, bookingIndex }) {
     <div style={{ maxWidth: 500, margin: '0 auto', padding: '20px 20px 60px' }}>
       <h1 className="font-serif text-[clamp(20px,5vw,24px)] font-light leading-[1.25] mb-5" style={{ color: C.ink }}>Add a Booking</h1>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-        <div><label className={logisticsLabelCls} style={logisticsLabelStyle}>What is it?</label><input className={logisticsInputCls} style={logisticsInputStyle} value={form.name} onChange={e => set('name', e.target.value)} placeholder="e.g. Dinner at Spotted Dog, Morning Yoga" /></div>
-        <div><label className={logisticsLabelCls} style={logisticsLabelStyle}>Type</label><input className={logisticsInputCls} style={logisticsInputStyle} value={form.type} onChange={e => set('type', e.target.value)} placeholder="e.g. Dinner, Yoga Class, Guided Tour, Spa" /></div>
+        <BookingUploadTrigger onExtracted={handleExtracted} onError={setUploadError} />
+        {uploadError && <div className="font-body text-[12px]" style={{ color: C.sunSalmon }}>{uploadError}</div>}
+        <div><label className={logisticsLabelCls} style={logisticsLabelStyle}>What is it?</label><input className={logisticsInputCls} style={hlStyle('name')} value={form.name} onChange={e => set('name', e.target.value)} placeholder="e.g. Dinner at Spotted Dog, Morning Yoga" /></div>
+        <div><label className={logisticsLabelCls} style={logisticsLabelStyle}>Type</label><input className={logisticsInputCls} style={hlStyle('type')} value={form.type} onChange={e => set('type', e.target.value)} placeholder="e.g. Dinner, Yoga Class, Guided Tour, Spa" /></div>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
-          <div><label className={logisticsLabelCls} style={logisticsLabelStyle}>Date</label><input className={logisticsInputCls} style={logisticsInputStyle} value={form.date} onChange={e => set('date', e.target.value)} placeholder="e.g. Oct 14" /></div>
-          <div><label className={logisticsLabelCls} style={logisticsLabelStyle}>Time</label><input className={logisticsInputCls} style={logisticsInputStyle} value={form.time} onChange={e => set('time', e.target.value)} placeholder="e.g. 7:00 PM" /></div>
+          <div><label className={logisticsLabelCls} style={logisticsLabelStyle}>Date</label><input className={logisticsInputCls} style={hlStyle('date')} value={form.date} onChange={e => set('date', e.target.value)} placeholder="e.g. Oct 14" /></div>
+          <div><label className={logisticsLabelCls} style={logisticsLabelStyle}>Time</label><input className={logisticsInputCls} style={hlStyle('time')} value={form.time} onChange={e => set('time', e.target.value)} placeholder="e.g. 7:00 PM" /></div>
         </div>
-        <div><label className={logisticsLabelCls} style={logisticsLabelStyle}>Confirmation Number</label><input className={logisticsInputCls} style={logisticsInputStyle} value={form.confirmationNumber} onChange={e => set('confirmationNumber', e.target.value)} placeholder="Optional" /></div>
-        <div><label className={logisticsLabelCls} style={logisticsLabelStyle}>Notes</label><input className={logisticsInputCls} style={logisticsInputStyle} value={form.notes} onChange={e => set('notes', e.target.value)} placeholder="e.g. Ask for window table" /></div>
+        <div><label className={logisticsLabelCls} style={logisticsLabelStyle}>Location</label><input className={logisticsInputCls} style={hlStyle('location')} value={form.location} onChange={e => set('location', e.target.value)} placeholder="e.g. 27300 Rancho San Carlos Rd, Carmel, CA" /></div>
+        <div><label className={logisticsLabelCls} style={logisticsLabelStyle}>Confirmation Number</label><input className={logisticsInputCls} style={hlStyle('confirmationNumber')} value={form.confirmationNumber} onChange={e => set('confirmationNumber', e.target.value)} placeholder="Optional" /></div>
+        <div><label className={logisticsLabelCls} style={logisticsLabelStyle}>Notes</label><input className={logisticsInputCls} style={hlStyle('notes')} value={form.notes} onChange={e => set('notes', e.target.value)} placeholder="e.g. Ask for window table" /></div>
         <button onClick={() => { const { _editing, ...clean } = form; onSave(clean); }} className="font-body text-[14px] font-semibold border-none cursor-pointer self-start mt-1" style={{ color: C.white, background: C.teal, borderRadius: 20, padding: '10px 28px' }}>Save Booking</button>
       </div>
     </div>
@@ -4795,7 +4821,7 @@ export default function ItineraryResults() {
   const hasFeedback = Object.keys(lockedItems).length > 0 || Object.keys(swappedActivities).length > 0 || Object.values(dayFeedback).some(f => f?.note || f?.reaction) || pulse === 'close' || pulse === 'rethink';
 
   // Count NEW feedback inputs since last refinement
-  const totalBookings = (tripLogistics?.flights?.length || 0) + (tripLogistics?.rentals?.length || 0) + (tripLogistics?.accommodations?.length || 0);
+  const totalBookings = (tripLogistics?.flights?.length || 0) + (tripLogistics?.rentals?.length || 0) + (tripLogistics?.accommodations?.length || 0) + (tripLogistics?.reservations?.length || 0);
   const feedbackCount = useMemo(() => {
     let count = 0;
     count += Object.keys(swappedActivities).length;
