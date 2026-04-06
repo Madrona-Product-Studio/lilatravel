@@ -68,9 +68,16 @@ export default async function handler(req, res) {
   }
   if (!checkOrigin(req, res)) return;
 
+  // Map camelCase form IDs to kebab-case slugs
+  const DEST_MAP = {
+    bigSur: 'big-sur', joshuaTree: 'joshua-tree',
+    olympic: 'olympic-peninsula', vancouver: 'vancouver-island',
+  };
+
   try {
     const t0 = Date.now();
-    const { destination, preferences, itinerary, loadMore } = req.body;
+    const { destination: rawDest, preferences, itinerary, loadMore } = req.body;
+    const destination = DEST_MAP[rawDest] || rawDest;
 
     if (!destination || !itinerary) {
       return res.status(400).json({

@@ -562,7 +562,8 @@ export default async function handler(req, res) {
     }
 
     // Load destination guide so Claude can recommend from it
-    const destination = formData?.destination || null;
+    const DEST_MAP = { bigSur: 'big-sur', joshuaTree: 'joshua-tree', olympic: 'olympic-peninsula', vancouver: 'vancouver-island' };
+    const destination = DEST_MAP[formData?.destination] || formData?.destination || null;
     let guideBlock = '';
     if (destination) {
       try {
