@@ -4398,6 +4398,13 @@ export default function ItineraryResults() {
       }
       const hotelNames = accoms.map(a => (a.name || '').toLowerCase()).filter(Boolean);
 
+      // Collect reservation names for fuzzy matching
+      const reservations = tripLogistics?.reservations || [];
+      const reservationWords = reservations.map(r => {
+        const words = (r.name || '').toLowerCase().split(/\s+/).filter(w => w.length > 3);
+        return { words, reservation: r };
+      }).filter(r => r.words.length > 0);
+
       enrichedDays.forEach((day, dayIdx) => {
         if (!day.timeline) return;
         day.timeline.forEach((item, itemIdx) => {
@@ -4436,6 +4443,16 @@ export default function ItineraryResults() {
             const rentalKeywords = ['rental', 'pick up', 'pick-up', 'return car', 'car return'];
             if (rentalKeywords.some(k => text.includes(k))) {
               next[thumbId] = { source: 'booking', bookingType: 'rental' };
+            }
+          }
+
+          // Reservations: fuzzy name match (spa, restaurant, tour, etc.)
+          if (reservationWords.length > 0) {
+            for (const { words } of reservationWords) {
+              if (words.some(w => title.includes(w))) {
+                next[thumbId] = { source: 'booking', bookingType: 'reservation' };
+                break;
+              }
             }
           }
         });
