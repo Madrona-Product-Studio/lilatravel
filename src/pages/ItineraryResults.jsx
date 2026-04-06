@@ -4261,25 +4261,29 @@ export default function ItineraryResults() {
     if (!rawItinerary) { navigate('/plan'); return; }
     setTimeout(() => setVisible(true), 100);
     // Append trip to lila_trips array (multi-trip support)
-    const tripId = crypto.randomUUID();
-    const path = shareToken ? `/trip/${shareToken}` : '/itinerary';
+    // Use the original iteration's ID as a stable group key so all revisions map to one trip
+    const groupId = iterations.find(it => it.iteration === 0)?.id || itineraryId || crypto.randomUUID();
+    const tripId = groupId;
+    const path = shareToken ? `/trip/${shareToken}` : (itineraryId ? `/trip/${itineraryId}` : '/itinerary');
+    const DEST_NAMES = { zion: 'Zion Canyon', bigSur: 'Big Sur', joshuaTree: 'Joshua Tree', olympic: 'Olympic Peninsula', kauai: 'Kauai', vancouver: 'Vancouver Island' };
     const newTrip = {
       id: tripId,
+      groupId,
       path,
-      destination: formData?.destination || 'Your Trip',
-      title: null,
+      destination: DEST_NAMES[formData?.destination] || formData?.destination || 'Your Trip',
+      title: tripTitle || null,
       generatedAt: Date.now(),
     };
     try {
       const existing = JSON.parse(localStorage.getItem('lila_trips') || '[]');
-      // Deduplicate by path (for shared links reloaded)
-      const filtered = existing.filter(t => t.path !== path);
+      // Deduplicate by groupId — keep only the latest entry per trip
+      const filtered = existing.filter(t => (t.groupId || t.id) !== groupId);
       const updated = [newTrip, ...filtered].slice(0, 10);
       localStorage.setItem('lila_trips', JSON.stringify(updated));
       sessionStorage.setItem('lila_trip_id', tripId);
       window.dispatchEvent(new Event('lila_trips_changed'));
     } catch {}
-  }, [rawItinerary, navigate, loadingShared, shareToken, formData, shareError]);
+  }, [rawItinerary, navigate, loadingShared, shareToken, formData, shareError, iterations, itineraryId]);
 
   // Parse itinerary — re-parses only when rawItinerary changes (i.e. after refinement)
   const itinerary = useMemo(() => {
@@ -4317,9 +4321,15 @@ export default function ItineraryResults() {
     if (tripId) {
       try {
         const trips = JSON.parse(localStorage.getItem('lila_trips') || '[]');
-        const idx = trips.findIndex(t => t.id === tripId);
-        if (idx !== -1) {
-          trips[idx].title = newTitle;
+        // Update all entries with matching groupId or id
+        let changed = false;
+        trips.forEach(t => {
+          if (t.id === tripId || t.groupId === tripId) {
+            t.title = newTitle;
+            changed = true;
+          }
+        });
+        if (changed) {
           localStorage.setItem('lila_trips', JSON.stringify(trips));
           window.dispatchEvent(new Event('lila_trips_changed'));
         }
@@ -4464,14 +4474,17 @@ export default function ItineraryResults() {
         });
       }
 
-      // Patch trip title in lila_trips array
+      // Patch trip title + path in lila_trips array
       const tripId = sessionStorage.getItem('lila_trip_id');
       if (tripId && itinerary.title) {
         try {
           const trips = JSON.parse(localStorage.getItem('lila_trips') || '[]');
-          const idx = trips.findIndex(t => t.id === tripId);
+          const idx = trips.findIndex(t => t.id === tripId || t.groupId === tripId);
           if (idx !== -1) {
-            trips[idx].title = itinerary.title;
+            trips[idx].title = tripTitle || itinerary.title;
+            // Keep path pointing to current share token or latest itinerary
+            if (shareToken) trips[idx].path = `/trip/${shareToken}`;
+            else if (itineraryId) trips[idx].path = `/trip/${itineraryId}`;
             localStorage.setItem('lila_trips', JSON.stringify(trips));
             window.dispatchEvent(new Event('lila_trips_changed'));
           }
@@ -4608,7 +4621,7 @@ export default function ItineraryResults() {
         const token = url.split('/trip/')[1];
         if (!token) return;
         const trips = JSON.parse(localStorage.getItem('lila_trips') || '[]');
-        const idx = trips.findIndex(t => t.id === tripId);
+        const idx = trips.findIndex(t => t.id === tripId || t.groupId === tripId);
         if (idx !== -1) {
           trips[idx].path = `/trip/${token}`;
           localStorage.setItem('lila_trips', JSON.stringify(trips));
