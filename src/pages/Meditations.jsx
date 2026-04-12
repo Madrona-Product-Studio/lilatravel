@@ -252,15 +252,16 @@ function ChapterScreen({ principle, principleIndex }) {
         pointerEvents: 'none',
       }} />
 
-      {/* Title block */}
+      {/* Title block — mark, name, arc centered; desc left-aligned */}
       <div style={{ width: '100%' }}>
-        <div style={{ marginBottom: 16 }}>
+        <div style={{ textAlign: 'center', marginBottom: 16 }}>
           <PrincipleMark id={principle.id} size={52} />
         </div>
         <div style={{
           fontSize: 46, fontFamily: SERIF,
           color: 'white', fontWeight: 300,
           lineHeight: 1.0, marginBottom: 8,
+          textAlign: 'center',
         }}>
           {principle.name}
         </div>
@@ -269,10 +270,11 @@ function ChapterScreen({ principle, principleIndex }) {
           color: 'white', opacity: 0.7,
           fontWeight: 400, marginBottom: 20,
           letterSpacing: '0.02em',
+          textAlign: 'center',
         }}>
           {principle.arc}
         </div>
-        <div style={{ width: 28, height: '0.5px', background: 'rgba(255,255,255,0.25)', marginBottom: 20 }} />
+        <div style={{ width: 28, height: '0.5px', background: 'rgba(255,255,255,0.25)', marginBottom: 20, margin: '0 auto 20px' }} />
         <div style={{
           fontSize: 13, fontFamily: SANS,
           color: 'white', opacity: 0.75,
