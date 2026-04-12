@@ -91,7 +91,7 @@ export const CARDS = [
     bestFor: ['arrival', 'challenge', 'transition', 'solo'],
     assignWhen: ['day 1 or 2', 'ethics-oriented traveler', 'high-impact terrain'],
     avoidWhen: ['fatigue-heavy day', 'highly social group day'],
-    connection: 'Angels Landing demands every Yama at once — Ahimsa in how you share the chain section, Asteya in not taking more time than the hikers behind you need, Aparigraha in letting the summit be enough without the photo. The canyon teaches restraint by making the consequences of carelessness immediate and visible.',
+    connection: 'Angels Landing demands every Yama at once — Ahimsa in how you share the chain section, Aparigraha in letting the summit be enough without the photo. The canyon teaches restraint by making the consequences of carelessness immediate.',
   },
   {
     id: 'niyamas',
@@ -111,7 +111,7 @@ export const CARDS = [
     bestFor: ['challenge', 'fatigue', 'rest', 'uncertainty'],
     assignWhen: ['difficult weather', 'high fatigue day', 'rest day', 'trip not going to plan'],
     avoidWhen: ['arrival day'],
-    connection: 'Joshua Tree at midday is Santosha\'s proving ground — the heat, the exposed rock, the body asking for shade that isn\'t coming. Name five things that are exactly right: the smell of creosote after last night\'s rain, the silence between gusts, the particular blue of a desert sky at altitude. The wanting mind goes quiet when the field widens.',
+    connection: 'Joshua Tree at midday is Santosha\'s proving ground — the heat, the exposed rock, the body asking for shade. Name five things that are exactly right. The wanting mind goes quiet when the field widens.',
   },
   {
     id: 'pranayama',
@@ -131,7 +131,7 @@ export const CARDS = [
     bestFor: ['threshold', 'transition', 'challenge', 'arrival', 'uncertainty'],
     assignWhen: ['summit day', 'river crossing', 'high exertion day', 'weather transition'],
     avoidWhen: ['pure rest day'],
-    connection: 'At the base of the Narrows, before stepping into the Virgin River, the breath is the last thing you control. The canyon walls rise a thousand feet and the water sets the pace. One conscious breath before each river crossing — let the inhale match the current, let the exhale release the need to rush. The canyon breathes with you.',
+    connection: 'At the base of the Narrows, before stepping into the Virgin River, the breath is the last thing you control. One conscious breath before each river crossing — let the inhale match the current, let the exhale release the need to rush.',
   },
   {
     id: 'vipassana',
@@ -151,7 +151,7 @@ export const CARDS = [
     bestFor: ['rest', 'solo', 'threshold', 'awe', 'closure'],
     assignWhen: ['rest day', 'mid-trip reset', 'solo traveler', 'contemplative persona'],
     avoidWhen: ['high exertion day', 'arrival day', 'high social energy day'],
-    connection: 'Observation Point at dawn, before the first shuttle runs. The canyon floor is still in shadow. Sounds arrive without source — a raven, wind through sandstone fins, the river far below. Sit with eyes open and note each arising: hearing, seeing, feeling. The canyon is twenty million years of arising and passing made visible in stone.',
+    connection: 'Observation Point at dawn, before the first shuttle runs. The canyon floor is still in shadow. Sit with eyes open and note each arising: hearing, seeing, feeling. The canyon is twenty million years of arising and passing made visible.',
   },
   {
     id: 'shoshin',
@@ -171,7 +171,7 @@ export const CARDS = [
     bestFor: ['arrival', 'rest', 'awe', 'gratitude', 'shared'],
     assignWhen: ['returning to familiar place', 'mid-trip flatness', 'second visit destination'],
     avoidWhen: ['first day of trip — save for when familiarity has set in'],
-    connection: 'Return to Arch Rock after three days in Joshua Tree and the boulders have rearranged themselves. The light is different. A lizard you never noticed holds perfectly still on the south face. Beginner\'s mind is easiest in a landscape that resists expertise — the desert changes faster than your assumptions about it.',
+    connection: 'Return to Arch Rock after three days in Joshua Tree and the boulders have rearranged themselves. The light is different. Beginner\'s mind is easiest in a landscape that resists expertise — the desert changes faster than your assumptions.',
   },
   {
     id: 'samadhi',
@@ -191,7 +191,7 @@ export const CARDS = [
     bestFor: ['threshold', 'awe', 'closure', 'solo'],
     assignWhen: ['summit day', 'final day of trip', 'expansive landscape', 'experienced meditator'],
     avoidWhen: ['day 1', 'high exertion day', 'beginner traveler'],
-    connection: 'Canyon Overlook at the last moment before sunset, when the Navajo sandstone turns the color of embers. The horizon line dissolves. There is no place where the light ends and the rock begins, no boundary between the warmth on your face and the warmth radiating from the canyon wall. Samadhi doesn\'t arrive — the obstacles simply leave.',
+    connection: 'Canyon Overlook at the last moment before sunset, when the Navajo sandstone turns the color of embers. There is no boundary between the warmth on your face and the warmth radiating from the canyon wall. The obstacles simply leave.',
   },
 
   // ─── ONENESS ─────────────────────────────────────────────────────────────────
@@ -213,7 +213,7 @@ export const CARDS = [
     bestFor: ['awe', 'threshold', 'solo', 'closure'],
     assignWhen: ['expansive landscape day', 'summit day', 'final day of trip'],
     avoidWhen: ['day 1', 'high social energy day'],
-    connection: 'Stand at the rim of Zion Canyon and ask where you end. The iron in the sandstone is the iron in your blood — forged in the same stellar furnace, separated by nothing but time. The Upanishads call this Tat tvam asi. The canyon doesn\'t need the teaching. It already knows.',
+    connection: 'Stand at the rim of Zion Canyon and ask where you end. The iron in the sandstone is the iron in your blood — forged in the same stellar furnace. The Upanishads call this Tat tvam asi. The canyon already knows.',
   },
   {
     id: 'sunyata',
@@ -233,7 +233,7 @@ export const CARDS = [
     bestFor: ['awe', 'solo', 'gratitude', 'threshold'],
     assignWhen: ['nature immersion day', 'slow day', 'contemplative persona'],
     avoidWhen: ['high exertion day', 'arrival day'],
-    connection: 'In the Hoh Rainforest, a single nurse log holds fourteen species — fern, moss, hemlock seedling, fungi you cannot name. Everything you see is made entirely of everything else. The log is soil becoming tree becoming log again. Trace any thread far enough and it disappears into the web. You disappear with it.',
+    connection: 'In the Hoh Rainforest, a single nurse log holds fourteen species. Everything you see is made entirely of everything else. Trace any thread far enough and it disappears into the web. You disappear with it.',
   },
   {
     id: 'sympatheia',
@@ -253,7 +253,7 @@ export const CARDS = [
     bestFor: ['awe', 'rest', 'solo', 'arrival', 'gratitude'],
     assignWhen: ['open landscape day', 'rest day', 'mid-trip grounding'],
     avoidWhen: ['high social energy day'],
-    connection: 'Lie on the slickrock above the Virgin River at dusk and feel the warmth the stone collected all day. The heat in the rock is the heat in the sun is the heat in your body. Marcus Aurelius was not being poetic — he was being precise. The canyon\'s health is your health. You are not visiting. You are participating.',
+    connection: 'Lie on the slickrock above the Virgin River at dusk and feel the warmth the stone collected all day. The heat in the rock is the heat in your body. You are not visiting. You are participating.',
   },
   {
     id: 'musubi',
@@ -273,7 +273,7 @@ export const CARDS = [
     bestFor: ['threshold', 'transition', 'awe', 'arrival'],
     assignWhen: ['threshold day', 'transition between landscapes', 'coastal or forest edge'],
     avoidWhen: ['urban or town day'],
-    connection: 'Where the Hoh Rainforest meets the alpine meadow on the High Divide trail, two ecosystems lean into each other. The mosses thin, the wildflowers begin, and in the boundary zone everything is more alive than on either side. Musubi runs along this edge — the force that makes the meeting point more generative than the territories it joins.',
+    connection: 'Where the Hoh Rainforest meets the alpine meadow on the High Divide trail, two ecosystems lean into each other. Musubi runs along this edge — the force that makes the meeting point more generative than the territories it joins.',
   },
   {
     id: 'the-tao',
@@ -293,7 +293,7 @@ export const CARDS = [
     bestFor: ['arrival', 'threshold', 'uncertainty', 'rest', 'solo'],
     assignWhen: ['water day', 'river or coastal destination', 'opening day of trip'],
     avoidWhen: [],
-    connection: 'The Sol Duc River doesn\'t consult a map. It finds the low point, wraps around the boulder, pools where the gradient allows, and arrives at the sea without effort or plan. Sit beside it for fifteen minutes and watch the Tao demonstrate itself. Notice every place in your own body where you are still forcing.',
+    connection: 'The Sol Duc River doesn\'t consult a map. It finds the low point, wraps around the boulder, pools where the gradient allows. Sit beside it for fifteen minutes and watch the Tao demonstrate itself.',
   },
   {
     id: 'yin-yang',
@@ -302,7 +302,7 @@ export const CARDS = [
     name: 'Yin-Yang',
     subtitle: 'Dynamic balance — opposites as one movement',
     teaching: 'Yin and yang are not opposites at war. They are one continuous movement — the inhale that requires the exhale, the shadow that requires the light, the rest that makes the effort possible. The symbol is always in motion: the dark seed inside the light, the light seed inside the dark. In wilderness this is everywhere. The canyon wall that holds heat through the night. The cold river that makes the desert habitable. Exertion and rest, exposure and shelter, alone and together. Nothing is only one thing. Everything contains its complement.',
-    practice: 'Find a place where light and shadow meet — a canyon wall at midday, a forest edge, a boulder field at dusk. Sit at the boundary. Spend fifteen minutes tracking how the line between them moves. Then bring the same attention inward: where in your body or mind today do you feel the yin — the quiet, the cool, the yielding? Where the yang — the active, the warm, the assertive? Notice how each is already becoming the other.',
+    practice: 'Find a place where light and shadow meet — a canyon wall at midday, a forest edge, a boulder field at dusk. Sit at the boundary. Track how the line moves for fifteen minutes. Then bring the same attention inward: where do you feel the yin — the quiet, the yielding? Where the yang? Notice how each is already becoming the other.',
     quote: 'The only way to make sense out of change is to plunge into it, move with it, and join the dance.',
     quoteOriginal: '',
     quoteAuthor: 'Alan Watts',
@@ -313,7 +313,7 @@ export const CARDS = [
     bestFor: ['challenge', 'rest', 'transition', 'fatigue', 'uncertainty'],
     assignWhen: ['high contrast day — exertion and rest', 'mid-trip balance point'],
     avoidWhen: [],
-    connection: 'Zion Canyon holds heat through the night while the Virgin River runs cold through the center — yang and yin in continuous exchange. The exertion of the morning hike makes the afternoon stillness profound. The canyon wall in shadow is already warming; the lit face is already cooling. Nothing here is only one thing.',
+    connection: 'Zion Canyon holds heat through the night while the Virgin River runs cold — yang and yin in continuous exchange. The lit face is already cooling; the shadow wall already warming. Nothing here is only one thing.',
   },
 
   // ─── FLOW ────────────────────────────────────────────────────────────────────
@@ -324,7 +324,7 @@ export const CARDS = [
     name: 'Lǐ',
     subtitle: 'The grain of things — the pattern asking to be followed',
     teaching: 'Lǐ is the natural grain inherent in all things — the pattern in jade, the current in a river, the logic of a particular landscape on a particular morning. Alan Watts described it as the brush strokes of the universe. The master craftsman works with the grain, never against it — not because of discipline but because of attention. To perceive Lǐ is to stop imposing your own plan on a place and start reading what the place is actually offering. Every landscape has a grain. Every day has one too.',
-    practice: 'Before you plan your day, sit for ten minutes without an agenda. Look at the landscape, the weather, the quality of light, the state of your own body. Ask: what is the grain of this place today? What is it asking for rather than what am I bringing to it? Let that perception shape your first decision. Then the next. Notice when you move with the grain and when you cut across it.',
+    practice: 'Before you plan your day, sit for ten minutes without an agenda. Look at the landscape, the weather, the quality of light, the state of your body. Ask: what is the grain of this place today? What is it asking for? Let that perception shape your first decision. Notice when you move with the grain and when you cut across it.',
     quote: 'Flow with whatever is happening and let your mind be free.',
     quoteOriginal: '',
     quoteAuthor: 'Zhuangzi, Chapter 4',
@@ -335,7 +335,7 @@ export const CARDS = [
     bestFor: ['arrival', 'uncertainty', 'transition', 'rest', 'challenge'],
     assignWhen: ['opening day', 'unstructured day', 'adaptive itinerary day'],
     avoidWhen: [],
-    connection: 'The Olympic coast has a grain — the tide sets the rhythm, the weather sets the pace, the trail between Rialto Beach and Hole-in-the-Wall follows the contour the sea carved. Read it before you impose your plan. Ten minutes sitting with the landscape\'s logic will shape a better day than any itinerary written indoors.',
+    connection: 'The Olympic coast has a grain — the tide sets the rhythm, the weather sets the pace. Read it before you impose your plan. Ten minutes sitting with the landscape\'s logic will shape a better day than any itinerary written indoors.',
   },
   {
     id: 'wu-wei',
@@ -344,7 +344,7 @@ export const CARDS = [
     name: 'Wu Wei',
     subtitle: 'Non-action — effortless alignment with what is',
     teaching: 'Wu Wei does not mean doing nothing. It means acting without forcing — the way water finds its level, the way a tree grows toward light without striving. The Tao Te Ching: the Tao does nothing, yet leaves nothing undone. On trail this is the difference between moving through a landscape and moving with it. The hiker who forces every mile arrives exhausted and has seen nothing. The one who follows what the terrain offers arrives somewhere unexpected and remembers everything. Wu Wei is not passivity. It is precision without effort.',
-    practice: "At every fork in the trail today, pause before deciding. Close your eyes briefly. Feel which direction pulls rather than which you choose. Follow the pull. When the terrain offers a rest — a flat rock, a patch of shade, a view that stops you — take it without negotiating. At day's end notice the difference between the miles you forced and the miles that moved through you.",
+    practice: "At every fork in the trail today, pause before deciding. Close your eyes. Feel which direction pulls rather than which you choose. Follow the pull. When the terrain offers a rest — a flat rock, a view that stops you — take it without negotiating. At day's end notice the difference between the miles you forced and the miles that moved through you.",
     quote: 'Nature does not hurry, yet everything is accomplished.',
     quoteOriginal: '',
     quoteAuthor: 'Laozi, Tao Te Ching',
@@ -355,7 +355,7 @@ export const CARDS = [
     bestFor: ['challenge', 'uncertainty', 'transition', 'fatigue', 'mid-trip'],
     assignWhen: ['river or water day', 'adaptive terrain', 'unplanned change', 'high mileage day'],
     avoidWhen: ['day 1'],
-    connection: 'The Queets River finds the Pacific without forcing a single mile. The old-growth cedars grew toward light without striving. On the Hoh River Trail, the hiker who follows what the terrain offers — the flat rock for rest, the clearing for lunch, the viewpoint that stops them — arrives somewhere unexpected and remembers everything.',
+    connection: 'The Queets River finds the Pacific without forcing a single mile. On the Hoh River Trail, the hiker who follows what the terrain offers arrives somewhere unexpected and remembers everything.',
   },
   {
     id: 'apranihita',
@@ -364,7 +364,7 @@ export const CARDS = [
     name: 'Apraṇihita',
     subtitle: 'Aimlessness — you are already where you need to be',
     teaching: 'The third gate of liberation in Thich Nhat Hanh\'s teaching. Apraṇihita means wishlessness — the release of striving toward a future moment that will be better than this one. The destination-mind is one of the deepest sources of human suffering. We are always arriving somewhere other than here. On a trail this is almost comic — walking through extraordinary beauty while mentally already at camp, already home, already somewhere else. You have already arrived. The gate is not ahead of you.',
-    practice: 'Set out with no destination and no turnaround time. Walk until you forget you are going somewhere. The moment you notice that forgetting — the moment the planning mind goes quiet and you are simply moving through a landscape — that is the practice. Stay in it as long as you can. When the destination-mind returns, notice it without judgment and let it settle again.',
+    practice: 'Set out with no destination and no turnaround time. Walk until you forget you are going somewhere. The moment you notice that forgetting — the moment the planning mind goes quiet and you are simply moving through a landscape — that is the practice. Stay in it as long as you can. When the destination-mind returns, notice it without judgment and let it settle.',
     quote: 'The present moment is the only moment available to us, and it is the door to all moments.',
     quoteOriginal: '',
     quoteAuthor: 'Thich Nhat Hanh, Peace Is Every Step',
@@ -375,7 +375,7 @@ export const CARDS = [
     bestFor: ['rest', 'uncertainty', 'fatigue', 'mid-trip', 'solo'],
     assignWhen: ['unstructured day', 'rest day', 'traveler showing signs of striving or rushing'],
     avoidWhen: ['permit-required or time-sensitive day'],
-    connection: 'The Riverside Walk in Zion has no summit, no destination, no turnaround marker — the trail simply enters the river and becomes the Narrows. Walk until you forget you are going somewhere. The moment the planning mind releases and you are simply moving through red water and sandstone, that is the gate. You have already arrived.',
+    connection: 'The Riverside Walk in Zion has no summit, no destination — the trail simply enters the river and becomes the Narrows. Walk until you forget you are going somewhere. You have already arrived.',
   },
   {
     id: 'mushin',
@@ -384,7 +384,7 @@ export const CARDS = [
     name: 'Mushin',
     subtitle: 'No-mind — action without the commentary of thought',
     teaching: 'Mushin — no mind — is the Zen state in which action flows without the interference of the thinking, narrating, evaluating mind. It is not blankness. It is full aliveness without self-consciousness. The archer who thinks about the shot misses. The climber who narrates the move falls. The traveler who thinks about walking stops arriving. Mushin is not achieved by effort — it is what remains when effort falls away. A scramble that demands your complete attention, a river crossing that leaves no room for the narrator — these are the places where mushin arrives uninvited.',
-    practice: 'Find a physical challenge today — a scramble, a river crossing, a steep descent, a long exposed ridge. Before you begin, take three slow breaths and set a single intention: no commentary. Move through it attending only to the next point of contact — foot on rock, hand on hold, body in current. When the narrator returns, return to the body. Notice the quality of movement when thought steps aside.',
+    practice: 'Find a physical challenge today — a scramble, a river crossing, a steep descent. Take three slow breaths and set one intention: no commentary. Move through it attending only to the next point of contact — foot on rock, hand on hold. When the narrator returns, return to the body. Notice the quality of movement when thought steps aside.',
     quote: 'Think without thinking. This is the secret of all the arts.',
     quoteOriginal: '',
     quoteAuthor: 'Takuan Soho, The Unfettered Mind',
@@ -395,7 +395,7 @@ export const CARDS = [
     bestFor: ['challenge', 'threshold', 'awe', 'solo'],
     assignWhen: ['technical terrain day', 'scramble or summit day', 'river crossing day'],
     avoidWhen: ['rest day', 'town day', 'beginner traveler on easy terrain'],
-    connection: 'The scramble section on Hidden Canyon Trail demands your complete attention — hand on wet rock, foot finding the next hold, the drop below removing every thought that isn\'t this move. Mushin arrives uninvited when the terrain leaves no room for the narrator. The commentary stops. The body knows.',
+    connection: 'The scramble section on Hidden Canyon Trail demands your complete attention — hand on wet rock, foot finding the next hold. Mushin arrives uninvited when the terrain leaves no room for the narrator.',
   },
   {
     id: 'amor-fati',
@@ -415,7 +415,7 @@ export const CARDS = [
     bestFor: ['challenge', 'uncertainty', 'fatigue', 'departure', 'transition'],
     assignWhen: ['difficult weather day', 'injury or setback', 'plan changed unexpectedly'],
     avoidWhen: ['perfect conditions easy day — save for when it is needed'],
-    connection: 'The flash flood that closed your planned route through Zion is not an obstacle — it is the day reshaping itself. The Stoics trained for exactly this: the weather that changes everything, the trail that redirects you somewhere better. Name what this difficulty is giving you that comfort would not. Speak it aloud. Then move.',
+    connection: 'The flash flood that closed your planned route through Zion is not an obstacle — it is the day reshaping itself. Name what this difficulty is giving you that comfort would not. Speak it aloud. Then move.',
   },
 
   // ─── COMPASSION ──────────────────────────────────────────────────────────────
@@ -437,7 +437,7 @@ export const CARDS = [
     bestFor: ['solo', 'threshold', 'closure', 'challenge', 'awe'],
     assignWhen: ['evidence of environmental difficulty', 'mid-trip emotional depth moment', 'contemplative persona'],
     avoidWhen: ['arrival day', 'high social energy day', 'beginner traveler'],
-    connection: 'On the fire-scarred ridges above Big Sur, where the Soberanes Fire left ghost forests of pale standing trunks, Tonglen finds its object. Breathe in the char, the loss, the slow recovery. Breathe out cool fog and the green that is already returning at the base of each trunk. The discomfort is the membrane thinning between you and the land.',
+    connection: 'On the fire-scarred ridges above Big Sur, Tonglen finds its object. Breathe in the char, the loss. Breathe out cool fog and the green already returning at the base of each trunk. The discomfort is the practice working.',
   },
   {
     id: 'bhakti',
@@ -457,7 +457,7 @@ export const CARDS = [
     bestFor: ['awe', 'gratitude', 'arrival', 'threshold', 'solo', 'shared'],
     assignWhen: ['iconic landscape moment', 'spiritual or devotional persona', 'opening day'],
     avoidWhen: [],
-    connection: 'The Nā Pali Coast at sunset stops language. The fluted cliffs turn gold, then rose, then violet, and the heart does something the mind cannot direct — it opens. Bhakti is already happening in the pause before you reach for the camera. The canyon wall is worthy of devotion. The ground under your feet deserves gratitude. Let the distance close.',
+    connection: 'The Na Pali Coast at sunset stops language. The fluted cliffs turn gold, then rose, then violet, and the heart does something the mind cannot direct — it opens. The canyon wall is worthy of devotion. Let the distance close.',
   },
   {
     id: 'metta',
@@ -466,7 +466,7 @@ export const CARDS = [
     name: 'Mettā',
     subtitle: 'Loving-kindness — the systematic opening of the heart',
     teaching: "Mettā is the Pali word for loving-kindness — the Buddha's practice of deliberately cultivating goodwill toward all beings without exception. Not as a feeling to be generated but as a direction to be sustained. The practice moves in expanding circles: yourself first, then those close to you, then strangers, then all beings. In wilderness the circle expands naturally — the deer at the edge of the clearing, the hawk overhead, the unseen creatures in the soil. The Metta Sutta describes it as the way a mother protects her only child. That quality of care, extended without limit.",
-    practice: 'Sit comfortably and begin with yourself. Silently offer: may I be well, may I be at ease, may I be free from suffering. Then extend the same to someone you love. Then to a stranger on the trail. Then to every creature in this landscape — seen and unseen, named and unnamed. Let the circle keep expanding until it has no edge. Stay as long as the attention holds.',
+    practice: 'Sit comfortably. Silently offer: may I be well, may I be at ease. Then extend the same to someone you love. Then to a stranger on the trail. Then to every creature in this landscape — seen and unseen. Let the circle keep expanding until it has no edge. Stay as long as the attention holds.',
     quote: 'Extend your loving-kindness to all beings without limit, as a mother would protect her only child with her own life.',
     quoteOriginal: 'Mātā yathā niyaṃ puttam āyusā ekaputtam anurakkhe',
     quoteAuthor: 'The Buddha, Metta Sutta, Sutta Nipata 1.8',
@@ -477,7 +477,7 @@ export const CARDS = [
     bestFor: ['arrival', 'rest', 'shared', 'gratitude', 'closure', 'fatigue'],
     assignWhen: ['group travel', 'rest day', 'relational tension', 'recovery day'],
     avoidWhen: [],
-    connection: 'Begin with yourself on the shore at Ke\'e Beach. May I be well. Extend it to the monk seal resting on the sand. May you be well. To the reef below the surface, to the unseen creatures in the current, to every traveler who stood here and felt the same salt air. Let the circle expand until it reaches the horizon and keeps going.',
+    connection: 'Begin with yourself on the shore at Ke\'e Beach. May I be well. Extend it to the monk seal on the sand, to every creature sharing this coast. Let the circle expand until it has no edge.',
   },
   {
     id: 'bodhicitta',
@@ -486,7 +486,7 @@ export const CARDS = [
     name: 'Bodhicitta',
     subtitle: 'The awakening mind — arising for the benefit of all',
     teaching: 'Bodhicitta is the aspiration at the heart of Mahayana Buddhism — the resolve to awaken not for yourself alone but for the benefit of all beings. It is sometimes translated as awakening mind, sometimes as the mind of enlightenment. What it points to is a fundamental reorientation: the self is no longer the primary reference point. Every practice, every moment of clarity, every step taken with awareness is dedicated outward. In nature this becomes tangible — the care you bring to a trail, the way you move through a landscape, the attention you give to what is alive around you. Every conscious act becomes an offering.',
-    practice: 'At the beginning of your day, before you move, sit for five minutes and set this intention aloud or in silence: whatever clarity or peace I find today, I dedicate to all beings. Whatever I learn, let it serve something beyond me. Then move through the day with that dedication as your background. At the end of the day, seal it — offer whatever the day gave you outward, to everything.',
+    practice: 'At the beginning of your day, before you move, sit for five minutes and set this intention: whatever clarity or peace I find today, I dedicate to all beings. Whatever I learn, let it serve something beyond me. Move through the day with that dedication as your background. At the end, seal it — offer whatever the day gave you outward.',
     quote: 'May all beings have happiness and the causes of happiness. May all beings be free from suffering and the causes of suffering.',
     quoteOriginal: "Sems can thams cad bde ba dang bde ba'i rgyu dang ldan par gyur cig",
     quoteAuthor: 'Traditional Tibetan, Four Immeasurables',
@@ -497,7 +497,7 @@ export const CARDS = [
     bestFor: ['arrival', 'departure', 'closure', 'threshold', 'solo', 'shared'],
     assignWhen: ['opening or closing day of trip', 'contemplative or spiritual persona', 'group travel'],
     avoidWhen: [],
-    connection: 'Before the first step onto the Boy Scout Trail at dawn, sit for five minutes in the Joshua Tree parking lot and set the dedication: whatever clarity this desert gives me today, I offer outward. Then walk with that intention as background — the care you bring to each step, each creature, each fragile cryptobiotic crust becomes the practice made visible.',
+    connection: 'Before the first step onto the Boy Scout Trail at dawn, sit in the Joshua Tree parking lot and set the dedication: whatever clarity this desert gives me, I offer outward. The care you bring to each step becomes the practice.',
   },
   {
     id: 'seva',
@@ -517,7 +517,7 @@ export const CARDS = [
     bestFor: ['challenge', 'gratitude', 'closure', 'shared', 'departure'],
     assignWhen: ['high-impact or heavily used trail', 'final day of trip', 'tread lightly persona'],
     avoidWhen: [],
-    connection: 'The Angels Landing chain section sees a thousand hands a day. One act of seva: move the loose rock that will trip the next hiker. Carry out the wrapper wedged in the crack. Step aside for the slower climber without performing patience. The action is complete in itself — no announcement, no record, no story. The trail receives what you offer.',
+    connection: 'The Angels Landing chain section sees a thousand hands a day. Move the loose rock that will trip the next hiker. Carry out the wrapper wedged in the crack. The action is complete in itself — no announcement, no story.',
   },
   {
     id: 'ubuntu',
@@ -537,7 +537,7 @@ export const CARDS = [
     bestFor: ['shared', 'arrival', 'gratitude', 'awe', 'closure'],
     assignWhen: ['group travel', 'community-oriented persona', 'heavily storied landscape'],
     avoidWhen: [],
-    connection: 'The Kalaloch coast was shaped by hands you will never shake — the Quinault people who have walked this shore for ten thousand years, the CCC crews who built the trails in the 1930s, the rain that fell last winter. Pause once an hour and name one: the tree that held the hillside, the person who first described this place. Let the web become visible.',
+    connection: 'The Kalaloch coast was shaped by hands you will never shake — the Quinault people, the CCC crews, the rain that fell last winter. Pause once an hour and name one. Let the web become visible.',
   },
 
   // ─── REVERENCE ───────────────────────────────────────────────────────────────
@@ -548,7 +548,7 @@ export const CARDS = [
     name: 'Sūrya Namaskār',
     subtitle: 'Sun salutation — moving prayer at first light',
     teaching: 'Sūrya Namaskār is not a warm-up. It is a devotional offering — twelve postures moving in sequence with the breath, each a gesture of gratitude to the sun as the source of all life. The practice predates modern yoga by centuries, rooted in Vedic sun worship and the understanding that the light arriving each morning is not guaranteed, not ordinary, not owed to us. To practice it at dawn, facing east, before the agenda of the day begins, is to begin in right relationship — acknowledging what sustains you before you ask anything of the day.',
-    practice: "Before full sunrise, find open ground facing east. Nine rounds, moving slowly. Each round is an offering, not a workout — let the breath lead the body rather than the body leading the breath. If you don't know the sequence, begin standing, fold forward, step or jump back, lower to the ground, rise, return. The intention matters more than the form. When the sun clears the horizon, stop and be still in it for one full minute.",
+    practice: "Before full sunrise, find open ground facing east. Nine rounds, moving slowly. Each round is an offering — let the breath lead the body. If you don't know the sequence, begin standing, fold forward, step back, lower to the ground, rise, return. The intention matters more than the form. When the sun clears the horizon, be still in it for one full minute.",
     quote: 'O Sun, you are the eye of the world. You witness all of creation. Grant us the light of awareness.',
     quoteOriginal: 'Sūrya cakṣur jagataḥ',
     quoteAuthor: 'Rigveda 1.50',
@@ -559,7 +559,7 @@ export const CARDS = [
     bestFor: ['arrival', 'threshold', 'awe', 'gratitude', 'shared'],
     assignWhen: ['clear dawn forecast', 'opening day of trip', 'expansive eastern view'],
     avoidWhen: ['rest day', 'injury or physical limitation day'],
-    connection: 'Face east from Keys View before the sun clears the Little San Bernardino Mountains. Nine rounds on the flat rock, each a gesture of gratitude to the light arriving over the Coachella Valley. The desert amplifies everything — the heat of each posture, the silence between breaths, the moment the sun clears the ridge and the whole valley ignites.',
+    connection: 'Face east from Keys View before the sun clears the Little San Bernardino Mountains. Nine rounds on the flat rock, each a gesture of gratitude to the light. The desert amplifies everything — the heat, the silence, the moment the valley ignites.',
   },
   {
     id: 'misogi',
@@ -568,7 +568,7 @@ export const CARDS = [
     name: 'Misogi',
     subtitle: 'Purification — water as the original cleansing',
     teaching: 'Misogi is one of the oldest Shinto practices — ritual purification through water, the washing away of kegare, the accumulated weight of ordinary life. It is rooted in the myth of Izanagi, who purified himself in a river after descending into the underworld and returning. Cold water, conscious intention, release. The practice is not about hygiene. It is about the understanding that what we carry — grief, distraction, the residue of other places and other times — can be released to the water. What we bring to a landscape matters. Misogi is how we arrive clean.',
-    practice: 'At any natural water source today. Before you touch the water, stand at its edge and name — aloud or in silence — what you are releasing: a mood, a preoccupation, a way of seeing that no longer serves you here. Then bring cold water to your face and hands three times. Feel the shock as the release made physical. Stand still for a moment after. Notice what has shifted.',
+    practice: 'At any natural water source today. Before you touch the water, stand at its edge and name what you are releasing: a mood, a preoccupation, a way of seeing that no longer serves you. Then bring cold water to your face and hands three times. Feel the shock as the release made physical. Stand still for a moment after. Notice what has shifted.',
     quote: 'Cleanse the body, still the mind, and the kami will draw near.',
     quoteOriginal: '',
     quoteAuthor: 'Motōori Norinaga, Naobi no Mitama',
@@ -579,7 +579,7 @@ export const CARDS = [
     bestFor: ['arrival', 'transition', 'threshold', 'closure', 'solo'],
     assignWhen: ['water access day', 'arrival day at new destination', 'emotional transition point'],
     avoidWhen: ['no water access', 'town day'],
-    connection: 'At the base of Wailua Falls, stand at the edge of the pool and name what you are releasing — the noise of the flight, the residue of the place you just left, the planning mind that hasn\'t stopped since you landed. Cold water to the face three times. The shock is the release made physical. What shifts is not the temperature but the attention.',
+    connection: 'At the base of Wailua Falls, stand at the edge and name what you are releasing. Cold water to the face three times. The shock is the release made physical. What shifts is not the temperature but the attention.',
   },
   {
     id: 'memento-mori',
@@ -588,7 +588,7 @@ export const CARDS = [
     name: 'Memento Mori',
     subtitle: 'Remember death — the sharpener of all presence',
     teaching: 'The Stoic practice of meditating on death — not morbidly but as the primary instrument of presence. Marcus Aurelius returned to it constantly in his Meditations. Seneca built an entire philosophy around the urgency it creates. When you know this moment will end, it becomes vivid. The light on that canyon wall will not look like this again. This exact configuration of cloud and silence and the particular ache in your legs — never again. Mortality does not diminish beauty. It is what makes beauty sharp. Memento mori is not a practice of grief. It is a practice of attention.',
-    practice: 'Find the oldest thing in your view — a rock face, a root system, a dead tree, a canyon carved over millions of years. Sit with it and let its age make your own scale clear. Then consider, specifically and without abstraction, that you will die. Not someday. Eventually, certainly. Feel what that does to the quality of the next ten minutes. Stay with what sharpens.',
+    practice: 'Find the oldest thing in your view — a rock face, a root system, a dead tree, a canyon carved over millions of years. Sit with it and let its age make your own scale clear. Then consider, specifically, that you will die. Feel what that does to the quality of the next ten minutes. Stay with what sharpens.',
     quote: 'It is not that we have a short time to live, but that we waste a great deal of it.',
     quoteOriginal: '',
     quoteAuthor: 'Seneca, On the Shortness of Life',
@@ -599,7 +599,7 @@ export const CARDS = [
     bestFor: ['awe', 'threshold', 'closure', 'solo', 'departure'],
     assignWhen: ['final day of trip', 'expansive ancient landscape', 'significant threshold moment'],
     avoidWhen: ['day 1', 'arrival day', 'traveler in emotional difficulty'],
-    connection: 'The Great White Throne has stood for 170 million years. The Navajo sandstone remembers the Jurassic. Sit at its base and let that scale make your own clear — not as diminishment but as precision. This exact light on this exact wall will not repeat. Seneca was not being dramatic. He was being observant. The urgency is the gift.',
+    connection: 'The Great White Throne has stood for 170 million years. Sit at its base and let that scale make your own clear. This exact light on this exact wall will not repeat. The urgency is the gift.',
   },
   {
     id: 'ichi-go-ichi-e',
@@ -608,7 +608,7 @@ export const CARDS = [
     name: 'Ichi-go Ichi-e',
     subtitle: 'One time, one meeting — this will never come again',
     teaching: 'Ichi-go ichi-e emerged from the Japanese tea ceremony tradition — the understanding that every gathering is utterly unique and will never be repeated. The same people, the same place, the same quality of afternoon light will never converge again in exactly this way. Sen no Rikyū built an entire aesthetic around this recognition: treat each encounter as if it were the last, because in a sense it is. Travel makes this visible in ways ordinary life conceals. The summit you are standing on right now. The particular gold of this late afternoon. Already ending.',
-    practice: 'At one moment today — a meal, a view, a conversation, a quality of light on water — stop completely and say, quietly or aloud: this is happening once and it is already ending. Hold that fact without reaching for a camera or a memory. Let the moment be only itself, unrepeatable and therefore complete. Stay until you feel the difference between consuming an experience and receiving one.',
+    practice: 'At one moment today — a meal, a view, a conversation, a quality of light on water — stop completely and say: this is happening once and it is already ending. Hold that fact without reaching for a camera or a memory. Let the moment be only itself, unrepeatable and therefore complete. Stay until you feel the difference between consuming an experience and receiving one.',
     quote: 'Every encounter is a once-in-a-lifetime meeting. Treat it accordingly.',
     quoteOriginal: '一期一会',
     quoteAuthor: 'Sen no Rikyū, tea ceremony tradition',
@@ -619,7 +619,7 @@ export const CARDS = [
     bestFor: ['awe', 'gratitude', 'threshold', 'departure', 'closure', 'shared'],
     assignWhen: ['iconic moment day', 'final evening', 'special meal or gathering', 'summit day'],
     avoidWhen: [],
-    connection: 'McWay Falls at 4 PM in October — the particular angle of light through the cove, the way the waterfall catches gold for exactly eleven minutes before the cliff shadow arrives. This configuration of water and light and the salt on your skin will not converge again. The tea masters built an entire aesthetic around this recognition. Hold it without reaching.',
+    connection: 'McWay Falls at 4 PM in October — the particular angle of light through the cove, the waterfall catching gold for exactly eleven minutes. This configuration will not converge again. Hold it without reaching.',
   },
   {
     id: 'satoyama',
@@ -628,7 +628,7 @@ export const CARDS = [
     name: 'Satoyama',
     subtitle: 'The sacred threshold — where tended and wild meet',
     teaching: 'Satoyama is the Japanese concept of the landscape between village and wilderness — the farmland edges, the forest margins, the places where human life and wild nature exist in long mutual relationship. In Shinto these boundaries are understood as sacred zones, places where the kami are most present and most active. The threshold is not a division but a conversation — two different ways of being alive meeting at an edge and generating something neither could produce alone. Every trail has its satoyama moments: where the maintained path meets the unmanaged wild, where the human and the non-human lean toward each other.',
-    practice: 'Walk the edge between two kinds of landscape today — trail and wild, tended and untended, rock and vegetation, forest and open. Walk it slowly. At each step notice what is on each side and what is happening between them. Sit at the most compelling threshold you find. Spend fifteen minutes attending to what the boundary is doing — what it holds, what it allows, what it generates.',
+    practice: 'Walk the edge between two kinds of landscape today — trail and wild, tended and untended, rock and vegetation. Walk it slowly. At each step notice what is on each side and what is happening between them. Sit at the most compelling threshold you find. Spend fifteen minutes attending to what the boundary is doing — what it holds, what it allows.',
     quote: 'Nature is not a place to visit. It is home.',
     quoteOriginal: '',
     quoteAuthor: 'Gary Snyder, The Practice of the Wild',
@@ -639,7 +639,7 @@ export const CARDS = [
     bestFor: ['arrival', 'awe', 'transition', 'gratitude', 'solo'],
     assignWhen: ['edge landscape day', 'forest or coastal destination', 'trail with distinct zones'],
     avoidWhen: ['urban or town day'],
-    connection: 'Where the Ozette Loop trail meets the coastal headland, the maintained path gives way to boardwalk gives way to beach. The boundary between tended and wild is a conversation — two ways of being alive leaning toward each other. Sit exactly at the threshold where the forest canopy ends and the sea stacks begin. This edge is where the kami are most present.',
+    connection: 'Where the Ozette Loop trail meets the coastal headland, the maintained path gives way to beach. Sit exactly at the threshold where the forest canopy ends and the sea stacks begin. This edge is where the kami are most present.',
   },
   {
     id: 'mono-no-aware',
@@ -648,7 +648,7 @@ export const CARDS = [
     name: 'Mono no Aware',
     subtitle: 'The pathos of things — beauty because it passes',
     teaching: 'Mono no aware — the pathos of things — is the Japanese aesthetic of tender, bittersweet sadness at the transience of beauty. It is not grief. It is the particular ache that arises when you are fully present to something beautiful precisely because it will not last. The cherry blossom is beautiful because it falls. The canyon light at this exact hour because it will change. The trip you are on because it is ending. Kenkō understood this in the 14th century: to long for the moon only when it is full is to miss the moon entirely. The beauty is in the passing.',
-    practice: 'Find one beautiful thing today and watch it change. The light moving across a rock face. A cloud dissolving. A flower at the edge of its bloom. Watch it with the explicit knowledge that this exact configuration will never exist again — and that this is not a loss but the condition of beauty itself. Let the beauty and the transience arrive simultaneously. Stay until something in you softens rather than grasps.',
+    practice: 'Find one beautiful thing today and watch it change. The light moving across a rock face. A cloud dissolving. A flower at the edge of its bloom. Watch it with the knowledge that this exact configuration will never exist again — and that this is not a loss but the condition of beauty itself. Stay until something in you softens rather than grasps.',
     quote: 'The blossom is most beautiful in the moment of its falling.',
     quoteOriginal: '',
     quoteAuthor: 'Kenkō, Essays in Idleness',
@@ -659,7 +659,7 @@ export const CARDS = [
     bestFor: ['awe', 'closure', 'departure', 'gratitude', 'threshold', 'solo'],
     assignWhen: ['final day or evening of trip', 'sunset or sunrise moment', 'peak season beauty'],
     avoidWhen: ['traveler in grief or loss — read the room'],
-    connection: 'The fog that rolls into Big Sur most mornings erases the coastline entirely — then burns off by noon, and when it does, the light on the water is unrepeatable. Kenkō understood this in the 14th century: to long for the clear view is to miss the beauty of the fog itself. The trip is ending. The canyon light is changing. Stay until something softens.',
+    connection: 'The fog that rolls into Big Sur most mornings erases the coastline — then burns off, and the light on the water is unrepeatable. The trip is ending. The canyon light is changing. Stay until something softens.',
   },
   {
     id: 'shinrin-yoku',
@@ -668,7 +668,7 @@ export const CARDS = [
     name: 'Shinrin-yoku',
     subtitle: 'Forest bathing — immersion as the practice of receiving',
     teaching: "Shinrin-yoku — forest bathing — is the Japanese practice of therapeutic immersion in forest. Not hiking, not exercise, not destination. Just being inside the living atmosphere of trees. Research confirms what the Taoists knew: the forest is doing something to you whether you attend to it or not — lowering cortisol, slowing the breath, quieting the part of the mind that plans and narrates. The practice is simply to stop moving fast enough to receive what is already being offered. The forest doesn't need your attention to function. But your attention is what makes it medicine.",
-    practice: 'Walk at half your normal pace for thirty minutes. No phone, no photos, no destination. Open each sense in sequence — spend five minutes with sound only, then smell, then the feeling of air and texture on skin, then finally full sight. Do not name what you encounter. Do not evaluate it. Just receive it. Notice what the body does when the mind stops directing the experience.',
+    practice: 'Walk at half your normal pace for thirty minutes. No phone, no photos, no destination. Open each sense in sequence — five minutes with sound only, then smell, then the feeling of air and texture on skin, then finally full sight. Do not name what you encounter. Do not evaluate it. Just receive it. Notice what the body does when the mind stops directing.',
     quote: 'The mountains and rivers, the whole earth, the plants and trees — all of these are the self.',
     quoteOriginal: '',
     quoteAuthor: 'Dogen, Shobogenzo',
@@ -679,7 +679,7 @@ export const CARDS = [
     bestFor: ['rest', 'fatigue', 'arrival', 'solo', 'awe', 'uncertainty'],
     assignWhen: ['forest destination', 'rest day', 'mid-trip reset', 'overstimulated traveler'],
     avoidWhen: ['desert or treeless landscape', 'town day'],
-    connection: 'The Hoh Rainforest receives twelve feet of rain a year, and every surface shows it — moss on moss on moss, ferns unfurling from nurse logs, the air thick with oxygen and the particular green smell of decomposition becoming life. Walk at half pace. No phone. Open each sense in sequence. The forest doesn\'t need your attention to function. But your attention is what makes it medicine.',
+    connection: 'The Hoh Rainforest receives twelve feet of rain a year. Walk at half pace. No phone. Open each sense in sequence. The forest doesn\'t need your attention to function. But your attention is what makes it medicine.',
   },
 ];
 

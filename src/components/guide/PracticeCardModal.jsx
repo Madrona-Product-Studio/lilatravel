@@ -233,6 +233,7 @@ function FrontFace({ card, principle, onFlip, onClose }) {
 }
 
 function BackFace({ card, principle, connection, onFlip, onClose }) {
+  const hasConnection = !!connection;
   return (
     <div
       onClick={onFlip}
@@ -241,143 +242,109 @@ function BackFace({ card, principle, connection, onFlip, onClose }) {
         background: '#F7F4EE',
         color: '#1C1917',
         cursor: 'pointer',
-        overflow: 'auto',
+        overflow: 'hidden',
+        border: '0.5px solid rgba(0,0,0,0.08)',
         transform: 'rotateY(180deg)',
         backfaceVisibility: 'hidden',
         WebkitBackfaceVisibility: 'hidden',
         WebkitTapHighlightColor: 'transparent',
+        display: 'flex', flexDirection: 'column',
       }}
     >
       <CloseButton onClose={onClose} dark />
 
-      <div style={{ padding: '22px 24px 60px' }}>
-        {/* Card name with diamond glyph */}
-        <div
-          className="font-body uppercase"
-          style={{
-            fontSize: 10,
-            letterSpacing: '0.18em',
-            color: principle.color,
-            fontWeight: 600,
-            display: 'flex',
-            alignItems: 'center',
-            gap: 8,
-            marginBottom: 20,
-          }}
-        >
+      {/* Section 1 — Practice */}
+      <div style={{
+        flex: hasConnection ? 1.8 : 2.5,
+        padding: '22px 22px 16px',
+        display: 'flex', flexDirection: 'column',
+        overflow: 'hidden',
+      }}>
+        <div className="font-body uppercase" style={{
+          fontSize: 10, letterSpacing: '0.14em', color: principle.color,
+          fontWeight: 700, display: 'flex', alignItems: 'center', gap: 5, marginBottom: 10,
+        }}>
           <span>◈</span>
           <span>{card.name}</span>
         </div>
-
-        {/* THE PRACTICE label */}
-        <div
-          className="font-body uppercase"
-          style={{
-            fontSize: 10,
-            letterSpacing: '0.18em',
-            color: '#4a3a2a',
-            fontWeight: 600,
-            marginBottom: 10,
-          }}
-        >
+        <div className="font-body uppercase" style={{
+          fontSize: 9, letterSpacing: '0.12em', color: '#4a3a2a',
+          fontWeight: 700, marginBottom: 6,
+        }}>
           The Practice
         </div>
-        <p
-          className="font-body"
-          style={{
-            fontSize: 15,
-            color: '#1C1917',
-            lineHeight: 1.75,
-            margin: 0,
-          }}
-        >
+        <div className="font-body" style={{
+          fontSize: 13, color: '#1C1917', lineHeight: 1.75,
+          flex: 1, overflow: 'hidden',
+        }}>
           {card.practice}
-        </p>
-
-        {/* Hairline divider */}
-        <div style={{ height: '0.5px', background: '#c8bfb077', margin: '20px 0' }} />
-
-        {/* Quote block */}
-        {card.quote && (
-          <div>
-            {card.quoteOriginal && (
-              <div
-                className="font-body"
-                style={{
-                  fontSize: 11,
-                  color: '#8C7B6B',
-                  letterSpacing: '0.04em',
-                  marginBottom: 6,
-                }}
-              >
-                {card.quoteOriginal}
-              </div>
-            )}
-            <div
-              className="font-body"
-              style={{
-                fontSize: 15,
-                color: '#1C1917',
-                fontWeight: 500,
-                lineHeight: 1.7,
-                marginBottom: 8,
-              }}
-            >
-              "{card.quote}"
-            </div>
-            {card.quoteAuthor && (
-              <div
-                className="font-body uppercase"
-                style={{
-                  fontSize: 9,
-                  letterSpacing: '0.14em',
-                  color: '#8C7B6B',
-                  fontWeight: 600,
-                }}
-              >
-                — {card.quoteAuthor}
-              </div>
-            )}
-          </div>
-        )}
-
-        {/* Hairline divider */}
-        <div style={{ height: '0.5px', background: '#c8bfb077', margin: '20px 0' }} />
-
-        {/* ON YOUR TRIP label */}
-        <div
-          className="font-body uppercase"
-          style={{
-            fontSize: 10,
-            letterSpacing: '0.18em',
-            color: '#2D6B6B',
-            fontWeight: 600,
-            display: 'flex',
-            alignItems: 'center',
-            gap: 8,
-            marginBottom: 8,
-          }}
-        >
-          <span>◈</span>
-          <span>On Your Trip</span>
         </div>
-        <p
-          className="font-body"
-          style={{
-            fontSize: 15,
-            color: '#1C1917',
-            lineHeight: 1.75,
-            margin: 0,
-          }}
-        >
-          {connection || 'A field for this exact day will appear here once your itinerary is generated.'}
-        </p>
       </div>
 
-      {/* Flip arrow — bottom right, dark */}
-      <div style={{ position: 'absolute', right: 22, bottom: 18, opacity: 0.35 }}>
-        <FlipArrow dark />
-      </div>
+      {/* Hairline */}
+      <div style={{ height: '0.5px', background: 'rgba(44,36,32,0.08)', flexShrink: 0 }} />
+
+      {/* Section 2 — Quote */}
+      {card.quote && (
+        <div style={{
+          flex: hasConnection ? 1 : 1.5,
+          padding: '16px 22px',
+          display: 'flex', flexDirection: 'column',
+          justifyContent: 'center', overflow: 'hidden',
+        }}>
+          <div className="font-body" style={{
+            fontSize: 14, color: '#1C1917', fontWeight: 500,
+            lineHeight: 1.65, marginBottom: 6,
+          }}>
+            "{card.quote}"
+          </div>
+          {card.quoteAuthor && (
+            <div className="font-body uppercase" style={{
+              fontSize: 9, letterSpacing: '0.14em', color: '#8C7B6B', fontWeight: 600,
+            }}>
+              — {card.quoteAuthor}
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Hairline + Section 3 — On Your Trip */}
+      {hasConnection && (
+        <>
+          <div style={{ height: '0.5px', background: 'rgba(44,36,32,0.08)', flexShrink: 0 }} />
+          <div style={{
+            flex: 1, padding: '16px 22px',
+            display: 'flex', flexDirection: 'column',
+            justifyContent: 'space-between', overflow: 'hidden',
+            position: 'relative',
+          }}>
+            <div>
+              <div className="font-body uppercase" style={{
+                fontSize: 10, letterSpacing: '0.14em', color: '#2D6B6B',
+                fontWeight: 700, display: 'flex', alignItems: 'center', gap: 5, marginBottom: 6,
+              }}>
+                <span>◈</span>
+                <span>On Your Trip</span>
+              </div>
+              <div className="font-body" style={{
+                fontSize: 13, color: '#1C1917', lineHeight: 1.7, overflow: 'hidden',
+              }}>
+                {connection}
+              </div>
+            </div>
+            <div style={{ alignSelf: 'flex-end', opacity: 0.25, marginTop: 4 }}>
+              <FlipArrow dark />
+            </div>
+          </div>
+        </>
+      )}
+
+      {/* Flip arrow fallback when no connection */}
+      {!hasConnection && (
+        <div style={{ padding: '8px 22px 18px', display: 'flex', justifyContent: 'flex-end', flexShrink: 0, opacity: 0.25 }}>
+          <FlipArrow dark />
+        </div>
+      )}
     </div>
   );
 }
