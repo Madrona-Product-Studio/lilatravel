@@ -168,8 +168,8 @@ function OrientationScreen() {
       {/* Traditions */}
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
         <div style={{
-          fontSize: 8, letterSpacing: '0.22em',
-          color: 'rgba(255,255,255,0.28)', fontFamily: SANS,
+          fontSize: 10, letterSpacing: '0.22em',
+          color: 'rgba(255,255,255,0.5)', fontFamily: SANS,
           textTransform: 'uppercase', marginBottom: 10,
         }}>
           Five Traditions
@@ -177,17 +177,17 @@ function OrientationScreen() {
         {TRADITIONS_LIST.map((t, i) => (
           <div key={t.name} style={{
             display: 'flex', alignItems: 'center', gap: 14, flex: 1,
-            padding: '4px 0',
-            borderBottom: i < 4 ? '0.5px solid rgba(255,255,255,0.07)' : 'none',
+            padding: '5px 0',
+            borderBottom: i < 4 ? '0.5px solid rgba(255,255,255,0.08)' : 'none',
           }}>
-            <div style={{ width: 28, textAlign: 'center', flexShrink: 0, fontSize: 18, color: 'rgba(255,255,255,0.5)' }}>
+            <div style={{ width: 28, textAlign: 'center', flexShrink: 0, fontSize: 18, color: 'rgba(255,255,255,0.6)' }}>
               {t.symbol}
             </div>
             <div style={{ flex: 1 }}>
               <div style={{ fontSize: 14, fontFamily: SANS, color: C.warmWhite, fontWeight: 600, letterSpacing: '0.02em', marginBottom: 2 }}>
                 {t.name}
               </div>
-              <div style={{ fontSize: 11, fontFamily: SANS, color: 'rgba(255,255,255,0.35)', letterSpacing: '0.02em' }}>
+              <div style={{ fontSize: 11, fontFamily: SANS, color: 'rgba(255,255,255,0.55)', letterSpacing: '0.02em' }}>
                 {t.desc}
               </div>
             </div>
@@ -201,8 +201,8 @@ function OrientationScreen() {
       {/* Principles */}
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
         <div style={{
-          fontSize: 8, letterSpacing: '0.22em',
-          color: 'rgba(255,255,255,0.28)', fontFamily: SANS,
+          fontSize: 10, letterSpacing: '0.22em',
+          color: 'rgba(255,255,255,0.5)', fontFamily: SANS,
           textTransform: 'uppercase', marginBottom: 10,
         }}>
           Five Principles
@@ -210,8 +210,8 @@ function OrientationScreen() {
         {CHAPTERS.map((p, i) => (
           <div key={p.id} style={{
             display: 'flex', alignItems: 'center', gap: 14, flex: 1,
-            padding: '4px 0',
-            borderBottom: i < 4 ? '0.5px solid rgba(255,255,255,0.07)' : 'none',
+            padding: '5px 0',
+            borderBottom: i < 4 ? '0.5px solid rgba(255,255,255,0.08)' : 'none',
           }}>
             <div style={{ flexShrink: 0 }}>
               <PrincipleMark id={p.id} size={18} />
@@ -221,7 +221,7 @@ function OrientationScreen() {
                 {p.name}
               </div>
             </div>
-            <div style={{ fontSize: 11, fontFamily: SANS, color: 'white', opacity: 0.7 }}>
+            <div style={{ fontSize: 12, fontFamily: SANS, color: 'white', opacity: 0.75 }}>
               {p.arc}
             </div>
           </div>
@@ -251,16 +251,6 @@ function ChapterScreen({ principle, principleIndex }) {
         background: 'radial-gradient(ellipse at 50% 25%, rgba(255,255,255,0.07) 0%, transparent 60%)',
         pointerEvents: 'none',
       }} />
-
-      {/* Chapter number */}
-      <div style={{
-        fontSize: 8, letterSpacing: '0.28em',
-        color: 'white', fontFamily: SANS,
-        textTransform: 'uppercase', opacity: 0.4,
-        alignSelf: 'flex-start',
-      }}>
-        {principleIndex + 1} / 5
-      </div>
 
       {/* Title block */}
       <div style={{ width: '100%' }}>
@@ -364,8 +354,8 @@ function PracticeCardScreen({ card, principle, cardIndex }) {
         {/* Card content */}
         <div style={{ padding: '0 24px 0', flexShrink: 0 }}>
           <div style={{
-            fontSize: 8.5, letterSpacing: '0.18em', color: 'white',
-            fontFamily: SANS, textTransform: 'uppercase', opacity: 0.48, marginBottom: 5,
+            fontSize: 10, letterSpacing: '0.18em', color: 'white',
+            fontFamily: SANS, textTransform: 'uppercase', opacity: 0.7, marginBottom: 5,
           }}>
             {card.tradition}
           </div>
@@ -376,8 +366,8 @@ function PracticeCardScreen({ card, principle, cardIndex }) {
             {card.name}
           </div>
           <div style={{
-            fontSize: 10, fontFamily: SANS, color: 'white',
-            opacity: 0.6, fontStyle: 'italic', lineHeight: 1.4, marginBottom: 14,
+            fontSize: 12, fontFamily: SANS, color: 'white',
+            opacity: 0.75, fontStyle: 'italic', lineHeight: 1.4, marginBottom: 14,
           }}>
             {card.subtitle}
           </div>
@@ -594,16 +584,16 @@ export default function Meditations() {
           onClick={() => navigate(-1)}
           aria-label="Previous"
           style={{
-            position: 'absolute', left: 8, top: '50%', transform: 'translateY(-50%)',
-            background: 'none', border: 'none', cursor: 'pointer', padding: '16px 10px',
-            opacity: currentIndex === 0 ? 0.1 : 0.4, transition: 'opacity 0.2s', zIndex: 10,
-            color: '#8C7B6B',
+            position: 'absolute', left: 0, top: '50%', transform: 'translateY(-50%)',
+            background: 'none', border: 'none', cursor: 'pointer', padding: '12px 8px',
+            opacity: currentIndex === 0 ? 0.15 : 0.6, transition: 'opacity 0.2s', zIndex: 10,
+            color: '#6B5A50',
           }}
-          onMouseEnter={e => { if (currentIndex > 0) e.currentTarget.style.opacity = '0.85'; }}
-          onMouseLeave={e => { e.currentTarget.style.opacity = currentIndex === 0 ? '0.1' : '0.4'; }}
+          onMouseEnter={e => { if (currentIndex > 0) e.currentTarget.style.opacity = '1'; }}
+          onMouseLeave={e => { e.currentTarget.style.opacity = currentIndex === 0 ? '0.15' : '0.6'; }}
         >
-          <svg width="10" height="18" viewBox="0 0 10 18" fill="none">
-            <path d="M 9 1 L 1 9 L 9 17" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          <svg width="12" height="22" viewBox="0 0 12 22" fill="none">
+            <path d="M 10 1 L 1 11 L 10 21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </button>
 
@@ -612,7 +602,7 @@ export default function Meditations() {
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
           style={{
-            width: 'min(390px, calc(100vw - 48px))',
+            width: 'min(390px, calc(100vw - 32px))',
             height: 'min(700px, calc(100vh - 80px))',
             position: 'relative', overflow: 'hidden',
             borderRadius: 14,
@@ -648,16 +638,16 @@ export default function Meditations() {
           onClick={() => navigate(1)}
           aria-label="Next"
           style={{
-            position: 'absolute', right: 8, top: '50%', transform: 'translateY(-50%)',
-            background: 'none', border: 'none', cursor: 'pointer', padding: '16px 10px',
-            opacity: currentIndex === total - 1 ? 0.1 : 0.4, transition: 'opacity 0.2s', zIndex: 10,
-            color: '#8C7B6B',
+            position: 'absolute', right: 0, top: '50%', transform: 'translateY(-50%)',
+            background: 'none', border: 'none', cursor: 'pointer', padding: '12px 8px',
+            opacity: currentIndex === total - 1 ? 0.15 : 0.6, transition: 'opacity 0.2s', zIndex: 10,
+            color: '#6B5A50',
           }}
-          onMouseEnter={e => { if (currentIndex < total - 1) e.currentTarget.style.opacity = '0.85'; }}
-          onMouseLeave={e => { e.currentTarget.style.opacity = currentIndex === total - 1 ? '0.1' : '0.4'; }}
+          onMouseEnter={e => { if (currentIndex < total - 1) e.currentTarget.style.opacity = '1'; }}
+          onMouseLeave={e => { e.currentTarget.style.opacity = currentIndex === total - 1 ? '0.15' : '0.6'; }}
         >
-          <svg width="10" height="18" viewBox="0 0 10 18" fill="none">
-            <path d="M 1 1 L 9 9 L 1 17" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          <svg width="12" height="22" viewBox="0 0 12 22" fill="none">
+            <path d="M 1 1 L 11 11 L 1 21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </button>
       </div>
