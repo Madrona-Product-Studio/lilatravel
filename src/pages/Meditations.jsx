@@ -364,8 +364,8 @@ function TraditionScreen({ tradition }) {
         </div>
         <div style={{ width: 28, height: '0.5px', background: 'rgba(255,255,255,0.25)', margin: '0 auto 12px' }} />
         <div style={{
-          fontSize: 17, fontFamily: SERIF, color: 'white',
-          fontStyle: 'italic', opacity: 0.92, lineHeight: 1.4,
+          fontSize: 15, fontFamily: SANS, color: 'white',
+          fontWeight: 400, opacity: 0.75, lineHeight: 1.5,
         }}>
           {tradition.essence}
         </div>
@@ -389,8 +389,8 @@ function TraditionScreen({ tradition }) {
           {tradition.concepts.map(c => (
             <div key={c.label}>
               <div style={{
-                fontSize: 13, fontFamily: SERIF, fontStyle: 'italic',
-                color: 'white', opacity: 0.95, marginBottom: 2,
+                fontSize: 13, fontFamily: SANS, fontWeight: 600,
+                color: 'white', opacity: 0.92, marginBottom: 2,
               }}>
                 {c.label}
               </div>
