@@ -326,7 +326,7 @@ function SectionLabel({ text }) {
     }}>
       <div style={{ flex: 1, height: '0.5px', background: 'rgba(255,255,255,0.15)' }} />
       <div style={{
-        fontSize: 9, fontFamily: SANS, textTransform: 'uppercase',
+        fontSize: 10, fontFamily: SANS, textTransform: 'uppercase',
         letterSpacing: '0.26em', color: 'white', opacity: 0.65,
         flexShrink: 0,
       }}>
@@ -366,7 +366,7 @@ function TraditionScreen({ tradition }) {
           <TraditionSymbol symbol={tradition.symbol} size={40} color="white" />
         </div>
         <div style={{
-          fontSize: 9, fontFamily: SANS, textTransform: 'uppercase',
+          fontSize: 10, fontFamily: SANS, textTransform: 'uppercase',
           letterSpacing: '0.22em', color: 'white', opacity: 0.7,
           marginBottom: 6,
         }}>
@@ -380,7 +380,7 @@ function TraditionScreen({ tradition }) {
         </div>
         <div style={{ width: 28, height: '0.5px', background: 'rgba(255,255,255,0.25)', margin: '0 auto 12px' }} />
         <div style={{
-          fontSize: 15, fontFamily: SANS, color: 'white',
+          fontSize: 16, fontFamily: SANS, color: 'white',
           fontWeight: 400, opacity: 0.75, lineHeight: 1.5,
         }}>
           {tradition.essence}
@@ -391,7 +391,7 @@ function TraditionScreen({ tradition }) {
       <div style={{ flexShrink: 0, position: 'relative', marginTop: 14 }}>
         <div style={{ height: '0.5px', background: 'rgba(255,255,255,0.15)', marginBottom: 12 }} />
         <div style={{
-          fontSize: 13, fontFamily: SANS, color: 'rgba(245,243,238,0.72)',
+          fontSize: 14, fontFamily: SANS, color: 'rgba(245,243,238,0.72)',
           lineHeight: 1.7,
         }}>
           {tradition.history}
@@ -405,13 +405,13 @@ function TraditionScreen({ tradition }) {
           {tradition.concepts.map(c => (
             <div key={c.label}>
               <div style={{
-                fontSize: 13, fontFamily: SANS, fontWeight: 600,
+                fontSize: 14, fontFamily: SANS, fontWeight: 600,
                 color: 'white', opacity: 0.92, marginBottom: 2,
               }}>
                 {c.label}
               </div>
               <div style={{
-                fontSize: 12, fontFamily: SANS, color: 'rgba(245,243,238,0.6)',
+                fontSize: 13, fontFamily: SANS, color: 'rgba(245,243,238,0.6)',
               }}>
                 {c.desc}
               </div>
@@ -420,16 +420,6 @@ function TraditionScreen({ tradition }) {
         </div>
       </div>
 
-      {/* Section 4 — In the Wild */}
-      <div style={{ flexShrink: 0, position: 'relative', paddingBottom: 0 }}>
-        <SectionLabel text="In the wild" />
-        <div style={{
-          fontSize: 13, fontFamily: SANS, color: 'rgba(245,243,238,0.75)',
-          lineHeight: 1.7,
-        }}>
-          {tradition.wild}
-        </div>
-      </div>
     </div>
   );
 }
@@ -480,7 +470,7 @@ function ChapterScreen({ principle, principleIndex }) {
         </div>
         <div style={{ width: 28, height: '0.5px', background: 'rgba(255,255,255,0.25)', marginBottom: 20, margin: '0 auto 20px' }} />
         <div style={{
-          fontSize: 13, fontFamily: SANS,
+          fontSize: 14, fontFamily: SANS,
           color: 'white', opacity: 0.75,
           lineHeight: 1.8, fontWeight: 400,
         }}>
@@ -570,7 +560,7 @@ function PracticeCardScreen({ card, principle, cardIndex }) {
         }}>
           <PrincipleMark id={principle.id} size={32} />
           <div style={{
-            fontSize: 8, letterSpacing: '0.28em', color: 'white',
+            fontSize: 9, letterSpacing: '0.28em', color: 'white',
             fontFamily: SANS, textTransform: 'uppercase', fontWeight: 700, opacity: 0.85,
           }}>
             {principle.name}
@@ -583,7 +573,7 @@ function PracticeCardScreen({ card, principle, cardIndex }) {
         {/* Card content */}
         <div style={{ padding: '0 24px 0', flexShrink: 0 }}>
           <div style={{
-            fontSize: 10, letterSpacing: '0.18em', color: 'white',
+            fontSize: 11, letterSpacing: '0.18em', color: 'white',
             fontFamily: SANS, textTransform: 'uppercase', opacity: 0.7, marginBottom: 5,
           }}>
             {card.tradition}
@@ -595,13 +585,13 @@ function PracticeCardScreen({ card, principle, cardIndex }) {
             {card.name}
           </div>
           <div style={{
-            fontSize: 14, fontFamily: SANS, color: 'white',
+            fontSize: 15, fontFamily: SANS, color: 'white',
             opacity: 0.8, fontStyle: 'italic', lineHeight: 1.5, marginBottom: 18,
           }}>
             {card.subtitle}
           </div>
           <div style={{
-            fontSize: 14, fontFamily: SANS, color: 'white',
+            fontSize: 15, fontFamily: SANS, color: 'white',
             opacity: 0.88, lineHeight: 1.78,
           }}>
             {card.teaching}
