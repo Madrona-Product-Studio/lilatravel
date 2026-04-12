@@ -74,7 +74,7 @@ function CoverScreen() {
   const sky = ['#5a7898', '#8a7880', '#d09070', '#e8a060'];
 
   return (
-    <div style={{ width: '100%', height: '100%', position: 'relative', overflow: 'hidden' }}>
+    <div style={{ width: '100%', height: '100%', position: 'relative', overflow: 'hidden', borderRadius: 14 }}>
       {/* Sunset sky */}
       <div style={{
         position: 'absolute', inset: 0,
@@ -156,6 +156,7 @@ function OrientationScreen() {
       display: 'flex', flexDirection: 'column',
       padding: '28px 26px',
       position: 'relative', overflow: 'hidden',
+      borderRadius: 14,
     }}>
       <div style={{
         position: 'absolute', bottom: '-10%', left: '50%',
@@ -245,6 +246,7 @@ function ChapterScreen({ principle, principleIndex }) {
       alignItems: 'center', justifyContent: 'space-between',
       padding: '44px 28px 36px',
       position: 'relative', overflow: 'hidden',
+      borderRadius: 14,
     }}>
       <div style={{
         position: 'absolute', inset: 0,
@@ -316,22 +318,39 @@ function ChapterScreen({ principle, principleIndex }) {
 
 function PracticeCardScreen({ card, principle, cardIndex }) {
   const [flipped, setFlipped] = useState(false);
+  const [flipAnimating, setFlipAnimating] = useState(false);
+
+  const handleFlip = () => {
+    if (flipAnimating) return;
+    setFlipAnimating(true);
+    setFlipped(f => !f);
+    setTimeout(() => setFlipAnimating(false), 700);
+  };
 
   return (
-    <div style={{ width: '100%', height: '100%', position: 'relative' }}>
+    <div style={{ width: '100%', height: '100%', perspective: 1200 }}>
+      <div
+        style={{
+          width: '100%', height: '100%', position: 'relative',
+          transformStyle: 'preserve-3d',
+          transform: flipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
+          animation: flipAnimating
+            ? `${flipped ? 'flipCard' : 'flipCardBack'} 0.65s cubic-bezier(0.4, 0, 0.2, 1) forwards`
+            : 'none',
+        }}
+      >
       {/* Front */}
       <div
-        onClick={() => !flipped && setFlipped(true)}
+        onClick={handleFlip}
         style={{
           position: 'absolute', inset: 0,
           background: principle.color,
           display: 'flex', flexDirection: 'column',
-          cursor: flipped ? 'default' : 'pointer',
+          cursor: 'pointer',
           overflow: 'hidden',
-          transition: 'opacity 0.28s ease, transform 0.28s ease',
-          opacity: flipped ? 0 : 1,
-          transform: flipped ? 'scale(0.97)' : 'scale(1)',
-          pointerEvents: flipped ? 'none' : 'all',
+          borderRadius: 14,
+          backfaceVisibility: 'hidden',
+          WebkitBackfaceVisibility: 'hidden',
         }}
       >
         <div style={{
@@ -409,16 +428,16 @@ function PracticeCardScreen({ card, principle, cardIndex }) {
 
       {/* Back */}
       <div
-        onClick={() => flipped && setFlipped(false)}
+        onClick={handleFlip}
         style={{
           position: 'absolute', inset: 0,
           background: '#F7F4EE',
           display: 'flex', flexDirection: 'column',
           cursor: 'pointer', overflow: 'hidden',
-          transition: 'opacity 0.28s ease, transform 0.28s ease',
-          opacity: flipped ? 1 : 0,
-          transform: flipped ? 'scale(1)' : 'scale(1.02)',
-          pointerEvents: flipped ? 'all' : 'none',
+          borderRadius: 14,
+          transform: 'rotateY(180deg)',
+          backfaceVisibility: 'hidden',
+          WebkitBackfaceVisibility: 'hidden',
         }}
       >
         <div style={{ flex: 1, padding: '18px 22px 0', display: 'flex', flexDirection: 'column', overflowY: 'auto' }}>
@@ -509,6 +528,7 @@ function PracticeCardScreen({ card, principle, cardIndex }) {
           </svg>
         </div>
       </div>
+      </div>
     </div>
   );
 }
@@ -541,6 +561,20 @@ export default function Meditations() {
     }, 260);
   }, [animating, currentIndex, total]);
 
+  // Lock body scroll while deck is mounted
+  useEffect(() => {
+    const prev = document.body.style.overflow;
+    const prevTouch = document.body.style.touchAction;
+    document.body.style.overflow = 'hidden';
+    document.body.style.touchAction = 'none';
+    document.documentElement.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = prev;
+      document.body.style.touchAction = prevTouch;
+      document.documentElement.style.overflow = '';
+    };
+  }, []);
+
   // Keyboard navigation
   useEffect(() => {
     function handleKeyDown(e) {
@@ -554,6 +588,11 @@ export default function Meditations() {
   function handleTouchStart(e) {
     touchStartX.current = e.touches[0].clientX;
     touchStartY.current = e.touches[0].clientY;
+  }
+
+  function handleTouchMove(e) {
+    // Prevent vertical scroll/bounce during swipe
+    e.preventDefault();
   }
 
   function handleTouchEnd(e) {
@@ -574,10 +613,24 @@ export default function Meditations() {
         <link rel="canonical" href="https://lilatrips.com/ethos/meditations" />
       </Helmet>
 
-      {/* Desktop-only arrow visibility */}
+      {/* Desktop-only arrows + flip keyframes */}
       <style>{`
         .deck-arrow { display: none !important; }
         @media (min-width: 768px) { .deck-arrow { display: flex !important; } }
+        @keyframes flipCard {
+          0%   { transform: rotateY(0deg)   scale(1)    translateY(0px);   box-shadow: 0 8px 32px rgba(44,36,32,0.2); }
+          20%  { transform: rotateY(45deg)  scale(1.04) translateY(-8px);  box-shadow: 0 20px 52px rgba(44,36,32,0.28); }
+          50%  { transform: rotateY(90deg)  scale(1.05) translateY(-10px); box-shadow: 0 24px 56px rgba(44,36,32,0.3); }
+          80%  { transform: rotateY(135deg) scale(1.04) translateY(-8px);  box-shadow: 0 20px 52px rgba(44,36,32,0.28); }
+          100% { transform: rotateY(180deg) scale(1)    translateY(0px);   box-shadow: 0 8px 32px rgba(44,36,32,0.2); }
+        }
+        @keyframes flipCardBack {
+          0%   { transform: rotateY(180deg) scale(1)    translateY(0px);   box-shadow: 0 8px 32px rgba(44,36,32,0.2); }
+          20%  { transform: rotateY(135deg) scale(1.04) translateY(-8px);  box-shadow: 0 20px 52px rgba(44,36,32,0.28); }
+          50%  { transform: rotateY(90deg)  scale(1.05) translateY(-10px); box-shadow: 0 24px 56px rgba(44,36,32,0.3); }
+          80%  { transform: rotateY(45deg)  scale(1.04) translateY(-8px);  box-shadow: 0 20px 52px rgba(44,36,32,0.28); }
+          100% { transform: rotateY(0deg)   scale(1)    translateY(0px);   box-shadow: 0 8px 32px rgba(44,36,32,0.2); }
+        }
       `}</style>
 
       <div
@@ -589,29 +642,29 @@ export default function Meditations() {
           alignItems: 'center', justifyContent: 'center',
           fontFamily: SANS, userSelect: 'none',
           outline: 'none', position: 'relative',
-          overflow: 'hidden',
+          overflow: 'hidden', touchAction: 'none',
         }}
       >
-        {/* Card + overlay arrows */}
-        <div style={{ position: 'relative' }}>
+        {/* Card + side arrows */}
+        <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
 
-          {/* Left arrow — desktop only, overlaps card edge */}
+          {/* Left arrow — desktop only, beside card */}
           <button
             className="deck-arrow"
             onClick={() => navigate(-1)}
             aria-label="Previous"
             style={{
-              position: 'absolute', left: 4, top: '50%', transform: 'translateY(-50%)',
-              background: 'rgba(255,255,255,0.15)',
-              backdropFilter: 'blur(4px)', WebkitBackdropFilter: 'blur(4px)',
-              border: 'none', borderRadius: 4, cursor: 'pointer',
-              padding: '10px 8px',
-              opacity: currentIndex === 0 ? 0 : 1,
+              background: 'none',
+              border: 'none', cursor: 'pointer',
+              padding: '12px 10px', marginRight: 20,
+              opacity: currentIndex === 0 ? 0.15 : 0.5,
               pointerEvents: currentIndex === 0 ? 'none' : 'auto',
-              transition: 'opacity 0.2s', zIndex: 20,
-              color: 'rgba(255,255,255,0.8)',
+              transition: 'opacity 0.2s',
+              color: '#6B5A50',
               alignItems: 'center', justifyContent: 'center',
             }}
+            onMouseEnter={e => { if (currentIndex > 0) e.currentTarget.style.opacity = '0.9'; }}
+            onMouseLeave={e => { e.currentTarget.style.opacity = currentIndex === 0 ? '0.15' : '0.5'; }}
           >
             <svg width="12" height="22" viewBox="0 0 12 22" fill="none">
               <path d="M 10 1 L 1 11 L 10 21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -621,11 +674,12 @@ export default function Meditations() {
           {/* Card viewport */}
           <div
             onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
             style={{
               width: 'min(400px, calc(100vw - 28px))',
               height: 'min(720px, calc(100dvh - 48px))',
-              position: 'relative', overflow: 'hidden',
+              position: 'relative',
               borderRadius: 14,
               boxShadow: '0 8px 32px rgba(44,36,32,0.18), 0 2px 8px rgba(44,36,32,0.1)',
               transform: animating
@@ -654,23 +708,23 @@ export default function Meditations() {
             )}
           </div>
 
-          {/* Right arrow — desktop only, overlaps card edge */}
+          {/* Right arrow — desktop only, beside card */}
           <button
             className="deck-arrow"
             onClick={() => navigate(1)}
             aria-label="Next"
             style={{
-              position: 'absolute', right: 4, top: '50%', transform: 'translateY(-50%)',
-              background: 'rgba(255,255,255,0.15)',
-              backdropFilter: 'blur(4px)', WebkitBackdropFilter: 'blur(4px)',
-              border: 'none', borderRadius: 4, cursor: 'pointer',
-              padding: '10px 8px',
-              opacity: currentIndex === total - 1 ? 0 : 1,
+              background: 'none',
+              border: 'none', cursor: 'pointer',
+              padding: '12px 10px', marginLeft: 20,
+              opacity: currentIndex === total - 1 ? 0.15 : 0.5,
               pointerEvents: currentIndex === total - 1 ? 'none' : 'auto',
-              transition: 'opacity 0.2s', zIndex: 20,
-              color: 'rgba(255,255,255,0.8)',
+              transition: 'opacity 0.2s',
+              color: '#6B5A50',
               alignItems: 'center', justifyContent: 'center',
             }}
+            onMouseEnter={e => { if (currentIndex < total - 1) e.currentTarget.style.opacity = '0.9'; }}
+            onMouseLeave={e => { e.currentTarget.style.opacity = currentIndex === total - 1 ? '0.15' : '0.5'; }}
           >
             <svg width="12" height="22" viewBox="0 0 12 22" fill="none">
               <path d="M 1 1 L 11 11 L 1 21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />

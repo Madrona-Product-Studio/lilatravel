@@ -23,9 +23,19 @@ const KEYFRAMES = `
   from { opacity: 0; }
   to   { opacity: 1; }
 }
-@keyframes lilaCardFaceIn {
-  from { opacity: 0; transform: scale(1.02); }
-  to   { opacity: 1; transform: scale(1); }
+@keyframes flipCard {
+  0%   { transform: rotateY(0deg)   scale(1)    translateY(0px);   box-shadow: 0 8px 32px rgba(44,36,32,0.2); }
+  20%  { transform: rotateY(45deg)  scale(1.04) translateY(-8px);  box-shadow: 0 20px 52px rgba(44,36,32,0.28); }
+  50%  { transform: rotateY(90deg)  scale(1.05) translateY(-10px); box-shadow: 0 24px 56px rgba(44,36,32,0.3); }
+  80%  { transform: rotateY(135deg) scale(1.04) translateY(-8px);  box-shadow: 0 20px 52px rgba(44,36,32,0.28); }
+  100% { transform: rotateY(180deg) scale(1)    translateY(0px);   box-shadow: 0 8px 32px rgba(44,36,32,0.2); }
+}
+@keyframes flipCardBack {
+  0%   { transform: rotateY(180deg) scale(1)    translateY(0px);   box-shadow: 0 8px 32px rgba(44,36,32,0.2); }
+  20%  { transform: rotateY(135deg) scale(1.04) translateY(-8px);  box-shadow: 0 20px 52px rgba(44,36,32,0.28); }
+  50%  { transform: rotateY(90deg)  scale(1.05) translateY(-10px); box-shadow: 0 24px 56px rgba(44,36,32,0.3); }
+  80%  { transform: rotateY(45deg)  scale(1.04) translateY(-8px);  box-shadow: 0 20px 52px rgba(44,36,32,0.28); }
+  100% { transform: rotateY(0deg)   scale(1)    translateY(0px);   box-shadow: 0 8px 32px rgba(44,36,32,0.2); }
 }
 `;
 
@@ -74,14 +84,13 @@ function FrontFace({ card, principle, onFlip, onClose }) {
     <div
       onClick={onFlip}
       style={{
-        position: 'relative',
-        width: '100%',
-        height: '100%',
+        position: 'absolute', inset: 0,
         background: principle.color,
         color: 'white',
         cursor: 'pointer',
         overflow: 'hidden',
-        animation: 'lilaCardFaceIn 0.3s ease',
+        backfaceVisibility: 'hidden',
+        WebkitBackfaceVisibility: 'hidden',
         WebkitTapHighlightColor: 'transparent',
       }}
     >
@@ -228,14 +237,14 @@ function BackFace({ card, principle, connection, onFlip, onClose }) {
     <div
       onClick={onFlip}
       style={{
-        position: 'relative',
-        width: '100%',
-        height: '100%',
+        position: 'absolute', inset: 0,
         background: '#F7F4EE',
         color: '#1C1917',
         cursor: 'pointer',
         overflow: 'auto',
-        animation: 'lilaCardFaceIn 0.3s ease',
+        transform: 'rotateY(180deg)',
+        backfaceVisibility: 'hidden',
+        WebkitBackfaceVisibility: 'hidden',
         WebkitTapHighlightColor: 'transparent',
       }}
     >
@@ -374,7 +383,8 @@ function BackFace({ card, principle, connection, onFlip, onClose }) {
 }
 
 export default function PracticeCardModal({ card, connection, onClose }) {
-  const [face, setFace] = useState('front');
+  const [flipped, setFlipped] = useState(false);
+  const [flipAnimating, setFlipAnimating] = useState(false);
 
   // Lock body scroll while modal is open
   useEffect(() => {
@@ -394,7 +404,12 @@ export default function PracticeCardModal({ card, connection, onClose }) {
   const principle = CARD_PRINCIPLES[card.principle];
   if (!principle) return null;
 
-  const handleFlip = () => setFace(f => (f === 'front' ? 'back' : 'front'));
+  const handleFlip = () => {
+    if (flipAnimating) return;
+    setFlipAnimating(true);
+    setFlipped(f => !f);
+    setTimeout(() => setFlipAnimating(false), 700);
+  };
   const stop = (e) => e.stopPropagation();
 
   return (
@@ -422,15 +437,22 @@ export default function PracticeCardModal({ card, connection, onClose }) {
             width: 'min(400px, calc(100vw - 28px))',
             height: 'min(720px, calc(100vh - 120px))',
             position: 'relative',
+            perspective: 1200,
             animation: 'lilaCardLiftForward 0.32s cubic-bezier(0.2, 0.7, 0.2, 1)',
-            boxShadow: '0 30px 80px rgba(0,0,0,0.45), 0 12px 30px rgba(0,0,0,0.25)',
           }}
         >
-          {face === 'front' ? (
+          <div style={{
+            width: '100%', height: '100%', position: 'relative',
+            transformStyle: 'preserve-3d',
+            transform: flipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
+            animation: flipAnimating
+              ? `${flipped ? 'flipCard' : 'flipCardBack'} 0.65s cubic-bezier(0.4, 0, 0.2, 1) forwards`
+              : 'none',
+            boxShadow: '0 30px 80px rgba(0,0,0,0.45), 0 12px 30px rgba(0,0,0,0.25)',
+          }}>
             <FrontFace card={card} principle={principle} onFlip={handleFlip} onClose={onClose} />
-          ) : (
             <BackFace card={card} principle={principle} connection={connection} onFlip={handleFlip} onClose={onClose} />
-          )}
+          </div>
         </div>
       </div>
     </>
