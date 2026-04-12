@@ -1,9 +1,14 @@
 import { supabase } from './supabaseClient';
-import { getOrCreateSession } from './sessionManager';
+import { getOrCreateSession, clearSession } from './sessionManager';
 
 export async function saveItinerary({ formData, rawItinerary, destination, iteration = 0, previousItineraryId = null, tripLogistics = null }) {
   try {
-    const sessionId = await getOrCreateSession(formData);
+    let sessionId = await getOrCreateSession(formData);
+    if (!sessionId) {
+      // One retry — clear stale session and try again
+      clearSession();
+      sessionId = await getOrCreateSession(formData);
+    }
     if (!sessionId) return null;
 
     const row = {

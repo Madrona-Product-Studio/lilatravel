@@ -3988,6 +3988,7 @@ export default function ItineraryResults() {
   const [alternativesLoading, setAlternativesLoading] = useState(false);
   const [loadingMoreAlts, setLoadingMoreAlts] = useState(null); // thumbId being loaded
   const [toastMessage, setToastMessage] = useState(null);
+  const [saveError, setSaveError] = useState(false);
   const [pulse, setPulse] = useState(null);
   const [overallNote, setOverallNote] = useState('');
   const [refineError, setRefineError] = useState(null);
@@ -4295,7 +4296,14 @@ export default function ItineraryResults() {
           if (id) {
             try { sessionStorage.setItem('lila_itinerary_id', id); } catch { /* quota */ }
             setItineraryId(id);
+            setSaveError(false);
+          } else {
+            console.error('saveItinerary returned null — trip not persisted');
+            setSaveError(true);
           }
+        }).catch(err => {
+          console.error('saveItinerary failed:', err);
+          setSaveError(true);
         });
       }
 
@@ -4760,12 +4768,19 @@ export default function ItineraryResults() {
         if (id) {
           try { sessionStorage.setItem('lila_itinerary_id', id); } catch { /* quota */ }
           setItineraryId(id);
+          setSaveError(false);
           // Refresh iteration list after new row is saved
           fetch(`/api/get-trip-iterations?itineraryId=${encodeURIComponent(id)}`)
             .then(r => r.json())
             .then(d => { if (d.iterations?.length) setIterations(d.iterations); })
             .catch(() => {});
+        } else {
+          console.error('Refinement save returned null — not persisted');
+          setSaveError(true);
         }
+      }).catch(err => {
+        console.error('Refinement save failed:', err);
+        setSaveError(true);
       });
 
       setDayFeedback({});
@@ -5015,6 +5030,43 @@ export default function ItineraryResults() {
             {itinerary.intro && (
               <p className="font-body text-[14px] font-normal leading-[1.75] max-w-[600px] mt-3.5" style={{ color: C.body }}>{itinerary.intro}</p>
             )}
+          </div>
+        )}
+
+        {/* Save-error banner — shown when Supabase save fails */}
+        {saveError && (
+          <div
+            className="font-body text-[13px]"
+            style={{
+              background: '#FEF3CD', border: '1px solid #F0C36D',
+              padding: '10px 16px', margin: '0 0 12px',
+              color: '#856404', display: 'flex', alignItems: 'center', gap: 10,
+            }}
+          >
+            <span style={{ flex: 1 }}>This trip couldn't be saved — sharing and bookmarks won't work.</span>
+            <button
+              className="font-body text-[12px] font-semibold"
+              onClick={() => {
+                setSaveError(false);
+                saveItinerary({
+                  formData, rawItinerary,
+                  destination: formData?.destination,
+                  iteration: 0,
+                  tripLogistics,
+                }).then(id => {
+                  if (id) {
+                    try { sessionStorage.setItem('lila_itinerary_id', id); } catch { /* */ }
+                    setItineraryId(id);
+                    setToastMessage('Trip saved');
+                  } else setSaveError(true);
+                }).catch(() => setSaveError(true));
+              }}
+              style={{
+                background: 'none', border: '1px solid #856404',
+                padding: '4px 12px', cursor: 'pointer', color: '#856404',
+                flexShrink: 0,
+              }}
+            >Retry</button>
           </div>
         )}
 
