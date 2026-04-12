@@ -367,8 +367,8 @@ function PracticeCardScreen({ card, principle, cardIndex }) {
             {card.tradition}
           </div>
           <div style={{
-            fontSize: 38, fontFamily: SERIF, color: 'white',
-            fontWeight: 400, lineHeight: 1.0, marginBottom: 5,
+            fontSize: 34, fontFamily: SANS, color: 'white',
+            fontWeight: 700, lineHeight: 1.05, marginBottom: 5,
           }}>
             {card.name}
           </div>
