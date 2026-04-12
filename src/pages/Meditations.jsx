@@ -195,12 +195,12 @@ function CoverScreen() {
         pointerEvents: 'none',
       }} />
 
-      {/* Content */}
+      {/* Content — offset down slightly to center against sky above mountains */}
       <div style={{
         position: 'absolute', inset: 0,
         display: 'flex', flexDirection: 'column',
         alignItems: 'center', justifyContent: 'center',
-        padding: '36px 28px', gap: 16, zIndex: 2,
+        padding: '0 28px 15%', gap: 16, zIndex: 2,
       }}>
         <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
           {PRINCIPLE_ORDER.map(id => (
