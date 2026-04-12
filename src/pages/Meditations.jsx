@@ -343,7 +343,8 @@ function TraditionScreen({ tradition }) {
       width: '100%', height: '100%',
       background: `linear-gradient(165deg, #849898 0%, ${TRADITION_COLOR} 40%, #6e8282 100%)`,
       display: 'flex', flexDirection: 'column',
-      padding: '32px 26px 24px',
+      justifyContent: 'center',
+      padding: '28px 26px 32px',
       position: 'relative', overflow: 'hidden',
       borderRadius: 14,
     }}>
@@ -361,24 +362,24 @@ function TraditionScreen({ tradition }) {
       }} />
 
       {/* Section 1 — Header */}
-      <div style={{ textAlign: 'center', flexShrink: 0, position: 'relative' }}>
-        <div style={{ color: 'white', opacity: 0.7, marginBottom: 8, display: 'flex', justifyContent: 'center' }}>
+      <div style={{ textAlign: 'center', position: 'relative' }}>
+        <div style={{ color: 'white', opacity: 0.7, marginBottom: 10, display: 'flex', justifyContent: 'center' }}>
           <TraditionSymbol symbol={tradition.symbol} size={40} color="white" />
         </div>
         <div style={{
           fontSize: 10, fontFamily: SANS, textTransform: 'uppercase',
           letterSpacing: '0.22em', color: 'white', opacity: 0.7,
-          marginBottom: 6,
+          marginBottom: 8,
         }}>
           {tradition.origin}
         </div>
         <div style={{
           fontSize: 46, fontFamily: SANS, color: 'white',
-          fontWeight: 700, lineHeight: 1.0, marginBottom: 8,
+          fontWeight: 700, lineHeight: 1.0, marginBottom: 10,
         }}>
           {tradition.name}
         </div>
-        <div style={{ width: 28, height: '0.5px', background: 'rgba(255,255,255,0.25)', margin: '0 auto 12px' }} />
+        <div style={{ width: 28, height: '0.5px', background: 'rgba(255,255,255,0.25)', margin: '0 auto 14px' }} />
         <div style={{
           fontSize: 16, fontFamily: SANS, color: 'white',
           fontWeight: 400, opacity: 0.75, lineHeight: 1.5,
@@ -388,30 +389,31 @@ function TraditionScreen({ tradition }) {
       </div>
 
       {/* Section 2 — History */}
-      <div style={{ flexShrink: 0, position: 'relative', marginTop: 14 }}>
-        <div style={{ height: '0.5px', background: 'rgba(255,255,255,0.15)', marginBottom: 12 }} />
+      <div style={{ position: 'relative', marginTop: 20 }}>
+        <div style={{ height: '0.5px', background: 'rgba(255,255,255,0.15)', marginBottom: 16 }} />
         <div style={{
           fontSize: 14, fontFamily: SANS, color: 'rgba(245,243,238,0.72)',
-          lineHeight: 1.7,
+          lineHeight: 1.75,
         }}>
           {tradition.history}
         </div>
       </div>
 
       {/* Section 3 — Key Concepts */}
-      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', position: 'relative' }}>
+      <div style={{ position: 'relative', marginTop: 20 }}>
         <SectionLabel text="Key concepts" />
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 11 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
           {tradition.concepts.map(c => (
             <div key={c.label}>
               <div style={{
                 fontSize: 14, fontFamily: SANS, fontWeight: 600,
-                color: 'white', opacity: 0.92, marginBottom: 2,
+                color: 'white', opacity: 0.92, marginBottom: 3,
               }}>
                 {c.label}
               </div>
               <div style={{
                 fontSize: 13, fontFamily: SANS, color: 'rgba(245,243,238,0.6)',
+                lineHeight: 1.5,
               }}>
                 {c.desc}
               </div>
