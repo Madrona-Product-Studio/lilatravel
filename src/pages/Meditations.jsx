@@ -49,12 +49,85 @@ const TRADITIONS_LIST = [
   { symbol: '\u25B3', name: 'Stoicism', desc: 'Virtue, reason, living according to nature' },
 ];
 
+const TRADITION_COLOR = '#7A9190';
+
+const TRADITIONS_FULL = [
+  {
+    name: 'Hinduism & Yoga', symbol: '\u0950',
+    origin: 'India \u00B7 ~1500 BCE',
+    history: "The world\u2019s oldest living spiritual tradition, rooted in the Vedas \u2014 texts composed by forest sages over thousands of years. Yoga emerged as its practical path: a systematic science of consciousness designed to reunite individual awareness with the universal.",
+    essence: 'Living as the universe experiencing itself.',
+    concepts: [
+      { label: 'Yoga', desc: 'Union of self and cosmos \u2014 closing the gap between them' },
+      { label: 'Prana', desc: 'Life force in all living things, including wind and river' },
+      { label: 'Dharma', desc: 'Your sacred role in the larger order \u2014 lived, not believed' },
+    ],
+    wild: 'The Vedic texts were composed by forest-dwelling sages. Wilderness is where prana moves freely \u2014 every breath in open air is a yoga practice.',
+    practice: 'Notice where your breath goes shallow today. Let the landscape breathe you instead.',
+  },
+  {
+    name: 'Buddhism', symbol: '\u273F',
+    origin: 'India \u00B7 ~500 BCE',
+    history: "Founded by Siddhartha Gautama, a prince who left his palace to understand suffering. After years of ascetic practice and one night of deep meditation under a Bodhi tree, he became the Buddha \u2014 the awakened one. His insights spread across Asia, branching into dozens of distinct schools.",
+    essence: 'Seeing clearly changes everything.',
+    concepts: [
+      { label: 'Impermanence', desc: 'All things arise and pass \u2014 the trail, the season, the thought' },
+      { label: 'Interbeing', desc: "Nothing exists alone. You are made of everything you\u2019ve touched" },
+      { label: 'The Middle Way', desc: "Neither grasping nor avoiding \u2014 just meeting what\u2019s here" },
+    ],
+    wild: 'Nature strips away the artificial. Each trail demonstrates impermanence. Each ecosystem demonstrates interbeing.',
+    practice: 'Choose one thing in your field of view. Trace everything that made it possible. Keep going until you run out of edges.',
+  },
+  {
+    name: 'Taoism', symbol: '\u262F',
+    origin: 'China \u00B7 ~600 BCE',
+    history: "Attributed to the sage Laozi, whose Tao Te Ching \u2014 81 spare verses written at a border gate \u2014 became one of history\u2019s most translated texts. Taoism arose as a counterpoint to Confucian formalism, insisting that nature, not ritual, was the truest teacher.",
+    essence: 'Moving with life, not against it.',
+    concepts: [
+      { label: 'Wu Wei', desc: 'Effortless action \u2014 doing without forcing' },
+      { label: 'Yin-Yang', desc: 'Opposites that depend on and transform into each other' },
+      { label: 'The Tao', desc: 'The underlying way things unfold when nothing interferes' },
+    ],
+    wild: 'The river, the mountain, the season \u2014 each shows what happens when nothing interferes. Wilderness is not backdrop. It is the teaching.',
+    practice: 'Notice where you are forcing something today. See what happens if you ease instead.',
+  },
+  {
+    name: 'Shinto', symbol: '\u26E9',
+    origin: 'Japan \u00B7 Ancient',
+    history: 'Japan\u2019s indigenous spiritual tradition, with roots older than written history. Shinto has no founder, no single scripture, no fixed doctrine \u2014 only practice: tending to relationship with the kami, the sacred presences that inhabit natural places, phenomena, and ancestors.',
+    essence: 'The sacred is already here.',
+    concepts: [
+      { label: 'Kami', desc: 'Sacred presences in mountains, rivers, ancient trees, and wind' },
+      { label: 'Musubi', desc: 'The binding creative force connecting all living things' },
+      { label: 'Harae', desc: 'Purification through return \u2014 water, breath, open land' },
+    ],
+    wild: 'To enter wilderness is to enter a living temple. Every mountain, river, and ancient tree is a kami. Reverence is the appropriate response to what is actually there.',
+    practice: "Find one thing today that has been here longer than you. Acknowledge it. That\u2019s enough.",
+  },
+  {
+    name: 'Stoicism', symbol: '\u25B3',
+    origin: 'Greece \u00B7 ~300 BCE',
+    history: 'Founded in Athens by Zeno of Citium, who taught in a painted porch \u2014 the Stoa Poikil\u0113. Adopted and deepened by Roman thinkers including Seneca, Epictetus, and Marcus Aurelius, who wrote his Meditations not for publication but as a private discipline, often under open sky on military campaign.',
+    essence: 'Freedom lives in what you can control.',
+    concepts: [
+      { label: 'Virtue', desc: 'The only true good \u2014 wisdom, justice, courage, restraint' },
+      { label: 'Amor Fati', desc: 'Love of fate \u2014 not just acceptance, but full embrace' },
+      { label: 'Memento Mori', desc: 'Awareness of mortality as clarifying force, not fear' },
+    ],
+    wild: 'Wilderness strips away what isn\u2019t necessary. What remains is what matters. The Stoics knew this \u2014 nature was their laboratory for living.',
+    practice: 'Name one thing outside your control today. Release it. Then name one thing inside it. Do that.',
+  },
+];
+
 // ═══════════════════════════════════════════════════════════════════════════════
 // SCREENS — build flat array: cover, orientation, then per-chapter
 // ═══════════════════════════════════════════════════════════════════════════════
 
 function buildScreens() {
   const screens = [{ type: 'cover' }, { type: 'orientation' }];
+  TRADITIONS_FULL.forEach(t => {
+    screens.push({ type: 'tradition', tradition: t });
+  });
   CHAPTERS.forEach((ch, pi) => {
     screens.push({ type: 'chapter', principle: ch, principleIndex: pi });
     ch.cards.forEach((card, ci) => {
@@ -220,6 +293,126 @@ function OrientationScreen() {
             </div>
           </div>
         ))}
+      </div>
+    </div>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// TRADITION SCREEN
+// ═══════════════════════════════════════════════════════════════════════════════
+
+function SectionLabel({ text }) {
+  return (
+    <div style={{
+      display: 'flex', alignItems: 'center', gap: 10,
+      marginBottom: 10,
+    }}>
+      <div style={{ flex: 1, height: '0.5px', background: 'rgba(255,255,255,0.15)' }} />
+      <div style={{
+        fontSize: 8, fontFamily: SANS, textTransform: 'uppercase',
+        letterSpacing: '0.26em', color: 'white', opacity: 0.5,
+        flexShrink: 0,
+      }}>
+        {text}
+      </div>
+      <div style={{ flex: 1, height: '0.5px', background: 'rgba(255,255,255,0.15)' }} />
+    </div>
+  );
+}
+
+function TraditionScreen({ tradition }) {
+  return (
+    <div style={{
+      width: '100%', height: '100%',
+      background: `linear-gradient(165deg, #849898 0%, ${TRADITION_COLOR} 40%, #6e8282 100%)`,
+      display: 'flex', flexDirection: 'column',
+      padding: '32px 26px 24px',
+      position: 'relative', overflow: 'hidden',
+      borderRadius: 14,
+    }}>
+      {/* Radial highlight */}
+      <div style={{
+        position: 'absolute', inset: 0,
+        background: 'radial-gradient(ellipse at 50% 10%, rgba(255,255,255,0.12) 0%, transparent 55%)',
+        pointerEvents: 'none',
+      }} />
+      {/* Bottom darkening */}
+      <div style={{
+        position: 'absolute', inset: 0,
+        background: 'linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.18) 100%)',
+        pointerEvents: 'none',
+      }} />
+
+      {/* Section 1 — Header */}
+      <div style={{ textAlign: 'center', flexShrink: 0, position: 'relative' }}>
+        <div style={{ fontSize: 40, color: 'white', opacity: 0.55, marginBottom: 8 }}>
+          {tradition.symbol}
+        </div>
+        <div style={{
+          fontSize: 8, fontFamily: SANS, textTransform: 'uppercase',
+          letterSpacing: '0.22em', color: 'white', opacity: 0.5,
+          marginBottom: 6,
+        }}>
+          {tradition.origin}
+        </div>
+        <div style={{
+          fontSize: 46, fontFamily: SANS, color: 'white',
+          fontWeight: 700, lineHeight: 1.0, marginBottom: 8,
+        }}>
+          {tradition.name}
+        </div>
+        <div style={{ width: 28, height: '0.5px', background: 'rgba(255,255,255,0.25)', margin: '0 auto 12px' }} />
+        <div style={{
+          fontSize: 17, fontFamily: SERIF, color: 'white',
+          fontStyle: 'italic', opacity: 0.92, lineHeight: 1.4,
+        }}>
+          {tradition.essence}
+        </div>
+      </div>
+
+      {/* Section 2 — History */}
+      <div style={{ flexShrink: 0, position: 'relative', marginTop: 14 }}>
+        <div style={{ height: '0.5px', background: 'rgba(255,255,255,0.15)', marginBottom: 12 }} />
+        <div style={{
+          fontSize: 13, fontFamily: SANS, color: 'rgba(245,243,238,0.72)',
+          lineHeight: 1.7,
+        }}>
+          {tradition.history}
+        </div>
+      </div>
+
+      {/* Section 3 — Key Concepts */}
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', position: 'relative' }}>
+        <SectionLabel text="Key concepts" />
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 11 }}>
+          {tradition.concepts.map(c => (
+            <div key={c.label}>
+              <div style={{
+                fontSize: 13, fontFamily: SERIF, fontStyle: 'italic',
+                color: 'white', opacity: 0.95, marginBottom: 2,
+              }}>
+                {c.label}
+              </div>
+              <div style={{
+                fontSize: 12, fontFamily: SANS, color: 'rgba(245,243,238,0.6)',
+              }}>
+                {c.desc}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Section 4 — In the Wild */}
+      <div style={{ flexShrink: 0, position: 'relative', paddingBottom: 0 }}>
+        <SectionLabel text="In the wild" />
+        <div style={{
+          fontSize: 13, fontFamily: SANS, color: 'rgba(245,243,238,0.75)',
+          lineHeight: 1.7,
+        }}>
+          {tradition.wild}
+        </div>
       </div>
     </div>
   );
@@ -551,6 +744,7 @@ function renderScreen(scr) {
   if (!scr) return null;
   if (scr.type === 'cover') return <CoverScreen />;
   if (scr.type === 'orientation') return <OrientationScreen />;
+  if (scr.type === 'tradition') return <TraditionScreen key={scr.tradition.name} tradition={scr.tradition} />;
   if (scr.type === 'chapter') return <ChapterScreen key={`ch-${scr.principleIndex}`} principle={scr.principle} principleIndex={scr.principleIndex} />;
   if (scr.type === 'card') return <PracticeCardScreen key={`${scr.principleIndex}-${scr.cardIndex}`} card={scr.card} principle={scr.principle} cardIndex={scr.cardIndex} />;
   return null;
