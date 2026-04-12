@@ -13,7 +13,6 @@
  */
 
 import { useState, useRef, useEffect, useCallback } from 'react';
-import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { CARDS, CARD_PRINCIPLES } from '@data/cardDeck';
 import { C, FONTS } from '@data/brand';
@@ -592,23 +591,6 @@ export default function Meditations() {
           outline: 'none', position: 'relative',
         }}
       >
-        {/* Logo — home link, matches Nav wordmark on other pages */}
-        <Link
-          to="/"
-          style={{
-            position: 'absolute', top: 18, left: 20, zIndex: 20,
-            textDecoration: 'none',
-            fontSize: 20, fontFamily: SANS, fontWeight: 300,
-            color: C.darkInk, opacity: 0.55,
-            letterSpacing: '-0.01em',
-            transition: 'opacity 0.2s',
-          }}
-          onMouseEnter={e => { e.currentTarget.style.opacity = '0.85'; }}
-          onMouseLeave={e => { e.currentTarget.style.opacity = '0.55'; }}
-        >
-          Lila Trips
-        </Link>
-
         {/* Card + overlay arrows */}
         <div style={{ position: 'relative' }}>
 
@@ -641,7 +623,7 @@ export default function Meditations() {
             onTouchEnd={handleTouchEnd}
             style={{
               width: 'min(400px, calc(100vw - 28px))',
-              height: 'calc(100vh - 80px)',
+              height: 'min(720px, calc(100vh - 120px))',
               position: 'relative', overflow: 'hidden',
               borderRadius: 14,
               boxShadow: '0 8px 32px rgba(44,36,32,0.18), 0 2px 8px rgba(44,36,32,0.1)',
