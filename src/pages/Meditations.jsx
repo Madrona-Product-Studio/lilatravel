@@ -366,14 +366,14 @@ function PracticeCardScreen({ card, principle, cardIndex }) {
             {card.name}
           </div>
           <div style={{
-            fontSize: 12, fontFamily: SANS, color: 'white',
-            opacity: 0.75, fontStyle: 'italic', lineHeight: 1.4, marginBottom: 14,
+            fontSize: 14, fontFamily: SANS, color: 'white',
+            opacity: 0.8, fontStyle: 'italic', lineHeight: 1.5, marginBottom: 18,
           }}>
             {card.subtitle}
           </div>
           <div style={{
-            fontSize: 12.5, fontFamily: SANS, color: 'white',
-            opacity: 0.82, lineHeight: 1.72,
+            fontSize: 14, fontFamily: SANS, color: 'white',
+            opacity: 0.88, lineHeight: 1.78,
           }}>
             {card.teaching}
           </div>
