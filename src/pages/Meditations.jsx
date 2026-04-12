@@ -13,6 +13,7 @@
  */
 
 import { useState, useRef, useEffect, useCallback } from 'react';
+import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { CARDS, CARD_PRINCIPLES } from '@data/cardDeck';
 import { C, FONTS } from '@data/brand';
@@ -586,6 +587,23 @@ export default function Meditations() {
           overflow: 'hidden',
         }}
       >
+        {/* Wordmark — home link */}
+        <Link
+          to="/"
+          style={{
+            position: 'absolute', top: 16, left: 20, zIndex: 20,
+            textDecoration: 'none',
+            fontSize: 15, fontFamily: SANS, fontWeight: 700,
+            color: '#6B5A50', opacity: 0.45,
+            letterSpacing: '0.02em',
+            transition: 'opacity 0.2s',
+          }}
+          onMouseEnter={e => { e.currentTarget.style.opacity = '0.8'; }}
+          onMouseLeave={e => { e.currentTarget.style.opacity = '0.45'; }}
+        >
+          lila
+        </Link>
+
         {/* Card + arrows wrapper — arrows positioned relative to card, not viewport */}
         <div style={{ position: 'relative', display: 'flex', alignItems: 'center', gap: 20 }}>
 
