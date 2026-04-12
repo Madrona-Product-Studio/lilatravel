@@ -245,21 +245,32 @@ function BackFace({ card, principle, connection, onFlip, onClose }) {
         WebkitTapHighlightColor: 'transparent',
         display: 'flex', flexDirection: 'column',
         justifyContent: 'center',
-        padding: '24px 0',
+        padding: '0',
       }}
     >
       <CloseButton onClose={onClose} dark />
 
-      {/* Section 1 — Practice */}
-      <div style={{ padding: '0 22px 18px' }}>
+      {/* Card title — fixed to top */}
+      <div style={{
+        padding: '20px 22px 14px',
+        textAlign: 'center', flexShrink: 0,
+      }}>
         <div className="font-body uppercase" style={{
           fontSize: 13, letterSpacing: '0.14em', color: principle.color,
           fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center',
-          gap: 6, marginBottom: 16,
+          gap: 6,
         }}>
           <span>◈</span>
           <span>{card.name}</span>
         </div>
+      </div>
+      <div style={{ height: '0.5px', background: 'rgba(44,36,32,0.08)', margin: '0 22px', flexShrink: 0 }} />
+
+      {/* Centered content group */}
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '0' }}>
+
+      {/* Section 1 — Practice */}
+      <div style={{ padding: '16px 22px 18px' }}>
         <div className="font-body uppercase" style={{
           fontSize: 10, letterSpacing: '0.12em', color: '#4a3a2a',
           fontWeight: 700, marginBottom: 7,
@@ -315,6 +326,8 @@ function BackFace({ card, principle, connection, onFlip, onClose }) {
           </div>
         </>
       )}
+
+      </div>{/* end centered content group */}
 
       {/* Flip arrow — always bottom right */}
       <div style={{ position: 'absolute', right: 22, bottom: 18, opacity: 0.25 }}>
