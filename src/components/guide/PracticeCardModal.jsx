@@ -267,10 +267,10 @@ function BackFace({ card, principle, connection, onFlip, onClose }) {
       <div style={{ height: '0.5px', background: 'rgba(44,36,32,0.08)', margin: '0 22px', flexShrink: 0 }} />
 
       {/* Centered content group */}
-      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '0' }}>
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', paddingBottom: 40 }}>
 
       {/* Section 1 — Practice */}
-      <div style={{ padding: '16px 22px 18px' }}>
+      <div style={{ padding: '12px 22px 16px' }}>
         <div className="font-body uppercase" style={{
           fontSize: 10, letterSpacing: '0.12em', color: '#4a3a2a',
           fontWeight: 700, marginBottom: 7,
@@ -289,7 +289,7 @@ function BackFace({ card, principle, connection, onFlip, onClose }) {
 
       {/* Section 2 — Quote */}
       {card.quote && (
-        <div style={{ padding: '18px 22px' }}>
+        <div style={{ padding: '14px 22px' }}>
           <div className="font-body" style={{
             fontSize: 15, color: '#1C1917', fontWeight: 500,
             lineHeight: 1.65, marginBottom: 7,
@@ -310,7 +310,7 @@ function BackFace({ card, principle, connection, onFlip, onClose }) {
       {connection && (
         <>
           <div style={{ height: '0.5px', background: 'rgba(44,36,32,0.08)', margin: '0 22px', flexShrink: 0 }} />
-          <div style={{ padding: '18px 22px 0' }}>
+          <div style={{ padding: '14px 22px 0' }}>
             <div className="font-body uppercase" style={{
               fontSize: 11, letterSpacing: '0.14em', color: '#2D6B6B',
               fontWeight: 700, display: 'flex', alignItems: 'center', gap: 5, marginBottom: 7,
