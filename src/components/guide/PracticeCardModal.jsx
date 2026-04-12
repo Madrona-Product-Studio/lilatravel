@@ -32,7 +32,7 @@ const KEYFRAMES = `
 function FlipArrow({ dark = false }) {
   const stroke = dark ? '#1C1917' : 'white';
   return (
-    <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden>
+    <svg width="20" height="20" viewBox="0 0 16 16" fill="none" aria-hidden>
       <path d="M3 8 a5 5 0 1 0 5 -5" stroke={stroke} strokeWidth="1.2" strokeLinecap="round" fill="none" />
       <path d="M2.6 4.5 L3 8 L6.4 7.6" stroke={stroke} strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
     </svg>
@@ -104,15 +104,15 @@ function FrontFace({ card, principle, onFlip, onClose }) {
         flexDirection: 'column',
         padding: '28px 26px 28px',
       }}>
-        {/* Top zone */}
+        {/* Top zone — principle identity */}
         <div>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 14 }}>
-            <PrincipleMark id={principle.id} size={36} />
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 16 }}>
+            <PrincipleMark id={principle.id} size={44} />
           </div>
           <div
             className="font-body uppercase"
             style={{
-              fontSize: 9,
+              fontSize: 11,
               letterSpacing: '0.28em',
               color: 'white',
               opacity: 0.85,
@@ -125,12 +125,12 @@ function FrontFace({ card, principle, onFlip, onClose }) {
           <div
             className="font-serif"
             style={{
-              fontSize: 13,
+              fontSize: 16,
               fontStyle: 'italic',
               color: 'white',
               opacity: 0.85,
               textAlign: 'center',
-              marginTop: 6,
+              marginTop: 8,
               fontWeight: 300,
             }}
           >
@@ -139,7 +139,7 @@ function FrontFace({ card, principle, onFlip, onClose }) {
           <div
             className="font-body uppercase"
             style={{
-              fontSize: 8,
+              fontSize: 10,
               letterSpacing: '0.3em',
               color: 'white',
               opacity: 0.4,
@@ -153,7 +153,7 @@ function FrontFace({ card, principle, onFlip, onClose }) {
           <div style={{
             height: '0.5px',
             background: 'rgba(255,255,255,0.2)',
-            marginTop: 18,
+            marginTop: 20,
           }} />
         </div>
 
@@ -241,7 +241,7 @@ function BackFace({ card, principle, connection, onFlip, onClose }) {
     >
       <CloseButton onClose={onClose} dark />
 
-      <div style={{ padding: '18px 22px 60px' }}>
+      <div style={{ padding: '22px 24px 60px' }}>
         {/* Card name with diamond glyph */}
         <div
           className="font-body uppercase"
@@ -253,7 +253,7 @@ function BackFace({ card, principle, connection, onFlip, onClose }) {
             display: 'flex',
             alignItems: 'center',
             gap: 8,
-            marginBottom: 18,
+            marginBottom: 20,
           }}
         >
           <span>◈</span>
@@ -268,7 +268,7 @@ function BackFace({ card, principle, connection, onFlip, onClose }) {
             letterSpacing: '0.18em',
             color: '#4a3a2a',
             fontWeight: 600,
-            marginBottom: 8,
+            marginBottom: 10,
           }}
         >
           The Practice
@@ -276,7 +276,7 @@ function BackFace({ card, principle, connection, onFlip, onClose }) {
         <p
           className="font-body"
           style={{
-            fontSize: 14,
+            fontSize: 15,
             color: '#1C1917',
             lineHeight: 1.75,
             margin: 0,
@@ -357,7 +357,7 @@ function BackFace({ card, principle, connection, onFlip, onClose }) {
         <p
           className="font-body"
           style={{
-            fontSize: 14,
+            fontSize: 15,
             color: '#1C1917',
             lineHeight: 1.75,
             margin: 0,
@@ -421,8 +421,8 @@ export default function PracticeCardModal({ card, connection, onClose }) {
         <div
           onClick={stop}
           style={{
-            width: 'min(358px, calc(100vw - 32px))',
-            height: 'min(580px, calc(100vh - 32px))',
+            width: 'min(400px, calc(100vw - 28px))',
+            height: 'min(720px, calc(100vh - 120px))',
             position: 'relative',
             animation: 'lilaCardLiftForward 0.32s cubic-bezier(0.2, 0.7, 0.2, 1)',
             boxShadow: '0 30px 80px rgba(0,0,0,0.45), 0 12px 30px rgba(0,0,0,0.25)',

@@ -2716,15 +2716,18 @@ function DayCard({ day, dayIndex = 0, onOpenPanel, lockedItems, onLock, onAltern
       </div>
       )}
 
-      {/* Practice Card Teaser — opens the full PracticeCardModal on tap */}
-      {day.companion?.card && (
-        <PracticeCardTeaser
-          card={day.companion.card}
-          onOpen={() => {
-            trackEvent('practice_card_opened', { card_id: day.companion.card.id, day_index: dayIndex });
-            if (typeof onOpenCard === 'function') onOpenCard(dayIndex);
-          }}
-        />
+      {/* Practice Card Teaser — wallet-style stacked card between header and timeline */}
+      {day.companion?.card && CARD_PRINCIPLES[day.companion.card.principle] && (
+        <div style={{ padding: '8px 0 4px' }}>
+          <PracticeCardTeaser
+            card={day.companion.card}
+            principle={CARD_PRINCIPLES[day.companion.card.principle]}
+            onOpen={() => {
+              trackEvent('practice_card_opened', { card_id: day.companion.card.id, day_index: dayIndex });
+              if (typeof onOpenCard === 'function') onOpenCard(dayIndex);
+            }}
+          />
+        </div>
       )}
 
       {/* Activity rows */}
