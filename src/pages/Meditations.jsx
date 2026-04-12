@@ -214,14 +214,14 @@ function OrientationScreen() {
             borderBottom: i < 4 ? '0.5px solid rgba(255,255,255,0.08)' : 'none',
           }}>
             <div style={{ flexShrink: 0 }}>
-              <PrincipleMark id={p.id} size={18} />
+              <PrincipleMark id={p.id} size={18} color={p.color} />
             </div>
             <div style={{ flex: 1 }}>
-              <div style={{ fontSize: 14, fontFamily: SANS, color: C.warmWhite, fontWeight: 600, letterSpacing: '0.02em' }}>
+              <div style={{ fontSize: 14, fontFamily: SANS, color: p.color, fontWeight: 600, letterSpacing: '0.02em' }}>
                 {p.name}
               </div>
             </div>
-            <div style={{ fontSize: 12, fontFamily: SANS, color: 'white', opacity: 0.75 }}>
+            <div style={{ fontSize: 12, fontFamily: SANS, color: p.color, opacity: 0.75 }}>
               {p.arc}
             </div>
           </div>
@@ -258,8 +258,8 @@ function ChapterScreen({ principle, principleIndex }) {
           <PrincipleMark id={principle.id} size={52} />
         </div>
         <div style={{
-          fontSize: 46, fontFamily: SERIF,
-          color: 'white', fontWeight: 300,
+          fontSize: 46, fontFamily: SANS,
+          color: 'white', fontWeight: 700,
           lineHeight: 1.0, marginBottom: 8,
           textAlign: 'center',
         }}>
