@@ -661,13 +661,12 @@ export default function Meditations() {
         .deck-arrow { display: none !important; }
         @media (min-width: 768px) { .deck-arrow { display: flex !important; } }
         @keyframes dealOff {
-          0%   { transform: translateX(0) rotate(0deg); opacity: 1; }
-          100% { transform: translateX(-115%) rotate(-3deg); opacity: 0; }
+          0%   { transform: translateX(0) rotate(0deg); }
+          100% { transform: translateX(-115%) rotate(-3deg); }
         }
         @keyframes stackOn {
-          0%   { transform: translateX(-115%) rotate(-3deg); opacity: 0; }
-          35%  { opacity: 1; }
-          100% { transform: translateX(0) rotate(0deg); opacity: 1; }
+          0%   { transform: translateX(-115%) rotate(-3deg); }
+          100% { transform: translateX(0) rotate(0deg); }
         }
         @keyframes flipCard {
           0%   { transform: rotateY(0deg)   scale(1)    translateY(0px);   box-shadow: 0 8px 32px rgba(44,36,32,0.2); }
