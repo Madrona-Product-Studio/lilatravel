@@ -257,20 +257,20 @@ function BackFace({ card, principle, connection, onFlip, onClose }) {
       {/* Section 1 — Practice */}
       <div style={{ padding: '0 22px 18px' }}>
         <div className="font-body uppercase" style={{
-          fontSize: 10, letterSpacing: '0.14em', color: principle.color,
+          fontSize: 11, letterSpacing: '0.14em', color: principle.color,
           fontWeight: 700, display: 'flex', alignItems: 'center', gap: 5, marginBottom: 10,
         }}>
           <span>◈</span>
           <span>{card.name}</span>
         </div>
         <div className="font-body uppercase" style={{
-          fontSize: 9, letterSpacing: '0.12em', color: '#4a3a2a',
-          fontWeight: 700, marginBottom: 6,
+          fontSize: 10, letterSpacing: '0.12em', color: '#4a3a2a',
+          fontWeight: 700, marginBottom: 7,
         }}>
           The Practice
         </div>
         <div className="font-body" style={{
-          fontSize: 13, color: '#1C1917', lineHeight: 1.75,
+          fontSize: 14, color: '#1C1917', lineHeight: 1.75,
         }}>
           {card.practice}
         </div>
@@ -283,14 +283,14 @@ function BackFace({ card, principle, connection, onFlip, onClose }) {
       {card.quote && (
         <div style={{ padding: '18px 22px' }}>
           <div className="font-body" style={{
-            fontSize: 14, color: '#1C1917', fontWeight: 500,
-            lineHeight: 1.65, marginBottom: 6,
+            fontSize: 15, color: '#1C1917', fontWeight: 500,
+            lineHeight: 1.65, marginBottom: 7,
           }}>
             "{card.quote}"
           </div>
           {card.quoteAuthor && (
             <div className="font-body uppercase" style={{
-              fontSize: 9, letterSpacing: '0.14em', color: '#8C7B6B', fontWeight: 600,
+              fontSize: 10, letterSpacing: '0.14em', color: '#8C7B6B', fontWeight: 600,
             }}>
               — {card.quoteAuthor}
             </div>
@@ -304,14 +304,14 @@ function BackFace({ card, principle, connection, onFlip, onClose }) {
           <div style={{ height: '0.5px', background: 'rgba(44,36,32,0.08)', margin: '0 22px', flexShrink: 0 }} />
           <div style={{ padding: '18px 22px 0' }}>
             <div className="font-body uppercase" style={{
-              fontSize: 10, letterSpacing: '0.14em', color: '#2D6B6B',
-              fontWeight: 700, display: 'flex', alignItems: 'center', gap: 5, marginBottom: 6,
+              fontSize: 11, letterSpacing: '0.14em', color: '#2D6B6B',
+              fontWeight: 700, display: 'flex', alignItems: 'center', gap: 5, marginBottom: 7,
             }}>
               <span>◈</span>
               <span>On Your Trip</span>
             </div>
             <div className="font-body" style={{
-              fontSize: 13, color: '#1C1917', lineHeight: 1.7,
+              fontSize: 14, color: '#1C1917', lineHeight: 1.7,
             }}>
               {connection}
             </div>

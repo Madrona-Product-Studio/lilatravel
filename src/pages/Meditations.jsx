@@ -446,7 +446,7 @@ function PracticeCardScreen({ card, principle, cardIndex }) {
         {/* Section 1 — Practice */}
         <div style={{ padding: '0 22px 18px' }}>
           <div style={{
-            fontSize: 10, letterSpacing: '0.14em', color: principle.color,
+            fontSize: 11, letterSpacing: '0.14em', color: principle.color,
             fontFamily: SANS, textTransform: 'uppercase', fontWeight: 700,
             display: 'flex', alignItems: 'center', gap: 5, marginBottom: 10,
           }}>
@@ -454,13 +454,13 @@ function PracticeCardScreen({ card, principle, cardIndex }) {
             {card.name}
           </div>
           <div style={{
-            fontSize: 9, letterSpacing: '0.12em', color: '#4a3a2a',
-            fontFamily: SANS, textTransform: 'uppercase', fontWeight: 700, marginBottom: 6,
+            fontSize: 10, letterSpacing: '0.12em', color: '#4a3a2a',
+            fontFamily: SANS, textTransform: 'uppercase', fontWeight: 700, marginBottom: 7,
           }}>
             The Practice
           </div>
           <div style={{
-            fontSize: 13, fontFamily: SANS, color: '#1C1917',
+            fontSize: 14, fontFamily: SANS, color: '#1C1917',
             lineHeight: 1.75,
           }}>
             {card.practice}
@@ -474,13 +474,13 @@ function PracticeCardScreen({ card, principle, cardIndex }) {
         {card.quote && (
           <div style={{ padding: '18px 22px' }}>
             <div style={{
-              fontSize: 14, fontFamily: SANS, color: '#1C1917',
-              fontWeight: 500, lineHeight: 1.65, marginBottom: 6,
+              fontSize: 15, fontFamily: SANS, color: '#1C1917',
+              fontWeight: 500, lineHeight: 1.65, marginBottom: 7,
             }}>
               &ldquo;{card.quote}&rdquo;
             </div>
             <div style={{
-              fontSize: 9, letterSpacing: '0.14em', color: '#8C7B6B',
+              fontSize: 10, letterSpacing: '0.14em', color: '#8C7B6B',
               fontFamily: SANS, textTransform: 'uppercase',
             }}>
               &mdash; {card.quoteAuthor}
@@ -494,15 +494,15 @@ function PracticeCardScreen({ card, principle, cardIndex }) {
             <div style={{ height: '0.5px', background: 'rgba(44,36,32,0.08)', margin: '0 22px', flexShrink: 0 }} />
             <div style={{ padding: '18px 22px 0' }}>
               <div style={{
-                fontSize: 10, letterSpacing: '0.14em', color: '#2D6B6B',
+                fontSize: 11, letterSpacing: '0.14em', color: '#2D6B6B',
                 fontFamily: SANS, textTransform: 'uppercase', fontWeight: 700,
-                display: 'flex', alignItems: 'center', gap: 5, marginBottom: 6,
+                display: 'flex', alignItems: 'center', gap: 5, marginBottom: 7,
               }}>
                 <span>◈</span>
                 On Your Trip
               </div>
               <div style={{
-                fontSize: 13, fontFamily: SANS, color: '#1C1917',
+                fontSize: 14, fontFamily: SANS, color: '#1C1917',
                 lineHeight: 1.7,
               }}>
                 {card.connection}
