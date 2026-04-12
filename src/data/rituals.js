@@ -2,7 +2,7 @@
 // DATA: RITUALS — Philosophical Framework
 // ═══════════════════════════════════════════════════════════════════════════════
 //
-// Five wisdom traditions mapped across four shared principles.
+// Five wisdom traditions mapped across five shared principles.
 // Buddhist, Hindu/Yoga, Taoist, Shinto, and Stoic concepts.
 // ═══════════════════════════════════════════════════════════════════════════════
 
@@ -223,6 +223,48 @@ export const ritualsPillars = [
       "Timing arrivals to witness, not disturb",
     ],
   },
+  {
+    slug: "compassion",
+    word: "Compassion",
+    icon: "\u2767",
+    color: "#A85C4A",
+    quote: "Let yourself be silently drawn by the strange pull of what you really love.",
+    quoteAuthor: "Rumi",
+    desc: "The open heart \u2014 toward others, toward all living things, toward life itself.",
+    longDesc: "Compassion is what flows through the opening that presence creates. When you stop being a visitor to the landscape and start belonging to it, care becomes natural. Every tradition arrived at the same truth: the self that dissolves in oneness, moves with flow, arrives in presence, and bows in reverence \u2014 that self loves. Not as achievement but as consequence.",
+    traditions: [
+      {
+        symbol: "\u0950\uFE0E", concept: "Karu\u1E47\u0101 & Bhakti", source: "Hindu / Yoga",
+        metaphor: "Love as the direct path.",
+        quote: "The heart that opens in devotion opens to everything.",
+        quoteSource: "Narada Bhakti Sutras",
+      },
+      {
+        symbol: "\u273F\uFE0E", concept: "Mett\u0101 & Tonglen", source: "Buddhism",
+        metaphor: "The circle of care has no edge.",
+        quote: "Extend your loving-kindness to all beings without limit, as a mother would protect her only child.",
+        quoteSource: "The Buddha, Metta Sutta",
+      },
+      {
+        symbol: "\u262F\uFE0E", concept: "C\u00ED", source: "Taoism",
+        metaphor: "Gentleness as the highest strength.",
+        quote: "The sage does not compete, and therefore no one can compete with him.",
+        quoteSource: "Laozi, Tao Te Ching",
+      },
+      {
+        symbol: "\u26E9\uFE0E", concept: "Naohi", source: "Shinto",
+        metaphor: "The spirit that restores harmony.",
+        quote: "To live in reverence for the kami is to live in care for all that they inhabit.",
+        quoteSource: "Shinto teaching",
+      },
+      {
+        symbol: "\u25B3\uFE0E", concept: "Oikei\u00F4sis", source: "Stoicism",
+        metaphor: "Belonging to the whole.",
+        quote: "What injures the hive, injures the bee.",
+        quoteSource: "Marcus Aurelius, Meditations",
+      },
+    ],
+  },
 ];
 
 // Tradition metadata for the visual cross-reference
@@ -267,7 +309,7 @@ export const traditions = [
 // Page-level intro copy
 export const ritualsIntro = {
   headline: "The Threads Between",
-  subtitle: "Four principles drawn from ancient wisdom — woven into every journey.",
+  subtitle: "Five principles drawn from ancient wisdom — woven into every journey.",
   body: "Across centuries and continents, wisdom traditions have arrived at remarkably similar truths about how to live well. We don't practice any single tradition — we draw from the shared principles that run like underground rivers beneath Buddhism, Hindu philosophy, Taoism, Shinto, and Stoicism. Born in different soils — from the temples of India to the groves of Athens — they grew toward the same light.",
   convergence: "A monk in Kyoto, a yogi in Rishikesh, a sage in the mountains of China, a philosopher in the Roman forum — all pointing to the same truths: You are not separate from this world. Stop fighting the current. The present moment is the only door. The Earth beneath your feet is holy ground.",
   closing: "We don't ask you to adopt any belief system. We design journeys where these truths become undeniable — where the landscape, the practice, and the moment conspire to dissolve everything between you and the raw experience of being alive. This is what we mean by Līlā — divine play. The universe isn't a problem to solve. It's a dance to join.",

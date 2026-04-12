@@ -23,7 +23,7 @@ const approachBraids = [
     label: "Ancient Practices",
     color: "#D4A853",
     headline: "Steeped in living tradition.",
-    body: "Across centuries and continents, wisdom traditions have arrived at remarkably similar truths about how to live well. We draw from principles shared across Buddhist, Hindu, Taoist, and Stoic philosophy \u2014 oneness, flow, presence, reverence \u2014 and weave them into every journey.",
+    body: "Across centuries and continents, wisdom traditions have arrived at remarkably similar truths about how to live well. We draw from principles shared across Buddhist, Hindu, Taoist, and Stoic philosophy \u2014 oneness, flow, presence, compassion, reverence \u2014 and weave them into every journey.",
     tags: ["Yoga", "Meditation", "Breathwork", "Mindful Movement", "Forest Bathing", "Contemplation"],
     tagLabel: "What we practice",
     cta: null,
@@ -336,7 +336,7 @@ export default function EthosPage() {
                 <FadeIn delay={0.15}>
                   <div className="mt-12 pt-10 border-t border-stone">
                     <span className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-[#9aabba] block mb-2">
-                      Five Traditions, Four Principles
+                      Five Traditions, Five Principles
                     </span>
                     <p className="font-body text-sm font-normal text-[#5a6a78] leading-[1.8] mb-5 mt-0">
                       From five ancient frameworks, we've distilled the principles that guide every Lila journey.

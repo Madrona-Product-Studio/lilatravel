@@ -2,7 +2,7 @@
  * practicesService.js — Lila Trips Wisdom Layer
  * ═══════════════════════════════════════════════
  * 
- * Maps five philosophical traditions against four foundational principles,
+ * Maps five philosophical traditions against five foundational principles,
  * providing teachings, practices, and ceremonies that can be woven into
  * itineraries based on user preferences.
  * 
@@ -221,24 +221,40 @@ export const PRINCIPLES = {
     name: 'Oneness',
     essence: 'Dissolving the illusion of separation — recognizing yourself in the landscape, the stranger, the sky.',
     question: 'Where does the boundary between you and the world begin to blur?',
+    color: '#6BA4B8',
+    glyph: '◯',
   },
   flow: {
     id: 'flow',
     name: 'Flow',
     essence: 'Surrendering to what is — letting go of resistance, trusting the current, moving without forcing.',
     question: 'What happens when you stop pushing and start allowing?',
+    color: '#7DB8A0',
+    glyph: '≈',
   },
   presence: {
     id: 'presence',
     name: 'Presence',
     essence: 'Arriving fully in this moment — not rehearsing, not reviewing, just being here.',
     question: 'What does it feel like to have nowhere else to be?',
+    color: '#D4A853',
+    glyph: '◉',
   },
   reverence: {
     id: 'reverence',
     name: 'Reverence',
     essence: 'Sacred regard — treating the ground, the meal, the silence as something worthy of awe.',
     question: 'What would change if you treated everything today as holy?',
+    color: '#E8956A',
+    glyph: '✧',
+  },
+  compassion: {
+    id: 'compassion',
+    name: 'Compassion',
+    essence: 'The open heart — care that extends outward to others, to all living things, to life itself.',
+    question: 'What would change if you treated everything around you as worthy of your care?',
+    color: '#A85C4A',
+    glyph: '❧',
   },
 };
 
@@ -632,7 +648,7 @@ export const ENTRIES = [
     id: 'h-t-bhakti',
     tradition: 'hinduism',
     type: 'teaching',
-    principles: ['reverence', 'oneness'],
+    principles: ['reverence', 'oneness', 'compassion'],
     name: 'Bhakti — The Path of Devotional Love',
     summary: 'The highest spiritual path is love itself — not earned or practiced, but the direct recognition that love is the nature of reality.',
     deeper: 'The Narada Bhakti Sutras open with a deceptively simple statement: "Bhakti is supreme love for God." But Narada goes further — this love, when purified, becomes its own end. It asks nothing, seeks nothing, fears nothing. It is not worship in the transactional sense but a constant orientation of the heart toward what is sacred. In the Bhakti tradition, the divine is not distant but present in every person, every creature, every landscape. A canyon, a wildflower, a stranger on the trail — all become doorways. The practice is not to believe this but to feel it.',
@@ -668,7 +684,7 @@ export const ENTRIES = [
     id: 'h-p-kirtan',
     tradition: 'hinduism',
     type: 'practice',
-    principles: ['reverence', 'presence'],
+    principles: ['reverence', 'presence', 'compassion'],
     name: 'Kīrtan — Devotional Chanting',
     summary: 'Call-and-response chanting of sacred names and mantras — the most accessible of all bhakti practices, requiring no experience and no belief.',
     deeper: 'Kirtan is described in the Narada Bhakti Sutras as one of the primary forms of devotional practice. Unlike silent meditation, kirtan moves through the body — voice, breath, rhythm, repetition. The repeated sound of sacred syllables is said to gradually dissolve the armor around the heart. But even secular participants often find something loosens: the self-consciousness drops, the analytical mind quiets, and something more direct comes through. Around a campfire in a canyon, with the acoustics of sandstone, the effect can be profound.',
@@ -799,7 +815,7 @@ export const ENTRIES = [
     id: 'b-p-metta',
     tradition: 'buddhism',
     type: 'practice',
-    principles: ['oneness', 'reverence'],
+    principles: ['oneness', 'reverence', 'compassion'],
     name: 'Mettā Bhāvanā — Loving-Kindness Meditation',
     summary: 'Systematically generating feelings of unconditional love and goodwill toward yourself, loved ones, strangers, and all beings.',
     deeper: 'Metta practice begins with yourself ("May I be happy, may I be safe, may I be healthy, may I live with ease"), then extends outward in concentric circles: a loved one, a neutral person, a difficult person, and finally all beings everywhere. The practice literally rewires the brain\'s response to others. Practiced in nature, the "all beings" phase can include the trees, the animals, the stones — everything in the landscape.',
@@ -1677,10 +1693,10 @@ export function getPracticesForItinerary(formData) {
 
   // Map intentions → principles
   const intentionToPrinciple = {
-    peace: ['presence', 'flow'],
-    transformation: ['reverence', 'oneness'],
-    connection: ['oneness', 'reverence'],
-    reset: ['flow', 'presence'],
+    reconnect:    ['oneness', 'compassion', 'reverence'],
+    tune_in:      ['presence', 'flow'],
+    slow_down:    ['presence', 'flow', 'reverence'],
+    light_up:     ['oneness', 'flow', 'compassion'],
   };
 
   const activePrinciples = new Set();

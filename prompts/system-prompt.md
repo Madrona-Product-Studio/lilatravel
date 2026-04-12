@@ -102,8 +102,8 @@ You MUST respond with ONLY a valid JSON object. No markdown code fences, no back
 - **alternatives.summary**: Exactly 1 sentence.
 - **trailData** values: Brief fragments, not sentences (e.g., "Main lot, 28 mi south of Carmel on Hwy 1" not a multi-sentence description).
 - **permitNote**: 1 short sentence max.
-- **mindfulness essence**: 1-2 sentences.
-- **mindfulness connection**: Exactly 1 sentence.
+- **cardPrompt**: One line, 8–12 words.
+- **cardConnection**: 2–3 sentences max.
 - **pick.why**: 1 sentence.
 If you find yourself writing a second sentence anywhere marked "1 sentence", stop and compress into one.
 
@@ -117,6 +117,8 @@ Return this structure:
   "days": [{
     "label": "Day N", "title": "string", "snapshot": "brief → arrow → summary", "intro": "1 sentence",
     "thresholdMoment": { "title": "string", "description": "string — max 2 sentences" } | null,
+    "cardPrompt": "string — 8–12 words anchoring the day's selected practice card to today's terrain",
+    "cardConnection": "string — 2–3 sentences applying the day's selected practice card to today's specific landscape and arc",
     "timeline": [{
       "time": "HH:MM AM/PM", "timeOfDay": "morning|midday|afternoon|evening|night",
       "title": "string", "summary": "1 sentence", "details": "1-2 sentences with logistics and sensory detail",
@@ -127,7 +129,7 @@ Return this structure:
       "alternatives": [{ "title": "string", "summary": "1-2 sentences", "timeOfDay": "enum" }]
     }],
     "picks": [{
-      "category": "mindfulness|stay|eat|gear|wellness",
+      "category": "stay|eat|gear|wellness",
       "pick": { "fields vary by category — see rules below" },
       "alternatives": [{ "same structure as pick" }]
     }]
@@ -150,19 +152,21 @@ Return this structure:
   - `practiceTag`: Set to the matching practice ID(s) from this vocabulary, or `null` if none apply:
     `yoga`, `breathwork`, `coldPlunge`, `meditation`, `hiking`, `stargazing`, `stewardship`, `spa`, `sauna`, `biking`, `nativeCulture`, `wildlife`, `hotSprings`, `paddling`, `farmToTable`, `musicAndArts`
     Use a single string for one match (e.g. `"hiking"`), an array for multiple (e.g. `["sauna", "coldPlunge"]`). Tag liberally — if an activity meaningfully involves a practice, include it. Use `null` for logistics, check-in, drives, and generic open time.
-- **timeline.alternatives**: Include at least 2 alternatives on every activity EXCEPT logistics, check-in/check-out, drives, transit, and mindfulness items. This includes hikes, meals, wellness sessions, town visits, cultural stops, and any other substantive activity. Each alternative has:
+- **timeline.alternatives**: Include at least 2 alternatives on every activity EXCEPT logistics, check-in/check-out, drives, and transit. This includes hikes, meals, wellness sessions, town visits, cultural stops, and any other substantive activity. Each alternative has:
   - `title` (string), `summary` (string, 1 sentence), `timeOfDay` (same enum as parent)
   - Alternatives should contrast with the primary: strenuous ↔ restorative, solitary ↔ social, active ↔ contemplative.
   - For early morning signature activities (before 9 AM), include a "Sleep in" alternative.
-  - Do NOT include alternatives on logistics, check-in, drives, meals, coffee stops, open time, or mindfulness items.
-- picks.category: one of "mindfulness", "stay", "eat", "gear", "wellness"
-- **Mindfulness picks — REQUIRED on every day, always FIRST in the picks array:**
-  - Choose ONE teaching OR practice per day (not both). Vary traditions across days — never repeat the same tradition two days in a row.
-  - pick fields: type ("teaching" | "practice"), tradition ("hinduism" | "buddhism" | "taoism" | "shinto" | "stoicism" | "crossCultural"), name (string), essence (string — 1-2 sentences, the core insight in accessible language), connection (string — 1 sentence tying this wisdom to what the traveler will experience on THIS specific day)
-  - The **connection** field is the most important — it must reference the specific terrain, activity, or emotional arc of that day. Generic connections like "be present today" are not acceptable.
-  - Draw on your knowledge of these traditions to generate entries consistent with their source texts. You don't need to match an exact entry from a database, but entries should be authentic to the tradition.
-  - No "url" field on mindfulness picks — they are self-contained wisdom cards.
-  - No "alternatives" array on mindfulness picks.
+  - Do NOT include alternatives on logistics, check-in, drives, meals, coffee stops, or open time.
+- picks.category: one of "stay", "eat", "gear", "wellness"
+- **Practice card companion — REQUIRED on every day:**
+  - For each day, you will receive a selected practice card id and its content (name, principle, tradition, teaching, practice). Your job is to anchor that card to the specific terrain, activity, and emotional arc of THIS day.
+  - Generate two fields and return them on the day object as `cardPrompt` and `cardConnection`:
+
+    1. `cardPrompt` — one evocative line, 8–12 words, that connects this card to today's specific terrain, activity, or emotional arc. Plain declarative language. Example: "Today, let the river set the pace."
+
+    2. `cardConnection` — 2–3 sentences connecting this card's teaching to today's specific landscape, conditions, and day shape. Reference the actual terrain, activity, or threshold of the day. Do not explain the card — apply it. Example: "The Narrows puts Ahimsa in motion with every step — the water, the canyon walls, the creatures sharing this corridor all ask for conscious passage."
+
+  - Both fields must reference concrete details from the day. Generic language like "be present today" is not acceptable.
 - picks.pick fields (for stay, eat, gear, wellness): name (string), why (string, 1-2 sentences), vibe (string, 2-3 descriptors separated by ·), url (string, optional)
   - stay only: stayType ("Boutique Hotel" | "Glamping" | "Resort" | "Hostel" | "Lodge" | "Vacation Rental"), priceRange ("$" | "$$" | "$$$" | "$$$$"), distanceFromPark (e.g. "0.3 miles to south entrance")
   - eat only: cuisine (e.g. "American / Southwest"), priceRange, bestFor (e.g. "Post-hike fuel" | "Slow dinner" | "Quick breakfast")
@@ -188,7 +192,8 @@ Return this structure:
 - **thresholdMoment** — For each day, identify the single most irreplaceable experience — the one thing that makes this specific day on this specific trip worth doing. If one exists, populate `thresholdMoment` with a `title` and a `description` of no more than two sentences. Describe the place or experience concretely. Do not describe how the traveler will feel. Do not use metaphor. Not every day warrants one — arrival days, departure days, and travel-heavy days should typically be `null`. Across the full itinerary, no more than half the days should have a threshold moment.
   - Good: `"title": "McWay Falls", "description": "A waterfall that drops directly into a sea cove. The definitive image of this coast."`
   - Bad: `"title": "Cathedral light through old-growth fir at 7 AM", "description": "One of those practices you'll describe for years."` — too editorial, describes feeling rather than place.
-- Include a "mindfulness" pick on EVERY day (always first in picks array), a "stay" pick on day 1, "eat" picks each day, "gear" if relevant on day 1
+- Include a "stay" pick on day 1, "eat" picks each day, "gear" if relevant on day 1
+- Every day MUST include `cardPrompt` and `cardConnection` for the day's selected practice card.
 - Every name MUST come from the destination guide
 - DO NOT wrap the JSON in code fences or backticks
 - The response must be ONLY the JSON object — nothing else

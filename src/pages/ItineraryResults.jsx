@@ -10,8 +10,11 @@ import { lookupUrl as lookupVancouver } from '@data/destinations/vancouver-islan
 const lookupUrl = (name) => lookupZion(name) || lookupJoshuaTree(name) || lookupBigSur(name) || lookupOlympic(name) || lookupKauai(name) || lookupVancouver(name);
 import JSON5 from 'json5';
 import { trackEvent } from '@utils/analytics';
-import { getPracticesForItinerary, TRADITIONS, ENTRIES } from '@services/practicesService';
-import { assignCompanions } from '@services/companionAssigner';
+import { TRADITIONS } from '@services/practicesService';
+import { assignCardsToDays } from '@services/companionAssigner';
+import { CARD_PRINCIPLES } from '@data/cardDeck';
+import PracticeCardTeaser from '@components/guide/PracticeCardTeaser';
+import PracticeCardModal from '@components/guide/PracticeCardModal';
 import { saveItinerary, saveFeedback, updateItineraryTitle, updateTripLogistics } from '@services/feedbackService';
 
 import { clearSession } from '@services/sessionManager';
@@ -79,7 +82,6 @@ const LOCKED_CARD_STYLE = {
 };
 
 const PICK_STYLES = {
-  mindfulness: { label: 'Mindfulness', color: C.seaGlass },
   stay: { label: 'Where to Stay', color: C.goldenAmber },
   eat:  { label: 'Where to Eat',  color: C.sunSalmon },
   gear: { label: 'Gear',          color: C.oceanTeal },
@@ -224,15 +226,6 @@ const TeachingIcon = ({ size = 13, color = C.goldenAmber }) => (
 const PracticeIconSimple = ({ size = 13, color = C.seaGlass }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
     <circle cx="12" cy="5" r="2" /><path d="M12 7v4" /><path d="M8 21l4-10 4 10" /><path d="M6 14l6-3 6 3" />
-  </svg>
-);
-
-const IconLotus = ({ size = 24, color = '#4A9B9F' }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M12 20 C12 20 8 16 8 12 C8 8 10 5 12 3 C14 5 16 8 16 12 C16 16 12 20 12 20Z" fill={`${color}15`} />
-    <path d="M12 20 C12 20 5 15 4 11 C3 7 6 5 8 6" />
-    <path d="M12 20 C12 20 19 15 20 11 C21 7 18 5 16 6" />
-    <line x1="12" y1="20" x2="12" y2="8" strokeWidth="1" opacity="0.4" />
   </svg>
 );
 
@@ -1516,127 +1509,6 @@ const accomLabel = { color: C.muted };
     return <CompanionPanelContent type={type} data={data} id={thumbId} />;
   }
 
-  // Mindfulness pick content (from Claude's response)
-  if (type === 'mindfulness') {
-    const tradition = TRADITIONS[data.tradition];
-    const accent = tradition?.color || C.sage;
-    const glyph = TRADITION_GLYPHS[data.tradition] || '◈';
-    const typeLabel = data.type === 'practice' ? 'Practice' : 'Teaching';
-
-    return (
-      <div style={{
-        position: 'relative', overflow: 'hidden',
-        minHeight: '100%',
-        background: 'linear-gradient(150deg, #f5f1ea 0%, #ede9e0 100%)',
-      }}>
-        <div aria-hidden style={{
-          position: 'absolute', top: 0, bottom: 0,
-          left: '-40%', width: '180%',
-          background: 'linear-gradient(to right, transparent 0%, #dceee9 25%, #e2eeeb 50%, #dceee9 75%, transparent 100%)',
-          animation: 'practiceBreath 16s ease-in-out infinite',
-          pointerEvents: 'none',
-        }} />
-        <div style={{ position: 'relative', maxWidth: 500, margin: '0 auto', padding: '20px 24px 60px' }}>
-          {/* Lotus + label */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16 }}>
-            <IconLotus size={38} color="#4A9B9F" />
-            <span className="font-body text-[10px] font-bold tracking-[0.22em] uppercase" style={{
-              color: '#4A9B9F',
-            }}>Mindfulness Practice</span>
-          </div>
-
-          {/* Tradition badge + type pill */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap', marginBottom: 14 }}>
-            <div style={{
-              display: 'inline-flex', alignItems: 'center', gap: 5,
-              padding: '3px 10px', borderRadius: 20,
-              background: `${accent}10`, border: `1px solid ${accent}20`,
-            }}>
-              <span style={{ fontSize: 12, lineHeight: 1 }}>{glyph}</span>
-              <span className="font-body text-[10px] font-semibold tracking-[0.08em] uppercase" style={{
-                color: accent,
-              }}>{tradition?.name || data.tradition}</span>
-            </div>
-            <div style={{
-              display: 'inline-flex', alignItems: 'center', gap: 4,
-              padding: '3px 9px', borderRadius: 20,
-              background: `${accent}08`, border: `1px solid ${accent}15`,
-            }}>
-              {data.type === 'teaching'
-                ? <TeachingIcon size={10} color={accent} />
-                : <PracticeIconSimple size={10} color={accent} />}
-              <span className="font-body text-[10px] font-semibold tracking-[0.08em] uppercase" style={{
-                color: accent,
-              }}>{typeLabel}</span>
-            </div>
-          </div>
-
-          {/* Title */}
-          <h1 className="font-serif text-[clamp(20px,5vw,24px)] font-light leading-[1.3] mb-1.5" style={{
-            color: '#1a2530',
-          }}>{data.name}</h1>
-
-          {/* Essence */}
-          <p className="font-body text-[14px] font-normal leading-[1.7] mb-4" style={{
-            color: C.body,
-          }}>{data.essence}</p>
-
-          {/* Connection — italic */}
-          {data.connection && (
-            <p className="font-body text-[14px] font-normal italic leading-[1.6] mb-5" style={{
-              color: '#3D5A6B', opacity: 0.8,
-            }}>{data.connection}</p>
-          )}
-
-          {/* Quote */}
-          {data.quote?.text && (
-            <div style={{
-              background: `${BrandC.goldenAmber}08`,
-              border: `1px solid ${BrandC.goldenAmber}18`,
-              borderRadius: 6,
-              padding: '20px 20px',
-              marginTop: 18,
-              marginBottom: 20,
-            }}>
-              <p className="font-serif text-[18px] font-light leading-[1.6] m-0" style={{
-                color: `${C.ink}CC`,
-              }}>{data.quote.text}</p>
-              <p className="font-body text-[12px] font-semibold tracking-[0.02em] mt-3" style={{
-                color: `${C.ink}55`,
-              }}>— {data.quote.author || data.quote.source}{data.quote.role ? `, ${data.quote.role}` : ''}</p>
-            </div>
-          )}
-
-          {/* How to practice */}
-          {data.howTo && (
-            <div style={{ marginBottom: 20 }}>
-              <div className="font-body text-[10px] font-semibold tracking-[0.1em] uppercase mb-2" style={{
-                color: `${accent}cc`,
-              }}>How to practice</div>
-              <p className="font-body text-[14px] font-normal leading-[1.7] m-0" style={{
-                color: C.body,
-              }}>{data.howTo}</p>
-            </div>
-          )}
-
-          {/* Duration */}
-          {data.duration && (
-            <div style={{
-              display: 'inline-flex', alignItems: 'center', gap: 6,
-              padding: '6px 12px', borderRadius: 20,
-              background: `${accent}0a`, border: `1px solid ${accent}18`,
-            }}>
-              <ClockIcon size={10} color={accent} />
-              <span className="font-body text-[12px] font-semibold" style={{
-                color: accent,
-              }}>{data.duration}</span>
-            </div>
-          )}
-        </div>
-      </div>
-    );
-  }
-
   // Trail content
   if (type === 'trail') {
     return (
@@ -2299,8 +2171,7 @@ function DetailPanel({ item, onClose, lockedItems, onLock, onAlternatives, alter
 
   if (!item) return null;
 
-  const isMindfulness = item.type === 'mindfulness';
-  const panelBg = isMindfulness ? 'linear-gradient(150deg, #f5f1ea 0%, #ede9e0 100%)' : C.warm;
+  const panelBg = C.warm;
 
   const onTouchStart = (e) => {
     dragStartY.current = e.touches[0].clientY;
@@ -2832,7 +2703,7 @@ function DayFeedbackStrip({ dayIndex, feedback, onFeedback }) {
 
 /* ── day card (V2 flat) ────────────────────────────────────────────────── */
 
-function DayCard({ day, dayIndex = 0, onOpenPanel, lockedItems, onLock, onAlternatives, feedback, onFeedback, onSwapOpen, swappedActivities, hideHeader }) {
+function DayCard({ day, dayIndex = 0, onOpenPanel, lockedItems, onLock, onAlternatives, feedback, onFeedback, onSwapOpen, swappedActivities, hideHeader, onOpenCard }) {
   const color = DAY_COLORS[dayIndex % DAY_COLORS.length];
 
   return (
@@ -2845,84 +2716,16 @@ function DayCard({ day, dayIndex = 0, onOpenPanel, lockedItems, onLock, onAltern
       </div>
       )}
 
-      {/* Mindfulness Practice callout — opens detail panel on click */}
-      {(() => {
-        const mindfulnessPick = day.picks?.find(p => p.category === 'mindfulness')?.pick;
-        const hasCompanion = day.companion && (day.companion.teaching || day.companion.practice);
-
-        if (!mindfulnessPick && !hasCompanion) return null;
-
-        const wrapperStyle = {
-          position: 'relative', overflow: 'hidden',
-          background: 'linear-gradient(150deg, #f5f1ea 0%, #ede9e0 100%)',
-          border: '1.5px solid rgba(74,155,159,0.35)',
-          cursor: 'pointer', WebkitTapHighlightColor: 'transparent',
-        };
-
-        const handleClick = () => {
-          if (mindfulnessPick) {
-            trackEvent('mindfulness_opened', { name: mindfulnessPick.name, day_index: dayIndex });
-            // Merge companion quote into mindfulness data if available
-            // (Claude's picks don't include quotes; the companion entry from practicesService does)
-            const companionEntry = day.companion?.teaching || day.companion?.practice;
-            const enrichedData = companionEntry?.quote && !mindfulnessPick.quote
-              ? { ...mindfulnessPick, quote: companionEntry.quote }
-              : mindfulnessPick;
-            onOpenPanel({
-              type: 'mindfulness',
-              data: enrichedData,
-              thumbId: `day_${dayIndex}_mindfulness`,
-            });
-          } else if (hasCompanion) {
-            const entry = day.companion.teaching || day.companion.practice;
-            const entryType = day.companion.teaching ? 'teaching' : 'practice';
-            trackEvent('companion_opened', { type: entryType, title: entry.title, day_index: dayIndex });
-            onOpenPanel({ type: entryType, data: entry, thumbId: `day_${dayIndex}_${entryType}` });
-          }
-        };
-
-        // Preview content for compact callout
-        const name = mindfulnessPick?.name || (day.companion?.teaching?.title || day.companion?.practice?.title);
-        const essence = mindfulnessPick?.essence;
-        const tradition = mindfulnessPick ? TRADITIONS[mindfulnessPick.tradition] : null;
-        const glyph = mindfulnessPick ? (TRADITION_GLYPHS[mindfulnessPick.tradition] || '◈') : null;
-
-        return (
-          <div style={wrapperStyle} onClick={handleClick}>
-            <div aria-hidden style={{
-              position: 'absolute', top: 0, bottom: 0,
-              left: '-40%', width: '180%',
-              background: 'linear-gradient(to right, transparent 0%, #dceee9 25%, #e2eeeb 50%, #dceee9 75%, transparent 100%)',
-              animation: 'practiceBreath 16s ease-in-out infinite',
-              pointerEvents: 'none',
-            }} />
-            <div style={{ position: 'relative', padding: '16px 20px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
-                <IconLotus size={32} color="#4A9B9F" />
-                <div style={{ flex: 1, minWidth: 0 }}>
-                  <div className="font-body text-[10px] font-bold tracking-[0.22em] uppercase mb-1" style={{ color: '#4A9B9F' }}>Mindfulness Practice</div>
-                  <div className="font-serif text-[17px] font-light leading-[1.3]" style={{ color: '#1a2530' }}>{name}</div>
-                  {essence && (
-                    <div className="font-body text-[13px] font-normal leading-[1.5] mt-1 overflow-hidden text-ellipsis" style={{
-                      color: C.body,
-                      display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical',
-                    }}>{essence}</div>
-                  )}
-                  {glyph && tradition && (
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginTop: 6 }}>
-                      <span style={{ fontSize: 11, lineHeight: 1 }}>{glyph}</span>
-                      <span className="font-body text-[10px] font-semibold tracking-[0.08em] uppercase" style={{
-                        color: `${tradition.color || C.sage}99`,
-                      }}>{tradition.name}</span>
-                    </div>
-                  )}
-                </div>
-                <span style={{ color: '#4A9B9F', opacity: 0.5, fontSize: 16, flexShrink: 0 }}>›</span>
-              </div>
-            </div>
-          </div>
-        );
-      })()}
+      {/* Practice Card Teaser — opens the full PracticeCardModal on tap */}
+      {day.companion?.card && (
+        <PracticeCardTeaser
+          card={day.companion.card}
+          onOpen={() => {
+            trackEvent('practice_card_opened', { card_id: day.companion.card.id, day_index: dayIndex });
+            if (typeof onOpenCard === 'function') onOpenCard(dayIndex);
+          }}
+        />
+      )}
 
       {/* Activity rows */}
       {day.timeline && day.timeline.map((b, i) => {
@@ -4248,6 +4051,9 @@ export default function ItineraryResults() {
   // Detail panel state — unified for activities, picks, and companion cards
   const [activePanel, setActivePanel] = useState(null); // { type, data, thumbId }
 
+  // Practice card modal state — which day's card is currently open (null = closed)
+  const [openCardDay, setOpenCardDay] = useState(null);
+
   // Lock body scroll when panel is open
   useEffect(() => {
     if (activePanel) document.body.style.overflow = 'hidden';
@@ -4358,14 +4164,15 @@ export default function ItineraryResults() {
     if (e.key === 'Escape') setEditingHeroTitle(false);
   };
 
-  // Enrich days with companion data from practices service
+  // Enrich days with cardDeck-based companion. Each day gets `companion.card`
+  // and `companion.archetype`. The legacy practicesService companion path was
+  // retired with the AI mindfulness pick.
   const baseDays = useMemo(() => {
     if (!isStructured || !formData) return itinerary?.days || [];
     try {
-      const practiceResults = getPracticesForItinerary(formData);
-      return assignCompanions(itinerary.days, practiceResults);
+      return assignCardsToDays(itinerary.days, formData);
     } catch (e) {
-      console.error('Companion assignment failed, using plain days:', e.message);
+      console.error('Card assignment failed, using plain days:', e.message);
       return itinerary.days;
     }
   }, [isStructured, itinerary, formData]);
@@ -5102,6 +4909,15 @@ export default function ItineraryResults() {
         }}
       />
 
+      {/* Practice Card Modal — opens via the day-card teaser */}
+      {openCardDay !== null && enrichedDays?.[openCardDay]?.companion?.card && (
+        <PracticeCardModal
+          card={enrichedDays[openCardDay].companion.card}
+          connection={enrichedDays[openCardDay].cardConnection}
+          onClose={() => setOpenCardDay(null)}
+        />
+      )}
+
       {/* Toast */}
       <Toast message={toastMessage} onDone={() => setToastMessage(null)} />
 
@@ -5374,6 +5190,7 @@ export default function ItineraryResults() {
                         lockedItems={lockedItems} onLock={handleLock} onAlternatives={handleAlternatives}
                         swappedActivities={swappedActivities}
                         onSwapOpen={(data) => setSwapModal(data)}
+                        onOpenCard={(dayIdx) => setOpenCardDay(dayIdx)}
                         onOpenPanel={(panelItem) => {
                           setActivePanel(panelItem);
                         }} />

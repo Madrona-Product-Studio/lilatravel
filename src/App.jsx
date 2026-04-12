@@ -12,7 +12,7 @@
 //   /group-trips                   → Group Trips landing (Threshold Trips)
 //   /ethos                         → Ethos (three braids + philosophy)
 //   /ethos/:slug                   → Individual philosophy detail
-//   /ethos/philosophy               → Philosophy deep-dive (four principles × five traditions)
+//   /ethos/philosophy               → Philosophy deep-dive (five principles × five traditions)
 //   /ethos/practices                → Practices Explorer (interactive wisdom layer browser)
 //   /ways-to-travel                → Ways to Travel (how to get started)
 //   /trips/:slug                   → Individual Threshold Trip detail

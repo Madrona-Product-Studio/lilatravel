@@ -169,6 +169,47 @@ const principles = [
       },
     ],
   },
+  {
+    word: "Compassion",
+    icon: "\u2767",
+    color: "#A85C4A",
+    quote: "Let yourself be silently drawn by the strange pull of what you really love. It will not lead you astray.",
+    author: "Rumi",
+    desc: "The heart opened toward what is alive around you. Not sentiment \u2014 orientation. A continuous turning toward what is struggling, what is beautiful, what is other than yourself. Compassion is what happens when presence stops being self-referential and becomes relational. Every tradition arrived at the same truth: care is not the obstacle to awakening. It is the path.",
+    inPractice: "Lila trips are designed to dissolve the membrane between self and landscape \u2014 and compassion is what flows through that opening. Tonglen practice on a burned hillside. Mett\u0101 extended to every creature sharing the trail. Seva that gives something back to the place holding you. The land receives your attention. You receive the land\u2019s.",
+    traditions: [
+      {
+        symbol: "\u0950\uFE0E", concept: "Karu\u1E47\u0101 & Bhakti", source: "Hindu / Yoga",
+        metaphor: "Love as the direct path.",
+        quote: "Let yourself be silently drawn by the strange pull of what you really love. It will not lead you astray.",
+        quoteSource: "Rumi",
+      },
+      {
+        symbol: "\u273F\uFE0E", concept: "Mett\u0101 & Tonglen", source: "Buddhism",
+        metaphor: "The circle of care has no edge.",
+        quote: "Just as a mother would protect her only child with her own life, cultivate a boundless heart toward all beings.",
+        quoteSource: "The Buddha, Metta Sutta",
+      },
+      {
+        symbol: "\u262F\uFE0E", concept: "C\u00ED \u2014 Loving Kindness", source: "Taoism",
+        metaphor: "Gentleness as strength.",
+        quote: "I have three treasures which I hold and keep. The first is mercy. The second is economy. The third is daring not to be ahead of others.",
+        quoteSource: "Laozi, Tao Te Ching 67",
+      },
+      {
+        symbol: "\u26E9\uFE0E", concept: "Naohi \u2014 The Rectifying Spirit", source: "Shinto",
+        metaphor: "The kami of harmony and restoration.",
+        quote: "The rectifying spirit moves through all living things, restoring what has been broken, returning what has been lost.",
+        quoteSource: "Shinto teaching",
+      },
+      {
+        symbol: "\u25B3\uFE0E", concept: "Oikei\u00F4sis", source: "Stoicism",
+        metaphor: "Belonging \u2014 the recognition of kinship with all.",
+        quote: "What injures the hive, injures the bee. We are all one body.",
+        quoteSource: "Marcus Aurelius, Meditations",
+      },
+    ],
+  },
 ];
 
 
@@ -191,14 +232,14 @@ export default function PhilosophyPage() {
               className="font-body font-light text-dark-ink leading-[1.15] mb-5 mt-0"
               style={{ fontSize: "clamp(32px, 5vw, 52px)" }}
             >
-              Five traditions.<br />Four principles.
+              Five traditions.<br />Five principles.
             </h1>
 
             <p
               className="font-body font-normal text-[#5a6a78] leading-[1.9] max-w-[600px] mb-0"
               style={{ fontSize: "clamp(14px, 1.6vw, 16px)" }}
             >
-              Across centuries and continents, five wisdom traditions arrived independently at remarkably similar truths about how to live well. We've distilled their shared insights into four principles that guide every Lila journey.
+              Across centuries and continents, five wisdom traditions arrived independently at remarkably similar truths about how to live well. We've distilled their shared insights into five principles that guide every Lila journey.
             </p>
           </FadeIn>
 

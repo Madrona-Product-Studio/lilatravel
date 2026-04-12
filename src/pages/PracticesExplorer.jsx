@@ -540,7 +540,7 @@ export default function PracticesExplorerPage() {
     });
   };
 
-  const PRINCIPLE_ORDER = { oneness: 0, flow: 1, presence: 2, reverence: 3 };
+  const PRINCIPLE_ORDER = { oneness: 0, flow: 1, presence: 2, reverence: 3, compassion: 4 };
 
   const filtered = useMemo(() => {
     return ENTRIES
@@ -591,7 +591,7 @@ export default function PracticesExplorerPage() {
       <PageHeader
         eyebrow="Wisdom Layer"
         title="Practices Explorer"
-        subtitle="Five traditions, four principles — teachings, practices, and ceremonies for transformative travel."
+        subtitle="Five traditions, five principles — teachings, practices, and ceremonies for transformative travel."
       />
 
       <section className="max-w-[680px] mx-auto px-6">

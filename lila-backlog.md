@@ -8,6 +8,17 @@ _Last updated: March 30, 2026. Living document — update as items are completed
 
 - [ ] **`/trip/:shareToken` route** — viewer for shared itineraries. Required for save/share loop to work end-to-end. Currently falls back to session URL which breaks after session ends.
 
+- [x] **Card Deck system** (Apr 2026) — 30-card practice deck replaces the AI-generated mindfulness pick. Five-principle taxonomy (Presence / Oneness / Flow / Compassion / Reverence). Implemented per `claude-code-brief-card-deck.md`:
+  - [x] Part 1 — Fixed latent `PRINCIPLES` color/glyph bug in `practicesService.js` (PracticesExplorer was reading `undefined` for both fields)
+  - [x] Part 2 — Added Compassion as a fifth principle across `practicesService.js` (constant + retag of `b-p-metta`, `h-t-bhakti`, `h-p-kirtan`), `companionAssigner.js` `DAY_ARCHETYPES`, `Philosophy.jsx`, `rituals.js`, `PracticesExplorer.jsx` `PRINCIPLE_ORDER`, `Ethos.jsx`, and `App.jsx`. Fixed `intentionToPrinciple` key mismatch (was using stale `peace/transformation/connection/reset`; now matches the form's `reconnect/tune_in/slow_down/light_up`).
+  - [x] Part 3 — Created `src/data/cardDeck.js` with `CARD_PRINCIPLES`, `ENERGY_TYPES`, `BEST_FOR_VOCAB`, and all 30 cards verbatim from `lila-card-deck-30.md`.
+  - [x] Part 4 — Retired the AI-generated mindfulness pick from the system prompt and replaced it with `cardPrompt` + `cardConnection` per-day fields. Added `assignCardsToDays` / `assignCardToDay` to `companionAssigner.js` (archetype + principle + setting + energy + bestFor scoring, no-repeat across the trip).
+  - [x] Part 5 — New components `src/components/guide/PracticeCardTeaser.jsx`, `PracticeCardModal.jsx`, and `PrincipleMarks.jsx` (five SVG marks). Wired into `ItineraryResults.jsx` — teaser replaces the old mindfulness callout in DayCard, modal opens with `liftForward` keyframe and flips between front/back faces.
+  - [x] Cleanup (Apr 2026) — removed the unused `image` field from all 30 cards in `cardDeck.js` (approved card design uses principle color backgrounds with white SVG line art marks, no images).
+  - [x] Cleanup (Apr 2026) — removed the orphaned `type === 'mindfulness'` branch from `DetailPanelContent` in `ItineraryResults.jsx`, plus the now-dead `IconLotus` icon, the `isMindfulness` panel-bg switch, and the `mindfulness` entry in `PICK_STYLES`. No `MindfulnessReactions` component existed in the codebase. The `quoteOriginal` block on the modal back face is correctly guarded against missing/empty values.
+  - [x] Cleanup (Apr 2026) — verified that `assignCompanions` and `assignCardsToDays` were both being chained on every day in the `baseDays` memo. After Task 2, no UI code reads `companion.teaching` or `companion.practice` anywhere — only `day.companion?.card`. Removed the legacy `assignCompanions` call (and the dead `getPracticesForItinerary` + `ENTRIES` imports) from `ItineraryResults.jsx`. The legacy `assignCompanions` / `getCompanionsForTrip` exports remain in `companionAssigner.js` as unused service functions; safe to delete in a future cleanup if nothing else picks them up.
+  - [ ] **Up next:** Inject the per-day selected card id + content into the Claude API user message so `cardPrompt` + `cardConnection` are populated at generation time. Currently the modal renders a placeholder line on the back face until that wiring lands.
+
 ---
 
 ## 🟡 Up Next
