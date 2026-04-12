@@ -254,7 +254,7 @@ function ChapterScreen({ principle, principleIndex }) {
 
       {/* Title block — mark, name, arc centered; desc left-aligned */}
       <div style={{ width: '100%' }}>
-        <div style={{ textAlign: 'center', marginBottom: 16 }}>
+        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 16 }}>
           <PrincipleMark id={principle.id} size={52} />
         </div>
         <div style={{
@@ -587,7 +587,7 @@ export default function Meditations() {
         }}
       >
         {/* Card + arrows wrapper — arrows positioned relative to card, not viewport */}
-        <div style={{ position: 'relative', display: 'flex', alignItems: 'center', gap: 12 }}>
+        <div style={{ position: 'relative', display: 'flex', alignItems: 'center', gap: 20 }}>
 
           {/* Left arrow */}
           <button
