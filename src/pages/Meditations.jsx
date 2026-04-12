@@ -583,12 +583,13 @@ export default function Meditations() {
       <div
         ref={containerRef}
         style={{
-          minHeight: '100vh',
+          height: '100dvh',
           background: '#E8E0D5',
           display: 'flex',
           alignItems: 'center', justifyContent: 'center',
           fontFamily: SANS, userSelect: 'none',
           outline: 'none', position: 'relative',
+          overflow: 'hidden',
         }}
       >
         {/* Card + overlay arrows */}
@@ -623,7 +624,7 @@ export default function Meditations() {
             onTouchEnd={handleTouchEnd}
             style={{
               width: 'min(400px, calc(100vw - 28px))',
-              height: 'min(720px, calc(100vh - 120px))',
+              height: 'min(720px, calc(100dvh - 48px))',
               position: 'relative', overflow: 'hidden',
               borderRadius: 14,
               boxShadow: '0 8px 32px rgba(44,36,32,0.18), 0 2px 8px rgba(44,36,32,0.1)',
