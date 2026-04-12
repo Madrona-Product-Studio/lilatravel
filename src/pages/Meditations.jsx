@@ -505,7 +505,7 @@ function PracticeCardScreen({ card, principle, cardIndex }) {
                 display: 'flex', alignItems: 'center', gap: 5, marginBottom: 7,
               }}>
                 <span>◈</span>
-                On Your Trip
+                On Your Trip — Example
               </div>
               <div style={{
                 fontSize: 14, fontFamily: SANS, color: '#1C1917',
