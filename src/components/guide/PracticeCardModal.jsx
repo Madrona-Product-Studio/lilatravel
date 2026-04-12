@@ -349,7 +349,7 @@ export default function PracticeCardModal({ card, connection, onClose }) {
     if (flipAnimating) return;
     setFlipAnimating(true);
     setFlipped(f => !f);
-    setTimeout(() => setFlipAnimating(false), 700);
+    setTimeout(() => setFlipAnimating(false), 520);
   };
   const stop = (e) => e.stopPropagation();
 
@@ -388,7 +388,7 @@ export default function PracticeCardModal({ card, connection, onClose }) {
             willChange: 'transform',
             transform: flipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
             animation: flipAnimating
-              ? `${flipped ? 'flipCard' : 'flipCardBack'} 0.65s cubic-bezier(0.4, 0, 0.2, 1) forwards`
+              ? `${flipped ? 'flipCard' : 'flipCardBack'} 0.5s ease-in-out forwards`
               : 'none',
             boxShadow: '0 30px 80px rgba(0,0,0,0.45), 0 12px 30px rgba(0,0,0,0.25)',
           }}>

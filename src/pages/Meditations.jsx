@@ -317,7 +317,7 @@ function PracticeCardScreen({ card, principle, cardIndex }) {
     if (flipAnimating) return;
     setFlipAnimating(true);
     setFlipped(f => !f);
-    setTimeout(() => setFlipAnimating(false), 700);
+    setTimeout(() => setFlipAnimating(false), 520);
   };
 
   return (
@@ -329,7 +329,7 @@ function PracticeCardScreen({ card, principle, cardIndex }) {
           willChange: 'transform',
           transform: flipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
           animation: flipAnimating
-            ? `${flipped ? 'flipCard' : 'flipCardBack'} 0.65s cubic-bezier(0.4, 0, 0.2, 1) forwards`
+            ? `${flipped ? 'flipCard' : 'flipCardBack'} 0.5s ease-in-out forwards`
             : 'none',
         }}
       >
@@ -562,7 +562,7 @@ export default function Meditations() {
         setAnimScreen(null);
         setAnimType(null);
         setAnimating(false);
-      }, 420);
+      }, 280);
     } else {
       // Back — previous card stacks on top, base stays until landed
       setAnimScreen(SCREENS[next]);
@@ -573,7 +573,7 @@ export default function Meditations() {
         setAnimScreen(null);
         setAnimType(null);
         setAnimating(false);
-      }, 440);
+      }, 300);
     }
   }, [animating, currentIndex, total]);
 
@@ -714,8 +714,8 @@ export default function Meditations() {
               <div style={{
                 position: 'absolute', inset: 0, zIndex: 2,
                 animation: animType === 'exit'
-                  ? 'dealOff 0.42s cubic-bezier(0.4, 0, 0.8, 0.6) forwards'
-                  : 'stackOn 0.44s cubic-bezier(0.2, 0, 0.1, 1) forwards',
+                  ? 'dealOff 0.28s cubic-bezier(0.4, 0, 0.8, 0.6) forwards'
+                  : 'stackOn 0.30s cubic-bezier(0.2, 0, 0.1, 1) forwards',
               }}>
                 {renderScreen(animScreen)}
               </div>
