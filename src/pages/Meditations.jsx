@@ -552,28 +552,56 @@ function PracticeCardScreen({ card, principle, cardIndex }) {
 // PAGE COMPONENT
 // ═══════════════════════════════════════════════════════════════════════════════
 
+function renderScreen(scr) {
+  if (!scr) return null;
+  if (scr.type === 'cover') return <CoverScreen />;
+  if (scr.type === 'orientation') return <OrientationScreen />;
+  if (scr.type === 'chapter') return <ChapterScreen key={`ch-${scr.principleIndex}`} principle={scr.principle} principleIndex={scr.principleIndex} />;
+  if (scr.type === 'card') return <PracticeCardScreen key={`${scr.principleIndex}-${scr.cardIndex}`} card={scr.card} principle={scr.principle} cardIndex={scr.cardIndex} />;
+  return null;
+}
+
 export default function Meditations() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [baseIndex, setBaseIndex] = useState(0);
   const [animating, setAnimating] = useState(false);
-  const [slideDir, setSlideDir] = useState(0);
+  const [animScreen, setAnimScreen] = useState(null);
+  const [animType, setAnimType] = useState(null); // 'exit' | 'enter'
   const touchStartX = useRef(null);
   const touchStartY = useRef(null);
   const containerRef = useRef(null);
 
-  const screen = SCREENS[currentIndex];
   const total = SCREENS.length;
 
   const navigate = useCallback((dir) => {
     if (animating) return;
     const next = currentIndex + dir;
     if (next < 0 || next >= total) return;
-    setSlideDir(dir);
     setAnimating(true);
-    setTimeout(() => {
+
+    if (dir > 0) {
+      // Forward — base becomes next, current card deals off
+      setBaseIndex(next);
+      setAnimScreen(SCREENS[currentIndex]);
+      setAnimType('exit');
       setCurrentIndex(next);
-      setAnimating(false);
-      setSlideDir(0);
-    }, 260);
+      setTimeout(() => {
+        setAnimScreen(null);
+        setAnimType(null);
+        setAnimating(false);
+      }, 420);
+    } else {
+      // Back — previous card stacks on top, base stays until landed
+      setAnimScreen(SCREENS[next]);
+      setAnimType('enter');
+      setTimeout(() => {
+        setBaseIndex(next);
+        setCurrentIndex(next);
+        setAnimScreen(null);
+        setAnimType(null);
+        setAnimating(false);
+      }, 440);
+    }
   }, [animating, currentIndex, total]);
 
   // Lock body scroll while deck is mounted
@@ -632,6 +660,15 @@ export default function Meditations() {
       <style>{`
         .deck-arrow { display: none !important; }
         @media (min-width: 768px) { .deck-arrow { display: flex !important; } }
+        @keyframes dealOff {
+          0%   { transform: translateX(0) rotate(0deg); opacity: 1; }
+          100% { transform: translateX(-115%) rotate(-3deg); opacity: 0; }
+        }
+        @keyframes stackOn {
+          0%   { transform: translateX(-115%) rotate(-3deg); opacity: 0; }
+          35%  { opacity: 1; }
+          100% { transform: translateX(0) rotate(0deg); opacity: 1; }
+        }
         @keyframes flipCard {
           0%   { transform: rotateY(0deg)   scale(1)    translateY(0px);   box-shadow: 0 8px 32px rgba(44,36,32,0.2); }
           20%  { transform: rotateY(45deg)  scale(1.04) translateY(-8px);  box-shadow: 0 20px 52px rgba(44,36,32,0.28); }
@@ -694,32 +731,26 @@ export default function Meditations() {
             style={{
               width: 'min(400px, calc(100vw - 28px))',
               height: 'min(720px, calc(100dvh - 48px))',
-              position: 'relative',
+              position: 'relative', overflow: 'hidden',
               borderRadius: 14,
               boxShadow: '0 8px 32px rgba(44,36,32,0.18), 0 2px 8px rgba(44,36,32,0.1)',
-              transform: animating
-                ? slideDir > 0 ? 'translateX(-16px) scale(0.97)' : 'translateX(16px) scale(0.97)'
-                : 'translateX(0) scale(1)',
-              opacity: animating ? 0.15 : 1,
-              transition: 'transform 0.26s ease, opacity 0.26s ease',
             }}
           >
-            {screen.type === 'cover' && <CoverScreen />}
-            {screen.type === 'orientation' && <OrientationScreen />}
-            {screen.type === 'chapter' && (
-              <ChapterScreen
-                key={`chapter-${screen.principleIndex}`}
-                principle={screen.principle}
-                principleIndex={screen.principleIndex}
-              />
-            )}
-            {screen.type === 'card' && (
-              <PracticeCardScreen
-                key={`${screen.principleIndex}-${screen.cardIndex}`}
-                card={screen.card}
-                principle={screen.principle}
-                cardIndex={screen.cardIndex}
-              />
+            {/* Base layer — stationary, never animates */}
+            <div style={{ position: 'absolute', inset: 0, zIndex: 1 }}>
+              {renderScreen(SCREENS[baseIndex])}
+            </div>
+
+            {/* Animation layer — deals off or stacks on */}
+            {animScreen && (
+              <div style={{
+                position: 'absolute', inset: 0, zIndex: 2,
+                animation: animType === 'exit'
+                  ? 'dealOff 0.42s cubic-bezier(0.4, 0, 0.8, 0.6) forwards'
+                  : 'stackOn 0.44s cubic-bezier(0.2, 0, 0.1, 1) forwards',
+              }}>
+                {renderScreen(animScreen)}
+              </div>
             )}
           </div>
 
