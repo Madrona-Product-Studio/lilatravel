@@ -45,11 +45,27 @@ const TRADITIONS_LIST = [
   { symbol: '\u0950\uFE0E', name: 'Hinduism & Yoga', desc: 'Union, devotion, cosmic order' },
   { symbol: '\u273F\uFE0E', name: 'Buddhism', desc: 'Impermanence, compassion, awakening' },
   { symbol: '\u262F\uFE0E', name: 'Taoism', desc: 'Flow, harmony, the way of nature' },
-  { symbol: '\u2229\uFE0E', name: 'Shinto', desc: 'Reverence, purity, the sacred in all things' },
+  { symbol: 'torii', name: 'Shinto', desc: 'Reverence, purity, the sacred in all things' },
   { symbol: '\u25B3\uFE0E', name: 'Stoicism', desc: 'Virtue, reason, living according to nature' },
 ];
 
 const TRADITION_COLOR = '#7A9190';
+
+function ToriiIcon({ size = 18, color = 'currentColor' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+      <line x1="4" y1="6" x2="20" y2="6" stroke={color} strokeWidth="2" strokeLinecap="round" />
+      <line x1="6" y1="6" x2="6" y2="22" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
+      <line x1="18" y1="6" x2="18" y2="22" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
+      <line x1="3" y1="3" x2="21" y2="3" stroke={color} strokeWidth="2" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function TraditionSymbol({ symbol, size = 18, color = 'currentColor' }) {
+  if (symbol === 'torii') return <ToriiIcon size={size} color={color} />;
+  return <span style={{ fontSize: size, color, lineHeight: 1 }}>{symbol}</span>;
+}
 
 const TRADITIONS_FULL = [
   {
@@ -92,7 +108,7 @@ const TRADITIONS_FULL = [
     practice: 'Notice where you are forcing something today. See what happens if you ease instead.',
   },
   {
-    name: 'Shinto', symbol: '\u2229\uFE0E',
+    name: 'Shinto', symbol: 'torii',
     origin: 'Japan \u00B7 Ancient',
     history: 'Japan\u2019s indigenous spiritual tradition, with roots older than written history. Shinto has no founder, no single scripture, no fixed doctrine \u2014 only practice: tending to relationship with the kami, the sacred presences that inhabit natural places, phenomena, and ancestors.',
     essence: 'The sacred is already here.',
@@ -247,8 +263,8 @@ function OrientationScreen() {
             padding: '5px 0',
             borderBottom: i < 4 ? '0.5px solid rgba(44,36,32,0.08)' : 'none',
           }}>
-            <div style={{ width: 28, textAlign: 'center', flexShrink: 0, fontSize: 18, color: '#8C7B6B' }}>
-              {t.symbol}
+            <div style={{ width: 28, textAlign: 'center', flexShrink: 0, color: '#8C7B6B', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <TraditionSymbol symbol={t.symbol} size={18} color="#8C7B6B" />
             </div>
             <div style={{ flex: 1 }}>
               <div style={{ fontSize: 14, fontFamily: SANS, color: '#1C1917', fontWeight: 600, letterSpacing: '0.02em', marginBottom: 2 }}>
@@ -346,8 +362,8 @@ function TraditionScreen({ tradition }) {
 
       {/* Section 1 — Header */}
       <div style={{ textAlign: 'center', flexShrink: 0, position: 'relative' }}>
-        <div style={{ fontSize: 40, color: 'white', opacity: 0.7, marginBottom: 8 }}>
-          {tradition.symbol}
+        <div style={{ color: 'white', opacity: 0.7, marginBottom: 8, display: 'flex', justifyContent: 'center' }}>
+          <TraditionSymbol symbol={tradition.symbol} size={40} color="white" />
         </div>
         <div style={{
           fontSize: 9, fontFamily: SANS, textTransform: 'uppercase',
