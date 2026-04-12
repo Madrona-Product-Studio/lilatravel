@@ -38,7 +38,7 @@ const KEYFRAMES = `
 function FlipArrow({ dark = false }) {
   const stroke = dark ? '#1C1917' : 'white';
   return (
-    <svg width="20" height="20" viewBox="0 0 16 16" fill="none" aria-hidden>
+    <svg width="22" height="22" viewBox="0 0 16 16" fill="none" aria-hidden>
       <path d="M3 8 a5 5 0 1 0 5 -5" stroke={stroke} strokeWidth="1.2" strokeLinecap="round" fill="none" />
       <path d="M2.6 4.5 L3 8 L6.4 7.6" stroke={stroke} strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
     </svg>
@@ -107,86 +107,55 @@ function FrontFace({ card, principle, onFlip, onClose }) {
         height: '100%',
         display: 'flex',
         flexDirection: 'column',
-        padding: '28px 26px 28px',
       }}>
         {/* Top zone — principle identity */}
-        <div>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 16 }}>
-            <PrincipleMark id={principle.id} size={44} />
-          </div>
+        <div style={{
+          display: 'flex', flexDirection: 'column',
+          alignItems: 'center', padding: '20px 26px 14px',
+          gap: 6, flexShrink: 0,
+        }}>
+          <PrincipleMark id={principle.id} size={32} />
           <div
             className="font-body uppercase"
             style={{
-              fontSize: 11,
+              fontSize: 9,
               letterSpacing: '0.28em',
               color: 'white',
               opacity: 0.85,
-              textAlign: 'center',
-              fontWeight: 600,
+              fontWeight: 700,
             }}
           >
             {principle.name}
           </div>
-          <div
-            className="font-serif"
-            style={{
-              fontSize: 16,
-              fontStyle: 'italic',
-              color: 'white',
-              opacity: 0.85,
-              textAlign: 'center',
-              marginTop: 8,
-              fontWeight: 300,
-            }}
-          >
-            {principle.arc}
-          </div>
-          <div
-            className="font-body uppercase"
-            style={{
-              fontSize: 10,
-              letterSpacing: '0.3em',
-              color: 'white',
-              opacity: 0.4,
-              textAlign: 'center',
-              marginTop: 8,
-              fontWeight: 600,
-            }}
-          >
-            {principle.intention}
-          </div>
-          <div style={{
-            height: '0.5px',
-            background: 'rgba(255,255,255,0.2)',
-            marginTop: 20,
-          }} />
+          <div style={{ width: '100%', height: '0.5px', background: 'rgba(255,255,255,0.16)', marginTop: 2 }} />
         </div>
 
         {/* Spacer */}
         <div style={{ flex: 1 }} />
 
         {/* Bottom zone */}
-        <div>
+        <div style={{ padding: '0 24px' }}>
           <div
             className="font-body uppercase"
             style={{
-              fontSize: 9,
-              letterSpacing: '0.22em',
+              fontSize: 11,
+              letterSpacing: '0.18em',
               color: 'white',
               opacity: 0.7,
               fontWeight: 600,
+              marginBottom: 5,
             }}
           >
             {card.tradition}
           </div>
           <h2
-            className="font-serif"
+            className="font-body"
             style={{
-              fontSize: 42,
+              fontSize: 34,
               color: 'white',
-              fontWeight: 300,
+              fontWeight: 700,
               lineHeight: 1.05,
-              margin: '6px 0 8px',
+              margin: '0 0 5px',
             }}
           >
             {card.name}
@@ -195,11 +164,12 @@ function FrontFace({ card, principle, onFlip, onClose }) {
             <div
               className="font-body"
               style={{
-                fontSize: 11,
+                fontSize: 15,
                 fontStyle: 'italic',
                 color: 'white',
-                opacity: 0.75,
-                marginBottom: 14,
+                opacity: 0.8,
+                lineHeight: 1.5,
+                marginBottom: 18,
               }}
             >
               {card.subtitle}
@@ -208,10 +178,10 @@ function FrontFace({ card, principle, onFlip, onClose }) {
           <p
             className="font-body"
             style={{
-              fontSize: 13,
+              fontSize: 15,
               color: 'white',
-              opacity: 0.92,
-              lineHeight: 1.7,
+              opacity: 0.88,
+              lineHeight: 1.78,
               margin: 0,
             }}
           >
@@ -219,9 +189,20 @@ function FrontFace({ card, principle, onFlip, onClose }) {
           </p>
         </div>
 
-        {/* Flip arrow */}
-        <div style={{ position: 'absolute', right: 22, bottom: 18, opacity: 0.35 }}>
-          <FlipArrow />
+        {/* Flip arrow + explore label */}
+        <div style={{
+          padding: '12px 22px 20px',
+          display: 'flex', justifyContent: 'flex-end', alignItems: 'center',
+          gap: 6, flexShrink: 0,
+        }}>
+          <div className="font-body uppercase" style={{
+            fontSize: 8, letterSpacing: '0.15em', color: 'white', opacity: 0.4,
+          }}>
+            explore
+          </div>
+          <div style={{ opacity: 0.6 }}>
+            <FlipArrow />
+          </div>
         </div>
       </div>
     </div>
