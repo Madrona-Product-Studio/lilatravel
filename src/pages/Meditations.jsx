@@ -587,21 +587,21 @@ export default function Meditations() {
           overflow: 'hidden',
         }}
       >
-        {/* Wordmark — home link */}
+        {/* Logo — home link, matches Nav wordmark on other pages */}
         <Link
           to="/"
           style={{
-            position: 'absolute', top: 16, left: 20, zIndex: 20,
+            position: 'absolute', top: 18, left: 20, zIndex: 20,
             textDecoration: 'none',
-            fontSize: 15, fontFamily: SANS, fontWeight: 700,
-            color: '#6B5A50', opacity: 0.45,
-            letterSpacing: '0.02em',
+            fontSize: 20, fontFamily: SANS, fontWeight: 300,
+            color: C.darkInk, opacity: 0.55,
+            letterSpacing: '-0.01em',
             transition: 'opacity 0.2s',
           }}
-          onMouseEnter={e => { e.currentTarget.style.opacity = '0.8'; }}
-          onMouseLeave={e => { e.currentTarget.style.opacity = '0.45'; }}
+          onMouseEnter={e => { e.currentTarget.style.opacity = '0.85'; }}
+          onMouseLeave={e => { e.currentTarget.style.opacity = '0.55'; }}
         >
-          lila
+          Lila Trips
         </Link>
 
         {/* Card + arrows wrapper — arrows positioned relative to card, not viewport */}

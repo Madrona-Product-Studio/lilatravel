@@ -274,6 +274,49 @@ export default function PhilosophyPage() {
               ))}
             </div>
           </FadeIn>
+
+          {/* Lila Meditations CTA */}
+          <FadeIn delay={0.15}>
+            <Link
+              to="/ethos/meditations"
+              className="no-underline block mt-10"
+              onClick={() => trackEvent('philosophy_cta_clicked', { action: 'open_meditations' })}
+            >
+              <div
+                className="relative overflow-hidden py-7 px-8"
+                style={{
+                  background: 'linear-gradient(135deg, #5a7898 0%, #8a7880 35%, #d09070 70%, #e8a060 100%)',
+                }}
+              >
+                {/* Mountain silhouette */}
+                <svg
+                  className="absolute bottom-0 left-0 w-full"
+                  style={{ height: '35%' }}
+                  viewBox="0 0 390 80" preserveAspectRatio="none"
+                >
+                  <path d="M0,80 L0,50 L43,28 L88,42 L132,18 L176,35 L221,8 L265,27 L309,14 L354,30 L390,21 L390,80 Z" fill="rgba(12,22,36,0.7)" />
+                </svg>
+
+                {/* Content */}
+                <div className="relative z-10 flex items-center gap-5">
+                  <div className="flex gap-2.5 shrink-0">
+                    {principles.slice(0, 5).map((p) => (
+                      <span key={p.word} className="text-sm opacity-70" style={{ color: 'white' }}>{p.icon}</span>
+                    ))}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="font-body text-[9px] font-bold tracking-[0.22em] uppercase text-white/50 mb-1">
+                      Lila Meditations
+                    </div>
+                    <div className="font-body text-[15px] font-semibold text-white leading-[1.3]">
+                      30 practices &middot; ancient wisdom for wild places
+                    </div>
+                  </div>
+                  <span className="font-body text-white/50 text-lg shrink-0">&rarr;</span>
+                </div>
+              </div>
+            </Link>
+          </FadeIn>
         </div>
       </section>
 
@@ -459,34 +502,42 @@ export default function PhilosophyPage() {
               <Link to="/destinations" className="underline-link" onClick={() => trackEvent('philosophy_cta_clicked', { action: 'explore_destinations' })}>Explore Destinations</Link>
             </div>
 
-            <div className="mt-12 py-8 px-7 rounded-2xl bg-white border border-stone max-w-[480px] mx-auto">
-              <div className="flex items-center justify-center gap-2 mb-3">
-                <span className="font-body text-[10px] font-bold tracking-[0.2em] uppercase text-ocean-teal">
-                  Wisdom Layer
-                </span>
-                <span className="font-body text-[9px] font-bold tracking-[0.12em] uppercase px-2 py-0.5 rounded bg-sun-salmon/[0.08] text-sun-salmon">
-                  Beta
-                </span>
-              </div>
-              <p
-                className="font-serif font-normal text-dark-ink leading-[1.4] mx-0 mb-2 mt-0 text-center"
-                style={{ fontSize: "clamp(18px, 2.2vw, 22px)" }}
+            <Link
+              to="/ethos/meditations"
+              className="no-underline block mt-12 max-w-[480px] mx-auto relative overflow-hidden"
+              onClick={() => trackEvent('philosophy_cta_clicked', { action: 'open_meditations_bottom' })}
+            >
+              <div
+                className="py-8 px-7"
+                style={{
+                  background: 'linear-gradient(135deg, #5a7898 0%, #8a7880 35%, #d09070 70%, #e8a060 100%)',
+                }}
               >
-                Explore Our Integrated Teachings &amp; Practices
-              </p>
-              <p className="font-body text-[13px] font-normal text-[#7a8a9a] leading-[1.6] mx-0 mb-5 mt-0 text-center">
-                Browse the full library of teachings, practices, and ceremonies across all five traditions — filterable by principle, type, and tradition.
-              </p>
-              <div className="text-center">
-                <Link
-                  to="/ethos/practices"
-                  className="inline-block font-body text-[11px] font-bold tracking-[0.18em] uppercase text-white bg-ocean-teal py-3 px-7 rounded-lg no-underline transition-opacity duration-200 hover:opacity-85"
-                  onClick={() => trackEvent('philosophy_cta_clicked', { action: 'open_practices_explorer' })}
+                <svg
+                  className="absolute bottom-0 left-0 w-full"
+                  style={{ height: '40%' }}
+                  viewBox="0 0 390 80" preserveAspectRatio="none"
                 >
-                  Open Practices Explorer &rarr;
-                </Link>
+                  <path d="M0,80 L0,50 L43,28 L88,42 L132,18 L176,35 L221,8 L265,27 L309,14 L354,30 L390,21 L390,80 Z" fill="rgba(12,22,36,0.7)" />
+                </svg>
+                <div className="relative z-10 text-center">
+                  <div className="flex justify-center gap-3 mb-4">
+                    {principles.map((p) => (
+                      <span key={p.word} className="text-base opacity-60" style={{ color: 'white' }}>{p.icon}</span>
+                    ))}
+                  </div>
+                  <div className="font-body text-[18px] font-bold text-white mb-1.5">
+                    lila meditations
+                  </div>
+                  <div className="font-body text-[12px] font-normal text-white/65 tracking-[0.04em]">
+                    30 practices &middot; ancient wisdom for wild places
+                  </div>
+                  <div className="font-body text-[11px] font-bold tracking-[0.18em] uppercase text-white/50 mt-5">
+                    Explore the deck &rarr;
+                  </div>
+                </div>
               </div>
-            </div>
+            </Link>
           </FadeIn>
         </div>
       </section>
