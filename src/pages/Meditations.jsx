@@ -426,28 +426,25 @@ function PracticeCardScreen({ card, principle, cardIndex }) {
         </div>
       </div>
 
-      {/* Back — three fixed sections */}
+      {/* Back — content-sized sections, vertically centered */}
       <div
         onClick={handleFlip}
         style={{
           position: 'absolute', inset: 0,
           background: '#F7F4EE',
           display: 'flex', flexDirection: 'column',
+          justifyContent: 'center',
           cursor: 'pointer', overflow: 'hidden',
           borderRadius: 14,
           border: '0.5px solid rgba(0,0,0,0.08)',
           transform: 'rotateY(180deg)',
           backfaceVisibility: 'hidden',
           WebkitBackfaceVisibility: 'hidden',
+          padding: '24px 0',
         }}
       >
         {/* Section 1 — Practice */}
-        <div style={{
-          flex: card.connection ? 1.8 : 2.5,
-          padding: '22px 22px 16px',
-          display: 'flex', flexDirection: 'column',
-          overflow: 'hidden',
-        }}>
+        <div style={{ padding: '0 22px 18px' }}>
           <div style={{
             fontSize: 10, letterSpacing: '0.14em', color: principle.color,
             fontFamily: SANS, textTransform: 'uppercase', fontWeight: 700,
@@ -464,23 +461,18 @@ function PracticeCardScreen({ card, principle, cardIndex }) {
           </div>
           <div style={{
             fontSize: 13, fontFamily: SANS, color: '#1C1917',
-            lineHeight: 1.75, flex: 1, overflow: 'hidden',
+            lineHeight: 1.75,
           }}>
             {card.practice}
           </div>
         </div>
 
         {/* Hairline */}
-        <div style={{ height: '0.5px', background: 'rgba(44,36,32,0.08)', flexShrink: 0 }} />
+        <div style={{ height: '0.5px', background: 'rgba(44,36,32,0.08)', margin: '0 22px', flexShrink: 0 }} />
 
         {/* Section 2 — Quote */}
         {card.quote && (
-          <div style={{
-            flex: card.connection ? 1 : 1.5,
-            padding: '16px 22px',
-            display: 'flex', flexDirection: 'column',
-            justifyContent: 'center', overflow: 'hidden',
-          }}>
+          <div style={{ padding: '18px 22px' }}>
             <div style={{
               fontSize: 14, fontFamily: SANS, color: '#1C1917',
               fontWeight: 500, lineHeight: 1.65, marginBottom: 6,
@@ -496,52 +488,39 @@ function PracticeCardScreen({ card, principle, cardIndex }) {
           </div>
         )}
 
-        {/* Hairline + Section 3 — On Your Trip */}
+        {/* Section 3 — On Your Trip */}
         {card.connection && (
           <>
-            <div style={{ height: '0.5px', background: 'rgba(44,36,32,0.08)', flexShrink: 0 }} />
-            <div style={{
-              flex: 1, padding: '16px 22px',
-              display: 'flex', flexDirection: 'column',
-              justifyContent: 'space-between', overflow: 'hidden',
-              position: 'relative',
-            }}>
-              <div>
-                <div style={{
-                  fontSize: 10, letterSpacing: '0.14em', color: '#2D6B6B',
-                  fontFamily: SANS, textTransform: 'uppercase', fontWeight: 700,
-                  display: 'flex', alignItems: 'center', gap: 5, marginBottom: 6,
-                }}>
-                  <span>◈</span>
-                  On Your Trip
-                </div>
-                <div style={{
-                  fontSize: 13, fontFamily: SANS, color: '#1C1917',
-                  lineHeight: 1.7, overflow: 'hidden',
-                }}>
-                  {card.connection}
-                </div>
+            <div style={{ height: '0.5px', background: 'rgba(44,36,32,0.08)', margin: '0 22px', flexShrink: 0 }} />
+            <div style={{ padding: '18px 22px 0' }}>
+              <div style={{
+                fontSize: 10, letterSpacing: '0.14em', color: '#2D6B6B',
+                fontFamily: SANS, textTransform: 'uppercase', fontWeight: 700,
+                display: 'flex', alignItems: 'center', gap: 5, marginBottom: 6,
+              }}>
+                <span>◈</span>
+                On Your Trip
               </div>
-              {/* Flip arrow */}
-              <div style={{ alignSelf: 'flex-end', opacity: 0.25, marginTop: 4 }}>
-                <svg width="13" height="13" viewBox="0 0 20 20" fill="none">
-                  <path d="M 17 10 A 7 7 0 1 1 10 3" stroke="#8C7B6B" strokeWidth="1.5" fill="none" strokeLinecap="round" />
-                  <path d="M 13 3 L 10 3 L 10 6" stroke="#8C7B6B" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
+              <div style={{
+                fontSize: 13, fontFamily: SANS, color: '#1C1917',
+                lineHeight: 1.7,
+              }}>
+                {card.connection}
               </div>
             </div>
           </>
         )}
 
-        {/* Flip arrow fallback when no connection */}
-        {!card.connection && (
-          <div style={{ padding: '8px 22px 18px', display: 'flex', justifyContent: 'flex-end', flexShrink: 0, opacity: 0.25 }}>
-            <svg width="13" height="13" viewBox="0 0 20 20" fill="none">
-              <path d="M 17 10 A 7 7 0 1 1 10 3" stroke="#8C7B6B" strokeWidth="1.5" fill="none" strokeLinecap="round" />
-              <path d="M 13 3 L 10 3 L 10 6" stroke="#8C7B6B" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </div>
-        )}
+        {/* Flip arrow — always bottom right */}
+        <div style={{
+          position: 'absolute', right: 22, bottom: 18,
+          opacity: 0.25,
+        }}>
+          <svg width="13" height="13" viewBox="0 0 20 20" fill="none">
+            <path d="M 17 10 A 7 7 0 1 1 10 3" stroke="#8C7B6B" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+            <path d="M 13 3 L 10 3 L 10 6" stroke="#8C7B6B" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </div>
       </div>
       </div>
     </div>

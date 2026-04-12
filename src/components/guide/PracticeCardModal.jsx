@@ -233,7 +233,6 @@ function FrontFace({ card, principle, onFlip, onClose }) {
 }
 
 function BackFace({ card, principle, connection, onFlip, onClose }) {
-  const hasConnection = !!connection;
   return (
     <div
       onClick={onFlip}
@@ -249,17 +248,14 @@ function BackFace({ card, principle, connection, onFlip, onClose }) {
         WebkitBackfaceVisibility: 'hidden',
         WebkitTapHighlightColor: 'transparent',
         display: 'flex', flexDirection: 'column',
+        justifyContent: 'center',
+        padding: '24px 0',
       }}
     >
       <CloseButton onClose={onClose} dark />
 
       {/* Section 1 — Practice */}
-      <div style={{
-        flex: hasConnection ? 1.8 : 2.5,
-        padding: '22px 22px 16px',
-        display: 'flex', flexDirection: 'column',
-        overflow: 'hidden',
-      }}>
+      <div style={{ padding: '0 22px 18px' }}>
         <div className="font-body uppercase" style={{
           fontSize: 10, letterSpacing: '0.14em', color: principle.color,
           fontWeight: 700, display: 'flex', alignItems: 'center', gap: 5, marginBottom: 10,
@@ -275,23 +271,17 @@ function BackFace({ card, principle, connection, onFlip, onClose }) {
         </div>
         <div className="font-body" style={{
           fontSize: 13, color: '#1C1917', lineHeight: 1.75,
-          flex: 1, overflow: 'hidden',
         }}>
           {card.practice}
         </div>
       </div>
 
       {/* Hairline */}
-      <div style={{ height: '0.5px', background: 'rgba(44,36,32,0.08)', flexShrink: 0 }} />
+      <div style={{ height: '0.5px', background: 'rgba(44,36,32,0.08)', margin: '0 22px', flexShrink: 0 }} />
 
       {/* Section 2 — Quote */}
       {card.quote && (
-        <div style={{
-          flex: hasConnection ? 1 : 1.5,
-          padding: '16px 22px',
-          display: 'flex', flexDirection: 'column',
-          justifyContent: 'center', overflow: 'hidden',
-        }}>
+        <div style={{ padding: '18px 22px' }}>
           <div className="font-body" style={{
             fontSize: 14, color: '#1C1917', fontWeight: 500,
             lineHeight: 1.65, marginBottom: 6,
@@ -308,43 +298,31 @@ function BackFace({ card, principle, connection, onFlip, onClose }) {
         </div>
       )}
 
-      {/* Hairline + Section 3 — On Your Trip */}
-      {hasConnection && (
+      {/* Section 3 — On Your Trip */}
+      {connection && (
         <>
-          <div style={{ height: '0.5px', background: 'rgba(44,36,32,0.08)', flexShrink: 0 }} />
-          <div style={{
-            flex: 1, padding: '16px 22px',
-            display: 'flex', flexDirection: 'column',
-            justifyContent: 'space-between', overflow: 'hidden',
-            position: 'relative',
-          }}>
-            <div>
-              <div className="font-body uppercase" style={{
-                fontSize: 10, letterSpacing: '0.14em', color: '#2D6B6B',
-                fontWeight: 700, display: 'flex', alignItems: 'center', gap: 5, marginBottom: 6,
-              }}>
-                <span>◈</span>
-                <span>On Your Trip</span>
-              </div>
-              <div className="font-body" style={{
-                fontSize: 13, color: '#1C1917', lineHeight: 1.7, overflow: 'hidden',
-              }}>
-                {connection}
-              </div>
+          <div style={{ height: '0.5px', background: 'rgba(44,36,32,0.08)', margin: '0 22px', flexShrink: 0 }} />
+          <div style={{ padding: '18px 22px 0' }}>
+            <div className="font-body uppercase" style={{
+              fontSize: 10, letterSpacing: '0.14em', color: '#2D6B6B',
+              fontWeight: 700, display: 'flex', alignItems: 'center', gap: 5, marginBottom: 6,
+            }}>
+              <span>◈</span>
+              <span>On Your Trip</span>
             </div>
-            <div style={{ alignSelf: 'flex-end', opacity: 0.25, marginTop: 4 }}>
-              <FlipArrow dark />
+            <div className="font-body" style={{
+              fontSize: 13, color: '#1C1917', lineHeight: 1.7,
+            }}>
+              {connection}
             </div>
           </div>
         </>
       )}
 
-      {/* Flip arrow fallback when no connection */}
-      {!hasConnection && (
-        <div style={{ padding: '8px 22px 18px', display: 'flex', justifyContent: 'flex-end', flexShrink: 0, opacity: 0.25 }}>
-          <FlipArrow dark />
-        </div>
-      )}
+      {/* Flip arrow — always bottom right */}
+      <div style={{ position: 'absolute', right: 22, bottom: 18, opacity: 0.25 }}>
+        <FlipArrow dark />
+      </div>
     </div>
   );
 }
