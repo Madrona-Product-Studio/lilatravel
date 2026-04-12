@@ -295,8 +295,13 @@ function ChapterScreen({ principle, principleIndex }) {
             <div style={{ fontSize: 10, color: 'white', opacity: 0.35, fontFamily: SANS, minWidth: 14 }}>
               {i + 1}
             </div>
-            <div style={{ fontSize: 16, fontFamily: SANS, color: 'white', opacity: 0.85, fontWeight: 400 }}>
-              {card.name}
+            <div style={{ flex: 1 }}>
+              <div style={{ fontSize: 16, fontFamily: SANS, color: 'white', opacity: 0.85, fontWeight: 400 }}>
+                {card.name}
+              </div>
+            </div>
+            <div style={{ fontSize: 10, fontFamily: SANS, color: 'white', opacity: 0.4, flexShrink: 0 }}>
+              {card.tradition}
             </div>
           </div>
         ))}
