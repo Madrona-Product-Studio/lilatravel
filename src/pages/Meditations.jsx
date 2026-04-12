@@ -265,10 +265,10 @@ function ChapterScreen({ principle, principleIndex }) {
           {principle.name}
         </div>
         <div style={{
-          fontSize: 15, fontFamily: SERIF,
-          color: 'white', opacity: 0.65,
-          fontStyle: 'italic', marginBottom: 20,
-          letterSpacing: '0.01em',
+          fontSize: 18, fontFamily: SANS,
+          color: 'white', opacity: 0.7,
+          fontWeight: 400, marginBottom: 20,
+          letterSpacing: '0.02em',
         }}>
           {principle.arc}
         </div>
@@ -286,14 +286,14 @@ function ChapterScreen({ principle, principleIndex }) {
       <div style={{ width: '100%' }}>
         {principle.cards.map((card, i) => (
           <div key={card.id} style={{
-            display: 'flex', alignItems: 'center', gap: 12,
-            padding: '6px 0',
+            display: 'flex', alignItems: 'center', gap: 14,
+            padding: '9px 0',
             borderBottom: i < 5 ? '0.5px solid rgba(255,255,255,0.08)' : 'none',
           }}>
-            <div style={{ fontSize: 8, color: 'white', opacity: 0.3, fontFamily: SANS, minWidth: 12 }}>
+            <div style={{ fontSize: 10, color: 'white', opacity: 0.35, fontFamily: SANS, minWidth: 14 }}>
               {i + 1}
             </div>
-            <div style={{ fontSize: 13, fontFamily: SERIF, color: 'white', opacity: 0.8 }}>
+            <div style={{ fontSize: 16, fontFamily: SANS, color: 'white', opacity: 0.85, fontWeight: 400 }}>
               {card.name}
             </div>
           </div>
@@ -579,77 +579,81 @@ export default function Meditations() {
           overflow: 'hidden',
         }}
       >
-        {/* Left arrow */}
-        <button
-          onClick={() => navigate(-1)}
-          aria-label="Previous"
-          style={{
-            position: 'absolute', left: 0, top: '50%', transform: 'translateY(-50%)',
-            background: 'none', border: 'none', cursor: 'pointer', padding: '12px 8px',
-            opacity: currentIndex === 0 ? 0.15 : 0.6, transition: 'opacity 0.2s', zIndex: 10,
-            color: '#6B5A50',
-          }}
-          onMouseEnter={e => { if (currentIndex > 0) e.currentTarget.style.opacity = '1'; }}
-          onMouseLeave={e => { e.currentTarget.style.opacity = currentIndex === 0 ? '0.15' : '0.6'; }}
-        >
-          <svg width="12" height="22" viewBox="0 0 12 22" fill="none">
-            <path d="M 10 1 L 1 11 L 10 21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        </button>
+        {/* Card + arrows wrapper — arrows positioned relative to card, not viewport */}
+        <div style={{ position: 'relative', display: 'flex', alignItems: 'center', gap: 0 }}>
 
-        {/* Card viewport */}
-        <div
-          onTouchStart={handleTouchStart}
-          onTouchEnd={handleTouchEnd}
-          style={{
-            width: 'min(390px, calc(100vw - 32px))',
-            height: 'min(700px, calc(100vh - 80px))',
-            position: 'relative', overflow: 'hidden',
-            borderRadius: 14,
-            boxShadow: '0 8px 32px rgba(44,36,32,0.18), 0 2px 8px rgba(44,36,32,0.1), 0 32px 48px rgba(44,36,32,0.08)',
-            transform: animating
-              ? slideDir > 0 ? 'translateX(-16px) scale(0.97)' : 'translateX(16px) scale(0.97)'
-              : 'translateX(0) scale(1)',
-            opacity: animating ? 0.15 : 1,
-            transition: 'transform 0.26s ease, opacity 0.26s ease, box-shadow 0.4s ease',
-          }}
-        >
-          {screen.type === 'cover' && <CoverScreen />}
-          {screen.type === 'orientation' && <OrientationScreen />}
-          {screen.type === 'chapter' && (
-            <ChapterScreen
-              key={`chapter-${screen.principleIndex}`}
-              principle={screen.principle}
-              principleIndex={screen.principleIndex}
-            />
-          )}
-          {screen.type === 'card' && (
-            <PracticeCardScreen
-              key={`${screen.principleIndex}-${screen.cardIndex}`}
-              card={screen.card}
-              principle={screen.principle}
-              cardIndex={screen.cardIndex}
-            />
-          )}
+          {/* Left arrow */}
+          <button
+            onClick={() => navigate(-1)}
+            aria-label="Previous"
+            style={{
+              background: 'none', border: 'none', cursor: 'pointer', padding: '12px 8px',
+              opacity: currentIndex === 0 ? 0.15 : 0.6, transition: 'opacity 0.2s', zIndex: 10,
+              color: '#6B5A50', flexShrink: 0,
+            }}
+            onMouseEnter={e => { if (currentIndex > 0) e.currentTarget.style.opacity = '1'; }}
+            onMouseLeave={e => { e.currentTarget.style.opacity = currentIndex === 0 ? '0.15' : '0.6'; }}
+          >
+            <svg width="12" height="22" viewBox="0 0 12 22" fill="none">
+              <path d="M 10 1 L 1 11 L 10 21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </button>
+
+          {/* Card viewport */}
+          <div
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+            style={{
+              width: 'min(390px, calc(100vw - 80px))',
+              height: 'min(700px, calc(100vh - 80px))',
+              position: 'relative', overflow: 'hidden',
+              borderRadius: 14,
+              boxShadow: '0 8px 32px rgba(44,36,32,0.18), 0 2px 8px rgba(44,36,32,0.1), 0 32px 48px rgba(44,36,32,0.08)',
+              transform: animating
+                ? slideDir > 0 ? 'translateX(-16px) scale(0.97)' : 'translateX(16px) scale(0.97)'
+                : 'translateX(0) scale(1)',
+              opacity: animating ? 0.15 : 1,
+              transition: 'transform 0.26s ease, opacity 0.26s ease, box-shadow 0.4s ease',
+              flexShrink: 0,
+            }}
+          >
+            {screen.type === 'cover' && <CoverScreen />}
+            {screen.type === 'orientation' && <OrientationScreen />}
+            {screen.type === 'chapter' && (
+              <ChapterScreen
+                key={`chapter-${screen.principleIndex}`}
+                principle={screen.principle}
+                principleIndex={screen.principleIndex}
+              />
+            )}
+            {screen.type === 'card' && (
+              <PracticeCardScreen
+                key={`${screen.principleIndex}-${screen.cardIndex}`}
+                card={screen.card}
+                principle={screen.principle}
+                cardIndex={screen.cardIndex}
+              />
+            )}
+          </div>
+
+          {/* Right arrow */}
+          <button
+            onClick={() => navigate(1)}
+            aria-label="Next"
+            style={{
+              background: 'none', border: 'none', cursor: 'pointer', padding: '12px 8px',
+              opacity: currentIndex === total - 1 ? 0.15 : 0.6, transition: 'opacity 0.2s', zIndex: 10,
+              color: '#6B5A50', flexShrink: 0,
+            }}
+            onMouseEnter={e => { if (currentIndex < total - 1) e.currentTarget.style.opacity = '1'; }}
+            onMouseLeave={e => { e.currentTarget.style.opacity = currentIndex === total - 1 ? '0.15' : '0.6'; }}
+          >
+            <svg width="12" height="22" viewBox="0 0 12 22" fill="none">
+              <path d="M 1 1 L 11 11 L 1 21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </button>
+
         </div>
-
-        {/* Right arrow */}
-        <button
-          onClick={() => navigate(1)}
-          aria-label="Next"
-          style={{
-            position: 'absolute', right: 0, top: '50%', transform: 'translateY(-50%)',
-            background: 'none', border: 'none', cursor: 'pointer', padding: '12px 8px',
-            opacity: currentIndex === total - 1 ? 0.15 : 0.6, transition: 'opacity 0.2s', zIndex: 10,
-            color: '#6B5A50',
-          }}
-          onMouseEnter={e => { if (currentIndex < total - 1) e.currentTarget.style.opacity = '1'; }}
-          onMouseLeave={e => { e.currentTarget.style.opacity = currentIndex === total - 1 ? '0.15' : '0.6'; }}
-        >
-          <svg width="12" height="22" viewBox="0 0 12 22" fill="none">
-            <path d="M 1 1 L 11 11 L 1 21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        </button>
       </div>
     </>
   );
