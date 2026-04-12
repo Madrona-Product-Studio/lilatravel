@@ -293,15 +293,15 @@ function ChapterScreen({ principle, principleIndex }) {
             padding: '9px 0',
             borderBottom: i < 5 ? '0.5px solid rgba(255,255,255,0.08)' : 'none',
           }}>
-            <div style={{ fontSize: 10, color: 'white', opacity: 0.35, fontFamily: SANS, minWidth: 14 }}>
+            <div style={{ fontSize: 11, color: 'white', opacity: 0.55, fontFamily: SANS, minWidth: 16 }}>
               {i + 1}
             </div>
             <div style={{ flex: 1 }}>
-              <div style={{ fontSize: 16, fontFamily: SANS, color: 'white', opacity: 0.85, fontWeight: 400 }}>
+              <div style={{ fontSize: 16, fontFamily: SANS, color: 'white', opacity: 0.9, fontWeight: 400 }}>
                 {card.name}
               </div>
             </div>
-            <div style={{ fontSize: 10, fontFamily: SANS, color: 'white', opacity: 0.4, flexShrink: 0 }}>
+            <div style={{ fontSize: 11, fontFamily: SANS, color: 'white', opacity: 0.6, flexShrink: 0 }}>
               {card.tradition}
             </div>
           </div>
