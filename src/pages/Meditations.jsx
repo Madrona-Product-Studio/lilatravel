@@ -519,15 +519,23 @@ function PracticeCardScreen({ card, principle, cardIndex }) {
 
         </div>{/* end centered content group */}
 
-        {/* Flip arrow — always bottom right */}
+        {/* Flip arrow + label — matches front face */}
         <div style={{
           position: 'absolute', right: 22, bottom: 18,
-          opacity: 0.25,
+          display: 'flex', alignItems: 'center', gap: 6,
         }}>
-          <svg width="13" height="13" viewBox="0 0 20 20" fill="none">
-            <path d="M 17 10 A 7 7 0 1 1 10 3" stroke="#8C7B6B" strokeWidth="1.5" fill="none" strokeLinecap="round" />
-            <path d="M 13 3 L 10 3 L 10 6" stroke="#8C7B6B" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
+          <div style={{
+            fontSize: 8, letterSpacing: '0.15em', color: '#8C7B6B',
+            fontFamily: SANS, textTransform: 'uppercase', opacity: 0.5,
+          }}>
+            back
+          </div>
+          <div style={{ opacity: 0.5 }}>
+            <svg width="22" height="22" viewBox="0 0 20 20" fill="none">
+              <path d="M 17 10 A 7 7 0 1 1 10 3" stroke="#8C7B6B" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+              <path d="M 13 3 L 10 3 L 10 6" stroke="#8C7B6B" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </div>
         </div>
       </div>
       </div>

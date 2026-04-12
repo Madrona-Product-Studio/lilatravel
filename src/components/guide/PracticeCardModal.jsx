@@ -329,9 +329,17 @@ function BackFace({ card, principle, connection, onFlip, onClose }) {
 
       </div>{/* end centered content group */}
 
-      {/* Flip arrow — always bottom right */}
-      <div style={{ position: 'absolute', right: 22, bottom: 18, opacity: 0.25 }}>
-        <FlipArrow dark />
+      {/* Flip arrow + label — matches front face */}
+      <div style={{
+        position: 'absolute', right: 22, bottom: 18,
+        display: 'flex', alignItems: 'center', gap: 6,
+      }}>
+        <span className="font-body uppercase" style={{
+          fontSize: 8, letterSpacing: '0.15em', color: '#8C7B6B', opacity: 0.5,
+        }}>back</span>
+        <div style={{ opacity: 0.5 }}>
+          <FlipArrow dark />
+        </div>
       </div>
     </div>
   );
