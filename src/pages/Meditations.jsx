@@ -580,7 +580,7 @@ export default function Meditations() {
         }}
       >
         {/* Card + arrows wrapper — arrows positioned relative to card, not viewport */}
-        <div style={{ position: 'relative', display: 'flex', alignItems: 'center', gap: 0 }}>
+        <div style={{ position: 'relative', display: 'flex', alignItems: 'center', gap: 12 }}>
 
           {/* Left arrow */}
           <button
