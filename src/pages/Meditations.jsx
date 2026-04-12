@@ -42,18 +42,18 @@ const CHAPTERS = PRINCIPLE_ORDER.map(id => ({
 }));
 
 const TRADITIONS_LIST = [
-  { symbol: '\u0950', name: 'Hinduism & Yoga', desc: 'Union, devotion, cosmic order' },
-  { symbol: '\u273F', name: 'Buddhism', desc: 'Impermanence, compassion, awakening' },
-  { symbol: '\u262F', name: 'Taoism', desc: 'Flow, harmony, the way of nature' },
-  { symbol: '\u26E9', name: 'Shinto', desc: 'Reverence, purity, the sacred in all things' },
-  { symbol: '\u25B3', name: 'Stoicism', desc: 'Virtue, reason, living according to nature' },
+  { symbol: '\u0950\uFE0E', name: 'Hinduism & Yoga', desc: 'Union, devotion, cosmic order' },
+  { symbol: '\u273F\uFE0E', name: 'Buddhism', desc: 'Impermanence, compassion, awakening' },
+  { symbol: '\u262F\uFE0E', name: 'Taoism', desc: 'Flow, harmony, the way of nature' },
+  { symbol: '\u2229\uFE0E', name: 'Shinto', desc: 'Reverence, purity, the sacred in all things' },
+  { symbol: '\u25B3\uFE0E', name: 'Stoicism', desc: 'Virtue, reason, living according to nature' },
 ];
 
 const TRADITION_COLOR = '#7A9190';
 
 const TRADITIONS_FULL = [
   {
-    name: 'Hinduism & Yoga', symbol: '\u0950',
+    name: 'Hinduism & Yoga', symbol: '\u0950\uFE0E',
     origin: 'India \u00B7 ~1500 BCE',
     history: "The world\u2019s oldest living spiritual tradition, rooted in the Vedas \u2014 texts composed by forest sages over thousands of years. Yoga emerged as its practical path: a systematic science of consciousness designed to reunite individual awareness with the universal.",
     essence: 'Living as the universe experiencing itself.',
@@ -66,7 +66,7 @@ const TRADITIONS_FULL = [
     practice: 'Notice where your breath goes shallow today. Let the landscape breathe you instead.',
   },
   {
-    name: 'Buddhism', symbol: '\u273F',
+    name: 'Buddhism', symbol: '\u273F\uFE0E',
     origin: 'India \u00B7 ~500 BCE',
     history: "Founded by Siddhartha Gautama, a prince who left his palace to understand suffering. After years of ascetic practice and one night of deep meditation under a Bodhi tree, he became the Buddha \u2014 the awakened one. His insights spread across Asia, branching into dozens of distinct schools.",
     essence: 'Seeing clearly changes everything.',
@@ -79,7 +79,7 @@ const TRADITIONS_FULL = [
     practice: 'Choose one thing in your field of view. Trace everything that made it possible. Keep going until you run out of edges.',
   },
   {
-    name: 'Taoism', symbol: '\u262F',
+    name: 'Taoism', symbol: '\u262F\uFE0E',
     origin: 'China \u00B7 ~600 BCE',
     history: "Attributed to the sage Laozi, whose Tao Te Ching \u2014 81 spare verses written at a border gate \u2014 became one of history\u2019s most translated texts. Taoism arose as a counterpoint to Confucian formalism, insisting that nature, not ritual, was the truest teacher.",
     essence: 'Moving with life, not against it.',
@@ -92,7 +92,7 @@ const TRADITIONS_FULL = [
     practice: 'Notice where you are forcing something today. See what happens if you ease instead.',
   },
   {
-    name: 'Shinto', symbol: '\u26E9',
+    name: 'Shinto', symbol: '\u2229\uFE0E',
     origin: 'Japan \u00B7 Ancient',
     history: 'Japan\u2019s indigenous spiritual tradition, with roots older than written history. Shinto has no founder, no single scripture, no fixed doctrine \u2014 only practice: tending to relationship with the kami, the sacred presences that inhabit natural places, phenomena, and ancestors.',
     essence: 'The sacred is already here.',
@@ -105,7 +105,7 @@ const TRADITIONS_FULL = [
     practice: "Find one thing today that has been here longer than you. Acknowledge it. That\u2019s enough.",
   },
   {
-    name: 'Stoicism', symbol: '\u25B3',
+    name: 'Stoicism', symbol: '\u25B3\uFE0E',
     origin: 'Greece \u00B7 ~300 BCE',
     history: 'Founded in Athens by Zeno of Citium, who taught in a painted porch \u2014 the Stoa Poikil\u0113. Adopted and deepened by Roman thinkers including Seneca, Epictetus, and Marcus Aurelius, who wrote his Meditations not for publication but as a private discipline, often under open sky on military campaign.',
     essence: 'Freedom lives in what you can control.',
@@ -310,8 +310,8 @@ function SectionLabel({ text }) {
     }}>
       <div style={{ flex: 1, height: '0.5px', background: 'rgba(255,255,255,0.15)' }} />
       <div style={{
-        fontSize: 8, fontFamily: SANS, textTransform: 'uppercase',
-        letterSpacing: '0.26em', color: 'white', opacity: 0.5,
+        fontSize: 9, fontFamily: SANS, textTransform: 'uppercase',
+        letterSpacing: '0.26em', color: 'white', opacity: 0.65,
         flexShrink: 0,
       }}>
         {text}
@@ -346,12 +346,12 @@ function TraditionScreen({ tradition }) {
 
       {/* Section 1 — Header */}
       <div style={{ textAlign: 'center', flexShrink: 0, position: 'relative' }}>
-        <div style={{ fontSize: 40, color: 'white', opacity: 0.55, marginBottom: 8 }}>
+        <div style={{ fontSize: 40, color: 'white', opacity: 0.7, marginBottom: 8 }}>
           {tradition.symbol}
         </div>
         <div style={{
-          fontSize: 8, fontFamily: SANS, textTransform: 'uppercase',
-          letterSpacing: '0.22em', color: 'white', opacity: 0.5,
+          fontSize: 9, fontFamily: SANS, textTransform: 'uppercase',
+          letterSpacing: '0.22em', color: 'white', opacity: 0.7,
           marginBottom: 6,
         }}>
           {tradition.origin}
