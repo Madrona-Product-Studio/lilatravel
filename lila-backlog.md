@@ -20,7 +20,8 @@ _Last updated: March 30, 2026. Living document — update as items are completed
   - [x] Card modal sizing pass (Apr 2026) — expanded to 400×720px (immersive mobile feel), bumped principle zone type (mark 44px, name 11px, arc 16px, intention 10px), flip arrows to 20×20px, back face practice + connection text to 15px with increased padding.
   - [x] Wallet-style teaser redesign (Apr 2026) — replaced flat horizontal strip with stacked card widget (main face + two faded strips). Principle mark 28px, expand icon replaces flip arrow, "Today's Lila Meditation" label, 8px rounded corners (approved exception for card deck metaphor). Positioned between day header and timeline.
   - [x] Lila Meditations page (Apr 2026) — `/ethos/meditations`. Full-screen swipeable 37-screen deck explorer: cover, orientation, 5 chapter screens, 30 practice card screens with front/back flip. Wired to `cardDeck.js` + `PrincipleMarks.jsx`. Keyboard arrows, touch swipe, animated transitions. Standalone page (no Nav/Footer — immersive experience). Nav/entry point linking deferred.
-  - [ ] **Up next:** Inject the per-day selected card id + content into the Claude API user message so `cardPrompt` + `cardConnection` are populated at generation time. Currently the modal renders a placeholder line on the back face until that wiring lands.
+  - [x] API injection — cardPrompt + cardConnection (Apr 2026). Two-pass approach: Pass 1 generates the itinerary as before. Pass 2 (`/api/generate-card-connections`) fires in the background after cards are assigned client-side, sends each day's title/terrain/activities + assigned card to Claude Sonnet, merges the returned `cardPrompt` + `cardConnection` into `enrichedDays` via state update. Non-blocking, fail-silent. "On Your Trip" section on card back populates after ~2-3s.
+  - [ ] **Up next:** Destination-specific card connections for the Meditations explorer page (static, per-destination) — separate brief not yet written.
 
 ---
 

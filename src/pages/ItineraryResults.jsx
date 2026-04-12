@@ -4189,6 +4189,62 @@ export default function ItineraryResults() {
     setSwapModal(null);
   }, [baseDays]);
 
+  // Pass 2 — generate cardPrompt + cardConnection for each day's assigned card.
+  // Fires in the background after the itinerary is visible; does not block render.
+  useEffect(() => {
+    if (!baseDays?.length) return;
+    const hasCards = baseDays.some(d => d.companion?.card);
+    if (!hasCards) return;
+    // Skip if connections already populated (e.g. from a shared trip reload)
+    if (baseDays.some(d => d.cardConnection)) return;
+
+    const controller = new AbortController();
+
+    (async () => {
+      try {
+        const payload = baseDays.map(d => ({
+          title: d.title,
+          intro: d.intro,
+          timeline: (d.timeline || []).map(t => ({ title: t.title, summary: t.summary })),
+          cardName: d.companion?.card?.name,
+          cardPrinciple: d.companion?.card?.principle,
+          cardTradition: d.companion?.card?.tradition,
+          cardTeaching: d.companion?.card?.teaching,
+        }));
+
+        const res = await fetch('/api/generate-card-connections', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            destination: formData?.destination,
+            days: payload,
+          }),
+          signal: controller.signal,
+        });
+
+        if (!res.ok) throw new Error(`Status ${res.status}`);
+        const { connections } = await res.json();
+        if (!Array.isArray(connections)) return;
+
+        setEnrichedDays(prev => prev.map((day, i) => {
+          const match = connections.find(c => c.dayIndex === i);
+          if (!match) return day;
+          return {
+            ...day,
+            cardPrompt: match.cardPrompt || null,
+            cardConnection: match.cardConnection || null,
+          };
+        }));
+      } catch (e) {
+        if (e.name !== 'AbortError') {
+          console.error('Card connection generation failed (non-blocking):', e.message);
+        }
+      }
+    })();
+
+    return () => controller.abort();
+  }, [baseDays, formData?.destination]);
+
   // Auto-lock timeline items that correspond to bookings
   useEffect(() => {
     if (!enrichedDays?.length) return;
