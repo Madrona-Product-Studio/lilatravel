@@ -253,8 +253,9 @@ function BackFace({ card, principle, connection, onFlip, onClose }) {
       {/* Section 1 — Practice */}
       <div style={{ padding: '0 22px 18px' }}>
         <div className="font-body uppercase" style={{
-          fontSize: 11, letterSpacing: '0.14em', color: principle.color,
-          fontWeight: 700, display: 'flex', alignItems: 'center', gap: 5, marginBottom: 10,
+          fontSize: 13, letterSpacing: '0.14em', color: principle.color,
+          fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center',
+          gap: 6, marginBottom: 16,
         }}>
           <span>◈</span>
           <span>{card.name}</span>

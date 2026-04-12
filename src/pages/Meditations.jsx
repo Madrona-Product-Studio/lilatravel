@@ -440,9 +440,10 @@ function PracticeCardScreen({ card, principle, cardIndex }) {
         {/* Section 1 — Practice */}
         <div style={{ padding: '0 22px 18px' }}>
           <div style={{
-            fontSize: 11, letterSpacing: '0.14em', color: principle.color,
+            fontSize: 13, letterSpacing: '0.14em', color: principle.color,
             fontFamily: SANS, textTransform: 'uppercase', fontWeight: 700,
-            display: 'flex', alignItems: 'center', gap: 5, marginBottom: 10,
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            gap: 6, marginBottom: 16,
           }}>
             <span>◈</span>
             {card.name}
