@@ -575,16 +575,21 @@ export default function Meditations() {
         <link rel="canonical" href="https://lilatrips.com/ethos/meditations" />
       </Helmet>
 
+      {/* Desktop-only arrow visibility */}
+      <style>{`
+        .deck-arrow { display: none !important; }
+        @media (min-width: 768px) { .deck-arrow { display: flex !important; } }
+      `}</style>
+
       <div
         ref={containerRef}
         style={{
           minHeight: '100vh',
           background: '#E8E0D5',
-          display: 'flex', flexDirection: 'column',
+          display: 'flex',
           alignItems: 'center', justifyContent: 'center',
           fontFamily: SANS, userSelect: 'none',
           outline: 'none', position: 'relative',
-          overflow: 'hidden',
         }}
       >
         {/* Logo — home link, matches Nav wordmark on other pages */}
@@ -604,20 +609,26 @@ export default function Meditations() {
           Lila Trips
         </Link>
 
-        {/* Card + arrows wrapper — arrows positioned relative to card, not viewport */}
-        <div style={{ position: 'relative', display: 'flex', alignItems: 'center', gap: 20 }}>
+        {/* Card + overlay arrows */}
+        <div style={{ position: 'relative' }}>
 
-          {/* Left arrow */}
+          {/* Left arrow — desktop only, overlaps card edge */}
           <button
+            className="deck-arrow"
             onClick={() => navigate(-1)}
             aria-label="Previous"
             style={{
-              background: 'none', border: 'none', cursor: 'pointer', padding: '12px 8px',
-              opacity: currentIndex === 0 ? 0.15 : 0.6, transition: 'opacity 0.2s', zIndex: 10,
-              color: '#6B5A50', flexShrink: 0,
+              position: 'absolute', left: 4, top: '50%', transform: 'translateY(-50%)',
+              background: 'rgba(255,255,255,0.15)',
+              backdropFilter: 'blur(4px)', WebkitBackdropFilter: 'blur(4px)',
+              border: 'none', borderRadius: 4, cursor: 'pointer',
+              padding: '10px 8px',
+              opacity: currentIndex === 0 ? 0 : 1,
+              pointerEvents: currentIndex === 0 ? 'none' : 'auto',
+              transition: 'opacity 0.2s', zIndex: 20,
+              color: 'rgba(255,255,255,0.8)',
+              alignItems: 'center', justifyContent: 'center',
             }}
-            onMouseEnter={e => { if (currentIndex > 0) e.currentTarget.style.opacity = '1'; }}
-            onMouseLeave={e => { e.currentTarget.style.opacity = currentIndex === 0 ? '0.15' : '0.6'; }}
           >
             <svg width="12" height="22" viewBox="0 0 12 22" fill="none">
               <path d="M 10 1 L 1 11 L 10 21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -629,17 +640,16 @@ export default function Meditations() {
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
             style={{
-              width: 'min(390px, calc(100vw - 80px))',
-              height: 'min(700px, calc(100vh - 80px))',
+              width: 'min(400px, calc(100vw - 28px))',
+              height: 'calc(100vh - 80px)',
               position: 'relative', overflow: 'hidden',
               borderRadius: 14,
-              boxShadow: '0 8px 32px rgba(44,36,32,0.18), 0 2px 8px rgba(44,36,32,0.1), 0 32px 48px rgba(44,36,32,0.08)',
+              boxShadow: '0 8px 32px rgba(44,36,32,0.18), 0 2px 8px rgba(44,36,32,0.1)',
               transform: animating
                 ? slideDir > 0 ? 'translateX(-16px) scale(0.97)' : 'translateX(16px) scale(0.97)'
                 : 'translateX(0) scale(1)',
               opacity: animating ? 0.15 : 1,
-              transition: 'transform 0.26s ease, opacity 0.26s ease, box-shadow 0.4s ease',
-              flexShrink: 0,
+              transition: 'transform 0.26s ease, opacity 0.26s ease',
             }}
           >
             {screen.type === 'cover' && <CoverScreen />}
@@ -661,17 +671,23 @@ export default function Meditations() {
             )}
           </div>
 
-          {/* Right arrow */}
+          {/* Right arrow — desktop only, overlaps card edge */}
           <button
+            className="deck-arrow"
             onClick={() => navigate(1)}
             aria-label="Next"
             style={{
-              background: 'none', border: 'none', cursor: 'pointer', padding: '12px 8px',
-              opacity: currentIndex === total - 1 ? 0.15 : 0.6, transition: 'opacity 0.2s', zIndex: 10,
-              color: '#6B5A50', flexShrink: 0,
+              position: 'absolute', right: 4, top: '50%', transform: 'translateY(-50%)',
+              background: 'rgba(255,255,255,0.15)',
+              backdropFilter: 'blur(4px)', WebkitBackdropFilter: 'blur(4px)',
+              border: 'none', borderRadius: 4, cursor: 'pointer',
+              padding: '10px 8px',
+              opacity: currentIndex === total - 1 ? 0 : 1,
+              pointerEvents: currentIndex === total - 1 ? 'none' : 'auto',
+              transition: 'opacity 0.2s', zIndex: 20,
+              color: 'rgba(255,255,255,0.8)',
+              alignItems: 'center', justifyContent: 'center',
             }}
-            onMouseEnter={e => { if (currentIndex < total - 1) e.currentTarget.style.opacity = '1'; }}
-            onMouseLeave={e => { e.currentTarget.style.opacity = currentIndex === total - 1 ? '0.15' : '0.6'; }}
           >
             <svg width="12" height="22" viewBox="0 0 12 22" fill="none">
               <path d="M 1 1 L 11 11 L 1 21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
