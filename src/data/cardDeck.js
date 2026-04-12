@@ -91,6 +91,7 @@ export const CARDS = [
     bestFor: ['arrival', 'challenge', 'transition', 'solo'],
     assignWhen: ['day 1 or 2', 'ethics-oriented traveler', 'high-impact terrain'],
     avoidWhen: ['fatigue-heavy day', 'highly social group day'],
+    connection: 'Angels Landing demands every Yama at once — Ahimsa in how you share the chain section, Asteya in not taking more time than the hikers behind you need, Aparigraha in letting the summit be enough without the photo. The canyon teaches restraint by making the consequences of carelessness immediate and visible.',
   },
   {
     id: 'niyamas',
@@ -110,6 +111,7 @@ export const CARDS = [
     bestFor: ['challenge', 'fatigue', 'rest', 'uncertainty'],
     assignWhen: ['difficult weather', 'high fatigue day', 'rest day', 'trip not going to plan'],
     avoidWhen: ['arrival day'],
+    connection: 'Joshua Tree at midday is Santosha\'s proving ground — the heat, the exposed rock, the body asking for shade that isn\'t coming. Name five things that are exactly right: the smell of creosote after last night\'s rain, the silence between gusts, the particular blue of a desert sky at altitude. The wanting mind goes quiet when the field widens.',
   },
   {
     id: 'pranayama',
@@ -129,6 +131,7 @@ export const CARDS = [
     bestFor: ['threshold', 'transition', 'challenge', 'arrival', 'uncertainty'],
     assignWhen: ['summit day', 'river crossing', 'high exertion day', 'weather transition'],
     avoidWhen: ['pure rest day'],
+    connection: 'At the base of the Narrows, before stepping into the Virgin River, the breath is the last thing you control. The canyon walls rise a thousand feet and the water sets the pace. One conscious breath before each river crossing — let the inhale match the current, let the exhale release the need to rush. The canyon breathes with you.',
   },
   {
     id: 'vipassana',
@@ -148,6 +151,7 @@ export const CARDS = [
     bestFor: ['rest', 'solo', 'threshold', 'awe', 'closure'],
     assignWhen: ['rest day', 'mid-trip reset', 'solo traveler', 'contemplative persona'],
     avoidWhen: ['high exertion day', 'arrival day', 'high social energy day'],
+    connection: 'Observation Point at dawn, before the first shuttle runs. The canyon floor is still in shadow. Sounds arrive without source — a raven, wind through sandstone fins, the river far below. Sit with eyes open and note each arising: hearing, seeing, feeling. The canyon is twenty million years of arising and passing made visible in stone.',
   },
   {
     id: 'shoshin',
@@ -167,6 +171,7 @@ export const CARDS = [
     bestFor: ['arrival', 'rest', 'awe', 'gratitude', 'shared'],
     assignWhen: ['returning to familiar place', 'mid-trip flatness', 'second visit destination'],
     avoidWhen: ['first day of trip — save for when familiarity has set in'],
+    connection: 'Return to Arch Rock after three days in Joshua Tree and the boulders have rearranged themselves. The light is different. A lizard you never noticed holds perfectly still on the south face. Beginner\'s mind is easiest in a landscape that resists expertise — the desert changes faster than your assumptions about it.',
   },
   {
     id: 'samadhi',
@@ -186,6 +191,7 @@ export const CARDS = [
     bestFor: ['threshold', 'awe', 'closure', 'solo'],
     assignWhen: ['summit day', 'final day of trip', 'expansive landscape', 'experienced meditator'],
     avoidWhen: ['day 1', 'high exertion day', 'beginner traveler'],
+    connection: 'Canyon Overlook at the last moment before sunset, when the Navajo sandstone turns the color of embers. The horizon line dissolves. There is no place where the light ends and the rock begins, no boundary between the warmth on your face and the warmth radiating from the canyon wall. Samadhi doesn\'t arrive — the obstacles simply leave.',
   },
 
   // ─── ONENESS ─────────────────────────────────────────────────────────────────
@@ -207,6 +213,7 @@ export const CARDS = [
     bestFor: ['awe', 'threshold', 'solo', 'closure'],
     assignWhen: ['expansive landscape day', 'summit day', 'final day of trip'],
     avoidWhen: ['day 1', 'high social energy day'],
+    connection: 'Stand at the rim of Zion Canyon and ask where you end. The iron in the sandstone is the iron in your blood — forged in the same stellar furnace, separated by nothing but time. The Upanishads call this Tat tvam asi. The canyon doesn\'t need the teaching. It already knows.',
   },
   {
     id: 'sunyata',
@@ -226,6 +233,7 @@ export const CARDS = [
     bestFor: ['awe', 'solo', 'gratitude', 'threshold'],
     assignWhen: ['nature immersion day', 'slow day', 'contemplative persona'],
     avoidWhen: ['high exertion day', 'arrival day'],
+    connection: 'In the Hoh Rainforest, a single nurse log holds fourteen species — fern, moss, hemlock seedling, fungi you cannot name. Everything you see is made entirely of everything else. The log is soil becoming tree becoming log again. Trace any thread far enough and it disappears into the web. You disappear with it.',
   },
   {
     id: 'sympatheia',
@@ -245,6 +253,7 @@ export const CARDS = [
     bestFor: ['awe', 'rest', 'solo', 'arrival', 'gratitude'],
     assignWhen: ['open landscape day', 'rest day', 'mid-trip grounding'],
     avoidWhen: ['high social energy day'],
+    connection: 'Lie on the slickrock above the Virgin River at dusk and feel the warmth the stone collected all day. The heat in the rock is the heat in the sun is the heat in your body. Marcus Aurelius was not being poetic — he was being precise. The canyon\'s health is your health. You are not visiting. You are participating.',
   },
   {
     id: 'musubi',
@@ -264,6 +273,7 @@ export const CARDS = [
     bestFor: ['threshold', 'transition', 'awe', 'arrival'],
     assignWhen: ['threshold day', 'transition between landscapes', 'coastal or forest edge'],
     avoidWhen: ['urban or town day'],
+    connection: 'Where the Hoh Rainforest meets the alpine meadow on the High Divide trail, two ecosystems lean into each other. The mosses thin, the wildflowers begin, and in the boundary zone everything is more alive than on either side. Musubi runs along this edge — the force that makes the meeting point more generative than the territories it joins.',
   },
   {
     id: 'the-tao',
@@ -283,6 +293,7 @@ export const CARDS = [
     bestFor: ['arrival', 'threshold', 'uncertainty', 'rest', 'solo'],
     assignWhen: ['water day', 'river or coastal destination', 'opening day of trip'],
     avoidWhen: [],
+    connection: 'The Sol Duc River doesn\'t consult a map. It finds the low point, wraps around the boulder, pools where the gradient allows, and arrives at the sea without effort or plan. Sit beside it for fifteen minutes and watch the Tao demonstrate itself. Notice every place in your own body where you are still forcing.',
   },
   {
     id: 'yin-yang',
@@ -302,6 +313,7 @@ export const CARDS = [
     bestFor: ['challenge', 'rest', 'transition', 'fatigue', 'uncertainty'],
     assignWhen: ['high contrast day — exertion and rest', 'mid-trip balance point'],
     avoidWhen: [],
+    connection: 'Zion Canyon holds heat through the night while the Virgin River runs cold through the center — yang and yin in continuous exchange. The exertion of the morning hike makes the afternoon stillness profound. The canyon wall in shadow is already warming; the lit face is already cooling. Nothing here is only one thing.',
   },
 
   // ─── FLOW ────────────────────────────────────────────────────────────────────
@@ -323,6 +335,7 @@ export const CARDS = [
     bestFor: ['arrival', 'uncertainty', 'transition', 'rest', 'challenge'],
     assignWhen: ['opening day', 'unstructured day', 'adaptive itinerary day'],
     avoidWhen: [],
+    connection: 'The Olympic coast has a grain — the tide sets the rhythm, the weather sets the pace, the trail between Rialto Beach and Hole-in-the-Wall follows the contour the sea carved. Read it before you impose your plan. Ten minutes sitting with the landscape\'s logic will shape a better day than any itinerary written indoors.',
   },
   {
     id: 'wu-wei',
@@ -342,6 +355,7 @@ export const CARDS = [
     bestFor: ['challenge', 'uncertainty', 'transition', 'fatigue', 'mid-trip'],
     assignWhen: ['river or water day', 'adaptive terrain', 'unplanned change', 'high mileage day'],
     avoidWhen: ['day 1'],
+    connection: 'The Queets River finds the Pacific without forcing a single mile. The old-growth cedars grew toward light without striving. On the Hoh River Trail, the hiker who follows what the terrain offers — the flat rock for rest, the clearing for lunch, the viewpoint that stops them — arrives somewhere unexpected and remembers everything.',
   },
   {
     id: 'apranihita',
@@ -361,6 +375,7 @@ export const CARDS = [
     bestFor: ['rest', 'uncertainty', 'fatigue', 'mid-trip', 'solo'],
     assignWhen: ['unstructured day', 'rest day', 'traveler showing signs of striving or rushing'],
     avoidWhen: ['permit-required or time-sensitive day'],
+    connection: 'The Riverside Walk in Zion has no summit, no destination, no turnaround marker — the trail simply enters the river and becomes the Narrows. Walk until you forget you are going somewhere. The moment the planning mind releases and you are simply moving through red water and sandstone, that is the gate. You have already arrived.',
   },
   {
     id: 'mushin',
@@ -380,6 +395,7 @@ export const CARDS = [
     bestFor: ['challenge', 'threshold', 'awe', 'solo'],
     assignWhen: ['technical terrain day', 'scramble or summit day', 'river crossing day'],
     avoidWhen: ['rest day', 'town day', 'beginner traveler on easy terrain'],
+    connection: 'The scramble section on Hidden Canyon Trail demands your complete attention — hand on wet rock, foot finding the next hold, the drop below removing every thought that isn\'t this move. Mushin arrives uninvited when the terrain leaves no room for the narrator. The commentary stops. The body knows.',
   },
   {
     id: 'amor-fati',
@@ -399,6 +415,7 @@ export const CARDS = [
     bestFor: ['challenge', 'uncertainty', 'fatigue', 'departure', 'transition'],
     assignWhen: ['difficult weather day', 'injury or setback', 'plan changed unexpectedly'],
     avoidWhen: ['perfect conditions easy day — save for when it is needed'],
+    connection: 'The flash flood that closed your planned route through Zion is not an obstacle — it is the day reshaping itself. The Stoics trained for exactly this: the weather that changes everything, the trail that redirects you somewhere better. Name what this difficulty is giving you that comfort would not. Speak it aloud. Then move.',
   },
 
   // ─── COMPASSION ──────────────────────────────────────────────────────────────
@@ -420,6 +437,7 @@ export const CARDS = [
     bestFor: ['solo', 'threshold', 'closure', 'challenge', 'awe'],
     assignWhen: ['evidence of environmental difficulty', 'mid-trip emotional depth moment', 'contemplative persona'],
     avoidWhen: ['arrival day', 'high social energy day', 'beginner traveler'],
+    connection: 'On the fire-scarred ridges above Big Sur, where the Soberanes Fire left ghost forests of pale standing trunks, Tonglen finds its object. Breathe in the char, the loss, the slow recovery. Breathe out cool fog and the green that is already returning at the base of each trunk. The discomfort is the membrane thinning between you and the land.',
   },
   {
     id: 'bhakti',
@@ -439,6 +457,7 @@ export const CARDS = [
     bestFor: ['awe', 'gratitude', 'arrival', 'threshold', 'solo', 'shared'],
     assignWhen: ['iconic landscape moment', 'spiritual or devotional persona', 'opening day'],
     avoidWhen: [],
+    connection: 'The Nā Pali Coast at sunset stops language. The fluted cliffs turn gold, then rose, then violet, and the heart does something the mind cannot direct — it opens. Bhakti is already happening in the pause before you reach for the camera. The canyon wall is worthy of devotion. The ground under your feet deserves gratitude. Let the distance close.',
   },
   {
     id: 'metta',
@@ -458,6 +477,7 @@ export const CARDS = [
     bestFor: ['arrival', 'rest', 'shared', 'gratitude', 'closure', 'fatigue'],
     assignWhen: ['group travel', 'rest day', 'relational tension', 'recovery day'],
     avoidWhen: [],
+    connection: 'Begin with yourself on the shore at Ke\'e Beach. May I be well. Extend it to the monk seal resting on the sand. May you be well. To the reef below the surface, to the unseen creatures in the current, to every traveler who stood here and felt the same salt air. Let the circle expand until it reaches the horizon and keeps going.',
   },
   {
     id: 'bodhicitta',
@@ -477,6 +497,7 @@ export const CARDS = [
     bestFor: ['arrival', 'departure', 'closure', 'threshold', 'solo', 'shared'],
     assignWhen: ['opening or closing day of trip', 'contemplative or spiritual persona', 'group travel'],
     avoidWhen: [],
+    connection: 'Before the first step onto the Boy Scout Trail at dawn, sit for five minutes in the Joshua Tree parking lot and set the dedication: whatever clarity this desert gives me today, I offer outward. Then walk with that intention as background — the care you bring to each step, each creature, each fragile cryptobiotic crust becomes the practice made visible.',
   },
   {
     id: 'seva',
@@ -496,6 +517,7 @@ export const CARDS = [
     bestFor: ['challenge', 'gratitude', 'closure', 'shared', 'departure'],
     assignWhen: ['high-impact or heavily used trail', 'final day of trip', 'tread lightly persona'],
     avoidWhen: [],
+    connection: 'The Angels Landing chain section sees a thousand hands a day. One act of seva: move the loose rock that will trip the next hiker. Carry out the wrapper wedged in the crack. Step aside for the slower climber without performing patience. The action is complete in itself — no announcement, no record, no story. The trail receives what you offer.',
   },
   {
     id: 'ubuntu',
@@ -515,6 +537,7 @@ export const CARDS = [
     bestFor: ['shared', 'arrival', 'gratitude', 'awe', 'closure'],
     assignWhen: ['group travel', 'community-oriented persona', 'heavily storied landscape'],
     avoidWhen: [],
+    connection: 'The Kalaloch coast was shaped by hands you will never shake — the Quinault people who have walked this shore for ten thousand years, the CCC crews who built the trails in the 1930s, the rain that fell last winter. Pause once an hour and name one: the tree that held the hillside, the person who first described this place. Let the web become visible.',
   },
 
   // ─── REVERENCE ───────────────────────────────────────────────────────────────
@@ -536,6 +559,7 @@ export const CARDS = [
     bestFor: ['arrival', 'threshold', 'awe', 'gratitude', 'shared'],
     assignWhen: ['clear dawn forecast', 'opening day of trip', 'expansive eastern view'],
     avoidWhen: ['rest day', 'injury or physical limitation day'],
+    connection: 'Face east from Keys View before the sun clears the Little San Bernardino Mountains. Nine rounds on the flat rock, each a gesture of gratitude to the light arriving over the Coachella Valley. The desert amplifies everything — the heat of each posture, the silence between breaths, the moment the sun clears the ridge and the whole valley ignites.',
   },
   {
     id: 'misogi',
@@ -555,6 +579,7 @@ export const CARDS = [
     bestFor: ['arrival', 'transition', 'threshold', 'closure', 'solo'],
     assignWhen: ['water access day', 'arrival day at new destination', 'emotional transition point'],
     avoidWhen: ['no water access', 'town day'],
+    connection: 'At the base of Wailua Falls, stand at the edge of the pool and name what you are releasing — the noise of the flight, the residue of the place you just left, the planning mind that hasn\'t stopped since you landed. Cold water to the face three times. The shock is the release made physical. What shifts is not the temperature but the attention.',
   },
   {
     id: 'memento-mori',
@@ -574,6 +599,7 @@ export const CARDS = [
     bestFor: ['awe', 'threshold', 'closure', 'solo', 'departure'],
     assignWhen: ['final day of trip', 'expansive ancient landscape', 'significant threshold moment'],
     avoidWhen: ['day 1', 'arrival day', 'traveler in emotional difficulty'],
+    connection: 'The Great White Throne has stood for 170 million years. The Navajo sandstone remembers the Jurassic. Sit at its base and let that scale make your own clear — not as diminishment but as precision. This exact light on this exact wall will not repeat. Seneca was not being dramatic. He was being observant. The urgency is the gift.',
   },
   {
     id: 'ichi-go-ichi-e',
@@ -593,6 +619,7 @@ export const CARDS = [
     bestFor: ['awe', 'gratitude', 'threshold', 'departure', 'closure', 'shared'],
     assignWhen: ['iconic moment day', 'final evening', 'special meal or gathering', 'summit day'],
     avoidWhen: [],
+    connection: 'McWay Falls at 4 PM in October — the particular angle of light through the cove, the way the waterfall catches gold for exactly eleven minutes before the cliff shadow arrives. This configuration of water and light and the salt on your skin will not converge again. The tea masters built an entire aesthetic around this recognition. Hold it without reaching.',
   },
   {
     id: 'satoyama',
@@ -612,6 +639,7 @@ export const CARDS = [
     bestFor: ['arrival', 'awe', 'transition', 'gratitude', 'solo'],
     assignWhen: ['edge landscape day', 'forest or coastal destination', 'trail with distinct zones'],
     avoidWhen: ['urban or town day'],
+    connection: 'Where the Ozette Loop trail meets the coastal headland, the maintained path gives way to boardwalk gives way to beach. The boundary between tended and wild is a conversation — two ways of being alive leaning toward each other. Sit exactly at the threshold where the forest canopy ends and the sea stacks begin. This edge is where the kami are most present.',
   },
   {
     id: 'mono-no-aware',
@@ -631,6 +659,7 @@ export const CARDS = [
     bestFor: ['awe', 'closure', 'departure', 'gratitude', 'threshold', 'solo'],
     assignWhen: ['final day or evening of trip', 'sunset or sunrise moment', 'peak season beauty'],
     avoidWhen: ['traveler in grief or loss — read the room'],
+    connection: 'The fog that rolls into Big Sur most mornings erases the coastline entirely — then burns off by noon, and when it does, the light on the water is unrepeatable. Kenkō understood this in the 14th century: to long for the clear view is to miss the beauty of the fog itself. The trip is ending. The canyon light is changing. Stay until something softens.',
   },
   {
     id: 'shinrin-yoku',
@@ -650,6 +679,7 @@ export const CARDS = [
     bestFor: ['rest', 'fatigue', 'arrival', 'solo', 'awe', 'uncertainty'],
     assignWhen: ['forest destination', 'rest day', 'mid-trip reset', 'overstimulated traveler'],
     avoidWhen: ['desert or treeless landscape', 'town day'],
+    connection: 'The Hoh Rainforest receives twelve feet of rain a year, and every surface shows it — moss on moss on moss, ferns unfurling from nurse logs, the air thick with oxygen and the particular green smell of decomposition becoming life. Walk at half pace. No phone. Open each sense in sequence. The forest doesn\'t need your attention to function. But your attention is what makes it medicine.',
   },
 ];
 

@@ -177,6 +177,7 @@ function OrientationScreen() {
         {TRADITIONS_LIST.map((t, i) => (
           <div key={t.name} style={{
             display: 'flex', alignItems: 'center', gap: 14, flex: 1,
+            padding: '4px 0',
             borderBottom: i < 4 ? '0.5px solid rgba(255,255,255,0.07)' : 'none',
           }}>
             <div style={{ width: 28, textAlign: 'center', flexShrink: 0, fontSize: 18, color: 'rgba(255,255,255,0.5)' }}>
@@ -186,7 +187,7 @@ function OrientationScreen() {
               <div style={{ fontSize: 14, fontFamily: SANS, color: C.warmWhite, fontWeight: 600, letterSpacing: '0.02em', marginBottom: 2 }}>
                 {t.name}
               </div>
-              <div style={{ fontSize: 10, fontFamily: SANS, color: 'rgba(255,255,255,0.35)', letterSpacing: '0.02em' }}>
+              <div style={{ fontSize: 11, fontFamily: SANS, color: 'rgba(255,255,255,0.35)', letterSpacing: '0.02em' }}>
                 {t.desc}
               </div>
             </div>
@@ -209,6 +210,7 @@ function OrientationScreen() {
         {CHAPTERS.map((p, i) => (
           <div key={p.id} style={{
             display: 'flex', alignItems: 'center', gap: 14, flex: 1,
+            padding: '4px 0',
             borderBottom: i < 4 ? '0.5px solid rgba(255,255,255,0.07)' : 'none',
           }}>
             <div style={{ flexShrink: 0 }}>
@@ -219,7 +221,7 @@ function OrientationScreen() {
                 {p.name}
               </div>
             </div>
-            <div style={{ fontSize: 11, fontFamily: SERIF, color: p.color, fontStyle: 'italic', opacity: 0.9 }}>
+            <div style={{ fontSize: 11, fontFamily: SANS, color: 'white', opacity: 0.7 }}>
               {p.arc}
             </div>
           </div>
@@ -387,20 +389,20 @@ function PracticeCardScreen({ card, principle, cardIndex }) {
           </div>
         </div>
 
-        {/* Bottom: card number + flip arrow */}
+        {/* Bottom: flip arrow + explore label */}
         <div style={{
           padding: '12px 22px 20px',
-          display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-          flexShrink: 0,
+          display: 'flex', justifyContent: 'flex-end', alignItems: 'center',
+          gap: 6, flexShrink: 0,
         }}>
           <div style={{
-            fontSize: 8, letterSpacing: '0.18em', color: 'white',
-            fontFamily: SANS, textTransform: 'uppercase', opacity: 0.3,
+            fontSize: 8, letterSpacing: '0.15em', color: 'white',
+            fontFamily: SANS, textTransform: 'uppercase', opacity: 0.4,
           }}>
-            {cardIndex + 1} of {principle.cards.length}
+            explore
           </div>
-          <div style={{ opacity: 0.35 }}>
-            <svg width="13" height="13" viewBox="0 0 20 20" fill="none">
+          <div style={{ opacity: 0.6 }}>
+            <svg width="22" height="22" viewBox="0 0 20 20" fill="none">
               <path d="M 3 10 A 7 7 0 1 1 10 17" stroke="white" strokeWidth="1.5" fill="none" strokeLinecap="round" />
               <path d="M 7 17 L 10 17 L 10 14" stroke="white" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
@@ -456,15 +458,15 @@ function PracticeCardScreen({ card, principle, cardIndex }) {
               <div style={{ marginBottom: 14 }}>
                 {card.quoteOriginal && (
                   <div style={{
-                    fontSize: 11, fontFamily: SERIF, color: '#9a8a7a',
-                    fontStyle: 'italic', marginBottom: 4,
+                    fontSize: 11, fontFamily: SANS, color: '#8C7B6B',
+                    letterSpacing: '0.04em', marginBottom: 6,
                   }}>
                     {card.quoteOriginal}
                   </div>
                 )}
                 <div style={{
-                  fontSize: 15, fontFamily: SERIF, color: '#1C1917',
-                  fontStyle: 'italic', lineHeight: 1.6, marginBottom: 6,
+                  fontSize: 15, fontFamily: SANS, color: '#1C1917',
+                  fontWeight: 500, lineHeight: 1.7, marginBottom: 8,
                 }}>
                   &ldquo;{card.quote}&rdquo;
                 </div>
@@ -474,6 +476,29 @@ function PracticeCardScreen({ card, principle, cardIndex }) {
                 }}>
                   &mdash; {card.quoteAuthor}
                 </div>
+              </div>
+            </>
+          )}
+
+          {/* On Your Trip — static connection */}
+          {card.connection && (
+            <>
+              <div style={{ height: '0.5px', background: '#c8bfb077', marginBottom: 14 }} />
+              <div style={{
+                fontSize: 9, letterSpacing: '0.12em', color: '#2D6B6B',
+                fontFamily: SANS, textTransform: 'uppercase', fontWeight: 700,
+                display: 'flex', alignItems: 'center', gap: 5, marginBottom: 6,
+              }}>
+                <svg width="8" height="8" viewBox="0 0 10 10" fill="none">
+                  <rect x="1" y="1" width="8" height="8" stroke="#2D6B6B" strokeWidth="1.5" transform="rotate(45 5 5)" />
+                </svg>
+                On Your Trip
+              </div>
+              <div style={{
+                fontSize: 14, fontFamily: SANS, color: '#1C1917',
+                lineHeight: 1.75, marginBottom: 14,
+              }}>
+                {card.connection}
               </div>
             </>
           )}
@@ -544,9 +569,6 @@ export default function Meditations() {
     touchStartX.current = null;
   }
 
-  const currentPrinciple = screen.type !== 'cover' && screen.type !== 'orientation' ? screen.principle : null;
-  const bgColor = currentPrinciple ? currentPrinciple.color : '#0d1520';
-
   return (
     <>
       <Helmet>
@@ -559,8 +581,7 @@ export default function Meditations() {
         ref={containerRef}
         style={{
           minHeight: '100vh',
-          background: bgColor,
-          transition: 'background 0.4s ease',
+          background: '#E8E0D5',
           display: 'flex', flexDirection: 'column',
           alignItems: 'center', justifyContent: 'center',
           fontFamily: SANS, userSelect: 'none',
@@ -576,7 +597,7 @@ export default function Meditations() {
             position: 'absolute', left: 8, top: '50%', transform: 'translateY(-50%)',
             background: 'none', border: 'none', cursor: 'pointer', padding: '16px 10px',
             opacity: currentIndex === 0 ? 0.1 : 0.4, transition: 'opacity 0.2s', zIndex: 10,
-            color: 'white',
+            color: '#8C7B6B',
           }}
           onMouseEnter={e => { if (currentIndex > 0) e.currentTarget.style.opacity = '0.85'; }}
           onMouseLeave={e => { e.currentTarget.style.opacity = currentIndex === 0 ? '0.1' : '0.4'; }}
@@ -595,9 +616,7 @@ export default function Meditations() {
             height: 'min(700px, calc(100vh - 80px))',
             position: 'relative', overflow: 'hidden',
             borderRadius: 14,
-            boxShadow: screen.type === 'cover'
-              ? '0 32px 80px rgba(0,0,0,0.5)'
-              : '0 24px 60px rgba(0,0,0,0.35)',
+            boxShadow: '0 8px 32px rgba(44,36,32,0.18), 0 2px 8px rgba(44,36,32,0.1), 0 32px 48px rgba(44,36,32,0.08)',
             transform: animating
               ? slideDir > 0 ? 'translateX(-16px) scale(0.97)' : 'translateX(16px) scale(0.97)'
               : 'translateX(0) scale(1)',
@@ -632,7 +651,7 @@ export default function Meditations() {
             position: 'absolute', right: 8, top: '50%', transform: 'translateY(-50%)',
             background: 'none', border: 'none', cursor: 'pointer', padding: '16px 10px',
             opacity: currentIndex === total - 1 ? 0.1 : 0.4, transition: 'opacity 0.2s', zIndex: 10,
-            color: 'white',
+            color: '#8C7B6B',
           }}
           onMouseEnter={e => { if (currentIndex < total - 1) e.currentTarget.style.opacity = '0.85'; }}
           onMouseLeave={e => { e.currentTarget.style.opacity = currentIndex === total - 1 ? '0.1' : '0.4'; }}

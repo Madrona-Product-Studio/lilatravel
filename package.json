@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "generate:connections": "node scripts/generate-card-connections.js"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.78.0",

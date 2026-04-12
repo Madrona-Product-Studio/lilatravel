@@ -293,38 +293,36 @@ function BackFace({ card, principle, connection, onFlip, onClose }) {
           <div>
             {card.quoteOriginal && (
               <div
-                className="font-serif"
+                className="font-body"
                 style={{
                   fontSize: 11,
-                  fontStyle: 'italic',
-                  color: '#7a6f5e',
+                  color: '#8C7B6B',
+                  letterSpacing: '0.04em',
                   marginBottom: 6,
-                  fontWeight: 400,
                 }}
               >
                 {card.quoteOriginal}
               </div>
             )}
             <div
-              className="font-serif"
+              className="font-body"
               style={{
                 fontSize: 15,
-                fontStyle: 'italic',
                 color: '#1C1917',
-                lineHeight: 1.5,
-                fontWeight: 400,
+                fontWeight: 500,
+                lineHeight: 1.7,
+                marginBottom: 8,
               }}
             >
-              “{card.quote}”
+              "{card.quote}"
             </div>
             {card.quoteAuthor && (
               <div
                 className="font-body uppercase"
                 style={{
                   fontSize: 9,
-                  letterSpacing: '0.16em',
-                  color: '#7a6f5e',
-                  marginTop: 8,
+                  letterSpacing: '0.14em',
+                  color: '#8C7B6B',
                   fontWeight: 600,
                 }}
               >
