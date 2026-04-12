@@ -414,12 +414,12 @@ function PracticeCardScreen({ card, principle, cardIndex }) {
           pointerEvents: flipped ? 'all' : 'none',
         }}
       >
-        <div style={{ flex: 1, padding: '18px 22px 0', display: 'flex', flexDirection: 'column', overflowY: 'auto' }}>
+        <div style={{ flex: 1, padding: '22px 24px 0', display: 'flex', flexDirection: 'column', overflowY: 'auto' }}>
           {/* Card name */}
           <div style={{
             fontSize: 10, letterSpacing: '0.14em', color: principle.color,
             fontFamily: SANS, textTransform: 'uppercase', fontWeight: 700,
-            display: 'flex', alignItems: 'center', gap: 5, marginBottom: 14,
+            display: 'flex', alignItems: 'center', gap: 5, marginBottom: 16,
           }}>
             <svg width="8" height="8" viewBox="0 0 10 10" fill="none">
               <rect x="1" y="1" width="8" height="8" stroke={principle.color} strokeWidth="1.5" transform="rotate(45 5 5)" />
@@ -430,13 +430,13 @@ function PracticeCardScreen({ card, principle, cardIndex }) {
           {/* THE PRACTICE */}
           <div style={{
             fontSize: 9, letterSpacing: '0.12em', color: '#4a3a2a',
-            fontFamily: SANS, textTransform: 'uppercase', fontWeight: 700, marginBottom: 6,
+            fontFamily: SANS, textTransform: 'uppercase', fontWeight: 700, marginBottom: 8,
           }}>
             The Practice
           </div>
           <div style={{
-            fontSize: 14, fontFamily: SANS, color: '#1C1917',
-            lineHeight: 1.75, marginBottom: 16,
+            fontSize: 15, fontFamily: SANS, color: '#1C1917',
+            lineHeight: 1.8, marginBottom: 20,
           }}>
             {card.practice}
           </div>
@@ -444,24 +444,24 @@ function PracticeCardScreen({ card, principle, cardIndex }) {
           {/* Quote */}
           {card.quote && (
             <>
-              <div style={{ height: '0.5px', background: '#c8bfb077', marginBottom: 14 }} />
-              <div style={{ marginBottom: 14 }}>
+              <div style={{ height: '0.5px', background: '#c8bfb077', marginBottom: 18 }} />
+              <div style={{ marginBottom: 18 }}>
                 {card.quoteOriginal && (
                   <div style={{
-                    fontSize: 11, fontFamily: SANS, color: '#8C7B6B',
-                    letterSpacing: '0.04em', marginBottom: 6,
+                    fontSize: 12, fontFamily: SANS, color: '#8C7B6B',
+                    letterSpacing: '0.04em', marginBottom: 8,
                   }}>
                     {card.quoteOriginal}
                   </div>
                 )}
                 <div style={{
-                  fontSize: 15, fontFamily: SANS, color: '#1C1917',
-                  fontWeight: 500, lineHeight: 1.7, marginBottom: 8,
+                  fontSize: 17, fontFamily: SANS, color: '#1C1917',
+                  fontWeight: 500, lineHeight: 1.7, marginBottom: 10,
                 }}>
                   &ldquo;{card.quote}&rdquo;
                 </div>
                 <div style={{
-                  fontSize: 9, letterSpacing: '0.14em', color: '#8C7B6B',
+                  fontSize: 10, letterSpacing: '0.14em', color: '#8C7B6B',
                   fontFamily: SANS, textTransform: 'uppercase',
                 }}>
                   &mdash; {card.quoteAuthor}
@@ -473,11 +473,11 @@ function PracticeCardScreen({ card, principle, cardIndex }) {
           {/* On Your Trip — static connection */}
           {card.connection && (
             <>
-              <div style={{ height: '0.5px', background: '#c8bfb077', marginBottom: 14 }} />
+              <div style={{ height: '0.5px', background: '#c8bfb077', marginBottom: 18 }} />
               <div style={{
                 fontSize: 9, letterSpacing: '0.12em', color: '#2D6B6B',
                 fontFamily: SANS, textTransform: 'uppercase', fontWeight: 700,
-                display: 'flex', alignItems: 'center', gap: 5, marginBottom: 6,
+                display: 'flex', alignItems: 'center', gap: 5, marginBottom: 8,
               }}>
                 <svg width="8" height="8" viewBox="0 0 10 10" fill="none">
                   <rect x="1" y="1" width="8" height="8" stroke="#2D6B6B" strokeWidth="1.5" transform="rotate(45 5 5)" />
@@ -485,8 +485,8 @@ function PracticeCardScreen({ card, principle, cardIndex }) {
                 On Your Trip
               </div>
               <div style={{
-                fontSize: 14, fontFamily: SANS, color: '#1C1917',
-                lineHeight: 1.75, marginBottom: 14,
+                fontSize: 15, fontFamily: SANS, color: '#1C1917',
+                lineHeight: 1.8, marginBottom: 14,
               }}>
                 {card.connection}
               </div>
