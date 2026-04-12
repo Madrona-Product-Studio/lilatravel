@@ -152,25 +152,18 @@ function OrientationScreen() {
   return (
     <div style={{
       width: '100%', height: '100%',
-      background: '#0d1520',
+      background: '#F7F4EE',
       display: 'flex', flexDirection: 'column',
       padding: '28px 26px',
       position: 'relative', overflow: 'hidden',
       borderRadius: 14,
+      border: '0.5px solid rgba(0,0,0,0.08)',
     }}>
-      <div style={{
-        position: 'absolute', bottom: '-10%', left: '50%',
-        transform: 'translateX(-50%)',
-        width: '120%', height: '40%',
-        background: 'radial-gradient(ellipse, rgba(180,100,60,0.07) 0%, transparent 70%)',
-        pointerEvents: 'none',
-      }} />
-
       {/* Traditions */}
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
         <div style={{
           fontSize: 10, letterSpacing: '0.22em',
-          color: 'rgba(255,255,255,0.5)', fontFamily: SANS,
+          color: '#8C7B6B', fontFamily: SANS,
           textTransform: 'uppercase', marginBottom: 10,
         }}>
           Five Traditions
@@ -179,16 +172,16 @@ function OrientationScreen() {
           <div key={t.name} style={{
             display: 'flex', alignItems: 'center', gap: 14, flex: 1,
             padding: '5px 0',
-            borderBottom: i < 4 ? '0.5px solid rgba(255,255,255,0.08)' : 'none',
+            borderBottom: i < 4 ? '0.5px solid rgba(44,36,32,0.08)' : 'none',
           }}>
-            <div style={{ width: 28, textAlign: 'center', flexShrink: 0, fontSize: 18, color: 'rgba(255,255,255,0.6)' }}>
+            <div style={{ width: 28, textAlign: 'center', flexShrink: 0, fontSize: 18, color: '#8C7B6B' }}>
               {t.symbol}
             </div>
             <div style={{ flex: 1 }}>
-              <div style={{ fontSize: 14, fontFamily: SANS, color: C.warmWhite, fontWeight: 600, letterSpacing: '0.02em', marginBottom: 2 }}>
+              <div style={{ fontSize: 14, fontFamily: SANS, color: '#1C1917', fontWeight: 600, letterSpacing: '0.02em', marginBottom: 2 }}>
                 {t.name}
               </div>
-              <div style={{ fontSize: 11, fontFamily: SANS, color: 'rgba(255,255,255,0.55)', letterSpacing: '0.02em' }}>
+              <div style={{ fontSize: 11, fontFamily: SANS, color: '#8C7B6B', letterSpacing: '0.02em' }}>
                 {t.desc}
               </div>
             </div>
@@ -197,13 +190,13 @@ function OrientationScreen() {
       </div>
 
       {/* Hairline */}
-      <div style={{ height: '0.5px', background: 'rgba(255,255,255,0.08)', margin: '16px 0', flexShrink: 0 }} />
+      <div style={{ height: '0.5px', background: 'rgba(44,36,32,0.08)', margin: '16px 0', flexShrink: 0 }} />
 
       {/* Principles */}
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
         <div style={{
           fontSize: 10, letterSpacing: '0.22em',
-          color: 'rgba(255,255,255,0.5)', fontFamily: SANS,
+          color: '#8C7B6B', fontFamily: SANS,
           textTransform: 'uppercase', marginBottom: 10,
         }}>
           Five Principles
@@ -212,7 +205,7 @@ function OrientationScreen() {
           <div key={p.id} style={{
             display: 'flex', alignItems: 'center', gap: 14, flex: 1,
             padding: '5px 0',
-            borderBottom: i < 4 ? '0.5px solid rgba(255,255,255,0.08)' : 'none',
+            borderBottom: i < 4 ? '0.5px solid rgba(44,36,32,0.08)' : 'none',
           }}>
             <div style={{ flexShrink: 0 }}>
               <PrincipleMark id={p.id} size={18} color={p.color} />
@@ -222,7 +215,7 @@ function OrientationScreen() {
                 {p.name}
               </div>
             </div>
-            <div style={{ fontSize: 12, fontFamily: SANS, color: p.color, opacity: 0.75 }}>
+            <div style={{ fontSize: 12, fontFamily: SANS, color: p.color, opacity: 0.85 }}>
               {p.arc}
             </div>
           </div>
@@ -333,6 +326,7 @@ function PracticeCardScreen({ card, principle, cardIndex }) {
         style={{
           width: '100%', height: '100%', position: 'relative',
           transformStyle: 'preserve-3d',
+          willChange: 'transform',
           transform: flipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
           animation: flipAnimating
             ? `${flipped ? 'flipCard' : 'flipCardBack'} 0.65s cubic-bezier(0.4, 0, 0.2, 1) forwards`
@@ -648,18 +642,14 @@ export default function Meditations() {
           100% { transform: translateX(0) rotate(0deg); }
         }
         @keyframes flipCard {
-          0%   { transform: rotateY(0deg)   scale(1)    translateY(0px);   box-shadow: 0 8px 32px rgba(44,36,32,0.2); }
-          20%  { transform: rotateY(45deg)  scale(1.04) translateY(-8px);  box-shadow: 0 20px 52px rgba(44,36,32,0.28); }
-          50%  { transform: rotateY(90deg)  scale(1.05) translateY(-10px); box-shadow: 0 24px 56px rgba(44,36,32,0.3); }
-          80%  { transform: rotateY(135deg) scale(1.04) translateY(-8px);  box-shadow: 0 20px 52px rgba(44,36,32,0.28); }
-          100% { transform: rotateY(180deg) scale(1)    translateY(0px);   box-shadow: 0 8px 32px rgba(44,36,32,0.2); }
+          0%   { transform: rotateY(0deg)   scale(1)    translateY(0); }
+          50%  { transform: rotateY(90deg)  scale(1.02) translateY(-4px); }
+          100% { transform: rotateY(180deg) scale(1)    translateY(0); }
         }
         @keyframes flipCardBack {
-          0%   { transform: rotateY(180deg) scale(1)    translateY(0px);   box-shadow: 0 8px 32px rgba(44,36,32,0.2); }
-          20%  { transform: rotateY(135deg) scale(1.04) translateY(-8px);  box-shadow: 0 20px 52px rgba(44,36,32,0.28); }
-          50%  { transform: rotateY(90deg)  scale(1.05) translateY(-10px); box-shadow: 0 24px 56px rgba(44,36,32,0.3); }
-          80%  { transform: rotateY(45deg)  scale(1.04) translateY(-8px);  box-shadow: 0 20px 52px rgba(44,36,32,0.28); }
-          100% { transform: rotateY(0deg)   scale(1)    translateY(0px);   box-shadow: 0 8px 32px rgba(44,36,32,0.2); }
+          0%   { transform: rotateY(180deg) scale(1)    translateY(0); }
+          50%  { transform: rotateY(90deg)  scale(1.02) translateY(-4px); }
+          100% { transform: rotateY(0deg)   scale(1)    translateY(0); }
         }
       `}</style>
 
@@ -711,7 +701,7 @@ export default function Meditations() {
               height: 'min(720px, calc(100dvh - 48px))',
               position: 'relative', overflow: 'hidden',
               borderRadius: 14,
-              boxShadow: '0 8px 32px rgba(44,36,32,0.18), 0 2px 8px rgba(44,36,32,0.1)',
+              background: 'transparent',
             }}
           >
             {/* Base layer — stationary, never animates */}

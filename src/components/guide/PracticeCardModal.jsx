@@ -24,18 +24,14 @@ const KEYFRAMES = `
   to   { opacity: 1; }
 }
 @keyframes flipCard {
-  0%   { transform: rotateY(0deg)   scale(1)    translateY(0px);   box-shadow: 0 8px 32px rgba(44,36,32,0.2); }
-  20%  { transform: rotateY(45deg)  scale(1.04) translateY(-8px);  box-shadow: 0 20px 52px rgba(44,36,32,0.28); }
-  50%  { transform: rotateY(90deg)  scale(1.05) translateY(-10px); box-shadow: 0 24px 56px rgba(44,36,32,0.3); }
-  80%  { transform: rotateY(135deg) scale(1.04) translateY(-8px);  box-shadow: 0 20px 52px rgba(44,36,32,0.28); }
-  100% { transform: rotateY(180deg) scale(1)    translateY(0px);   box-shadow: 0 8px 32px rgba(44,36,32,0.2); }
+  0%   { transform: rotateY(0deg)   scale(1)    translateY(0); }
+  50%  { transform: rotateY(90deg)  scale(1.02) translateY(-4px); }
+  100% { transform: rotateY(180deg) scale(1)    translateY(0); }
 }
 @keyframes flipCardBack {
-  0%   { transform: rotateY(180deg) scale(1)    translateY(0px);   box-shadow: 0 8px 32px rgba(44,36,32,0.2); }
-  20%  { transform: rotateY(135deg) scale(1.04) translateY(-8px);  box-shadow: 0 20px 52px rgba(44,36,32,0.28); }
-  50%  { transform: rotateY(90deg)  scale(1.05) translateY(-10px); box-shadow: 0 24px 56px rgba(44,36,32,0.3); }
-  80%  { transform: rotateY(45deg)  scale(1.04) translateY(-8px);  box-shadow: 0 20px 52px rgba(44,36,32,0.28); }
-  100% { transform: rotateY(0deg)   scale(1)    translateY(0px);   box-shadow: 0 8px 32px rgba(44,36,32,0.2); }
+  0%   { transform: rotateY(180deg) scale(1)    translateY(0); }
+  50%  { transform: rotateY(90deg)  scale(1.02) translateY(-4px); }
+  100% { transform: rotateY(0deg)   scale(1)    translateY(0); }
 }
 `;
 
@@ -389,6 +385,7 @@ export default function PracticeCardModal({ card, connection, onClose }) {
           <div style={{
             width: '100%', height: '100%', position: 'relative',
             transformStyle: 'preserve-3d',
+            willChange: 'transform',
             transform: flipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
             animation: flipAnimating
               ? `${flipped ? 'flipCard' : 'flipCardBack'} 0.65s cubic-bezier(0.4, 0, 0.2, 1) forwards`
