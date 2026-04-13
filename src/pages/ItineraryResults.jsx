@@ -4987,7 +4987,7 @@ export default function ItineraryResults() {
       {openCardDay !== null && enrichedDays?.[openCardDay]?.companion?.card && (
         <PracticeCardModal
           card={enrichedDays[openCardDay].companion.card}
-          connection={enrichedDays[openCardDay].cardConnection}
+          connection={enrichedDays[openCardDay].cardConnection || enrichedDays[openCardDay].companion?.card?.connection}
           onClose={() => setOpenCardDay(null)}
         />
       )}

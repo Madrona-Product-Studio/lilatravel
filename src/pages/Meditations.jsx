@@ -755,6 +755,15 @@ function PracticeCardScreen({ card, principle, cardIndex }) {
             })()}
           </div>
 
+          {/* List — only if card has items */}
+          {card.backList && card.backList.length > 0 && (
+            <div style={{ padding: '20px 22px 12px' }}>
+              <div style={{ fontSize: 13, fontFamily: SANS, fontWeight: 400, color: 'rgba(44,36,32,0.52)', lineHeight: 1.65 }}>
+                {card.backList.map((item, i) => <div key={i}>{item}</div>)}
+              </div>
+            </div>
+          )}
+
           {/* Quote */}
           {card.quote && (
             <div style={{
