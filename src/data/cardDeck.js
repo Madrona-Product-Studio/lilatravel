@@ -94,6 +94,7 @@ export const CARDS = [
     practiceTitle: 'Pick a Yama.',
     frontParagraph: 'The Yamas are a way of moving through the world, from Hinduism & Yoga — carry one with you today. For example, Ahimsa: notice even the smallest moments of harm — in how you step, what you take, or the subtle ways you move through the natural world.',
     reflection: 'At day\'s end, notice what you might have otherwise missed.',
+    backOpening: 'The Yamas are the ethical ground — five restraints that clear the mind. In Patanjali\'s Yoga Sutras, they form the first limb — guidelines for how we move through the world with clarity.',
     connection: 'Angels Landing demands every Yama at once — Ahimsa in how you share the chain section, Aparigraha in letting the summit be enough without the photo. The canyon teaches restraint by making the consequences of carelessness immediate.',
   },
   {
@@ -115,8 +116,9 @@ export const CARDS = [
     assignWhen: ['difficult weather', 'high fatigue day', 'rest day', 'trip not going to plan'],
     avoidWhen: ['arrival day'],
     practiceTitle: 'Meet the day as it is.',
-    frontParagraph: 'The Niyamas are five inner observances from Hinduism & Yoga, with contentment at their center — carry Santosha with you today. For example, notice each moment of wanting things to be different — the weather you didn\'t expect, the ache in your legs, the trail that isn\'t what you imagined.',
+    frontParagraph: 'The Niyamas are five inner observances from Hinduism & Yoga, with contentment at their center — carry Santosha with you today. For example, notice each moment of wanting things to be different — the weather you didn\'t choose, the body you brought, the trail that isn\'t what you imagined.',
     reflection: 'At day\'s end, notice what you might have otherwise missed.',
+    backOpening: 'The Niyamas are the inner counterpart to the Yamas — five personal observances that turn ethical awareness inward. At their center sits Santosha, contentment — not the contentment of perfect conditions but of meeting what is here on its own terms.',
     connection: 'Joshua Tree at midday is Santosha\'s proving ground — the heat, the exposed rock, the body asking for shade. Name five things that are exactly right. The wanting mind goes quiet when the field widens.',
   },
   {
@@ -138,8 +140,9 @@ export const CARDS = [
     assignWhen: ['summit day', 'river crossing', 'high exertion day', 'weather transition'],
     avoidWhen: ['pure rest day'],
     practiceTitle: 'Slow the breath down.',
-    frontParagraph: 'Pranayama is the practice of conscious breathing from Hinduism & Yoga — carry it with you today. For example, at any threshold — before a river crossing, a summit push, a steep descent — notice the breath as it is, then let the inhale lengthen and the exhale release completely.',
+    frontParagraph: 'Pranayama is conscious breathing from Hinduism & Yoga — the doorway between body and mind. Carry it with you today. For example, at any threshold — before a river crossing, a summit push, a steep descent — notice the breath as it is, then let the inhale lengthen and the exhale release completely.',
     reflection: 'At day\'s end, notice what you might have otherwise missed.',
+    backOpening: 'Pranayama is the fourth limb of yoga — the practice of extending life force through conscious breath. The breath is the only system in the body that is both involuntary and voluntary, which makes it the bridge between what we control and what controls us.',
     connection: 'At the base of the Narrows, before stepping into the Virgin River, the breath is the last thing you control. One conscious breath before each river crossing — let the inhale match the current, let the exhale release the need to rush.',
   },
   {
@@ -163,6 +166,7 @@ export const CARDS = [
     practiceTitle: 'Name what arises.',
     frontParagraph: 'Vipassana is direct observation from Buddhism — seeing experience exactly as it arises and passes. Carry it with you today. For example, notice what comes first on trail — a sound, a sensation in the legs, a thought about what\'s ahead — and name it silently: hearing, feeling, thinking.',
     reflection: 'At day\'s end, notice what you might have otherwise missed.',
+    backOpening: 'Vipassana is the oldest Buddhist meditation — direct, unmediated observation of experience as it actually is. Not visualization, not relaxation — just precise attention to whatever arises, held without reaction or interpretation.',
     connection: 'Observation Point at dawn, before the first shuttle runs. The canyon floor is still in shadow. Sit with eyes open and note each arising: hearing, seeing, feeling. The canyon is twenty million years of arising and passing made visible.',
   },
   {
@@ -186,6 +190,7 @@ export const CARDS = [
     practiceTitle: 'See it for the first time.',
     frontParagraph: 'Shoshin is beginner\'s mind from Zen Buddhism — arriving at the known as if it were new. Carry it with you today. For example, notice a stretch of trail you\'ve already walked — the particular angle of light this morning, a texture in the bark, the sound the wind makes through this specific gap.',
     reflection: 'At day\'s end, notice what you might have otherwise missed.',
+    backOpening: 'Shoshin is the Zen practice of radical openness — approaching what we already know as if for the first time. In the beginner\'s mind there are many possibilities; in the expert\'s mind there are few.',
     connection: 'Return to Arch Rock after three days in Joshua Tree and the boulders have rearranged themselves. The light is different. Beginner\'s mind is easiest in a landscape that resists expertise — the desert changes faster than your assumptions.',
   },
   {
@@ -206,9 +211,10 @@ export const CARDS = [
     bestFor: ['threshold', 'awe', 'closure', 'solo'],
     assignWhen: ['summit day', 'final day of trip', 'expansive landscape', 'experienced meditator'],
     avoidWhen: ['day 1', 'high exertion day', 'beginner traveler'],
-    practiceTitle: 'Let the horizon hold you.',
+    practiceTitle: 'Let the boundary dissolve.',
     frontParagraph: 'Samadhi is complete absorption from Hinduism & Yoga — when the boundary between observer and observed dissolves. Carry its conditions with you today. For example, notice the most expansive view available — let attention rest on the horizon without focusing on any single object.',
     reflection: 'At day\'s end, notice what you might have otherwise missed.',
+    backOpening: 'Samadhi is the eighth and final limb of yoga — the state in which the meditator, the act of meditation, and the object become one. It is not a technique but a destination — what remains when all obstacles have been removed.',
     connection: 'Canyon Overlook at the last moment before sunset, when the Navajo sandstone turns the color of embers. There is no boundary between the warmth on your face and the warmth radiating from the canyon wall. The obstacles simply leave.',
   },
 
@@ -234,6 +240,7 @@ export const CARDS = [
     practiceTitle: 'Ask where you end.',
     frontParagraph: 'Atman is Brahman is the teaching from the Upanishads that you and the cosmos are not two — carry this question with you today. For example, notice where the warmth of the stone under your hand meets the warmth of your skin — and ask where exactly one ends and the other begins.',
     reflection: 'At day\'s end, notice what you might have otherwise missed.',
+    backOpening: 'Atman is Brahman is the central teaching of the Upanishads — the awareness inside you and the awareness that permeates the cosmos are identical. The separation we feel between self and world is maya, the veil of appearance.',
     connection: 'Stand at the rim of Zion Canyon and ask where you end. The iron in the sandstone is the iron in your blood — forged in the same stellar furnace. The Upanishads call this Tat tvam asi. The canyon already knows.',
   },
   {
@@ -257,6 +264,7 @@ export const CARDS = [
     practiceTitle: 'Trace everything back.',
     frontParagraph: 'Sunyata is the Buddhist understanding that nothing exists independently — everything inter-is. Carry it with you today. For example, choose one thing in your field of view — a stone, a tree, a bird — and trace every system that made it: water, soil, sun, ten thousand years of slow accumulation.',
     reflection: 'At day\'s end, notice what you might have otherwise missed.',
+    backOpening: 'Sunyata is emptiness — not the emptiness of absence but of independent existence. Thich Nhat Hanh called it interbeing: everything we see is made entirely of non-itself elements, connected to everything else by invisible threads.',
     connection: 'In the Hoh Rainforest, a single nurse log holds fourteen species. Everything you see is made entirely of everything else. Trace any thread far enough and it disappears into the web. You disappear with it.',
   },
   {
@@ -280,6 +288,7 @@ export const CARDS = [
     practiceTitle: 'Feel what holds you.',
     frontParagraph: 'Sympatheia is the Stoic understanding that all things pulse together — one living body. Carry it with you today. For example, notice the ground beneath you — the warmth it collected, the rain it absorbed, the roots it holds — and feel that you are not standing on the earth but part of it.',
     reflection: 'At day\'s end, notice what you might have otherwise missed.',
+    backOpening: 'Sympatheia is the Stoic vision of the cosmos as a single living organism — every part connected to every other by an invisible sympathy. Marcus Aurelius returned to it constantly: what injures the hive injures the bee.',
     connection: 'Lie on the slickrock above the Virgin River at dusk and feel the warmth the stone collected all day. The heat in the rock is the heat in your body. You are not visiting. You are participating.',
   },
   {
@@ -303,6 +312,7 @@ export const CARDS = [
     practiceTitle: 'Sit at the meeting place.',
     frontParagraph: 'Musubi is the Shinto force of creative connection — most alive at thresholds where two things meet. Carry it with you today. For example, notice where forest meets meadow, where rock meets water, where trail meets wild — and sit exactly at the boundary between them.',
     reflection: 'At day\'s end, notice what you might have otherwise missed.',
+    backOpening: 'Musubi is the creative, harmonizing force that binds all living things in Shinto — most felt at thresholds where two different energies meet. The word carries the meaning of both knot and birth.',
     connection: 'Where the Hoh Rainforest meets the alpine meadow on the High Divide trail, two ecosystems lean into each other. Musubi runs along this edge — the force that makes the meeting point more generative than the territories it joins.',
   },
   {
@@ -326,6 +336,7 @@ export const CARDS = [
     practiceTitle: 'Watch what water does.',
     frontParagraph: 'The Tao is the unnameable current beneath all things, from Taoism — you know it when you stop forcing. Carry it with you today. For example, notice any moving water — a stream, a river, a tidal edge — and watch how it finds its way around every obstacle without effort or plan.',
     reflection: 'At day\'s end, notice what you might have otherwise missed.',
+    backOpening: 'The Tao cannot be defined — the moment you name it, you have already lost it. Laozi opens the Tao Te Ching with this admission and builds an entire philosophy on the current that runs through water, seasons, and the path of least resistance.',
     connection: 'The Sol Duc River doesn\'t consult a map. It finds the low point, wraps around the boulder, pools where the gradient allows. Sit beside it for fifteen minutes and watch the Tao demonstrate itself.',
   },
   {
@@ -349,6 +360,7 @@ export const CARDS = [
     practiceTitle: 'Find both sides.',
     frontParagraph: 'Yin and Yang are one continuous movement from Taoism — the rest that makes effort possible, the shadow that requires the light. Carry it with you today. For example, notice where light meets shadow on a canyon wall or forest floor — and track how the line between them moves.',
     reflection: 'At day\'s end, notice what you might have otherwise missed.',
+    backOpening: 'Yin and Yang are not opposites at war — they are one continuous movement. The inhale requires the exhale, the shadow requires the light, and each contains the seed of the other. Nothing is only one thing.',
     connection: 'Zion Canyon holds heat through the night while the Virgin River runs cold — yang and yin in continuous exchange. The lit face is already cooling; the shadow wall already warming. Nothing here is only one thing.',
   },
 
@@ -374,6 +386,7 @@ export const CARDS = [
     practiceTitle: 'Read what the place offers.',
     frontParagraph: 'Li is the natural grain in all things from Taoism — the pattern a landscape is already offering. Carry it with you today. For example, before you plan anything, sit for ten minutes and notice the weather, the quality of light, the state of your body — and ask what the place is asking for.',
     reflection: 'At day\'s end, notice what you might have otherwise missed.',
+    backOpening: 'Li is the natural grain inherent in all things — the pattern in jade, the current in a river, the logic of a particular landscape on a particular morning. Alan Watts described it as the brush strokes of the universe.',
     connection: 'The Olympic coast has a grain — the tide sets the rhythm, the weather sets the pace. Read it before you impose your plan. Ten minutes sitting with the landscape\'s logic will shape a better day than any itinerary written indoors.',
   },
   {
@@ -397,6 +410,7 @@ export const CARDS = [
     practiceTitle: 'Follow what pulls.',
     frontParagraph: 'Wu Wei is effortless action from Taoism — moving with the grain rather than against it. Carry it with you today. For example, at every fork in the trail, close your eyes and notice which direction pulls — then follow the pull instead of the plan.',
     reflection: 'At day\'s end, notice what you might have otherwise missed.',
+    backOpening: 'Wu Wei does not mean doing nothing — it means acting without forcing, the way water finds its level. The Tao Te Ching says the Tao does nothing, yet leaves nothing undone. It is precision without effort.',
     connection: 'The Queets River finds the Pacific without forcing a single mile. On the Hoh River Trail, the hiker who follows what the terrain offers arrives somewhere unexpected and remembers everything.',
   },
   {
@@ -420,6 +434,7 @@ export const CARDS = [
     practiceTitle: 'Walk without arriving.',
     frontParagraph: 'Apranihita is aimlessness from Buddhism — the release of striving toward somewhere better than here. Carry it with you today. For example, set out with no destination — and notice the moment the planning mind goes quiet and you are simply moving through a landscape.',
     reflection: 'At day\'s end, notice what you might have otherwise missed.',
+    backOpening: 'Apranihita means wishlessness — the release of striving toward a future moment that will be better than this one. Thich Nhat Hanh taught it as the third gate of liberation: we are always arriving somewhere other than here.',
     connection: 'The Riverside Walk in Zion has no summit, no destination — the trail simply enters the river and becomes the Narrows. Walk until you forget you are going somewhere. You have already arrived.',
   },
   {
@@ -443,6 +458,7 @@ export const CARDS = [
     practiceTitle: 'Let the body lead.',
     frontParagraph: 'Mushin is no-mind from Zen Buddhism — action flowing without the interference of thought. Carry it with you today. For example, find a physical challenge — a scramble, a river crossing — and notice the quality of movement when the narrating mind steps aside and the body takes over.',
     reflection: 'At day\'s end, notice what you might have otherwise missed.',
+    backOpening: 'Mushin is the Zen state in which action flows without the interference of the thinking mind — not blankness but full aliveness without self-consciousness. The archer who thinks about the shot misses.',
     connection: 'The scramble section on Hidden Canyon Trail demands your complete attention — hand on wet rock, foot finding the next hold. Mushin arrives uninvited when the terrain leaves no room for the narrator.',
   },
   {
@@ -466,6 +482,7 @@ export const CARDS = [
     practiceTitle: 'Love what changed the plan.',
     frontParagraph: 'Amor Fati is love of fate from Stoicism — embracing what happens as necessary. Carry it with you today. For example, notice the hardest thing about the day — the weather, a change of plan, a physical difficulty — and name one specific thing it is giving you that comfort would not.',
     reflection: 'At day\'s end, notice what you might have otherwise missed.',
+    backOpening: 'Amor Fati is Nietzsche\'s formula for greatness — not merely tolerating what happens but loving it as necessary. The Stoics understood this too: what resists you is also what shapes you. The obstacle is not in the way — it is the way.',
     connection: 'The flash flood that closed your planned route through Zion is not an obstacle — it is the day reshaping itself. Name what this difficulty is giving you that comfort would not. Speak it aloud. Then move.',
   },
 
@@ -491,6 +508,7 @@ export const CARDS = [
     practiceTitle: 'Breathe in what struggles.',
     frontParagraph: 'Tonglen is the Buddhist practice of breathing in difficulty and breathing out relief — reversing the instinct to protect. Carry it with you today. For example, notice anything in this landscape that is struggling — a damaged tree, a dry streambed — and on the inhale, take in its difficulty.',
     reflection: 'At day\'s end, notice what you might have otherwise missed.',
+    backOpening: 'Tonglen is the Tibetan practice of radical reversal — instead of warding off difficulty, you breathe it in. Instead of hoarding ease, you breathe it out. It is a direct inversion of the self-protective instinct, and that is precisely the point.',
     connection: 'On the fire-scarred ridges above Big Sur, Tonglen finds its object. Breathe in the char, the loss. Breathe out cool fog and the green already returning at the base of each trunk. The discomfort is the practice working.',
   },
   {
@@ -514,6 +532,7 @@ export const CARDS = [
     practiceTitle: 'Turn toward what moves you.',
     frontParagraph: 'Bhakti is the Hindu path of devotional love — the heart opened completely as the practice itself. Carry it with you today. For example, choose one thing in the landscape — a rock face, a body of water, a single tree — and spend fifteen minutes in deliberate, unhurried devotion to it.',
     reflection: 'At day\'s end, notice what you might have otherwise missed.',
+    backOpening: 'Bhakti is the Hindu path of love and devotion — the understanding that the heart opened completely is itself the practice. Not love as sentiment but as orientation: a continuous turning toward what is sacred in everything we encounter.',
     connection: 'The Na Pali Coast at sunset stops language. The fluted cliffs turn gold, then rose, then violet, and the heart does something the mind cannot direct — it opens. The canyon wall is worthy of devotion. Let the distance close.',
   },
   {
@@ -537,6 +556,7 @@ export const CARDS = [
     practiceTitle: 'Widen the circle.',
     frontParagraph: 'Metta is the Buddhist practice of loving-kindness — deliberately cultivating goodwill without exception. Carry it with you today. For example, begin with yourself — may I be well — then extend it to someone you love, then to a stranger on the trail, then to every creature in this landscape.',
     reflection: 'At day\'s end, notice what you might have otherwise missed.',
+    backOpening: 'Metta is loving-kindness — the Buddha\'s practice of deliberately cultivating goodwill toward all beings without exception. Not as a feeling to be generated but as a direction to be sustained, moving in expanding circles from self to all.',
     connection: 'Begin with yourself on the shore at Ke\'e Beach. May I be well. Extend it to the monk seal on the sand, to every creature sharing this coast. Let the circle expand until it has no edge.',
   },
   {
@@ -560,6 +580,7 @@ export const CARDS = [
     practiceTitle: 'Dedicate the day outward.',
     frontParagraph: 'Bodhicitta is the awakening mind from Buddhism — the resolve to awaken not for yourself alone but for all beings. Carry it with you today. For example, before you move, set this intention: whatever clarity I find today, I offer outward — and notice how the quality of attention changes.',
     reflection: 'At day\'s end, notice what you might have otherwise missed.',
+    backOpening: 'Bodhicitta is the aspiration at the heart of Mahayana Buddhism — the resolve to awaken not for ourselves alone but for the benefit of all beings. Every practice, every moment of clarity, every conscious step becomes an offering.',
     connection: 'Before the first step onto the Boy Scout Trail at dawn, sit in the Joshua Tree parking lot and set the dedication: whatever clarity this desert gives me, I offer outward. The care you bring to each step becomes the practice.',
   },
   {
@@ -581,8 +602,9 @@ export const CARDS = [
     assignWhen: ['high-impact or heavily used trail', 'final day of trip', 'tread lightly persona'],
     avoidWhen: [],
     practiceTitle: 'Give something back.',
-    frontParagraph: 'Seva is selfless service from Hinduism & Yoga — action as offering, released from outcome. Carry it with you today. For example, during today\'s movement, practice one act of care for the land — carry out what you find, restore something displaced, step aside for what\'s growing.',
+    frontParagraph: 'Seva is selfless service from Hinduism & Yoga — action as offering, released from outcome. Carry it with you today. For example, during today\'s movement, notice one act of care for the land — carry out what you find, restore something displaced, step aside for what\'s growing.',
     reflection: 'At day\'s end, notice what you might have otherwise missed.',
+    backOpening: 'Seva is selfless service — action performed without attachment to its outcome or reward. In the Bhagavad Gita, Krishna describes it as the highest form of karma yoga: do what needs to be done and release the result.',
     connection: 'The Angels Landing chain section sees a thousand hands a day. Move the loose rock that will trip the next hiker. Carry out the wrapper wedged in the crack. The action is complete in itself — no announcement, no story.',
   },
   {
@@ -606,6 +628,7 @@ export const CARDS = [
     practiceTitle: 'Name who carried you here.',
     frontParagraph: 'Ubuntu is a philosophy from southern Africa — a person is a person through other persons. Carry it with you today. For example, pause once an hour and name one thing or person whose existence made this moment possible — the trail builder, the tree that held the hillside, the rain that fell last winter.',
     reflection: 'At day\'s end, notice what you might have otherwise missed.',
+    backOpening: 'Ubuntu is a Nguni Bantu philosophy — a person is a person through other persons. Not as sentiment but as fact: we do not exist as isolated selves. We exist in and through our relationships, our communities, the web of life that holds us.',
     connection: 'The Kalaloch coast was shaped by hands you will never shake — the Quinault people, the CCC crews, the rain that fell last winter. Pause once an hour and name one. Let the web become visible.',
   },
 
@@ -631,6 +654,7 @@ export const CARDS = [
     practiceTitle: 'Greet the first light.',
     frontParagraph: 'Surya Namaskar is a devotional sun salutation from Hinduism & Yoga — twelve postures as gratitude to the source of all life. Carry it with you today. For example, before full sunrise, find open ground facing east — and notice the exact moment the sun clears the horizon and the temperature changes.',
     reflection: 'At day\'s end, notice what you might have otherwise missed.',
+    backOpening: 'Surya Namaskar is not a warm-up — it is a devotional offering. Twelve postures moving in sequence with the breath, each a gesture of gratitude to the sun as the source of all life, rooted in Vedic sun worship.',
     connection: 'Face east from Keys View before the sun clears the Little San Bernardino Mountains. Nine rounds on the flat rock, each a gesture of gratitude to the light. The desert amplifies everything — the heat, the silence, the moment the valley ignites.',
   },
   {
@@ -654,6 +678,7 @@ export const CARDS = [
     practiceTitle: 'Let the water take it.',
     frontParagraph: 'Misogi is ritual water purification from Shinto — washing away what you carry that no longer serves. Carry it with you today. For example, at any natural water source, stand at the edge and name what you are releasing — a mood, a preoccupation — then bring cold water to your face three times.',
     reflection: 'At day\'s end, notice what you might have otherwise missed.',
+    backOpening: 'Misogi is one of the oldest Shinto practices — ritual purification through water, washing away the accumulated weight of ordinary life. It is not about hygiene but about the understanding that what we carry can be released.',
     connection: 'At the base of Wailua Falls, stand at the edge and name what you are releasing. Cold water to the face three times. The shock is the release made physical. What shifts is not the temperature but the attention.',
   },
   {
@@ -677,6 +702,7 @@ export const CARDS = [
     practiceTitle: 'Let the ending sharpen you.',
     frontParagraph: 'Memento Mori is the Stoic practice of meditating on mortality — not as grief but as the sharpener of all presence. Carry it with you today. For example, find the oldest thing in your view — a rock face, a canyon carved over millions of years — and notice what happens to the next ten minutes.',
     reflection: 'At day\'s end, notice what you might have otherwise missed.',
+    backOpening: 'Memento Mori is the Stoic practice of meditating on death — not morbidly but as the primary instrument of presence. Marcus Aurelius returned to it constantly: when you know this moment will end, it becomes vivid.',
     connection: 'The Great White Throne has stood for 170 million years. Sit at its base and let that scale make your own clear. This exact light on this exact wall will not repeat. The urgency is the gift.',
   },
   {
@@ -700,6 +726,7 @@ export const CARDS = [
     practiceTitle: 'This is the only time.',
     frontParagraph: 'Ichi-go Ichi-e is the Zen understanding that every encounter is utterly unique and will never repeat. Carry it with you today. For example, at one moment — a meal, a view, a quality of light on water — stop completely and notice: this exact configuration is already ending.',
     reflection: 'At day\'s end, notice what you might have otherwise missed.',
+    backOpening: 'Ichi-go Ichi-e emerged from the Japanese tea ceremony — the understanding that every gathering is utterly unique and will never be repeated. Sen no Rikyu built an entire aesthetic around treating each encounter as if it were the last.',
     connection: 'McWay Falls at 4 PM in October — the particular angle of light through the cove, the waterfall catching gold for exactly eleven minutes. This configuration will not converge again. Hold it without reaching.',
   },
   {
@@ -723,6 +750,7 @@ export const CARDS = [
     practiceTitle: 'Walk the boundary.',
     frontParagraph: 'Satoyama is the Shinto concept of the sacred threshold — the landscape where tended and wild meet. Carry it with you today. For example, walk the edge between two kinds of terrain — trail and wild, forest and open — and notice what is happening between them, not on either side.',
     reflection: 'At day\'s end, notice what you might have otherwise missed.',
+    backOpening: 'Satoyama is the Japanese concept of the landscape between village and wilderness — the edges where human life and wild nature exist in long mutual relationship. In Shinto, these boundaries are where the kami are most present.',
     connection: 'Where the Ozette Loop trail meets the coastal headland, the maintained path gives way to beach. Sit exactly at the threshold where the forest canopy ends and the sea stacks begin. This edge is where the kami are most present.',
   },
   {
@@ -746,6 +774,7 @@ export const CARDS = [
     practiceTitle: 'Watch something beautiful pass.',
     frontParagraph: 'Mono no Aware is the Japanese aesthetic of tender sadness at the transience of beauty. Carry it with you today. For example, find one beautiful thing and watch it change — the light moving across a rock face, a cloud dissolving — and notice the moment beauty and impermanence arrive together.',
     reflection: 'At day\'s end, notice what you might have otherwise missed.',
+    backOpening: 'Mono no Aware is the pathos of things — the particular ache that arises when we are fully present to something beautiful precisely because it will not last. The cherry blossom is beautiful because it falls.',
     connection: 'The fog that rolls into Big Sur most mornings erases the coastline — then burns off, and the light on the water is unrepeatable. The trip is ending. The canyon light is changing. Stay until something softens.',
   },
   {
@@ -769,6 +798,7 @@ export const CARDS = [
     practiceTitle: 'Receive what the forest offers.',
     frontParagraph: 'Shinrin-yoku is the Japanese practice of therapeutic forest immersion — not hiking, just being inside the atmosphere of trees. Carry it with you today. For example, walk at half your normal pace for thirty minutes with no phone — and notice what the body does when the mind stops directing.',
     reflection: 'At day\'s end, notice what you might have otherwise missed.',
+    backOpening: 'Shinrin-yoku is forest bathing — the practice of therapeutic immersion in the living atmosphere of trees. Research confirms what the Taoists knew: the forest is doing something to you whether you attend to it or not.',
     connection: 'The Hoh Rainforest receives twelve feet of rain a year. Walk at half pace. No phone. Open each sense in sequence. The forest doesn\'t need your attention to function. But your attention is what makes it medicine.',
   },
 ];

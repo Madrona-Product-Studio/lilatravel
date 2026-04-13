@@ -742,7 +742,7 @@ function PracticeCardScreen({ card, principle, cardIndex }) {
               fontSize: 14, fontFamily: SANS, fontWeight: 400,
               color: '#1C1917', lineHeight: 1.75,
             }}>
-              {card.teaching}
+              {card.backOpening || card.teaching}
             </div>
           </div>
 

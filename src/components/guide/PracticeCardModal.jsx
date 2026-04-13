@@ -215,7 +215,7 @@ function BackFace({ card, principle, connection, onFlip, onClose }) {
             fontSize: 14, fontWeight: 400,
             color: '#1C1917', lineHeight: 1.75,
           }}>
-            {card.teaching}
+            {card.backOpening || card.teaching}
           </div>
         </div>
 
