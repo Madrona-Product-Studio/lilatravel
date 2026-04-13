@@ -140,7 +140,7 @@ const TRADITIONS_FULL = [
 // ═══════════════════════════════════════════════════════════════════════════════
 
 function buildScreens() {
-  const screens = [{ type: 'cover' }, { type: 'orientation' }];
+  const screens = [{ type: 'cover' }, { type: 'welcome' }, { type: 'orientation' }];
   TRADITIONS_FULL.forEach(t => {
     screens.push({ type: 'tradition', tradition: t });
   });
@@ -228,6 +228,81 @@ function CoverScreen() {
         }}>
           30 practices &middot; ancient wisdom for wild places
         </div>
+      </div>
+    </div>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// WELCOME SCREEN
+// ═══════════════════════════════════════════════════════════════════════════════
+
+function WelcomeScreen() {
+  return (
+    <div style={{
+      width: '100%', height: '100%',
+      background: '#F7F4EE',
+      display: 'flex', flexDirection: 'column',
+      justifyContent: 'space-between',
+      padding: '52px 36px 48px',
+      position: 'relative', overflow: 'hidden',
+      borderRadius: 14,
+      border: '0.5px solid rgba(0,0,0,0.08)',
+    }}>
+      {/* Subtle warm glow */}
+      <div style={{
+        position: 'absolute', bottom: '-5%', left: '50%',
+        transform: 'translateX(-50%)',
+        width: '100%', height: '35%',
+        background: 'radial-gradient(ellipse, rgba(180,100,60,0.05) 0%, transparent 70%)',
+        pointerEvents: 'none',
+      }} />
+
+      {/* Section 1 — Title + hook */}
+      <div style={{ position: 'relative' }}>
+        <div style={{
+          fontSize: 'clamp(52px, 12vw, 68px)', fontFamily: SERIF,
+          color: '#1C1917', fontWeight: 300, lineHeight: 1.0,
+          letterSpacing: '-0.01em', marginBottom: 20,
+        }}>
+          Begin
+        </div>
+        <div style={{
+          fontSize: 15, fontFamily: SANS, fontWeight: 500,
+          color: 'rgba(28,25,23,0.72)', lineHeight: 1.75,
+          maxWidth: '90%',
+        }}>
+          30 cards. Five traditions.<br />
+          Ancient practices for wild places.
+        </div>
+      </div>
+
+      {/* Section 2 — Soul + closing */}
+      <div style={{ position: 'relative' }}>
+        <div style={{
+          fontSize: 15, fontFamily: SANS, fontWeight: 400,
+          color: 'rgba(28,25,23,0.52)', lineHeight: 1.9,
+          maxWidth: '90%', marginBottom: 22,
+        }}>
+          Not instructions — invitations to notice differently, to move more slowly, to pay attention.
+        </div>
+        <div style={{
+          fontSize: 14, fontFamily: SANS,
+          color: 'rgba(28,25,23,0.32)', lineHeight: 1.9,
+        }}>
+          Return to the ones that stay.
+        </div>
+      </div>
+
+      {/* Section 3 — Instruction */}
+      <div style={{
+        fontSize: 12, fontFamily: SANS,
+        color: 'rgba(28,25,23,0.32)',
+        letterSpacing: '0.05em',
+        position: 'relative',
+      }}>
+        Swipe to move through.<br />
+        Turn a card to go deeper.
       </div>
     </div>
   );
@@ -751,6 +826,7 @@ function PracticeCardScreen({ card, principle, cardIndex }) {
 function renderScreen(scr) {
   if (!scr) return null;
   if (scr.type === 'cover') return <CoverScreen />;
+  if (scr.type === 'welcome') return <WelcomeScreen />;
   if (scr.type === 'orientation') return <OrientationScreen />;
   if (scr.type === 'tradition') return <TraditionScreen key={scr.tradition.name} tradition={scr.tradition} />;
   if (scr.type === 'chapter') return <ChapterScreen key={`ch-${scr.principleIndex}`} principle={scr.principle} principleIndex={scr.principleIndex} />;
