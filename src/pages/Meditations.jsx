@@ -141,9 +141,10 @@ const TRADITIONS_FULL = [
 
 function buildScreens() {
   const screens = [{ type: 'cover' }, { type: 'welcome' }, { type: 'orientation' }];
-  TRADITIONS_FULL.forEach(t => {
-    screens.push({ type: 'tradition', tradition: t });
-  });
+  // Tradition screens disabled — data + component preserved for future use
+  // TRADITIONS_FULL.forEach(t => {
+  //   screens.push({ type: 'tradition', tradition: t });
+  // });
   CHAPTERS.forEach((ch, pi) => {
     screens.push({ type: 'chapter', principle: ch, principleIndex: pi });
     ch.cards.forEach((card, ci) => {
