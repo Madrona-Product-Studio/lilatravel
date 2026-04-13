@@ -580,11 +580,11 @@ function ChapterScreen({ principle, principleIndex }) {
             </div>
             <div style={{ flex: 1 }}>
               <div style={{ fontSize: 16, fontFamily: SANS, color: 'white', opacity: 0.9, fontWeight: 400 }}>
-                {card.name}
+                {card.practiceTitle || card.name}
               </div>
             </div>
             <div style={{ fontSize: 11, fontFamily: SANS, color: 'white', opacity: 0.6, flexShrink: 0 }}>
-              {card.tradition}
+              {card.name}
             </div>
           </div>
         ))}
