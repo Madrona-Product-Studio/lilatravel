@@ -8,7 +8,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "generate:connections": "node scripts/generate-card-connections.js",
-    "trim:cards": "node scripts/trim-card-connections.js"
+    "trim:cards": "node scripts/trim-card-connections.js",
+    "generate:fronts": "node scripts/generate-practice-fronts.js"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.78.0",

@@ -108,98 +108,55 @@ function FrontFace({ card, principle, onFlip, onClose }) {
         display: 'flex',
         flexDirection: 'column',
       }}>
-        {/* Top zone — principle identity */}
+        {/* Top zone — principle label */}
         <div style={{
           display: 'flex', flexDirection: 'column',
-          alignItems: 'center', padding: '20px 26px 14px',
-          gap: 6, flexShrink: 0,
+          alignItems: 'center', gap: 6,
+          padding: '38px 24px 0', flexShrink: 0,
         }}>
-          <PrincipleMark id={principle.id} size={32} />
-          <div
-            className="font-body uppercase"
-            style={{
-              fontSize: 9,
-              letterSpacing: '0.28em',
-              color: 'white',
-              opacity: 0.85,
-              fontWeight: 700,
-            }}
-          >
+          <PrincipleMark id={principle.id} size={24} />
+          <div className="font-body uppercase" style={{
+            fontSize: 8, fontWeight: 400,
+            color: 'white', opacity: 0.55,
+            letterSpacing: '0.32em',
+          }}>
             {principle.name}
           </div>
-          <div style={{ width: '100%', height: '0.5px', background: 'rgba(255,255,255,0.16)', marginTop: 2 }} />
         </div>
 
-        {/* Spacer */}
-        <div style={{ flex: 1 }} />
+        <div style={{ height: 38, flexShrink: 0 }} />
 
-        {/* Bottom zone */}
-        <div style={{ padding: '0 24px' }}>
-          <div
-            className="font-body uppercase"
-            style={{
-              fontSize: 11,
-              letterSpacing: '0.18em',
-              color: 'white',
-              opacity: 0.7,
-              fontWeight: 600,
-              marginBottom: 5,
-            }}
-          >
-            {card.tradition}
+        {/* Practice block */}
+        <div style={{ padding: '0 28px', flexShrink: 0 }}>
+          <div className="font-body" style={{
+            fontSize: 32, fontWeight: 700,
+            color: '#FDF9F4', lineHeight: 1.0,
+            letterSpacing: '0.01em', marginBottom: 32,
+          }}>
+            {card.practiceTitle || card.name}
           </div>
-          <h2
-            className="font-body"
-            style={{
-              fontSize: 34,
-              color: 'white',
-              fontWeight: 700,
-              lineHeight: 1.05,
-              margin: '0 0 5px',
-            }}
-          >
-            {card.name}
-          </h2>
-          {card.subtitle && (
-            <div
-              className="font-body"
-              style={{
-                fontSize: 15,
-                fontStyle: 'italic',
-                color: 'white',
-                opacity: 0.8,
-                lineHeight: 1.5,
-                marginBottom: 18,
-              }}
-            >
-              {card.subtitle}
+          <div className="font-body" style={{
+            fontSize: 16, fontWeight: 400,
+            color: 'white', opacity: 0.85, lineHeight: 1.75,
+            maxWidth: '86%',
+          }}>
+            {card.frontParagraph || card.teaching}
+          </div>
+          {card.reflection && (
+            <div className="font-body" style={{
+              fontSize: 16, fontWeight: 400,
+              color: 'white', opacity: 0.85, lineHeight: 1.75,
+              maxWidth: '86%', marginTop: 28,
+            }}>
+              {card.reflection}
             </div>
           )}
-          <p
-            className="font-body"
-            style={{
-              fontSize: 15,
-              color: 'white',
-              opacity: 0.88,
-              lineHeight: 1.78,
-              margin: 0,
-            }}
-          >
-            {card.teaching}
-          </p>
         </div>
 
-        {/* Flip arrow + explore label */}
-        <div style={{
-          padding: '12px 22px 20px',
-          display: 'flex', justifyContent: 'flex-end', alignItems: 'center',
-          gap: 6, flexShrink: 0,
-        }}>
-          <div className="font-body uppercase" style={{
-            fontSize: 8, letterSpacing: '0.15em', color: 'white', opacity: 0.4,
-          }}>
-            explore
-          </div>
+        <div style={{ flex: 1 }} />
+
+        {/* Flip arrow */}
+        <div style={{ display: 'flex', justifyContent: 'flex-end', padding: '12px 22px 20px' }}>
           <div style={{ opacity: 0.6 }}>
             <FlipArrow />
           </div>
@@ -231,92 +188,91 @@ function BackFace({ card, principle, connection, onFlip, onClose }) {
     >
       <CloseButton onClose={onClose} dark />
 
-      {/* Card title — fixed to top */}
+      {/* Title bar */}
       <div style={{
         padding: '20px 22px 14px',
-        textAlign: 'center', flexShrink: 0,
+        display: 'flex', justifyContent: 'center', alignItems: 'center',
+        gap: 6, flexShrink: 0,
       }}>
+        <svg width="8" height="8" viewBox="0 0 10 10" fill="none">
+          <rect x="1" y="1" width="8" height="8" stroke={principle.color} strokeWidth="1.5" transform="rotate(45 5 5)" />
+        </svg>
         <div className="font-body uppercase" style={{
-          fontSize: 13, letterSpacing: '0.14em', color: principle.color,
-          fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center',
-          gap: 6,
+          fontSize: 13, fontWeight: 700,
+          color: principle.color, letterSpacing: '0.14em',
         }}>
-          <span>◈</span>
-          <span>{card.name}</span>
+          {card.name}
         </div>
       </div>
-      <div style={{ height: '0.5px', background: 'rgba(44,36,32,0.08)', margin: '0 22px', flexShrink: 0 }} />
+      <div style={{ height: '0.5px', background: 'rgba(44,36,32,0.05)', margin: '0 22px', flexShrink: 0 }} />
 
-      {/* Centered content group */}
+      {/* Content group */}
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', paddingBottom: 40 }}>
 
-      {/* Section 1 — Practice */}
-      <div style={{ padding: '12px 22px 16px' }}>
-        <div className="font-body uppercase" style={{
-          fontSize: 10, letterSpacing: '0.12em', color: '#4a3a2a',
-          fontWeight: 700, marginBottom: 7,
-        }}>
-          The Practice
-        </div>
-        <div className="font-body" style={{
-          fontSize: 14, color: '#1C1917', lineHeight: 1.75,
-        }}>
-          {card.practice}
-        </div>
-      </div>
-
-      {/* Hairline */}
-      <div style={{ height: '0.5px', background: 'rgba(44,36,32,0.08)', margin: '0 22px', flexShrink: 0 }} />
-
-      {/* Section 2 — Quote */}
-      {card.quote && (
-        <div style={{ padding: '14px 22px' }}>
+        {/* Opening */}
+        <div style={{ padding: '14px 22px 0' }}>
           <div className="font-body" style={{
-            fontSize: 15, color: '#1C1917', fontWeight: 500,
-            lineHeight: 1.65, marginBottom: 7,
+            fontSize: 14, fontWeight: 400,
+            color: '#1C1917', lineHeight: 1.75,
           }}>
-            "{card.quote}"
+            {card.teaching}
           </div>
-          {card.quoteAuthor && (
-            <div className="font-body uppercase" style={{
-              fontSize: 10, letterSpacing: '0.14em', color: '#8C7B6B', fontWeight: 600,
-            }}>
-              — {card.quoteAuthor}
-            </div>
-          )}
         </div>
-      )}
 
-      {/* Section 3 — On Your Trip */}
-      {connection && (
-        <>
-          <div style={{ height: '0.5px', background: 'rgba(44,36,32,0.08)', margin: '0 22px', flexShrink: 0 }} />
+        {/* Quote */}
+        {card.quote && (
+          <div style={{
+            margin: '0 22px', padding: '18px 0 14px',
+            borderTop: '0.5px solid rgba(44,36,32,0.04)',
+            borderBottom: '0.5px solid rgba(44,36,32,0.04)',
+            marginTop: 16,
+          }}>
+            <div className="font-body" style={{
+              fontSize: 14, fontWeight: 400,
+              color: '#1C1917', fontStyle: 'italic', lineHeight: 1.7, marginBottom: 6,
+            }}>
+              "{card.quote}"
+            </div>
+            <div className="font-body uppercase" style={{
+              fontSize: 10, fontWeight: 400,
+              color: '#8C7B6B', letterSpacing: '0.04em',
+            }}>
+              {card.quoteAuthor}
+            </div>
+          </div>
+        )}
+
+        {/* On Your Trip */}
+        {connection && (
           <div style={{ padding: '14px 22px 0' }}>
             <div className="font-body uppercase" style={{
-              fontSize: 11, letterSpacing: '0.14em', color: '#2D6B6B',
-              fontWeight: 700, display: 'flex', alignItems: 'center', gap: 5, marginBottom: 7,
+              fontSize: 11, fontWeight: 700,
+              color: '#2D6B6B', letterSpacing: '0.14em',
+              marginBottom: 8,
+              display: 'flex', alignItems: 'center', gap: 5,
             }}>
-              <span>◈</span>
-              <span>On Your Trip</span>
+              <svg width="8" height="8" viewBox="0 0 10 10" fill="none">
+                <rect x="1" y="1" width="8" height="8" stroke="#2D6B6B" strokeWidth="1.5" transform="rotate(45 5 5)" />
+              </svg>
+              On Your Trip
             </div>
             <div className="font-body" style={{
-              fontSize: 14, color: '#1C1917', lineHeight: 1.7,
+              fontSize: 14, fontWeight: 400,
+              color: '#1C1917', lineHeight: 1.8,
             }}>
               {connection}
             </div>
           </div>
-        </>
-      )}
+        )}
+      </div>
 
-      </div>{/* end centered content group */}
-
-      {/* Flip arrow + label — matches front face */}
+      {/* Flip arrow */}
       <div style={{
         position: 'absolute', right: 22, bottom: 18,
-        display: 'flex', alignItems: 'center', gap: 6,
+        display: 'flex', alignItems: 'center', gap: 6, cursor: 'pointer',
       }}>
         <span className="font-body uppercase" style={{
-          fontSize: 8, letterSpacing: '0.15em', color: '#8C7B6B', opacity: 0.5,
+          fontSize: 8, color: '#8C7B6B', opacity: 0.5, letterSpacing: '0.12em',
         }}>back</span>
         <div style={{ opacity: 0.5 }}>
           <FlipArrow dark />

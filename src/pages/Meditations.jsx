@@ -640,68 +640,59 @@ function PracticeCardScreen({ card, principle, cardIndex }) {
           pointerEvents: 'none',
         }} />
 
-        {/* Principle zone */}
+        {/* Top zone — principle label */}
         <div style={{
           display: 'flex', flexDirection: 'column',
-          alignItems: 'center', padding: '20px 26px 14px',
-          gap: 6, flexShrink: 0,
+          alignItems: 'center', gap: 6,
+          padding: '38px 24px 0', flexShrink: 0,
         }}>
-          <PrincipleMark id={principle.id} size={32} />
+          <PrincipleMark id={principle.id} size={24} />
           <div style={{
-            fontSize: 9, letterSpacing: '0.28em', color: 'white',
-            fontFamily: SANS, textTransform: 'uppercase', fontWeight: 700, opacity: 0.85,
+            fontSize: 8, fontFamily: SANS, fontWeight: 400,
+            color: 'white', opacity: 0.55,
+            letterSpacing: '0.32em', textTransform: 'uppercase',
           }}>
             {principle.name}
           </div>
-          <div style={{ width: '100%', height: '0.5px', background: 'rgba(255,255,255,0.16)', marginTop: 2 }} />
+        </div>
+
+        <div style={{ height: 38, flexShrink: 0 }} />
+
+        {/* Practice block */}
+        <div style={{ padding: '0 28px', flexShrink: 0 }}>
+          <div style={{
+            fontSize: 32, fontFamily: SANS, fontWeight: 700,
+            color: '#FDF9F4', lineHeight: 1.0,
+            letterSpacing: '0.01em', marginBottom: 32,
+          }}>
+            {card.practiceTitle || card.name}
+          </div>
+          <div style={{
+            fontSize: 16, fontFamily: SANS, fontWeight: 400,
+            color: 'white', opacity: 0.85, lineHeight: 1.75,
+            maxWidth: '86%',
+          }}>
+            {card.frontParagraph || card.teaching}
+          </div>
+          {card.reflection && (
+            <div style={{
+              fontSize: 16, fontFamily: SANS, fontWeight: 400,
+              color: 'white', opacity: 0.85, lineHeight: 1.75,
+              maxWidth: '86%', marginTop: 28,
+            }}>
+              {card.reflection}
+            </div>
+          )}
         </div>
 
         <div style={{ flex: 1 }} />
 
-        {/* Card content */}
-        <div style={{ padding: '0 24px 0', flexShrink: 0 }}>
-          <div style={{
-            fontSize: 11, letterSpacing: '0.18em', color: 'white',
-            fontFamily: SANS, textTransform: 'uppercase', opacity: 0.7, marginBottom: 5,
-          }}>
-            {card.tradition}
-          </div>
-          <div style={{
-            fontSize: 34, fontFamily: SANS, color: 'white',
-            fontWeight: 700, lineHeight: 1.05, marginBottom: 5,
-          }}>
-            {card.name}
-          </div>
-          <div style={{
-            fontSize: 15, fontFamily: SANS, color: 'white',
-            opacity: 0.8, fontStyle: 'italic', lineHeight: 1.5, marginBottom: 18,
-          }}>
-            {card.subtitle}
-          </div>
-          <div style={{
-            fontSize: 15, fontFamily: SANS, color: 'white',
-            opacity: 0.88, lineHeight: 1.78,
-          }}>
-            {card.teaching}
-          </div>
-        </div>
-
-        {/* Bottom: flip arrow + explore label */}
-        <div style={{
-          padding: '12px 22px 20px',
-          display: 'flex', justifyContent: 'flex-end', alignItems: 'center',
-          gap: 6, flexShrink: 0,
-        }}>
-          <div style={{
-            fontSize: 8, letterSpacing: '0.15em', color: 'white',
-            fontFamily: SANS, textTransform: 'uppercase', opacity: 0.4,
-          }}>
-            explore
-          </div>
+        {/* Flip arrow */}
+        <div style={{ display: 'flex', justifyContent: 'flex-end', padding: '12px 22px 20px' }}>
           <div style={{ opacity: 0.6 }}>
-            <svg width="22" height="22" viewBox="0 0 20 20" fill="none">
-              <path d="M 3 10 A 7 7 0 1 1 10 17" stroke="white" strokeWidth="1.5" fill="none" strokeLinecap="round" />
-              <path d="M 7 17 L 10 17 L 10 14" stroke="white" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path d="M 20 12 A 8 8 0 1 1 12 4" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
+              <path d="M 15 4 L 12 4 L 12 7" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </div>
         </div>
@@ -724,103 +715,94 @@ function PracticeCardScreen({ card, principle, cardIndex }) {
           padding: '0',
         }}
       >
-        {/* Card title — fixed to top */}
+        {/* Title bar */}
         <div style={{
           padding: '20px 22px 14px',
-          textAlign: 'center', flexShrink: 0,
+          display: 'flex', justifyContent: 'center', alignItems: 'center',
+          gap: 6, flexShrink: 0,
         }}>
+          <svg width="8" height="8" viewBox="0 0 10 10" fill="none">
+            <rect x="1" y="1" width="8" height="8" stroke={principle.color} strokeWidth="1.5" transform="rotate(45 5 5)" />
+          </svg>
           <div style={{
-            fontSize: 13, letterSpacing: '0.14em', color: principle.color,
-            fontFamily: SANS, textTransform: 'uppercase', fontWeight: 700,
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            gap: 6,
+            fontSize: 13, fontFamily: SANS, fontWeight: 700,
+            color: principle.color, letterSpacing: '0.14em', textTransform: 'uppercase',
           }}>
-            <span>◈</span>
             {card.name}
           </div>
         </div>
-        <div style={{ height: '0.5px', background: 'rgba(44,36,32,0.08)', margin: '0 22px', flexShrink: 0 }} />
+        <div style={{ height: '0.5px', background: 'rgba(44,36,32,0.05)', margin: '0 22px', flexShrink: 0 }} />
 
-        {/* Centered content group */}
+        {/* Content group */}
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', paddingBottom: 40 }}>
 
-        {/* Section 1 — Practice */}
-        <div style={{ padding: '12px 22px 16px' }}>
-          <div style={{
-            fontSize: 10, letterSpacing: '0.12em', color: '#4a3a2a',
-            fontFamily: SANS, textTransform: 'uppercase', fontWeight: 700, marginBottom: 7,
-          }}>
-            The Practice
-          </div>
-          <div style={{
-            fontSize: 14, fontFamily: SANS, color: '#1C1917',
-            lineHeight: 1.75,
-          }}>
-            {card.practice}
-          </div>
-        </div>
-
-        {/* Hairline */}
-        <div style={{ height: '0.5px', background: 'rgba(44,36,32,0.08)', margin: '0 22px', flexShrink: 0 }} />
-
-        {/* Section 2 — Quote */}
-        {card.quote && (
-          <div style={{ padding: '14px 22px' }}>
+          {/* Opening */}
+          <div style={{ padding: '14px 22px 0' }}>
             <div style={{
-              fontSize: 15, fontFamily: SANS, color: '#1C1917',
-              fontWeight: 500, lineHeight: 1.65, marginBottom: 7,
+              fontSize: 14, fontFamily: SANS, fontWeight: 400,
+              color: '#1C1917', lineHeight: 1.75,
             }}>
-              &ldquo;{card.quote}&rdquo;
-            </div>
-            <div style={{
-              fontSize: 10, letterSpacing: '0.14em', color: '#8C7B6B',
-              fontFamily: SANS, textTransform: 'uppercase',
-            }}>
-              &mdash; {card.quoteAuthor}
+              {card.teaching}
             </div>
           </div>
-        )}
 
-        {/* Section 3 — On Your Trip */}
-        {card.connection && (
-          <>
-            <div style={{ height: '0.5px', background: 'rgba(44,36,32,0.08)', margin: '0 22px', flexShrink: 0 }} />
+          {/* Quote */}
+          {card.quote && (
+            <div style={{
+              margin: '0 22px', padding: '18px 0 14px',
+              borderTop: '0.5px solid rgba(44,36,32,0.04)',
+              borderBottom: '0.5px solid rgba(44,36,32,0.04)',
+              marginTop: 16,
+            }}>
+              <div style={{
+                fontSize: 14, fontFamily: SANS, fontWeight: 400,
+                color: '#1C1917', fontStyle: 'italic', lineHeight: 1.7, marginBottom: 6,
+              }}>
+                &ldquo;{card.quote}&rdquo;
+              </div>
+              <div style={{
+                fontSize: 10, fontFamily: SANS, fontWeight: 400,
+                color: '#8C7B6B', letterSpacing: '0.04em', textTransform: 'uppercase',
+              }}>
+                {card.quoteAuthor}
+              </div>
+            </div>
+          )}
+
+          {/* On Your Trip */}
+          {card.connection && (
             <div style={{ padding: '14px 22px 0' }}>
               <div style={{
-                fontSize: 11, letterSpacing: '0.14em', color: '#2D6B6B',
-                fontFamily: SANS, textTransform: 'uppercase', fontWeight: 700,
-                display: 'flex', alignItems: 'center', gap: 5, marginBottom: 7,
+                fontSize: 11, fontFamily: SANS, fontWeight: 700,
+                color: '#2D6B6B', letterSpacing: '0.14em',
+                textTransform: 'uppercase', marginBottom: 8,
+                display: 'flex', alignItems: 'center', gap: 5,
               }}>
-                <span>◈</span>
+                <svg width="8" height="8" viewBox="0 0 10 10" fill="none">
+                  <rect x="1" y="1" width="8" height="8" stroke="#2D6B6B" strokeWidth="1.5" transform="rotate(45 5 5)" />
+                </svg>
                 On Your Trip — Example
               </div>
               <div style={{
-                fontSize: 14, fontFamily: SANS, color: '#1C1917',
-                lineHeight: 1.7,
+                fontSize: 14, fontFamily: SANS, fontWeight: 400,
+                color: '#1C1917', lineHeight: 1.8,
               }}>
                 {card.connection}
               </div>
             </div>
-          </>
-        )}
+          )}
+        </div>
 
-        </div>{/* end centered content group */}
-
-        {/* Flip arrow + label — matches front face */}
+        {/* Flip arrow */}
         <div style={{
           position: 'absolute', right: 22, bottom: 18,
-          display: 'flex', alignItems: 'center', gap: 6,
+          display: 'flex', alignItems: 'center', gap: 6, cursor: 'pointer',
         }}>
-          <div style={{
-            fontSize: 8, letterSpacing: '0.15em', color: '#8C7B6B',
-            fontFamily: SANS, textTransform: 'uppercase', opacity: 0.5,
-          }}>
-            back
-          </div>
+          <div style={{ fontSize: 8, fontFamily: SANS, color: '#8C7B6B', opacity: 0.5, letterSpacing: '0.12em', textTransform: 'uppercase' }}>back</div>
           <div style={{ opacity: 0.5 }}>
-            <svg width="22" height="22" viewBox="0 0 20 20" fill="none">
-              <path d="M 17 10 A 7 7 0 1 1 10 3" stroke="#8C7B6B" strokeWidth="1.5" fill="none" strokeLinecap="round" />
-              <path d="M 13 3 L 10 3 L 10 6" stroke="#8C7B6B" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path d="M 20 12 A 8 8 0 1 1 12 4" stroke="#8C7B6B" strokeWidth="1.5" strokeLinecap="round" />
+              <path d="M 15 4 L 12 4 L 12 7" stroke="#8C7B6B" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </div>
         </div>

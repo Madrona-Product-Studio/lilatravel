@@ -91,6 +91,9 @@ export const CARDS = [
     bestFor: ['arrival', 'challenge', 'transition', 'solo'],
     assignWhen: ['day 1 or 2', 'ethics-oriented traveler', 'high-impact terrain'],
     avoidWhen: ['fatigue-heavy day', 'highly social group day'],
+    practiceTitle: 'Pick a Yama.',
+    frontParagraph: 'The Yamas are a way of moving through the world, from Hinduism & Yoga — carry one with you today. For example, Ahimsa: notice even the smallest moments of harm — in how you step, what you take, or the subtle ways you move through the natural world.',
+    reflection: 'At day\'s end, notice what you might have otherwise missed.',
     connection: 'Angels Landing demands every Yama at once — Ahimsa in how you share the chain section, Aparigraha in letting the summit be enough without the photo. The canyon teaches restraint by making the consequences of carelessness immediate.',
   },
   {
@@ -111,6 +114,9 @@ export const CARDS = [
     bestFor: ['challenge', 'fatigue', 'rest', 'uncertainty'],
     assignWhen: ['difficult weather', 'high fatigue day', 'rest day', 'trip not going to plan'],
     avoidWhen: ['arrival day'],
+    practiceTitle: 'Name what is enough.',
+    frontParagraph: 'The Niyamas are five inner observances from Hinduism & Yoga, with contentment at their center — carry Santosha today. Notice each moment of wanting things to be different — the weather, the trail, the body you brought. Name five things that are exactly right about this moment.',
+    reflection: 'At day\'s end, notice what you might have otherwise missed.',
     connection: 'Joshua Tree at midday is Santosha\'s proving ground — the heat, the exposed rock, the body asking for shade. Name five things that are exactly right. The wanting mind goes quiet when the field widens.',
   },
   {
@@ -131,6 +137,9 @@ export const CARDS = [
     bestFor: ['threshold', 'transition', 'challenge', 'arrival', 'uncertainty'],
     assignWhen: ['summit day', 'river crossing', 'high exertion day', 'weather transition'],
     avoidWhen: ['pure rest day'],
+    practiceTitle: 'Follow your breath.',
+    frontParagraph: 'Pranayama is the practice of conscious breathing from Hinduism & Yoga — the doorway between body and mind. Find a threshold moment today — before a river crossing, a summit, a first step onto trail. Slow the breath without forcing it. Notice when the landscape and your breathing find the same rhythm.',
+    reflection: 'At day\'s end, notice what you might have otherwise missed.',
     connection: 'At the base of the Narrows, before stepping into the Virgin River, the breath is the last thing you control. One conscious breath before each river crossing — let the inhale match the current, let the exhale release the need to rush.',
   },
   {
@@ -151,6 +160,9 @@ export const CARDS = [
     bestFor: ['rest', 'solo', 'threshold', 'awe', 'closure'],
     assignWhen: ['rest day', 'mid-trip reset', 'solo traveler', 'contemplative persona'],
     avoidWhen: ['high exertion day', 'arrival day', 'high social energy day'],
+    practiceTitle: 'See what arises.',
+    frontParagraph: 'Vipassana is the oldest Buddhist meditation — direct observation of experience as it arises and passes. Let the landscape be your object today. Each time something arises — a sound, a sensation, a thought — note it with one word: hearing, feeling, thinking. Notice what happens when you see clearly without reacting.',
+    reflection: 'At day\'s end, notice what you might have otherwise missed.',
     connection: 'Observation Point at dawn, before the first shuttle runs. The canyon floor is still in shadow. Sit with eyes open and note each arising: hearing, seeing, feeling. The canyon is twenty million years of arising and passing made visible.',
   },
   {
@@ -171,6 +183,9 @@ export const CARDS = [
     bestFor: ['arrival', 'rest', 'awe', 'gratitude', 'shared'],
     assignWhen: ['returning to familiar place', 'mid-trip flatness', 'second visit destination'],
     avoidWhen: ['first day of trip — save for when familiarity has set in'],
+    practiceTitle: 'Arrive for the first time.',
+    frontParagraph: 'Shoshin is beginner\\\'s mind from Zen Buddhism — radical openness to what is already familiar. Arrive somewhere you have been before and say: I have never been here. Move slowly. Notice what you have never noticed — the particular angle of light, a texture in the bark, the sound the wind makes through this specific gap.',
+    reflection: 'At day\'s end, notice what you might have otherwise missed.',
     connection: 'Return to Arch Rock after three days in Joshua Tree and the boulders have rearranged themselves. The light is different. Beginner\'s mind is easiest in a landscape that resists expertise — the desert changes faster than your assumptions.',
   },
   {
@@ -191,6 +206,9 @@ export const CARDS = [
     bestFor: ['threshold', 'awe', 'closure', 'solo'],
     assignWhen: ['summit day', 'final day of trip', 'expansive landscape', 'experienced meditator'],
     avoidWhen: ['day 1', 'high exertion day', 'beginner traveler'],
+    practiceTitle: 'Let the boundary dissolve.',
+    frontParagraph: 'Samadhi is complete absorption from Hinduism & Yoga — the dissolution of the one who is meditating. Find the most expansive view available today. Let attention rest on the horizon without focusing. Notice the moments when the boundary between you and the landscape softens — not as idea but as direct sensation.',
+    reflection: 'At day\'s end, notice what you might have otherwise missed.',
     connection: 'Canyon Overlook at the last moment before sunset, when the Navajo sandstone turns the color of embers. There is no boundary between the warmth on your face and the warmth radiating from the canyon wall. The obstacles simply leave.',
   },
 
@@ -213,6 +231,9 @@ export const CARDS = [
     bestFor: ['awe', 'threshold', 'solo', 'closure'],
     assignWhen: ['expansive landscape day', 'summit day', 'final day of trip'],
     avoidWhen: ['day 1', 'high social energy day'],
+    practiceTitle: 'Ask where you end.',
+    frontParagraph: 'Atman is Brahman is the central teaching of the Upanishads — you and the universe are not two. Stand at the edge of a vast view and ask where you end. Notice that the question dissolves before it can be answered. The iron in the sandstone is the iron in your blood — forged in the same furnace.',
+    reflection: 'At day\'s end, notice what you might have otherwise missed.',
     connection: 'Stand at the rim of Zion Canyon and ask where you end. The iron in the sandstone is the iron in your blood — forged in the same stellar furnace. The Upanishads call this Tat tvam asi. The canyon already knows.',
   },
   {
@@ -233,6 +254,9 @@ export const CARDS = [
     bestFor: ['awe', 'solo', 'gratitude', 'threshold'],
     assignWhen: ['nature immersion day', 'slow day', 'contemplative persona'],
     avoidWhen: ['high exertion day', 'arrival day'],
+    practiceTitle: 'Trace everything back.',
+    frontParagraph: 'Sunyata is the Buddhist teaching that nothing exists independently — everything inter-is. Choose one thing in your field of view — a stone, a tree, a bird. Trace every system that made it possible: water, soil, sun, the deaths of a thousand organisms. Notice when the thing disappears into its connections.',
+    reflection: 'At day\'s end, notice what you might have otherwise missed.',
     connection: 'In the Hoh Rainforest, a single nurse log holds fourteen species. Everything you see is made entirely of everything else. Trace any thread far enough and it disappears into the web. You disappear with it.',
   },
   {
@@ -253,6 +277,9 @@ export const CARDS = [
     bestFor: ['awe', 'rest', 'solo', 'arrival', 'gratitude'],
     assignWhen: ['open landscape day', 'rest day', 'mid-trip grounding'],
     avoidWhen: ['high social energy day'],
+    practiceTitle: 'Feel the ground hold you.',
+    frontParagraph: 'Sympatheia is the Stoic understanding that all things pulse together — the cosmos as one living body. Lie on open ground, palms down. Feel the warmth the stone collected from the same sun warming your skin. Notice what changes when you stop visiting the landscape and start belonging to it.',
+    reflection: 'At day\'s end, notice what you might have otherwise missed.',
     connection: 'Lie on the slickrock above the Virgin River at dusk and feel the warmth the stone collected all day. The heat in the rock is the heat in your body. You are not visiting. You are participating.',
   },
   {
@@ -273,6 +300,9 @@ export const CARDS = [
     bestFor: ['threshold', 'transition', 'awe', 'arrival'],
     assignWhen: ['threshold day', 'transition between landscapes', 'coastal or forest edge'],
     avoidWhen: ['urban or town day'],
+    practiceTitle: 'Sit at the edge.',
+    frontParagraph: 'Musubi is the Shinto force of creative connection — most felt at thresholds where two landscapes meet. Find a boundary: treeline and open sky, rock and water, trail edge and wild. Sit exactly at the edge. Notice what each side offers and what happens in the space between them.',
+    reflection: 'At day\'s end, notice what you might have otherwise missed.',
     connection: 'Where the Hoh Rainforest meets the alpine meadow on the High Divide trail, two ecosystems lean into each other. Musubi runs along this edge — the force that makes the meeting point more generative than the territories it joins.',
   },
   {
@@ -293,6 +323,9 @@ export const CARDS = [
     bestFor: ['arrival', 'threshold', 'uncertainty', 'rest', 'solo'],
     assignWhen: ['water day', 'river or coastal destination', 'opening day of trip'],
     avoidWhen: [],
+    practiceTitle: 'Watch water move.',
+    frontParagraph: 'The Tao is the unnameable current beneath all things, from Taoism — you know it when you stop forcing. Sit by any moving water today. Watch how it finds the lowest point without effort or plan. Notice every place in your own body or mind where you are resisting rather than finding the low point.',
+    reflection: 'At day\'s end, notice what you might have otherwise missed.',
     connection: 'The Sol Duc River doesn\'t consult a map. It finds the low point, wraps around the boulder, pools where the gradient allows. Sit beside it for fifteen minutes and watch the Tao demonstrate itself.',
   },
   {
@@ -313,6 +346,9 @@ export const CARDS = [
     bestFor: ['challenge', 'rest', 'transition', 'fatigue', 'uncertainty'],
     assignWhen: ['high contrast day — exertion and rest', 'mid-trip balance point'],
     avoidWhen: [],
+    practiceTitle: 'Find both sides.',
+    frontParagraph: 'Yin and Yang are not opposites at war but one continuous movement, from Taoism — the rest that makes effort possible. Find where light and shadow meet today. Track how the line between them moves. Notice where in your body you feel the yin — the quiet, the yielding — and where the yang.',
+    reflection: 'At day\'s end, notice what you might have otherwise missed.',
     connection: 'Zion Canyon holds heat through the night while the Virgin River runs cold — yang and yin in continuous exchange. The lit face is already cooling; the shadow wall already warming. Nothing here is only one thing.',
   },
 
@@ -335,6 +371,9 @@ export const CARDS = [
     bestFor: ['arrival', 'uncertainty', 'transition', 'rest', 'challenge'],
     assignWhen: ['opening day', 'unstructured day', 'adaptive itinerary day'],
     avoidWhen: [],
+    practiceTitle: 'Read the grain.',
+    frontParagraph: 'Li is the natural grain inherent in all things, from Taoism — the pattern asking to be followed. Before you plan your day, sit for ten minutes without an agenda. Look at the landscape, the weather, the quality of light. Notice what the place is asking for rather than what you are bringing to it.',
+    reflection: 'At day\'s end, notice what you might have otherwise missed.',
     connection: 'The Olympic coast has a grain — the tide sets the rhythm, the weather sets the pace. Read it before you impose your plan. Ten minutes sitting with the landscape\'s logic will shape a better day than any itinerary written indoors.',
   },
   {
@@ -355,6 +394,9 @@ export const CARDS = [
     bestFor: ['challenge', 'uncertainty', 'transition', 'fatigue', 'mid-trip'],
     assignWhen: ['river or water day', 'adaptive terrain', 'unplanned change', 'high mileage day'],
     avoidWhen: ['day 1'],
+    practiceTitle: 'Move without forcing.',
+    frontParagraph: 'Wu Wei is effortless action from Taoism — acting without forcing, the way water finds its level. At every fork in the trail today, pause before deciding. Close your eyes. Feel which direction pulls rather than which you choose. Notice the difference between miles you forced and miles that moved through you.',
+    reflection: 'At day\'s end, notice what you might have otherwise missed.',
     connection: 'The Queets River finds the Pacific without forcing a single mile. On the Hoh River Trail, the hiker who follows what the terrain offers arrives somewhere unexpected and remembers everything.',
   },
   {
@@ -375,6 +417,9 @@ export const CARDS = [
     bestFor: ['rest', 'uncertainty', 'fatigue', 'mid-trip', 'solo'],
     assignWhen: ['unstructured day', 'rest day', 'traveler showing signs of striving or rushing'],
     avoidWhen: ['permit-required or time-sensitive day'],
+    practiceTitle: 'Walk without arriving.',
+    frontParagraph: 'Apranihita is aimlessness from Buddhism — the release of striving toward a future moment. Set out with no destination and no turnaround time. Walk until you forget you are going somewhere. Notice the moment the planning mind goes quiet and you are simply moving through a landscape.',
+    reflection: 'At day\'s end, notice what you might have otherwise missed.',
     connection: 'The Riverside Walk in Zion has no summit, no destination — the trail simply enters the river and becomes the Narrows. Walk until you forget you are going somewhere. You have already arrived.',
   },
   {
@@ -395,6 +440,9 @@ export const CARDS = [
     bestFor: ['challenge', 'threshold', 'awe', 'solo'],
     assignWhen: ['technical terrain day', 'scramble or summit day', 'river crossing day'],
     avoidWhen: ['rest day', 'town day', 'beginner traveler on easy terrain'],
+    practiceTitle: 'Let the body lead.',
+    frontParagraph: 'Mushin is no-mind from Zen Buddhism — action flowing without the interference of thought. Find a physical challenge today — a scramble, a river crossing, a steep descent. Set one intention: no commentary. Notice the quality of movement when thought steps aside and the body leads.',
+    reflection: 'At day\'s end, notice what you might have otherwise missed.',
     connection: 'The scramble section on Hidden Canyon Trail demands your complete attention — hand on wet rock, foot finding the next hold. Mushin arrives uninvited when the terrain leaves no room for the narrator.',
   },
   {
@@ -415,6 +463,9 @@ export const CARDS = [
     bestFor: ['challenge', 'uncertainty', 'fatigue', 'departure', 'transition'],
     assignWhen: ['difficult weather day', 'injury or setback', 'plan changed unexpectedly'],
     avoidWhen: ['perfect conditions easy day — save for when it is needed'],
+    practiceTitle: 'Love what is given.',
+    frontParagraph: 'Amor Fati is love of fate from Stoicism — not merely tolerating what happens but embracing it as necessary. Name the hardest thing about today — the weather, the difficulty, a change of plan. Sit with it without fixing it. Notice specifically what this difficulty is giving you that comfort would not.',
+    reflection: 'At day\'s end, notice what you might have otherwise missed.',
     connection: 'The flash flood that closed your planned route through Zion is not an obstacle — it is the day reshaping itself. Name what this difficulty is giving you that comfort would not. Speak it aloud. Then move.',
   },
 
@@ -437,6 +488,9 @@ export const CARDS = [
     bestFor: ['solo', 'threshold', 'closure', 'challenge', 'awe'],
     assignWhen: ['evidence of environmental difficulty', 'mid-trip emotional depth moment', 'contemplative persona'],
     avoidWhen: ['arrival day', 'high social energy day', 'beginner traveler'],
+    practiceTitle: 'Breathe in what struggles.',
+    frontParagraph: 'Tonglen is the Tibetan Buddhist practice of breathing in difficulty and breathing out relief — a direct reversal of self-protection. Find anything in this landscape that is struggling — a damaged tree, a dry streambed. On the inhale, take in its difficulty. On the exhale, send ease. Notice what shifts in your attention.',
+    reflection: 'At day\'s end, notice what you might have otherwise missed.',
     connection: 'On the fire-scarred ridges above Big Sur, Tonglen finds its object. Breathe in the char, the loss. Breathe out cool fog and the green already returning at the base of each trunk. The discomfort is the practice working.',
   },
   {
@@ -457,6 +511,9 @@ export const CARDS = [
     bestFor: ['awe', 'gratitude', 'arrival', 'threshold', 'solo', 'shared'],
     assignWhen: ['iconic landscape moment', 'spiritual or devotional persona', 'opening day'],
     avoidWhen: [],
+    practiceTitle: 'Turn toward what moves you.',
+    frontParagraph: 'Bhakti is the Hindu path of devotional love — the understanding that the heart opened completely is itself the practice. Choose one thing in the landscape today — a rock face, a tree, a body of water — and spend fifteen minutes in deliberate devotion. Notice when the distance between you and it closes.',
+    reflection: 'At day\'s end, notice what you might have otherwise missed.',
     connection: 'The Na Pali Coast at sunset stops language. The fluted cliffs turn gold, then rose, then violet, and the heart does something the mind cannot direct — it opens. The canyon wall is worthy of devotion. Let the distance close.',
   },
   {
@@ -477,6 +534,9 @@ export const CARDS = [
     bestFor: ['arrival', 'rest', 'shared', 'gratitude', 'closure', 'fatigue'],
     assignWhen: ['group travel', 'rest day', 'relational tension', 'recovery day'],
     avoidWhen: [],
+    practiceTitle: 'Extend the circle.',
+    frontParagraph: 'Metta is the Buddhist practice of loving-kindness — deliberately cultivating goodwill toward all beings without exception. Begin with yourself: may I be well. Extend it to someone you love. Then to a stranger on the trail. Then to every creature in this landscape. Notice the circle expanding.',
+    reflection: 'At day\'s end, notice what you might have otherwise missed.',
     connection: 'Begin with yourself on the shore at Ke\'e Beach. May I be well. Extend it to the monk seal on the sand, to every creature sharing this coast. Let the circle expand until it has no edge.',
   },
   {
@@ -497,6 +557,9 @@ export const CARDS = [
     bestFor: ['arrival', 'departure', 'closure', 'threshold', 'solo', 'shared'],
     assignWhen: ['opening or closing day of trip', 'contemplative or spiritual persona', 'group travel'],
     avoidWhen: [],
+    practiceTitle: 'Dedicate the day outward.',
+    frontParagraph: 'Bodhicitta is the awakening mind from Buddhism — the resolve to awaken not for yourself alone but for all beings. Before you move today, set this intention: whatever clarity I find, I dedicate outward. Notice how the quality of attention changes when each conscious act becomes an offering.',
+    reflection: 'At day\'s end, notice what you might have otherwise missed.',
     connection: 'Before the first step onto the Boy Scout Trail at dawn, sit in the Joshua Tree parking lot and set the dedication: whatever clarity this desert gives me, I offer outward. The care you bring to each step becomes the practice.',
   },
   {
@@ -517,6 +580,9 @@ export const CARDS = [
     bestFor: ['challenge', 'gratitude', 'closure', 'shared', 'departure'],
     assignWhen: ['high-impact or heavily used trail', 'final day of trip', 'tread lightly persona'],
     avoidWhen: [],
+    practiceTitle: 'Give something back.',
+    frontParagraph: 'Seva is selfless service from Hinduism & Yoga — action performed without attachment to outcome. During today\\\'s movement, practice one act of seva for the land. Carry out what you find. Restore something displaced. Notice what completeness feels like when the action is its own reward.',
+    reflection: 'At day\'s end, notice what you might have otherwise missed.',
     connection: 'The Angels Landing chain section sees a thousand hands a day. Move the loose rock that will trip the next hiker. Carry out the wrapper wedged in the crack. The action is complete in itself — no announcement, no story.',
   },
   {
@@ -537,6 +603,9 @@ export const CARDS = [
     bestFor: ['shared', 'arrival', 'gratitude', 'awe', 'closure'],
     assignWhen: ['group travel', 'community-oriented persona', 'heavily storied landscape'],
     avoidWhen: [],
+    practiceTitle: 'Name who carried you here.',
+    frontParagraph: 'Ubuntu is a Nguni Bantu philosophy — a person is a person through other persons. As you move today, pause once an hour and name something whose existence made this moment possible — the trail builder, the tree that held the hillside, the rain that fell last winter. Notice the web becoming visible.',
+    reflection: 'At day\'s end, notice what you might have otherwise missed.',
     connection: 'The Kalaloch coast was shaped by hands you will never shake — the Quinault people, the CCC crews, the rain that fell last winter. Pause once an hour and name one. Let the web become visible.',
   },
 
@@ -559,6 +628,9 @@ export const CARDS = [
     bestFor: ['arrival', 'threshold', 'awe', 'gratitude', 'shared'],
     assignWhen: ['clear dawn forecast', 'opening day of trip', 'expansive eastern view'],
     avoidWhen: ['rest day', 'injury or physical limitation day'],
+    practiceTitle: 'Greet the light.',
+    frontParagraph: 'Surya Namaskar is a devotional sun salutation from Hinduism & Yoga — twelve postures as gratitude to the source of all life. Before full sunrise, find open ground facing east. Nine rounds, moving slowly. Notice the moment the sun clears the horizon and the whole landscape changes temperature.',
+    reflection: 'At day\'s end, notice what you might have otherwise missed.',
     connection: 'Face east from Keys View before the sun clears the Little San Bernardino Mountains. Nine rounds on the flat rock, each a gesture of gratitude to the light. The desert amplifies everything — the heat, the silence, the moment the valley ignites.',
   },
   {
@@ -579,6 +651,9 @@ export const CARDS = [
     bestFor: ['arrival', 'transition', 'threshold', 'closure', 'solo'],
     assignWhen: ['water access day', 'arrival day at new destination', 'emotional transition point'],
     avoidWhen: ['no water access', 'town day'],
+    practiceTitle: 'Let the water take it.',
+    frontParagraph: 'Misogi is ritual water purification from Shinto — washing away the accumulated weight of ordinary life. At any natural water source today, stand at the edge and name what you are releasing. Bring cold water to your face three times. Notice what shifts — not the temperature but the attention.',
+    reflection: 'At day\'s end, notice what you might have otherwise missed.',
     connection: 'At the base of Wailua Falls, stand at the edge and name what you are releasing. Cold water to the face three times. The shock is the release made physical. What shifts is not the temperature but the attention.',
   },
   {
@@ -599,6 +674,9 @@ export const CARDS = [
     bestFor: ['awe', 'threshold', 'closure', 'solo', 'departure'],
     assignWhen: ['final day of trip', 'expansive ancient landscape', 'significant threshold moment'],
     avoidWhen: ['day 1', 'arrival day', 'traveler in emotional difficulty'],
+    practiceTitle: 'Let the ending sharpen you.',
+    frontParagraph: 'Memento Mori is the Stoic practice of meditating on death — not morbidly but as the primary instrument of presence. Find the oldest thing in your view — a rock face, a canyon carved over millions of years. Let its age make your own scale clear. Notice what sharpens in the next ten minutes.',
+    reflection: 'At day\'s end, notice what you might have otherwise missed.',
     connection: 'The Great White Throne has stood for 170 million years. Sit at its base and let that scale make your own clear. This exact light on this exact wall will not repeat. The urgency is the gift.',
   },
   {
@@ -619,6 +697,9 @@ export const CARDS = [
     bestFor: ['awe', 'gratitude', 'threshold', 'departure', 'closure', 'shared'],
     assignWhen: ['iconic moment day', 'final evening', 'special meal or gathering', 'summit day'],
     avoidWhen: [],
+    practiceTitle: 'Let this be the only time.',
+    frontParagraph: 'Ichi-go Ichi-e is the Zen understanding that every encounter is utterly unique and will never be repeated. At one moment today — a meal, a view, a quality of light on water — stop completely. This is happening once and it is already ending. Notice the difference between consuming an experience and receiving one.',
+    reflection: 'At day\'s end, notice what you might have otherwise missed.',
     connection: 'McWay Falls at 4 PM in October — the particular angle of light through the cove, the waterfall catching gold for exactly eleven minutes. This configuration will not converge again. Hold it without reaching.',
   },
   {
@@ -639,6 +720,9 @@ export const CARDS = [
     bestFor: ['arrival', 'awe', 'transition', 'gratitude', 'solo'],
     assignWhen: ['edge landscape day', 'forest or coastal destination', 'trail with distinct zones'],
     avoidWhen: ['urban or town day'],
+    practiceTitle: 'Walk the edge between.',
+    frontParagraph: 'Satoyama is the Shinto concept of the sacred threshold — the landscape between tended and wild where the kami are most present. Walk the edge between two kinds of landscape today — trail and wild, rock and vegetation, forest and open. Notice what is happening between them, not on either side.',
+    reflection: 'At day\'s end, notice what you might have otherwise missed.',
     connection: 'Where the Ozette Loop trail meets the coastal headland, the maintained path gives way to beach. Sit exactly at the threshold where the forest canopy ends and the sea stacks begin. This edge is where the kami are most present.',
   },
   {
@@ -659,6 +743,9 @@ export const CARDS = [
     bestFor: ['awe', 'closure', 'departure', 'gratitude', 'threshold', 'solo'],
     assignWhen: ['final day or evening of trip', 'sunset or sunrise moment', 'peak season beauty'],
     avoidWhen: ['traveler in grief or loss — read the room'],
+    practiceTitle: 'Watch something beautiful change.',
+    frontParagraph: 'Mono no Aware is the Japanese aesthetic of tender sadness at the transience of beauty — beauty because it passes. Find one beautiful thing today and watch it change. The light moving across a rock face. A cloud dissolving. Notice the moment when the beauty and the transience arrive simultaneously.',
+    reflection: 'At day\'s end, notice what you might have otherwise missed.',
     connection: 'The fog that rolls into Big Sur most mornings erases the coastline — then burns off, and the light on the water is unrepeatable. The trip is ending. The canyon light is changing. Stay until something softens.',
   },
   {
@@ -679,6 +766,9 @@ export const CARDS = [
     bestFor: ['rest', 'fatigue', 'arrival', 'solo', 'awe', 'uncertainty'],
     assignWhen: ['forest destination', 'rest day', 'mid-trip reset', 'overstimulated traveler'],
     avoidWhen: ['desert or treeless landscape', 'town day'],
+    practiceTitle: 'Receive what the forest offers.',
+    frontParagraph: 'Shinrin-yoku is the Japanese practice of therapeutic forest immersion — not hiking, not exercise, just being inside the living atmosphere of trees. Walk at half your normal pace for thirty minutes. No phone. Open each sense in sequence. Notice what the body does when the mind stops directing the experience.',
+    reflection: 'At day\'s end, notice what you might have otherwise missed.',
     connection: 'The Hoh Rainforest receives twelve feet of rain a year. Walk at half pace. No phone. Open each sense in sequence. The forest doesn\'t need your attention to function. But your attention is what makes it medicine.',
   },
 ];
