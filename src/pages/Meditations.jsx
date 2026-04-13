@@ -666,7 +666,7 @@ function PracticeCardScreen({ card, principle, cardIndex, principleIndex = 0 }) 
             color: '#FDF9F4', lineHeight: 1.0,
             letterSpacing: '0.01em', marginBottom: 24,
           }}>
-            {principleIndex * 6 + cardIndex + 1}. {card.practiceTitle || card.name}
+            {card.practiceTitle || card.name}
           </div>
           <div style={{
             fontSize: 16, fontFamily: SANS, fontWeight: 400,
