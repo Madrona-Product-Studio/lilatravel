@@ -260,8 +260,8 @@ function WelcomeScreen() {
 
       {/* Title */}
       <div style={{
-        fontSize: 'clamp(52px, 12vw, 68px)', fontFamily: SERIF,
-        color: '#1C1917', fontWeight: 300, lineHeight: 1.0,
+        fontSize: 'clamp(46px, 10vw, 58px)', fontFamily: SANS,
+        color: '#1C1917', fontWeight: 700, lineHeight: 1.0,
         letterSpacing: '-0.01em', marginBottom: 10,
         position: 'relative',
       }}>
