@@ -1,11 +1,12 @@
 import { Resend } from 'resend';
-import { checkOrigin, escapeHtml, isValidEmail } from './_utils.js';
+import { checkOrigin, checkRateLimit, escapeHtml, isValidEmail } from './_utils.js';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).end();
   if (!checkOrigin(req, res)) return;
+  if (!checkRateLimit(req, res, 'send-contact-email')) return;
 
   const { name, email, category, message } = req.body;
 

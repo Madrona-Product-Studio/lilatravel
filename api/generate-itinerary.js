@@ -15,7 +15,7 @@ import Anthropic from '@anthropic-ai/sdk';
 import fs from 'fs';
 import path from 'path';
 import { assembleContext, buildClaudeMessage } from '../src/services/destination-data.js';
-import { checkOrigin } from './_utils.js';
+import { checkOrigin, checkRateLimit } from './_utils.js';
 
 const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
@@ -33,6 +33,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
   if (!checkOrigin(req, res)) return;
+  if (!checkRateLimit(req, res, 'generate-itinerary')) return;
 
   try {
     const t0 = Date.now();

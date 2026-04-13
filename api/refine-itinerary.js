@@ -14,7 +14,7 @@
 import Anthropic from '@anthropic-ai/sdk';
 import fs from 'fs';
 import path from 'path';
-import { checkOrigin } from './_utils.js';
+import { checkOrigin, checkRateLimit } from './_utils.js';
 import { loadGuide } from '../src/services/destination-data.js';
 
 const anthropic = new Anthropic({
@@ -520,6 +520,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
   if (!checkOrigin(req, res)) return;
+  if (!checkRateLimit(req, res, 'refine-itinerary')) return;
 
   let keepalive;
   try {

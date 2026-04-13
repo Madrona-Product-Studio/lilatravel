@@ -2,6 +2,68 @@
  * Shared utilities for API routes.
  */
 
+// ─── Rate Limiting ──────────────────────────────────────────────────────────
+// In-memory per-instance rate limiter. Vercel keeps instances warm for ~15min,
+// so this catches sustained abuse from a single IP within that window.
+// Not perfect (resets on cold start) but dramatically better than nothing.
+
+const rateLimitStore = new Map();
+
+const RATE_LIMITS = {
+  // endpoint key → { maxRequests, windowMs }
+  'generate-itinerary':      { maxRequests: 5,  windowMs: 60 * 60 * 1000 },  // 5/hour
+  'refine-itinerary':        { maxRequests: 10, windowMs: 60 * 60 * 1000 },  // 10/hour
+  'generate-alternatives':   { maxRequests: 15, windowMs: 60 * 60 * 1000 },  // 15/hour
+  'generate-card-connections': { maxRequests: 10, windowMs: 60 * 60 * 1000 }, // 10/hour
+  'extract-booking':         { maxRequests: 20, windowMs: 60 * 60 * 1000 },  // 20/hour
+  'send-trip-email':         { maxRequests: 10, windowMs: 60 * 60 * 1000 },  // 10/hour
+  'send-contact-email':      { maxRequests: 5,  windowMs: 60 * 60 * 1000 },  // 5/hour
+};
+
+/**
+ * Check rate limit for the given endpoint. Returns true if allowed, false if blocked.
+ * Sets 429 status and Retry-After header when blocked.
+ */
+export function checkRateLimit(req, res, endpointKey) {
+  const config = RATE_LIMITS[endpointKey];
+  if (!config) return true; // no limit configured
+
+  const ip = req.headers['x-forwarded-for']?.split(',')[0]?.trim()
+           || req.headers['x-real-ip']
+           || req.socket?.remoteAddress
+           || 'unknown';
+  const key = `${endpointKey}:${ip}`;
+  const now = Date.now();
+
+  let entry = rateLimitStore.get(key);
+  if (!entry || now - entry.windowStart > config.windowMs) {
+    // New window
+    entry = { windowStart: now, count: 0 };
+  }
+
+  entry.count++;
+  rateLimitStore.set(key, entry);
+
+  // Cleanup old entries periodically (every 100 checks)
+  if (rateLimitStore.size > 500) {
+    for (const [k, v] of rateLimitStore) {
+      if (now - v.windowStart > config.windowMs) rateLimitStore.delete(k);
+    }
+  }
+
+  if (entry.count > config.maxRequests) {
+    const retryAfter = Math.ceil((config.windowMs - (now - entry.windowStart)) / 1000);
+    res.setHeader('Retry-After', String(retryAfter));
+    res.status(429).json({
+      error: 'Too many requests. Please try again later.',
+      retryAfter,
+    });
+    return false;
+  }
+
+  return true;
+}
+
 const ALLOWED_ORIGINS = [
   'https://www.lilatrips.com',
   'https://lilatrips.com',

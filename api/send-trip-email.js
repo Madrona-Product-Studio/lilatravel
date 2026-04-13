@@ -1,11 +1,12 @@
 import { Resend } from 'resend';
-import { checkOrigin, escapeHtml, isSafeUrl, isValidEmail } from './_utils.js';
+import { checkOrigin, checkRateLimit, escapeHtml, isSafeUrl, isValidEmail } from './_utils.js';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).end();
   if (!checkOrigin(req, res)) return;
+  if (!checkRateLimit(req, res, 'send-trip-email')) return;
 
   const { email, itineraryUrl, mode, itineraryTitle } = req.body;
 
