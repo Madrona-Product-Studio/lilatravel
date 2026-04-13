@@ -262,7 +262,7 @@ function WelcomeScreen() {
       <div style={{
         fontSize: 'clamp(52px, 12vw, 68px)', fontFamily: SERIF,
         color: '#1C1917', fontWeight: 300, lineHeight: 1.0,
-        letterSpacing: '-0.01em', marginBottom: 14,
+        letterSpacing: '-0.01em', marginBottom: 10,
         position: 'relative',
       }}>
         Begin
@@ -272,10 +272,10 @@ function WelcomeScreen() {
       <div style={{
         fontSize: 15, fontFamily: SANS, fontWeight: 500,
         color: 'rgba(28,25,23,0.58)', lineHeight: 1.75,
-        marginBottom: 28,
+        marginBottom: 22,
         position: 'relative',
       }}>
-        Ancient practices for wild places.
+        30 ancient practices for wild places.
       </div>
 
       {/* Soul — the emotional center */}
@@ -285,7 +285,7 @@ function WelcomeScreen() {
           color: 'rgba(28,25,23,0.82)', lineHeight: 1.55,
           marginBottom: 14,
         }}>
-          Not instructions — invitations
+          Not instructions — invitations.
         </div>
         <div style={{
           fontSize: 15, fontFamily: SANS, fontWeight: 400,
@@ -300,7 +300,7 @@ function WelcomeScreen() {
       {/* Return */}
       <div style={{
         fontSize: 14, fontFamily: SANS,
-        color: 'rgba(28,25,23,0.3)', lineHeight: 1.9,
+        color: 'rgba(28,25,23,0.4)', lineHeight: 1.9,
         position: 'relative',
       }}>
         Return to the ones that stay.
