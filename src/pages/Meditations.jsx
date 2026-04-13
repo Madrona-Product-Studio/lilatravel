@@ -597,7 +597,7 @@ function ChapterScreen({ principle, principleIndex }) {
 // PRACTICE CARD SCREEN (two-faced: front + back)
 // ═══════════════════════════════════════════════════════════════════════════════
 
-function PracticeCardScreen({ card, principle, cardIndex }) {
+function PracticeCardScreen({ card, principle, cardIndex, principleIndex = 0 }) {
   const [flipped, setFlipped] = useState(false);
   const [flipAnimating, setFlipAnimating] = useState(false);
 
@@ -666,7 +666,7 @@ function PracticeCardScreen({ card, principle, cardIndex }) {
             color: '#FDF9F4', lineHeight: 1.0,
             letterSpacing: '0.01em', marginBottom: 24,
           }}>
-            {card.practiceTitle || card.name}
+            {principleIndex * 6 + cardIndex + 1}. {card.practiceTitle || card.name}
           </div>
           <div style={{
             fontSize: 16, fontFamily: SANS, fontWeight: 400,
@@ -841,7 +841,7 @@ function renderScreen(scr) {
   if (scr.type === 'orientation') return <OrientationScreen />;
   if (scr.type === 'tradition') return <TraditionScreen key={scr.tradition.name} tradition={scr.tradition} />;
   if (scr.type === 'chapter') return <ChapterScreen key={`ch-${scr.principleIndex}`} principle={scr.principle} principleIndex={scr.principleIndex} />;
-  if (scr.type === 'card') return <PracticeCardScreen key={`${scr.principleIndex}-${scr.cardIndex}`} card={scr.card} principle={scr.principle} cardIndex={scr.cardIndex} />;
+  if (scr.type === 'card') return <PracticeCardScreen key={`${scr.principleIndex}-${scr.cardIndex}`} card={scr.card} principle={scr.principle} cardIndex={scr.cardIndex} principleIndex={scr.principleIndex} />;
   return null;
 }
 
