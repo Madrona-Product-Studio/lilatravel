@@ -243,7 +243,8 @@ function WelcomeScreen() {
       width: '100%', height: '100%',
       background: '#F7F4EE',
       display: 'flex', flexDirection: 'column',
-      padding: '52px 36px 48px',
+      justifyContent: 'center',
+      padding: '0 36px 48px',
       position: 'relative', overflow: 'hidden',
       borderRadius: 14,
       border: '0.5px solid rgba(0,0,0,0.08)',
@@ -261,55 +262,58 @@ function WelcomeScreen() {
       <div style={{
         fontSize: 'clamp(52px, 12vw, 68px)', fontFamily: SERIF,
         color: '#1C1917', fontWeight: 300, lineHeight: 1.0,
-        letterSpacing: '-0.01em', marginBottom: 16,
+        letterSpacing: '-0.01em', marginBottom: 14,
         position: 'relative',
       }}>
         Begin
       </div>
 
-      {/* Hook */}
+      {/* Framing */}
       <div style={{
         fontSize: 15, fontFamily: SANS, fontWeight: 500,
-        color: 'rgba(28,25,23,0.65)', lineHeight: 1.75,
-        marginBottom: 32,
+        color: 'rgba(28,25,23,0.58)', lineHeight: 1.75,
+        marginBottom: 28,
         position: 'relative',
       }}>
         Ancient practices for wild places.
       </div>
 
-      {/* Soul — the core idea */}
-      <div style={{
-        fontSize: 16, fontFamily: SANS, fontWeight: 500,
-        color: 'rgba(28,25,23,0.78)', lineHeight: 1.85,
-        marginBottom: 24,
-        position: 'relative',
-      }}>
-        Not instructions — invitations<br />
-        to notice differently,<br />
-        to move more slowly,<br />
-        to pay attention.
+      {/* Soul — the emotional center */}
+      <div style={{ position: 'relative', marginBottom: 8 }}>
+        <div style={{
+          fontSize: 17, fontFamily: SANS, fontWeight: 600,
+          color: 'rgba(28,25,23,0.82)', lineHeight: 1.55,
+          marginBottom: 14,
+        }}>
+          Not instructions — invitations
+        </div>
+        <div style={{
+          fontSize: 15, fontFamily: SANS, fontWeight: 400,
+          color: 'rgba(28,25,23,0.55)', lineHeight: 2.0,
+        }}>
+          to notice differently,<br />
+          to move more slowly,<br />
+          to pay attention.
+        </div>
       </div>
 
-      {/* Closing */}
+      {/* Return */}
       <div style={{
         fontSize: 14, fontFamily: SANS,
-        color: 'rgba(28,25,23,0.35)', lineHeight: 1.9,
+        color: 'rgba(28,25,23,0.3)', lineHeight: 1.9,
         position: 'relative',
       }}>
         Return to the ones that stay.
       </div>
 
-      {/* Spacer */}
-      <div style={{ flex: 1 }} />
-
-      {/* Instruction */}
+      {/* Closing — anchored bottom */}
       <div style={{
+        position: 'absolute', bottom: 36, left: 36,
         fontSize: 12, fontFamily: SANS,
-        color: 'rgba(28,25,23,0.3)',
-        letterSpacing: '0.05em',
-        position: 'relative',
+        color: 'rgba(28,25,23,0.25)',
+        letterSpacing: '0.04em',
       }}>
-        Turn a card to go deeper.
+        Some cards invite you deeper.
       </div>
     </div>
   );
