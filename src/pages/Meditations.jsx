@@ -575,8 +575,8 @@ function ChapterScreen({ principle, principleIndex }) {
             padding: '9px 0',
             borderBottom: i < 5 ? '0.5px solid rgba(255,255,255,0.08)' : 'none',
           }}>
-            <div style={{ fontSize: 11, color: 'white', opacity: 0.55, fontFamily: SANS, minWidth: 16 }}>
-              {i + 1}
+            <div style={{ fontSize: 11, color: 'white', opacity: 0.55, fontFamily: SANS, minWidth: 20 }}>
+              {principleIndex * 6 + i + 1}.
             </div>
             <div style={{ flex: 1 }}>
               <div style={{ fontSize: 16, fontFamily: SANS, color: 'white', opacity: 0.9, fontWeight: 400 }}>
