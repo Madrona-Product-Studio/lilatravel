@@ -4,6 +4,7 @@ import { C as BrandC } from '@data/brand';
 import { translateFormToApi } from "../services/form-to-api";
 import { trackEvent } from '@utils/analytics';
 import { safeJson, fetchWithTimeout } from '@utils/fetchHelpers';
+import { clearSession } from '@services/sessionManager';
 import LilaModal from '@components/LilaModal';
 import { Helmet } from 'react-helmet-async';
 
@@ -2253,6 +2254,8 @@ export default function PlanMyTrip() {
       }
       const ok = response.ok && result?.success;
       if (ok) {
+        // Fresh session for each new trip so iterations don't cross-pollinate
+        clearSession();
         navigate('/itinerary', {
           state: {
             itinerary: result.itinerary,

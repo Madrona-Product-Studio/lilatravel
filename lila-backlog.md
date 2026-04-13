@@ -7,6 +7,7 @@ _Last updated: March 30, 2026. Living document — update as items are completed
 ## 🔴 In Progress
 
 - [ ] **`/trip/:shareToken` route** — viewer for shared itineraries. Required for save/share loop to work end-to-end. Currently falls back to session URL which breaks after session ends.
+- [x] **Suitcase + iterations hardening** (Apr 2026) — fixed duplicate suitcase entries (trip-append now fires exactly once via useRef guard + stable trip ID), fixed unrelated trips appearing as iterations (clearSession on new generation so each trip gets its own session_id), enhanced deduplication (filters same-destination untitled entries from same day), title patch deferred to after save when title is known.
 
 - [x] **Card Deck system** (Apr 2026) — 30-card practice deck replaces the AI-generated mindfulness pick. Five-principle taxonomy (Presence / Oneness / Flow / Compassion / Reverence). Implemented per `claude-code-brief-card-deck.md`:
   - [x] Part 1 — Fixed latent `PRINCIPLES` color/glyph bug in `practicesService.js` (PracticesExplorer was reading `undefined` for both fields)

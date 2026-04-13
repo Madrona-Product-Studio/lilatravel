@@ -4065,36 +4065,48 @@ export default function ItineraryResults() {
     return () => { document.body.style.overflow = ''; };
   }, [activePanel]);
 
+  const hasAppendedTrip = useRef(false);
+  // Stable trip ID — generated once per page load, never recomputed
+  const stableTripId = useRef(sessionStorage.getItem('lila_trip_id') || crypto.randomUUID());
+
   useEffect(() => {
     // Don't redirect while still loading a shared trip, or if there's a share error (show error UI instead)
     if (loadingShared) return;
     if (shareError) return;
     if (!rawItinerary) { navigate('/plan'); return; }
     setTimeout(() => setVisible(true), 100);
-    // Append trip to lila_trips array (multi-trip support)
-    // Use the original iteration's ID as a stable group key so all revisions map to one trip
-    const groupId = iterations.find(it => it.iteration === 0)?.id || itineraryId || crypto.randomUUID();
-    const tripId = groupId;
-    const path = shareToken ? `/trip/${shareToken}` : (itineraryId ? `/trip/${itineraryId}` : '/itinerary');
+
+    // Append trip to lila_trips exactly once per page load
+    if (hasAppendedTrip.current) return;
+    hasAppendedTrip.current = true;
+
+    const tripId = stableTripId.current;
+    const path = shareToken ? `/trip/${shareToken}` : '/itinerary';
     const DEST_NAMES = { zion: 'Zion Canyon', bigSur: 'Big Sur', joshuaTree: 'Joshua Tree', olympic: 'Olympic Peninsula', kauai: 'Kauai', vancouver: 'Vancouver Island' };
     const newTrip = {
       id: tripId,
-      groupId,
+      groupId: tripId,
       path,
       destination: DEST_NAMES[formData?.destination] || formData?.destination || 'Your Trip',
-      title: tripTitle || null,
+      title: null, // patched after save when title is known
       generatedAt: Date.now(),
     };
     try {
       const existing = JSON.parse(localStorage.getItem('lila_trips') || '[]');
-      // Deduplicate by groupId — keep only the latest entry per trip
-      const filtered = existing.filter(t => (t.groupId || t.id) !== groupId);
+      // Deduplicate by groupId OR matching destination + same-day generation
+      const today = new Date().toDateString();
+      const filtered = existing.filter(t => {
+        if ((t.groupId || t.id) === tripId) return false;
+        // Also remove same-destination entries from today with no title (phantom duplicates)
+        if (t.destination === newTrip.destination && !t.title && t.generatedAt && new Date(t.generatedAt).toDateString() === today) return false;
+        return true;
+      });
       const updated = [newTrip, ...filtered].slice(0, 10);
       localStorage.setItem('lila_trips', JSON.stringify(updated));
       sessionStorage.setItem('lila_trip_id', tripId);
       window.dispatchEvent(new Event('lila_trips_changed'));
     } catch {}
-  }, [rawItinerary, navigate, loadingShared, shareToken, formData, shareError, iterations, itineraryId]);
+  }, [rawItinerary, navigate, loadingShared, shareToken, formData, shareError]);
 
   // Parse itinerary — re-parses only when rawItinerary changes (i.e. after refinement)
   const itinerary = useMemo(() => {
@@ -4366,22 +4378,20 @@ export default function ItineraryResults() {
         });
       }
 
-      // Patch trip title + path in lila_trips array
-      const tripId = sessionStorage.getItem('lila_trip_id');
-      if (tripId && itinerary.title) {
-        try {
-          const trips = JSON.parse(localStorage.getItem('lila_trips') || '[]');
-          const idx = trips.findIndex(t => t.id === tripId || t.groupId === tripId);
-          if (idx !== -1) {
-            trips[idx].title = tripTitle || itinerary.title;
-            // Keep path pointing to current share token or latest itinerary
-            if (shareToken) trips[idx].path = `/trip/${shareToken}`;
-            else if (itineraryId) trips[idx].path = `/trip/${itineraryId}`;
-            localStorage.setItem('lila_trips', JSON.stringify(trips));
-            window.dispatchEvent(new Event('lila_trips_changed'));
-          }
-        } catch {}
-      }
+      // Patch trip title + path now that save has completed and title is known
+      const tripId = stableTripId.current;
+      try {
+        const trips = JSON.parse(localStorage.getItem('lila_trips') || '[]');
+        const idx = trips.findIndex(t => t.id === tripId || t.groupId === tripId);
+        if (idx !== -1) {
+          trips[idx].title = tripTitle || itinerary.title || trips[idx].title;
+          if (shareToken) trips[idx].path = `/trip/${shareToken}`;
+          else if (itineraryId) trips[idx].path = `/trip/${itineraryId}`;
+          trips[idx].groupId = tripId;
+          localStorage.setItem('lila_trips', JSON.stringify(trips));
+          window.dispatchEvent(new Event('lila_trips_changed'));
+        }
+      } catch {}
     }
   }, [isStructured, itinerary, formData]);
 
