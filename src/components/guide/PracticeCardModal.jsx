@@ -95,7 +95,7 @@ function FrontFace({ card, principle, onFlip, onClose }) {
         aria-hidden
         style={{
           position: 'absolute', inset: 0,
-          background: 'radial-gradient(ellipse at 50% 10%, rgba(255,255,255,0.07) 0%, transparent 55%)',
+          background: 'radial-gradient(ellipse at 50% 10%, rgba(255,255,255,0.09) 0%, transparent 55%)',
           pointerEvents: 'none',
         }}
       />
@@ -124,14 +124,14 @@ function FrontFace({ card, principle, onFlip, onClose }) {
           </div>
         </div>
 
-        <div style={{ height: 38, flexShrink: 0 }} />
+        <div style={{ height: 32, flexShrink: 0 }} />
 
         {/* Practice block */}
         <div style={{ padding: '0 28px', flexShrink: 0 }}>
           <div className="font-body" style={{
             fontSize: 32, fontWeight: 700,
             color: '#FDF9F4', lineHeight: 1.0,
-            letterSpacing: '0.01em', marginBottom: 32,
+            letterSpacing: '0.01em', marginBottom: 24,
           }}>
             {card.practiceTitle || card.name}
           </div>
@@ -156,7 +156,7 @@ function FrontFace({ card, principle, onFlip, onClose }) {
         <div style={{ flex: 1 }} />
 
         {/* Flip arrow */}
-        <div style={{ display: 'flex', justifyContent: 'flex-end', padding: '12px 22px 20px' }}>
+        <div style={{ display: 'flex', justifyContent: 'flex-end', padding: '12px 28px 28px' }}>
           <div style={{ opacity: 0.6 }}>
             <FlipArrow />
           </div>
@@ -209,14 +209,23 @@ function BackFace({ card, principle, connection, onFlip, onClose }) {
       {/* Content group */}
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', paddingBottom: 40 }}>
 
-        {/* Opening */}
+        {/* Opening — two sentences */}
         <div style={{ padding: '14px 22px 0' }}>
-          <div className="font-body" style={{
-            fontSize: 14, fontWeight: 400,
-            color: '#1C1917', lineHeight: 1.75,
-          }}>
-            {card.backOpening || card.teaching}
-          </div>
+          {(() => {
+            const text = card.backOpening || card.teaching;
+            const split = text.indexOf('. ');
+            if (split > 0) {
+              return (<>
+                <div className="font-body" style={{ fontSize: 14, fontWeight: 400, color: '#1C1917', lineHeight: 1.75, marginBottom: 10 }}>
+                  {text.substring(0, split + 1)}
+                </div>
+                <div className="font-body" style={{ fontSize: 14, fontWeight: 400, color: '#1C1917', lineHeight: 1.75 }}>
+                  {text.substring(split + 2)}
+                </div>
+              </>);
+            }
+            return <div className="font-body" style={{ fontSize: 14, fontWeight: 400, color: '#1C1917', lineHeight: 1.75 }}>{text}</div>;
+          })()}
         </div>
 
         {/* Quote */}
@@ -225,7 +234,6 @@ function BackFace({ card, principle, connection, onFlip, onClose }) {
             margin: '0 22px', padding: '18px 0 14px',
             borderTop: '0.5px solid rgba(44,36,32,0.04)',
             borderBottom: '0.5px solid rgba(44,36,32,0.04)',
-            marginTop: 16,
           }}>
             <div className="font-body" style={{
               fontSize: 14, fontWeight: 400,
