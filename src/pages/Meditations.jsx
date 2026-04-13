@@ -243,7 +243,6 @@ function WelcomeScreen() {
       width: '100%', height: '100%',
       background: '#F7F4EE',
       display: 'flex', flexDirection: 'column',
-      justifyContent: 'space-between',
       padding: '52px 36px 48px',
       position: 'relative', overflow: 'hidden',
       borderRadius: 14,
@@ -258,50 +257,58 @@ function WelcomeScreen() {
         pointerEvents: 'none',
       }} />
 
-      {/* Section 1 — Title + hook */}
-      <div style={{ position: 'relative' }}>
-        <div style={{
-          fontSize: 'clamp(52px, 12vw, 68px)', fontFamily: SERIF,
-          color: '#1C1917', fontWeight: 300, lineHeight: 1.0,
-          letterSpacing: '-0.01em', marginBottom: 20,
-        }}>
-          Begin
-        </div>
-        <div style={{
-          fontSize: 15, fontFamily: SANS, fontWeight: 500,
-          color: 'rgba(28,25,23,0.72)', lineHeight: 1.75,
-          maxWidth: '90%',
-        }}>
-          30 cards. Five traditions.<br />
-          Ancient practices for wild places.
-        </div>
+      {/* Title */}
+      <div style={{
+        fontSize: 'clamp(52px, 12vw, 68px)', fontFamily: SERIF,
+        color: '#1C1917', fontWeight: 300, lineHeight: 1.0,
+        letterSpacing: '-0.01em', marginBottom: 16,
+        position: 'relative',
+      }}>
+        Begin
       </div>
 
-      {/* Section 2 — Soul + closing */}
-      <div style={{ position: 'relative' }}>
-        <div style={{
-          fontSize: 15, fontFamily: SANS, fontWeight: 400,
-          color: 'rgba(28,25,23,0.52)', lineHeight: 1.9,
-          maxWidth: '90%', marginBottom: 22,
-        }}>
-          Not instructions — invitations to notice differently, to move more slowly, to pay attention.
-        </div>
-        <div style={{
-          fontSize: 14, fontFamily: SANS,
-          color: 'rgba(28,25,23,0.32)', lineHeight: 1.9,
-        }}>
-          Return to the ones that stay.
-        </div>
+      {/* Hook */}
+      <div style={{
+        fontSize: 15, fontFamily: SANS, fontWeight: 500,
+        color: 'rgba(28,25,23,0.65)', lineHeight: 1.75,
+        marginBottom: 32,
+        position: 'relative',
+      }}>
+        Ancient practices for wild places.
       </div>
 
-      {/* Section 3 — Instruction */}
+      {/* Soul — the core idea */}
+      <div style={{
+        fontSize: 16, fontFamily: SANS, fontWeight: 500,
+        color: 'rgba(28,25,23,0.78)', lineHeight: 1.85,
+        marginBottom: 24,
+        position: 'relative',
+      }}>
+        Not instructions — invitations<br />
+        to notice differently,<br />
+        to move more slowly,<br />
+        to pay attention.
+      </div>
+
+      {/* Closing */}
+      <div style={{
+        fontSize: 14, fontFamily: SANS,
+        color: 'rgba(28,25,23,0.35)', lineHeight: 1.9,
+        position: 'relative',
+      }}>
+        Return to the ones that stay.
+      </div>
+
+      {/* Spacer */}
+      <div style={{ flex: 1 }} />
+
+      {/* Instruction */}
       <div style={{
         fontSize: 12, fontFamily: SANS,
-        color: 'rgba(28,25,23,0.32)',
+        color: 'rgba(28,25,23,0.3)',
         letterSpacing: '0.05em',
         position: 'relative',
       }}>
-        Swipe to move through.<br />
         Turn a card to go deeper.
       </div>
     </div>
