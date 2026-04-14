@@ -7,7 +7,7 @@
  * Screen sequence:
  *   Cover → Chapters Overview → per chapter: [Title → TOC → ...cards]
  *
- * Route: /ethos/movements
+ * Route: /practice/movements
  */
 
 import { useState, useRef, useEffect, useCallback } from 'react';
@@ -906,7 +906,13 @@ function CardScreen({ card, group, chapter }) {
 
 function renderScreen(scr, deckConfig) {
   if (!scr) return null;
-  if (scr.type === 'cover') return <CoverScreen subtitle={deckConfig?.subtitle} countLabel={deckConfig?.countLabel} markIds={deckConfig?.markIds} />;
+  if (scr.type === 'cover') {
+    if (deckConfig?.coverOverride) {
+      const Override = deckConfig.coverOverride;
+      return <Override />;
+    }
+    return <CoverScreen subtitle={deckConfig?.subtitle} countLabel={deckConfig?.countLabel} markIds={deckConfig?.markIds} />;
+  }
   if (scr.type === 'welcome') return <WelcomeScreen welcome={deckConfig?.welcome} />;
   if (scr.type === 'chapters') return <ChaptersScreen chapters={deckConfig?.chapters} />;
   if (scr.type === 'chapter-title') return <ChapterTitleScreen chapter={scr.chapter} chapterIndex={scr.chapterIndex} markId={deckConfig?.chapterMarkMap?.[scr.chapter.id]} />;
@@ -919,6 +925,8 @@ function renderScreen(scr, deckConfig) {
 // ═══════════════════════════════════════════════════════════════════════════════
 // PAGE COMPONENT
 // ═══════════════════════════════════════════════════════════════════════════════
+
+export { CoverScreen as MovementsCover };
 
 export default function Movements({ screens: screensProp, deckConfig } = {}) {
   // Use passed screens or fall back to original deck
@@ -1014,7 +1022,7 @@ export default function Movements({ screens: screensProp, deckConfig } = {}) {
       <Helmet>
         <title>{config.title}</title>
         <meta name="description" content={config.description} />
-        <link rel="canonical" href="https://lilatrips.com/ethos/movements" />
+        <link rel="canonical" href="https://lilatrips.com/practice/movements" />
       </Helmet>
 
       {/* Keyframes + desktop-only arrows */}

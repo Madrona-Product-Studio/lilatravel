@@ -849,6 +849,70 @@ export default function HomePage() {
       {/* ══ 4. OUR APPROACH — THREE BRAIDS ══════════════════════════════ */}
       <ApproachSectionHome />
 
+      {/* ══ LILA MEDITATIONS CTA ════════════════════════════════════════ */}
+      <section className="py-0">
+        <div className="max-w-[1100px] mx-auto px-6 md:px-[52px]">
+          <FadeIn>
+            <Link
+              to="/practice/meditations"
+              className="no-underline block"
+              onClick={() => trackEvent('homepage_cta_clicked', { action: 'open_meditations' })}
+            >
+              <div
+                className="relative overflow-hidden"
+                style={{
+                  background: 'linear-gradient(135deg, #5a7898 0%, #8a7880 35%, #d09070 70%, #e8a060 100%)',
+                }}
+              >
+                {/* Mountain silhouette */}
+                <svg
+                  className="absolute bottom-0 left-0 w-full"
+                  style={{ height: '40%' }}
+                  viewBox="0 0 960 100" preserveAspectRatio="none"
+                >
+                  <path d="M0,100 L0,62 L80,35 L160,52 L260,22 L340,42 L440,10 L540,32 L640,18 L740,38 L840,25 L960,32 L960,100 Z" fill="rgba(12,22,36,0.65)" />
+                  <path d="M0,100 L0,72 L100,55 L200,65 L320,45 L420,58 L520,38 L620,52 L720,42 L820,55 L960,48 L960,100 Z" fill="rgba(12,22,36,0.35)" />
+                </svg>
+
+                {/* Bottom vignette */}
+                <div className="absolute inset-0 pointer-events-none" style={{
+                  background: 'linear-gradient(to bottom, rgba(10,18,28,0.02) 0%, rgba(10,18,28,0.25) 100%)',
+                }} />
+
+                {/* Content */}
+                <div className="relative z-10 py-12 md:py-16 px-8 md:px-14 flex flex-col md:flex-row items-center gap-8 md:gap-14">
+                  {/* Left — text */}
+                  <div className="flex-1 min-w-0 text-center md:text-left">
+                    <div className="font-body text-[9px] font-bold tracking-[0.24em] uppercase text-white/45 mb-3">
+                      Lila Meditations
+                    </div>
+                    <div
+                      className="font-body font-bold text-white leading-[1.1] mb-3"
+                      style={{ fontSize: 'clamp(26px, 3.5vw, 36px)', letterSpacing: '-0.01em' }}
+                    >
+                      30 practices.<br />Ancient wisdom for wild places.
+                    </div>
+                    <div className="font-body text-[14px] font-normal text-white/60 leading-[1.7] max-w-[440px] mx-auto md:mx-0">
+                      Five principles drawn from five wisdom traditions — distilled into a swipeable card deck you can carry on any journey.
+                    </div>
+                    <div className="mt-6 inline-flex items-center gap-2 font-body text-[11px] font-bold tracking-[0.18em] uppercase text-white/55 transition-all duration-200 hover:text-white/85">
+                      Explore the deck <span className="text-sm">&rarr;</span>
+                    </div>
+                  </div>
+
+                  {/* Right — principle marks */}
+                  <div className="flex gap-5 shrink-0">
+                    {['◉', '◯', '≈', '❧', '✧'].map((g, i) => (
+                      <span key={i} className="text-xl text-white/50">{g}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </FadeIn>
+        </div>
+      </section>
+
       {/* ══ 5. TRAVEL YOUR WAY ═════════════════════════════════════════ */}
       <TravelYourWay />
 

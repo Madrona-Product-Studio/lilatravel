@@ -6,7 +6,7 @@
  * Matches Meditations deck style: warm background, two-faced flip cards,
  * tradition colors as front face backgrounds, cream back face.
  *
- * Route: /ethos/teachings
+ * Route: /practice/teachings
  */
 
 import { useState, useRef, useEffect, useCallback } from 'react';
@@ -99,42 +99,41 @@ function WelcomeScreen() {
 }
 
 // ═══════════════════════════════════════════════════════════════════════════════
-// COVER SCREEN (matches Meditations cover — sky gradient + symbols)
+// COVER SCREEN — indigo sky, conifer tree silhouettes
 // ═══════════════════════════════════════════════════════════════════════════════
 
-function CoverScreen() {
-  const sky = ['#5a6878', '#7a7080', '#b08868', '#c89060'];
-
+export function CoverScreen() {
   return (
     <div style={{ width: '100%', height: '100%', position: 'relative', overflow: 'hidden', borderRadius: 14 }}>
-      {/* Sky gradient */}
+
+      {/* Sky gradient — indigo to amber */}
       <div style={{
         position: 'absolute', inset: 0,
-        background: `linear-gradient(185deg, ${sky[0]} 0%, ${sky[1]} 30%, ${sky[2]} 60%, ${sky[3]} 100%)`,
+        background: 'linear-gradient(185deg, #28304a 0%, #5a5060 30%, #a07850 62%, #c89858 100%)',
       }} />
 
-      {/* Sun glow */}
+      {/* Warm glow at horizon */}
       <div style={{
         position: 'absolute', left: '50%', top: '55%',
         transform: 'translate(-50%, -50%)',
         width: 220, height: 220, borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(200,144,96,0.5) 0%, rgba(200,120,60,0.15) 45%, transparent 70%)',
+        background: 'radial-gradient(circle, rgba(220,160,80,0.4) 0%, rgba(220,160,80,0.1) 45%, transparent 70%)',
         filter: 'blur(32px)', pointerEvents: 'none',
       }} />
 
-      {/* Silhouettes */}
-      <svg style={{ position: 'absolute', bottom: 0, width: '100%', height: '38%' }}
-        viewBox="0 0 390 200" preserveAspectRatio="none">
-        <path d="M0,200 L0,118 L43,70 L88,104 L132,46 L176,86 L221,20 L265,66 L309,36 L354,73 L390,52 L390,200 Z"
-          fill="rgba(12,22,36,0.90)" />
-        <path d="M0,200 L0,145 L38,110 L78,130 L128,90 L172,118 L218,76 L265,106 L310,73 L355,98 L390,83 L390,200 Z"
-          fill="rgba(12,22,36,0.52)" />
+      {/* Tree silhouettes — back layer */}
+      <svg style={{ position: 'absolute', bottom: 0, width: '100%', height: '50%' }}
+        viewBox="0 0 390 320" preserveAspectRatio="none">
+        <path d="M0,320 L0,210 L18,188 L30,205 L45,172 L58,190 L74,155 L88,174 L104,138 L118,157 L134,124 L148,142 L163,113 L178,130 L193,101 L208,118 L224,108 L238,125 L254,102 L268,120 L284,96 L298,114 L314,105 L328,122 L344,108 L360,125 L378,108 L390,120 L390,320 Z"
+          fill="rgba(10,14,24,0.52)" />
+        <path d="M0,320 L0,258 L18,235 L30,252 L46,218 L60,237 L78,200 L92,220 L110,182 L124,202 L142,168 L156,188 L173,158 L188,178 L205,145 L220,165 L238,172 L253,152 L270,178 L285,158 L303,182 L320,160 L338,178 L355,158 L372,172 L390,158 L390,320 Z"
+          fill="rgba(10,14,24,0.92)" />
       </svg>
 
       {/* Bottom vignette */}
       <div style={{
         position: 'absolute', inset: 0,
-        background: 'linear-gradient(to bottom, rgba(10,18,28,0.05) 0%, rgba(10,18,28,0.45) 100%)',
+        background: 'linear-gradient(to bottom, rgba(10,14,24,0.05) 0%, rgba(10,14,24,0.45) 100%)',
         pointerEvents: 'none',
       }} />
 
@@ -175,6 +174,7 @@ function CoverScreen() {
           30 concepts &middot; ancient wisdom for wild places
         </div>
       </div>
+
     </div>
   );
 }
@@ -590,6 +590,8 @@ function renderScreen(scr) {
 // PAGE COMPONENT (matches Meditations page — warm background, same nav)
 // ═══════════════════════════════════════════════════════════════════════════════
 
+export { CoverScreen as TeachingsCover };
+
 export default function TeachingsDeck() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [baseIndex, setBaseIndex] = useState(0);
@@ -675,7 +677,7 @@ export default function TeachingsDeck() {
       <Helmet>
         <title>Lila Teachings — Ancient Wisdom for Wild Places</title>
         <meta name="description" content="30 concepts across five wisdom traditions — from ancient India to Stoic Rome." />
-        <link rel="canonical" href="https://lilatrips.com/ethos/teachings" />
+        <link rel="canonical" href="https://lilatrips.com/practice/teachings" />
       </Helmet>
 
       <style>{`

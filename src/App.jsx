@@ -10,13 +10,14 @@
 //   /destinations/zion-canyon      → Dedicated Zion guide (custom page)
 //   /destinations/:slug            → Generic destination guide (auto-generated)
 //   /group-trips                   → Group Trips landing (Threshold Trips)
+//   /practice                       → Practice Library (four card deck landing page)
 //   /ethos                         → Ethos (three braids + philosophy)
 //   /ethos/:slug                   → Individual philosophy detail
 //   /ethos/philosophy               → Philosophy deep-dive (five principles × five traditions)
 //   /ethos/practices                → Practices Explorer (interactive wisdom layer browser)
-//   /ethos/meditations              → Lila Meditations (30-card deck explorer)
-//   /ethos/teachings               → Lila Teachings (30-concept tradition deck)
-//   /ethos/movements               → Lila Movements (body science card deck)
+//   /practice/meditations            → Lila Meditations (30-card deck explorer)
+//   /practice/teachings             → Lila Teachings (30-concept tradition deck)
+//   /practice/movements             → Lila Movements (body science card deck)
 //   /ways-to-travel                → Ways to Travel (how to get started)
 //   /trips/:slug                   → Individual Threshold Trip detail
 //   /trip/:token                   → Saved/shared itinerary (loaded via share token)
@@ -85,6 +86,7 @@ const TeachingsDeckPage = lazy(() => import('@pages/ethos/TeachingsDeck'));
 const MovementsPage = lazy(() => import('@pages/Movements'));
 const MovementsL1Page = lazy(() => import('@pages/MovementsL1'));
 const MovementsL2Page = lazy(() => import('@pages/MovementsL2'));
+const PracticeLibraryPage = lazy(() => import('@pages/PracticeLibrary'));
 const TripPage = lazy(() => import('@pages/trips/TripPage'));
 const ItineraryResults = lazy(() => import('./pages/ItineraryResults'));
 
@@ -138,15 +140,18 @@ export default function App() {
             {/* Group Trips */}
             <Route path="/group-trips" element={<GroupTripsPage />} />
 
+            {/* Practice Library */}
+            <Route path="/practice" element={<PracticeLibraryPage />} />
+
             {/* Ethos (formerly "Our Approach") */}
             <Route path="/ethos" element={<EthosPage />} />
             <Route path="/ethos/philosophy" element={<PhilosophyPage />} />
             <Route path="/ethos/practices" element={<PracticesExplorerPage />} />
-            <Route path="/ethos/meditations" element={<MeditationsPage />} />
-            <Route path="/ethos/teachings" element={<TeachingsDeckPage />} />
-            <Route path="/ethos/movements" element={<MovementsPage />} />
-            <Route path="/ethos/movements/practice" element={<MovementsL1Page />} />
-            <Route path="/ethos/movements/science" element={<MovementsL2Page />} />
+            <Route path="/practice/meditations" element={<MeditationsPage />} />
+            <Route path="/practice/teachings" element={<TeachingsDeckPage />} />
+            <Route path="/practice/movements" element={<MovementsPage />} />
+            <Route path="/practice/movements/practice" element={<MovementsL1Page />} />
+            <Route path="/practice/movements/science" element={<MovementsL2Page />} />
             <Route path="/ethos/:slug" element={<EthosDetail />} />
 
             {/* Trips (Threshold Trip detail pages) */}
@@ -168,6 +173,11 @@ export default function App() {
             <Route path="/approach" element={<Navigate to="/ethos" replace />} />
             <Route path="/approach/philosophy" element={<Navigate to="/ethos/philosophy" replace />} />
             <Route path="/approach/:slug" element={<Navigate to="/ethos" replace />} />
+            <Route path="/ethos/meditations" element={<Navigate to="/practice/meditations" replace />} />
+            <Route path="/ethos/teachings" element={<Navigate to="/practice/teachings" replace />} />
+            <Route path="/ethos/movements" element={<Navigate to="/practice/movements" replace />} />
+            <Route path="/ethos/movements/practice" element={<Navigate to="/practice/movements/practice" replace />} />
+            <Route path="/ethos/movements/science" element={<Navigate to="/practice/movements/science" replace />} />
             <Route path="/how-it-works" element={<Navigate to="/ways-to-travel" replace />} />
 
             {/* 404 */}

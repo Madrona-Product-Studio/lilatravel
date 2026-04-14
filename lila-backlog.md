@@ -98,6 +98,11 @@ _Last updated: March 30, 2026. Living document — update as items are completed
 
 ## ✅ Completed
 
+### Practice Library
+- [x] `/practice` landing page — four deck covers as scaled thumbnails, Ethos-style layout
+- [x] Teachings cover redesign — indigo sky, tree silhouettes
+- [x] lila body — new dune cover + name update
+
 ### Infrastructure & Foundation
 - [x] Supabase project setup + schema (sessions, itineraries, feedback_events)
 - [x] Phase 1 feedback capture — anonymous sessions writing to Supabase

@@ -1,6 +1,6 @@
 /**
  * MovementsL1.jsx — Lila Movements Level 1: The Practice
- * Route: /ethos/movements/practice
+ * Route: /practice/movements/practice
  */
 
 import { buildScreensL1, getTotalCardsL1 } from '@data/movementDeckL1';

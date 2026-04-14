@@ -278,7 +278,7 @@ export default function PhilosophyPage() {
           {/* Lila Meditations CTA */}
           <FadeIn delay={0.15}>
             <Link
-              to="/ethos/meditations"
+              to="/practice/meditations"
               className="no-underline block mt-10"
               onClick={() => trackEvent('philosophy_cta_clicked', { action: 'open_meditations' })}
             >
@@ -503,7 +503,7 @@ export default function PhilosophyPage() {
             </div>
 
             <Link
-              to="/ethos/meditations"
+              to="/practice/meditations"
               className="no-underline block mt-12 max-w-[480px] mx-auto relative overflow-hidden"
               onClick={() => trackEvent('philosophy_cta_clicked', { action: 'open_meditations_bottom' })}
             >

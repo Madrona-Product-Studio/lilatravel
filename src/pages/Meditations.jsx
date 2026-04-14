@@ -6,7 +6,7 @@
  * into 5 principle chapters. Cover → Orientation → 5 × (Chapter + 6 cards).
  * Total: 37 screens.
  *
- * Route: /ethos/meditations
+ * Route: /practice/meditations
  *
  * Card content is sourced from src/data/cardDeck.js.
  * SVG principle marks from src/components/guide/PrincipleMarks.jsx.
@@ -845,6 +845,8 @@ function renderScreen(scr) {
   return null;
 }
 
+export { CoverScreen as MeditationsCover };
+
 export default function Meditations() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [baseIndex, setBaseIndex] = useState(0);
@@ -937,7 +939,7 @@ export default function Meditations() {
       <Helmet>
         <title>Lila Meditations — Ancient Wisdom for Wild Places</title>
         <meta name="description" content="30 practice cards drawn from five ancient wisdom traditions. For travelers who want to go deeper." />
-        <link rel="canonical" href="https://lilatrips.com/ethos/meditations" />
+        <link rel="canonical" href="https://lilatrips.com/practice/meditations" />
       </Helmet>
 
       {/* Desktop-only arrows + flip keyframes */}
