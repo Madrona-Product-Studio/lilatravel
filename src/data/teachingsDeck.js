@@ -125,7 +125,7 @@ export function getCardsByTradition(traditionId) {
 
 /** Build flat screen sequence: cover → per tradition: [chapter → cards] */
 export function buildScreens() {
-  const screens = [{ type: 'cover' }];
+  const screens = [{ type: 'cover' }, { type: 'welcome' }];
 
   TRADITIONS.forEach((tradition, ti) => {
     const cards = getCardsByTradition(tradition.id);

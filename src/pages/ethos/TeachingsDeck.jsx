@@ -18,6 +18,87 @@ const SANS = FONTS.body;
 const SCREENS = buildScreens();
 
 // ═══════════════════════════════════════════════════════════════════════════════
+// WELCOME SCREEN (matches Meditations WelcomeScreen layout exactly)
+// ═══════════════════════════════════════════════════════════════════════════════
+
+function WelcomeScreen() {
+  return (
+    <div style={{
+      width: '100%', height: '100%',
+      background: '#F7F4EE',
+      display: 'flex', flexDirection: 'column',
+      justifyContent: 'center',
+      padding: '0 36px 48px',
+      position: 'relative', overflow: 'hidden',
+      borderRadius: 14,
+      border: '0.5px solid rgba(0,0,0,0.08)',
+    }}>
+      {/* Subtle warm glow */}
+      <div style={{
+        position: 'absolute', bottom: '-5%', left: '50%',
+        transform: 'translateX(-50%)',
+        width: '100%', height: '35%',
+        background: 'radial-gradient(ellipse, rgba(180,100,60,0.05) 0%, transparent 70%)',
+        pointerEvents: 'none',
+      }} />
+
+      <div style={{
+        fontSize: 'clamp(46px, 10vw, 58px)', fontFamily: SANS,
+        color: '#1C1917', fontWeight: 700, lineHeight: 1.0,
+        letterSpacing: '-0.01em', marginBottom: 10,
+        position: 'relative',
+      }}>
+        Begin
+      </div>
+
+      <div style={{
+        fontSize: 15, fontFamily: SANS, fontWeight: 500,
+        color: 'rgba(28,25,23,0.58)', lineHeight: 1.75,
+        marginBottom: 22,
+        position: 'relative',
+      }}>
+        30 teachings from the ancient traditions.
+      </div>
+
+      <div style={{ position: 'relative', marginBottom: 8 }}>
+        <div style={{
+          fontSize: 17, fontFamily: SANS, fontWeight: 600,
+          color: 'rgba(28,25,23,0.82)', lineHeight: 1.55,
+          marginBottom: 14,
+        }}>
+          Not doctrine — orientation.
+        </div>
+        <div style={{
+          fontSize: 15, fontFamily: SANS, fontWeight: 400,
+          color: 'rgba(28,25,23,0.55)', lineHeight: 2.0,
+        }}>
+          to find your footing,<br />
+          to hear what has always been true,<br />
+          to carry wisdom into wild places.
+        </div>
+      </div>
+
+      <div style={{
+        fontSize: 14, fontFamily: SANS,
+        color: 'rgba(28,25,23,0.4)', lineHeight: 1.9,
+        position: 'relative',
+      }}>
+        Return to the ones that stay with you.
+      </div>
+
+      <div style={{
+        position: 'absolute', bottom: 36, left: 36,
+        fontSize: 12, fontFamily: SANS,
+        color: 'rgba(28,25,23,0.25)',
+        letterSpacing: '0.04em',
+      }}>
+        Some teachings invite you deeper.
+      </div>
+    </div>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
 // COVER SCREEN (matches Meditations cover — sky gradient + symbols)
 // ═══════════════════════════════════════════════════════════════════════════════
 
@@ -426,6 +507,7 @@ function CardScreen({ card, tradition }) {
 function renderScreen(scr) {
   if (!scr) return null;
   if (scr.type === 'cover') return <CoverScreen />;
+  if (scr.type === 'welcome') return <WelcomeScreen />;
   if (scr.type === 'chapter') return <ChapterScreen key={`ch-${scr.traditionIndex}`} tradition={scr.tradition} traditionIndex={scr.traditionIndex} />;
   if (scr.type === 'card') return <CardScreen key={`${scr.traditionIndex}-${scr.cardIndex}`} card={scr.card} tradition={scr.tradition} />;
   return null;

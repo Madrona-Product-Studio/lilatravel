@@ -20,6 +20,18 @@ const config = {
     'what-modern-life-does': 'force',
     'what-your-body-needs': 'understanding',
   },
+  welcome: {
+    title: 'Begin',
+    tagline: 'The body beneath the movement.',
+    bold: 'Not a textbook — a lens.',
+    lines: [
+      'to see what you carry,',
+      'to understand what moves you,',
+      'to think differently about form.',
+    ],
+    returnLine: 'Return to the ones that shift something.',
+    bottomAnchor: 'Some concepts invite you deeper.',
+  },
 };
 
 export default function MovementsL2() {

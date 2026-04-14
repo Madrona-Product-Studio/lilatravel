@@ -1393,6 +1393,7 @@ export function getTotalCardsL2() {
 export function buildScreensL2() {
   const screens = [
     { type: 'cover' },
+    { type: 'welcome' },
     { type: 'chapters' },
   ];
 

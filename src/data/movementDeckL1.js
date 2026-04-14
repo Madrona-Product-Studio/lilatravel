@@ -748,6 +748,7 @@ export function getTotalCardsL1() {
 export function buildScreensL1() {
   const screens = [
     { type: 'cover' },
+    { type: 'welcome' },
   ];
 
   MOVEMENT_DECK_L1.forEach((chapter, ci) => {
