@@ -47,7 +47,7 @@ export const MOVEMENT_DECK_L1 = [
             term: "Diaphragmatic Breath",
             brief: "The primary breathing muscle — a dome-shaped sheet that forms the roof of the core canister and regulates spinal stability.",
             mnemonic: "DIA = across, PHRAGM = partition. It's the partition across your trunk. When the dome drops, air rushes in — and your spine gets stiffer.",
-            image: "diaphragm.png",
+            image: "diaphragmatic-breath.png",
             tabs: [
               {
                 label: "Details",
