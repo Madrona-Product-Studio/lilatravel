@@ -375,6 +375,7 @@ export function buildScreens() {
   TRADITIONS.forEach((tradition, ti) => {
     const cards = getCardsByTradition(tradition.id);
     screens.push({ type: 'chapter', tradition, traditionIndex: ti });
+    screens.push({ type: 'concepts', tradition, traditionIndex: ti });
 
     cards.forEach((card, ci) => {
       screens.push({

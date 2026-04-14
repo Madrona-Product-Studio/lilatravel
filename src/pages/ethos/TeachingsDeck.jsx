@@ -180,19 +180,17 @@ function CoverScreen() {
 }
 
 // ═══════════════════════════════════════════════════════════════════════════════
-// CHAPTER SCREEN (matches Meditations chapter — tradition color bg)
+// TRADITION SCREEN (intro card — symbol, name, origin, description, wild, practice)
 // ═══════════════════════════════════════════════════════════════════════════════
 
-function ChapterScreen({ tradition, traditionIndex }) {
-  const cards = getCardsByTradition(tradition.id);
-
+function TraditionScreen({ tradition }) {
   return (
     <div style={{
       width: '100%', height: '100%',
       background: tradition.color,
       border: '1px solid rgba(255,255,255,0.1)',
       display: 'flex', flexDirection: 'column',
-      alignItems: 'center', justifyContent: 'space-between',
+      justifyContent: 'center',
       padding: '44px 28px 36px',
       position: 'relative', overflow: 'hidden',
       borderRadius: 14,
@@ -203,8 +201,7 @@ function ChapterScreen({ tradition, traditionIndex }) {
         pointerEvents: 'none',
       }} />
 
-      {/* Title block */}
-      <div style={{ width: '100%' }}>
+      <div style={{ width: '100%', position: 'relative' }}>
         {/* Symbol */}
         <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 16 }}>
           <span style={{ fontSize: 48, color: 'white', lineHeight: 1 }}>{tradition.symbol}</span>
@@ -212,7 +209,7 @@ function ChapterScreen({ tradition, traditionIndex }) {
 
         {/* Name */}
         <div style={{
-          fontSize: 46, fontFamily: SANS,
+          fontSize: 'clamp(36px, 9vw, 46px)', fontFamily: SANS,
           color: 'white', fontWeight: 700,
           lineHeight: 1.0, marginBottom: 8,
           textAlign: 'center',
@@ -238,28 +235,103 @@ function ChapterScreen({ tradition, traditionIndex }) {
           fontSize: 14, fontFamily: SANS,
           color: 'white', opacity: 0.75,
           lineHeight: 1.8, fontWeight: 400,
+          marginBottom: 20,
         }}>
           {tradition.description}
         </div>
+
+        {/* Wild — connection to wilderness */}
+        <div style={{
+          fontSize: 14, fontFamily: SANS,
+          color: 'white', opacity: 0.65,
+          lineHeight: 1.8, fontWeight: 400,
+          fontStyle: 'italic',
+          marginBottom: 20,
+        }}>
+          {tradition.wild}
+        </div>
+
+        {/* Practice prompt */}
+        <div style={{
+          fontSize: 13, fontFamily: SANS,
+          color: 'white', opacity: 0.5,
+          lineHeight: 1.7, fontWeight: 400,
+          borderTop: '0.5px solid rgba(255,255,255,0.12)',
+          paddingTop: 16,
+        }}>
+          {tradition.practice}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// CONCEPTS SCREEN (TOC card — lists the concepts in this tradition)
+// ═══════════════════════════════════════════════════════════════════════════════
+
+function ConceptsScreen({ tradition }) {
+  const cards = getCardsByTradition(tradition.id);
+
+  return (
+    <div style={{
+      width: '100%', height: '100%',
+      background: tradition.color,
+      border: '1px solid rgba(255,255,255,0.1)',
+      display: 'flex', flexDirection: 'column',
+      justifyContent: 'center',
+      padding: '0 28px',
+      position: 'relative', overflow: 'hidden',
+      borderRadius: 14,
+    }}>
+      <div style={{
+        position: 'absolute', inset: 0,
+        background: 'radial-gradient(ellipse at 50% 10%, rgba(255,255,255,0.09) 0%, transparent 55%)',
+        pointerEvents: 'none',
+      }} />
+
+      {/* Header */}
+      <div style={{ position: 'relative', marginBottom: 24 }}>
+        {/* Tradition label */}
+        <div style={{
+          fontSize: 11, fontFamily: SANS,
+          fontWeight: 600, color: 'rgba(255,255,255,0.4)',
+          letterSpacing: '0.14em', textTransform: 'uppercase',
+          marginBottom: 8,
+        }}>
+          {tradition.name}
+        </div>
+
+        {/* Title */}
+        <div style={{
+          fontSize: 'clamp(28px, 7vw, 36px)', fontFamily: SANS,
+          color: 'white', fontWeight: 700, lineHeight: 1.1,
+          letterSpacing: '-0.01em',
+        }}>
+          Concepts
+        </div>
       </div>
 
-      {/* Card list */}
-      <div style={{ width: '100%' }}>
+      {/* Concept list */}
+      <div style={{ position: 'relative' }}>
         {cards.map((card, i) => (
           <div key={card.id} style={{
             display: 'flex', alignItems: 'center', gap: 14,
-            padding: '9px 0',
+            padding: '10px 0',
             borderBottom: i < cards.length - 1 ? '0.5px solid rgba(255,255,255,0.08)' : 'none',
           }}>
-            <div style={{ fontSize: 11, color: 'white', opacity: 0.55, fontFamily: SANS, minWidth: 20 }}>
+            <div style={{ fontSize: 11, color: 'white', opacity: 0.4, fontFamily: SANS, minWidth: 20 }}>
               {i + 1}.
             </div>
             <div style={{ flex: 1 }}>
-              <div style={{ fontSize: 16, fontFamily: SANS, color: 'white', opacity: 0.9, fontWeight: 400 }}>
+              <div style={{ fontSize: 16, fontFamily: SANS, color: 'white', opacity: 0.85, fontWeight: 500 }}>
                 {card.name}
               </div>
             </div>
-            <div style={{ fontSize: 11, fontFamily: SANS, color: 'white', opacity: 0.45, flexShrink: 0 }}>
+            <div style={{
+              fontSize: 9, fontFamily: SANS, color: 'white', opacity: 0.35,
+              letterSpacing: '0.08em', textTransform: 'uppercase', flexShrink: 0,
+            }}>
               {card.tag}
             </div>
           </div>
@@ -508,7 +580,8 @@ function renderScreen(scr) {
   if (!scr) return null;
   if (scr.type === 'cover') return <CoverScreen />;
   if (scr.type === 'welcome') return <WelcomeScreen />;
-  if (scr.type === 'chapter') return <ChapterScreen key={`ch-${scr.traditionIndex}`} tradition={scr.tradition} traditionIndex={scr.traditionIndex} />;
+  if (scr.type === 'chapter') return <TraditionScreen key={`ch-${scr.traditionIndex}`} tradition={scr.tradition} />;
+  if (scr.type === 'concepts') return <ConceptsScreen key={`toc-${scr.traditionIndex}`} tradition={scr.tradition} />;
   if (scr.type === 'card') return <CardScreen key={`${scr.traditionIndex}-${scr.cardIndex}`} card={scr.card} tradition={scr.tradition} />;
   return null;
 }
