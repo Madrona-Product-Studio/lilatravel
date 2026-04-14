@@ -81,6 +81,8 @@ const PhilosophyPage = lazy(() => import('@pages/Philosophy'));
 const PracticesExplorerPage = lazy(() => import('@pages/PracticesExplorer'));
 const MeditationsPage = lazy(() => import('@pages/Meditations'));
 const MovementsPage = lazy(() => import('@pages/Movements'));
+const MovementsL1Page = lazy(() => import('@pages/MovementsL1'));
+const MovementsL2Page = lazy(() => import('@pages/MovementsL2'));
 const TripPage = lazy(() => import('@pages/trips/TripPage'));
 const ItineraryResults = lazy(() => import('./pages/ItineraryResults'));
 
@@ -140,6 +142,8 @@ export default function App() {
             <Route path="/ethos/practices" element={<PracticesExplorerPage />} />
             <Route path="/ethos/meditations" element={<MeditationsPage />} />
             <Route path="/ethos/movements" element={<MovementsPage />} />
+            <Route path="/ethos/movements/practice" element={<MovementsL1Page />} />
+            <Route path="/ethos/movements/science" element={<MovementsL2Page />} />
             <Route path="/ethos/:slug" element={<EthosDetail />} />
 
             {/* Trips (Threshold Trip detail pages) */}

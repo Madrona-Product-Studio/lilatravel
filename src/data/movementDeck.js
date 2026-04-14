@@ -18,7 +18,8 @@ export const MOVEMENT_CHAPTERS = [
       {
         id: 'breath-core',
         label: 'Breath & Deep Core',
-        subtitle: 'The invisible inner architecture that everything else depends on',
+        subtitle: 'The invisible architecture',
+        desc: 'Your deepest layer of stability isn\'t muscle you can see or flex. It\'s a pressurized chamber — diaphragm on top, pelvic floor below, deep muscles wrapping the sides. When it works, your spine is protected before you even think about moving. When it doesn\'t, everything else compensates.',
         icon: '◎',
         cards: [
           {
@@ -188,7 +189,8 @@ export const MOVEMENT_CHAPTERS = [
       {
         id: 'pelvic-engine',
         label: 'The Pelvic Engine',
-        subtitle: 'The body\'s keystone — everything moves from here',
+        subtitle: 'The keystone of the body',
+        desc: 'The pelvis is the crossroads — spine above, legs below, core wrapping around it. Every force you generate passes through here. The muscles that control it determine how you walk, how you stand, and whether your back hurts. This is where power originates.',
         icon: '◇',
         cards: [
           {
@@ -325,65 +327,13 @@ export const MOVEMENT_CHAPTERS = [
               },
             ],
           },
-          {
-            id: 'anterior-pelvic-tilt',
-            term: 'Anterior Pelvic Tilt',
-            brief: 'A forward rotation of the pelvis that increases the lumbar curve — associated with tight hip flexors, weak glutes, and lower back pain.',
-            mnemonic: 'ANTErior = front. The front of the pelvis tips DOWN (like pouring water from the front of a bowl). The lower back arches up as a result.',
-            image: 'anterior-pelvic-tilt.png',
-            tabs: [
-              {
-                label: 'Details',
-                content: 'Anterior pelvic tilt (APT) occurs when the front of the pelvis (ASIS) drops lower than the back (PSIS), increasing lumbar lordosis. Clinically, it is associated with a pattern described by Vladimir Janda as "Lower Crossed Syndrome": tight hip flexors (iliopsoas) and lumbar extensors pull the pelvis forward, while weak glutes and abdominals fail to resist. The result is a constantly arched lower back, compressed posterior lumbar discs and facet joints, and chronically shortened hip flexors. Importantly, mild APT is normal — the clinical significance is not the position itself but whether the surrounding muscles can control movement through that position.',
-              },
-              {
-                label: 'Activates',
-                content: [
-                  'Hip flexor stretching',
-                  'glute bridges',
-                  'hip thrusts',
-                  'dead bugs',
-                  'posterior pelvic tilt exercises',
-                ],
-              },
-              {
-                label: 'Injury Risk',
-                content: 'Sustained APT compresses the posterior elements of the lumbar spine (facet joints, posterior disc). Over time this contributes to facet joint irritation, disc herniation, and sacroiliac joint dysfunction. It also puts the glutes in a shortened, mechanically disadvantaged position — contributing to "gluteal amnesia."',
-              },
-            ],
-          },
-          {
-            id: 'posterior-pelvic-tilt',
-            term: 'Posterior Pelvic Tilt',
-            brief: 'A backward rotation of the pelvis that flattens the lumbar curve — often driven by tight hamstrings and associated with disc pressure and chronic sitting.',
-            mnemonic: 'POSTerior = back. The back of the pelvis tips DOWN. The lumbar curve flattens or even reverses — the "tucked under" posture.',
-            image: 'posterior-pelvic-tilt.png',
-            tabs: [
-              {
-                label: 'Details',
-                content: 'Posterior pelvic tilt (PPT) occurs when the PSIS drops lower than the ASIS, reducing or reversing the normal lumbar lordosis. It is the characteristic posture of prolonged sitting and is strongly associated with tight hamstrings (which pull the ischial tuberosities backward) and weak hip flexors. The flattened lumbar spine increases anterior disc pressure and places the posterior ligaments under sustained tension.',
-              },
-              {
-                label: 'Activates',
-                content: [
-                  'Hip flexor strengthening',
-                  'lumbar extension work',
-                  'cat-cow (focusing on the anterior tilt direction)',
-                  'standing hip flexor stretches',
-                ],
-              },
-              {
-                label: 'Injury Risk',
-                content: 'The "flat back" posture of sustained PPT increases anterior disc pressure — a primary mechanism in intervertebral disc degeneration. It is particularly common in cyclists, rowers, and desk workers who spend extended periods in hip flexion.',
-              },
-            ],
-          },
         ],
       },
       {
         id: 'spine',
         label: 'The Spine',
-        subtitle: 'The central column — how it curves, moves, and protects',
+        subtitle: 'The central column',
+        desc: 'Not a rigid pole — a spring-loaded stack of 24 movable vertebrae, each with its own role. The curves absorb shock. The discs allow motion. The ligaments set limits. Understanding how it\'s built is the first step to understanding why it breaks down.',
         icon: '☰',
         cards: [
           {
@@ -522,7 +472,8 @@ export const MOVEMENT_CHAPTERS = [
       {
         id: 'shoulder-upper-body',
         label: 'The Shoulder & Upper Body',
-        subtitle: 'The most mobile — and most vulnerable — joint system in the body',
+        subtitle: 'Mobility at a cost',
+        desc: 'The shoulder trades stability for range of motion — more freedom than any other joint, but less structural protection. That tradeoff makes it powerful and fragile. The muscles that hold it in place are small, precise, and easily overwhelmed by the larger muscles around them.',
         icon: '◉',
         cards: [
           {
@@ -634,7 +585,8 @@ export const MOVEMENT_CHAPTERS = [
       {
         id: 'hip-knee',
         label: 'The Lower Body Joints',
-        subtitle: 'How force travels from the ground through the lower body',
+        subtitle: 'Ground up',
+        desc: 'Force enters your body through the ground and travels upward — foot to ankle to knee to hip. Each joint has a job. When one fails to do it, the next one in line absorbs the load. Most lower body injuries are compensation injuries — the joint that hurts is covering for the joint that won\'t move.',
         icon: '△',
         cards: [
           {
@@ -777,7 +729,8 @@ export const MOVEMENT_CHAPTERS = [
       {
         id: 'movement-vocab',
         label: 'Movement Vocabulary',
-        subtitle: 'The language of how the body moves',
+        subtitle: 'The language of motion',
+        desc: 'Before you can fix how you move, you need words for what movement is. Flexion, extension, rotation, abduction — these aren\'t clinical abstractions. They\'re the alphabet your body uses every time you reach, twist, step, or bend. Learn the vocabulary and the body starts making sense.',
         icon: '⇄',
         cards: [
           {
@@ -929,6 +882,59 @@ export const MOVEMENT_CHAPTERS = [
               {
                 label: 'Injury Risk',
                 content: 'Impaired proprioception after ankle sprains is the primary reason for recurrent ankle sprains — the joint doesn\'t "know" it\'s in a vulnerable position until it\'s already sprained. Similarly, ACL reconstruction without proprioceptive retraining carries a high re-injury risk, particularly in the early return-to-sport phase.',
+              },
+            ],
+          },
+          {
+            id: 'anterior-pelvic-tilt',
+            term: 'Anterior Pelvic Tilt',
+            brief: 'A forward rotation of the pelvis that increases the lumbar curve — associated with tight hip flexors, weak glutes, and lower back pain.',
+            mnemonic: 'ANTErior = front. The front of the pelvis tips DOWN (like pouring water from the front of a bowl). The lower back arches up as a result.',
+            image: 'anterior-pelvic-tilt.png',
+            tabs: [
+              {
+                label: 'Details',
+                content: 'Anterior pelvic tilt (APT) occurs when the front of the pelvis (ASIS) drops lower than the back (PSIS), increasing lumbar lordosis. Clinically, it is associated with a pattern described by Vladimir Janda as "Lower Crossed Syndrome": tight hip flexors (iliopsoas) and lumbar extensors pull the pelvis forward, while weak glutes and abdominals fail to resist. The result is a constantly arched lower back, compressed posterior lumbar discs and facet joints, and chronically shortened hip flexors. Importantly, mild APT is normal — the clinical significance is not the position itself but whether the surrounding muscles can control movement through that position.',
+              },
+              {
+                label: 'Activates',
+                content: [
+                  'Hip flexor stretching',
+                  'glute bridges',
+                  'hip thrusts',
+                  'dead bugs',
+                  'posterior pelvic tilt exercises',
+                ],
+              },
+              {
+                label: 'Injury Risk',
+                content: 'Sustained APT compresses the posterior elements of the lumbar spine (facet joints, posterior disc). Over time this contributes to facet joint irritation, disc herniation, and sacroiliac joint dysfunction. It also puts the glutes in a shortened, mechanically disadvantaged position — contributing to "gluteal amnesia."',
+              },
+            ],
+          },
+          {
+            id: 'posterior-pelvic-tilt',
+            term: 'Posterior Pelvic Tilt',
+            brief: 'A backward rotation of the pelvis that flattens the lumbar curve — often driven by tight hamstrings and associated with disc pressure and chronic sitting.',
+            mnemonic: 'POSTerior = back. The back of the pelvis tips DOWN. The lumbar curve flattens or even reverses — the "tucked under" posture.',
+            image: 'posterior-pelvic-tilt.png',
+            tabs: [
+              {
+                label: 'Details',
+                content: 'Posterior pelvic tilt (PPT) occurs when the PSIS drops lower than the ASIS, reducing or reversing the normal lumbar lordosis. It is the characteristic posture of prolonged sitting and is strongly associated with tight hamstrings (which pull the ischial tuberosities backward) and weak hip flexors. The flattened lumbar spine increases anterior disc pressure and places the posterior ligaments under sustained tension.',
+              },
+              {
+                label: 'Activates',
+                content: [
+                  'Hip flexor strengthening',
+                  'lumbar extension work',
+                  'cat-cow (focusing on the anterior tilt direction)',
+                  'standing hip flexor stretches',
+                ],
+              },
+              {
+                label: 'Injury Risk',
+                content: 'The "flat back" posture of sustained PPT increases anterior disc pressure — a primary mechanism in intervertebral disc degeneration. It is particularly common in cyclists, rowers, and desk workers who spend extended periods in hip flexion.',
               },
             ],
           },
@@ -1253,7 +1259,8 @@ export const MOVEMENT_CHAPTERS = [
       {
         id: 'mobility-stability',
         label: 'Mobility vs. Stability',
-        subtitle: 'Why some joints need to move freely, and others need to hold — and what happens when they get confused',
+        subtitle: 'Two different jobs, often confused',
+        desc: 'Your body alternates between joints that need to move and joints that need to hold. Ankle: mobile. Knee: stable. Hip: mobile. Lumbar spine: stable. When a mobile joint stiffens up, the stable joint next to it is forced to move instead — doing a job it was never built for. That compensation is where most chronic pain begins.',
         icon: '⇌',
         cards: [
           {
@@ -1313,7 +1320,8 @@ export const MOVEMENT_CHAPTERS = [
       {
         id: 'reading-the-chain',
         label: 'How to Read Your Body',
-        subtitle: 'The skill of tracing symptoms back to their source',
+        subtitle: 'Symptoms lie. Systems don\'t.',
+        desc: 'The place that hurts is almost never the place that\'s broken. Your body is a network — tension in one area creates compensation somewhere else, and pain at the end of the chain. Learning to read your body means learning to look upstream, not at the symptom.',
         icon: '⇌',
         cards: [
           {
@@ -1374,7 +1382,8 @@ export const MOVEMENT_CHAPTERS = [
       {
         id: 'pelvic-tilt-practice',
         label: 'Pelvic Tilt & Spinal Awareness',
-        subtitle: 'Poses that develop conscious control of pelvic position',
+        subtitle: 'Where movement begins',
+        desc: 'Before you can change how you move, you have to feel how you\'re moving now. These poses build conscious control of pelvic position — the single most consequential variable in your posture. Slow, deliberate, close to the ground.',
         icon: '◎',
         cards: [
           {
@@ -1470,7 +1479,8 @@ export const MOVEMENT_CHAPTERS = [
       {
         id: 'posterior-chain-practice',
         label: 'The Posterior Chain in Practice',
-        subtitle: 'Poses that lengthen and integrate the back line',
+        subtitle: 'Opening the back of the body',
+        desc: 'The muscles running from your heels to your skull form one continuous line of tension. Modern life shortens and stiffens it. These poses systematically lengthen the posterior chain — hamstrings, glutes, spinal extensors — restoring the range your body was designed for.',
         icon: '△',
         cards: [
           {
@@ -1566,7 +1576,8 @@ export const MOVEMENT_CHAPTERS = [
       {
         id: 'spinal-mobility-practice',
         label: 'Spinal Mobility — Twists & Backbends',
-        subtitle: 'Poses that restore thoracic mobility and teach safe spinal extension',
+        subtitle: 'Restoring what sitting takes away',
+        desc: 'Your thoracic spine was built to rotate and extend. Years of sitting have locked it in flexion. Twists prepare it. Backbends reclaim it. Done in the right order, they undo the posture of modern life — not through force, but through patient, sequenced mobility.',
         icon: '◇',
         cards: [
           {
@@ -1670,7 +1681,8 @@ export const MOVEMENT_CHAPTERS = [
       {
         id: 'core-strength-practice',
         label: 'Core Strength in Practice',
-        subtitle: 'Poses that demand deep core coordination',
+        subtitle: 'Stability under load',
+        desc: 'These poses don\'t just work the core — they demand that the deep stabilizers fire in coordination with breath and movement. Not how many reps. How well the system integrates.',
         icon: '▽',
         cards: [
           {
@@ -1700,7 +1712,8 @@ export const MOVEMENT_CHAPTERS = [
       {
         id: 'kinetic-chain-practice',
         label: 'Hip & Spinal Mobility',
-        subtitle: 'Poses that restore mobility at key kinetic chain joints',
+        subtitle: 'Unlocking the joints that matter most',
+        desc: 'The hips and thoracic spine are the two mobility joints that modern life restricts most aggressively. When they stiffen, the lumbar spine and knees pay the price. These poses restore range where it belongs.',
         icon: '◇',
         cards: [
           {
@@ -1774,7 +1787,8 @@ export const MOVEMENT_CHAPTERS = [
       {
         id: 'mobility-stability-practice',
         label: 'The Frontal Plane & Rotation',
-        subtitle: 'Poses that train the distinction between mobile and stable joints',
+        subtitle: 'The movements modern life forgets',
+        desc: 'Almost everything you do happens in one plane — forward and backward. These poses move you sideways and rotationally, training the patterns your body craves but rarely gets. This is where balance, coordination, and injury prevention live.',
         icon: '❋',
         cards: [
           {
@@ -1826,7 +1840,8 @@ export const MOVEMENT_CHAPTERS = [
       {
         id: 'sanskrit-tradition',
         label: 'Sanskrit & Tradition',
-        subtitle: 'The language that connects practice to lineage',
+        subtitle: 'Names that carry meaning',
+        desc: 'Every Sanskrit pose name is a compound of roots that describe exactly what the pose does. Learn the roots and you can decode any asana — connecting physical practice to thousands of years of embodied knowledge.',
         icon: '𑗃',
         cards: [
           {
@@ -1901,15 +1916,14 @@ export function buildScreens() {
   MOVEMENT_CHAPTERS.forEach((chapter, ci) => {
     screens.push({ type: 'chapter-title', chapter, chapterIndex: ci });
 
-    // Skip TOC + group-title cards for small chapters (≤4 cards total)
     const totalChapterCards = chapter.groups.reduce((s, g) => s + g.cards.length, 0);
     const isSmallChapter = totalChapterCards <= 4;
 
-    if (!isSmallChapter) {
-      screens.push({ type: 'chapter-toc', chapter, chapterIndex: ci });
-    }
+    // All chapters get a TOC screen
+    screens.push({ type: 'chapter-toc', chapter, chapterIndex: ci });
 
     chapter.groups.forEach((group, gi) => {
+      // Skip group-title cards for small chapters
       if (!isSmallChapter) {
         screens.push({ type: 'group-title', group, chapter, chapterIndex: ci, groupIndex: gi });
       }

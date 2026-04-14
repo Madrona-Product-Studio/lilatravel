@@ -18,9 +18,6 @@ import MovementTabs from '@components/movements/MovementTabs';
 
 const SANS = FONTS.body;
 
-const SCREENS = buildScreens();
-const TOTAL_CARDS = getTotalCards();
-
 // ═══════════════════════════════════════════════════════════════════════════════
 // FLIP ARROW (reused on card faces)
 // ═══════════════════════════════════════════════════════════════════════════════
@@ -39,7 +36,7 @@ function FlipArrow({ dark = false }) {
 // COVER SCREEN
 // ═══════════════════════════════════════════════════════════════════════════════
 
-function CoverScreen() {
+function CoverScreen({ subtitle, countLabel }) {
   // Warm sky gradient — sibling to the meditations cover but earthier
   const sky = ['#4a6858', '#6a7868', '#a08060', '#c89868'];
 
@@ -117,14 +114,14 @@ function CoverScreen() {
           color: 'rgba(255,255,255,0.75)', fontWeight: 400,
           letterSpacing: '0.06em', textAlign: 'center', lineHeight: 1.9,
         }}>
-          the body as teacher
+          {subtitle || 'the body as teacher'}
         </div>
         <div style={{
           fontSize: 11, fontFamily: SANS,
           color: 'rgba(255,255,255,0.35)', fontWeight: 400,
           letterSpacing: '0.06em',
         }}>
-          {MOVEMENT_CHAPTERS.length} chapters &middot; {TOTAL_CARDS} cards
+          {countLabel}
         </div>
       </div>
     </div>
@@ -319,27 +316,53 @@ function ChapterTocScreen({ chapter }) {
         Sections
       </div>
 
-      {/* Group list */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 18, position: 'relative' }}>
-        {chapter.groups.map((group) => (
-          <div key={group.id}>
-            <div style={{
-              fontSize: 16, fontFamily: SANS,
-              fontWeight: 600,
-              color: 'rgba(255,255,255,0.85)', lineHeight: 1.2,
-              marginBottom: 3,
-            }}>
-              {group.label}
+      {/* Content list — card terms for small chapters, group names for large ones */}
+      {(() => {
+        const totalCards = chapter.groups.reduce((s, g) => s + g.cards.length, 0);
+        const isSmall = totalCards <= 4;
+
+        if (isSmall) {
+          // List individual card terms
+          const allCards = chapter.groups.flatMap(g => g.cards);
+          return (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 16, position: 'relative' }}>
+              {allCards.map((card) => (
+                <div key={card.id} style={{
+                  fontSize: 16, fontFamily: SANS,
+                  fontWeight: 600,
+                  color: 'rgba(255,255,255,0.85)', lineHeight: 1.2,
+                }}>
+                  {card.term}
+                </div>
+              ))}
             </div>
-            <div style={{
-              fontSize: 12, fontFamily: SANS,
-              fontWeight: 400, color: 'rgba(255,255,255,0.4)',
-            }}>
-              {group.subtitle} &middot; {group.cards.length} cards
-            </div>
+          );
+        }
+
+        // List groups
+        return (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 18, position: 'relative' }}>
+            {chapter.groups.map((group) => (
+              <div key={group.id}>
+                <div style={{
+                  fontSize: 16, fontFamily: SANS,
+                  fontWeight: 600,
+                  color: 'rgba(255,255,255,0.85)', lineHeight: 1.2,
+                  marginBottom: 3,
+                }}>
+                  {group.label}
+                </div>
+                <div style={{
+                  fontSize: 12, fontFamily: SANS,
+                  fontWeight: 400, color: 'rgba(255,255,255,0.4)',
+                }}>
+                  {group.subtitle} &middot; {group.cards.length} cards
+                </div>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
+        );
+      })()}
     </div>
   );
 }
@@ -762,9 +785,9 @@ function CardScreen({ card, group, chapter }) {
 // SCREEN RENDERER
 // ═══════════════════════════════════════════════════════════════════════════════
 
-function renderScreen(scr) {
+function renderScreen(scr, deckConfig) {
   if (!scr) return null;
-  if (scr.type === 'cover') return <CoverScreen />;
+  if (scr.type === 'cover') return <CoverScreen subtitle={deckConfig?.subtitle} countLabel={deckConfig?.countLabel} />;
   if (scr.type === 'chapters') return <ChaptersScreen />;
   if (scr.type === 'chapter-title') return <ChapterTitleScreen chapter={scr.chapter} chapterIndex={scr.chapterIndex} />;
   if (scr.type === 'chapter-toc') return <ChapterTocScreen chapter={scr.chapter} />;
@@ -777,7 +800,16 @@ function renderScreen(scr) {
 // PAGE COMPONENT
 // ═══════════════════════════════════════════════════════════════════════════════
 
-export default function Movements() {
+export default function Movements({ screens: screensProp, deckConfig } = {}) {
+  // Use passed screens or fall back to original deck
+  const SCREENS = screensProp || buildScreens();
+  const config = deckConfig || {
+    subtitle: 'the body as teacher',
+    countLabel: `${MOVEMENT_CHAPTERS.length} chapters · ${getTotalCards()} cards`,
+    title: 'Lila Movements — The Body as Teacher',
+    description: 'Movement science cards for understanding how your body works, what modern life does to it, and how to restore it.',
+  };
+
   const [currentIndex, setCurrentIndex] = useState(0);
   const [baseIndex, setBaseIndex] = useState(0);
   const [animating, setAnimating] = useState(false);
@@ -860,8 +892,8 @@ export default function Movements() {
   return (
     <>
       <Helmet>
-        <title>Lila Movements — The Body as Teacher</title>
-        <meta name="description" content="Movement science cards for understanding how your body works, what modern life does to it, and how to restore it." />
+        <title>{config.title}</title>
+        <meta name="description" content={config.description} />
         <link rel="canonical" href="https://lilatrips.com/ethos/movements" />
       </Helmet>
 
@@ -941,7 +973,7 @@ export default function Movements() {
           >
             {/* Base layer */}
             <div style={{ position: 'absolute', inset: 0, zIndex: 1 }}>
-              {renderScreen(SCREENS[baseIndex])}
+              {renderScreen(SCREENS[baseIndex], config)}
             </div>
 
             {/* Animation layer */}
@@ -952,7 +984,7 @@ export default function Movements() {
                   ? 'dealOff 0.28s cubic-bezier(0.4, 0, 0.8, 0.6) forwards'
                   : 'stackOn 0.30s cubic-bezier(0.2, 0, 0.1, 1) forwards',
               }}>
-                {renderScreen(animScreen)}
+                {renderScreen(animScreen, config)}
               </div>
             )}
           </div>
