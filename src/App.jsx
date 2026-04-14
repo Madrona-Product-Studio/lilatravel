@@ -15,6 +15,7 @@
 //   /ethos/philosophy               → Philosophy deep-dive (five principles × five traditions)
 //   /ethos/practices                → Practices Explorer (interactive wisdom layer browser)
 //   /ethos/meditations              → Lila Meditations (30-card deck explorer)
+//   /ethos/movements               → Lila Movements (body science card deck)
 //   /ways-to-travel                → Ways to Travel (how to get started)
 //   /trips/:slug                   → Individual Threshold Trip detail
 //   /trip/:token                   → Saved/shared itinerary (loaded via share token)
@@ -79,6 +80,7 @@ const GroupTripsPage = lazy(() => import('@pages/GroupTrips'));
 const PhilosophyPage = lazy(() => import('@pages/Philosophy'));
 const PracticesExplorerPage = lazy(() => import('@pages/PracticesExplorer'));
 const MeditationsPage = lazy(() => import('@pages/Meditations'));
+const MovementsPage = lazy(() => import('@pages/Movements'));
 const TripPage = lazy(() => import('@pages/trips/TripPage'));
 const ItineraryResults = lazy(() => import('./pages/ItineraryResults'));
 
@@ -137,6 +139,7 @@ export default function App() {
             <Route path="/ethos/philosophy" element={<PhilosophyPage />} />
             <Route path="/ethos/practices" element={<PracticesExplorerPage />} />
             <Route path="/ethos/meditations" element={<MeditationsPage />} />
+            <Route path="/ethos/movements" element={<MovementsPage />} />
             <Route path="/ethos/:slug" element={<EthosDetail />} />
 
             {/* Trips (Threshold Trip detail pages) */}
