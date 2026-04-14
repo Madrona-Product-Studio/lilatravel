@@ -17,6 +17,7 @@ export const MOVEMENT_DECK_L1 = [
       id: "aum",
       term: "AUM",
       sanskrit: "ॐ",
+      image: "aum.png",
       brief: "PLACEHOLDER",
       mnemonic: "PLACEHOLDER",
       tabs: [
@@ -72,6 +73,7 @@ export const MOVEMENT_DECK_L1 = [
             id: "box-breathing",
             term: "Box Breathing",
             sanskrit: "Sama Vritti",
+            image: "box-breathing.png",
             brief: "PLACEHOLDER",
             mnemonic: "PLACEHOLDER",
             tabs: [
@@ -93,6 +95,7 @@ export const MOVEMENT_DECK_L1 = [
             id: "ujjayi",
             term: "Ujjayi",
             sanskrit: "Ocean Breath",
+            image: "ujjayi.png",
             brief: "PLACEHOLDER",
             mnemonic: "PLACEHOLDER",
             tabs: [
@@ -136,6 +139,7 @@ export const MOVEMENT_DECK_L1 = [
             id: "tadasana",
             term: "Tadasana",
             sanskrit: "Mountain Pose",
+            image: "tadasana.png",
             brief: "PLACEHOLDER",
             mnemonic: "PLACEHOLDER",
             tabs: [
@@ -187,6 +191,7 @@ export const MOVEMENT_DECK_L1 = [
             id: "plank",
             term: "Phalakasana",
             sanskrit: "Plank",
+            image: "plank.png",
             brief: "PLACEHOLDER",
             mnemonic: "PLACEHOLDER",
             tabs: [
@@ -230,6 +235,7 @@ export const MOVEMENT_DECK_L1 = [
             id: "upward-dog",
             term: "Urdhva Mukha Svanasana",
             sanskrit: "Upward Dog",
+            image: "upward-dog.png",
             brief: "PLACEHOLDER",
             mnemonic: "PLACEHOLDER",
             tabs: [
@@ -251,6 +257,7 @@ export const MOVEMENT_DECK_L1 = [
             id: "chair",
             term: "Utkatasana",
             sanskrit: "Chair Pose",
+            image: "chair-pose.png",
             brief: "PLACEHOLDER",
             mnemonic: "PLACEHOLDER",
             tabs: [
@@ -280,6 +287,7 @@ export const MOVEMENT_DECK_L1 = [
             id: "warrior-1",
             term: "Virabhadrasana I",
             sanskrit: "Warrior I",
+            image: "warrior-i.png",
             brief: "PLACEHOLDER",
             mnemonic: "PLACEHOLDER",
             tabs: [
@@ -397,6 +405,7 @@ export const MOVEMENT_DECK_L1 = [
             id: "tree",
             term: "Vrksasana",
             sanskrit: "Tree Pose",
+            image: "tree-pose.png",
             brief: "PLACEHOLDER",
             mnemonic: "PLACEHOLDER",
             tabs: [
@@ -418,6 +427,7 @@ export const MOVEMENT_DECK_L1 = [
             id: "warrior-3",
             term: "Virabhadrasana III",
             sanskrit: "Warrior III",
+            image: "warrior-iii.png",
             brief: "PLACEHOLDER",
             mnemonic: "PLACEHOLDER",
             tabs: [
@@ -439,6 +449,7 @@ export const MOVEMENT_DECK_L1 = [
             id: "half-moon",
             term: "Ardha Chandrasana",
             sanskrit: "Half Moon",
+            image: "half-moon.png",
             brief: "PLACEHOLDER",
             mnemonic: "PLACEHOLDER",
             tabs: [
@@ -482,6 +493,7 @@ export const MOVEMENT_DECK_L1 = [
             id: "dancer",
             term: "Natarajasana",
             sanskrit: "Dancer",
+            image: "dancers-pose.png",
             brief: "PLACEHOLDER",
             mnemonic: "PLACEHOLDER",
             tabs: [
@@ -577,6 +589,7 @@ export const MOVEMENT_DECK_L1 = [
             id: "fish",
             term: "Matsyasana",
             sanskrit: "Fish Pose",
+            image: "fish-pose.png",
             brief: "PLACEHOLDER",
             mnemonic: "PLACEHOLDER",
             tabs: [
@@ -598,6 +611,7 @@ export const MOVEMENT_DECK_L1 = [
             id: "reclined-bound-angle",
             term: "Supta Baddha Konasana",
             sanskrit: "Reclined Bound Angle",
+            image: "reclined-bound-angle.png",
             brief: "PLACEHOLDER",
             mnemonic: "PLACEHOLDER",
             tabs: [
@@ -649,6 +663,7 @@ export const MOVEMENT_DECK_L1 = [
             id: "supine-twist",
             term: "Supta Matsyendrasana",
             sanskrit: "Supine Twist",
+            image: "supine-twist.png",
             brief: "PLACEHOLDER",
             mnemonic: "PLACEHOLDER",
             tabs: [
@@ -692,6 +707,7 @@ export const MOVEMENT_DECK_L1 = [
             id: "happy-baby",
             term: "Ananda Balasana",
             sanskrit: "Happy Baby",
+            image: "happy-baby.png",
             brief: "PLACEHOLDER",
             mnemonic: "PLACEHOLDER",
             tabs: [
@@ -713,6 +729,7 @@ export const MOVEMENT_DECK_L1 = [
             id: "savasana",
             term: "Savasana",
             sanskrit: "Corpse Pose",
+            image: "savasana.png",
             brief: "PLACEHOLDER",
             mnemonic: "PLACEHOLDER",
             tabs: [
