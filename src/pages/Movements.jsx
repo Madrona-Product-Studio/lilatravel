@@ -228,7 +228,8 @@ function CoverScreen({ subtitle, countLabel, markIds }) {
 // CHAPTERS OVERVIEW SCREEN
 // ═══════════════════════════════════════════════════════════════════════════════
 
-function ChaptersScreen() {
+function ChaptersScreen({ chapters }) {
+  const chapterList = chapters || MOVEMENT_CHAPTERS;
   return (
     <div style={{
       width: '100%', height: '100%',
@@ -251,7 +252,7 @@ function ChaptersScreen() {
 
       {/* Chapter list */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
-        {MOVEMENT_CHAPTERS.map((ch, i) => (
+        {chapterList.map((ch, i) => (
           <div key={ch.id}>
             <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, marginBottom: 4 }}>
               <div style={{
@@ -907,7 +908,7 @@ function renderScreen(scr, deckConfig) {
   if (!scr) return null;
   if (scr.type === 'cover') return <CoverScreen subtitle={deckConfig?.subtitle} countLabel={deckConfig?.countLabel} markIds={deckConfig?.markIds} />;
   if (scr.type === 'welcome') return <WelcomeScreen welcome={deckConfig?.welcome} />;
-  if (scr.type === 'chapters') return <ChaptersScreen />;
+  if (scr.type === 'chapters') return <ChaptersScreen chapters={deckConfig?.chapters} />;
   if (scr.type === 'chapter-title') return <ChapterTitleScreen chapter={scr.chapter} chapterIndex={scr.chapterIndex} markId={deckConfig?.chapterMarkMap?.[scr.chapter.id]} />;
   if (scr.type === 'chapter-toc') return <ChapterTocScreen chapter={scr.chapter} />;
   if (scr.type === 'group-title') return <GroupTitleScreen key={`gt-${scr.chapterIndex}-${scr.groupIndex}`} group={scr.group} chapter={scr.chapter} />;

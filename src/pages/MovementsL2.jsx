@@ -4,6 +4,7 @@
  */
 
 import { buildScreensL2, getTotalCardsL2, MOVEMENT_DECK_L2 } from '@data/movementDeckL2';
+// Pass L2 chapters so ChaptersScreen only shows the 3 L2 chapters (not the original 4)
 import { L2_MARK_IDS } from '@components/guide/DeckMarks';
 import Movements from './Movements';
 
@@ -15,6 +16,7 @@ const config = {
   title: 'Lila Movements — How It Works',
   description: 'Anatomy, movement science, and the patterns that modern life creates in your body.',
   markIds: L2_MARK_IDS,
+  chapters: MOVEMENT_DECK_L2,
   chapterMarkMap: {
     'how-your-body-works': 'body',
     'what-modern-life-does': 'force',
