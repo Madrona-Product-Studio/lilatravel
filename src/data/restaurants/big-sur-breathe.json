@@ -192,5 +192,34 @@
     "lilaPick": false,
     "tags": ["self-guided", "contemplative", "nature-journaling", "monterey-cypress", "point-lobos", "early-morning"],
     "months": "all"
+  },
+  {
+    "id": "word-of-mouth-yoga",
+    "name": "Word of Mouth Yoga",
+    "type": "studio",
+    "subtype": "yoga",
+    "breatheTier": "practice",
+    "tradition": "Hatha / Flow / Sound Healing",
+    "location": "The Village Big Sur, 46840 Highway 1, Big Sur, CA 93920",
+    "priceRange": "$$",
+    "budgetTier": "moderate",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "contemplative",
+    "highlights": [
+      "Intimate yoga studio inside The Village Big Sur — the only dedicated yoga practice space on Highway 1 itself",
+      "Hatha, embodied flow, somatic yoga, and sound healing sessions — 60 minutes, Friday through Sunday mornings at 9:30 AM",
+      "Teachers include Laria Kaehler (embodied flow) and Deva Munay (hatha) — small classes, personal attention",
+      "Book a morning class, then walk to Solstice for brunch and Big Sur Bodega — a complete morning at The Village"
+    ],
+    "bookingWindow": "Book online via thevillagebigsur.com/wordofmouth",
+    "hours": "Fri–Sun: 9:30 AM, 60 min sessions",
+    "links": {
+      "website": "https://www.thevillagebigsur.com/wordofmouth",
+      "booking": "https://www.thevillagebigsur.com/wordofmouth"
+    },
+    "lilaPick": true,
+    "pickTier": "practice",
+    "tags": ["yoga", "hatha", "flow", "sound-healing", "big-sur", "highway-1", "village", "morning-practice", "somatic"],
+    "months": "all"
   }
 ]

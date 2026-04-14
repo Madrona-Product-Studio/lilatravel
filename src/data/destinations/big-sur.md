@@ -221,6 +221,11 @@ The most characterful drop-in studio in Carmel — a cottage that has housed yog
 The most serious yoga retreat destination in the Big Sur / Monterey orbit — and one of the most significant on the West Coast. A 380-acre intentional community in the Santa Cruz Mountains overlooking Monterey Bay, founded in the lineage of master yogi Baba Hari Dass. Classical Ashtanga Yoga (eight-limbed path), Bhakti tradition, Ayurveda, and a working Hanuman temple on the grounds where arati is performed twice daily. Open to visitors for personal retreats (lodging + meals + yoga classes included), multi-day structured programs, and Tuesday/Saturday temple visits. The Kaya Kalpa Wellness Center offers Ayurvedic treatments and traditional massage. Annual yoga retreats throughout the year draw serious practitioners. This is not a drop-in studio — it is a living community with depth. About 45 minutes from Carmel-by-the-Sea.
 - **Address**: 445 Summit Rd, Watsonville, CA 95076
 
+#### Word of Mouth Yoga (The Village Big Sur)
+The only dedicated yoga studio on Highway 1 itself — tucked inside The Village Big Sur, a beautifully designed compound that also houses Solstice restaurant and the Big Sur Bodega. Friday through Sunday mornings at 9:30 AM, 60-minute sessions: embodied flow with Laria Kaehler, hatha with Deva Munay, somatic yoga and sound healing with Micha Merrick. Small classes, personal attention, the kind of morning practice that sets the tone for everything that follows. Book a class, walk to Solstice for brunch, browse the Bodega — a complete morning. Book online.
+- **Address**: 46840 Highway 1, Big Sur, CA 93920
+- **URL**: https://www.thevillagebigsur.com/wordofmouth
+
 #### Seaside Yoga Sanctuary — Carmel
 The anchor studio for drop-in yoga in the Carmel orbit. Voted best yoga studio in Monterey County eleven consecutive years by readers of Monterey County Weekly and Carmel Pine Cone. Carmel location in Carmel Plaza (Ocean Ave & Mission St, 3rd floor) — all-level classes throughout the week including sunrise sessions, complimentary mats and props. Drop-in welcome; passes valid across locations. A practical, well-loved home base for travelers who want a morning practice before heading south on Highway 1.
 - **Address**: Carmel Plaza, Ocean Ave & Mission St, Fl 3, Carmel-by-the-Sea, CA 93921
@@ -273,6 +278,14 @@ Sustainable coastal cuisine — Pacific-sourced seafood from local fishermen, pr
 #### Nepenthe
 The iconic Big Sur terrace. Built in 1949 on land that Henry Miller once owned. The Ambrosia burger is a pilgrimage food for locals. The view from the outdoor deck — nothing between you and the horizon — is the point. Lunch and dinner. No reservations; arrive early or late to avoid waits. The phoenix sculpture on the terrace is by Edna Andrade.
 
+#### Solstice at The Village Big Sur
+Restaurant and cocktail lounge inside The Village Big Sur — a thoughtfully designed gathering place on Highway 1 where time genuinely slows down. Seasonal California coastal menu for brunch and dinner. The indoor-outdoor bar area is one of the best places to stop and linger on the coast. Share the compound with Big Sur Bodega (provisions, gifts, wine) and Word of Mouth Yoga — a full morning or evening at The Village is one of the best things you can do between Carmel and the southern coast. Reservations recommended via Exploretock.
+- **URL**: https://www.thevillagebigsur.com/
+
+#### Deetjen's Big Sur Inn
+One of Big Sur's most atmospheric dining experiences — a 1930s roadside inn built by Norwegian immigrant Helmuth Deetjen before Highway 1 was even completed. The enchanting dining room serves breakfast and dinner. Breakfast is the move: the kind of morning that makes you slow down before you even reach the trail. No cell service, no WiFi — a guest journal from 1955 reads "arrive here as a stranger but depart as a friend." That still holds. A Big Sur institution that predates every resort on the coast.
+- **URL**: https://www.deetjens.org/
+
 #### Big Sur Bakery
 Breakfast and lunch in a converted house surrounded by redwoods. Wood-fired pastries, fresh eggs, excellent coffee. A local institution. Opens early; the pastry case sells out. Friday–Tuesday only (closed Wednesday–Thursday) — check ahead.
 
@@ -292,6 +305,11 @@ Seasonal menu, wood-fired oven, French bistro sensibility with California ingred
 
 #### Casanova
 A vintage Carmel farmhouse converted into a French/Italian restaurant with a legendary wine cellar. One of the most atmospheric dining rooms in California — low-beamed ceilings, candlelight, garden patio. The story: this is the former home of Pablo Casals' cook, and the kitchen table where the master composer sat is on the property.
+
+#### El Bistro by the Sea
+Refined Mexican cuisine in the heart of Carmel — the kind of place that makes you rethink everything you thought you knew about Mexican food in a coastal California town. Handmade tortillas, fresh salsas, chilaquiles, birria, fish tacos, and a French toast that has no business being this good. Modern sophistication rooted in deep Mexican culinary tradition — not a taqueria, not fusion, just excellent. Open for breakfast and lunch Monday through Saturday (closed Thursday and Sunday). Walk-in; pet-friendly.
+- **Address**: Mission and 5th Ave, Carmel-by-the-Sea, CA 93921
+- **URL**: https://www.elbistrobythesea.com/
 
 #### Mission Ranch Restaurant (Clint Eastwood)
 Carmel landmark owned by Clint Eastwood since 1986. Sheep meadow, Carmel River lagoon, and a view of Point Lobos from the dining room. The setting is the star — the food is classic American, the kind of place that's earned its place through authenticity rather than hype.

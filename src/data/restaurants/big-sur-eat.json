@@ -247,5 +247,98 @@
     "lilaPick": false,
     "tags": ["breakfast", "coffee", "cafe", "provisions"],
     "months": "all"
+  },
+  {
+    "id": "solstice-village",
+    "name": "Solstice at The Village Big Sur",
+    "cuisine": "California coastal",
+    "location": "Big Sur (Highway 1)",
+    "priceRange": "$$$",
+    "budgetTier": "premium",
+    "groupFit": ["couple", "friends", "solo"],
+    "energy": "refined",
+    "highlights": [
+      "Restaurant and cocktail lounge inside The Village Big Sur — a thoughtfully designed gathering place on Highway 1",
+      "Brunch and dinner service with a seasonal California coastal menu",
+      "Beautiful indoor-outdoor bar area — one of the best places to stop and linger on the coast",
+      "Share the compound with Big Sur Bodega and Word of Mouth Yoga — a full morning or evening here"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": false,
+      "notes": null
+    },
+    "hours": "Brunch and dinner; check seasonal schedule",
+    "reservations": "Recommended — book via Exploretock",
+    "links": {
+      "website": "https://www.thevillagebigsur.com/",
+      "maps": null
+    },
+    "lilaPick": true,
+    "tags": ["brunch", "dinner", "cocktails", "village", "big-sur", "coastal", "bar", "gathering-place"],
+    "months": "all"
+  },
+  {
+    "id": "deetjens",
+    "name": "Deetjen's Big Sur Inn",
+    "cuisine": "American / California",
+    "location": "Big Sur (Highway 1)",
+    "priceRange": "$$",
+    "budgetTier": "moderate",
+    "groupFit": ["couple", "solo", "friends"],
+    "energy": "relaxed",
+    "highlights": [
+      "Historic 1930s inn with an enchanting dining room — one of Big Sur's most atmospheric breakfast spots",
+      "No cell service, no WiFi — arrive here as a stranger, depart as a friend",
+      "Breakfast is the move: the kind of morning that makes you slow down before you even reach the trail",
+      "Built as a roadside stopover before Highway 1 was completed in 1937"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": false,
+      "notes": null
+    },
+    "hours": "Breakfast and dinner; check seasonal schedule",
+    "reservations": "Recommended for dinner; breakfast is more flexible",
+    "links": {
+      "website": "https://www.deetjens.org/",
+      "maps": null
+    },
+    "lilaPick": true,
+    "tags": ["breakfast", "dinner", "historic", "atmospheric", "no-wifi", "big-sur", "classic", "destination-dining"],
+    "months": "all"
+  },
+  {
+    "id": "el-bistro-by-the-sea",
+    "name": "El Bistro by the Sea",
+    "cuisine": "Mexican",
+    "location": "Carmel-by-the-Sea",
+    "priceRange": "$$",
+    "budgetTier": "moderate",
+    "groupFit": ["couple", "friends", "family"],
+    "energy": "lively",
+    "highlights": [
+      "Refined Mexican cuisine in the heart of Carmel — handmade tortillas, fresh salsas, creative brunch",
+      "Chilaquiles, birria, fish tacos, and a French toast that has no business being this good",
+      "Modern sophistication with deep Mexican culinary tradition — not a taqueria, not fusion, just excellent",
+      "Pet-friendly; outdoor seating available"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": true,
+      "notes": "Many naturally gluten-free options; corn tortillas throughout"
+    },
+    "hours": "Mon–Wed, Fri–Sat: 7:30 AM – 3:30 PM. Closed Thu & Sun.",
+    "reservations": "Walk-in; online ordering available",
+    "links": {
+      "website": "https://www.elbistrobythesea.com/",
+      "maps": null
+    },
+    "lilaPick": true,
+    "tags": ["mexican", "brunch", "breakfast", "carmel", "handmade-tortillas", "pet-friendly", "chilaquiles"],
+    "months": "all"
   }
 ]
