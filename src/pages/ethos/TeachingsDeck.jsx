@@ -3,8 +3,8 @@
  * ═══════════════════════════════════════════
  *
  * 30 concept cards across 6 wisdom traditions.
- * Single-face scrollable cards (no flip).
- * Dark background throughout — more austere than the meditations deck.
+ * Matches Meditations deck style: warm background, two-faced flip cards,
+ * tradition colors as front face backgrounds, cream back face.
  *
  * Route: /ethos/teachings
  */
@@ -18,217 +18,168 @@ const SANS = FONTS.body;
 const SCREENS = buildScreens();
 
 // ═══════════════════════════════════════════════════════════════════════════════
-// COVER SCREEN
+// COVER SCREEN (matches Meditations cover — sky gradient + symbols)
 // ═══════════════════════════════════════════════════════════════════════════════
 
 function CoverScreen() {
+  const sky = ['#5a6878', '#7a7080', '#b08868', '#c89060'];
+
   return (
-    <div style={{
-      width: '100%', height: '100%',
-      background: '#0D0D0B',
-      display: 'flex', flexDirection: 'column',
-      justifyContent: 'center',
-      alignItems: 'center',
-      padding: '0 32px',
-      position: 'relative', overflow: 'hidden',
-      borderRadius: 14,
-    }}>
-      {/* Subtle warm glow */}
+    <div style={{ width: '100%', height: '100%', position: 'relative', overflow: 'hidden', borderRadius: 14 }}>
+      {/* Sky gradient */}
       <div style={{
-        position: 'absolute', left: '50%', top: '35%',
-        transform: 'translate(-50%, -50%)',
-        width: 300, height: 300, borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(196,149,106,0.06) 0%, transparent 70%)',
-        filter: 'blur(40px)', pointerEvents: 'none',
+        position: 'absolute', inset: 0,
+        background: `linear-gradient(185deg, ${sky[0]} 0%, ${sky[1]} 30%, ${sky[2]} 60%, ${sky[3]} 100%)`,
       }} />
 
-      {/* Title block */}
-      <div style={{ textAlign: 'center', position: 'relative', marginBottom: 32 }}>
+      {/* Sun glow */}
+      <div style={{
+        position: 'absolute', left: '50%', top: '55%',
+        transform: 'translate(-50%, -50%)',
+        width: 220, height: 220, borderRadius: '50%',
+        background: 'radial-gradient(circle, rgba(200,144,96,0.5) 0%, rgba(200,120,60,0.15) 45%, transparent 70%)',
+        filter: 'blur(32px)', pointerEvents: 'none',
+      }} />
+
+      {/* Silhouettes */}
+      <svg style={{ position: 'absolute', bottom: 0, width: '100%', height: '38%' }}
+        viewBox="0 0 390 200" preserveAspectRatio="none">
+        <path d="M0,200 L0,118 L43,70 L88,104 L132,46 L176,86 L221,20 L265,66 L309,36 L354,73 L390,52 L390,200 Z"
+          fill="rgba(12,22,36,0.90)" />
+        <path d="M0,200 L0,145 L38,110 L78,130 L128,90 L172,118 L218,76 L265,106 L310,73 L355,98 L390,83 L390,200 Z"
+          fill="rgba(12,22,36,0.52)" />
+      </svg>
+
+      {/* Bottom vignette */}
+      <div style={{
+        position: 'absolute', inset: 0,
+        background: 'linear-gradient(to bottom, rgba(10,18,28,0.05) 0%, rgba(10,18,28,0.45) 100%)',
+        pointerEvents: 'none',
+      }} />
+
+      {/* Content */}
+      <div style={{
+        position: 'absolute', inset: 0,
+        display: 'flex', flexDirection: 'column',
+        alignItems: 'center', justifyContent: 'center',
+        padding: '0 28px 15%', gap: 16, zIndex: 2,
+      }}>
         {/* Tradition symbols row */}
-        <div style={{ display: 'flex', gap: 16, justifyContent: 'center', marginBottom: 16 }}>
+        <div style={{ display: 'flex', gap: 14, alignItems: 'center' }}>
           {TRADITIONS.map(t => (
-            <span key={t.id} style={{
-              fontSize: 18, color: 'white', opacity: 0.85, lineHeight: 1,
-            }}>
+            <span key={t.id} style={{ fontSize: 18, color: 'white', opacity: 0.85, lineHeight: 1 }}>
               {t.symbol}
             </span>
           ))}
         </div>
-        <div style={{
-          width: 28, height: '0.5px',
-          background: 'rgba(255,255,255,0.2)',
-          margin: '0 auto 16px',
-        }} />
-        <div style={{
-          fontSize: 'clamp(32px, 8vw, 42px)', fontFamily: SANS,
-          color: 'rgba(255,255,255,0.9)', fontWeight: 700,
-          lineHeight: 1.1, letterSpacing: '-0.01em',
-        }}>
-          Traditions
+        <div style={{ width: 28, height: '0.5px', background: 'rgba(255,255,255,0.35)' }} />
+        <div style={{ textAlign: 'center' }}>
+          <div style={{
+            fontSize: 'clamp(42px,10vw,58px)', fontFamily: SANS,
+            color: C.warmWhite, fontWeight: 700, lineHeight: 1.0,
+            letterSpacing: '-0.01em', textShadow: '0 2px 24px rgba(0,0,0,0.3)',
+          }}>lila</div>
+          <div style={{
+            fontSize: 'clamp(42px,10vw,58px)', fontFamily: SANS,
+            color: C.warmWhite, fontWeight: 700, lineHeight: 1.0,
+            letterSpacing: '-0.01em', textShadow: '0 2px 24px rgba(0,0,0,0.3)',
+          }}>teachings</div>
         </div>
+        <div style={{ width: 28, height: '0.5px', background: 'rgba(255,255,255,0.35)' }} />
         <div style={{
-          fontSize: 'clamp(32px, 8vw, 42px)', fontFamily: SANS,
-          color: 'rgba(255,255,255,0.9)', fontWeight: 700,
-          lineHeight: 1.1, letterSpacing: '-0.01em',
-          marginBottom: 12,
+          fontSize: 12, fontFamily: SANS,
+          color: 'rgba(255,255,255,0.75)', fontWeight: 400,
+          letterSpacing: '0.06em', textAlign: 'center', lineHeight: 1.9,
         }}>
-          & Teachings
+          30 concepts &middot; ancient wisdom for wild places
         </div>
-        <div style={{
-          width: 28, height: '0.5px',
-          background: 'rgba(255,255,255,0.2)',
-          margin: '0 auto 14px',
-        }} />
-        <div style={{
-          fontSize: 13, fontFamily: SANS,
-          color: 'rgba(255,255,255,0.45)', fontWeight: 400,
-          letterSpacing: '0.06em',
-        }}>
-          30 concepts across five wisdom traditions
-        </div>
-      </div>
-
-      {/* Tradition TOC */}
-      <div style={{
-        display: 'flex', flexDirection: 'column', gap: 12,
-        width: '100%', maxWidth: 280,
-        position: 'relative',
-      }}>
-        {TRADITIONS.map(t => {
-          const count = getCardsByTradition(t.id).length;
-          return (
-            <div key={t.id} style={{
-              display: 'flex', alignItems: 'center', gap: 10,
-            }}>
-              <div style={{
-                width: 8, height: 8, borderRadius: '50%',
-                background: t.color, flexShrink: 0,
-              }} />
-              <div style={{
-                fontSize: 14, fontFamily: SANS,
-                color: 'rgba(255,255,255,0.6)', fontWeight: 400,
-                flex: 1,
-              }}>
-                {t.name}
-              </div>
-              <div style={{
-                fontSize: 12, fontFamily: SANS,
-                color: 'rgba(255,255,255,0.25)', fontWeight: 400,
-              }}>
-                {count}
-              </div>
-            </div>
-          );
-        })}
       </div>
     </div>
   );
 }
 
 // ═══════════════════════════════════════════════════════════════════════════════
-// CHAPTER SCREEN (tradition intro)
+// CHAPTER SCREEN (matches Meditations chapter — tradition color bg)
 // ═══════════════════════════════════════════════════════════════════════════════
 
-function ChapterScreen({ tradition }) {
+function ChapterScreen({ tradition, traditionIndex }) {
   const cards = getCardsByTradition(tradition.id);
 
   return (
     <div style={{
       width: '100%', height: '100%',
-      background: '#0D0D0B',
+      background: tradition.color,
+      border: '1px solid rgba(255,255,255,0.1)',
       display: 'flex', flexDirection: 'column',
-      justifyContent: 'center',
-      padding: '0 32px',
+      alignItems: 'center', justifyContent: 'space-between',
+      padding: '44px 28px 36px',
       position: 'relative', overflow: 'hidden',
       borderRadius: 14,
     }}>
-      {/* Subtle glow in tradition color */}
       <div style={{
-        position: 'absolute', left: '50%', top: '20%',
-        transform: 'translate(-50%, -50%)',
-        width: 200, height: 200, borderRadius: '50%',
-        background: `radial-gradient(circle, ${tradition.color}10 0%, transparent 70%)`,
-        filter: 'blur(40px)', pointerEvents: 'none',
+        position: 'absolute', inset: 0,
+        background: 'radial-gradient(ellipse at 50% 25%, rgba(255,255,255,0.07) 0%, transparent 60%)',
+        pointerEvents: 'none',
       }} />
 
-      <div style={{ textAlign: 'center', position: 'relative' }}>
-        {/* Chapter label */}
-        <div style={{
-          fontSize: 9, fontFamily: SANS,
-          fontWeight: 600, color: 'rgba(255,255,255,0.25)',
-          letterSpacing: '0.22em', textTransform: 'uppercase',
-          marginBottom: 20,
-        }}>
-          {tradition.chapterNumber}
-        </div>
-
+      {/* Title block */}
+      <div style={{ width: '100%' }}>
         {/* Symbol */}
-        <div style={{
-          fontSize: 48, lineHeight: 1,
-          color: tradition.color,
-          marginBottom: 16,
-        }}>
-          {tradition.symbol}
+        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 16 }}>
+          <span style={{ fontSize: 48, color: 'white', lineHeight: 1 }}>{tradition.symbol}</span>
         </div>
 
         {/* Name */}
         <div style={{
-          fontSize: 'clamp(28px, 7vw, 36px)', fontFamily: SANS,
-          color: 'rgba(255,255,255,0.9)', fontWeight: 700,
-          lineHeight: 1.1, letterSpacing: '-0.01em',
-          marginBottom: 8,
+          fontSize: 46, fontFamily: SANS,
+          color: 'white', fontWeight: 700,
+          lineHeight: 1.0, marginBottom: 8,
+          textAlign: 'center',
         }}>
           {tradition.name}
         </div>
 
         {/* Origin */}
         <div style={{
-          fontSize: 12, fontFamily: SANS,
-          color: 'rgba(255,255,255,0.3)', fontWeight: 400,
-          letterSpacing: '0.04em', marginBottom: 20,
+          fontSize: 14, fontFamily: SANS,
+          color: 'white', opacity: 0.6,
+          fontWeight: 400, marginBottom: 20,
+          letterSpacing: '0.02em',
+          textAlign: 'center',
         }}>
           {tradition.origin}
         </div>
 
-        {/* Divider */}
-        <div style={{
-          width: 28, height: '0.5px',
-          background: 'rgba(255,255,255,0.15)',
-          margin: '0 auto 20px',
-        }} />
+        <div style={{ width: 28, height: '0.5px', background: 'rgba(255,255,255,0.25)', margin: '0 auto 20px' }} />
 
         {/* Description */}
         <div style={{
-          fontSize: 15, fontFamily: SANS,
-          color: 'rgba(255,255,255,0.5)', fontWeight: 400,
-          lineHeight: 1.75, textAlign: 'left',
-          marginBottom: 28,
+          fontSize: 14, fontFamily: SANS,
+          color: 'white', opacity: 0.75,
+          lineHeight: 1.8, fontWeight: 400,
         }}>
           {tradition.description}
         </div>
       </div>
 
-      {/* Concept list */}
-      <div style={{ position: 'relative' }}>
+      {/* Card list */}
+      <div style={{ width: '100%' }}>
         {cards.map((card, i) => (
           <div key={card.id} style={{
-            display: 'flex', alignItems: 'baseline',
+            display: 'flex', alignItems: 'center', gap: 14,
             padding: '9px 0',
-            borderTop: i === 0 ? 'none' : '0.5px solid rgba(255,255,255,0.06)',
+            borderBottom: i < cards.length - 1 ? '0.5px solid rgba(255,255,255,0.08)' : 'none',
           }}>
-            <div style={{
-              fontSize: 12, fontFamily: SANS,
-              fontWeight: 400, color: 'rgba(255,255,255,0.2)',
-              width: 28, flexShrink: 0,
-            }}>
+            <div style={{ fontSize: 11, color: 'white', opacity: 0.55, fontFamily: SANS, minWidth: 20 }}>
               {i + 1}.
             </div>
-            <div style={{
-              fontSize: 15, fontFamily: SANS,
-              fontWeight: 500, color: 'rgba(255,255,255,0.65)',
-              flex: 1, lineHeight: 1.3,
-            }}>
-              {card.name}
+            <div style={{ flex: 1 }}>
+              <div style={{ fontSize: 16, fontFamily: SANS, color: 'white', opacity: 0.9, fontWeight: 400 }}>
+                {card.name}
+              </div>
+            </div>
+            <div style={{ fontSize: 11, fontFamily: SANS, color: 'white', opacity: 0.45, flexShrink: 0 }}>
+              {card.tag}
             </div>
           </div>
         ))}
@@ -238,173 +189,231 @@ function ChapterScreen({ tradition }) {
 }
 
 // ═══════════════════════════════════════════════════════════════════════════════
-// CARD SCREEN (single-face, scrollable)
+// CARD SCREEN (two-faced flip card — matches Meditations practice cards)
 // ═══════════════════════════════════════════════════════════════════════════════
 
-function CardScreen({ card, tradition, cardIndex, cardTotal }) {
-  return (
-    <div style={{
-      width: '100%', height: '100%',
-      background: '#0D0D0B',
-      display: 'flex', flexDirection: 'column',
-      position: 'relative', overflow: 'hidden',
-      borderRadius: 14,
-    }}>
-      {/* Progress bar at top */}
-      <div style={{
-        position: 'absolute', top: 0, left: 0, right: 0,
-        height: 2, background: 'rgba(255,255,255,0.04)',
-      }}>
-        <div style={{
-          height: '100%',
-          width: `${((cardIndex + 1) / cardTotal) * 100}%`,
-          background: tradition.color,
-          opacity: 0.5,
-          transition: 'width 0.3s ease',
-        }} />
-      </div>
+function CardScreen({ card, tradition }) {
+  const [flipped, setFlipped] = useState(false);
+  const [flipAnimating, setFlipAnimating] = useState(false);
 
-      {/* Scrollable content */}
+  const handleFlip = () => {
+    if (flipAnimating) return;
+    setFlipAnimating(true);
+    setFlipped(f => !f);
+    setTimeout(() => setFlipAnimating(false), 520);
+  };
+
+  return (
+    <div style={{ width: '100%', height: '100%', perspective: 1200 }}>
       <div style={{
-        flex: 1, overflow: 'auto',
-        padding: 'clamp(28px, 5vw, 36px) clamp(24px, 4vw, 32px)',
-        WebkitOverflowScrolling: 'touch',
+        width: '100%', height: '100%', position: 'relative',
+        transformStyle: 'preserve-3d',
+        willChange: 'transform',
+        transform: flipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
+        animation: flipAnimating
+          ? `${flipped ? 'flipCard' : 'flipCardBack'} 0.5s ease-in-out forwards`
+          : 'none',
       }}>
-        {/* Header */}
-        <div style={{ marginBottom: 28 }}>
-          {/* Tradition symbol + tag */}
+
+      {/* ── Front Face ── */}
+      <div
+        onClick={handleFlip}
+        style={{
+          position: 'absolute', inset: 0,
+          background: tradition.color,
+          display: 'flex', flexDirection: 'column',
+          cursor: 'pointer',
+          overflow: 'hidden',
+          borderRadius: 14,
+          backfaceVisibility: 'hidden',
+          WebkitBackfaceVisibility: 'hidden',
+        }}
+      >
+        <div style={{
+          position: 'absolute', inset: 0,
+          background: 'radial-gradient(ellipse at 50% 10%, rgba(255,255,255,0.09) 0%, transparent 55%)',
+          pointerEvents: 'none',
+        }} />
+
+        {/* Top zone — symbol + tradition name */}
+        <div style={{
+          display: 'flex', flexDirection: 'column',
+          alignItems: 'center', gap: 6,
+          padding: '38px 24px 0', flexShrink: 0,
+        }}>
+          <span style={{ fontSize: 24, color: 'white', opacity: 0.85, lineHeight: 1 }}>
+            {tradition.symbol}
+          </span>
           <div style={{
-            display: 'flex', alignItems: 'center', gap: 8,
-            marginBottom: 10,
+            fontSize: 8, fontFamily: SANS, fontWeight: 400,
+            color: 'white', opacity: 0.55,
+            letterSpacing: '0.32em', textTransform: 'uppercase',
           }}>
-            <span style={{
-              fontSize: 18, color: tradition.color, lineHeight: 1,
-            }}>
-              {tradition.symbol}
-            </span>
-            <div style={{
-              fontSize: 9, fontFamily: SANS,
-              fontWeight: 600, color: tradition.color,
-              letterSpacing: '0.22em', textTransform: 'uppercase',
-            }}>
-              {card.tag}
-            </div>
+            {tradition.name}
+          </div>
+        </div>
+
+        <div style={{ height: 32, flexShrink: 0 }} />
+
+        {/* Content block */}
+        <div style={{ padding: '0 28px', flexShrink: 0 }}>
+          {/* Tag */}
+          <div style={{
+            fontSize: 9, fontFamily: SANS, fontWeight: 600,
+            color: 'white', opacity: 0.4,
+            letterSpacing: '0.18em', textTransform: 'uppercase',
+            marginBottom: 8,
+          }}>
+            {card.tag}
           </div>
 
           {/* Name */}
           <div style={{
-            fontSize: 'clamp(26px, 6vw, 34px)', fontFamily: SANS,
-            color: 'rgba(255,255,255,0.9)', fontWeight: 700,
-            lineHeight: 1.1, letterSpacing: '-0.01em',
-            marginBottom: 6,
+            fontSize: 32, fontFamily: SANS, fontWeight: 700,
+            color: '#FDF9F4', lineHeight: 1.0,
+            letterSpacing: '0.01em', marginBottom: 6,
           }}>
             {card.name}
           </div>
 
           {/* Pronunciation */}
           <div style={{
-            fontSize: 14, fontFamily: SANS,
-            color: 'rgba(255,255,255,0.3)', fontWeight: 300,
-            fontStyle: 'italic',
+            fontSize: 14, fontFamily: SANS, fontWeight: 300,
+            color: 'white', opacity: 0.5,
+            fontStyle: 'italic', marginBottom: 24,
           }}>
             {card.pronunciation}
           </div>
-        </div>
 
-        {/* Origin */}
-        <div style={{ marginBottom: 24 }}>
+          {/* Teaching preview */}
           <div style={{
-            fontSize: 11, fontFamily: SANS,
-            fontWeight: 600, color: 'rgba(255,255,255,0.3)',
-            letterSpacing: '0.12em', textTransform: 'uppercase',
-            marginBottom: 8,
-          }}>
-            Origin
-          </div>
-          <div style={{
-            fontSize: 15, fontFamily: SANS,
-            color: 'rgba(255,255,255,0.6)', fontWeight: 400,
-            lineHeight: 1.75,
-          }}>
-            {card.origin}
-          </div>
-        </div>
-
-        {/* The Teaching */}
-        <div style={{ marginBottom: 24 }}>
-          <div style={{
-            fontSize: 11, fontFamily: SANS,
-            fontWeight: 600, color: 'rgba(255,255,255,0.3)',
-            letterSpacing: '0.12em', textTransform: 'uppercase',
-            marginBottom: 8,
-          }}>
-            The Teaching
-          </div>
-          <div style={{
-            fontSize: 15, fontFamily: SANS,
-            color: 'rgba(255,255,255,0.6)', fontWeight: 400,
-            lineHeight: 1.75,
+            fontSize: 16, fontFamily: SANS, fontWeight: 400,
+            color: 'white', opacity: 0.85, lineHeight: 1.75,
+            maxWidth: '86%',
           }}>
             {card.teaching}
           </div>
         </div>
 
-        {/* On Your Journey */}
-        <div style={{ marginBottom: 24 }}>
-          <div style={{
-            fontSize: 11, fontFamily: SANS,
-            fontWeight: 600, color: 'rgba(255,255,255,0.3)',
-            letterSpacing: '0.12em', textTransform: 'uppercase',
-            marginBottom: 8,
-          }}>
-            On Your Journey
-          </div>
-          <div style={{
-            fontSize: 15, fontFamily: SANS,
-            color: 'rgba(255,255,255,0.6)', fontWeight: 400,
-            lineHeight: 1.75,
-          }}>
-            {card.journey}
-          </div>
-        </div>
+        <div style={{ flex: 1 }} />
 
-        {/* Quote */}
-        <div style={{
-          borderLeft: `2px solid ${tradition.color}60`,
-          paddingLeft: 16,
-          marginTop: 8,
-        }}>
-          <div style={{
-            fontSize: 15, fontFamily: SANS,
-            color: 'rgba(255,255,255,0.5)', fontWeight: 400,
-            fontStyle: 'italic', lineHeight: 1.7,
-            marginBottom: 6,
-          }}>
-            &ldquo;{card.quote}&rdquo;
-          </div>
-          <div style={{
-            fontSize: 11, fontFamily: SANS,
-            color: 'rgba(255,255,255,0.25)', fontWeight: 400,
-            letterSpacing: '0.04em', textTransform: 'uppercase',
-          }}>
-            {card.quoteAuthor}
+        {/* Flip arrow */}
+        <div style={{ display: 'flex', justifyContent: 'flex-end', padding: '12px 28px 28px' }}>
+          <div style={{ opacity: 0.6 }}>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path d="M 20 12 A 8 8 0 1 1 12 4" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
+              <path d="M 15 4 L 12 4 L 12 7" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
           </div>
         </div>
       </div>
 
-      {/* Bottom bar — chapter context */}
-      <div style={{
-        padding: '12px 24px 16px',
-        display: 'flex', justifyContent: 'center',
-        flexShrink: 0,
-      }}>
+      {/* ── Back Face ── */}
+      <div
+        onClick={handleFlip}
+        style={{
+          position: 'absolute', inset: 0,
+          background: '#F7F4EE',
+          display: 'flex', flexDirection: 'column',
+          justifyContent: 'center',
+          cursor: 'pointer', overflow: 'hidden',
+          borderRadius: 14,
+          border: '0.5px solid rgba(0,0,0,0.08)',
+          transform: 'rotateY(180deg)',
+          backfaceVisibility: 'hidden',
+          WebkitBackfaceVisibility: 'hidden',
+          padding: '0',
+        }}
+      >
+        {/* Title bar */}
         <div style={{
-          fontSize: 11, fontFamily: SANS,
-          color: 'rgba(255,255,255,0.2)', fontWeight: 400,
-          letterSpacing: '0.04em',
+          padding: '20px 22px 14px',
+          display: 'flex', justifyContent: 'center', alignItems: 'center',
+          gap: 6, flexShrink: 0,
         }}>
-          {cardIndex + 1} of {cardTotal} · {tradition.name}
+          <svg width="8" height="8" viewBox="0 0 10 10" fill="none">
+            <rect x="1" y="1" width="8" height="8" stroke={tradition.color} strokeWidth="1.5" transform="rotate(45 5 5)" />
+          </svg>
+          <div style={{
+            fontSize: 13, fontFamily: SANS, fontWeight: 700,
+            color: tradition.color, letterSpacing: '0.14em', textTransform: 'uppercase',
+          }}>
+            {card.name}
+          </div>
         </div>
+        <div style={{ height: '0.5px', background: 'rgba(44,36,32,0.05)', margin: '0 22px', flexShrink: 0 }} />
+
+        {/* Content group */}
+        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', paddingBottom: 40 }}>
+
+          {/* Origin */}
+          <div style={{ padding: '14px 22px 0' }}>
+            <div style={{ fontSize: 11, fontFamily: SANS, fontWeight: 600, color: 'rgba(44,36,32,0.35)', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 6 }}>
+              Origin
+            </div>
+            <div style={{ fontSize: 14, fontFamily: SANS, fontWeight: 400, color: '#1C1917', lineHeight: 1.75 }}>
+              {card.origin}
+            </div>
+          </div>
+
+          {/* On Your Journey */}
+          <div style={{ padding: '18px 22px 0' }}>
+            <div style={{
+              fontSize: 11, fontFamily: SANS, fontWeight: 700,
+              color: tradition.color, letterSpacing: '0.14em',
+              textTransform: 'uppercase', marginBottom: 8,
+              display: 'flex', alignItems: 'center', gap: 5,
+            }}>
+              <svg width="8" height="8" viewBox="0 0 10 10" fill="none">
+                <rect x="1" y="1" width="8" height="8" stroke={tradition.color} strokeWidth="1.5" transform="rotate(45 5 5)" />
+              </svg>
+              On Your Journey
+            </div>
+            <div style={{
+              fontSize: 14, fontFamily: SANS, fontWeight: 400,
+              color: '#1C1917', lineHeight: 1.8,
+            }}>
+              {card.journey}
+            </div>
+          </div>
+
+          {/* Quote */}
+          {card.quote && (
+            <div style={{
+              margin: '18px 22px 0', padding: '18px 0 14px',
+              borderTop: '0.5px solid rgba(44,36,32,0.04)',
+              borderBottom: '0.5px solid rgba(44,36,32,0.04)',
+            }}>
+              <div style={{
+                fontSize: 14, fontFamily: SANS, fontWeight: 400,
+                color: '#1C1917', fontStyle: 'italic', lineHeight: 1.7, marginBottom: 6,
+              }}>
+                &ldquo;{card.quote}&rdquo;
+              </div>
+              <div style={{
+                fontSize: 10, fontFamily: SANS, fontWeight: 400,
+                color: '#8C7B6B', letterSpacing: '0.04em', textTransform: 'uppercase',
+              }}>
+                {card.quoteAuthor}
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Flip arrow */}
+        <div style={{
+          position: 'absolute', right: 22, bottom: 18,
+          display: 'flex', alignItems: 'center', gap: 6, cursor: 'pointer',
+        }}>
+          <div style={{ fontSize: 8, fontFamily: SANS, color: '#8C7B6B', opacity: 0.5, letterSpacing: '0.12em', textTransform: 'uppercase' }}>back</div>
+          <div style={{ opacity: 0.5 }}>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path d="M 20 12 A 8 8 0 1 1 12 4" stroke="#8C7B6B" strokeWidth="1.5" strokeLinecap="round" />
+              <path d="M 15 4 L 12 4 L 12 7" stroke="#8C7B6B" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </div>
+        </div>
+      </div>
       </div>
     </div>
   );
@@ -417,13 +426,13 @@ function CardScreen({ card, tradition, cardIndex, cardTotal }) {
 function renderScreen(scr) {
   if (!scr) return null;
   if (scr.type === 'cover') return <CoverScreen />;
-  if (scr.type === 'chapter') return <ChapterScreen key={`ch-${scr.traditionIndex}`} tradition={scr.tradition} />;
-  if (scr.type === 'card') return <CardScreen key={`${scr.traditionIndex}-${scr.cardIndex}`} card={scr.card} tradition={scr.tradition} cardIndex={scr.cardIndex} cardTotal={scr.cardTotal} />;
+  if (scr.type === 'chapter') return <ChapterScreen key={`ch-${scr.traditionIndex}`} tradition={scr.tradition} traditionIndex={scr.traditionIndex} />;
+  if (scr.type === 'card') return <CardScreen key={`${scr.traditionIndex}-${scr.cardIndex}`} card={scr.card} tradition={scr.tradition} />;
   return null;
 }
 
 // ═══════════════════════════════════════════════════════════════════════════════
-// PAGE COMPONENT
+// PAGE COMPONENT (matches Meditations page — warm background, same nav)
 // ═══════════════════════════════════════════════════════════════════════════════
 
 export default function TeachingsDeck() {
@@ -509,7 +518,7 @@ export default function TeachingsDeck() {
   return (
     <>
       <Helmet>
-        <title>Lila Teachings — Traditions & Teachings</title>
+        <title>Lila Teachings — Ancient Wisdom for Wild Places</title>
         <meta name="description" content="30 concepts across five wisdom traditions — from ancient India to Stoic Rome." />
         <link rel="canonical" href="https://lilatrips.com/ethos/teachings" />
       </Helmet>
@@ -525,12 +534,22 @@ export default function TeachingsDeck() {
           0%   { transform: translateX(-115%) rotate(-3deg); }
           100% { transform: translateX(0) rotate(0deg); }
         }
+        @keyframes flipCard {
+          0%   { transform: rotateY(0deg)   scale(1)    translateY(0); }
+          50%  { transform: rotateY(90deg)  scale(1.02) translateY(-4px); }
+          100% { transform: rotateY(180deg) scale(1)    translateY(0); }
+        }
+        @keyframes flipCardBack {
+          0%   { transform: rotateY(180deg) scale(1)    translateY(0); }
+          50%  { transform: rotateY(90deg)  scale(1.02) translateY(-4px); }
+          100% { transform: rotateY(0deg)   scale(1)    translateY(0); }
+        }
       `}</style>
 
       <div
         style={{
           height: '100dvh',
-          background: '#0D0D0B',
+          background: '#E8E0D5',
           display: 'flex',
           alignItems: 'center', justifyContent: 'center',
           fontFamily: SANS, userSelect: 'none',
@@ -549,14 +568,14 @@ export default function TeachingsDeck() {
               background: 'none',
               border: 'none', cursor: 'pointer',
               padding: '12px 10px', marginRight: 20,
-              opacity: currentIndex === 0 ? 0.1 : 0.35,
+              opacity: currentIndex === 0 ? 0.15 : 0.5,
               pointerEvents: currentIndex === 0 ? 'none' : 'auto',
               transition: 'opacity 0.2s',
-              color: 'rgba(255,255,255,0.5)',
+              color: '#6B5A50',
               alignItems: 'center', justifyContent: 'center',
             }}
-            onMouseEnter={e => { if (currentIndex > 0) e.currentTarget.style.opacity = '0.7'; }}
-            onMouseLeave={e => { e.currentTarget.style.opacity = currentIndex === 0 ? '0.1' : '0.35'; }}
+            onMouseEnter={e => { if (currentIndex > 0) e.currentTarget.style.opacity = '0.9'; }}
+            onMouseLeave={e => { e.currentTarget.style.opacity = currentIndex === 0 ? '0.15' : '0.5'; }}
           >
             <svg width="12" height="22" viewBox="0 0 12 22" fill="none">
               <path d="M 10 1 L 1 11 L 10 21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -573,7 +592,7 @@ export default function TeachingsDeck() {
               height: 'min(720px, calc(100dvh - 48px))',
               position: 'relative', overflow: 'hidden',
               borderRadius: 14,
-              background: '#0D0D0B',
+              background: 'transparent',
             }}
           >
             {/* Base layer */}
@@ -603,14 +622,14 @@ export default function TeachingsDeck() {
               background: 'none',
               border: 'none', cursor: 'pointer',
               padding: '12px 10px', marginLeft: 20,
-              opacity: currentIndex === total - 1 ? 0.1 : 0.35,
+              opacity: currentIndex === total - 1 ? 0.15 : 0.5,
               pointerEvents: currentIndex === total - 1 ? 'none' : 'auto',
               transition: 'opacity 0.2s',
-              color: 'rgba(255,255,255,0.5)',
+              color: '#6B5A50',
               alignItems: 'center', justifyContent: 'center',
             }}
-            onMouseEnter={e => { if (currentIndex < total - 1) e.currentTarget.style.opacity = '0.7'; }}
-            onMouseLeave={e => { e.currentTarget.style.opacity = currentIndex === total - 1 ? '0.1' : '0.35'; }}
+            onMouseEnter={e => { if (currentIndex < total - 1) e.currentTarget.style.opacity = '0.9'; }}
+            onMouseLeave={e => { e.currentTarget.style.opacity = currentIndex === total - 1 ? '0.15' : '0.5'; }}
           >
             <svg width="12" height="22" viewBox="0 0 12 22" fill="none">
               <path d="M 1 1 L 11 11 L 1 21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
