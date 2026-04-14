@@ -15,6 +15,7 @@
 //   /ethos/philosophy               → Philosophy deep-dive (five principles × five traditions)
 //   /ethos/practices                → Practices Explorer (interactive wisdom layer browser)
 //   /ethos/meditations              → Lila Meditations (30-card deck explorer)
+//   /ethos/teachings               → Lila Teachings (30-concept tradition deck)
 //   /ethos/movements               → Lila Movements (body science card deck)
 //   /ways-to-travel                → Ways to Travel (how to get started)
 //   /trips/:slug                   → Individual Threshold Trip detail
@@ -80,6 +81,7 @@ const GroupTripsPage = lazy(() => import('@pages/GroupTrips'));
 const PhilosophyPage = lazy(() => import('@pages/Philosophy'));
 const PracticesExplorerPage = lazy(() => import('@pages/PracticesExplorer'));
 const MeditationsPage = lazy(() => import('@pages/Meditations'));
+const TeachingsDeckPage = lazy(() => import('@pages/ethos/TeachingsDeck'));
 const MovementsPage = lazy(() => import('@pages/Movements'));
 const MovementsL1Page = lazy(() => import('@pages/MovementsL1'));
 const MovementsL2Page = lazy(() => import('@pages/MovementsL2'));
@@ -141,6 +143,7 @@ export default function App() {
             <Route path="/ethos/philosophy" element={<PhilosophyPage />} />
             <Route path="/ethos/practices" element={<PracticesExplorerPage />} />
             <Route path="/ethos/meditations" element={<MeditationsPage />} />
+            <Route path="/ethos/teachings" element={<TeachingsDeckPage />} />
             <Route path="/ethos/movements" element={<MovementsPage />} />
             <Route path="/ethos/movements/practice" element={<MovementsL1Page />} />
             <Route path="/ethos/movements/science" element={<MovementsL2Page />} />
