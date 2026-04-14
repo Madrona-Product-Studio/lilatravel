@@ -35,4 +35,5 @@ export const P = {
   bigSurHiddenCove: "/images/bigsur-hidden-cove.jpg",
   bigSurShoreline: "/images/bigsur-rocky-shoreline-wave.jpg",
   bigSurSeaArch: "/images/bigsur-sea-arch-cove.jpg",
+  bigSurRedwoods: "/images/big-sur-redwoods.jpg",
 };

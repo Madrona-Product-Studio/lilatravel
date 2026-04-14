@@ -859,7 +859,7 @@ export default function BigSurGuide() {
             { src: P.bigSur,          alt: "Big Sur coastline at sunset",         caption: "Highway 1 — where the mountains meet the sea", width: 420 },
             { src: P.bigSurSurfer,     alt: "Surfer at sunset in Big Sur",         caption: "Golden hour on the Central Coast",              width: 280 },
             { src: P.bigSurHiddenCove, alt: "Hidden cove along the Big Sur coast", caption: "Hidden cove — only accessible on foot",         width: 420 },
-            { src: P.bigSurShoreline,  alt: "Rocky shoreline with crashing wave",  caption: "The shoreline at Garrapata",                    width: 360 },
+            { src: P.bigSurRedwoods,   alt: "Redwood canopy looking up through towering trunks", caption: "Looking up through the redwoods",              width: 360 },
           ].map((img, i) => (
             <div key={i} className="flex-none snap-start relative overflow-hidden"
               style={{ width: isMobile ? "85vw" : img.width }}>
