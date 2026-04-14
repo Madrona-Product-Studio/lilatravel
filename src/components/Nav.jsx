@@ -268,7 +268,7 @@ export default function Nav({ transparent = false, breathConfig = null }) {
     { label: "Destinations", to: "/destinations" },
     { label: "Group Trips", to: "/group-trips" },
     { label: "Ethos", to: "/ethos" },
-    { label: "Ways to Travel", to: "/ways-to-travel" },
+    { label: "Practice", to: "/practice" },
   ];
 
   const handleSelectTrip = (trip) => {
