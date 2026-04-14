@@ -15,6 +15,7 @@ import { Helmet } from 'react-helmet-async';
 import { C, FONTS } from '@data/brand';
 import { MOVEMENT_CHAPTERS, buildScreens, getTotalCards } from '@data/movementDeck';
 import MovementTabs from '@components/movements/MovementTabs';
+import DeckMark from '@components/guide/DeckMarks';
 
 const SANS = FONTS.body;
 
@@ -36,7 +37,7 @@ function FlipArrow({ dark = false }) {
 // COVER SCREEN
 // ═══════════════════════════════════════════════════════════════════════════════
 
-function CoverScreen({ subtitle, countLabel }) {
+function CoverScreen({ subtitle, countLabel, markIds }) {
   // Warm sky gradient — sibling to the meditations cover but earthier
   const sky = ['#4a6858', '#6a7868', '#a08060', '#c89868'];
 
@@ -87,6 +88,14 @@ function CoverScreen({ subtitle, countLabel }) {
         alignItems: 'center', justifyContent: 'center',
         padding: '0 28px 15%', gap: 16, zIndex: 2,
       }}>
+        {/* Section/chapter marks */}
+        {markIds && markIds.length > 0 && (
+          <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
+            {markIds.map(id => (
+              <DeckMark key={id} id={id} size={22} />
+            ))}
+          </div>
+        )}
         <div style={{
           width: 28, height: '0.5px',
           background: 'rgba(255,255,255,0.35)',
@@ -200,7 +209,7 @@ function ChaptersScreen() {
 // CHAPTER TITLE SCREEN
 // ═══════════════════════════════════════════════════════════════════════════════
 
-function ChapterTitleScreen({ chapter, chapterIndex }) {
+function ChapterTitleScreen({ chapter, chapterIndex, markId }) {
   return (
     <div style={{
       width: '100%', height: '100%',
@@ -220,6 +229,13 @@ function ChapterTitleScreen({ chapter, chapterIndex }) {
           pointerEvents: 'none',
         }}
       />
+
+      {/* Chapter mark */}
+      {markId && (
+        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 16, position: 'relative' }}>
+          <DeckMark id={markId} size={52} />
+        </div>
+      )}
 
       {/* Chapter number */}
       <div style={{
@@ -396,6 +412,11 @@ function GroupTitleScreen({ group, chapter }) {
         padding: '0 28px',
         position: 'relative',
       }}>
+        {/* Section mark */}
+        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 16 }}>
+          <DeckMark id={group.id} size={52} />
+        </div>
+
         {/* Chapter context */}
         <div style={{
           fontSize: 9, fontFamily: SANS,
@@ -581,15 +602,20 @@ function CardScreen({ card, group, chapter }) {
                 marginTop: 'auto',
                 padding: '0 clamp(20px, 4vw, 28px) clamp(52px, 8vh, 64px)',
               }}>
-                {/* Group label */}
+                {/* Section mark + label */}
                 <div style={{
-                  fontSize: 9, fontFamily: SANS,
-                  fontWeight: 600, color: accent,
-                  opacity: 0.6,
-                  letterSpacing: '0.18em', textTransform: 'uppercase',
+                  display: 'flex', alignItems: 'center', gap: 8,
                   marginBottom: 10,
                 }}>
-                  {group.icon} {group.label}
+                  <DeckMark id={group.id} size={18} color={accent} />
+                  <div style={{
+                    fontSize: 9, fontFamily: SANS,
+                    fontWeight: 600, color: accent,
+                    opacity: 0.6,
+                    letterSpacing: '0.18em', textTransform: 'uppercase',
+                  }}>
+                    {group.label}
+                  </div>
                 </div>
 
                 {/* Term */}
@@ -629,14 +655,19 @@ function CardScreen({ card, group, chapter }) {
                 flex: 1, display: 'flex', flexDirection: 'column',
                 padding: 'clamp(60px, 12vh, 100px) clamp(20px, 4vw, 28px) clamp(52px, 8vh, 64px)',
               }}>
-                {/* Group label */}
+                {/* Section mark + label */}
                 <div style={{
-                  fontSize: 12, fontFamily: SANS,
-                  fontWeight: 600, color: 'rgba(255,255,255,0.55)',
-                  letterSpacing: '0.12em', textTransform: 'uppercase',
-                  marginBottom: 6,
+                  display: 'flex', alignItems: 'center', gap: 8,
+                  marginBottom: 8,
                 }}>
-                  {group.label}
+                  <DeckMark id={group.id} size={18} color="rgba(255,255,255,0.55)" />
+                  <div style={{
+                    fontSize: 12, fontFamily: SANS,
+                    fontWeight: 600, color: 'rgba(255,255,255,0.55)',
+                    letterSpacing: '0.12em', textTransform: 'uppercase',
+                  }}>
+                    {group.label}
+                  </div>
                 </div>
 
                 {/* Term */}
@@ -787,9 +818,9 @@ function CardScreen({ card, group, chapter }) {
 
 function renderScreen(scr, deckConfig) {
   if (!scr) return null;
-  if (scr.type === 'cover') return <CoverScreen subtitle={deckConfig?.subtitle} countLabel={deckConfig?.countLabel} />;
+  if (scr.type === 'cover') return <CoverScreen subtitle={deckConfig?.subtitle} countLabel={deckConfig?.countLabel} markIds={deckConfig?.markIds} />;
   if (scr.type === 'chapters') return <ChaptersScreen />;
-  if (scr.type === 'chapter-title') return <ChapterTitleScreen chapter={scr.chapter} chapterIndex={scr.chapterIndex} />;
+  if (scr.type === 'chapter-title') return <ChapterTitleScreen chapter={scr.chapter} chapterIndex={scr.chapterIndex} markId={deckConfig?.chapterMarkMap?.[scr.chapter.id]} />;
   if (scr.type === 'chapter-toc') return <ChapterTocScreen chapter={scr.chapter} />;
   if (scr.type === 'group-title') return <GroupTitleScreen key={`gt-${scr.chapterIndex}-${scr.groupIndex}`} group={scr.group} chapter={scr.chapter} />;
   if (scr.type === 'card') return <CardScreen key={`${scr.chapterIndex}-${scr.groupIndex}-${scr.cardIndex}`} card={scr.card} group={scr.group} chapter={scr.chapter} />;

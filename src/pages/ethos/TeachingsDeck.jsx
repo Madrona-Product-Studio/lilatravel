@@ -44,6 +44,16 @@ function CoverScreen() {
 
       {/* Title block */}
       <div style={{ textAlign: 'center', position: 'relative', marginBottom: 32 }}>
+        {/* Tradition symbols row */}
+        <div style={{ display: 'flex', gap: 16, justifyContent: 'center', marginBottom: 16 }}>
+          {TRADITIONS.map(t => (
+            <span key={t.id} style={{
+              fontSize: 18, color: 'white', opacity: 0.85, lineHeight: 1,
+            }}>
+              {t.symbol}
+            </span>
+          ))}
+        </div>
         <div style={{
           width: 28, height: '0.5px',
           background: 'rgba(255,255,255,0.2)',
@@ -262,14 +272,23 @@ function CardScreen({ card, tradition, cardIndex, cardTotal }) {
       }}>
         {/* Header */}
         <div style={{ marginBottom: 28 }}>
-          {/* Tag */}
+          {/* Tradition symbol + tag */}
           <div style={{
-            fontSize: 9, fontFamily: SANS,
-            fontWeight: 600, color: tradition.color,
-            letterSpacing: '0.22em', textTransform: 'uppercase',
+            display: 'flex', alignItems: 'center', gap: 8,
             marginBottom: 10,
           }}>
-            {card.tag}
+            <span style={{
+              fontSize: 18, color: tradition.color, lineHeight: 1,
+            }}>
+              {tradition.symbol}
+            </span>
+            <div style={{
+              fontSize: 9, fontFamily: SANS,
+              fontWeight: 600, color: tradition.color,
+              letterSpacing: '0.22em', textTransform: 'uppercase',
+            }}>
+              {card.tag}
+            </div>
           </div>
 
           {/* Name */}
