@@ -946,7 +946,8 @@ export const MOVEMENT_CHAPTERS = [
       {
         id: 'pelvic-tilt',
         label: 'The Pelvic Tilt Problem',
-        subtitle: 'Why your pelvis position is the most consequential postural choice your body makes',
+        subtitle: 'Where posture begins and breaks down',
+        desc: 'Your pelvis is a bowl that can tip forward or backward — and whichever way it tips, your spine follows. Sitting all day locks it in one position. The muscles that should hold it steady forget how. What shows up as back pain, tight hips, or a gut that won\'t flatten is often this one thing: a pelvis that has lost the ability to choose.',
         icon: '↗',
         cards: [
           {
@@ -1006,7 +1007,8 @@ export const MOVEMENT_CHAPTERS = [
       {
         id: 'screens-upper-body',
         label: 'What Screens Do to Your Upper Body',
-        subtitle: 'The predictable patterns of tightness and weakness that create postural dysfunction',
+        subtitle: 'The posture of modern life',
+        desc: 'Hours of looking down at a phone or forward at a screen create a predictable pattern: the chest tightens, the upper back rounds, the head drifts forward, and the shoulders creep toward the ears. It\'s not damage — it\'s adaptation. Your body shaped itself around the position you gave it most.',
         icon: '✕',
         cards: [
           {
@@ -1065,7 +1067,8 @@ export const MOVEMENT_CHAPTERS = [
       {
         id: 'fascial-body',
         label: 'The Fascial Body',
-        subtitle: 'The continuous tension line from your heel to your skull',
+        subtitle: 'The web beneath the muscles',
+        desc: 'Under your skin, wrapping every muscle and organ, is a continuous sheet of connective tissue called fascia. It doesn\'t show up on most anatomy charts, but it transmits force across your entire body. When one part gets stiff or stuck, the tension travels — which is why stretching a tight hamstring sometimes does nothing, but releasing the fascia in your foot fixes it.',
         icon: '∥',
         cards: [
           {
@@ -1121,7 +1124,8 @@ export const MOVEMENT_CHAPTERS = [
       {
         id: 'core-stability',
         label: 'Core Stability vs. Strength',
-        subtitle: 'Why planks matter more than crunches — and why they\'re not the same thing',
+        subtitle: 'They are not the same thing',
+        desc: 'A strong core can do a hundred crunches. A stable core can protect your spine before you even know you need it. Most core training builds the wrong one. Stability is about timing and coordination — the deep muscles firing milliseconds before you move. Strength without stability is a sports car with no steering.',
         icon: '▣',
         cards: [
           {
@@ -1181,7 +1185,8 @@ export const MOVEMENT_CHAPTERS = [
       {
         id: 'kinetic-chain',
         label: 'The Kinetic Chain & Injury',
-        subtitle: 'Why the injury site is often not the problem site',
+        subtitle: 'The site of pain is rarely the source',
+        desc: 'Your body is a chain of linked joints. When one link can\'t do its job, the next link picks up the slack — until it breaks. The knee that hurts isn\'t weak. The hip above it is stiff. The shoulder that aches isn\'t damaged. The thoracic spine behind it stopped rotating. Fix the source, not the symptom.',
         icon: '⟶',
         cards: [
           {
@@ -1567,6 +1572,7 @@ export const MOVEMENT_CHAPTERS = [
           {
             id: 'backbend-principle',
             term: 'The Backbend Principle',
+            image: 'backbend-principle.png',
             brief: 'Backbends are not about how far you bend — they are about where the bend comes from. The thoracic spine is the target. The lumbar spine is the trap.',
             mnemonic: 'A backbend distributed evenly across all 24 movable vertebrae is healthy. A backbend dumped into 5 lumbar vertebrae is how people get hurt. The question is never "how deep?" — it\'s "where from?"',
             tabs: [
@@ -1594,6 +1600,7 @@ export const MOVEMENT_CHAPTERS = [
           {
             id: 'twists-unlock-backbends',
             term: 'Twists Unlock Backbends',
+            image: 'twists-unlock-backbends.png',
             brief: 'Spinal twists and backbends are not separate practices — they are partners. The rotation that twists demand from the thoracic spine is the same mobility that makes backbends safe and effective.',
             mnemonic: 'Think of the thoracic spine as a rusty door hinge. A twist loosens the hinge. Once loose, the door opens both ways — rotation and extension. Twist first. Then bend back.',
             tabs: [
@@ -1893,10 +1900,19 @@ export function buildScreens() {
 
   MOVEMENT_CHAPTERS.forEach((chapter, ci) => {
     screens.push({ type: 'chapter-title', chapter, chapterIndex: ci });
-    screens.push({ type: 'chapter-toc', chapter, chapterIndex: ci });
+
+    // Skip TOC + group-title cards for small chapters (≤4 cards total)
+    const totalChapterCards = chapter.groups.reduce((s, g) => s + g.cards.length, 0);
+    const isSmallChapter = totalChapterCards <= 4;
+
+    if (!isSmallChapter) {
+      screens.push({ type: 'chapter-toc', chapter, chapterIndex: ci });
+    }
 
     chapter.groups.forEach((group, gi) => {
-      screens.push({ type: 'group-title', group, chapter, chapterIndex: ci, groupIndex: gi });
+      if (!isSmallChapter) {
+        screens.push({ type: 'group-title', group, chapter, chapterIndex: ci, groupIndex: gi });
+      }
 
       group.cards.forEach((card, cardi) => {
         screens.push({

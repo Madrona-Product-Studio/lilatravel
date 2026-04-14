@@ -367,7 +367,7 @@ function GroupTitleScreen({ group, chapter }) {
         pointerEvents: 'none',
       }} />
 
-      {/* ── Header ── */}
+      {/* ── Header (centered) ── */}
       <div style={{
         textAlign: 'center',
         padding: '0 28px',
@@ -387,7 +387,7 @@ function GroupTitleScreen({ group, chapter }) {
         <div style={{
           fontSize: 'clamp(26px, 6vw, 34px)', fontFamily: SANS,
           color: 'white', fontWeight: 700, lineHeight: 1.1,
-          letterSpacing: '-0.01em', marginBottom: 10,
+          letterSpacing: '-0.01em', marginBottom: 8,
         }}>
           {group.label}
         </div>
@@ -405,13 +405,29 @@ function GroupTitleScreen({ group, chapter }) {
         <div style={{
           width: 28, height: '0.5px',
           background: 'rgba(255,255,255,0.25)',
-          margin: '20px auto 0',
+          margin: '18px auto 0',
         }} />
       </div>
 
+      {/* ── Description (if present) ── */}
+      {group.desc && (
+        <div style={{
+          padding: '18px 28px 0',
+          position: 'relative',
+        }}>
+          <div style={{
+            fontSize: 15, fontFamily: SANS,
+            fontWeight: 400, color: 'rgba(255,255,255,0.65)',
+            lineHeight: 1.75,
+          }}>
+            {group.desc}
+          </div>
+        </div>
+      )}
+
       {/* ── Card list ── */}
       <div style={{
-        padding: '24px 28px 0',
+        padding: '20px 28px 0',
         position: 'relative',
       }}>
         {group.cards.map((card, i) => (
@@ -584,20 +600,20 @@ function CardScreen({ card, group, chapter }) {
               </div>
             </>)}
 
-            {/* ── Non-image card layout: top-aligned with flex fill ── */}
+            {/* ── Non-image card layout ── */}
             {!card.image && (
               <div style={{
                 flex: 1, display: 'flex', flexDirection: 'column',
-                padding: 'clamp(24px, 4vw, 28px) clamp(20px, 4vw, 28px) 0',
+                padding: 'clamp(60px, 12vh, 100px) clamp(20px, 4vw, 28px) clamp(52px, 8vh, 64px)',
               }}>
                 {/* Group label */}
                 <div style={{
-                  fontSize: 9, fontFamily: SANS,
-                  fontWeight: 600, color: 'rgba(255,255,255,0.4)',
-                  letterSpacing: '0.18em', textTransform: 'uppercase',
-                  marginBottom: 12,
+                  fontSize: 12, fontFamily: SANS,
+                  fontWeight: 600, color: 'rgba(255,255,255,0.55)',
+                  letterSpacing: '0.12em', textTransform: 'uppercase',
+                  marginBottom: 6,
                 }}>
-                  {group.icon} {group.label}
+                  {group.label}
                 </div>
 
                 {/* Term */}
