@@ -104,8 +104,6 @@ export default function DestinationsPage() {
                 <FadeIn key={d.slug} delay={i * 0.06}>
                   <Link
                     to={`/destinations/${d.slug}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
                     className="bento-tile h-full"
                     onClick={() => trackEvent('destination_selected', { destination: d.slug })}
                   >
