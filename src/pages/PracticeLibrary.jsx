@@ -168,7 +168,7 @@ export default function PracticeLibrary() {
             </span>
           </div>
 
-          {/* Headline */}
+          {/* Title */}
           <h1 style={{
             fontFamily: SERIF,
             fontSize: 'clamp(32px, 6vw, 52px)',
@@ -178,10 +178,23 @@ export default function PracticeLibrary() {
             marginTop: 0,
             marginBottom: 12,
           }}>
-            Four decks. One path in.
+            Go Deeper
           </h1>
 
-          {/* Intro */}
+          {/* Headline */}
+          <p style={{
+            fontFamily: SERIF,
+            fontSize: 18,
+            color: C.darkInk,
+            lineHeight: 1.4,
+            maxWidth: 560,
+            marginTop: 0,
+            marginBottom: 10,
+          }}>
+            Ancient practices for wild places.
+          </p>
+
+          {/* Body */}
           <p style={{
             fontFamily: SERIF,
             fontSize: 16,
@@ -191,7 +204,7 @@ export default function PracticeLibrary() {
             marginTop: 0,
             marginBottom: 0,
           }}>
-            A library for the curious traveler — body, mind, tradition, and the practices that connect them.
+            Four ways to help you move through these landscapes differently — with more attention, more intention, and more of yourself present.
           </p>
         </div>
       </section>
