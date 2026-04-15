@@ -10,7 +10,7 @@ import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import SubGuideLayout from '@components/guide/SubGuideLayout';
 import { TierItem, TierFilter, TierLegend, GuideDetailSheet, ExpandableList } from '@components/guide';
-import { C } from '@data/brand';
+import { G } from '@data/guides/guide-styles';
 import { BREATHE_TIERS, BREATHE_LEGEND } from '@data/guides/zion-constants';
 import { trackEvent } from '@utils/analytics';
 import breatheItems from '../../../data/restaurants/zion-breathe.json';
@@ -79,7 +79,7 @@ export default function ZionBreathe() {
         description="Practices, yoga, bodywork, and soaking across the orbit."
       >
         {/* Count */}
-        <div className="font-body text-[12px] font-medium text-[#7A857E] mb-4">{countLabel}</div>
+        <div className="font-body text-[12px] font-medium mb-4" style={{ color: G.ink40 }}>{countLabel}</div>
 
         {/* Tier filter */}
         <TierFilter tiers={breatheFilterTiers} activeTiers={activeTiers} onToggle={handleTierToggle} />

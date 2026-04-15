@@ -11,7 +11,7 @@ import { Helmet } from 'react-helmet-async';
 import SubGuideLayout from '@components/guide/SubGuideLayout';
 import { TierItem, TierFilter, TierLegend } from '@components/guide';
 import { GuideDetailSheet } from '@components/guide';
-import { C } from '@data/brand';
+import { G } from '@data/guides/guide-styles';
 import { MOVE_TIERS, MOVE_TIER_META } from '@data/guides/zion-constants';
 import { getNPSData, buildNPSLookup, findNPSMatch } from '@services/npsService';
 import { trackEvent } from '@utils/analytics';
@@ -90,7 +90,7 @@ export default function ZionMove() {
         description="Every trail. Every drive. Zion, Bryce Canyon, Capitol Reef."
       >
         {/* Count */}
-        <div className="font-body text-[12px] font-medium text-[#7A857E] mb-4">{countLabel}</div>
+        <div className="font-body text-[12px] font-medium mb-4" style={{ color: G.ink40 }}>{countLabel}</div>
 
         {/* Tier filter */}
         <TierFilter tiers={moveFilterTiers} activeTiers={activeTiers} onToggle={handleTierToggle} />

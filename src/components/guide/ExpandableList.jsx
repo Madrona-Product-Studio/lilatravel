@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { G } from '@data/guides/guide-styles';
 
 function ExpandableList({ children, initialCount = 5, label = "more" }) {
   const [expanded, setExpanded] = useState(false);
@@ -12,11 +13,12 @@ function ExpandableList({ children, initialCount = 5, label = "more" }) {
       {hasMore && (
         <button
           onClick={() => setExpanded(!expanded)}
-          className="inline-flex items-center gap-2 mt-5 pt-2 pb-1 bg-transparent border-none border-b border-dark-ink cursor-pointer font-body text-[12px] font-bold tracking-[0.2em] uppercase text-dark-ink transition-opacity duration-200 hover:opacity-55"
+          className="inline-flex items-center gap-2 mt-5 pt-2 pb-1 bg-transparent border-none cursor-pointer font-body text-[12px] font-semibold tracking-[0.06em] transition-opacity duration-200 hover:opacity-55"
+          style={{ color: G.accent }}
         >
           {expanded ? "Show less" : `Show ${items.length - initialCount} more ${label}`}
           <span className="inline-block transition-transform duration-[250ms] ease-in-out text-[11px]"
-            style={{ transform: expanded ? "rotate(180deg)" : "rotate(0deg)" }}>{"▼"}</span>
+            style={{ transform: expanded ? "rotate(180deg)" : "rotate(0deg)" }}>▼</span>
         </button>
       )}
     </div>

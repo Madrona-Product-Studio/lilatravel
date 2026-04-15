@@ -10,7 +10,7 @@ import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import SubGuideLayout from '@components/guide/SubGuideLayout';
 import { StayItem, GuideDetailSheet, ExpandableList, TierFilter, sortByTierDiversity } from '@components/guide';
-import { C } from '@data/brand';
+import { G } from '@data/guides/guide-styles';
 import { sleepFilterTiers } from '@data/guides/zion-constants';
 import { trackEvent } from '@utils/analytics';
 import accommodations from '../../../data/accommodations/zion.json';
@@ -71,7 +71,7 @@ export default function ZionSleep() {
         description="Where to stay across the full orbit."
       >
         {/* Count */}
-        <div className="font-body text-[12px] font-medium text-[#7A857E] mb-4">{countLabel}</div>
+        <div className="font-body text-[12px] font-medium mb-4" style={{ color: G.ink40 }}>{countLabel}</div>
 
         {/* Tier filter */}
         <TierFilter tiers={sleepFilterTiers} activeTiers={activeTiers} onToggle={handleTierToggle} />
@@ -102,9 +102,13 @@ export default function ZionSleep() {
           {/* Regional corridor */}
           {corridorAccommodations.length > 0 && (
             <>
-              <p className="font-body text-[13px] font-semibold tracking-[0.08em] uppercase text-warm-gray mt-8 mb-3">
+              <div
+                className="flex items-center gap-2 font-body text-[10px] font-semibold tracking-[0.2em] uppercase mt-8 mb-3"
+                style={{ color: G.accentMid }}
+              >
+                <span style={{ width: 16, height: 1, background: G.accent, display: 'block' }} />
                 Regional Corridor
-              </p>
+              </div>
               {sortByTierDiversity(corridorAccommodations).map(a => (
                 <StayItem
                   key={a.id}

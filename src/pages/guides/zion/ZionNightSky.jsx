@@ -4,7 +4,7 @@
 
 import { Helmet } from 'react-helmet-async';
 import SubGuideLayout from '@components/guide/SubGuideLayout';
-import { C } from '@data/brand';
+import { G } from '@data/guides/guide-styles';
 import { trackEvent } from '@utils/analytics';
 
 // --- Data --------------------------------------------------------------------
@@ -90,28 +90,31 @@ export default function ZionNightSky() {
         {PARKS.map((park, pi) => (
           <section key={pi} className={pi < PARKS.length - 1 ? 'mb-12' : 'mb-4'}>
             {/* Park header */}
-            <h2 className="font-serif text-[clamp(22px,4vw,28px)] font-light text-dark-ink leading-[1.2] mt-0 mb-1">
+            <h2
+              className="font-serif font-light leading-[1.2] mt-0 mb-1"
+              style={{ fontSize: 'clamp(22px, 4vw, 28px)', color: G.ink }}
+            >
               {park.name}
             </h2>
             <div
-              className="font-body text-[11px] font-bold tracking-[0.14em] uppercase mb-6"
-              style={{ color: C.oceanTeal }}
+              className="font-body text-[10px] font-semibold tracking-[0.14em] uppercase mb-6"
+              style={{ color: G.accent }}
             >
               {park.designation}
-              {park.bortle && <span className="ml-2 font-normal" style={{ color: '#7A857E' }}>· {park.bortle}</span>}
+              {park.bortle && <span className="ml-2 font-normal" style={{ color: G.ink40 }}>· {park.bortle}</span>}
             </div>
 
             {/* Items */}
             {park.items.map((item, ii) => (
               <div
                 key={ii}
-                className="py-4 border-b"
-                style={{ borderColor: C.stone }}
+                className="py-4"
+                style={{ borderBottom: '1px solid ' + G.borderSoft }}
               >
-                <div className="font-body text-[15px] font-bold text-dark-ink mb-1">
+                <div className="font-body text-[14px] font-semibold mb-1" style={{ color: G.ink }}>
                   {item.name}
                 </div>
-                <p className="font-body text-[14px] font-normal leading-[1.65] mt-0 mb-0" style={{ color: '#4A5650' }}>
+                <p className="font-body text-[13px] font-normal leading-[1.6] mt-0 mb-0" style={{ color: G.ink50 }}>
                   {item.detail}
                 </p>
               </div>

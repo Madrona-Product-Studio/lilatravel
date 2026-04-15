@@ -4,7 +4,7 @@
 
 import { Helmet } from 'react-helmet-async';
 import SubGuideLayout from '@components/guide/SubGuideLayout';
-import { C } from '@data/brand';
+import { G } from '@data/guides/guide-styles';
 import { trackEvent } from '@utils/analytics';
 
 // --- Data --------------------------------------------------------------------
@@ -100,26 +100,30 @@ export default function ZionBeThere() {
       >
         {/* ── Tread Lightly ─────────────────────────────────────────────── */}
         <section className="mb-12">
-          <h2 className="font-serif text-[clamp(22px,4vw,28px)] font-light text-dark-ink leading-[1.2] mt-0 mb-6">
+          <div
+            className="flex items-center gap-2 font-body text-[10px] font-semibold tracking-[0.2em] uppercase mb-5"
+            style={{ color: G.accentMid }}
+          >
+            <span style={{ width: 16, height: 1, background: G.accent, display: 'block' }} />
             Tread Lightly
-          </h2>
+          </div>
 
           {TREAD_LIGHTLY.map((item, i) => (
             <div
               key={i}
-              className="py-4 border-b"
-              style={{ borderColor: C.stone }}
+              className="py-4"
+              style={{ borderBottom: '1px solid ' + G.borderSoft }}
             >
               <div
-                className="font-body text-[10px] font-bold tracking-[0.18em] uppercase mb-1"
-                style={{ color: '#7A857E' }}
+                className="font-body text-[9px] font-semibold tracking-[0.14em] uppercase mb-1"
+                style={{ color: G.ink40 }}
               >
                 {item.category}
               </div>
-              <div className="font-body text-[15px] font-bold text-dark-ink mb-1">
+              <div className="font-body text-[14px] font-semibold mb-1" style={{ color: G.ink }}>
                 {item.name}
               </div>
-              <p className="font-body text-[14px] font-normal leading-[1.65] mt-0 mb-0" style={{ color: '#4A5650' }}>
+              <p className="font-body text-[13px] font-normal leading-[1.6] mt-0 mb-0" style={{ color: G.ink50 }}>
                 {item.detail}
               </p>
               {item.tags && item.tags.length > 0 && (
@@ -127,8 +131,8 @@ export default function ZionBeThere() {
                   {item.tags.map((t, j) => (
                     <span
                       key={j}
-                      className="font-body text-[11px] font-semibold px-2 py-0.5"
-                      style={{ color: '#7A857E', background: C.stone + '60' }}
+                      className="font-body text-[11px] font-medium px-[7px] py-[2px]"
+                      style={{ color: G.ink40, background: G.accentPale }}
                     >
                       {t}
                     </span>
@@ -141,30 +145,34 @@ export default function ZionBeThere() {
 
         {/* ── Give Back ─────────────────────────────────────────────────── */}
         <section className="mb-12">
-          <h2 className="font-serif text-[clamp(22px,4vw,28px)] font-light text-dark-ink leading-[1.2] mt-0 mb-6">
+          <div
+            className="flex items-center gap-2 font-body text-[10px] font-semibold tracking-[0.2em] uppercase mb-5"
+            style={{ color: G.accentMid }}
+          >
+            <span style={{ width: 16, height: 1, background: G.accent, display: 'block' }} />
             Give Back
-          </h2>
+          </div>
 
           {GIVE_BACK.map((item, i) => (
             <div
               key={i}
-              className="py-4 border-b"
-              style={{ borderColor: C.stone }}
+              className="py-4"
+              style={{ borderBottom: '1px solid ' + G.borderSoft }}
             >
               <a
                 href={item.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-body text-[15px] font-bold text-dark-ink no-underline transition-colors duration-200"
-                style={{ borderBottom: `1px solid ${C.stone}` }}
-                onMouseEnter={e => { e.target.style.borderColor = C.oceanTeal; e.target.style.color = C.slate; }}
-                onMouseLeave={e => { e.target.style.borderColor = C.stone; e.target.style.color = C.darkInk; }}
+                className="font-body text-[14px] font-semibold no-underline transition-colors duration-200"
+                style={{ color: G.ink, borderBottom: '1px solid ' + G.border }}
+                onMouseEnter={e => { e.target.style.borderColor = G.accent; e.target.style.color = G.accent; }}
+                onMouseLeave={e => { e.target.style.borderColor = G.border; e.target.style.color = G.ink; }}
                 onClick={() => trackEvent('give_back_click', { name: item.name })}
               >
                 {item.name}
-                <span className="text-[12px] ml-1 text-[#7A857E]">↗</span>
+                <span className="text-[12px] ml-1" style={{ color: G.ink40 }}>&#8599;</span>
               </a>
-              <p className="font-body text-[14px] font-normal leading-[1.65] mt-1.5 mb-0" style={{ color: '#4A5650' }}>
+              <p className="font-body text-[13px] font-normal leading-[1.6] mt-1.5 mb-0" style={{ color: G.ink50 }}>
                 {item.detail}
               </p>
             </div>
@@ -173,23 +181,26 @@ export default function ZionBeThere() {
 
         {/* ── Logistics & Permits ───────────────────────────────────────── */}
         <section className="mb-4">
-          <h2 className="font-serif text-[clamp(22px,4vw,28px)] font-light text-dark-ink leading-[1.2] mt-0 mb-6">
+          <h2
+            className="font-serif font-light leading-[1.2] mt-0 mb-6"
+            style={{ fontSize: 'clamp(22px, 4vw, 28px)', color: G.ink }}
+          >
             Logistics &amp; Permits
           </h2>
 
           {LOGISTICS.map((item, i) => (
             <div
               key={i}
-              className="py-4 border-b"
-              style={{ borderColor: C.stone }}
+              className="py-4"
+              style={{ borderBottom: '1px solid ' + G.borderSoft }}
             >
               <div
-                className="font-body text-[11px] font-bold tracking-[0.16em] uppercase mb-1"
-                style={{ color: C.oceanTeal }}
+                className="font-body text-[10px] font-semibold tracking-[0.14em] uppercase mb-1"
+                style={{ color: G.accent }}
               >
                 {item.label}
               </div>
-              <p className="font-body text-[14px] font-normal leading-[1.65] mt-0 mb-0" style={{ color: '#4A5650' }}>
+              <p className="font-body text-[13px] font-normal leading-[1.6] mt-0 mb-0" style={{ color: G.ink50 }}>
                 {item.text}
               </p>
             </div>

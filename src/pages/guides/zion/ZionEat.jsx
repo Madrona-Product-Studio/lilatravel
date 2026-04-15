@@ -10,7 +10,7 @@ import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import SubGuideLayout from '@components/guide/SubGuideLayout';
 import { ListItem, GuideDetailSheet, ExpandableList } from '@components/guide';
-import { C } from '@data/brand';
+import { G } from '@data/guides/guide-styles';
 import { trackEvent } from '@utils/analytics';
 import restaurants from '../../../data/restaurants/zion-eat.json';
 import experiences from '../../../data/restaurants/zion-experience.json';
@@ -65,10 +65,14 @@ export default function ZionEat() {
 
         {/* ── Eat Section ── */}
         <section className="mb-10">
-          <p className="font-body text-[10px] font-bold tracking-[0.18em] uppercase mb-3.5" style={{ color: C.sunSalmon }}>
+          <div
+            className="flex items-center gap-2 font-body text-[10px] font-semibold tracking-[0.2em] uppercase mb-3.5"
+            style={{ color: G.accentMid }}
+          >
+            <span style={{ width: 16, height: 1, background: G.accent, display: 'block' }} />
             Eat
-          </p>
-          <div className="font-body text-[12px] font-medium text-[#7A857E] mb-4">{restaurants.length} places</div>
+          </div>
+          <div className="font-body text-[12px] font-medium mb-4" style={{ color: G.ink40 }}>{restaurants.length} places</div>
 
           <ExpandableList initialCount={4} label="places">
             {coreRestaurants.map(r => (
@@ -91,9 +95,13 @@ export default function ZionEat() {
             ))}
             {corridorRestaurants.length > 0 && (
               <>
-                <p className="font-body text-[13px] font-semibold tracking-[0.08em] uppercase text-warm-gray mt-8 mb-3">
+                <div
+                  className="flex items-center gap-2 font-body text-[10px] font-semibold tracking-[0.2em] uppercase mt-8 mb-3"
+                  style={{ color: G.accentMid }}
+                >
+                  <span style={{ width: 16, height: 1, background: G.accent, display: 'block' }} />
                   Regional Corridor
-                </p>
+                </div>
                 {corridorRestaurants.map(r => (
                   <ListItem
                     key={r.id}
@@ -119,11 +127,15 @@ export default function ZionEat() {
 
         {/* ── Experience Section ── */}
         <section className="mb-4">
-          <div className="h-px mb-10" style={{ background: C.stone }} />
-          <p className="font-body text-[10px] font-bold tracking-[0.18em] uppercase mb-3.5" style={{ color: C.goldenAmber }}>
+          <div className="mb-10" style={{ height: 1, background: G.border }} />
+          <div
+            className="flex items-center gap-2 font-body text-[10px] font-semibold tracking-[0.2em] uppercase mb-3.5"
+            style={{ color: G.accentMid }}
+          >
+            <span style={{ width: 16, height: 1, background: G.accent, display: 'block' }} />
             Experience
-          </p>
-          <div className="font-body text-[12px] font-medium text-[#7A857E] mb-4">{experiences.length} experiences</div>
+          </div>
+          <div className="font-body text-[12px] font-medium mb-4" style={{ color: G.ink40 }}>{experiences.length} experiences</div>
 
           <ExpandableList initialCount={4} label="experiences">
             {sortedExperiences.map(item => (
