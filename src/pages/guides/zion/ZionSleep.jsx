@@ -102,12 +102,9 @@ export default function ZionSleep() {
           {/* Regional corridor */}
           {corridorAccommodations.length > 0 && (
             <>
-              <div
-                className="flex items-center gap-2 font-body text-[10px] font-semibold tracking-[0.2em] uppercase mt-8 mb-3"
-                style={{ color: G.accentMid }}
-              >
-                <span style={{ width: 16, height: 1, background: G.accent, display: 'block' }} />
-                Regional Corridor
+              <div className="flex items-center gap-2.5 mt-9 mb-2.5">
+                <span style={{ width: 28, height: 1.5, background: G.accent, display: 'block', flexShrink: 0 }} />
+                <span className="font-body text-[16px] font-bold tracking-[0.01em]" style={{ color: G.ink }}>Regional Corridor</span>
               </div>
               {sortByTierDiversity(corridorAccommodations).map(a => (
                 <StayItem

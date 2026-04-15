@@ -65,12 +65,9 @@ export default function ZionEat() {
 
         {/* ── Eat Section ── */}
         <section className="mb-10">
-          <div
-            className="flex items-center gap-2 font-body text-[10px] font-semibold tracking-[0.2em] uppercase mb-3.5"
-            style={{ color: G.accentMid }}
-          >
-            <span style={{ width: 16, height: 1, background: G.accent, display: 'block' }} />
-            Eat
+          <div className="flex items-center gap-2.5 mt-9 mb-2.5">
+            <span style={{ width: 28, height: 1.5, background: G.accent, display: 'block', flexShrink: 0 }} />
+            <span className="font-body text-[16px] font-bold tracking-[0.01em]" style={{ color: G.ink }}>Eat</span>
           </div>
           <div className="font-body text-[12px] font-medium mb-4" style={{ color: G.ink40 }}>{restaurants.length} places</div>
 
@@ -95,12 +92,9 @@ export default function ZionEat() {
             ))}
             {corridorRestaurants.length > 0 && (
               <>
-                <div
-                  className="flex items-center gap-2 font-body text-[10px] font-semibold tracking-[0.2em] uppercase mt-8 mb-3"
-                  style={{ color: G.accentMid }}
-                >
-                  <span style={{ width: 16, height: 1, background: G.accent, display: 'block' }} />
-                  Regional Corridor
+                <div className="flex items-center gap-2.5 mt-9 mb-2.5">
+                  <span style={{ width: 28, height: 1.5, background: G.accent, display: 'block', flexShrink: 0 }} />
+                  <span className="font-body text-[16px] font-bold tracking-[0.01em]" style={{ color: G.ink }}>Regional Corridor</span>
                 </div>
                 {corridorRestaurants.map(r => (
                   <ListItem
@@ -128,12 +122,9 @@ export default function ZionEat() {
         {/* ── Experience Section ── */}
         <section className="mb-4">
           <div className="mb-10" style={{ height: 1, background: G.border }} />
-          <div
-            className="flex items-center gap-2 font-body text-[10px] font-semibold tracking-[0.2em] uppercase mb-3.5"
-            style={{ color: G.accentMid }}
-          >
-            <span style={{ width: 16, height: 1, background: G.accent, display: 'block' }} />
-            Experience
+          <div className="flex items-center gap-2.5 mt-9 mb-2.5">
+            <span style={{ width: 28, height: 1.5, background: G.accent, display: 'block', flexShrink: 0 }} />
+            <span className="font-body text-[16px] font-bold tracking-[0.01em]" style={{ color: G.ink }}>Experience</span>
           </div>
           <div className="font-body text-[12px] font-medium mb-4" style={{ color: G.ink40 }}>{experiences.length} experiences</div>
 

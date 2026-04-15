@@ -60,7 +60,7 @@ export default function StayItem({ name, location, tier, detail, tags, url, feat
           )}
         </div>
         <div className="mb-[3px]">{nameEl}</div>
-        <div className="font-body text-[13px] font-normal leading-[1.6]" style={{ color: G.ink50 }}>{detail}</div>
+        <div className="font-body text-[13px] font-normal leading-[1.6]" style={{ color: G.inkDetail }}>{detail}</div>
         {tags && (
           <div className="flex gap-1 mt-[6px] flex-wrap">
             {tags.map((t, i) => (

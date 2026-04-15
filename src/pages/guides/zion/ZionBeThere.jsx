@@ -100,12 +100,9 @@ export default function ZionBeThere() {
       >
         {/* ── Tread Lightly ─────────────────────────────────────────────── */}
         <section className="mb-12">
-          <div
-            className="flex items-center gap-2 font-body text-[10px] font-semibold tracking-[0.2em] uppercase mb-5"
-            style={{ color: G.accentMid }}
-          >
-            <span style={{ width: 16, height: 1, background: G.accent, display: 'block' }} />
-            Tread Lightly
+          <div className="flex items-center gap-2.5 mt-9 mb-2.5">
+            <span style={{ width: 28, height: 1.5, background: G.accent, display: 'block', flexShrink: 0 }} />
+            <span className="font-body text-[16px] font-bold tracking-[0.01em]" style={{ color: G.ink }}>Tread Lightly</span>
           </div>
 
           {TREAD_LIGHTLY.map((item, i) => (
@@ -123,7 +120,7 @@ export default function ZionBeThere() {
               <div className="font-body text-[14px] font-semibold mb-1" style={{ color: G.ink }}>
                 {item.name}
               </div>
-              <p className="font-body text-[13px] font-normal leading-[1.6] mt-0 mb-0" style={{ color: G.ink50 }}>
+              <p className="font-body text-[13px] font-normal leading-[1.6] mt-0 mb-0" style={{ color: G.inkDetail }}>
                 {item.detail}
               </p>
               {item.tags && item.tags.length > 0 && (
@@ -145,12 +142,9 @@ export default function ZionBeThere() {
 
         {/* ── Give Back ─────────────────────────────────────────────────── */}
         <section className="mb-12">
-          <div
-            className="flex items-center gap-2 font-body text-[10px] font-semibold tracking-[0.2em] uppercase mb-5"
-            style={{ color: G.accentMid }}
-          >
-            <span style={{ width: 16, height: 1, background: G.accent, display: 'block' }} />
-            Give Back
+          <div className="flex items-center gap-2.5 mt-9 mb-2.5">
+            <span style={{ width: 28, height: 1.5, background: G.accent, display: 'block', flexShrink: 0 }} />
+            <span className="font-body text-[16px] font-bold tracking-[0.01em]" style={{ color: G.ink }}>Give Back</span>
           </div>
 
           {GIVE_BACK.map((item, i) => (
@@ -172,7 +166,7 @@ export default function ZionBeThere() {
                 {item.name}
                 <span className="text-[12px] ml-1" style={{ color: G.ink40 }}>&#8599;</span>
               </a>
-              <p className="font-body text-[13px] font-normal leading-[1.6] mt-1.5 mb-0" style={{ color: G.ink50 }}>
+              <p className="font-body text-[13px] font-normal leading-[1.6] mt-1.5 mb-0" style={{ color: G.inkDetail }}>
                 {item.detail}
               </p>
             </div>
@@ -200,7 +194,7 @@ export default function ZionBeThere() {
               >
                 {item.label}
               </div>
-              <p className="font-body text-[13px] font-normal leading-[1.6] mt-0 mb-0" style={{ color: G.ink50 }}>
+              <p className="font-body text-[13px] font-normal leading-[1.6] mt-0 mb-0" style={{ color: G.inkDetail }}>
                 {item.text}
               </p>
             </div>

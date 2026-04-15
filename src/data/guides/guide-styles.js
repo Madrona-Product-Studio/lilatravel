@@ -14,8 +14,8 @@ export const G = {
   bg:          '#f5f0e8',
   panel:       'rgba(255, 255, 255, 0.5)',
   ink:         '#1a1a18',
-  ink60:       'rgba(26, 26, 24, 0.6)',
-  ink50:       'rgba(26, 26, 24, 0.5)',
+  inkBody:     'rgba(26, 26, 24, 0.78)',
+  inkDetail:   'rgba(26, 26, 24, 0.62)',
   ink40:       'rgba(26, 26, 24, 0.4)',
   ink30:       'rgba(26, 26, 24, 0.3)',
   border:      'rgba(107, 128, 120, 0.12)',
@@ -27,4 +27,7 @@ export const G = {
   muted:       '#6B8078',
   accentDot:   'rgba(58, 125, 123, 0.45)',
   ghostNum:    'rgba(58, 125, 123, 0.18)',
+  panelLabel:  'rgba(26, 26, 24, 0.35)',
+  sourceDot:   'rgba(26, 26, 24, 0.72)',
+  chipText:    'rgba(26, 26, 24, 0.55)',
 };

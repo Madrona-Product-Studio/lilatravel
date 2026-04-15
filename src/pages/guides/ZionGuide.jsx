@@ -297,7 +297,7 @@ export default function ZionGuide() {
                   Zion &amp; Its Orbit
                 </h1>
 
-                <p style={{ fontSize: 14, fontWeight: 400, color: G.ink60, lineHeight: 1.75, maxWidth: 460, marginTop: 0, marginBottom: 0 }}>
+                <p style={{ fontSize: 15, fontWeight: 400, color: G.inkBody, lineHeight: 1.75, maxWidth: 460, marginTop: 0, marginBottom: 0 }}>
                   The walls are 2,000 feet high and the river runs through the floor of it. Most people come, do the Narrows, do Angels Landing, and leave. This guide is for the ones who want to actually be inside the place {"\u2014"} and the landscape that surrounds it.
                 </p>
               </div>
@@ -396,29 +396,29 @@ export default function ZionGuide() {
             {/* 1a. The Awe */}
             <FadeIn>
               <SectionLabel>The Place</SectionLabel>
-              <p style={{ fontSize: 14, fontWeight: 400, color: G.ink60, lineHeight: 1.75, marginTop: 0, marginBottom: 16 }}>
+              <p style={{ fontSize: 15, fontWeight: 400, color: G.inkBody, lineHeight: 1.75, marginTop: 0, marginBottom: 16 }}>
                 There are places you visit and places that visit you. Zion is the second kind.
               </p>
-              <p style={{ fontSize: 14, fontWeight: 400, color: G.ink60, lineHeight: 1.75, marginTop: 0, marginBottom: 16 }}>
+              <p style={{ fontSize: 15, fontWeight: 400, color: G.inkBody, lineHeight: 1.75, marginTop: 0, marginBottom: 16 }}>
                 The canyon walls close in above you {"\u2014"} sandstone cut two thousand feet high, copper at sunrise, impossible pink at dusk {"\u2014"} and something in the ordinary mind gets quiet. The Paiute people called it Mukuntuweap: straight-up land. That name is more accurate than the one that replaced it. Whatever you call it, you feel it the moment you arrive.
               </p>
-              <p style={{ fontSize: 14, fontWeight: 400, color: G.ink60, lineHeight: 1.75, marginTop: 0, marginBottom: 16 }}>
+              <p style={{ fontSize: 15, fontWeight: 400, color: G.inkBody, lineHeight: 1.75, marginTop: 0, marginBottom: 16 }}>
                 But Zion is just the anchor. The landscape it sits inside is one continuous living thing {"\u2014"} three parks, three personalities, connected by some of the most dramatic road in America. Zion pulls you down into the earth. Bryce Canyon lifts you 8,000 feet into a forest of hoodoos that shouldn{"\u2019"}t exist. Capitol Reef takes you to the Waterpocket Fold {"\u2014"} a hundred-mile wrinkle in the earth{"\u2019"}s crust that most people drive right past. Scenic Byway 12, the road that connects them, is an experience in itself.
               </p>
-              <p style={{ fontSize: 14, fontWeight: 400, color: G.ink60, lineHeight: 1.75, marginTop: 0, marginBottom: 28 }}>
+              <p style={{ fontSize: 15, fontWeight: 400, color: G.inkBody, lineHeight: 1.75, marginTop: 0, marginBottom: 28 }}>
                 A week here, done right, is genuinely disorienting {"\u2014"} in the best way.
               </p>
             </FadeIn>
 
             {/* Highlights grid */}
             <FadeIn delay={0.08}>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-px mb-8" style={{ background: G.borderSoft }}>
+              <div className="mb-8">
                 {HIGHLIGHTS.map(h => (
-                  <div key={h.name} style={{ background: G.bg }} className="p-4 md:p-5">
+                  <div key={h.name} className="py-4 md:py-5" style={{ borderBottom: '1px solid ' + G.borderSoft }}>
                     <div style={{ fontSize: 11, color: G.accent, marginBottom: 4 }}>{"\u25C8"}</div>
                     <div style={{ fontFamily: 'var(--font-serif)', fontSize: 17, fontWeight: 400, color: G.ink, lineHeight: 1.3, marginBottom: 4 }}>{h.name}</div>
                     <div style={{ fontSize: 9, fontWeight: 600, letterSpacing: '0.14em', textTransform: 'uppercase', color: G.ink40, marginBottom: 8 }}>{h.category}</div>
-                    <p style={{ fontSize: 13, fontWeight: 400, color: G.ink50, lineHeight: 1.55, margin: 0 }}>{h.blurb}</p>
+                    <p style={{ fontSize: 13, fontWeight: 400, color: G.inkDetail, lineHeight: 1.55, margin: 0 }}>{h.blurb}</p>
                   </div>
                 ))}
               </div>
@@ -429,17 +429,17 @@ export default function ZionGuide() {
             {/* 1b. How to be in it */}
             <FadeIn delay={0.1}>
               <div className="h-px my-10" style={{ background: G.border }} />
-              <div className="flex items-center gap-2.5 mb-3.5" style={{ marginTop: 32 }}>
-                <span style={{ width: 16, height: 1, background: G.accent, display: 'inline-block' }} />
-                <span style={{ fontSize: 10, fontWeight: 600, letterSpacing: '0.2em', textTransform: 'uppercase', color: G.accentMid }}>How to Be In It</span>
+              <div className="flex items-center gap-2.5 mt-9 mb-2.5">
+                <span style={{ width: 28, height: 1.5, background: G.accent, display: 'block', flexShrink: 0 }} />
+                <span className="font-body text-[16px] font-bold tracking-[0.01em]" style={{ color: G.ink }}>How to Be In It</span>
               </div>
-              <p style={{ fontSize: 14, fontWeight: 400, color: G.ink60, lineHeight: 1.75, marginTop: 0, marginBottom: 16 }}>
+              <p style={{ fontSize: 15, fontWeight: 400, color: G.inkBody, lineHeight: 1.75, marginTop: 0, marginBottom: 16 }}>
                 The dark, lumpy crust visible just off the trail is cryptobiotic soil {"\u2014"} a living community of cyanobacteria, lichens, and fungi that can take 50{"\u2013"}250 years to recover from a single footstep. It holds the desert floor together, fixes nitrogen, and retains moisture. It looks like nothing. It is everything. The trail exists for a reason.
               </p>
-              <p style={{ fontSize: 14, fontWeight: 400, color: G.ink60, lineHeight: 1.75, marginTop: 0, marginBottom: 16 }}>
+              <p style={{ fontSize: 15, fontWeight: 400, color: G.inkBody, lineHeight: 1.75, marginTop: 0, marginBottom: 16 }}>
                 The Virgin River runs through the entire canyon and sustains one of the most biodiverse riparian corridors in the American Southwest. Sunscreen, insect repellent, and soap {"\u2014"} even biodegradable {"\u2014"} affect the aquatic ecosystem. Apply well before you enter the water. Pack out everything. The river is not a wash.
               </p>
-              <p style={{ fontSize: 14, fontWeight: 400, color: G.ink60, lineHeight: 1.75, marginTop: 0, marginBottom: 16 }}>
+              <p style={{ fontSize: 15, fontWeight: 400, color: G.inkBody, lineHeight: 1.75, marginTop: 0, marginBottom: 16 }}>
                 The Paiute called this place Mukuntuweap. That name carries the weight of thousands of years of relationship with this land. Angels Landing was named by a Methodist minister in 1916. The canyon doesn{"\u2019"}t belong to any single story {"\u2014"} but some stories were here first, and they deserve to be heard.
               </p>
             </FadeIn>
@@ -449,14 +449,14 @@ export default function ZionGuide() {
             {/* 1c. The deeper invitation */}
             <FadeIn delay={0.12}>
               <div className="h-px my-10" style={{ background: G.border }} />
-              <div className="flex items-center gap-2.5 mb-3.5" style={{ marginTop: 32 }}>
-                <span style={{ width: 16, height: 1, background: G.accent, display: 'inline-block' }} />
-                <span style={{ fontSize: 10, fontWeight: 600, letterSpacing: '0.2em', textTransform: 'uppercase', color: G.accentMid }}>The Deeper Invitation</span>
+              <div className="flex items-center gap-2.5 mt-9 mb-2.5">
+                <span style={{ width: 28, height: 1.5, background: G.accent, display: 'block', flexShrink: 0 }} />
+                <span className="font-body text-[16px] font-bold tracking-[0.01em]" style={{ color: G.ink }}>The Deeper Invitation</span>
               </div>
-              <p style={{ fontSize: 14, fontWeight: 400, color: G.ink60, lineHeight: 1.75, marginTop: 0, marginBottom: 16 }}>
+              <p style={{ fontSize: 15, fontWeight: 400, color: G.inkBody, lineHeight: 1.75, marginTop: 0, marginBottom: 16 }}>
                 The canyon has a way of slowing the nervous system down. The scale of the walls, the sound of the river, the way the light changes every twenty minutes {"\u2014"} it works on you whether you want it to or not. There are places in Zion where you can sit for an hour and feel like you{"\u2019"}ve been meditating without trying.
               </p>
-              <p style={{ fontSize: 14, fontWeight: 400, color: G.ink60, lineHeight: 1.75, marginTop: 0, marginBottom: 16 }}>
+              <p style={{ fontSize: 15, fontWeight: 400, color: G.inkBody, lineHeight: 1.75, marginTop: 0, marginBottom: 16 }}>
                 At night, the sky opens. Zion is a certified International Dark Sky Park. On a moonless night, the Milky Way arcs directly overhead between the canyon walls. Bring a blanket, lie down, and give yourself an hour. The oldest light in the universe is falling on you.
               </p>
             </FadeIn>
@@ -475,10 +475,10 @@ export default function ZionGuide() {
           <section id="find-base" className="scroll-mt-[126px] py-11">
             <FadeIn>
               <SectionLabel>Find Your Base</SectionLabel>
-              <p style={{ fontSize: 14, fontWeight: 400, color: G.ink60, lineHeight: 1.75, marginTop: 0, marginBottom: 16 }}>
+              <p style={{ fontSize: 15, fontWeight: 400, color: G.inkBody, lineHeight: 1.75, marginTop: 0, marginBottom: 16 }}>
                 Springdale is the move. A single-street town pressed against the canyon mouth {"\u2014"} you can walk to the park entrance. Restaurants, gear shops, and galleries line the half-mile stretch, all of it sandstone red and cottonwood green. For a trip focused on Zion proper, this is where you sleep.
               </p>
-              <p style={{ fontSize: 14, fontWeight: 400, color: G.ink60, lineHeight: 1.75, marginTop: 0, marginBottom: 28 }}>
+              <p style={{ fontSize: 15, fontWeight: 400, color: G.inkBody, lineHeight: 1.75, marginTop: 0, marginBottom: 28 }}>
                 If you{"\u2019"}re running the full orbit {"\u2014"} Zion, Bryce, Capitol Reef {"\u2014"} you{"\u2019"}ll want to split nights. Two to three in Springdale, then move east along Scenic Byway 12. Kanab works as a southern anchor. Escalante and Torrey are the corridor towns that most people skip and shouldn{"\u2019"}t.
               </p>
             </FadeIn>
@@ -488,7 +488,7 @@ export default function ZionGuide() {
               <div className="mb-6" style={{ borderLeft: `1.5px solid ${G.accent}`, background: 'rgba(58,125,123,0.04)', padding: '18px 20px' }}>
                 <div style={{ fontSize: 9, fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: G.accentMid, marginBottom: 8 }}>Your home base</div>
                 <div style={{ fontFamily: 'var(--font-serif)', fontSize: 19, fontWeight: 300, color: G.ink, lineHeight: 1.2, marginBottom: 8 }}>Springdale</div>
-                <p style={{ fontSize: 13, fontWeight: 400, color: G.ink50, lineHeight: 1.7, margin: 0 }}>
+                <p style={{ fontSize: 13, fontWeight: 400, color: G.inkDetail, lineHeight: 1.7, margin: 0 }}>
                   A single-street town pressed against the canyon mouth. Walk to the park entrance. Restaurants, gear shops, and galleries line the half-mile stretch {"\u2014"} all of it sandstone red and cottonwood green.
                 </p>
               </div>
@@ -496,15 +496,15 @@ export default function ZionGuide() {
 
             {/* Corridor towns */}
             <FadeIn delay={0.08}>
-              <p style={{ fontSize: 14, fontWeight: 400, color: G.ink60, lineHeight: 1.75, marginTop: 0, marginBottom: 16 }}>
+              <p style={{ fontSize: 15, fontWeight: 400, color: G.inkBody, lineHeight: 1.75, marginTop: 0, marginBottom: 16 }}>
                 Beyond Springdale, the corridor towns each serve a different park and a different pace. If you{"\u2019"}re building a multi-day orbit, plan to sleep in at least two of them.
               </p>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-px mb-8" style={{ background: G.borderSoft }}>
+              <div className="mb-8">
                 {TOWNS.map(town => (
-                  <div key={town.name} style={{ background: G.bg }} className="p-4 md:p-5">
+                  <div key={town.name} className="py-4 md:py-5" style={{ borderBottom: '1px solid ' + G.borderSoft }}>
                     <div style={{ fontSize: 9, fontWeight: 600, letterSpacing: '0.16em', textTransform: 'uppercase', color: G.ink40, marginBottom: 4 }}>{town.context}</div>
                     <div style={{ fontFamily: 'var(--font-serif)', fontSize: 17, fontWeight: 300, color: G.ink, lineHeight: 1.2, marginBottom: 8 }}>{town.name}</div>
-                    <p style={{ fontSize: 13, fontWeight: 400, color: G.ink50, lineHeight: 1.7, margin: 0 }}>{town.description}</p>
+                    <p style={{ fontSize: 13, fontWeight: 400, color: G.inkDetail, lineHeight: 1.7, margin: 0 }}>{town.description}</p>
                   </div>
                 ))}
               </div>
@@ -512,7 +512,7 @@ export default function ZionGuide() {
 
             {/* Sleep picks */}
             <FadeIn delay={0.1}>
-              <p style={{ fontSize: 14, fontWeight: 400, color: G.ink60, lineHeight: 1.75, marginTop: 0, marginBottom: 16 }}>
+              <p style={{ fontSize: 15, fontWeight: 400, color: G.inkBody, lineHeight: 1.75, marginTop: 0, marginBottom: 16 }}>
                 Need somewhere to stay in Springdale? A few we like:
               </p>
               <div style={{ background: G.panel, padding: '32px 28px' }}>
@@ -550,7 +550,7 @@ export default function ZionGuide() {
           <section id="experience" className="scroll-mt-[126px] py-11">
             <FadeIn>
               <SectionLabel>Experience It</SectionLabel>
-              <p style={{ fontSize: 14, fontWeight: 400, color: G.ink60, lineHeight: 1.75, marginTop: 0, marginBottom: 28 }}>
+              <p style={{ fontSize: 15, fontWeight: 400, color: G.inkBody, lineHeight: 1.75, marginTop: 0, marginBottom: 28 }}>
                 The landscape does a lot of the work. Your job is to show up at the right place at the right time, dressed for the weather, with enough water. Below are the essentials {"\u2014"} the full lists live in the sub-guides.
               </p>
             </FadeIn>
@@ -559,13 +559,12 @@ export default function ZionGuide() {
             {/* ── MOVE ── */}
             <FadeIn delay={0.06}>
               <div className="mb-10">
-                <div className="flex items-center gap-2.5" style={{ marginTop: 32, marginBottom: 12 }}>
-                  <span style={{ width: 16, height: 1, background: G.accent, display: 'inline-block' }} />
-                  <span style={{ fontSize: 10, fontWeight: 600, letterSpacing: '0.2em', textTransform: 'uppercase', color: G.accentMid }}>Move</span>
+                <div className="flex items-center gap-2.5 mt-9 mb-2.5">
+                  <span style={{ width: 28, height: 1.5, background: G.accent, display: 'block', flexShrink: 0 }} />
+                  <span className="font-body text-[16px] font-bold tracking-[0.01em]" style={{ color: G.ink }}>Move</span>
                 </div>
-                <div className="h-px mb-4" style={{ background: G.border }} />
 
-                <p style={{ fontSize: 14, fontWeight: 400, color: G.ink60, lineHeight: 1.75, marginTop: 0, marginBottom: 16 }}>
+                <p style={{ fontSize: 15, fontWeight: 400, color: G.inkBody, lineHeight: 1.75, marginTop: 0, marginBottom: 16 }}>
                   The Narrows is the signature experience {"\u2014"} you{"\u2019"}re wading a river through slot canyon walls two thousand feet high. Angels Landing is the one everyone knows about: a chain-assisted scramble to a rock fin with a thousand feet of air on both sides (permit required). Canyon Overlook is the sleeper {"\u2014"} one mile round trip with an outsized reward.
                 </p>
 
@@ -592,13 +591,12 @@ export default function ZionGuide() {
             {/* ── EAT ── */}
             <FadeIn delay={0.08}>
               <div className="mb-10">
-                <div className="flex items-center gap-2.5" style={{ marginTop: 32, marginBottom: 12 }}>
-                  <span style={{ width: 16, height: 1, background: G.accent, display: 'inline-block' }} />
-                  <span style={{ fontSize: 10, fontWeight: 600, letterSpacing: '0.2em', textTransform: 'uppercase', color: G.accentMid }}>Eat</span>
+                <div className="flex items-center gap-2.5 mt-9 mb-2.5">
+                  <span style={{ width: 28, height: 1.5, background: G.accent, display: 'block', flexShrink: 0 }} />
+                  <span className="font-body text-[16px] font-bold tracking-[0.01em]" style={{ color: G.ink }}>Eat</span>
                 </div>
-                <div className="h-px mb-4" style={{ background: G.border }} />
 
-                <p style={{ fontSize: 14, fontWeight: 400, color: G.ink60, lineHeight: 1.75, marginTop: 0, marginBottom: 16 }}>
+                <p style={{ fontSize: 15, fontWeight: 400, color: G.inkBody, lineHeight: 1.75, marginTop: 0, marginBottom: 16 }}>
                   Springdale has more good food than a town its size should. Oscar{"\u2019"}s is the local breakfast institution. Deep Creek does the coffee right. Bit & Spur is the dinner move {"\u2014"} Southwestern with actual range. And if you make it to Boulder on Scenic Byway 12, Hell{"\u2019"}s Backbone Grill is one of the best farm-to-table restaurants in the West, full stop.
                 </p>
 
@@ -631,13 +629,12 @@ export default function ZionGuide() {
             {/* ── WHEN TO COME ── */}
             <FadeIn delay={0.1}>
               <div className="mb-4">
-                <div className="flex items-center gap-2.5" style={{ marginTop: 32, marginBottom: 12 }}>
-                  <span style={{ width: 16, height: 1, background: G.accent, display: 'inline-block' }} />
-                  <span style={{ fontSize: 10, fontWeight: 600, letterSpacing: '0.2em', textTransform: 'uppercase', color: G.accentMid }}>When to Come</span>
+                <div className="flex items-center gap-2.5 mt-9 mb-2.5">
+                  <span style={{ width: 28, height: 1.5, background: G.accent, display: 'block', flexShrink: 0 }} />
+                  <span className="font-body text-[16px] font-bold tracking-[0.01em]" style={{ color: G.ink }}>When to Come</span>
                 </div>
-                <div className="h-px mb-4" style={{ background: G.border }} />
 
-                <p style={{ fontSize: 14, fontWeight: 400, color: G.ink60, lineHeight: 1.75, marginTop: 0, marginBottom: 20 }}>
+                <p style={{ fontSize: 15, fontWeight: 400, color: G.inkBody, lineHeight: 1.75, marginTop: 0, marginBottom: 20 }}>
                   Zion transforms with the seasons. The desert doesn{"\u2019"}t do subtle {"\u2014"} it blooms, it burns gold, it goes silent under snow. These are the windows we build trips around.
                 </p>
 
@@ -648,7 +645,7 @@ export default function ZionGuide() {
                       <div>
                         <div style={{ fontSize: 14, fontWeight: 600, color: G.ink, marginBottom: 2 }}>{tw.name}</div>
                         <div style={{ fontSize: 9, fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: G.ink40, marginBottom: 6 }}>{tw.window}</div>
-                        <p style={{ fontSize: 13, fontWeight: 400, color: G.ink50, lineHeight: 1.6, margin: 0 }}>{tw.detail}</p>
+                        <p style={{ fontSize: 13, fontWeight: 400, color: G.inkDetail, lineHeight: 1.6, margin: 0 }}>{tw.detail}</p>
                       </div>
                     </div>
                   ))}

@@ -101,7 +101,7 @@ export default function ZionWhenToGo() {
                 <div className="font-serif text-[17px] font-normal leading-[1.25] mb-2" style={{ color: G.ink }}>
                   {w.name}
                 </div>
-                <p className="font-body text-[13px] font-normal leading-[1.6] mt-0 mb-0" style={{ color: G.ink50 }}>
+                <p className="font-body text-[13px] font-normal leading-[1.6] mt-0 mb-0" style={{ color: G.inkDetail }}>
                   {w.description}
                 </p>
                 {w.tags && w.tags.length > 0 && (
@@ -151,7 +151,7 @@ export default function ZionWhenToGo() {
                   {s.months}
                 </div>
               </div>
-              <p className="font-body text-[13px] font-normal leading-[1.6] mt-0 mb-0" style={{ color: G.ink50 }}>
+              <p className="font-body text-[13px] font-normal leading-[1.6] mt-0 mb-0" style={{ color: G.inkDetail }}>
                 {s.text}
               </p>
             </div>

@@ -33,18 +33,20 @@ export default function SubGuideLayout({
 
         {/* Header */}
         <div className="mb-10">
-          {/* Eyebrow with bar */}
-          <div
-            className="flex items-center gap-2 font-body text-[10px] font-semibold tracking-[0.22em] uppercase mb-3"
-            style={{ color: G.accentMid }}
-          >
-            <span style={{ width: 24, height: 1, background: G.accent, display: 'block' }} />
-            {eyebrow}
+          {/* Eyebrow with accent bar */}
+          <div className="flex items-center gap-2 mb-3">
+            <span style={{ width: 28, height: 1.5, background: G.accent, display: 'block' }} />
+            <span
+              className="font-body text-[10px] font-bold tracking-[0.22em] uppercase"
+              style={{ color: G.accentMid }}
+            >
+              {eyebrow}
+            </span>
           </div>
 
           <h1
             className="font-serif font-light leading-[1.15] mb-3 mt-0"
-            style={{ fontSize: 'clamp(32px, 6vw, 44px)', color: G.ink }}
+            style={{ fontSize: 'clamp(32px, 6vw, 44px)', color: G.ink, letterSpacing: '-0.01em' }}
           >
             {title}
           </h1>
@@ -52,7 +54,7 @@ export default function SubGuideLayout({
           {description && (
             <p
               className="font-body text-[14px] font-normal leading-[1.75] mt-0 mb-0"
-              style={{ color: G.ink60 }}
+              style={{ color: G.inkBody }}
             >
               {description}
             </p>

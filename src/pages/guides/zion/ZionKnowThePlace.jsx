@@ -43,7 +43,7 @@ function ParkCard({ park }) {
   const npsCode = NPS_CODES[park.id] || null;
   const stats = [park.acreage, park.elevation, park.attribute, park.driveFrom].filter(Boolean);
   return (
-    <div style={{ background: G.panel }} className="p-4 md:p-5">
+    <div className="py-4 md:py-5" style={{ borderBottom: '1px solid ' + G.borderSoft }}>
       <div className="font-body text-[9px] tracking-[0.16em] uppercase mb-1" style={{ color: G.ink40 }}>
         {DESIGNATION_LABELS[park.designation] || park.designation}{park.established ? ` · Est. ${park.established}` : ""}
       </div>
@@ -51,7 +51,7 @@ function ParkCard({ park }) {
       <div className="font-body text-[11px] leading-[1.4] mb-3" style={{ color: G.ink40 }}>
         {stats.map((s, i) => <span key={i}>{i > 0 && " · "}{s}</span>)}
       </div>
-      <p className="font-body text-[13px] font-normal leading-[1.7] m-0" style={{ color: G.ink50 }}>{park.soul}</p>
+      <p className="font-body text-[13px] font-normal leading-[1.7] m-0" style={{ color: G.inkDetail }}>{park.soul}</p>
       {npsCode && (
         <a href={`https://www.nps.gov/${npsCode}/`} target="_blank" rel="noopener noreferrer"
           className="inline-block mt-3 font-body text-[10px] font-semibold tracking-[0.12em] uppercase no-underline"
@@ -65,12 +65,12 @@ function ParkCard({ park }) {
 
 function WildlifeEntry({ name, season, parks, detail }) {
   return (
-    <div style={{ background: G.panel }} className="p-4 md:p-5">
+    <div className="py-4 md:py-5" style={{ borderBottom: '1px solid ' + G.borderSoft }}>
       <div className="font-body text-[14px] font-semibold leading-[1.3] mb-1" style={{ color: G.ink }}>{name}</div>
       <div className="font-body text-[9px] font-semibold tracking-[0.14em] uppercase mb-2" style={{ color: G.accent }}>
         {season} · {parks.join(", ")}
       </div>
-      <p className="font-body text-[13px] font-normal leading-[1.6] m-0" style={{ color: G.ink50 }}>{detail}</p>
+      <p className="font-body text-[13px] font-normal leading-[1.6] m-0" style={{ color: G.inkDetail }}>{detail}</p>
     </div>
   );
 }
@@ -100,14 +100,11 @@ export default function ZionKnowThePlace() {
 
         {/* ── The Parks ── */}
         <section className="mb-10">
-          <div
-            className="flex items-center gap-2 font-body text-[10px] font-semibold tracking-[0.2em] uppercase mb-3.5"
-            style={{ color: G.accentMid }}
-          >
-            <span style={{ width: 16, height: 1, background: G.accent, display: 'block' }} />
-            The Parks
+          <div className="flex items-center gap-2.5 mt-9 mb-2.5">
+            <span style={{ width: 28, height: 1.5, background: G.accent, display: 'block', flexShrink: 0 }} />
+            <span className="font-body text-[16px] font-bold tracking-[0.01em]" style={{ color: G.ink }}>The Parks</span>
           </div>
-          <div className="grid grid-cols-1 gap-px" style={{ background: G.border }}>
+          <div>
             {PARKS.map((park) => (
               <ParkCard key={park.id} park={park} />
             ))}
@@ -117,40 +114,37 @@ export default function ZionKnowThePlace() {
         {/* ── The Road ── */}
         <section className="mb-10">
           <div className="mb-10" style={{ height: 1, background: G.border }} />
-          <div
-            className="flex items-center gap-2 font-body text-[10px] font-semibold tracking-[0.2em] uppercase mb-3.5"
-            style={{ color: G.accentMid }}
-          >
-            <span style={{ width: 16, height: 1, background: G.accent, display: 'block' }} />
-            The Road
+          <div className="flex items-center gap-2.5 mt-9 mb-2.5">
+            <span style={{ width: 28, height: 1.5, background: G.accent, display: 'block', flexShrink: 0 }} />
+            <span className="font-body text-[16px] font-bold tracking-[0.01em]" style={{ color: G.ink }}>The Road</span>
           </div>
-          <p className="font-body text-[14px] font-normal leading-[1.75] mt-0 mb-5" style={{ color: G.ink60 }}>
+          <p className="font-body text-[15px] font-normal leading-[1.75] mt-0 mb-5" style={{ color: G.inkBody }}>
             Scenic Byway 12 connects Bryce Canyon to Capitol Reef across 124 miles of the most dramatic terrain in the American West. It crosses hogback ridges with thousand-foot drops on both sides, climbs through the ponderosa forests of Boulder Mountain, and descends into the Waterpocket Fold. Most people drive it in two hours. It deserves a full day.
           </p>
 
-          <div className="grid grid-cols-1 gap-px mb-5" style={{ background: G.border }}>
+          <div className="mb-5">
             {[
               { name: "Escalante Petrified Forest State Park", detail: "Trailhead town. Petrified wood scattered across red benches above the reservoir. A quick stop that resets your sense of time.", drive: "1 hr from Bryce" },
               { name: "Kiva Koffeehouse", detail: "A hand-built stone structure cantilevered over the canyon rim. Coffee, pie, and the single best roadside view in Utah.", drive: "30 min from Escalante" },
               { name: "Anasazi State Park Museum", detail: "The remains of an ancestral Puebloan village in Boulder, occupied from 1050 to 1200 AD. One of the largest communities west of the Colorado River. Small museum, large significance.", drive: "45 min from Escalante" },
             ].map((stop, i) => (
-              <div key={i} style={{ background: G.panel }} className="p-4 md:p-5">
+              <div key={i} className="py-4 md:py-5" style={{ borderBottom: '1px solid ' + G.borderSoft }}>
                 <div className="font-serif text-[17px] font-normal leading-[1.3] mb-1" style={{ color: G.ink }}>{stop.name}</div>
                 <div className="font-body text-[9px] font-semibold tracking-[0.14em] uppercase mb-2" style={{ color: G.accent }}>
                   {stop.drive}
                 </div>
-                <p className="font-body text-[13px] font-normal leading-[1.6] m-0" style={{ color: G.ink50 }}>{stop.detail}</p>
+                <p className="font-body text-[13px] font-normal leading-[1.6] m-0" style={{ color: G.inkDetail }}>{stop.detail}</p>
               </div>
             ))}
           </div>
 
-          <div className="grid grid-cols-3 gap-px" style={{ background: G.border }}>
+          <div>
             {[
               { from: "Zion to Bryce Canyon", time: "~1.5 hrs" },
               { from: "Bryce Canyon to Capitol Reef", time: "~2.5 hrs (via Byway 12)" },
               { from: "Zion to Capitol Reef", time: "~3 hrs (direct)" },
             ].map((d, i) => (
-              <div key={i} style={{ background: G.panel }} className="p-3 text-center">
+              <div key={i} className="py-3" style={{ borderBottom: '1px solid ' + G.borderSoft }}>
                 <div className="font-body text-[10px] font-semibold tracking-[0.14em] uppercase mb-1" style={{ color: G.ink40 }}>{d.from}</div>
                 <div className="font-body text-[14px] font-medium" style={{ color: G.ink }}>{d.time}</div>
               </div>
@@ -161,19 +155,16 @@ export default function ZionKnowThePlace() {
         {/* ── The Towns ── */}
         <section className="mb-10">
           <div className="mb-10" style={{ height: 1, background: G.border }} />
-          <div
-            className="flex items-center gap-2 font-body text-[10px] font-semibold tracking-[0.2em] uppercase mb-3.5"
-            style={{ color: G.accentMid }}
-          >
-            <span style={{ width: 16, height: 1, background: G.accent, display: 'block' }} />
-            The Towns
+          <div className="flex items-center gap-2.5 mt-9 mb-2.5">
+            <span style={{ width: 28, height: 1.5, background: G.accent, display: 'block', flexShrink: 0 }} />
+            <span className="font-body text-[16px] font-bold tracking-[0.01em]" style={{ color: G.ink }}>The Towns</span>
           </div>
-          <div className="grid grid-cols-1 gap-px" style={{ background: G.border }}>
+          <div>
             {TOWNS.map(town => (
-              <div key={town.name} style={{ background: G.panel }} className="p-4 md:p-5">
+              <div key={town.name} className="py-4 md:py-5" style={{ borderBottom: '1px solid ' + G.borderSoft }}>
                 <div className="font-body text-[9px] tracking-[0.16em] uppercase mb-1" style={{ color: G.ink40 }}>{town.context}</div>
                 <div className="font-serif font-normal text-[19px] leading-[1.2] mb-3" style={{ color: G.ink }}>{town.name}</div>
-                <p className="font-body text-[13px] font-normal leading-[1.7] m-0" style={{ color: G.ink50 }}>{town.description}</p>
+                <p className="font-body text-[13px] font-normal leading-[1.7] m-0" style={{ color: G.inkDetail }}>{town.description}</p>
               </div>
             ))}
           </div>
@@ -182,14 +173,11 @@ export default function ZionKnowThePlace() {
         {/* ── Wildlife ── */}
         <section className="mb-10">
           <div className="mb-10" style={{ height: 1, background: G.border }} />
-          <div
-            className="flex items-center gap-2 font-body text-[10px] font-semibold tracking-[0.2em] uppercase mb-3.5"
-            style={{ color: G.accentMid }}
-          >
-            <span style={{ width: 16, height: 1, background: G.accent, display: 'block' }} />
-            The Living Corridor
+          <div className="flex items-center gap-2.5 mt-9 mb-2.5">
+            <span style={{ width: 28, height: 1.5, background: G.accent, display: 'block', flexShrink: 0 }} />
+            <span className="font-body text-[16px] font-bold tracking-[0.01em]" style={{ color: G.ink }}>The Living Corridor</span>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-px" style={{ background: G.border }}>
+          <div>
             {WILDLIFE_GROUPS.flatMap(g => g.entries).slice(0, 8).map(entry => (
               <WildlifeEntry
                 key={entry.name}
@@ -205,20 +193,17 @@ export default function ZionKnowThePlace() {
         {/* ── Indigenous History ── */}
         <section className="mb-4">
           <div className="mb-10" style={{ height: 1, background: G.border }} />
-          <div
-            className="flex items-center gap-2 font-body text-[10px] font-semibold tracking-[0.2em] uppercase mb-3.5"
-            style={{ color: G.accentMid }}
-          >
-            <span style={{ width: 16, height: 1, background: G.accent, display: 'block' }} />
-            Indigenous History
+          <div className="flex items-center gap-2.5 mt-9 mb-2.5">
+            <span style={{ width: 28, height: 1.5, background: G.accent, display: 'block', flexShrink: 0 }} />
+            <span className="font-body text-[16px] font-bold tracking-[0.01em]" style={{ color: G.ink }}>Indigenous History</span>
           </div>
-          <p className="font-body text-[14px] font-normal leading-[1.75] mt-0 mb-5" style={{ color: G.ink60 }}>
+          <p className="font-body text-[15px] font-normal leading-[1.75] mt-0 mb-5" style={{ color: G.inkBody }}>
             The Southern Paiute called this place <span className="font-semibold" style={{ color: G.ink }}>Mukuntuweap</span> — "straight-up land." They were here long before the canyon had an English name. The Paiute, along with Ancestral Puebloan peoples, inhabited this landscape for thousands of years, farming the river bottoms, hunting the plateaus, and developing an intimate understanding of the desert's rhythms that no guidebook can replicate.
           </p>
-          <p className="font-body text-[14px] font-normal leading-[1.75] mt-0 mb-5" style={{ color: G.ink60 }}>
+          <p className="font-body text-[15px] font-normal leading-[1.75] mt-0 mb-5" style={{ color: G.inkBody }}>
             When Mormon settlers arrived in the 1860s, they renamed the canyon "Zion." The name stuck. The people who gave it its first name are still here — the Paiute Indian Tribe of Utah maintains a cultural department working on language preservation, repatriation, and youth culture camps. The canyon walls carry petroglyphs and granaries that predate European contact by centuries.
           </p>
-          <p className="font-body text-[14px] font-normal leading-[1.75] mt-0 mb-0" style={{ color: G.ink60 }}>
+          <p className="font-body text-[15px] font-normal leading-[1.75] mt-0 mb-0" style={{ color: G.inkBody }}>
             To move through this landscape with any integrity is to acknowledge whose land you are standing on. The geology is 170 million years old. The human story here is at least 8,000 years deep. Both deserve your attention.
           </p>
         </section>

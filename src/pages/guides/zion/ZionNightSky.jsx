@@ -114,7 +114,7 @@ export default function ZionNightSky() {
                 <div className="font-body text-[14px] font-semibold mb-1" style={{ color: G.ink }}>
                   {item.name}
                 </div>
-                <p className="font-body text-[13px] font-normal leading-[1.6] mt-0 mb-0" style={{ color: G.ink50 }}>
+                <p className="font-body text-[13px] font-normal leading-[1.6] mt-0 mb-0" style={{ color: G.inkDetail }}>
                   {item.detail}
                 </p>
               </div>

@@ -49,7 +49,7 @@ function ListItem({ name, detail, note, tags, featured, url, onOpenSheet, locati
             </span>
           )}
         </div>
-        <div className="font-body text-[13px] font-normal leading-[1.6]" style={{ color: G.ink50 }}>{detail}</div>
+        <div className="font-body text-[13px] font-normal leading-[1.6]" style={{ color: G.inkDetail }}>{detail}</div>
         {note && (
           <div className="font-body text-[12px] font-semibold mt-1" style={{ color: G.accent }}>{note}</div>
         )}
