@@ -1,7 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import SubGuideLayout from '@components/guide/SubGuideLayout';
-import { SubLabel, Prose, ItemList, ContentList } from '@components/guide';
-import { G } from '@data/guides/guide-styles';
+import { SubLabel, Prose, EditorialList, ContentList } from '@components/guide';
 import { TOWNS } from '@data/guides/zion-constants';
 import accommodations from '../../../data/accommodations/zion.json';
 
@@ -31,7 +30,7 @@ export default function ZionSleep() {
         descriptor="Full accommodations across Springdale, Kanab, Escalante & Torrey."
       >
         <SubLabel>Towns</SubLabel>
-        <ItemList items={townItems} />
+        <EditorialList items={townItems} />
 
         <SubLabel>Hotels</SubLabel>
         <ContentList items={stayItems} />

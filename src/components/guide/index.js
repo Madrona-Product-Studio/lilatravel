@@ -23,4 +23,5 @@ export { default as PlaceGuideCard } from './PlaceGuideCard';
 export { default as SubLabel } from './SubLabel';
 export { default as SectionTransition } from './SectionTransition';
 export { default as Prose } from './Prose';
+export { default as EditorialList } from './EditorialList';
 export { default as SubGuideLayout } from './SubGuideLayout';

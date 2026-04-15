@@ -1,7 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import SubGuideLayout from '@components/guide/SubGuideLayout';
 import { SubLabel, Prose, ContentList } from '@components/guide';
-import { G } from '@data/guides/guide-styles';
 import permits from '../../../data/permits/zion.json';
 
 const permitItems = permits.map(p => ({

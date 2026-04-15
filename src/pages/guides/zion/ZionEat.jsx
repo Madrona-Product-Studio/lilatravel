@@ -1,12 +1,11 @@
 import { Helmet } from 'react-helmet-async';
 import SubGuideLayout from '@components/guide/SubGuideLayout';
 import { SubLabel, Prose, ContentList } from '@components/guide';
-import { G } from '@data/guides/guide-styles';
 import restaurants from '../../../data/restaurants/zion-eat.json';
 
 const eatItems = restaurants.map(r => ({
   name: r.name,
-  badge: r.cuisine || r.type,
+  badge: ((r.cuisine || r.type || '').charAt(0).toUpperCase() + (r.cuisine || r.type || '').slice(1)),
   context: [r.energy, r.location].filter(Boolean).join(' \u00b7 '),
   detail: r.highlights[0],
   lilaPick: r.lilaPick,

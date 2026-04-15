@@ -1,7 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import SubGuideLayout from '@components/guide/SubGuideLayout';
-import { SubLabel, Prose, ContentList, ItemList } from '@components/guide';
-import { G } from '@data/guides/guide-styles';
+import { SubLabel, Prose, ContentList, EditorialList } from '@components/guide';
 import experiences from '../../../data/restaurants/zion-experience.json';
 import events from '../../../data/events/zion.json';
 
@@ -40,7 +39,7 @@ export default function ZionExperience() {
         <ContentList items={experienceItems} />
 
         <SubLabel>Events</SubLabel>
-        <ItemList items={eventItems} />
+        <EditorialList items={eventItems} />
       </SubGuideLayout>
     </>
   );

@@ -1,14 +1,13 @@
 import { Helmet } from 'react-helmet-async';
 import SubGuideLayout from '@components/guide/SubGuideLayout';
 import { SubLabel, Prose, ContentList } from '@components/guide';
-import { G } from '@data/guides/guide-styles';
 import moveItems from '../../../data/restaurants/zion-move.json';
 import permits from '../../../data/permits/zion.json';
 
 const moveContentItems = moveItems.map(m => ({
   name: m.name,
   badge: m.moveTier.charAt(0).toUpperCase() + m.moveTier.slice(1),
-  context: [m.distance, m.difficulty].filter(Boolean).join(' \u00b7 '),
+  context: [m.distance, m.difficulty, m.permitRequired && 'Permit required'].filter(Boolean).join(' \u00b7 '),
   detail: m.highlights[0],
   lilaPick: m.lilaPick,
 }));

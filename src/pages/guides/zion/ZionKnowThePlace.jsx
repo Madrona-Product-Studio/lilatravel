@@ -1,7 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import SubGuideLayout from '@components/guide/SubGuideLayout';
-import { SubLabel, Prose, ItemList, ItemListGrid } from '@components/guide';
-import { G } from '@data/guides/guide-styles';
+import { SubLabel, Prose, EditorialList } from '@components/guide';
 import { PARKS, TOWNS, WILDLIFE_GROUPS } from '@data/guides/zion-constants';
 
 const TIMING_WINDOWS = [
@@ -40,19 +39,19 @@ export default function ZionKnowThePlace() {
         <Prose>
           Three national parks strung along 200 miles of Southern Utah highway. Zion anchors the west end with its river-carved canyon. Bryce Canyon lifts you onto a high plateau of stone spires. Capitol Reef hides a hundred-mile wrinkle in the earth most people drive right past.
         </Prose>
-        <ItemList items={parkItems} />
+        <EditorialList items={parkItems} />
 
         <SubLabel>When to Go</SubLabel>
         <Prose>
           Every season changes the canyon. The trick is knowing which version of the place you want to meet.
         </Prose>
-        <ItemListGrid items={TIMING_WINDOWS} />
+        <EditorialList items={TIMING_WINDOWS} />
 
         <SubLabel>Desert Wildlife</SubLabel>
         <Prose>
           The canyon is alive. Condors ride thermals above the rim. Bighorn sheep navigate ledges that look impossible. The ringtail cat hunts at night and is almost never seen. Pay attention at dawn and dusk.
         </Prose>
-        <ItemList items={wildlifeItems} />
+        <EditorialList items={wildlifeItems} />
       </SubGuideLayout>
     </>
   );

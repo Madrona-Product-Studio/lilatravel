@@ -14,7 +14,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Nav, Footer, FadeIn, WhisperBar } from '@components';
-import { SectionTransition, SubLabel, Prose, ItemList, ContentList, ItemListGrid, PlaceGuideCard } from '@components/guide';
+import { SectionTransition, SubLabel, Prose, ContentList, EditorialList, PlaceGuideCard } from '@components/guide';
 import { G, FONTS } from '@data/guides/guide-styles';
 import { P } from '@data/photos';
 import { trackEvent } from '@utils/analytics';
@@ -75,10 +75,10 @@ const TOWNS_EDITORIAL = [
 // ─── Data derivations ───────────────────────────────────────────────────────
 
 const sleepPicks = accommodations.filter(a => a.lilaPick).slice(0, 4);
-const eatPicks = [...restaurants].sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).slice(0, 4);
-const moveHighlights = [...moveItems].sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).slice(0, 4);
-const breatheHighlights = [...breatheItems].sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).slice(0, 4);
-const experienceHighlights = [...experiences].sort((a, b) => ((b.featured || b.lilaPick) ? 1 : 0) - ((a.featured || a.lilaPick) ? 1 : 0)).slice(0, 4);
+const eatPicks = restaurants.filter(r => r.lilaPick).slice(0, 4);
+const moveHighlights = moveItems.filter(m => m.lilaPick).slice(0, 4);
+const breatheHighlights = breatheItems.filter(b => b.lilaPick).slice(0, 4);
+const experienceHighlights = experiences.filter(e => e.featured || e.lilaPick).slice(0, 4);
 
 
 // ─── Divider ─────────────────────────────────────────────────────────────────
@@ -290,15 +290,15 @@ export default function ZionGuide() {
 
                 <SubLabel>The Terrain</SubLabel>
                 <Prose>Three parks, three distinct personalities. Zion is intimate — the canyon holds you. Bryce is theatrical — the hoodoos perform. Capitol Reef is quiet and immense — the Waterpocket Fold stretches a hundred miles and most people never stop to look at it.</Prose>
-                <ItemList items={PARKS_EDITORIAL.map(p => ({ context: p.context, name: p.name, detail: p.description }))} />
+                <EditorialList items={PARKS_EDITORIAL.map(p => ({ context: p.context, name: p.name, detail: p.description }))} />
 
                 <SubLabel>When to Go</SubLabel>
                 <Prose>The desert doesn't do subtle — it blooms, it burns gold, it goes silent under snow. These are the windows we build trips around.</Prose>
-                <ItemListGrid items={TIMING_WINDOWS.map(tw => ({ context: tw.window, name: tw.name, detail: tw.detail }))} />
+                <EditorialList items={TIMING_WINDOWS.map(tw => ({ context: tw.window, name: tw.name, detail: tw.detail }))} />
 
                 <SubLabel>Desert Wildlife</SubLabel>
                 <Prose>The canyon's biodiversity surprises people. The Virgin River riparian corridor supports nearly 300 bird species, plus mammals that most visitors never see.</Prose>
-                <ItemList items={WILDLIFE.map(w => ({ name: w.name, detail: w.detail }))} />
+                <EditorialList items={WILDLIFE.map(w => ({ name: w.name, detail: w.detail }))} />
 
                 <PlaceGuideCard label="The Place Guide" descriptor="Terrain \u00B7 When to go \u00B7 Desert wildlife" bg="linear-gradient(155deg, #C4956A 0%, #7A9190 100%)" />
               </div>
@@ -344,12 +344,12 @@ export default function ZionGuide() {
                 </div>
 
                 <SubLabel>Towns</SubLabel>
-                <ItemList items={TOWNS_EDITORIAL.map(t => ({ context: t.context, name: t.name, detail: t.description }))} />
+                <EditorialList items={TOWNS_EDITORIAL.map(t => ({ context: t.context, name: t.name, detail: t.description }))} />
 
                 <SubLabel>Hotels</SubLabel>
                 <p style={{ fontFamily: FONTS.body, fontSize: 13, fontWeight: 400, color: G.ink40, marginBottom: 0 }}>A few we like across the region:</p>
                 <ContentList items={sleepPicks.map(a => ({
-                  badge: a.stayStyle,
+                  badge: a.stayStyle.charAt(0).toUpperCase() + a.stayStyle.slice(1),
                   context: a.location,
                   name: a.name,
                   detail: a.highlights?.[0] || '',
@@ -369,13 +369,16 @@ export default function ZionGuide() {
                   <Prose>Springdale has more good food than a town its size should. Oscar's is the local breakfast institution. Deep Creek does the coffee right. Bit & Spur is the dinner move — Southwestern with actual range. And if you make it to Boulder on Scenic Byway 12, Hell's Backbone Grill is one of the best farm-to-table restaurants in the West, full stop.</Prose>
                 </div>
 
-                <ContentList items={eatPicks.map(e => ({
-                  badge: e.cuisine || e.type,
-                  context: `${e.location}${e.reservations ? ' \u00B7 ' + e.reservations : ''}`,
-                  name: e.name,
-                  detail: e.highlights?.[0] || '',
-                  lilaPick: e.lilaPick,
-                }))} />
+                <ContentList items={eatPicks.map(e => {
+                  const raw = e.cuisine || e.type || '';
+                  return {
+                    badge: raw.charAt(0).toUpperCase() + raw.slice(1),
+                    context: `${e.location}${e.reservations ? ' \u00B7 ' + e.reservations : ''}`,
+                    name: e.name,
+                    detail: e.highlights?.[0] || '',
+                    lilaPick: e.lilaPick,
+                  };
+                })} />
 
                 <PlaceGuideCard label="Eat Guide" descriptor="Springdale \u00B7 Byway 12 \u00B7 provisions" bg="linear-gradient(155deg, #C49A6A 0%, #8A6A4A 100%)" />
               </div>
@@ -390,7 +393,7 @@ export default function ZionGuide() {
 
                 <SubLabel>Highlights</SubLabel>
                 <ContentList items={moveHighlights.map(m => ({
-                  badge: m.moveTier,
+                  badge: m.moveTier.charAt(0).toUpperCase() + m.moveTier.slice(1),
                   context: `${m.distance || ''} \u00B7 ${m.difficulty || ''}`.replace(/^\s*\u00B7\s*/, '').replace(/\s*\u00B7\s*$/, ''),
                   name: m.name,
                   detail: m.highlights?.[0] || '',
@@ -412,7 +415,7 @@ export default function ZionGuide() {
 
                 <SubLabel>Highlights</SubLabel>
                 <ContentList items={breatheHighlights.map(b => ({
-                  badge: b.breatheTier,
+                  badge: b.breatheTier.charAt(0).toUpperCase() + b.breatheTier.slice(1),
                   context: `${b.type || ''} \u00B7 ${b.location || ''}`.replace(/^\s*\u00B7\s*/, '').replace(/\s*\u00B7\s*$/, ''),
                   name: b.name,
                   detail: b.highlights?.[0] || '',
@@ -434,7 +437,7 @@ export default function ZionGuide() {
 
                 <SubLabel>Highlights</SubLabel>
                 <ContentList items={experienceHighlights.map(e => ({
-                  badge: e.type,
+                  badge: (e.type || '').charAt(0).toUpperCase() + (e.type || '').slice(1),
                   context: e.location || '',
                   name: e.name,
                   detail: e.highlights?.[0] || '',
@@ -455,7 +458,7 @@ export default function ZionGuide() {
                   <Prose>Bryce Canyon is one of the darkest places in the continental United States. Capitol Reef offers Bortle Class 2 skies — almost no light pollution at all.</Prose>
                 </div>
 
-                <ItemListGrid items={[
+                <EditorialList items={[
                   { context: 'Bortle Class 3', name: 'Zion National Park', detail: 'Certified International Dark Sky Park. Best viewing from Zion Canyon Scenic Drive after the last shuttle.' },
                   { context: 'Bortle Class 2', name: 'Bryce Canyon', detail: 'Among the darkest parks in the country. Annual Astronomy Festival in June. Best at higher elevations.' },
                   { context: 'Bortle Class 2', name: 'Capitol Reef', detail: 'Remote and uncrowded. Virtually no light pollution. Best of the three for serious dark sky photography.' },
