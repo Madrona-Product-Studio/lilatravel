@@ -92,6 +92,14 @@ const ItineraryResults = lazy(() => import('./pages/ItineraryResults'));
 
 // ─── Dedicated Guides ───────────────────────────────────────────────────────
 const ZionGuide = lazy(() => import('@pages/guides/ZionGuide'));
+const ZionKnowThePlace = lazy(() => import('@pages/guides/zion/ZionKnowThePlace'));
+const ZionWhenToGo = lazy(() => import('@pages/guides/zion/ZionWhenToGo'));
+const ZionMove = lazy(() => import('@pages/guides/zion/ZionMove'));
+const ZionSleep = lazy(() => import('@pages/guides/zion/ZionSleep'));
+const ZionEat = lazy(() => import('@pages/guides/zion/ZionEat'));
+const ZionBreathe = lazy(() => import('@pages/guides/zion/ZionBreathe'));
+const ZionNightSky = lazy(() => import('@pages/guides/zion/ZionNightSky'));
+const ZionBeThere = lazy(() => import('@pages/guides/zion/ZionBeThere'));
 const BigSurGuide = lazy(() => import('@pages/guides/BigSurGuide'));
 const JoshuaTreeGuide = lazy(() => import('@pages/guides/JoshuaTreeGuide'));
 const OlympicPeninsulaGuide = lazy(() => import('@pages/guides/OlympicPeninsulaGuide'));
@@ -128,7 +136,16 @@ export default function App() {
             {/* Destinations */}
             <Route path="/destinations" element={<DestinationsPage />} />
             {/* ↓ Dedicated guides go HERE (above the generic :slug catch-all) */}
-            <Route path="/destinations/zion-canyon" element={<ZionGuide />} />
+            <Route path="/destinations/zion" element={<ZionGuide />} />
+            <Route path="/destinations/zion/know-the-place" element={<ZionKnowThePlace />} />
+            <Route path="/destinations/zion/when-to-go" element={<ZionWhenToGo />} />
+            <Route path="/destinations/zion/move" element={<ZionMove />} />
+            <Route path="/destinations/zion/sleep" element={<ZionSleep />} />
+            <Route path="/destinations/zion/eat" element={<ZionEat />} />
+            <Route path="/destinations/zion/breathe" element={<ZionBreathe />} />
+            <Route path="/destinations/zion/night-sky" element={<ZionNightSky />} />
+            <Route path="/destinations/zion/be-there-well" element={<ZionBeThere />} />
+            <Route path="/destinations/zion-canyon" element={<Navigate to="/destinations/zion" replace />} />
             <Route path="/destinations/big-sur" element={<BigSurGuide />} />
             <Route path="/destinations/joshua-tree" element={<JoshuaTreeGuide />} />
             <Route path="/destinations/olympic-peninsula" element={<OlympicPeninsulaGuide />} />
