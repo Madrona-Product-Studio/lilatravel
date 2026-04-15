@@ -6,7 +6,7 @@
 import { useRef, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { Nav, Footer } from '@components';
+import { Nav, Footer, PageHeader } from '@components';
 import { C, FONTS } from '@data/brand';
 import { MeditationsCover } from '@pages/Meditations';
 import { TeachingsCover } from '@pages/ethos/TeachingsDeck';
@@ -150,74 +150,16 @@ export default function PracticeLibrary() {
 
       <Nav />
 
-      {/* Hero */}
-      <section style={{
-        background: C.warmWhite,
-        padding: '120px 28px 60px',
-      }}>
-        <div style={{ maxWidth: 960, margin: '0 auto' }}>
-          {/* Eyebrow */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-            <div style={{ width: 40, height: 1, background: C.goldenAmber }} />
-            <span style={{
-              fontFamily: SANS, fontSize: 10, fontWeight: 500,
-              letterSpacing: '2.5px', color: C.goldenAmber,
-              textTransform: 'uppercase',
-            }}>
-              PRACTICE LIBRARY
-            </span>
-          </div>
-
-          {/* Title */}
-          <h1 style={{
-            fontFamily: SERIF,
-            fontSize: 'clamp(32px, 6vw, 52px)',
-            fontWeight: 300,
-            color: C.darkInk,
-            lineHeight: 1.1,
-            marginTop: 0,
-            marginBottom: 12,
-          }}>
-            Go Deeper
-          </h1>
-
-          {/* Headline */}
-          <p style={{
-            fontFamily: SERIF,
-            fontSize: 18,
-            color: C.darkInk,
-            lineHeight: 1.4,
-            maxWidth: 560,
-            marginTop: 0,
-            marginBottom: 10,
-          }}>
-            Ancient practices for wild places.
-          </p>
-
-          {/* Body */}
-          <p style={{
-            fontFamily: SERIF,
-            fontSize: 16,
-            color: C.slate,
-            lineHeight: 1.7,
-            maxWidth: 560,
-            marginTop: 0,
-            marginBottom: 0,
-          }}>
-            Four ways to help you move through these landscapes differently — with more attention, more intention, and more of yourself present.
-          </p>
-        </div>
-      </section>
+      <PageHeader
+        eyebrow="Practice Library"
+        title="Go Deeper"
+        subtitle="Ancient practices for wild places. Four ways to help you move through these landscapes differently — with more attention, more intention, and more of yourself present."
+        accentColor={C.goldenAmber}
+      />
 
       {/* Deck grid */}
-      <section style={{
-        background: C.warmWhite,
-        padding: '0 28px 80px',
-      }}>
-        <div
-          className="grid grid-cols-2 md:grid-cols-4 gap-4"
-          style={{ maxWidth: 960, margin: '0 auto' }}
-        >
+      <section className="bg-cream px-6 md:px-[52px] pb-20">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-[1100px] mx-auto">
           {DECKS.map(deck => (
             <DeckTile key={deck.key} deck={deck} />
           ))}

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Nav, Footer, FadeIn } from '@components';
+import { Nav, Footer, FadeIn, PageHeader } from '@components';
 import { C, FONTS } from '@data/brand';
 import { ritualsPillars, traditions, ritualsIntro } from '@data/rituals';
 import { trackEvent } from '@utils/analytics';
@@ -88,51 +88,13 @@ export default function EthosPage() {
       </Helmet>
       <Nav />
 
-      <section style={{ background: C.warmWhite, padding: '120px 28px 60px', position: 'relative' }}>
-        <div style={{ maxWidth: 960, margin: '0 auto' }}>
-          {/* Eyebrow */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20 }}>
-            <div style={{ width: 40, height: 1, background: C.goldenAmber }} />
-            <span style={{
-              fontFamily: FONTS.body,
-              fontSize: 10,
-              letterSpacing: '2.5px',
-              color: C.goldenAmber,
-              fontWeight: 500,
-              textTransform: 'uppercase',
-            }}>
-              OUR ETHOS
-            </span>
-          </div>
-
-          {/* Headline */}
-          <h1 style={{
-            fontFamily: FONTS.serif,
-            fontSize: 'clamp(32px, 6vw, 52px)',
-            fontWeight: 300,
-            color: C.darkInk,
-            lineHeight: 1.1,
-            marginBottom: 12,
-            marginTop: 0,
-          }}>
-            What makes a Lila trip.
-          </h1>
-
-          {/* Intro */}
-          <p style={{
-            fontFamily: FONTS.serif,
-            fontSize: 16,
-            color: C.slate,
-            lineHeight: 1.7,
-            marginBottom: 36,
-            maxWidth: 560,
-            marginTop: 0,
-          }}>
-            Every Lila journey is woven from three braids — iconic landscapes that dissolve
-            the ordinary, ancient practices that quiet the noise, and raw elemental encounters
-            that wake you up.
-          </p>
-
+      <PageHeader
+        eyebrow="Our Ethos"
+        title="What makes a Lila trip."
+        subtitle="Every Lila journey is woven from three braids — iconic landscapes that dissolve the ordinary, ancient practices that quiet the noise, and raw elemental encounters that wake you up."
+        accentColor={C.goldenAmber}
+      >
+        <div className="mt-9">
           {/* Wave SVG */}
           <svg
             style={{ display: 'block', width: '100%', marginBottom: 40 }}
@@ -227,7 +189,7 @@ export default function EthosPage() {
             ))}
           </div>
         </div>
-      </section>
+      </PageHeader>
 
 
       {approachBraids.map((b, bi) => {
