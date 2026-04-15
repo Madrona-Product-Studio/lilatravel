@@ -473,6 +473,8 @@ function HomeDeckTile({ deck }) {
   return (
     <Link
       to={deck.route}
+      target="_blank"
+      rel="noopener noreferrer"
       className="no-underline block group"
       onClick={() => trackEvent('homepage_cta_clicked', { action: `open_${deck.key}` })}
       style={{ transition: 'transform 0.2s ease' }}

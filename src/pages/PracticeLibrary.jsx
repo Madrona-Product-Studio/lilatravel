@@ -81,6 +81,8 @@ function DeckTile({ deck }) {
   return (
     <Link
       to={route}
+      target="_blank"
+      rel="noopener noreferrer"
       style={{
         textDecoration: 'none',
         color: 'inherit',
