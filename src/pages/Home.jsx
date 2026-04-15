@@ -525,35 +525,37 @@ function PracticeLibrarySection() {
               display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 12,
               marginBottom: 12,
             }}>
-              <div style={{ width: 28, height: 1, background: C.goldenAmber }} />
+              <div style={{ width: 28, height: 1.5, background: C.goldenAmber, opacity: 0.7 }} />
               <span style={{
-                fontFamily: FONTS.body, fontSize: 10, fontWeight: 500,
-                letterSpacing: '2.5px', color: C.goldenAmber,
+                fontFamily: FONTS.body, fontSize: 11, fontWeight: 700,
+                letterSpacing: '0.22em', color: C.goldenAmber,
                 textTransform: 'uppercase',
               }}>
                 Practice Library
               </span>
-              <div style={{ width: 28, height: 1, background: C.goldenAmber }} />
+              <div style={{ width: 28, height: 1.5, background: C.goldenAmber, opacity: 0.7 }} />
             </div>
             <div style={{
-              fontFamily: FONTS.serif,
+              fontFamily: FONTS.body,
               fontSize: 'clamp(26px, 5vw, 40px)',
-              fontWeight: 300,
+              fontWeight: 700,
               color: C.darkInk,
               lineHeight: 1.15,
+              letterSpacing: '-0.01em',
               marginBottom: 14,
             }}>
-              Four decks. One path in.
+              Go Deeper
             </div>
             <p style={{
-              fontFamily: FONTS.serif,
-              fontSize: 15,
-              color: C.slate,
+              fontFamily: FONTS.body,
+              fontSize: 14,
+              color: '#7a8a9a',
               lineHeight: 1.7,
               maxWidth: 480,
               margin: '0 auto',
+              letterSpacing: '0.01em',
             }}>
-              Wisdom traditions, movement science, and reflective practices — distilled into swipeable card decks you can carry on any journey.
+              Ancient practices for wild places. Four ways to help you move through these landscapes differently — with more attention, more intention, and more of yourself present.
             </p>
           </div>
 

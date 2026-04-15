@@ -28,7 +28,7 @@ export default function PageHeader({
 
   return (
     <section
-      className={`bg-cream ${children ? "px-[52px] pt-[120px] pb-12" : "px-[52px] pt-[120px] pb-0"}`}
+      className={`bg-cream ${children ? "px-6 md:px-[52px] pt-[120px] pb-12" : "px-6 md:px-[52px] pt-[120px] pb-14"}`}
     >
       <div className={`max-w-[1100px] mx-auto ${isCenter ? "text-center" : "text-left"}`}>
         <FadeIn from="bottom" delay={0.05}>
@@ -53,7 +53,7 @@ export default function PageHeader({
 
           {/* Title */}
           <h1
-            className={`font-serif text-[clamp(32px,5vw,52px)] font-light text-dark-ink leading-[1.2] tracking-[-0.01em] ${
+            className={`font-body text-[clamp(32px,5vw,52px)] font-bold text-dark-ink leading-[1.2] tracking-[-0.01em] ${
               isCenter ? "max-w-[680px] mx-auto mb-3" : "max-w-[600px] mb-3"
             }`}
           >
