@@ -266,9 +266,9 @@ export default function Nav({ transparent = false, breathConfig = null }) {
 
   const links = [
     { label: "Destinations", to: "/destinations" },
-    { label: "Group Trips", to: "/group-trips" },
     { label: "Ethos", to: "/ethos" },
     { label: "Practice", to: "/practice" },
+    { label: "Group Trips", to: "/group-trips" },
   ];
 
   const handleSelectTrip = (trip) => {

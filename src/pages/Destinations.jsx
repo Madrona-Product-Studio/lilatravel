@@ -76,13 +76,13 @@ export default function DestinationsPage() {
         .bento-grid {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          grid-template-rows: 400px 280px 280px;
+          grid-template-rows: repeat(3, 300px);
           gap: 4px;
         }
         @media (max-width: 860px) {
           .bento-grid {
             grid-template-columns: 1fr 1fr;
-            grid-template-rows: 280px 220px 220px;
+            grid-template-rows: repeat(3, 240px);
             gap: 3px;
           }
         }
@@ -95,7 +95,7 @@ export default function DestinationsPage() {
         }
       `}</style>
 
-      <section className="page-content px-6 pt-12 pb-20 md:px-[52px] md:pt-12 md:pb-20 bg-cream">
+      <section className="page-content px-6 pt-6 pb-20 md:px-[52px] md:pt-6 md:pb-20 bg-cream">
         <div className="max-w-[1100px] mx-auto">
           <div className="bento-grid">
             {destinations.map((d, i) => {
@@ -104,6 +104,8 @@ export default function DestinationsPage() {
                 <FadeIn key={d.slug} delay={i * 0.06}>
                   <Link
                     to={`/destinations/${d.slug}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="bento-tile h-full"
                     onClick={() => trackEvent('destination_selected', { destination: d.slug })}
                   >
