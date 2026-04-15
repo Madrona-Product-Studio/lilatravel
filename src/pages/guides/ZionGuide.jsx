@@ -1,225 +1,127 @@
 // ═══════════════════════════════════════════════════════════════════════════════
-// PAGE: ZION GUIDE — Editorial Main Page
+// PAGE: ZION GUIDE — Editorial Main Page (Redesign v2)
 // ═══════════════════════════════════════════════════════════════════════════════
 //
-// Top-level editorial guide for Zion & its orbit. Three sections:
-//   1. The Place & How to Be In It
-//   2. Find Your Base
-//   3. Experience It
+// Top-level editorial guide for Zion & its orbit. Eight sections:
+//   01. Terrain & Parks    05. Hikes, Bikes, etc.
+//   02. Travel Lightly     06. Yoga & Mindfulness
+//   03. Where to Stay      07. Arts & Culture
+//   04. Where to Eat       08. Stars & Sky
 //
-// Sub-guides (Move, Eat, Sleep, etc.) live in dedicated route pages.
 // Route: /destinations/zion-canyon
 //
 
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Nav, Footer, FadeIn, WhisperBar } from '@components';
-import { SectionLabel, Divider, ListItem, StayItem, GuideDetailSheet, sortByTierDiversity } from '@components/guide';
-import { C } from '@data/brand';
-import { G } from '@data/guides/guide-styles';
+import { SectionTransition, SubLabel, Prose, ItemList, ContentList, ItemListGrid, PlaceGuideCard } from '@components/guide';
+import { G, FONTS } from '@data/guides/guide-styles';
 import { P } from '@data/photos';
 import { trackEvent } from '@utils/analytics';
 import { Helmet } from 'react-helmet-async';
 import { CelestialDrawer } from '@components';
 import { BREATH_CONFIG } from '@data/breathConfig';
 import useBreathCanvas from '@hooks/useBreathCanvas';
+import { PARKS, TOWNS, WILDLIFE_GROUPS } from '@data/guides/zion-constants';
 import accommodations from '../../data/accommodations/zion.json';
 import restaurants from '../../data/restaurants/zion-eat.json';
 import moveItems from '../../data/restaurants/zion-move.json';
+import breatheItems from '../../data/restaurants/zion-breathe.json';
+import experiences from '../../data/restaurants/zion-experience.json';
 
 
 // ─── Constants ───────────────────────────────────────────────────────────────
 
 const GUIDE_SECTIONS = [
-  { id: "the-place", label: "The Place" },
-  { id: "find-base", label: "Find Your Base" },
-  { id: "experience", label: "Experience It" },
-];
-
-const HIGHLIGHTS = [
-  {
-    name: "The Narrows",
-    category: "Canyon \u00B7 Water",
-    blurb: "You\u2019re wading a river through slot canyon walls two thousand feet high.",
-  },
-  {
-    name: "Angels Landing",
-    category: "Summit \u00B7 Exposure \u00B7 Permit",
-    blurb: "Chain-assisted scramble to a rock fin suspended above the canyon.",
-  },
-  {
-    name: "Bryce Canyon at Sunrise",
-    category: "High Plateau \u00B7 Hoodoos",
-    blurb: "A forest of stone pillars at 8,000 feet.",
-  },
-  {
-    name: "Scenic Byway 12",
-    category: "Drive \u00B7 Journey",
-    blurb: "One of the most dramatic drives in the American West.",
-  },
+  { id: 'the-place',   label: 'Terrain & Parks' },
+  { id: 'responsibly', label: 'Travel Lightly' },
+  { id: 'stay',        label: 'Where to Stay' },
+  { id: 'eat',         label: 'Where to Eat' },
+  { id: 'move',        label: 'Hikes, Bikes, etc.' },
+  { id: 'breathe',     label: 'Yoga & Mindfulness' },
+  { id: 'experience',  label: 'Arts & Culture' },
+  { id: 'night-sky',   label: 'Stars & Sky' },
 ];
 
 const TIMING_WINDOWS = [
-  { window: "Late Sept \u2013 Oct", name: "The Golden Corridor", detail: "Cottonwoods turn gold along the Virgin River. Crowds thin. Light goes amber. Best hiking weather of the year." },
-  { window: "Mar \u2013 Apr", name: "Spring Equinox", detail: "After a wet winter, the desert floor erupts in wildflowers. Cacti crown themselves. The canyon wakes up." },
-  { window: "Jun \u2013 Sep nights", name: "Dark Sky Season", detail: "Warm nights for stargazing. The Milky Way peaks overhead from June through September. Zion is a certified Dark Sky Park." },
-  { window: "Dec 19\u201322", name: "Winter Solstice", detail: "Shortest day, most dramatic canyon light. Snow dusting the upper walls at sunset. Fewer people, deeper silence." },
+  { name: 'The Golden Corridor', window: 'Late Sept \u2013 Oct', detail: 'Cottonwoods turn gold along the Virgin River. Crowds thin. Light goes amber. Best hiking weather of the year.' },
+  { name: 'Spring Equinox', window: 'Mar \u2013 Apr', detail: 'After a wet winter, the desert floor erupts in wildflowers. Cacti crown themselves. The canyon wakes up.' },
+  { name: 'Dark Sky Season', window: 'Jun \u2013 Sep nights', detail: 'Warm nights for stargazing. The Milky Way peaks overhead June through September. Zion is a certified Dark Sky Park.' },
+  { name: 'Winter Solstice', window: 'Dec 19\u201322', detail: 'Shortest day, most dramatic canyon light. Snow dusting the upper walls. Fewer people, deeper silence.' },
 ];
 
-const TOWNS = [
-  {
-    name: "Kanab",
-    context: "Film-Set Desert Town",
-    description: "An hour south of Zion on the Utah\u2013Arizona line. Old Western film sets, a growing food scene, and the staging point for permits to The Wave, White Pocket, and Buckskin Gulch.",
-  },
-  {
-    name: "Escalante",
-    context: "Trailhead Town",
-    description: "A one-stoplight town on Scenic Byway 12 that punches above its weight. Slot canyons, petrified forests, and the kind of solitude that the main parks can\u2019t offer.",
-  },
-  {
-    name: "Torrey",
-    context: "Capitol Reef Gateway",
-    description: "A handful of buildings at the edge of the Waterpocket Fold. The nearest services to Capitol Reef. The orchards start just down the road.",
-  },
+const WILDLIFE = [
+  { name: 'California Condor', detail: 'Reintroduced to Zion in 1996. Wingspan up to 9.5 ft \u2014 visible as a dark silhouette riding thermals above the canyon rim.' },
+  { name: 'Desert Bighorn Sheep', detail: 'Often seen on rocky ledges above the canyon floor, especially along the Angels Landing trail. Completely at home on near-vertical terrain.' },
+  { name: 'Ringtail Cat', detail: 'Nocturnal, rarely seen. Related to raccoons. Lives in rocky outcrops and canyon walls. Enormous eyes for hunting at night.' },
 ];
 
-const SLEEP_PICK_NAMES = ["Cable Mountain Lodge", "Zion Lodge", "Cliffrose Springdale", "Under Canvas Zion"];
-const MOVE_PICK_NAMES = ["The Narrows", "Angels Landing", "Canyon Overlook Trail", "Keyhole Canyon Canyoneering"];
-const EAT_PICK_NAMES = ["Oscar's Cafe", "Deep Creek Coffee", "Bit & Spur", "Hell's Backbone Grill & Farm"];
+// Mockup park descriptions (editorial, differs from zion-constants data)
+const PARKS_EDITORIAL = [
+  { name: 'Zion National Park',         context: 'Canyon \u00B7 River \u00B7 Desert',    description: 'The anchor. Sandstone walls two thousand feet high, the Virgin River running through the floor of it. Most people come, do the Narrows, do Angels Landing, and leave. This guide is for the ones who want to actually be inside the place.' },
+  { name: 'Bryce Canyon National Park', context: 'High Plateau \u00B7 Hoodoos',          description: 'Lifts you 8,000 feet into a forest of stone pillars. The hoodoos form from frost wedging and erosion \u2014 water that freezes in cracks overnight and expands until the rock gives way. Spectacular at sunrise.' },
+  { name: 'Capitol Reef National Park', context: 'Waterpocket Fold \u00B7 Solitude',     description: 'A hundred-mile wrinkle in the earth\u2019s crust that most people drive right past. Orchards planted by early settlers still fruit every fall. The least visited of the three \u2014 which is most of its appeal.' },
+];
+
+// Mockup town descriptions (editorial)
+const TOWNS_EDITORIAL = [
+  { name: 'Springdale',  context: 'Your Home Base',       description: 'A single-street town pressed against the canyon mouth. Walk to the park entrance. Restaurants, gear shops, and galleries line the half-mile stretch \u2014 all sandstone red and cottonwood green.' },
+  { name: 'Kanab',       context: 'Film-Set Desert Town', description: 'An hour south of Zion. Old Western film sets, a growing food scene, and the staging point for permits to The Wave and Buckskin Gulch.' },
+  { name: 'Escalante',   context: 'Trailhead Town',       description: 'A one-stoplight town on Scenic Byway 12. Slot canyons, petrified forests, and the kind of solitude the main parks can\u2019t offer.' },
+  { name: 'Torrey',      context: 'Capitol Reef Gateway',  description: 'A handful of buildings at the edge of the Waterpocket Fold. The nearest services to Capitol Reef. The orchards start just down the road.' },
+];
 
 
-// ─── SubGuideThread ──────────────────────────────────────────────────────────
+// ─── Data derivations ───────────────────────────────────────────────────────
 
-function SubGuideThread({ to, label, description }) {
-  return (
-    <Link
-      to={to}
-      onClick={() => trackEvent('subguide_clicked', { guide: to.split('/').pop() })}
-      className="group flex items-center gap-2.5 py-3 mt-4 no-underline transition-opacity duration-200 hover:opacity-70"
-    >
-      <span style={{ fontSize: 12, fontWeight: 600, letterSpacing: '0.06em', color: G.accent }}>{"\u2192"}</span>
-      <span style={{ fontSize: 12, fontWeight: 600, letterSpacing: '0.06em', color: G.accent }}>{label}</span>
-      {description && (
-        <span style={{ fontSize: 12, fontWeight: 400, letterSpacing: '0.06em', color: G.muted }}> {"\u2014"} {description}</span>
-      )}
-    </Link>
-  );
+const sleepPicks = accommodations.filter(a => a.lilaPick).slice(0, 4);
+const eatPicks = [...restaurants].sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).slice(0, 4);
+const moveHighlights = [...moveItems].sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).slice(0, 4);
+const breatheHighlights = [...breatheItems].sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).slice(0, 4);
+const experienceHighlights = [...experiences].sort((a, b) => ((b.featured || b.lilaPick) ? 1 : 0) - ((a.featured || a.lilaPick) ? 1 : 0)).slice(0, 4);
+
+
+// ─── Divider ─────────────────────────────────────────────────────────────────
+
+function Divider() {
+  return <div style={{ height: '0.5px', background: G.border, margin: '56px 0 0' }} />;
 }
 
 
 // ─── GuideNav ────────────────────────────────────────────────────────────────
 
-function GuideNav({ isMobile }) {
-  const [activeId, setActiveId] = useState(null);
-  const scrollContainerRef = useRef(null);
-
-  useEffect(() => {
-    if (isMobile) return;
-    const ids = GUIDE_SECTIONS.map(s => s.id);
-    const elements = ids.map(id => document.getElementById(id)).filter(Boolean);
-    if (elements.length === 0) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter(e => e.isIntersecting)
-          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
-        if (visible.length > 0) {
-          setActiveId(visible[0].target.id);
-        }
-      },
-      { rootMargin: "-130px 0px -60% 0px", threshold: 0 }
-    );
-
-    elements.forEach(el => observer.observe(el));
-    return () => observer.disconnect();
-  }, [isMobile]);
-
-  const handleClick = useCallback((id) => {
-    const el = document.getElementById(id);
-    if (!el) return;
-    const mainNavHeight = isMobile ? 58 : 64;
-    const guideNavHeight = isMobile ? 0 : 52;
-    const y = el.getBoundingClientRect().top + window.scrollY - guideNavHeight - mainNavHeight - 32;
-    window.scrollTo({ top: y, behavior: "smooth" });
-  }, [isMobile]);
-
-  if (isMobile) {
-    return (
-      <div className="mx-5 mb-6 p-4" style={{ border: `1px solid ${G.border}`, background: G.bg }}>
-        <div className="flex items-center justify-between mb-3.5">
-          <span style={{ fontSize: 10, fontWeight: 600, letterSpacing: '0.22em', textTransform: 'uppercase', color: G.ink40 }}>In this guide</span>
-          <span style={{ fontSize: 10, fontWeight: 500, letterSpacing: '0.06em', color: G.ink30 }}>{GUIDE_SECTIONS.length} sections</span>
-        </div>
-        <div className="grid grid-cols-2 gap-x-4 gap-y-0.5">
-          {GUIDE_SECTIONS.map((section, i) => (
-            <button
-              key={section.id}
-              onClick={() => handleClick(section.id)}
-              className="flex items-center gap-2 py-[7px] bg-transparent border-none cursor-pointer text-left"
-            >
-              <span style={{ fontSize: 9, fontWeight: 700, letterSpacing: '0.1em', color: G.ink30, minWidth: 16 }}>{String(i + 1).padStart(2, "0")}</span>
-              <span style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: G.ink40 }}>{section.label}</span>
-            </button>
-          ))}
-        </div>
-      </div>
-    );
-  }
-
+function GuideNav({ activeSection, onNav }) {
   return (
-    <nav
-      className="sticky top-[72px] z-[90]"
-      style={{ background: G.bg, borderTop: `1px solid ${G.border}`, borderBottom: `1px solid ${G.border}` }}
-    >
-      <div className="max-w-[1120px] mx-auto pt-1 px-10 flex items-center">
-        <div className="flex-1 min-w-0 relative">
-          <div
-            ref={scrollContainerRef}
-            className="guide-nav-scroll flex items-center overflow-x-auto"
-            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+    <div style={{
+      position: 'sticky', top: 0, zIndex: 90,
+      background: G.warmWhite,
+      borderBottom: `0.5px solid ${G.border}`,
+      display: 'flex', alignItems: 'center',
+      padding: '0 52px', height: 44,
+      overflowX: 'auto',
+    }}>
+      <style>{`.guide-nav-scroll::-webkit-scrollbar { display: none; }`}</style>
+      {GUIDE_SECTIONS.map(s => {
+        const active = activeSection === s.id;
+        return (
+          <button
+            key={s.id}
+            onClick={() => onNav(s.id)}
+            style={{
+              fontFamily: FONTS.body, fontSize: 10, fontWeight: 600,
+              letterSpacing: '0.14em', textTransform: 'uppercase',
+              background: 'none', border: 'none', cursor: 'pointer',
+              padding: '0 14px', height: 44, whiteSpace: 'nowrap', flexShrink: 0,
+              color: active ? G.oceanTeal : G.ink40,
+              borderBottom: active ? `1.5px solid ${G.oceanTeal}` : '1.5px solid transparent',
+              transition: 'color 0.2s, border-color 0.2s',
+            }}
           >
-          <style>{`
-            .guide-nav-scroll::-webkit-scrollbar { display: none; }
-          `}</style>
-
-          {GUIDE_SECTIONS.map((section) => {
-            const isActive = activeId === section.id;
-            return (
-              <button
-                key={section.id}
-                onClick={() => handleClick(section.id)}
-                className="guide-nav-scroll px-3.5 h-[44px] bg-transparent border-none cursor-pointer whitespace-nowrap shrink-0 relative transition-[color,border-color] duration-[250ms]"
-                style={{
-                  fontSize: 10,
-                  fontWeight: 600,
-                  letterSpacing: '0.14em',
-                  textTransform: 'uppercase',
-                  borderBottom: `1.5px solid ${isActive ? G.accent : "transparent"}`,
-                  color: isActive ? G.accent : G.ink40,
-                }}
-                onMouseEnter={e => {
-                  if (!isActive) {
-                    e.currentTarget.style.color = G.ink;
-                    e.currentTarget.style.borderBottomColor = G.border;
-                  }
-                }}
-                onMouseLeave={e => {
-                  if (!isActive) {
-                    e.currentTarget.style.color = G.ink40;
-                    e.currentTarget.style.borderBottomColor = "transparent";
-                  }
-                }}
-              >
-                {section.label}
-              </button>
-            );
-          })}
-          </div>
-        </div>
-      </div>
-    </nav>
+            {s.label}
+          </button>
+        );
+      })}
+    </div>
   );
 }
 
@@ -231,30 +133,47 @@ export default function ZionGuide() {
   const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth <= 768);
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth <= 768);
-    window.addEventListener("resize", check);
-    return () => window.removeEventListener("resize", check);
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
   }, []);
 
   const breathConfig = BREATH_CONFIG.zion;
   const breathWrapperRef = useRef(null);
   const breathValueRef = useBreathCanvas(breathConfig, breathWrapperRef);
 
-  const [activeSheet, setActiveSheet] = useState(null);
+  // ── IntersectionObserver for active section ──
+  const [activeSection, setActiveSection] = useState('the-place');
 
   useEffect(() => {
-    if (activeSheet) document.body.style.overflow = 'hidden';
-    else document.body.style.overflow = '';
-    return () => { document.body.style.overflow = ''; };
-  }, [activeSheet]);
+    const ids = GUIDE_SECTIONS.map(s => s.id);
+    const elements = ids.map(id => document.getElementById(id)).filter(Boolean);
+    if (elements.length === 0) return;
 
-  const openSheet = useCallback((item) => {
-    setActiveSheet(item);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter(e => e.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+        if (visible.length > 0) {
+          setActiveSection(visible[0].target.id);
+        }
+      },
+      { rootMargin: '-130px 0px -60% 0px', threshold: 0 }
+    );
+
+    elements.forEach(el => observer.observe(el));
+    return () => observer.disconnect();
   }, []);
 
-  // Filter curated picks from data
-  const sleepPicks = SLEEP_PICK_NAMES.map(name => accommodations.find(a => a.name === name)).filter(Boolean);
-  const movePicks = MOVE_PICK_NAMES.map(name => moveItems.find(m => m.name === name)).filter(Boolean);
-  const eatPicks = EAT_PICK_NAMES.map(name => restaurants.find(r => r.name === name)).filter(Boolean);
+  const scrollTo = useCallback((id) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const offset = 44 + 64 + 16; // guideNav + mainNav + padding
+    const y = el.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({ top: y, behavior: 'smooth' });
+    setActiveSection(id);
+  }, []);
+
 
   return (
     <>
@@ -275,428 +194,317 @@ export default function ZionGuide() {
       </Helmet>
       <Nav breathConfig={breathConfig} />
 
-      {/* ══ CELESTIAL DRAWER ═══════════════════════════════════════════════ */}
-      <div ref={breathWrapperRef} style={{ background: breathConfig ? C.warmWhite : undefined }}>
-          <CelestialDrawer destination="zion" isMobile={isMobile} breathValueRef={breathValueRef} />
+      {/* ══ CELESTIAL DRAWER + BREATH CANVAS ═══════════════════════════════════ */}
+      <div ref={breathWrapperRef} style={{ background: breathConfig ? G.warmWhite : undefined }}>
+        <CelestialDrawer destination="zion" isMobile={isMobile} breathValueRef={breathValueRef} />
 
-          {/* ══ TITLE MASTHEAD ═══════════════════════════════════════════════════ */}
-          <section style={{ background: breathConfig ? 'transparent' : G.bg }}>
-        <div className="px-5 py-7 md:px-[52px] md:py-11 max-w-[920px] mx-auto">
-          <FadeIn from="bottom" delay={0.1}>
+        <div style={{ background: G.warmWhite, color: G.ink, fontFamily: FONTS.body }}>
 
-            <div className="grid grid-cols-1 md:grid-cols-[1fr_320px] gap-7 md:gap-[52px] items-start">
+          {/* ══ MASTHEAD ═══════════════════════════════════════════════════════ */}
+          <div style={{ padding: '48px 52px 40px', maxWidth: 1080, margin: '0 auto' }}>
+            <div style={{ fontFamily: FONTS.body, fontSize: 10, fontWeight: 700, letterSpacing: '0.22em', textTransform: 'uppercase', color: G.goldenAmber, marginBottom: 20 }}>
+              Destination Guide
+            </div>
 
-              {/* Left: Title + lede */}
+            <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 300px', gap: isMobile ? '28px' : '52px', alignItems: 'start' }}>
               <div>
-                <div className="flex items-center gap-2.5 mb-3.5">
-                  <span style={{ width: 24, height: 1, background: G.accent, display: 'inline-block' }} />
-                  <span style={{ fontSize: 10, fontWeight: 600, letterSpacing: '0.22em', textTransform: 'uppercase', color: G.accentMid }}>Destination Guide {"\u00B7"} Southern Utah</span>
-                </div>
-
-                <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(36px, 7vw, 54px)', fontWeight: 300, color: G.ink, lineHeight: 1, letterSpacing: '-0.02em', marginTop: 0, marginBottom: 22 }}>
-                  Zion &amp; Its Orbit
+                <h1 style={{ fontFamily: FONTS.body, fontSize: 'clamp(48px, 8vw, 84px)', fontWeight: 700, lineHeight: 0.95, letterSpacing: '-0.02em', color: G.darkInk, margin: '0 0 32px' }}>
+                  Zion &amp;<br />Its Orbit
                 </h1>
-
-                <p style={{ fontSize: 15, fontWeight: 400, color: G.inkBody, lineHeight: 1.75, maxWidth: 460, marginTop: 0, marginBottom: 0 }}>
-                  The walls are 2,000 feet high and the river runs through the floor of it. Most people come, do the Narrows, do Angels Landing, and leave. This guide is for the ones who want to actually be inside the place {"\u2014"} and the landscape that surrounds it.
+                <p style={{ fontFamily: FONTS.body, fontSize: 16, fontWeight: 400, lineHeight: 1.85, color: G.inkBody, margin: '0 0 16px', maxWidth: 480 }}>
+                  The walls are two thousand feet high and the river runs through the floor of it.
+                  Something in the ordinary mind gets quiet the moment you arrive.
+                </p>
+                <p style={{ fontFamily: FONTS.body, fontSize: 16, fontWeight: 400, lineHeight: 1.85, color: G.inkBody, margin: 0, maxWidth: 480 }}>
+                  This guide covers the full landscape: three parks, four towns, and one of the most
+                  dramatic roads in the American West. Built for people who want to actually be inside the place.
                 </p>
               </div>
 
-              {/* Right: This Guide Covers */}
-              <div style={{ borderTop: isMobile ? `1px solid ${G.border}` : 'none', borderLeft: isMobile ? 'none' : `1px solid ${G.border}`, paddingTop: isMobile ? 28 : 0, paddingLeft: isMobile ? 0 : 28 }}>
-                <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.22em', textTransform: 'uppercase', color: G.ink40, marginBottom: 18 }}>This guide covers</div>
-
-                <div className="mb-4">
-                  <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: G.accent, marginBottom: 10 }}>Parks</div>
-                  {[
-                    { label: "Zion National Park", url: "https://www.nps.gov/zion/" },
-                    { label: "Bryce Canyon National Park", url: "https://www.nps.gov/brca/" },
-                    { label: "Capitol Reef National Park", url: "https://www.nps.gov/care/" },
-                  ].map((park, i) => (
-                    <a key={i} href={park.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2.5 mb-[7px] no-underline">
-                      <div className="w-[5px] h-[5px] rounded-full" style={{ background: G.accentDot }} />
-                      <span style={{ fontSize: 12, fontWeight: 600, letterSpacing: '0.02em', color: G.ink }}>{park.label}</span>
-                    </a>
-                  ))}
+              <div style={{ borderLeft: isMobile ? 'none' : `0.5px solid ${G.border}`, borderTop: isMobile ? `0.5px solid ${G.border}` : 'none', paddingLeft: isMobile ? 0 : 36, paddingTop: isMobile ? 24 : 4 }}>
+                <div style={{ fontFamily: FONTS.body, fontSize: 10, fontWeight: 700, letterSpacing: '0.22em', textTransform: 'uppercase', color: G.ink40, marginBottom: 20 }}>
+                  This guide covers
                 </div>
-
-                <div className="mb-4">
-                  <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: G.accentWarm, marginBottom: 10 }}>Gateway Towns</div>
-                  {["Springdale", "Kanab", "Escalante", "Torrey"].map((town, i) => (
-                    <div key={i} className="flex items-center gap-2.5 mb-[7px]">
-                      <div className="w-[5px] h-[5px] rounded-full" style={{ background: G.accentWarm, opacity: 0.5 }} />
-                      <span style={{ fontSize: 12, fontWeight: 600, letterSpacing: '0.02em', color: G.ink }}>{town}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <div style={{ fontSize: 11, fontWeight: 500, letterSpacing: '0.06em', color: G.ink40, marginTop: 14, paddingTop: 12, borderTop: `1px solid ${G.border}` }}>
+                {[
+                  { label: 'Terrain & Parks',     active: true  },
+                  { label: 'Travel Lightly',      active: false },
+                  { label: 'Where to Stay',       active: false },
+                  { label: 'Hikes, Bikes, etc.',   active: false },
+                  { label: 'Yoga & Mindfulness',  active: false },
+                  { label: 'Arts & Culture',       active: false },
+                  { label: 'Stars & Sky',          active: false },
+                ].map((g, i, arr) => (
+                  <div key={g.label} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '8px 0', borderBottom: i < arr.length - 1 ? `0.5px solid ${G.borderSoft}` : 'none' }}>
+                    <span style={{ width: 6, height: 6, borderRadius: '50%', flexShrink: 0, background: g.active ? G.oceanTeal : G.ink25 }} />
+                    <span style={{ fontFamily: FONTS.body, fontSize: 13, fontWeight: 600, color: g.active ? G.ink : G.inkDetail }}>{g.label}</span>
+                  </div>
+                ))}
+                <div style={{ fontFamily: FONTS.body, fontSize: 11, fontWeight: 400, color: G.ink25, marginTop: 20, paddingTop: 16, borderTop: `0.5px solid ${G.border}` }}>
                   Updated 2026
                 </div>
               </div>
             </div>
-          </FadeIn>
+          </div>
 
-          {/* Stats bar */}
-          <FadeIn delay={0.06}>
-            <div className="mt-8">
-              <div className="h-px" style={{ background: G.border }} />
-              <div className="grid grid-cols-2 md:grid-cols-4 py-5">
-                {[
-                  { l: "Best time", v: "Sept\u2013Oct, Mar\u2013May" },
-                  { l: "Fly into", v: "Las Vegas (LAS)" },
-                  { l: "Drive time", v: "~2.5 hrs" },
-                  { l: "Stay", v: "4\u20137 days" },
-                ].map((s, i) => (
-                  <div key={i} className="text-center px-3 py-2 md:py-0" style={{ borderLeft: i > 0 ? `1px solid ${G.border}` : 'none' }}>
-                    <div style={{ fontSize: 9, fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: G.ink40, marginBottom: 4 }}>{s.l}</div>
-                    <div style={{ fontSize: 12, fontWeight: 600, color: G.ink, lineHeight: 1.3 }}>{s.v}</div>
+          {/* ── Photo strip ─────────────────────────────────────────────────── */}
+          <div style={{ display: 'flex', gap: 2, overflow: 'hidden', marginTop: 2 }}>
+            {[
+              { src: P.zionWatchman, alt: 'The Watchman at golden hour', caption: 'The Watchman \u00B7 golden hour', width: '42%' },
+              { src: P.zionNarrows, alt: 'The Narrows', caption: 'The Narrows', width: '27%' },
+              { src: P.bryceCanyon, alt: 'Bryce Canyon hoodoos', caption: 'Bryce Canyon \u00B7 hoodoos', width: '31%' },
+            ].map((img, i) => (
+              <div key={i} style={{ flex: `0 0 ${img.width}`, position: 'relative', overflow: 'hidden', height: 270 }}>
+                <img src={img.src} alt={img.alt} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '28px 14px 12px', background: 'linear-gradient(to top, rgba(10,18,26,0.65), transparent)' }}>
+                  <span style={{ fontFamily: FONTS.body, fontSize: 10, fontWeight: 600, letterSpacing: '0.06em', color: 'rgba(255,255,255,0.8)' }}>{img.caption}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* ══ GUIDE NAV ══════════════════════════════════════════════════════ */}
+          <GuideNav activeSection={activeSection} onNav={scrollTo} />
+
+          {/* ══ CONTENT ════════════════════════════════════════════════════════ */}
+          <div style={{ padding: '0 52px', maxWidth: 860, margin: '0 auto' }}>
+            <div style={{ maxWidth: 660 }}>
+
+
+              {/* ══ 01 TERRAIN & PARKS ════════════════════════════════════════ */}
+              <div id="the-place">
+                <SectionTransition num="01" title="Terrain & Parks" />
+                <div style={{ marginTop: 28 }}>
+                  <Prose>
+                    There are places you visit and places that visit you. Zion is the second kind.
+                    The canyon walls close in above you — sandstone cut two thousand feet high, copper
+                    at sunrise, impossible pink at dusk — and something in the ordinary mind gets quiet.
+                    The Paiute people called it Mukuntuweap: straight-up land. Whatever you call it,
+                    you feel it the moment you arrive.
+                  </Prose>
+                  <Prose>
+                    But Zion is just the anchor. Three parks, three personalities, connected by some
+                    of the most dramatic road in America. A week here, done right, is genuinely
+                    disorienting — in the best way.
+                  </Prose>
+                </div>
+
+                <SubLabel>The Terrain</SubLabel>
+                <Prose>Three parks, three distinct personalities. Zion is intimate — the canyon holds you. Bryce is theatrical — the hoodoos perform. Capitol Reef is quiet and immense — the Waterpocket Fold stretches a hundred miles and most people never stop to look at it.</Prose>
+                <ItemList items={PARKS_EDITORIAL.map(p => ({ context: p.context, name: p.name, detail: p.description }))} />
+
+                <SubLabel>When to Go</SubLabel>
+                <Prose>The desert doesn't do subtle — it blooms, it burns gold, it goes silent under snow. These are the windows we build trips around.</Prose>
+                <ItemListGrid items={TIMING_WINDOWS.map(tw => ({ context: tw.window, name: tw.name, detail: tw.detail }))} />
+
+                <SubLabel>Desert Wildlife</SubLabel>
+                <Prose>The canyon's biodiversity surprises people. The Virgin River riparian corridor supports nearly 300 bird species, plus mammals that most visitors never see.</Prose>
+                <ItemList items={WILDLIFE.map(w => ({ name: w.name, detail: w.detail }))} />
+
+                <PlaceGuideCard label="The Place Guide" descriptor="Terrain \u00B7 When to go \u00B7 Desert wildlife" bg="linear-gradient(155deg, #C4956A 0%, #7A9190 100%)" />
+              </div>
+
+              <Divider />
+
+
+              {/* ══ 02 TRAVEL LIGHTLY ═════════════════════════════════════════ */}
+              <div id="responsibly">
+                <SectionTransition num="02" title="Travel Lightly" />
+                <div style={{ marginTop: 28 }}>
+                  <Prose>
+                    The canyon doesn't belong to any single story. The Paiute people called this place
+                    Mukuntuweap — straight-up land — for thousands of years before a Methodist minister
+                    renamed it in 1916. Some stories were here first. How you move through this place matters.
+                  </Prose>
+                </div>
+
+                <SubLabel warm>Tread Lightly</SubLabel>
+                <Prose>The dark, lumpy crust visible just off the trail is cryptobiotic soil — a living community of cyanobacteria, lichens, and fungi that can take 50–250 years to recover from a single footstep. It holds the desert floor together. It looks like nothing. It is everything.</Prose>
+                <Prose>The Virgin River sustains one of the most biodiverse riparian corridors in the Southwest. Apply sunscreen well before entering the water. Pack out everything. The river is not a wash.</Prose>
+
+                <SubLabel warm>Give Back</SubLabel>
+                <Prose>The Zion Forever Project is the official nonprofit partner of Zion National Park — they fund trail restoration, youth programs, and ranger-led education. The Colorado Plateau Dark Sky Cooperative maintains night sky designations across the region. Both are worth supporting.</Prose>
+
+                <SubLabel warm>Native Culture</SubLabel>
+                <Prose>The Southern Paiute people have maintained a relationship with this landscape for thousands of years. The name Mukuntuweap, the rock art along canyon walls, the plant knowledge embedded in the desert — these are living traditions, not museum exhibits. Approach them with that understanding.</Prose>
+
+                <SubLabel warm>Supporting People Here</SubLabel>
+                <Prose>Springdale's economy runs almost entirely on tourism. Eat at locally owned restaurants, buy from local galleries, hire local guides. The difference between a national park visit and a real experience of a place is usually the people you meet who actually live there.</Prose>
+
+                <PlaceGuideCard label="Travel Responsibly Guide" descriptor="Tread lightly \u00B7 give back \u00B7 native culture \u00B7 local support" bg="linear-gradient(155deg, #A8896A 0%, #4A6B5A 100%)" />
+              </div>
+
+              <Divider />
+
+
+              {/* ══ 03 WHERE TO STAY ══════════════════════════════════════════ */}
+              <div id="stay">
+                <SectionTransition num="03" title="Where to Stay" />
+                <div style={{ marginTop: 28 }}>
+                  <Prose>Springdale is the move for a Zion-focused trip — you can walk to the park entrance. If you're running the full orbit, plan to split nights. The corridor towns are worth slowing down in.</Prose>
+                </div>
+
+                <SubLabel>Towns</SubLabel>
+                <ItemList items={TOWNS_EDITORIAL.map(t => ({ context: t.context, name: t.name, detail: t.description }))} />
+
+                <SubLabel>Hotels</SubLabel>
+                <p style={{ fontFamily: FONTS.body, fontSize: 13, fontWeight: 400, color: G.ink40, marginBottom: 0 }}>A few we like across the region:</p>
+                <ContentList items={sleepPicks.map(a => ({
+                  badge: a.stayStyle,
+                  context: a.location,
+                  name: a.name,
+                  detail: a.highlights?.[0] || '',
+                  lilaPick: a.lilaPick,
+                }))} />
+
+                <PlaceGuideCard label="Stay Guide" descriptor="Full accommodations across Springdale, Kanab, Escalante & Torrey" bg="linear-gradient(155deg, #C4A882 0%, #8A7A6A 100%)" />
+              </div>
+
+              <Divider />
+
+
+              {/* ══ 04 WHERE TO EAT ═══════════════════════════════════════════ */}
+              <div id="eat">
+                <SectionTransition num="04" title="Where to Eat" />
+                <div style={{ marginTop: 28 }}>
+                  <Prose>Springdale has more good food than a town its size should. Oscar's is the local breakfast institution. Deep Creek does the coffee right. Bit & Spur is the dinner move — Southwestern with actual range. And if you make it to Boulder on Scenic Byway 12, Hell's Backbone Grill is one of the best farm-to-table restaurants in the West, full stop.</Prose>
+                </div>
+
+                <ContentList items={eatPicks.map(e => ({
+                  badge: e.cuisine || e.type,
+                  context: `${e.location}${e.reservations ? ' \u00B7 ' + e.reservations : ''}`,
+                  name: e.name,
+                  detail: e.highlights?.[0] || '',
+                  lilaPick: e.lilaPick,
+                }))} />
+
+                <PlaceGuideCard label="Eat Guide" descriptor="Springdale \u00B7 Byway 12 \u00B7 provisions" bg="linear-gradient(155deg, #C49A6A 0%, #8A6A4A 100%)" />
+              </div>
+
+
+              {/* ══ 05 HIKES, BIKES, ETC. ═════════════════════════════════════ */}
+              <div id="move">
+                <SectionTransition num="05" title="Hikes, Bikes, etc." />
+                <div style={{ marginTop: 28 }}>
+                  <Prose>The Narrows is the signature — wading a river through slot canyon walls two thousand feet high. Angels Landing is the one everyone knows. But the orbit has more: Bryce Canyon's rim trail at dawn, Capitol Reef's desert varnish canyons, and some of the best canyoneering in the American Southwest.</Prose>
+                </div>
+
+                <SubLabel>Highlights</SubLabel>
+                <ContentList items={moveHighlights.map(m => ({
+                  badge: m.moveTier,
+                  context: `${m.distance || ''} \u00B7 ${m.difficulty || ''}`.replace(/^\s*\u00B7\s*/, '').replace(/\s*\u00B7\s*$/, ''),
+                  name: m.name,
+                  detail: m.highlights?.[0] || '',
+                  lilaPick: m.lilaPick,
+                }))} />
+
+                <PlaceGuideCard label="Move Guide" descriptor="Full trail & activity guide across all three parks" bg="linear-gradient(155deg, #8AAA7A 0%, #4A6A5A 100%)" />
+              </div>
+
+              <Divider />
+
+
+              {/* ══ 06 YOGA & MINDFULNESS ═════════════════════════════════════ */}
+              <div id="breathe">
+                <SectionTransition num="06" title="Yoga & Mindfulness" />
+                <div style={{ marginTop: 28 }}>
+                  <Prose>The canyon has a way of slowing the nervous system down. The scale of the walls, the sound of the river, the way the light changes every twenty minutes — it works on you whether you intend it to or not. These are some ways to go deeper with that.</Prose>
+                </div>
+
+                <SubLabel>Highlights</SubLabel>
+                <ContentList items={breatheHighlights.map(b => ({
+                  badge: b.breatheTier,
+                  context: `${b.type || ''} \u00B7 ${b.location || ''}`.replace(/^\s*\u00B7\s*/, '').replace(/\s*\u00B7\s*$/, ''),
+                  name: b.name,
+                  detail: b.highlights?.[0] || '',
+                  lilaPick: b.lilaPick,
+                }))} />
+
+                <PlaceGuideCard label="Breathe Guide" descriptor="Yoga \u00B7 bodywork \u00B7 sauna \u00B7 cold plunge \u00B7 restore" bg="linear-gradient(155deg, #8AADA8 0%, #4A6B7A 100%)" />
+              </div>
+
+              <Divider />
+
+
+              {/* ══ 07 ARTS & CULTURE ═════════════════════════════════════════ */}
+              <div id="experience">
+                <SectionTransition num="07" title="Arts & Culture" />
+                <div style={{ marginTop: 28 }}>
+                  <Prose>Southern Utah has a deeper cultural life than most people expect. The landscape has attracted artists, writers, and naturalists for over a century. The towns along Scenic Byway 12 carry that history in their galleries, ghost towns, and community programs.</Prose>
+                </div>
+
+                <SubLabel>Highlights</SubLabel>
+                <ContentList items={experienceHighlights.map(e => ({
+                  badge: e.type,
+                  context: e.location || '',
+                  name: e.name,
+                  detail: e.highlights?.[0] || '',
+                  lilaPick: e.featured || e.lilaPick,
+                }))} />
+
+                <PlaceGuideCard label="Art & Culture Guide" descriptor="Arts \u00B7 culture \u00B7 food \u00B7 community" bg="linear-gradient(155deg, #B8956A 0%, #6A7A5A 100%)" />
+              </div>
+
+              <Divider />
+
+
+              {/* ══ 08 STARS & SKY ════════════════════════════════════════════ */}
+              <div id="night-sky">
+                <SectionTransition num="08" title="Stars & Sky" />
+                <div style={{ marginTop: 28 }}>
+                  <Prose>At night, the sky opens. Zion is a certified International Dark Sky Park. On a moonless night, the Milky Way arcs directly overhead between the canyon walls — framed by two thousand feet of sandstone on either side. Bring a blanket, lie down, give yourself an hour.</Prose>
+                  <Prose>Bryce Canyon is one of the darkest places in the continental United States. Capitol Reef offers Bortle Class 2 skies — almost no light pollution at all.</Prose>
+                </div>
+
+                <ItemListGrid items={[
+                  { context: 'Bortle Class 3', name: 'Zion National Park', detail: 'Certified International Dark Sky Park. Best viewing from Zion Canyon Scenic Drive after the last shuttle.' },
+                  { context: 'Bortle Class 2', name: 'Bryce Canyon', detail: 'Among the darkest parks in the country. Annual Astronomy Festival in June. Best at higher elevations.' },
+                  { context: 'Bortle Class 2', name: 'Capitol Reef', detail: 'Remote and uncrowded. Virtually no light pollution. Best of the three for serious dark sky photography.' },
+                  { context: 'Best Window', name: 'June \u2013 September', detail: 'New moon periods June through September. Milky Way core visible May\u2013October. Perseids peak mid-August.' },
+                ]} />
+
+                <PlaceGuideCard label="Night Sky Guide" descriptor="Dark sky ratings \u00B7 best windows \u00B7 ranger programs" bg="linear-gradient(155deg, #5A6B8A 0%, #1E2A3E 100%)" />
+              </div>
+
+              <Divider />
+
+            </div>
+          </div>
+
+
+          {/* ══ CTA ════════════════════════════════════════════════════════════ */}
+          <div style={{ padding: '52px 52px 80px', maxWidth: 860, margin: '0 auto' }}>
+            <div style={{ background: G.darkInk, padding: '52px 48px', display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 48, flexWrap: 'wrap' }}>
+              <div style={{ maxWidth: 380 }}>
+                <div style={{ fontFamily: FONTS.body, fontSize: 9, fontWeight: 700, letterSpacing: '0.22em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: 16 }}>Begin</div>
+                <h3 style={{ fontFamily: FONTS.body, fontSize: 'clamp(24px, 4vw, 32px)', fontWeight: 700, color: 'white', lineHeight: 1.1, margin: '0 0 12px', letterSpacing: '-0.01em' }}>
+                  Your Zion trip<br />starts here
+                </h3>
+                <p style={{ fontFamily: FONTS.body, fontSize: 13, fontWeight: 400, lineHeight: 1.65, color: 'rgba(255,255,255,0.5)', margin: '0 0 28px' }}>
+                  Turn this guide into a day-by-day itinerary built around how you actually travel.
+                </p>
+                <button
+                  onClick={() => { trackEvent('guide_cta_clicked', { guide: 'zion' }); navigate('/plan'); }}
+                  style={{ fontFamily: FONTS.body, fontSize: 11, fontWeight: 700, letterSpacing: '0.16em', textTransform: 'uppercase', color: G.goldenAmber, border: `1.5px solid ${G.goldenAmber}`, background: 'transparent', padding: '13px 28px', cursor: 'pointer' }}
+                >
+                  Plan a Trip →
+                </button>
+              </div>
+
+              <div style={{ minWidth: 180 }}>
+                <div style={{ fontFamily: FONTS.body, fontSize: 9, fontWeight: 700, letterSpacing: '0.22em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.25)', marginBottom: 16 }}>Place Guides</div>
+                {['The Place Guide', 'Travel Responsibly Guide', 'Stay Guide', 'Eat Guide', 'Move Guide', 'Breathe Guide', 'Art & Culture Guide', 'Night Sky Guide'].map((g, i, arr) => (
+                  <div key={g} style={{ fontFamily: FONTS.body, fontSize: 11, fontWeight: 600, letterSpacing: '0.06em', color: 'rgba(255,255,255,0.4)', padding: '8px 0', borderBottom: i < arr.length - 1 ? '0.5px solid rgba(255,255,255,0.07)' : 'none', display: 'flex', alignItems: 'center', gap: 10 }}>
+                    <span style={{ color: 'rgba(255,255,255,0.2)', fontSize: 10 }}>{'\u2192'}</span>
+                    {g}
                   </div>
                 ))}
               </div>
-              <div className="h-px" style={{ background: G.border }} />
             </div>
-          </FadeIn>
+          </div>
+
         </div>
-          </section>
       </div>
 
-      {/* ══ GUIDE SECTION NAV ═══════════════════════════════════════════════ */}
-      <GuideNav isMobile={isMobile} />
-
-      {/* ══ IMAGE STRIP ════════════════════════════════════════════════════ */}
-      <section className="relative">
-        <div className="flex gap-0.5 overflow-x-auto snap-x snap-mandatory" style={{ WebkitOverflowScrolling: "touch", scrollbarWidth: "none" }}>
-          {[
-            { src: P.zionWatchman, alt: "The Watchman at golden hour", caption: "The Watchman at golden hour", width: 420 },
-            { src: P.zionNarrows, alt: "The Narrows", caption: "The Narrows \u2014 ankle to waist", width: 280 },
-            { src: P.bryceCanyon, alt: "Bryce Canyon hoodoos", caption: "Bryce Canyon hoodoos", width: 420 },
-            { src: P.capitolReef, alt: "Capitol Reef at sunset", caption: "Capitol Reef at sunset", width: 360 },
-          ].map((img, i) => (
-            <div key={i} className="flex-none snap-start relative overflow-hidden" style={{ width: isMobile ? "85vw" : img.width }}>
-              <img src={img.src} alt={img.alt} className="w-full h-[320px] object-cover block" />
-              <div className="absolute bottom-0 left-0 right-0 px-4 pt-8 pb-3.5" style={{ background: "linear-gradient(to top, rgba(10,18,26,0.7), transparent)" }}>
-                <span style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.08em', color: 'rgba(255,255,255,0.8)' }}>{img.caption}</span>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ══ GUIDE CONTENT ═══════════════════════════════════════════════════ */}
-      <section className="px-5 py-8 md:px-[52px] md:py-12" style={{ background: G.bg }}>
-        <div className="max-w-[680px] mx-auto">
-
-
-          {/* ══════════════════════════════════════════════════════════════ */}
-          {/* SECTION 1 — THE PLACE & HOW TO BE IN IT                      */}
-          {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="the-place" className="scroll-mt-[126px] pt-11 pb-4">
-
-            {/* 1a. The Awe */}
-            <FadeIn>
-              <SectionLabel>The Place</SectionLabel>
-              <p style={{ fontSize: 15, fontWeight: 400, color: G.inkBody, lineHeight: 1.75, marginTop: 0, marginBottom: 16 }}>
-                There are places you visit and places that visit you. Zion is the second kind.
-              </p>
-              <p style={{ fontSize: 15, fontWeight: 400, color: G.inkBody, lineHeight: 1.75, marginTop: 0, marginBottom: 16 }}>
-                The canyon walls close in above you {"\u2014"} sandstone cut two thousand feet high, copper at sunrise, impossible pink at dusk {"\u2014"} and something in the ordinary mind gets quiet. The Paiute people called it Mukuntuweap: straight-up land. That name is more accurate than the one that replaced it. Whatever you call it, you feel it the moment you arrive.
-              </p>
-              <p style={{ fontSize: 15, fontWeight: 400, color: G.inkBody, lineHeight: 1.75, marginTop: 0, marginBottom: 16 }}>
-                But Zion is just the anchor. The landscape it sits inside is one continuous living thing {"\u2014"} three parks, three personalities, connected by some of the most dramatic road in America. Zion pulls you down into the earth. Bryce Canyon lifts you 8,000 feet into a forest of hoodoos that shouldn{"\u2019"}t exist. Capitol Reef takes you to the Waterpocket Fold {"\u2014"} a hundred-mile wrinkle in the earth{"\u2019"}s crust that most people drive right past. Scenic Byway 12, the road that connects them, is an experience in itself.
-              </p>
-              <p style={{ fontSize: 15, fontWeight: 400, color: G.inkBody, lineHeight: 1.75, marginTop: 0, marginBottom: 28 }}>
-                A week here, done right, is genuinely disorienting {"\u2014"} in the best way.
-              </p>
-            </FadeIn>
-
-            {/* Highlights grid */}
-            <FadeIn delay={0.08}>
-              <div className="mb-8">
-                {HIGHLIGHTS.map(h => (
-                  <div key={h.name} className="py-4 md:py-5" style={{ borderBottom: '1px solid ' + G.borderSoft }}>
-                    <div style={{ fontSize: 11, color: G.accent, marginBottom: 4 }}>{"\u25C8"}</div>
-                    <div style={{ fontFamily: 'var(--font-serif)', fontSize: 17, fontWeight: 400, color: G.ink, lineHeight: 1.3, marginBottom: 4 }}>{h.name}</div>
-                    <div style={{ fontSize: 9, fontWeight: 600, letterSpacing: '0.14em', textTransform: 'uppercase', color: G.ink40, marginBottom: 8 }}>{h.category}</div>
-                    <p style={{ fontSize: 13, fontWeight: 400, color: G.inkDetail, lineHeight: 1.55, margin: 0 }}>{h.blurb}</p>
-                  </div>
-                ))}
-              </div>
-            </FadeIn>
-
-            <SubGuideThread to="/destinations/zion/know-the-place" label="Know the Place" />
-
-            {/* 1b. How to be in it */}
-            <FadeIn delay={0.1}>
-              <div className="h-px my-10" style={{ background: G.border }} />
-              <div className="flex items-center gap-2.5 mt-9 mb-2.5">
-                <span style={{ width: 28, height: 1.5, background: G.accent, display: 'block', flexShrink: 0 }} />
-                <span className="font-body text-[16px] font-bold tracking-[0.01em]" style={{ color: G.ink }}>How to Be In It</span>
-              </div>
-              <p style={{ fontSize: 15, fontWeight: 400, color: G.inkBody, lineHeight: 1.75, marginTop: 0, marginBottom: 16 }}>
-                The dark, lumpy crust visible just off the trail is cryptobiotic soil {"\u2014"} a living community of cyanobacteria, lichens, and fungi that can take 50{"\u2013"}250 years to recover from a single footstep. It holds the desert floor together, fixes nitrogen, and retains moisture. It looks like nothing. It is everything. The trail exists for a reason.
-              </p>
-              <p style={{ fontSize: 15, fontWeight: 400, color: G.inkBody, lineHeight: 1.75, marginTop: 0, marginBottom: 16 }}>
-                The Virgin River runs through the entire canyon and sustains one of the most biodiverse riparian corridors in the American Southwest. Sunscreen, insect repellent, and soap {"\u2014"} even biodegradable {"\u2014"} affect the aquatic ecosystem. Apply well before you enter the water. Pack out everything. The river is not a wash.
-              </p>
-              <p style={{ fontSize: 15, fontWeight: 400, color: G.inkBody, lineHeight: 1.75, marginTop: 0, marginBottom: 16 }}>
-                The Paiute called this place Mukuntuweap. That name carries the weight of thousands of years of relationship with this land. Angels Landing was named by a Methodist minister in 1916. The canyon doesn{"\u2019"}t belong to any single story {"\u2014"} but some stories were here first, and they deserve to be heard.
-              </p>
-            </FadeIn>
-
-            <SubGuideThread to="/destinations/zion/be-there-well" label="Be There Well" />
-
-            {/* 1c. The deeper invitation */}
-            <FadeIn delay={0.12}>
-              <div className="h-px my-10" style={{ background: G.border }} />
-              <div className="flex items-center gap-2.5 mt-9 mb-2.5">
-                <span style={{ width: 28, height: 1.5, background: G.accent, display: 'block', flexShrink: 0 }} />
-                <span className="font-body text-[16px] font-bold tracking-[0.01em]" style={{ color: G.ink }}>The Deeper Invitation</span>
-              </div>
-              <p style={{ fontSize: 15, fontWeight: 400, color: G.inkBody, lineHeight: 1.75, marginTop: 0, marginBottom: 16 }}>
-                The canyon has a way of slowing the nervous system down. The scale of the walls, the sound of the river, the way the light changes every twenty minutes {"\u2014"} it works on you whether you want it to or not. There are places in Zion where you can sit for an hour and feel like you{"\u2019"}ve been meditating without trying.
-              </p>
-              <p style={{ fontSize: 15, fontWeight: 400, color: G.inkBody, lineHeight: 1.75, marginTop: 0, marginBottom: 16 }}>
-                At night, the sky opens. Zion is a certified International Dark Sky Park. On a moonless night, the Milky Way arcs directly overhead between the canyon walls. Bring a blanket, lie down, and give yourself an hour. The oldest light in the universe is falling on you.
-              </p>
-            </FadeIn>
-
-            <SubGuideThread to="/destinations/zion/breathe" label="Breathe" />
-            <SubGuideThread to="/destinations/zion/night-sky" label="Night Sky" />
-          </section>
-
-
-          <Divider />
-
-
-          {/* ══════════════════════════════════════════════════════════════ */}
-          {/* SECTION 2 — FIND YOUR BASE                                   */}
-          {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="find-base" className="scroll-mt-[126px] py-11">
-            <FadeIn>
-              <SectionLabel>Find Your Base</SectionLabel>
-              <p style={{ fontSize: 15, fontWeight: 400, color: G.inkBody, lineHeight: 1.75, marginTop: 0, marginBottom: 16 }}>
-                Springdale is the move. A single-street town pressed against the canyon mouth {"\u2014"} you can walk to the park entrance. Restaurants, gear shops, and galleries line the half-mile stretch, all of it sandstone red and cottonwood green. For a trip focused on Zion proper, this is where you sleep.
-              </p>
-              <p style={{ fontSize: 15, fontWeight: 400, color: G.inkBody, lineHeight: 1.75, marginTop: 0, marginBottom: 28 }}>
-                If you{"\u2019"}re running the full orbit {"\u2014"} Zion, Bryce, Capitol Reef {"\u2014"} you{"\u2019"}ll want to split nights. Two to three in Springdale, then move east along Scenic Byway 12. Kanab works as a southern anchor. Escalante and Torrey are the corridor towns that most people skip and shouldn{"\u2019"}t.
-              </p>
-            </FadeIn>
-
-            {/* Springdale card */}
-            <FadeIn delay={0.06}>
-              <div className="mb-6" style={{ borderLeft: `1.5px solid ${G.accent}`, background: 'rgba(58,125,123,0.04)', padding: '18px 20px' }}>
-                <div style={{ fontSize: 9, fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: G.accentMid, marginBottom: 8 }}>Your home base</div>
-                <div style={{ fontFamily: 'var(--font-serif)', fontSize: 19, fontWeight: 300, color: G.ink, lineHeight: 1.2, marginBottom: 8 }}>Springdale</div>
-                <p style={{ fontSize: 13, fontWeight: 400, color: G.inkDetail, lineHeight: 1.7, margin: 0 }}>
-                  A single-street town pressed against the canyon mouth. Walk to the park entrance. Restaurants, gear shops, and galleries line the half-mile stretch {"\u2014"} all of it sandstone red and cottonwood green.
-                </p>
-              </div>
-            </FadeIn>
-
-            {/* Corridor towns */}
-            <FadeIn delay={0.08}>
-              <p style={{ fontSize: 15, fontWeight: 400, color: G.inkBody, lineHeight: 1.75, marginTop: 0, marginBottom: 16 }}>
-                Beyond Springdale, the corridor towns each serve a different park and a different pace. If you{"\u2019"}re building a multi-day orbit, plan to sleep in at least two of them.
-              </p>
-              <div className="mb-8">
-                {TOWNS.map(town => (
-                  <div key={town.name} className="py-4 md:py-5" style={{ borderBottom: '1px solid ' + G.borderSoft }}>
-                    <div style={{ fontSize: 9, fontWeight: 600, letterSpacing: '0.16em', textTransform: 'uppercase', color: G.ink40, marginBottom: 4 }}>{town.context}</div>
-                    <div style={{ fontFamily: 'var(--font-serif)', fontSize: 17, fontWeight: 300, color: G.ink, lineHeight: 1.2, marginBottom: 8 }}>{town.name}</div>
-                    <p style={{ fontSize: 13, fontWeight: 400, color: G.inkDetail, lineHeight: 1.7, margin: 0 }}>{town.description}</p>
-                  </div>
-                ))}
-              </div>
-            </FadeIn>
-
-            {/* Sleep picks */}
-            <FadeIn delay={0.1}>
-              <p style={{ fontSize: 15, fontWeight: 400, color: G.inkBody, lineHeight: 1.75, marginTop: 0, marginBottom: 16 }}>
-                Need somewhere to stay in Springdale? A few we like:
-              </p>
-              <div style={{ background: G.panel, padding: '32px 28px' }}>
-                {sleepPicks.map(a => (
-                  <StayItem
-                    key={a.id}
-                    name={a.name}
-                    location={a.location}
-                    tier={a.stayStyle}
-                    detail={a.highlights?.join('. ')}
-                    tags={a.tags}
-                    url={a.links?.booking || a.links?.website}
-                    featured={a.lilaPick}
-                    onOpenSheet={openSheet}
-                    priceRange={a.priceRange}
-                    amenities={a.amenities}
-                    bookingWindow={a.bookingWindow}
-                    seasonalNotes={a.seasonalNotes}
-                    groupFit={a.groupFit}
-                  />
-                ))}
-              </div>
-            </FadeIn>
-
-            <SubGuideThread to="/destinations/zion/sleep" label="Sleep" description="Full accommodations list across all towns" />
-          </section>
-
-
-          <Divider />
-
-
-          {/* ══════════════════════════════════════════════════════════════ */}
-          {/* SECTION 3 — EXPERIENCE IT                                    */}
-          {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="experience" className="scroll-mt-[126px] py-11">
-            <FadeIn>
-              <SectionLabel>Experience It</SectionLabel>
-              <p style={{ fontSize: 15, fontWeight: 400, color: G.inkBody, lineHeight: 1.75, marginTop: 0, marginBottom: 28 }}>
-                The landscape does a lot of the work. Your job is to show up at the right place at the right time, dressed for the weather, with enough water. Below are the essentials {"\u2014"} the full lists live in the sub-guides.
-              </p>
-            </FadeIn>
-
-
-            {/* ── MOVE ── */}
-            <FadeIn delay={0.06}>
-              <div className="mb-10">
-                <div className="flex items-center gap-2.5 mt-9 mb-2.5">
-                  <span style={{ width: 28, height: 1.5, background: G.accent, display: 'block', flexShrink: 0 }} />
-                  <span className="font-body text-[16px] font-bold tracking-[0.01em]" style={{ color: G.ink }}>Move</span>
-                </div>
-
-                <p style={{ fontSize: 15, fontWeight: 400, color: G.inkBody, lineHeight: 1.75, marginTop: 0, marginBottom: 16 }}>
-                  The Narrows is the signature experience {"\u2014"} you{"\u2019"}re wading a river through slot canyon walls two thousand feet high. Angels Landing is the one everyone knows about: a chain-assisted scramble to a rock fin with a thousand feet of air on both sides (permit required). Canyon Overlook is the sleeper {"\u2014"} one mile round trip with an outsized reward.
-                </p>
-
-                <div>
-                  {movePicks.map(item => (
-                    <ListItem
-                      key={item.id}
-                      name={item.name}
-                      detail={item.highlights?.join('. ')}
-                      tags={item.tags}
-                      featured={item.lilaPick}
-                      url={item.links?.website}
-                      location={item.location}
-                      onOpenSheet={openSheet}
-                    />
-                  ))}
-                </div>
-
-                <SubGuideThread to="/destinations/zion/move" label="Move" description="Full trail and activity list" />
-              </div>
-            </FadeIn>
-
-
-            {/* ── EAT ── */}
-            <FadeIn delay={0.08}>
-              <div className="mb-10">
-                <div className="flex items-center gap-2.5 mt-9 mb-2.5">
-                  <span style={{ width: 28, height: 1.5, background: G.accent, display: 'block', flexShrink: 0 }} />
-                  <span className="font-body text-[16px] font-bold tracking-[0.01em]" style={{ color: G.ink }}>Eat</span>
-                </div>
-
-                <p style={{ fontSize: 15, fontWeight: 400, color: G.inkBody, lineHeight: 1.75, marginTop: 0, marginBottom: 16 }}>
-                  Springdale has more good food than a town its size should. Oscar{"\u2019"}s is the local breakfast institution. Deep Creek does the coffee right. Bit & Spur is the dinner move {"\u2014"} Southwestern with actual range. And if you make it to Boulder on Scenic Byway 12, Hell{"\u2019"}s Backbone Grill is one of the best farm-to-table restaurants in the West, full stop.
-                </p>
-
-                <div>
-                  {eatPicks.map(r => (
-                    <ListItem
-                      key={r.id}
-                      name={r.name}
-                      detail={r.highlights?.join('. ')}
-                      note={r.hours}
-                      tags={r.tags}
-                      featured={r.lilaPick}
-                      url={r.links?.website}
-                      location={r.location}
-                      onOpenSheet={openSheet}
-                      cuisine={r.cuisine}
-                      priceRange={r.priceRange}
-                      reservations={r.reservations}
-                      dietary={r.dietary}
-                      energy={r.energy}
-                    />
-                  ))}
-                </div>
-
-                <SubGuideThread to="/destinations/zion/eat" label="Eat" description="Full restaurant guide" />
-              </div>
-            </FadeIn>
-
-
-            {/* ── WHEN TO COME ── */}
-            <FadeIn delay={0.1}>
-              <div className="mb-4">
-                <div className="flex items-center gap-2.5 mt-9 mb-2.5">
-                  <span style={{ width: 28, height: 1.5, background: G.accent, display: 'block', flexShrink: 0 }} />
-                  <span className="font-body text-[16px] font-bold tracking-[0.01em]" style={{ color: G.ink }}>When to Come</span>
-                </div>
-
-                <p style={{ fontSize: 15, fontWeight: 400, color: G.inkBody, lineHeight: 1.75, marginTop: 0, marginBottom: 20 }}>
-                  Zion transforms with the seasons. The desert doesn{"\u2019"}t do subtle {"\u2014"} it blooms, it burns gold, it goes silent under snow. These are the windows we build trips around.
-                </p>
-
-                <div style={{ background: G.panel, padding: '32px 28px' }}>
-                  {TIMING_WINDOWS.map((tw, i) => (
-                    <div key={i} className="flex gap-5 py-5" style={{ borderBottom: i < TIMING_WINDOWS.length - 1 ? `1px solid ${G.borderSoft}` : 'none' }}>
-                      <div style={{ fontFamily: 'var(--font-serif)', fontSize: 42, fontWeight: 300, color: G.ghostNum, lineHeight: 1, minWidth: 36 }}>{i + 1}</div>
-                      <div>
-                        <div style={{ fontSize: 14, fontWeight: 600, color: G.ink, marginBottom: 2 }}>{tw.name}</div>
-                        <div style={{ fontSize: 9, fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: G.ink40, marginBottom: 6 }}>{tw.window}</div>
-                        <p style={{ fontSize: 13, fontWeight: 400, color: G.inkDetail, lineHeight: 1.6, margin: 0 }}>{tw.detail}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                <SubGuideThread to="/destinations/zion/when-to-go" label="When to Go" description="Seasonal detail and planning windows" />
-              </div>
-            </FadeIn>
-          </section>
-
-
-          <Divider />
-
-
-          {/* ══════════════════════════════════════════════════════════════ */}
-          {/* CTA                                                          */}
-          {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="cta" className="scroll-mt-[126px] pt-14 pb-[72px] text-center">
-            <FadeIn>
-              <div className="py-12 px-6" style={{ background: G.ink }}>
-                <div className="flex items-center justify-center gap-2.5 mb-4">
-                  <span style={{ width: 24, height: 1, background: G.accent, display: 'inline-block' }} />
-                  <span style={{ fontSize: 10, fontWeight: 600, letterSpacing: '0.22em', textTransform: 'uppercase', color: G.accentMid }}>Begin</span>
-                </div>
-                <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(26px, 5vw, 34px)', fontWeight: 300, color: 'white', marginTop: 0, marginBottom: 10, lineHeight: 1.2 }}>Your Zion trip starts here</h3>
-                <p style={{ fontSize: 14, fontWeight: 400, maxWidth: 460, margin: '0 auto', marginBottom: 36, lineHeight: 1.65, color: 'rgba(255,255,255,0.7)' }}>
-                  Turn this guide into a day-by-day itinerary built around how you travel.
-                </p>
-
-                <Link to="/plan"
-                  className="inline-block py-3.5 px-9 text-center cursor-pointer transition-all duration-200 no-underline"
-                  style={{ fontSize: 13, fontWeight: 600, letterSpacing: '0.14em', textTransform: 'uppercase', color: G.accent, border: `1.5px solid ${G.accent}`, background: 'transparent' }}
-                  onClick={() => trackEvent('guide_cta_clicked', { action: 'plan_a_trip', destination: 'zion' })}
-                  onMouseEnter={e => { e.currentTarget.style.background = G.accent; e.currentTarget.style.color = 'white'; }}
-                  onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = G.accent; }}
-                >Plan a Trip {"\u2192"}</Link>
-              </div>
-            </FadeIn>
-          </section>
-
-
-          <Divider />
-
-        </div>
-      </section>
-
-      <GuideDetailSheet
-        item={activeSheet}
-        onClose={() => setActiveSheet(null)}
-        isMobile={isMobile}
-      />
       <WhisperBar destination="zion" label="Zion" />
       <Footer />
     </>

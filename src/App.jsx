@@ -100,6 +100,7 @@ const ZionEat = lazy(() => import('@pages/guides/zion/ZionEat'));
 const ZionBreathe = lazy(() => import('@pages/guides/zion/ZionBreathe'));
 const ZionNightSky = lazy(() => import('@pages/guides/zion/ZionNightSky'));
 const ZionBeThere = lazy(() => import('@pages/guides/zion/ZionBeThere'));
+const ZionExperience = lazy(() => import('@pages/guides/zion/ZionExperience'));
 const BigSurGuide = lazy(() => import('@pages/guides/BigSurGuide'));
 const JoshuaTreeGuide = lazy(() => import('@pages/guides/JoshuaTreeGuide'));
 const OlympicPeninsulaGuide = lazy(() => import('@pages/guides/OlympicPeninsulaGuide'));
@@ -145,6 +146,7 @@ export default function App() {
             <Route path="/destinations/zion/breathe" element={<ZionBreathe />} />
             <Route path="/destinations/zion/night-sky" element={<ZionNightSky />} />
             <Route path="/destinations/zion/be-there-well" element={<ZionBeThere />} />
+            <Route path="/destinations/zion/experience" element={<ZionExperience />} />
             <Route path="/destinations/zion-canyon" element={<Navigate to="/destinations/zion" replace />} />
             <Route path="/destinations/big-sur" element={<BigSurGuide />} />
             <Route path="/destinations/joshua-tree" element={<JoshuaTreeGuide />} />

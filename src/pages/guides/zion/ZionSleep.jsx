@@ -1,135 +1,40 @@
-// ═══════════════════════════════════════════════════════════════════════════════
-// SUB-GUIDE: SLEEP
-// ═══════════════════════════════════════════════════════════════════════════════
-//
-// Where to stay across the full orbit.
-// Route: /destinations/zion/sleep
-//
-
-import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import SubGuideLayout from '@components/guide/SubGuideLayout';
-import { StayItem, GuideDetailSheet, ExpandableList, TierFilter, sortByTierDiversity } from '@components/guide';
+import { SubLabel, Prose, ItemList, ContentList } from '@components/guide';
 import { G } from '@data/guides/guide-styles';
-import { sleepFilterTiers } from '@data/guides/zion-constants';
-import { trackEvent } from '@utils/analytics';
+import { TOWNS } from '@data/guides/zion-constants';
 import accommodations from '../../../data/accommodations/zion.json';
 
-// ─── Page ───────────────────────────────────────────────────────────────────
+const townItems = TOWNS.map(t => ({
+  name: t.name,
+  context: t.context,
+  detail: t.description,
+}));
+
+const stayItems = accommodations.map(a => ({
+  name: a.name,
+  badge: a.stayStyle.charAt(0).toUpperCase() + a.stayStyle.slice(1),
+  context: a.location,
+  detail: a.highlights[0],
+  lilaPick: a.lilaPick,
+}));
 
 export default function ZionSleep() {
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
-  useEffect(() => {
-    const handler = () => setIsMobile(window.innerWidth < 768);
-    window.addEventListener('resize', handler);
-    return () => window.removeEventListener('resize', handler);
-  }, []);
-
-  const [activeSheet, setActiveSheet] = useState(null);
-  const [activeTiers, setActiveTiers] = useState(() => new Set(['elemental', 'rooted', 'premium', 'luxury']));
-
-  // Lock body scroll when sheet is open
-  useEffect(() => {
-    if (activeSheet) document.body.style.overflow = 'hidden';
-    else document.body.style.overflow = '';
-    return () => { document.body.style.overflow = ''; };
-  }, [activeSheet]);
-
-  const handleTierToggle = (tierKey) => {
-    setActiveTiers(prev => {
-      if (prev.has(tierKey) && prev.size === 1) return prev;
-      const next = new Set(prev);
-      next.has(tierKey) ? next.delete(tierKey) : next.add(tierKey);
-      return next;
-    });
-  };
-
-  const openSheet = (item) => {
-    trackEvent('guide_sheet_opened', { section: 'Sleep', item: item.name, destination: 'zion' });
-    setActiveSheet({ ...item, section: 'Sleep' });
-  };
-
-  const coreAccommodations = accommodations.filter(a => !a.corridor && activeTiers.has(a.stayStyle));
-  const corridorAccommodations = accommodations.filter(a => a.corridor && activeTiers.has(a.stayStyle));
-
-  const filteredCount = accommodations.filter(a => activeTiers.has(a.stayStyle)).length;
-  const total = accommodations.length;
-  const countLabel = filteredCount < total
-    ? `${filteredCount} of ${total} options`
-    : `${total} options`;
-
   return (
     <>
       <Helmet>
-        <title>Sleep — Zion Guide | Lila Trips</title>
-        <meta name="description" content="Where to stay across the full Zion orbit. Camping, boutique inns, and lodges — filtered by style and budget." />
-        <link rel="canonical" href="https://lilatrips.com/destinations/zion/sleep" />
+        <title>Stay Guide | Zion | Lila</title>
+        <meta name="description" content="Full accommodations across Springdale, Kanab, Escalante & Torrey." />
       </Helmet>
-
       <SubGuideLayout
-        title="Sleep"
-        description="Where to stay across the full orbit."
+        title="Stay Guide"
+        descriptor="Full accommodations across Springdale, Kanab, Escalante & Torrey."
       >
-        {/* Count */}
-        <div className="font-body text-[12px] font-medium mb-4" style={{ color: G.ink40 }}>{countLabel}</div>
+        <SubLabel>Towns</SubLabel>
+        <ItemList items={townItems} />
 
-        {/* Tier filter */}
-        <TierFilter tiers={sleepFilterTiers} activeTiers={activeTiers} onToggle={handleTierToggle} />
-
-        {/* Core accommodations */}
-        <div className="mt-2">
-          <ExpandableList initialCount={5} label="places to stay">
-            {sortByTierDiversity(coreAccommodations).map(a => (
-              <StayItem
-                key={a.id}
-                name={a.name}
-                location={a.location}
-                tier={a.stayStyle}
-                detail={a.highlights?.join('. ')}
-                tags={a.tags}
-                url={a.links?.booking || a.links?.website}
-                featured={a.lilaPick}
-                onOpenSheet={openSheet}
-                priceRange={a.priceRange}
-                amenities={a.amenities}
-                bookingWindow={a.bookingWindow}
-                seasonalNotes={a.seasonalNotes}
-                groupFit={a.groupFit}
-              />
-            ))}
-          </ExpandableList>
-
-          {/* Regional corridor */}
-          {corridorAccommodations.length > 0 && (
-            <>
-              <div className="flex items-center gap-2.5 mt-9 mb-2.5">
-                <span style={{ width: 28, height: 1.5, background: G.accent, display: 'block', flexShrink: 0 }} />
-                <span className="font-body text-[16px] font-bold tracking-[0.01em]" style={{ color: G.ink }}>Regional Corridor</span>
-              </div>
-              {sortByTierDiversity(corridorAccommodations).map(a => (
-                <StayItem
-                  key={a.id}
-                  name={a.name}
-                  location={a.location}
-                  tier={a.stayStyle}
-                  detail={a.highlights?.join('. ')}
-                  tags={a.tags}
-                  url={a.links?.booking || a.links?.website}
-                  featured={a.lilaPick}
-                  onOpenSheet={openSheet}
-                  priceRange={a.priceRange}
-                  amenities={a.amenities}
-                  bookingWindow={a.bookingWindow}
-                  seasonalNotes={a.seasonalNotes}
-                  groupFit={a.groupFit}
-                />
-              ))}
-            </>
-          )}
-        </div>
-
-        {/* Detail sheet */}
-        <GuideDetailSheet item={activeSheet} onClose={() => setActiveSheet(null)} isMobile={isMobile} />
+        <SubLabel>Hotels</SubLabel>
+        <ContentList items={stayItems} />
       </SubGuideLayout>
     </>
   );

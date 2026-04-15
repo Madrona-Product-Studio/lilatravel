@@ -1,33 +1,42 @@
 /**
  * guide-styles.js — Shared style tokens for destination guide pages.
  *
- * All guide pages (main + sub-guides) import from here to ensure
- * consistent typography, color, and spacing.
- *
- * These are CSS-in-JS values for inline styles. Tailwind classes
- * handle layout; these handle brand-specific visual properties.
+ * These mirror the approved design mockup (ZionGuideRedesign.jsx).
+ * Guide pages use these tokens instead of brand.js for guide-specific
+ * colors that differ from the main brand palette.
  */
 
-// ─── Colors ──────────────────────────────────────────────────────────────────
-
 export const G = {
-  bg:          '#f5f0e8',
-  panel:       'rgba(255, 255, 255, 0.5)',
-  ink:         '#1a1a18',
-  inkBody:     'rgba(26, 26, 24, 0.78)',
-  inkDetail:   'rgba(26, 26, 24, 0.62)',
-  ink40:       'rgba(26, 26, 24, 0.4)',
-  ink30:       'rgba(26, 26, 24, 0.3)',
-  border:      'rgba(107, 128, 120, 0.12)',
-  borderSoft:  'rgba(107, 128, 120, 0.08)',
-  accent:      '#3a7d7b',
-  accentMid:   'rgba(58, 125, 123, 0.7)',
-  accentPale:  'rgba(58, 125, 123, 0.08)',
-  accentWarm:  '#c9963a',
-  muted:       '#6B8078',
-  accentDot:   'rgba(58, 125, 123, 0.45)',
-  ghostNum:    'rgba(58, 125, 123, 0.18)',
-  panelLabel:  'rgba(26, 26, 24, 0.35)',
-  sourceDot:   'rgba(26, 26, 24, 0.72)',
-  chipText:    'rgba(26, 26, 24, 0.55)',
+  // Backgrounds
+  warmWhite:   '#faf8f4',
+  panel:       'rgba(28,25,23,0.03)',
+  panelMid:    'rgba(28,25,23,0.05)',
+
+  // Text hierarchy
+  ink:         '#1C1917',
+  darkInk:     '#1a1a18',
+  inkBody:     'rgba(28,25,23,0.65)',
+  inkDetail:   'rgba(28,25,23,0.55)',
+  ink40:       'rgba(28,25,23,0.40)',
+  ink25:       'rgba(28,25,23,0.25)',
+
+  // Borders
+  border:      'rgba(28,25,23,0.12)',
+  borderSoft:  'rgba(28,25,23,0.07)',
+
+  // Accents
+  oceanTeal:   '#3a7d7b',
+  tealFaint:   'rgba(58,125,123,0.06)',
+  tealBorder:  'rgba(58,125,123,0.3)',
+  goldenAmber: '#c9963a',
+  amberFaint:  'rgba(201,150,58,0.07)',
+  amberBorder: 'rgba(201,150,58,0.45)',
+
+  // Ghost / decorative
+  ghostNum:    'rgba(28,25,23,0.10)',
+};
+
+export const FONTS = {
+  body:  "'Quicksand', sans-serif",
+  serif: "'Cormorant Garamond', Georgia, serif",
 };

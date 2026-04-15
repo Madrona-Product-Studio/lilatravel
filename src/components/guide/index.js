@@ -1,3 +1,4 @@
+// Existing shared components
 export { default as SectionLabel } from './SectionLabel';
 export { default as SectionTitle } from './SectionTitle';
 export { default as SectionSub } from './SectionSub';
@@ -11,3 +12,15 @@ export { default as StayItem, sortByTierDiversity } from './StayItem';
 export { default as ExpandableList } from './ExpandableList';
 export { default as CollapsibleSection } from './CollapsibleSection';
 export { default as GuideDetailSheet } from './GuideDetailSheet';
+
+// Redesign components
+export { default as Badge } from './Badge';
+export { default as LilaPick } from './LilaPick';
+export { default as ItemList } from './ItemList';
+export { default as ContentList } from './ContentList';
+export { default as ItemListGrid } from './ItemListGrid';
+export { default as PlaceGuideCard } from './PlaceGuideCard';
+export { default as SubLabel } from './SubLabel';
+export { default as SectionTransition } from './SectionTransition';
+export { default as Prose } from './Prose';
+export { default as SubGuideLayout } from './SubGuideLayout';
