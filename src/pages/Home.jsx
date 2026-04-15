@@ -5,7 +5,12 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { Nav, Footer, FadeIn, TravelYourWay } from '@components';
-import { C } from '@data/brand';
+import { C, FONTS } from '@data/brand';
+import { MeditationsCover } from '@pages/Meditations';
+import { TeachingsCover } from '@pages/ethos/TeachingsDeck';
+import { MovementsCover } from '@pages/Movements';
+import { CoverScreen as BodyCover } from '@pages/MovementsL2';
+import { L1_MARK_IDS } from '@components/guide/DeckMarks';
 import { P } from '@data/photos';
 import { destinations } from '@data/destinations';
 import { heroCallouts, magicMoments } from '@data/journey';
@@ -407,6 +412,159 @@ const approachBraids = [
     ],
   },
 ];
+
+// ─── Practice Library — four deck covers ───────────────────────────────────
+
+const PRACTICE_DECKS = [
+  {
+    key: 'meditations',
+    route: '/practice/meditations',
+    name: 'Meditations',
+    sub: '30 practice cards',
+    Cover: () => <MeditationsCover />,
+  },
+  {
+    key: 'teachings',
+    route: '/practice/teachings',
+    name: 'Teachings',
+    sub: '30 concept cards',
+    Cover: () => <TeachingsCover />,
+  },
+  {
+    key: 'movements',
+    route: '/practice/movements/practice',
+    name: 'Movements',
+    sub: '31 pose cards',
+    Cover: () => (
+      <MovementsCover
+        subtitle="30 poses for a complete practice"
+        countLabel="6 sections · 31 cards"
+        markIds={L1_MARK_IDS}
+      />
+    ),
+  },
+  {
+    key: 'body',
+    route: '/practice/movements/science',
+    name: 'Lila Body',
+    sub: '47 science cards',
+    Cover: () => <BodyCover />,
+  },
+];
+
+const COVER_SRC_W = 400;
+const COVER_SRC_H = 720;
+const COVER_ASPECT = COVER_SRC_H / COVER_SRC_W;
+
+function HomeDeckTile({ deck }) {
+  const ref = useRef(null);
+  const [scale, setScale] = useState(0.5);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const ro = new ResizeObserver(([entry]) => {
+      setScale(entry.contentRect.width / COVER_SRC_W);
+    });
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
+  return (
+    <Link
+      to={deck.route}
+      className="no-underline block group"
+      onClick={() => trackEvent('homepage_cta_clicked', { action: `open_${deck.key}` })}
+      style={{ transition: 'transform 0.2s ease' }}
+      onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)'; }}
+      onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; }}
+    >
+      <div
+        ref={ref}
+        style={{
+          width: '100%',
+          paddingBottom: `${COVER_ASPECT * 100}%`,
+          overflow: 'hidden',
+          position: 'relative',
+          borderRadius: 10,
+        }}
+      >
+        <div style={{
+          width: COVER_SRC_W,
+          height: COVER_SRC_H,
+          transform: `scale(${scale})`,
+          transformOrigin: 'top left',
+          pointerEvents: 'none',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+        }}>
+          <deck.Cover />
+        </div>
+      </div>
+      <div className="mt-2 text-center">
+        <div style={{ fontFamily: FONTS.serif, fontSize: 15, fontWeight: 400, color: C.darkInk }}>
+          {deck.name}
+        </div>
+        <div style={{ fontFamily: FONTS.body, fontSize: 10, color: C.slate, letterSpacing: '0.08em', marginTop: 2 }}>
+          {deck.sub}
+        </div>
+      </div>
+    </Link>
+  );
+}
+
+function PracticeLibrarySection() {
+  return (
+    <section className="py-0">
+      <div className="max-w-[960px] mx-auto px-6 md:px-[52px]">
+        <FadeIn>
+          {/* Header */}
+          <div className="text-center mb-8">
+            <div style={{
+              fontFamily: FONTS.body, fontSize: 10, fontWeight: 500,
+              letterSpacing: '2.5px', color: C.goldenAmber,
+              textTransform: 'uppercase', marginBottom: 8,
+            }}>
+              Practice Library
+            </div>
+            <div style={{
+              fontFamily: FONTS.serif,
+              fontSize: 'clamp(24px, 4vw, 36px)',
+              fontWeight: 300,
+              color: C.darkInk,
+              lineHeight: 1.2,
+            }}>
+              Four decks. One path in.
+            </div>
+          </div>
+
+          {/* Grid — 2x2 mobile, 4-across desktop */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5">
+            {PRACTICE_DECKS.map(d => (
+              <HomeDeckTile key={d.key} deck={d} />
+            ))}
+          </div>
+
+          {/* Browse all link */}
+          <div className="text-center mt-6">
+            <Link
+              to="/practice"
+              className="no-underline inline-flex items-center gap-2 transition-opacity duration-200 hover:opacity-100"
+              style={{
+                fontFamily: FONTS.body, fontSize: 11, fontWeight: 600,
+                letterSpacing: '0.16em', textTransform: 'uppercase',
+                color: C.slate, opacity: 0.6,
+              }}
+            >
+              Browse all decks <span className="text-sm">&rarr;</span>
+            </Link>
+          </div>
+        </FadeIn>
+      </div>
+    </section>
+  );
+}
 
 function ApproachSectionHome() {
   return (
@@ -849,69 +1007,8 @@ export default function HomePage() {
       {/* ══ 4. OUR APPROACH — THREE BRAIDS ══════════════════════════════ */}
       <ApproachSectionHome />
 
-      {/* ══ LILA MEDITATIONS CTA ════════════════════════════════════════ */}
-      <section className="py-0">
-        <div className="max-w-[1100px] mx-auto px-6 md:px-[52px]">
-          <FadeIn>
-            <Link
-              to="/practice/meditations"
-              className="no-underline block"
-              onClick={() => trackEvent('homepage_cta_clicked', { action: 'open_meditations' })}
-            >
-              <div
-                className="relative overflow-hidden"
-                style={{
-                  background: 'linear-gradient(135deg, #5a7898 0%, #8a7880 35%, #d09070 70%, #e8a060 100%)',
-                }}
-              >
-                {/* Mountain silhouette */}
-                <svg
-                  className="absolute bottom-0 left-0 w-full"
-                  style={{ height: '40%' }}
-                  viewBox="0 0 960 100" preserveAspectRatio="none"
-                >
-                  <path d="M0,100 L0,62 L80,35 L160,52 L260,22 L340,42 L440,10 L540,32 L640,18 L740,38 L840,25 L960,32 L960,100 Z" fill="rgba(12,22,36,0.65)" />
-                  <path d="M0,100 L0,72 L100,55 L200,65 L320,45 L420,58 L520,38 L620,52 L720,42 L820,55 L960,48 L960,100 Z" fill="rgba(12,22,36,0.35)" />
-                </svg>
-
-                {/* Bottom vignette */}
-                <div className="absolute inset-0 pointer-events-none" style={{
-                  background: 'linear-gradient(to bottom, rgba(10,18,28,0.02) 0%, rgba(10,18,28,0.25) 100%)',
-                }} />
-
-                {/* Content */}
-                <div className="relative z-10 py-12 md:py-16 px-8 md:px-14 flex flex-col md:flex-row items-center gap-8 md:gap-14">
-                  {/* Left — text */}
-                  <div className="flex-1 min-w-0 text-center md:text-left">
-                    <div className="font-body text-[9px] font-bold tracking-[0.24em] uppercase text-white/45 mb-3">
-                      Lila Meditations
-                    </div>
-                    <div
-                      className="font-body font-bold text-white leading-[1.1] mb-3"
-                      style={{ fontSize: 'clamp(26px, 3.5vw, 36px)', letterSpacing: '-0.01em' }}
-                    >
-                      30 practices.<br />Ancient wisdom for wild places.
-                    </div>
-                    <div className="font-body text-[14px] font-normal text-white/60 leading-[1.7] max-w-[440px] mx-auto md:mx-0">
-                      Five principles drawn from five wisdom traditions — distilled into a swipeable card deck you can carry on any journey.
-                    </div>
-                    <div className="mt-6 inline-flex items-center gap-2 font-body text-[11px] font-bold tracking-[0.18em] uppercase text-white/55 transition-all duration-200 hover:text-white/85">
-                      Explore the deck <span className="text-sm">&rarr;</span>
-                    </div>
-                  </div>
-
-                  {/* Right — principle marks */}
-                  <div className="flex gap-5 shrink-0">
-                    {['◉', '◯', '≈', '❧', '✧'].map((g, i) => (
-                      <span key={i} className="text-xl text-white/50">{g}</span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </Link>
-          </FadeIn>
-        </div>
-      </section>
+      {/* ══ PRACTICE LIBRARY ═══════════════════════════════════════════ */}
+      <PracticeLibrarySection />
 
       {/* ══ 5. TRAVEL YOUR WAY ═════════════════════════════════════════ */}
       <TravelYourWay />

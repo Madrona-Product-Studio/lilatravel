@@ -3,6 +3,7 @@
  * Route: /practice
  */
 
+import { useRef, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { Nav, Footer } from '@components';
@@ -19,11 +20,7 @@ const SANS = FONTS.body;
 // Source dimensions the CoverScreen components were designed for
 const SRC_W = 400;
 const SRC_H = 720;
-
-// Thumbnail display size
-const THUMB_W = 200;
-const THUMB_H = 320;
-const scale = THUMB_W / SRC_W;
+const ASPECT = SRC_H / SRC_W; // 1.8
 
 const DECKS = [
   {
@@ -68,6 +65,18 @@ const DECKS = [
 
 function DeckTile({ deck }) {
   const { route, name, subtitle, desc, Cover } = deck;
+  const containerRef = useRef(null);
+  const [scale, setScale] = useState(0.5);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const ro = new ResizeObserver(([entry]) => {
+      setScale(entry.contentRect.width / SRC_W);
+    });
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
 
   return (
     <Link
@@ -81,14 +90,17 @@ function DeckTile({ deck }) {
       onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)'; }}
       onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; }}
     >
-      {/* Scaled cover thumbnail */}
-      <div style={{
-        width: THUMB_W,
-        height: THUMB_H,
-        overflow: 'hidden',
-        position: 'relative',
-        borderRadius: 10,
-      }}>
+      {/* Scaled cover thumbnail — fluid width, fixed aspect ratio */}
+      <div
+        ref={containerRef}
+        style={{
+          width: '100%',
+          paddingBottom: `${ASPECT * 100}%`,
+          overflow: 'hidden',
+          position: 'relative',
+          borderRadius: 10,
+        }}
+      >
         <div style={{
           width: SRC_W,
           height: SRC_H,
@@ -189,13 +201,10 @@ export default function PracticeLibrary() {
         background: C.warmWhite,
         padding: '0 28px 80px',
       }}>
-        <div style={{
-          maxWidth: 960,
-          margin: '0 auto',
-          display: 'grid',
-          gridTemplateColumns: 'repeat(4, 1fr)',
-          gap: 16,
-        }}>
+        <div
+          className="grid grid-cols-2 md:grid-cols-4 gap-4"
+          style={{ maxWidth: 960, margin: '0 auto' }}
+        >
           {DECKS.map(deck => (
             <DeckTile key={deck.key} deck={deck} />
           ))}
