@@ -4,7 +4,7 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
-import { Nav, Footer, FadeIn, TravelYourWay } from '@components';
+import { Nav, Footer, FadeIn } from '@components';
 import { C, FONTS } from '@data/brand';
 import { MeditationsCover } from '@pages/Meditations';
 import { TeachingsCover } from '@pages/ethos/TeachingsDeck';
@@ -516,27 +516,45 @@ function HomeDeckTile({ deck }) {
 
 function PracticeLibrarySection() {
   return (
-    <section className="py-0">
+    <section className="pt-16 md:pt-24 pb-16 md:pb-20">
       <div className="max-w-[960px] mx-auto px-6 md:px-[52px]">
         <FadeIn>
           {/* Header */}
-          <div className="text-center mb-8">
+          <div className="text-center mb-10 md:mb-14">
             <div style={{
-              fontFamily: FONTS.body, fontSize: 10, fontWeight: 500,
-              letterSpacing: '2.5px', color: C.goldenAmber,
-              textTransform: 'uppercase', marginBottom: 8,
+              display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 12,
+              marginBottom: 12,
             }}>
-              Practice Library
+              <div style={{ width: 28, height: 1, background: C.goldenAmber }} />
+              <span style={{
+                fontFamily: FONTS.body, fontSize: 10, fontWeight: 500,
+                letterSpacing: '2.5px', color: C.goldenAmber,
+                textTransform: 'uppercase',
+              }}>
+                Practice Library
+              </span>
+              <div style={{ width: 28, height: 1, background: C.goldenAmber }} />
             </div>
             <div style={{
               fontFamily: FONTS.serif,
-              fontSize: 'clamp(24px, 4vw, 36px)',
+              fontSize: 'clamp(26px, 5vw, 40px)',
               fontWeight: 300,
               color: C.darkInk,
-              lineHeight: 1.2,
+              lineHeight: 1.15,
+              marginBottom: 14,
             }}>
               Four decks. One path in.
             </div>
+            <p style={{
+              fontFamily: FONTS.serif,
+              fontSize: 15,
+              color: C.slate,
+              lineHeight: 1.7,
+              maxWidth: 480,
+              margin: '0 auto',
+            }}>
+              Wisdom traditions, movement science, and reflective practices — distilled into swipeable card decks you can carry on any journey.
+            </p>
           </div>
 
           {/* Grid — 2x2 mobile, 4-across desktop */}
@@ -547,7 +565,7 @@ function PracticeLibrarySection() {
           </div>
 
           {/* Browse all link */}
-          <div className="text-center mt-6">
+          <div className="text-center mt-8 md:mt-10">
             <Link
               to="/practice"
               className="no-underline inline-flex items-center gap-2 transition-opacity duration-200 hover:opacity-100"
@@ -924,13 +942,13 @@ export default function HomePage() {
         .bento-grid {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          grid-template-rows: 400px 280px 280px;
+          grid-template-rows: 280px 280px 280px;
           gap: 4px;
         }
         @media (max-width: 860px) {
           .bento-grid {
             grid-template-columns: 1fr 1fr;
-            grid-template-rows: 280px 220px 220px;
+            grid-template-rows: 220px 220px 220px;
             gap: 3px;
           }
         }
@@ -946,12 +964,7 @@ export default function HomePage() {
         <div className="max-w-[1200px] mx-auto">
           <FadeIn>
             <div className="bento-grid">
-              {[...destinations].sort((a, b) => {
-                const aHero = a.name === "Zion Canyon" || a.name === "Joshua Tree" ? 0 : 1;
-                const bHero = b.name === "Zion Canyon" || b.name === "Joshua Tree" ? 0 : 1;
-                return aHero - bHero;
-              }).map((d, i) => {
-                const isHero = i < 2; // first two after sort are the hero tiles
+              {destinations.map((d, i) => {
                 return (
                   <Link
                     key={d.slug}
@@ -965,7 +978,7 @@ export default function HomePage() {
                     )}
                     <div className="bento-overlay" />
                     <div className="absolute bottom-0 left-0 right-0" style={{
-                      padding: isHero ? "36px 32px" : "24px 24px",
+                      padding: "24px 24px",
                     }}>
                       <div className="mb-2.5">
                         <div className="flex items-center gap-2.5 mb-1.5 flex-wrap">
@@ -987,12 +1000,12 @@ export default function HomePage() {
                         )}
                       </div>
                       <h3 className="font-serif font-light text-white leading-[1.1] mb-1" style={{
-                        fontSize: isHero ? "clamp(28px, 4vw, 42px)" : "clamp(22px, 3vw, 30px)",
+                        fontSize: "clamp(22px, 3vw, 30px)",
                       }}>{d.slug === 'zion-canyon' ? 'Zion & Orbit' : d.name}</h3>
                       <p className="font-body text-[10px] font-semibold tracking-[0.18em] uppercase text-white/50 mb-2">{d.location}</p>
                       <div className="bento-desc">
                         <p className="font-serif font-light not-italic text-white/70 leading-[1.6]" style={{
-                          fontSize: isHero ? 16 : 14,
+                          fontSize: 14,
                         }}>{d.description}</p>
                       </div>
                     </div>
@@ -1010,10 +1023,7 @@ export default function HomePage() {
       {/* ══ PRACTICE LIBRARY ═══════════════════════════════════════════ */}
       <PracticeLibrarySection />
 
-      {/* ══ 5. TRAVEL YOUR WAY ═════════════════════════════════════════ */}
-      <TravelYourWay />
-
-      {/* ══ 6. CTA ═══════════════════════════════════════════════════════ */}
+      {/* ══ 5. CTA ═══════════════════════════════════════════════════════ */}
       <section className="relative overflow-hidden min-h-[600px]">
         <img src={P.lilaPainting} alt="" className="absolute inset-0 w-full h-full object-cover object-center" />
         <div className="absolute inset-0" style={{ background: "rgba(10,18,26,0.25)" }} />
