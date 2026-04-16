@@ -22,11 +22,11 @@ export default function ZionNightSky() {
   return (
     <>
       <Helmet>
-        <title>Night Sky Guide | Zion | Lila</title>
+        <title>Stars & Sky Guide | Zion | Lila</title>
         <meta name="description" content="Dark sky ratings, best viewing windows, and ranger programs." />
       </Helmet>
       <SubGuideLayout
-        title="Night Sky Guide"
+        title="Stars & Sky Guide"
         descriptor="Dark sky ratings, best viewing windows, and ranger programs."
       >
         <Prose>

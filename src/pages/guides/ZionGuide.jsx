@@ -353,7 +353,7 @@ export default function ZionGuide() {
                 <SubLabel warm>Supporting People Here</SubLabel>
                 <Prose>Springdale's economy runs almost entirely on tourism. Eat at locally owned restaurants, buy from local galleries, hire local guides. The difference between a national park visit and a real experience of a place is usually the people you meet who actually live there.</Prose>
 
-                <PlaceGuideCard label="Full Travel Responsibly Guide" descriptor="Tread lightly · give back · native culture · local support" bg="linear-gradient(155deg, #A8896A 0%, #4A6B5A 100%)" to="/destinations/zion/be-there-well" />
+                <PlaceGuideCard label="Full Travel Lightly Guide" descriptor="Tread lightly · give back · native culture · local support" bg="linear-gradient(155deg, #A8896A 0%, #4A6B5A 100%)" to="/destinations/zion/be-there-well" />
               </div>
 
               <Divider />
@@ -383,7 +383,7 @@ export default function ZionGuide() {
                   hasNPS: checkNPS(a.name),
                 }))} />
 
-                <PlaceGuideCard label="Full Stay Guide" descriptor="Full accommodations across Springdale, Kanab, Escalante & Torrey" bg="linear-gradient(155deg, #C4A882 0%, #8A7A6A 100%)" to="/destinations/zion/sleep" />
+                <PlaceGuideCard label="Full Where to Stay Guide" descriptor="Full accommodations across Springdale, Kanab, Escalante & Torrey" bg="linear-gradient(155deg, #C4A882 0%, #8A7A6A 100%)" to="/destinations/zion/sleep" />
               </div>
 
               <Divider />
@@ -410,7 +410,7 @@ export default function ZionGuide() {
                   };
                 })} />
 
-                <PlaceGuideCard label="Full Eat Guide" descriptor="Springdale · Byway 12 · provisions" bg="linear-gradient(155deg, #C49A6A 0%, #8A6A4A 100%)" to="/destinations/zion/eat" />
+                <PlaceGuideCard label="Full Where to Eat Guide" descriptor="Springdale · Byway 12 · provisions" bg="linear-gradient(155deg, #C49A6A 0%, #8A6A4A 100%)" to="/destinations/zion/eat" />
               </div>
 
 
@@ -433,7 +433,7 @@ export default function ZionGuide() {
                   hasNPS: checkNPS(m.name),
                 }))} />
 
-                <PlaceGuideCard label="Full Move Guide" descriptor="Full trail & activity guide across all three parks" bg="linear-gradient(155deg, #8AAA7A 0%, #4A6A5A 100%)" to="/destinations/zion/move" />
+                <PlaceGuideCard label="Full Hikes, Bikes, etc. Guide" descriptor="Full trail & activity guide across all three parks" bg="linear-gradient(155deg, #8AAA7A 0%, #4A6A5A 100%)" to="/destinations/zion/move" />
               </div>
 
               <Divider />
@@ -458,7 +458,7 @@ export default function ZionGuide() {
                   hasNPS: checkNPS(b.name),
                 }))} />
 
-                <PlaceGuideCard label="Full Breathe Guide" descriptor="Yoga · bodywork · sauna · cold plunge · restore" bg="linear-gradient(155deg, #8AADA8 0%, #4A6B7A 100%)" to="/destinations/zion/breathe" />
+                <PlaceGuideCard label="Full Yoga & Mindfulness Guide" descriptor="Yoga · bodywork · sauna · cold plunge · restore" bg="linear-gradient(155deg, #8AADA8 0%, #4A6B7A 100%)" to="/destinations/zion/breathe" />
               </div>
 
               <Divider />
@@ -504,7 +504,7 @@ export default function ZionGuide() {
                   { context: 'Best Window', name: 'June \u2013 September', detail: 'New moon periods June through September. Milky Way core visible May\u2013October. Perseids peak mid-August.' },
                 ]} />
 
-                <PlaceGuideCard label="Full Night Sky Guide" descriptor="Dark sky ratings · best windows · ranger programs" bg="linear-gradient(155deg, #5A6B8A 0%, #1E2A3E 100%)" to="/destinations/zion/night-sky" />
+                <PlaceGuideCard label="Full Stars & Sky Guide" descriptor="Dark sky ratings · best windows · ranger programs" bg="linear-gradient(155deg, #5A6B8A 0%, #1E2A3E 100%)" to="/destinations/zion/night-sky" />
               </div>
 
               <Divider />

@@ -30,11 +30,11 @@ export default function ZionBreathe() {
   return (
     <>
       <Helmet>
-        <title>Breathe Guide | Zion | Lila</title>
+        <title>Yoga & Mindfulness Guide | Zion | Lila</title>
         <meta name="description" content="Yoga, bodywork, sauna, cold plunge, and restoration." />
       </Helmet>
       <SubGuideLayout
-        title="Breathe Guide"
+        title="Yoga & Mindfulness Guide"
         descriptor="Yoga, bodywork, sauna, cold plunge, and restoration."
       >
         <Prose>

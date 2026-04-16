@@ -38,11 +38,11 @@ export default function ZionSleep() {
   return (
     <>
       <Helmet>
-        <title>Stay Guide | Zion | Lila</title>
+        <title>Where to Stay Guide | Zion | Lila</title>
         <meta name="description" content="Full accommodations across Springdale, Kanab, Escalante & Torrey." />
       </Helmet>
       <SubGuideLayout
-        title="Stay Guide"
+        title="Where to Stay Guide"
         descriptor="Full accommodations across Springdale, Kanab, Escalante & Torrey."
       >
         <SubLabel>Towns</SubLabel>

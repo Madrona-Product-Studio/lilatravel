@@ -54,11 +54,11 @@ export default function ZionMove() {
   return (
     <>
       <Helmet>
-        <title>Move Guide | Zion | Lila</title>
+        <title>Hikes, Bikes, etc. Guide | Zion | Lila</title>
         <meta name="description" content="Every trail, hike, climb, and scenic drive across the orbit." />
       </Helmet>
       <SubGuideLayout
-        title="Move Guide"
+        title="Hikes, Bikes, etc. Guide"
         descriptor="Every trail, hike, climb, and scenic drive across the orbit."
       >
         <Prose>

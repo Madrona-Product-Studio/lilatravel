@@ -30,11 +30,11 @@ export default function ZionEat() {
   return (
     <>
       <Helmet>
-        <title>Eat Guide | Zion | Lila</title>
+        <title>Where to Eat Guide | Zion | Lila</title>
         <meta name="description" content="Springdale, Byway 12, and a few things worth the drive." />
       </Helmet>
       <SubGuideLayout
-        title="Eat Guide"
+        title="Where to Eat Guide"
         descriptor="Springdale, Byway 12, and a few things worth the drive."
       >
         <Prose>

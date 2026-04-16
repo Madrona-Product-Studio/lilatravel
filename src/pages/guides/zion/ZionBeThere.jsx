@@ -65,11 +65,11 @@ export default function ZionBeThere() {
   return (
     <>
       <Helmet>
-        <title>Travel Responsibly Guide | Zion | Lila</title>
+        <title>Travel Lightly Guide | Zion | Lila</title>
         <meta name="description" content="How to move through Zion in a way that's good for it — ethics, giving back, and practical logistics." />
       </Helmet>
       <SubGuideLayout
-        title="Travel Responsibly Guide"
+        title="Travel Lightly Guide"
         descriptor="How to move through this place in a way that's good for it."
       >
         <SubLabel warm>Tread Lightly</SubLabel>
