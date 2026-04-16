@@ -95,7 +95,7 @@ export default function DestinationsPage() {
         }
       `}</style>
 
-      <section className="page-content px-6 pt-6 pb-20 md:px-[52px] md:pt-6 md:pb-20 bg-cream">
+      <section className="page-content px-6 pt-0 pb-20 md:px-[52px] md:pt-0 md:pb-20 bg-cream">
         <div className="max-w-[1100px] mx-auto">
           <div className="bento-grid">
             {destinations.map((d, i) => {
