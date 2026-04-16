@@ -20,12 +20,13 @@ export default function usePlacePhotos({ name, location } = {}) {
   });
 
   useEffect(() => {
-    if (!name) return;
+    const empty = { photos: [], rating: null, userRatingsTotal: null, address: null, phone: null, placeId: null, loading: false, error: null };
+    if (!name) { setState(empty); return; }
 
     const controller = new AbortController();
     const query = location ? `${name} ${location}` : name;
 
-    setState(prev => ({ ...prev, loading: true, error: null }));
+    setState({ ...empty, loading: true });
 
     fetch(`/api/places-search?query=${encodeURIComponent(query)}`, {
       signal: controller.signal,

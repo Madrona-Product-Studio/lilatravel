@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { C } from '@data/brand';
 import { G } from '@data/guides/guide-styles';
 import usePlacePhotos from '@hooks/usePlacePhotos';
@@ -44,6 +44,9 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
   const dragStartY = useRef(null);
   const dragCurrentY = useRef(0);
   const [activePhotoIdx, setActivePhotoIdx] = useState(0);
+
+  // Reset photo index when item changes
+  useEffect(() => { setActivePhotoIdx(0); }, [item?.name]);
 
   // Determine fetch conditions before hooks (hooks must run unconditionally)
   const nps = item?.nps;
