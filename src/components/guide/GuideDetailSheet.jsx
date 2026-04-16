@@ -259,24 +259,22 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
       )}
 
       {!nps && (item.url || places.phone || mapsUrl) && (
-        <div className="flex gap-2 mb-4 items-center">
+        <div style={{ display: 'flex', gap: 8, marginBottom: 16 }}>
           {item.url && (
             <a href={item.url} target="_blank" rel="noopener noreferrer"
-              className="flex items-center justify-center gap-1.5 py-2 px-4 font-body text-[11px] font-bold tracking-[0.1em] uppercase no-underline transition-opacity duration-200"
-              style={{ border: `1.5px solid ${C.darkInk}`, color: C.darkInk }}
+              style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, height: 48, fontFamily: FONTS.body, fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', textDecoration: 'none', color: C.darkInk, border: `1.5px solid ${C.darkInk}`, transition: 'opacity 0.2s' }}
               onMouseEnter={e => { e.currentTarget.style.opacity = '0.7'; }}
               onMouseLeave={e => { e.currentTarget.style.opacity = '1'; }}
             >
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <circle cx="12" cy="12" r="10" /><line x1="2" y1="12" x2="22" y2="12" /><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" />
               </svg>
-              <span className="ml-0.5">{isOrganization && item.operator ? item.operator : 'Website'}</span>
+              {isOrganization && item.operator ? item.operator : 'Website'}
             </a>
           )}
           {places.phone && (
             <a href={`tel:${places.phone}`}
-              className="flex items-center justify-center no-underline transition-opacity duration-200"
-              style={{ width: 38, height: 38, borderRadius: '50%', border: `1.5px solid ${G.accent}40`, color: G.accent }}
+              style={{ width: 48, height: 48, display: 'flex', alignItems: 'center', justifyContent: 'center', textDecoration: 'none', border: `1.5px solid ${C.darkInk}20`, color: C.darkInk, transition: 'opacity 0.2s' }}
               onMouseEnter={e => { e.currentTarget.style.opacity = '0.7'; }}
               onMouseLeave={e => { e.currentTarget.style.opacity = '1'; }}
               aria-label="Call"
@@ -284,8 +282,7 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
           )}
           {mapsUrl && (
             <a href={mapsUrl} target="_blank" rel="noopener noreferrer"
-              className="flex items-center justify-center no-underline transition-opacity duration-200"
-              style={{ width: 38, height: 38, borderRadius: '50%', border: `1.5px solid ${G.accent}40`, color: G.accent }}
+              style={{ width: 48, height: 48, display: 'flex', alignItems: 'center', justifyContent: 'center', textDecoration: 'none', border: `1.5px solid ${C.darkInk}20`, color: C.darkInk, transition: 'opacity 0.2s' }}
               onMouseEnter={e => { e.currentTarget.style.opacity = '0.7'; }}
               onMouseLeave={e => { e.currentTarget.style.opacity = '1'; }}
               aria-label="Directions"
@@ -638,14 +635,6 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
             );
           })()}
 
-          {/* Phone number inline (from Google Places) */}
-          {places.phone && (
-            <div className="flex items-center gap-2 mb-3">
-              <PhoneSVG />
-              <a href={`tel:${places.phone}`} className="font-body text-[13px] font-medium text-dark-ink no-underline">{places.phone}</a>
-            </div>
-          )}
-
           {/* Tags row */}
           {item.tags && item.tags.length > 0 && (
             <>
@@ -687,7 +676,7 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
         @keyframes guideSheetBackdropIn { from { opacity: 0; } to { opacity: 1; } }
       `}</style>
       <div onClick={onClose} className="fixed inset-0 z-[249]" style={{ background: 'rgba(0,0,0,0.3)', animation: 'guideSheetBackdropIn 0.25s ease' }} />
-      <div ref={sheetRef} className="fixed bottom-0 left-0 right-0 h-[88vh] z-[250] bg-cream rounded-t-2xl flex flex-col" style={{ animation: 'guideSheetSlideUp 0.3s ease', boxShadow: '0 -4px 24px rgba(0,0,0,0.1)' }}>
+      <div ref={sheetRef} className="fixed bottom-0 left-0 right-0 h-[92vh] z-[250] bg-cream rounded-t-2xl flex flex-col" style={{ animation: 'guideSheetSlideUp 0.3s ease', boxShadow: '0 -4px 24px rgba(0,0,0,0.1)' }}>
         <div onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd} className="px-3.5 pt-2.5 pb-1.5 shrink-0 relative z-10">
           <div className="w-9 h-1 rounded-sm mx-auto mb-2" style={{ background: '#7A857E30' }} />
           <button onClick={(e) => { e.stopPropagation(); onClose(); }} className="absolute top-2 right-3.5 w-9 h-9 flex items-center justify-center rounded-full cursor-pointer font-body text-[15px] text-[rgba(26,26,24,0.4)] leading-none" style={{ background: `${G.panel}e0`, border: `1px solid #7A857E15`, WebkitTapHighlightColor: 'transparent', boxShadow: `0 2px 8px ${G.ink}08` }} aria-label="Close">✕</button>
