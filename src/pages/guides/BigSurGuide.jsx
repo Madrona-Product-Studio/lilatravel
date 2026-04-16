@@ -102,7 +102,7 @@ function GuideNav({ activeSection, onNav, isMobile }) {
       position: 'sticky', top: 0, zIndex: 101,
       background: G.warmWhite,
       borderBottom: `0.5px solid ${G.border}`,
-      display: 'flex', alignItems: 'center', justifyContent: 'center',
+      display: 'flex', alignItems: 'center', justifyContent: isMobile ? 'flex-start' : 'center',
       padding: isMobile ? '0 16px' : '0 52px', height: 44,
       marginTop: -64,
       paddingTop: 64,
