@@ -109,50 +109,44 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
   const mapsUrl = places.placeId ? `https://www.google.com/maps/place/?q=place_id:${places.placeId}` : null;
 
   const content = (
-    <div className="max-w-[500px] mx-auto px-5 pt-[26px] pb-[60px]">
-      {/* Badge row */}
+    <div className="max-w-[500px] mx-auto px-5 pt-5 pb-10">
+      {/* Badge */}
       {item.type === 'stay' && item.tier && tierStyles[item.tier] && (
-        <div className="flex items-center gap-2 mb-2.5 flex-wrap">
-          <span className="font-body text-[10px] font-bold tracking-[0.18em] uppercase px-2.5 py-0.5"
-            style={{ background: tierStyles[item.tier].bg, color: tierStyles[item.tier].color }}>{tierStyles[item.tier].label}</span>
-          {item.location && (
-            <span className="font-body text-[12px] font-medium text-[rgba(26,26,24,0.4)]">{item.location}</span>
-          )}
-        </div>
+        <span className="inline-block font-body text-[10px] font-bold tracking-[0.18em] uppercase px-2.5 py-0.5 mb-1.5"
+          style={{ background: tierStyles[item.tier].bg, color: tierStyles[item.tier].color }}>{tierStyles[item.tier].label}</span>
       )}
       {item.type === 'list' && item.section && (
-        <span className="inline-block font-body text-[10px] font-bold tracking-[0.18em] uppercase text-sky-blue mb-2.5 px-2.5 py-0.5"
+        <span className="inline-block font-body text-[10px] font-bold tracking-[0.18em] uppercase text-sky-blue mb-1.5 px-2.5 py-0.5"
           style={{ background: `${G.accent}15` }}>{item.section}</span>
       )}
 
       {/* Name */}
-      <h3 className="font-serif text-[clamp(22px,4vw,28px)] font-normal text-dark-ink mb-2.5 leading-[1.2] mt-0">{item.name}</h3>
+      <h3 className="font-serif text-[clamp(20px,4vw,26px)] font-normal text-dark-ink mb-1.5 leading-[1.2] mt-0">{item.name}</h3>
 
       {/* Lila Pick */}
       {item.featured && (
-        <span className="inline-block font-body text-[10px] font-bold tracking-[0.18em] uppercase text-sun-salmon mb-3.5 px-2.5 py-0.5"
+        <span className="inline-block font-body text-[10px] font-bold tracking-[0.18em] uppercase text-sun-salmon mb-2.5 px-2.5 py-0.5"
           style={{ border: `1px solid ${G.accent}40` }}>Lila Pick</span>
       )}
 
-      {/* ═══ GOOGLE PLACES PHOTOS (when no NPS) ═══ */}
+      {/* ═══ GOOGLE PLACES PHOTO (when no NPS) ═══ */}
       {!nps && googlePhotos.length > 0 && (
-        <div className="mx-[-20px] mb-[18px] relative">
+        <div className="mx-[-20px] mb-3 relative">
           <img
             src={heroPhoto}
             alt={item.name}
-            className="w-full h-[220px] object-cover block"
+            className="w-full h-[200px] object-cover block"
             style={{ background: C.stone }}
           />
-          {/* Dot indicators */}
           {googlePhotos.length > 1 && (
-            <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-1.5">
+            <div className="absolute bottom-2.5 left-0 right-0 flex justify-center gap-1.5">
               {googlePhotos.slice(0, 6).map((_, i) => (
                 <button
                   key={i}
                   onClick={() => setActivePhotoIdx(i)}
                   className="border-none cursor-pointer p-0"
                   style={{
-                    width: 7, height: 7, borderRadius: '50%',
+                    width: 6, height: 6, borderRadius: '50%',
                     background: i === activePhotoIdx ? 'white' : 'rgba(255,255,255,0.5)',
                     transition: 'background 0.2s',
                   }}
@@ -161,72 +155,61 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
               ))}
             </div>
           )}
-          {/* Thumbnail strip */}
-          {googlePhotos.length > 1 && (
-            <div className="flex gap-[3px] px-5 mt-[3px] overflow-x-auto" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-              {googlePhotos.slice(0, 6).map((url, i) => (
-                <img
-                  key={i}
-                  src={url}
-                  alt=""
-                  className="object-cover cursor-pointer"
-                  style={{
-                    width: 60, height: 42, opacity: i === activePhotoIdx ? 1 : 0.6,
-                    transition: 'opacity 0.2s',
-                  }}
-                  onClick={() => setActivePhotoIdx(i)}
-                />
-              ))}
-            </div>
-          )}
-          {/* Google attribution */}
-          <div className="font-body text-[10px] font-normal text-[rgba(26,26,24,0.35)] text-right px-5 mt-1">
-            Powered by Google
-          </div>
         </div>
       )}
 
-      {/* ═══ GOOGLE PLACES RATING ═══ */}
-      {!nps && places.rating && (
-        <div className="flex items-center gap-2 mb-3.5">
-          <StarRating rating={places.rating} />
-          <span className="font-body text-[13px] font-medium text-dark-ink">{places.rating}</span>
-          {places.userRatingsTotal && (
-            <span className="font-body text-[12px] font-normal text-[rgba(26,26,24,0.4)]">
-              · {places.userRatingsTotal.toLocaleString()} reviews
-            </span>
+      {/* ═══ RATING + CTA (compact row) ═══ */}
+      {!nps && (places.rating || item.cuisine) && (
+        <div className="flex items-center gap-1.5 mb-3 flex-wrap">
+          {places.rating && (
+            <>
+              <span className="font-body text-[13px] font-semibold text-dark-ink">{places.rating}</span>
+              <StarRating rating={places.rating} />
+              {places.userRatingsTotal && (
+                <span className="font-body text-[12px] font-normal text-[rgba(26,26,24,0.35)]">
+                  ({places.userRatingsTotal.toLocaleString()})
+                </span>
+              )}
+            </>
+          )}
+          {places.rating && item.cuisine && <span className="font-body text-[12px] text-[rgba(26,26,24,0.25)]">·</span>}
+          {item.cuisine && (
+            <span className="font-body text-[12px] font-normal text-[rgba(26,26,24,0.45)]">{item.cuisine}</span>
           )}
         </div>
       )}
 
-      {/* ═══ CTA ROW ═══ */}
       {!nps && (item.url || places.phone || mapsUrl) && (
-        <div className="flex gap-2 mb-[18px]">
-          {item.url && (
-            <a href={item.url} target="_blank" rel="noopener noreferrer"
-              className="flex-1 flex items-center justify-center gap-1.5 py-2.5 font-body text-[11px] font-bold tracking-[0.14em] uppercase no-underline transition-opacity duration-200"
-              style={{ background: C.darkInk, color: C.warmWhite }}
-              onMouseEnter={e => { e.currentTarget.style.opacity = '0.85'; }}
+        <div className="flex gap-2 mb-4">
+          {mapsUrl && (
+            <a href={mapsUrl} target="_blank" rel="noopener noreferrer"
+              className="flex items-center justify-center gap-1.5 py-2 px-4 font-body text-[11px] font-bold tracking-[0.1em] uppercase no-underline transition-opacity duration-200"
+              style={{ border: `1.5px solid ${C.darkInk}`, color: C.darkInk }}
+              onMouseEnter={e => { e.currentTarget.style.opacity = '0.7'; }}
               onMouseLeave={e => { e.currentTarget.style.opacity = '1'; }}
-            >{isOrganization && item.operator ? item.operator : 'Visit Website'} <span className="text-[12px]">↗</span></a>
+            ><DirectionsSVG /> <span className="ml-0.5">Directions</span></a>
           )}
-          {!isOrganization && places.phone && (
+          {places.phone && (
             <a href={`tel:${places.phone}`}
               className="flex items-center justify-center no-underline transition-opacity duration-200"
-              style={{ width: 42, height: 42, border: `1.5px solid ${G.accent}`, color: G.accent }}
+              style={{ width: 38, height: 38, borderRadius: '50%', border: `1.5px solid ${G.accent}40`, color: G.accent }}
               onMouseEnter={e => { e.currentTarget.style.opacity = '0.7'; }}
               onMouseLeave={e => { e.currentTarget.style.opacity = '1'; }}
               aria-label="Call"
             ><PhoneSVG /></a>
           )}
-          {!isOrganization && mapsUrl && (
-            <a href={mapsUrl} target="_blank" rel="noopener noreferrer"
+          {item.url && (
+            <a href={item.url} target="_blank" rel="noopener noreferrer"
               className="flex items-center justify-center no-underline transition-opacity duration-200"
-              style={{ width: 42, height: 42, border: `1.5px solid ${G.accent}`, color: G.accent }}
+              style={{ width: 38, height: 38, borderRadius: '50%', border: `1.5px solid ${G.accent}40`, color: G.accent }}
               onMouseEnter={e => { e.currentTarget.style.opacity = '0.7'; }}
               onMouseLeave={e => { e.currentTarget.style.opacity = '1'; }}
-              aria-label="Directions"
-            ><DirectionsSVG /></a>
+              aria-label={isOrganization && item.operator ? item.operator : 'Website'}
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="10" /><line x1="2" y1="12" x2="22" y2="12" /><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" />
+              </svg>
+            </a>
           )}
         </div>
       )}
@@ -394,212 +377,79 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
       {/* ═══ STANDARD CONTENT (no NPS) ═══ */}
       {!nps && (
         <>
-          {/* Notes from Lila */}
-          {(item.detail || item.highlights?.length > 0) && (
-            <div className="py-3.5 px-4 mb-[18px]" style={{ background: '#E8E0D5' }}>
-              <div className="font-body text-[10px] font-bold tracking-[0.2em] uppercase mb-2" style={{ color: C.goldenAmber }}>
-                ◈ Notes from Lila
+          {/* Notes from Lila — single concise card */}
+          {(item.detail || item.highlights?.length > 0) && (() => {
+            // Deduplicate: skip highlights that match the detail text
+            const uniqueHighlights = (item.highlights || []).filter(h => h !== item.detail);
+            return (
+              <div className="py-3 px-4 mb-3" style={{ background: '#E8E0D5' }}>
+                <div className="font-body text-[10px] font-bold tracking-[0.2em] uppercase mb-1.5" style={{ color: C.goldenAmber }}>
+                  Notes from Lila
+                </div>
+                {item.detail && (
+                  <p className="font-body text-[13px] font-normal text-[rgba(26,26,24,0.6)] leading-[1.65] mt-0 mb-0">{item.detail}</p>
+                )}
+                {uniqueHighlights.length > 0 && (
+                  <div className={item.detail ? 'mt-1.5' : ''}>
+                    {uniqueHighlights.slice(0, 3).map((h, i) => (
+                      <div key={i} className="flex gap-2 items-start mb-[3px]">
+                        <div className="w-1 h-1 rounded-full mt-[7px] shrink-0" style={{ background: C.goldenAmber, opacity: 0.5 }} />
+                        <span className="font-body text-[12px] font-normal text-[rgba(26,26,24,0.5)] leading-[1.6]">{h}</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
-              {item.detail && (
-                <p className="font-body text-[13px] font-normal text-[rgba(26,26,24,0.6)] leading-[1.7] mt-0 mb-1.5">{item.detail}</p>
-              )}
-              {item.highlights && item.highlights.length > 0 && (
-                <div className="mt-2">
-                  {item.highlights.map((h, i) => (
-                    <div key={i} className="flex gap-2.5 items-start mb-[5px]">
-                      <div className="w-1 h-1 rounded-full mt-[7px] shrink-0" style={{ background: C.goldenAmber, opacity: 0.6 }} />
-                      <span className="font-body text-[13px] font-normal text-[rgba(26,26,24,0.55)] leading-[1.65]">{h}</span>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-          )}
+            );
+          })()}
 
-          {item.note && (
-            <div className="font-body text-[13px] font-semibold text-ocean-teal mb-3.5">{item.note}</div>
-          )}
-
-          {/* Activity info grid */}
-          {item.type === 'tier' && (item.difficulty || item.duration || item.distance || item.operator || item.bookingWindow || item.tradition || item.priceRange) && (
-            <div className="grid grid-cols-2 gap-x-4 gap-y-2.5 mb-[18px] py-3.5 border-y border-[rgba(107,128,120,0.12)]">
-              {item.difficulty && (
-                <div>
-                  <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[rgba(26,26,24,0.4)] mb-[3px]">Difficulty</div>
-                  <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.difficulty}</div>
-                </div>
-              )}
-              {item.distance && (
-                <div>
-                  <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[rgba(26,26,24,0.4)] mb-[3px]">Distance</div>
-                  <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.distance}</div>
-                </div>
-              )}
-              {item.duration && (
-                <div>
-                  <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[rgba(26,26,24,0.4)] mb-[3px]">Duration</div>
-                  <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.duration}</div>
-                </div>
-              )}
-              {item.tradition && (
-                <div>
-                  <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[rgba(26,26,24,0.4)] mb-[3px]">Tradition</div>
-                  <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.tradition}</div>
-                </div>
-              )}
-              {item.operator && (
-                <div>
-                  <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[rgba(26,26,24,0.4)] mb-[3px]">Operator</div>
-                  <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.operator}</div>
-                </div>
-              )}
+          {/* Compact info grid — universal for all non-NPS items */}
+          {(item.priceRange || item.reservations || item.difficulty || item.duration || item.distance || item.operator || item.bookingWindow) && (
+            <div className="grid grid-cols-2 gap-x-4 gap-y-2 mb-3 py-3 border-y border-[rgba(107,128,120,0.1)]">
               {item.priceRange && (
                 <div>
-                  <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[rgba(26,26,24,0.4)] mb-[3px]">Price</div>
-                  <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.priceRange}</div>
-                </div>
-              )}
-              {item.bookingWindow && (
-                <div className="col-span-full">
-                  <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[rgba(26,26,24,0.4)] mb-[3px]">Booking</div>
-                  <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.bookingWindow}</div>
-                </div>
-              )}
-              {item.location && (
-                <div className="col-span-full">
-                  <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[rgba(26,26,24,0.4)] mb-[3px]">Location</div>
-                  <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.location}</div>
-                </div>
-              )}
-            </div>
-          )}
-
-          {/* Restaurant info grid */}
-          {item.type === 'list' && (item.cuisine || item.priceRange || item.reservations || item.energy || item.difficulty || item.duration || item.distance) && (
-            <div className="grid grid-cols-2 gap-x-4 gap-y-2.5 mb-[18px] py-3.5 border-y border-[rgba(107,128,120,0.12)]">
-              {item.cuisine && (
-                <div>
-                  <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[rgba(26,26,24,0.4)] mb-[3px]">Cuisine</div>
-                  <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.cuisine}</div>
-                </div>
-              )}
-              {item.difficulty && (
-                <div>
-                  <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[rgba(26,26,24,0.4)] mb-[3px]">Difficulty</div>
-                  <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.difficulty}</div>
-                </div>
-              )}
-              {item.distance && (
-                <div>
-                  <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[rgba(26,26,24,0.4)] mb-[3px]">Distance</div>
-                  <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.distance}</div>
-                </div>
-              )}
-              {item.duration && (
-                <div>
-                  <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[rgba(26,26,24,0.4)] mb-[3px]">Duration</div>
-                  <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.duration}</div>
-                </div>
-              )}
-              {item.priceRange && (
-                <div>
-                  <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[rgba(26,26,24,0.4)] mb-[3px]">Price</div>
-                  <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.priceRange}</div>
-                </div>
-              )}
-              {item.energy && (
-                <div>
-                  <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[rgba(26,26,24,0.4)] mb-[3px]">Vibe</div>
-                  <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.energy}</div>
+                  <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[rgba(26,26,24,0.35)] mb-[2px]">Price</div>
+                  <div className="font-body text-[13px] font-medium text-dark-ink">{item.priceRange}</div>
                 </div>
               )}
               {item.reservations && (
                 <div>
-                  <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[rgba(26,26,24,0.4)] mb-[3px]">Reservations</div>
-                  <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.reservations}</div>
+                  <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[rgba(26,26,24,0.35)] mb-[2px]">Reservations</div>
+                  <div className="font-body text-[13px] font-medium text-dark-ink">{item.reservations}</div>
+                </div>
+              )}
+              {item.difficulty && (
+                <div>
+                  <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[rgba(26,26,24,0.35)] mb-[2px]">Difficulty</div>
+                  <div className="font-body text-[13px] font-medium text-dark-ink">{item.difficulty}</div>
+                </div>
+              )}
+              {item.distance && (
+                <div>
+                  <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[rgba(26,26,24,0.35)] mb-[2px]">Distance</div>
+                  <div className="font-body text-[13px] font-medium text-dark-ink">{item.distance}</div>
+                </div>
+              )}
+              {item.duration && (
+                <div>
+                  <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[rgba(26,26,24,0.35)] mb-[2px]">Duration</div>
+                  <div className="font-body text-[13px] font-medium text-dark-ink">{item.duration}</div>
                 </div>
               )}
               {item.operator && (
                 <div>
-                  <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[rgba(26,26,24,0.4)] mb-[3px]">Operator</div>
-                  <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.operator}</div>
-                </div>
-              )}
-              {item.bookingWindow && (
-                <div className="col-span-full">
-                  <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[rgba(26,26,24,0.4)] mb-[3px]">Booking</div>
-                  <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.bookingWindow}</div>
-                </div>
-              )}
-              {item.location && (
-                <div className="col-span-full">
-                  <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[rgba(26,26,24,0.4)] mb-[3px]">Location</div>
-                  <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.location}</div>
-                </div>
-              )}
-              {item.dietary && (item.dietary.vegetarian || item.dietary.vegan || item.dietary.glutenFree) && (
-                <div className="col-span-full">
-                  <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[rgba(26,26,24,0.4)] mb-[3px]">Dietary</div>
-                  <div className="flex gap-1.5 flex-wrap">
-                    {item.dietary.vegetarian && <span className="font-body text-[11px] font-semibold text-sea-glass px-2 py-0.5" style={{ background: `${'#5a9e8a'}15` }}>vegetarian</span>}
-                    {item.dietary.vegan && <span className="font-body text-[11px] font-semibold text-sea-glass px-2 py-0.5" style={{ background: `${'#5a9e8a'}15` }}>vegan</span>}
-                    {item.dietary.glutenFree && <span className="font-body text-[11px] font-semibold text-sea-glass px-2 py-0.5" style={{ background: `${'#5a9e8a'}15` }}>gluten-free</span>}
-                  </div>
-                  {item.dietary.notes && <div className="font-body text-[12px] font-normal text-[rgba(26,26,24,0.4)] mt-1 leading-[1.5]">{item.dietary.notes}</div>}
+                  <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[rgba(26,26,24,0.35)] mb-[2px]">Operator</div>
+                  <div className="font-body text-[13px] font-medium text-dark-ink">{item.operator}</div>
                 </div>
               )}
             </div>
           )}
 
-          {/* Accommodation info grid */}
-          {item.type === 'stay' && (item.priceRange || item.bookingWindow || item.seasonalNotes || item.groupFit) && (
-            <div className="grid grid-cols-2 gap-x-4 gap-y-2.5 mb-[18px] py-3.5 border-y border-[rgba(107,128,120,0.12)]">
-              {item.priceRange && (
-                <div>
-                  <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[rgba(26,26,24,0.4)] mb-[3px]">Price Range</div>
-                  <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.priceRange}</div>
-                </div>
-              )}
-              {item.groupFit && (
-                <div>
-                  <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[rgba(26,26,24,0.4)] mb-[3px]">Good For</div>
-                  <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.groupFit.join(', ')}</div>
-                </div>
-              )}
-              {item.bookingWindow && (
-                <div className="col-span-full">
-                  <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[rgba(26,26,24,0.4)] mb-[3px]">Booking</div>
-                  <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.bookingWindow}</div>
-                </div>
-              )}
-              {item.seasonalNotes && (
-                <div className="col-span-full">
-                  <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[rgba(26,26,24,0.4)] mb-[3px]">Season</div>
-                  <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.seasonalNotes}</div>
-                </div>
-              )}
-            </div>
-          )}
-
-          {/* Amenities */}
-          {item.type === 'stay' && item.amenities && item.amenities.length > 0 && (
-            <div className="mb-[18px]">
-              <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[rgba(26,26,24,0.4)] mb-2">Amenities</div>
-              <div className="flex gap-1.5 flex-wrap">
-                {item.amenities.map((a, i) => (
-                  <span key={i} className="font-body text-[12px] font-semibold text-ocean-teal py-[3px] px-2.5" style={{ background: `${G.accent}10` }}>{a}</span>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Tags */}
-          {item.tags && item.tags.length > 0 && (
-            <div className="flex gap-1.5 flex-wrap mb-5">
-              {item.tags.map((t, i) => (
-                <span key={i} className="font-body text-[12px] font-semibold text-[rgba(26,26,24,0.4)] py-[3px] px-2.5"
-                  style={{ background: C.stone + '60' }}>{t}</span>
-              ))}
+          {/* Phone number inline (from Google Places) */}
+          {places.phone && (
+            <div className="flex items-center gap-2 mb-3">
+              <PhoneSVG />
+              <a href={`tel:${places.phone}`} className="font-body text-[13px] font-medium text-dark-ink no-underline">{places.phone}</a>
             </div>
           )}
         </>
