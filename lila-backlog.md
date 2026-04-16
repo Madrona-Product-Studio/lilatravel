@@ -133,6 +133,7 @@ _Last updated: March 30, 2026. Living document — update as items are completed
 - [x] **Tailwind CSS migration** (Mar 29) — 46 files, -4,832 net lines, brand tokens wired, responsive breakpoints replace JS resize listeners
 
 ### Core Product
+- [x] PlanMyTrip welcome screen redesigned — marketing surface replacing three-path card layout
 - [x] PlanMyTrip onboarding flow + persona matching
 - [x] ItineraryResults — day cards, feedback, refinement, premium gate
 - [x] Practices Explorer — 43+ entries, browse + matrix views

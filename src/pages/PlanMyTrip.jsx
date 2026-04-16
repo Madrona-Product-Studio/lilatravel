@@ -648,263 +648,352 @@ function RadarChart({ values, size = 260 }) {
   );
 }
 
-// ─── Additional Welcome Screen Icons (matching Ways to Travel page) ──────────
-function IconCircleDot({ size, color }) {
-  // Matches "Plan a Trip" icon on offerings page
+// ─── Additional Welcome Screen Icons ────────────────────────────────────────
+function IconSunRays({ size, color }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 28 28" fill="none">
-      <circle cx="14" cy="14" r="11" stroke={color} strokeWidth="1.5" fill="none" />
-      <circle cx="14" cy="14" r="3.5" fill={color} stroke="none" />
-    </svg>
+    <Icon size={size} color={color}>
+      <circle cx="12" cy="12" r="4" fill={`${color}10`} />
+      {[0, 45, 90, 135, 180, 225, 270, 315].map(a => {
+        const rad = a * Math.PI / 180;
+        return <line key={a} x1={12 + Math.cos(rad) * 6} y1={12 + Math.sin(rad) * 6} x2={12 + Math.cos(rad) * 9} y2={12 + Math.sin(rad) * 9} strokeWidth="1.5" />;
+      })}
+    </Icon>
   );
 }
 
-function IconCrescent({ size, color }) {
-  // Matches "Join a Group" icon on offerings page
+function IconRefresh({ size, color }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 28 28" fill="none">
-      <path d="M18 6 A10 10 0 1 0 18 22 A7 7 0 1 1 18 6 Z" stroke={color} strokeWidth="1.5" fill="none" />
-    </svg>
+    <Icon size={size} color={color}>
+      <path d="M4 12 A8 8 0 0 1 20 12" />
+      <path d="M20 12 A8 8 0 0 1 4 12" />
+      <polyline points="4,8 4,12 8,12" />
+      <polyline points="20,16 20,12 16,12" />
+    </Icon>
   );
 }
 
-function IconTriangle({ size, color }) {
-  // Matches "Designed for You" icon on offerings page
+function IconCalendar({ size, color }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 28 28" fill="none">
-      <path d="M4 20 L14 6 L24 20" stroke={color} strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
+    <Icon size={size} color={color}>
+      <rect x="4" y="5" width="16" height="16" rx="1" fill={`${color}08`} />
+      <line x1="4" y1="10" x2="20" y2="10" />
+      <line x1="8" y1="3" x2="8" y2="7" />
+      <line x1="16" y1="3" x2="16" y2="7" />
+    </Icon>
   );
 }
 
-function IconArrowRight({ size = 16, color = C.white }) {
+function IconShare({ size, color }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 16 16" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <line x1="3" y1="8" x2="13" y2="8" />
-      <polyline points="9,4 13,8 9,12" />
-    </svg>
+    <Icon size={size} color={color}>
+      <circle cx="6" cy="12" r="2.5" fill={`${color}10`} />
+      <circle cx="18" cy="6" r="2.5" fill={`${color}10`} />
+      <circle cx="18" cy="18" r="2.5" fill={`${color}10`} />
+      <line x1="8.2" y1="10.8" x2="15.8" y2="7.2" />
+      <line x1="8.2" y1="13.2" x2="15.8" y2="16.8" />
+    </Icon>
   );
 }
 
-// ─── Welcome Path Card ──────────────────────────────────────────────────────
-function WelcomePathCard({ icon: IconComp, title, subtitle, description, buttonLabel, isPrimary, tag, tagColor, delay, visible, onClick }) {
-  const [hovered, setHovered] = useState(false);
+function IconBolt({ size, color }) {
   return (
-    <div
-      onClick={onClick}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      className="relative bg-white cursor-pointer"
-      style={{
-        /* dynamic */
-        border: isPrimary ? `2px solid ${C.sage}30` : `1px solid ${C.sage}15`,
-        borderRadius: 2,
-        padding: isPrimary ? "32px 28px 28px" : "24px 24px 22px",
-        transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
-        opacity: visible ? 1 : 0,
-        transform: visible ? (hovered ? "translateY(-2px)" : "translateY(0)") : "translateY(16px)",
-        transitionDelay: visible ? `${delay}ms` : "0ms",
-        boxShadow: isPrimary
-          ? (hovered ? `0 12px 48px ${C.sage}18, 0 4px 12px ${C.sage}10` : `0 8px 40px ${C.sage}12, 0 2px 8px ${C.sage}08`)
-          : (hovered ? `0 6px 24px ${C.sage}12` : `0 2px 12px ${C.sage}06`),
-      }}
-    >
-      {tag && (
-        <div className="absolute font-body text-[11px] font-bold tracking-[0.15em] uppercase" style={{
-          top: -10, left: 24,
-          background: tagColor || C.oceanTeal,
-          color: C.white,
-          padding: "4px 14px", borderRadius: 20,
-        }}>{tag}</div>
-      )}
-      <div className="flex items-start" style={{ gap: isPrimary ? 20 : 16 }}>
-        <div className="flex items-center justify-center shrink-0" style={{
-          /* dynamic */
-          width: isPrimary ? 52 : 44, height: isPrimary ? 52 : 44,
-          borderRadius: 14,
-          background: isPrimary ? `${C.oceanTeal}10` : `${C.sage}08`,
-        }}>
-          <IconComp size={isPrimary ? 26 : 22} color={isPrimary ? C.oceanTeal : C.sage} />
-        </div>
-        <div className="flex-1 min-w-0">
-          <div className="font-body text-[11px] font-bold tracking-[0.2em] uppercase mb-1" style={{
-            /* dynamic */
-            color: isPrimary ? C.oceanTeal : `${C.sage}AA`,
-          }}>{subtitle}</div>
-          <h3 className="font-serif font-normal leading-[1.2] text-dark-ink" style={{
-            /* dynamic */
-            fontSize: isPrimary ? "clamp(22px, 5vw, 26px)" : "clamp(18px, 4.5vw, 22px)",
-            margin: "2px 0 0",
-          }}>{title}</h3>
-          <p className="font-body font-normal leading-[1.55]" style={{
-            /* dynamic */
-            fontSize: isPrimary ? 14 : 13,
-            color: `${C.slate}99`,
-            margin: "8px 0 0",
-          }}>{description}</p>
-          <div style={{ marginTop: isPrimary ? 20 : 14 }}>
-            <span className="inline-flex items-center gap-2 font-body text-[13px] font-bold tracking-[0.12em] uppercase" style={{
-              /* dynamic */
-              ...(isPrimary ? {
-                background: "none",
-                color: C.oceanTeal,
-                padding: "11px 28px",
-                border: `1.5px solid ${C.oceanTeal}`,
-                borderRadius: 2,
-              } : {
-                background: "none",
-                color: C.sage,
-                padding: 0,
-              }),
-            }}>
-              {buttonLabel}
-              <IconArrowRight size={14} color={isPrimary ? C.oceanTeal : C.sage} />
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
+    <Icon size={size} color={color}>
+      <path d="M13 2 L5 14 L11 14 L11 22 L19 10 L13 10 Z" fill={`${color}10`} />
+    </Icon>
   );
 }
+
+function IconChevronDown({ size, color }) {
+  return (
+    <Icon size={size} color={color}>
+      <polyline points="6,9 12,15 18,9" />
+    </Icon>
+  );
+}
+
+function IconClose({ size, color }) {
+  return (
+    <Icon size={size} color={color}>
+      <line x1="6" y1="6" x2="18" y2="18" />
+      <line x1="18" y1="6" x2="6" y2="18" />
+    </Icon>
+  );
+}
+
+// ─── Data Sources Config ────────────────────────────────────────────────────
+const DATA_SOURCES = [
+  { name: "National Park Service", desc: "Live trail alerts, closures, campground availability, and events", color: C.seaGlass },
+  { name: "Open-Meteo", desc: "Real-time weather forecasts, sunrise/sunset times, seasonal patterns", color: C.skyBlue },
+  { name: "Lunar & celestial calendar", desc: "Moon phase and rise/set, Milky Way windows, golden hour", color: C.goldenAmber },
+  { name: "Astronomy API", desc: "Planet positions, meteor shower calendars, Bortle dark sky ratings", color: C.slateLight },
+  { name: "NOAA Tides & Currents", desc: "Tide predictions for coastal destinations — Big Sur, Olympic, Kauaʻi", color: C.oceanTeal },
+  { name: "USGS Water Services", desc: "River flow and water temp — live conditions for Zion's Virgin River", color: C.sunSalmon },
+  { name: "Google Places", desc: "Curated local restaurants, lodging, and experiences with live hours", color: C.sage },
+  { name: "iNaturalist", desc: "Wildlife sighting data — species spotted near your destination", color: C.seaGlass },
+  { name: "43 wisdom practices", desc: "Yoga, Buddhism, Taoism, Shinto, Stoicism — woven in as quiet cues", color: C.goldenAmber },
+];
+
+const SCROLLING_SOURCES = ["NPS", "Weather", "Tides", "River data", "Google Places", "Wildlife", "Astronomy"];
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // STEPS
 // ═══════════════════════════════════════════════════════════════════════════════
 
 function StepWelcome({ onNext }) {
-  const navigate = useNavigate();
   const [visible, setVisible] = useState(false);
+  const [sourcesOpen, setSourcesOpen] = useState(false);
   useEffect(() => { setTimeout(() => setVisible(true), 100); }, []);
+
+  const sectionStyle = (delay) => ({
+    opacity: visible ? 1 : 0,
+    transform: visible ? "translateY(0)" : "translateY(16px)",
+    transition: "all 0.8s cubic-bezier(0.4, 0, 0.2, 1)",
+    transitionDelay: visible ? `${delay}ms` : "0ms",
+  });
+
+  const stripMargin = 14;
+
   return (
-    <div className="flex flex-col items-center min-h-screen text-center" style={{
-      padding: "min(10vh, 120px) 20px 40px",
-    }}>
-      {/* Hero */}
-      <div style={{
-        /* dynamic */
-        opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(20px)",
-        transition: "all 0.8s cubic-bezier(0.4, 0, 0.2, 1)",
-        marginBottom: 8,
+    <div className="flex flex-col min-h-screen" style={{ background: C.cream }}>
+      {/* Hero — centered, takes available space */}
+      <div className="flex-1 flex flex-col items-center justify-center text-center" style={{
+        padding: "0 24px",
+        ...sectionStyle(0),
       }}>
-        <div className="mb-2.5 flex justify-center" style={{ opacity: 0.45 }}>
-          <IconEnso size={32} color={C.sage} />
+        <div className="mb-3" style={{ opacity: 0.4 }}>
+          <IconEnso size={24} color={C.sage} />
         </div>
-        <h1 className="font-serif text-[clamp(32px,7.5vw,42px)] font-light leading-[1.15] text-dark-ink max-w-[460px] mx-auto" style={{
-          marginBottom: 16,
-        }}>Let's design<br />your journey</h1>
+        <h1 className="font-serif font-light leading-[1.15] text-dark-ink" style={{
+          fontSize: "clamp(30px, 7vw, 40px)",
+          margin: "0 0 14px",
+        }}>
+          Travel deeper.<br />Built entirely for you.
+        </h1>
+        <p className="font-body font-normal leading-[1.6] mx-auto" style={{
+          fontSize: "clamp(12px, 3vw, 13px)",
+          color: `${C.slate}99`,
+          maxWidth: 340,
+          margin: "0 0 28px",
+        }}>
+          Tell us how you want to feel. Live wilderness data, celestial timing, and 43 wisdom practices come together in one itinerary shaped around you — and it stays alive as your trip takes shape.
+        </p>
+        <button onClick={onNext} className="font-body text-[13px] font-bold tracking-[0.12em] uppercase cursor-pointer" style={{
+          background: "none",
+          color: C.oceanTeal,
+          border: `1.5px solid ${C.oceanTeal}`,
+          borderRadius: 2,
+          padding: "12px 32px",
+        }}>
+          Begin your trip →
+        </button>
       </div>
 
-      {/* Three paths */}
-      <div className="flex flex-col gap-4 mt-6 w-full max-w-[520px]">
-        {/* PRIMARY: DIY Path */}
-        <WelcomePathCard
-          icon={IconCircleDot}
-          subtitle="Self-Guided"
-          title="Plan My Own Trip"
-          description="Answer a few questions about what you're seeking and we'll craft a personalized itinerary — complete with trails, wellness practices, timing, and local picks."
-          buttonLabel="Design Your Trip"
-          isPrimary={true}
-          tag="Beta"
-          tagColor={C.oceanTeal}
-          delay={200}
-          visible={visible}
-          onClick={onNext}
-        />
-
-        {/* SECONDARY ROW */}
-        <div className="grid grid-cols-2 gap-3">
-          {/* Group Trips */}
+      {/* Four-feature strip */}
+      <div style={{
+        margin: `0 ${stripMargin}px`,
+        ...sectionStyle(150),
+      }}>
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(4, 1fr)",
+          gap: 1,
+          background: C.sage,
+          borderRadius: 0,
+        }}>
           {[
-            {
-              icon: IconCrescent, color: C.sunSalmon, eyebrow: "Join a Group",
-              title: "Explore Group Trips",
-              desc: "Join others on curated Threshold Trips timed to nature's crescendos.",
-              cta: "View Trips", delay: "350ms",
-              onClick: () => navigate('/group-trips'),
-            },
-            {
-              icon: IconTriangle, color: C.goldenAmber, eyebrow: "Designed for You",
-              title: "Expert Planning",
-              desc: "Work with a trip designer to build something completely bespoke.",
-              cta: "Learn More", delay: "450ms",
-              onClick: () => navigate('/contact'),
-            },
-          ].map((card) => {
-            const Ic = card.icon;
+            { icon: IconMountain, color: C.oceanTeal, label: "Day-by-day arc", desc: "Morning to evening, shaped to your pace" },
+            { icon: IconSunRays, color: C.goldenAmber, label: "Celestial timing", desc: "Moon phase, Milky Way, golden hour" },
+            { icon: IconUnalome, color: C.sage, label: "Woven practices", desc: "43 practices across five traditions" },
+            { icon: IconStars, color: C.goldenAmber, label: "Your archetype", desc: "Five traveler profiles shape every call" },
+          ].map((f) => {
+            const Ic = f.icon;
             return (
-              <div key={card.eyebrow}
-                onClick={card.onClick}
-                className="relative bg-white cursor-pointer text-center"
-                style={{
-                  /* dynamic */
-                  border: `1px solid ${C.sage}15`,
-                  borderRadius: 2,
-                  padding: "22px 20px",
-                  transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
-                  opacity: visible ? 1 : 0,
-                  transform: visible ? "translateY(0)" : "translateY(16px)",
-                  transitionDelay: card.delay,
-                  boxShadow: `0 2px 12px ${C.sage}06`,
-                }}
-              >
-                <div className="absolute font-body text-[9px] font-bold tracking-[0.12em] uppercase bg-white" style={{
-                  top: -9, left: "50%", transform: "translateX(-50%)",
-                  color: "#aab0b8",
-                  border: "1px solid #d0d5d9",
-                  padding: "3px 7px",
-                }}>In Dev</div>
-                <div className="flex items-center justify-center mx-auto mb-3.5" style={{
-                  /* dynamic */
-                  width: 44, height: 44, borderRadius: 12,
-                  background: `${card.color}10`,
-                }}>
-                  <Ic size={22} color={card.color} />
+              <div key={f.label} style={{
+                background: C.cream,
+                padding: "14px 8px",
+                textAlign: "center",
+              }}>
+                <div className="flex justify-center mb-1.5">
+                  <Ic size={16} color={f.color} />
                 </div>
-                <div className="font-body text-[11px] font-bold tracking-[0.18em] uppercase mb-1.5" style={{
-                  color: card.color,
-                }}>{card.eyebrow}</div>
-                <h3 className="font-serif text-[clamp(17px,4vw,20px)] font-normal leading-[1.2] text-dark-ink m-0">{card.title}</h3>
-                <p className="font-body text-[13px] font-normal leading-[1.5]" style={{
-                  color: `${C.slate}99`,
-                  margin: "8px 0 0",
-                }}>{card.desc}</p>
-                <div className="mt-3.5 inline-flex items-center gap-1.5 font-body text-[12px] font-bold tracking-[0.1em] uppercase" style={{
-                  color: card.color,
-                }}>
-                  {card.cta} <IconArrowRight size={12} color={card.color} />
-                </div>
+                <div className="font-body text-[10px] font-bold tracking-[0.08em] uppercase" style={{
+                  color: C.slate,
+                  marginBottom: 3,
+                }}>{f.label}</div>
+                <div className="font-body text-[10px] font-normal leading-[1.4]" style={{
+                  color: `${C.slate}88`,
+                }}>{f.desc}</div>
               </div>
             );
           })}
         </div>
       </div>
 
-      {/* Trust bar */}
-      <div className="pt-5 mt-6 w-full max-w-[520px] text-center" style={{
-        /* dynamic */
-        opacity: visible ? 1 : 0,
-        transition: "opacity 0.8s 0.6s",
-        borderTop: `1px solid ${C.sage}12`,
-      }}>
-        <div className="font-body text-[11px] font-semibold tracking-[0.18em] uppercase mb-3" style={{
+      {/* Powered by row */}
+      <button
+        onClick={() => setSourcesOpen(true)}
+        className="flex items-center cursor-pointer"
+        style={{
+          margin: `1px ${stripMargin}px 0`,
+          padding: "12px 14px",
+          background: C.cream,
+          border: `1px solid ${C.sage}15`,
+          borderTop: "none",
+          borderRadius: 0,
+          ...sectionStyle(300),
+        }}
+      >
+        <IconBolt size={14} color={C.sage} />
+        <span className="font-body text-[10px] font-bold tracking-[0.15em] uppercase shrink-0" style={{
           color: `${C.sage}99`,
-        }}>Powered by</div>
-        <div className="flex flex-wrap justify-center gap-[6px_16px]">
+          marginLeft: 6,
+          marginRight: 8,
+        }}>Powered by</span>
+        <div className="flex-1 overflow-hidden" style={{ position: "relative" }}>
+          <div className="flex gap-3" style={{
+            animation: "welcomeScroll 12s linear infinite",
+            whiteSpace: "nowrap",
+          }}>
+            {[...SCROLLING_SOURCES, ...SCROLLING_SOURCES].map((s, i) => (
+              <span key={i} className="font-body text-[11px] font-normal" style={{
+                color: `${C.slate}77`,
+              }}>{s}</span>
+            ))}
+          </div>
+        </div>
+        <IconChevronDown size={14} color={`${C.sage}88`} />
+      </button>
+      <style>{`
+        @keyframes welcomeScroll {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+      `}</style>
+
+      {/* Living itinerary strip */}
+      <div style={{
+        margin: `12px ${stripMargin}px 0`,
+        ...sectionStyle(450),
+      }}>
+        <div className="font-body text-[9px] font-bold tracking-[0.2em] uppercase" style={{
+          color: `${C.sage}88`,
+          marginBottom: 6,
+          paddingLeft: 2,
+        }}>A living itinerary</div>
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(3, 1fr)",
+          gap: 1,
+          background: C.sage,
+        }}>
           {[
-            "National Park Service Data",
-            "Real-Time Weather",
-            "Lunar Cycle Timing",
-            "Local Partner Network",
-          ].map(item => (
-            <span key={item} className="font-body text-[12px] font-medium flex items-center gap-[5px]" style={{
-              color: `${C.slate}99`,
-            }}>
-              <span className="shrink-0" style={{ width: 3, height: 3, borderRadius: "50%", background: `${C.oceanTeal}40` }} />
-              {item}
-            </span>
-          ))}
+            { icon: IconRefresh, label: "Refine", desc: "Like or dislike anything. Regenerates around your feedback." },
+            { icon: IconCalendar, label: "Add logistics", desc: "Flights and hotels rewrite the itinerary around hard dates." },
+            { icon: IconShare, label: "Share", desc: "Send a link. Anyone can view and add input." },
+          ].map((f) => {
+            const Ic = f.icon;
+            return (
+              <div key={f.label} style={{
+                background: C.cream,
+                padding: "14px 10px",
+                textAlign: "center",
+              }}>
+                <div className="flex justify-center mb-1.5">
+                  <Ic size={16} color={C.sage} />
+                </div>
+                <div className="font-body text-[10px] font-bold tracking-[0.08em] uppercase" style={{
+                  color: C.slate,
+                  marginBottom: 3,
+                }}>{f.label}</div>
+                <div className="font-body text-[10px] font-normal leading-[1.4]" style={{
+                  color: `${C.slate}88`,
+                }}>{f.desc}</div>
+              </div>
+            );
+          })}
         </div>
       </div>
+
+      {/* Bottom spacer */}
+      <div style={{ height: 24, ...sectionStyle(600) }} />
+
+      {/* Data sources modal */}
+      {sourcesOpen && (
+        <div
+          onClick={() => setSourcesOpen(false)}
+          style={{
+            position: "fixed",
+            inset: 0,
+            zIndex: 9999,
+            background: `${C.slate}66`,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "flex-end",
+          }}
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              background: C.cream,
+              borderRadius: 0,
+              maxHeight: "80vh",
+              overflowY: "auto",
+              padding: "28px 20px 36px",
+              animation: "sheetSlideUp 0.3s ease-out",
+            }}
+          >
+            <div className="flex items-start justify-between" style={{ marginBottom: 20 }}>
+              <div>
+                <div className="font-body text-[10px] font-bold tracking-[0.2em] uppercase" style={{
+                  color: `${C.sage}99`,
+                  marginBottom: 6,
+                }}>What powers your trip</div>
+                <h2 className="font-serif font-light text-dark-ink" style={{
+                  fontSize: "clamp(22px, 5vw, 28px)",
+                  margin: 0,
+                  lineHeight: 1.2,
+                }}>Live data sources</h2>
+              </div>
+              <button onClick={() => setSourcesOpen(false)} className="cursor-pointer" style={{
+                background: "none",
+                border: "none",
+                padding: 4,
+                marginTop: -4,
+              }}>
+                <IconClose size={20} color={C.sage} />
+              </button>
+            </div>
+            <div className="flex flex-col" style={{ gap: 16 }}>
+              {DATA_SOURCES.map((src) => (
+                <div key={src.name} className="flex items-start" style={{ gap: 12 }}>
+                  <span className="shrink-0" style={{
+                    width: 7,
+                    height: 7,
+                    borderRadius: "50%",
+                    background: src.color,
+                    marginTop: 5,
+                  }} />
+                  <div>
+                    <div className="font-body text-[13px] font-semibold" style={{
+                      color: C.slate,
+                      marginBottom: 2,
+                    }}>{src.name}</div>
+                    <div className="font-body text-[12px] font-normal leading-[1.5]" style={{
+                      color: `${C.slate}99`,
+                    }}>{src.desc}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <style>{`
+            @keyframes sheetSlideUp {
+              from { transform: translateY(100%); }
+              to { transform: translateY(0); }
+            }
+          `}</style>
+        </div>
+      )}
     </div>
   );
 }
