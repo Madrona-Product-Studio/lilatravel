@@ -1,6 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import SubGuideLayout from '@components/guide/SubGuideLayout';
 import { SubLabel, Prose, EditorialList } from '@components/guide';
+import NightSkyWidget from '@components/guide/NightSkyWidget';
 import events from '../../../data/events/zion.json';
 
 const SKY_FACTS = [
@@ -36,6 +37,9 @@ export default function ZionNightSky() {
           The Milky Way is visible to the naked eye from all three parks on clear moonless nights. At Bryce Canyon, over 7,500 stars are visible — more than anywhere else in the lower 48. The best viewing is June through September, when the galactic core passes directly overhead and the nights are warm enough to stay out.
         </Prose>
 
+        <NightSkyWidget />
+
+        <SubLabel>Dark Sky Sites</SubLabel>
         <EditorialList items={SKY_FACTS} />
 
         <SubLabel>Programs</SubLabel>

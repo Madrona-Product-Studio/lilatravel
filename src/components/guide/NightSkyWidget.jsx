@@ -1,17 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { C, FONTS } from '@data/brand';
+import { useState, useEffect } from 'react';
+import { G, FONTS } from '@data/guides/guide-styles';
 import useNightSky from '../../hooks/useNightSky';
 
-// ─── Colors ──────────────────────────────────────────────────────────────────
-const DARK = '#1a1a18';
-const LINEN = '#E8E0D5';
-const TEAL = '#7BAAB0';
-const AMBER = '#C9A06A';
-const WARM = '#C9856A';
-const LABEL = '#999';
-const DIVIDER = '#ccc5bc';
-
-// ─── Moon SVG ────────────────────────────────────────────────────────────────
 function MoonSVG({ age, illumination }) {
   const r = 34, cx = 40, cy = 40;
   const waxing = age < 14.77;
@@ -20,7 +10,7 @@ function MoonSVG({ age, illumination }) {
   const rx = Math.max(0.5, Math.abs(k) * r);
   const d = `M ${cx} ${cy - r} A ${r} ${r} 0 0 ${waxing ? 1 : 0} ${cx} ${cy + r} A ${rx} ${r} 0 0 ${k >= 0 ? (waxing ? 0 : 1) : (waxing ? 1 : 0)} ${cx} ${cy - r} Z`;
   return (
-    <svg viewBox="0 0 80 80" style={{ width: 80, height: 80 }}>
+    <svg viewBox="0 0 80 80" style={{ width: 72, height: 72 }}>
       <circle cx={cx} cy={cy} r={r} fill="#2a2a28" />
       <path d={d} fill="#E8E0D5" opacity={0.9} />
       <circle cx={cx} cy={cy} r={r} fill="none" stroke="#444" strokeWidth={0.5} />
@@ -28,24 +18,11 @@ function MoonSVG({ age, illumination }) {
   );
 }
 
-// ─── Pulsing Dot Keyframes (injected once) ───────────────────────────────────
-const PULSE_ID = 'nightsky-pulse-style';
-function ensurePulseStyle() {
-  if (typeof document === 'undefined') return;
-  if (document.getElementById(PULSE_ID)) return;
-  const style = document.createElement('style');
-  style.id = PULSE_ID;
-  style.textContent = `@keyframes nightsky-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }`;
-  document.head.appendChild(style);
-}
-
-// ─── Component ───────────────────────────────────────────────────────────────
 export default function NightSkyWidget() {
   const sky = useNightSky();
   const [mobile, setMobile] = useState(false);
 
   useEffect(() => {
-    ensurePulseStyle();
     const check = () => setMobile(window.innerWidth < 640);
     check();
     window.addEventListener('resize', check);
@@ -55,7 +32,6 @@ export default function NightSkyWidget() {
   const dash = '\u2014';
   const today = new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
 
-  // Shorthand accessors with loading fallback
   const mp = sky.moonPhase;
   const planets = sky.planets || [];
   const mw = sky.milkyWay;
@@ -63,198 +39,177 @@ export default function NightSkyWidget() {
   const rating = sky.stargazingRating;
   const showers = sky.showers;
 
+  // Consistent label style
+  const labelStyle = { fontFamily: FONTS.body, fontSize: 10, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: G.ink40, marginBottom: 3 };
+  const valueStyle = { fontFamily: FONTS.body, fontSize: 13, fontWeight: 500, color: G.ink };
+
   return (
-    <div style={{ background: '#F0EBE3', padding: '32px 28px 40px', maxWidth: 680 }}>
-
-      {/* Section label */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 8 }}>
-        <span style={{ fontFamily: FONTS.body, fontSize: 11, fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: LABEL, whiteSpace: 'nowrap' }}>
-          Night Sky
-        </span>
-        <div style={{ flex: 1, height: 1, background: DIVIDER }} />
-      </div>
-
-      {/* Title */}
-      <h2 style={{ fontFamily: FONTS.serif, fontSize: 32, fontWeight: 400, color: DARK, margin: '0 0 6px', lineHeight: 1.15 }}>
-        Tonight Over Zion
-      </h2>
+    <div style={{ margin: '24px 0 28px' }}>
 
       {/* Live badge */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 24 }}>
-        <span style={{
-          width: 7, height: 7, borderRadius: '50%', background: TEAL, display: 'inline-block',
-          animation: 'nightsky-pulse 2s ease-in-out infinite',
-        }} />
-        <span style={{ fontFamily: FONTS.body, fontSize: 11, color: TEAL, fontWeight: 500, letterSpacing: '0.04em' }}>
-          LIVE
+      <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 16 }}>
+        <style>{`@keyframes nightsky-pulse{0%,100%{opacity:1}50%{opacity:0.3}}`}</style>
+        <span style={{ width: 6, height: 6, borderRadius: '50%', background: G.oceanTeal, animation: 'nightsky-pulse 2s ease-in-out infinite' }} />
+        <span style={{ fontFamily: FONTS.body, fontSize: 10, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: G.oceanTeal }}>
+          Live Conditions
         </span>
       </div>
 
-      {/* Top grid */}
-      <div style={{ display: 'grid', gridTemplateColumns: mobile ? '1fr' : '1fr 1fr', gap: 16, marginBottom: 16 }}>
+      {/* Top grid: Moon + Conditions */}
+      <div style={{ display: 'grid', gridTemplateColumns: mobile ? '1fr' : '1fr 1fr', gap: 2, marginBottom: 2 }}>
 
         {/* Moon card */}
-        <div style={{ background: DARK, padding: '24px 20px', display: 'flex', alignItems: 'center', gap: 18 }}>
+        <div style={{ background: G.darkInk, padding: '20px', display: 'flex', alignItems: 'center', gap: 16 }}>
           <div style={{ flexShrink: 0 }}>
             {mp?.svgUrl ? (
-              <img src={mp.svgUrl} alt="Moon phase" style={{ width: 80, height: 80 }} />
+              <img src={mp.svgUrl} alt="Moon phase" style={{ width: 72, height: 72 }} />
             ) : mp ? (
               <MoonSVG age={mp.age} illumination={mp.illumination} />
             ) : (
-              <div style={{ width: 80, height: 80, background: '#2a2a28', borderRadius: '50%' }} />
+              <div style={{ width: 72, height: 72, background: '#2a2a28' }} />
             )}
           </div>
           <div>
-            <div style={{ fontFamily: FONTS.serif, fontSize: 22, color: LINEN, lineHeight: 1.2, marginBottom: 4 }}>
+            <div style={{ fontFamily: FONTS.serif, fontSize: 20, fontWeight: 300, color: '#E8E0D5', lineHeight: 1.2, marginBottom: 3 }}>
               {mp ? mp.name : dash}
             </div>
-            <div style={{ fontFamily: FONTS.body, fontSize: 13, color: LABEL }}>
+            <div style={{ fontFamily: FONTS.body, fontSize: 12, fontWeight: 400, color: 'rgba(232,224,213,0.55)' }}>
               {mp ? `${mp.illumination}% illuminated` : dash}
             </div>
           </div>
         </div>
 
         {/* Conditions card */}
-        <div style={{ background: LINEN, padding: '20px 20px' }}>
+        <div style={{ background: '#E8E0D5', padding: '16px 20px' }}>
           <div style={{ marginBottom: 10 }}>
-            <div style={{ fontFamily: FONTS.body, fontSize: 10, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: LABEL, marginBottom: 3 }}>Stargazing</div>
+            <div style={labelStyle}>Stargazing</div>
             <div style={{
-              fontFamily: FONTS.serif, fontSize: 20, fontWeight: 400,
-              color: rating?.quality === 'good' ? TEAL : rating?.quality === 'warn' ? WARM : DARK,
+              fontFamily: FONTS.serif, fontSize: 18, fontWeight: 300,
+              color: rating?.quality === 'good' ? G.oceanTeal : rating?.quality === 'warn' ? '#C9856A' : G.ink,
             }}>
               {rating ? rating.label : dash}
             </div>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px 16px' }}>
+          <div style={{ height: '0.5px', background: G.border, margin: '8px 0' }} />
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6px 16px' }}>
             <div>
-              <div style={{ fontFamily: FONTS.body, fontSize: 10, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: LABEL, marginBottom: 2 }}>MW Core</div>
-              <div style={{ fontFamily: FONTS.body, fontSize: 13, color: DARK }}>{mw ? mw.status : dash}</div>
+              <div style={labelStyle}>MW Core</div>
+              <div style={valueStyle}>{mw ? mw.status : dash}</div>
             </div>
             <div>
-              <div style={{ fontFamily: FONTS.body, fontSize: 10, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: LABEL, marginBottom: 2 }}>Moonrise</div>
-              <div style={{ fontFamily: FONTS.body, fontSize: 13, color: DARK }}>{sky.moonrise || dash}</div>
+              <div style={labelStyle}>Moonrise</div>
+              <div style={valueStyle}>{sky.moonrise || dash}</div>
             </div>
             <div style={{ gridColumn: '1 / -1' }}>
-              <div style={{ fontFamily: FONTS.body, fontSize: 10, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: LABEL, marginBottom: 2 }}>Best Window</div>
-              <div style={{ fontFamily: FONTS.body, fontSize: 13, color: DARK }}>{sky.bestWindow || dash}</div>
+              <div style={labelStyle}>Best Window</div>
+              <div style={valueStyle}>{sky.bestWindow || dash}</div>
             </div>
           </div>
         </div>
       </div>
 
       {/* Planets */}
-      <div style={{ background: LINEN, padding: '20px 20px', marginBottom: 16 }}>
-        <div style={{ fontFamily: FONTS.body, fontSize: 10, fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: LABEL, marginBottom: 14 }}>
-          Planets Tonight
-        </div>
+      <div style={{ background: '#E8E0D5', padding: '16px 20px', marginTop: 2 }}>
+        <div style={{ ...labelStyle, marginBottom: 10 }}>Planets Tonight</div>
         {planets.length === 0 ? (
-          <div style={{ fontFamily: FONTS.body, fontSize: 13, color: LABEL }}>{dash}</div>
+          <div style={valueStyle}>{dash}</div>
         ) : planets.map((p, i) => (
           <div key={p.name} style={{
-            display: 'grid', gridTemplateColumns: '70px 1fr 50px 36px auto', alignItems: 'center', gap: 10,
-            padding: '7px 0',
-            borderTop: i > 0 ? `1px solid ${DIVIDER}` : 'none',
+            display: 'grid', gridTemplateColumns: '68px 1fr 40px 28px auto', alignItems: 'center', gap: 8,
+            padding: '6px 0',
+            borderTop: i > 0 ? `0.5px solid ${G.border}` : 'none',
           }}>
-            <span style={{ fontFamily: FONTS.body, fontSize: 13, fontWeight: 600, color: DARK }}>{p.name}</span>
-            <div style={{ height: 4, background: '#ddd7ce', position: 'relative' }}>
+            <span style={{ fontFamily: FONTS.body, fontSize: 13, fontWeight: 600, color: G.ink }}>{p.name}</span>
+            <div style={{ height: 3, background: G.border, position: 'relative' }}>
               <div style={{
                 position: 'absolute', left: 0, top: 0, height: '100%',
-                width: `${Math.max(0, Math.min(100, ((p.altitude + 10) / 100) * 100))}%`,
-                background: p.bright ? AMBER : TEAL,
+                width: `${p.visible ? Math.max(4, Math.min(100, (p.altitude / 90) * 100)) : 0}%`,
+                background: p.bright ? G.goldenAmber : G.oceanTeal,
               }} />
             </div>
-            <span style={{ fontFamily: FONTS.body, fontSize: 12, color: DARK, textAlign: 'right' }}>{p.altitude}&deg;</span>
-            <span style={{ fontFamily: FONTS.body, fontSize: 11, color: LABEL, textAlign: 'center' }}>{p.direction}</span>
+            <span style={{ fontFamily: FONTS.body, fontSize: 11, color: G.ink40, textAlign: 'right' }}>{p.visible ? p.altitude + '°' : dash}</span>
+            <span style={{ fontFamily: FONTS.body, fontSize: 11, color: G.ink40, textAlign: 'center' }}>{p.visible ? p.direction : ''}</span>
             <span style={{
-              fontFamily: FONTS.body, fontSize: 10, fontWeight: 600, letterSpacing: '0.04em',
-              color: p.visible ? (p.bright ? AMBER : TEAL) : LABEL,
+              fontFamily: FONTS.body, fontSize: 10, fontWeight: 700, letterSpacing: '0.06em',
+              color: p.visible ? (p.bright ? G.goldenAmber : G.oceanTeal) : G.ink25,
             }}>
-              {p.visible ? (p.bright ? 'BRIGHT' : 'VISIBLE') : 'SET'}
+              {p.visible ? (p.bright ? 'Bright' : 'Visible') : 'Below horizon'}
             </span>
           </div>
         ))}
       </div>
 
-      {/* Milky Way block */}
-      <div style={{ background: DARK, padding: '22px 20px', marginBottom: 16, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+      {/* Milky Way */}
+      <div style={{ background: G.darkInk, padding: '18px 20px', marginTop: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
         <div style={{ flex: 1 }}>
-          <div style={{ fontFamily: FONTS.body, fontSize: 10, fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: LABEL, marginBottom: 6 }}>
+          <div style={{ fontFamily: FONTS.body, fontSize: 10, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(232,224,213,0.4)', marginBottom: 4 }}>
             Milky Way Core
           </div>
-          <div style={{ fontFamily: FONTS.serif, fontSize: 22, color: LINEN, marginBottom: 4 }}>
+          <div style={{ fontFamily: FONTS.serif, fontSize: 20, fontWeight: 300, color: '#E8E0D5', marginBottom: 3 }}>
             {mw ? mw.status : dash}
           </div>
-          <div style={{ fontFamily: FONTS.body, fontSize: 12, color: LABEL, lineHeight: 1.5, maxWidth: 360 }}>
+          <div style={{ fontFamily: FONTS.body, fontSize: 12, fontWeight: 400, color: 'rgba(232,224,213,0.5)', lineHeight: 1.5, maxWidth: 340 }}>
             {mw ? mw.note : dash}
           </div>
         </div>
         <div style={{ textAlign: 'right', flexShrink: 0, paddingLeft: 16 }}>
-          <div style={{ fontFamily: FONTS.serif, fontSize: 36, color: LINEN, lineHeight: 1 }}>
+          <div style={{ fontFamily: FONTS.serif, fontSize: 32, fontWeight: 300, color: G.goldenAmber, lineHeight: 1 }}>
             {mw ? mw.score : dash}
           </div>
-          <div style={{ fontFamily: FONTS.body, fontSize: 11, color: LABEL }}>/10</div>
+          <div style={{ fontFamily: FONTS.body, fontSize: 10, color: 'rgba(232,224,213,0.35)' }}>/ 10</div>
         </div>
       </div>
 
-      {/* Next new moon */}
-      <div style={{ background: LINEN, padding: '16px 20px', marginBottom: 16, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <div>
-          <div style={{ fontFamily: FONTS.body, fontSize: 10, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: LABEL, marginBottom: 3 }}>
-            Next New Moon
-          </div>
-          <div style={{ fontFamily: FONTS.body, fontSize: 14, color: DARK }}>
-            {nn ? nn.date : dash}
-          </div>
-        </div>
-        <div style={{ fontFamily: FONTS.serif, fontSize: 24, color: DARK }}>
-          {nn ? `${nn.daysAway}d` : dash}
-        </div>
-      </div>
-
-      {/* Meteor shower */}
-      {showers?.next && (
-        <div style={{ background: LINEN, padding: '16px 20px', marginBottom: 16, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      {/* Next new moon + Meteor shower row */}
+      <div style={{ display: 'grid', gridTemplateColumns: showers?.next ? '1fr 1fr' : '1fr', gap: 2, marginTop: 2 }}>
+        <div style={{ background: '#E8E0D5', padding: '14px 20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div>
-            <div style={{ fontFamily: FONTS.body, fontSize: 10, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: LABEL, marginBottom: 3 }}>
-              {showers.active ? 'Active Shower' : 'Next Meteor Shower'}
-            </div>
-            <div style={{ fontFamily: FONTS.body, fontSize: 14, color: DARK, fontWeight: 600 }}>
-              {showers.next.name}
-            </div>
-            <div style={{ fontFamily: FONTS.body, fontSize: 12, color: LABEL, marginTop: 2 }}>
-              {showers.next.date} &middot; {showers.next.rate} &middot; {showers.next.note}
-            </div>
+            <div style={labelStyle}>Next New Moon</div>
+            <div style={valueStyle}>{nn ? nn.date : dash}</div>
           </div>
-          <div style={{ fontFamily: FONTS.serif, fontSize: 24, color: showers.active ? AMBER : DARK, flexShrink: 0, paddingLeft: 16 }}>
-            {showers.active ? 'NOW' : `${showers.next.daysAway}d`}
+          <div style={{ fontFamily: FONTS.serif, fontSize: 22, fontWeight: 300, color: G.ink }}>
+            {nn ? `${nn.daysAway}d` : dash}
           </div>
         </div>
-      )}
+
+        {showers?.next && (
+          <div style={{ background: '#E8E0D5', padding: '14px 20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <div>
+              <div style={labelStyle}>{showers.active ? 'Active Shower' : 'Next Shower'}</div>
+              <div style={{ ...valueStyle, fontWeight: 600 }}>{showers.next.name}</div>
+              <div style={{ fontFamily: FONTS.body, fontSize: 11, color: G.ink40, marginTop: 1 }}>{showers.next.rate}</div>
+            </div>
+            <div style={{ fontFamily: FONTS.serif, fontSize: 22, fontWeight: 300, color: showers.active ? G.goldenAmber : G.ink }}>
+              {showers.active ? 'Now' : `${showers.next.daysAway}d`}
+            </div>
+          </div>
+        )}
+      </div>
 
       {/* Bortle comparison */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 12, marginBottom: 20 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 2, marginTop: 2 }}>
         {[
-          { name: 'Zion', bortle: 3, label: 'Class 3' },
-          { name: 'Bryce Canyon', bortle: 2, label: 'Class 2' },
-          { name: 'Capitol Reef', bortle: 2, label: 'Class 2' },
+          { name: 'Zion', bortle: 3, label: 'Class 3', color: G.goldenAmber },
+          { name: 'Bryce Canyon', bortle: 2, label: 'Class 2', color: G.oceanTeal },
+          { name: 'Capitol Reef', bortle: 2, label: 'Class 2', color: G.oceanTeal },
         ].map(site => (
-          <div key={site.name} style={{ background: DARK, padding: '16px 14px', textAlign: 'center' }}>
-            <div style={{ fontFamily: FONTS.serif, fontSize: 28, color: LINEN, lineHeight: 1, marginBottom: 4 }}>
+          <div key={site.name} style={{ background: G.darkInk, padding: '14px 12px', textAlign: 'center' }}>
+            <div style={{ fontFamily: FONTS.serif, fontSize: 26, fontWeight: 300, color: '#E8E0D5', lineHeight: 1, marginBottom: 3 }}>
               {site.bortle}
             </div>
-            <div style={{ fontFamily: FONTS.body, fontSize: 10, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: LABEL, marginBottom: 2 }}>
+            <div style={{ fontFamily: FONTS.body, fontSize: 9, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: site.color, marginBottom: 2 }}>
               {site.label}
             </div>
-            <div style={{ fontFamily: FONTS.body, fontSize: 11, color: TEAL }}>
+            <div style={{ fontFamily: FONTS.body, fontSize: 11, fontWeight: 400, color: 'rgba(232,224,213,0.55)' }}>
               {site.name}
             </div>
           </div>
         ))}
       </div>
 
-      {/* Date line */}
-      <div style={{ fontFamily: FONTS.body, fontSize: 11, color: LABEL, textAlign: 'center' }}>
-        {today}
+      {/* Date */}
+      <div style={{ fontFamily: FONTS.body, fontSize: 10, color: G.ink25, textAlign: 'right', marginTop: 12, letterSpacing: '0.04em' }}>
+        Conditions for {today}
       </div>
     </div>
   );

@@ -24,7 +24,6 @@ import { CelestialDrawer } from '@components';
 import { BREATH_CONFIG } from '@data/breathConfig';
 import useBreathCanvas from '@hooks/useBreathCanvas';
 import { PARKS, TOWNS, WILDLIFE_GROUPS } from '@data/guides/zion-constants';
-import NightSkyWidget from '@components/guide/NightSkyWidget';
 import accommodations from '../../data/accommodations/zion.json';
 import restaurants from '../../data/restaurants/zion-eat.json';
 import moveItems from '../../data/restaurants/zion-move.json';
@@ -506,8 +505,6 @@ export default function ZionGuide() {
                   <Prose>At night, the sky opens. Zion is a certified International Dark Sky Park. On a moonless night, the Milky Way arcs directly overhead between the canyon walls — framed by two thousand feet of sandstone on either side. Bring a blanket, lie down, give yourself an hour.</Prose>
                   <Prose>Bryce Canyon is one of the darkest places in the continental United States. Capitol Reef offers Bortle Class 2 skies — almost no light pollution at all.</Prose>
                 </div>
-
-                <NightSkyWidget />
 
                 <EditorialList items={[
                   { context: 'Bortle Class 3', name: 'Zion National Park', detail: 'Certified International Dark Sky Park. Best viewing from Zion Canyon Scenic Drive after the last shuttle.' },
