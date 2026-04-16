@@ -751,29 +751,28 @@ function StepWelcome({ onNext }) {
     transitionDelay: visible ? `${delay}ms` : "0ms",
   });
 
-  const stripMargin = 14;
-
   return (
     <div className="flex flex-col min-h-screen" style={{ background: C.cream }}>
       {/* Hero — centered, takes available space */}
       <div className="flex-1 flex flex-col items-center justify-center text-center" style={{
-        padding: "0 24px",
+        padding: "0 28px",
+        minHeight: "55vh",
         ...sectionStyle(0),
       }}>
-        <div className="mb-3" style={{ opacity: 0.4 }}>
-          <IconEnso size={24} color={C.sage} />
+        <div className="mb-4" style={{ opacity: 0.35 }}>
+          <IconEnso size={28} color={C.sage} />
         </div>
         <h1 className="font-serif font-light leading-[1.15] text-dark-ink" style={{
-          fontSize: "clamp(30px, 7vw, 40px)",
-          margin: "0 0 14px",
+          fontSize: "clamp(32px, 8vw, 44px)",
+          margin: "0 0 18px",
         }}>
           Travel deeper.<br />Built entirely for you.
         </h1>
-        <p className="font-body font-normal leading-[1.6] mx-auto" style={{
-          fontSize: "clamp(12px, 3vw, 13px)",
+        <p className="font-body font-normal leading-[1.65] mx-auto" style={{
+          fontSize: "clamp(13px, 3.5vw, 15px)",
           color: `${C.slate}99`,
-          maxWidth: 340,
-          margin: "0 0 28px",
+          maxWidth: 380,
+          margin: "0 0 32px",
         }}>
           Tell us how you want to feel. Live wilderness data, celestial timing, and 43 wisdom practices come together in one itinerary shaped around you — and it stays alive as your trip takes shape.
         </p>
@@ -782,7 +781,7 @@ function StepWelcome({ onNext }) {
           color: C.oceanTeal,
           border: `1.5px solid ${C.oceanTeal}`,
           borderRadius: 2,
-          padding: "12px 32px",
+          padding: "13px 36px",
         }}>
           Begin your trip →
         </button>
@@ -790,37 +789,36 @@ function StepWelcome({ onNext }) {
 
       {/* Four-feature strip */}
       <div style={{
-        margin: `0 ${stripMargin}px`,
+        padding: "0 24px",
         ...sectionStyle(150),
       }}>
         <div style={{
           display: "grid",
           gridTemplateColumns: "repeat(4, 1fr)",
-          gap: 1,
-          background: C.sage,
-          borderRadius: 0,
         }}>
           {[
             { icon: IconMountain, color: C.oceanTeal, label: "Day-by-day arc", desc: "Morning to evening, shaped to your pace" },
             { icon: IconSunRays, color: C.goldenAmber, label: "Celestial timing", desc: "Moon phase, Milky Way, golden hour" },
             { icon: IconUnalome, color: C.sage, label: "Woven practices", desc: "43 practices across five traditions" },
             { icon: IconStars, color: C.goldenAmber, label: "Your archetype", desc: "Five traveler profiles shape every call" },
-          ].map((f) => {
+          ].map((f, i) => {
             const Ic = f.icon;
             return (
               <div key={f.label} style={{
-                background: C.cream,
-                padding: "14px 8px",
+                padding: "16px 10px",
                 textAlign: "center",
+                borderLeft: i > 0 ? `1px solid ${C.sage}18` : "none",
               }}>
-                <div className="flex justify-center mb-1.5">
-                  <Ic size={16} color={f.color} />
+                <div className="flex justify-center mb-2">
+                  <Ic size={20} color={f.color} />
                 </div>
-                <div className="font-body text-[10px] font-bold tracking-[0.08em] uppercase" style={{
+                <div className="font-body font-bold tracking-[0.06em] uppercase" style={{
+                  fontSize: 11,
                   color: C.slate,
-                  marginBottom: 3,
+                  marginBottom: 4,
                 }}>{f.label}</div>
-                <div className="font-body text-[10px] font-normal leading-[1.4]" style={{
+                <div className="font-body font-normal leading-[1.45]" style={{
+                  fontSize: 11,
                   color: `${C.slate}88`,
                 }}>{f.desc}</div>
               </div>
@@ -830,39 +828,38 @@ function StepWelcome({ onNext }) {
       </div>
 
       {/* Powered by row */}
-      <button
-        onClick={() => setSourcesOpen(true)}
-        className="flex items-center cursor-pointer"
-        style={{
-          margin: `1px ${stripMargin}px 0`,
-          padding: "12px 14px",
-          background: C.cream,
-          border: `1px solid ${C.sage}15`,
-          borderTop: "none",
-          borderRadius: 0,
-          ...sectionStyle(300),
-        }}
-      >
-        <IconBolt size={14} color={C.sage} />
-        <span className="font-body text-[10px] font-bold tracking-[0.15em] uppercase shrink-0" style={{
-          color: `${C.sage}99`,
-          marginLeft: 6,
-          marginRight: 8,
-        }}>Powered by</span>
-        <div className="flex-1 overflow-hidden" style={{ position: "relative" }}>
-          <div className="flex gap-3" style={{
-            animation: "welcomeScroll 12s linear infinite",
-            whiteSpace: "nowrap",
-          }}>
-            {[...SCROLLING_SOURCES, ...SCROLLING_SOURCES].map((s, i) => (
-              <span key={i} className="font-body text-[11px] font-normal" style={{
-                color: `${C.slate}77`,
-              }}>{s}</span>
-            ))}
+      <div style={{ padding: "20px 24px 0", ...sectionStyle(300) }}>
+        <button
+          onClick={() => setSourcesOpen(true)}
+          className="flex items-center cursor-pointer w-full"
+          style={{
+            padding: "10px 0",
+            background: "none",
+            border: "none",
+            borderTop: `1px solid ${C.sage}15`,
+          }}
+        >
+          <IconBolt size={14} color={`${C.sage}88`} />
+          <span className="font-body text-[11px] font-bold tracking-[0.15em] uppercase shrink-0" style={{
+            color: `${C.sage}88`,
+            marginLeft: 6,
+            marginRight: 10,
+          }}>Powered by</span>
+          <div className="flex-1 overflow-hidden" style={{ position: "relative" }}>
+            <div className="flex gap-4" style={{
+              animation: "welcomeScroll 14s linear infinite",
+              whiteSpace: "nowrap",
+            }}>
+              {[...SCROLLING_SOURCES, ...SCROLLING_SOURCES].map((s, i) => (
+                <span key={i} className="font-body text-[12px] font-normal" style={{
+                  color: `${C.slate}66`,
+                }}>{s}</span>
+              ))}
+            </div>
           </div>
-        </div>
-        <IconChevronDown size={14} color={`${C.sage}88`} />
-      </button>
+          <IconChevronDown size={14} color={`${C.sage}66`} />
+        </button>
+      </div>
       <style>{`
         @keyframes welcomeScroll {
           0% { transform: translateX(0); }
@@ -872,40 +869,39 @@ function StepWelcome({ onNext }) {
 
       {/* Living itinerary strip */}
       <div style={{
-        margin: `12px ${stripMargin}px 0`,
+        padding: "24px 24px 0",
         ...sectionStyle(450),
       }}>
-        <div className="font-body text-[9px] font-bold tracking-[0.2em] uppercase" style={{
-          color: `${C.sage}88`,
-          marginBottom: 6,
-          paddingLeft: 2,
+        <div className="font-body text-[10px] font-bold tracking-[0.2em] uppercase" style={{
+          color: `${C.sage}77`,
+          marginBottom: 10,
         }}>A living itinerary</div>
         <div style={{
           display: "grid",
           gridTemplateColumns: "repeat(3, 1fr)",
-          gap: 1,
-          background: C.sage,
         }}>
           {[
             { icon: IconRefresh, label: "Refine", desc: "Like or dislike anything. Regenerates around your feedback." },
             { icon: IconCalendar, label: "Add logistics", desc: "Flights and hotels rewrite the itinerary around hard dates." },
             { icon: IconShare, label: "Share", desc: "Send a link. Anyone can view and add input." },
-          ].map((f) => {
+          ].map((f, i) => {
             const Ic = f.icon;
             return (
               <div key={f.label} style={{
-                background: C.cream,
-                padding: "14px 10px",
+                padding: "12px 10px",
                 textAlign: "center",
+                borderLeft: i > 0 ? `1px solid ${C.sage}18` : "none",
               }}>
-                <div className="flex justify-center mb-1.5">
-                  <Ic size={16} color={C.sage} />
+                <div className="flex justify-center mb-2">
+                  <Ic size={18} color={C.sage} />
                 </div>
-                <div className="font-body text-[10px] font-bold tracking-[0.08em] uppercase" style={{
+                <div className="font-body font-bold tracking-[0.06em] uppercase" style={{
+                  fontSize: 11,
                   color: C.slate,
-                  marginBottom: 3,
+                  marginBottom: 4,
                 }}>{f.label}</div>
-                <div className="font-body text-[10px] font-normal leading-[1.4]" style={{
+                <div className="font-body font-normal leading-[1.45]" style={{
+                  fontSize: 11,
                   color: `${C.slate}88`,
                 }}>{f.desc}</div>
               </div>
@@ -915,7 +911,7 @@ function StepWelcome({ onNext }) {
       </div>
 
       {/* Bottom spacer */}
-      <div style={{ height: 24, ...sectionStyle(600) }} />
+      <div style={{ height: 32, ...sectionStyle(600) }} />
 
       {/* Data sources modal */}
       {sourcesOpen && (
