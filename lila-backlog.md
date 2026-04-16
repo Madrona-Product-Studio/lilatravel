@@ -109,6 +109,16 @@ _Last updated: March 30, 2026. Living document — update as items are completed
 ### Night Sky
 - [x] Night sky service — Live widget on Zion guide. AstronomyAPI proxy (bodies + moon phase), useNightSky hook, NightSkyWidget component. Milky Way score, planet positions, moon phase SVG, next new moon, Bortle comparison.
 
+### Destination Guide Polish
+- [x] Mobile carousel + lightbox for photo strip (PhotoStrip component)
+- [x] Sticky nav scroll init — first tab visible on mobile
+- [x] Full-row tap targets for external links in EditorialList
+- [x] Secondary text sizing bump (12→13px) for mobile legibility
+- [x] CTA button refresh — solid dark fill replacing amber outline
+- [x] Detail modal shift up (82→88vh) — less content below fold
+- [x] Lila Pick badge inline right of title
+- [x] Places carousel arrows + touch swipe support
+
 ### Infrastructure & Foundation
 - [x] Supabase project setup + schema (sessions, itineraries, feedback_events)
 - [x] Phase 1 feedback capture — anonymous sessions writing to Supabase
