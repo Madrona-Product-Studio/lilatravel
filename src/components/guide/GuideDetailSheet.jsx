@@ -122,8 +122,13 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
   const heroPhoto = googlePhotos[activePhotoIdx] || googlePhotos[0];
   const mapsUrl = places.placeId ? `https://www.google.com/maps/place/?q=place_id:${places.placeId}` : null;
 
+  // Show skeleton while Places data is loading (only for place-type items)
+  const showSkeleton = shouldFetchPlaces && places.loading;
+
   const content = (
     <div className="max-w-[500px] mx-auto px-5 pt-5 pb-10">
+      <style>{`@keyframes skeletonPulse{0%,100%{opacity:0.15}50%{opacity:0.08}}`}</style>
+
       {/* Badge */}
       {item.type === 'stay' && item.tier && tierStyles[item.tier] && (
         <span className="inline-block font-body text-[10px] font-bold tracking-[0.18em] uppercase px-2.5 py-0.5 mb-1.5"
@@ -143,8 +148,30 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
         )}
       </div>
 
+      {/* Skeleton loading state — shown while Places data fetches */}
+      {showSkeleton && (
+        <div style={{ animation: 'skeletonPulse 1.5s ease-in-out infinite' }}>
+          <div className="mx-[-20px] mb-3" style={{ height: 260, background: C.stone }} />
+          <div style={{ display: 'flex', gap: 6, marginBottom: 12 }}>
+            <div style={{ width: 80, height: 14, background: C.stone }} />
+            <div style={{ width: 60, height: 14, background: C.stone }} />
+            <div style={{ width: 100, height: 14, background: C.stone }} />
+          </div>
+          <div style={{ display: 'flex', gap: 8, marginBottom: 16 }}>
+            <div style={{ flex: 1, height: 48, background: C.stone }} />
+            <div style={{ width: 48, height: 48, background: C.stone }} />
+            <div style={{ width: 48, height: 48, background: C.stone }} />
+          </div>
+          <div style={{ height: 100, background: C.stone, marginBottom: 12 }} />
+          <div style={{ display: 'flex', gap: 12, marginBottom: 12 }}>
+            <div style={{ flex: 1, height: 40, background: C.stone }} />
+            <div style={{ flex: 1, height: 40, background: C.stone }} />
+          </div>
+        </div>
+      )}
+
       {/* ═══ GOOGLE PLACES PHOTO (when no NPS) ═══ */}
-      {!nps && shouldFetchPlaces && (places.loading || googlePhotos.length > 0) && (
+      {!showSkeleton && !nps && shouldFetchPlaces && googlePhotos.length > 0 && (
         <div
           className="mx-[-20px] mb-3 relative overflow-hidden"
           style={{ height: 260, background: C.stone, touchAction: 'pan-y' }}
@@ -233,7 +260,7 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
       )}
 
       {/* ═══ RATING + CTA (compact row) ═══ */}
-      {!nps && (places.rating || item.cuisine) && (
+      {!showSkeleton && !nps && (places.rating || item.cuisine) && (
         <div className="flex items-center gap-1.5 mb-3 flex-wrap">
           {places.rating && (
             <>
@@ -254,11 +281,11 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
       )}
 
       {/* Hours line */}
-      {!nps && item.hours && (
+      {!showSkeleton && !nps && item.hours && (
         <div style={{ fontFamily: FONTS.body, fontSize: 12, color: C.oceanTeal, marginBottom: 10 }}>{item.hours}</div>
       )}
 
-      {!nps && (item.url || places.phone || mapsUrl) && (
+      {!showSkeleton && !nps && (item.url || places.phone || mapsUrl) && (
         <div style={{ display: 'flex', gap: 8, marginBottom: 16 }}>
           {item.url && (
             <a href={item.url} target="_blank" rel="noopener noreferrer"
@@ -557,7 +584,7 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
       )}
 
       {/* ═══ STANDARD CONTENT (no NPS, no wildlife) ═══ */}
-      {!nps && !isWildlife && (
+      {!showSkeleton && !nps && !isWildlife && (
         <>
           {/* ◈ Vibe block */}
           {(item.energy || item.detail || item.highlights?.length > 0) && (() => {
