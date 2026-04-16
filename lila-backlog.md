@@ -106,6 +106,9 @@ _Last updated: March 30, 2026. Living document — update as items are completed
 ### Place Detail Panel
 - [x] Place detail panel v2 — Vibe block (consolidated vibe + note), hours line, dietary pills, tags row.
 
+### Night Sky
+- [x] Night sky service — Live widget on Zion guide. AstronomyAPI proxy (bodies + moon phase), useNightSky hook, NightSkyWidget component. Milky Way score, planet positions, moon phase SVG, next new moon, Bortle comparison.
+
 ### Infrastructure & Foundation
 - [x] Supabase project setup + schema (sessions, itineraries, feedback_events)
 - [x] Phase 1 feedback capture — anonymous sessions writing to Supabase
