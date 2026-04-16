@@ -14,7 +14,8 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Nav, Footer, FadeIn, WhisperBar } from '@components';
-import { SectionTransition, SubLabel, Prose, ContentList, EditorialList, PlaceGuideCard } from '@components/guide';
+import { SectionTransition, SubLabel, Prose, ContentList, EditorialList, PlaceGuideCard, GuideDetailSheet } from '@components/guide';
+import { getNPSData, buildNPSLookup, findNPSMatch } from '@services/npsService';
 import { G, FONTS } from '@data/guides/guide-styles';
 import { P } from '@data/photos';
 import { trackEvent } from '@utils/analytics';
@@ -143,6 +144,23 @@ export default function ZionGuide() {
   const breathConfig = BREATH_CONFIG.zion;
   const breathWrapperRef = useRef(null);
   const breathValueRef = useBreathCanvas(breathConfig, breathWrapperRef);
+
+  // ── NPS Data ──
+  const [npsLookup, setNpsLookup] = useState(null);
+  const [activeSheet, setActiveSheet] = useState(null);
+
+  useEffect(() => {
+    getNPSData(['zion', 'brca', 'care'])
+      .then(data => { setNpsLookup(buildNPSLookup(data.thingsToDo)); })
+      .catch(err => console.warn('NPS fetch failed:', err.message));
+  }, []);
+
+  const openSheet = useCallback((section) => (item) => {
+    const npsMatch = npsLookup ? findNPSMatch(item.name, npsLookup) : null;
+    setActiveSheet({ ...item, section, nps: npsMatch || undefined });
+  }, [npsLookup]);
+
+  const checkNPS = useCallback((name) => npsLookup ? !!findNPSMatch(name, npsLookup) : false, [npsLookup]);
 
   // ── IntersectionObserver for active section ──
   const [activeSection, setActiveSection] = useState('the-place');
@@ -353,13 +371,14 @@ export default function ZionGuide() {
 
                 <SubLabel>Hotels</SubLabel>
                 <p style={{ fontFamily: FONTS.body, fontSize: 13, fontWeight: 400, color: G.ink40, marginBottom: 0 }}>A few we like across the region:</p>
-                <ContentList items={sleepPicks.map(a => ({
+                <ContentList onOpenSheet={openSheet('Stay')} items={sleepPicks.map(a => ({
                   badge: a.stayStyle.charAt(0).toUpperCase() + a.stayStyle.slice(1),
                   context: a.location,
                   name: a.name,
                   detail: a.highlights?.[0] || '',
                   lilaPick: a.lilaPick,
                   url: a.links?.website || a.links?.booking,
+                  hasNPS: checkNPS(a.name),
                 }))} />
 
                 <PlaceGuideCard label="Full Stay Guide" descriptor="Full accommodations across Springdale, Kanab, Escalante & Torrey" bg="linear-gradient(155deg, #C4A882 0%, #8A7A6A 100%)" to="/destinations/zion/sleep" />
@@ -375,7 +394,7 @@ export default function ZionGuide() {
                   <Prose>Springdale has more good food than a town its size should. Oscar's is the local breakfast institution. Deep Creek does the coffee right. Bit & Spur is the dinner move — Southwestern with actual range. And if you make it to Boulder on Scenic Byway 12, Hell's Backbone Grill is one of the best farm-to-table restaurants in the West, full stop.</Prose>
                 </div>
 
-                <ContentList items={eatPicks.map(e => {
+                <ContentList onOpenSheet={openSheet('Eat')} items={eatPicks.map(e => {
                   const raw = e.cuisine || e.type || '';
                   return {
                     badge: raw.charAt(0).toUpperCase() + raw.slice(1),
@@ -384,6 +403,7 @@ export default function ZionGuide() {
                     detail: e.highlights?.[0] || '',
                     lilaPick: e.lilaPick,
                     url: e.links?.website,
+                    hasNPS: checkNPS(e.name),
                   };
                 })} />
 
@@ -399,14 +419,14 @@ export default function ZionGuide() {
                 </div>
 
                 <SubLabel>Highlights</SubLabel>
-                <ContentList items={moveHighlights.map(m => ({
+                <ContentList onOpenSheet={openSheet('Move')} items={moveHighlights.map(m => ({
                   badge: m.moveTier.charAt(0).toUpperCase() + m.moveTier.slice(1),
                   context: `${m.distance || ''} · ${m.difficulty || ''}`.replace(/^\s*·\s*/, '').replace(/\s*·\s*$/, ''),
                   name: m.name,
                   detail: m.highlights?.[0] || '',
                   lilaPick: m.lilaPick,
                   url: m.links?.website,
-                  npsPermit: m.tags?.includes('permit-required'),
+                  hasNPS: checkNPS(m.name),
                 }))} />
 
                 <PlaceGuideCard label="Full Move Guide" descriptor="Full trail & activity guide across all three parks" bg="linear-gradient(155deg, #8AAA7A 0%, #4A6A5A 100%)" to="/destinations/zion/move" />
@@ -423,13 +443,14 @@ export default function ZionGuide() {
                 </div>
 
                 <SubLabel>Highlights</SubLabel>
-                <ContentList items={breatheHighlights.map(b => ({
+                <ContentList onOpenSheet={openSheet('Breathe')} items={breatheHighlights.map(b => ({
                   badge: b.breatheTier.charAt(0).toUpperCase() + b.breatheTier.slice(1),
                   context: `${b.type || ''} · ${b.location || ''}`.replace(/^\s*·\s*/, '').replace(/\s*·\s*$/, ''),
                   name: b.name,
                   detail: b.highlights?.[0] || '',
                   lilaPick: b.lilaPick,
                   url: b.links?.website,
+                  hasNPS: checkNPS(b.name),
                 }))} />
 
                 <PlaceGuideCard label="Full Breathe Guide" descriptor="Yoga · bodywork · sauna · cold plunge · restore" bg="linear-gradient(155deg, #8AADA8 0%, #4A6B7A 100%)" to="/destinations/zion/breathe" />
@@ -446,13 +467,14 @@ export default function ZionGuide() {
                 </div>
 
                 <SubLabel>Highlights</SubLabel>
-                <ContentList items={experienceHighlights.map(e => ({
+                <ContentList onOpenSheet={openSheet('Experience')} items={experienceHighlights.map(e => ({
                   badge: (e.type || '').charAt(0).toUpperCase() + (e.type || '').slice(1),
                   context: e.location || '',
                   name: e.name,
                   detail: e.highlights?.[0] || '',
                   lilaPick: e.featured || e.lilaPick,
                   url: e.links?.website,
+                  hasNPS: checkNPS(e.name),
                 }))} />
 
                 <PlaceGuideCard label="Full Art & Culture Guide" descriptor="Arts · culture · food · community" bg="linear-gradient(155deg, #B8956A 0%, #6A7A5A 100%)" to="/destinations/zion/experience" />
@@ -522,6 +544,11 @@ export default function ZionGuide() {
         </div>
       </div>
 
+      <GuideDetailSheet
+        item={activeSheet}
+        onClose={() => setActiveSheet(null)}
+        isMobile={isMobile}
+      />
       <WhisperBar destination="zion" label="Zion" />
       <Footer />
     </>

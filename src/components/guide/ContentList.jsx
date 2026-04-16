@@ -2,25 +2,41 @@ import { G } from '@data/guides/guide-styles';
 import Badge from './Badge';
 import LilaPick from './LilaPick';
 
-function NpsBadge() {
+function NPSArrowhead({ size = 10 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <path d="M12 2L4 22h3l5-11 5 11h3L12 2z" fill="#2D5F2B" opacity="0.85" />
+      <circle cx="12" cy="16" r="2.5" fill="#2D5F2B" opacity="0.6" />
+    </svg>
+  );
+}
+
+function NPSBadge() {
   return (
     <span style={{
-      fontFamily: "'Quicksand', sans-serif", fontSize: 8, fontWeight: 700,
-      letterSpacing: '0.12em', textTransform: 'uppercase',
-      color: '#2D6A4F', background: '#D8F3DC', border: '0.5px solid #B7E4C7',
-      padding: '2px 6px', whiteSpace: 'nowrap', flexShrink: 0,
+      display: 'inline-flex', alignItems: 'center', gap: 3,
+      fontFamily: "'Quicksand', sans-serif", fontSize: 9, fontWeight: 700,
+      letterSpacing: '0.14em', textTransform: 'uppercase',
+      color: '#2D5F2B', background: 'rgba(45,95,43,0.06)',
+      padding: '2px 7px', whiteSpace: 'nowrap', flexShrink: 0,
     }}>
-      NPS Permit
+      <NPSArrowhead />NPS
     </span>
   );
 }
 
-export default function ContentList({ items, style = {} }) {
+export default function ContentList({ items, onOpenSheet, style = {} }) {
   return (
     <div style={{ margin: '16px 0 28px', ...style }}>
       {items.map((item, i) => {
         const barColor = item.lilaPick ? G.goldenAmber : G.tealBorder;
-        const nameEl = item.url ? (
+        const isClickable = !!onOpenSheet;
+
+        const nameEl = isClickable ? (
+          <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 14, fontWeight: 700, color: G.darkInk, lineHeight: 1.2 }}>
+            {item.name}
+          </span>
+        ) : item.url ? (
           <a href={item.url} target="_blank" rel="noopener noreferrer" style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 14, fontWeight: 700, color: G.darkInk, lineHeight: 1.2, textDecoration: 'none', borderBottom: `0.5px solid ${G.ink25}` }}>
             {item.name}
           </a>
@@ -31,11 +47,19 @@ export default function ContentList({ items, style = {} }) {
         );
 
         return (
-          <div key={item.name + i} style={{
-            display: 'flex', alignItems: 'stretch',
-            padding: '13px 0',
-            borderBottom: i < items.length - 1 ? `0.5px solid ${G.borderSoft}` : 'none',
-          }}>
+          <div
+            key={item.name + i}
+            onClick={isClickable ? () => onOpenSheet(item) : undefined}
+            style={{
+              display: 'flex', alignItems: 'stretch',
+              padding: '13px 0',
+              borderBottom: i < items.length - 1 ? `0.5px solid ${G.borderSoft}` : 'none',
+              cursor: isClickable ? 'pointer' : 'default',
+              transition: 'background 0.15s',
+            }}
+            onMouseEnter={isClickable ? e => { e.currentTarget.style.background = 'rgba(58,125,123,0.04)'; } : undefined}
+            onMouseLeave={isClickable ? e => { e.currentTarget.style.background = 'transparent'; } : undefined}
+          >
             {/* Left bar */}
             <div style={{ width: 3, flexShrink: 0, marginRight: 18, background: barColor }} />
 
@@ -45,7 +69,7 @@ export default function ContentList({ items, style = {} }) {
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10, marginBottom: 4 }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                   {nameEl}
-                  {item.npsPermit && <NpsBadge />}
+                  {item.hasNPS && <NPSBadge />}
                 </div>
                 {item.lilaPick && <LilaPick />}
               </div>
