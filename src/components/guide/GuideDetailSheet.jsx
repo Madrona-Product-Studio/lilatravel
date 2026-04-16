@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from 'react';
-import { C } from '@data/brand';
+import { C, FONTS } from '@data/brand';
 import { G } from '@data/guides/guide-styles';
 import usePlacePhotos from '@hooks/usePlacePhotos';
 
@@ -189,6 +189,11 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
             <span className="font-body text-[12px] font-normal text-[rgba(26,26,24,0.45)]">{item.cuisine}</span>
           )}
         </div>
+      )}
+
+      {/* Hours line */}
+      {!nps && item.hours && (
+        <div style={{ fontFamily: FONTS.body, fontSize: 12, color: C.oceanTeal, marginBottom: 10 }}>{item.hours}</div>
       )}
 
       {!nps && (item.url || places.phone || mapsUrl) && (
@@ -390,31 +395,22 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
       {/* ═══ STANDARD CONTENT (no NPS) ═══ */}
       {!nps && (
         <>
-          {/* Notes from Lila — single concise card */}
-          {(item.detail || item.highlights?.length > 0) && (() => {
-            // Deduplicate: skip highlights that match the detail text
-            const uniqueHighlights = (item.highlights || []).filter(h => h !== item.detail);
-            return (
-              <div className="py-3 px-4 mb-3" style={{ background: '#E8E0D5' }}>
-                <div className="font-body text-[10px] font-bold tracking-[0.2em] uppercase mb-1.5" style={{ color: C.goldenAmber }}>
-                  Notes from Lila
-                </div>
-                {item.detail && (
-                  <p className="font-body text-[13px] font-normal text-[rgba(26,26,24,0.6)] leading-[1.65] mt-0 mb-0">{item.detail}</p>
-                )}
-                {uniqueHighlights.length > 0 && (
-                  <div className={item.detail ? 'mt-1.5' : ''}>
-                    {uniqueHighlights.slice(0, 3).map((h, i) => (
-                      <div key={i} className="flex gap-2 items-start mb-[3px]">
-                        <div className="w-1 h-1 rounded-full mt-[7px] shrink-0" style={{ background: C.goldenAmber, opacity: 0.5 }} />
-                        <span className="font-body text-[12px] font-normal text-[rgba(26,26,24,0.5)] leading-[1.6]">{h}</span>
-                      </div>
-                    ))}
-                  </div>
-                )}
+          {/* ◈ Vibe block */}
+          {(item.energy || item.detail) && (
+            <div style={{ background: '#E8E0D5', padding: '12px 16px', marginBottom: 12 }}>
+              <div style={{ fontFamily: FONTS.body, fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: C.goldenAmber, marginBottom: 6 }}>
+                ◈ Vibe
               </div>
-            );
-          })()}
+              {item.energy && (
+                <div style={{ fontFamily: FONTS.serif, fontSize: 18, fontWeight: 300, fontStyle: 'italic', color: '#555', lineHeight: 1.3, marginBottom: item.detail ? 6 : 0 }}>
+                  {item.energy}
+                </div>
+              )}
+              {item.detail && (
+                <p style={{ fontFamily: FONTS.body, fontSize: 13, fontWeight: 400, color: '#666', lineHeight: 1.55, margin: 0 }}>{item.detail}</p>
+              )}
+            </div>
+          )}
 
           {/* Compact info grid — universal for all non-NPS items */}
           {(item.priceRange || item.reservations || item.difficulty || item.duration || item.distance || item.operator || item.bookingWindow) && (
@@ -458,12 +454,43 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
             </div>
           )}
 
+          {/* Dietary pills */}
+          {item.dietary && (() => {
+            const pills = [];
+            if (item.dietary.vegetarian) pills.push('vegetarian-friendly');
+            if (item.dietary.vegan) pills.push('vegan');
+            if (item.dietary.glutenFree) pills.push('gluten-free');
+            if (!pills.length) return null;
+            return (
+              <div style={{ marginBottom: 12 }}>
+                <div style={{ fontFamily: FONTS.body, fontSize: 10, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#999', marginBottom: 6 }}>Dietary</div>
+                <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+                  {pills.map((p, i) => (
+                    <span key={i} style={{ fontFamily: FONTS.body, fontSize: 11, color: C.oceanTeal, border: `0.5px solid ${C.oceanTeal}`, padding: '3px 10px' }}>{p}</span>
+                  ))}
+                </div>
+              </div>
+            );
+          })()}
+
           {/* Phone number inline (from Google Places) */}
           {places.phone && (
             <div className="flex items-center gap-2 mb-3">
               <PhoneSVG />
               <a href={`tel:${places.phone}`} className="font-body text-[13px] font-medium text-dark-ink no-underline">{places.phone}</a>
             </div>
+          )}
+
+          {/* Tags row */}
+          {item.tags && item.tags.length > 0 && (
+            <>
+              <div style={{ height: '0.5px', background: '#ddd', marginBottom: 10 }} />
+              <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+                {item.tags.map((t, i) => (
+                  <span key={i} style={{ fontFamily: FONTS.body, fontSize: 11, color: '#666', border: '0.5px solid #bbb', padding: '4px 10px' }}>{t}</span>
+                ))}
+              </div>
+            </>
           )}
         </>
       )}
