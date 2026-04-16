@@ -213,7 +213,7 @@ export default function ZionGuide() {
         <meta name="twitter:description" content="An editorial guide to Zion and its orbit — trails, dark sky, where to stay, and how to move through Southern Utah with intention." />
         <meta name="twitter:image" content="https://lilatrips.com/og-image.png" />
       </Helmet>
-      <Nav breathConfig={breathConfig} />
+      <Nav breathConfig={breathConfig} breathValueRef={breathValueRef} />
 
       {/* ══ CELESTIAL DRAWER + BREATH CANVAS ═══════════════════════════════════ */}
       <div ref={breathWrapperRef} style={{ background: breathConfig ? G.warmWhite : undefined }}>

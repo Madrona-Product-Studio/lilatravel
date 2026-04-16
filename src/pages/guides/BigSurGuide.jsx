@@ -795,7 +795,7 @@ export default function BigSurGuide() {
         <meta name="twitter:description" content="Big Sur is slipping into the sea. A guide for travelers who want to experience it deeply and tread lightly while it's still here." />
         <meta name="twitter:image" content="https://lilatrips.com/og-image.png" />
       </Helmet>
-      <Nav breathConfig={breathConfig} />
+      <Nav breathConfig={breathConfig} breathValueRef={breathValueRef} />
 
       {/* == CELESTIAL DRAWER ================================================ */}
       <div ref={breathWrapperRef} style={{ background: breathConfig ? C.warmWhite : undefined }}>

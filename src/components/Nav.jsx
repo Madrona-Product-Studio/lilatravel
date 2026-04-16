@@ -203,7 +203,7 @@ function MobileMenu({ open, links, onClose }) {
 }
 
 // ─── Nav Component ───────────────────────────────────────────────────────────
-export default function Nav({ transparent = false, breathConfig = null }) {
+export default function Nav({ transparent = false, breathConfig = null, breathValueRef = null }) {
   const location = useLocation();
   const navigate = useNavigate();
   const [scrolled, setScrolled] = useState(false);
@@ -211,7 +211,22 @@ export default function Nav({ transparent = false, breathConfig = null }) {
 
   const navRef = useRef(null);
   const navBreathRef = useRef(null);
-  useBreathCanvas(breathConfig, navBreathRef, { opacityScale: 1, flat: true });
+
+  // Sync nav breath overlay with the page's breath animation
+  useEffect(() => {
+    if (!breathConfig || !breathValueRef) return;
+    const el = navBreathRef.current;
+    if (!el) return;
+    const [r, g, b] = breathConfig.rgb;
+    let raf;
+    function tick() {
+      const alpha = breathValueRef.current * 0.46;
+      el.style.backgroundImage = `linear-gradient(rgba(${r},${g},${b},${alpha}),rgba(${r},${g},${b},${alpha}))`;
+      raf = requestAnimationFrame(tick);
+    }
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [breathConfig, breathValueRef]);
 
   // Multi-trip state
   const [trips, setTrips] = useState(() => {

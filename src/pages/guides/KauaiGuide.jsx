@@ -783,7 +783,7 @@ export default function KauaiGuide() {
         <meta name="twitter:description" content="Kauaʻi is not just a destination — it's a responsibility. Curated trails, sacred valleys, and a guide built around reciprocity with Hawaiian land and culture." />
         <meta name="twitter:image" content="https://lilatrips.com/og-image.png" />
       </Helmet>
-      <Nav breathConfig={breathConfig} />
+      <Nav breathConfig={breathConfig} breathValueRef={breathValueRef} />
 
       {/* ══ CELESTIAL DRAWER ═══════════════════════════════════════════════ */}
       <div ref={breathWrapperRef} style={{ background: breathConfig ? C.warmWhite : undefined }}>

@@ -769,7 +769,7 @@ export default function VancouverIslandGuide() {
         <meta name="twitter:description" content="Old-growth cedar, orca-watched straits, and wild coastline. A guide for travelers who understand that some places ask more of you than a photo." />
         <meta name="twitter:image" content="https://lilatrips.com/og-image.png" />
       </Helmet>
-      <Nav breathConfig={breathConfig} />
+      <Nav breathConfig={breathConfig} breathValueRef={breathValueRef} />
 
       {/* ══ CELESTIAL DRAWER ═══════════════════════════════════════════════ */}
       <div ref={breathWrapperRef} style={{ background: breathConfig ? C.warmWhite : undefined }}>

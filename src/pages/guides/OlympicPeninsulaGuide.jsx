@@ -874,7 +874,7 @@ export default function OlympicPeninsulaGuide() {
         <meta name="twitter:description" content="Temperate rainforest, tide pools, and isolated Pacific coastline. A guide for travelers who want to move through one of North America's most intact ecosystems with care." />
         <meta name="twitter:image" content="https://lilatrips.com/og-image.png" />
       </Helmet>
-      <Nav breathConfig={breathConfig} />
+      <Nav breathConfig={breathConfig} breathValueRef={breathValueRef} />
       <div ref={breathWrapperRef} style={{ background: breathConfig ? C.warmWhite : undefined }}>
           <CelestialDrawer destination="olympic-peninsula" isMobile={isMobile} breathValueRef={breathValueRef} />
 

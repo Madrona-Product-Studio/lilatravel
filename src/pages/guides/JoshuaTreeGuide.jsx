@@ -941,7 +941,7 @@ export default function JoshuaTreeGuide() {
         <meta name="twitter:description" content="One of California's darkest skies, and one of its most fragile landscapes. A guide for travelers who come to listen, not just look." />
         <meta name="twitter:image" content="https://lilatrips.com/og-image.png" />
       </Helmet>
-      <Nav breathConfig={breathConfig} />
+      <Nav breathConfig={breathConfig} breathValueRef={breathValueRef} />
 
       {/* ══ CELESTIAL DRAWER ═══════════════════════════════════════════════ */}
       <div ref={breathWrapperRef} style={{ background: breathConfig ? C.warmWhite : undefined }}>
