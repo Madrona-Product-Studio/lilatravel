@@ -21,7 +21,7 @@ export default async function handler(req, res) {
   }
 
   const { ref, maxwidth = '800' } = req.query;
-  if (!ref || typeof ref !== 'string' || ref.length > 500) {
+  if (!ref || typeof ref !== 'string' || ref.length > 2000) {
     return res.status(400).json({ error: 'Invalid or missing ref parameter' });
   }
 
