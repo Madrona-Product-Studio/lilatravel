@@ -210,8 +210,8 @@ export default function Nav({ transparent = false, breathConfig = null }) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const navRef = useRef(null);
-  // Breath canvas is rendered by the page wrapper — nav is transparent so it shows through
-  // useBreathCanvas not needed here when breathConfig is active
+  const navBreathRef = useRef(null);
+  useBreathCanvas(breathConfig, navBreathRef, { opacityScale: 1, flat: true });
 
   // Multi-trip state
   const [trips, setTrips] = useState(() => {
@@ -327,14 +327,12 @@ export default function Nav({ transparent = false, breathConfig = null }) {
     <>
       <nav ref={navRef} className="fixed top-0 left-0 right-0 z-[100] transition-all duration-400 ease-out" style={{
         /* dynamic — background depends on scroll + transparent prop + breathConfig */
-        background: breathConfig ? (() => {
-          // Mix breath color with cream (250,248,244) at ~18% to match the breath tint
-          const [r,g,b] = breathConfig.rgb;
-          const mix = (c, base) => Math.round(base + (c - base) * 0.18);
-          return `rgb(${mix(r,250)},${mix(g,248)},${mix(b,244)})`;
-        })() : (showSolid ? "rgba(250,248,244,0.97)" : "transparent"),
+        background: breathConfig ? C.warmWhite : (showSolid ? "rgba(250,248,244,0.97)" : "transparent"),
         backdropFilter: breathConfig ? "none" : (showSolid ? "blur(16px)" : "none"),
       }}>
+        {breathConfig && (
+          <div ref={navBreathRef} className="absolute inset-0" style={{ background: C.warmWhite, pointerEvents: 'none' }} />
+        )}
         <div className="relative px-6 py-[18px] md:px-[52px] md:py-5 flex items-center justify-between" style={{
           borderBottom: breathConfig && showSolid ? '1px solid rgba(26,37,48,0.08)' : (showSolid ? `1px solid ${C.stone}` : "none"),
         }}>
