@@ -35,7 +35,8 @@ export default async function handler(req, res) {
     const data = await response.json();
 
     if (data.status !== 'OK' || !data.candidates?.length) {
-      return res.status(404).json({ error: 'Place not found', status: data.status });
+      console.error('Places API response:', JSON.stringify({ status: data.status, error_message: data.error_message, candidates: data.candidates?.length }));
+      return res.status(404).json({ error: 'Place not found', status: data.status, message: data.error_message });
     }
 
     const candidate = data.candidates[0];
