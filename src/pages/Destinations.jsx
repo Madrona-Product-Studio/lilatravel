@@ -29,12 +29,14 @@ export default function DestinationsPage() {
         <meta name="twitter:image" content="https://lilatrips.com/og-image.png" />
       </Helmet>
       <Nav />
-      <PageHeader
-        eyebrow="Destinations"
-        title="Sacred Terrain"
-        subtitle="Each place chosen for its capacity to dissolve the ordinary — timed to its most luminous window."
-        accentColor={C.seaGlass}
-      />
+      <div style={{ marginBottom: -32 }}>
+        <PageHeader
+          eyebrow="Destinations"
+          title="Sacred Terrain"
+          subtitle="Each place chosen for its capacity to dissolve the ordinary — timed to its most luminous window."
+          accentColor={C.seaGlass}
+        />
+      </div>
 
       <style>{`
         .bento-tile {
