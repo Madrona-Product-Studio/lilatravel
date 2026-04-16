@@ -456,7 +456,7 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
         <>
           {/* iNaturalist photo */}
           {(wildlife.loading || wildlife.photo) && (
-            <div className="mx-[-20px] mb-3 relative overflow-hidden" style={{ height: 200, background: C.stone }}>
+            <div className="mx-[-20px] mb-3 relative overflow-hidden" style={{ height: 160, background: C.stone }}>
               {wildlife.loading && !wildlife.photo && (
                 <>
                   <style>{`@keyframes shimmer{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}`}</style>
@@ -464,7 +464,7 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
                 </>
               )}
               {wildlife.photo && (
-                <img src={wildlife.photo} alt={item.name} className="w-full h-[200px] object-cover block" style={{ animation: 'fadeIn 0.3s ease' }} />
+                <img src={wildlife.photo} alt={item.name} className="w-full h-[160px] object-cover block" style={{ animation: 'fadeIn 0.3s ease' }} />
               )}
               <style>{`@keyframes fadeIn{from{opacity:0}to{opacity:1}}`}</style>
               {wildlife.photoAttribution && (
@@ -529,9 +529,11 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
             )}
           </div>
 
-          {/* Wikipedia summary */}
+          {/* Wikipedia summary — truncated */}
           {wildlife.wikipediaSummary && (
-            <p style={{ fontFamily: FONTS.body, fontSize: 12, fontWeight: 400, color: '#888', lineHeight: 1.55, margin: '0 0 12px' }}>{wildlife.wikipediaSummary}</p>
+            <p style={{ fontFamily: FONTS.body, fontSize: 12, fontWeight: 400, color: '#888', lineHeight: 1.55, margin: '0 0 12px' }}>
+              {wildlife.wikipediaSummary.length > 180 ? wildlife.wikipediaSummary.slice(0, 180).replace(/\s+\S*$/, '') + '…' : wildlife.wikipediaSummary}
+            </p>
           )}
 
           {/* CTA links */}
@@ -676,7 +678,7 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
         @keyframes guideSheetBackdropIn { from { opacity: 0; } to { opacity: 1; } }
       `}</style>
       <div onClick={onClose} className="fixed inset-0 z-[249]" style={{ background: 'rgba(0,0,0,0.3)', animation: 'guideSheetBackdropIn 0.25s ease' }} />
-      <div ref={sheetRef} className="fixed bottom-0 left-0 right-0 h-[92vh] z-[250] bg-cream rounded-t-2xl flex flex-col" style={{ animation: 'guideSheetSlideUp 0.3s ease', boxShadow: '0 -4px 24px rgba(0,0,0,0.1)' }}>
+      <div ref={sheetRef} className="fixed bottom-0 left-0 right-0 z-[250] bg-cream rounded-t-2xl flex flex-col" style={{ height: isWildlife ? '96vh' : '92vh', animation: 'guideSheetSlideUp 0.3s ease', boxShadow: '0 -4px 24px rgba(0,0,0,0.1)' }}>
         <div onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd} className="px-3.5 pt-2.5 pb-1.5 shrink-0 relative z-10">
           <div className="w-9 h-1 rounded-sm mx-auto mb-2" style={{ background: '#7A857E30' }} />
           <button onClick={(e) => { e.stopPropagation(); onClose(); }} className="absolute top-2 right-3.5 w-9 h-9 flex items-center justify-center rounded-full cursor-pointer font-body text-[15px] text-[rgba(26,26,24,0.4)] leading-none" style={{ background: `${G.panel}e0`, border: `1px solid #7A857E15`, WebkitTapHighlightColor: 'transparent', boxShadow: `0 2px 8px ${G.ink}08` }} aria-label="Close">✕</button>
