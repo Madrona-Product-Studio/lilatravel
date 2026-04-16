@@ -1,6 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import SubGuideLayout from '@components/guide/SubGuideLayout';
 import { SubLabel, Prose, EditorialList } from '@components/guide';
+import NightSkyWidget from '@components/guide/NightSkyWidget';
 
 const SKY_AREAS = [
   { name: 'Hurricane Ridge', context: 'Above the Clouds', detail: 'At 5,200 ft, often above the lowland overcast. When the coast is socked in, the ridge can be clear. Summer nights only — road closes in winter.' },
@@ -34,6 +35,8 @@ export default function OlympicPeninsulaNightSky() {
         <Prose>
           Hurricane Ridge, at 5,200 feet, often sits above the cloud layer. When the lowlands are socked in fog, the ridge can be crystal clear. Deer Park Campground at 5,400 feet is the highest drive-to point in the park — no water, no services, extraordinary sky. For coastal darkness, Kalaloch Beach delivers the sound of surf under stars with no light pollution from any direction.
         </Prose>
+
+        <NightSkyWidget />
 
         <SubLabel>Best Viewing Areas</SubLabel>
         <EditorialList items={SKY_AREAS} />

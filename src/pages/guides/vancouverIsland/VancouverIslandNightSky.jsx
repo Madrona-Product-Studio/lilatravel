@@ -1,6 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import SubGuideLayout from '@components/guide/SubGuideLayout';
 import { SubLabel, Prose, EditorialList } from '@components/guide';
+import NightSkyWidget from '@components/guide/NightSkyWidget';
 
 const SKY_FACTS = [
   { name: 'Long Beach', context: 'Pacific Rim', detail: 'No light pollution to the west \u2014 just open Pacific. On clear winter nights the Milky Way arcs over the surf. Best conditions during new moon windows.' },
@@ -32,6 +33,8 @@ export default function VancouverIslandNightSky() {
         <Prose>
           Vancouver Island's west coast offers genuinely dark skies — no major cities for hundreds of kilometres in the Pacific direction. The best stargazing is from Long Beach and the Wild Pacific Trail on clear winter nights. But the sky here offers more than stars: storm season brings lightning over the open ocean, phosphorescent surf on warm summer nights glows with bioluminescent plankton, and on rare, spectacular occasions the Northern Lights reach this latitude.
         </Prose>
+
+        <NightSkyWidget />
 
         <SubLabel>Dark Sky Viewing</SubLabel>
         <EditorialList items={SKY_FACTS} />

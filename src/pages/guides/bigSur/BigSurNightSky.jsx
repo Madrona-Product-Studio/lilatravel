@@ -1,6 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import SubGuideLayout from '@components/guide/SubGuideLayout';
 import { SubLabel, Prose, EditorialList } from '@components/guide';
+import NightSkyWidget from '@components/guide/NightSkyWidget';
 
 const SKY_FACTS = [
   { name: 'Pfeiffer Beach', context: 'Bortle Class 2', detail: 'Bortle 2 on clear nights. The keyhole rock silhouetted against the Milky Way is the defining image of Big Sur after dark.' },
@@ -35,6 +36,8 @@ export default function BigSurNightSky() {
         <Prose>
           There are no organized dark sky programs on the Big Sur coast, which is part of the appeal. Bring a red headlamp, a blanket, and patience. The sky here is best experienced lying on the ground, listening to the surf.
         </Prose>
+
+        <NightSkyWidget />
 
         <SubLabel>Viewing Areas</SubLabel>
         <EditorialList items={SKY_FACTS} />

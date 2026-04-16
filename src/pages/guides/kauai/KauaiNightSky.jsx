@@ -1,6 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import SubGuideLayout from '@components/guide/SubGuideLayout';
 import { SubLabel, Prose, EditorialList } from '@components/guide';
+import NightSkyWidget from '@components/guide/NightSkyWidget';
 
 const SKY_LOCATIONS = [
   { name: 'Polihale State Park (West Shore)', context: 'Bortle 3', detail: 'The most remote and darkest beach accessible by road on Kauai. Open horizon, no development for miles. Best for serious dark sky photography.' },
@@ -34,6 +35,8 @@ export default function KauaiNightSky() {
         <Prose>
           Whale season adds another dimension. December through April, humpback spouts are visible by moonlight from the south shore overlooks. The combination of dark sky conditions and whale activity in winter is unique to this island.
         </Prose>
+
+        <NightSkyWidget />
 
         <SubLabel>Best Viewing Locations</SubLabel>
         <EditorialList items={SKY_LOCATIONS} />

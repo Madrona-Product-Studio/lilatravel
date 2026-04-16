@@ -1,6 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import SubGuideLayout from '@components/guide/SubGuideLayout';
 import { SubLabel, Prose, EditorialList } from '@components/guide';
+import NightSkyWidget from '@components/guide/NightSkyWidget';
 
 const SKY_FACTS = [
   { name: 'Joshua Tree National Park', context: 'Bortle 2–3', detail: 'Certified International Dark Sky Park since 2017. Best viewing from Pinto Basin Road pullouts and Cholla Cactus Garden parking area. Zero light pollution from the east.' },
@@ -36,6 +37,8 @@ export default function JoshuaTreeNightSky() {
         <Prose>
           The volunteer-run Sky's the Limit Observatory & Nature Center in Twentynine Palms hosts free public star parties on Saturday nights. Bring binoculars — the volunteers bring the telescopes. It's one of the best community-run astronomy programs in the West.
         </Prose>
+
+        <NightSkyWidget />
 
         <SubLabel>Viewing Areas</SubLabel>
         <EditorialList items={SKY_FACTS} />
