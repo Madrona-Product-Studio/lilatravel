@@ -46,6 +46,11 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
   const dragCurrentY = useRef(0);
   const [activePhotoIdx, setActivePhotoIdx] = useState(0);
 
+  // Photo swipe refs
+  const photoTouchStartX = useRef(null);
+  const photoTouchStartY = useRef(null);
+  const photoSwiping = useRef(false);
+
   // Reset photo index when item changes
   useEffect(() => { setActivePhotoIdx(0); }, [item?.name]);
 
@@ -129,18 +134,44 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
           style={{ background: `${G.accent}15` }}>{item.section}</span>
       )}
 
-      {/* Name */}
-      <h3 className="font-serif text-[clamp(20px,4vw,26px)] font-normal text-dark-ink mb-1.5 leading-[1.2] mt-0">{item.name}</h3>
-
-      {/* Lila Pick */}
-      {item.featured && (
-        <span className="inline-block font-body text-[10px] font-bold tracking-[0.18em] uppercase text-sun-salmon mb-2.5 px-2.5 py-0.5"
-          style={{ border: `1px solid ${G.accent}40` }}>Lila Pick</span>
-      )}
+      {/* Name + Lila Pick inline */}
+      <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, marginBottom: item.featured ? 10 : 6 }}>
+        <h3 className="font-serif text-[clamp(20px,4vw,26px)] font-normal text-dark-ink leading-[1.2]" style={{ margin: 0 }}>{item.name}</h3>
+        {item.featured && (
+          <span className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-sun-salmon px-2.5 py-0.5"
+            style={{ border: `1px solid ${G.accent}40`, flexShrink: 0, whiteSpace: 'nowrap' }}>Lila Pick</span>
+        )}
+      </div>
 
       {/* ═══ GOOGLE PLACES PHOTO (when no NPS) ═══ */}
       {!nps && shouldFetchPlaces && (places.loading || googlePhotos.length > 0) && (
-        <div className="mx-[-20px] mb-3 relative overflow-hidden" style={{ height: 200, background: C.stone }}>
+        <div
+          className="mx-[-20px] mb-3 relative overflow-hidden"
+          style={{ height: 200, background: C.stone, touchAction: 'pan-y' }}
+          onTouchStart={e => {
+            photoTouchStartX.current = e.touches[0].clientX;
+            photoTouchStartY.current = e.touches[0].clientY;
+            photoSwiping.current = false;
+          }}
+          onTouchMove={e => {
+            if (photoTouchStartX.current === null) return;
+            const dx = Math.abs(e.touches[0].clientX - photoTouchStartX.current);
+            const dy = Math.abs(e.touches[0].clientY - photoTouchStartY.current);
+            if (dx > dy && dx > 10) photoSwiping.current = true;
+          }}
+          onTouchEnd={e => {
+            if (photoTouchStartX.current === null || !photoSwiping.current) {
+              photoTouchStartX.current = null;
+              return;
+            }
+            const dx = e.changedTouches[0].clientX - photoTouchStartX.current;
+            const maxIdx = Math.min(googlePhotos.length, 6) - 1;
+            if (dx < -50 && activePhotoIdx < maxIdx) setActivePhotoIdx(prev => prev + 1);
+            if (dx > 50 && activePhotoIdx > 0) setActivePhotoIdx(prev => prev - 1);
+            photoTouchStartX.current = null;
+            photoSwiping.current = false;
+          }}
+        >
           {places.loading && !heroPhoto && (
             <>
               <style>{`@keyframes shimmer{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}`}</style>
@@ -156,6 +187,31 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
             />
           )}
           <style>{`@keyframes fadeIn{from{opacity:0}to{opacity:1}}`}</style>
+          {/* Left/right arrows */}
+          {googlePhotos.length > 1 && activePhotoIdx > 0 && (
+            <button
+              onClick={() => setActivePhotoIdx(prev => prev - 1)}
+              aria-label="Previous photo"
+              style={{
+                position: 'absolute', top: '50%', left: 8, transform: 'translateY(-50%)',
+                width: 32, height: 32, display: 'flex', alignItems: 'center', justifyContent: 'center',
+                background: 'rgba(0,0,0,0.4)', color: 'white', border: 'none', borderRadius: 0,
+                cursor: 'pointer', fontSize: 18, lineHeight: 1, padding: 0,
+              }}
+            >&#8249;</button>
+          )}
+          {googlePhotos.length > 1 && activePhotoIdx < Math.min(googlePhotos.length, 6) - 1 && (
+            <button
+              onClick={() => setActivePhotoIdx(prev => prev + 1)}
+              aria-label="Next photo"
+              style={{
+                position: 'absolute', top: '50%', right: 8, transform: 'translateY(-50%)',
+                width: 32, height: 32, display: 'flex', alignItems: 'center', justifyContent: 'center',
+                background: 'rgba(0,0,0,0.4)', color: 'white', border: 'none', borderRadius: 0,
+                cursor: 'pointer', fontSize: 18, lineHeight: 1, padding: 0,
+              }}
+            >&#8250;</button>
+          )}
           {googlePhotos.length > 1 && (
             <div className="absolute bottom-2.5 left-0 right-0 flex justify-center gap-1.5">
               {googlePhotos.slice(0, 6).map((_, i) => (
@@ -631,7 +687,7 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
         @keyframes guideSheetBackdropIn { from { opacity: 0; } to { opacity: 1; } }
       `}</style>
       <div onClick={onClose} className="fixed inset-0 z-[249]" style={{ background: 'rgba(0,0,0,0.3)', animation: 'guideSheetBackdropIn 0.25s ease' }} />
-      <div ref={sheetRef} className="fixed bottom-0 left-0 right-0 h-[82vh] z-[250] bg-cream rounded-t-2xl flex flex-col" style={{ animation: 'guideSheetSlideUp 0.3s ease', boxShadow: '0 -4px 24px rgba(0,0,0,0.1)' }}>
+      <div ref={sheetRef} className="fixed bottom-0 left-0 right-0 h-[88vh] z-[250] bg-cream rounded-t-2xl flex flex-col" style={{ animation: 'guideSheetSlideUp 0.3s ease', boxShadow: '0 -4px 24px rgba(0,0,0,0.1)' }}>
         <div onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd} className="px-3.5 pt-2.5 pb-1.5 shrink-0 relative z-10">
           <div className="w-9 h-1 rounded-sm mx-auto mb-2" style={{ background: '#7A857E30' }} />
           <button onClick={(e) => { e.stopPropagation(); onClose(); }} className="absolute top-2 right-3.5 w-9 h-9 flex items-center justify-center rounded-full cursor-pointer font-body text-[15px] text-[rgba(26,26,24,0.4)] leading-none" style={{ background: `${G.panel}e0`, border: `1px solid #7A857E15`, WebkitTapHighlightColor: 'transparent', boxShadow: `0 2px 8px ${G.ink}08` }} aria-label="Close">✕</button>

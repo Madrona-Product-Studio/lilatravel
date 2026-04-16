@@ -14,7 +14,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Nav, Footer, FadeIn, WhisperBar } from '@components';
-import { SectionTransition, SubLabel, Prose, ContentList, EditorialList, PlaceGuideCard, GuideDetailSheet } from '@components/guide';
+import { SectionTransition, SubLabel, Prose, ContentList, EditorialList, PlaceGuideCard, GuideDetailSheet, PhotoStrip } from '@components/guide';
 import { getNPSData, buildNPSLookup, findNPSMatch } from '@services/npsService';
 import { G, FONTS } from '@data/guides/guide-styles';
 import { P } from '@data/photos';
@@ -101,8 +101,17 @@ function Divider() {
 // ─── GuideNav ────────────────────────────────────────────────────────────────
 
 function GuideNav({ activeSection, onNav, isMobile }) {
+  const scrollContainerRef = useRef(null);
+
+  // Reset scroll position to start on mobile mount
+  useEffect(() => {
+    if (isMobile && scrollContainerRef.current) {
+      scrollContainerRef.current.scrollLeft = 0;
+    }
+  }, [isMobile]);
+
   return (
-    <div style={{
+    <div ref={scrollContainerRef} style={{
       position: 'sticky', top: 0, zIndex: 101,
       background: G.warmWhite,
       borderBottom: `0.5px solid ${G.border}`,
@@ -277,21 +286,15 @@ export default function ZionGuide() {
           </div>
 
           {/* ── Photo strip ─────────────────────────────────────────────────── */}
-          <div style={{ display: 'flex', gap: 2, overflow: 'hidden', marginTop: 2 }}>
-            {[
+          <PhotoStrip
+            isMobile={isMobile}
+            images={[
               { src: P.zionWatchman, alt: 'The Watchman at golden hour', caption: 'The Watchman · golden hour', width: '32%' },
               { src: P.zionNarrows, alt: 'The Narrows', caption: 'The Narrows', width: '22%' },
               { src: P.bryceCanyon, alt: 'Bryce Canyon hoodoos', caption: 'Bryce Canyon · hoodoos', width: '24%' },
               { src: P.capitolReef, alt: 'Capitol Reef at sunset', caption: 'Capitol Reef · sunset', width: '22%' },
-            ].map((img, i) => (
-              <div key={i} style={{ flex: `0 0 ${img.width}`, position: 'relative', overflow: 'hidden', height: isMobile ? 240 : 360 }}>
-                <img src={img.src} alt={img.alt} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
-                <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '28px 14px 12px', background: 'linear-gradient(to top, rgba(10,18,26,0.65), transparent)' }}>
-                  <span style={{ fontFamily: FONTS.body, fontSize: 10, fontWeight: 600, letterSpacing: '0.06em', color: 'rgba(255,255,255,0.8)' }}>{img.caption}</span>
-                </div>
-              </div>
-            ))}
-          </div>
+            ]}
+          />
 
           {/* ══ GUIDE NAV ══════════════════════════════════════════════════════ */}
           <GuideNav activeSection={activeSection} onNav={scrollTo} isMobile={isMobile} />
@@ -537,7 +540,9 @@ export default function ZionGuide() {
                 </p>
                 <button
                   onClick={() => { trackEvent('guide_cta_clicked', { guide: 'zion' }); navigate('/plan'); }}
-                  style={{ fontFamily: FONTS.body, fontSize: 11, fontWeight: 700, letterSpacing: '0.16em', textTransform: 'uppercase', color: G.goldenAmber, border: `1.5px solid ${G.goldenAmber}`, background: 'transparent', padding: '13px 28px', cursor: 'pointer' }}
+                  onMouseEnter={e => e.currentTarget.style.opacity = '0.85'}
+                  onMouseLeave={e => e.currentTarget.style.opacity = '1'}
+                  style={{ fontFamily: FONTS.body, fontSize: 11, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#E8E0D5', border: 'none', background: G.darkInk, padding: '14px 32px', cursor: 'pointer', transition: 'opacity 0.2s' }}
                 >
                   Plan a Trip →
                 </button>

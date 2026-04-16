@@ -25,3 +25,4 @@ export { default as SectionTransition } from './SectionTransition';
 export { default as Prose } from './Prose';
 export { default as EditorialList } from './EditorialList';
 export { default as SubGuideLayout } from './SubGuideLayout';
+export { default as PhotoStrip } from './PhotoStrip';

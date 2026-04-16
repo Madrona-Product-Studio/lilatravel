@@ -88,7 +88,7 @@ export default function ContentList({ items, onOpenSheet, style = {} }) {
 
               {/* Detail */}
               {item.detail && (
-                <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 400, lineHeight: 1.6, color: G.inkDetail, margin: 0 }}>
+                <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 400, lineHeight: 1.6, color: G.inkDetail, margin: 0 }}>
                   {item.detail}
                 </p>
               )}
