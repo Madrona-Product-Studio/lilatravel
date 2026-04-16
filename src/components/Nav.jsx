@@ -327,8 +327,8 @@ export default function Nav({ transparent = false, breathConfig = null }) {
     <>
       <nav ref={navRef} className="fixed top-0 left-0 right-0 z-[100] transition-all duration-400 ease-out" style={{
         /* dynamic — background depends on scroll + transparent prop + breathConfig */
-        background: breathConfig ? "transparent" : (showSolid ? "rgba(250,248,244,0.97)" : "transparent"),
-        backdropFilter: breathConfig ? "none" : (showSolid ? "blur(16px)" : "none"),
+        background: breathConfig ? (showSolid ? "rgba(250,248,244,0.97)" : "transparent") : (showSolid ? "rgba(250,248,244,0.97)" : "transparent"),
+        backdropFilter: showSolid ? "blur(16px)" : "none",
       }}>
         <div className="relative px-6 py-[18px] md:px-[52px] md:py-5 flex items-center justify-between" style={{
           borderBottom: breathConfig && showSolid ? '1px solid rgba(26,37,48,0.08)' : (showSolid ? `1px solid ${C.stone}` : "none"),
