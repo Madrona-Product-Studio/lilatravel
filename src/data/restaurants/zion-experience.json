@@ -103,7 +103,7 @@
     ],
     "hours": "Daily; check seasonal hours",
     "admission": "free",
-    "links": { "website": null, "maps": null },
+    "links": { "website": "https://www.tribalartszion.com/", "maps": null },
     "lilaPick": false,
     "tags": ["indigenous-art", "jewelry", "gallery", "direct-from-artist", "southwest"],
     "months": "all"

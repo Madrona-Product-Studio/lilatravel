@@ -560,21 +560,28 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
       {!nps && !isWildlife && (
         <>
           {/* ◈ Vibe block */}
-          {(item.energy || item.detail) && (
-            <div style={{ background: '#E8E0D5', padding: '12px 16px', marginBottom: 12 }}>
-              <div style={{ fontFamily: FONTS.body, fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: C.goldenAmber, marginBottom: 6 }}>
-                ◈ Vibe
-              </div>
-              {item.energy && (
-                <div style={{ fontFamily: FONTS.serif, fontSize: 18, fontWeight: 300, fontStyle: 'italic', color: '#555', lineHeight: 1.3, marginBottom: item.detail ? 6 : 0 }}>
-                  {item.energy}
+          {(item.energy || item.detail || item.highlights?.length > 0) && (() => {
+            // Build a richer description from all highlights
+            const allHighlights = item.highlights || [];
+            const vibeText = allHighlights.length > 1
+              ? allHighlights.slice(0, 4).join('. ') + '.'
+              : item.detail || '';
+            return (
+              <div style={{ background: '#E8E0D5', padding: '14px 16px', marginBottom: 12 }}>
+                <div style={{ fontFamily: FONTS.body, fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: C.goldenAmber, marginBottom: 6 }}>
+                  ◈ Vibe
                 </div>
-              )}
-              {item.detail && (
-                <p style={{ fontFamily: FONTS.body, fontSize: 13, fontWeight: 400, color: '#666', lineHeight: 1.55, margin: 0 }}>{item.detail}</p>
-              )}
-            </div>
-          )}
+                {item.energy && (
+                  <div style={{ fontFamily: FONTS.serif, fontSize: 18, fontWeight: 300, fontStyle: 'italic', color: '#555', lineHeight: 1.3, marginBottom: vibeText ? 8 : 0 }}>
+                    {item.energy}
+                  </div>
+                )}
+                {vibeText && (
+                  <p style={{ fontFamily: FONTS.body, fontSize: 13, fontWeight: 400, color: '#666', lineHeight: 1.6, margin: 0 }}>{vibeText}</p>
+                )}
+              </div>
+            );
+          })()}
 
           {/* Compact info grid — universal for all non-NPS items */}
           {(item.priceRange || item.reservations || item.difficulty || item.duration || item.distance || item.operator || item.bookingWindow) && (

@@ -104,7 +104,7 @@
     ],
     "hours": "Daily; check hours",
     "admission": "free",
-    "links": { "website": null, "maps": null },
+    "links": { "website": "https://www.coyotecorner.com/", "maps": null },
     "lilaPick": false,
     "tags": ["rocks", "crystals", "maps", "local-institution", "geology", "desert"],
     "months": "all"

@@ -53,7 +53,7 @@
     "hours": "Lunch and dinner; check hours",
     "reservations": "walk-in",
     "links": {
-      "website": null,
+      "website": "https://www.hanaleidolphin.com/",
       "maps": null
     },
     "lilaPick": false,
@@ -84,7 +84,7 @@
     "hours": "Breakfast and lunch; check hours",
     "reservations": "walk-in",
     "links": {
-      "website": null,
+      "website": "https://www.hanaleitaroandjuice.com/",
       "maps": null
     },
     "lilaPick": true,
@@ -115,7 +115,7 @@
     "hours": "Dinner; check schedule",
     "reservations": "recommended",
     "links": {
-      "website": null,
+      "website": "https://www.the-beach-house.com/",
       "maps": null
     },
     "lilaPick": false,
@@ -145,7 +145,7 @@
     "hours": "Wednesday afternoons only",
     "reservations": "walk-in",
     "links": {
-      "website": null,
+      "website": "https://www.kukuiulavillage.com/farmers-market/",
       "maps": null
     },
     "lilaPick": false,
@@ -176,7 +176,7 @@
     "hours": "Dinner; check schedule — limited days",
     "reservations": "recommended",
     "links": {
-      "website": null,
+      "website": "https://www.hanapepe-cafe.com/",
       "maps": null
     },
     "lilaPick": false,
@@ -207,7 +207,7 @@
     "hours": "Daytime; check hours",
     "reservations": "walk-in",
     "links": {
-      "website": null,
+      "website": "https://www.healthyhutkauai.com/",
       "maps": null
     },
     "lilaPick": false,

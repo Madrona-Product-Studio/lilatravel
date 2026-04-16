@@ -151,7 +151,7 @@
     "dietary": { "vegetarian": true, "vegan": true, "glutenFree": true, "notes": "Full grocery store" },
     "hours": "Daily",
     "reservations": "walk-in",
-    "links": { "website": null, "maps": null },
+    "links": { "website": "https://www.tofinocoop.com/", "maps": null },
     "lilaPick": false,
     "tags": ["grocery", "provisions", "co-op", "self-catering", "tofino"],
     "months": "all"

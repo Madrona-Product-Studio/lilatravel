@@ -23,7 +23,7 @@
     "hours": "Dinner; check seasonal hours",
     "reservations": "recommended",
     "links": {
-      "website": null,
+      "website": "https://www.kokopelligrill.com/",
       "maps": null
     },
     "lilaPick": true,
@@ -53,7 +53,7 @@
     "hours": "Lunch and dinner; check hours",
     "reservations": "walk-in",
     "links": {
-      "website": null,
+      "website": "https://www.barhopbrewing.com/",
       "maps": null
     },
     "lilaPick": false,
@@ -83,7 +83,7 @@
     "hours": "Morning; check hours",
     "reservations": "walk-in",
     "links": {
-      "website": null,
+      "website": "https://www.bonnysbakery.com/",
       "maps": null
     },
     "lilaPick": false,
@@ -115,7 +115,7 @@
     "hours": "Wednesday–Sunday, 8 AM–3 PM",
     "reservations": "walk-in",
     "links": {
-      "website": null,
+      "website": "https://www.nourishsequim.com/",
       "maps": null
     },
     "lilaPick": true,
@@ -146,7 +146,7 @@
     "hours": "Dinner; check seasonal hours",
     "reservations": "recommended",
     "links": {
-      "website": null,
+      "website": "https://www.alderwoodbistro.com/",
       "maps": null
     },
     "lilaPick": true,
@@ -177,7 +177,7 @@
     "hours": "Dinner; check seasonal hours",
     "reservations": "recommended",
     "links": {
-      "website": null,
+      "website": "https://www.finabordet.com/",
       "maps": null
     },
     "lilaPick": true,
@@ -206,7 +206,7 @@
     "hours": "Morning and afternoon; check hours",
     "reservations": "walk-in",
     "links": {
-      "website": null,
+      "website": "https://www.breadandrosesbakery.com/",
       "maps": null
     },
     "lilaPick": true,
@@ -238,7 +238,7 @@
     "hours": "Monday–Saturday, 7 AM–3 PM",
     "reservations": "walk-in",
     "links": {
-      "website": null,
+      "website": "https://www.inthewoodscafe.com/",
       "maps": null
     },
     "lilaPick": false,
