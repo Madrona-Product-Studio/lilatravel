@@ -787,131 +787,131 @@ function StepWelcome({ onNext }) {
         </button>
       </div>
 
-      {/* Four-feature strip */}
-      <div style={{
-        padding: "0 24px",
-        ...sectionStyle(150),
-      }}>
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(4, 1fr)",
-        }}>
-          {[
-            { icon: IconMountain, color: C.oceanTeal, label: "Day-by-day arc", desc: "Morning to evening, shaped to your pace" },
-            { icon: IconSunRays, color: C.goldenAmber, label: "Celestial timing", desc: "Moon phase, Milky Way, golden hour" },
-            { icon: IconYinYang, color: C.sage, label: "Woven practices", desc: "43 practices across five traditions" },
-            { icon: IconStars, color: C.goldenAmber, label: "Your archetype", desc: "Five traveler profiles shape every call" },
-          ].map((f, i) => {
-            const Ic = f.icon;
-            return (
-              <div key={f.label} style={{
-                padding: "16px 10px",
-                textAlign: "center",
-                borderLeft: i > 0 ? `1px solid ${C.sage}18` : "none",
-              }}>
-                <div className="flex justify-center mb-2">
-                  <Ic size={20} color={f.color} />
+      {/* Bottom content — constrained width */}
+      <div className="mx-auto w-full" style={{ maxWidth: 640, padding: "0 24px" }}>
+        {/* Four-feature strip */}
+        <div style={sectionStyle(150)}>
+          <div style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(4, 1fr)",
+          }}>
+            {[
+              { icon: IconMountain, color: C.oceanTeal, label: "Day-by-day arc", desc: "Morning to evening, shaped to your pace" },
+              { icon: IconSunRays, color: C.goldenAmber, label: "Celestial timing", desc: "Moon phase, Milky Way, golden hour" },
+              { icon: IconYinYang, color: C.sage, label: "Woven practices", desc: "43 practices across five traditions" },
+              { icon: IconStars, color: C.goldenAmber, label: "Your archetype", desc: "Five traveler profiles shape every call" },
+            ].map((f, i) => {
+              const Ic = f.icon;
+              return (
+                <div key={f.label} style={{
+                  padding: "16px 10px",
+                  textAlign: "center",
+                  borderLeft: i > 0 ? `1px solid ${C.sage}18` : "none",
+                }}>
+                  <div className="flex justify-center mb-2">
+                    <Ic size={20} color={f.color} />
+                  </div>
+                  <div className="font-body font-bold tracking-[0.06em] uppercase" style={{
+                    fontSize: 11,
+                    color: C.slate,
+                    marginBottom: 4,
+                  }}>{f.label}</div>
+                  <div className="font-body font-normal leading-[1.45]" style={{
+                    fontSize: 11,
+                    color: `${C.slate}88`,
+                  }}>{f.desc}</div>
                 </div>
-                <div className="font-body font-bold tracking-[0.06em] uppercase" style={{
-                  fontSize: 11,
-                  color: C.slate,
-                  marginBottom: 4,
-                }}>{f.label}</div>
-                <div className="font-body font-normal leading-[1.45]" style={{
-                  fontSize: 11,
-                  color: `${C.slate}88`,
-                }}>{f.desc}</div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* Powered by row */}
-      <div style={{ padding: "20px 24px 0", ...sectionStyle(300) }}>
-        <button
-          onClick={() => setSourcesOpen(true)}
-          className="flex items-center cursor-pointer w-full"
-          style={{
-            padding: "10px 0",
-            background: "none",
-            border: "none",
-            borderTop: `1px solid ${C.sage}15`,
-          }}
-        >
-          <IconBolt size={14} color={`${C.sage}88`} />
-          <span className="font-body text-[11px] font-bold tracking-[0.15em] uppercase shrink-0" style={{
-            color: `${C.sage}88`,
-            marginLeft: 6,
-            marginRight: 10,
-          }}>Powered by</span>
-          <div className="flex-1 overflow-hidden" style={{ position: "relative" }}>
-            <div className="flex gap-4" style={{
-              animation: "welcomeScroll 14s linear infinite",
-              whiteSpace: "nowrap",
-            }}>
-              {[...SCROLLING_SOURCES, ...SCROLLING_SOURCES].map((s, i) => (
-                <span key={i} className="font-body text-[12px] font-normal" style={{
-                  color: `${C.slate}66`,
-                }}>{s}</span>
-              ))}
-            </div>
+              );
+            })}
           </div>
-          <IconChevronDown size={14} color={`${C.sage}66`} />
-        </button>
-      </div>
-      <style>{`
-        @keyframes welcomeScroll {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-      `}</style>
-
-      {/* Living itinerary strip */}
-      <div style={{
-        padding: "24px 24px 0",
-        ...sectionStyle(450),
-      }}>
-        <div className="font-body text-[10px] font-bold tracking-[0.2em] uppercase" style={{
-          color: `${C.sage}77`,
-          marginBottom: 10,
-        }}>A living itinerary</div>
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(3, 1fr)",
-        }}>
-          {[
-            { icon: IconRefresh, label: "Refine", desc: "Like or dislike anything. Regenerates around your feedback." },
-            { icon: IconCalendar, label: "Add logistics", desc: "Flights and hotels rewrite the itinerary around hard dates." },
-            { icon: IconShare, label: "Share", desc: "Send a link. Anyone can view and add input." },
-          ].map((f, i) => {
-            const Ic = f.icon;
-            return (
-              <div key={f.label} style={{
-                padding: "12px 10px",
-                textAlign: "center",
-                borderLeft: i > 0 ? `1px solid ${C.sage}18` : "none",
-              }}>
-                <div className="flex justify-center mb-2">
-                  <Ic size={18} color={C.sage} />
-                </div>
-                <div className="font-body font-bold tracking-[0.06em] uppercase" style={{
-                  fontSize: 11,
-                  color: C.slate,
-                  marginBottom: 4,
-                }}>{f.label}</div>
-                <div className="font-body font-normal leading-[1.45]" style={{
-                  fontSize: 11,
-                  color: `${C.slate}88`,
-                }}>{f.desc}</div>
-              </div>
-            );
-          })}
         </div>
-      </div>
 
-      {/* Bottom spacer */}
-      <div style={{ height: 32, ...sectionStyle(600) }} />
+        {/* Powered by row */}
+        <div style={{ paddingTop: 16, ...sectionStyle(300) }}>
+          <button
+            onClick={() => setSourcesOpen(true)}
+            className="flex items-center cursor-pointer w-full"
+            style={{
+              padding: "10px 0",
+              background: "none",
+              border: "none",
+              borderTop: `1px solid ${C.sage}15`,
+            }}
+          >
+            <IconBolt size={14} color={`${C.sage}88`} />
+            <span className="font-body text-[11px] font-bold tracking-[0.15em] uppercase shrink-0" style={{
+              color: `${C.sage}88`,
+              marginLeft: 6,
+              marginRight: 10,
+            }}>Powered by</span>
+            <div className="flex-1 overflow-hidden" style={{ position: "relative" }}>
+              <div className="flex gap-4" style={{
+                animation: "welcomeScroll 14s linear infinite",
+                whiteSpace: "nowrap",
+              }}>
+                {[...SCROLLING_SOURCES, ...SCROLLING_SOURCES].map((s, i) => (
+                  <span key={i} className="font-body text-[12px] font-normal" style={{
+                    color: `${C.slate}66`,
+                  }}>{s}</span>
+                ))}
+              </div>
+            </div>
+            <IconChevronDown size={14} color={`${C.sage}66`} />
+          </button>
+        </div>
+        <style>{`
+          @keyframes welcomeScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+          }
+        `}</style>
+
+        {/* Living itinerary strip */}
+        <div style={{
+          paddingTop: 20,
+          ...sectionStyle(450),
+        }}>
+          <div className="font-body text-[10px] font-bold tracking-[0.2em] uppercase" style={{
+            color: `${C.sage}77`,
+            marginBottom: 10,
+          }}>A living itinerary</div>
+          <div style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(3, 1fr)",
+          }}>
+            {[
+              { icon: IconRefresh, label: "Refine", desc: "Like or dislike anything. Regenerates around your feedback." },
+              { icon: IconCalendar, label: "Add logistics", desc: "Flights and hotels rewrite the itinerary around hard dates." },
+              { icon: IconShare, label: "Share", desc: "Send a link. Anyone can view and add input." },
+            ].map((f, i) => {
+              const Ic = f.icon;
+              return (
+                <div key={f.label} style={{
+                  padding: "12px 10px",
+                  textAlign: "center",
+                  borderLeft: i > 0 ? `1px solid ${C.sage}18` : "none",
+                }}>
+                  <div className="flex justify-center mb-2">
+                    <Ic size={18} color={C.sage} />
+                  </div>
+                  <div className="font-body font-bold tracking-[0.06em] uppercase" style={{
+                    fontSize: 11,
+                    color: C.slate,
+                    marginBottom: 4,
+                  }}>{f.label}</div>
+                  <div className="font-body font-normal leading-[1.45]" style={{
+                    fontSize: 11,
+                    color: `${C.slate}88`,
+                  }}>{f.desc}</div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Bottom spacer */}
+        <div style={{ height: 32, ...sectionStyle(600) }} />
+      </div>
 
       {/* Data sources modal */}
       {sourcesOpen && (
