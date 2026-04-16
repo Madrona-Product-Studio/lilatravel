@@ -10,6 +10,7 @@ const townItems = TOWNS.map(t => ({
   name: t.name,
   context: t.context,
   detail: t.description,
+  url: t.url,
 }));
 
 const stayItems = accommodations.map(a => ({

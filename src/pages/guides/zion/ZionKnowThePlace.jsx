@@ -14,6 +14,7 @@ const parkItems = PARKS.map(p => ({
   name: p.name,
   context: p.attribute || p.designation,
   detail: p.soul,
+  url: p.infoUrl,
 }));
 
 const wildlifeItems = WILDLIFE_GROUPS.flatMap(group =>

@@ -46,24 +46,28 @@ export const TOWNS = [
     name: "Springdale",
     context: "Zion's Front Door",
     description: "A single-street town pressed against the canyon mouth. Walk to the park entrance. Restaurants, gear shops, and galleries line the half-mile stretch — all of it sandstone red and cottonwood green.",
+    url: "https://www.zionpark.com/",
     accent: C.sunSalmon,
   },
   {
     name: "Kanab",
     context: "Film-Set Desert Town",
     description: "An hour south of Zion on the Utah–Arizona line. Old Western film sets, a growing food scene, and the staging point for permits to The Wave, White Pocket, and Buckskin Gulch.",
+    url: "https://visitsouthernutah.com/kanab/",
     accent: C.goldenAmber,
   },
   {
     name: "Escalante",
     context: "Trailhead Town",
     description: "A one-stoplight town on Scenic Byway 12 that punches above its weight. Slot canyons, petrified forests, and the kind of solitude that the main parks can't offer. Stock up here — services are sparse beyond.",
+    url: "https://www.escalante.cc/",
     accent: C.oceanTeal,
   },
   {
     name: "Torrey",
     context: "Capitol Reef Gateway",
     description: "A handful of buildings at the edge of the Waterpocket Fold. The nearest services to Capitol Reef. Rim Rock Inn and the Torrey Schoolhouse serve as base camp for the park. The orchards start just down the road.",
+    url: "https://www.capitolreefcountry.com/",
     accent: C.seaGlass,
   },
 ];
