@@ -20,6 +20,7 @@ import { saveItinerary, saveFeedback, updateItineraryTitle, updateTripLogistics 
 import { clearSession } from '@services/sessionManager';
 import { createShareableUrl } from '@services/shareService';
 import { safeJson, fetchWithTimeout } from '@utils/fetchHelpers';
+import usePlacePhotos from '@hooks/usePlacePhotos';
 import SavePill from '@components/SavePill';
 import IterationsPill from '@components/IterationsPill';
 import ItineraryNav from '@components/ItineraryNav';
@@ -1391,6 +1392,78 @@ function WisdomDetailContent({ entry }) {
   );
 }
 
+function PlacesEnrichment({ name, location }) {
+  const places = usePlacePhotos(name ? { name, location } : {});
+  const [photoIdx, setPhotoIdx] = useState(0);
+
+  useEffect(() => { setPhotoIdx(0); }, [name]);
+
+  const photos = places.photos || [];
+  const hero = photos[photoIdx] || photos[0];
+  const mapsUrl = places.placeId ? `https://www.google.com/maps/place/?q=place_id:${places.placeId}` : null;
+
+  if (places.loading && !hero) {
+    return (
+      <div style={{ height: 220, background: '#e8e2d9', marginBottom: 12, position: 'relative', overflow: 'hidden' }}>
+        <style>{`@keyframes shimmer{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}`}</style>
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%)', animation: 'shimmer 1.5s infinite' }} />
+      </div>
+    );
+  }
+
+  if (!hero && !places.rating) return null;
+
+  return (
+    <>
+      {/* Photo */}
+      {hero && (
+        <div style={{ margin: '0 -20px 12px', height: 220, position: 'relative', overflow: 'hidden', background: '#e8e2d9' }}>
+          <style>{`@keyframes fadeIn{from{opacity:0}to{opacity:1}}`}</style>
+          <img src={hero} alt={name} style={{ width: '100%', height: 220, objectFit: 'cover', display: 'block', animation: 'fadeIn 0.3s ease' }} />
+          {photos.length > 1 && photoIdx > 0 && (
+            <button onClick={() => setPhotoIdx(i => i - 1)} aria-label="Previous" style={{ position: 'absolute', top: '50%', left: 8, transform: 'translateY(-50%)', width: 32, height: 32, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(0,0,0,0.4)', color: 'white', border: 'none', borderRadius: 0, cursor: 'pointer', fontSize: 18 }}>&#8249;</button>
+          )}
+          {photos.length > 1 && photoIdx < Math.min(photos.length, 6) - 1 && (
+            <button onClick={() => setPhotoIdx(i => i + 1)} aria-label="Next" style={{ position: 'absolute', top: '50%', right: 8, transform: 'translateY(-50%)', width: 32, height: 32, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(0,0,0,0.4)', color: 'white', border: 'none', borderRadius: 0, cursor: 'pointer', fontSize: 18 }}>&#8250;</button>
+          )}
+          {photos.length > 1 && (
+            <div style={{ position: 'absolute', bottom: 8, left: 0, right: 0, display: 'flex', justifyContent: 'center', gap: 5 }}>
+              {photos.slice(0, 6).map((_, i) => (
+                <button key={i} onClick={() => setPhotoIdx(i)} style={{ width: 6, height: 6, borderRadius: '50%', background: i === photoIdx ? 'white' : 'rgba(255,255,255,0.5)', border: 'none', padding: 0, cursor: 'pointer' }} aria-label={`Photo ${i+1}`} />
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Rating + Phone + Directions row */}
+      {(places.rating || places.phone || mapsUrl) && (
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12, flexWrap: 'wrap' }}>
+          {places.rating && (
+            <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 600, color: '#1a1a18' }}>
+              {places.rating} {'★'.repeat(Math.round(places.rating))}{'☆'.repeat(5 - Math.round(places.rating))}
+            </span>
+          )}
+          {places.userRatingsTotal && (
+            <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, color: '#999' }}>({places.userRatingsTotal.toLocaleString()})</span>
+          )}
+          <div style={{ flex: 1 }} />
+          {places.phone && (
+            <a href={`tel:${places.phone}`} aria-label="Call" style={{ width: 36, height: 36, display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid #ddd', textDecoration: 'none', color: '#1a1a18' }}>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" /></svg>
+            </a>
+          )}
+          {mapsUrl && (
+            <a href={mapsUrl} target="_blank" rel="noopener noreferrer" aria-label="Directions" style={{ width: 36, height: 36, display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid #ddd', textDecoration: 'none', color: '#1a1a18' }}>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11" /></svg>
+            </a>
+          )}
+        </div>
+      )}
+    </>
+  );
+}
+
 function DetailPanelContent({ item, lockedItems, onLock, onAlternatives, alternativesLoading }) {
   if (!item) return null;
   const { type, data, thumbId } = item;
@@ -1438,6 +1511,8 @@ const accomLabel = { color: C.muted };
           <div className="font-body text-[12px] font-medium mb-1.5" style={{ color: C.muted }}>{accom.location}</div>
         )}
         {accom.vibe && <div className="font-body text-[13px] font-medium italic leading-[1.4] mb-3.5" style={{ color: C.sage }}>{accom.vibe}</div>}
+
+        <PlacesEnrichment name={accom.name} location={accom.location} />
 
         {/* Why */}
         <p className="font-body text-[14px] leading-[1.7] mb-4" style={{ color: C.body }}>{accom.why}</p>
@@ -1603,6 +1678,8 @@ const accomLabel = { color: C.muted };
           {data.vibe}
         </div>
       )}
+
+      {(type === 'stay' || type === 'eat') && <PlacesEnrichment name={data.name} location={data.location} />}
 
       {/* Why */}
       <p className="font-body text-[14px] leading-[1.7] mb-5" style={{ color: C.body }}>{data.why}</p>
