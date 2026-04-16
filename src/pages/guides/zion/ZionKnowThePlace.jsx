@@ -28,11 +28,11 @@ export default function ZionKnowThePlace() {
   return (
     <>
       <Helmet>
-        <title>The Place Guide | Zion | Lila</title>
+        <title>Terrain & Parks Guide | Zion | Lila</title>
         <meta name="description" content="Terrain, geology, parks, towns, and desert wildlife across the Zion orbit." />
       </Helmet>
       <SubGuideLayout
-        title="The Place Guide"
+        title="Terrain & Parks Guide"
         descriptor="Terrain, geology, parks, towns, and desert wildlife across the orbit."
       >
         <SubLabel>The Terrain</SubLabel>

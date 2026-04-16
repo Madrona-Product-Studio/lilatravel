@@ -6,7 +6,12 @@
     "location": "Springdale",
     "priceRange": "$",
     "budgetTier": "mindful",
-    "groupFit": ["solo", "couple", "friends", "family"],
+    "groupFit": [
+      "solo",
+      "couple",
+      "friends",
+      "family"
+    ],
     "energy": "lively",
     "highlights": [
       "Big portions, excellent huevos rancheros",
@@ -25,8 +30,14 @@
       "website": "https://www.oscarscafe.com/",
       "maps": null
     },
-    "lilaPick": false,
-    "tags": ["breakfast", "lunch", "outdoor-seating", "local-favorite", "weekend-wait"],
+    "lilaPick": true,
+    "tags": [
+      "breakfast",
+      "lunch",
+      "outdoor-seating",
+      "local-favorite",
+      "weekend-wait"
+    ],
     "months": "all"
   },
   {
@@ -36,7 +47,12 @@
     "location": "Springdale",
     "priceRange": "$",
     "budgetTier": "mindful",
-    "groupFit": ["solo", "couple", "friends", "family"],
+    "groupFit": [
+      "solo",
+      "couple",
+      "friends",
+      "family"
+    ],
     "energy": "relaxed",
     "highlights": [
       "The first stop every morning",
@@ -57,7 +73,14 @@
       "maps": null
     },
     "lilaPick": false,
-    "tags": ["coffee", "pastries", "pre-hike", "post-hike", "early-open", "pour-over"],
+    "tags": [
+      "coffee",
+      "pastries",
+      "pre-hike",
+      "post-hike",
+      "early-open",
+      "pour-over"
+    ],
     "months": "all"
   },
   {
@@ -67,7 +90,10 @@
     "location": "Springdale",
     "priceRange": "$$",
     "budgetTier": "moderate",
-    "groupFit": ["couple", "friends"],
+    "groupFit": [
+      "couple",
+      "friends"
+    ],
     "energy": "intimate",
     "highlights": [
       "Creative cocktail program",
@@ -87,8 +113,14 @@
       "website": "https://bitandspur.com/",
       "maps": null
     },
-    "lilaPick": false,
-    "tags": ["dinner", "cocktails", "date-night", "southwest", "reservations-recommended"],
+    "lilaPick": true,
+    "tags": [
+      "dinner",
+      "cocktails",
+      "date-night",
+      "southwest",
+      "reservations-recommended"
+    ],
     "months": "all"
   },
   {
@@ -98,12 +130,15 @@
     "location": "Springdale (at Driftwood Lodge)",
     "priceRange": "$$$",
     "budgetTier": "premium",
-    "groupFit": ["couple", "friends"],
+    "groupFit": [
+      "couple",
+      "friends"
+    ],
     "energy": "intimate",
     "highlights": [
       "The canyon's most celebrated table",
       "Seasonal, Southwest-rooted menu",
-      "Reserve ahead — fills consistently"
+      "Reserve ahead \u2014 fills consistently"
     ],
     "dietary": {
       "vegetarian": true,
@@ -118,7 +153,13 @@
       "maps": null
     },
     "lilaPick": true,
-    "tags": ["dinner", "upscale", "date-night", "southwest", "reservations-essential"],
+    "tags": [
+      "dinner",
+      "upscale",
+      "date-night",
+      "southwest",
+      "reservations-essential"
+    ],
     "months": "all"
   },
   {
@@ -128,7 +169,12 @@
     "location": "Springdale",
     "priceRange": "$",
     "budgetTier": "mindful",
-    "groupFit": ["solo", "couple", "friends", "family"],
+    "groupFit": [
+      "solo",
+      "couple",
+      "friends",
+      "family"
+    ],
     "energy": "relaxed",
     "highlights": [
       "Small but mighty grocery",
@@ -139,7 +185,7 @@
       "vegetarian": true,
       "vegan": true,
       "glutenFree": true,
-      "notes": "Grocery store — wide range of options available"
+      "notes": "Grocery store \u2014 wide range of options available"
     },
     "hours": "Daytime; year-round",
     "reservations": "walk-in",
@@ -148,7 +194,13 @@
       "maps": null
     },
     "lilaPick": false,
-    "tags": ["market", "provisions", "trail-snacks", "groceries", "self-catering"],
+    "tags": [
+      "market",
+      "provisions",
+      "trail-snacks",
+      "groceries",
+      "self-catering"
+    ],
     "months": "all"
   },
   {
@@ -158,7 +210,12 @@
     "location": "Inside Bryce Canyon National Park",
     "priceRange": "$$",
     "budgetTier": "moderate",
-    "groupFit": ["solo", "couple", "friends", "family"],
+    "groupFit": [
+      "solo",
+      "couple",
+      "friends",
+      "family"
+    ],
     "energy": "relaxed",
     "highlights": [
       "High-beam ceilings, stone fireplace, towering pines",
@@ -172,7 +229,7 @@
       "glutenFree": false,
       "notes": null
     },
-    "hours": "Dinner; seasonal (Apr–Nov)",
+    "hours": "Dinner; seasonal (Apr\u2013Nov)",
     "reservations": "recommended",
     "links": {
       "website": "https://www.visitbrycecanyon.com/dining",
@@ -180,17 +237,27 @@
     },
     "corridor": true,
     "lilaPick": false,
-    "tags": ["dinner", "inside-park", "sustainable", "atmospheric", "seasonal", "bryce-canyon"],
-    "months": "Apr–Nov"
+    "tags": [
+      "dinner",
+      "inside-park",
+      "sustainable",
+      "atmospheric",
+      "seasonal",
+      "bryce-canyon"
+    ],
+    "months": "Apr\u2013Nov"
   },
   {
     "id": "hells-backbone-grill",
     "name": "Hell's Backbone Grill & Farm",
     "cuisine": "Farm-to-table American",
-    "location": "Boulder, UT — Scenic Byway 12",
+    "location": "Boulder, UT \u2014 Scenic Byway 12",
     "priceRange": "$$$",
     "budgetTier": "premium",
-    "groupFit": ["couple", "friends"],
+    "groupFit": [
+      "couple",
+      "friends"
+    ],
     "energy": "intimate",
     "highlights": [
       "The most celebrated restaurant between Zion and Moab",
@@ -202,7 +269,7 @@
       "vegetarian": true,
       "vegan": true,
       "glutenFree": true,
-      "notes": "Farm-sourced; accommodates most dietary needs — call ahead"
+      "notes": "Farm-sourced; accommodates most dietary needs \u2014 call ahead"
     },
     "hours": "Dinner; seasonal (mid-March through November)",
     "reservations": "required",
@@ -212,7 +279,15 @@
     },
     "corridor": true,
     "lilaPick": true,
-    "tags": ["dinner", "farm-to-table", "james-beard", "destination-dining", "buddhist-principles", "seasonal", "byway-12"],
-    "months": "Mar–Nov"
+    "tags": [
+      "dinner",
+      "farm-to-table",
+      "james-beard",
+      "destination-dining",
+      "buddhist-principles",
+      "seasonal",
+      "byway-12"
+    ],
+    "months": "Mar\u2013Nov"
   }
 ]

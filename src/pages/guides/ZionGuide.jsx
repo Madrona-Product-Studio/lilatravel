@@ -93,10 +93,10 @@ function Divider() {
 function GuideNav({ activeSection, onNav }) {
   return (
     <div style={{
-      position: 'sticky', top: 0, zIndex: 90,
+      position: 'sticky', top: 64, zIndex: 90,
       background: G.warmWhite,
       borderBottom: `0.5px solid ${G.border}`,
-      display: 'flex', alignItems: 'center',
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
       padding: '0 52px', height: 44,
       overflowX: 'auto',
     }}>
@@ -302,7 +302,7 @@ export default function ZionGuide() {
                 <Prose>The canyon's biodiversity surprises people. The Virgin River riparian corridor supports nearly 300 bird species, plus mammals that most visitors never see.</Prose>
                 <EditorialList items={WILDLIFE.map(w => ({ name: w.name, detail: w.detail }))} />
 
-                <PlaceGuideCard label="The Place Guide" descriptor="Terrain · When to go · Desert wildlife" bg="linear-gradient(155deg, #C4956A 0%, #7A9190 100%)" to="/destinations/zion/know-the-place" />
+                <PlaceGuideCard label="Terrain & Parks Guide" descriptor="Terrain · When to go · Desert wildlife" bg="linear-gradient(155deg, #C4956A 0%, #7A9190 100%)" to="/destinations/zion/know-the-place" />
               </div>
 
               <Divider />
@@ -356,6 +356,7 @@ export default function ZionGuide() {
                   name: a.name,
                   detail: a.highlights?.[0] || '',
                   lilaPick: a.lilaPick,
+                  url: a.links?.website || a.links?.booking,
                 }))} />
 
                 <PlaceGuideCard label="Stay Guide" descriptor="Full accommodations across Springdale, Kanab, Escalante & Torrey" bg="linear-gradient(155deg, #C4A882 0%, #8A7A6A 100%)" to="/destinations/zion/sleep" />
@@ -375,10 +376,11 @@ export default function ZionGuide() {
                   const raw = e.cuisine || e.type || '';
                   return {
                     badge: raw.charAt(0).toUpperCase() + raw.slice(1),
-                    context: `${e.location}${e.reservations ? ' \u00B7 ' + e.reservations : ''}`,
+                    context: `${e.location}${e.reservations ? ' · ' + e.reservations : ''}`,
                     name: e.name,
                     detail: e.highlights?.[0] || '',
                     lilaPick: e.lilaPick,
+                    url: e.links?.website,
                   };
                 })} />
 
@@ -396,10 +398,12 @@ export default function ZionGuide() {
                 <SubLabel>Highlights</SubLabel>
                 <ContentList items={moveHighlights.map(m => ({
                   badge: m.moveTier.charAt(0).toUpperCase() + m.moveTier.slice(1),
-                  context: `${m.distance || ''} \u00B7 ${m.difficulty || ''}`.replace(/^\s*\u00B7\s*/, '').replace(/\s*\u00B7\s*$/, ''),
+                  context: `${m.distance || ''} · ${m.difficulty || ''}`.replace(/^\s*·\s*/, '').replace(/\s*·\s*$/, ''),
                   name: m.name,
                   detail: m.highlights?.[0] || '',
                   lilaPick: m.lilaPick,
+                  url: m.links?.website,
+                  npsPermit: m.tags?.includes('permit-required'),
                 }))} />
 
                 <PlaceGuideCard label="Move Guide" descriptor="Full trail & activity guide across all three parks" bg="linear-gradient(155deg, #8AAA7A 0%, #4A6A5A 100%)" to="/destinations/zion/move" />
@@ -418,10 +422,11 @@ export default function ZionGuide() {
                 <SubLabel>Highlights</SubLabel>
                 <ContentList items={breatheHighlights.map(b => ({
                   badge: b.breatheTier.charAt(0).toUpperCase() + b.breatheTier.slice(1),
-                  context: `${b.type || ''} \u00B7 ${b.location || ''}`.replace(/^\s*\u00B7\s*/, '').replace(/\s*\u00B7\s*$/, ''),
+                  context: `${b.type || ''} · ${b.location || ''}`.replace(/^\s*·\s*/, '').replace(/\s*·\s*$/, ''),
                   name: b.name,
                   detail: b.highlights?.[0] || '',
                   lilaPick: b.lilaPick,
+                  url: b.links?.website,
                 }))} />
 
                 <PlaceGuideCard label="Breathe Guide" descriptor="Yoga · bodywork · sauna · cold plunge · restore" bg="linear-gradient(155deg, #8AADA8 0%, #4A6B7A 100%)" to="/destinations/zion/breathe" />
@@ -444,6 +449,7 @@ export default function ZionGuide() {
                   name: e.name,
                   detail: e.highlights?.[0] || '',
                   lilaPick: e.featured || e.lilaPick,
+                  url: e.links?.website,
                 }))} />
 
                 <PlaceGuideCard label="Art & Culture Guide" descriptor="Arts · culture · food · community" bg="linear-gradient(155deg, #B8956A 0%, #6A7A5A 100%)" to="/destinations/zion/experience" />
@@ -499,7 +505,7 @@ export default function ZionGuide() {
 
               <div style={{ minWidth: 180 }}>
                 <div style={{ fontFamily: FONTS.body, fontSize: 9, fontWeight: 700, letterSpacing: '0.22em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.25)', marginBottom: 16 }}>Place Guides</div>
-                {['The Place Guide', 'Travel Responsibly Guide', 'Stay Guide', 'Eat Guide', 'Move Guide', 'Breathe Guide', 'Art & Culture Guide', 'Night Sky Guide'].map((g, i, arr) => (
+                {['Terrain & Parks Guide', 'Travel Responsibly Guide', 'Stay Guide', 'Eat Guide', 'Move Guide', 'Breathe Guide', 'Art & Culture Guide', 'Night Sky Guide'].map((g, i, arr) => (
                   <div key={g} style={{ fontFamily: FONTS.body, fontSize: 11, fontWeight: 600, letterSpacing: '0.06em', color: 'rgba(255,255,255,0.4)', padding: '8px 0', borderBottom: i < arr.length - 1 ? '0.5px solid rgba(255,255,255,0.07)' : 'none', display: 'flex', alignItems: 'center', gap: 10 }}>
                     <span style={{ color: 'rgba(255,255,255,0.2)', fontSize: 10 }}>{'\u2192'}</span>
                     {g}
