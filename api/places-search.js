@@ -30,7 +30,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const url = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${encodeURIComponent(query)}&inputtype=textquery&fields=place_id,name,rating,user_ratings_total,photos,formatted_address,formatted_phone_number,geometry&key=${key}`;
+    const url = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${encodeURIComponent(query)}&inputtype=textquery&fields=place_id,name,rating,user_ratings_total,photos,formatted_address,geometry&key=${key}`;
     const response = await fetch(url);
     const data = await response.json();
 
@@ -40,6 +40,18 @@ export default async function handler(req, res) {
     }
 
     const candidate = data.candidates[0];
+
+    // Fetch phone number from Place Details (not available in Find Place)
+    let phone = null;
+    if (candidate.place_id) {
+      try {
+        const detailsUrl = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${candidate.place_id}&fields=formatted_phone_number&key=${key}`;
+        const detailsRes = await fetch(detailsUrl);
+        const detailsData = await detailsRes.json();
+        phone = detailsData.result?.formatted_phone_number || null;
+      } catch (_) { /* phone is optional, don't fail */ }
+    }
+
     res.setHeader('Cache-Control', 's-maxage=86400, stale-while-revalidate=172800');
     return res.json({
       placeId: candidate.place_id,
@@ -47,7 +59,7 @@ export default async function handler(req, res) {
       rating: candidate.rating,
       userRatingsTotal: candidate.user_ratings_total,
       address: candidate.formatted_address,
-      phone: candidate.formatted_phone_number,
+      phone,
       photoRefs: candidate.photos?.map(p => p.photo_reference) ?? [],
     });
   } catch (err) {
