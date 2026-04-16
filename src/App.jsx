@@ -138,15 +138,24 @@ export default function App() {
             <Route path="/destinations" element={<DestinationsPage />} />
             {/* ↓ Dedicated guides go HERE (above the generic :slug catch-all) */}
             <Route path="/destinations/zion" element={<ZionGuide />} />
-            <Route path="/destinations/zion/know-the-place" element={<ZionKnowThePlace />} />
+            <Route path="/destinations/zion/terrain-and-parks" element={<ZionKnowThePlace />} />
             <Route path="/destinations/zion/when-to-go" element={<ZionWhenToGo />} />
-            <Route path="/destinations/zion/move" element={<ZionMove />} />
-            <Route path="/destinations/zion/sleep" element={<ZionSleep />} />
-            <Route path="/destinations/zion/eat" element={<ZionEat />} />
-            <Route path="/destinations/zion/breathe" element={<ZionBreathe />} />
-            <Route path="/destinations/zion/night-sky" element={<ZionNightSky />} />
-            <Route path="/destinations/zion/be-there-well" element={<ZionBeThere />} />
-            <Route path="/destinations/zion/experience" element={<ZionExperience />} />
+            <Route path="/destinations/zion/hikes-bikes" element={<ZionMove />} />
+            <Route path="/destinations/zion/where-to-stay" element={<ZionSleep />} />
+            <Route path="/destinations/zion/where-to-eat" element={<ZionEat />} />
+            <Route path="/destinations/zion/yoga-mindfulness" element={<ZionBreathe />} />
+            <Route path="/destinations/zion/stars-and-sky" element={<ZionNightSky />} />
+            <Route path="/destinations/zion/travel-lightly" element={<ZionBeThere />} />
+            <Route path="/destinations/zion/arts-and-culture" element={<ZionExperience />} />
+            {/* Redirects from old paths */}
+            <Route path="/destinations/zion/know-the-place" element={<Navigate to="/destinations/zion/terrain-and-parks" replace />} />
+            <Route path="/destinations/zion/move" element={<Navigate to="/destinations/zion/hikes-bikes" replace />} />
+            <Route path="/destinations/zion/sleep" element={<Navigate to="/destinations/zion/where-to-stay" replace />} />
+            <Route path="/destinations/zion/eat" element={<Navigate to="/destinations/zion/where-to-eat" replace />} />
+            <Route path="/destinations/zion/breathe" element={<Navigate to="/destinations/zion/yoga-mindfulness" replace />} />
+            <Route path="/destinations/zion/night-sky" element={<Navigate to="/destinations/zion/stars-and-sky" replace />} />
+            <Route path="/destinations/zion/be-there-well" element={<Navigate to="/destinations/zion/travel-lightly" replace />} />
+            <Route path="/destinations/zion/experience" element={<Navigate to="/destinations/zion/arts-and-culture" replace />} />
             <Route path="/destinations/zion-canyon" element={<Navigate to="/destinations/zion" replace />} />
             <Route path="/destinations/big-sur" element={<BigSurGuide />} />
             <Route path="/destinations/joshua-tree" element={<JoshuaTreeGuide />} />
