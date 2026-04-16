@@ -198,7 +198,7 @@ export default function ZionGuide() {
       <div ref={breathWrapperRef} style={{ background: breathConfig ? G.warmWhite : undefined }}>
         <CelestialDrawer destination="zion" isMobile={isMobile} breathValueRef={breathValueRef} />
 
-        <div style={{ background: G.warmWhite, color: G.ink, fontFamily: FONTS.body }}>
+        <div style={{ background: breathConfig ? 'transparent' : G.warmWhite, color: G.ink, fontFamily: FONTS.body }}>
 
           {/* ══ MASTHEAD ═══════════════════════════════════════════════════════ */}
           <div style={{ padding: '48px 52px 40px', maxWidth: 1080, margin: '0 auto' }}>
@@ -249,9 +249,10 @@ export default function ZionGuide() {
           {/* ── Photo strip ─────────────────────────────────────────────────── */}
           <div style={{ display: 'flex', gap: 2, overflow: 'hidden', marginTop: 2 }}>
             {[
-              { src: P.zionWatchman, alt: 'The Watchman at golden hour', caption: 'The Watchman \u00B7 golden hour', width: '42%' },
-              { src: P.zionNarrows, alt: 'The Narrows', caption: 'The Narrows', width: '27%' },
-              { src: P.bryceCanyon, alt: 'Bryce Canyon hoodoos', caption: 'Bryce Canyon \u00B7 hoodoos', width: '31%' },
+              { src: P.zionWatchman, alt: 'The Watchman at golden hour', caption: 'The Watchman · golden hour', width: '32%' },
+              { src: P.zionNarrows, alt: 'The Narrows', caption: 'The Narrows', width: '22%' },
+              { src: P.bryceCanyon, alt: 'Bryce Canyon hoodoos', caption: 'Bryce Canyon · hoodoos', width: '24%' },
+              { src: P.capitolReef, alt: 'Capitol Reef at sunset', caption: 'Capitol Reef · sunset', width: '22%' },
             ].map((img, i) => (
               <div key={i} style={{ flex: `0 0 ${img.width}`, position: 'relative', overflow: 'hidden', height: 270 }}>
                 <img src={img.src} alt={img.alt} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
@@ -266,6 +267,7 @@ export default function ZionGuide() {
           <GuideNav activeSection={activeSection} onNav={scrollTo} />
 
           {/* ══ CONTENT ════════════════════════════════════════════════════════ */}
+          <div style={{ background: G.warmWhite }}>
           <div style={{ padding: '0 52px', maxWidth: 860, margin: '0 auto' }}>
             <div style={{ maxWidth: 660 }}>
 
@@ -472,9 +474,11 @@ export default function ZionGuide() {
 
             </div>
           </div>
+          </div>
 
 
           {/* ══ CTA ════════════════════════════════════════════════════════════ */}
+          <div style={{ background: G.warmWhite }}>
           <div style={{ padding: '52px 52px 80px', maxWidth: 860, margin: '0 auto' }}>
             <div style={{ background: G.darkInk, padding: '52px 48px', display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 48, flexWrap: 'wrap' }}>
               <div style={{ maxWidth: 380 }}>
@@ -503,6 +507,7 @@ export default function ZionGuide() {
                 ))}
               </div>
             </div>
+          </div>
           </div>
 
         </div>
