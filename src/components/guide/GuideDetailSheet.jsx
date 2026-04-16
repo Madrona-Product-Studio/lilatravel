@@ -180,14 +180,19 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
       )}
 
       {!nps && (item.url || places.phone || mapsUrl) && (
-        <div className="flex gap-2 mb-4">
-          {mapsUrl && (
-            <a href={mapsUrl} target="_blank" rel="noopener noreferrer"
+        <div className="flex gap-2 mb-4 items-center">
+          {item.url && (
+            <a href={item.url} target="_blank" rel="noopener noreferrer"
               className="flex items-center justify-center gap-1.5 py-2 px-4 font-body text-[11px] font-bold tracking-[0.1em] uppercase no-underline transition-opacity duration-200"
               style={{ border: `1.5px solid ${C.darkInk}`, color: C.darkInk }}
               onMouseEnter={e => { e.currentTarget.style.opacity = '0.7'; }}
               onMouseLeave={e => { e.currentTarget.style.opacity = '1'; }}
-            ><DirectionsSVG /> <span className="ml-0.5">Directions</span></a>
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="10" /><line x1="2" y1="12" x2="22" y2="12" /><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" />
+              </svg>
+              <span className="ml-0.5">{isOrganization && item.operator ? item.operator : 'Website'}</span>
+            </a>
           )}
           {places.phone && (
             <a href={`tel:${places.phone}`}
@@ -198,18 +203,14 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
               aria-label="Call"
             ><PhoneSVG /></a>
           )}
-          {item.url && (
-            <a href={item.url} target="_blank" rel="noopener noreferrer"
+          {mapsUrl && (
+            <a href={mapsUrl} target="_blank" rel="noopener noreferrer"
               className="flex items-center justify-center no-underline transition-opacity duration-200"
               style={{ width: 38, height: 38, borderRadius: '50%', border: `1.5px solid ${G.accent}40`, color: G.accent }}
               onMouseEnter={e => { e.currentTarget.style.opacity = '0.7'; }}
               onMouseLeave={e => { e.currentTarget.style.opacity = '1'; }}
-              aria-label={isOrganization && item.operator ? item.operator : 'Website'}
-            >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="12" cy="12" r="10" /><line x1="2" y1="12" x2="22" y2="12" /><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" />
-              </svg>
-            </a>
+              aria-label="Directions"
+            ><DirectionsSVG /></a>
           )}
         </div>
       )}
