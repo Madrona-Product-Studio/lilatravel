@@ -2387,7 +2387,7 @@ export default function PlanMyTrip() {
 
   return (
     <div ref={containerRef} className="font-body min-h-screen overflow-y-auto relative" style={{
-      background: `linear-gradient(180deg, ${C.cream} 0%, ${C.white} 50%, ${C.cream} 100%)`,
+      background: step === 0 ? C.cream : `linear-gradient(180deg, ${C.cream} 0%, ${C.white} 50%, ${C.cream} 100%)`,
     }}>
       <Helmet>
         <title>Plan Your Trip — Custom Itineraries for Mindful Adventure | Lila Trips</title>
@@ -2457,7 +2457,7 @@ export default function PlanMyTrip() {
       {/* Generating overlay */}
       {generating && <GeneratingScreen destination={data.destination} days={data.duration || 4} />}
 
-      <div className="max-w-[640px] mx-auto" style={{
+      <div className={step === 0 ? "" : "max-w-[640px] mx-auto"} style={{
         /* dynamic */
         padding: step === 0 ? 0 : "76px 0 0",
         opacity: transitioning ? 0 : 1,
