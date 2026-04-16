@@ -1,6 +1,8 @@
+import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import SubGuideLayout from '@components/guide/SubGuideLayout';
-import { SubLabel, Prose, EditorialList } from '@components/guide';
+import { SubLabel, Prose, EditorialList, ContentList } from '@components/guide';
+import GuideDetailSheet from '@components/guide/GuideDetailSheet';
 import { PARKS, TOWNS, TIMING_WINDOWS, WILDLIFE, HIGHLIGHTS } from '@data/guides/olympic-peninsula-constants';
 
 const parkItems = PARKS.map(p => ({
@@ -18,8 +20,12 @@ const townItems = TOWNS.map(t => ({
 }));
 
 const wildlifeItems = WILDLIFE.map(w => ({
-  name: w.name,
-  detail: w.detail,
+  ...w,
+  type: 'wildlife',
+  badge: 'Wildlife',
+  context: w.season || '',
+  lat: 47.8,
+  lng: -123.6,
 }));
 
 const highlightItems = HIGHLIGHTS.map(h => ({
@@ -29,6 +35,15 @@ const highlightItems = HIGHLIGHTS.map(h => ({
 }));
 
 export default function OlympicPeninsulaKnowThePlace() {
+  const [activeSheet, setActiveSheet] = useState(null);
+  const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth <= 768);
+
+  useEffect(() => {
+    const onResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
+
   return (
     <>
       <Helmet>
@@ -69,8 +84,13 @@ export default function OlympicPeninsulaKnowThePlace() {
         <Prose>
           The peninsula's isolation — separated from the mainland by Hood Canal — has created endemic species found nowhere else. Roosevelt elk, Olympic marmots, and migrating gray whales are among the most memorable encounters. Pay attention at dawn and dusk.
         </Prose>
-        <EditorialList items={wildlifeItems} />
+        <ContentList items={wildlifeItems} onOpenSheet={setActiveSheet} />
       </SubGuideLayout>
+      <GuideDetailSheet
+        item={activeSheet}
+        onClose={() => setActiveSheet(null)}
+        isMobile={isMobile}
+      />
     </>
   );
 }

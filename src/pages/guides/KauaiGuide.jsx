@@ -66,6 +66,15 @@ const moveHighlights = moveItems.filter(m => m.lilaPick).slice(0, 4);
 const breatheHighlights = breatheItems.filter(b => b.lilaPick).slice(0, 4);
 const experienceHighlights = experiences.filter(e => e.featured || e.lilaPick).slice(0, 4);
 
+const wildlifeItems = WILDLIFE.map(w => ({
+  ...w,
+  type: 'wildlife',
+  badge: 'Wildlife',
+  context: w.season || '',
+  lat: 22.07,
+  lng: -159.52,
+}));
+
 
 // --- Divider ---------------------------------------------------------------------
 
@@ -309,7 +318,7 @@ export default function KauaiGuide() {
 
                 <SubLabel>Island Wildlife</SubLabel>
                 <Prose>The island's isolation created species found nowhere else on earth. Many are endangered. Knowing what you're looking at — and how to behave around it — is part of being here.</Prose>
-                <EditorialList items={WILDLIFE.map(w => ({ name: w.name, detail: w.detail }))} />
+                <ContentList items={wildlifeItems} onOpenSheet={openSheet('Wildlife')} />
 
                 <PlaceGuideCard label="Full Terrain & Parks Guide" descriptor="Parks \u00b7 island areas \u00b7 when to go \u00b7 wildlife" bg="linear-gradient(155deg, #3a7d7b 0%, #c9963a 100%)" to="/destinations/kauai/terrain-and-parks" />
               </div>

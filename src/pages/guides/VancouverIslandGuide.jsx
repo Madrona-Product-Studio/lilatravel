@@ -68,6 +68,15 @@ const moveHighlights = moveItems.filter(m => m.lilaPick).slice(0, 4);
 const breatheHighlights = breatheItems.filter(b => b.lilaPick).slice(0, 4);
 const experienceHighlights = experiences.filter(e => e.featured || e.lilaPick).slice(0, 4);
 
+const wildlifeItems = WILDLIFE.map(w => ({
+  ...w,
+  type: 'wildlife',
+  badge: 'Wildlife',
+  context: w.season || '',
+  lat: 49.2,
+  lng: -125.9,
+}));
+
 
 // ─── Divider ─────────────────────────────────────────────────────────────────
 
@@ -293,7 +302,7 @@ export default function VancouverIslandGuide() {
 
                 <SubLabel>Island Wildlife</SubLabel>
                 <Prose>The waters and forests around Tofino host an extraordinary density of marine and terrestrial life. Gray whales, black bears, sea otters, and orcas share this coastline with surfers and kayakers.</Prose>
-                <EditorialList items={WILDLIFE.map(w => ({ name: w.name, detail: w.detail }))} />
+                <ContentList items={wildlifeItems} onOpenSheet={openSheet('Wildlife')} />
 
                 <PlaceGuideCard label="Full Terrain & Parks Guide" descriptor="Parks · towns · wildlife · when to go" bg="linear-gradient(155deg, #4f603b 0%, #7A9190 100%)" to="/destinations/vancouver-island/terrain-and-parks" />
               </div>

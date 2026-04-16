@@ -68,6 +68,15 @@ const moveHighlights = moveItems.filter(m => m.lilaPick).slice(0, 4);
 const breatheHighlights = breatheItems.filter(b => b.lilaPick).slice(0, 4);
 const experienceHighlights = experiences.filter(e => e.featured || e.lilaPick).slice(0, 4);
 
+const wildlifeItems = WILDLIFE.map(w => ({
+  ...w,
+  type: 'wildlife',
+  badge: 'Wildlife',
+  context: w.season,
+  lat: 36.27,
+  lng: -121.81,
+}));
+
 
 // ─── Divider ─────────────────────────────────────────────────────────────────
 
@@ -306,7 +315,7 @@ export default function BigSurGuide() {
 
                 <SubLabel>Coastal Wildlife</SubLabel>
                 <Prose>The coast is alive. Condors ride thermals above the ridges. Sea otters float in the kelp. Gray whales breach offshore. Pay attention at dawn and dusk.</Prose>
-                <EditorialList items={WILDLIFE.map(w => ({ name: w.name, context: w.season, detail: w.detail }))} />
+                <ContentList items={wildlifeItems} onOpenSheet={openSheet('Wildlife')} />
 
                 <PlaceGuideCard label="Full Terrain & Parks Guide" descriptor="Parks · Towns · When to go · Coastal wildlife" bg="linear-gradient(155deg, #7A9B9A 0%, #5A7A6A 100%)" to="/destinations/big-sur/terrain-and-parks" />
               </div>

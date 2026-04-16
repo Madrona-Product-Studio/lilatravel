@@ -1,6 +1,8 @@
+import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import SubGuideLayout from '@components/guide/SubGuideLayout';
-import { SubLabel, Prose, EditorialList } from '@components/guide';
+import { SubLabel, Prose, EditorialList, ContentList } from '@components/guide';
+import GuideDetailSheet from '@components/guide/GuideDetailSheet';
 import { PARKS, TOWNS, WILDLIFE_GROUPS } from '@data/guides/zion-constants';
 
 const TIMING_WINDOWS = [
@@ -19,13 +21,25 @@ const parkItems = PARKS.map(p => ({
 
 const wildlifeItems = WILDLIFE_GROUPS.flatMap(group =>
   group.entries.map(e => ({
-    name: e.name,
-    context: group.label,
-    detail: e.detail,
+    ...e,
+    type: 'wildlife',
+    badge: 'Wildlife',
+    context: e.season,
+    lat: 37.2,
+    lng: -112.9,
   }))
 );
 
 export default function ZionKnowThePlace() {
+  const [activeSheet, setActiveSheet] = useState(null);
+  const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth <= 768);
+
+  useEffect(() => {
+    const onResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
+
   return (
     <>
       <Helmet>
@@ -52,8 +66,13 @@ export default function ZionKnowThePlace() {
         <Prose>
           The canyon is alive. Condors ride thermals above the rim. Bighorn sheep navigate ledges that look impossible. The ringtail cat hunts at night and is almost never seen. Pay attention at dawn and dusk.
         </Prose>
-        <EditorialList items={wildlifeItems} />
+        <ContentList items={wildlifeItems} onOpenSheet={setActiveSheet} />
       </SubGuideLayout>
+      <GuideDetailSheet
+        item={activeSheet}
+        onClose={() => setActiveSheet(null)}
+        isMobile={isMobile}
+      />
     </>
   );
 }

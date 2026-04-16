@@ -1,6 +1,8 @@
+import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import SubGuideLayout from '@components/guide/SubGuideLayout';
-import { SubLabel, Prose, EditorialList } from '@components/guide';
+import { SubLabel, Prose, EditorialList, ContentList } from '@components/guide';
+import GuideDetailSheet from '@components/guide/GuideDetailSheet';
 import { PARKS, TOWNS, WILDLIFE, TIMING_WINDOWS, HIGHLIGHTS } from '@data/guides/vancouver-island-constants';
 
 const parkItems = PARKS.map(p => ({
@@ -18,8 +20,12 @@ const townItems = TOWNS.map(t => ({
 }));
 
 const wildlifeItems = WILDLIFE.map(w => ({
-  name: w.name,
-  detail: w.detail,
+  ...w,
+  type: 'wildlife',
+  badge: 'Wildlife',
+  context: w.season || '',
+  lat: 49.2,
+  lng: -125.9,
 }));
 
 const highlightItems = HIGHLIGHTS.map(h => ({
@@ -29,6 +35,15 @@ const highlightItems = HIGHLIGHTS.map(h => ({
 }));
 
 export default function VancouverIslandKnowThePlace() {
+  const [activeSheet, setActiveSheet] = useState(null);
+  const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth <= 768);
+
+  useEffect(() => {
+    const onResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
+
   return (
     <>
       <Helmet>
@@ -63,7 +78,7 @@ export default function VancouverIslandKnowThePlace() {
         <Prose>
           The waters and forests around Tofino host an extraordinary density of marine and terrestrial life. Gray whales, black bears, sea otters, and orcas share this coastline with surfers and kayakers.
         </Prose>
-        <EditorialList items={wildlifeItems} />
+        <ContentList items={wildlifeItems} onOpenSheet={setActiveSheet} />
 
         <SubLabel>Places That Stop You</SubLabel>
         <Prose>
@@ -71,6 +86,11 @@ export default function VancouverIslandKnowThePlace() {
         </Prose>
         <EditorialList items={highlightItems} />
       </SubGuideLayout>
+      <GuideDetailSheet
+        item={activeSheet}
+        onClose={() => setActiveSheet(null)}
+        isMobile={isMobile}
+      />
     </>
   );
 }

@@ -69,6 +69,15 @@ const moveHighlights = moveItems.filter(m => m.lilaPick).slice(0, 4);
 const breatheHighlights = breatheItems.filter(b => b.lilaPick).slice(0, 4);
 const experienceHighlights = experiences.filter(e => e.featured || e.lilaPick).slice(0, 4);
 
+const wildlifeItems = WILDLIFE.map(w => ({
+  ...w,
+  type: 'wildlife',
+  badge: 'Wildlife',
+  context: w.season || '',
+  lat: 47.8,
+  lng: -123.6,
+}));
+
 
 // ─── Divider ─────────────────────────────────────────────────────────────────
 
@@ -318,7 +327,7 @@ export default function OlympicPeninsulaGuide() {
 
                 <SubLabel>Peninsula Wildlife</SubLabel>
                 <Prose>The peninsula's isolation — separated from the mainland by Hood Canal — has created endemic species found nowhere else. Pay attention at dawn and dusk.</Prose>
-                <EditorialList items={WILDLIFE.map(w => ({ name: w.name, detail: w.detail }))} />
+                <ContentList items={wildlifeItems} onOpenSheet={openSheet('Wildlife')} />
 
                 <PlaceGuideCard label="Full Terrain & Parks Guide" descriptor="Parks · towns · when to go · wildlife" bg="linear-gradient(155deg, #568844 0%, #3D6B8A 100%)" to="/destinations/olympic-peninsula/terrain-and-parks" />
               </div>

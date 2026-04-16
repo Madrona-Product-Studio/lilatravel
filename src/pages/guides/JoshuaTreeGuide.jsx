@@ -69,6 +69,15 @@ const moveHighlights = moveItems.filter(m => m.lilaPick).slice(0, 4);
 const breatheHighlights = breatheItems.filter(b => b.lilaPick).slice(0, 4);
 const experienceHighlights = experiences.filter(e => e.featured || e.lilaPick).slice(0, 4);
 
+const wildlifeItems = WILDLIFE.map(w => ({
+  ...w,
+  type: 'wildlife',
+  badge: 'Wildlife',
+  context: w.season,
+  lat: 33.87,
+  lng: -115.9,
+}));
+
 
 // ─── Divider ─────────────────────────────────────────────────────────────────
 
@@ -303,7 +312,7 @@ export default function JoshuaTreeGuide() {
 
                 <SubLabel>Desert Wildlife</SubLabel>
                 <Prose>The park supports a surprising diversity of life. Most of it is nocturnal, subtle, and easy to miss unless you slow down.</Prose>
-                <EditorialList items={WILDLIFE.map(w => ({ name: w.name, context: w.season, detail: w.detail }))} />
+                <ContentList items={wildlifeItems} onOpenSheet={openSheet('Wildlife')} />
 
                 <PlaceGuideCard label="Full Terrain & Parks Guide" descriptor="Terrain · When to go · Desert wildlife" bg="linear-gradient(155deg, #C4956A 0%, #7A9190 100%)" to="/destinations/joshua-tree/terrain-and-parks" />
               </div>
