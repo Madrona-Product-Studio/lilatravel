@@ -45,6 +45,15 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
   const dragCurrentY = useRef(0);
   const [activePhotoIdx, setActivePhotoIdx] = useState(0);
 
+  // Determine fetch conditions before hooks (hooks must run unconditionally)
+  const nps = item?.nps;
+  const isOrganization = !nps && !!item?.operator;
+  const shouldFetchPlaces = !nps && !isOrganization && !!item;
+
+  const places = usePlacePhotos(
+    shouldFetchPlaces ? { name: item.name, location: item.location } : {}
+  );
+
   if (!item) return null;
 
   const onTouchStart = (e) => { dragStartY.current = e.touches[0].clientY; };
@@ -68,7 +77,6 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
     luxury: { color: G.accent, label: "Luxury", bg: `${G.accent}15` },
   };
 
-  const nps = item.nps;
   const npsImages = nps?.images?.filter(img => img.url) || [];
   const npsPrimaryImage = npsImages[0];
 
@@ -96,15 +104,6 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
     }
   }
 
-  // Determine if this item is an organization/operator (not a Googleable "place")
-  const isOrganization = !nps && !!item.operator;
-
-  // Google Places data — only for physical places (restaurants, accommodations, etc.)
-  // Skip for: NPS items (have their own photos), organizations/outfitters (bad match)
-  const shouldFetchPlaces = !nps && !isOrganization;
-  const places = usePlacePhotos(
-    shouldFetchPlaces ? { name: item.name, location: item.location } : {}
-  );
   const googlePhotos = places.photos || [];
   const heroPhoto = googlePhotos[activePhotoIdx] || googlePhotos[0];
   const mapsUrl = places.placeId ? `https://www.google.com/maps/place/?q=place_id:${places.placeId}` : null;
