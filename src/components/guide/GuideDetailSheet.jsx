@@ -456,7 +456,7 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
         <>
           {/* iNaturalist photo */}
           {(wildlife.loading || wildlife.photo) && (
-            <div className="mx-[-20px] mb-3 relative overflow-hidden" style={{ height: 160, background: C.stone }}>
+            <div className="mx-[-20px] mb-3 relative overflow-hidden" style={{ height: 220, background: C.stone }}>
               {wildlife.loading && !wildlife.photo && (
                 <>
                   <style>{`@keyframes shimmer{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}`}</style>
@@ -464,7 +464,7 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
                 </>
               )}
               {wildlife.photo && (
-                <img src={wildlife.photo} alt={item.name} className="w-full h-[160px] object-cover block" style={{ animation: 'fadeIn 0.3s ease' }} />
+                <img src={wildlife.photo} alt={item.name} className="w-full h-[220px] object-cover block" style={{ animation: 'fadeIn 0.3s ease', objectPosition: 'center top' }} />
               )}
               <style>{`@keyframes fadeIn{from{opacity:0}to{opacity:1}}`}</style>
               {wildlife.photoAttribution && (
@@ -529,10 +529,10 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
             )}
           </div>
 
-          {/* Wikipedia summary — truncated */}
+          {/* Wikipedia summary */}
           {wildlife.wikipediaSummary && (
-            <p style={{ fontFamily: FONTS.body, fontSize: 12, fontWeight: 400, color: '#888', lineHeight: 1.55, margin: '0 0 12px' }}>
-              {wildlife.wikipediaSummary.length > 180 ? wildlife.wikipediaSummary.slice(0, 180).replace(/\s+\S*$/, '') + '…' : wildlife.wikipediaSummary}
+            <p style={{ fontFamily: FONTS.body, fontSize: 13, fontWeight: 400, color: '#777', lineHeight: 1.6, margin: '0 0 16px' }}>
+              {wildlife.wikipediaSummary}
             </p>
           )}
 
