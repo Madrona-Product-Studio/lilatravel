@@ -9,7 +9,7 @@ import { useState, useRef, useEffect, useCallback } from 'react';
 import { G, FONTS } from '@data/guides/guide-styles';
 
 export default function PhotoStrip({ images, isMobile, height }) {
-  const mobileH = height?.mobile || 240;
+  const mobileH = height?.mobile || 340;
   const desktopH = height?.desktop || 360;
 
   // ── Lightbox state ──
