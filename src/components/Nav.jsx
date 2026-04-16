@@ -210,7 +210,7 @@ export default function Nav({ transparent = false, breathConfig = null }) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const navRef = useRef(null);
-  useBreathCanvas(breathConfig, navRef, { opacityScale: 0.85, flat: true });
+  useBreathCanvas(breathConfig, navRef, { opacityScale: 1.0, flat: true });
 
   // Multi-trip state
   const [trips, setTrips] = useState(() => {

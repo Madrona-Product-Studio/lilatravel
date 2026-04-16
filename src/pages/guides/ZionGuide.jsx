@@ -90,14 +90,17 @@ function Divider() {
 
 // ─── GuideNav ────────────────────────────────────────────────────────────────
 
-function GuideNav({ activeSection, onNav }) {
+function GuideNav({ activeSection, onNav, isMobile }) {
   return (
     <div style={{
-      position: 'sticky', top: 64, zIndex: 90,
+      position: 'sticky', top: 0, zIndex: 101,
       background: G.warmWhite,
       borderBottom: `0.5px solid ${G.border}`,
       display: 'flex', alignItems: 'center', justifyContent: 'center',
-      padding: '0 52px', height: 44,
+      padding: isMobile ? '0 16px' : '0 52px', height: 44,
+      marginTop: -64,
+      paddingTop: 64,
+      boxSizing: 'content-box',
       overflowX: 'auto',
     }}>
       <style>{`.guide-nav-scroll::-webkit-scrollbar { display: none; }`}</style>
@@ -168,7 +171,7 @@ export default function ZionGuide() {
   const scrollTo = useCallback((id) => {
     const el = document.getElementById(id);
     if (!el) return;
-    const offset = 44 + 64 + 16; // guideNav + mainNav + padding
+    const offset = 44 + 16; // guideNav + padding (guideNav covers main nav when sticky)
     const y = el.getBoundingClientRect().top + window.scrollY - offset;
     window.scrollTo({ top: y, behavior: 'smooth' });
     setActiveSection(id);
@@ -201,7 +204,7 @@ export default function ZionGuide() {
         <div style={{ background: breathConfig ? 'transparent' : G.warmWhite, color: G.ink, fontFamily: FONTS.body }}>
 
           {/* ══ MASTHEAD ═══════════════════════════════════════════════════════ */}
-          <div style={{ padding: '48px 52px 40px', maxWidth: 1080, margin: '0 auto' }}>
+          <div style={{ padding: isMobile ? '36px 20px 32px' : '48px 52px 40px', maxWidth: 1080, margin: '0 auto' }}>
             <div style={{ fontFamily: FONTS.body, fontSize: 10, fontWeight: 700, letterSpacing: '0.22em', textTransform: 'uppercase', color: G.goldenAmber, marginBottom: 20 }}>
               Destination Guide
             </div>
@@ -264,11 +267,11 @@ export default function ZionGuide() {
           </div>
 
           {/* ══ GUIDE NAV ══════════════════════════════════════════════════════ */}
-          <GuideNav activeSection={activeSection} onNav={scrollTo} />
+          <GuideNav activeSection={activeSection} onNav={scrollTo} isMobile={isMobile} />
 
           {/* ══ CONTENT ════════════════════════════════════════════════════════ */}
           <div style={{ background: G.warmWhite }}>
-          <div style={{ padding: '0 52px', maxWidth: 860, margin: '0 auto' }}>
+          <div style={{ padding: isMobile ? '0 20px' : '0 52px', maxWidth: 860, margin: '0 auto' }}>
             <div style={{ maxWidth: 660 }}>
 
 
@@ -302,7 +305,7 @@ export default function ZionGuide() {
                 <Prose>The canyon's biodiversity surprises people. The Virgin River riparian corridor supports nearly 300 bird species, plus mammals that most visitors never see.</Prose>
                 <EditorialList items={WILDLIFE.map(w => ({ name: w.name, detail: w.detail }))} />
 
-                <PlaceGuideCard label="Terrain & Parks Guide" descriptor="Terrain · When to go · Desert wildlife" bg="linear-gradient(155deg, #C4956A 0%, #7A9190 100%)" to="/destinations/zion/know-the-place" />
+                <PlaceGuideCard label="Full Terrain & Parks Guide" descriptor="Terrain · When to go · Desert wildlife" bg="linear-gradient(155deg, #C4956A 0%, #7A9190 100%)" to="/destinations/zion/know-the-place" />
               </div>
 
               <Divider />
@@ -332,7 +335,7 @@ export default function ZionGuide() {
                 <SubLabel warm>Supporting People Here</SubLabel>
                 <Prose>Springdale's economy runs almost entirely on tourism. Eat at locally owned restaurants, buy from local galleries, hire local guides. The difference between a national park visit and a real experience of a place is usually the people you meet who actually live there.</Prose>
 
-                <PlaceGuideCard label="Travel Responsibly Guide" descriptor="Tread lightly · give back · native culture · local support" bg="linear-gradient(155deg, #A8896A 0%, #4A6B5A 100%)" to="/destinations/zion/be-there-well" />
+                <PlaceGuideCard label="Full Travel Responsibly Guide" descriptor="Tread lightly · give back · native culture · local support" bg="linear-gradient(155deg, #A8896A 0%, #4A6B5A 100%)" to="/destinations/zion/be-there-well" />
               </div>
 
               <Divider />
@@ -359,7 +362,7 @@ export default function ZionGuide() {
                   url: a.links?.website || a.links?.booking,
                 }))} />
 
-                <PlaceGuideCard label="Stay Guide" descriptor="Full accommodations across Springdale, Kanab, Escalante & Torrey" bg="linear-gradient(155deg, #C4A882 0%, #8A7A6A 100%)" to="/destinations/zion/sleep" />
+                <PlaceGuideCard label="Full Stay Guide" descriptor="Full accommodations across Springdale, Kanab, Escalante & Torrey" bg="linear-gradient(155deg, #C4A882 0%, #8A7A6A 100%)" to="/destinations/zion/sleep" />
               </div>
 
               <Divider />
@@ -384,7 +387,7 @@ export default function ZionGuide() {
                   };
                 })} />
 
-                <PlaceGuideCard label="Eat Guide" descriptor="Springdale · Byway 12 · provisions" bg="linear-gradient(155deg, #C49A6A 0%, #8A6A4A 100%)" to="/destinations/zion/eat" />
+                <PlaceGuideCard label="Full Eat Guide" descriptor="Springdale · Byway 12 · provisions" bg="linear-gradient(155deg, #C49A6A 0%, #8A6A4A 100%)" to="/destinations/zion/eat" />
               </div>
 
 
@@ -406,7 +409,7 @@ export default function ZionGuide() {
                   npsPermit: m.tags?.includes('permit-required'),
                 }))} />
 
-                <PlaceGuideCard label="Move Guide" descriptor="Full trail & activity guide across all three parks" bg="linear-gradient(155deg, #8AAA7A 0%, #4A6A5A 100%)" to="/destinations/zion/move" />
+                <PlaceGuideCard label="Full Move Guide" descriptor="Full trail & activity guide across all three parks" bg="linear-gradient(155deg, #8AAA7A 0%, #4A6A5A 100%)" to="/destinations/zion/move" />
               </div>
 
               <Divider />
@@ -429,7 +432,7 @@ export default function ZionGuide() {
                   url: b.links?.website,
                 }))} />
 
-                <PlaceGuideCard label="Breathe Guide" descriptor="Yoga · bodywork · sauna · cold plunge · restore" bg="linear-gradient(155deg, #8AADA8 0%, #4A6B7A 100%)" to="/destinations/zion/breathe" />
+                <PlaceGuideCard label="Full Breathe Guide" descriptor="Yoga · bodywork · sauna · cold plunge · restore" bg="linear-gradient(155deg, #8AADA8 0%, #4A6B7A 100%)" to="/destinations/zion/breathe" />
               </div>
 
               <Divider />
@@ -452,7 +455,7 @@ export default function ZionGuide() {
                   url: e.links?.website,
                 }))} />
 
-                <PlaceGuideCard label="Art & Culture Guide" descriptor="Arts · culture · food · community" bg="linear-gradient(155deg, #B8956A 0%, #6A7A5A 100%)" to="/destinations/zion/experience" />
+                <PlaceGuideCard label="Full Art & Culture Guide" descriptor="Arts · culture · food · community" bg="linear-gradient(155deg, #B8956A 0%, #6A7A5A 100%)" to="/destinations/zion/experience" />
               </div>
 
               <Divider />
@@ -473,7 +476,7 @@ export default function ZionGuide() {
                   { context: 'Best Window', name: 'June \u2013 September', detail: 'New moon periods June through September. Milky Way core visible May\u2013October. Perseids peak mid-August.' },
                 ]} />
 
-                <PlaceGuideCard label="Night Sky Guide" descriptor="Dark sky ratings · best windows · ranger programs" bg="linear-gradient(155deg, #5A6B8A 0%, #1E2A3E 100%)" to="/destinations/zion/night-sky" />
+                <PlaceGuideCard label="Full Night Sky Guide" descriptor="Dark sky ratings · best windows · ranger programs" bg="linear-gradient(155deg, #5A6B8A 0%, #1E2A3E 100%)" to="/destinations/zion/night-sky" />
               </div>
 
               <Divider />
@@ -485,7 +488,7 @@ export default function ZionGuide() {
 
           {/* ══ CTA ════════════════════════════════════════════════════════════ */}
           <div style={{ background: G.warmWhite }}>
-          <div style={{ padding: '52px 52px 80px', maxWidth: 860, margin: '0 auto' }}>
+          <div style={{ padding: isMobile ? '40px 20px 60px' : '52px 52px 80px', maxWidth: 860, margin: '0 auto' }}>
             <div style={{ background: G.darkInk, padding: '52px 48px', display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 48, flexWrap: 'wrap' }}>
               <div style={{ maxWidth: 380 }}>
                 <div style={{ fontFamily: FONTS.body, fontSize: 9, fontWeight: 700, letterSpacing: '0.22em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: 16 }}>Begin</div>
