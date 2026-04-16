@@ -210,7 +210,8 @@ export default function Nav({ transparent = false, breathConfig = null }) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const navRef = useRef(null);
-  useBreathCanvas(breathConfig, navRef, { opacityScale: 1.0, flat: true });
+  // Breath canvas is rendered by the page wrapper — nav is transparent so it shows through
+  // useBreathCanvas not needed here when breathConfig is active
 
   // Multi-trip state
   const [trips, setTrips] = useState(() => {
