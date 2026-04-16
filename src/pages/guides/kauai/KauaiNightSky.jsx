@@ -36,7 +36,15 @@ export default function KauaiNightSky() {
           Whale season adds another dimension. December through April, humpback spouts are visible by moonlight from the south shore overlooks. The combination of dark sky conditions and whale activity in winter is unique to this island.
         </Prose>
 
-        <NightSkyWidget />
+        <NightSkyWidget
+          title="Tonight Over Kauai"
+          lat={22.07} lng={-159.52}
+          bortleSites={[
+            { name: 'Polihale Beach', bortle: 3, label: 'Class 3', color: '#3a7d7b' },
+            { name: 'Kokee Lookout', bortle: 2, label: 'Class 2', color: '#3a7d7b' },
+            { name: 'North Shore', bortle: 4, label: 'Class 4', color: '#c9963a' },
+          ]}
+        />
 
         <SubLabel>Best Viewing Locations</SubLabel>
         <EditorialList items={SKY_LOCATIONS} />

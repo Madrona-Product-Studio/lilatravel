@@ -38,7 +38,15 @@ export default function JoshuaTreeNightSky() {
           The volunteer-run Sky's the Limit Observatory & Nature Center in Twentynine Palms hosts free public star parties on Saturday nights. Bring binoculars — the volunteers bring the telescopes. It's one of the best community-run astronomy programs in the West.
         </Prose>
 
-        <NightSkyWidget />
+        <NightSkyWidget
+          title="Tonight Over Joshua Tree"
+          lat={33.87} lng={-115.9}
+          bortleSites={[
+            { name: 'Joshua Tree NP', bortle: 2, label: 'Class 2', color: '#3a7d7b' },
+            { name: 'Pinto Basin', bortle: 1, label: 'Class 1', color: '#3a7d7b' },
+            { name: 'Cap Rock', bortle: 2, label: 'Class 2', color: '#c9963a' },
+          ]}
+        />
 
         <SubLabel>Viewing Areas</SubLabel>
         <EditorialList items={SKY_FACTS} />

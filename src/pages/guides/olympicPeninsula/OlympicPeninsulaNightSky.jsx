@@ -36,7 +36,15 @@ export default function OlympicPeninsulaNightSky() {
           Hurricane Ridge, at 5,200 feet, often sits above the cloud layer. When the lowlands are socked in fog, the ridge can be crystal clear. Deer Park Campground at 5,400 feet is the highest drive-to point in the park — no water, no services, extraordinary sky. For coastal darkness, Kalaloch Beach delivers the sound of surf under stars with no light pollution from any direction.
         </Prose>
 
-        <NightSkyWidget />
+        <NightSkyWidget
+          title="Tonight Over Olympic"
+          lat={47.8} lng={-123.6}
+          bortleSites={[
+            { name: 'Hurricane Ridge', bortle: 3, label: 'Class 3', color: '#c9963a' },
+            { name: 'Deer Park', bortle: 2, label: 'Class 2', color: '#3a7d7b' },
+            { name: 'Kalaloch Beach', bortle: 3, label: 'Class 3', color: '#3a7d7b' },
+          ]}
+        />
 
         <SubLabel>Best Viewing Areas</SubLabel>
         <EditorialList items={SKY_AREAS} />

@@ -83,8 +83,7 @@ function nextNewMoonDate(date) {
 
 // ─── Derived Helpers ─────────────────────────────────────────────────────────
 
-function computePlanets(date) {
-  const lat = 37.2, lon = -112.9;
+function computePlanets(date, lat = 37.2, lon = -112.9) {
   const lst = siderealTime(date, lon);
   const raw = getPlanets(date);
   return raw.map(p => {
@@ -168,9 +167,9 @@ function getNextShower(date) {
 
 // ─── Build full local data ───────────────────────────────────────────────────
 
-function buildLocalData(date) {
+function buildLocalData(date, lat, lng) {
   const mp = moonPhase(date);
-  const planets = computePlanets(date);
+  const planets = computePlanets(date, lat, lng);
   const mw = computeMilkyWay(date, mp.illum);
   const rating = computeStargazingRating(mp.illum);
   const showers = getNextShower(date);
@@ -197,14 +196,14 @@ function buildLocalData(date) {
 
 // ─── Hook ────────────────────────────────────────────────────────────────────
 
-export default function useNightSky() {
+export default function useNightSky({ lat = 37.2, lng = -112.9 } = {}) {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const now = new Date();
     const today = now.toISOString().split('T')[0];
-    const cacheKey = `nightSky_${today}`;
+    const cacheKey = `nightSky_${today}_${lat}_${lng}`;
 
     // Check sessionStorage cache
     try {
@@ -217,7 +216,7 @@ export default function useNightSky() {
     } catch { /* ignore */ }
 
     // Compute local data immediately
-    const local = buildLocalData(now);
+    const local = buildLocalData(now, lat, lng);
     setData(local);
     setLoading(false);
 
@@ -228,8 +227,8 @@ export default function useNightSky() {
 
       try {
         const [moonRes, bodiesRes] = await Promise.allSettled([
-          fetch(`/api/astronomy?type=moon-phase`).then(r => r.ok ? r.json() : null),
-          fetch(`/api/astronomy?type=bodies`).then(r => r.ok ? r.json() : null),
+          fetch(`/api/astronomy?type=moon-phase&lat=${lat}&lon=${lng}`).then(r => r.ok ? r.json() : null),
+          fetch(`/api/astronomy?type=bodies&lat=${lat}&lon=${lng}`).then(r => r.ok ? r.json() : null),
         ]);
 
         // Enrich moon SVG
@@ -279,7 +278,7 @@ export default function useNightSky() {
         } catch { /* ignore */ }
       }
     })();
-  }, []);
+  }, [lat, lng]);
 
   if (!data) return { loading: true, moonPhase: null, planets: [], milkyWay: null, nextNewMoon: null, bestWindow: '', moonrise: '', stargazingRating: null, showers: null };
 

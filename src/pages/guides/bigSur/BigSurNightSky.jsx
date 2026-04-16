@@ -37,7 +37,15 @@ export default function BigSurNightSky() {
           There are no organized dark sky programs on the Big Sur coast, which is part of the appeal. Bring a red headlamp, a blanket, and patience. The sky here is best experienced lying on the ground, listening to the surf.
         </Prose>
 
-        <NightSkyWidget />
+        <NightSkyWidget
+          title="Tonight Over Big Sur"
+          lat={36.27} lng={-121.81}
+          bortleSites={[
+            { name: 'Pfeiffer Beach', bortle: 4, label: 'Class 4', color: '#c9963a' },
+            { name: 'Nacimiento Road', bortle: 3, label: 'Class 3', color: '#3a7d7b' },
+            { name: 'Prewitt Ridge', bortle: 2, label: 'Class 2', color: '#3a7d7b' },
+          ]}
+        />
 
         <SubLabel>Viewing Areas</SubLabel>
         <EditorialList items={SKY_FACTS} />

@@ -34,7 +34,15 @@ export default function VancouverIslandNightSky() {
           Vancouver Island's west coast offers genuinely dark skies — no major cities for hundreds of kilometres in the Pacific direction. The best stargazing is from Long Beach and the Wild Pacific Trail on clear winter nights. But the sky here offers more than stars: storm season brings lightning over the open ocean, phosphorescent surf on warm summer nights glows with bioluminescent plankton, and on rare, spectacular occasions the Northern Lights reach this latitude.
         </Prose>
 
-        <NightSkyWidget />
+        <NightSkyWidget
+          title="Tonight Over Vancouver Island"
+          lat={49.2} lng={-125.9}
+          bortleSites={[
+            { name: 'Tofino', bortle: 4, label: 'Class 4', color: '#c9963a' },
+            { name: 'Pacific Rim NP', bortle: 3, label: 'Class 3', color: '#3a7d7b' },
+            { name: 'Strathcona PP', bortle: 2, label: 'Class 2', color: '#3a7d7b' },
+          ]}
+        />
 
         <SubLabel>Dark Sky Viewing</SubLabel>
         <EditorialList items={SKY_FACTS} />

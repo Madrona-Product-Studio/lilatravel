@@ -18,8 +18,14 @@ function MoonSVG({ age, illumination }) {
   );
 }
 
-export default function NightSkyWidget() {
-  const sky = useNightSky();
+const DEFAULT_BORTLE = [
+  { name: 'Zion', bortle: 3, label: 'Class 3', color: G.goldenAmber },
+  { name: 'Bryce Canyon', bortle: 2, label: 'Class 2', color: G.oceanTeal },
+  { name: 'Capitol Reef', bortle: 2, label: 'Class 2', color: G.oceanTeal },
+];
+
+export default function NightSkyWidget({ title = 'Tonight Over Zion', lat = 37.2, lng = -112.9, bortleSites = DEFAULT_BORTLE }) {
+  const sky = useNightSky({ lat, lng });
   const [mobile, setMobile] = useState(false);
 
   useEffect(() => {
@@ -186,12 +192,8 @@ export default function NightSkyWidget() {
       </div>
 
       {/* ── Bortle ── */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 2, marginTop: 2 }}>
-        {[
-          { name: 'Zion', bortle: 3, label: 'Class 3', color: G.goldenAmber },
-          { name: 'Bryce Canyon', bortle: 2, label: 'Class 2', color: G.oceanTeal },
-          { name: 'Capitol Reef', bortle: 2, label: 'Class 2', color: G.oceanTeal },
-        ].map(site => (
+      <div style={{ display: 'grid', gridTemplateColumns: `repeat(${bortleSites.length}, 1fr)`, gap: 2, marginTop: 2 }}>
+        {bortleSites.map(site => (
           <div key={site.name} style={{ background: G.darkInk, padding: '16px 12px', textAlign: 'center' }}>
             <div style={{ fontFamily: FONTS.serif, fontSize: 28, fontWeight: 300, color: '#E8E0D5', lineHeight: 1, marginBottom: 4 }}>
               {site.bortle}

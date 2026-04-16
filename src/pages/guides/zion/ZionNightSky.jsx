@@ -37,7 +37,15 @@ export default function ZionNightSky() {
           The Milky Way is visible to the naked eye from all three parks on clear moonless nights. At Bryce Canyon, over 7,500 stars are visible — more than anywhere else in the lower 48. The best viewing is June through September, when the galactic core passes directly overhead and the nights are warm enough to stay out.
         </Prose>
 
-        <NightSkyWidget />
+        <NightSkyWidget
+          title="Tonight Over Zion"
+          lat={37.2} lng={-112.9}
+          bortleSites={[
+            { name: 'Zion', bortle: 3, label: 'Class 3', color: '#c9963a' },
+            { name: 'Bryce Canyon', bortle: 2, label: 'Class 2', color: '#3a7d7b' },
+            { name: 'Capitol Reef', bortle: 2, label: 'Class 2', color: '#3a7d7b' },
+          ]}
+        />
 
         <SubLabel>Dark Sky Sites</SubLabel>
         <EditorialList items={SKY_FACTS} />
