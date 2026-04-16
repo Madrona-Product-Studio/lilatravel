@@ -133,14 +133,23 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
       )}
 
       {/* ═══ GOOGLE PLACES PHOTO (when no NPS) ═══ */}
-      {!nps && googlePhotos.length > 0 && (
-        <div className="mx-[-20px] mb-3 relative">
-          <img
-            src={heroPhoto}
-            alt={item.name}
-            className="w-full h-[200px] object-cover block"
-            style={{ background: C.stone }}
-          />
+      {!nps && shouldFetchPlaces && (places.loading || googlePhotos.length > 0) && (
+        <div className="mx-[-20px] mb-3 relative overflow-hidden" style={{ height: 200, background: C.stone }}>
+          {places.loading && !heroPhoto && (
+            <>
+              <style>{`@keyframes shimmer{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}`}</style>
+              <div className="absolute inset-0" style={{ background: `linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%)`, animation: 'shimmer 1.5s infinite' }} />
+            </>
+          )}
+          {heroPhoto && (
+            <img
+              src={heroPhoto}
+              alt={item.name}
+              className="w-full h-[200px] object-cover block"
+              style={{ animation: 'fadeIn 0.3s ease' }}
+            />
+          )}
+          <style>{`@keyframes fadeIn{from{opacity:0}to{opacity:1}}`}</style>
           {googlePhotos.length > 1 && (
             <div className="absolute bottom-2.5 left-0 right-0 flex justify-center gap-1.5">
               {googlePhotos.slice(0, 6).map((_, i) => (
