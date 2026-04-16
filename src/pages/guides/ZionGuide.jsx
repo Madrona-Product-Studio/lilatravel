@@ -300,7 +300,7 @@ export default function ZionGuide() {
                 <Prose>The canyon's biodiversity surprises people. The Virgin River riparian corridor supports nearly 300 bird species, plus mammals that most visitors never see.</Prose>
                 <EditorialList items={WILDLIFE.map(w => ({ name: w.name, detail: w.detail }))} />
 
-                <PlaceGuideCard label="The Place Guide" descriptor="Terrain \u00B7 When to go \u00B7 Desert wildlife" bg="linear-gradient(155deg, #C4956A 0%, #7A9190 100%)" />
+                <PlaceGuideCard label="The Place Guide" descriptor="Terrain · When to go · Desert wildlife" bg="linear-gradient(155deg, #C4956A 0%, #7A9190 100%)" to="/destinations/zion/know-the-place" />
               </div>
 
               <Divider />
@@ -330,7 +330,7 @@ export default function ZionGuide() {
                 <SubLabel warm>Supporting People Here</SubLabel>
                 <Prose>Springdale's economy runs almost entirely on tourism. Eat at locally owned restaurants, buy from local galleries, hire local guides. The difference between a national park visit and a real experience of a place is usually the people you meet who actually live there.</Prose>
 
-                <PlaceGuideCard label="Travel Responsibly Guide" descriptor="Tread lightly \u00B7 give back \u00B7 native culture \u00B7 local support" bg="linear-gradient(155deg, #A8896A 0%, #4A6B5A 100%)" />
+                <PlaceGuideCard label="Travel Responsibly Guide" descriptor="Tread lightly · give back · native culture · local support" bg="linear-gradient(155deg, #A8896A 0%, #4A6B5A 100%)" to="/destinations/zion/be-there-well" />
               </div>
 
               <Divider />
@@ -356,7 +356,7 @@ export default function ZionGuide() {
                   lilaPick: a.lilaPick,
                 }))} />
 
-                <PlaceGuideCard label="Stay Guide" descriptor="Full accommodations across Springdale, Kanab, Escalante & Torrey" bg="linear-gradient(155deg, #C4A882 0%, #8A7A6A 100%)" />
+                <PlaceGuideCard label="Stay Guide" descriptor="Full accommodations across Springdale, Kanab, Escalante & Torrey" bg="linear-gradient(155deg, #C4A882 0%, #8A7A6A 100%)" to="/destinations/zion/sleep" />
               </div>
 
               <Divider />
@@ -380,7 +380,7 @@ export default function ZionGuide() {
                   };
                 })} />
 
-                <PlaceGuideCard label="Eat Guide" descriptor="Springdale \u00B7 Byway 12 \u00B7 provisions" bg="linear-gradient(155deg, #C49A6A 0%, #8A6A4A 100%)" />
+                <PlaceGuideCard label="Eat Guide" descriptor="Springdale · Byway 12 · provisions" bg="linear-gradient(155deg, #C49A6A 0%, #8A6A4A 100%)" to="/destinations/zion/eat" />
               </div>
 
 
@@ -400,7 +400,7 @@ export default function ZionGuide() {
                   lilaPick: m.lilaPick,
                 }))} />
 
-                <PlaceGuideCard label="Move Guide" descriptor="Full trail & activity guide across all three parks" bg="linear-gradient(155deg, #8AAA7A 0%, #4A6A5A 100%)" />
+                <PlaceGuideCard label="Move Guide" descriptor="Full trail & activity guide across all three parks" bg="linear-gradient(155deg, #8AAA7A 0%, #4A6A5A 100%)" to="/destinations/zion/move" />
               </div>
 
               <Divider />
@@ -422,7 +422,7 @@ export default function ZionGuide() {
                   lilaPick: b.lilaPick,
                 }))} />
 
-                <PlaceGuideCard label="Breathe Guide" descriptor="Yoga \u00B7 bodywork \u00B7 sauna \u00B7 cold plunge \u00B7 restore" bg="linear-gradient(155deg, #8AADA8 0%, #4A6B7A 100%)" />
+                <PlaceGuideCard label="Breathe Guide" descriptor="Yoga · bodywork · sauna · cold plunge · restore" bg="linear-gradient(155deg, #8AADA8 0%, #4A6B7A 100%)" to="/destinations/zion/breathe" />
               </div>
 
               <Divider />
@@ -444,7 +444,7 @@ export default function ZionGuide() {
                   lilaPick: e.featured || e.lilaPick,
                 }))} />
 
-                <PlaceGuideCard label="Art & Culture Guide" descriptor="Arts \u00B7 culture \u00B7 food \u00B7 community" bg="linear-gradient(155deg, #B8956A 0%, #6A7A5A 100%)" />
+                <PlaceGuideCard label="Art & Culture Guide" descriptor="Arts · culture · food · community" bg="linear-gradient(155deg, #B8956A 0%, #6A7A5A 100%)" to="/destinations/zion/experience" />
               </div>
 
               <Divider />
@@ -465,7 +465,7 @@ export default function ZionGuide() {
                   { context: 'Best Window', name: 'June \u2013 September', detail: 'New moon periods June through September. Milky Way core visible May\u2013October. Perseids peak mid-August.' },
                 ]} />
 
-                <PlaceGuideCard label="Night Sky Guide" descriptor="Dark sky ratings \u00B7 best windows \u00B7 ranger programs" bg="linear-gradient(155deg, #5A6B8A 0%, #1E2A3E 100%)" />
+                <PlaceGuideCard label="Night Sky Guide" descriptor="Dark sky ratings · best windows · ranger programs" bg="linear-gradient(155deg, #5A6B8A 0%, #1E2A3E 100%)" to="/destinations/zion/night-sky" />
               </div>
 
               <Divider />
