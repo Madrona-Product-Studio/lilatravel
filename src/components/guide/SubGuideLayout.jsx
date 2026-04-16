@@ -2,14 +2,14 @@ import { Link } from 'react-router-dom';
 import { Nav, Footer } from '@components';
 import { G } from '@data/guides/guide-styles';
 
-export default function SubGuideLayout({ title, descriptor, children }) {
+export default function SubGuideLayout({ title, descriptor, children, backPath = '/destinations/zion', backLabel = 'Zion Guide' }) {
   return (
     <div className="font-body min-h-screen flex flex-col" style={{ background: G.warmWhite, color: G.ink }}>
       <Nav />
       <main style={{ maxWidth: 860, margin: '0 auto', width: '100%', padding: '0 max(20px, min(52px, 5vw))', paddingTop: 80 }}>
         <div style={{ maxWidth: 660 }}>
-          <Link to="/destinations/zion" className="inline-flex items-center gap-1.5 no-underline" style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 600, letterSpacing: '0.06em', color: G.oceanTeal, marginTop: 32, marginBottom: 24, display: 'inline-flex' }}>
-            ← Zion Guide
+          <Link to={backPath} className="inline-flex items-center gap-1.5 no-underline" style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 600, letterSpacing: '0.06em', color: G.oceanTeal, marginTop: 32, marginBottom: 24, display: 'inline-flex' }}>
+            ← {backLabel}
           </Link>
           <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 9, fontWeight: 700, letterSpacing: '0.22em', textTransform: 'uppercase', color: G.oceanTeal, marginBottom: 12 }}>
             Place Guide

@@ -1,928 +1,188 @@
 // ═══════════════════════════════════════════════════════════════════════════════
-// PAGE: JOSHUA TREE GUIDE (dedicated)
+// PAGE: JOSHUA TREE GUIDE — Editorial Main Page (Redesign v2)
 // ═══════════════════════════════════════════════════════════════════════════════
 //
-// Full editorial guide for Joshua Tree & its orbit. Uses shared Nav/Footer/FadeIn
-// from the Lila Trips component library, with guide-specific components
-// defined locally (ListItem, StayItem, ExpandableList).
+// Top-level editorial guide for Joshua Tree & its orbit. Eight sections:
+//   01. Terrain & Parks    05. Hikes, Bikes, etc.
+//   02. Travel Lightly     06. Yoga & Mindfulness
+//   03. Where to Stay      07. Arts & Culture
+//   04. Where to Eat       08. Stars & Sky
 //
 // Route: /destinations/joshua-tree
 //
 
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Nav, Footer, FadeIn, WhisperBar } from '@components';
-import { SectionLabel, SectionTitle, SectionSub, Divider, SectionIcon, TierItem, TierLegend, TierFilter } from '@components/guide';
-import { C } from '@data/brand';
+import { SectionTransition, SubLabel, Prose, ContentList, EditorialList, PlaceGuideCard, GuideDetailSheet } from '@components/guide';
+import { getNPSData, buildNPSLookup, findNPSMatch } from '@services/npsService';
+import { G, FONTS } from '@data/guides/guide-styles';
 import { P } from '@data/photos';
 import { trackEvent } from '@utils/analytics';
-import { CelestialDrawer } from '@components';
-import { getNPSData, buildNPSLookup, findNPSMatch } from '@services/npsService';
 import { Helmet } from 'react-helmet-async';
-import accommodations from '../../data/accommodations/joshua-tree.json';
-import restaurants from '../../data/restaurants/joshua-tree-eat.json';
-import experiences from '../../data/restaurants/joshua-tree-experience.json';
-import breatheItems from '../../data/restaurants/joshua-tree-breathe.json';
-import moveItems from '../../data/restaurants/joshua-tree-move.json';
+import { CelestialDrawer } from '@components';
 import { BREATH_CONFIG } from '@data/breathConfig';
 import useBreathCanvas from '@hooks/useBreathCanvas';
+import { PARKS, TOWNS, HIGHLIGHTS, WILDLIFE, TIMING_WINDOWS } from '@data/guides/joshua-tree-constants';
+import accommodations from '../../data/accommodations/joshua-tree.json';
+import restaurants from '../../data/restaurants/joshua-tree-eat.json';
+import moveItems from '../../data/restaurants/joshua-tree-move.json';
+import breatheItems from '../../data/restaurants/joshua-tree-breathe.json';
+import experiences from '../../data/restaurants/joshua-tree-experience.json';
 
 
-// ─── Guide-Specific Components ───────────────────────────────────────────────
-// SectionLabel, SectionTitle, SectionSub, Divider, SectionIcon imported from @components/guide
-const ACCENT = C.goldenAmber;
-
-function NPSArrowhead({ size = 14, color = "#2D5F2B" }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-      <path d="M12 2L4 22h3l5-11 5 11h3L12 2z" fill={color} opacity="0.85" />
-      <circle cx="12" cy="16" r="2.5" fill={color} opacity="0.6" />
-    </svg>
-  );
-}
-
-function ListItem({ name, detail, note, tags, featured, url, onOpenSheet, location, hasNPS, cuisine, priceRange, reservations, dietary, energy }) {
-  const nameEl = onOpenSheet ? (
-    <span className="font-body text-[15px] font-semibold text-dark-ink">{name}</span>
-  ) : url ? (
-    <a href={url} target="_blank" rel="noopener noreferrer"
-      className="font-body text-[15px] font-semibold text-dark-ink no-underline transition-[border-color,color] duration-200"
-      style={{ borderBottom: `1px solid ${C.stone}` }}
-      onMouseEnter={e => { e.target.style.borderColor = C.oceanTeal; e.target.style.color = C.slate || "#3D5A6B"; }}
-      onMouseLeave={e => { e.target.style.borderColor = C.stone; e.target.style.color = C.darkInk; }}>
-      {name}
-      <span className="text-[12px] ml-1 text-[#7A857E]">{"↗"}</span>
-    </a>
-  ) : (
-    <span className="font-body text-[15px] font-semibold text-dark-ink">{name}</span>
-  );
-
-  return (
-    <div
-      onClick={onOpenSheet ? () => onOpenSheet({ type: 'list', name, detail, note, tags, featured, url, location, cuisine, priceRange, reservations, dietary, energy }) : undefined}
-      className={`flex flex-col md:flex-row items-start md:items-center gap-3.5 py-4 border-b border-stone ${onOpenSheet ? 'cursor-pointer transition-[background] duration-150' : ''}`}
-      onMouseEnter={onOpenSheet ? e => { e.currentTarget.style.background = `${C.stone}30`; } : undefined}
-      onMouseLeave={onOpenSheet ? e => { e.currentTarget.style.background = 'transparent'; } : undefined}
-    >
-      <div className="flex-1 min-w-0">
-        <div className="flex items-center gap-2 flex-wrap mb-[3px]">
-          {nameEl}
-          {featured && (
-            <span className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-golden-amber px-2.5 py-0.5"
-              style={{ border: `1px solid ${C.goldenAmber}40` }}>{"Lila Pick"}</span>
-          )}
-          {hasNPS && (
-            <span className="inline-flex items-center gap-1 px-2 py-0.5 font-body text-[9px] font-bold tracking-[0.14em] uppercase text-[#2D5F2B]"
-              style={{ background: "#2D5F2B10" }}>
-              <NPSArrowhead size={10} />NPS
-            </span>
-          )}
-        </div>
-        <div className="font-body text-[14px] font-normal text-[#4A5650] leading-[1.65]">{detail}</div>
-        {note && (
-          <div className="font-body text-[12px] font-semibold text-ocean-teal mt-1">{note}</div>
-        )}
-        {tags && tags.length > 0 && (
-          <div className="flex gap-[5px] mt-[7px] flex-wrap">
-            {tags.map((t, i) => (
-              <span key={i} className="font-body text-[11px] font-semibold text-[#7A857E] px-2 py-0.5"
-                style={{ background: C.stone + "60" }}>{t}</span>
-            ))}
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
-
-function sortByTierDiversity(items) {
-  const tierOrder = ['elemental', 'rooted', 'premium', 'luxury'];
-  const picks = [];
-  const seen = new Set();
-  for (const tier of tierOrder) {
-    const pick = items.find(a => a.lilaPick && a.stayStyle === tier && !seen.has(a.id));
-    if (pick) { picks.push(pick); seen.add(pick.id); }
-  }
-  for (const a of items) {
-    if (a.lilaPick && !seen.has(a.id)) { picks.push(a); seen.add(a.id); }
-  }
-  return [...picks, ...items.filter(a => !seen.has(a.id))];
-}
-
-function StayItem({ name, location, tier, detail, tags, url, featured, onOpenSheet, priceRange, amenities, bookingWindow, seasonalNotes, groupFit }) {
-  const styles = {
-    elemental: { color: C.seaGlass, label: "Elemental", bg: `${C.seaGlass}15` },
-    rooted: { color: C.oceanTeal, label: "Rooted", bg: `${C.oceanTeal}12` },
-    premium: { color: C.goldenAmber, label: "Premium", bg: `${C.goldenAmber}15` },
-    luxury: { color: C.sunSalmon, label: "Luxury", bg: `${C.sunSalmon}15` },
-  };
-  const s = styles[tier] || styles.rooted;
-  const nameEl = onOpenSheet ? (
-    <span className="font-body text-[15px] font-semibold text-dark-ink">{name}</span>
-  ) : url ? (
-    <a href={url} target="_blank" rel="noopener noreferrer"
-      className="font-body text-[15px] font-semibold text-dark-ink no-underline transition-[border-color] duration-200"
-      style={{ borderBottom: `1px solid ${C.stone}` }}
-      onMouseEnter={e => e.target.style.borderColor = C.oceanTeal}
-      onMouseLeave={e => e.target.style.borderColor = C.stone}>
-      {name}
-      <span className="text-[12px] ml-1 text-[#7A857E]">{"↗"}</span>
-    </a>
-  ) : (
-    <span className="font-body text-[15px] font-semibold text-dark-ink">{name}</span>
-  );
-
-  return (
-    <div
-      onClick={onOpenSheet ? () => onOpenSheet({ type: 'stay', name, location, tier, detail, tags, featured, url, priceRange, amenities, bookingWindow, seasonalNotes, groupFit }) : undefined}
-      className={`flex flex-col md:flex-row items-stretch md:items-center gap-3.5 py-[18px] border-b border-stone ${onOpenSheet ? 'cursor-pointer transition-[background] duration-150' : ''}`}
-      onMouseEnter={onOpenSheet ? e => { e.currentTarget.style.background = `${C.stone}30`; } : undefined}
-      onMouseLeave={onOpenSheet ? e => { e.currentTarget.style.background = 'transparent'; } : undefined}
-    >
-      <div className="flex-1 min-w-0">
-        <div className="flex items-center gap-2 mb-[3px] flex-wrap">
-          <span className="font-body text-[10px] font-bold tracking-[0.18em] uppercase px-2.5 py-0.5"
-            style={{ background: s.bg, color: s.color }}>{s.label}</span>
-          <span className="font-body text-[12px] font-medium text-[#7A857E]">{location}</span>
-          {featured && (
-            <span className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-golden-amber px-2.5 py-0.5"
-              style={{ border: `1px solid ${C.goldenAmber}40` }}>{"Lila Pick"}</span>
-          )}
-        </div>
-        <div className="mb-[3px]">{nameEl}</div>
-        <div className="font-body text-[14px] font-normal text-[#4A5650] leading-[1.65]">{detail}</div>
-        {tags && (
-          <div className="flex gap-[5px] mt-[7px] flex-wrap">
-            {tags.map((t, i) => (
-              <span key={i} className="font-body text-[11px] font-semibold text-[#7A857E] px-2 py-0.5"
-                style={{ background: C.stone + "60" }}>{t}</span>
-            ))}
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
-
-function ExpandableList({ children, initialCount = 5, label = "more" }) {
-  const [expanded, setExpanded] = useState(false);
-  const items = Array.isArray(children) ? children : [children];
-  const visible = expanded ? items : items.slice(0, initialCount);
-  const hasMore = items.length > initialCount;
-
-  return (
-    <div>
-      {visible}
-      {hasMore && (
-        <button
-          onClick={() => setExpanded(!expanded)}
-          className="inline-flex items-center gap-2 mt-5 pt-2 pb-1 bg-transparent border-none border-b border-dark-ink cursor-pointer font-body text-[12px] font-bold tracking-[0.2em] uppercase text-dark-ink transition-opacity duration-200 hover:opacity-55"
-        >
-          {expanded ? "Show less" : `Show ${items.length - initialCount} more ${label}`}
-          <span className="inline-block transition-transform duration-[250ms] ease-in-out text-[11px]"
-            style={{ transform: expanded ? "rotate(180deg)" : "rotate(0deg)" }}>{"▼"}</span>
-        </button>
-      )}
-    </div>
-  );
-}
-
-function CollapsibleSection({ id, label, title, teaser, isOpen, onToggle, children }) {
-  const bodyRef = useRef(null);
-  return (
-    <section id={id} className="scroll-mt-[126px]">
-      <button onClick={onToggle} className="w-full flex items-center gap-4 py-6 bg-transparent border-none cursor-pointer text-left group">
-        <div className="flex-1 min-w-0">
-          <div className="font-body text-[10px] font-bold tracking-[0.22em] uppercase mb-1 text-[#7A857E]">{label}</div>
-          <div className="font-serif text-[clamp(20px,3vw,26px)] font-light leading-[1.2] text-dark-ink">{title}</div>
-        </div>
-        <div className="flex items-center gap-3 shrink-0">
-          <span className="font-body text-[12px] whitespace-nowrap text-[#7A857E]">{teaser}</span>
-          <span className="inline-block text-[12px] transition-transform duration-300 ease-in-out text-[#7A857E]" style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}>▾</span>
-        </div>
-      </button>
-      <div className="overflow-hidden transition-[max-height] duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]" style={{ maxHeight: isOpen ? 5000 : 0 }}>
-        <div ref={bodyRef} className="pb-6">{children}</div>
-      </div>
-    </section>
-  );
-}
-
-function GuideDetailSheet({ item, onClose, isMobile }) {
-  const sheetRef = useRef(null);
-  const dragStartY = useRef(null);
-  const dragCurrentY = useRef(0);
-
-  if (!item) return null;
-
-  const onTouchStart = (e) => { dragStartY.current = e.touches[0].clientY; };
-  const onTouchMove = (e) => {
-    if (dragStartY.current === null) return;
-    const dy = e.touches[0].clientY - dragStartY.current;
-    dragCurrentY.current = dy;
-    if (dy > 0 && sheetRef.current) sheetRef.current.style.transform = `translateY(${dy}px)`;
-  };
-  const onTouchEnd = () => {
-    if (dragCurrentY.current > 80) { onClose(); }
-    else if (sheetRef.current) { sheetRef.current.style.transform = 'translateY(0)'; }
-    dragStartY.current = null;
-    dragCurrentY.current = 0;
-  };
-
-  const tierStyles = {
-    elemental: { color: C.seaGlass, label: "Elemental", bg: `${C.seaGlass}15` },
-    rooted: { color: C.oceanTeal, label: "Rooted", bg: `${C.oceanTeal}12` },
-    premium: { color: C.goldenAmber, label: "Premium", bg: `${C.goldenAmber}15` },
-    luxury: { color: C.sunSalmon, label: "Luxury", bg: `${C.sunSalmon}15` },
-  };
-
-  const nps = item.nps;
-  const npsImages = nps?.images?.filter(img => img.url) || [];
-  const npsPrimaryImage = npsImages[0];
-
-  const stripHTML = (html) => {
-    if (!html) return '';
-    return html.replace(/<[^>]*>/g, '').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&nbsp;/g, ' ').trim();
-  };
-
-  const npsInfoRows = [];
-  if (nps) {
-    if (nps.duration) npsInfoRows.push({ label: 'Duration', value: nps.duration });
-    if (nps.season?.length) npsInfoRows.push({ label: 'Best Seasons', value: Array.isArray(nps.season) ? nps.season.join(', ') : nps.season });
-    if (nps.location || nps.locationDescription) npsInfoRows.push({ label: 'Location', value: stripHTML(nps.locationDescription || nps.location || '') });
-    const petsAllowed = nps.arePetsPermitted === 'true' || nps.arePetsPermitted === true;
-    if (nps.petsDescription || nps.arePetsPermitted !== undefined) {
-      npsInfoRows.push({ label: 'Pets', value: nps.petsDescription ? stripHTML(nps.petsDescription) : (petsAllowed ? 'Pets allowed' : 'No pets') });
-    }
-    const hasFees = nps.doFeesApply === 'true' || nps.doFeesApply === true;
-    if (nps.feeDescription || nps.doFeesApply !== undefined) {
-      npsInfoRows.push({ label: 'Fees', value: nps.feeDescription ? stripHTML(nps.feeDescription) : (hasFees ? 'Fees apply' : 'Free') });
-    }
-    const needsReservation = nps.isReservationRequired === 'true' || nps.isReservationRequired === true;
-    if (nps.isReservationRequired !== undefined) {
-      npsInfoRows.push({ label: 'Reservation', value: needsReservation ? 'Required' : 'Not required' });
-    }
-  }
-
-  const content = (
-    <div className="max-w-[500px] mx-auto px-5 pt-[26px] pb-[60px]">
-      {item.type === 'stay' && item.tier && tierStyles[item.tier] && (
-        <div className="flex items-center gap-2 mb-2.5 flex-wrap">
-          <span className="font-body text-[10px] font-bold tracking-[0.18em] uppercase px-2.5 py-0.5"
-            style={{ background: tierStyles[item.tier].bg, color: tierStyles[item.tier].color }}>{tierStyles[item.tier].label}</span>
-          {item.location && (
-            <span className="font-body text-[12px] font-medium text-[#7A857E]">{item.location}</span>
-          )}
-        </div>
-      )}
-      {item.type === 'list' && item.section && (
-        <span className="inline-block font-body text-[10px] font-bold tracking-[0.18em] uppercase text-golden-amber mb-2.5 px-2.5 py-0.5"
-          style={{ background: `${C.goldenAmber}15` }}>{item.section}</span>
-      )}
-
-      <h3 className="font-serif text-[clamp(22px,4vw,28px)] font-normal text-dark-ink mb-2.5 leading-[1.2] mt-0">{item.name}</h3>
-
-      {item.featured && (
-        <span className="inline-block font-body text-[10px] font-bold tracking-[0.18em] uppercase text-golden-amber mb-3.5 px-2.5 py-0.5"
-          style={{ border: `1px solid ${C.goldenAmber}40` }}>Lila Pick</span>
-      )}
-
-      {nps && (
-        <>
-          {npsPrimaryImage && (
-            <div className="mx-[-20px] mb-[18px] relative">
-              <img src={npsPrimaryImage.url} alt={npsPrimaryImage.altText || item.name}
-                className="w-full h-[220px] object-cover block" />
-              {(npsPrimaryImage.caption || npsPrimaryImage.credit) && (
-                <div className="px-5 py-1.5 font-body text-[11px] font-normal text-[#7A857E] leading-[1.5]">
-                  {npsPrimaryImage.caption && <span>{npsPrimaryImage.caption}</span>}
-                  {npsPrimaryImage.credit && (
-                    <span className="italic">{npsPrimaryImage.caption ? ' · ' : ''}Photo: {npsPrimaryImage.credit}</span>
-                  )}
-                </div>
-              )}
-              {npsImages.length > 1 && (
-                <div className="flex gap-[3px] px-5 overflow-x-auto" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-                  {npsImages.slice(1, 5).map((img, i) => (
-                    <img key={i} src={img.url} alt={img.altText || ''} className="w-[60px] h-[42px] object-cover opacity-80" />
-                  ))}
-                </div>
-              )}
-            </div>
-          )}
-
-          <a href={nps.url} target="_blank" rel="noopener noreferrer"
-            className="flex items-center gap-2.5 px-3.5 py-2.5 mb-[18px] no-underline transition-[background] duration-200"
-            style={{ background: '#2D5F2B0D', border: '1px solid #2D5F2B18' }}
-            onMouseEnter={e => e.currentTarget.style.background = '#2D5F2B18'}
-            onMouseLeave={e => e.currentTarget.style.background = '#2D5F2B0D'}>
-            <NPSArrowhead size={20} color="#2D5F2B" />
-            <div>
-              <div className="font-body text-[12px] font-medium text-[#2D5F2B] leading-[1.5]">
-                Trail information provided by the <strong>National Park Service</strong>
-              </div>
-              <div className="font-body text-[10px] font-semibold tracking-[0.12em] uppercase text-[#2D5F2B] opacity-60 mt-0.5">View on NPS.gov ↗</div>
-            </div>
-          </a>
-
-          {(nps.longDescription || nps.shortDescription) && (
-            <div className="mb-[18px]">
-              <div className="font-body text-[10px] font-bold tracking-[0.2em] uppercase text-[#2D5F2B] mb-2">NPS Description</div>
-              <p className="font-body text-[14px] font-normal text-[#4A5650] leading-[1.75] m-0">{stripHTML(nps.longDescription || nps.shortDescription)}</p>
-            </div>
-          )}
-
-          {npsInfoRows.length > 0 && (
-            <div className="grid grid-cols-2 gap-x-4 gap-y-2.5 mb-5 py-3.5 border-y border-stone">
-              {npsInfoRows.map((row, i) => (
-                <div key={i} className={row.label === 'Location' ? 'col-span-full' : ''}>
-                  <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-[3px]">{row.label}</div>
-                  <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{row.value}</div>
-                </div>
-              ))}
-            </div>
-          )}
-
-          {nps.accessibilityInformation && (() => {
-            const html = nps.accessibilityInformation;
-            const clean = (s) => s.replace(/&amp;/g, '&').replace(/&nbsp;/g, ' ').replace(/\xa0/g, ' ').replace(/<[^>]*>/g, '').trim();
-            const liMatches = html.match(/<li>([\s\S]*?)<\/li>/gi);
-            if (!liMatches || liMatches.length === 0) {
-              const text = clean(html);
-              if (!text) return null;
-              return (
-                <div className="mb-5">
-                  <div className="font-body text-[10px] font-bold tracking-[0.2em] uppercase text-[#7A857E] mb-2">Accessibility</div>
-                  <p className="font-body text-[13px] font-normal text-[#4A5650] leading-[1.6] m-0">{text}</p>
-                </div>
-              );
-            }
-            const rows = liMatches.map(li => {
-              const inner = li.replace(/<\/?li>/gi, '');
-              const boldMatch = inner.match(/<b>([\s\S]*?)<\/b>/);
-              const label = boldMatch ? clean(boldMatch[1]).replace(/\s*\|\s*$/, '').trim() : '';
-              const valueHtml = boldMatch ? inner.slice(inner.indexOf('</b>') + 4) : inner;
-              const valueParts = valueHtml.split(/<b>\s*\|?\s*<\/b>|<b>\s*\|\s*<\/b>/).map(clean).filter(Boolean);
-              const finalParts = [];
-              for (const part of valueParts) {
-                part.split(/\s+\|\s+/).forEach(p => { if (p.trim()) finalParts.push(p.trim()); });
-              }
-              return { label, values: finalParts };
-            });
-            const footnoteMatch = html.match(/<p>([\s\S]*?)<\/p>/i);
-            const footnote = footnoteMatch ? clean(footnoteMatch[1]) : null;
-            return (
-              <div className="mb-5">
-                <div className="font-body text-[10px] font-bold tracking-[0.2em] uppercase text-[#7A857E] mb-2.5">Trail Accessibility</div>
-                <div className="border border-stone" style={{ background: `${C.stone}18` }}>
-                  {rows.map((row, i) => (
-                    <div key={i} className="px-3.5 py-[9px] border-b border-stone">
-                      {row.label && (<div className="font-body text-[11px] font-bold text-dark-ink mb-[3px]">{row.label}</div>)}
-                      {row.values.map((val, j) => (
-                        <div key={j} className="font-body text-[12px] font-normal text-[#4A5650] leading-[1.6]">{val}</div>
-                      ))}
-                    </div>
-                  ))}
-                  {footnote && (<div className="px-3.5 py-2 font-body text-[11px] font-normal italic text-[#7A857E] leading-[1.5]">{footnote}</div>)}
-                </div>
-              </div>
-            );
-          })()}
-
-          {(item.detail || item.note) && (
-            <div className="px-4 py-3.5 mb-[18px]" style={{ background: `${C.goldenAmber}08`, borderLeft: `3px solid ${C.goldenAmber}40` }}>
-              <div className="font-body text-[10px] font-bold tracking-[0.2em] uppercase text-golden-amber mb-2">Our Take</div>
-              {item.detail && (<p className="font-body text-[14px] font-normal text-[#4A5650] leading-[1.7] mt-0 mb-1.5">{item.detail}</p>)}
-              {item.note && (<div className="font-body text-[12px] font-semibold text-ocean-teal">{item.note}</div>)}
-            </div>
-          )}
-
-          {item.tags && item.tags.length > 0 && (
-            <div className="flex gap-1.5 flex-wrap mb-5">
-              {item.tags.map((t, i) => (
-                <span key={i} className="font-body text-[12px] font-semibold text-[#7A857E] py-[3px] px-2.5"
-                  style={{ background: C.stone + '60' }}>{t}</span>
-              ))}
-            </div>
-          )}
-        </>
-      )}
-
-      {!nps && (
-        <>
-          {item.type === 'tier' && item.highlights && item.highlights.length > 0 && (
-            <div className="mb-[18px]">
-              {item.highlights.map((h, i) => (
-                <div key={i} className="flex gap-2.5 items-start mb-[7px]">
-                  <div className="w-1 h-1 rounded-full mt-[7px] shrink-0" style={{ background: C.skyBlue, opacity: 0.6 }} />
-                  <span className="font-body text-[14px] font-normal text-[#4A5650] leading-[1.7]">{h}</span>
-                </div>
-              ))}
-            </div>
-          )}
-
-          {item.detail && (<p className="font-body text-[14px] font-normal text-[#4A5650] leading-[1.7] mt-0 mb-3.5">{item.detail}</p>)}
-          {item.note && (<div className="font-body text-[13px] font-semibold text-ocean-teal mb-3.5">{item.note}</div>)}
-
-          {item.type === 'tier' && (item.difficulty || item.duration || item.distance || item.operator || item.bookingWindow || item.tradition || item.priceRange) && (
-            <div className="grid grid-cols-2 gap-x-4 gap-y-2.5 mb-[18px] py-3.5 border-y border-stone">
-              {item.difficulty && (
-                <div>
-                  <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-[3px]">Difficulty</div>
-                  <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.difficulty}</div>
-                </div>
-              )}
-              {item.distance && (
-                <div>
-                  <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-[3px]">Distance</div>
-                  <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.distance}</div>
-                </div>
-              )}
-              {item.duration && (
-                <div>
-                  <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-[3px]">Duration</div>
-                  <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.duration}</div>
-                </div>
-              )}
-              {item.tradition && (
-                <div>
-                  <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-[3px]">Tradition</div>
-                  <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.tradition}</div>
-                </div>
-              )}
-              {item.operator && (
-                <div>
-                  <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-[3px]">Operator</div>
-                  <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.operator}</div>
-                </div>
-              )}
-              {item.priceRange && (
-                <div>
-                  <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-[3px]">Price</div>
-                  <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.priceRange}</div>
-                </div>
-              )}
-              {item.bookingWindow && (
-                <div className="col-span-full">
-                  <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-[3px]">Booking</div>
-                  <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.bookingWindow}</div>
-                </div>
-              )}
-              {item.location && (
-                <div className="col-span-full">
-                  <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-[3px]">Location</div>
-                  <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.location}</div>
-                </div>
-              )}
-            </div>
-          )}
-
-          {/* Restaurant info grid */}
-          {item.type === 'list' && (item.cuisine || item.priceRange || item.reservations || item.energy) && (
-            <div className="grid grid-cols-2 gap-x-4 gap-y-2.5 mb-[18px] py-3.5 border-y border-stone">
-              {item.cuisine && (
-                <div>
-                  <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-[3px]">Cuisine</div>
-                  <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.cuisine}</div>
-                </div>
-              )}
-              {item.priceRange && (
-                <div>
-                  <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-[3px]">Price</div>
-                  <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.priceRange}</div>
-                </div>
-              )}
-              {item.energy && (
-                <div>
-                  <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-[3px]">Vibe</div>
-                  <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.energy}</div>
-                </div>
-              )}
-              {item.reservations && (
-                <div>
-                  <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-[3px]">Reservations</div>
-                  <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.reservations}</div>
-                </div>
-              )}
-              {item.location && (
-                <div className="col-span-full">
-                  <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-[3px]">Location</div>
-                  <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.location}</div>
-                </div>
-              )}
-              {item.dietary && (item.dietary.vegetarian || item.dietary.vegan || item.dietary.glutenFree) && (
-                <div className="col-span-full">
-                  <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-[3px]">Dietary</div>
-                  <div className="flex gap-1.5 flex-wrap">
-                    {item.dietary.vegetarian && <span className="font-body text-[11px] font-semibold text-sea-glass px-2 py-0.5" style={{ background: `${C.seaGlass}15` }}>vegetarian</span>}
-                    {item.dietary.vegan && <span className="font-body text-[11px] font-semibold text-sea-glass px-2 py-0.5" style={{ background: `${C.seaGlass}15` }}>vegan</span>}
-                    {item.dietary.glutenFree && <span className="font-body text-[11px] font-semibold text-sea-glass px-2 py-0.5" style={{ background: `${C.seaGlass}15` }}>gluten-free</span>}
-                  </div>
-                  {item.dietary.notes && <div className="font-body text-[12px] font-normal text-[#7A857E] mt-1 leading-[1.5]">{item.dietary.notes}</div>}
-                </div>
-              )}
-            </div>
-          )}
-
-          {/* Accommodation info grid */}
-          {item.type === 'stay' && (item.priceRange || item.bookingWindow || item.seasonalNotes || item.groupFit) && (
-            <div className="grid grid-cols-2 gap-x-4 gap-y-2.5 mb-[18px] py-3.5 border-y border-stone">
-              {item.priceRange && (
-                <div>
-                  <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-[3px]">Price Range</div>
-                  <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.priceRange}</div>
-                </div>
-              )}
-              {item.groupFit && (
-                <div>
-                  <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-[3px]">Good For</div>
-                  <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.groupFit.join(', ')}</div>
-                </div>
-              )}
-              {item.bookingWindow && (
-                <div className="col-span-full">
-                  <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-[3px]">Booking</div>
-                  <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.bookingWindow}</div>
-                </div>
-              )}
-              {item.seasonalNotes && (
-                <div className="col-span-full">
-                  <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-[3px]">Season</div>
-                  <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.seasonalNotes}</div>
-                </div>
-              )}
-            </div>
-          )}
-
-          {/* Amenities */}
-          {item.type === 'stay' && item.amenities && item.amenities.length > 0 && (
-            <div className="mb-[18px]">
-              <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-2">Amenities</div>
-              <div className="flex gap-1.5 flex-wrap">
-                {item.amenities.map((a, i) => (
-                  <span key={i} className="font-body text-[12px] font-semibold text-ocean-teal py-[3px] px-2.5" style={{ background: `${C.oceanTeal}10` }}>{a}</span>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {item.tags && item.tags.length > 0 && (
-            <div className="flex gap-1.5 flex-wrap mb-5">
-              {item.tags.map((t, i) => (
-                <span key={i} className="font-body text-[12px] font-semibold text-[#7A857E] py-[3px] px-2.5"
-                  style={{ background: C.stone + '60' }}>{t}</span>
-              ))}
-            </div>
-          )}
-        </>
-      )}
-
-      {item.url && !nps && (
-        <a href={item.url} target="_blank" rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 py-2.5 px-5 font-body text-[12px] font-bold tracking-[0.16em] uppercase text-ocean-teal no-underline transition-all duration-[250ms]"
-          style={{ border: `1.5px solid ${C.oceanTeal}` }}
-          onMouseEnter={e => { e.currentTarget.style.background = C.oceanTeal; e.currentTarget.style.color = '#fff'; }}
-          onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = C.oceanTeal; }}
-        >Visit Website <span className="text-[13px]">↗</span></a>
-      )}
-    </div>
-  );
-
-  if (!isMobile) {
-    return (
-      <>
-        <style>{`
-          @keyframes guideSheetSlideIn { from { transform: translateX(100%); } to { transform: translateX(0); } }
-          @keyframes guideSheetBackdropIn { from { opacity: 0; } to { opacity: 1; } }
-        `}</style>
-        <div onClick={onClose} className="fixed inset-0 z-[249]" style={{ background: 'rgba(0,0,0,0.3)', animation: 'guideSheetBackdropIn 0.25s ease' }} />
-        <div className="fixed top-0 right-0 bottom-0 w-[440px] z-[250] bg-cream overflow-y-auto" style={{ animation: 'guideSheetSlideIn 0.3s ease', boxShadow: '-4px 0 24px rgba(0,0,0,0.08)' }}>
-          <div className="sticky top-0 z-10 flex justify-end pr-3.5 pt-3">
-            <button onClick={onClose} className="w-8 h-8 flex items-center justify-center rounded-full cursor-pointer font-body text-[15px] text-[#7A857E] leading-none" style={{ background: `${C.warmWhite}e0`, border: `1px solid ${C.stone}15`, WebkitTapHighlightColor: 'transparent', boxShadow: `0 2px 8px ${C.darkInk}08` }} aria-label="Close">✕</button>
-          </div>
-          {content}
-        </div>
-      </>
-    );
-  }
-
-  return (
-    <>
-      <style>{`
-        @keyframes guideSheetSlideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
-        @keyframes guideSheetBackdropIn { from { opacity: 0; } to { opacity: 1; } }
-      `}</style>
-      <div onClick={onClose} className="fixed inset-0 z-[249]" style={{ background: 'rgba(0,0,0,0.3)', animation: 'guideSheetBackdropIn 0.25s ease' }} />
-      <div ref={sheetRef} className="fixed bottom-0 left-0 right-0 h-[82vh] z-[250] bg-cream rounded-t-2xl flex flex-col" style={{ animation: 'guideSheetSlideUp 0.3s ease', boxShadow: '0 -4px 24px rgba(0,0,0,0.1)' }}>
-        <div onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd} className="px-3.5 pt-2.5 pb-1.5 shrink-0 relative z-10">
-          <div className="w-9 h-1 rounded-sm mx-auto mb-2" style={{ background: '#7A857E30' }} />
-          <button onClick={(e) => { e.stopPropagation(); onClose(); }} className="absolute top-2 right-3.5 w-9 h-9 flex items-center justify-center rounded-full cursor-pointer font-body text-[15px] text-[#7A857E] leading-none" style={{ background: `${C.warmWhite}e0`, border: `1px solid #7A857E15`, WebkitTapHighlightColor: 'transparent', boxShadow: `0 2px 8px ${C.darkInk}08` }} aria-label="Close">✕</button>
-        </div>
-        <div className="overflow-y-auto flex-1" style={{ WebkitOverflowScrolling: 'touch' }}>
-          {content}
-        </div>
-      </div>
-    </>
-  );
-}
-
-function WildlifeEntry({ name, season, detail }) {
-  return (
-    <div className="flex flex-col gap-1 py-4 border-b border-stone">
-      <div className="flex items-baseline gap-2.5 flex-wrap">
-        <span className="font-body text-[14px] font-semibold text-dark-ink">{name}</span>
-        <span className="font-body text-[11px] font-bold tracking-[0.16em] uppercase text-golden-amber">{season}</span>
-      </div>
-      <p className="font-body text-[14px] font-normal text-[#4A5650] leading-[1.7] m-0">{detail}</p>
-    </div>
-  );
-}
-
-// ─── Park Card Accordion ────────────────────────────────────────────────────
-
-function DesignationIcon({ designation, size = 14, color = "#2D5F2B" }) {
-  if (designation === "us-national-park") return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-      <path d="M12 2L4 22h3l5-11 5 11h3L12 2z" fill={color} opacity="0.85" />
-      <circle cx="12" cy="16" r="2.5" fill={color} opacity="0.6" />
-    </svg>
-  );
-  if (designation === "canadian-national-park") return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-      <path d="M12 2L3 8v8l9 6 9-6V8L12 2z" stroke={color} strokeWidth="1.5" fill={`${color}15`} />
-      <path d="M9 11l3-3 3 3M12 8v8" stroke={color} strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-  return null;
-}
-
-function ParkCard({ park }) {
-  const DESIGNATION_LABELS = {
-    "us-national-park": "National Park",
-    "canadian-national-park": "National Park Reserve",
-    "state-park": "State Park",
-    "provincial-park": "Provincial Park",
-    "national-forest": "National Forest",
-    "state-wilderness": "State Wilderness Preserve",
-  };
-  const stats = [park.acreage, park.elevation, park.attribute, park.driveFrom].filter(Boolean);
-  return (
-    <div style={{ background: C.warmWhite }} className="p-4 md:p-5">
-      <div className="font-body text-[9px] tracking-[0.16em] uppercase text-[#7A857E] mb-1">
-        {DESIGNATION_LABELS[park.designation] || park.designation}{park.established ? ` · Est. ${park.established}` : ""}
-      </div>
-      <div className="font-serif font-normal text-[20px] text-dark-ink leading-[1.2] mb-1">{park.name}</div>
-      <div className="font-body text-[11px] text-[#7A857E] leading-[1.4] mb-3">
-        {stats.map((s, i) => <span key={i}>{i > 0 && " · "}{s}</span>)}
-      </div>
-      <p className="font-body text-[13px] font-normal text-[#4A5650] leading-[1.7] m-0">{park.soul}</p>
-      {park.infoUrl && (
-        <a href={park.infoUrl} target="_blank" rel="noopener noreferrer"
-          className="inline-block mt-3 font-body text-[10px] font-bold tracking-[0.12em] uppercase no-underline"
-          style={{ color: C.goldenAmber, borderBottom: '1px solid rgba(212,168,83,0.3)' }}>
-          {park.infoUrl.includes('nps.gov') ? `nps.gov/${park.infoUrl.split('nps.gov/')[1].replace(/\/$/, '')}` : park.infoUrl.includes('parks.canada.ca') ? 'Parks Canada' : park.infoUrl.includes('parks.ca.gov') ? 'CA State Parks' : park.infoUrl.includes('hawaii') ? 'Hawaii DLNR' : park.infoUrl.includes('bcparks') ? 'BC Parks' : 'Park Info'} ↗
-        </a>
-      )}
-    </div>
-  );
-}
-
-
-
-// ─── Tier Constants ─────────────────────────────────────────────────────────
-
-const BREATHE_TIERS = {
-  practice: { color: '#4A9B9F', label: 'Practice', bg: '#4A9B9F15' },
-  soak:     { color: '#7BB8D4', label: 'Soak',     bg: '#7BB8D415' },
-  restore:  { color: '#7BB8A0', label: 'Restore',  bg: '#7BB8A015' },
-};
-const BREATHE_LEGEND = [
-  { label: 'Practice', desc: 'In the tradition', color: '#4A9B9F' },
-  { label: 'Soak',     desc: 'Water & heat',     color: '#7BB8D4' },
-  { label: 'Restore',  desc: 'Integration',      color: '#7BB8A0' },
-];
-const MOVE_TIERS = {
-  hike:  { color: '#8a8078', label: 'Hike',  bg: '#8a807815' },
-  water: { color: '#7BB8D4', label: 'Water', bg: '#7BB8D415' },
-  ride:  { color: '#D4A853', label: 'Ride',  bg: '#D4A85315' },
-  climb: { color: '#E8A090', label: 'Climb', bg: '#E8A09015' },
-};
-const MOVE_TIER_META = {
-  hike:  { label: 'Hike',  desc: 'On foot',          color: '#8a8078' },
-  water: { label: 'Water', desc: 'Surf & paddle',    color: '#7BB8D4' },
-  ride:  { label: 'Ride',  desc: 'Cycle & roll',     color: '#D4A853' },
-  climb: { label: 'Climb', desc: 'Vertical terrain',  color: '#E8A090' },
-};
-const moveLegend = [...new Set(moveItems.map(i => i.moveTier))].map(t => MOVE_TIER_META[t]);
-const moveFilterTiers = [...new Set(moveItems.map(i => i.moveTier))].map(t => ({ key: t, ...MOVE_TIER_META[t] }));
-const breatheFilterTiers = [
-  { key: 'practice', label: 'Practice', desc: 'In the tradition', color: '#4A9B9F' },
-  { key: 'soak',     label: 'Soak',     desc: 'Water & heat',     color: '#7BB8D4' },
-  { key: 'restore',  label: 'Restore',  desc: 'Integration',      color: '#7BB8A0' },
-];
-const sleepFilterTiers = [
-  { key: 'elemental', label: 'Elemental', desc: 'In the landscape', color: '#7BB8A0' },
-  { key: 'rooted',    label: 'Rooted',    desc: 'Boutique, local',  color: '#4A9B9F' },
-  { key: 'premium',   label: 'Premium',   desc: 'World-class',      color: '#D4A853' },
-];
-
-// ─── Guide Section Navigation (sticky anchor bar) ───────────────────────────
+// ─── Constants ───────────────────────────────────────────────────────────────
 
 const GUIDE_SECTIONS = [
-  { id: "sense-of-place", label: "Sense of Place" },
-  { id: "when-to-go",     label: "Magic Windows" },
-  { id: "tread-lightly",  label: "Tread Lightly" },
-  { id: "where-to-stay",  label: "Sleep" },
-  { id: "move",           label: "Move" },
-  { id: "wellness",       label: "Breathe" },
-  { id: "light-sky",      label: "Night Sky" },
-  { id: "eat",            label: "Eat" },
-  { id: "experience",     label: "Experience" },
-  { id: "give-back",      label: "Give Back" },
+  { id: 'the-place',   label: 'Terrain & Parks' },
+  { id: 'responsibly', label: 'Travel Lightly' },
+  { id: 'stay',        label: 'Where to Stay' },
+  { id: 'eat',         label: 'Where to Eat' },
+  { id: 'move',        label: 'Hikes, Bikes, etc.' },
+  { id: 'breathe',     label: 'Yoga & Mindfulness' },
+  { id: 'experience',  label: 'Arts & Culture' },
+  { id: 'night-sky',   label: 'Stars & Sky' },
 ];
 
-function GuideNav({ isMobile, onOpenSection }) {
-  const [activeId, setActiveId] = useState(null);
-  const scrollContainerRef = useRef(null);
+// ─── Editorial data for main page ────────────────────────────────────────────
 
-  useEffect(() => {
-    if (isMobile) return;
-    const ids = GUIDE_SECTIONS.map(s => s.id);
-    const elements = ids.map(id => document.getElementById(id)).filter(Boolean);
-    if (elements.length === 0) return;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries.filter(e => e.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
-        if (visible.length > 0) setActiveId(visible[0].target.id);
-      },
-      { rootMargin: "-130px 0px -60% 0px", threshold: 0 }
-    );
-    elements.forEach(el => observer.observe(el));
-    return () => observer.disconnect();
-  }, [isMobile]);
+const PARKS_EDITORIAL = PARKS.map(p => ({
+  name: p.name,
+  context: p.attribute || p.designation,
+  description: p.soul,
+  url: p.infoUrl,
+}));
 
-  const handleClick = useCallback((id) => {
-    if (onOpenSection) onOpenSection(id);
-    const el = document.getElementById(id);
-    if (!el) return;
-    const mainNavHeight = isMobile ? 58 : 64;
-    const guideNavHeight = isMobile ? 0 : 52;
-    const y = el.getBoundingClientRect().top + window.scrollY - guideNavHeight - mainNavHeight - 32;
-    window.scrollTo({ top: y, behavior: "smooth" });
-  }, [isMobile, onOpenSection]);
+const TOWNS_EDITORIAL = TOWNS.map(t => ({
+  name: t.name,
+  context: t.context,
+  description: t.description,
+  url: t.url,
+}));
 
-  if (isMobile) {
-    return (
-      <div className="mx-5 mb-6 border border-stone p-4 px-[18px] bg-cream">
-        <div className="flex items-center justify-between mb-3.5">
-          <span className="font-body text-[10px] font-bold tracking-[0.22em] uppercase text-[#7A857E]">In this guide</span>
-          <span className="font-body text-[10px] font-medium text-[#b8b0a8] tracking-[0.06em]">{GUIDE_SECTIONS.length} sections</span>
-        </div>
-        <div className="grid grid-cols-2 gap-x-4 gap-y-0.5">
-          {GUIDE_SECTIONS.map((section, i) => (
-            <button
-              key={section.id}
-              onClick={() => handleClick(section.id)}
-              className="flex items-center gap-2 py-[7px] bg-transparent border-none cursor-pointer text-left"
-            >
-              <span className="font-body text-[9px] font-bold tracking-[0.1em] text-[#b8b0a8] min-w-4">{String(i + 1).padStart(2, "0")}</span>
-              <span className="font-body text-[11px] font-semibold tracking-[0.08em] uppercase text-[#4A5650]">{section.label}</span>
-            </button>
-          ))}
-        </div>
-      </div>
-    );
-  }
 
-  return (
-    <nav className="sticky top-[72px] z-90 border-y border-stone" style={{ background: "rgba(250, 247, 243, 0.97)" }}>
-      <div className="max-w-[1120px] mx-auto pt-1 px-10 flex items-center">
-        <div className="flex-1 min-w-0 relative">
-          <div ref={scrollContainerRef} className="guide-nav-scroll flex items-center overflow-x-auto" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
-          <style>{`.guide-nav-scroll::-webkit-scrollbar { display: none; }`}</style>
-          {GUIDE_SECTIONS.map((section) => {
-            const isActive = activeId === section.id;
-            return (
-              <button key={section.id} onClick={() => handleClick(section.id)}
-                className="guide-nav-scroll px-3.5 h-11 bg-transparent border-none cursor-pointer font-body text-[11px] tracking-[0.14em] uppercase whitespace-nowrap shrink-0 transition-[color,border-color] duration-[250ms] ease-in-out relative"
-                style={{
-                  borderBottom: `2px solid ${isActive ? C.goldenAmber : "transparent"}`,
-                  fontWeight: isActive ? 700 : 600,
-                  color: isActive ? C.goldenAmber : "#7A857E",
-                }}
-                onMouseEnter={e => { if (!isActive) { e.currentTarget.style.color = C.darkInk; e.currentTarget.style.borderBottomColor = C.stone; } }}
-                onMouseLeave={e => { if (!isActive) { e.currentTarget.style.color = "#7A857E"; e.currentTarget.style.borderBottomColor = "transparent"; } }}
-              >
-                {section.label}
-              </button>
-            );
-          })}
-          </div>
-        </div>
-      </div>
-    </nav>
-  );
+// ─── Data derivations ───────────────────────────────────────────────────────
+
+const sleepPicks = accommodations.filter(a => a.lilaPick).slice(0, 4);
+const eatPicks = restaurants.filter(r => r.lilaPick).slice(0, 4);
+const moveHighlights = moveItems.filter(m => m.lilaPick).slice(0, 4);
+const breatheHighlights = breatheItems.filter(b => b.lilaPick).slice(0, 4);
+const experienceHighlights = experiences.filter(e => e.featured || e.lilaPick).slice(0, 4);
+
+
+// ─── Divider ─────────────────────────────────────────────────────────────────
+
+function Divider() {
+  return <div style={{ height: '0.5px', background: G.border, margin: '56px 0 0' }} />;
 }
 
+
+// ─── GuideNav ────────────────────────────────────────────────────────────────
+
+function GuideNav({ activeSection, onNav, isMobile }) {
+  return (
+    <div style={{
+      position: 'sticky', top: 0, zIndex: 101,
+      background: G.warmWhite,
+      borderBottom: `0.5px solid ${G.border}`,
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
+      padding: isMobile ? '0 16px' : '0 52px', height: 44,
+      marginTop: -64,
+      paddingTop: 64,
+      boxSizing: 'content-box',
+      overflowX: 'auto',
+    }}>
+      <style>{`.guide-nav-scroll::-webkit-scrollbar { display: none; }`}</style>
+      {GUIDE_SECTIONS.map(s => {
+        const active = activeSection === s.id;
+        return (
+          <button
+            key={s.id}
+            onClick={() => onNav(s.id)}
+            style={{
+              fontFamily: FONTS.body, fontSize: 10, fontWeight: 600,
+              letterSpacing: '0.14em', textTransform: 'uppercase',
+              background: 'none', border: 'none', cursor: 'pointer',
+              padding: '0 14px', height: 44, whiteSpace: 'nowrap', flexShrink: 0,
+              color: active ? G.oceanTeal : G.ink40,
+              borderBottom: active ? `1.5px solid ${G.oceanTeal}` : '1.5px solid transparent',
+              transition: 'color 0.2s, border-color 0.2s',
+            }}
+          >
+            {s.label}
+          </button>
+        );
+      })}
+    </div>
+  );
+}
 
 
 // ─── Main Page ───────────────────────────────────────────────────────────────
 
 export default function JoshuaTreeGuide() {
+  const navigate = useNavigate();
   const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth <= 768);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+
   const breathConfig = BREATH_CONFIG.joshuaTree;
   const breathWrapperRef = useRef(null);
   const breathValueRef = useBreathCanvas(breathConfig, breathWrapperRef);
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth <= 768);
-    window.addEventListener("resize", check);
-    return () => window.removeEventListener("resize", check);
-  }, []);
-
-  const [activeSheet, setActiveSheet] = useState(null);
-  const [activeMoveTiers, setActiveMoveTiers] = useState(() => new Set(moveItems.map(i => i.moveTier)));
-  const [activeBreatheTiers, setActiveBreatheTiers] = useState(() => new Set(['practice', 'soak', 'restore']));
-  const handleMoveToggle = (tierKey) => {
-    setActiveMoveTiers(prev => {
-      if (prev.has(tierKey) && prev.size === 1) return prev;
-      const next = new Set(prev);
-      next.has(tierKey) ? next.delete(tierKey) : next.add(tierKey);
-      return next;
-    });
-  };
-  const handleBreatheToggle = (tierKey) => {
-    setActiveBreatheTiers(prev => {
-      if (prev.has(tierKey) && prev.size === 1) return prev;
-      const next = new Set(prev);
-      next.has(tierKey) ? next.delete(tierKey) : next.add(tierKey);
-      return next;
-    });
-  };
-  const [activeSleepTiers, setActiveSleepTiers] = useState(() => new Set(['elemental', 'rooted', 'premium', 'luxury']));
-  const handleSleepToggle = (tierKey) => {
-    setActiveSleepTiers(prev => {
-      if (prev.has(tierKey) && prev.size === 1) return prev;
-      const next = new Set(prev);
-      next.has(tierKey) ? next.delete(tierKey) : next.add(tierKey);
-      return next;
-    });
-  };
-  const [collapsedSections, setCollapsedSections] = useState({
-    'where-to-stay': true, 'move': true, 'wellness': true, 'light-sky': true, 'eat': true, 'experience': true, 'give-back': true,
-  });
-  const toggleSection = useCallback((id) => { setCollapsedSections(prev => ({ ...prev, [id]: !prev[id] })); }, []);
-  const openSection = useCallback((id) => { setCollapsedSections(prev => prev[id] ? { ...prev, [id]: false } : prev); }, []);
-  useEffect(() => {
-    if (activeSheet) document.body.style.overflow = 'hidden';
-    else document.body.style.overflow = '';
-    return () => { document.body.style.overflow = ''; };
-  }, [activeSheet]);
 
   // ── NPS Data ──
   const [npsLookup, setNpsLookup] = useState(null);
+  const [activeSheet, setActiveSheet] = useState(null);
+
   useEffect(() => {
     getNPSData(['jotr'])
-      .then(data => {
-        setNpsLookup(buildNPSLookup(data.thingsToDo));
-      })
+      .then(data => { setNpsLookup(buildNPSLookup(data.thingsToDo)); })
       .catch(err => console.warn('NPS fetch failed:', err.message));
   }, []);
 
-  const openSheet = (section) => (item) => {
+  const openSheet = useCallback((section) => (item) => {
     const npsMatch = npsLookup ? findNPSMatch(item.name, npsLookup) : null;
     setActiveSheet({ ...item, section, nps: npsMatch || undefined });
-  };
+  }, [npsLookup]);
+
   const checkNPS = useCallback((name) => npsLookup ? !!findNPSMatch(name, npsLookup) : false, [npsLookup]);
 
-  const PARKS = [{
-    id: "joshua-tree", name: "Joshua Tree", designation: "us-national-park", established: 1994,
-    acreage: "795,156 ac", elevation: "536–5,814 ft", attribute: "IDA Dark Sky Certified",
-    soul: "One of the last truly dark skies in Southern California — IDA certified, Bortle 3–4. The park straddles two deserts: Mojave (high, cooler, Joshua trees) and Colorado (low, hotter, cholla and ocotillo).",
-    facts: [
-      "Sits at the convergence of the Mojave and Colorado Deserts",
-      "Certified International Dark Sky Park — Bortle Class 2–3",
-      "Over 8,000 climbing routes on 400+ formations",
-      "Home to the Serrano and Cahuilla peoples for thousands of years",
-    ],
-    infoUrl: "https://www.nps.gov/jotr/",
-    driveFrom: null, accent: C.goldenAmber, isAnchor: true,
-  }];
+  // ── IntersectionObserver for active section ──
+  const [activeSection, setActiveSection] = useState('the-place');
 
-  const TOWNS = [
-    { name: "Joshua Tree", context: "Park's North Entrance", description: "A small desert town with a disproportionate creative scene. Art galleries, natural food co-ops, and a Saturday farmers market. The north entrance to the park is a five-minute drive.", accent: C.goldenAmber },
-    { name: "Twentynine Palms", context: "Park Headquarters", description: "The park's main visitor center and administrative hub. Quieter than Joshua Tree town, with easy access to the Oasis of Mara and the park's less-visited eastern half.", accent: C.sunSalmon },
-    { name: "Pioneertown", context: "1940s Film Set, Still Standing", description: "Built in 1946 as a living Old West movie set. Pappy & Harriet's is the reason most people come — live music in a desert honky-tonk. The Mane Street walk is worth the detour.", accent: C.oceanTeal },
-    { name: "Palm Springs", context: "Desert Modernism, 45 Min South", description: "Mid-century architecture, hot springs, and the aerial tramway to the top of San Jacinto. A different kind of desert experience — polished where Joshua Tree is raw.", accent: C.seaGlass },
-  ];
+  useEffect(() => {
+    const ids = GUIDE_SECTIONS.map(s => s.id);
+    const elements = ids.map(id => document.getElementById(id)).filter(Boolean);
+    if (elements.length === 0) return;
 
-  const HIGHLIGHTS = [
-    { name: "Keys View", category: "Viewpoint · Sunset", blurb: "The Coachella Valley, San Andreas Fault, and the Salton Sea spread below. On clear days, Signal Mountain in Mexico. The single best sunset in the park." },
-    { name: "Skull Rock Loop", category: "Trail · Easy", blurb: "A 1.7-mile loop through a boulder garden with the park's most photographed formation. Easy, flat, and surprisingly uncrowded at dawn." },
-    { name: "Cholla Cactus Garden", category: "Walk · Colorado Desert", blurb: "A quarter-mile boardwalk through a dense field of teddy bear cholla. Backlit at sunset, the spines glow like fiber optics. Stay on the path — they jump." },
-    { name: "Ryan Mountain", category: "Summit · 360° Views", blurb: "Three miles round trip, 1,000 ft of gain. The summit panorama covers both deserts and the entire western park. Best done at sunrise before the heat." },
-    { name: "Arch Rock Trail", category: "Trail · Geology", blurb: "A short scramble to one of the park's signature natural arches. The surrounding boulder formations are the real draw — a playground of monzogranite." },
-    { name: "Milky Way from Cap Rock", category: "Dark Sky · Night", blurb: "Bortle 2 skies on a moonless night. The Milky Way arcs overhead in a way that most Americans have never seen. Bring a red headlamp and patience." },
-  ];
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter(e => e.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+        if (visible.length > 0) {
+          setActiveSection(visible[0].target.id);
+        }
+      },
+      { rootMargin: '-130px 0px -60% 0px', threshold: 0 }
+    );
+
+    elements.forEach(el => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
+  const scrollTo = useCallback((id) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const offset = 44 + 16;
+    const y = el.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({ top: y, behavior: 'smooth' });
+    setActiveSection(id);
+  }, []);
+
 
   return (
     <>
@@ -943,657 +203,334 @@ export default function JoshuaTreeGuide() {
       </Helmet>
       <Nav breathConfig={breathConfig} breathValueRef={breathValueRef} />
 
-      {/* ══ CELESTIAL DRAWER ═══════════════════════════════════════════════ */}
-      <div ref={breathWrapperRef} style={{ background: breathConfig ? C.warmWhite : undefined }}>
-          <CelestialDrawer destination="joshua-tree" isMobile={isMobile} breathValueRef={breathValueRef} />
+      {/* ══ CELESTIAL DRAWER + BREATH CANVAS ═══════════════════════════════════ */}
+      <div ref={breathWrapperRef} style={{ background: breathConfig ? G.warmWhite : undefined }}>
+        <CelestialDrawer destination="joshua-tree" isMobile={isMobile} breathValueRef={breathValueRef} />
 
-          {/* ══ TITLE MASTHEAD ═══════════════════════════════════════════════════ */}
-          <section style={{ background: breathConfig ? 'transparent' : C.cream }}>
-        <div className="py-7 px-5 md:py-11 md:px-[52px] md:pb-10 max-w-[920px] mx-auto">
-          <FadeIn from="bottom" delay={0.1}>
+        <div style={{ background: breathConfig ? 'transparent' : G.warmWhite, color: G.ink, fontFamily: FONTS.body }}>
 
-            <div className="grid grid-cols-1 md:grid-cols-[1fr_320px] gap-7 md:gap-[52px] items-start">
+          {/* ══ MASTHEAD ═══════════════════════════════════════════════════════ */}
+          <div style={{ padding: isMobile ? '68px 20px 32px' : '76px 52px 40px', maxWidth: 1080, margin: '0 auto' }}>
+            <div style={{ fontFamily: FONTS.body, fontSize: 10, fontWeight: 700, letterSpacing: '0.22em', textTransform: 'uppercase', color: G.goldenAmber, marginBottom: 20 }}>
+              Destination Guide
+            </div>
 
-              {/* ── Left: Title + description ── */}
+            <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 300px', gap: isMobile ? '28px' : '52px', alignItems: 'start' }}>
               <div>
-                <span className="eyebrow text-golden-amber mb-3.5 block">Destination Guide</span>
-
-                <h1 className="font-serif text-[clamp(38px,6vw,64px)] font-light text-dark-ink leading-none mb-[22px] tracking-[-0.02em] mt-0">
-                  Joshua Tree
+                <h1 style={{ fontFamily: FONTS.body, fontSize: 'clamp(48px, 8vw, 84px)', fontWeight: 700, lineHeight: 0.95, letterSpacing: '-0.02em', color: G.darkInk, margin: '0 0 32px' }}>
+                  Joshua<br />Tree
                 </h1>
-
-                <p className="font-body text-[clamp(14px,1.6vw,14px)] font-normal text-[#4A5650] leading-[1.75] max-w-[460px] mt-0 mb-3.5">
+                <p style={{ fontFamily: FONTS.body, fontSize: 16, fontWeight: 400, lineHeight: 1.85, color: G.inkBody, margin: '0 0 16px', maxWidth: 480 }}>
                   Joshua Tree sits at the convergence of two deserts — the Mojave and the Colorado — and that collision is part of what makes it singular. The high desert is cool and boulder-studded. The silence here has weight.
                 </p>
-
-                <p className="font-body text-[clamp(14px,1.6vw,14px)] font-normal text-[#4A5650] leading-[1.75] max-w-[460px] m-0">
-                  This is a place for people who want to feel small in the best possible way. We built this guide to help you find it.
+                <p style={{ fontFamily: FONTS.body, fontSize: 16, fontWeight: 400, lineHeight: 1.85, color: G.inkBody, margin: 0, maxWidth: 480 }}>
+                  This is a place for people who want to feel small in the best possible way. One park, four orbit towns, and one of the darkest skies in Southern California.
                 </p>
               </div>
 
-              {/* ── Right: This Guide Covers ── */}
-              <div className="border-t md:border-t-0 md:border-l border-stone pt-7 md:pt-0 md:pl-7">
-                <div className="font-body text-[11px] font-bold tracking-[0.22em] uppercase text-[#7A857E] mb-[18px]">This guide covers</div>
-
-                <div className="mb-4">
-                  <div className="font-body text-[11px] font-bold tracking-[0.2em] uppercase text-sea-glass mb-2.5">Park</div>
-                  <a href="https://www.nps.gov/jotr/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2.5 mb-[7px] no-underline">
-                    <div className="w-[5px] h-[5px] rounded-full bg-sea-glass opacity-50" />
-                    <span className="font-body text-[12px] font-semibold tracking-[0.02em] text-dark-ink">Joshua Tree National Park</span>
-                  </a>
+              <div style={{ borderLeft: isMobile ? 'none' : `0.5px solid ${G.border}`, borderTop: isMobile ? `0.5px solid ${G.border}` : 'none', paddingLeft: isMobile ? 0 : 36, paddingTop: isMobile ? 24 : 4 }}>
+                <div style={{ fontFamily: FONTS.body, fontSize: 10, fontWeight: 700, letterSpacing: '0.22em', textTransform: 'uppercase', color: G.ink40, marginBottom: 20 }}>
+                  This guide covers
                 </div>
-
-                <div className="mb-4">
-                  <div className="font-body text-[11px] font-bold tracking-[0.2em] uppercase text-golden-amber mb-2.5">Orbit Towns</div>
-                  {["Joshua Tree town", "Twentynine Palms", "Pioneertown", "Palm Springs"].map((town, i) => (
-                    <div key={i} className="flex items-center gap-2.5 mb-[7px]">
-                      <div className="w-[5px] h-[5px] rounded-full bg-golden-amber opacity-50" />
-                      <span className="font-body text-[12px] font-semibold tracking-[0.02em] text-dark-ink">{town}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="font-body text-[11px] font-medium tracking-[0.06em] text-[#7A857E] mt-3.5 pt-3 border-t border-stone">
+                {[
+                  { label: 'Terrain & Parks',     active: true  },
+                  { label: 'Travel Lightly',      active: false },
+                  { label: 'Where to Stay',       active: false },
+                  { label: 'Hikes, Bikes, etc.',   active: false },
+                  { label: 'Yoga & Mindfulness',  active: false },
+                  { label: 'Arts & Culture',       active: false },
+                  { label: 'Stars & Sky',          active: false },
+                ].map((g, i, arr) => (
+                  <div key={g.label} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '8px 0', borderBottom: i < arr.length - 1 ? `0.5px solid ${G.borderSoft}` : 'none' }}>
+                    <span style={{ width: 6, height: 6, borderRadius: '50%', flexShrink: 0, background: g.active ? G.oceanTeal : G.ink25 }} />
+                    <span style={{ fontFamily: FONTS.body, fontSize: 13, fontWeight: 600, color: g.active ? G.ink : G.inkDetail }}>{g.label}</span>
+                  </div>
+                ))}
+                <div style={{ fontFamily: FONTS.body, fontSize: 11, fontWeight: 400, color: G.ink25, marginTop: 20, paddingTop: 16, borderTop: `0.5px solid ${G.border}` }}>
                   Updated 2026
                 </div>
               </div>
             </div>
-          </FadeIn>
+          </div>
+
+          {/* ── Photo strip ─────────────────────────────────────────────────── */}
+          <div style={{ display: 'flex', gap: 2, overflow: 'hidden', marginTop: 2 }}>
+            {[
+              { src: P.joshuaTreeDawn,     alt: 'First light in the high desert',       caption: 'Joshua Tree · dawn',          width: '32%' },
+              { src: P.joshuaTreeCholla,    alt: 'Cholla Cactus Garden at golden hour',  caption: 'Cholla Cactus Garden',        width: '22%' },
+              { src: P.joshuaTreeBoulders,  alt: 'Jumbo Rocks boulder formations',       caption: 'Jumbo Rocks · ancient granite', width: '24%' },
+              { src: P.joshuaTreeNightSky,  alt: 'Night sky over Joshua Tree',           caption: 'Bortle Class 2 darkness',     width: '22%' },
+            ].map((img, i) => (
+              <div key={i} style={{ flex: `0 0 ${img.width}`, position: 'relative', overflow: 'hidden', height: isMobile ? 240 : 360 }}>
+                <img src={img.src} alt={img.alt} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '28px 14px 12px', background: 'linear-gradient(to top, rgba(10,18,26,0.65), transparent)' }}>
+                  <span style={{ fontFamily: FONTS.body, fontSize: 10, fontWeight: 600, letterSpacing: '0.06em', color: 'rgba(255,255,255,0.8)' }}>{img.caption}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* ══ GUIDE NAV ══════════════════════════════════════════════════════ */}
+          <GuideNav activeSection={activeSection} onNav={scrollTo} isMobile={isMobile} />
+
+          {/* ══ CONTENT ════════════════════════════════════════════════════════ */}
+          <div style={{ background: G.warmWhite }}>
+          <div style={{ padding: isMobile ? '0 20px' : '0 52px', maxWidth: 860, margin: '0 auto' }}>
+            <div style={{ maxWidth: 660 }}>
+
+
+              {/* ══ 01 TERRAIN & PARKS ════════════════════════════════════════ */}
+              <div id="the-place">
+                <SectionTransition num="01" title="Terrain & Parks" />
+                <div style={{ marginTop: 28 }}>
+                  <Prose>
+                    Joshua Tree sits at the convergence of two deserts — the Mojave and the Colorado — and that collision is part of what makes it singular. The high desert is cool and boulder-studded, carpeted in the alien silhouettes of Yucca brevifolia. Drop below the transition zone into the Colorado Desert and the landscape shifts: more open, more stark, warmer. The park covers 800,000 acres. Most visitors see a fraction of it.
+                  </Prose>
+                  <Prose>
+                    The surrounding communities each add a distinct layer. The town of Joshua Tree is small, arty, and increasingly a destination in itself. Twentynine Palms is the working town with the quietest skies. Pioneertown was built as a movie set in 1946 and never entirely stopped performing. Palm Springs is 45 minutes south: mid-century architecture, serious spas, a counterpoint when you want polished comfort after days in the dust.
+                  </Prose>
+                </div>
+
+                <SubLabel>The Park</SubLabel>
+                <EditorialList items={PARKS_EDITORIAL.map(p => ({ context: p.context, name: p.name, detail: p.description, url: p.url }))} />
+
+                <SubLabel>The Towns</SubLabel>
+                <EditorialList items={TOWNS_EDITORIAL.map(t => ({ context: t.context, name: t.name, detail: t.description, url: t.url }))} />
+
+                <SubLabel>When to Go</SubLabel>
+                <Prose>The desert transforms with the seasons. These are the moments when the land is most alive.</Prose>
+                <EditorialList items={TIMING_WINDOWS.map(tw => ({ context: tw.context, name: tw.name, detail: tw.detail }))} />
+
+                <SubLabel>Desert Wildlife</SubLabel>
+                <Prose>The park supports a surprising diversity of life. Most of it is nocturnal, subtle, and easy to miss unless you slow down.</Prose>
+                <EditorialList items={WILDLIFE.map(w => ({ name: w.name, context: w.season, detail: w.detail }))} />
+
+                <PlaceGuideCard label="Full Terrain & Parks Guide" descriptor="Terrain · When to go · Desert wildlife" bg="linear-gradient(155deg, #C4956A 0%, #7A9190 100%)" to="/destinations/joshua-tree/terrain-and-parks" />
+              </div>
+
+              <Divider />
+
+
+              {/* ══ 02 TRAVEL LIGHTLY ═════════════════════════════════════════ */}
+              <div id="responsibly">
+                <SectionTransition num="02" title="Travel Lightly" />
+                <div style={{ marginTop: 28 }}>
+                  <Prose>
+                    The desert moves slowly. So should you. Joshua Tree is one of the most fragile landscapes in the National Park System — and one of the most visited. How you move through this place matters.
+                  </Prose>
+                </div>
+
+                <SubLabel warm>Joshua Trees · Age & Fragility</SubLabel>
+                <Prose>The trees you're walking past are older than anyone you know. Joshua trees grow roughly an inch a year — the ones lining the trail may be a century old or more. Off-trail movement compacts soil that took millennia to develop and damages root systems that aren't visible from the surface. Stay on trail without exception. The desert floor looks empty. It isn't.</Prose>
+
+                <SubLabel warm>Dark Sky · IDA Certification</SubLabel>
+                <Prose>Joshua Tree sits sandwiched between the Inland Empire's 4 million residents to the west and the last pool of natural darkness in Southern California to the east. The park earned International Dark Sky Park designation in 2017. That status depends on visitors using red-filtered lights at night, staying in designated stargazing areas, and not pulling off-road into undisturbed terrain. The darker you let it stay, the more sky you get.</Prose>
+
+                <SubLabel warm>Peregrine Falcons · Seasonal Closures</SubLabel>
+                <Prose>In spring, certain trails and rock-climbing routes close to protect nesting peregrine falcons. These closures are temporary and specific. Respecting them is the difference between a falcon pair successfully nesting and abandoning the site entirely. Check the NPS alerts page before you arrive — route closures shift year to year.</Prose>
+
+                <SubLabel warm>Camping · Fire & Waste</SubLabel>
+                <Prose>During the 2019 government shutdown, visitors camped illegally in sensitive areas and drove off-road vehicles over fragile landscapes, creating new roads in previously undisturbed terrain. The damage took months to recover from. Camp only in designated sites. Pack out all waste. Never build fires outside established rings — desert scrub ignites fast and the park has limited suppression capacity.</Prose>
+
+                <SubLabel warm>Give Back</SubLabel>
+                <Prose>The Mojave Desert Land Trust protects the California desert through land acquisition, habitat restoration, and a native plant seed bank — including growing thousands of Joshua trees for replanting. The Native American Land Conservancy brings Indigenous cultural knowledge to desert stewardship. The park's own volunteer program offers trail maintenance and restoration work for visitors who want to give time.</Prose>
+
+                <PlaceGuideCard label="Full Travel Lightly Guide" descriptor="Tread lightly · give back · indigenous stewardship" bg="linear-gradient(155deg, #A8896A 0%, #4A6B5A 100%)" to="/destinations/joshua-tree/travel-lightly" />
+              </div>
+
+              <Divider />
+
+
+              {/* ══ 03 WHERE TO STAY ══════════════════════════════════════════ */}
+              <div id="stay">
+                <SectionTransition num="03" title="Where to Stay" />
+                <div style={{ marginTop: 28 }}>
+                  <Prose>The town of Joshua Tree is the most convenient base — five minutes to the north entrance. Twentynine Palms is quieter, with access to the park's eastern half. Pioneertown and Palm Springs add range if you want to split nights.</Prose>
+                </div>
+
+                <SubLabel>Towns</SubLabel>
+                <EditorialList items={TOWNS_EDITORIAL.map(t => ({ context: t.context, name: t.name, detail: t.description, url: t.url }))} />
+
+                <SubLabel>Hotels</SubLabel>
+                <p style={{ fontFamily: FONTS.body, fontSize: 13, fontWeight: 400, color: G.ink40, marginBottom: 0 }}>A few we like across the region:</p>
+                <ContentList onOpenSheet={openSheet('Stay')} items={sleepPicks.map(a => ({
+                  ...a,
+                  type: 'stay',
+                  badge: a.stayStyle.charAt(0).toUpperCase() + a.stayStyle.slice(1),
+                  context: a.location,
+                  detail: a.highlights?.[0] || '',
+                  featured: a.lilaPick,
+                  tier: a.stayStyle,
+                  url: a.links?.website || a.links?.booking,
+                  hasNPS: checkNPS(a.name),
+                }))} />
+
+                <PlaceGuideCard label="Full Where to Stay Guide" descriptor="Full accommodations across Joshua Tree, Twentynine Palms, Pioneertown & Palm Springs" bg="linear-gradient(155deg, #C4A882 0%, #8A7A6A 100%)" to="/destinations/joshua-tree/where-to-stay" />
+              </div>
+
+              <Divider />
+
+
+              {/* ══ 04 WHERE TO EAT ═══════════════════════════════════════════ */}
+              <div id="eat">
+                <SectionTransition num="04" title="Where to Eat" />
+                <div style={{ marginTop: 28 }}>
+                  <Prose>The desert dining scene is better than anyone expects. Pappy & Harriet's in Pioneertown is the anchor — live music, mesquite-grilled everything. La Copine does the farm-to-table thing with real conviction. Natural Sisters Cafe is the Joshua Tree morning move. And Palm Springs has a food scene deep enough to fill a separate guide.</Prose>
+                </div>
+
+                <ContentList onOpenSheet={openSheet('Eat')} items={eatPicks.map(e => {
+                  const raw = e.cuisine || e.type || '';
+                  return {
+                    ...e,
+                    type: 'list',
+                    badge: raw.charAt(0).toUpperCase() + raw.slice(1),
+                    context: `${e.location}${e.reservations ? ' · ' + e.reservations : ''}`,
+                    detail: e.highlights?.[0] || '',
+                    featured: e.lilaPick,
+                    url: e.links?.website,
+                    hasNPS: checkNPS(e.name),
+                  };
+                })} />
+
+                <PlaceGuideCard label="Full Where to Eat Guide" descriptor="Joshua Tree · Pioneertown · Palm Springs" bg="linear-gradient(155deg, #C49A6A 0%, #8A6A4A 100%)" to="/destinations/joshua-tree/where-to-eat" />
+              </div>
+
+
+              {/* ══ 05 HIKES, BIKES, ETC. ═════════════════════════════════════ */}
+              <div id="move">
+                <SectionTransition num="05" title="Hikes, Bikes, etc." />
+                <div style={{ marginTop: 28 }}>
+                  <Prose>The park has over 8,000 climbing routes and dozens of trails across two distinct desert ecosystems. Ryan Mountain gives you the full panorama. The Skull Rock Loop is easy and uncrowded at dawn. Keys View is the sunset move. And the boulder fields — Jumbo Rocks, Hidden Valley, Split Rock — are some of the best rock climbing in the American West.</Prose>
+                </div>
+
+                <SubLabel>Highlights</SubLabel>
+                <ContentList onOpenSheet={openSheet('Move')} items={moveHighlights.map(m => ({
+                  ...m,
+                  type: 'list',
+                  badge: m.moveTier.charAt(0).toUpperCase() + m.moveTier.slice(1),
+                  context: `${m.distance || ''} · ${m.difficulty || ''}`.replace(/^\s*·\s*/, '').replace(/\s*·\s*$/, ''),
+                  detail: m.highlights?.[0] || '',
+                  featured: m.lilaPick,
+                  url: m.links?.website,
+                  hasNPS: checkNPS(m.name),
+                }))} />
+
+                <PlaceGuideCard label="Full Hikes, Bikes, etc. Guide" descriptor="Full trail & activity guide across the park" bg="linear-gradient(155deg, #8AAA7A 0%, #4A6A5A 100%)" to="/destinations/joshua-tree/hikes-bikes" />
+              </div>
+
+              <Divider />
+
+
+              {/* ══ 06 YOGA & MINDFULNESS ═════════════════════════════════════ */}
+              <div id="breathe">
+                <SectionTransition num="06" title="Yoga & Mindfulness" />
+                <div style={{ marginTop: 28 }}>
+                  <Prose>The desert does half the work. The silence, the scale, the way the light shifts every twenty minutes — it recalibrates the nervous system whether you intend it to or not. Sound baths in Joshua Tree have become a thing for a reason. The landscape is the instrument.</Prose>
+                </div>
+
+                <SubLabel>Highlights</SubLabel>
+                <ContentList onOpenSheet={openSheet('Breathe')} items={breatheHighlights.map(b => ({
+                  ...b,
+                  type: 'list',
+                  badge: b.breatheTier.charAt(0).toUpperCase() + b.breatheTier.slice(1),
+                  context: `${b.type || ''} · ${b.location || ''}`.replace(/^\s*·\s*/, '').replace(/\s*·\s*$/, ''),
+                  detail: b.highlights?.[0] || '',
+                  featured: b.lilaPick,
+                  url: b.links?.website,
+                  hasNPS: checkNPS(b.name),
+                }))} />
+
+                <PlaceGuideCard label="Full Yoga & Mindfulness Guide" descriptor="Yoga · sound baths · desert silence · restore" bg="linear-gradient(155deg, #8AADA8 0%, #4A6B7A 100%)" to="/destinations/joshua-tree/yoga-mindfulness" />
+              </div>
+
+              <Divider />
+
+
+              {/* ══ 07 ARTS & CULTURE ═════════════════════════════════════════ */}
+              <div id="experience">
+                <SectionTransition num="07" title="Arts & Culture" />
+                <div style={{ marginTop: 28 }}>
+                  <Prose>The desert has drawn artists, musicians, and seekers for decades. Noah Purifoy's outdoor sculpture museum is one of the most striking art installations in the American West. The Integratron promises acoustic healing inside a dome built on an alleged geomagnetic vortex. Pioneertown is a living film set. The creative energy here is real and specific.</Prose>
+                </div>
+
+                <SubLabel>Highlights</SubLabel>
+                <ContentList onOpenSheet={openSheet('Experience')} items={experienceHighlights.map(e => ({
+                  ...e,
+                  type: 'list',
+                  badge: (e.type || '').charAt(0).toUpperCase() + (e.type || '').slice(1),
+                  context: e.location || '',
+                  detail: e.highlights?.[0] || '',
+                  featured: e.featured || e.lilaPick,
+                  url: e.links?.website,
+                  hasNPS: checkNPS(e.name),
+                }))} />
+
+                <PlaceGuideCard label="Full Art & Culture Guide" descriptor="Arts · culture · music · community" bg="linear-gradient(155deg, #B8956A 0%, #6A7A5A 100%)" to="/destinations/joshua-tree/arts-and-culture" />
+              </div>
+
+              <Divider />
+
+
+              {/* ══ 08 STARS & SKY ════════════════════════════════════════════ */}
+              <div id="night-sky">
+                <SectionTransition num="08" title="Stars & Sky" />
+                <div style={{ marginTop: 28 }}>
+                  <Prose>At night, the sky opens. Joshua Tree is a certified International Dark Sky Park — IDA designated in 2017, Bortle Class 2–3. On a moonless night, the Milky Way arcs directly overhead, brighter and more detailed than most Americans have ever seen. Bring a blanket, lie down, give yourself an hour.</Prose>
+                  <Prose>The eastern half of the park — Pinto Basin Road, Cholla Cactus Garden, Jumbo Rocks — offers the darkest skies. The volunteer-run Sky's the Limit Observatory in Twentynine Palms hosts free public star parties on Saturday nights.</Prose>
+                </div>
+
+                <EditorialList items={[
+                  { context: 'Bortle Class 2–3', name: 'Joshua Tree National Park', detail: 'Certified International Dark Sky Park. Best viewing from Pinto Basin Road pullouts and Cholla Cactus Garden parking area.' },
+                  { context: 'Best Spot', name: 'Cap Rock Area', detail: 'Iconic rock formations silhouetted against the Milky Way. The classic astrophotography spot in the park.' },
+                  { context: 'Community', name: 'Sky\'s the Limit Observatory', detail: 'Volunteer-run observatory in Twentynine Palms offering free public star parties on Saturday nights. Bring binoculars — the volunteers bring the telescopes.' },
+                  { context: 'Best Window', name: 'Nov – Feb · New Moon', detail: 'Winter\'s long nights and dry, stable air create the park\'s best stargazing conditions. Geminid meteor shower peaks Dec 13–14 with 120+ meteors per hour.' },
+                ]} />
+
+                <PlaceGuideCard label="Full Stars & Sky Guide" descriptor="Dark sky ratings · best windows · viewing areas" bg="linear-gradient(155deg, #5A6B8A 0%, #1E2A3E 100%)" to="/destinations/joshua-tree/stars-and-sky" />
+              </div>
+
+              <Divider />
+
+            </div>
+          </div>
+          </div>
+
+
+          {/* ══ CTA ════════════════════════════════════════════════════════════ */}
+          <div style={{ background: G.warmWhite }}>
+          <div style={{ padding: isMobile ? '40px 20px 60px' : '52px 52px 80px', maxWidth: 860, margin: '0 auto' }}>
+            <div style={{ background: G.darkInk, padding: '52px 48px', display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 48, flexWrap: 'wrap' }}>
+              <div style={{ maxWidth: 380 }}>
+                <div style={{ fontFamily: FONTS.body, fontSize: 9, fontWeight: 700, letterSpacing: '0.22em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: 16 }}>Begin</div>
+                <h3 style={{ fontFamily: FONTS.body, fontSize: 'clamp(24px, 4vw, 32px)', fontWeight: 700, color: 'white', lineHeight: 1.1, margin: '0 0 12px', letterSpacing: '-0.01em' }}>
+                  Your desert trip<br />starts here
+                </h3>
+                <p style={{ fontFamily: FONTS.body, fontSize: 13, fontWeight: 400, lineHeight: 1.65, color: 'rgba(255,255,255,0.5)', margin: '0 0 28px' }}>
+                  Turn this guide into a day-by-day itinerary built around how you actually travel.
+                </p>
+                <button
+                  onClick={() => { trackEvent('guide_cta_clicked', { guide: 'joshua-tree' }); navigate('/plan'); }}
+                  style={{ fontFamily: FONTS.body, fontSize: 11, fontWeight: 700, letterSpacing: '0.16em', textTransform: 'uppercase', color: G.goldenAmber, border: `1.5px solid ${G.goldenAmber}`, background: 'transparent', padding: '13px 28px', cursor: 'pointer' }}
+                >
+                  Plan a Trip →
+                </button>
+              </div>
+
+              <div style={{ minWidth: 180 }}>
+                <div style={{ fontFamily: FONTS.body, fontSize: 9, fontWeight: 700, letterSpacing: '0.22em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.25)', marginBottom: 16 }}>Place Guides</div>
+                {['Terrain & Parks Guide', 'Travel Lightly Guide', 'Stay Guide', 'Eat Guide', 'Move Guide', 'Breathe Guide', 'Art & Culture Guide', 'Night Sky Guide'].map((g, i, arr) => (
+                  <div key={g} style={{ fontFamily: FONTS.body, fontSize: 11, fontWeight: 600, letterSpacing: '0.06em', color: 'rgba(255,255,255,0.4)', padding: '8px 0', borderBottom: i < arr.length - 1 ? '0.5px solid rgba(255,255,255,0.07)' : 'none', display: 'flex', alignItems: 'center', gap: 10 }}>
+                    <span style={{ color: 'rgba(255,255,255,0.2)', fontSize: 10 }}>{'\u2192'}</span>
+                    {g}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+          </div>
+
         </div>
-          </section>
       </div>
-
-      {/* ══ GUIDE SECTION NAV ═══════════════════════════════════════════════ */}
-      <GuideNav isMobile={isMobile} onOpenSection={openSection} />
-
-      {/* ══ IMAGE STRIP ════════════════════════════════════════════════════ */}
-      <section className="relative">
-        <div className="flex gap-0.5 overflow-x-auto snap-x snap-mandatory" style={{ WebkitOverflowScrolling: "touch", scrollbarWidth: "none" }}>
-          {[
-            { src: P.joshuaTreeDawn,     alt: "Joshua Tree at dawn",            caption: "First light in the high desert",     width: 420 },
-            { src: P.joshuaTreeCholla,    alt: "Cholla Cactus Garden",           caption: "Cholla Cactus Garden at golden hour", width: 280 },
-            { src: P.joshuaTreeBoulders,  alt: "Joshua Tree boulder formations", caption: "Jumbo Rocks — ancient granite",       width: 420 },
-            { src: P.joshuaTreeNightSky,  alt: "Night sky over Joshua Tree",     caption: "Bortle Class 2 darkness",            width: 360 },
-          ].map((img, i) => (
-            <div key={i} className="flex-none snap-start relative overflow-hidden"
-              style={{ width: isMobile ? "85vw" : img.width }}>
-              <img src={img.src} alt={img.alt} className="w-full h-80 object-cover block" />
-              <div className="absolute bottom-0 left-0 right-0 pt-8 px-4 pb-3.5" style={{ background: "linear-gradient(to top, rgba(10,18,26,0.7), transparent)" }}>
-                <span className="font-body text-[11px] font-semibold tracking-[0.08em] text-white/80">{img.caption}</span>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ══ GUIDE CONTENT ═══════════════════════════════════════════════════ */}
-      <section className="py-8 px-5 pb-[60px] md:py-12 md:px-[52px] md:pb-20 bg-cream">
-        <div className="max-w-[680px] mx-auto">
-
-
-          {/* ══════════════════════════════════════════════════════════════ */}
-          {/* THE PLACE                                                     */}
-          {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="sense-of-place" className="scroll-mt-[126px] pt-11 pb-4">
-            <FadeIn>
-              <SectionLabel accentColor={ACCENT}>Sense of Place</SectionLabel>
-              <p className="font-body text-[clamp(14px,1.8vw,15px)] leading-[1.8] font-normal text-[#4A5650] mt-0 mb-4">
-                {"Joshua Tree sits at the convergence of two deserts — the Mojave and the Colorado — and that collision is part of what makes it singular. The high desert is cool and boulder-studded, carpeted in the alien silhouettes of Yucca brevifolia. Drop below the transition zone into the Colorado Desert and the landscape shifts: more open, more stark, warmer. The park covers 800,000 acres. Most visitors see a fraction of it."}
-              </p>
-              <p className="font-body text-[clamp(14px,1.8vw,15px)] leading-[1.8] font-normal text-[#4A5650] mt-0 mb-7">
-                {"The surrounding communities each add a distinct layer. The town of Joshua Tree is small, arty, and increasingly a destination in itself. Twentynine Palms is the working town with the quietest skies. Pioneertown was built as a movie set in 1946 and never entirely stopped performing. Palm Springs is 45 minutes south: mid-century architecture, serious spas, a counterpoint when you want polished comfort after days in the dust."}
-              </p>
-            </FadeIn>
-
-            {/* ── At a Glance ── */}
-            <FadeIn delay={0.06}>
-              <div>
-                <div className="h-px" style={{ background: `${C.darkInk}14` }} />
-                <div className="grid grid-cols-2 md:grid-cols-4 py-5">
-                  {[
-                    { l: "Recommended", v: "3–5 days" },
-                    { l: "Nearest Airport", v: "Palm Springs (PSP)" },
-                    { l: "Drive from LAX", v: "~2.5 hours" },
-                    { l: "Best Times", v: "Oct–Apr" },
-                  ].map((s, i) => (
-                    <div key={i} className="text-center px-3 py-2 md:py-0" style={{ borderLeft: i > 0 ? `1px solid ${C.darkInk}14` : 'none' }}>
-                      <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[#7A857E] mb-1">{s.l}</div>
-                      <div className="font-body text-[14px] font-medium text-dark-ink leading-[1.3]">{s.v}</div>
-                    </div>
-                  ))}
-                </div>
-                <div className="h-px" style={{ background: `${C.darkInk}14` }} />
-              </div>
-            </FadeIn>
-          </section>
-
-
-          {/* ══════════════════════════════════════════════════════════════ */}
-          {/* THE LAND                                                      */}
-          {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="the-land" className="scroll-mt-[126px] pb-11">
-            {/* ── The Park ── */}
-            <FadeIn>
-              <p className="font-body text-[10px] font-bold tracking-[0.18em] uppercase mb-3.5" style={{ color: C.goldenAmber }}>The Park</p>
-            </FadeIn>
-            <FadeIn delay={0.08}>
-              <div className="grid grid-cols-1 gap-px mb-1" style={{ background: `${C.darkInk}0A` }}>
-                {PARKS.map((park) => (
-                  <ParkCard key={park.id} park={park} />
-                ))}
-              </div>
-            </FadeIn>
-
-            {/* ── The Towns ── */}
-            <FadeIn delay={0.09}>
-              <p className="font-body text-[10px] font-bold tracking-[0.18em] uppercase mt-10 mb-3.5" style={{ color: C.sunSalmon }}>The Towns</p>
-              <div className="grid grid-cols-1 gap-px" style={{ background: `${C.darkInk}0A` }}>
-                {TOWNS.map(town => (
-                  <div key={town.name} style={{ background: C.warmWhite }} className="p-4 md:p-5">
-                    <div className="font-body text-[9px] tracking-[0.16em] uppercase text-[#7A857E] mb-1">{town.context}</div>
-                    <div className="font-serif font-normal text-[20px] text-dark-ink leading-[1.2] mb-3">{town.name}</div>
-                    <p className="font-body text-[13px] font-normal text-[#4A5650] leading-[1.7] m-0">{town.description}</p>
-                  </div>
-                ))}
-              </div>
-            </FadeIn>
-
-            {/* ── Divider ── */}
-            <div className="h-px my-10" style={{ background: `${C.darkInk}14` }} />
-
-            {/* ── Places That Stop You ── */}
-            <FadeIn delay={0.1}>
-              <p className="font-body text-[10px] font-bold tracking-[0.18em] uppercase mb-3.5" style={{ color: C.goldenAmber }}>Places That Stop You</p>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px" style={{ background: `${C.darkInk}0A` }}>
-                {HIGHLIGHTS.map(h => (
-                  <div key={h.name} style={{ background: C.warmWhite }} className="p-4 md:p-5">
-                    <div className="font-body text-[11px] font-semibold mb-1" style={{ color: C.goldenAmber }}>◈</div>
-                    <div className="font-serif text-[17px] font-normal text-dark-ink leading-[1.3] mb-1">{h.name}</div>
-                    <div className="font-body text-[9px] font-bold tracking-[0.16em] uppercase mb-2" style={{ color: '#7A857E' }}>{h.category}</div>
-                    <p className="font-body text-[12px] font-normal text-[#7A857E] leading-[1.5] m-0">{h.blurb}</p>
-                  </div>
-                ))}
-              </div>
-            </FadeIn>
-
-            {/* ── Divider ── */}
-            <div className="h-px my-10" style={{ background: `${C.darkInk}14` }} />
-
-            {/* ── Desert Wildlife ── */}
-            <FadeIn delay={0.12}>
-              <p className="font-body text-[10px] font-bold tracking-[0.18em] uppercase mb-3.5" style={{ color: C.seaGlass }}>Desert Wildlife</p>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-px" style={{ background: `${C.darkInk}0A` }}>
-                {[
-                  { name: "Desert Bighorn Sheep", season: "Year-round", detail: "Most visible at dawn and dusk near water sources. Barker Dam and Lost Palms Oasis are reliable sighting zones." },
-                  { name: "Desert Tortoise", season: "Spring – Fall", detail: "Threatened species — do not approach or handle. Most active in spring after rain. Found in the Colorado Desert section." },
-                  { name: "Coyote", season: "Year-round", detail: "Listen for them at dusk. Their calls across the open desert are part of the sound of this place." },
-                  { name: "Roadrunner", season: "Year-round", detail: "Fast, curious, and frequently spotted along park roads and at campground edges." },
-                  { name: "Sidewinder Rattlesnake", season: "Warm months", detail: "Watch where you step and reach, especially in rocky areas. They're shy but present." },
-                  { name: "Joshua Tree (Yucca brevifolia)", season: "Year-round", detail: "The park's namesake. Not actually a tree — a member of the agave family. Thrives only in the Mojave section above 3,000 ft." },
-                ].map(entry => (
-                  <div key={entry.name} style={{ background: C.warmWhite }} className="p-4 md:p-5">
-                    <div className="font-serif text-[17px] font-normal text-dark-ink leading-[1.3] mb-1">{entry.name}</div>
-                    <div className="font-body text-[9px] font-bold tracking-[0.16em] uppercase mb-2" style={{ color: C.oceanTeal }}>{entry.season}</div>
-                    <p className="font-body text-[12px] font-normal text-[#7A857E] leading-[1.5] m-0">{entry.detail}</p>
-                  </div>
-                ))}
-              </div>
-            </FadeIn>
-          </section>
-
-
-          <Divider />
-
-          {/* ══════════════════════════════════════════════════════════════ */}
-          {/* WHEN TO GO                                                    */}
-          {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="when-to-go" className="scroll-mt-[126px] py-11">
-            <FadeIn>
-              <SectionIcon type="windows" color={ACCENT} />
-              <SectionLabel accentColor={ACCENT}>Magic Windows</SectionLabel>
-              <SectionTitle>When to go</SectionTitle>
-              <SectionSub>The desert transforms with the seasons. These are the moments when the land is most alive.</SectionSub>
-            </FadeIn>
-            <FadeIn delay={0.08}>
-              <div>
-                <ListItem onOpenSheet={openSheet('When to Go')} name="Spring Wildflower Bloom" featured
-                  detail="After wet winters, the desert erupts in color — poppies, lupine, desert lilies. Intensity varies year to year. When it happens, it's unforgettable."
-                  tags={["Late Feb – Apr", "Weather-Dependent", "Magic Window"]} />
-                <ListItem onOpenSheet={openSheet('When to Go')} name="Autumn Light"
-                  detail="Second-best window. Crowds thinner than spring. The color is subtle but the light is extraordinary — amber and pink at golden hour."
-                  tags={["Oct – Nov", "Golden Light", "Fewer Crowds"]} />
-                <ListItem onOpenSheet={openSheet('When to Go')} name="Dark Sky Season" featured
-                  detail="Winter's long nights and dry, stable air create the park's best stargazing conditions. The winter solstice provides the longest dark window of the year."
-                  tags={["Nov – Feb", "Milky Way", "Geminids"]} />
-                <ListItem onOpenSheet={openSheet('When to Go')} name="Perseid Meteor Shower"
-                  detail="Mid-August. Up to 100 meteors per hour at peak. Best viewed from the backcountry or Pinto Basin Road pullouts after midnight."
-                  tags={["Aug 12–13 Peak", "Night Sky", "Summer"]} />
-              </div>
-            </FadeIn>
-
-          </section>
-
-
-          <Divider />
-
-          {/* ══════════════════════════════════════════════════════════════ */}
-          {/* TREAD LIGHTLY                                                 */}
-          {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="tread-lightly" className="scroll-mt-[126px] py-11">
-            <FadeIn>
-              <SectionIcon type="awaken" color={ACCENT} />
-              <SectionLabel accentColor={ACCENT}>Tread Lightly</SectionLabel>
-              <SectionTitle>Traveling responsibly.</SectionTitle>
-              <SectionSub>The desert moves slowly. So should you.</SectionSub>
-            </FadeIn>
-
-            <FadeIn delay={0.1}>
-              <div className="mt-2">
-                <div className="pt-4">
-                  <div className="font-body text-[11px] font-bold tracking-[0.14em] uppercase text-[#7A857E] mb-0.5">Joshua Trees · Age & Fragility</div>
-                  <ListItem name="The trees you're walking past are older than anyone you know."
-                    detail="Joshua trees grow roughly an inch a year — the ones lining the trail may be a century old or more. Off-trail movement compacts soil that took millennia to develop and damages root systems that aren't visible from the surface. Stay on trail without exception. The desert floor looks empty. It isn't."
-                    tags={["Stay on trail", "Soil compaction", "Desert fragility"]} />
-                </div>
-                <div className="pt-4">
-                  <div className="font-body text-[11px] font-bold tracking-[0.14em] uppercase text-[#7A857E] mb-0.5">Dark Sky · IDA Certification</div>
-                  <ListItem name="One of the last truly dark horizons in Southern California."
-                    detail="Joshua Tree sits sandwiched between the Inland Empire's 4 million residents to the west and the last pool of natural darkness in Southern California to the east. The park earned International Dark Sky Park designation in 2017. That status depends on visitors using red-filtered lights at night, staying in designated stargazing areas, and not pulling off-road into undisturbed terrain. The darker you let it stay, the more sky you get."
-                    note="◈ Head east into the park for the darkest skies — away from Palm Springs light pollution"
-                    tags={["IDA dark sky park", "Red light only", "Stay on designated areas"]} />
-                </div>
-                <div className="pt-4">
-                  <div className="font-body text-[11px] font-bold tracking-[0.14em] uppercase text-[#7A857E] mb-0.5">Peregrine Falcons · Seasonal Closures</div>
-                  <ListItem name="Some trails close in spring. That's not an inconvenience — it's conservation."
-                    detail="In spring, certain trails and rock-climbing routes close to protect nesting peregrine falcons. These closures are temporary and specific. Respecting them is the difference between a falcon pair successfully nesting and abandoning the site entirely. Check the NPS alerts page before you arrive — route closures shift year to year."
-                    tags={["Seasonal closures", "Nesting protection", "Check before you go"]} />
-                </div>
-                <div className="pt-4">
-                  <div className="font-body text-[11px] font-bold tracking-[0.14em] uppercase text-[#7A857E] mb-0.5">Camping · Fire & Waste</div>
-                  <ListItem name="The 2019 shutdown showed what happens without rangers."
-                    detail="During the 2019 government shutdown, visitors camped illegally in sensitive areas and drove off-road vehicles over fragile landscapes, creating new roads in previously undisturbed terrain. The damage took months to recover from. Camp only in designated sites. Pack out all waste. Never build fires outside established rings — desert scrub ignites fast and the park has limited suppression capacity."
-                    tags={["Designated camping only", "Pack it out", "No off-road"]} />
-                </div>
-              </div>
-            </FadeIn>
-          </section>
-
-
-          <Divider />
-
-          {/* ══════════════════════════════════════════════════════════════ */}
-          {/* WHERE TO SLEEP                                                */}
-          {/* ══════════════════════════════════════════════════════════════ */}
-          <CollapsibleSection
-            id="where-to-stay"
-            label="Sleep"
-            title="Where to sleep"
-            teaser={`${accommodations.filter(a => activeSleepTiers.has(a.stayStyle)).length} places`}
-            isOpen={collapsedSections['where-to-stay']}
-            onToggle={() => toggleSection('where-to-stay')}
-          >
-            <FadeIn delay={0.05}>
-              <TierFilter tiers={sleepFilterTiers} activeTiers={activeSleepTiers} onToggle={handleSleepToggle} />
-            </FadeIn>
-
-            <div>
-              <ExpandableList initialCount={5} label="places to stay">
-                {sortByTierDiversity(accommodations.filter(a => !a.corridor && activeSleepTiers.has(a.stayStyle))).map(a => (
-                  <StayItem
-                    key={a.id}
-                    name={a.name}
-                    location={a.location}
-                    tier={a.stayStyle}
-                    detail={a.highlights?.join('. ')}
-                    tags={a.tags}
-                    url={a.links?.booking || a.links?.website}
-                    featured={a.lilaPick}
-                    onOpenSheet={setActiveSheet}
-                    priceRange={a.priceRange}
-                    amenities={a.amenities}
-                    bookingWindow={a.bookingWindow}
-                    seasonalNotes={a.seasonalNotes}
-                    groupFit={a.groupFit}
-                  />
-                ))}
-              </ExpandableList>
-
-              {accommodations.filter(a => a.corridor && activeSleepTiers.has(a.stayStyle)).length > 0 && (
-                <>
-                  <p className="font-body text-[13px] font-semibold tracking-[0.08em] uppercase mt-8 mb-3" style={{ color: C.warmGray }}>
-                    Regional Corridor
-                  </p>
-                  {sortByTierDiversity(accommodations.filter(a => a.corridor && activeSleepTiers.has(a.stayStyle))).map(a => (
-                    <StayItem
-                      key={a.id}
-                      name={a.name}
-                      location={a.location}
-                      tier={a.stayStyle}
-                      detail={a.highlights?.join('. ')}
-                      tags={a.tags}
-                      url={a.links?.booking || a.links?.website}
-                      featured={a.lilaPick}
-                      onOpenSheet={setActiveSheet}
-                    />
-                  ))}
-                </>
-              )}
-            </div>
-          </CollapsibleSection>
-
-
-          <Divider />
-
-          {/* ══════════════════════════════════════════════════════════════ */}
-          {/* MOVE                                                          */}
-          {/* ══════════════════════════════════════════════════════════════ */}
-          <CollapsibleSection
-            id="move"
-            label="Move"
-            title="How to get into the landscape"
-            teaser={`${moveItems.filter(item => activeMoveTiers.has(item.moveTier)).length} activities`}
-            isOpen={collapsedSections['move']}
-            onToggle={() => toggleSection('move')}
-          >
-            <FadeIn delay={0.05}>
-              <TierFilter tiers={moveFilterTiers} activeTiers={activeMoveTiers} onToggle={handleMoveToggle} />
-            </FadeIn>
-            <FadeIn delay={0.08}>
-              <ExpandableList initialCount={5} label="activities">
-                {moveItems.filter(item => activeMoveTiers.has(item.moveTier)).sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).map(item => (
-                  <TierItem
-                    key={item.id}
-                    name={item.name}
-                    location={item.location}
-                    tier={item.moveTier}
-                    tierStyles={MOVE_TIERS}
-                    highlights={item.highlights}
-                    difficulty={item.difficulty}
-                    bookingWindow={item.bookingWindow}
-                    priceRange={item.priceRange}
-                    type={item.type}
-                    tags={item.tags}
-                    url={item.links?.website}
-                    featured={item.lilaPick}
-                    note={item.bookingWindow}
-                    duration={item.duration}
-                    distance={item.distance}
-                    operator={item.operator}
-                    light={item.type === 'climb'}
-                    onOpenSheet={openSheet('Move')}
-                    hasNPS={item.type === 'hike' && checkNPS(item.name)}
-                  />
-                ))}
-              </ExpandableList>
-            </FadeIn>
-          </CollapsibleSection>
-
-
-          <Divider />
-
-          {/* ══════════════════════════════════════════════════════════════ */}
-          {/* BREATHE                                                       */}
-          {/* ══════════════════════════════════════════════════════════════ */}
-          <CollapsibleSection
-            id="wellness"
-            label="Breathe"
-            title={"Yoga, sound baths & desert silence"}
-            teaser={`${breatheItems.filter(item => activeBreatheTiers.has(item.breatheTier)).length} offerings`}
-            isOpen={collapsedSections['wellness']}
-            onToggle={() => toggleSection('wellness')}
-          >
-            <FadeIn delay={0.05}>
-              <TierFilter tiers={breatheFilterTiers} activeTiers={activeBreatheTiers} onToggle={handleBreatheToggle} />
-            </FadeIn>
-            <FadeIn delay={0.08}>
-              <ExpandableList initialCount={5} label="wellness options">
-                {breatheItems.filter(item => activeBreatheTiers.has(item.breatheTier)).sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).map(item => (
-                  <TierItem
-                    key={item.id}
-                    name={item.name}
-                    location={item.location}
-                    tier={item.breatheTier}
-                    tierStyles={BREATHE_TIERS}
-                    highlights={item.highlights}
-                    bookingWindow={item.bookingWindow}
-                    type={item.type}
-                    tags={item.tags}
-                    url={item.links?.website}
-                    featured={item.lilaPick}
-                    note={item.bookingWindow}
-                    tradition={item.tradition}
-                    onOpenSheet={openSheet('Breathe')}
-                  />
-                ))}
-              </ExpandableList>
-            </FadeIn>
-          </CollapsibleSection>
-
-          {/* ══════════════════════════════════════════════════════════════ */}
-          {/* NIGHT SKY                                                     */}
-          {/* ══════════════════════════════════════════════════════════════ */}
-
-          <CollapsibleSection
-            id="light-sky"
-            label="Night Sky"
-            title="The night sky here is extraordinary"
-            teaser="IDA Certified — Bortle Class 2–3"
-            isOpen={!collapsedSections['light-sky']}
-            onToggle={() => toggleSection('light-sky')}
-          >
-            <FadeIn delay={0.06}>
-              <div className="mb-8">
-                <div className="font-body text-[10px] font-bold tracking-[0.22em] uppercase mb-4" style={{ color: C.goldenAmber }}>Best Viewing Areas</div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-px" style={{ background: `${C.darkInk}0A` }}>
-                  {[
-                    { name: "Cholla Cactus Garden parking area", note: "Open desert horizon, easy access. Among the darkest spots reachable by car." },
-                    { name: "Jumbo Rocks Campground", note: "Sleep under Bortle 2 skies. Best experienced during a new moon window." },
-                    { name: "Pinto Basin Road pullouts", note: "The quietest, darkest corridor in the park. Zero light pollution from any direction." },
-                    { name: "Cap Rock area", note: "Iconic rock formations silhouetted against the Milky Way. The classic astrophotography spot." },
-                  ].map((area, i) => (
-                    <div key={i} style={{ background: C.warmWhite }} className="p-4 md:p-5">
-                      <div className="font-serif text-[15px] font-normal text-dark-ink leading-[1.3] mb-1">{area.name}</div>
-                      <div className="font-body text-[12px] font-normal text-[#7A857E] leading-[1.5]">{area.note}</div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </FadeIn>
-
-            <FadeIn delay={0.08}>
-              <div className="mb-8">
-                <div className="font-body text-[10px] font-bold tracking-[0.22em] uppercase mb-4" style={{ color: C.goldenAmber }}>Calendar Anchors</div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-px" style={{ background: `${C.darkInk}0A` }}>
-                  {[
-                    { event: "New Moon Windows", timing: "Monthly", detail: "Check the lunar calendar. Plan your visit around the darkest nights." },
-                    { event: "Perseid Meteor Shower", timing: "Aug 12–13 peak", detail: "Up to 100 meteors per hour at peak. Best after midnight, face northeast." },
-                    { event: "Geminid Meteor Shower", timing: "Dec 13–14 peak", detail: "The year's best shower. 120+ per hour. Cold desert nights — dress warm." },
-                    { event: "Milky Way Core", timing: "May–August", detail: "The galactic core rises overhead. Visible to the naked eye from anywhere in the park." },
-                  ].map((item, i) => (
-                    <div key={i} style={{ background: C.warmWhite }} className="p-4 md:p-5">
-                      <div className="font-serif text-[15px] font-normal text-dark-ink leading-[1.3] mb-0.5">{item.event}</div>
-                      <div className="font-body text-[9px] font-bold tracking-[0.16em] uppercase mb-2" style={{ color: C.goldenAmber }}>{item.timing}</div>
-                      <div className="font-body text-[12px] font-normal text-[#7A857E] leading-[1.5]">{item.detail}</div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </FadeIn>
-
-            <FadeIn delay={0.1}>
-              <div className="font-body text-[10px] font-bold tracking-[0.22em] uppercase mb-4" style={{ color: C.goldenAmber }}>Local Spotlight</div>
-              <div style={{ background: C.warmWhite, borderLeft: `3px solid ${C.goldenAmber}` }} className="p-4 md:p-5">
-                <div className="font-serif text-[15px] font-normal text-dark-ink leading-[1.3] mb-1">Sky's the Limit Observatory & Nature Center</div>
-                <div className="font-body text-[12px] font-normal text-[#7A857E] leading-[1.5] mb-2">A volunteer-run observatory in Twentynine Palms offering free public star parties on Saturday nights. Bring binoculars — the volunteers bring the telescopes.</div>
-                <a href="https://www.skysthelimit29.org" target="_blank" rel="noopener noreferrer"
-                  className="font-body text-[10px] font-bold tracking-[0.12em] uppercase no-underline"
-                  style={{ color: C.goldenAmber, borderBottom: '1px solid rgba(212,168,83,0.3)' }}>
-                  skysthelimit29.org ↗
-                </a>
-              </div>
-            </FadeIn>
-          </CollapsibleSection>
-
-
-
-
-
-          {/* ══════════════════════════════════════════════════════════════ */}
-          {/* EAT                                                            */}
-          {/* ══════════════════════════════════════════════════════════════ */}
-          <CollapsibleSection
-            id="eat"
-            label="Eat"
-            title="Where to eat"
-            teaser={`${restaurants.length} places`}
-            isOpen={collapsedSections['eat']}
-            onToggle={() => toggleSection('eat')}
-          >
-            <FadeIn delay={0.08}>
-              <ExpandableList initialCount={4} label="places">
-                {restaurants.filter(r => !r.corridor).sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).map(r => (
-                  <ListItem
-                    key={r.id}
-                    name={r.name}
-                    detail={r.highlights?.join('. ')}
-                    note={r.hours}
-                    tags={r.tags}
-                    featured={r.lilaPick}
-                    url={r.links?.website}
-                    location={r.location}
-                    onOpenSheet={openSheet('Eat')}
-                    cuisine={r.cuisine}
-                    priceRange={r.priceRange}
-                    reservations={r.reservations}
-                    dietary={r.dietary}
-                    energy={r.energy}
-                  />
-                ))}
-                {restaurants.filter(r => r.corridor).length > 0 && (
-                  <>
-                    <p className="font-body text-[13px] font-semibold tracking-[0.08em] uppercase text-warm-gray mt-8 mb-3">Regional Corridor</p>
-                    {restaurants.filter(r => r.corridor).sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).map(r => (
-                      <ListItem key={r.id} name={r.name} detail={r.highlights?.join('. ')} note={r.hours} tags={r.tags} featured={r.lilaPick} url={r.links?.website} location={r.location} onOpenSheet={openSheet('Eat')} />
-                    ))}
-                  </>
-                )}
-              </ExpandableList>
-            </FadeIn>
-          </CollapsibleSection>
-
-          <Divider />
-
-          {/* ══════════════════════════════════════════════════════════════ */}
-          {/* EXPERIENCE                                                    */}
-          {/* ══════════════════════════════════════════════════════════════ */}
-          <CollapsibleSection
-            id="experience"
-            label="Experience"
-            title={"Culture, heritage & discovery"}
-            teaser={`${experiences.length} experiences`}
-            isOpen={collapsedSections['experience']}
-            onToggle={() => toggleSection('experience')}
-          >
-            <FadeIn delay={0.08}>
-              <ExpandableList initialCount={4} label="experiences">
-                {experiences.sort((a, b) => (b.lilaPick ? 1 : 0) - (a.lilaPick ? 1 : 0)).map(item => (
-                  <ListItem key={item.id} name={item.name} detail={item.highlights?.[0]} note={item.admission === 'reservation-required' || item.admission === 'paid' ? item.admission : null} tags={item.tags} featured={item.lilaPick} url={item.links?.website} location={item.location} onOpenSheet={openSheet('Experience')} />
-                ))}
-              </ExpandableList>
-            </FadeIn>
-          </CollapsibleSection>
-
-          <Divider />
-
-          {/* ══════════════════════════════════════════════════════════════ */}
-          {/* GIVE BACK                                                     */}
-          {/* ══════════════════════════════════════════════════════════════ */}
-          <CollapsibleSection
-            id="give-back"
-            label="Give Back"
-            title="Leave it better than you found it."
-            teaser="3 organizations"
-            isOpen={collapsedSections['give-back']}
-            onToggle={() => toggleSection('give-back')}
-          >
-            <FadeIn delay={0.1}>
-              <div className="mt-2">
-                <div className="pt-4">
-                  <div className="font-body text-[11px] font-bold tracking-[0.14em] uppercase text-[#7A857E] mb-0.5">Conservation</div>
-                  <ListItem name="Mojave Desert Land Trust"
-                    url="https://www.mdlt.org"
-                    detail="Based in Joshua Tree, MDLT protects the California desert through land acquisition, habitat restoration, and a native plant seed bank — including growing thousands of Joshua trees for replanting in the park. Volunteer on land monitoring hikes or donate to their seed bank program."
-                    tags={["Donate", "Volunteer"]} />
-                </div>
-                <div className="pt-4">
-                  <div className="font-body text-[11px] font-bold tracking-[0.14em] uppercase text-[#7A857E] mb-0.5">Indigenous Giving</div>
-                  <ListItem name="Native American Land Conservancy"
-                    url="https://www.nativeamericanlandconservancy.org"
-                    detail="A partner in MDLT's Joshua tree conservation coalition, bringing Indigenous cultural knowledge to desert stewardship. To Indigenous communities in this region, the Joshua tree — Humwichawa — is a family member, not a landmark."
-                    tags={["Donate"]} />
-                </div>
-                <div className="pt-4">
-                  <div className="font-body text-[11px] font-bold tracking-[0.14em] uppercase text-[#7A857E] mb-0.5">Trail Stewardship</div>
-                  <ListItem name="Joshua Tree National Park Volunteer Program"
-                    url="https://www.nps.gov/jotr/getinvolved/volunteer.htm"
-                    detail="The most direct option for visitors who want to give time rather than money. Trail maintenance, restoration, and education programs run directly through the park."
-                    tags={["Volunteer"]} />
-                </div>
-              </div>
-            </FadeIn>
-          </CollapsibleSection>
-
-
-          <Divider />
-
-          {/* ══════════════════════════════════════════════════════════════ */}
-          {/* CTA                                                           */}
-          {/* ══════════════════════════════════════════════════════════════ */}
-          <section id="cta" className="scroll-mt-[126px] pt-14 pb-[72px] text-center">
-            <FadeIn>
-              <span className="font-body text-[12px] font-bold tracking-[0.28em] uppercase text-golden-amber block mb-4">Begin</span>
-              <h3 className="font-serif text-[clamp(28px,5vw,42px)] font-light text-dark-ink mt-0 mb-2.5 leading-[1.2]">Your desert trip starts here</h3>
-              <p className="font-body text-[clamp(14px,1.6vw,14px)] font-normal text-[#4A5650] max-w-[460px] mx-auto mb-9 leading-[1.65] mt-0">
-                Choose your path — build it yourself with our Trip Planner, or let us craft something personalized for you.
-              </p>
-              <Link to="/plan"
-                className="py-3.5 px-9 border-none bg-dark-ink text-white text-center inline-block font-body text-[12px] font-bold tracking-[0.2em] uppercase cursor-pointer transition-opacity duration-200 no-underline hover:opacity-85"
-                onClick={() => trackEvent('guide_cta_clicked', { action: 'plan_a_trip', destination: 'joshua-tree' })}
-              >{"Plan a Trip"}</Link>
-            </FadeIn>
-          </section>
-
-          {/* ── Also Explore ────────────────────────────────────────────── */}
-          <Divider />
-          <FadeIn>
-            <div className="py-11">
-              <div className="flex items-center justify-between flex-wrap gap-3 mb-4">
-                <span className="eyebrow text-[#7A857E]">Also Explore</span>
-                <span className="font-body text-[12px] font-semibold tracking-[0.1em] text-[#7A857E]">Guides available for each destination</span>
-              </div>
-              <div className="flex gap-4 flex-wrap mt-4">
-                {[
-                  { name: "Zion Canyon", slug: "zion-canyon", accent: C.sunSalmon },
-                  { name: "Olympic Peninsula", slug: "olympic-peninsula", accent: C.skyBlue },
-                  { name: "Big Sur", slug: "big-sur", accent: C.seaGlass },
-                  { name: "Vancouver Island", slug: "vancouver-island", accent: C.oceanTeal },
-                  { name: "Kauai", slug: "kauai", accent: C.oceanTeal },
-                ].map(other => (
-                  <Link key={other.slug} to={`/destinations/${other.slug}`}
-                    className="flex items-center gap-3 py-3 px-5 border border-stone transition-all duration-[250ms] bg-warm-white no-underline"
-                    onMouseEnter={e => { e.currentTarget.style.borderColor = other.accent; }}
-                    onMouseLeave={e => { e.currentTarget.style.borderColor = C.stone; }}
-                  >
-                    <div className="w-2 h-2 rounded-full opacity-60" style={{ background: other.accent }} />
-                    <span className="font-body text-[13px] font-semibold tracking-[0.1em] uppercase text-dark-ink">{other.name}</span>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </FadeIn>
-
-        </div>
-      </section>
 
       <GuideDetailSheet
         item={activeSheet}
