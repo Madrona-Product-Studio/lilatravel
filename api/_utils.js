@@ -20,6 +20,7 @@ const RATE_LIMITS = {
   'send-contact-email':      { maxRequests: 5,  windowMs: 60 * 60 * 1000 },  // 5/hour
   'places-search':           { maxRequests: 60, windowMs: 60 * 60 * 1000 },  // 60/hour
   'place-photo':             { maxRequests: 120, windowMs: 60 * 60 * 1000 }, // 120/hour
+  'wildlife-lookup':         { maxRequests: 60, windowMs: 60 * 60 * 1000 },  // 60/hour
 };
 
 /**

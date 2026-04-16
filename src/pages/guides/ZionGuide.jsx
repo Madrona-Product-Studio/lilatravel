@@ -52,10 +52,19 @@ const TIMING_WINDOWS = [
 ];
 
 const WILDLIFE = [
-  { name: 'California Condor', detail: 'Reintroduced to Zion in 1996. Wingspan up to 9.5 ft \u2014 visible as a dark silhouette riding thermals above the canyon rim.' },
-  { name: 'Desert Bighorn Sheep', detail: 'Often seen on rocky ledges above the canyon floor, especially along the Angels Landing trail. Completely at home on near-vertical terrain.' },
-  { name: 'Ringtail Cat', detail: 'Nocturnal, rarely seen. Related to raccoons. Lives in rocky outcrops and canyon walls. Enormous eyes for hunting at night.' },
+  { name: 'California Condor', detail: 'Reintroduced to Zion in 1996. Wingspan up to 9.5 ft \u2014 visible as a dark silhouette riding thermals above the canyon rim.', season: 'Year-round', parks: ['Zion'] },
+  { name: 'Desert Bighorn Sheep', detail: 'Often seen on rocky ledges above the canyon floor, especially along the Angels Landing trail. Completely at home on near-vertical terrain.', season: 'Year-round', parks: ['Zion', 'Capitol Reef'] },
+  { name: 'Ringtail Cat', detail: 'Nocturnal, rarely seen. Related to raccoons. Lives in rocky outcrops and canyon walls. Enormous eyes for hunting at night.', season: 'Year-round', parks: ['Zion'] },
 ];
+
+const wildlifeItems = WILDLIFE.map(w => ({
+  ...w,
+  type: 'wildlife',
+  badge: 'Wildlife',
+  context: w.season,
+  lat: 37.2,
+  lng: -112.9,
+}));
 
 // Mockup park descriptions (editorial, differs from zion-constants data)
 const PARKS_EDITORIAL = [
@@ -321,7 +330,7 @@ export default function ZionGuide() {
 
                 <SubLabel>Desert Wildlife</SubLabel>
                 <Prose>The canyon's biodiversity surprises people. The Virgin River riparian corridor supports nearly 300 bird species, plus mammals that most visitors never see.</Prose>
-                <EditorialList items={WILDLIFE.map(w => ({ name: w.name, detail: w.detail }))} />
+                <ContentList items={wildlifeItems} onOpenSheet={openSheet('Wildlife')} />
 
                 <PlaceGuideCard label="Full Terrain & Parks Guide" descriptor="Terrain · When to go · Desert wildlife" bg="linear-gradient(155deg, #C4956A 0%, #7A9190 100%)" to="/destinations/zion/terrain-and-parks" />
               </div>

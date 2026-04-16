@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from 'react';
 import { C, FONTS } from '@data/brand';
 import { G } from '@data/guides/guide-styles';
 import usePlacePhotos from '@hooks/usePlacePhotos';
+import useWildlifeData from '@hooks/useWildlifeData';
 
 function NPSArrowhead({ size = 14, color = "#2D5F2B" }) {
   return (
@@ -50,11 +51,16 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
 
   // Determine fetch conditions before hooks (hooks must run unconditionally)
   const nps = item?.nps;
-  const isOrganization = !nps && !!item?.operator;
-  const shouldFetchPlaces = !nps && !isOrganization && !!item;
+  const isWildlife = item?.type === 'wildlife';
+  const isOrganization = !nps && !isWildlife && !!item?.operator;
+  const shouldFetchPlaces = !nps && !isOrganization && !isWildlife && !!item;
 
   const places = usePlacePhotos(
     shouldFetchPlaces ? { name: item.name, location: item.location } : {}
+  );
+
+  const wildlife = useWildlifeData(
+    isWildlife && item ? { name: item.name, lat: item.lat, lng: item.lng } : {}
   );
 
   if (!item) return null;
@@ -392,8 +398,111 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
         </>
       )}
 
-      {/* ═══ STANDARD CONTENT (no NPS) ═══ */}
-      {!nps && (
+      {/* ═══ WILDLIFE CONTENT ═══ */}
+      {isWildlife && (
+        <>
+          {/* iNaturalist photo */}
+          {(wildlife.loading || wildlife.photo) && (
+            <div className="mx-[-20px] mb-3 relative overflow-hidden" style={{ height: 200, background: C.stone }}>
+              {wildlife.loading && !wildlife.photo && (
+                <>
+                  <style>{`@keyframes shimmer{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}`}</style>
+                  <div className="absolute inset-0" style={{ background: `linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%)`, animation: 'shimmer 1.5s infinite' }} />
+                </>
+              )}
+              {wildlife.photo && (
+                <img src={wildlife.photo} alt={item.name} className="w-full h-[200px] object-cover block" style={{ animation: 'fadeIn 0.3s ease' }} />
+              )}
+              <style>{`@keyframes fadeIn{from{opacity:0}to{opacity:1}}`}</style>
+              {wildlife.photoAttribution && (
+                <div style={{ fontFamily: FONTS.body, fontSize: 9, color: 'rgba(26,26,24,0.35)', textAlign: 'right', padding: '4px 20px 0' }}>{wildlife.photoAttribution}</div>
+              )}
+            </div>
+          )}
+
+          {/* Scientific name */}
+          {wildlife.scientificName && (
+            <div style={{ fontFamily: FONTS.serif, fontSize: 16, fontWeight: 300, fontStyle: 'italic', color: '#777', marginBottom: 8 }}>
+              {wildlife.scientificName}
+            </div>
+          )}
+
+          {/* Our editorial description */}
+          {item.detail && (
+            <div style={{ background: '#E8E0D5', padding: '12px 16px', marginBottom: 12 }}>
+              <p style={{ fontFamily: FONTS.body, fontSize: 13, fontWeight: 400, color: '#666', lineHeight: 1.55, margin: 0 }}>{item.detail}</p>
+            </div>
+          )}
+
+          {/* Info grid: season, parks, observations, conservation */}
+          <div className="grid grid-cols-2 gap-x-4 gap-y-2 mb-3 py-3 border-y border-[rgba(107,128,120,0.1)]">
+            {item.season && (
+              <div>
+                <div style={{ fontFamily: FONTS.body, fontSize: 10, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(26,26,24,0.35)', marginBottom: 2 }}>Season</div>
+                <div style={{ fontFamily: FONTS.body, fontSize: 13, fontWeight: 500, color: C.darkInk }}>{item.season}</div>
+              </div>
+            )}
+            {wildlife.iconicTaxon && (
+              <div>
+                <div style={{ fontFamily: FONTS.body, fontSize: 10, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(26,26,24,0.35)', marginBottom: 2 }}>Type</div>
+                <div style={{ fontFamily: FONTS.body, fontSize: 13, fontWeight: 500, color: C.darkInk }}>{wildlife.iconicTaxon}</div>
+              </div>
+            )}
+            {item.parks && item.parks.length > 0 && (
+              <div className="col-span-full">
+                <div style={{ fontFamily: FONTS.body, fontSize: 10, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(26,26,24,0.35)', marginBottom: 2 }}>Where to Spot</div>
+                <div style={{ fontFamily: FONTS.body, fontSize: 13, fontWeight: 500, color: C.darkInk }}>{item.parks.join(', ')}</div>
+              </div>
+            )}
+            {wildlife.conservationStatus && (
+              <div className="col-span-full">
+                <div style={{ fontFamily: FONTS.body, fontSize: 10, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(26,26,24,0.35)', marginBottom: 2 }}>Conservation</div>
+                <div style={{ fontFamily: FONTS.body, fontSize: 13, fontWeight: 500, color: C.darkInk }}>
+                  {wildlife.conservationStatus.statusName} <span style={{ fontSize: 11, color: '#999' }}>— {wildlife.conservationStatus.authority}</span>
+                </div>
+              </div>
+            )}
+            {wildlife.localObservations != null && (
+              <div>
+                <div style={{ fontFamily: FONTS.body, fontSize: 10, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(26,26,24,0.35)', marginBottom: 2 }}>Nearby Sightings</div>
+                <div style={{ fontFamily: FONTS.body, fontSize: 13, fontWeight: 500, color: C.darkInk }}>{wildlife.localObservations.toLocaleString()}</div>
+              </div>
+            )}
+            {wildlife.observationCount != null && (
+              <div>
+                <div style={{ fontFamily: FONTS.body, fontSize: 10, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(26,26,24,0.35)', marginBottom: 2 }}>Global Observations</div>
+                <div style={{ fontFamily: FONTS.body, fontSize: 13, fontWeight: 500, color: C.darkInk }}>{wildlife.observationCount.toLocaleString()}</div>
+              </div>
+            )}
+          </div>
+
+          {/* Wikipedia summary */}
+          {wildlife.wikipediaSummary && (
+            <p style={{ fontFamily: FONTS.body, fontSize: 12, fontWeight: 400, color: '#888', lineHeight: 1.55, margin: '0 0 12px' }}>{wildlife.wikipediaSummary}</p>
+          )}
+
+          {/* CTA links */}
+          <div style={{ display: 'flex', gap: 8 }}>
+            {wildlife.inatUrl && (
+              <a href={wildlife.inatUrl} target="_blank" rel="noopener noreferrer"
+                style={{ fontFamily: FONTS.body, fontSize: 11, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', textDecoration: 'none', color: C.darkInk, border: `1.5px solid ${C.darkInk}`, padding: '8px 16px', display: 'inline-flex', alignItems: 'center', gap: 6, transition: 'opacity 0.2s' }}
+                onMouseEnter={e => { e.currentTarget.style.opacity = '0.7'; }}
+                onMouseLeave={e => { e.currentTarget.style.opacity = '1'; }}
+              >iNaturalist ↗</a>
+            )}
+            {wildlife.wikipediaUrl && (
+              <a href={wildlife.wikipediaUrl} target="_blank" rel="noopener noreferrer"
+                style={{ fontFamily: FONTS.body, fontSize: 11, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', textDecoration: 'none', color: C.oceanTeal, border: `1.5px solid ${C.oceanTeal}40`, padding: '8px 16px', display: 'inline-flex', alignItems: 'center', gap: 6, transition: 'opacity 0.2s' }}
+                onMouseEnter={e => { e.currentTarget.style.opacity = '0.7'; }}
+                onMouseLeave={e => { e.currentTarget.style.opacity = '1'; }}
+              >Wikipedia ↗</a>
+            )}
+          </div>
+        </>
+      )}
+
+      {/* ═══ STANDARD CONTENT (no NPS, no wildlife) ═══ */}
+      {!nps && !isWildlife && (
         <>
           {/* ◈ Vibe block */}
           {(item.energy || item.detail) && (
