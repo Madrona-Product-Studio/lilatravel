@@ -102,10 +102,50 @@ const ZionNightSky = lazy(() => import('@pages/guides/zion/ZionNightSky'));
 const ZionBeThere = lazy(() => import('@pages/guides/zion/ZionBeThere'));
 const ZionExperience = lazy(() => import('@pages/guides/zion/ZionExperience'));
 const BigSurGuide = lazy(() => import('@pages/guides/BigSurGuide'));
+const BigSurKnowThePlace = lazy(() => import('@pages/guides/bigSur/BigSurKnowThePlace'));
+const BigSurBeThere = lazy(() => import('@pages/guides/bigSur/BigSurBeThere'));
+const BigSurSleep = lazy(() => import('@pages/guides/bigSur/BigSurSleep'));
+const BigSurEat = lazy(() => import('@pages/guides/bigSur/BigSurEat'));
+const BigSurMove = lazy(() => import('@pages/guides/bigSur/BigSurMove'));
+const BigSurBreathe = lazy(() => import('@pages/guides/bigSur/BigSurBreathe'));
+const BigSurExperience = lazy(() => import('@pages/guides/bigSur/BigSurExperience'));
+const BigSurNightSky = lazy(() => import('@pages/guides/bigSur/BigSurNightSky'));
 const JoshuaTreeGuide = lazy(() => import('@pages/guides/JoshuaTreeGuide'));
+const JoshuaTreeKnowThePlace = lazy(() => import('@pages/guides/joshuaTree/JoshuaTreeKnowThePlace'));
+const JoshuaTreeBeThere = lazy(() => import('@pages/guides/joshuaTree/JoshuaTreeBeThere'));
+const JoshuaTreeSleep = lazy(() => import('@pages/guides/joshuaTree/JoshuaTreeSleep'));
+const JoshuaTreeEat = lazy(() => import('@pages/guides/joshuaTree/JoshuaTreeEat'));
+const JoshuaTreeMove = lazy(() => import('@pages/guides/joshuaTree/JoshuaTreeMove'));
+const JoshuaTreeBreathe = lazy(() => import('@pages/guides/joshuaTree/JoshuaTreeBreathe'));
+const JoshuaTreeExperience = lazy(() => import('@pages/guides/joshuaTree/JoshuaTreeExperience'));
+const JoshuaTreeNightSky = lazy(() => import('@pages/guides/joshuaTree/JoshuaTreeNightSky'));
 const OlympicPeninsulaGuide = lazy(() => import('@pages/guides/OlympicPeninsulaGuide'));
+const OlympicPeninsulaKnowThePlace = lazy(() => import('@pages/guides/olympicPeninsula/OlympicPeninsulaKnowThePlace'));
+const OlympicPeninsulaBeThere = lazy(() => import('@pages/guides/olympicPeninsula/OlympicPeninsulaBeThere'));
+const OlympicPeninsulaSleep = lazy(() => import('@pages/guides/olympicPeninsula/OlympicPeninsulaSleep'));
+const OlympicPeninsulaEat = lazy(() => import('@pages/guides/olympicPeninsula/OlympicPeninsulaEat'));
+const OlympicPeninsulaMove = lazy(() => import('@pages/guides/olympicPeninsula/OlympicPeninsulaMove'));
+const OlympicPeninsulaBreathe = lazy(() => import('@pages/guides/olympicPeninsula/OlympicPeninsulaBreathe'));
+const OlympicPeninsulaExperience = lazy(() => import('@pages/guides/olympicPeninsula/OlympicPeninsulaExperience'));
+const OlympicPeninsulaNightSky = lazy(() => import('@pages/guides/olympicPeninsula/OlympicPeninsulaNightSky'));
 const VancouverIslandGuide = lazy(() => import('@pages/guides/VancouverIslandGuide'));
+const VancouverIslandKnowThePlace = lazy(() => import('@pages/guides/vancouverIsland/VancouverIslandKnowThePlace'));
+const VancouverIslandBeThere = lazy(() => import('@pages/guides/vancouverIsland/VancouverIslandBeThere'));
+const VancouverIslandSleep = lazy(() => import('@pages/guides/vancouverIsland/VancouverIslandSleep'));
+const VancouverIslandEat = lazy(() => import('@pages/guides/vancouverIsland/VancouverIslandEat'));
+const VancouverIslandMove = lazy(() => import('@pages/guides/vancouverIsland/VancouverIslandMove'));
+const VancouverIslandBreathe = lazy(() => import('@pages/guides/vancouverIsland/VancouverIslandBreathe'));
+const VancouverIslandExperience = lazy(() => import('@pages/guides/vancouverIsland/VancouverIslandExperience'));
+const VancouverIslandNightSky = lazy(() => import('@pages/guides/vancouverIsland/VancouverIslandNightSky'));
 const KauaiGuide = lazy(() => import('@pages/guides/KauaiGuide'));
+const KauaiKnowThePlace = lazy(() => import('@pages/guides/kauai/KauaiKnowThePlace'));
+const KauaiBeThere = lazy(() => import('@pages/guides/kauai/KauaiBeThere'));
+const KauaiSleep = lazy(() => import('@pages/guides/kauai/KauaiSleep'));
+const KauaiEat = lazy(() => import('@pages/guides/kauai/KauaiEat'));
+const KauaiMove = lazy(() => import('@pages/guides/kauai/KauaiMove'));
+const KauaiBreathe = lazy(() => import('@pages/guides/kauai/KauaiBreathe'));
+const KauaiExperience = lazy(() => import('@pages/guides/kauai/KauaiExperience'));
+const KauaiNightSky = lazy(() => import('@pages/guides/kauai/KauaiNightSky'));
 
 // ─── Itineraries ────────────────────────────────────────────────────────────
 const UtahTripGuide = lazy(() => import('./itineraries/utah/UtahTripGuide'));
@@ -157,11 +197,56 @@ export default function App() {
             <Route path="/destinations/zion/be-there-well" element={<Navigate to="/destinations/zion/travel-lightly" replace />} />
             <Route path="/destinations/zion/experience" element={<Navigate to="/destinations/zion/arts-and-culture" replace />} />
             <Route path="/destinations/zion-canyon" element={<Navigate to="/destinations/zion" replace />} />
+            {/* Big Sur */}
             <Route path="/destinations/big-sur" element={<BigSurGuide />} />
+            <Route path="/destinations/big-sur/terrain-and-parks" element={<BigSurKnowThePlace />} />
+            <Route path="/destinations/big-sur/travel-lightly" element={<BigSurBeThere />} />
+            <Route path="/destinations/big-sur/where-to-stay" element={<BigSurSleep />} />
+            <Route path="/destinations/big-sur/where-to-eat" element={<BigSurEat />} />
+            <Route path="/destinations/big-sur/hikes-bikes" element={<BigSurMove />} />
+            <Route path="/destinations/big-sur/yoga-mindfulness" element={<BigSurBreathe />} />
+            <Route path="/destinations/big-sur/arts-and-culture" element={<BigSurExperience />} />
+            <Route path="/destinations/big-sur/stars-and-sky" element={<BigSurNightSky />} />
+            {/* Joshua Tree */}
             <Route path="/destinations/joshua-tree" element={<JoshuaTreeGuide />} />
+            <Route path="/destinations/joshua-tree/terrain-and-parks" element={<JoshuaTreeKnowThePlace />} />
+            <Route path="/destinations/joshua-tree/travel-lightly" element={<JoshuaTreeBeThere />} />
+            <Route path="/destinations/joshua-tree/where-to-stay" element={<JoshuaTreeSleep />} />
+            <Route path="/destinations/joshua-tree/where-to-eat" element={<JoshuaTreeEat />} />
+            <Route path="/destinations/joshua-tree/hikes-bikes" element={<JoshuaTreeMove />} />
+            <Route path="/destinations/joshua-tree/yoga-mindfulness" element={<JoshuaTreeBreathe />} />
+            <Route path="/destinations/joshua-tree/arts-and-culture" element={<JoshuaTreeExperience />} />
+            <Route path="/destinations/joshua-tree/stars-and-sky" element={<JoshuaTreeNightSky />} />
+            {/* Olympic Peninsula */}
             <Route path="/destinations/olympic-peninsula" element={<OlympicPeninsulaGuide />} />
+            <Route path="/destinations/olympic-peninsula/terrain-and-parks" element={<OlympicPeninsulaKnowThePlace />} />
+            <Route path="/destinations/olympic-peninsula/travel-lightly" element={<OlympicPeninsulaBeThere />} />
+            <Route path="/destinations/olympic-peninsula/where-to-stay" element={<OlympicPeninsulaSleep />} />
+            <Route path="/destinations/olympic-peninsula/where-to-eat" element={<OlympicPeninsulaEat />} />
+            <Route path="/destinations/olympic-peninsula/hikes-bikes" element={<OlympicPeninsulaMove />} />
+            <Route path="/destinations/olympic-peninsula/yoga-mindfulness" element={<OlympicPeninsulaBreathe />} />
+            <Route path="/destinations/olympic-peninsula/arts-and-culture" element={<OlympicPeninsulaExperience />} />
+            <Route path="/destinations/olympic-peninsula/stars-and-sky" element={<OlympicPeninsulaNightSky />} />
+            {/* Vancouver Island */}
             <Route path="/destinations/vancouver-island" element={<VancouverIslandGuide />} />
+            <Route path="/destinations/vancouver-island/terrain-and-parks" element={<VancouverIslandKnowThePlace />} />
+            <Route path="/destinations/vancouver-island/travel-lightly" element={<VancouverIslandBeThere />} />
+            <Route path="/destinations/vancouver-island/where-to-stay" element={<VancouverIslandSleep />} />
+            <Route path="/destinations/vancouver-island/where-to-eat" element={<VancouverIslandEat />} />
+            <Route path="/destinations/vancouver-island/hikes-bikes" element={<VancouverIslandMove />} />
+            <Route path="/destinations/vancouver-island/yoga-mindfulness" element={<VancouverIslandBreathe />} />
+            <Route path="/destinations/vancouver-island/arts-and-culture" element={<VancouverIslandExperience />} />
+            <Route path="/destinations/vancouver-island/stars-and-sky" element={<VancouverIslandNightSky />} />
+            {/* Kauai */}
             <Route path="/destinations/kauai" element={<KauaiGuide />} />
+            <Route path="/destinations/kauai/terrain-and-parks" element={<KauaiKnowThePlace />} />
+            <Route path="/destinations/kauai/travel-lightly" element={<KauaiBeThere />} />
+            <Route path="/destinations/kauai/where-to-stay" element={<KauaiSleep />} />
+            <Route path="/destinations/kauai/where-to-eat" element={<KauaiEat />} />
+            <Route path="/destinations/kauai/hikes-bikes" element={<KauaiMove />} />
+            <Route path="/destinations/kauai/yoga-mindfulness" element={<KauaiBreathe />} />
+            <Route path="/destinations/kauai/arts-and-culture" element={<KauaiExperience />} />
+            <Route path="/destinations/kauai/stars-and-sky" element={<KauaiNightSky />} />
             {/* ↓ Generic guide for destinations without a dedicated page */}
             <Route path="/destinations/:slug" element={<DestinationGuide />} />
 
