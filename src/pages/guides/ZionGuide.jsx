@@ -222,7 +222,7 @@ export default function ZionGuide() {
         <div style={{ background: breathConfig ? 'transparent' : G.warmWhite, color: G.ink, fontFamily: FONTS.body }}>
 
           {/* ══ MASTHEAD ═══════════════════════════════════════════════════════ */}
-          <div style={{ padding: isMobile ? '36px 20px 32px' : '48px 52px 40px', maxWidth: 1080, margin: '0 auto' }}>
+          <div style={{ padding: isMobile ? '80px 20px 32px' : '96px 52px 40px', maxWidth: 1080, margin: '0 auto' }}>
             <div style={{ fontFamily: FONTS.body, fontSize: 10, fontWeight: 700, letterSpacing: '0.22em', textTransform: 'uppercase', color: G.goldenAmber, marginBottom: 20 }}>
               Destination Guide
             </div>
@@ -275,7 +275,7 @@ export default function ZionGuide() {
               { src: P.bryceCanyon, alt: 'Bryce Canyon hoodoos', caption: 'Bryce Canyon · hoodoos', width: '24%' },
               { src: P.capitolReef, alt: 'Capitol Reef at sunset', caption: 'Capitol Reef · sunset', width: '22%' },
             ].map((img, i) => (
-              <div key={i} style={{ flex: `0 0 ${img.width}`, position: 'relative', overflow: 'hidden', height: 270 }}>
+              <div key={i} style={{ flex: `0 0 ${img.width}`, position: 'relative', overflow: 'hidden', height: isMobile ? 240 : 360 }}>
                 <img src={img.src} alt={img.alt} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
                 <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '28px 14px 12px', background: 'linear-gradient(to top, rgba(10,18,26,0.65), transparent)' }}>
                   <span style={{ fontFamily: FONTS.body, fontSize: 10, fontWeight: 600, letterSpacing: '0.06em', color: 'rgba(255,255,255,0.8)' }}>{img.caption}</span>
