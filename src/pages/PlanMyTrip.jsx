@@ -756,7 +756,7 @@ function StepWelcome({ onNext }) {
       {/* Hero — centered, takes available space */}
       <div className="flex-1 flex flex-col items-center justify-center text-center" style={{
         padding: "0 28px",
-        minHeight: "55vh",
+        minHeight: "48vh",
         ...sectionStyle(0),
       }}>
         <div className="mb-4" style={{ opacity: 0.35 }}>
@@ -766,7 +766,7 @@ function StepWelcome({ onNext }) {
           fontSize: "clamp(32px, 8vw, 44px)",
           margin: "0 0 18px",
         }}>
-          Travel deeper.<br />Built entirely for you.
+          Some trips change you.<br />Let's design one of those.
         </h1>
         <p className="font-body font-normal leading-[1.65] mx-auto" style={{
           fontSize: "clamp(13px, 3.5vw, 15px)",
@@ -783,7 +783,7 @@ function StepWelcome({ onNext }) {
           borderRadius: 2,
           padding: "13px 36px",
         }}>
-          Begin your trip →
+          Design Your Trip →
         </button>
       </div>
 
@@ -799,7 +799,7 @@ function StepWelcome({ onNext }) {
           {[
             { icon: IconMountain, color: C.oceanTeal, label: "Day-by-day arc", desc: "Morning to evening, shaped to your pace" },
             { icon: IconSunRays, color: C.goldenAmber, label: "Celestial timing", desc: "Moon phase, Milky Way, golden hour" },
-            { icon: IconUnalome, color: C.sage, label: "Woven practices", desc: "43 practices across five traditions" },
+            { icon: IconYinYang, color: C.sage, label: "Woven practices", desc: "43 practices across five traditions" },
             { icon: IconStars, color: C.goldenAmber, label: "Your archetype", desc: "Five traveler profiles shape every call" },
           ].map((f, i) => {
             const Ic = f.icon;
