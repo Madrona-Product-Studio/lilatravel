@@ -41,15 +41,18 @@ export default async function handler(req, res) {
 
     const candidate = data.candidates[0];
 
-    // Fetch phone number from Place Details (not available in Find Place)
+    // Fetch photos + phone from Place Details (Find Place only returns 1 photo)
     let phone = null;
+    let photoRefs = candidate.photos?.map(p => p.photo_reference) ?? [];
     if (candidate.place_id) {
       try {
-        const detailsUrl = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${candidate.place_id}&fields=formatted_phone_number&key=${key}`;
+        const detailsUrl = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${candidate.place_id}&fields=formatted_phone_number,photos&key=${key}`;
         const detailsRes = await fetch(detailsUrl);
         const detailsData = await detailsRes.json();
         phone = detailsData.result?.formatted_phone_number || null;
-      } catch (_) { /* phone is optional, don't fail */ }
+        const detailPhotos = detailsData.result?.photos?.map(p => p.photo_reference) ?? [];
+        if (detailPhotos.length > photoRefs.length) photoRefs = detailPhotos;
+      } catch (_) { /* details are optional, don't fail */ }
     }
 
     res.setHeader('Cache-Control', 's-maxage=86400, stale-while-revalidate=172800');
@@ -60,7 +63,7 @@ export default async function handler(req, res) {
       userRatingsTotal: candidate.user_ratings_total,
       address: candidate.formatted_address,
       phone,
-      photoRefs: candidate.photos?.map(p => p.photo_reference) ?? [],
+      photoRefs,
     });
   } catch (err) {
     console.error('Places search error:', err.message);
