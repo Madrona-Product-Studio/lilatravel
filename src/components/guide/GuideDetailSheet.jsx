@@ -1,6 +1,7 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { C } from '@data/brand';
 import { G } from '@data/guides/guide-styles';
+import usePlacePhotos from '@hooks/usePlacePhotos';
 
 function NPSArrowhead({ size = 14, color = "#2D5F2B" }) {
   return (
@@ -11,10 +12,38 @@ function NPSArrowhead({ size = 14, color = "#2D5F2B" }) {
   );
 }
 
+function StarRating({ rating }) {
+  const full = Math.round(rating);
+  return (
+    <span style={{ display: 'inline-flex', gap: 1 }}>
+      {[1,2,3,4,5].map(i => (
+        <span key={i} style={{ color: i <= full ? C.goldenAmber : `${C.darkInk}20`, fontSize: 13 }}>★</span>
+      ))}
+    </span>
+  );
+}
+
+function PhoneSVG() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
+    </svg>
+  );
+}
+
+function DirectionsSVG() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <polygon points="3 11 22 2 13 21 11 13 3 11" />
+    </svg>
+  );
+}
+
 function GuideDetailSheet({ item, onClose, isMobile }) {
   const sheetRef = useRef(null);
   const dragStartY = useRef(null);
   const dragCurrentY = useRef(0);
+  const [activePhotoIdx, setActivePhotoIdx] = useState(0);
 
   if (!item) return null;
 
@@ -43,19 +72,16 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
   const npsImages = nps?.images?.filter(img => img.url) || [];
   const npsPrimaryImage = npsImages[0];
 
-  // Helper to strip HTML tags for clean display
   const stripHTML = (html) => {
     if (!html) return '';
     return html.replace(/<[^>]*>/g, '').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&nbsp;/g, ' ').trim();
   };
 
-  // NPS info grid rows
   const npsInfoRows = [];
   if (nps) {
     if (nps.duration) npsInfoRows.push({ label: 'Duration', value: nps.duration });
     if (nps.season?.length) npsInfoRows.push({ label: 'Best Seasons', value: Array.isArray(nps.season) ? nps.season.join(', ') : nps.season });
     if (nps.location || nps.locationDescription) npsInfoRows.push({ label: 'Location', value: stripHTML(nps.locationDescription || nps.location || '') });
-    // Accessibility is rendered separately below the grid
     const petsAllowed = nps.arePetsPermitted === 'true' || nps.arePetsPermitted === true;
     if (nps.petsDescription || nps.arePetsPermitted !== undefined) {
       npsInfoRows.push({ label: 'Pets', value: nps.petsDescription ? stripHTML(nps.petsDescription) : (petsAllowed ? 'Pets allowed' : 'No pets') });
@@ -69,6 +95,19 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
       npsInfoRows.push({ label: 'Reservation', value: needsReservation ? 'Required' : 'Not required' });
     }
   }
+
+  // Determine if this item is an organization/operator (not a Googleable "place")
+  const isOrganization = !nps && !!item.operator;
+
+  // Google Places data — only for physical places (restaurants, accommodations, etc.)
+  // Skip for: NPS items (have their own photos), organizations/outfitters (bad match)
+  const shouldFetchPlaces = !nps && !isOrganization;
+  const places = usePlacePhotos(
+    shouldFetchPlaces ? { name: item.name, location: item.location } : {}
+  );
+  const googlePhotos = places.photos || [];
+  const heroPhoto = googlePhotos[activePhotoIdx] || googlePhotos[0];
+  const mapsUrl = places.placeId ? `https://www.google.com/maps/place/?q=place_id:${places.placeId}` : null;
 
   const content = (
     <div className="max-w-[500px] mx-auto px-5 pt-[26px] pb-[60px]">
@@ -94,6 +133,103 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
       {item.featured && (
         <span className="inline-block font-body text-[10px] font-bold tracking-[0.18em] uppercase text-sun-salmon mb-3.5 px-2.5 py-0.5"
           style={{ border: `1px solid ${G.accent}40` }}>Lila Pick</span>
+      )}
+
+      {/* ═══ GOOGLE PLACES PHOTOS (when no NPS) ═══ */}
+      {!nps && googlePhotos.length > 0 && (
+        <div className="mx-[-20px] mb-[18px] relative">
+          <img
+            src={heroPhoto}
+            alt={item.name}
+            className="w-full h-[220px] object-cover block"
+            style={{ background: C.stone }}
+          />
+          {/* Dot indicators */}
+          {googlePhotos.length > 1 && (
+            <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-1.5">
+              {googlePhotos.slice(0, 6).map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setActivePhotoIdx(i)}
+                  className="border-none cursor-pointer p-0"
+                  style={{
+                    width: 7, height: 7, borderRadius: '50%',
+                    background: i === activePhotoIdx ? 'white' : 'rgba(255,255,255,0.5)',
+                    transition: 'background 0.2s',
+                  }}
+                  aria-label={`Photo ${i + 1}`}
+                />
+              ))}
+            </div>
+          )}
+          {/* Thumbnail strip */}
+          {googlePhotos.length > 1 && (
+            <div className="flex gap-[3px] px-5 mt-[3px] overflow-x-auto" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+              {googlePhotos.slice(0, 6).map((url, i) => (
+                <img
+                  key={i}
+                  src={url}
+                  alt=""
+                  className="object-cover cursor-pointer"
+                  style={{
+                    width: 60, height: 42, opacity: i === activePhotoIdx ? 1 : 0.6,
+                    transition: 'opacity 0.2s',
+                  }}
+                  onClick={() => setActivePhotoIdx(i)}
+                />
+              ))}
+            </div>
+          )}
+          {/* Google attribution */}
+          <div className="font-body text-[10px] font-normal text-[rgba(26,26,24,0.35)] text-right px-5 mt-1">
+            Powered by Google
+          </div>
+        </div>
+      )}
+
+      {/* ═══ GOOGLE PLACES RATING ═══ */}
+      {!nps && places.rating && (
+        <div className="flex items-center gap-2 mb-3.5">
+          <StarRating rating={places.rating} />
+          <span className="font-body text-[13px] font-medium text-dark-ink">{places.rating}</span>
+          {places.userRatingsTotal && (
+            <span className="font-body text-[12px] font-normal text-[rgba(26,26,24,0.4)]">
+              · {places.userRatingsTotal.toLocaleString()} reviews
+            </span>
+          )}
+        </div>
+      )}
+
+      {/* ═══ CTA ROW ═══ */}
+      {!nps && (item.url || places.phone || mapsUrl) && (
+        <div className="flex gap-2 mb-[18px]">
+          {item.url && (
+            <a href={item.url} target="_blank" rel="noopener noreferrer"
+              className="flex-1 flex items-center justify-center gap-1.5 py-2.5 font-body text-[11px] font-bold tracking-[0.14em] uppercase no-underline transition-opacity duration-200"
+              style={{ background: C.darkInk, color: C.warmWhite }}
+              onMouseEnter={e => { e.currentTarget.style.opacity = '0.85'; }}
+              onMouseLeave={e => { e.currentTarget.style.opacity = '1'; }}
+            >{isOrganization && item.operator ? item.operator : 'Visit Website'} <span className="text-[12px]">↗</span></a>
+          )}
+          {!isOrganization && places.phone && (
+            <a href={`tel:${places.phone}`}
+              className="flex items-center justify-center no-underline transition-opacity duration-200"
+              style={{ width: 42, height: 42, border: `1.5px solid ${G.accent}`, color: G.accent }}
+              onMouseEnter={e => { e.currentTarget.style.opacity = '0.7'; }}
+              onMouseLeave={e => { e.currentTarget.style.opacity = '1'; }}
+              aria-label="Call"
+            ><PhoneSVG /></a>
+          )}
+          {!isOrganization && mapsUrl && (
+            <a href={mapsUrl} target="_blank" rel="noopener noreferrer"
+              className="flex items-center justify-center no-underline transition-opacity duration-200"
+              style={{ width: 42, height: 42, border: `1.5px solid ${G.accent}`, color: G.accent }}
+              onMouseEnter={e => { e.currentTarget.style.opacity = '0.7'; }}
+              onMouseLeave={e => { e.currentTarget.style.opacity = '1'; }}
+              aria-label="Directions"
+            ><DirectionsSVG /></a>
+          )}
+        </div>
       )}
 
       {/* ═══ NPS ENRICHMENT (when available) ═══ */}
@@ -165,7 +301,7 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
             </div>
           )}
 
-          {/* NPS Trail Accessibility -- structured breakdown */}
+          {/* NPS Trail Accessibility */}
           {nps.accessibilityInformation && (() => {
             const html = nps.accessibilityInformation;
             const clean = (s) => s.replace(/&amp;/g, '&').replace(/&nbsp;/g, ' ').replace(/\xa0/g, ' ').replace(/<[^>]*>/g, '').trim();
@@ -185,16 +321,9 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
             const rows = liMatches.map(li => {
               const inner = li.replace(/<\/?li>/gi, '');
               const boldMatch = inner.match(/<b>([\s\S]*?)<\/b>/);
-              const label = boldMatch
-                ? clean(boldMatch[1]).replace(/\s*\|\s*$/, '').trim()
-                : '';
-              const valueHtml = boldMatch
-                ? inner.slice(inner.indexOf('</b>') + 4)
-                : inner;
-              const valueParts = valueHtml
-                .split(/<b>\s*\|?\s*<\/b>|<b>\s*\|\s*<\/b>/)
-                .map(clean)
-                .filter(Boolean);
+              const label = boldMatch ? clean(boldMatch[1]).replace(/\s*\|\s*$/, '').trim() : '';
+              const valueHtml = boldMatch ? inner.slice(inner.indexOf('</b>') + 4) : inner;
+              const valueParts = valueHtml.split(/<b>\s*\|?\s*<\/b>|<b>\s*\|\s*<\/b>/).map(clean).filter(Boolean);
               const finalParts = [];
               for (const part of valueParts) {
                 part.split(/\s+\|\s+/).forEach(p => { if (p.trim()) finalParts.push(p.trim()); });
@@ -227,7 +356,7 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
             );
           })()}
 
-          {/* Lila's Take -- editorial content below NPS */}
+          {/* Lila's Take */}
           {(item.detail || item.note) && (
             <div className="py-3.5 px-4 mb-[18px]"
               style={{ background: `${G.accentWarm}08`, borderLeft: `3px solid ${G.accentWarm}40` }}>
@@ -250,31 +379,49 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
               ))}
             </div>
           )}
+
+          {/* Outfitter / operator website (for guided NPS activities) */}
+          {item.url && (
+            <a href={item.url} target="_blank" rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 py-2.5 px-5 font-body text-[12px] font-bold tracking-[0.16em] uppercase no-underline transition-all duration-[250ms]"
+              style={{ background: C.darkInk, color: C.warmWhite }}
+              onMouseEnter={e => { e.currentTarget.style.opacity = '0.85'; }}
+              onMouseLeave={e => { e.currentTarget.style.opacity = '1'; }}
+            >{item.operator ? item.operator : 'Visit Website'} <span className="text-[13px]">↗</span></a>
+          )}
         </>
       )}
 
-      {/* STANDARD CONTENT (no NPS) */}
+      {/* ═══ STANDARD CONTENT (no NPS) ═══ */}
       {!nps && (
         <>
-          {item.type === 'tier' && item.highlights && item.highlights.length > 0 && (
-            <div className="mb-[18px]">
-              {item.highlights.map((h, i) => (
-                <div key={i} className="flex gap-2.5 items-start mb-[7px]">
-                  <div className="w-1 h-1 rounded-full mt-[7px] shrink-0" style={{ background: G.accent, opacity: 0.6 }} />
-                  <span className="font-body text-[14px] font-normal text-[rgba(26,26,24,0.5)] leading-[1.7]">{h}</span>
+          {/* Notes from Lila */}
+          {(item.detail || item.highlights?.length > 0) && (
+            <div className="py-3.5 px-4 mb-[18px]" style={{ background: '#E8E0D5' }}>
+              <div className="font-body text-[10px] font-bold tracking-[0.2em] uppercase mb-2" style={{ color: C.goldenAmber }}>
+                ◈ Notes from Lila
+              </div>
+              {item.detail && (
+                <p className="font-body text-[13px] font-normal text-[rgba(26,26,24,0.6)] leading-[1.7] mt-0 mb-1.5">{item.detail}</p>
+              )}
+              {item.highlights && item.highlights.length > 0 && (
+                <div className="mt-2">
+                  {item.highlights.map((h, i) => (
+                    <div key={i} className="flex gap-2.5 items-start mb-[5px]">
+                      <div className="w-1 h-1 rounded-full mt-[7px] shrink-0" style={{ background: C.goldenAmber, opacity: 0.6 }} />
+                      <span className="font-body text-[13px] font-normal text-[rgba(26,26,24,0.55)] leading-[1.65]">{h}</span>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              )}
             </div>
-          )}
-
-          {item.detail && (
-            <p className="font-body text-[14px] font-normal text-[rgba(26,26,24,0.5)] leading-[1.7] mt-0 mb-3.5">{item.detail}</p>
           )}
 
           {item.note && (
             <div className="font-body text-[13px] font-semibold text-ocean-teal mb-3.5">{item.note}</div>
           )}
 
+          {/* Activity info grid */}
           {item.type === 'tier' && (item.difficulty || item.duration || item.distance || item.operator || item.bookingWindow || item.tradition || item.priceRange) && (
             <div className="grid grid-cols-2 gap-x-4 gap-y-2.5 mb-[18px] py-3.5 border-y border-[rgba(107,128,120,0.12)]">
               {item.difficulty && (
@@ -329,12 +476,30 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
           )}
 
           {/* Restaurant info grid */}
-          {item.type === 'list' && (item.cuisine || item.priceRange || item.reservations || item.energy) && (
+          {item.type === 'list' && (item.cuisine || item.priceRange || item.reservations || item.energy || item.difficulty || item.duration || item.distance) && (
             <div className="grid grid-cols-2 gap-x-4 gap-y-2.5 mb-[18px] py-3.5 border-y border-[rgba(107,128,120,0.12)]">
               {item.cuisine && (
                 <div>
                   <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[rgba(26,26,24,0.4)] mb-[3px]">Cuisine</div>
                   <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.cuisine}</div>
+                </div>
+              )}
+              {item.difficulty && (
+                <div>
+                  <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[rgba(26,26,24,0.4)] mb-[3px]">Difficulty</div>
+                  <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.difficulty}</div>
+                </div>
+              )}
+              {item.distance && (
+                <div>
+                  <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[rgba(26,26,24,0.4)] mb-[3px]">Distance</div>
+                  <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.distance}</div>
+                </div>
+              )}
+              {item.duration && (
+                <div>
+                  <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[rgba(26,26,24,0.4)] mb-[3px]">Duration</div>
+                  <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.duration}</div>
                 </div>
               )}
               {item.priceRange && (
@@ -353,6 +518,18 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
                 <div>
                   <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[rgba(26,26,24,0.4)] mb-[3px]">Reservations</div>
                   <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.reservations}</div>
+                </div>
+              )}
+              {item.operator && (
+                <div>
+                  <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[rgba(26,26,24,0.4)] mb-[3px]">Operator</div>
+                  <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.operator}</div>
+                </div>
+              )}
+              {item.bookingWindow && (
+                <div className="col-span-full">
+                  <div className="font-body text-[10px] font-bold tracking-[0.18em] uppercase text-[rgba(26,26,24,0.4)] mb-[3px]">Booking</div>
+                  <div className="font-body text-[13px] font-medium text-dark-ink leading-[1.5]">{item.bookingWindow}</div>
                 </div>
               )}
               {item.location && (
@@ -427,16 +604,6 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
             </div>
           )}
         </>
-      )}
-
-      {/* Visit Website link */}
-      {item.url && !nps && (
-        <a href={item.url} target="_blank" rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 py-2.5 px-5 font-body text-[12px] font-bold tracking-[0.16em] uppercase text-ocean-teal no-underline transition-all duration-[250ms]"
-          style={{ border: `1.5px solid ${G.accent}` }}
-          onMouseEnter={e => { e.currentTarget.style.background = G.accent; e.currentTarget.style.color = '#fff'; }}
-          onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = G.accent; }}
-        >Visit Website <span className="text-[13px]">↗</span></a>
       )}
     </div>
   );

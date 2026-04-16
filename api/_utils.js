@@ -18,6 +18,8 @@ const RATE_LIMITS = {
   'extract-booking':         { maxRequests: 20, windowMs: 60 * 60 * 1000 },  // 20/hour
   'send-trip-email':         { maxRequests: 10, windowMs: 60 * 60 * 1000 },  // 10/hour
   'send-contact-email':      { maxRequests: 5,  windowMs: 60 * 60 * 1000 },  // 5/hour
+  'places-search':           { maxRequests: 60, windowMs: 60 * 60 * 1000 },  // 60/hour
+  'place-photo':             { maxRequests: 120, windowMs: 60 * 60 * 1000 }, // 120/hour
 };
 
 /**
