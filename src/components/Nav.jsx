@@ -327,7 +327,12 @@ export default function Nav({ transparent = false, breathConfig = null }) {
     <>
       <nav ref={navRef} className="fixed top-0 left-0 right-0 z-[100] transition-all duration-400 ease-out" style={{
         /* dynamic — background depends on scroll + transparent prop + breathConfig */
-        background: breathConfig ? breathConfig.pip : (showSolid ? "rgba(250,248,244,0.97)" : "transparent"),
+        background: breathConfig ? (() => {
+          // Mix breath color with cream (250,248,244) at ~18% to match the breath tint
+          const [r,g,b] = breathConfig.rgb;
+          const mix = (c, base) => Math.round(base + (c - base) * 0.18);
+          return `rgb(${mix(r,250)},${mix(g,248)},${mix(b,244)})`;
+        })() : (showSolid ? "rgba(250,248,244,0.97)" : "transparent"),
         backdropFilter: breathConfig ? "none" : (showSolid ? "blur(16px)" : "none"),
       }}>
         <div className="relative px-6 py-[18px] md:px-[52px] md:py-5 flex items-center justify-between" style={{
