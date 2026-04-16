@@ -59,17 +59,17 @@ const WILDLIFE = [
 
 // Mockup park descriptions (editorial, differs from zion-constants data)
 const PARKS_EDITORIAL = [
-  { name: 'Zion National Park',         context: 'Canyon \u00B7 River \u00B7 Desert',    description: 'The anchor. Sandstone walls two thousand feet high, the Virgin River running through the floor of it. Most people come, do the Narrows, do Angels Landing, and leave. This guide is for the ones who want to actually be inside the place.' },
-  { name: 'Bryce Canyon National Park', context: 'High Plateau \u00B7 Hoodoos',          description: 'Lifts you 8,000 feet into a forest of stone pillars. The hoodoos form from frost wedging and erosion \u2014 water that freezes in cracks overnight and expands until the rock gives way. Spectacular at sunrise.' },
-  { name: 'Capitol Reef National Park', context: 'Waterpocket Fold \u00B7 Solitude',     description: 'A hundred-mile wrinkle in the earth\u2019s crust that most people drive right past. Orchards planted by early settlers still fruit every fall. The least visited of the three \u2014 which is most of its appeal.' },
+  { name: 'Zion National Park',         context: 'Canyon \u00B7 River \u00B7 Desert',    url: 'https://www.nps.gov/zion/', description: 'The anchor. Sandstone walls two thousand feet high, the Virgin River running through the floor of it. Most people come, do the Narrows, do Angels Landing, and leave. This guide is for the ones who want to actually be inside the place.' },
+  { name: 'Bryce Canyon National Park', context: 'High Plateau \u00B7 Hoodoos',          url: 'https://www.nps.gov/brca/', description: 'Lifts you 8,000 feet into a forest of stone pillars. The hoodoos form from frost wedging and erosion \u2014 water that freezes in cracks overnight and expands until the rock gives way. Spectacular at sunrise.' },
+  { name: 'Capitol Reef National Park', context: 'Waterpocket Fold \u00B7 Solitude',     url: 'https://www.nps.gov/care/', description: 'A hundred-mile wrinkle in the earth\u2019s crust that most people drive right past. Orchards planted by early settlers still fruit every fall. The least visited of the three \u2014 which is most of its appeal.' },
 ];
 
 // Mockup town descriptions (editorial)
 const TOWNS_EDITORIAL = [
-  { name: 'Springdale',  context: 'Your Home Base',       description: 'A single-street town pressed against the canyon mouth. Walk to the park entrance. Restaurants, gear shops, and galleries line the half-mile stretch \u2014 all sandstone red and cottonwood green.' },
-  { name: 'Kanab',       context: 'Film-Set Desert Town', description: 'An hour south of Zion. Old Western film sets, a growing food scene, and the staging point for permits to The Wave and Buckskin Gulch.' },
-  { name: 'Escalante',   context: 'Trailhead Town',       description: 'A one-stoplight town on Scenic Byway 12. Slot canyons, petrified forests, and the kind of solitude the main parks can\u2019t offer.' },
-  { name: 'Torrey',      context: 'Capitol Reef Gateway',  description: 'A handful of buildings at the edge of the Waterpocket Fold. The nearest services to Capitol Reef. The orchards start just down the road.' },
+  { name: 'Springdale',  context: 'Your Home Base',       url: 'https://www.zionpark.com/', description: 'A single-street town pressed against the canyon mouth. Walk to the park entrance. Restaurants, gear shops, and galleries line the half-mile stretch \u2014 all sandstone red and cottonwood green.' },
+  { name: 'Kanab',       context: 'Film-Set Desert Town', url: 'https://visitsouthernutah.com/kanab/', description: 'An hour south of Zion. Old Western film sets, a growing food scene, and the staging point for permits to The Wave and Buckskin Gulch.' },
+  { name: 'Escalante',   context: 'Trailhead Town',       url: 'https://www.escalante.cc/', description: 'A one-stoplight town on Scenic Byway 12. Slot canyons, petrified forests, and the kind of solitude the main parks can\u2019t offer.' },
+  { name: 'Torrey',      context: 'Capitol Reef Gateway',  url: 'https://www.capitolreefcountry.com/', description: 'A handful of buildings at the edge of the Waterpocket Fold. The nearest services to Capitol Reef. The orchards start just down the road.' },
 ];
 
 
@@ -313,7 +313,7 @@ export default function ZionGuide() {
 
                 <SubLabel>The Terrain</SubLabel>
                 <Prose>Three parks, three distinct personalities. Zion is intimate — the canyon holds you. Bryce is theatrical — the hoodoos perform. Capitol Reef is quiet and immense — the Waterpocket Fold stretches a hundred miles and most people never stop to look at it.</Prose>
-                <EditorialList items={PARKS_EDITORIAL.map(p => ({ context: p.context, name: p.name, detail: p.description }))} />
+                <EditorialList items={PARKS_EDITORIAL.map(p => ({ context: p.context, name: p.name, detail: p.description, url: p.url }))} />
 
                 <SubLabel>When to Go</SubLabel>
                 <Prose>The desert doesn't do subtle — it blooms, it burns gold, it goes silent under snow. These are the windows we build trips around.</Prose>
@@ -367,7 +367,7 @@ export default function ZionGuide() {
                 </div>
 
                 <SubLabel>Towns</SubLabel>
-                <EditorialList items={TOWNS_EDITORIAL.map(t => ({ context: t.context, name: t.name, detail: t.description }))} />
+                <EditorialList items={TOWNS_EDITORIAL.map(t => ({ context: t.context, name: t.name, detail: t.description, url: t.url }))} />
 
                 <SubLabel>Hotels</SubLabel>
                 <p style={{ fontFamily: FONTS.body, fontSize: 13, fontWeight: 400, color: G.ink40, marginBottom: 0 }}>A few we like across the region:</p>

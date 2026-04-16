@@ -22,7 +22,11 @@ export default function EditorialList({ items, style = {} }) {
               </div>
             )}
             <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 14, fontWeight: 700, color: G.darkInk, lineHeight: 1.2, marginBottom: 5 }}>
-              {item.name}
+              {item.url ? (
+                <a href={item.url} target="_blank" rel="noopener noreferrer" style={{ color: G.darkInk, textDecoration: 'none' }}>
+                  {item.name} <span style={{ fontSize: 11, opacity: 0.4 }}>↗</span>
+                </a>
+              ) : item.name}
             </div>
             <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 12, fontWeight: 400, lineHeight: 1.55, color: G.inkDetail, margin: 0 }}>
               {item.detail}
