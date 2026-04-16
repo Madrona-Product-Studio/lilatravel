@@ -1,17 +1,32 @@
+import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import SubGuideLayout from '@components/guide/SubGuideLayout';
 import { SubLabel, Prose, ContentList } from '@components/guide';
+import GuideDetailSheet from '@components/guide/GuideDetailSheet';
 import breatheItems from '../../../data/restaurants/zion-breathe.json';
 
 const breatheContentItems = breatheItems.map(b => ({
-  name: b.name,
+  ...b,
+  type: 'list',
   badge: b.breatheTier.charAt(0).toUpperCase() + b.breatheTier.slice(1),
   context: [b.type || b.subtype, b.location].filter(Boolean).join(' \u00b7 '),
   detail: b.highlights[0],
-  lilaPick: b.lilaPick,
+  highlights: b.highlights,
+  featured: b.lilaPick,
+  url: b.links?.website,
+  section: 'Breathe',
 }));
 
 export default function ZionBreathe() {
+  const [activeSheet, setActiveSheet] = useState(null);
+  const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth <= 768);
+
+  useEffect(() => {
+    const onResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
+
   return (
     <>
       <Helmet>
@@ -27,8 +42,13 @@ export default function ZionBreathe() {
         </Prose>
 
         <SubLabel>Highlights</SubLabel>
-        <ContentList items={breatheContentItems} />
+        <ContentList items={breatheContentItems} onOpenSheet={setActiveSheet} />
       </SubGuideLayout>
+      <GuideDetailSheet
+        item={activeSheet}
+        onClose={() => setActiveSheet(null)}
+        isMobile={isMobile}
+      />
     </>
   );
 }

@@ -1,15 +1,22 @@
+import { useState, useEffect, useCallback } from 'react';
 import { Helmet } from 'react-helmet-async';
 import SubGuideLayout from '@components/guide/SubGuideLayout';
 import { SubLabel, Prose, ContentList } from '@components/guide';
+import GuideDetailSheet from '@components/guide/GuideDetailSheet';
+import { getNPSData, findNPSMatch } from '@services/npsService';
 import moveItems from '../../../data/restaurants/zion-move.json';
 import permits from '../../../data/permits/zion.json';
 
 const moveContentItems = moveItems.map(m => ({
-  name: m.name,
+  ...m,
+  type: 'list',
   badge: m.moveTier.charAt(0).toUpperCase() + m.moveTier.slice(1),
   context: [m.distance, m.difficulty, m.permitRequired && 'Permit required'].filter(Boolean).join(' \u00b7 '),
   detail: m.highlights[0],
-  lilaPick: m.lilaPick,
+  highlights: m.highlights,
+  featured: m.lilaPick,
+  url: m.links?.website,
+  section: 'Move',
 }));
 
 const movePermits = permits.filter(p =>
@@ -25,6 +32,25 @@ const permitItems = movePermits.map(p => ({
 }));
 
 export default function ZionMove() {
+  const [activeSheet, setActiveSheet] = useState(null);
+  const [npsLookup, setNpsLookup] = useState(null);
+  const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth <= 768);
+
+  useEffect(() => {
+    const onResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
+
+  useEffect(() => {
+    getNPSData(['zion']).then(setNpsLookup).catch(() => {});
+  }, []);
+
+  const openSheet = useCallback((item) => {
+    const npsMatch = npsLookup ? findNPSMatch(item.name, npsLookup) : null;
+    setActiveSheet({ ...item, nps: npsMatch || undefined });
+  }, [npsLookup]);
+
   return (
     <>
       <Helmet>
@@ -40,11 +66,16 @@ export default function ZionMove() {
         </Prose>
 
         <SubLabel>Highlights</SubLabel>
-        <ContentList items={moveContentItems} />
+        <ContentList items={moveContentItems} onOpenSheet={openSheet} />
 
         <SubLabel>Permits</SubLabel>
         <ContentList items={permitItems} />
       </SubGuideLayout>
+      <GuideDetailSheet
+        item={activeSheet}
+        onClose={() => setActiveSheet(null)}
+        isMobile={isMobile}
+      />
     </>
   );
 }
