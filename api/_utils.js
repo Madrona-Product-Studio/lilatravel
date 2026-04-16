@@ -21,6 +21,7 @@ const RATE_LIMITS = {
   'places-search':           { maxRequests: 60, windowMs: 60 * 60 * 1000 },  // 60/hour
   'place-photo':             { maxRequests: 120, windowMs: 60 * 60 * 1000 }, // 120/hour
   'wildlife-lookup':         { maxRequests: 60, windowMs: 60 * 60 * 1000 },  // 60/hour
+  'astronomy':               { maxRequests: 30, windowMs: 60 * 60 * 1000 },  // 30/hour
 };
 
 /**
