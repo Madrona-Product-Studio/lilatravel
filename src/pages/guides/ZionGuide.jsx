@@ -372,11 +372,13 @@ export default function ZionGuide() {
                 <SubLabel>Hotels</SubLabel>
                 <p style={{ fontFamily: FONTS.body, fontSize: 13, fontWeight: 400, color: G.ink40, marginBottom: 0 }}>A few we like across the region:</p>
                 <ContentList onOpenSheet={openSheet('Stay')} items={sleepPicks.map(a => ({
+                  ...a,
+                  type: 'stay',
                   badge: a.stayStyle.charAt(0).toUpperCase() + a.stayStyle.slice(1),
                   context: a.location,
-                  name: a.name,
                   detail: a.highlights?.[0] || '',
-                  lilaPick: a.lilaPick,
+                  featured: a.lilaPick,
+                  tier: a.stayStyle,
                   url: a.links?.website || a.links?.booking,
                   hasNPS: checkNPS(a.name),
                 }))} />
@@ -397,11 +399,12 @@ export default function ZionGuide() {
                 <ContentList onOpenSheet={openSheet('Eat')} items={eatPicks.map(e => {
                   const raw = e.cuisine || e.type || '';
                   return {
+                    ...e,
+                    type: 'list',
                     badge: raw.charAt(0).toUpperCase() + raw.slice(1),
                     context: `${e.location}${e.reservations ? ' · ' + e.reservations : ''}`,
-                    name: e.name,
                     detail: e.highlights?.[0] || '',
-                    lilaPick: e.lilaPick,
+                    featured: e.lilaPick,
                     url: e.links?.website,
                     hasNPS: checkNPS(e.name),
                   };
@@ -420,11 +423,12 @@ export default function ZionGuide() {
 
                 <SubLabel>Highlights</SubLabel>
                 <ContentList onOpenSheet={openSheet('Move')} items={moveHighlights.map(m => ({
+                  ...m,
+                  type: 'list',
                   badge: m.moveTier.charAt(0).toUpperCase() + m.moveTier.slice(1),
                   context: `${m.distance || ''} · ${m.difficulty || ''}`.replace(/^\s*·\s*/, '').replace(/\s*·\s*$/, ''),
-                  name: m.name,
                   detail: m.highlights?.[0] || '',
-                  lilaPick: m.lilaPick,
+                  featured: m.lilaPick,
                   url: m.links?.website,
                   hasNPS: checkNPS(m.name),
                 }))} />
@@ -444,11 +448,12 @@ export default function ZionGuide() {
 
                 <SubLabel>Highlights</SubLabel>
                 <ContentList onOpenSheet={openSheet('Breathe')} items={breatheHighlights.map(b => ({
+                  ...b,
+                  type: 'list',
                   badge: b.breatheTier.charAt(0).toUpperCase() + b.breatheTier.slice(1),
                   context: `${b.type || ''} · ${b.location || ''}`.replace(/^\s*·\s*/, '').replace(/\s*·\s*$/, ''),
-                  name: b.name,
                   detail: b.highlights?.[0] || '',
-                  lilaPick: b.lilaPick,
+                  featured: b.lilaPick,
                   url: b.links?.website,
                   hasNPS: checkNPS(b.name),
                 }))} />
@@ -468,11 +473,12 @@ export default function ZionGuide() {
 
                 <SubLabel>Highlights</SubLabel>
                 <ContentList onOpenSheet={openSheet('Experience')} items={experienceHighlights.map(e => ({
+                  ...e,
+                  type: 'list',
                   badge: (e.type || '').charAt(0).toUpperCase() + (e.type || '').slice(1),
                   context: e.location || '',
-                  name: e.name,
                   detail: e.highlights?.[0] || '',
-                  lilaPick: e.featured || e.lilaPick,
+                  featured: e.featured || e.lilaPick,
                   url: e.links?.website,
                   hasNPS: checkNPS(e.name),
                 }))} />
