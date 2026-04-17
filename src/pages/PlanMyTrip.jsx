@@ -788,7 +788,9 @@ function StepWelcome({ onNext }) {
       </div>
 
       {/* Bottom content — constrained width */}
-      <div className="mx-auto w-full" style={{ maxWidth: 640, padding: "0 24px" }}>
+      <div className="mx-auto w-full flex flex-col" style={{ maxWidth: 640, padding: "0 24px" }}>
+        {/* Callout blocks — centered in available space */}
+        <div className="flex-1 flex flex-col justify-center">
         {/* Four-feature strip */}
         <div style={sectionStyle(150)}>
           <div style={{
@@ -865,8 +867,10 @@ function StepWelcome({ onNext }) {
           </div>
         </div>
 
+        </div>{/* end callout centering wrapper */}
+
         {/* Powered by row */}
-        <div style={{ paddingTop: 16, ...sectionStyle(450) }}>
+        <div style={{ paddingTop: 24, ...sectionStyle(450) }}>
           <button
             onClick={() => setSourcesOpen(true)}
             className="flex items-center cursor-pointer w-full"
