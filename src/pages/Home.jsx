@@ -505,10 +505,10 @@ function HomeDeckTile({ deck }) {
         </div>
       </div>
       <div className="mt-2 text-center">
-        <div style={{ fontFamily: FONTS.serif, fontSize: 15, fontWeight: 400, color: C.darkInk }}>
+        <div style={{ fontFamily: FONTS.serif, fontSize: 15, fontWeight: 400, color: 'rgba(255,255,255,0.85)' }}>
           {deck.name}
         </div>
-        <div style={{ fontFamily: FONTS.body, fontSize: 10, color: C.slate, letterSpacing: '0.08em', marginTop: 2 }}>
+        <div style={{ fontFamily: FONTS.body, fontSize: 10, color: 'rgba(255,255,255,0.45)', letterSpacing: '0.08em', marginTop: 2 }}>
           {deck.sub}
         </div>
       </div>
