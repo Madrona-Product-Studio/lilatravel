@@ -753,27 +753,29 @@ function StepWelcome({ onNext }) {
 
   return (
     <div className="flex flex-col min-h-screen" style={{ background: C.cream }}>
-      {/* Full-page content wrapper — hero stretches, bottom anchored */}
-      <div className="flex-1 flex flex-col justify-center" style={{ padding: "72px 0 0" }}>
+      {/* All content in a single flex column that fills the screen evenly */}
+      <div className="flex-1 flex flex-col justify-evenly mx-auto w-full" style={{
+        maxWidth: 640,
+        padding: "56px 24px 0",
+      }}>
         {/* Hero */}
         <div className="flex flex-col items-center text-center" style={{
-          padding: "0 28px 24px",
           ...sectionStyle(0),
         }}>
-          <div className="mb-3" style={{ opacity: 0.35 }}>
-            <IconEnso size={24} color={C.sage} />
+          <div className="mb-2" style={{ opacity: 0.35 }}>
+            <IconEnso size={22} color={C.sage} />
           </div>
           <h1 className="font-serif font-light leading-[1.15] text-dark-ink" style={{
-            fontSize: "clamp(32px, 8vw, 44px)",
-            margin: "0 0 16px",
+            fontSize: "clamp(30px, 7.5vw, 44px)",
+            margin: "0 0 14px",
           }}>
             Some trips change you.<br />Let's design one of those.
           </h1>
-          <p className="font-body font-normal leading-[1.65] mx-auto" style={{
+          <p className="font-body font-normal leading-[1.6] mx-auto" style={{
             fontSize: "clamp(13px, 3.5vw, 15px)",
             color: `${C.slate}99`,
             maxWidth: 380,
-            margin: "0 0 22px",
+            margin: "0 0 20px",
           }}>
             Tell us how you want to feel. Live wilderness data, celestial timing, and 30 wisdom practices come together in one itinerary shaped around you — and it stays alive as your trip takes shape.
           </p>
@@ -787,10 +789,9 @@ function StepWelcome({ onNext }) {
             Design Your Trip →
           </button>
         </div>
-      </div>
 
-      {/* Bottom content — constrained width, anchored to bottom */}
-      <div className="mx-auto w-full" style={{ maxWidth: 640, padding: "0 24px" }}>
+        {/* Callouts + powered by */}
+        <div>
         {/* Four-feature strip */}
         <div style={sectionStyle(150)}>
           <div style={{
@@ -908,7 +909,8 @@ function StepWelcome({ onNext }) {
         `}</style>
 
         {/* Bottom spacer */}
-        <div style={{ height: 28, ...sectionStyle(600) }} />
+        <div style={{ height: 16, ...sectionStyle(600) }} />
+        </div>
       </div>
 
       {/* Data sources modal */}
