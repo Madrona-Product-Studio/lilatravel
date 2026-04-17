@@ -730,7 +730,7 @@ const DATA_SOURCES = [
   { name: "USGS Water Services", desc: "River flow and water temp — live conditions for Zion's Virgin River", color: C.sunSalmon },
   { name: "Google Places", desc: "Curated local restaurants, lodging, and experiences with live hours", color: C.sage },
   { name: "iNaturalist", desc: "Wildlife sighting data — species spotted near your destination", color: C.seaGlass },
-  { name: "43 wisdom practices", desc: "Yoga, Buddhism, Taoism, Shinto, Stoicism — woven in as quiet cues", color: C.goldenAmber },
+  { name: "30 wisdom practices", desc: "Yoga, Buddhism, Taoism, Shinto, Stoicism — woven in as quiet cues", color: C.goldenAmber },
 ];
 
 const SCROLLING_SOURCES = ["NPS", "Weather", "Tides", "River data", "Google Places", "Wildlife", "Astronomy"];
@@ -774,7 +774,7 @@ function StepWelcome({ onNext }) {
           maxWidth: 380,
           margin: "0 0 32px",
         }}>
-          Tell us how you want to feel. Live wilderness data, celestial timing, and 43 wisdom practices come together in one itinerary shaped around you — and it stays alive as your trip takes shape.
+          Tell us how you want to feel. Live wilderness data, celestial timing, and 30 wisdom practices come together in one itinerary shaped around you — and it stays alive as your trip takes shape.
         </p>
         <button onClick={onNext} className="font-body text-[13px] font-bold tracking-[0.12em] uppercase cursor-pointer" style={{
           background: "none",
@@ -798,7 +798,7 @@ function StepWelcome({ onNext }) {
             {[
               { icon: IconMountain, color: C.oceanTeal, label: "Day-by-day arc", desc: "Morning to evening, shaped to your pace" },
               { icon: IconSunRays, color: C.goldenAmber, label: "Celestial timing", desc: "Moon phase, Milky Way, golden hour" },
-              { icon: IconYinYang, color: C.sage, label: "Woven practices", desc: "43 practices across five traditions" },
+              { icon: IconYinYang, color: C.sage, label: "Woven practices", desc: "30 practices across five traditions" },
               { icon: IconStars, color: C.goldenAmber, label: "Your archetype", desc: "Five traveler profiles shape every call" },
             ].map((f, i) => {
               const Ic = f.icon;
