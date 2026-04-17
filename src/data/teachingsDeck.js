@@ -48,7 +48,7 @@ export const TRADITIONS = [
   {
     id: 'shinto',
     name: 'Shinto',
-    symbol: '\u26E9\uFE0E',
+    symbol: '\u03A0',
     origin: 'Japan · origins prehistoric · formalized ~700 CE',
     color: '#8A7BA8',
     chapterNumber: 'CHAPTER FOUR',
