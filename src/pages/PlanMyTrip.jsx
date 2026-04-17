@@ -877,9 +877,9 @@ function StepWelcome({ onNext }) {
               borderTop: `1px solid ${C.sage}15`,
             }}
           >
-            <IconBolt size={14} color={`${C.sage}88`} />
+            <IconBolt size={14} color={C.goldenAmber} />
             <span className="font-body text-[11px] font-bold tracking-[0.15em] uppercase shrink-0" style={{
-              color: `${C.sage}88`,
+              color: C.goldenAmber,
               marginLeft: 6,
               marginRight: 10,
             }}>Powered by</span>
