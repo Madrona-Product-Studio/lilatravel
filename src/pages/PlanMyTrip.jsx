@@ -754,7 +754,7 @@ function StepWelcome({ onNext }) {
   return (
     <div className="flex flex-col min-h-screen" style={{ background: C.cream }}>
       {/* Hero — centered, takes available space */}
-      <div className="flex-1 flex flex-col items-center justify-center text-center" style={{
+      <div className="flex flex-col items-center justify-center text-center" style={{
         padding: "0 28px",
         minHeight: "32vh",
         ...sectionStyle(0),
@@ -789,8 +789,6 @@ function StepWelcome({ onNext }) {
 
       {/* Bottom content — constrained width */}
       <div className="mx-auto w-full flex flex-col" style={{ maxWidth: 640, padding: "0 24px" }}>
-        {/* Callout blocks — centered in available space */}
-        <div className="flex-1 flex flex-col justify-center">
         {/* Four-feature strip */}
         <div style={sectionStyle(150)}>
           <div style={{
@@ -866,8 +864,6 @@ function StepWelcome({ onNext }) {
             })}
           </div>
         </div>
-
-        </div>{/* end callout centering wrapper */}
 
         {/* Powered by row */}
         <div style={{ paddingTop: 24, ...sectionStyle(450) }}>
