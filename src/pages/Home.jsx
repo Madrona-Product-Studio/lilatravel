@@ -660,6 +660,131 @@ function ApproachSectionHome() {
 }
 
 
+// ─── Trip Planner CTA Section ───────────────────────────────────────────────
+
+function PlannerIcon({ children, size = 20, color = C.oceanTeal }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
+      stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      {children}
+    </svg>
+  );
+}
+
+function TripPlannerSection() {
+  const features = [
+    {
+      icon: <PlannerIcon color={C.oceanTeal}><path d="M3 20 L10 6 L14 13 L17 8 L21 20 Z" fill={`${C.oceanTeal}10`} /><path d="M3 20 L10 6 L14 13 L17 8 L21 20" /></PlannerIcon>,
+      label: "Day-by-day arc",
+      desc: "Shaped to your pace",
+    },
+    {
+      icon: <PlannerIcon color={C.goldenAmber}><circle cx="12" cy="12" r="4" fill={`${C.goldenAmber}10`} />{[0,45,90,135,180,225,270,315].map(a => { const r = a * Math.PI / 180; return <line key={a} x1={12+Math.cos(r)*6} y1={12+Math.sin(r)*6} x2={12+Math.cos(r)*9} y2={12+Math.sin(r)*9} strokeWidth="1.5" />; })}</PlannerIcon>,
+      label: "Celestial timing",
+      desc: "Moon, Milky Way, golden hour",
+    },
+    {
+      icon: <PlannerIcon color={C.seaGlass}><circle cx="12" cy="12" r="9" /><path d="M12 3 C8 3 6 6.5 6 8 C6 11 9 12 12 12 C15 12 18 13 18 16 C18 19 15 21 12 21" fill={`${C.seaGlass}20`} /><circle cx="12" cy="8" r="1.5" fill={`${C.seaGlass}20`} /><circle cx="12" cy="16" r="1.5" fill="none" /></PlannerIcon>,
+      label: "Woven practices",
+      desc: "Five wisdom traditions",
+    },
+    {
+      icon: <PlannerIcon color={C.goldenAmber}><path d="M18 12 C18 7 13 3 8 5 C12 5 15 8 15 12 C15 16 12 19 8 19 C13 21 18 17 18 12Z" fill={`${C.goldenAmber}10`} /><path d="M4 5 L4.8 3 L5.6 5" /><path d="M3 9 L3.5 8 L4 9" /><path d="M6 3 L6.4 2 L6.8 3" /></PlannerIcon>,
+      label: "Your archetype",
+      desc: "Five traveler profiles",
+    },
+    {
+      icon: <PlannerIcon color={C.sage}><path d="M4 12 A8 8 0 0 1 20 12" /><path d="M20 12 A8 8 0 0 1 4 12" /><polyline points="4,8 4,12 8,12" /><polyline points="20,16 20,12 16,12" /></PlannerIcon>,
+      label: "Refine",
+      desc: "Regenerates with feedback",
+    },
+    {
+      icon: <PlannerIcon color={C.sage}><rect x="4" y="5" width="16" height="16" rx="1" fill={`${C.sage}08`} /><line x1="4" y1="10" x2="20" y2="10" /><line x1="8" y1="3" x2="8" y2="7" /><line x1="16" y1="3" x2="16" y2="7" /></PlannerIcon>,
+      label: "Add logistics",
+      desc: "Rewrites around your dates",
+    },
+  ];
+
+  const sources = ["NPS", "Weather", "Tides", "River data", "Google Places", "Wildlife", "Astronomy"];
+
+  return (
+    <section style={{ background: C.cream }}>
+      <div className="section-padded max-w-[1100px] mx-auto px-6 md:px-[52px] py-12 md:py-16">
+        <FadeIn>
+          {/* Header row */}
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10">
+            <div>
+              <span className="eyebrow" style={{ color: C.oceanTeal }}>Trip Planner</span>
+              <h2 className="font-body text-[clamp(24px,3.5vw,38px)] font-light leading-[1.25] m-0" style={{ color: C.darkInk }}>
+                Some trips change you.
+              </h2>
+            </div>
+            <Link
+              to="/plan"
+              className="no-underline inline-flex items-center gap-2 font-body text-[13px] font-bold tracking-[0.12em] uppercase shrink-0"
+              style={{
+                color: C.oceanTeal,
+                border: `1.5px solid ${C.oceanTeal}`,
+                padding: "11px 28px",
+                borderRadius: 2,
+                alignSelf: "flex-start",
+              }}
+              onClick={() => trackEvent('plan_trip_clicked', { source: 'homepage_planner' })}
+            >
+              Design Your Trip →
+            </Link>
+          </div>
+
+          {/* Feature grid — 6 columns on desktop, 3x2 on mobile */}
+          <style>{`
+            .planner-cell { border-left: 1px solid ${C.darkInk}10; }
+            .planner-cell:nth-child(1) { border-left: none; }
+            @media (max-width: 767px) { .planner-cell:nth-child(4) { border-left: none; } }
+          `}</style>
+          <div className="grid grid-cols-3 md:grid-cols-6 gap-0">
+            {features.map((f) => (
+              <div key={f.label} className="text-center planner-cell" style={{
+                padding: "16px 10px",
+              }}>
+                <div className="flex justify-center mb-2">{f.icon}</div>
+                <div className="font-body text-[10px] font-bold tracking-[0.08em] uppercase" style={{
+                  color: C.darkInk,
+                  marginBottom: 3,
+                }}>{f.label}</div>
+                <div className="font-body text-[11px] font-normal leading-[1.4]" style={{
+                  color: `${C.darkInk}77`,
+                }}>{f.desc}</div>
+              </div>
+            ))}
+          </div>
+
+          {/* Powered by row */}
+          <div className="flex items-center mt-6" style={{
+            paddingTop: 12,
+            borderTop: `1px solid ${C.darkInk}08`,
+          }}>
+            <PlannerIcon size={14} color={C.goldenAmber}>
+              <path d="M13 2 L5 14 L11 14 L11 22 L19 10 L13 10 Z" fill={`${C.goldenAmber}10`} />
+            </PlannerIcon>
+            <span className="font-body text-[10px] font-bold tracking-[0.15em] uppercase shrink-0" style={{
+              color: C.goldenAmber,
+              marginLeft: 6,
+              marginRight: 10,
+            }}>Powered by</span>
+            <div className="flex gap-3 flex-wrap">
+              {sources.map(s => (
+                <span key={s} className="font-body text-[11px] font-normal" style={{
+                  color: `${C.darkInk}55`,
+                }}>{s}</span>
+              ))}
+            </div>
+          </div>
+        </FadeIn>
+      </div>
+    </section>
+  );
+}
+
 // ─── Homepage ───────────────────────────────────────────────────────────────
 export default function HomePage() {
   const [scrollY, setScrollY] = useState(0);
@@ -1023,6 +1148,9 @@ export default function HomePage() {
 
       {/* ══ 4. OUR APPROACH — THREE BRAIDS ══════════════════════════════ */}
       <ApproachSectionHome />
+
+      {/* ══ TRIP PLANNER CTA ═══════════════════════════════════════════ */}
+      <TripPlannerSection />
 
       {/* ══ PRACTICE LIBRARY ═══════════════════════════════════════════ */}
       <PracticeLibrarySection />
