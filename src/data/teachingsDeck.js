@@ -12,7 +12,7 @@ export const TRADITIONS = [
   {
     id: 'hinduism',
     name: 'Hinduism & Yoga',
-    symbol: 'ॐ',
+    symbol: '\u0950\uFE0E',
     origin: 'India · ~1500 BCE onward',
     color: '#C4956A',
     chapterNumber: 'CHAPTER ONE',
@@ -24,7 +24,7 @@ export const TRADITIONS = [
   {
     id: 'buddhism',
     name: 'Buddhism',
-    symbol: '☸',
+    symbol: '\u2638\uFE0E',
     origin: 'India · 5th century BCE · spread across Asia',
     color: '#7A9E8A',
     chapterNumber: 'CHAPTER TWO',
@@ -36,7 +36,7 @@ export const TRADITIONS = [
   {
     id: 'taoism',
     name: 'Taoism & Zen',
-    symbol: '道',
+    symbol: '\u262F\uFE0E',
     origin: 'China · 4th century BCE · Japan · 12th century CE',
     color: '#6B8FA8',
     chapterNumber: 'CHAPTER THREE',
@@ -48,7 +48,7 @@ export const TRADITIONS = [
   {
     id: 'shinto',
     name: 'Shinto',
-    symbol: '⛩',
+    symbol: '\u26E9\uFE0E',
     origin: 'Japan · origins prehistoric · formalized ~700 CE',
     color: '#8A7BA8',
     chapterNumber: 'CHAPTER FOUR',
@@ -72,7 +72,7 @@ export const TRADITIONS = [
   {
     id: 'crosscultural',
     name: 'Cross-Cultural',
-    symbol: '✦',
+    symbol: '\u2726\uFE0E',
     origin: 'Southern Africa · Bantu-speaking peoples',
     color: '#9A7B6B',
     chapterNumber: 'WILD CARD',
