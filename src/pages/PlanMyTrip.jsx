@@ -756,7 +756,7 @@ function StepWelcome({ onNext }) {
       {/* Hero — centered, takes available space */}
       <div className="flex-1 flex flex-col items-center justify-center text-center" style={{
         padding: "0 28px",
-        minHeight: "48vh",
+        minHeight: "42vh",
         ...sectionStyle(0),
       }}>
         <div className="mb-4" style={{ opacity: 0.35 }}>
@@ -826,8 +826,47 @@ function StepWelcome({ onNext }) {
           </div>
         </div>
 
+        {/* Living itinerary strip */}
+        <div style={{
+          paddingTop: 16,
+          ...sectionStyle(300),
+        }}>
+          <div style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(3, 1fr)",
+          }}>
+            {[
+              { icon: IconRefresh, label: "Refine", desc: "Like or dislike anything. Regenerates around your feedback." },
+              { icon: IconCalendar, label: "Add logistics", desc: "Flights and hotels rewrite the itinerary around hard dates." },
+              { icon: IconShare, label: "Share", desc: "Send a link. Anyone can view and add input." },
+            ].map((f, i) => {
+              const Ic = f.icon;
+              return (
+                <div key={f.label} style={{
+                  padding: "12px 10px",
+                  textAlign: "center",
+                  borderLeft: i > 0 ? `1px solid ${C.sage}18` : "none",
+                }}>
+                  <div className="flex justify-center mb-2">
+                    <Ic size={18} color={C.sage} />
+                  </div>
+                  <div className="font-body font-bold tracking-[0.06em] uppercase" style={{
+                    fontSize: 11,
+                    color: C.slate,
+                    marginBottom: 4,
+                  }}>{f.label}</div>
+                  <div className="font-body font-normal leading-[1.45]" style={{
+                    fontSize: 11,
+                    color: `${C.slate}88`,
+                  }}>{f.desc}</div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
         {/* Powered by row */}
-        <div style={{ paddingTop: 16, ...sectionStyle(300) }}>
+        <div style={{ paddingTop: 16, ...sectionStyle(450) }}>
           <button
             onClick={() => setSourcesOpen(true)}
             className="flex items-center cursor-pointer w-full"
@@ -866,51 +905,8 @@ function StepWelcome({ onNext }) {
           }
         `}</style>
 
-        {/* Living itinerary strip */}
-        <div style={{
-          paddingTop: 20,
-          ...sectionStyle(450),
-        }}>
-          <div className="font-body text-[10px] font-bold tracking-[0.2em] uppercase" style={{
-            color: `${C.sage}77`,
-            marginBottom: 10,
-          }}>A living itinerary</div>
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-          }}>
-            {[
-              { icon: IconRefresh, label: "Refine", desc: "Like or dislike anything. Regenerates around your feedback." },
-              { icon: IconCalendar, label: "Add logistics", desc: "Flights and hotels rewrite the itinerary around hard dates." },
-              { icon: IconShare, label: "Share", desc: "Send a link. Anyone can view and add input." },
-            ].map((f, i) => {
-              const Ic = f.icon;
-              return (
-                <div key={f.label} style={{
-                  padding: "12px 10px",
-                  textAlign: "center",
-                  borderLeft: i > 0 ? `1px solid ${C.sage}18` : "none",
-                }}>
-                  <div className="flex justify-center mb-2">
-                    <Ic size={18} color={C.sage} />
-                  </div>
-                  <div className="font-body font-bold tracking-[0.06em] uppercase" style={{
-                    fontSize: 11,
-                    color: C.slate,
-                    marginBottom: 4,
-                  }}>{f.label}</div>
-                  <div className="font-body font-normal leading-[1.45]" style={{
-                    fontSize: 11,
-                    color: `${C.slate}88`,
-                  }}>{f.desc}</div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
         {/* Bottom spacer */}
-        <div style={{ height: 32, ...sectionStyle(600) }} />
+        <div style={{ height: 28, ...sectionStyle(600) }} />
       </div>
 
       {/* Data sources modal */}
