@@ -518,7 +518,7 @@ function HomeDeckTile({ deck }) {
 
 function PracticeLibrarySection() {
   return (
-    <section className="pt-16 md:pt-24 pb-16 md:pb-20">
+    <section className="pt-16 md:pt-24 pb-16 md:pb-20" style={{ background: "#0f1e2e" }}>
       <div className="max-w-[960px] mx-auto px-6 md:px-[52px]">
         <FadeIn>
           {/* Header */}
@@ -541,7 +541,7 @@ function PracticeLibrarySection() {
               fontFamily: FONTS.body,
               fontSize: 'clamp(26px, 5vw, 40px)',
               fontWeight: 700,
-              color: C.darkInk,
+              color: 'white',
               lineHeight: 1.15,
               letterSpacing: '-0.01em',
               marginBottom: 14,
@@ -551,7 +551,7 @@ function PracticeLibrarySection() {
             <p style={{
               fontFamily: FONTS.body,
               fontSize: 14,
-              color: '#7a8a9a',
+              color: 'rgba(255,255,255,0.5)',
               lineHeight: 1.7,
               maxWidth: 480,
               margin: '0 auto',
@@ -576,7 +576,7 @@ function PracticeLibrarySection() {
               style={{
                 fontFamily: FONTS.body, fontSize: 11, fontWeight: 600,
                 letterSpacing: '0.16em', textTransform: 'uppercase',
-                color: C.slate, opacity: 0.6,
+                color: 'rgba(255,255,255,0.5)',
               }}
             >
               Browse all decks <span className="text-sm">&rarr;</span>
@@ -725,28 +725,12 @@ function TripPlannerSection() {
     <section style={{ background: C.cream }}>
       <div className="section-padded max-w-[1100px] mx-auto px-6 md:px-[52px] py-12 md:py-16">
         <FadeIn>
-          {/* Header row */}
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10">
-            <div>
-              <span className="eyebrow" style={{ color: C.oceanTeal }}>Trip Planner</span>
-              <h2 className="font-body text-[clamp(24px,3.5vw,38px)] font-light leading-[1.25] m-0" style={{ color: C.darkInk }}>
-                Some trips change you.<br />Let's design one of those.
-              </h2>
-            </div>
-            <Link
-              to="/plan"
-              className="no-underline inline-flex items-center gap-2 font-body text-[13px] font-bold tracking-[0.12em] uppercase shrink-0"
-              style={{
-                color: C.oceanTeal,
-                border: `1.5px solid ${C.oceanTeal}`,
-                padding: "11px 28px",
-                borderRadius: 2,
-                alignSelf: "flex-start",
-              }}
-              onClick={() => trackEvent('plan_trip_clicked', { source: 'homepage_planner' })}
-            >
-              Design Your Trip →
-            </Link>
+          {/* Header */}
+          <div className="mb-10">
+            <span className="eyebrow" style={{ color: C.oceanTeal }}>Trip Planner</span>
+            <h2 className="font-body text-[clamp(24px,3.5vw,38px)] font-light leading-[1.25] m-0" style={{ color: C.darkInk }}>
+              Some trips change you.<br />Let's design one of those.
+            </h2>
           </div>
 
           {/* Feature grid — 6 columns on desktop, 3x2 on mobile */}
@@ -770,6 +754,23 @@ function TripPlannerSection() {
                 }}>{f.desc}</div>
               </div>
             ))}
+          </div>
+
+          {/* CTA */}
+          <div className="text-center mt-8">
+            <Link
+              to="/plan"
+              className="no-underline inline-flex items-center gap-2 font-body text-[13px] font-bold tracking-[0.12em] uppercase"
+              style={{
+                color: C.oceanTeal,
+                border: `1.5px solid ${C.oceanTeal}`,
+                padding: "11px 28px",
+                borderRadius: 2,
+              }}
+              onClick={() => trackEvent('plan_trip_clicked', { source: 'homepage_planner' })}
+            >
+              Design Your Trip →
+            </Link>
           </div>
 
           {/* Powered by row */}
