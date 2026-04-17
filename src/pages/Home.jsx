@@ -759,6 +759,12 @@ function TripPlannerSection() {
           </div>
 
           {/* Powered by row */}
+          <style>{`
+            @keyframes homePlannerScroll {
+              0% { transform: translateX(0); }
+              100% { transform: translateX(-50%); }
+            }
+          `}</style>
           <div className="flex items-center mt-8" style={{
             paddingTop: 14,
             borderTop: `1px solid ${C.darkInk}12`,
@@ -771,12 +777,26 @@ function TripPlannerSection() {
               marginLeft: 8,
               marginRight: 14,
             }}>Powered by</span>
-            <div className="flex gap-4 flex-wrap">
+            {/* Desktop: static full list */}
+            <div className="hidden md:flex gap-4">
               {sources.map(s => (
                 <span key={s} className="font-body text-[13px] font-medium" style={{
                   color: `${C.darkInk}88`,
                 }}>{s}</span>
               ))}
+            </div>
+            {/* Mobile: scrolling ticker */}
+            <div className="flex-1 overflow-hidden md:hidden" style={{ position: "relative" }}>
+              <div className="flex gap-4" style={{
+                animation: "homePlannerScroll 14s linear infinite",
+                whiteSpace: "nowrap",
+              }}>
+                {[...sources, ...sources].map((s, i) => (
+                  <span key={i} className="font-body text-[13px] font-medium" style={{
+                    color: `${C.darkInk}88`,
+                  }}>{s}</span>
+                ))}
+              </div>
             </div>
           </div>
         </FadeIn>
