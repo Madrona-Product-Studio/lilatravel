@@ -324,78 +324,62 @@ function WelcomeScreen() {
 // ORIENTATION SCREEN
 // ═══════════════════════════════════════════════════════════════════════════════
 
-function OrientationScreen() {
+function ChaptersScreen() {
   return (
     <div style={{
       width: '100%', height: '100%',
       background: '#F7F4EE',
       display: 'flex', flexDirection: 'column',
-      padding: '28px 26px',
+      justifyContent: 'center',
+      padding: '0 32px',
       position: 'relative', overflow: 'hidden',
       borderRadius: 14,
       border: '0.5px solid rgba(0,0,0,0.08)',
     }}>
-      {/* Traditions */}
-      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-        <div style={{
-          fontSize: 10, letterSpacing: '0.22em',
-          color: '#8C7B6B', fontFamily: SANS,
-          textTransform: 'uppercase', marginBottom: 10,
-        }}>
-          Five Traditions
-        </div>
-        {TRADITIONS_LIST.map((t, i) => (
-          <div key={t.name} style={{
-            display: 'flex', alignItems: 'center', gap: 14, flex: 1,
-            padding: '5px 0',
-            borderBottom: i < 4 ? '0.5px solid rgba(44,36,32,0.08)' : 'none',
-          }}>
-            <div style={{ width: 28, textAlign: 'center', flexShrink: 0, color: '#8C7B6B', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <TraditionSymbol symbol={t.symbol} size={18} color="#8C7B6B" />
+      {/* Title */}
+      <div style={{
+        fontSize: 'clamp(32px, 8vw, 42px)', fontFamily: SANS,
+        color: '#1C1917', fontWeight: 700, lineHeight: 1.0,
+        letterSpacing: '-0.01em', marginBottom: 32,
+      }}>
+        Chapters
+      </div>
+
+      {/* Principle list */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+        {CHAPTERS.map((ch) => (
+          <div key={ch.id}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 4 }}>
+              <div style={{ flexShrink: 0 }}>
+                <PrincipleMark id={ch.id} size={20} color={ch.color} />
+              </div>
+              <div style={{
+                fontSize: 18, fontFamily: SANS,
+                fontWeight: 600,
+                color: ch.color, lineHeight: 1.3,
+              }}>
+                {ch.name}
+              </div>
             </div>
-            <div style={{ flex: 1 }}>
-              <div style={{ fontSize: 14, fontFamily: SANS, color: '#1C1917', fontWeight: 600, letterSpacing: '0.02em', marginBottom: 2 }}>
-                {t.name}
-              </div>
-              <div style={{ fontSize: 11, fontFamily: SANS, color: '#8C7B6B', letterSpacing: '0.02em' }}>
-                {t.desc}
-              </div>
+            <div style={{
+              fontSize: 13, fontFamily: SANS,
+              fontWeight: 400, color: 'rgba(28,25,23,0.45)',
+              paddingLeft: 30, lineHeight: 1.5,
+            }}>
+              {ch.arc}
             </div>
           </div>
         ))}
       </div>
 
-      {/* Hairline */}
-      <div style={{ height: '0.5px', background: 'rgba(44,36,32,0.08)', margin: '16px 0', flexShrink: 0 }} />
-
-      {/* Principles */}
-      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-        <div style={{
-          fontSize: 10, letterSpacing: '0.22em',
-          color: '#8C7B6B', fontFamily: SANS,
-          textTransform: 'uppercase', marginBottom: 10,
-        }}>
-          Five Principles
-        </div>
-        {CHAPTERS.map((p, i) => (
-          <div key={p.id} style={{
-            display: 'flex', alignItems: 'center', gap: 14, flex: 1,
-            padding: '5px 0',
-            borderBottom: i < 4 ? '0.5px solid rgba(44,36,32,0.08)' : 'none',
-          }}>
-            <div style={{ flexShrink: 0 }}>
-              <PrincipleMark id={p.id} size={18} color={p.color} />
-            </div>
-            <div style={{ flex: 1 }}>
-              <div style={{ fontSize: 14, fontFamily: SANS, color: p.color, fontWeight: 600, letterSpacing: '0.02em' }}>
-                {p.name}
-              </div>
-            </div>
-            <div style={{ fontSize: 12, fontFamily: SANS, color: p.color, opacity: 0.85 }}>
-              {p.arc}
-            </div>
-          </div>
-        ))}
+      {/* Bottom hint */}
+      <div style={{
+        position: 'absolute', bottom: 32, left: 32,
+        fontSize: 12, fontFamily: SANS,
+        color: 'rgba(28,25,23,0.25)',
+        letterSpacing: '0.04em',
+      }}>
+        Swipe to begin.
       </div>
     </div>
   );
@@ -838,7 +822,7 @@ function renderScreen(scr) {
   if (!scr) return null;
   if (scr.type === 'cover') return <CoverScreen />;
   if (scr.type === 'welcome') return <WelcomeScreen />;
-  if (scr.type === 'orientation') return <OrientationScreen />;
+  if (scr.type === 'orientation') return <ChaptersScreen />;
   if (scr.type === 'tradition') return <TraditionScreen key={scr.tradition.name} tradition={scr.tradition} />;
   if (scr.type === 'chapter') return <ChapterScreen key={`ch-${scr.principleIndex}`} principle={scr.principle} principleIndex={scr.principleIndex} />;
   if (scr.type === 'card') return <PracticeCardScreen key={`${scr.principleIndex}-${scr.cardIndex}`} card={scr.card} principle={scr.principle} cardIndex={scr.cardIndex} principleIndex={scr.principleIndex} />;

@@ -41,7 +41,7 @@ export const MOVEMENT_DECK_L2 = [
                 content: [
                   "Dead bug",
                   "bird dog",
-                  "diaphragmatic breathing",
+                  "Diaphragmatic Breath",
                   "hollow body hold",
                   "90/90 breathing",
                 ],
@@ -68,9 +68,9 @@ export const MOVEMENT_DECK_L2 = [
                 content: [
                   "Crocodile breathing",
                   "360° breathing",
-                  "box breathing",
+                  "Box Breathing",
                   "dead bug (exhale phase)",
-                  "diaphragmatic breathing in all positions",
+                  "Diaphragmatic Breath",
                 ],
               },
               {
@@ -120,10 +120,10 @@ export const MOVEMENT_DECK_L2 = [
               {
                 label: "Activates",
                 content: [
-                  "Diaphragmatic breathing",
+                  "Diaphragmatic Breath",
                   "Kegel exercises (coordinated with breath)",
                   "dead bug",
-                  "yoga boat pose",
+                  "Boat Pose",
                   "functional movements like squatting and lifting with breath coordination",
                 ],
               },
@@ -237,7 +237,7 @@ export const MOVEMENT_DECK_L2 = [
                 content: [
                   "Lunge hip flexor stretch",
                   "couch stretch",
-                  "warrior I",
+                  "Warrior I",
                   "psoas march",
                   "hanging knee raise",
                 ],
@@ -407,9 +407,9 @@ export const MOVEMENT_DECK_L2 = [
                 content: [
                   "Thoracic rotation stretch",
                   "thoracic extension over foam roller",
-                  "cat-cow with focus on thoracic segments",
+                  "Cat-Cow (focus on thoracic segments)",
                   "thread-the-needle stretch",
-                  "spinal twists in yoga",
+                  "Supine Twist",
                 ],
               },
               {
@@ -608,7 +608,7 @@ export const MOVEMENT_DECK_L2 = [
                 content: [
                   "90/90 hip stretch",
                   "hip CARs (controlled articular rotations)",
-                  "pigeon pose",
+                  "Pigeon Prep",
                   "hip flexor stretch",
                   "single-leg hip hinge",
                 ],
@@ -1254,7 +1254,7 @@ export const MOVEMENT_DECK_L2 = [
   },
 {
     id: "what-your-body-needs",
-    title: "How to Think About It",
+    title: "How It All Connects",
     subtitle: "The frameworks that change how you see your body",
     desc: "Mental models that make everything else click. These aren't exercises — they're lenses. Once you see through them, you can't unsee.",
     accent: "#4A7A8A",
