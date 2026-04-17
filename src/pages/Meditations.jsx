@@ -13,10 +13,12 @@
  */
 
 import { useState, useRef, useEffect, useCallback } from 'react';
+import { useNavigate as useRouterNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { CARDS, CARD_PRINCIPLES } from '@data/cardDeck';
 import { C, FONTS } from '@data/brand';
 import PrincipleMark from '@components/guide/PrincipleMarks';
+import DeckMark from '@components/guide/DeckMarks';
 
 const SERIF = FONTS.serif;
 const SANS = FONTS.body;
@@ -151,6 +153,7 @@ function buildScreens() {
       screens.push({ type: 'card', card, principle: ch, cardIndex: ci, principleIndex: pi });
     });
   });
+  screens.push({ type: 'continue' });
   return screens;
 }
 
@@ -380,6 +383,131 @@ function ChaptersScreen() {
         letterSpacing: '0.04em',
       }}>
         Swipe to begin.
+      </div>
+    </div>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// CONTINUE SCREEN (end card — mirrors Welcome)
+// ═══════════════════════════════════════════════════════════════════════════════
+
+const MED_SIBLINGS = [
+  { key: 'movements', name: 'Movements', desc: 'The practice of the body.', route: '/practice/movements/practice', mark: (sz, c) => <DeckMark id="arrive" size={sz} color={c} /> },
+  { key: 'body', name: 'Body', desc: 'The body beneath the movement.', route: '/practice/movements/science', mark: (sz, c) => <DeckMark id="body" size={sz} color={c} /> },
+  { key: 'teachings', name: 'Teachings', desc: 'The wisdom beneath the practice.', route: '/practice/teachings', mark: (sz, c) => <span style={{ fontSize: sz * 0.7, color: c, lineHeight: 1 }}>{'\u0950\uFE0E'}</span> },
+];
+
+function MeditationsContinueScreen() {
+  const nav = useRouterNavigate();
+  return (
+    <div style={{
+      width: '100%', height: '100%',
+      background: '#F7F4EE',
+      display: 'flex', flexDirection: 'column',
+      justifyContent: 'center',
+      padding: '0 36px 48px',
+      position: 'relative', overflow: 'hidden',
+      borderRadius: 14,
+      border: '0.5px solid rgba(0,0,0,0.08)',
+    }}>
+      <div style={{
+        position: 'absolute', bottom: '-5%', left: '50%',
+        transform: 'translateX(-50%)',
+        width: '100%', height: '35%',
+        background: 'radial-gradient(ellipse, rgba(180,100,60,0.05) 0%, transparent 70%)',
+        pointerEvents: 'none',
+      }} />
+
+      <div style={{
+        fontSize: 'clamp(46px, 10vw, 58px)', fontFamily: SANS,
+        color: '#1C1917', fontWeight: 700, lineHeight: 1.0,
+        letterSpacing: '-0.01em', marginBottom: 10,
+        position: 'relative',
+      }}>
+        Continue
+      </div>
+
+      <div style={{
+        fontSize: 15, fontFamily: SANS, fontWeight: 500,
+        color: 'rgba(28,25,23,0.58)', lineHeight: 1.75,
+        marginBottom: 22,
+        position: 'relative',
+      }}>
+        A practice lives in the walking, not the reading.
+      </div>
+
+      <div style={{ position: 'relative', marginBottom: 14 }}>
+        <div style={{
+          fontSize: 15, fontFamily: SANS, fontWeight: 400,
+          color: 'rgba(28,25,23,0.55)', lineHeight: 2.0,
+        }}>
+          carry the one that met you,<br />
+          return to the ones that held,<br />
+          let the practice enter the day.
+        </div>
+      </div>
+
+      <div style={{
+        fontSize: 10, fontFamily: SANS,
+        color: 'rgba(28,25,23,0.35)',
+        letterSpacing: '0.22em',
+        textTransform: 'uppercase',
+        marginBottom: 12,
+        position: 'relative',
+      }}>
+        Up next
+      </div>
+
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 0, position: 'relative' }}>
+        {MED_SIBLINGS.map((deck, i) => (
+          <div
+            key={deck.key}
+            onClick={() => nav(deck.route)}
+            style={{
+              display: 'flex', alignItems: 'center', gap: 12,
+              padding: '10px 0',
+              borderTop: i > 0 ? '0.5px solid rgba(28,25,23,0.08)' : 'none',
+              cursor: 'pointer',
+            }}
+          >
+            <div style={{ width: 28, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              {deck.mark(22, 'rgba(28,25,23,0.4)')}
+            </div>
+            <div style={{ flex: 1 }}>
+              <div style={{ fontSize: 14, fontFamily: SANS, fontWeight: 600, color: '#1C1917', letterSpacing: '0.02em' }}>
+                {deck.name}
+              </div>
+              <div style={{ fontSize: 11, fontFamily: SANS, color: 'rgba(28,25,23,0.45)' }}>
+                {deck.desc}
+              </div>
+            </div>
+            <div style={{ fontSize: 16, color: 'rgba(28,25,23,0.25)' }}>→</div>
+          </div>
+        ))}
+      </div>
+
+      <div
+        onClick={() => nav('/practice')}
+        style={{
+          fontSize: 12, fontFamily: SANS,
+          color: 'rgba(28,25,23,0.35)',
+          letterSpacing: '0.04em',
+          marginTop: 14,
+          cursor: 'pointer',
+          position: 'relative',
+        }}
+      >
+        ◈ All card decks
+      </div>
+
+      <div style={{
+        position: 'absolute', bottom: 36, left: 36,
+        fontSize: 12, fontFamily: SANS,
+        color: 'rgba(28,25,23,0.25)',
+        letterSpacing: '0.04em',
+      }}>
+        The walk continues.
       </div>
     </div>
   );
@@ -826,6 +954,7 @@ function renderScreen(scr) {
   if (scr.type === 'tradition') return <TraditionScreen key={scr.tradition.name} tradition={scr.tradition} />;
   if (scr.type === 'chapter') return <ChapterScreen key={`ch-${scr.principleIndex}`} principle={scr.principle} principleIndex={scr.principleIndex} />;
   if (scr.type === 'card') return <PracticeCardScreen key={`${scr.principleIndex}-${scr.cardIndex}`} card={scr.card} principle={scr.principle} cardIndex={scr.cardIndex} principleIndex={scr.principleIndex} />;
+  if (scr.type === 'continue') return <MeditationsContinueScreen />;
   return null;
 }
 

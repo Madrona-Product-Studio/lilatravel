@@ -27,6 +27,15 @@ const config = {
     returnLine: 'Return to the ones that open you.',
     bottomAnchor: 'Some poses invite you deeper.',
   },
+  continue: {
+    subtitle: 'Movement is learned by moving.',
+    lines: [
+      'carry the shapes that found you,',
+      'return to the ones that opened,',
+      'let the practice become the body.',
+    ],
+    omit: ['movements'],
+  },
 };
 
 export default function MovementsL1() {

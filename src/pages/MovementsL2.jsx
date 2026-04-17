@@ -132,6 +132,15 @@ const config = {
     returnLine: 'Return to the ones that shift something.',
     bottomAnchor: 'Some concepts invite you deeper.',
   },
+  continue: {
+    subtitle: 'The body is a deck you walk more than once.',
+    lines: [
+      'carry what stayed with you,',
+      'return to the ones that moved,',
+      'let the practice meet the day.',
+    ],
+    omit: ['body'],
+  },
 };
 
 export default function MovementsL2() {

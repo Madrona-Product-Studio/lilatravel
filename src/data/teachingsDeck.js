@@ -389,5 +389,6 @@ export function buildScreens() {
     });
   });
 
+  screens.push({ type: 'continue' });
   return screens;
 }

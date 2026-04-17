@@ -1423,5 +1423,6 @@ export function buildScreensL2() {
     });
   });
 
+  screens.push({ type: 'continue' });
   return screens;
 }

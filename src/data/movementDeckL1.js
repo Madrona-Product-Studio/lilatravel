@@ -506,5 +506,6 @@ export function buildScreensL1() {
     });
   });
 
+  screens.push({ type: 'continue' });
   return screens;
 }
