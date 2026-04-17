@@ -716,7 +716,7 @@ function TripPlannerSection() {
             <div>
               <span className="eyebrow" style={{ color: C.oceanTeal }}>Trip Planner</span>
               <h2 className="font-body text-[clamp(24px,3.5vw,38px)] font-light leading-[1.25] m-0" style={{ color: C.darkInk }}>
-                Some trips change you.
+                Some trips change you.<br />Let's design one of those.
               </h2>
             </div>
             <Link
@@ -759,22 +759,22 @@ function TripPlannerSection() {
           </div>
 
           {/* Powered by row */}
-          <div className="flex items-center mt-6" style={{
-            paddingTop: 12,
-            borderTop: `1px solid ${C.darkInk}08`,
+          <div className="flex items-center mt-8" style={{
+            paddingTop: 14,
+            borderTop: `1px solid ${C.darkInk}12`,
           }}>
-            <PlannerIcon size={14} color={C.goldenAmber}>
-              <path d="M13 2 L5 14 L11 14 L11 22 L19 10 L13 10 Z" fill={`${C.goldenAmber}10`} />
+            <PlannerIcon size={16} color={C.goldenAmber}>
+              <path d="M13 2 L5 14 L11 14 L11 22 L19 10 L13 10 Z" fill={`${C.goldenAmber}15`} />
             </PlannerIcon>
-            <span className="font-body text-[10px] font-bold tracking-[0.15em] uppercase shrink-0" style={{
+            <span className="font-body text-[12px] font-bold tracking-[0.14em] uppercase shrink-0" style={{
               color: C.goldenAmber,
-              marginLeft: 6,
-              marginRight: 10,
+              marginLeft: 8,
+              marginRight: 14,
             }}>Powered by</span>
-            <div className="flex gap-3 flex-wrap">
+            <div className="flex gap-4 flex-wrap">
               {sources.map(s => (
-                <span key={s} className="font-body text-[11px] font-normal" style={{
-                  color: `${C.darkInk}55`,
+                <span key={s} className="font-body text-[13px] font-medium" style={{
+                  color: `${C.darkInk}88`,
                 }}>{s}</span>
               ))}
             </div>
