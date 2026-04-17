@@ -806,7 +806,7 @@ function StepWelcome({ onNext }) {
               const Ic = f.icon;
               return (
                 <div key={f.label} style={{
-                  padding: "16px 10px",
+                  padding: "12px 8px",
                   textAlign: "center",
                   borderLeft: i > 0 ? `1px solid ${C.sage}18` : "none",
                 }}>
@@ -830,7 +830,7 @@ function StepWelcome({ onNext }) {
 
         {/* Living itinerary strip */}
         <div style={{
-          paddingTop: 16,
+          paddingTop: 8,
           ...sectionStyle(300),
         }}>
           <div style={{
@@ -838,19 +838,19 @@ function StepWelcome({ onNext }) {
             gridTemplateColumns: "repeat(3, 1fr)",
           }}>
             {[
-              { icon: IconRefresh, label: "Refine", desc: "Like or dislike anything. Regenerates around your feedback." },
-              { icon: IconCalendar, label: "Add logistics", desc: "Flights and hotels rewrite the itinerary around hard dates." },
-              { icon: IconShare, label: "Share", desc: "Send a link. Anyone can view and add input." },
+              { icon: IconRefresh, label: "Refine", desc: "Regenerates around your feedback" },
+              { icon: IconCalendar, label: "Add logistics", desc: "Rewrites around your hard dates" },
+              { icon: IconShare, label: "Share", desc: "Send a link for others to view" },
             ].map((f, i) => {
               const Ic = f.icon;
               return (
                 <div key={f.label} style={{
-                  padding: "12px 10px",
+                  padding: "10px 8px",
                   textAlign: "center",
                   borderLeft: i > 0 ? `1px solid ${C.sage}18` : "none",
                 }}>
-                  <div className="flex justify-center mb-2">
-                    <Ic size={18} color={C.sage} />
+                  <div className="flex justify-center mb-1.5">
+                    <Ic size={16} color={C.sage} />
                   </div>
                   <div className="font-body font-bold tracking-[0.06em] uppercase" style={{
                     fontSize: 11,
