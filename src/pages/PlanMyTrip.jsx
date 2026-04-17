@@ -756,7 +756,7 @@ function StepWelcome({ onNext }) {
       {/* Hero — centered, takes available space */}
       <div className="flex-1 flex flex-col items-center justify-center text-center" style={{
         padding: "0 28px",
-        minHeight: "38vh",
+        minHeight: "32vh",
         ...sectionStyle(0),
       }}>
         <div className="mb-3" style={{ opacity: 0.35 }}>
