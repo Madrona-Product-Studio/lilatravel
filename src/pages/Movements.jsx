@@ -13,7 +13,6 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { C, FONTS } from '@data/brand';
-import { MOVEMENT_CHAPTERS, buildScreens, getTotalCards } from '@data/movementDeck';
 import MovementTabs from '@components/movements/MovementTabs';
 import DeckMark from '@components/guide/DeckMarks';
 
@@ -229,7 +228,7 @@ function CoverScreen({ subtitle, countLabel, markIds }) {
 // ═══════════════════════════════════════════════════════════════════════════════
 
 function ChaptersScreen({ chapters }) {
-  const chapterList = chapters || MOVEMENT_CHAPTERS;
+  const chapterList = chapters;
   return (
     <div style={{
       width: '100%', height: '100%',
@@ -929,14 +928,11 @@ function renderScreen(scr, deckConfig) {
 export { CoverScreen as MovementsCover };
 
 export default function Movements({ screens: screensProp, deckConfig } = {}) {
-  // Use passed screens or fall back to original deck
-  const SCREENS = screensProp || buildScreens();
-  const config = deckConfig || {
-    subtitle: 'the body as teacher',
-    countLabel: `${MOVEMENT_CHAPTERS.length} chapters · ${getTotalCards()} cards`,
-    title: 'Lila Movements — The Body as Teacher',
-    description: 'Movement science cards for understanding how your body works, what modern life does to it, and how to restore it.',
-  };
+  if (!screensProp || !deckConfig) {
+    throw new Error('Movements requires screens and deckConfig props. Use MovementsL1 or MovementsL2 instead.');
+  }
+  const SCREENS = screensProp;
+  const config = deckConfig;
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [baseIndex, setBaseIndex] = useState(0);
