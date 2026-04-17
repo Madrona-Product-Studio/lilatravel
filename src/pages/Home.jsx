@@ -590,7 +590,7 @@ function PracticeLibrarySection() {
 
 function ApproachSectionHome() {
   return (
-    <section className="bg-dark-ink py-12 md:pt-[72px] md:pb-16">
+    <section className="py-12 md:pt-[72px] md:pb-16" style={{ background: "#0f1e2e" }}>
       <div className="section-padded max-w-[1100px] mx-auto px-6 md:px-[52px]">
         <FadeIn>
           <div className="mb-10">
@@ -1016,7 +1016,7 @@ export default function HomePage() {
               </div>
             </FadeIn>
           </div>
-          <div className="story-panel-dark bg-dark-ink px-[72px] py-[100px] flex flex-col justify-start min-h-[680px]">
+          <div className="story-panel-dark px-[72px] py-[100px] flex flex-col justify-start min-h-[680px]" style={{ background: "#0f1e2e" }}>
             <FadeIn from="right" delay={0.15}>
               <span className="eyebrow" style={{ color: C.skyBlue }}>Introducing Lila Trips</span>
               <h2 className="font-body text-[clamp(15px,2vw,22px)] font-semibold text-white leading-[1.6] tracking-[0.12em] uppercase mb-12">
