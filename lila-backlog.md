@@ -42,6 +42,9 @@ _Last updated: March 30, 2026. Living document — update as items are completed
 - [ ] **Verify `feedback_events` writes** — confirm the feedback_events Supabase table is receiving rows on refinement (got sidetracked, never fully confirmed).
 - [ ] **RLS / Supabase security** — write policies that allow anon inserts but block unauthenticated reads. Prerequisite for auth work.
 - [ ] **Apply guide collapsed-sections UX to remaining guides** — Zion is the reference implementation. As guide UX evolves post-launch, track changes here and apply to: Big Sur, Joshua Tree, Kauaʻi, Olympic Peninsula, Vancouver Island. Apply as a batch once Zion pattern is stable.
+- [ ] **Cross-deck shared-concept name alignment** (Meditations ↔ Teachings, 19 overlaps)
+- [ ] **Tradition taxonomy unification** (Hinduism vs Hinduism & Yoga, Zen Buddhism vs Taoism & Zen)
+- [ ] **Body Activates content model** — what Activates should reference
 
 ---
 
@@ -131,6 +134,16 @@ _Last updated: March 30, 2026. Living document — update as items are completed
 - [x] Bump serverless maxDuration to 300s + frontend fetch timeouts to 310s
 - [x] NDJSON keepalive streaming — prevents mobile carrier timeouts
 - [x] **Tailwind CSS migration** (Mar 29) — 46 files, -4,832 net lines, brand tokens wired, responsive breakpoints replace JS resize listeners
+
+### Card Decks
+- [x] Continue end screen added to all four card decks — mirrors Begin, sibling deck navigation, per-deck copy
+- [x] Meditations Chapters screen — replaced Five Traditions/Principles outlier with standard Chapters pattern
+- [x] Body deck third chapter renamed "How It All Connects"
+- [x] Body Activates alignment — L2 references now match L1 card terms exactly
+- [x] Diacritics consistency in cardDeck.js — seven Sanskrit terms normalized across prose fields
+- [x] Homepage Trip Planner section — feature grid, powered-by row with data sources modal
+- [x] Homepage Go Deeper section moved to dark blue background
+- [x] Footer simplified — logo and copyright only
 
 ### Core Product
 - [x] PlanMyTrip welcome screen redesigned — marketing surface replacing three-path card layout
