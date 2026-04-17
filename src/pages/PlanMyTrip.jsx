@@ -756,11 +756,11 @@ function StepWelcome({ onNext }) {
       {/* Hero — centered, takes available space */}
       <div className="flex-1 flex flex-col items-center justify-center text-center" style={{
         padding: "0 28px",
-        minHeight: "42vh",
+        minHeight: "38vh",
         ...sectionStyle(0),
       }}>
-        <div className="mb-4" style={{ opacity: 0.35 }}>
-          <IconEnso size={28} color={C.sage} />
+        <div className="mb-3" style={{ opacity: 0.35 }}>
+          <IconEnso size={24} color={C.sage} />
         </div>
         <h1 className="font-serif font-light leading-[1.15] text-dark-ink" style={{
           fontSize: "clamp(32px, 8vw, 44px)",
@@ -772,7 +772,7 @@ function StepWelcome({ onNext }) {
           fontSize: "clamp(13px, 3.5vw, 15px)",
           color: `${C.slate}99`,
           maxWidth: 380,
-          margin: "0 0 32px",
+          margin: "0 0 24px",
         }}>
           Tell us how you want to feel. Live wilderness data, celestial timing, and 30 wisdom practices come together in one itinerary shaped around you — and it stays alive as your trip takes shape.
         </p>
