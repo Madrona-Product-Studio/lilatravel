@@ -705,7 +705,21 @@ function TripPlannerSection() {
     },
   ];
 
-  const sources = ["NPS", "Weather", "Tides", "River data", "Google Places", "Wildlife", "Astronomy"];
+  const sourceNames = ["National Park Service", "Open-Meteo", "NOAA Tides", "USGS Water", "Google Places", "iNaturalist", "Astronomy API"];
+
+  const dataSources = [
+    { name: "National Park Service", desc: "Live trail alerts, closures, campground availability, and events", color: C.seaGlass },
+    { name: "Open-Meteo", desc: "Real-time weather forecasts, sunrise/sunset times, seasonal patterns", color: C.skyBlue },
+    { name: "Lunar & celestial calendar", desc: "Moon phase and rise/set, Milky Way windows, golden hour", color: C.goldenAmber },
+    { name: "Astronomy API", desc: "Planet positions, meteor shower calendars, Bortle dark sky ratings", color: `${C.darkInk}99` },
+    { name: "NOAA Tides & Currents", desc: "Tide predictions for coastal destinations — Big Sur, Olympic, Kauaʻi", color: C.oceanTeal },
+    { name: "USGS Water Services", desc: "River flow and water temp — live conditions for Zion's Virgin River", color: C.sunSalmon },
+    { name: "Google Places", desc: "Curated local restaurants, lodging, and experiences with live hours", color: C.sage },
+    { name: "iNaturalist", desc: "Wildlife sighting data — species spotted near your destination", color: C.seaGlass },
+    { name: "30 wisdom practices", desc: "Yoga, Buddhism, Taoism, Shinto, Stoicism — woven in as quiet cues", color: C.goldenAmber },
+  ];
+
+  const [sourcesOpen, setSourcesOpen] = useState(false);
 
   return (
     <section style={{ background: C.cream }}>
@@ -765,10 +779,17 @@ function TripPlannerSection() {
               100% { transform: translateX(-50%); }
             }
           `}</style>
-          <div className="flex items-center mt-8" style={{
-            paddingTop: 14,
-            borderTop: `1px solid ${C.darkInk}12`,
-          }}>
+          <button
+            onClick={() => setSourcesOpen(true)}
+            className="flex items-center w-full cursor-pointer mt-8"
+            style={{
+              paddingTop: 14,
+              borderTop: `1px solid ${C.darkInk}12`,
+              background: "none",
+              border: "none",
+              borderTop: `1px solid ${C.darkInk}12`,
+            }}
+          >
             <PlannerIcon size={16} color={C.goldenAmber}>
               <path d="M13 2 L5 14 L11 14 L11 22 L19 10 L13 10 Z" fill={`${C.goldenAmber}15`} />
             </PlannerIcon>
@@ -778,8 +799,8 @@ function TripPlannerSection() {
               marginRight: 14,
             }}>Powered by</span>
             {/* Desktop: static full list */}
-            <div className="hidden md:flex gap-4">
-              {sources.map(s => (
+            <div className="hidden md:flex gap-4 flex-1">
+              {sourceNames.map(s => (
                 <span key={s} className="font-body text-[13px] font-medium" style={{
                   color: `${C.darkInk}88`,
                 }}>{s}</span>
@@ -791,16 +812,98 @@ function TripPlannerSection() {
                 animation: "homePlannerScroll 14s linear infinite",
                 whiteSpace: "nowrap",
               }}>
-                {[...sources, ...sources].map((s, i) => (
+                {[...sourceNames, ...sourceNames].map((s, i) => (
                   <span key={i} className="font-body text-[13px] font-medium" style={{
                     color: `${C.darkInk}88`,
                   }}>{s}</span>
                 ))}
               </div>
             </div>
-          </div>
+          </button>
         </FadeIn>
       </div>
+
+      {/* Data sources modal */}
+      {sourcesOpen && (
+        <div
+          onClick={() => setSourcesOpen(false)}
+          style={{
+            position: "fixed",
+            inset: 0,
+            zIndex: 9999,
+            background: `${C.darkInk}66`,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: 24,
+          }}
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              background: C.cream,
+              borderRadius: 2,
+              maxHeight: "80vh",
+              overflowY: "auto",
+              padding: "32px 28px 36px",
+              width: "100%",
+              maxWidth: 480,
+              animation: "homePlannerModalIn 0.25s ease-out",
+            }}
+          >
+            <style>{`
+              @keyframes homePlannerModalIn {
+                from { opacity: 0; transform: scale(0.96) translateY(8px); }
+                to { opacity: 1; transform: scale(1) translateY(0); }
+              }
+            `}</style>
+            <div className="flex items-start justify-between" style={{ marginBottom: 24 }}>
+              <div>
+                <div className="font-body text-[10px] font-bold tracking-[0.2em] uppercase" style={{
+                  color: C.goldenAmber,
+                  marginBottom: 6,
+                }}>What powers your trip</div>
+                <h2 className="font-body text-[clamp(22px,5vw,28px)] font-light leading-[1.2] m-0" style={{ color: C.darkInk }}>
+                  Live data sources
+                </h2>
+              </div>
+              <button onClick={() => setSourcesOpen(false)} className="cursor-pointer" style={{
+                background: "none",
+                border: "none",
+                padding: 4,
+                marginTop: -4,
+              }}>
+                <PlannerIcon size={20} color={C.sage}>
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                </PlannerIcon>
+              </button>
+            </div>
+            <div className="flex flex-col" style={{ gap: 18 }}>
+              {dataSources.map((src) => (
+                <div key={src.name} className="flex items-start" style={{ gap: 12 }}>
+                  <span className="shrink-0" style={{
+                    width: 7,
+                    height: 7,
+                    borderRadius: "50%",
+                    background: src.color,
+                    marginTop: 6,
+                  }} />
+                  <div>
+                    <div className="font-body text-[14px] font-semibold" style={{
+                      color: C.darkInk,
+                      marginBottom: 2,
+                    }}>{src.name}</div>
+                    <div className="font-body text-[13px] font-normal leading-[1.5]" style={{
+                      color: `${C.darkInk}88`,
+                    }}>{src.desc}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
