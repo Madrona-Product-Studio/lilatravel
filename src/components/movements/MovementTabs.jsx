@@ -86,7 +86,38 @@ export default function MovementTabs({ tabs, accent }) {
           } : {}),
         }}
       >
-        {Array.isArray(current.content) ? (
+        {Array.isArray(current.content) && current.content.length > 0 && typeof current.content[0] === 'object' && current.content[0].pattern ? (
+          /* Structured pattern format */
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
+            {current.content.map((entry, i) => (
+              <div key={i}>
+                <div style={{
+                  fontSize: 14, fontFamily: SANS, fontWeight: 700,
+                  color: accent, lineHeight: 1.3,
+                  marginBottom: 4,
+                }}>
+                  {entry.pattern}
+                </div>
+                <div style={{
+                  fontSize: 13, fontFamily: SANS, fontWeight: 400,
+                  color: 'rgba(28,25,23,0.65)', lineHeight: 1.6,
+                  marginBottom: entry.examples && entry.examples.length > 0 ? 6 : 0,
+                }}>
+                  {entry.description}
+                </div>
+                {entry.examples && entry.examples.length > 0 && (
+                  <div style={{
+                    fontSize: 12, fontFamily: SANS, fontWeight: 500,
+                    color: 'rgba(28,25,23,0.45)', lineHeight: 1.5,
+                  }}>
+                    {entry.examples.join(' · ')}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        ) : Array.isArray(current.content) ? (
+          /* Legacy flat string array */
           <ul style={{ margin: 0, paddingLeft: 0, listStyle: 'none' }}>
             {current.content.map((item, i) => (
               <li key={i} style={{

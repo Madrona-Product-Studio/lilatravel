@@ -39,11 +39,9 @@ export const MOVEMENT_DECK_L2 = [
               {
                 label: "Activates",
                 content: [
-                  "Dead bug",
-                  "bird dog",
-                  "Diaphragmatic Breath",
-                  "hollow body hold",
-                  "90/90 breathing",
+                  { pattern: "Pressurization breathing", description: "breath drills that train 360° expansion and build intra-abdominal pressure", examples: ["Diaphragmatic breath", "90/90 breathing", "Crocodile breathing"] },
+                  { pattern: "Anti-extension holds", description: "resisting the low back's urge to arch while the limbs load the system", examples: ["Dead bug", "Hollow body hold"] },
+                  { pattern: "Contralateral stability", description: "opposite-side limb movement that demands the whole canister co-contract", examples: ["Bird dog"] },
                 ],
               },
               {
@@ -66,11 +64,10 @@ export const MOVEMENT_DECK_L2 = [
               {
                 label: "Activates",
                 content: [
-                  "Crocodile breathing",
-                  "360° breathing",
-                  "Box Breathing",
-                  "dead bug (exhale phase)",
-                  "Diaphragmatic Breath",
+                  { pattern: "Prone diaphragmatic drills", description: "lying face-down so the floor gives feedback on where the breath is going — back and sides instead of chest", examples: ["Crocodile breathing"] },
+                  { pattern: "360° expansion drills", description: "teaching the ribs to expand front, sides, and back on a single inhale", examples: ["360° breathing", "Diaphragmatic breath"] },
+                  { pattern: "Paced breath control", description: "regulating inhale, hold, and exhale length to down-regulate the nervous system and rehearse breath control under calm conditions", examples: ["Box breathing"] },
+                  { pattern: "Breath-loaded stability", description: "coordinating a full exhale with a core-demanding hold to train the diaphragm as stabilizer, not just respirator", examples: ["Dead bug (exhale phase)"] },
                 ],
               },
               {
@@ -93,11 +90,10 @@ export const MOVEMENT_DECK_L2 = [
               {
                 label: "Activates",
                 content: [
-                  "Dead bug",
-                  "bird dog",
-                  "Pallof press",
-                  "hollow body hold",
-                  "drawing-in maneuver",
+                  { pattern: "Integrated bracing", description: "360° pressurization of the abdominal wall under load — the way the deep core actually stabilizes the spine during loaded movement", examples: ["Braced deadlift", "Braced carry", "Braced press"] },
+                  { pattern: "Anti-extension holds", description: "resisting the low back's urge to arch while the limbs move", examples: ["Dead bug", "Hollow body hold"] },
+                  { pattern: "Anti-rotation work", description: "resisting rotational force through the trunk while staying square", examples: ["Pallof press", "Bird dog"] },
+                  { pattern: "Drawing-in (motor-control relearning)", description: "isolating the deep abdominal wall without engaging the outer core — a remedial drill for reconnecting with the deep system when coordination has been disrupted, not a substitute for bracing under load", examples: ["Drawing-in maneuver"] },
                 ],
               },
               {
@@ -120,11 +116,9 @@ export const MOVEMENT_DECK_L2 = [
               {
                 label: "Activates",
                 content: [
-                  "Diaphragmatic Breath",
-                  "Kegel exercises (coordinated with breath)",
-                  "dead bug",
-                  "Boat Pose",
-                  "functional movements like squatting and lifting with breath coordination",
+                  { pattern: "Piston mechanics", description: "training the diaphragm–pelvic floor synchronization — lengthen on inhale, lift on exhale", examples: ["Diaphragmatic breath", "360° breathing"] },
+                  { pattern: "Breath-coordinated contraction", description: "contracting the pelvic floor on exhale rather than bracing against held breath", examples: ["Kegels (exhale-timed)"] },
+                  { pattern: "Loaded integration", description: "compound movements that demand the pelvic floor coordinate with the rest of the canister under real load, rather than contracting in isolation", examples: ["Squat with breath coordination", "Deadlift with breath coordination", "Dead bug"] },
                 ],
               },
               {
@@ -147,11 +141,9 @@ export const MOVEMENT_DECK_L2 = [
               {
                 label: "Activates",
                 content: [
-                  "Bird dog",
-                  "quadruped holds",
-                  "McGill's Big Three (curl-up, side plank, bird dog)",
-                  "deadlift (isometric hold)",
-                  "yoga locust pose",
+                  { pattern: "Quadruped stability", description: "hands-and-knees holds that demand segmental spinal control as the limbs move", examples: ["Bird dog", "Quadruped hold with limb lift"] },
+                  { pattern: "McGill's Big Three", description: "the endurance-focused trio developed by Stuart McGill for low-back rehabilitation — trains the entire deep stabilization system with the multifidus as a primary target", examples: ["Curl-up", "Side plank", "Bird dog"] },
+                  { pattern: "Spinal extension under load", description: "controlled extension work that recruits multifidus against gravity or resistance", examples: ["Locust pose", "Deadlift (isometric hold at lockout)"] },
                 ],
               },
               {
@@ -174,11 +166,9 @@ export const MOVEMENT_DECK_L2 = [
               {
                 label: "Activates",
                 content: [
-                  "Crunch",
-                  "hanging leg raise",
-                  "ab wheel rollout",
-                  "boat pose",
-                  "dragon flag",
+                  { pattern: "Spinal flexion under load", description: "the rectus's primary function — flexing the spine against resistance", examples: ["Crunch", "Cable crunch"] },
+                  { pattern: "Hip-to-rib approximation", description: "bringing pelvis and ribcage toward each other, loading the rectus from its lower or upper attachment", examples: ["Hanging leg raise", "Boat pose"] },
+                  { pattern: "Anti-extension under long lever", description: "resisting spinal extension with the arms extended away from the body — elite-level loading that requires an already-coordinated deep core", examples: ["Ab wheel rollout", "Dragon flag"] },
                 ],
               },
               {
@@ -210,9 +200,9 @@ export const MOVEMENT_DECK_L2 = [
               {
                 label: "Activates",
                 content: [
-                  "Pelvic tilts (cat-cow)",
-                  "hip hinge",
-                  "all standing lower body movements",
+                  { pattern: "Pelvic tilt awareness", description: "feeling the pelvis rock between anterior and posterior tilt — building the proprioception to know where it is in any moment", examples: ["Pelvic tilts (supine)", "Cat-cow"] },
+                  { pattern: "Hip hinge", description: "loading and unloading the pelvis at the hip joint while the spine stays neutral — the master movement for everything pelvis-driven", examples: ["Deadlift", "Romanian deadlift", "Good morning"] },
+                  { pattern: "Loaded standing work", description: "any standing movement that forces the pelvis to accept and transfer ground-reaction force — this is what it was built to do", examples: ["Squat", "Lunge", "Farmer's carry"] },
                 ],
               },
               {
@@ -235,11 +225,9 @@ export const MOVEMENT_DECK_L2 = [
               {
                 label: "Activates",
                 content: [
-                  "Lunge hip flexor stretch",
-                  "couch stretch",
-                  "Warrior I",
-                  "psoas march",
-                  "hanging knee raise",
+                  { pattern: "Hip extension stretching", description: "lengthening the iliopsoas by driving the hip into extension — the front of the back leg opens", examples: ["Kneeling lunge stretch", "Couch stretch", "Warrior I"] },
+                  { pattern: "Active hip flexion strengthening", description: "the psoas's actual job — lifting the thigh toward the torso against resistance. Undertrained in people who only stretch", examples: ["Psoas march", "Hanging knee raise", "Standing knee drive"] },
+                  { pattern: "Loaded hip flexion holds", description: "holding the hip in deep flexion under load — trains the iliopsoas isometrically as a stabilizer", examples: ["Boat pose", "L-sit hold"] },
                 ],
               },
               {
@@ -262,12 +250,9 @@ export const MOVEMENT_DECK_L2 = [
               {
                 label: "Activates",
                 content: [
-                  "Hip thrust",
-                  "glute bridge",
-                  "deadlift",
-                  "step-up",
-                  "single-leg hip thrust",
-                  "Bulgarian split squat",
+                  { pattern: "End-range hip extension", description: "exercises that fully extend the hip against resistance — where the glute max reaches maximum activation", examples: ["Hip thrust", "Glute bridge", "Single-leg hip thrust"] },
+                  { pattern: "Hip hinge under load", description: "loaded hip-dominant movement where the glutes drive extension from a forward-folded position", examples: ["Deadlift", "Romanian deadlift", "Kettlebell swing"] },
+                  { pattern: "Unilateral loading", description: "single-leg work that trains each glute against its own body weight plus added load — exposes and corrects left/right asymmetry", examples: ["Step-up", "Bulgarian split squat", "Walking lunge"] },
                 ],
               },
               {
@@ -290,11 +275,8 @@ export const MOVEMENT_DECK_L2 = [
               {
                 label: "Activates",
                 content: [
-                  "Clamshell",
-                  "side-lying leg raise",
-                  "lateral band walk",
-                  "single-leg deadlift",
-                  "single-leg squat",
+                  { pattern: "Hip abduction isolation", description: "isolated work that targets the glute med through pure abduction — builds baseline activation when the muscle has gone quiet", examples: ["Clamshell", "Side-lying leg raise", "Lateral band walk"] },
+                  { pattern: "Frontal-plane stability", description: "single-leg work where the glute med's real job shows up — controlling the pelvis during single-leg stance, which is as much a motor-control task as a strength task (why single-leg work matters more than isolated abduction alone)", examples: ["Single-leg deadlift", "Single-leg squat", "Single-leg glute bridge"] },
                 ],
               },
               {
@@ -317,11 +299,9 @@ export const MOVEMENT_DECK_L2 = [
               {
                 label: "Activates",
                 content: [
-                  "Sumo squat",
-                  "Copenhagen plank (highest adductor load)",
-                  "lateral lunge",
-                  "adductor squeeze with ball",
-                  "yoga goddess pose",
+                  { pattern: "Adduction under load", description: "isolated adductor strengthening — squeezing the legs toward midline against resistance", examples: ["Copenhagen plank", "Adductor squeeze with ball", "Cable adduction"] },
+                  { pattern: "Wide-stance loading", description: "compound lower-body movements that open the stance and force the adductors to drive hip extension alongside the glutes", examples: ["Sumo squat", "Sumo deadlift", "Goddess pose"] },
+                  { pattern: "Frontal-plane lunge", description: "lateral movement that loads the adductor of the working leg as it decelerates the body", examples: ["Lateral lunge", "Cossack squat"] },
                 ],
               },
               {
@@ -353,9 +333,9 @@ export const MOVEMENT_DECK_L2 = [
               {
                 label: "Activates",
                 content: [
-                  "Cat-cow (explores the full range of all curves)",
-                  "spinal extension work",
-                  "pelvic tilts",
+                  { pattern: "Full-spine articulation", description: "moving through flexion and extension across every curve — cervical, thoracic, lumbar — to feel where each segment moves and where it doesn't", examples: ["Cat-cow", "Standing roll-down"] },
+                  { pattern: "Extension-biased work", description: "counteracting the flexion-dominant posture of modern life by loading the spine into gentle extension", examples: ["Cobra", "Sphinx pose", "Prone press-up"] },
+                  { pattern: "Pelvic tilt control", description: "rocking the pelvis between anterior and posterior tilt to feel how the sacral base influences every curve above it", examples: ["Supine pelvic tilts", "Standing pelvic tilts"] },
                 ],
               },
               {
@@ -378,11 +358,9 @@ export const MOVEMENT_DECK_L2 = [
               {
                 label: "Activates",
                 content: [
-                  "McKenzie extension exercises",
-                  "lumbar extension (carefully)",
-                  "core stabilization to reduce disc load",
-                  "swimming",
-                  "walking",
+                  { pattern: "Directional-preference work", description: "repeated movement in the direction that centralizes symptoms — extension for most people with posterior disc involvement, flexion for some. The McKenzie-based approach with the best evidence for disc-related pain", examples: ["Prone press-up", "Standing extension", "Sphinx hold"] },
+                  { pattern: "Coordinated core training", description: "building the coordinated strength the spine uses under load — helps the whole system manage pressure and force more efficiently", examples: ["Dead bug", "McGill's Big Three", "Bird dog"] },
+                  { pattern: "Movement and circulation", description: "low-impact movement that keeps the spine loaded through varied ranges — discs thrive on motion and regular, graduated loading", examples: ["Walking", "Swimming", "Dead hang"] },
                 ],
               },
               {
@@ -405,11 +383,9 @@ export const MOVEMENT_DECK_L2 = [
               {
                 label: "Activates",
                 content: [
-                  "Thoracic rotation stretch",
-                  "thoracic extension over foam roller",
-                  "Cat-Cow (focus on thoracic segments)",
-                  "thread-the-needle stretch",
-                  "Supine Twist",
+                  { pattern: "Thoracic rotation", description: "the primary movement the thoracic spine was built for — rotating one side of the ribcage against the other", examples: ["Thread the needle", "Supine twist", "Open book"] },
+                  { pattern: "Thoracic extension over support", description: "using a foam roller or rolled towel as a fulcrum to mobilize specific thoracic segments into extension", examples: ["Foam roller thoracic extension", "T-spine extension over bolster"] },
+                  { pattern: "Segmental articulation", description: "moving the thoracic spine one vertebra at a time rather than collapsing the whole region into one hinge — builds both awareness and control", examples: ["Cat-cow (thoracic focus)", "Quadruped thoracic rotation"] },
                 ],
               },
               {
@@ -432,10 +408,10 @@ export const MOVEMENT_DECK_L2 = [
               {
                 label: "Activates",
                 content: [
-                  "Hip hinge (deadlift, good morning)",
-                  "lumbar extension work (cobra, locust)",
-                  "cat-cow",
-                  "McGill's Big Three",
+                  { pattern: "Hip hinge loading", description: "loading movement from the hips with the spine in a neutral range — builds the coordinated strength the spine uses under load", examples: ["Deadlift", "Romanian deadlift", "Good morning"] },
+                  { pattern: "McGill's Big Three", description: "the endurance-first trio specifically designed to stabilize the lumbar spine without loading it into flexion or shear", examples: ["Curl-up", "Side plank", "Bird dog"] },
+                  { pattern: "Controlled lumbar extension", description: "gentle extension work that reinforces the natural lumbar curve — protective against the flexion-dominant patterns of sitting", examples: ["Cobra", "Locust pose", "Standing extension"] },
+                  { pattern: "Neutral-spine awareness", description: "training the felt sense of a neutral lumbar curve so you can find it under load or when fatigued", examples: ["Cat-cow (to find neutral)", "Wall hinge drill"] },
                 ],
               },
               {
@@ -458,10 +434,10 @@ export const MOVEMENT_DECK_L2 = [
               {
                 label: "Activates",
                 content: [
-                  "Single-leg exercises (revealing asymmetry)",
-                  "glute strengthening",
-                  "pelvic floor coordination work",
-                  "walking gait correction",
+                  { pattern: "Unilateral loading", description: "single-leg work that surfaces left-right differences in hip and pelvic loading — whichever side struggles is where the work is", examples: ["Single-leg deadlift", "Step-up", "Single-leg glute bridge"] },
+                  { pattern: "Glute-driven stability", description: "strengthening the glutes (both maximus and medius) so they — not the SI ligaments — control pelvic position under load", examples: ["Hip thrust", "Clamshell", "Lateral band walk"] },
+                  { pattern: "Pelvic floor coordination", description: "restoring the piston relationship between diaphragm and pelvic floor so pressure distributes evenly across both SI joints rather than overloading one side", examples: ["Diaphragmatic breath", "360° breathing"] },
+                  { pattern: "Gait retraining", description: "walking with conscious attention to heel strike, hip extension, and arm swing — every step either trains or aggravates SI function", examples: ["Mindful walking with hip extension focus"] },
                 ],
               },
               {
@@ -493,9 +469,9 @@ export const MOVEMENT_DECK_L2 = [
               {
                 label: "Activates",
                 content: [
-                  "Rotator cuff exercises (external rotation, internal rotation)",
-                  "scapular retraction and depression (prone Y-raise, face pull)",
-                  "overhead pressing with proper mechanics",
+                  { pattern: "Scapular control", description: "training the shoulder blade to glide smoothly against the ribcage — retraction, depression, and upward rotation working in coordination", examples: ["Prone Y-raise", "Prone T-raise", "Wall slide", "Scapular push-up"] },
+                  { pattern: "Rotator cuff integration", description: "isolating the small deep stabilizers that keep the humeral head centered in the socket during any arm movement", examples: ["Side-lying external rotation", "Face pull", "Band pull-apart"] },
+                  { pattern: "Loaded overhead work", description: "pressing movements that demand the entire shoulder girdle coordinate under load — the integration test for scapular and rotator cuff work done elsewhere", examples: ["Overhead press", "Landmine press", "Turkish get-up"] },
                 ],
               },
               {
@@ -518,11 +494,9 @@ export const MOVEMENT_DECK_L2 = [
               {
                 label: "Activates",
                 content: [
-                  "Side-lying external rotation",
-                  "cable external rotation",
-                  "face pull",
-                  "prone Y and T raises",
-                  "band pull-apart",
+                  { pattern: "Isolated external rotation", description: "the highest-activation pattern for infraspinatus and teres minor — the elbow stays pinned to the side while the forearm rotates outward against resistance", examples: ["Side-lying external rotation", "Cable external rotation at side"] },
+                  { pattern: "Overhead-position rotation", description: "external rotation work with the arm elevated — trains the cuff in the position where it's most often needed (throwing, reaching, overhead lifts)", examples: ["Prone external rotation 90/90", "Cable external rotation 90/90"] },
+                  { pattern: "Posterior chain integration", description: "compound movements where the cuff works alongside the rear delts and mid-back to stabilize the shoulder as a coordinated posterior system", examples: ["Face pull", "Band pull-apart", "Prone Y and T raises"] },
                 ],
               },
               {
@@ -545,9 +519,9 @@ export const MOVEMENT_DECK_L2 = [
               {
                 label: "Activates",
                 content: [
-                  "Lower trap: prone Y-raise, wall slide, face pull (lower cable)",
-                  "Middle trap: prone T-raise, seated row, band pull-apart",
-                  "Upper trap: shrug (use sparingly — already overactive in most people)",
+                  { pattern: "Lower trap activation", description: "the most commonly weak portion — pulls the shoulder blade down and rotates it upward, counteracting the upper-trap-dominant pattern of desk work", examples: ["Prone Y-raise", "Wall slide", "Face pull (low cable)"] },
+                  { pattern: "Middle trap strengthening", description: "retracting the shoulder blades toward the spine — the direct counter to rounded-forward posture", examples: ["Prone T-raise", "Seated row", "Band pull-apart"] },
+                  { pattern: "Upper trap (used sparingly)", description: "shrugs elevate the shoulder blade — useful for throwing athletes and olympic lifters, but most people's upper traps are already overactive and don't need direct work", examples: ["Barbell shrug", "Farmer's carry"] },
                 ],
               },
               {
@@ -570,11 +544,10 @@ export const MOVEMENT_DECK_L2 = [
               {
                 label: "Activates",
                 content: [
-                  "Scalene stretching",
-                  "first rib mobilization",
-                  "pec minor stretching",
-                  "thoracic extension",
-                  "lower trapezius activation",
+                  { pattern: "Anterior release", description: "lengthening the tight tissue at the front of the neck and chest that compresses the thoracic outlet from above and in front", examples: ["Scalene stretch", "Pec minor stretch", "Doorway chest stretch"] },
+                  { pattern: "First rib mobilization", description: "specific mobility work for the first rib, which when elevated narrows the space through which nerves and vessels exit the outlet", examples: ["First rib mobilization with towel", "Scalene self-release"] },
+                  { pattern: "Postural retraining", description: "the opposite of the aggravating posture — open the chest, stack the ribs over the pelvis, pull the head back over the shoulders", examples: ["Thoracic extension over foam roller", "Chin tuck", "Wall angel"] },
+                  { pattern: "Posterior activation", description: "strengthening the muscles that hold the new posture in place — without this, release and mobility work won't stick", examples: ["Lower trap activation (prone Y)", "Band pull-apart", "Scapular retraction holds"] },
                 ],
               },
               {
@@ -606,11 +579,10 @@ export const MOVEMENT_DECK_L2 = [
               {
                 label: "Activates",
                 content: [
-                  "90/90 hip stretch",
-                  "hip CARs (controlled articular rotations)",
-                  "Pigeon Prep",
-                  "hip flexor stretch",
-                  "single-leg hip hinge",
+                  { pattern: "Controlled Articular Rotations (CARs)", description: "slow, active circles that move the hip through its full rotational range — both an assessment (what range do you own) and a training method (expanding it)", examples: ["Standing hip CARs", "Quadruped hip CARs", "Side-lying hip CARs"] },
+                  { pattern: "Rotation-specific positions", description: "floor-based holds that isolate internal and external rotation of the hip — surfaces the asymmetry between sides and trains the rotational range most people have lost", examples: ["90/90 hip stretch", "Pigeon prep", "Shinbox position"] },
+                  { pattern: "Length-tension work", description: "active lengthening of the muscles that cross the hip — especially the hip flexors — to restore extension range lost to chronic sitting", examples: ["Kneeling hip flexor stretch", "Couch stretch", "Low lunge"] },
+                  { pattern: "Single-leg loading", description: "unilateral movement that forces the hip joint to stabilize and generate force on its own — exposes which side is weak and trains both to the standard of the stronger", examples: ["Single-leg hip hinge", "Single-leg deadlift", "Step-up"] },
                 ],
               },
               {
@@ -633,12 +605,9 @@ export const MOVEMENT_DECK_L2 = [
               {
                 label: "Activates",
                 content: [
-                  "Squat",
-                  "leg press",
-                  "lunge",
-                  "step-down (eccentric)",
-                  "terminal knee extension (VMO focus)",
-                  "leg extension",
+                  { pattern: "Knee-dominant loading", description: "compound movements where the knee flexes deeply under load — the primary driver of quad strength and size", examples: ["Squat", "Front squat", "Leg press", "Lunge"] },
+                  { pattern: "Eccentric control", description: "the lowering phase where the quad lengthens under tension — useful for tendon health and for specific rehab protocols, and a way to get deliberate time under tension", examples: ["Step-down (slow eccentric)", "Spanish squat", "Tempo squat"] },
+                  { pattern: "End-range quad activation", description: "isolated work in the last 15° of knee extension — the range where the quad often under-recruits, useful for knee rehabilitation and for completing the quad's full range of control", examples: ["Terminal knee extension with band", "Seated leg extension (final range)", "Short-arc quad"] },
                 ],
               },
               {
@@ -661,11 +630,9 @@ export const MOVEMENT_DECK_L2 = [
               {
                 label: "Activates",
                 content: [
-                  "Terminal knee extension",
-                  "step-down",
-                  "single-leg squat",
-                  "wall sit",
-                  "Bulgarian split squat",
+                  { pattern: "Closed-chain loading", description: "foot-on-the-floor movements where the knee flexes and extends under body weight — more functional and safer for most knees than open-chain alternatives", examples: ["Wall sit", "Bulgarian split squat", "Single-leg squat"] },
+                  { pattern: "Eccentric knee control", description: "slow lowering under load — the step-down is the diagnostic gold standard for knee control and the primary tool for building it", examples: ["Step-down (slow)", "Reverse lunge", "Eccentric squat"] },
+                  { pattern: "End-range quad activation", description: "isolated work in the last 15° of knee extension — useful when general quad strengthening hasn't resolved patellofemoral symptoms. Current evidence favors overall quad and hip strengthening over VMO-specific targeting", examples: ["Terminal knee extension", "Wall sit", "Short-arc quad"] },
                 ],
               },
               {
@@ -688,10 +655,10 @@ export const MOVEMENT_DECK_L2 = [
               {
                 label: "Activates",
                 content: [
-                  "Hip abduction exercises (to address TFL tightness)",
-                  "single-leg squat (neuromuscular control)",
-                  "foam rolling TFL",
-                  "glute strengthening",
+                  { pattern: "Hip strengthening", description: "building capacity in the glute med and posterior hip — a well-supported predictor of how well the lower quadrant handles repetitive loading like running and cycling", examples: ["Clamshell", "Side-lying leg raise", "Lateral band walk", "Side plank with hip abduction"] },
+                  { pattern: "Single-leg control", description: "unilateral work that trains the knee, hip, and foot to stack and move well under load — where hip strength translates into how you actually run, step, and land", examples: ["Single-leg squat", "Single-leg deadlift", "Step-down"] },
+                  { pattern: "Load management", description: "IT band symptoms are primarily a training-load issue — smart progression of volume, intensity, and hills matters more than any stretch or release", examples: ["Graded return-to-run progression", "Stride-rate and cadence adjustments", "Temporary reduction of downhill running"] },
+                  { pattern: "Symptom relief", description: "soft-tissue work on the TFL and lateral thigh can reduce pain in the short term, even though the IT band itself is firmly anchored to the femur and does not stretch or lengthen in any meaningful way", examples: ["TFL foam rolling", "TFL self-massage with ball"] },
                 ],
               },
               {
@@ -714,11 +681,10 @@ export const MOVEMENT_DECK_L2 = [
               {
                 label: "Activates",
                 content: [
-                  "Calf stretching",
-                  "ankle dorsiflexion mobility drills",
-                  "single-leg balance",
-                  "barefoot walking",
-                  "toe spreading exercises",
+                  { pattern: "Dorsiflexion mobility", description: "restoring the ankle's ability to bend forward under load — limited dorsiflexion is the root cause of countless squat, running, and knee problems", examples: ["Knee-to-wall stretch", "Weighted dorsiflexion stretch", "Banded ankle mobilization"] },
+                  { pattern: "Intrinsic foot activation", description: "direct training for the small muscles of the foot — they respond to targeted exercise and to footwear with less support, and research shows both paths build real strength", examples: ["Toe spreading", "Short foot exercise", "Toe yoga"] },
+                  { pattern: "Ground reactivity", description: "training the foot to sense, press, and propel against the ground — best introduced gradually, since tissue adapts to new demands on a timeline of weeks to months", examples: ["Barefoot walking", "Barefoot drills on varied surfaces", "Single-leg balance on unstable surface"] },
+                  { pattern: "Posterior chain lengthening", description: "calf and plantar fascia stretching that opens the entire back line from heel to knee", examples: ["Calf stretch (straight and bent knee)", "Downward dog", "Plantar fascia stretch"] },
                 ],
               },
               {
@@ -750,8 +716,8 @@ export const MOVEMENT_DECK_L2 = [
               {
                 label: "Activates",
                 content: [
-                  "Flexion: bicep curl, leg curl, forward fold",
-                  "Extension: deadlift, back extension, cobra pose, hip thrust",
+                  { pattern: "Flexion", description: "exercises that close a joint angle — elbow bends, knee bends, spine rounds forward", examples: ["Bicep curl", "Leg curl", "Forward fold", "Crunch"] },
+                  { pattern: "Extension", description: "exercises that open a joint angle — straightening the limb or arching the spine against gravity or load", examples: ["Deadlift", "Back extension", "Cobra pose", "Hip thrust"] },
                 ],
               },
               {
@@ -774,8 +740,8 @@ export const MOVEMENT_DECK_L2 = [
               {
                 label: "Activates",
                 content: [
-                  "Adduction: cable fly, Copenhagen plank, inner thigh squeeze",
-                  "Abduction: lateral raise, clamshell, lateral band walk, side-lying leg raise",
+                  { pattern: "Adduction", description: "moving a limb toward the body's midline — hip adductors pull the thigh in; pec major and lats pull the arm in", examples: ["Cable fly", "Copenhagen plank", "Inner thigh squeeze"] },
+                  { pattern: "Abduction", description: "moving a limb away from the body's midline — glute med lifts the leg out; deltoids lift the arm out", examples: ["Lateral raise", "Clamshell", "Lateral band walk", "Side-lying leg raise"] },
                 ],
               },
               {
@@ -798,8 +764,8 @@ export const MOVEMENT_DECK_L2 = [
               {
                 label: "Activates",
                 content: [
-                  "Hip: 90/90 stretch, pigeon pose, clamshell (external rotation), hip internal rotation stretch",
-                  "Shoulder: cable ER, side-lying ER (external rotation)",
+                  { pattern: "Hip rotation", description: "turning the thigh inward (IR) or outward (ER) at the hip joint — the most commonly lost rotational range in the body, especially external rotation", examples: ["90/90 stretch", "Pigeon pose", "Clamshell (ER)", "Hip IR stretch"] },
+                  { pattern: "Shoulder rotation", description: "turning the upper arm inward or outward at the shoulder — the rotator cuff's primary job, usually trained as external rotation because internal is already overactive", examples: ["Cable external rotation", "Side-lying external rotation"] },
                 ],
               },
               {
@@ -822,10 +788,10 @@ export const MOVEMENT_DECK_L2 = [
               {
                 label: "Activates",
                 content: [
-                  "Sagittal: squat, deadlift",
-                  "Frontal: lateral lunge, side raise",
-                  "Transverse: wood chop, rotational throw",
-                  "Multi-planar: Turkish get-up, agility drills",
+                  { pattern: "Sagittal plane", description: "forward and backward movement — the plane most gym training already lives in", examples: ["Squat", "Deadlift", "Lunge", "Bicep curl"] },
+                  { pattern: "Frontal plane", description: "side-to-side movement — the plane most commonly undertrained, which shows up as weak lateral stability", examples: ["Lateral lunge", "Side raise", "Lateral band walk"] },
+                  { pattern: "Transverse plane", description: "rotational movement — where most real-life athletic action actually happens, and where most structured training ignores", examples: ["Wood chop", "Rotational throw", "Pallof press"] },
+                  { pattern: "Multi-planar integration", description: "movements that demand all three planes at once — the closest gym work comes to life outside the gym", examples: ["Turkish get-up", "Agility drills", "Sandbag carries"] },
                 ],
               },
               {
@@ -848,11 +814,8 @@ export const MOVEMENT_DECK_L2 = [
               {
                 label: "Activates",
                 content: [
-                  "Slow lowering in any exercise",
-                  "Nordic curl",
-                  "Spanish squat",
-                  "step-down",
-                  "eccentric heel drop (for Achilles)",
+                  { pattern: "Eccentric emphasis", description: "slowing down the lengthening phase of a movement — useful for tendon health (Achilles, patellar), for deliberate time-under-tension, and for specific rehab protocols. The strength and size differences vs. standard tempo are modest in the research", examples: ["Nordic curl", "Spanish squat", "Step-down (slow)", "Eccentric heel drop"] },
+                  { pattern: "Universal application", description: "the eccentric phase is already present in every strength exercise — the training change is slowing it down on purpose rather than moving it differently", examples: ["Slow-lowering squat", "Slow-lowering push-up", "Slow-lowering row"] },
                 ],
               },
               {
@@ -875,11 +838,9 @@ export const MOVEMENT_DECK_L2 = [
               {
                 label: "Activates",
                 content: [
-                  "Single-leg balance",
-                  "wobble board",
-                  "reactive stepping drills",
-                  "yoga balance poses",
-                  "barefoot training",
+                  { pattern: "Balance challenge", description: "removing surface stability so the body has to sense and correct joint position in real time — the core of proprioceptive training", examples: ["Single-leg balance", "Wobble board", "BOSU ball work"] },
+                  { pattern: "Reactive movement", description: "drills that demand fast, unplanned corrections — trains the reflexive version of proprioception, not just the deliberate version", examples: ["Reactive stepping drills", "Perturbation training", "Agility ladder"] },
+                  { pattern: "Sensory-rich positions", description: "movement that removes cushioning and restores sensory input from skin, joint capsules, and muscle spindles", examples: ["Barefoot training", "Yoga balance poses", "Closed-eye balance work"] },
                 ],
               },
               {
@@ -902,11 +863,9 @@ export const MOVEMENT_DECK_L2 = [
               {
                 label: "Activates",
                 content: [
-                  "Hip flexor stretching",
-                  "glute bridges",
-                  "hip thrusts",
-                  "dead bugs",
-                  "posterior pelvic tilt exercises",
+                  { pattern: "Release the tight front", description: "lengthening the hip flexors and lumbar extensors that pull the pelvis into forward tilt", examples: ["Kneeling hip flexor stretch", "Couch stretch", "Low lunge"] },
+                  { pattern: "Activate the weak glutes", description: "strengthening the posterior chain that should be holding the pelvis back — the direct antidote to anterior tilt", examples: ["Glute bridge", "Hip thrust", "Single-leg hip thrust"] },
+                  { pattern: "Activate the weak abdominals", description: "strengthening the deep core that supports the pelvis from underneath — pairs with the glute work above to hold the new position", examples: ["Dead bug", "Posterior pelvic tilt drill", "Hollow body hold"] },
                 ],
               },
               {
@@ -929,10 +888,9 @@ export const MOVEMENT_DECK_L2 = [
               {
                 label: "Activates",
                 content: [
-                  "Hip flexor strengthening",
-                  "lumbar extension work",
-                  "cat-cow (focusing on the anterior tilt direction)",
-                  "standing hip flexor stretches",
+                  { pattern: "Lengthen the tight back", description: "stretching the hamstrings that are pulling the sitting bones down and flattening the lumbar curve", examples: ["Supine hamstring stretch", "Seated forward fold", "Standing hamstring stretch"] },
+                  { pattern: "Activate the weak hip flexors", description: "strengthening the iliopsoas that should be helping tilt the pelvis into its natural slight forward tilt", examples: ["Psoas march", "Hanging knee raise", "Standing knee drive"] },
+                  { pattern: "Restore lumbar extension", description: "gentle extension work that reintroduces the natural lumbar curve that posterior tilt has flattened", examples: ["Cobra pose", "Sphinx pose", "Standing extension"] },
                 ],
               },
               {
