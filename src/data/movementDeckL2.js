@@ -948,7 +948,7 @@ export const MOVEMENT_DECK_L2 = [
 {
     id: "what-modern-life-does",
     title: "What Modern Life Does To It",
-    subtitle: "Posture, pain patterns, and what sitting does to you",
+    subtitle: "Posture, painpoints, and pressures of today.",
     desc: "The patterns that emerge when bodies designed for movement spend their days in chairs. Not blame — understanding. See the pattern, and you can change it.",
     accent: "#A85C4A",
     groups: [
