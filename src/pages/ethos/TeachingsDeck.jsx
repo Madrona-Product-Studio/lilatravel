@@ -548,12 +548,15 @@ function CardScreen({ card, tradition }) {
           WebkitBackfaceVisibility: 'hidden',
         }}
       >
-        {/* Title bar */}
-        <div style={{
-          padding: '20px 22px 14px',
-          display: 'flex', justifyContent: 'center', alignItems: 'center',
-          gap: 6, flexShrink: 0,
-        }}>
+        {/* Title bar — tappable to flip back */}
+        <div
+          onClick={(e) => { e.stopPropagation(); handleFlip(); }}
+          style={{
+            padding: '20px 22px 14px',
+            display: 'flex', justifyContent: 'center', alignItems: 'center',
+            gap: 6, flexShrink: 0, cursor: 'pointer',
+          }}
+        >
           <DiamondGlyph color={tradition.color} />
           <div style={{
             fontSize: 13, fontFamily: SANS, fontWeight: 700,
@@ -610,9 +613,9 @@ function CardScreen({ card, tradition }) {
 
         {/* Flip arrow — fixed at bottom */}
         <div
-          onClick={handleFlip}
+          onClick={(e) => { e.stopPropagation(); handleFlip(); }}
           style={{
-            position: 'absolute', right: 22, bottom: 18,
+            position: 'absolute', right: 22, bottom: 18, zIndex: 5,
             display: 'flex', alignItems: 'center', gap: 6, cursor: 'pointer',
           }}
         >
