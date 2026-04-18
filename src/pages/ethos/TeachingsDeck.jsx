@@ -639,6 +639,9 @@ function TeachingsContinueScreen() {
         </div>
       </div>
 
+      {/* Divider */}
+      <div style={{ height: '0.5px', background: 'rgba(28,25,23,0.08)', margin: '20px 0 16px', position: 'relative' }} />
+
       <div style={{
         fontSize: 10, fontFamily: SANS,
         color: 'rgba(28,25,23,0.35)',

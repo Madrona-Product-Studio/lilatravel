@@ -948,7 +948,7 @@ export const MOVEMENT_DECK_L2 = [
 {
     id: "what-modern-life-does",
     title: "What Modern Life Does To It",
-    subtitle: "How the pieces work together",
+    subtitle: "Posture, pain patterns, and what sitting does to you",
     desc: "The patterns that emerge when bodies designed for movement spend their days in chairs. Not blame — understanding. See the pattern, and you can change it.",
     accent: "#A85C4A",
     groups: [
@@ -1255,7 +1255,7 @@ export const MOVEMENT_DECK_L2 = [
 {
     id: "what-your-body-needs",
     title: "How It All Connects",
-    subtitle: "The frameworks that change how you see your body",
+    subtitle: "How the pieces work together",
     desc: "Mental models that make everything else click. These aren't exercises — they're lenses. Once you see through them, you can't unsee.",
     accent: "#4A7A8A",
     groups: [
