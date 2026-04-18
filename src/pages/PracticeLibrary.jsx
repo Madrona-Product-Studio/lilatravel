@@ -32,14 +32,6 @@ const DECKS = [
     Cover: () => <MeditationsCover />,
   },
   {
-    key: 'teachings',
-    route: '/practice/teachings',
-    name: 'Teachings',
-    subtitle: 'Conceptual \u00b7 Traditional',
-    desc: '30 concept cards \u2014 what the traditions believe.',
-    Cover: () => <TeachingsCover />,
-  },
-  {
     key: 'movements-l1',
     route: '/practice/movements/practice',
     name: 'Movements',
@@ -60,6 +52,14 @@ const DECKS = [
     subtitle: 'Intellectual \u00b7 Scientific \u00b7 L2',
     desc: '47 cards on movement science and the body.',
     Cover: () => <BodyCover />,
+  },
+  {
+    key: 'teachings',
+    route: '/practice/teachings',
+    name: 'Teachings',
+    subtitle: 'Conceptual \u00b7 Traditional',
+    desc: '30 concept cards \u2014 what the traditions believe.',
+    Cover: () => <TeachingsCover />,
   },
 ];
 
@@ -119,7 +119,7 @@ function DeckTile({ deck }) {
 
       {/* Labels */}
       <div style={{
-        fontSize: 18, fontFamily: SERIF, fontWeight: 400,
+        fontSize: 18, fontFamily: SANS, fontWeight: 600,
         color: C.darkInk, marginTop: 12,
       }}>
         {name}
