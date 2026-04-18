@@ -76,7 +76,7 @@ export const CARDS = [
   {
     id: 'yamas',
     principle: 'presence',
-    tradition: 'Hinduism',
+    tradition: 'Hinduism & Yoga',
     name: 'Yamas',
     subtitle: 'The ethical ground — five restraints that clear the mind',
     teaching: "The Yamas are Patañjali's first limb — five ethical restraints that describe how a clear mind moves through the world. Ahimsa: non-harming. Satya: truth. Asteya: non-stealing. Brahmacharya: non-excess. Aparigraha: non-possessiveness. A storm moves in and the mountain doesn't apologize. Nature never performs for your preferences — and neither does a life lived in alignment.",
@@ -101,7 +101,7 @@ export const CARDS = [
   {
     id: 'niyamas',
     principle: 'presence',
-    tradition: 'Hinduism',
+    tradition: 'Hinduism & Yoga',
     name: 'Niyamas / Santosha',
     subtitle: 'The inner observances — contentment as the ground of seeing',
     teaching: "The Niyamas are Patañjali's second limb — five personal observances that turn the ethical ground inward. At their center sits Santosha: contentment. Not the contentment of perfect conditions but the recognition that this moment — this weather, this body, this trail — is already complete. A storm moves in and the mountain doesn't apologize. The river runs cold and doesn't explain itself. Santosha is the practice of meeting the land on its own terms.",
@@ -126,7 +126,7 @@ export const CARDS = [
   {
     id: 'pranayama',
     principle: 'presence',
-    tradition: 'Hinduism',
+    tradition: 'Hinduism & Yoga',
     name: 'Prānāyāma',
     subtitle: 'Breath as the bridge — the doorway between body and mind',
     teaching: "The fourth limb of Patañjali's Ashtanga. Prāna is life force — the same current that moves through wind, through water, through every living thing in this landscape. To practice Prānāyāma is to consciously join that current. The breath is the only system in the body that is both involuntary and voluntary. That makes it the doorway. When the wind changes direction on a ridge, the whole landscape reorganizes. One conscious breath works the same way.",
@@ -176,7 +176,7 @@ export const CARDS = [
   {
     id: 'shoshin',
     principle: 'presence',
-    tradition: 'Zen Buddhism',
+    tradition: 'Taoism & Zen',
     name: 'Shoshin',
     subtitle: "Beginner's mind — in it there are many possibilities",
     teaching: "Shunryu Suzuki: in the beginner's mind there are many possibilities, in the expert's mind there are few. Shoshin is the practice of radical openness — arriving at the known as if for the first time. The trail you hiked yesterday. The view you have seen a hundred times. The expert sees only what they expect. The beginner sees everything. Wilderness is one of the few places that still resists expertise. Let it.",
@@ -201,7 +201,7 @@ export const CARDS = [
   {
     id: 'samadhi',
     principle: 'presence',
-    tradition: 'Hinduism',
+    tradition: 'Hinduism & Yoga',
     name: 'Samādhi',
     subtitle: 'Absorption — the dissolution of the one who is meditating',
     teaching: "The eighth and final limb of Patañjali's Ashtanga — the state in which the meditator, the act of meditation, and the object of meditation become one. Not a technique but a destination. You cannot force Samādhi. You can only remove the obstacles. In nature it sometimes arrives uninvited — at a summit, at the edge of a vast silence, in the still moment before dawn breaks. The practice is to recognize it when it comes and not immediately reach for your phone.",
@@ -228,7 +228,7 @@ export const CARDS = [
   {
     id: 'atman-brahman',
     principle: 'oneness',
-    tradition: 'Hinduism',
+    tradition: 'Hinduism & Yoga',
     name: 'Ātman is Brahman',
     subtitle: 'The self and the universe are not two',
     teaching: 'The central teaching of the Upanishads: the awareness inside you and the awareness that permeates the cosmos are identical. The separation you feel — between self and landscape, between inside and outside — is māyā, the veil of appearance. Stand at the edge of a canyon and ask where you end and the view begins. The question dissolves before it can be answered. Tat tvam asi — thou art that — is not a belief to adopt but a direct perception waiting to be uncovered.',
@@ -328,7 +328,7 @@ export const CARDS = [
   {
     id: 'the-tao',
     principle: 'oneness',
-    tradition: 'Taoism',
+    tradition: 'Taoism & Zen',
     name: 'The Tao',
     subtitle: 'The way — the unnameable current beneath all things',
     teaching: 'The Tao cannot be defined. The moment you name it, you have already lost it. Laozi opens the Tao Te Ching with this admission and builds an entire philosophy on top of it. The Tao is the current that runs through water finding its level, through seasons turning without effort, through the grain of wood and the path of least resistance. You cannot see it directly — only its effects. A trail that follows the landscape rather than cutting across it. A river that finds the sea without ever consulting a map. You know the Tao when you stop forcing.',
@@ -353,7 +353,7 @@ export const CARDS = [
   {
     id: 'yin-yang',
     principle: 'oneness',
-    tradition: 'Taoism',
+    tradition: 'Taoism & Zen',
     name: 'Yin-Yang',
     subtitle: 'Dynamic balance — opposites as one movement',
     teaching: 'Yin and yang are not opposites at war. They are one continuous movement — the inhale that requires the exhale, the shadow that requires the light, the rest that makes the effort possible. The symbol is always in motion: the dark seed inside the light, the light seed inside the dark. In wilderness this is everywhere. The canyon wall that holds heat through the night. The cold river that makes the desert habitable. Exertion and rest, exposure and shelter, alone and together. Nothing is only one thing. Everything contains its complement.',
@@ -380,7 +380,7 @@ export const CARDS = [
   {
     id: 'li',
     principle: 'flow',
-    tradition: 'Taoism',
+    tradition: 'Taoism & Zen',
     name: 'Lǐ',
     subtitle: 'The grain of things — the pattern asking to be followed',
     teaching: 'Lǐ is the natural grain inherent in all things — the pattern in jade, the current in a river, the logic of a particular landscape on a particular morning. Alan Watts described it as the brush strokes of the universe. The master craftsman works with the grain, never against it — not because of discipline but because of attention. To perceive Lǐ is to stop imposing your own plan on a place and start reading what the place is actually offering. Every landscape has a grain. Every day has one too.',
@@ -405,7 +405,7 @@ export const CARDS = [
   {
     id: 'wu-wei',
     principle: 'flow',
-    tradition: 'Taoism',
+    tradition: 'Taoism & Zen',
     name: 'Wu Wei',
     subtitle: 'Non-action — effortless alignment with what is',
     teaching: 'Wu Wei does not mean doing nothing. It means acting without forcing — the way water finds its level, the way a tree grows toward light without striving. The Tao Te Ching: the Tao does nothing, yet leaves nothing undone. On trail this is the difference between moving through a landscape and moving with it. The hiker who forces every mile arrives exhausted and has seen nothing. The one who follows what the terrain offers arrives somewhere unexpected and remembers everything. Wu Wei is not passivity. It is precision without effort.',
@@ -455,7 +455,7 @@ export const CARDS = [
   {
     id: 'mushin',
     principle: 'flow',
-    tradition: 'Zen Buddhism',
+    tradition: 'Taoism & Zen',
     name: 'Mushin',
     subtitle: 'No-mind — action without the commentary of thought',
     teaching: 'Mushin — no mind — is the Zen state in which action flows without the interference of the thinking, narrating, evaluating mind. It is not blankness. It is full aliveness without self-consciousness. The archer who thinks about the shot misses. The climber who narrates the move falls. The traveler who thinks about walking stops arriving. Mushin is not achieved by effort — it is what remains when effort falls away. A scramble that demands your complete attention, a river crossing that leaves no room for the narrator — these are the places where mushin arrives uninvited.',
@@ -532,7 +532,7 @@ export const CARDS = [
   {
     id: 'bhakti',
     principle: 'compassion',
-    tradition: 'Hinduism',
+    tradition: 'Hinduism & Yoga',
     name: 'Bhakti',
     subtitle: 'Devotional love — the heart as the path',
     teaching: 'Bhakti is the Hindu path of love and devotion — the understanding that the heart opened completely is itself the practice. Not love as sentiment but as orientation: a continuous turning toward what is sacred in everything you encounter. The Narada Bhakti Sutras describe it as a force that, once ignited, burns away the distance between the lover and the loved. In nature, bhakti is the quality of attention that treats a canyon wall as worthy of reverence, a sunrise as an offering, the ground under your feet as something that deserves gratitude. Love is not the reward for practice. It is the practice.',
@@ -607,7 +607,7 @@ export const CARDS = [
   {
     id: 'seva',
     principle: 'compassion',
-    tradition: 'Hinduism',
+    tradition: 'Hinduism & Yoga',
     name: 'Seva',
     subtitle: 'Selfless service — action as offering',
     teaching: 'Seva is the Sanskrit word for selfless service — action performed without attachment to its outcome or reward. In the Bhagavad Gita, Krishna describes it as the highest form of karma yoga: do what needs to be done, offer the action to something beyond yourself, and release the result. In wilderness, seva is simple and immediate. Pick up what someone else left behind. Move a rock that will trip the next hiker. Give something back to the place that is holding you. The action itself is the practice — not because of what it accomplishes but because of the quality of attention it requires.',
@@ -659,7 +659,7 @@ export const CARDS = [
   {
     id: 'surya-namaskar',
     principle: 'reverence',
-    tradition: 'Hinduism',
+    tradition: 'Hinduism & Yoga',
     name: 'Sūrya Namaskār',
     subtitle: 'Sun salutation — moving prayer at first light',
     teaching: 'Sūrya Namaskār is not a warm-up. It is a devotional offering — twelve postures moving in sequence with the breath, each a gesture of gratitude to the sun as the source of all life. The practice predates modern yoga by centuries, rooted in Vedic sun worship and the understanding that the light arriving each morning is not guaranteed, not ordinary, not owed to us. To practice it at dawn, facing east, before the agenda of the day begins, is to begin in right relationship — acknowledging what sustains you before you ask anything of the day.',
@@ -734,7 +734,7 @@ export const CARDS = [
   {
     id: 'ichi-go-ichi-e',
     principle: 'reverence',
-    tradition: 'Zen Buddhism',
+    tradition: 'Taoism & Zen',
     name: 'Ichi-go Ichi-e',
     subtitle: 'One time, one meeting — this will never come again',
     teaching: 'Ichi-go ichi-e emerged from the Japanese tea ceremony tradition — the understanding that every gathering is utterly unique and will never be repeated. The same people, the same place, the same quality of afternoon light will never converge again in exactly this way. Sen no Rikyū built an entire aesthetic around this recognition: treat each encounter as if it were the last, because in a sense it is. Travel makes this visible in ways ordinary life conceals. The summit you are standing on right now. The particular gold of this late afternoon. Already ending.',
@@ -809,7 +809,7 @@ export const CARDS = [
   {
     id: 'shinrin-yoku',
     principle: 'flow',
-    tradition: 'Taoism',
+    tradition: 'Taoism & Zen',
     name: 'Shinrin-yoku',
     subtitle: 'Forest bathing — immersion as the practice of receiving',
     teaching: "Shinrin-yoku — forest bathing — is the Japanese practice of therapeutic immersion in forest. Not hiking, not exercise, not destination. Just being inside the living atmosphere of trees. Research confirms what the Taoists knew: the forest is doing something to you whether you attend to it or not — lowering cortisol, slowing the breath, quieting the part of the mind that plans and narrates. The practice is simply to stop moving fast enough to receive what is already being offered. The forest doesn't need your attention to function. But your attention is what makes it medicine.",

@@ -43,7 +43,7 @@ _Last updated: March 30, 2026. Living document — update as items are completed
 - [ ] **RLS / Supabase security** — write policies that allow anon inserts but block unauthenticated reads. Prerequisite for auth work.
 - [ ] **Apply guide collapsed-sections UX to remaining guides** — Zion is the reference implementation. As guide UX evolves post-launch, track changes here and apply to: Big Sur, Joshua Tree, Kauaʻi, Olympic Peninsula, Vancouver Island. Apply as a batch once Zion pattern is stable.
 - [ ] **Cross-deck shared-concept name alignment** (Meditations ↔ Teachings, 19 overlaps)
-- [ ] **Tradition taxonomy unification** (Hinduism vs Hinduism & Yoga, Zen Buddhism vs Taoism & Zen)
+- [x] **Tradition taxonomy unification** (Hinduism vs Hinduism & Yoga, Zen Buddhism vs Taoism & Zen)
 - [ ] **Body Activates content model** — what Activates should reference
 - [ ] **Track 2 content pass — Teachings Deep Dive writing** (all 30 cards, research-backed, list-shape vs prose-shape per card)
 - [ ] **Track 2 content pass — Body Activates rewrite** (all 47 L2 cards, movement-pattern framing using deck's existing vocabulary, named exercises as examples)
