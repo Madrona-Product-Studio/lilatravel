@@ -377,6 +377,11 @@ function DeepDiveSection({ deepDive, color }) {
               <strong>{item.term}</strong>{item.gloss && <em style={{ color: 'rgba(44,36,32,0.5)' }}> ({item.gloss})</em>} — {item.description}
             </div>
           ))}
+          {deepDive.closingParagraph && (
+            <div style={{ fontSize: 14, fontFamily: SANS, fontWeight: 400, color: '#1C1917', lineHeight: 1.75, marginTop: 4 }}>
+              {deepDive.closingParagraph}
+            </div>
+          )}
         </div>
       )}
       {deepDive.shape === 'prose' && deepDive.paragraphs && (

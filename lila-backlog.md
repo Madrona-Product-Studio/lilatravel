@@ -45,7 +45,7 @@ _Last updated: March 30, 2026. Living document — update as items are completed
 - [ ] **Cross-deck shared-concept name alignment** (Meditations ↔ Teachings, 19 overlaps)
 - [x] **Tradition taxonomy unification** (Hinduism vs Hinduism & Yoga, Zen Buddhism vs Taoism & Zen)
 - [ ] **Body Activates content model** — what Activates should reference
-- [ ] **Track 2 content pass — Teachings Deep Dive writing** (all 30 cards, research-backed, list-shape vs prose-shape per card)
+- [x] **Track 2 content pass — Teachings Deep Dive writing** (all 30 cards, research-backed, list-shape vs prose-shape per card)
 - [ ] **Track 2 content pass — Body Activates rewrite** (all 47 L2 cards, movement-pattern framing using deck's existing vocabulary, named exercises as examples)
 
 ---
