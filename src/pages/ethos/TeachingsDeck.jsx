@@ -348,6 +348,50 @@ function ConceptsScreen({ tradition }) {
 // CARD SCREEN (two-faced flip card — matches Meditations practice cards)
 // ═══════════════════════════════════════════════════════════════════════════════
 
+function DiamondGlyph({ color, size = 8 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 10 10" fill="none">
+      <rect x="1" y="1" width="8" height="8" stroke={color} strokeWidth="1.5" transform="rotate(45 5 5)" />
+    </svg>
+  );
+}
+
+function DeepDiveSection({ deepDive, color }) {
+  if (!deepDive) return null;
+  const label = deepDive.subtitle ? `Deep Dive · ${deepDive.subtitle}` : 'Deep Dive';
+  return (
+    <div style={{ padding: '18px 22px 0' }}>
+      <div style={{
+        fontSize: 11, fontFamily: SANS, fontWeight: 700,
+        color, letterSpacing: '0.14em',
+        textTransform: 'uppercase', marginBottom: 10,
+        display: 'flex', alignItems: 'center', gap: 5,
+      }}>
+        <DiamondGlyph color={color} />
+        {label}
+      </div>
+      {deepDive.shape === 'list' && deepDive.items && (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+          {deepDive.items.map((item, i) => (
+            <div key={i} style={{ fontSize: 14, fontFamily: SANS, fontWeight: 400, color: '#1C1917', lineHeight: 1.75 }}>
+              <strong>{item.term}</strong>{item.gloss && <em style={{ color: 'rgba(44,36,32,0.5)' }}> ({item.gloss})</em>} — {item.description}
+            </div>
+          ))}
+        </div>
+      )}
+      {deepDive.shape === 'prose' && deepDive.paragraphs && (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+          {deepDive.paragraphs.map((p, i) => (
+            <div key={i} style={{ fontSize: 14, fontFamily: SANS, fontWeight: 400, color: '#1C1917', lineHeight: 1.75 }}>
+              {p.heading && <strong>{p.heading} </strong>}{p.text}
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 function CardScreen({ card, tradition }) {
   const [flipped, setFlipped] = useState(false);
   const [flipAnimating, setFlipAnimating] = useState(false);
@@ -441,7 +485,7 @@ function CardScreen({ card, tradition }) {
             {card.pronunciation}
           </div>
 
-          {/* Teaching preview */}
+          {/* Teaching overview */}
           <div style={{
             fontSize: 16, fontFamily: SANS, fontWeight: 400,
             color: 'white', opacity: 0.85, lineHeight: 1.75,
@@ -453,8 +497,28 @@ function CardScreen({ card, tradition }) {
 
         <div style={{ flex: 1 }} />
 
+        {/* Quote — editorial close */}
+        {card.quote && (
+          <div style={{ padding: '0 28px 16px', flexShrink: 0 }}>
+            <div style={{ height: '0.5px', background: 'rgba(255,255,255,0.15)', marginBottom: 14 }} />
+            <div style={{
+              fontSize: 13, fontFamily: SANS, fontWeight: 400,
+              color: 'white', opacity: 0.7, fontStyle: 'italic', lineHeight: 1.65, marginBottom: 4,
+            }}>
+              &ldquo;{card.quote}&rdquo;
+            </div>
+            <div style={{
+              fontSize: 9, fontFamily: SANS, fontWeight: 600,
+              color: 'white', opacity: 0.35,
+              letterSpacing: '0.1em', textTransform: 'uppercase',
+            }}>
+              {card.quoteAuthor}
+            </div>
+          </div>
+        )}
+
         {/* Flip arrow */}
-        <div style={{ display: 'flex', justifyContent: 'flex-end', padding: '12px 28px 28px' }}>
+        <div style={{ display: 'flex', justifyContent: 'flex-end', padding: '4px 28px 24px' }}>
           <div style={{ opacity: 0.6 }}>
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
               <path d="M 20 12 A 8 8 0 1 1 12 4" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
@@ -471,14 +535,12 @@ function CardScreen({ card, tradition }) {
           position: 'absolute', inset: 0,
           background: '#F7F4EE',
           display: 'flex', flexDirection: 'column',
-          justifyContent: 'center',
-          cursor: 'pointer', overflow: 'hidden',
+          cursor: 'pointer',
           borderRadius: 14,
           border: '0.5px solid rgba(0,0,0,0.08)',
           transform: 'rotateY(180deg)',
           backfaceVisibility: 'hidden',
           WebkitBackfaceVisibility: 'hidden',
-          padding: '0',
         }}
       >
         {/* Title bar */}
@@ -487,9 +549,7 @@ function CardScreen({ card, tradition }) {
           display: 'flex', justifyContent: 'center', alignItems: 'center',
           gap: 6, flexShrink: 0,
         }}>
-          <svg width="8" height="8" viewBox="0 0 10 10" fill="none">
-            <rect x="1" y="1" width="8" height="8" stroke={tradition.color} strokeWidth="1.5" transform="rotate(45 5 5)" />
-          </svg>
+          <DiamondGlyph color={tradition.color} />
           <div style={{
             fontSize: 13, fontFamily: SANS, fontWeight: 700,
             color: tradition.color, letterSpacing: '0.14em', textTransform: 'uppercase',
@@ -499,12 +559,20 @@ function CardScreen({ card, tradition }) {
         </div>
         <div style={{ height: '0.5px', background: 'rgba(44,36,32,0.05)', margin: '0 22px', flexShrink: 0 }} />
 
-        {/* Content group */}
-        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', paddingBottom: 40 }}>
-
-          {/* Origin */}
+        {/* Scrollable content */}
+        <div style={{
+          flex: 1, overflowY: 'auto', paddingBottom: 48,
+          WebkitOverflowScrolling: 'touch',
+        }}
+          onClick={e => e.stopPropagation()}
+        >
+          {/* ORIGIN — quiet label */}
           <div style={{ padding: '14px 22px 0' }}>
-            <div style={{ fontSize: 11, fontFamily: SANS, fontWeight: 600, color: 'rgba(44,36,32,0.35)', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 6 }}>
+            <div style={{
+              fontSize: 11, fontFamily: SANS, fontWeight: 600,
+              color: 'rgba(44,36,32,0.35)', letterSpacing: '0.12em',
+              textTransform: 'uppercase', marginBottom: 6,
+            }}>
               Origin
             </div>
             <div style={{ fontSize: 14, fontFamily: SANS, fontWeight: 400, color: '#1C1917', lineHeight: 1.75 }}>
@@ -512,7 +580,10 @@ function CardScreen({ card, tradition }) {
             </div>
           </div>
 
-          {/* On Your Journey */}
+          {/* ◈ DEEP DIVE — tradition-colored, omitted when null */}
+          <DeepDiveSection deepDive={card.deepDive} color={tradition.color} />
+
+          {/* ◈ OUT IN NATURE — tradition-colored */}
           <div style={{ padding: '18px 22px 0' }}>
             <div style={{
               fontSize: 11, fontFamily: SANS, fontWeight: 700,
@@ -520,10 +591,8 @@ function CardScreen({ card, tradition }) {
               textTransform: 'uppercase', marginBottom: 8,
               display: 'flex', alignItems: 'center', gap: 5,
             }}>
-              <svg width="8" height="8" viewBox="0 0 10 10" fill="none">
-                <rect x="1" y="1" width="8" height="8" stroke={tradition.color} strokeWidth="1.5" transform="rotate(45 5 5)" />
-              </svg>
-              On Your Journey
+              <DiamondGlyph color={tradition.color} />
+              Out in Nature
             </div>
             <div style={{
               fontSize: 14, fontFamily: SANS, fontWeight: 400,
@@ -532,35 +601,16 @@ function CardScreen({ card, tradition }) {
               {card.journey}
             </div>
           </div>
-
-          {/* Quote */}
-          {card.quote && (
-            <div style={{
-              margin: '18px 22px 0', padding: '18px 0 14px',
-              borderTop: '0.5px solid rgba(44,36,32,0.04)',
-              borderBottom: '0.5px solid rgba(44,36,32,0.04)',
-            }}>
-              <div style={{
-                fontSize: 14, fontFamily: SANS, fontWeight: 400,
-                color: '#1C1917', fontStyle: 'italic', lineHeight: 1.7, marginBottom: 6,
-              }}>
-                &ldquo;{card.quote}&rdquo;
-              </div>
-              <div style={{
-                fontSize: 10, fontFamily: SANS, fontWeight: 400,
-                color: '#8C7B6B', letterSpacing: '0.04em', textTransform: 'uppercase',
-              }}>
-                {card.quoteAuthor}
-              </div>
-            </div>
-          )}
         </div>
 
-        {/* Flip arrow */}
-        <div style={{
-          position: 'absolute', right: 22, bottom: 18,
-          display: 'flex', alignItems: 'center', gap: 6, cursor: 'pointer',
-        }}>
+        {/* Flip arrow — fixed at bottom */}
+        <div
+          onClick={handleFlip}
+          style={{
+            position: 'absolute', right: 22, bottom: 18,
+            display: 'flex', alignItems: 'center', gap: 6, cursor: 'pointer',
+          }}
+        >
           <div style={{ fontSize: 8, fontFamily: SANS, color: '#8C7B6B', opacity: 0.5, letterSpacing: '0.12em', textTransform: 'uppercase' }}>back</div>
           <div style={{ opacity: 0.5 }}>
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none">

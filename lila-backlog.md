@@ -45,6 +45,8 @@ _Last updated: March 30, 2026. Living document — update as items are completed
 - [ ] **Cross-deck shared-concept name alignment** (Meditations ↔ Teachings, 19 overlaps)
 - [ ] **Tradition taxonomy unification** (Hinduism vs Hinduism & Yoga, Zen Buddhism vs Taoism & Zen)
 - [ ] **Body Activates content model** — what Activates should reference
+- [ ] **Track 2 content pass — Teachings Deep Dive writing** (all 30 cards, research-backed, list-shape vs prose-shape per card)
+- [ ] **Track 2 content pass — Body Activates rewrite** (all 47 L2 cards, movement-pattern framing using deck's existing vocabulary, named exercises as examples)
 
 ---
 
@@ -136,6 +138,8 @@ _Last updated: March 30, 2026. Living document — update as items are completed
 - [x] **Tailwind CSS migration** (Mar 29) — 46 files, -4,832 net lines, brand tokens wired, responsive breakpoints replace JS resize listeners
 
 ### Card Decks
+- [x] Pull a Card — random draw feature on Meditations Begin screen with shuffle animation
+- [x] Teachings card redesign — quote moved to front, scrollable back with ORIGIN / DEEP DIVE / OUT IN NATURE sections, deepDive schema field added
 - [x] Continue end screen added to all four card decks — mirrors Begin, sibling deck navigation, per-deck copy
 - [x] Meditations Chapters screen — replaced Five Traditions/Principles outlier with standard Chapters pattern
 - [x] Body deck third chapter renamed "How It All Connects"

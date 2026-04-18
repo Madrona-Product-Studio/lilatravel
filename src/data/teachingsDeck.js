@@ -92,6 +92,7 @@ export const CARDS = [
     journey: 'In the wild, the Yamas clarify fast. Non-violence toward trail, animal, weather. Truthfulness about your limits. Non-possessiveness toward the view — you can\'t keep it, only meet it.',
     quote: 'Yoga is the cessation of the movements of the mind. Then there is abiding in the Seer\'s own form.',
     quoteAuthor: 'Patañjali, Yoga Sūtras 1.2',
+    deepDive: null,
   },
   {
     id: 'pranayama', tradition: 'hinduism', name: 'Prānāyāma', pronunciation: 'prah-nah-YAH-mah', tag: 'BREATH SCIENCE',
@@ -100,6 +101,7 @@ export const CARDS = [
     journey: 'At altitude, in wind, after a hard climb — the breath becomes undeniable. Prānāyāma begins the moment you notice it. Slow the exhale. Feel what changes.',
     quote: 'When the breath is unsteady, the mind is unsteady. When the breath is steady, the mind is steady.',
     quoteAuthor: 'Hatha Yoga Pradīpikā 2.2 (paraphrase)',
+    deepDive: null,
   },
   {
     id: 'samadhi', tradition: 'hinduism', name: 'Samādhi', pronunciation: 'sah-MAH-dee', tag: 'ABSORPTION',
@@ -108,6 +110,7 @@ export const CARDS = [
     journey: 'You have touched this. A moment on a ridge when the thinking stopped and something simpler took over. That wasn\'t distraction — that was the direction.',
     quote: 'When the object of meditation alone shines forth, as if emptied of its own form, that is samādhi.',
     quoteAuthor: 'Patañjali, Yoga Sūtras III.3',
+    deepDive: null,
   },
   {
     id: 'atman', tradition: 'hinduism', name: 'Ātman is Brahman', pronunciation: 'AHT-man · BRAH-man', tag: 'CORE TEACHING',
@@ -116,6 +119,7 @@ export const CARDS = [
     journey: 'Stand somewhere vast. Notice that awareness is looking out from inside the landscape, not at it from outside. That\'s not poetry. That\'s the teaching.',
     quote: 'The knower of Brahman becomes Brahman.',
     quoteAuthor: 'Mundaka Upanishad 3.2.9',
+    deepDive: null,
   },
   {
     id: 'bhakti', tradition: 'hinduism', name: 'Bhakti', pronunciation: 'BHAK-tee', tag: 'DEVOTION',
@@ -124,6 +128,7 @@ export const CARDS = [
     journey: 'In wild places, devotion is the natural response to beauty that exceeds you. The mountain doesn\'t need your praise — but the act of giving it opens something. That opening is Bhakti.',
     quote: 'Devotion is greater than action, greater than knowledge, greater than yoga — because it is its own fruit.',
     quoteAuthor: 'Nārada Bhakti Sūtras 54',
+    deepDive: null,
   },
   {
     id: 'surya', tradition: 'hinduism', name: 'Sūrya Namaskār', pronunciation: 'SOOR-yah nah-mah-SKAR', tag: 'SOLAR SALUTATION',
@@ -132,6 +137,7 @@ export const CARDS = [
     journey: 'Done at first light on a trail, with actual sun on actual skin, Sūrya Namaskār becomes what it always was — a conversation between body and sky. The landscape completes the practice.',
     quote: 'Yoga is a light, which once lit, will never dim. The better your practice, the brighter the flame.',
     quoteAuthor: 'B.K.S. Iyengar, Yoga: The Path to Holistic Health',
+    deepDive: null,
   },
   {
     id: 'seva', tradition: 'hinduism', name: 'Seva', pronunciation: 'SAY-vah', tag: 'SELFLESS SERVICE',
@@ -140,6 +146,7 @@ export const CARDS = [
     journey: 'Leave the trail better than you found it. Help someone with their pack. Pick up what wasn\'t yours to drop. These small acts, done without keeping score, are the practice.',
     quote: 'You have the right to perform your prescribed duty, but you are not entitled to the fruits of your actions.',
     quoteAuthor: 'Bhagavad Gītā 2.47 (partial verse)',
+    deepDive: null,
   },
 
   // ─── Buddhism ──────────────────────────────────────────────────────────────
@@ -150,6 +157,7 @@ export const CARDS = [
     journey: 'In wild places, impermanence is visible without effort. The light changing on a canyon wall. The season turning. The trail that floods and rewrites itself. Let it teach what books can only describe.',
     quote: 'All conditioned things are impermanent — when one sees this with wisdom, one turns away from suffering.',
     quoteAuthor: 'Dhammapada 277 (trans. Buddharakkhita)',
+    deepDive: null,
   },
   {
     id: 'interbeing', tradition: 'buddhism', name: 'Interbeing', pronunciation: 'in-ter-BEE-ing', tag: 'DEPENDENT ORIGINATION',
@@ -158,6 +166,7 @@ export const CARDS = [
     journey: 'Breathe in at altitude. That air has been forest, ocean, lung of animal. You are not separate from what surrounds you — you are temporarily organized from it.',
     quote: 'This is, because that is. This is not, because that is not.',
     quoteAuthor: 'The Buddha, Samyutta Nikāya (idappaccayatā formula)',
+    deepDive: null,
   },
   {
     id: 'tonglen', tradition: 'buddhism', name: 'Tonglen', pronunciation: 'TONG-len', tag: 'GIVING AND TAKING',
@@ -166,6 +175,7 @@ export const CARDS = [
     journey: 'When something difficult arises on a trip — exhaustion, fear, altitude, loss — try the reversal. Breathe it in. Breathe ease out. Not to suffer more, but to stop running.',
     quote: 'When others out of jealousy treat me badly with abuse, slander, and so on, I will learn to take all loss and offer the victory to them.',
     quoteAuthor: 'Langri Tangpa, Eight Verses on Mind Training, verse 6 (1054–1123 CE)',
+    deepDive: null,
   },
   {
     id: 'zazen', tradition: 'buddhism', name: 'Zazen', pronunciation: 'ZAH-zen', tag: 'SEATED MEDITATION',
@@ -174,6 +184,7 @@ export const CARDS = [
     journey: 'Find a flat rock. Sit with your spine upright and your eyes soft on the middle distance. Ten minutes. Don\'t try to clear the mind — just watch what arises. The wilderness does the rest.',
     quote: 'Think not-thinking. How do you think of not-thinking? Non-thinking. This is the essential art of zazen.',
     quoteAuthor: 'Dōgen, Fukanzazengi, quoting Chan master Yakusan Igen (745–828 CE)',
+    deepDive: null,
   },
   {
     id: 'metta', tradition: 'buddhism', name: 'Mettā', pronunciation: 'MET-tah', tag: 'LOVING-KINDNESS',
@@ -182,6 +193,7 @@ export const CARDS = [
     journey: 'On a summit or at a trailhead, try it. \'May I be well. May those I love be well. May all beings be well.\' It sounds simple. Meaning it — out loud, in the open — is something else.',
     quote: 'Radiate boundless love towards the entire world — above, below, and across — unhindered, without ill will, without enmity.',
     quoteAuthor: 'The Buddha, Karanīya Metta Sutta, Snp 1.8 (trans. Piyadassi Thera)',
+    deepDive: null,
   },
   {
     id: 'sunyata', tradition: 'buddhism', name: 'Śūnyatā', pronunciation: 'shoon-YAH-tah', tag: 'EMPTINESS',
@@ -190,6 +202,7 @@ export const CARDS = [
     journey: 'Look at a canyon wall. It seems solid, permanent, itself. Now think of what it was — seabed, pressure, time. Now think of what it will be. The wall is real. But the \'wall\' is also a story.',
     quote: 'Form is emptiness, emptiness is form.',
     quoteAuthor: 'Heart Sutra (Prajñāpāramitāhṛdaya)',
+    deepDive: null,
   },
 
   // ─── Taoism & Zen ──────────────────────────────────────────────────────────
@@ -200,6 +213,7 @@ export const CARDS = [
     journey: 'A hard climb where you stop fighting the mountain and start reading it — that shift in your body is wu wei. The trail knows more than your plan does.',
     quote: 'The Tao never acts, yet nothing is left undone.',
     quoteAuthor: 'Laozi, Tao Te Ching, Chapter 37 (trans. D.C. Lau)',
+    deepDive: null,
   },
   {
     id: 'yinyang', tradition: 'taoism', name: 'Yin-Yang', pronunciation: 'yin yahng', tag: 'COMPLEMENTARY FORCES',
@@ -208,6 +222,7 @@ export const CARDS = [
     journey: 'A day on trail contains both — the hard ascent and the easy descent, the exposed ridge and the sheltered valley, the exertion and the rest. Neither is the destination. Both are the practice.',
     quote: 'One who knows the masculine, yet keeps to the feminine, becomes a ravine for the world.',
     quoteAuthor: 'Laozi, Tao Te Ching, Chapter 28 (trans. D.C. Lau)',
+    deepDive: null,
   },
   {
     id: 'zhuangzi', tradition: 'taoism', name: 'Zhuangzi', pronunciation: 'jwahng-dzuh', tag: 'THE FREE MIND',
@@ -216,6 +231,7 @@ export const CARDS = [
     journey: 'The mind that needs to know what\'s around the next bend, how far to the summit, what the weather will do — Zhuangzi is the medicine for that mind. Not certainty. Readiness.',
     quote: 'I do not know whether I was then a man dreaming I was a butterfly, or whether I am now a butterfly dreaming I am a man.',
     quoteAuthor: 'Zhuangzi, Chapter 2 (trans. Herbert Giles)',
+    deepDive: null,
   },
   {
     id: 'pu', tradition: 'taoism', name: 'P\'u', pronunciation: 'poo', tag: 'THE UNCARVED BLOCK',
@@ -224,6 +240,7 @@ export const CARDS = [
     journey: 'After enough days in wilderness, something softens. The roles, the performances, the accumulated personality — they quiet. What remains is closer to p\'u. Not nothing. Original something.',
     quote: 'Return to the uncarved block.',
     quoteAuthor: 'Laozi, Tao Te Ching, Chapter 28',
+    deepDive: null,
   },
   {
     id: 'te', tradition: 'taoism', name: 'Te', pronunciation: 'duh', tag: 'INNER POWER',
@@ -232,6 +249,7 @@ export const CARDS = [
     journey: 'In wild places, te is visible in everything — the way a hawk rides thermals, a river finds grade, a tree grows toward light. None of it is trying. That\'s the point.',
     quote: 'A good traveler leaves no tracks.',
     quoteAuthor: 'Laozi, Tao Te Ching, Chapter 27 (trans. D.C. Lau)',
+    deepDive: null,
   },
 
   // ─── Shinto ────────────────────────────────────────────────────────────────
@@ -242,6 +260,7 @@ export const CARDS = [
     journey: 'The ridge you stand on has been regarded as sacred by people for thousands of years before you arrived. It doesn\'t need your belief. It only asks your attention.',
     quote: 'Approach everything reverently.',
     quoteAuthor: 'Shinto teaching',
+    deepDive: null,
   },
   {
     id: 'musubi', tradition: 'shinto', name: 'Musubi', pronunciation: 'moo-SOO-bee', tag: 'GENERATIVE FORCE',
@@ -250,6 +269,7 @@ export const CARDS = [
     journey: 'The feeling of connection that comes after days in wilderness — to landscape, to companions, to something larger — is musubi working. Not metaphor. Recognition.',
     quote: 'Even the wishes of a small ant reach heaven.',
     quoteAuthor: 'Japanese proverb',
+    deepDive: null,
   },
   {
     id: 'misogi', tradition: 'shinto', name: 'Misogi', pronunciation: 'mee-SO-ghee', tag: 'PURIFICATION',
@@ -258,6 +278,7 @@ export const CARDS = [
     journey: 'Cold water on a trail — a creek crossing, a mountain lake, rain on your face — is misogi at its simplest. Let it do what water has always done.',
     quote: 'Misogi-shuho is the shortest and quickest way to approach and assimilate the kami nature.',
     quoteAuthor: 'Rev. Yukitaka Yamamoto, Kami no Michi (1987)',
+    deepDive: null,
   },
   {
     id: 'harae', tradition: 'shinto', name: 'Harae', pronunciation: 'hah-RAH-eh', tag: 'RITUAL CLEANSING',
@@ -266,6 +287,7 @@ export const CARDS = [
     journey: 'Before entering a new landscape — a canyon, a summit, a forest — try a moment of deliberate attention. Name what you\'re carrying. Set it down at the threshold. This is the spirit of harae.',
     quote: 'To purify the six senses and restore natural brightness.',
     quoteAuthor: 'From the misogi chant harai tamae kiyome tamae rokkon shōjō',
+    deepDive: null,
   },
   {
     id: 'satoyama', tradition: 'shinto', name: 'Satoyama', pronunciation: 'SAH-toh-yah-mah', tag: 'THE IN-BETWEEN LAND',
@@ -274,6 +296,7 @@ export const CARDS = [
     journey: 'At the edge of a trail where forest meets meadow, or where a river valley opens into farmland — that threshold is satoyama in spirit. Neither purely wild nor purely tamed. The most biodiverse, most alive.',
     quote: 'The clearest way into the Universe is through a forest wilderness.',
     quoteAuthor: 'John Muir',
+    deepDive: null,
   },
 
   // ─── Stoicism ──────────────────────────────────────────────────────────────
@@ -284,6 +307,7 @@ export const CARDS = [
     journey: 'Weather, altitude, terrain, injury — none of it is yours to control on trail. Your pace, your attention, your response to what arises — all of it is. This is not resignation. It is clarity.',
     quote: 'Make the best use of what is in your power, and take the rest according to its nature.',
     quoteAuthor: 'Epictetus, Discourses I.1 (trans. George Long)',
+    deepDive: null,
   },
   {
     id: 'virtue', tradition: 'stoicism', name: 'Virtue', pronunciation: 'VER-choo', tag: 'THE ONLY GOOD',
@@ -292,6 +316,7 @@ export const CARDS = [
     journey: 'On a hard day in the mountains, what you have when everything else is stripped away is character. The Stoics would say that was always the only thing you had.',
     quote: 'Waste no more time arguing about what a good man should be. Be one.',
     quoteAuthor: 'Marcus Aurelius, Meditations 10.16 (trans. Maxwell Staniforth)',
+    deepDive: null,
   },
   {
     id: 'amorfati', tradition: 'stoicism', name: 'Amor Fati', pronunciation: 'AH-mor FAH-tee', tag: 'LOVE OF FATE',
@@ -300,6 +325,7 @@ export const CARDS = [
     journey: 'The weather that ruins your plan. The injury that changes your route. The summit you don\'t reach. Amor fati is not pretending these are good. It is finding what they make possible instead.',
     quote: 'All that is in accord with you is in accord with me, O World.',
     quoteAuthor: 'Marcus Aurelius, Meditations 4.23',
+    deepDive: null,
   },
   {
     id: 'mementomori', tradition: 'stoicism', name: 'Memento Mori', pronunciation: 'meh-MEN-toh MOR-ee', tag: 'REMEMBER DEATH',
@@ -308,6 +334,7 @@ export const CARDS = [
     journey: 'Standing on a ridge at dawn, knowing you will not always be able to stand here — the view sharpens. This is what memento mori is for.',
     quote: 'You could leave life right now. Let that determine what you do and say and think.',
     quoteAuthor: 'Marcus Aurelius, Meditations 2.11 (trans. Gregory Hays)',
+    deepDive: null,
   },
   {
     id: 'premeditatio', tradition: 'stoicism', name: 'Premeditatio Malorum', pronunciation: 'preh-meh-dee-TAH-tee-oh mah-LOR-um', tag: 'NEGATIVE VISUALIZATION',
@@ -316,6 +343,7 @@ export const CARDS = [
     journey: 'Before a hard route, a storm window, an uncertain crossing — run it through. Not to worry but to prepare. When it comes, you\'ve already met it.',
     quote: 'Let us prepare our minds as if we\'d come to the very end of life. Let us postpone nothing.',
     quoteAuthor: 'Seneca, On the Shortness of Life',
+    deepDive: null,
   },
 
   // ─── Cross-Cultural ────────────────────────────────────────────────────────
@@ -326,6 +354,7 @@ export const CARDS = [
     journey: 'A roped team on a technical route. A camp where everyone works. A stranger who shares water at a trailhead. Ubuntu is the recognition of what makes these moments feel right.',
     quote: 'I am because we are.',
     quoteAuthor: 'Ubuntu proverb, Nguni Bantu tradition',
+    deepDive: null,
   },
   {
     id: 'shinrinyoku', tradition: 'crosscultural', name: 'Shinrin-yoku', pronunciation: 'SHIN-rin YOH-koo', tag: 'FOREST BATHING',
@@ -334,6 +363,7 @@ export const CARDS = [
     journey: 'Walk slowly. No pace, no summit, no distance goal. Let the senses open — soil smell, canopy light, the sound of water. This is medicine, not metaphor.',
     quote: 'Between every two pine trees there is a door leading to a new way of life.',
     quoteAuthor: 'John Muir (handwritten note in his copy of Emerson\'s Prose Works, Beinecke Library, Yale)',
+    deepDive: null,
   },
   {
     id: 'wabisabi', tradition: 'crosscultural', name: 'Wabi-sabi', pronunciation: 'WAH-bee SAH-bee', tag: 'IMPERFECT BEAUTY',
@@ -342,6 +372,7 @@ export const CARDS = [
     journey: 'The cracked rock, the weathered sign, the imperfect campsite, the summit obscured by cloud — wabi-sabi is learning to see the rightness in all of it. Not consolation. Recognition.',
     quote: 'In contemporary Japan, wabi-sabi is often summarized as \'wisdom in natural simplicity.\'',
     quoteAuthor: 'Japanese aesthetic tradition',
+    deepDive: null,
   },
   {
     id: 'ikigai', tradition: 'crosscultural', name: 'Ikigai', pronunciation: 'ee-kee-GUY', tag: 'REASON FOR BEING',
@@ -350,6 +381,7 @@ export const CARDS = [
     journey: 'Days in wilderness have a way of clarifying ikigai. What you return to thinking about on long stretches of trail. What you already know but haven\'t yet committed to. The land makes it harder to avoid.',
     quote: 'If one has one\'s \'why?\' of life, one can get along with almost any \'how?\'',
     quoteAuthor: 'Nietzsche, Twilight of the Idols §12, as rendered by Viktor Frankl',
+    deepDive: null,
   },
   {
     id: 'talkingcircle', tradition: 'crosscultural', name: 'Talking Circle', pronunciation: 'TAW-king SER-kul', tag: 'COLLECTIVE WITNESS',
@@ -358,6 +390,7 @@ export const CARDS = [
     journey: 'Around a fire at the end of a hard day, the structure of the talking circle appears naturally. What would change if you held it consciously — if you gave each person that quality of attention?',
     quote: 'We do not inherit the earth from our ancestors; we borrow it from our children.',
     quoteAuthor: 'Proverb of uncertain origin; appears across Indigenous, African, and Western environmental traditions',
+    deepDive: null,
   },
 ];
 

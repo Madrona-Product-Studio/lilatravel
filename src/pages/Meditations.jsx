@@ -12,7 +12,7 @@
  * SVG principle marks from src/components/guide/PrincipleMarks.jsx.
  */
 
-import { useState, useRef, useEffect, useCallback } from 'react';
+import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import { useNavigate as useRouterNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { CARDS, CARD_PRINCIPLES } from '@data/cardDeck';
@@ -241,7 +241,25 @@ function CoverScreen() {
 // WELCOME SCREEN
 // ═══════════════════════════════════════════════════════════════════════════════
 
-function WelcomeScreen() {
+// ─── Card Back (face-down visual for shuffle animation) ─────────────────────
+// FLAG: New card-back component created — may want to reuse for other decks.
+function CardBack() {
+  return (
+    <div style={{
+      width: '100%', height: '100%',
+      background: C.oceanTeal,
+      borderRadius: 14,
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
+      boxShadow: '0 8px 40px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.08)',
+    }}>
+      <svg width="24" height="24" viewBox="0 0 10 10" fill="none" style={{ opacity: 0.18 }}>
+        <rect x="1" y="1" width="8" height="8" stroke="white" strokeWidth="1.5" transform="rotate(45 5 5)" />
+      </svg>
+    </div>
+  );
+}
+
+function WelcomeScreen({ onPullCard }) {
   return (
     <div style={{
       width: '100%', height: '100%',
@@ -310,14 +328,34 @@ function WelcomeScreen() {
         Return to the ones that stay.
       </div>
 
-      {/* Closing — anchored bottom */}
-      <div style={{
-        position: 'absolute', bottom: 36, left: 36,
-        fontSize: 12, fontFamily: SANS,
-        color: 'rgba(28,25,23,0.25)',
-        letterSpacing: '0.04em',
-      }}>
-        Some cards invite you deeper.
+      {/* Bottom zone — footer + pull CTA */}
+      <div style={{ position: 'absolute', bottom: 24, left: 36, right: 36 }}>
+        <div style={{
+          fontSize: 12, fontFamily: SANS,
+          color: 'rgba(28,25,23,0.25)',
+          letterSpacing: '0.04em',
+          marginBottom: 14,
+        }}>
+          Some cards invite you deeper.
+        </div>
+
+        {/* Hairline */}
+        <div style={{ height: '0.5px', background: 'rgba(28,25,23,0.08)', marginBottom: 14 }} />
+
+        {/* Pull a card CTA */}
+        <div
+          onClick={(e) => { e.stopPropagation(); onPullCard?.(); }}
+          style={{
+            display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+            cursor: 'pointer',
+            fontSize: 13, fontFamily: SANS, fontWeight: 500,
+            color: 'rgba(28,25,23,0.4)',
+            letterSpacing: '0.04em',
+          }}
+        >
+          <span>◈ Pull a card</span>
+          <span style={{ fontSize: 16 }}>→</span>
+        </div>
       </div>
     </div>
   );
@@ -949,10 +987,10 @@ function PracticeCardScreen({ card, principle, cardIndex, principleIndex = 0 }) 
 // PAGE COMPONENT
 // ═══════════════════════════════════════════════════════════════════════════════
 
-function renderScreen(scr) {
+function renderScreen(scr, { onPullCard } = {}) {
   if (!scr) return null;
   if (scr.type === 'cover') return <CoverScreen />;
-  if (scr.type === 'welcome') return <WelcomeScreen />;
+  if (scr.type === 'welcome') return <WelcomeScreen onPullCard={onPullCard} />;
   if (scr.type === 'orientation') return <ChaptersScreen />;
   if (scr.type === 'tradition') return <TraditionScreen key={scr.tradition.name} tradition={scr.tradition} />;
   if (scr.type === 'chapter') return <ChapterScreen key={`ch-${scr.principleIndex}`} principle={scr.principle} principleIndex={scr.principleIndex} />;
@@ -969,11 +1007,36 @@ export default function Meditations() {
   const [animating, setAnimating] = useState(false);
   const [animScreen, setAnimScreen] = useState(null);
   const [animType, setAnimType] = useState(null); // 'exit' | 'enter'
+  const [shufflePhase, setShufflePhase] = useState(null); // null | 'exit' | 'shuffle' | 'reveal'
+  const [drawnCardIndex, setDrawnCardIndex] = useState(null);
   const touchStartX = useRef(null);
   const touchStartY = useRef(null);
   const containerRef = useRef(null);
 
   const total = SCREENS.length;
+
+  // Card indices for random draw — only practice cards (type: 'card')
+  const cardIndices = useMemo(() =>
+    SCREENS.reduce((acc, s, i) => { if (s.type === 'card') acc.push(i); return acc; }, []),
+  []);
+
+  const handlePullCard = useCallback(() => {
+    if (animating || shufflePhase) return;
+    const randomIdx = cardIndices[Math.floor(Math.random() * cardIndices.length)];
+    setDrawnCardIndex(randomIdx);
+    setShufflePhase('exit');
+    // Phase 1: Begin exits (0-500ms)
+    setTimeout(() => setShufflePhase('shuffle'), 300);
+    // Phase 2: Shuffle (300-2000ms)
+    setTimeout(() => setShufflePhase('reveal'), 2050);
+    // Phase 3: Reveal (2050-2950ms)
+    setTimeout(() => {
+      setCurrentIndex(randomIdx);
+      setBaseIndex(randomIdx);
+      setShufflePhase(null);
+      setDrawnCardIndex(null);
+    }, 2950);
+  }, [animating, shufflePhase, cardIndices]);
 
   const navigate = useCallback((dir) => {
     if (animating) return;
@@ -1080,6 +1143,42 @@ export default function Meditations() {
           50%  { transform: rotateY(90deg)  scale(1.02) translateY(-4px); }
           100% { transform: rotateY(0deg)   scale(1)    translateY(0); }
         }
+        @keyframes pullCardExit {
+          0%   { opacity: 1; transform: translateY(0); }
+          100% { opacity: 0; transform: translateY(-12px); }
+        }
+        @keyframes pullCardShuffle0 {
+          0%   { opacity: 0; transform: translateX(0) rotate(0deg); }
+          8%   { opacity: 1; }
+          25%  { transform: translateX(25px) rotate(3.5deg); }
+          55%  { transform: translateX(-30px) rotate(-3.5deg); }
+          80%  { transform: translateX(15px) rotate(2deg); }
+          92%  { opacity: 1; }
+          100% { opacity: 0; transform: translateX(0) rotate(0deg); }
+        }
+        @keyframes pullCardShuffle1 {
+          0%   { opacity: 0; transform: translateX(0) rotate(0deg); }
+          8%   { opacity: 1; }
+          25%  { transform: translateX(-20px) rotate(-3deg); }
+          55%  { transform: translateX(28px) rotate(4deg); }
+          80%  { transform: translateX(-12px) rotate(-1.5deg); }
+          92%  { opacity: 1; }
+          100% { opacity: 0; transform: translateX(0) rotate(0deg); }
+        }
+        @keyframes pullCardShuffle2 {
+          0%   { opacity: 0; transform: translateX(0) rotate(0deg); }
+          8%   { opacity: 1; }
+          25%  { transform: translateX(18px) rotate(2.5deg); }
+          55%  { transform: translateX(-22px) rotate(-3deg); }
+          80%  { transform: translateX(10px) rotate(1.5deg); }
+          92%  { opacity: 1; }
+          100% { opacity: 0; transform: translateX(0) rotate(0deg); }
+        }
+        @keyframes pullCardReveal {
+          0%   { opacity: 0; transform: scale(0.92); }
+          30%  { opacity: 1; }
+          100% { opacity: 1; transform: scale(1); }
+        }
       `}</style>
 
       <div
@@ -1135,7 +1234,7 @@ export default function Meditations() {
           >
             {/* Base layer — stationary, never animates */}
             <div style={{ position: 'absolute', inset: 0, zIndex: 1 }}>
-              {renderScreen(SCREENS[baseIndex])}
+              {renderScreen(SCREENS[baseIndex], { onPullCard: handlePullCard })}
             </div>
 
             {/* Animation layer — deals off or stacks on */}
@@ -1147,6 +1246,46 @@ export default function Meditations() {
                   : 'stackOn 0.30s cubic-bezier(0.2, 0, 0.1, 1) forwards',
               }}>
                 {renderScreen(animScreen)}
+              </div>
+            )}
+
+            {/* Shuffle overlay — Pull a Card animation */}
+            {shufflePhase && (
+              <div style={{ position: 'absolute', inset: 0, zIndex: 10 }}>
+                {/* Phase 1: Begin card fades out */}
+                {shufflePhase === 'exit' && (
+                  <div style={{
+                    position: 'absolute', inset: 0,
+                    animation: 'pullCardExit 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards',
+                  }}>
+                    {renderScreen(SCREENS[1])}
+                  </div>
+                )}
+
+                {/* Phase 2: Three shuffling card backs */}
+                {shufflePhase === 'shuffle' && (
+                  <>
+                    {[0, 1, 2].map(i => (
+                      <div key={i} style={{
+                        position: 'absolute', inset: 0,
+                        animation: `pullCardShuffle${i} 1.7s cubic-bezier(0.45, 0, 0.25, 1) ${i * 50}ms both`,
+                      }}>
+                        <CardBack />
+                      </div>
+                    ))}
+                  </>
+                )}
+
+                {/* Phase 3: Drawn card reveals via flip */}
+                {shufflePhase === 'reveal' && drawnCardIndex !== null && (
+                  <div style={{
+                    position: 'absolute', inset: 0,
+                    animation: 'pullCardReveal 0.9s cubic-bezier(0.4, 0, 0.2, 1) forwards',
+                    transformStyle: 'preserve-3d',
+                  }}>
+                    {renderScreen(SCREENS[drawnCardIndex])}
+                  </div>
+                )}
               </div>
             )}
           </div>
