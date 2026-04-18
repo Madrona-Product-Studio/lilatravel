@@ -43,7 +43,7 @@ export const TRADITIONS = [
     description: 'Attributed to the sage Laozi, whose Tao Te Ching — 81 spare verses, about 5,000 characters — became one of history\'s most translated texts. Taoism arose as a counterpoint to Confucian formalism, insisting that nature, not ritual, was the truest teacher.',
     wild: 'The river, the mountain, the season — each shows what happens when nothing interferes. Wilderness is not backdrop. It is the teaching itself.',
     practice: 'Notice where you are forcing something today. See what happens if you ease instead.',
-    concepts: ['Wu Wei', 'Yin-Yang', 'Zhuangzi', 'P\'u', 'Te'],
+    concepts: ['Wu Wei', 'Yin-Yang', 'Zhuangzi', 'Pu', 'Te'],
   },
   {
     id: 'shinto',
@@ -79,7 +79,7 @@ export const TRADITIONS = [
     description: 'Some of the most useful wisdom for wild places doesn\'t belong to any single tradition. These concepts are drawn from Indigenous knowledge systems, Japanese philosophy, West African thought, and cross-cultural contemplative practice — each offering a distinct lens for moving through the natural world with awareness.',
     wild: 'The land holds wisdom that no single tradition owns. These practices are an invitation to listen across cultures — to find what resonates and carry it carefully.',
     practice: 'Take one of these concepts into the field. Try it for a day. See what it shows you.',
-    concepts: ['Ubuntu', 'Shinrin-yoku', 'Wabi-sabi', 'Ikigai', 'Talking Circle'],
+    concepts: ['Ubuntu', 'Shinrin-yoku', 'Wabi-sabi', 'Ikigai', 'Hózhó'],
   },
 ];
 
@@ -98,7 +98,7 @@ export const CARDS = [
         { term: 'Ahimsa', gloss: 'non-harming', description: 'In thought, word, and deed; toward self, other, and world.' },
         { term: 'Satya', gloss: 'truthfulness', description: 'Alignment between what is, what is known, and what is said.' },
         { term: 'Asteya', gloss: 'non-stealing', description: 'Of property, time, credit, attention, and the labor of others.' },
-        { term: 'Brahmacharya', gloss: 'right use of energy', description: 'The disciplined channeling of creative force.' },
+        { term: 'Brahmacharya', gloss: 'continence', description: 'Classically, sexual restraint. More broadly read: the disciplined use of generative energy.' },
         { term: 'Aparigraha', gloss: 'non-possessiveness', description: 'Keep only what is needed; release what grasps back.' },
       ],
     },
@@ -115,7 +115,7 @@ export const CARDS = [
       items: [
         { term: 'Nādī Shodhana', gloss: 'alternate nostril', description: 'Balancing breath; steadies the nervous system.' },
         { term: 'Ujjayi', gloss: 'victorious breath', description: 'Soft throat constriction; anchors attention.' },
-        { term: 'Kapālabhāti', gloss: 'skull-shining', description: 'Rapid exhales; cleansing and energizing.' },
+        { term: 'Bhastrikā', gloss: 'bellows breath', description: 'Rapid, forceful breathing; generates heat and energy.' },
         { term: 'Bhrāmarī', gloss: 'humming bee', description: 'Vibrating exhale; a shortcut to calm.' },
       ],
     },
@@ -130,9 +130,9 @@ export const CARDS = [
     deepDive: {
       shape: 'prose',
       paragraphs: [
-        { text: "Classical texts describe two levels. Sabīja — with seed — is absorption that still holds an object: breath, mantra, image. The mind is unified, but something is still being held." },
-        { text: "Nirbīja is absorption with nothing held. The one meditating, the act of meditation, and the thing meditated upon collapse into one." },
-        { text: "Samādhi is not produced by effort. It arises when every obstacle to it has been cleared. The first seven limbs do the clearing. The eighth is what remains." },
+        { text: 'Patañjali maps samādhi in stages. The broad divide: sabīja (with seed) — absorption that still holds an object. Nirbīja (seedless) — absorption with nothing held.' },
+        { text: 'In the deepest absorption, the distinction between the one meditating, the act, and the object thins and drops — what Patañjali calls samāpatti (YS 1.41).' },
+        { text: 'Samādhi is not something you manufacture. It is the fruit of long practice (abhyāsa) and letting go (vairāgya). The first seven limbs do the patient clearing. The eighth is what arises in the space they open.' },
       ],
     },
   },
@@ -146,9 +146,9 @@ export const CARDS = [
     deepDive: {
       shape: 'prose',
       paragraphs: [
-        { text: "The innermost self of a single person and the ultimate ground of all existence are not two things. What you are, at the deepest layer, is what everything is — seen from inside." },
-        { text: "The Upanishads state it as four mahāvākyas — great sayings. Tat tvam asi: that thou art. Aham brahmāsmi: I am Brahman. Not metaphor. A direct claim about what the self actually is." },
-        { text: "If true, separation is the illusion and unity is the default. Practice becomes quieting enough to notice what was already the case." },
+        { text: 'On the Advaita Vedānta reading, most famously argued by Śaṅkara (8th c.), the innermost self and the ultimate ground of existence are not two things. What you are, at the deepest layer, is what everything is — seen from inside.' },
+        { text: 'The Upaniṣads are read as stating this in four mahāvākyas, one from each Veda: Prajñānaṃ brahma (Aitareya 3.1.3). Aham brahmāsmi (Bṛhadāraṇyaka 1.4.10). Tat tvam asi (Chāndogya 6.8.7). Ayam ātmā brahma (Māṇḍūkya 2).' },
+        { text: 'Other Vedānta schools read the same verses differently — Rāmānuja as qualified oneness, Madhva as eternal distinction. The non-dual reading is powerful and not universal.' },
       ],
     },
   },
@@ -162,8 +162,8 @@ export const CARDS = [
     deepDive: {
       shape: 'prose',
       paragraphs: [
-        { text: "The Bhāgavata Purāṇa names nine forms of devotion — listening, singing, remembering, serving, worshipping, reverence, servitude, friendship, and total surrender. A devotee picks the form that suits their nature." },
-        { text: "All nine lead to the same place: the dissolving of separation between lover and beloved. The ninth, ātma-nivedanam — complete self-offering — is what the others prepare you for." },
+        { text: 'The Bhāgavata Purāṇa names nine forms of devotion — hearing, chanting, remembering, serving the feet, worship, prostration, servitude, friendship, and total self-offering (ātma-nivedanam). A devotee chooses the form that suits their nature.' },
+        { text: 'In the Gauḍīya tradition, the ninth — ātma-nivedanam — is often read as the culmination the others prepare you for. In Rūpa Gosvāmī\'s reading, any one of the nine, fully practiced, is enough.' },
       ],
     },
   },
@@ -179,9 +179,9 @@ export const CARDS = [
     deepDive: {
       shape: 'prose',
       paragraphs: [
-        { text: "Anicca is one of the three marks of existence alongside dukkha (suffering) and anattā (non-self). Everything conditioned arises and passes — not eventually, but continuously, at every scale." },
-        { text: "The teaching is not a counsel of despair. It is an invitation to full attention, because what is fleeting only exists now. Presence is the only form of keeping." },
-        { text: "Impermanence is not a problem to solve. It is the shape of reality, and the reason anything can ever be new." },
+        { text: 'Anicca is one of the three marks of existence alongside dukkha (suffering) and anattā (non-self). Everything conditioned arises and passes — not eventually, but moment by moment.' },
+        { text: 'The teaching is not a counsel of despair. It is an invitation to full attention, because what is fleeting only exists now. Presence is the only form of keeping.' },
+        { text: 'Impermanence is not a problem to solve. It is the shape of reality, and the reason anything can ever be new.' },
       ],
     },
   },
@@ -195,9 +195,9 @@ export const CARDS = [
     deepDive: {
       shape: 'prose',
       paragraphs: [
-        { text: "Thich Nhat Hanh's modern term for pratītyasamutpāda — dependent origination. Nothing arises on its own. Everything that exists depends on conditions that are themselves not it." },
-        { text: "Look deeply at any single thing — a flower, a thought, the person you think you are — and you find everything it is not. The boundary was always provisional." },
-        { text: "You are not an object moving through the world. You are a pattern the world is temporarily organized into." },
+        { text: 'Thich Nhat Hanh\'s term, rooted in dependent origination (pratītyasamutpāda) and the Avataṃsaka teaching of mutual interpenetration. Nothing arises on its own. Everything that exists depends on conditions that are themselves not it.' },
+        { text: 'Look deeply at any single thing — a flower, a thought, the person you think you are — and you find everything it is not. The boundary was always provisional.' },
+        { text: 'You are not an object moving through the world. You are a pattern the world is temporarily organized into.' },
       ],
     },
   },
@@ -227,11 +227,11 @@ export const CARDS = [
     deepDive: {
       shape: 'list',
       items: [
-        { term: 'Self', gloss: 'the hardest start', description: 'May I be well, may I be happy, may I be free from suffering.' },
+        { term: 'Self', gloss: 'classically the easiest start', description: 'May I be well, may I be happy, may I be free from suffering.' },
         { term: 'Benefactor', gloss: 'someone who helped', description: 'A teacher, mentor, or elder you respect.' },
         { term: 'Dear friend', gloss: 'uncomplicated love', description: "Someone whose face brings warmth." },
         { term: 'Neutral person', gloss: 'the barista test', description: 'Someone you neither like nor dislike.' },
-        { term: 'Difficult person', gloss: 'breaking the barrier', description: 'The real work of the practice.' },
+        { term: 'Difficult person', gloss: 'sīmāsambheda — breaking the barrier', description: 'The real work of the practice.' },
       ],
     },
   },
@@ -245,9 +245,9 @@ export const CARDS = [
     deepDive: {
       shape: 'prose',
       paragraphs: [
-        { heading: 'Not nothing', text: 'Śūnyatā is not the claim that nothing exists. It is the claim that nothing exists independently, on its own side.' },
-        { heading: 'Two truths', text: "Nāgārjuna taught that reality is described at two levels — the conventional (what we navigate daily) and the ultimate (what it is made of). Both are true. Neither cancels the other." },
-        { heading: 'The turn', text: "Form is emptiness; emptiness is form. The mountain is real. The 'mountain' is also a story." },
+        { heading: 'Not nothing', text: 'Śūnyatā is not the claim that nothing exists. It is the claim that nothing exists independently — nothing has inherent being of its own.' },
+        { heading: 'Two truths', text: 'Nāgārjuna taught that the Buddha\'s teaching works at two levels — the conventional (how we navigate daily life) and the ultimate (that nothing has inherent existence). Both are true. Neither cancels the other.' },
+        { heading: 'The turn', text: 'The Heart Sūtra\'s line: "Form is emptiness; emptiness is form." The mountain is real. The "mountain" is also a story.' },
       ],
     },
   },
@@ -263,9 +263,9 @@ export const CARDS = [
     deepDive: {
       shape: 'prose',
       paragraphs: [
-        { text: "Wu wei does not mean doing nothing. It means acting so completely in accord with a situation that no friction is generated. The author leaves no trace in the work." },
-        { text: "The Tao Te Ching says it in a single line: 'The Tao never acts, yet nothing is left undone.' Not passivity. Absence of forcing." },
-        { text: "You know it in your body — the climb where you stop fighting the mountain and start reading it. The conversation where you stop preparing your reply and just listen. The shift, when it happens, is wu wei." },
+        { text: 'Wu wei does not mean doing nothing. It means acting so completely in accord with a situation that no friction is generated. The author leaves no trace in the work.' },
+        { text: 'In the Tao Te Ching, wu wei names both a personal practice and a political ideal — the sage-ruler who governs by not-interfering. "The Tao never acts, yet nothing is left undone." Not passivity. Absence of forcing.' },
+        { text: 'You know it in your body — the climb where you stop fighting the mountain and start reading it. The conversation where you stop preparing your reply and just listen. The shift, when it happens, is wu wei.' },
       ],
     },
   },
@@ -279,9 +279,9 @@ export const CARDS = [
     deepDive: {
       shape: 'prose',
       paragraphs: [
-        { text: "Yin and yang are not good and evil. They are not even opposites — they are complements, each carrying the seed of the other." },
-        { text: "Yin is receptive, dark, cool, inward. Yang is active, bright, warm, outward. Neither is the destination. Life happens at their interplay." },
-        { text: "The famous symbol shows it: two teardrops curling into each other, and at the heart of each, a dot of the other color. Nothing pure. Nothing final." },
+        { text: 'Yin and yang are not good and evil. They are not even opposites — they are complements, each carrying the seed of the other.' },
+        { text: 'Yin is receptive, dark, cool, inward. Yang is active, bright, warm, outward. Neither is the destination. Life happens at their interplay.' },
+        { text: 'The idea predates Daoism — it is rooted in the Yijing and pan-Chinese cosmology; the Tao Te Ching mentions it only once (ch. 42). The familiar symbol — two halves curling into each other, each holding a dot of the other — is a much later diagram, systematized by the 11th-century Neo-Confucian Zhou Dunyi. The idea is older than the picture.' },
       ],
     },
   },
@@ -296,25 +296,25 @@ export const CARDS = [
       shape: 'list',
       items: [
         { term: 'Cook Ding', gloss: 'the ox', description: "After nineteen years, the cook's blade is still sharp. He cuts by following the spaces between joints, never forcing." },
-        { term: 'Butterfly dream', gloss: 'self and other', description: 'Zhuang Zhou dreams he is a butterfly. Waking, he wonders which one is dreaming the other.' },
+        { term: 'Butterfly dream', gloss: 'the transformation of things', description: 'Zhuang Zhou dreams he is a butterfly. Waking, he wonders which one is dreaming the other. Zhuangzi calls this wuhua — things turning into things.' },
         { term: 'The useless tree', gloss: 'survival through uselessness', description: 'A gnarled tree is spared the axe because no one finds it good for lumber.' },
       ],
       closingParagraph: 'Each parable undoes a fixed view. Reading Zhuangzi is less about learning than about being gently loosened.',
     },
   },
   {
-    id: 'pu', tradition: 'taoism', name: 'P\'u', pronunciation: 'poo', tag: 'THE UNCARVED BLOCK',
-    teaching: 'P\'u (朴) — the uncarved block — represents original, unshaped nature before conditioning and convention impose their patterns. The block contains all possibilities precisely because nothing has been imposed on it yet.',
+    id: 'pu', tradition: 'taoism', name: 'Pu', pronunciation: 'poo', tag: 'THE UNCARVED BLOCK',
+    teaching: 'Pu (朴) — the uncarved block — represents original, unshaped nature before conditioning and convention impose their patterns. The block contains all possibilities precisely because nothing has been imposed on it yet.',
     origin: 'A key metaphor recurring in the Tao Te Ching (Chapters 15, 19, 28, 32, 37). Laozi taught that returning to this state of natural simplicity is the path of the sage — not through effort, but through releasing what has been accumulated.',
-    journey: 'After enough days in wilderness, something softens. The roles, the performances, the accumulated personality — they quiet. What remains is closer to p\'u. Not nothing. Original something.',
+    journey: 'After enough days in wilderness, something softens. The roles, the performances, the accumulated personality — they quiet. What remains is closer to Pu. Not nothing. Original something.',
     quote: 'Return to the uncarved block.',
     quoteAuthor: 'Laozi, Tao Te Ching, Chapter 28',
     deepDive: {
       shape: 'prose',
       paragraphs: [
-        { text: "P'u (朴) is the uncarved block of wood — raw, unshaped, still containing every possibility. Once carved, the block becomes a specific thing and loses the others." },
-        { text: "Laozi returns to this image throughout the Tao Te Ching. Not as metaphor, but as instruction: return to p'u. Unlearn what was imposed. Recover what was given." },
-        { text: "The sage is not a person who has accumulated wisdom. The sage is a person who has stopped accumulating, and found what was always underneath." },
+        { text: 'Pu (朴) is the uncarved block of wood — raw, unshaped, still containing every possibility. Once carved, the block becomes a specific thing and loses the others.' },
+        { text: 'Laozi returns to this image throughout the Tao Te Ching (chs. 15, 19, 28, 32, 37). Not as metaphor, but as instruction: return to pu. Unlearn what was imposed. Recover what was given.' },
+        { text: 'The sage is not a person who has accumulated wisdom. The sage is a person who has stopped accumulating, and found what was always underneath.' },
       ],
     },
   },
@@ -328,9 +328,9 @@ export const CARDS = [
     deepDive: {
       shape: 'prose',
       paragraphs: [
-        { text: "Te (德) is the Tao as it manifests in a particular thing — the specific virtue, integrity, or force that allows a being to be fully itself. A tree's te is its treeness." },
-        { text: "It is half the title of the Tao Te Ching — literally The Classic of the Way and Its Power. Tao is the whole; te is how the whole shows up in each thing." },
-        { text: "Te is visible when nothing obstructs it. A hawk riding a thermal. A river finding grade. Your own best hour, when you stopped performing and something authentic came through." },
+        { text: 'Te (德) is the Tao as it manifests in a particular thing — the specific virtue, integrity, or force that allows a being to be fully itself. A tree\'s te is its treeness.' },
+        { text: 'It is the second character in the book\'s title — often rendered "The Classic of the Way and Its Power" (Waley), though te has also been translated virtue, efficacy, or inner potency. Tao is the whole; te is how the whole shows up in each thing.' },
+        { text: 'Te is visible when nothing obstructs it. A hawk riding a thermal. A river finding grade. Your own best hour, when you stopped performing and something authentic came through.' },
       ],
     },
   },
@@ -346,9 +346,9 @@ export const CARDS = [
     deepDive: {
       shape: 'prose',
       paragraphs: [
-        { text: "Kami are often translated as gods, but the word does not mean what 'god' means in the West. Kami are not creators, rulers, or judges. They are the sacred as it shows up in specific things." },
-        { text: "A mountain can be kami. A waterfall. A very old tree. An ancestor. A moment of awe itself. The phrase yaoyorozu no kami — eight million kami — is not a census. It is a poetic way of saying innumerable." },
-        { text: "Kami do not require belief. They ask for attention. That is the whole theology." },
+        { text: 'Kami are often translated as gods, but the word does not mean what "God" means in the Abrahamic sense. Kami are not creators of the world ex nihilo, not all-ruling, not final judges — though specific kami do create, rule, and judge within the mythological record.' },
+        { text: 'A mountain can be kami. A waterfall. A very old tree. An ancestor. A moment of awe itself. The phrase yaoyorozu no kami — eight million kami — is not a census. It is a poetic way of saying innumerable.' },
+        { text: 'Kami do not require belief. They ask for attention. That is the whole theology.' },
       ],
     },
   },
@@ -362,9 +362,9 @@ export const CARDS = [
     deepDive: {
       shape: 'prose',
       paragraphs: [
-        { text: "Musubi is the generative force that binds things together — what makes separate elements become a living relationship. Not connection in the abstract. The actual pulse of it." },
-        { text: "In the Kojiki, two of the three primordial deities of creation are named musubi. It is the first named force in Shinto cosmology — older than the world's structure, more primary than form itself." },
-        { text: "You feel musubi working in moments of unexpected coherence. A trail-team that starts to move as one body. A conversation where the words arrive before you choose them." },
+        { text: 'Musubi is the generative force that binds things together — what makes separate elements become a living relationship. Not connection in the abstract. The actual pulse of it.' },
+        { text: 'In the Kojiki (712 CE), two of the first three primordial deities carry the musubi element in their names: Takami-musubi and Kami-musubi. It is among the earliest named forces in Shinto cosmology.' },
+        { text: 'You feel musubi working in moments of unexpected coherence. A trail-team that starts to move as one body. A conversation where the words arrive before you choose them.' },
       ],
     },
   },
@@ -394,9 +394,9 @@ export const CARDS = [
     deepDive: {
       shape: 'prose',
       paragraphs: [
-        { text: "Satoyama is the threshold between wild mountain and human settlement — managed woodlands, terraced fields, forest edges. Not pristine wilderness. Not development. The middle." },
-        { text: "The Japanese insight is that this edge is often where biodiversity peaks. Life clusters at thresholds. The hedgerow holds more species than either the field or the forest on its own." },
-        { text: "Satoyama is also a way of living. It assumes that good human presence shapes land without dominating it — stewarding rather than preserving or extracting." },
+        { text: 'Satoyama is the threshold between wild mountain and human settlement — managed woodlands, terraced fields, forest edges. Not pristine wilderness. Not development. The middle.' },
+        { text: 'It echoes a general ecological observation — life clusters at thresholds — that Japanese practice has lived inside for centuries. The hedgerow holds more species than either the field or the forest on its own.' },
+        { text: 'Satoyama is also a way of living. It assumes that good human presence shapes land without dominating it — stewarding rather than preserving or extracting.' },
       ],
     },
   },
@@ -407,16 +407,16 @@ export const CARDS = [
     pronunciation: 'MOH-noh no ah-WAH-ray',
     tag: 'THE PATHOS OF THINGS',
     teaching: "The bittersweet awareness that beauty is fleeting — and is more beautiful because it is fleeting. The cherry blossom in full bloom is not diminished by knowing it will fall tomorrow. It is made more precious by it.",
-    origin: "Traced to Heian-period literature (794–1185), particularly The Tale of Genji by Murasaki Shikibu — widely considered the world's first novel. The word 'aware' appears over a thousand times in the text. The concept was formally articulated by the 18th-century scholar Motoori Norinaga as the heart of Japanese aesthetic sensibility.",
+    origin: "Traced to Heian-period literature (794–1185), particularly The Tale of Genji by Murasaki Shikibu — the earliest extant psychological novel. The word 'aware' appears over a thousand times in the text. The concept was formally articulated by the 18th-century scholar Motoori Norinaga in Tama no Ogushi (1799) as the heart of Japanese aesthetic sensibility.",
     journey: "In wild places, mono no aware meets you without effort. Alpenglow on a peak, visible for four minutes. The last autumn leaf before it falls. The stillness after a thunderstorm. Let the beauty hurt, a little. That small ache is the teaching.",
     quote: "To know mono no aware is to discern the power and essence, not just of the moon and the cherry blossoms, but of every single thing existing in this world, and to be stirred by each of them.",
     quoteAuthor: "Motoori Norinaga, The Tale of Genji: A Little Jeweled Comb (1799)",
     deepDive: {
       shape: 'prose',
       paragraphs: [
-        { text: "Not sadness, exactly. The Heian word aware was originally an exclamation — ah! — used for anything that struck the heart deeply. Joy, love, sorrow, wonder. It is the full emotional response to being alive to something." },
-        { text: "Mono no aware is what happens when that response meets the knowledge that what moved you is already passing. The cherry blossom moves you more because it will fall." },
-        { text: "The West sometimes resists impermanence. Mono no aware accepts it and finds that acceptance deepens feeling rather than blunting it." },
+        { text: 'Not sadness, exactly. The Heian word aware was originally an exclamation — ah! — used for anything that struck the heart deeply. Joy, love, sorrow, wonder. It is the full emotional response to being alive to something.' },
+        { text: 'Mono no aware is what happens when that response meets the knowledge that what moved you is already passing. The cherry blossom moves you more because it will fall.' },
+        { text: 'Where contemporary culture often treats impermanence as loss, mono no aware finds that accepting it deepens feeling rather than blunting it.' },
       ],
     },
   },
@@ -432,10 +432,10 @@ export const CARDS = [
     deepDive: {
       shape: 'list',
       items: [
-        { term: 'Yours', gloss: 'to shape', description: 'Judgments, intentions, responses, attention, effort.' },
-        { term: 'Not yours', gloss: 'to shape', description: 'Body, reputation, outcomes, weather, others.' },
+        { term: 'Yours', gloss: 'to shape', description: 'Judgments, impulses, desires, aversions — what Epictetus calls "our own doing."' },
+        { term: 'Not yours', gloss: 'to shape', description: 'Body, property, reputation, office, outcomes — what is not our own doing.' },
       ],
-      closingParagraph: "The work is returning attention, again and again, to the first column. The rest takes care of itself — or doesn't, and neither is up to you.",
+      closingParagraph: 'The work is returning attention, again and again, to the first column. The rest takes care of itself — or doesn\'t, and neither is up to you.',
     },
   },
   {
@@ -448,11 +448,12 @@ export const CARDS = [
     deepDive: {
       shape: 'list',
       items: [
-        { term: 'Wisdom', gloss: 'prudence', description: 'Seeing things as they are, not as fear or desire paints them.' },
-        { term: 'Justice', gloss: 'fairness', description: 'Acting rightly in relation to others; the common good.' },
-        { term: 'Courage', gloss: 'fortitude', description: 'Doing what is right when it is costly, frightening, or uncertain.' },
-        { term: 'Temperance', gloss: 'self-control', description: 'Choosing long-term flourishing over short-term satisfaction.' },
+        { term: 'Wisdom', gloss: 'prudence', description: 'Knowledge of what is good, bad, and indifferent.' },
+        { term: 'Justice', gloss: 'fairness', description: 'Knowledge of how to act rightly toward others; the common good.' },
+        { term: 'Courage', gloss: 'fortitude', description: 'Knowledge of what is and is not to be feared.' },
+        { term: 'Temperance', gloss: 'self-control', description: 'Knowledge of what to choose and what to avoid.' },
       ],
+      closingParagraph: 'For the Stoics, these aren\'t four separate traits but four faces of a single knowledge. You have all, or none.',
     },
   },
   {
@@ -465,9 +466,9 @@ export const CARDS = [
     deepDive: {
       shape: 'prose',
       paragraphs: [
-        { text: "Not mere acceptance. Love. The Stoics taught that resistance to what is causes suffering; willing embrace of what is creates freedom." },
-        { text: "The Latin phrase was coined by Nietzsche — 'Amor fati: let that be my love henceforth' — but the practice runs throughout Marcus Aurelius and Epictetus centuries earlier." },
-        { text: "It is the hardest Stoic discipline because it asks more than patience with fate. It asks you to find what the difficulty makes possible, and to say yes to that." },
+        { text: 'Not mere acceptance. Love. The Stoics taught that resistance to what is causes suffering; willing embrace of what is creates freedom.' },
+        { text: 'Epictetus put it plainly: "Do not seek to have events happen as you want them, but want them to happen as they do." The Latin phrase amor fati was coined later by Nietzsche — "Amor fati: let that be my love henceforth!" — but the disposition runs through Marcus Aurelius and Epictetus centuries earlier.' },
+        { text: 'It is the hardest Stoic discipline because it asks more than patience with fate. It asks you to find what the difficulty makes possible, and to say yes to that.' },
       ],
     },
   },
@@ -481,9 +482,9 @@ export const CARDS = [
     deepDive: {
       shape: 'prose',
       paragraphs: [
-        { text: "The Stoic practice of deliberately contemplating mortality. Not as morbidity, but as clarifying force. Remember that you will die, and ask: what matters, given this?" },
-        { text: "Marcus Aurelius returned to it throughout his journal. Seneca made it the subject of entire letters. Not to darken life but to sharpen priority — to see what deserves your hours and what doesn't." },
-        { text: "The reminder is not 'you are going to die' as despair. It is 'you are going to die' as clarity — and therefore: do what matters now, and release what doesn't." },
+        { text: 'The practice of deliberately contemplating mortality — not as morbidity, but as clarifying force. Remember that you will die, and ask: what matters, given this?' },
+        { text: 'The practice itself — meletē thanatou, "rehearsing death" — runs straight through the Stoics from Plato\'s Phaedo. The Latin phrase memento mori comes to us through later Christian use, but Marcus Aurelius and Seneca were practicing it by other names — not to darken life but to sharpen priority.' },
+        { text: 'The reminder is not "you are going to die" as despair. It is "you are going to die" as clarity — and therefore: do what matters now, and release what doesn\'t.' },
       ],
     },
   },
@@ -497,9 +498,9 @@ export const CARDS = [
     deepDive: {
       shape: 'prose',
       paragraphs: [
-        { text: "The Stoic practice of mentally rehearsing what could go wrong — not to induce anxiety, but to dissolve it. By imagining the worst, you discover you can handle it." },
-        { text: "Seneca taught it as a morning discipline: name what might come today. An injury. A loss. An insult. Then rehearse how you would meet each with virtue intact." },
-        { text: "When difficulty arrives unrehearsed, it surprises and overwhelms. When it has already been met in imagination, it arrives as familiar weather. You have already done the work." },
+        { text: 'The Stoic practice of mentally rehearsing what could go wrong — not to induce anxiety, but to remove its power to surprise. By imagining the worst, you discover you can handle it.' },
+        { text: 'Seneca practiced it as a habitual discipline; Marcus Aurelius made it his morning ritual. The opening of Meditations 2.1: "At daybreak tell yourself — I shall meet with the busybody, the ungrateful, the arrogant, the deceitful, the envious."' },
+        { text: 'When difficulty arrives unrehearsed, it surprises and overwhelms. When it has already been met in imagination, it arrives as familiar weather. You have already done the work.' },
       ],
     },
   },
@@ -515,9 +516,9 @@ export const CARDS = [
     deepDive: {
       shape: 'prose',
       paragraphs: [
-        { text: "Ubuntu is a philosophical stance from the Nguni and Bantu peoples of southern Africa. Its core phrase — umuntu ngumuntu ngabantu — translates as 'a person is a person through other persons.'" },
-        { text: "Western individualism begins with a discrete self and wonders how to connect. Ubuntu begins with relationship and understands the individual as what emerges from it. The order is reversed." },
-        { text: "To be ubuntu is to recognize that your humanity is tied to mine. When you harm me, you diminish yourself. When you help me flourish, you flourish. This is not metaphor. It is social physics." },
+        { text: 'Ubuntu is a philosophical tradition from Bantu-speaking southern Africa — most often named in the Nguni languages (Zulu, Xhosa), and present under other names: unhu in Shona, botho in Sotho and Tswana. Its Nguni proverb — umuntu ngumuntu ngabantu — translates as "a person is a person through other persons."' },
+        { text: 'Western individualism begins with a discrete self and wonders how to connect. Ubuntu begins with relationship and understands the individual as what emerges from it. The order is reversed.' },
+        { text: 'The older communal ethic is ancient; its systematic articulation as public philosophy is more recent — shaped by Desmond Tutu, Mogobe Ramose, and the post-apartheid reconciliation tradition. To be ubuntu is to recognize that your humanity is tied to mine. When you harm me, you diminish yourself. When you help me flourish, you flourish. This is not metaphor. It is an ethics of being.' },
       ],
     },
   },
@@ -532,10 +533,10 @@ export const CARDS = [
       shape: 'list',
       subtitle: 'Measured Effects',
       items: [
-        { term: 'Cortisol', gloss: 'stress hormone', description: 'Lower levels after just 15–30 minutes among trees.' },
-        { term: 'Immune cells', gloss: 'NK activity', description: 'Increased natural killer cell function, linked to forest phytoncides.' },
-        { term: 'Blood pressure', gloss: 'cardiovascular', description: 'Measurable decrease in both systolic and diastolic readings.' },
-        { term: 'Attention', gloss: 'cognitive restoration', description: 'Recovery of directed attention depleted by urban life.' },
+        { term: 'Cortisol', gloss: 'stress hormone', description: 'Lower levels after short exposures — 15–30 minutes among trees.' },
+        { term: 'Blood pressure', gloss: 'cardiovascular', description: 'Modest, short-term reductions in systolic and diastolic readings.' },
+        { term: 'Immune cells', gloss: 'NK activity', description: 'Increased natural killer cell function after multi-day forest trips (Qing Li).' },
+        { term: 'Attention', gloss: 'a convergent tradition', description: 'Kaplan\'s attention restoration theory finds nature exposure replenishes directed attention.' },
       ],
     },
   },
@@ -549,10 +550,10 @@ export const CARDS = [
     deepDive: {
       shape: 'list',
       items: [
-        { term: 'Wabi', gloss: 'simplicity', description: 'The spiritual richness of what is simple, solitary, and unadorned.' },
-        { term: 'Sabi', gloss: 'age', description: 'The serene beauty that comes with wear, weathering, and the passage of time.' },
+        { term: 'Wabi', gloss: 'simplicity in solitude', description: 'Originally "desolation" or "lament of poverty." Transvalued by the tea masters (Murata Jukō, Sen no Rikyū) into the spiritual richness of what is simple and unadorned.' },
+        { term: 'Sabi', gloss: 'the beauty of age', description: 'Originally "to wither, grow lonely." In the poetics of Bashō, the serene beauty that comes with wear, weathering, and the passage of time.' },
       ],
-      closingParagraph: "Combined, wabi-sabi is an aesthetic of imperfection. The crack in the teacup. The moss on the stone. What is finished, polished, or new is often less beautiful than what has been lived in.",
+      closingParagraph: 'Historically distinct terms from distinct Japanese lineages. The unified compound "wabi-sabi" as a single aesthetic was crystallized for non-Japanese readers by Leonard Koren\'s 1994 book. The crack in the teacup, the moss on the stone — both halves together give us beauty in imperfection.',
     },
   },
   {
@@ -565,27 +566,25 @@ export const CARDS = [
     deepDive: {
       shape: 'prose',
       paragraphs: [
-        { text: "The Japanese psychiatrist Mieko Kamiya — the foundational academic voice on ikigai — distinguished two parts. Ikigai-taishō: the source of meaning (a child, a craft, a morning ritual). Ikigai-kan: the felt sense that life is worth living." },
-        { text: "The familiar four-circle Venn diagram — love, good at, world needs, paid for — is not Japanese. It was created in 2014 by a British blogger adapting an earlier purpose diagram. Japanese speakers do not recognize it." },
-        { text: "Real ikigai is quieter. It is less the grand purpose and more the many small things that make rising worth the effort. A garden. A dog. A kind message." },
+        { text: 'The Japanese psychiatrist Mieko Kamiya — the foundational academic voice on ikigai — distinguished two parts. Ikigai-taishō: the source of meaning (a child, a craft, a morning ritual). Ikigai-kan: the felt sense that life is worth living. Kamiya developed her framework working with patients at Nagashima Aiseien, a Hansen\'s disease quarantine facility.' },
+        { text: 'The familiar four-circle Venn diagram — love, good at, world needs, paid for — is not Japanese. It was created in 2014 by a British blogger adapting an earlier purpose diagram. Japanese ikigai scholars do not recognize it as authentic.' },
+        { text: 'Real ikigai is quieter. It is less the grand purpose and more the many small things that make rising worth the effort. A garden. A dog. A kind message.' },
       ],
     },
   },
   {
-    id: 'talkingcircle', tradition: 'crosscultural', name: 'Talking Circle', pronunciation: 'TAW-king SER-kul', tag: 'COLLECTIVE WITNESS',
-    teaching: 'A practice from many Indigenous North American traditions: people gather in a circle, a speaking object is passed, and each person speaks from the heart without interruption. Everyone listens fully. No debate, no advice — only witness.',
-    origin: 'Used across many Indigenous cultures including Lakota, Ojibwe, and others as a method for council, decision-making, and healing. The circle itself is the teaching — everyone is equal in it, everyone is heard.',
-    journey: 'Around a fire at the end of a hard day, the structure of the talking circle appears naturally. What would change if you held it consciously — if you gave each person that quality of attention?',
-    quote: 'We do not inherit the earth from our ancestors; we borrow it from our children.',
-    quoteAuthor: 'Proverb of uncertain origin; appears across Indigenous, African, and Western environmental traditions',
+    id: 'hozho', tradition: 'crosscultural', name: 'Hózhó', pronunciation: 'HOH-zho', tag: 'WALK IN BEAUTY',
+    teaching: 'A Diné (Navajo) concept for the state of being in balance, beauty, harmony, and right relationship with the world. Not a momentary feeling but a way of walking — restored through ceremony when it is lost, and cultivated deliberately when it is present.',
+    origin: 'Central to Diné worldview and language. Formally expressed in the Blessingway ceremony (Hózhǫ́ǫ́jí), documented in Wyman & Haile\'s Blessingway (1970) and Witherspoon\'s Language and Art in the Navajo Universe (1977). The foundational blessing — Sa\'ah naagháí bik\'eh hózhǫ́ — closes with the word itself.',
+    journey: 'Wilderness is where hózhó is most visible without translation. The mesa at dawn. The slow river through canyon. The animal whose movements fit the land they move through. Diné teachers speak of walking in beauty — not metaphor, but attention.',
+    quote: 'In beauty I walk. With beauty before me I walk. With beauty behind me I walk. With beauty above me I walk. With beauty all around me I walk.',
+    quoteAuthor: 'Diné Blessingway prayer (traditional)',
     deepDive: {
-      shape: 'list',
-      subtitle: 'What Makes It Work',
-      items: [
-        { term: 'The circle', gloss: 'the shape itself', description: 'No head, no foot. Everyone is seen; everyone sees.' },
-        { term: 'A speaking object', gloss: 'passed in turn', description: 'Only the one holding it speaks. Everyone else listens.' },
-        { term: 'No interruption', gloss: 'no exception', description: 'Silence holds until the speaker hands the object on.' },
-        { term: 'No debate, no advice', gloss: 'witness only', description: 'The goal is not to respond, fix, or correct. The goal is to hear.' },
+      shape: 'prose',
+      paragraphs: [
+        { text: 'Hózhó has no single English translation. Scholars render it beauty, balance, harmony, order, wellness — and each word catches one facet only. The Diné concept holds all of these as aspects of one state: right relationship with everything that is.' },
+        { text: 'When hózhó is disturbed — by illness, conflict, grief — ceremony restores it. The Blessingway is one such ceremony; others include the Beauty Way and the Night Chant. The restoration is not symbolic. It is the work.' },
+        { text: 'Hózhó is not a state you enter once and stay in. It is a path you walk. The phrase for the path itself — sa\'ah naagháí bik\'eh hózhǫ́ — is the closing line of many Diné prayers.' },
       ],
     },
   },
