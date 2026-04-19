@@ -19,13 +19,25 @@ export async function saveItinerary({ formData, rawItinerary, destination, itera
     };
     if (tripLogistics) row.trip_logistics = tripLogistics;
 
-    const { data, error } = await supabase
+    // Try insert with one retry on failure
+    let data, error;
+    ({ data, error } = await supabase
       .from('itineraries')
       .insert(row)
       .select('id')
-      .single();
+      .single());
 
-    if (error) { console.error('saveItinerary failed:', error); return null; }
+    if (error) {
+      console.warn('saveItinerary: first attempt failed, retrying...', error.message);
+      await new Promise(r => setTimeout(r, 1500));
+      ({ data, error } = await supabase
+        .from('itineraries')
+        .insert(row)
+        .select('id')
+        .single());
+    }
+
+    if (error) { console.error('saveItinerary failed after retry:', error); return null; }
 
     // If this is a refinement, migrate the share token from the old row
     if (previousItineraryId && data.id) {

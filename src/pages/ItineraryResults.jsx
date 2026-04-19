@@ -4449,9 +4449,30 @@ export default function ItineraryResults() {
             console.error('saveItinerary returned null — trip not persisted');
             setSaveError(true);
           }
-        }).catch(err => {
-          console.error('saveItinerary failed:', err);
-          setSaveError(true);
+        }).catch(async (err) => {
+          console.warn('saveItinerary: first attempt failed, retrying...', err.message);
+          // One retry after 2 seconds
+          try {
+            await new Promise(r => setTimeout(r, 2000));
+            const retryId = await saveItinerary({
+              formData,
+              rawItinerary,
+              destination: formData?.destination,
+              iteration: 0,
+              tripLogistics,
+            });
+            if (retryId) {
+              try { sessionStorage.setItem('lila_itinerary_id', retryId); } catch {}
+              setItineraryId(retryId);
+              setSaveError(false);
+            } else {
+              console.error('saveItinerary failed after retry');
+              setSaveError(true);
+            }
+          } catch (retryErr) {
+            console.error('saveItinerary retry failed:', retryErr);
+            setSaveError(true);
+          }
         });
       }
 
@@ -4462,8 +4483,9 @@ export default function ItineraryResults() {
         const idx = trips.findIndex(t => t.id === tripId || t.groupId === tripId);
         if (idx !== -1) {
           trips[idx].title = tripTitle || itinerary.title || trips[idx].title;
+          // Only set a /trip/ path if we have a confirmed share token or itinerary ID in the DB
           if (shareToken) trips[idx].path = `/trip/${shareToken}`;
-          else if (itineraryId) trips[idx].path = `/trip/${itineraryId}`;
+          else if (itineraryId && !saveError) trips[idx].path = `/trip/${itineraryId}`;
           trips[idx].groupId = tripId;
           localStorage.setItem('lila_trips', JSON.stringify(trips));
           window.dispatchEvent(new Event('lila_trips_changed'));
