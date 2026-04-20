@@ -79,12 +79,12 @@ export default function EthosPage() {
         <meta property="og:description" content="The philosophy behind Lila Trips. How we think about land, travel, wellness, and what it means to move through a place with care." />
         <meta property="og:url" content="https://lilatrips.com/ethos" />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://lilatrips.com/og-image.png" />
+        <meta property="og:image" content="https://lilatrips.com/og-image.jpg" />
         <meta property="og:image:alt" content="Our Ethos — Lila Trips" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Our Ethos — Sacred Terrain, Ancient Practices & Reciprocity | Lila Trips" />
         <meta name="twitter:description" content="The philosophy behind Lila Trips. How we think about land, travel, wellness, and what it means to move through a place with care." />
-        <meta name="twitter:image" content="https://lilatrips.com/og-image.png" />
+        <meta name="twitter:image" content="https://lilatrips.com/og-image.jpg" />
       </Helmet>
       <Nav />
 

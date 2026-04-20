@@ -4018,7 +4018,6 @@ export default function ItineraryResults() {
         setLoadingShared(false);
         return;
       }
-      console.log('[SharedTrip] loaded', { id: data.id });
       setRawItinerary(data.rawItinerary);
       setItineraryId(data.id);
       setLoadingShared(false);
@@ -4500,9 +4499,7 @@ export default function ItineraryResults() {
   useEffect(() => {
     // Need the API-slug destination (e.g. 'big-sur', not 'bigSur')
     const destSlug = metadata?.destination || formData?.destination;
-    console.log('[Alternatives] Guard check:', { isStructured, hasRaw: !!rawItinerary, destSlug, alternativesLoaded, alternativesLoading, hasRequested: hasRequestedAlts.current });
     if (!isStructured || !rawItinerary || !destSlug || alternativesLoaded || alternativesLoading || hasRequestedAlts.current) return;
-    console.log('[Alternatives] Fetching for destination:', destSlug);
     hasRequestedAlts.current = true;
     setAlternativesLoading(true);
 
@@ -4570,7 +4567,6 @@ export default function ItineraryResults() {
         });
         setAlternativesLoaded(true);
         setAlternativesLoading(false);
-        console.log('[Alternatives] Merged successfully', result.metadata?.timing);
       })
       .catch(err => {
         if (err.name === 'AbortError') return; // expected on refinement

@@ -199,12 +199,12 @@ export default function KauaiGuide() {
         <meta property="og:description" content="Kauai is not just a destination — it's a responsibility. Curated trails, sacred valleys, and a guide built around reciprocity with Hawaiian land and culture." />
         <meta property="og:url" content="https://lilatrips.com/destinations/kauai" />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://lilatrips.com/og-image.png" />
+        <meta property="og:image" content="https://lilatrips.com/og-image.jpg" />
         <meta property="og:image:alt" content="Kauai — Lila Trips" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Kauai Guide — Na Pali, Sacred Land & Intentional Travel | Lila Trips" />
         <meta name="twitter:description" content="Kauai is not just a destination — it's a responsibility. Curated trails, sacred valleys, and a guide built around reciprocity with Hawaiian land and culture." />
-        <meta name="twitter:image" content="https://lilatrips.com/og-image.png" />
+        <meta name="twitter:image" content="https://lilatrips.com/og-image.jpg" />
       </Helmet>
       <Nav breathConfig={breathConfig} breathValueRef={breathValueRef} />
 

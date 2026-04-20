@@ -212,12 +212,12 @@ export default function JoshuaTreeGuide() {
         <meta property="og:description" content="One of California's darkest skies, and one of its most fragile landscapes. A guide for travelers who come to listen, not just look." />
         <meta property="og:url" content="https://lilatrips.com/destinations/joshua-tree" />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://lilatrips.com/og-image.png" />
+        <meta property="og:image" content="https://lilatrips.com/og-image.jpg" />
         <meta property="og:image:alt" content="Joshua Tree — Lila Trips" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Joshua Tree Guide — Desert Stillness, Dark Sky & Low-Impact Travel | Lila Trips" />
         <meta name="twitter:description" content="One of California's darkest skies, and one of its most fragile landscapes. A guide for travelers who come to listen, not just look." />
-        <meta name="twitter:image" content="https://lilatrips.com/og-image.png" />
+        <meta name="twitter:image" content="https://lilatrips.com/og-image.jpg" />
       </Helmet>
       <Nav breathConfig={breathConfig} breathValueRef={breathValueRef} />
 

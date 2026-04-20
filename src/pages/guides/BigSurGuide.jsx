@@ -201,12 +201,12 @@ export default function BigSurGuide() {
         <meta property="og:description" content="Big Sur is slipping into the sea. A guide for travelers who want to experience it deeply and tread lightly while it's still here." />
         <meta property="og:url" content="https://lilatrips.com/destinations/big-sur" />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://lilatrips.com/og-image.png" />
+        <meta property="og:image" content="https://lilatrips.com/og-image.jpg" />
         <meta property="og:image:alt" content="Big Sur — Lila Trips" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Big Sur Guide — Coastal Wilderness, Hot Springs & Slow Travel | Lila Trips" />
         <meta name="twitter:description" content="Big Sur is slipping into the sea. A guide for travelers who want to experience it deeply and tread lightly while it's still here." />
-        <meta name="twitter:image" content="https://lilatrips.com/og-image.png" />
+        <meta name="twitter:image" content="https://lilatrips.com/og-image.jpg" />
       </Helmet>
       <Nav breathConfig={breathConfig} breathValueRef={breathValueRef} />
 

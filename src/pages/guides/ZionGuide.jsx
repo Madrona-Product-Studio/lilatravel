@@ -224,12 +224,12 @@ export default function ZionGuide() {
         <meta property="og:description" content="An editorial guide to Zion and its orbit — trails, dark sky, where to stay, and how to move through Southern Utah with intention." />
         <meta property="og:url" content="https://lilatrips.com/destinations/zion-canyon" />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://lilatrips.com/og-image.png" />
+        <meta property="og:image" content="https://lilatrips.com/og-image.jpg" />
         <meta property="og:image:alt" content="Zion — Lila Trips" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Zion Guide — Southern Utah Destination Guide | Lila Trips" />
         <meta name="twitter:description" content="An editorial guide to Zion and its orbit — trails, dark sky, where to stay, and how to move through Southern Utah with intention." />
-        <meta name="twitter:image" content="https://lilatrips.com/og-image.png" />
+        <meta name="twitter:image" content="https://lilatrips.com/og-image.jpg" />
       </Helmet>
       <Nav breathConfig={breathConfig} breathValueRef={breathValueRef} />
 

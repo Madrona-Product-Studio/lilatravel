@@ -162,9 +162,6 @@ ${itinerary}`;
       claudeApiMs: t3 - t2,
       totalMs: t3 - t0,
     };
-    console.log('[ALTERNATIVES TIMING]', JSON.stringify(timing));
-    console.log('[ALTERNATIVES USAGE]', JSON.stringify(response.usage));
-
     return res.status(200).json({
       success: true,
       alternatives,

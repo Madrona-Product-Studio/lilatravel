@@ -2397,12 +2397,12 @@ export default function PlanMyTrip() {
         <meta property="og:description" content="Answer a few questions about how you want to feel, and we'll build a personalized itinerary around your intentions, pace, and the land you're entering." />
         <meta property="og:url" content="https://lilatrips.com/plan" />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://lilatrips.com/og-image.png" />
+        <meta property="og:image" content="https://lilatrips.com/og-image.jpg" />
         <meta property="og:image:alt" content="Plan Your Trip — Lila Trips" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Plan Your Trip — Custom Itineraries for Mindful Adventure | Lila Trips" />
         <meta name="twitter:description" content="Answer a few questions about how you want to feel, and we'll build a personalized itinerary around your intentions, pace, and the land you're entering." />
-        <meta name="twitter:image" content="https://lilatrips.com/og-image.png" />
+        <meta name="twitter:image" content="https://lilatrips.com/og-image.jpg" />
       </Helmet>
       <div className="fixed top-0 left-0 right-0 z-[100] flex justify-between items-center pointer-events-none" style={{
         /* dynamic */

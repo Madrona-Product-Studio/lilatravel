@@ -154,9 +154,6 @@ export default async function handler(req, res) {
       claudeApiMs: t3 - t2,
       totalMs: t3 - t0,
     };
-    console.log('[TIMING]', JSON.stringify(timing));
-    console.log('[USAGE]', JSON.stringify(response.usage));
-
     // Send the full result as the final line and close
     res.write(JSON.stringify({
       success: true,

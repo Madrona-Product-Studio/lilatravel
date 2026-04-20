@@ -201,12 +201,12 @@ export default function VancouverIslandGuide() {
         <meta property="og:description" content="Old-growth cedar, orca-watched straits, and wild coastline. A guide for travelers who understand that some places ask more of you than a photo." />
         <meta property="og:url" content="https://lilatrips.com/destinations/vancouver-island" />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://lilatrips.com/og-image.png" />
+        <meta property="og:image" content="https://lilatrips.com/og-image.jpg" />
         <meta property="og:image:alt" content="Vancouver Island — Lila Trips" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Vancouver Island Guide — Ancient Forest, Pacific Shores & Mindful Travel | Lila Trips" />
         <meta name="twitter:description" content="Old-growth cedar, orca-watched straits, and wild coastline. A guide for travelers who understand that some places ask more of you than a photo." />
-        <meta name="twitter:image" content="https://lilatrips.com/og-image.png" />
+        <meta name="twitter:image" content="https://lilatrips.com/og-image.jpg" />
       </Helmet>
       <Nav breathConfig={breathConfig} breathValueRef={breathValueRef} />
 

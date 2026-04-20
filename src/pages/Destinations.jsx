@@ -21,12 +21,12 @@ export default function DestinationsPage() {
         <meta property="og:description" content="Curated destination guides for travelers seeking depth over distance. From Utah's canyon corridor to the Na Pali Coast — each place chosen for its capacity to transform." />
         <meta property="og:url" content="https://lilatrips.com/destinations" />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://lilatrips.com/og-image.png" />
+        <meta property="og:image" content="https://lilatrips.com/og-image.jpg" />
         <meta property="og:image:alt" content="Lila Trips Destinations" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Destinations — Zion, Joshua Tree, Big Sur & More | Lila Trips" />
         <meta name="twitter:description" content="Curated destination guides for travelers seeking depth over distance. From Utah's canyon corridor to the Na Pali Coast — each place chosen for its capacity to transform." />
-        <meta name="twitter:image" content="https://lilatrips.com/og-image.png" />
+        <meta name="twitter:image" content="https://lilatrips.com/og-image.jpg" />
       </Helmet>
       <Nav />
       <div style={{ marginBottom: -32 }}>

@@ -705,8 +705,6 @@ Please return the revised itinerary as a complete JSON object. Follow the same o
       .map(block => block.text)
       .join('\n');
 
-    console.log('[REFINE USAGE]', JSON.stringify(response.usage));
-
     // Fail fast if output was truncated — don't send broken JSON to the frontend
     if (response.stop_reason === 'max_tokens') {
       console.error(`[REFINE] Output truncated — hit max_tokens (${refinementMaxTokens}) for ${numDays}-day trip`);
