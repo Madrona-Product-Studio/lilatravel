@@ -15,7 +15,7 @@
 
 import { useState } from 'react';
 
-const WEB3FORMS_KEY = 'ff4efdd2-affd-4473-978e-01194e279da5';
+const WEB3FORMS_KEY = '0d48df75-d380-4710-817b-4bf6c56b7386';
 
 export default function FeedbackWidget({ source = 'Madrona App', accessKey = WEB3FORMS_KEY }) {
   const [open, setOpen] = useState(false);
