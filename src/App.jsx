@@ -52,6 +52,7 @@ import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-route
 import { useEffect, lazy, Suspense } from 'react';
 import { Analytics } from '@vercel/analytics/react';
 import { C } from '@data/brand';
+import FeedbackWidget from '@components/FeedbackWidget';
 
 // ─── Loading Spinner ─────────────────────────────────────────────────────────
 function LoadingSpinner() {
@@ -298,6 +299,7 @@ export default function App() {
         </Suspense>
       </BrowserRouter>
       <Analytics />
+      <FeedbackWidget source="Lila Trips" />
     </div>
   );
 }
