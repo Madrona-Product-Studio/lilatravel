@@ -1276,8 +1276,8 @@ export default function HomePage() {
       {/* ══ TRIP PLANNER CTA ═══════════════════════════════════════════ */}
       <TripPlannerSection />
 
-      {/* ══ PRACTICE LIBRARY ═══════════════════════════════════════════ */}
-      <PracticeLibrarySection />
+      {/* ══ PRACTICE LIBRARY — hidden while addressing feedback ═══════ */}
+      {/* <PracticeLibrarySection /> */}
 
       {/* ══ 5. CTA ═══════════════════════════════════════════════════════ */}
       <section className="relative overflow-hidden min-h-[600px]">

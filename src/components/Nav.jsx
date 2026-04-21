@@ -283,7 +283,7 @@ export default function Nav({ transparent = false, breathConfig = null, breathVa
   const links = [
     { label: "Destinations", to: "/destinations" },
     { label: "Ethos", to: "/ethos" },
-    { label: "Practice", to: "/practice" },
+    // { label: "Practice", to: "/practice" }, // Hidden while addressing feedback
     { label: "Group Trips", to: "/group-trips" },
   ];
 
