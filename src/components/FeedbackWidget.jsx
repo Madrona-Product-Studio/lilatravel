@@ -236,11 +236,11 @@ export default function FeedbackWidget({ source = 'Madrona App', accessKey = WEB
           width: 44,
           height: 44,
           borderRadius: '50%',
-          border: '0.5px solid rgba(255,255,255,0.15)',
-          background: 'rgba(255,255,255,0.25)',
+          border: '0.5px solid rgba(255,255,255,0.2)',
+          background: 'rgba(255,255,255,0.35)',
           backdropFilter: 'blur(12px)',
           WebkitBackdropFilter: 'blur(12px)',
-          color: INK_50,
+          color: 'rgba(255,255,255,0.85)',
           cursor: 'pointer',
           display: 'flex',
           alignItems: 'center',
@@ -253,14 +253,14 @@ export default function FeedbackWidget({ source = 'Madrona App', accessKey = WEB
         onMouseEnter={(e) => {
           e.currentTarget.style.transform = 'translateY(-1px)';
           e.currentTarget.style.boxShadow = '0 2px 4px rgba(0,0,0,0.06), 0 6px 16px rgba(0,0,0,0.08)';
-          e.currentTarget.style.color = INK;
-          e.currentTarget.style.borderColor = 'rgba(0,0,0,0.2)';
+          e.currentTarget.style.color = 'white';
+          e.currentTarget.style.borderColor = 'rgba(255,255,255,0.35)';
         }}
         onMouseLeave={(e) => {
           e.currentTarget.style.transform = 'translateY(0)';
           e.currentTarget.style.boxShadow = '0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.06)';
-          e.currentTarget.style.color = INK_50;
-          e.currentTarget.style.borderColor = 'rgba(0,0,0,0.12)';
+          e.currentTarget.style.color = 'rgba(255,255,255,0.85)';
+          e.currentTarget.style.borderColor = 'rgba(255,255,255,0.2)';
         }}
       >
         <BubbleIcon />
