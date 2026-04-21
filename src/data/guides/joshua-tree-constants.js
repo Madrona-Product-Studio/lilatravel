@@ -87,7 +87,7 @@ export const WILDLIFE = [
   { name: "Coyote", season: "Year-round", detail: "Listen for them at dusk. Their calls across the open desert are part of the sound of this place." },
   { name: "Roadrunner", season: "Year-round", detail: "Fast, curious, and frequently spotted along park roads and at campground edges." },
   { name: "Sidewinder Rattlesnake", season: "Warm months", detail: "Watch where you step and reach, especially in rocky areas. They're shy but present." },
-  { name: "Joshua Tree (Yucca brevifolia)", season: "Year-round", detail: "The park's namesake. Not actually a tree — a member of the agave family. Thrives only in the Mojave section above 3,000 ft." },
+  { name: "Joshua Tree", season: "Year-round", detail: "The park's namesake. Not actually a tree — a member of the agave family. Thrives only in the Mojave section above 3,000 ft." },
 ];
 
 export const TIMING_WINDOWS = [

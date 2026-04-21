@@ -71,7 +71,7 @@ export const WILDLIFE = [
   { name: 'Gray Whale', detail: 'Northward migration peaks March\u2013April offshore from Long Beach and the headlands. One of the most reliable cetacean viewing windows on the Pacific coast. Ahousaht-guided tours recommended.' },
   { name: 'Black Bear', detail: 'Foraging along the rocky intertidal shores of Clayoquot Sound. Best viewed by zodiac with an experienced guide. Spring through fall is the active season.' },
   { name: 'Sea Otter', detail: 'Reintroduced to the west coast of Vancouver Island in the 1970s after being hunted to local extinction. Now thriving in kelp beds around Tofino and Ucluelet.' },
-  { name: 'Orca (Killer Whale)', detail: 'Resident and transient pods move through the Strait of Juan de Fuca and Clayoquot Sound. Sightings are seasonal and unpredictable \u2014 but unforgettable when they happen.' },
+  { name: 'Orca', detail: 'Resident and transient pods move through the Strait of Juan de Fuca and Clayoquot Sound. Sightings are seasonal and unpredictable \u2014 but unforgettable when they happen.' },
 ];
 
 export const HIGHLIGHTS = [

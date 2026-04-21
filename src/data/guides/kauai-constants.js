@@ -98,8 +98,8 @@ export const TIMING_WINDOWS = [
 
 export const WILDLIFE = [
   { name: 'Hawaiian Monk Seal', detail: 'One of the most endangered marine mammals on earth. Regularly hauls out on Kauai beaches to rest. If you see one, stay 50 feet back and do not disturb. Report sightings to NOAA.' },
-  { name: 'Nene (Hawaiian Goose)', detail: 'The state bird and the world\u2019s rarest goose. Found in Kilauea National Wildlife Refuge and at higher elevations. Evolved from Canada Geese that landed on the islands 500,000 years ago.' },
-  { name: 'Green Sea Turtle (Honu)', detail: 'Common at Poipu Beach and Tunnels Beach. Protected by federal law \u2014 maintain at least 10 feet of distance. They\u2019ve been navigating these waters for 150 million years.' },
+  { name: 'Hawaiian Goose', detail: 'The state bird and the world\u2019s rarest goose. Found in Kilauea National Wildlife Refuge and at higher elevations. Evolved from Canada Geese that landed on the islands 500,000 years ago.' },
+  { name: 'Green Sea Turtle', detail: 'Common at Poipu Beach and Tunnels Beach. Protected by federal law \u2014 maintain at least 10 feet of distance. They\u2019ve been navigating these waters for 150 million years.' },
 ];
 
 // ─── Island Areas (editorial) ───────────────────────────────────────────────

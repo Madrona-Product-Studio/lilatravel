@@ -128,7 +128,7 @@ export const WILDLIFE_GROUPS = [
     label: "Plants",
     accent: C.seaGlass,
     entries: [
-      { name: "Desert Wildflowers", parks: ["Zion", "Capitol Reef"], season: "Mar – Apr", detail: "After a wet winter, the canyon floor erupts — sacred datura, cliffrose, scarlet gilia, and prickly pear in bloom. Capitol Reef's orchards blossom simultaneously, for one of the most extraordinary weeks in Utah." },
+      { name: "Sacred Datura", parks: ["Zion", "Capitol Reef"], season: "Mar – Oct", detail: "The canyon's most striking wildflower — large white trumpet blooms that open at dusk and close by morning. After a wet winter, it joins cliffrose, scarlet gilia, and prickly pear across the canyon floor." },
       { name: "Fremont Cottonwood", parks: ["Zion", "Capitol Reef"], season: "Late Sep – Oct", detail: "The cottonwoods lining the Virgin River and Capitol Reef's Fremont River turn gold in late September. A transformation that lasts only a few weeks — the quiet crescendo most visitors don't know to look for." },
       { name: "Bristlecone Pine", parks: ["Bryce Canyon"], season: "Year-round", detail: "Among the oldest living organisms on Earth — some individuals exceed 1,600 years. Found at Bryce's highest elevations, twisted by wind, stripped to silver by weather. They look like they've seen everything. They have." },
     ],
