@@ -93,7 +93,7 @@ function CheckIcon({ size = 24 }) {
 
 const FONT = "'Quicksand', system-ui, sans-serif";
 const INK = '#1C1917';
-const INK_50 = 'rgba(28,25,23,0.5)';
+const INK_60 = 'rgba(28,25,23,0.6)';
 const INK_35 = 'rgba(28,25,23,0.35)';
 const INK_12 = 'rgba(28,25,23,0.12)';
 const INK_08 = 'rgba(28,25,23,0.08)';
@@ -282,8 +282,8 @@ export default function FeedbackWidget({ source = 'Madrona App', accessKey = WEB
             WebkitBackdropFilter: reducedMotion ? 'none' : 'blur(2px)',
             display: 'flex',
             alignItems: 'flex-end',
-            justifyContent: 'center',
-            padding: '16px 24px 24px',
+            justifyContent: 'flex-end',
+            padding: '16px 24px 80px',
           }}
         >
           <style>{`
@@ -291,8 +291,8 @@ export default function FeedbackWidget({ source = 'Madrona App', accessKey = WEB
               from { transform: translateY(8px) scale(0.98); opacity: 0; }
               to { transform: translateY(0) scale(1); opacity: 1; }
             }
-            @media (min-width: 480px) {
-              #feedback-modal-wrap { align-items: center !important; }
+            @media (max-width: 479px) {
+              #feedback-modal-wrap { padding: 16px 16px 72px !important; }
             }
           `}</style>
 
@@ -325,7 +325,7 @@ export default function FeedbackWidget({ source = 'Madrona App', accessKey = WEB
                   {thanks.title}
                 </div>
                 <div style={{
-                  fontSize: 13, color: INK_50, lineHeight: 1.6,
+                  fontSize: 13, color: INK_60, lineHeight: 1.6,
                   maxWidth: 300, margin: '0 auto 20px',
                 }}>
                   {thanks.body}
@@ -340,7 +340,7 @@ export default function FeedbackWidget({ source = 'Madrona App', accessKey = WEB
                     fontFamily: FONT,
                     fontSize: 13,
                     fontWeight: 500,
-                    color: INK_50,
+                    color: INK_60,
                     cursor: 'pointer',
                   }}
                 >
@@ -375,12 +375,12 @@ export default function FeedbackWidget({ source = 'Madrona App', accessKey = WEB
 
                 <div style={{ padding: '0 24px 20px' }}>
                   {/* Subheader */}
-                  <div style={{ fontSize: 13, color: INK_50, marginBottom: 16, lineHeight: 1.5 }}>
+                  <div style={{ fontSize: 14, color: INK_60, marginBottom: 16, lineHeight: 1.5 }}>
                     Your thoughts help us shape what comes next.
                   </div>
 
                   {/* Sentiment label */}
-                  <div style={{ fontSize: 13, color: INK_50, marginBottom: 10 }}>
+                  <div style={{ fontSize: 14, color: INK, marginBottom: 10, fontWeight: 500 }}>
                     How was this?
                   </div>
 
@@ -408,7 +408,7 @@ export default function FeedbackWidget({ source = 'Madrona App', accessKey = WEB
                             borderRadius: 8,
                             border: selected ? `0.5px solid ${INK_35}` : `0.5px solid transparent`,
                             background: selected ? CARD_BG : 'rgba(28,25,23,0.03)',
-                            color: selected ? INK : INK_50,
+                            color: selected ? INK : INK_60,
                             cursor: 'pointer',
                             fontFamily: FONT,
                             fontSize: 12,
@@ -426,7 +426,7 @@ export default function FeedbackWidget({ source = 'Madrona App', accessKey = WEB
                             if (!selected) {
                               e.currentTarget.style.background = 'rgba(28,25,23,0.03)';
                               e.currentTarget.style.borderColor = 'transparent';
-                              e.currentTarget.style.color = INK_50;
+                              e.currentTarget.style.color = INK_60;
                             }
                           }}
                         >
@@ -448,7 +448,7 @@ export default function FeedbackWidget({ source = 'Madrona App', accessKey = WEB
                     {tagSet && (
                       <>
                         {/* Tag label */}
-                        <div style={{ fontSize: 13, color: INK_50, marginBottom: 8 }}>
+                        <div style={{ fontSize: 14, color: INK, fontWeight: 500, marginBottom: 8 }}>
                           {tagSet.label} <span style={{ opacity: 0.7 }}>(optional)</span>
                         </div>
 
@@ -463,14 +463,14 @@ export default function FeedbackWidget({ source = 'Madrona App', accessKey = WEB
                                 aria-pressed={selected}
                                 onClick={() => setTag(selected ? null : t)}
                                 style={{
-                                  padding: '5px 11px',
-                                  fontSize: 12,
+                                  padding: '6px 12px',
+                                  fontSize: 13,
                                   fontFamily: FONT,
                                   fontWeight: 500,
                                   borderRadius: 14,
                                   border: `0.5px solid ${selected ? INK : INK_12}`,
                                   background: selected ? INK : 'transparent',
-                                  color: selected ? 'white' : INK_50,
+                                  color: selected ? 'white' : INK_60,
                                   cursor: 'pointer',
                                   transition: reducedMotion ? 'none' : 'all 0.15s',
                                 }}
@@ -483,7 +483,7 @@ export default function FeedbackWidget({ source = 'Madrona App', accessKey = WEB
                                 onMouseLeave={(e) => {
                                   if (!selected) {
                                     e.currentTarget.style.borderColor = INK_12;
-                                    e.currentTarget.style.color = INK_50;
+                                    e.currentTarget.style.color = INK_60;
                                   }
                                 }}
                               >
@@ -498,7 +498,7 @@ export default function FeedbackWidget({ source = 'Madrona App', accessKey = WEB
                     {prompt && (
                       <>
                         {/* Text label */}
-                        <label htmlFor="feedback-text" style={{ display: 'block', fontSize: 13, color: INK_50, marginBottom: 6 }}>
+                        <label htmlFor="feedback-text" style={{ display: 'block', fontSize: 14, color: INK, fontWeight: 500, marginBottom: 6 }}>
                           {prompt.label}
                         </label>
                         <textarea
@@ -526,9 +526,9 @@ export default function FeedbackWidget({ source = 'Madrona App', accessKey = WEB
                           onBlur={(e) => { e.currentTarget.style.borderColor = INK_12; }}
                         />
                         <div style={{
-                          fontSize: 11,
+                          fontSize: 12,
                           fontStyle: 'italic',
-                          color: INK_35,
+                          color: INK_60,
                           marginTop: 4,
                         }}>
                           We read every response.
@@ -559,7 +559,7 @@ export default function FeedbackWidget({ source = 'Madrona App', accessKey = WEB
                         fontFamily: FONT,
                         fontSize: 13,
                         fontWeight: 600,
-                        color: INK_50,
+                        color: INK_60,
                         cursor: 'pointer',
                       }}
                     >
