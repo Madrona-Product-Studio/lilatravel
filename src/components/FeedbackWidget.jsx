@@ -118,7 +118,7 @@ function usePrefersReducedMotion() {
 // COMPONENT
 // ═══════════════════════════════════════════════════════════════════════════════
 
-export default function FeedbackWidget({ source = 'Madrona App', className }) {
+export default function FeedbackWidget({ source = 'Madrona App', className, hideOnPaths = [], showAfterScroll = 0 }) {
   const [open, setOpen] = useState(false);
   const [sentiment, setSentiment] = useState(null); // 'loved' | 'okay' | 'off'
   const [tag, setTag] = useState(null);
@@ -126,11 +126,43 @@ export default function FeedbackWidget({ source = 'Madrona App', className }) {
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(null);
+  const [scrolledPast, setScrolledPast] = useState(showAfterScroll === 0);
 
   const fabRef = useRef(null);
   const modalRef = useRef(null);
   const firstSentimentRef = useRef(null);
   const reducedMotion = usePrefersReducedMotion();
+
+  // ─── Hide on specific paths ─────────────────────────────────────────────
+  const [hidden, setHidden] = useState(false);
+  useEffect(() => {
+    const check = () => {
+      const path = window.location.pathname;
+      setHidden(hideOnPaths.some(p => path.startsWith(p)));
+    };
+    check();
+    // Re-check on popstate (SPA navigation)
+    window.addEventListener('popstate', check);
+    // Also observe pushState/replaceState for react-router
+    const origPush = history.pushState;
+    const origReplace = history.replaceState;
+    history.pushState = function() { origPush.apply(this, arguments); check(); };
+    history.replaceState = function() { origReplace.apply(this, arguments); check(); };
+    return () => {
+      window.removeEventListener('popstate', check);
+      history.pushState = origPush;
+      history.replaceState = origReplace;
+    };
+  }, [hideOnPaths]);
+
+  // ─── Show after scroll threshold ────────────────────────────────────────
+  useEffect(() => {
+    if (showAfterScroll === 0) { setScrolledPast(true); return; }
+    const handler = () => setScrolledPast(window.scrollY >= showAfterScroll);
+    window.addEventListener('scroll', handler, { passive: true });
+    handler(); // check initial position
+    return () => window.removeEventListener('scroll', handler);
+  }, [showAfterScroll]);
 
   const animDuration = reducedMotion ? '0ms' : '350ms';
   const revealDuration = reducedMotion ? '0ms' : '300ms';
@@ -212,8 +244,12 @@ export default function FeedbackWidget({ source = 'Madrona App', className }) {
   const prompt = sentiment ? PROMPTS[sentiment] : null;
   const thanks = sentiment ? THANKS[sentiment] : null;
   const canSubmit = !!sentiment && !submitting;
+  const fabVisible = !open && !hidden && scrolledPast;
 
   // ─── Render ─────────────────────────────────────────────────────────────
+
+  // Don't render anything if hidden on this path
+  if (hidden && !open) return null;
 
   return (
     <>
@@ -242,8 +278,8 @@ export default function FeedbackWidget({ source = 'Madrona App', className }) {
           justifyContent: 'center',
           boxShadow: '0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.06)',
           transition: reducedMotion ? 'none' : 'opacity 0.25s, transform 0.2s, box-shadow 0.2s, color 0.2s, border-color 0.2s',
-          opacity: open ? 0 : 1,
-          pointerEvents: open ? 'none' : 'auto',
+          opacity: fabVisible ? 1 : 0,
+          pointerEvents: fabVisible ? 'auto' : 'none',
         }}
         onMouseEnter={(e) => {
           e.currentTarget.style.transform = 'translateY(-1px)';

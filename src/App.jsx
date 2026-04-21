@@ -299,7 +299,7 @@ export default function App() {
         </Suspense>
       </BrowserRouter>
       <Analytics />
-      <FeedbackWidget source="Lila Trips" />
+      <FeedbackWidget source="Lila Trips" hideOnPaths={['/plan']} showAfterScroll={400} />
     </div>
   );
 }
