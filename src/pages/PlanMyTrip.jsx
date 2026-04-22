@@ -820,7 +820,7 @@ function StepWelcome({ onNext }) {
                     marginBottom: 4,
                   }}>{f.label}</div>
                   <div className="font-body font-normal leading-[1.45]" style={{
-                    fontSize: 11,
+                    fontSize: 13,
                     color: `${C.slate}88`,
                   }}>{f.desc}</div>
                 </div>
@@ -859,7 +859,7 @@ function StepWelcome({ onNext }) {
                     marginBottom: 4,
                   }}>{f.label}</div>
                   <div className="font-body font-normal leading-[1.45]" style={{
-                    fontSize: 11,
+                    fontSize: 13,
                     color: `${C.slate}88`,
                   }}>{f.desc}</div>
                 </div>
