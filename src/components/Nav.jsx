@@ -2,10 +2,12 @@
 // NAV — shared navigation across all pages
 // ═══════════════════════════════════════════════════════════════════════════════
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { C } from '@data/brand';
 import { trackEvent } from '@utils/analytics';
+import { useAuth } from '@/contexts/AuthContext';
+import { supabase } from '@services/supabaseClient';
 import useBreathCanvas from '@hooks/useBreathCanvas';
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
@@ -43,10 +45,10 @@ function SuitcaseIcon({ color, size = 20 }) {
 
 // ─── Trip Dropdown ───────────────────────────────────────────────────────────
 
-function TripDropdown({ trips, onSelect, onDelete, onNewTrip, onClose }) {
+function TripDropdown({ trips, onSelect, onDelete, onNewTrip, onSignIn, onClose }) {
   const [confirmId, setConfirmId] = useState(null);
   return (
-    <div className="absolute top-[calc(100%+10px)] right-0 w-[280px] max-h-[360px] overflow-y-auto bg-warm-white border border-stone rounded-lg shadow-[0_8px_32px_rgba(0,0,0,0.10)] z-[200] font-body">
+    <div className="absolute top-[calc(100%+10px)] right-0 w-[280px] max-h-[400px] overflow-y-auto bg-warm-white border border-stone rounded-lg shadow-[0_8px_32px_rgba(0,0,0,0.10)] z-[200] font-body">
       {/* Header */}
       <div className="px-4 pt-3.5 pb-2 text-[10px] font-bold tracking-[0.18em] uppercase text-[#8a8278]">
         My Trips
@@ -100,12 +102,148 @@ function TripDropdown({ trips, onSelect, onDelete, onNewTrip, onClose }) {
       ))}
 
       {/* Footer */}
-      <div className="px-4 pt-3 pb-3.5">
+      <div className="px-4 pt-3 pb-3.5 flex flex-col gap-2">
         <button
           onClick={onNewTrip}
           className="w-full py-2.5 border border-dark-ink bg-transparent cursor-pointer rounded font-body text-[11px] font-bold tracking-[0.16em] uppercase text-dark-ink transition-all hover:bg-dark-ink hover:text-white"
         >
           Plan a New Trip
+        </button>
+        {onSignIn && (
+          <button
+            onClick={onSignIn}
+            className="w-full py-2 border border-stone bg-transparent cursor-pointer rounded font-body text-[11px] font-bold tracking-[0.16em] uppercase text-[#8a8278] transition-all hover:border-dark-ink hover:text-dark-ink"
+          >
+            Sign In to Save Trips
+          </button>
+        )}
+      </div>
+    </div>
+  );
+}
+
+// ─── Person Icon (sign-in prompt, matches suitcase style) ───────────────────
+
+function PersonIcon({ color, size = 20 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="8" r="4" />
+      <path d="M4 21c0-4 3.6-7 8-7s8 3 8 7" />
+    </svg>
+  );
+}
+
+// ─── User Avatar (logged-in, shows Google photo or initial) ─────────────────
+
+function UserAvatar({ user, size = 28 }) {
+  const avatar = user.user_metadata?.avatar_url;
+  const initial = user.user_metadata?.full_name?.[0]
+    || user.email?.[0]?.toUpperCase()
+    || '?';
+
+  if (avatar) {
+    return (
+      <img
+        src={avatar}
+        alt=""
+        style={{ width: size, height: size, borderRadius: '50%', objectFit: 'cover' }}
+        referrerPolicy="no-referrer"
+      />
+    );
+  }
+
+  return (
+    <div style={{
+      width: size, height: size, borderRadius: '50%',
+      background: C.oceanTeal, color: 'white',
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
+      fontSize: size * 0.45, fontWeight: 600, fontFamily: "'Quicksand', sans-serif",
+    }}>
+      {initial}
+    </div>
+  );
+}
+
+// ─── Unified dropdown (trips + account) ─────────────────────────────────────
+
+function AccountDropdown({ user, trips, onSelect, onDelete, onNewTrip, onSignOut, onClose }) {
+  const [confirmId, setConfirmId] = useState(null);
+  return (
+    <div className="absolute top-[calc(100%+10px)] right-0 w-[280px] max-h-[420px] overflow-y-auto bg-warm-white border border-stone rounded-lg shadow-[0_8px_32px_rgba(0,0,0,0.10)] z-[200] font-body">
+      {/* User info header */}
+      <div className="px-4 pt-3.5 pb-2 border-b border-stone">
+        <div className="text-sm font-semibold text-dark-ink whitespace-nowrap overflow-hidden text-ellipsis">
+          {user.user_metadata?.full_name || 'My Account'}
+        </div>
+        <div className="text-[11px] text-[#8a8278] mt-0.5 whitespace-nowrap overflow-hidden text-ellipsis">
+          {user.email}
+        </div>
+      </div>
+
+      {/* My Trips section */}
+      <div className="px-4 pt-3 pb-1.5 text-[10px] font-bold tracking-[0.18em] uppercase text-[#8a8278]">
+        My Trips
+      </div>
+
+      {trips.length === 0 && (
+        <div className="px-4 pt-1 pb-3 text-[13px] text-[#8a8278]">
+          No trips yet
+        </div>
+      )}
+      {trips.map(trip => (
+        <div
+          key={trip.id}
+          className="flex items-center px-4 py-2.5 cursor-pointer transition-colors border-b border-stone hover:bg-black/[0.03]"
+          onClick={() => onSelect(trip)}
+        >
+          <div className="flex-1 min-w-0">
+            <div className="text-sm font-semibold text-dark-ink whitespace-nowrap overflow-hidden text-ellipsis">
+              {trip.title || trip.destination || 'Your Trip'}
+            </div>
+            <div className="text-[11px] text-[#8a8278] mt-0.5">
+              {timeAgo(trip.generatedAt)}
+            </div>
+          </div>
+          {confirmId === trip.id ? (
+            <div className="flex gap-1.5 shrink-0" onClick={e => e.stopPropagation()}>
+              <button
+                onClick={() => { onDelete(trip.id); setConfirmId(null); }}
+                className="bg-none border-none cursor-pointer px-1.5 py-0.5 text-[11px] font-semibold font-body text-[#b55] rounded transition-opacity"
+              >
+                Remove
+              </button>
+              <button
+                onClick={() => setConfirmId(null)}
+                className="bg-none border-none cursor-pointer px-1.5 py-0.5 text-[11px] font-semibold font-body text-[#8a8278] rounded transition-opacity"
+              >
+                Keep
+              </button>
+            </div>
+          ) : (
+            <button
+              onClick={e => { e.stopPropagation(); setConfirmId(trip.id); }}
+              className="bg-none border-none cursor-pointer px-1.5 py-1 text-base text-[#8a8278] leading-none shrink-0 rounded transition-colors hover:text-dark-ink"
+              title="Remove trip"
+            >
+              ×
+            </button>
+          )}
+        </div>
+      ))}
+
+      {/* Footer: New Trip + Sign Out */}
+      <div className="px-4 pt-3 pb-3.5 flex flex-col gap-2">
+        <button
+          onClick={onNewTrip}
+          className="w-full py-2.5 border border-dark-ink bg-transparent cursor-pointer rounded font-body text-[11px] font-bold tracking-[0.16em] uppercase text-dark-ink transition-all hover:bg-dark-ink hover:text-white"
+        >
+          Plan a New Trip
+        </button>
+        <button
+          onClick={() => { onSignOut(); onClose(); }}
+          className="w-full py-2 border border-stone bg-transparent cursor-pointer rounded font-body text-[11px] font-bold tracking-[0.16em] uppercase text-[#8a8278] transition-all hover:border-dark-ink hover:text-dark-ink"
+        >
+          Sign Out
         </button>
       </div>
     </div>
@@ -206,8 +344,10 @@ function MobileMenu({ open, links, onClose }) {
 export default function Nav({ transparent = false, breathConfig = null, breathValueRef = null }) {
   const location = useLocation();
   const navigate = useNavigate();
+  const { user, signIn, signOut } = useAuth();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
 
   const navRef = useRef(null);
   const navBreathRef = useRef(null);
@@ -245,26 +385,72 @@ export default function Nav({ transparent = false, breathConfig = null, breathVa
 
   const [tripsOpen, setTripsOpen] = useState(false);
 
+  // Fetch trips from DB when logged in, merge with localStorage
+  const fetchUserTrips = useCallback(async () => {
+    if (!user) return;
+    try {
+      const { data, error } = await supabase
+        .from('itineraries')
+        .select('id, destination, title, share_token, created_at')
+        .eq('user_id', user.id)
+        .not('share_token', 'is', null)
+        .order('created_at', { ascending: false })
+        .limit(10);
+
+      if (error) { console.error('fetchUserTrips:', error); return; }
+
+      const dbTrips = (data || []).map(row => ({
+        id: row.id,
+        path: `/trip/${row.share_token}`,
+        destination: row.destination || 'Your Trip',
+        title: row.title || null,
+        generatedAt: new Date(row.created_at).getTime(),
+      }));
+
+      // If DB has trips, use those. Otherwise keep localStorage trips
+      // (they may not have been claimed yet if the API isn't available)
+      if (dbTrips.length > 0) {
+        setTrips(dbTrips);
+        localStorage.setItem('lila_trips', JSON.stringify(dbTrips));
+        window.dispatchEvent(new Event('lila_trips_changed'));
+      }
+      // else: keep existing localStorage trips as-is
+    } catch (e) {
+      console.error('fetchUserTrips exception:', e);
+    }
+  }, [user]);
+
   useEffect(() => {
-    const sync = () => setTrips(readTrips());
+    if (user) {
+      fetchUserTrips();
+    }
+  }, [user, fetchUserTrips]);
+
+  useEffect(() => {
+    const sync = () => {
+      if (!user) setTrips(readTrips());
+    };
     window.addEventListener('focus', sync);
     window.addEventListener('lila_trips_changed', sync);
     return () => {
       window.removeEventListener('focus', sync);
       window.removeEventListener('lila_trips_changed', sync);
     };
-  }, []);
+  }, [user]);
 
   useEffect(() => {
-    if (!tripsOpen) return;
+    if (!tripsOpen && !userMenuOpen) return;
     const handler = (e) => {
-      if (!e.target.closest('[data-trips-container]')) {
+      if (tripsOpen && !e.target.closest('[data-trips-container]')) {
         setTripsOpen(false);
+      }
+      if (userMenuOpen && !e.target.closest('[data-user-menu]')) {
+        setUserMenuOpen(false);
       }
     };
     document.addEventListener('mousedown', handler);
     return () => document.removeEventListener('mousedown', handler);
-  }, [tripsOpen]);
+  }, [tripsOpen, userMenuOpen]);
 
   useEffect(() => {
     const h = () => setScrolled(window.scrollY > 60);
@@ -276,6 +462,7 @@ export default function Nav({ transparent = false, breathConfig = null, breathVa
   useEffect(() => {
     setMenuOpen(false);
     setTripsOpen(false);
+    setUserMenuOpen(false);
   }, [location.pathname]);
 
   const showSolid = scrolled || !transparent;
@@ -307,36 +494,86 @@ export default function Nav({ transparent = false, breathConfig = null, breathVa
     setTripsOpen(false);
   };
 
-  const suitcaseColor = C.goldenAmber;
+  const iconColor = C.goldenAmber;
 
-  const renderSuitcase = () => (
-    <div data-trips-container className="relative inline-flex">
-      <button
-        onClick={() => { setTripsOpen(prev => !prev); }}
-        className="relative flex items-center bg-none border-none cursor-pointer p-1"
-        title="My Trips"
-      >
-        <SuitcaseIcon color={suitcaseColor} />
-        {trips.length > 0 && (
-          <span
-            className="absolute -top-[5px] -right-[7px] min-w-4 h-4 rounded-full bg-golden-amber flex items-center justify-center text-[9px] font-bold text-white font-body px-1"
-            style={{ border: `1.5px solid ${showSolid ? C.warmWhite : 'rgba(0,0,0,0.3)'}` }}
+  // Unified icon: person (logged out) or avatar (logged in) — one icon to rule them all
+  const renderAccountIcon = (avatarSize = 26) => {
+    if (user) {
+      // Logged in — avatar with trip count badge, opens unified dropdown
+      return (
+        <div data-user-menu className="relative inline-flex">
+          <button
+            onClick={() => setUserMenuOpen(prev => !prev)}
+            className="relative flex items-center bg-none border-none cursor-pointer p-1 rounded-full transition-opacity hover:opacity-80"
+            title="My Trips"
           >
-            {trips.length}
-          </span>
-        )}
+            <UserAvatar user={user} size={avatarSize} />
+            {trips.length > 0 && (
+              <span
+                className="absolute -top-[5px] -right-[7px] min-w-4 h-4 rounded-full bg-golden-amber flex items-center justify-center text-[9px] font-bold text-white font-body px-1"
+                style={{ border: `1.5px solid ${showSolid ? C.warmWhite : 'rgba(0,0,0,0.3)'}` }}
+              >
+                {trips.length}
+              </span>
+            )}
+          </button>
+          {userMenuOpen && (
+            <AccountDropdown
+              user={user}
+              trips={trips}
+              onSelect={handleSelectTrip}
+              onDelete={handleDeleteTrip}
+              onNewTrip={handleNewTrip}
+              onSignOut={signOut}
+              onClose={() => setUserMenuOpen(false)}
+            />
+          )}
+        </div>
+      );
+    }
+
+    // Logged out with trips — suitcase icon, dropdown includes sign-in prompt
+    if (trips.length > 0) {
+      return (
+        <div data-trips-container className="relative inline-flex">
+          <button
+            onClick={() => { setTripsOpen(prev => !prev); }}
+            className="relative flex items-center bg-none border-none cursor-pointer p-1"
+            title="My Trips"
+          >
+            <SuitcaseIcon color={iconColor} />
+            <span
+              className="absolute -top-[5px] -right-[7px] min-w-4 h-4 rounded-full bg-golden-amber flex items-center justify-center text-[9px] font-bold text-white font-body px-1"
+              style={{ border: `1.5px solid ${showSolid ? C.warmWhite : 'rgba(0,0,0,0.3)'}` }}
+            >
+              {trips.length}
+            </span>
+          </button>
+          {tripsOpen && (
+            <TripDropdown
+              trips={trips}
+              onSelect={handleSelectTrip}
+              onDelete={handleDeleteTrip}
+              onNewTrip={handleNewTrip}
+              onSignIn={() => signIn('google')}
+              onClose={() => setTripsOpen(false)}
+            />
+          )}
+        </div>
+      );
+    }
+
+    // Logged out, no trips — person icon triggers sign-in
+    return (
+      <button
+        onClick={() => signIn('google')}
+        className="relative flex items-center bg-none border-none cursor-pointer p-1 transition-opacity hover:opacity-70"
+        title="Sign In"
+      >
+        <PersonIcon color={iconColor} size={20} />
       </button>
-      {tripsOpen && (
-        <TripDropdown
-          trips={trips}
-          onSelect={handleSelectTrip}
-          onDelete={handleDeleteTrip}
-          onNewTrip={handleNewTrip}
-          onClose={() => setTripsOpen(false)}
-        />
-      )}
-    </div>
-  );
+    );
+  };
 
   return (
     <>
@@ -376,7 +613,7 @@ export default function Nav({ transparent = false, breathConfig = null, breathVa
             </Link>
           ))}
 
-          {trips.length > 0 && renderSuitcase()}
+          {renderAccountIcon(26)}
 
           <Link to="/plan"
             onClick={() => trackEvent('nav_clicked', { label: 'plan_a_trip', to: '/plan', page: location.pathname })}
@@ -393,9 +630,9 @@ export default function Nav({ transparent = false, breathConfig = null, breathVa
           </Link>
         </div>
 
-        {/* Mobile: suitcase + hamburger */}
-        <div className="flex md:hidden items-center gap-4 z-[101]">
-          {trips.length > 0 && renderSuitcase()}
+        {/* Mobile: account icon + hamburger */}
+        <div className="flex md:hidden items-center gap-3 z-[101]">
+          {renderAccountIcon(22)}
           <div
             onClick={() => { setMenuOpen(!menuOpen); setTripsOpen(false); }}
             className="p-2 cursor-pointer"

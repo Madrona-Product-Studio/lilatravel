@@ -52,6 +52,7 @@ import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-route
 import { useEffect, lazy, Suspense } from 'react';
 import { Analytics } from '@vercel/analytics/react';
 import { C } from '@data/brand';
+import { AuthProvider } from '@/contexts/AuthContext';
 import FeedbackWidget from '@components/FeedbackWidget';
 
 // ─── Loading Spinner ─────────────────────────────────────────────────────────
@@ -89,6 +90,7 @@ const MovementsL2Page = lazy(() => import('@pages/MovementsL2'));
 const PracticeLibraryPage = lazy(() => import('@pages/PracticeLibrary'));
 const TripPage = lazy(() => import('@pages/trips/TripPage'));
 const ItineraryResults = lazy(() => import('./pages/ItineraryResults'));
+const AuthCallback = lazy(() => import('@pages/AuthCallback'));
 
 // ─── Dedicated Guides ───────────────────────────────────────────────────────
 const ZionGuide = lazy(() => import('@pages/guides/ZionGuide'));
@@ -163,6 +165,7 @@ function ScrollToTop() {
 export default function App() {
   return (
     <div className="font-body bg-cream text-dark-ink overflow-x-clip">
+      <AuthProvider>
       <BrowserRouter>
         <ScrollToTop />
         <Suspense fallback={<LoadingSpinner />}>
@@ -279,6 +282,9 @@ export default function App() {
             {/* Ways to Travel (formerly "How It Works") */}
             <Route path="/ways-to-travel" element={<WaysToTravelPage />} />
 
+            {/* Auth */}
+            <Route path="/auth/callback" element={<AuthCallback />} />
+
             {/* Other pages */}
             <Route path="/contact" element={<ContactPage />} />
 
@@ -298,6 +304,7 @@ export default function App() {
           </Routes>
         </Suspense>
       </BrowserRouter>
+      </AuthProvider>
       <Analytics />
       <FeedbackWidget source="Lila Trips" hideOnPaths={['/plan']} showAfterScroll={400} />
     </div>

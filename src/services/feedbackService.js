@@ -1,6 +1,14 @@
 import { supabase } from './supabaseClient';
 import { getOrCreateSession, clearSession } from './sessionManager';
 
+/** Get the current Supabase auth user ID, if logged in. */
+async function getCurrentUserId() {
+  try {
+    const { data: { session } } = await supabase.auth.getSession();
+    return session?.user?.id ?? null;
+  } catch { return null; }
+}
+
 export async function saveItinerary({ formData, rawItinerary, destination, iteration = 0, previousItineraryId = null, tripLogistics = null }) {
   try {
     let sessionId = await getOrCreateSession(formData);
@@ -11,12 +19,15 @@ export async function saveItinerary({ formData, rawItinerary, destination, itera
     }
     if (!sessionId) return null;
 
+    const userId = await getCurrentUserId();
+
     const row = {
       session_id: sessionId,
       iteration,
       raw_itinerary: rawItinerary,
       destination,
     };
+    if (userId) row.user_id = userId;
     if (tripLogistics) row.trip_logistics = tripLogistics;
 
     // Try insert with one retry on failure
