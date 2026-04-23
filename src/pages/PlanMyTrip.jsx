@@ -807,11 +807,11 @@ function StepWelcome({ onNext }) {
               const Ic = f.icon;
               return (
                 <div key={f.label} style={{
-                  padding: "12px 8px",
+                  padding: "8px 8px",
                   textAlign: "center",
                   borderLeft: i > 0 ? `1px solid ${C.sage}18` : "none",
                 }}>
-                  <div className="flex justify-center mb-2">
+                  <div className="flex justify-center mb-1.5">
                     <Ic size={20} color={f.color} />
                   </div>
                   <div className="font-body font-bold tracking-[0.06em] uppercase" style={{
@@ -831,7 +831,7 @@ function StepWelcome({ onNext }) {
 
         {/* Living itinerary strip */}
         <div style={{
-          paddingTop: 8,
+          paddingTop: 4,
           ...sectionStyle(300),
         }}>
           <div style={{
@@ -846,7 +846,7 @@ function StepWelcome({ onNext }) {
               const Ic = f.icon;
               return (
                 <div key={f.label} style={{
-                  padding: "10px 8px",
+                  padding: "8px 8px",
                   textAlign: "center",
                   borderLeft: i > 0 ? `1px solid ${C.sage}18` : "none",
                 }}>
@@ -869,7 +869,7 @@ function StepWelcome({ onNext }) {
         </div>
 
         {/* Powered by row */}
-        <div style={{ paddingTop: 24, ...sectionStyle(450) }}>
+        <div style={{ paddingTop: 14, ...sectionStyle(450) }}>
           <button
             onClick={() => setSourcesOpen(true)}
             className="flex items-center cursor-pointer w-full"

@@ -25,6 +25,32 @@
     "tags": ["inside-park", "first-come", "boulders", "dark-sky", "no-water"]
   },
   {
+    "id": "reset-hotel",
+    "name": "Reset Hotel",
+    "type": "boutique hotel",
+    "stayStyle": "premium",
+    "budgetTier": "premium",
+    "priceRange": "$250–450/night",
+    "location": "7000 Split Rock Ave, Twentynine Palms — 5 min from north park entrance",
+    "groupFit": ["solo", "couple", "friends"],
+    "highlights": [
+      "First new-build hotel in the Morongo Basin in 15 years",
+      "65 rooms on 180 acres — 170 acres left deliberately undeveloped",
+      "Every room has a private patio with Solo Stove fire pit and desert views",
+      "Cedar sauna, cold plunge, saltwater pool, Celestron telescope for stargazing",
+      "Designed around the question: what would a hotel on Mars look like, built in connection to nature"
+    ],
+    "amenities": ["saltwater pool", "cedar sauna", "cold plunge", "on-site restaurant", "fire pits", "wifi", "EV charging"],
+    "bookingWindow": "Book 2–4 weeks ahead for weekends. Spring and fall fill fastest.",
+    "links": {
+      "website": "https://www.stayreset.com/",
+      "booking": "https://www.stayreset.com/rooms"
+    },
+    "seasonalNotes": "Open year-round. Summer pool season April–October. Winter evenings ideal for stargazing with Celestron telescopes.",
+    "lilaPick": true,
+    "tags": ["new-build", "design-forward", "dark-sky", "stargazing", "sauna", "cold-plunge", "minimalist", "180-acres"]
+  },
+  {
     "id": "hidden-valley-campground",
     "name": "Hidden Valley Campground",
     "type": "camping",
@@ -149,32 +175,6 @@
     "corridor": true,
     "lilaPick": true,
     "tags": ["hot-springs", "historic", "spa", "grotto", "hollywood-hideaway", "decompression"]
-  },
-  {
-    "id": "reset-hotel",
-    "name": "Reset Hotel",
-    "type": "boutique hotel",
-    "stayStyle": "premium",
-    "budgetTier": "premium",
-    "priceRange": "$250–450/night",
-    "location": "7000 Split Rock Ave, Twentynine Palms — 5 min from north park entrance",
-    "groupFit": ["solo", "couple", "friends"],
-    "highlights": [
-      "First new-build hotel in the Morongo Basin in 15 years",
-      "65 rooms on 180 acres — 170 acres left deliberately undeveloped",
-      "Every room has a private patio with Solo Stove fire pit and desert views",
-      "Cedar sauna, cold plunge, saltwater pool, Celestron telescope for stargazing",
-      "Designed around the question: what would a hotel on Mars look like, built in connection to nature"
-    ],
-    "amenities": ["saltwater pool", "cedar sauna", "cold plunge", "on-site restaurant", "fire pits", "wifi", "EV charging"],
-    "bookingWindow": "Book 2–4 weeks ahead for weekends. Spring and fall fill fastest.",
-    "links": {
-      "website": "https://www.stayreset.com/",
-      "booking": "https://www.stayreset.com/rooms"
-    },
-    "seasonalNotes": "Open year-round. Summer pool season April–October. Winter evenings ideal for stargazing with Celestron telescopes.",
-    "lilaPick": true,
-    "tags": ["new-build", "design-forward", "dark-sky", "stargazing", "sauna", "cold-plunge", "minimalist", "180-acres"]
   },
   {
     "id": "hotel-wren",
