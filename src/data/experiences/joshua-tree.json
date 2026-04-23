@@ -11,7 +11,7 @@
       "Surreal, atmospheric, and free to explore"
     ],
     "links": {
-      "website": null
+      "website": "https://www.pioneertown.com/"
     },
     "corridor": true,
     "featured": true,
@@ -102,7 +102,7 @@
       "Rotating exhibitions"
     ],
     "links": {
-      "website": null
+      "website": "https://www.artqueenjt.com/"
     },
     "featured": false,
     "tags": ["gallery", "art-supply", "local", "rotating-exhibitions"]
@@ -119,7 +119,7 @@
       "A genuine local institution"
     ],
     "links": {
-      "website": null
+      "website": "https://www.coyotecorner.com/"
     },
     "featured": false,
     "tags": ["gift-shop", "crystals", "institution", "local"]
@@ -136,7 +136,7 @@
       "The longest-running art gallery in the region"
     ],
     "links": {
-      "website": null
+      "website": "https://www.29palmsartgallery.com/"
     },
     "featured": false,
     "tags": ["gallery", "nonprofit", "since-1944", "regional-art"]

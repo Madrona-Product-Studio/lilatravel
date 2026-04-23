@@ -131,7 +131,7 @@
     "location": "Pioneertown area",
     "cost": "$$",
     "links": {
-      "website": null
+      "website": "https://www.desertstarsfestival.com/"
     },
     "tags": ["music-festival", "indie", "folk", "pioneertown", "camping", "intimate"]
   },
@@ -182,7 +182,7 @@
     "location": "Rancho Mirage, CA (Coachella Valley)",
     "cost": "free",
     "links": {
-      "website": null
+      "website": "https://www.ranchomiragefarmersmarket.com/"
     },
     "tags": ["farmers-market", "local-produce", "wednesday", "coachella-valley", "seasonal"]
   },

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Quicksand:wght@400;500&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #e8e0d5; display: flex; justify-content: center; padding: 32px 16px; }
+  .sky { background: #F0EBE3; font-family: 'Quicksand', sans-serif; padding: 32px 28px 40px; max-width: 680px; width: 100%; }
+  .section-label { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #7BAAB0; display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+  .section-label::before { content: ''; display: block; width: 28px; height: 1px; background: #7BAAB0; }
+  .section-title { font-family: 'Cormorant Garamond', serif; font-size: 38px; font-weight: 300; color: #1a1a18; margin: 0 0 6px; line-height: 1.1; }
+  .live-badge { display: inline-flex; align-items: center; gap: 5px; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #7BAAB0; margin-bottom: 20px; }
+  .live-dot { width: 6px; height: 6px; background: #7BAAB0; border-radius: 50%; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+  .top-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+  .moon-card { background: #1a1a18; padding: 24px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; }
+  .moon-svg { width: 80px; height: 80px; }
+  .moon-name { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #E8E0D5; opacity: 0.7; }
+  .moon-illum { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 300; color: #E8E0D5; line-height: 1; }
+  .moon-sub { font-size: 11px; color: #E8E0D5; opacity: 0.5; }
+  .conditions-card { background: #E8E0D5; padding: 20px; display: flex; flex-direction: column; gap: 12px; }
+  .cond-row { display: flex; flex-direction: column; gap: 2px; }
+  .cond-label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #999; }
+  .cond-value { font-size: 14px; color: #1a1a18; }
+  .cond-value.good { color: #7BAAB0; }
+  .cond-value.warn { color: #C9856A; }
+  .divider { border: none; border-top: 0.5px solid #ccc5bc; margin: 2px 0; }
+  .planets-title { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #999; margin-bottom: 12px; }
+  .planet-list { display: flex; flex-direction: column; }
+  .planet-row { display: flex; align-items: center; padding: 11px 0; border-bottom: 0.5px solid #ddd6ce; }
+  .planet-row:last-child { border-bottom: none; }
+  .planet-name { font-size: 13px; color: #1a1a18; width: 80px; flex-shrink: 0; }
+  .planet-bar-wrap { flex: 1; height: 3px; background: #ddd6ce; margin: 0 14px; }
+  .planet-bar { height: 3px; background: #7BAAB0; }
+  .planet-bar.bright { background: #C9A06A; }
+  .planet-alt { font-size: 11px; color: #999; width: 44px; text-align: right; flex-shrink: 0; }
+  .planet-dir { font-size: 11px; color: #7BAAB0; width: 28px; text-align: right; flex-shrink: 0; }
+  .planet-vis { font-size: 10px; letter-spacing: 0.04em; color: #bbb; width: 72px; text-align: right; flex-shrink: 0; }
+  .milky-way { background: #1a1a18; padding: 20px 24px; margin-top: 20px; display: flex; align-items: center; gap: 20px; }
+  .mw-left { flex: 1; }
+  .mw-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #E8E0D5; opacity: 0.5; margin-bottom: 4px; }
+  .mw-status { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 300; color: #E8E0D5; line-height: 1.2; }
+  .mw-note { font-size: 12px; color: #E8E0D5; opacity: 0.55; margin-top: 5px; line-height: 1.4; }
+  .mw-score { text-align: right; flex-shrink: 0; }
+  .mw-num { font-family: 'Cormorant Garamond', serif; font-size: 40px; font-weight: 300; color: #C9A06A; line-height: 1; }
+  .mw-denom { font-size: 11px; color: #E8E0D5; opacity: 0.4; }
+  .next-moon { margin-top: 16px; padding: 14px 18px; background: #E8E0D5; display: flex; justify-content: space-between; align-items: center; }
+  .nm-label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #999; margin-bottom: 3px; }
+  .nm-value { font-size: 14px; color: #1a1a18; }
+  .nm-right { text-align: right; }
+  .bortle-row { margin-top: 16px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+  .bortle-site { padding: 12px 14px; background: #E8E0D5; }
+  .b-name { font-size: 11px; color: #555; margin-bottom: 3px; }
+  .b-class { font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; }
+  .b-class.b2 { color: #7BAAB0; }
+  .b-class.b3 { color: #C9A06A; }
+  .b-tonight { font-size: 11px; color: #999; margin-top: 4px; line-height: 1.3; }
+  .date-line { font-size: 11px; color: #aaa; margin-top: 18px; text-align: right; letter-spacing: 0.04em; }
+</style>
+</head>
+<body>
+<div class="sky">
+  <div class="section-label">Night Sky</div>
+  <h2 class="section-title">Tonight Over Zion</h2>
+  <div class="live-badge"><div class="live-dot"></div> Live conditions</div>
+
+  <div class="top-grid">
+    <div class="moon-card">
+      <svg class="moon-svg" viewBox="0 0 80 80" id="moonSvg"></svg>
+      <div class="moon-name" id="moonName">—</div>
+      <div class="moon-illum" id="moonIllum">—</div>
+      <div class="moon-sub">illuminated</div>
+    </div>
+    <div class="conditions-card">
+      <div class="cond-row">
+        <div class="cond-label">Stargazing</div>
+        <div class="cond-value" id="stargazingRating">—</div>
+      </div>
+      <div class="divider"></div>
+      <div class="cond-row">
+        <div class="cond-label">Milky Way Core</div>
+        <div class="cond-value" id="mwVisible">—</div>
+      </div>
+      <div class="divider"></div>
+      <div class="cond-row">
+        <div class="cond-label">Moon rises</div>
+        <div class="cond-value" id="moonrise">—</div>
+      </div>
+      <div class="divider"></div>
+      <div class="cond-row">
+        <div class="cond-label">Best window</div>
+        <div class="cond-value" id="bestWindow">—</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="planets-title">Planets visible tonight from Zion</div>
+  <div class="planet-list" id="planetList"></div>
+
+  <div class="milky-way">
+    <div class="mw-left">
+      <div class="mw-label">Milky Way</div>
+      <div class="mw-status" id="mwStatus">—</div>
+      <div class="mw-note" id="mwNote">—</div>
+    </div>
+    <div class="mw-score">
+      <div class="mw-num" id="mwScore">—</div>
+      <div class="mw-denom">/ 10</div>
+    </div>
+  </div>
+
+  <div class="next-moon">
+    <div>
+      <div class="nm-label">Next new moon</div>
+      <div class="nm-value" id="nextNewMoon">—</div>
+    </div>
+    <div class="nm-right">
+      <div class="nm-label">Days away</div>
+      <div class="nm-value" id="daysToNew">—</div>
+    </div>
+  </div>
+
+  <div class="bortle-row">
+    <div class="bortle-site">
+      <div class="b-name">Zion NP</div>
+      <div class="b-class b3">Bortle 3</div>
+      <div class="b-tonight" id="zionTonight">—</div>
+    </div>
+    <div class="bortle-site">
+      <div class="b-name">Bryce Canyon</div>
+      <div class="b-class b2">Bortle 2</div>
+      <div class="b-tonight" id="bryceTonight">—</div>
+    </div>
+    <div class="bortle-site">
+      <div class="b-name">Capitol Reef</div>
+      <div class="b-class b2">Bortle 2</div>
+      <div class="b-tonight" id="capitolTonight">—</div>
+    </div>
+  </div>
+
+  <div class="date-line" id="dateLine"></div>
+</div>
+
+<script>
+const LAT = 37.2, LON = -112.9;
+
+function toJulian(date) { return date / 86400000 + 2440587.5; }
+
+function moonPhase(date) {
+  const jd = toJulian(date);
+  const cycle = 29.53058867;
+  const age = ((jd - 2451550.1) % cycle + cycle) % cycle;
+  const illum = (1 - Math.cos(2 * Math.PI * age / cycle)) / 2;
+  let name;
+  if (age < 1.85) name = 'New Moon';
+  else if (age < 7.38) name = 'Waxing Crescent';
+  else if (age < 9.22) name = 'First Quarter';
+  else if (age < 14.77) name = 'Waxing Gibbous';
+  else if (age < 16.61) name = 'Full Moon';
+  else if (age < 22.15) name = 'Waning Gibbous';
+  else if (age < 23.99) name = 'Last Quarter';
+  else name = 'Waning Crescent';
+  return { age, illum, name };
+}
+
+function daysToNextNew(date) {
+  const jd = toJulian(date);
+  const cycle = 29.53058867;
+  const age = ((jd - 2451550.1) % cycle + cycle) % cycle;
+  return Math.round(cycle - age);
+}
+
+function nextNewMoonDate(date) {
+  const days = daysToNextNew(date);
+  const d = new Date(date.getTime() + days * 86400000);
+  return d.toLocaleDateString('en-US', { month: 'long', day: 'numeric' });
+}
+
+function siderealTime(date, lon) {
+  const jd = toJulian(date);
+  let gmst = 280.46061837 + 360.98564736629 * (jd - 2451545);
+  return ((gmst + lon) % 360 + 360) % 360;
+}
+
+function raDecToAltAz(ra, dec, lat, lst) {
+  const ha = (lst - ra * 15 + 360) % 360;
+  const haR = ha * Math.PI / 180, decR = dec * Math.PI / 180, latR = lat * Math.PI / 180;
+  const sinAlt = Math.sin(decR)*Math.sin(latR) + Math.cos(decR)*Math.cos(latR)*Math.cos(haR);
+  const alt = Math.asin(Math.max(-1,Math.min(1,sinAlt))) * 180 / Math.PI;
+  const cosAz = (Math.sin(decR) - sinAlt*Math.sin(latR)) / (Math.cos(Math.asin(sinAlt))*Math.cos(latR));
+  let az = Math.acos(Math.max(-1,Math.min(1,cosAz))) * 180 / Math.PI;
+  if (Math.sin(haR) > 0) az = 360 - az;
+  return { alt: Math.round(alt), az: Math.round(az) };
+}
+
+function azToDir(az) {
+  return ['N','NE','E','SE','S','SW','W','NW'][Math.round(az/45)%8];
+}
+
+function getPlanets(date) {
+  const t = (toJulian(date) - 2451545) / 36525;
+  return [
+    { name: 'Venus',   ra: 2.5  + t*12,  dec: 14  + t*5,   mag: -4.5 },
+    { name: 'Mars',    ra: 7.2  + t*6,   dec: 22  + t*2,   mag: 1.1  },
+    { name: 'Jupiter', ra: 5.8  + t*1,   dec: 23  - t*2,   mag: -2.1 },
+    { name: 'Saturn',  ra: 22.4 + t*0.4, dec: -12 + t*1.5, mag: 0.8  },
+  ];
+}
+
+function milkyWayScore(date, illum) {
+  const m = date.getMonth() + 1;
+  if (m < 4 || m > 10) return 0;
+  const seasonal = Math.max(0, 10 - Math.abs(m - 7) * 1.5);
+  return Math.max(0, Math.round(seasonal - illum * 7));
+}
+
+function drawMoon(age, illum, svgEl) {
+  const r = 34, cx = 40, cy = 40;
+  const waxing = age < 14.77;
+  const k = 2 * illum - 1;
+  const rx = Math.max(0.5, Math.abs(k) * r);
+  const d = `M ${cx} ${cy-r} A ${r} ${r} 0 0 ${waxing?1:0} ${cx} ${cy+r} A ${rx} ${r} 0 0 ${k>=0?(waxing?0:1):(waxing?1:0)} ${cx} ${cy-r} Z`;
+  svgEl.innerHTML = `
+    <circle cx="${cx}" cy="${cy}" r="${r}" fill="#2a2a28"/>
+    <path d="${d}" fill="#E8E0D5" opacity="0.9"/>
+    <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#444" stroke-width="0.5"/>
+  `;
+}
+
+function render() {
+  const now = new Date();
+  const tonight = new Date(now); tonight.setHours(21,0,0,0);
+  const { age, illum, name } = moonPhase(tonight);
+  const illumPct = Math.round(illum * 100);
+
+  drawMoon(age, illum, document.getElementById('moonSvg'));
+  document.getElementById('moonName').textContent = name;
+  document.getElementById('moonIllum').textContent = illumPct + '%';
+
+  const mwScore = milkyWayScore(tonight, illum);
+  let rating, rc;
+  if (mwScore >= 8) { rating = 'Exceptional'; rc = 'good'; }
+  else if (mwScore >= 5) { rating = 'Good'; rc = 'good'; }
+  else if (mwScore >= 3) { rating = 'Fair'; rc = ''; }
+  else { rating = 'Diminished by moonlight'; rc = 'warn'; }
+  const re = document.getElementById('stargazingRating');
+  re.textContent = rating; re.className = 'cond-value ' + rc;
+
+  const month = tonight.getMonth() + 1;
+  const mwSeason = month >= 4 && month <= 10;
+  const mwVisEl = document.getElementById('mwVisible');
+  if (!mwSeason) { mwVisEl.textContent = 'Below horizon (winter)'; mwVisEl.className = 'cond-value warn'; }
+  else if (illum > 0.5) { mwVisEl.textContent = 'Washed out by moon'; mwVisEl.className = 'cond-value warn'; }
+  else { mwVisEl.textContent = 'Visible tonight'; mwVisEl.className = 'cond-value good'; }
+
+  const mrH = Math.round(6 + age * (24/29.53)) % 24;
+  const mrAmPm = mrH >= 12 ? 'pm' : 'am';
+  const mrDisp = (mrH % 12 || 12) + ':00 ' + mrAmPm;
+  document.getElementById('moonrise').textContent = mrDisp;
+  document.getElementById('bestWindow').textContent = illum < 0.3 ? 'All night' : `After ${mrDisp}`;
+
+  const lst = siderealTime(tonight, LON);
+  const planets = getPlanets(tonight);
+  const pl = document.getElementById('planetList');
+  pl.innerHTML = '';
+  planets.forEach(p => {
+    const { alt, az } = raDecToAltAz(p.ra % 24, p.dec, LAT, lst);
+    const visible = alt > 8;
+    const barPct = visible ? Math.min(100, Math.round((alt/90)*100)) : 0;
+    const bright = p.mag < -1;
+    const row = document.createElement('div');
+    row.className = 'planet-row';
+    row.innerHTML = `
+      <div class="planet-name">${p.name}</div>
+      <div class="planet-bar-wrap"><div class="planet-bar ${bright?'bright':''}" style="width:${barPct}%"></div></div>
+      <div class="planet-alt">${visible ? alt+'°' : '—'}</div>
+      <div class="planet-dir">${visible ? azToDir(az) : ''}</div>
+      <div class="planet-vis">${visible ? (bright?'Bright':'Visible') : 'Below horizon'}</div>
+    `;
+    pl.appendChild(row);
+  });
+
+  document.getElementById('mwScore').textContent = mwScore;
+  const ms = document.getElementById('mwStatus'), mn = document.getElementById('mwNote');
+  if (mwScore >= 8) { ms.textContent = 'Prime conditions tonight'; mn.textContent = 'Core visible overhead. Head to the canyon floor after the last shuttle.'; }
+  else if (mwScore >= 5) { ms.textContent = 'Good visibility tonight'; mn.textContent = 'Core visible with some moonlight. Eyes adjust after 20–30 minutes in the dark.'; }
+  else if (mwScore >= 2) { ms.textContent = 'Reduced by moonlight'; mn.textContent = `Moon is ${illumPct}% illuminated. Wait for it to set for darker conditions.`; }
+  else if (!mwSeason) { ms.textContent = 'Core below the horizon'; mn.textContent = 'Milky Way core season is April–October. Winter offers Orion and the Pleiades instead.'; }
+  else { ms.textContent = 'Not visible tonight'; mn.textContent = `Full moon conditions. Next new moon in ${daysToNextNew(tonight)} days.`; }
+
+  document.getElementById('nextNewMoon').textContent = nextNewMoonDate(tonight);
+  document.getElementById('daysToNew').textContent = daysToNextNew(tonight) + ' days';
+
+  document.getElementById('zionTonight').textContent = mwScore >= 4 ? 'Good tonight' : 'Diminished tonight';
+  document.getElementById('bryceTonight').textContent = mwScore >= 3 ? 'Best option — darker at elevation' : 'Reduced by moon';
+  document.getElementById('capitolTonight').textContent = 'Darkest skies, most remote';
+
+  document.getElementById('dateLine').textContent = 'Conditions for ' + now.toLocaleDateString('en-US', { weekday:'long', month:'long', day:'numeric', year:'numeric' });
+}
+
+render();
+</script>
+</body>
+</html>

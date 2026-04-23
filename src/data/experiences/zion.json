@@ -11,7 +11,7 @@
       "A meaningful cultural stop in Springdale"
     ],
     "links": {
-      "website": null
+      "website": "https://www.tribalartszion.com/"
     },
     "featured": false,
     "tags": ["native-art", "jewelry", "gallery", "indigenous"]
@@ -45,7 +45,7 @@
       "A window into the community"
     ],
     "links": {
-      "website": null
+      "website": "https://www.springdalefarmersmarket.com/"
     },
     "seasonalNotes": "Seasonal — Saturday mornings, typically spring through fall.",
     "featured": false,
@@ -136,7 +136,7 @@
       "Self-guided, contemplative"
     ],
     "links": {
-      "website": null
+      "website": "https://www.blm.gov/visit/parowan-gap-petroglyphs"
     },
     "featured": false,
     "tags": ["free", "ancient-rock-art", "self-guided", "fremont", "petroglyphs"]
