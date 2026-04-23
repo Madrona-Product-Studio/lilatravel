@@ -16,6 +16,10 @@ export default function Footer() {
             © 2026 Lila Trips
           </p>
           <span className="text-white/[0.15]">·</span>
+          <Link to="/privacy" className="text-white/[0.25] no-underline hover:text-white/40 transition-colors m-0">
+            Privacy
+          </Link>
+          <span className="text-white/[0.15]">·</span>
           <p className="text-white/[0.25] m-0">
             Created by{' '}
             <a href="https://madronaproductstudio.com" target="_blank" rel="noopener noreferrer"
