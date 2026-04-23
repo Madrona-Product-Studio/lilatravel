@@ -91,6 +91,7 @@ const PracticeLibraryPage = lazy(() => import('@pages/PracticeLibrary'));
 const TripPage = lazy(() => import('@pages/trips/TripPage'));
 const ItineraryResults = lazy(() => import('./pages/ItineraryResults'));
 const AuthCallback = lazy(() => import('@pages/AuthCallback'));
+const PrivacyPage = lazy(() => import('@pages/Privacy'));
 
 // ─── Dedicated Guides ───────────────────────────────────────────────────────
 const ZionGuide = lazy(() => import('@pages/guides/ZionGuide'));
@@ -287,6 +288,7 @@ export default function App() {
 
             {/* Other pages */}
             <Route path="/contact" element={<ContactPage />} />
+            <Route path="/privacy" element={<PrivacyPage />} />
 
             {/* ─── Redirects from old routes ───────────────────────────────── */}
             <Route path="/approach" element={<Navigate to="/ethos" replace />} />
