@@ -4208,9 +4208,12 @@ export default function ItineraryResults() {
 
   const isStructured = itinerary && itinerary.days;
 
-  // Sync tripTitle from parsed itinerary
+  // Sync tripTitle from parsed itinerary + persist to DB
   useEffect(() => {
-    if (itinerary?.title && !tripTitle) setTripTitle(itinerary.title);
+    if (itinerary?.title && !tripTitle) {
+      setTripTitle(itinerary.title);
+      if (itineraryId) updateItineraryTitle(itineraryId, itinerary.title);
+    }
   }, [itinerary?.title]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Persist title rename to Supabase + localStorage
