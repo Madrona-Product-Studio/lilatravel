@@ -18,7 +18,8 @@
     ],
     "links": {
       "website": "https://www.parks.ca.gov/JuliaPfeifferBurns",
-      "booking": null
+      "booking": null,
+      "alltrails": "https://www.alltrails.com/trail/us/california/overlook-trail-to-mcway-falls-and-saddle-rock"
     },
     "lilaPick": false,
     "tags": ["waterfall", "wheelchair-accessible", "cove", "easy"],
@@ -43,7 +44,8 @@
     ],
     "links": {
       "website": "https://www.parks.ca.gov/JuliaPfeifferBurns",
-      "booking": null
+      "booking": null,
+      "alltrails": "https://www.alltrails.com/trail/us/california/partington-cove-trail"
     },
     "lilaPick": false,
     "tags": ["cove", "tunnel", "hidden", "moderate"],
@@ -68,7 +70,8 @@
     ],
     "links": {
       "website": "https://www.parks.ca.gov/PfeifferBigSur",
-      "booking": null
+      "booking": null,
+      "alltrails": "https://www.alltrails.com/trail/us/california/pfeiffer-falls-trail"
     },
     "lilaPick": false,
     "tags": ["redwood", "waterfall", "valley-view", "moderate"],
@@ -93,7 +96,8 @@
     ],
     "links": {
       "website": "https://www.parks.ca.gov/garrapata/",
-      "booking": null
+      "booking": null,
+      "alltrails": "https://www.alltrails.com/trail/us/california/soberanes-point-and-whale-peak"
     },
     "lilaPick": false,
     "tags": ["coastal", "bluff", "wildlife", "whales", "easy"],
@@ -118,7 +122,8 @@
     ],
     "links": {
       "website": "https://www.parks.ca.gov/AndrewMolera",
-      "booking": null
+      "booking": null,
+      "alltrails": "https://www.alltrails.com/trail/us/california/creamery-meadow-bluffs-panorama-and-ridge-trail-loop"
     },
     "lilaPick": false,
     "tags": ["loop", "meadow", "bluffs", "redwood", "beach", "strenuous"],
@@ -144,7 +149,8 @@
     ],
     "links": {
       "website": "https://www.parks.ca.gov/JuliaPfeifferBurns",
-      "booking": null
+      "booking": null,
+      "alltrails": "https://www.alltrails.com/trail/us/california/tanbark-trail-and-tin-house"
     },
     "lilaPick": true,
     "tags": ["strenuous", "tin-house", "panorama", "ruins", "challenging"],
@@ -170,7 +176,8 @@
     ],
     "links": {
       "website": "https://www.parks.ca.gov/PfeifferBigSur",
-      "booking": null
+      "booking": null,
+      "alltrails": "https://www.alltrails.com/trail/us/california/buzzards-roost-trail"
     },
     "lilaPick": false,
     "tags": ["sunset", "ridge", "pacific-view", "moderate"],
@@ -195,7 +202,8 @@
     ],
     "links": {
       "website": "https://www.parks.ca.gov/pointlobos",
-      "booking": null
+      "booking": null,
+      "alltrails": "https://www.alltrails.com/trail/us/california/cypress-grove-trail"
     },
     "lilaPick": false,
     "tags": ["monterey-cypress", "point-lobos", "rare", "easy"],
@@ -220,7 +228,8 @@
     ],
     "links": {
       "website": "https://www.parks.ca.gov/pointlobos",
-      "booking": null
+      "booking": null,
+      "alltrails": "https://www.alltrails.com/trail/us/california/bird-island-trail--3"
     },
     "lilaPick": false,
     "tags": ["china-cove", "point-lobos", "photography", "easy"],
@@ -245,7 +254,8 @@
     ],
     "links": {
       "website": "https://www.parks.ca.gov/pointlobos",
-      "booking": null
+      "booking": null,
+      "alltrails": "https://www.alltrails.com/trail/us/california/point-lobos-south-shore-trail"
     },
     "lilaPick": false,
     "tags": ["coastal", "tide-pools", "point-lobos", "moderate"],

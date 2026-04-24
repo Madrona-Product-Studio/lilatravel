@@ -23,7 +23,8 @@
     "bookingWindow": "No permit required — south entrance, Cottonwood Visitor Center",
     "links": {
       "website": "https://www.nps.gov/jotr/index.htm",
-      "booking": null
+      "booking": null,
+      "alltrails": "https://www.alltrails.com/trail/us/california/lost-palms-oasis--4"
     },
     "lilaPick": true,
     "tags": ["oasis", "fan-palms", "desert", "bighorn-sheep", "south-entrance", "uncrowded"],
@@ -53,7 +54,8 @@
     "bookingWindow": "No permit required",
     "links": {
       "website": "https://www.nps.gov/jotr/index.htm",
-      "booking": null
+      "booking": null,
+      "alltrails": "https://www.alltrails.com/trail/us/california/skull-rock-nature-trail"
     },
     "lilaPick": false,
     "tags": ["geology", "family-friendly", "sunset", "boulders", "interpretive", "short-hike"],
@@ -82,7 +84,8 @@
     "bookingWindow": "No permit required",
     "links": {
       "website": "https://www.nps.gov/jotr/index.htm",
-      "booking": null
+      "booking": null,
+      "alltrails": "https://www.alltrails.com/trail/us/california/ryan-mountain-trail"
     },
     "lilaPick": false,
     "tags": ["summit", "360-views", "scramble", "short-hike", "morning-recommended"],
@@ -111,7 +114,8 @@
     "bookingWindow": "No permit required",
     "links": {
       "website": "https://www.nps.gov/jotr/index.htm",
-      "booking": null
+      "booking": null,
+      "alltrails": "https://www.alltrails.com/trail/us/california/fortynine-palms-trail"
     },
     "lilaPick": false,
     "tags": ["oasis", "fan-palms", "canyon", "quiet", "wildlife"],

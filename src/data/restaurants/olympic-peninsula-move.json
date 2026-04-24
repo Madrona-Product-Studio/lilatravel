@@ -19,7 +19,8 @@
     ],
     "links": {
       "website": "https://www.nps.gov/olym/index.htm",
-      "booking": null
+      "booking": null,
+      "alltrails": "https://www.alltrails.com/trail/us/washington/hurricane-hill-via-hurricane-ridge"
     },
     "lilaPick": false,
     "tags": ["panoramic", "summit", "hurricane-ridge", "moderate"],
@@ -44,7 +45,8 @@
     ],
     "links": {
       "website": "https://www.nps.gov/olym/index.htm",
-      "booking": null
+      "booking": null,
+      "alltrails": "https://www.alltrails.com/trail/us/washington/hoh-rain-forest-hall-of-moss"
     },
     "lilaPick": true,
     "tags": ["rainforest", "moss", "old-growth", "easy", "hoh"],
@@ -69,7 +71,8 @@
     ],
     "links": {
       "website": "https://www.nps.gov/olym/index.htm",
-      "booking": null
+      "booking": null,
+      "alltrails": "https://www.alltrails.com/trail/us/washington/hoh-river-trail"
     },
     "lilaPick": false,
     "tags": ["backcountry", "rainforest", "one-square-inch", "mt-olympus"],
@@ -94,7 +97,8 @@
     ],
     "links": {
       "website": "https://www.nps.gov/olym/index.htm",
-      "booking": null
+      "booking": null,
+      "alltrails": "https://www.alltrails.com/trail/us/washington/second-beach-trail--3"
     },
     "lilaPick": false,
     "tags": ["beach", "sea-stacks", "la-push", "wild-coast", "easy"],
@@ -119,7 +123,8 @@
     ],
     "links": {
       "website": "https://www.nps.gov/olym/index.htm",
-      "booking": null
+      "booking": null,
+      "alltrails": "https://www.alltrails.com/trail/us/washington/ozette-triangle-trail"
     },
     "lilaPick": false,
     "tags": ["cape-alava", "petroglyphs", "westernmost-point", "beach", "moderate"],
@@ -144,7 +149,8 @@
     ],
     "links": {
       "website": "https://www.nps.gov/olym/index.htm",
-      "booking": null
+      "booking": null,
+      "alltrails": "https://www.alltrails.com/trail/us/washington/sol-duc-falls-nature-trail"
     },
     "lilaPick": false,
     "tags": ["waterfall", "basalt", "sol-duc", "easy"],
@@ -169,7 +175,8 @@
     ],
     "links": {
       "website": "https://www.nps.gov/olym/index.htm",
-      "booking": null
+      "booking": null,
+      "alltrails": "https://www.alltrails.com/trail/us/washington/marymere-falls-trail"
     },
     "lilaPick": false,
     "tags": ["waterfall", "old-growth", "lake-crescent", "easy"],
@@ -194,7 +201,8 @@
     ],
     "links": {
       "website": "https://www.nps.gov/olym/index.htm",
-      "booking": null
+      "booking": null,
+      "alltrails": "https://www.alltrails.com/trail/us/washington/mount-storm-king"
     },
     "lilaPick": false,
     "tags": ["scramble", "exposed", "strenuous", "lake-crescent", "rope-assisted"],

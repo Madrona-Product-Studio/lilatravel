@@ -27,7 +27,8 @@
     "bookingWindow": "Permit required for the final chain section \u2014 apply via recreation.gov lottery",
     "links": {
       "website": "https://www.nps.gov/zion/planyourvisit/angels-landing-hiking-permits.htm",
-      "booking": "https://www.recreation.gov/"
+      "booking": "https://www.recreation.gov/",
+      "alltrails": "https://www.alltrails.com/trail/us/utah/angels-landing-trail"
     },
     "lilaPick": true,
     "tags": [
@@ -68,7 +69,8 @@
     "bookingWindow": "No permit for day hike from bottom; gear rental from Zion Guru recommended",
     "links": {
       "website": "https://www.nps.gov/zion/planyourvisit/thenarrows.htm",
-      "booking": "https://www.zionguru.com/rentals/narrows/equipment"
+      "booking": "https://www.zionguru.com/rentals/narrows/equipment",
+      "alltrails": "https://www.alltrails.com/trail/us/utah/zion-narrows-trail-to-imlay-temple-and-big-spring"
     },
     "lilaPick": true,
     "tags": [
@@ -108,7 +110,8 @@
     "bookingWindow": "No permit required \u2014 early start recommended",
     "links": {
       "website": "https://www.nps.gov/zion/index.htm",
-      "booking": null
+      "booking": null,
+      "alltrails": "https://www.alltrails.com/trail/us/utah/east-mesa-trail-to-observation-point"
     },
     "lilaPick": false,
     "tags": [
@@ -149,7 +152,8 @@
     "bookingWindow": "No permit required \u2014 roadside trailhead, limited parking",
     "links": {
       "website": "https://www.nps.gov/zion/index.htm",
-      "booking": null
+      "booking": null,
+      "alltrails": "https://www.alltrails.com/trail/us/utah/canyon-overlook-trail"
     },
     "lilaPick": false,
     "tags": [
@@ -190,7 +194,8 @@
     "bookingWindow": "No permit required \u2014 shuttle stop 5 (The Grotto)",
     "links": {
       "website": "https://www.nps.gov/zion/index.htm",
-      "booking": null
+      "booking": null,
+      "alltrails": "https://www.alltrails.com/trail/us/utah/emerald-pools-trail"
     },
     "lilaPick": false,
     "tags": [

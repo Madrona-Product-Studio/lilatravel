@@ -23,7 +23,8 @@
     "bookingWindow": "Advance reservation required via gohaena.com — book as early as possible",
     "links": {
       "website": "https://www.gohaena.com/",
-      "booking": null
+      "booking": null,
+      "alltrails": "https://www.alltrails.com/trail/hawaii/kaua-i--2/hanakapi-ai-beach-via-the-kalalau-trail"
     },
     "lilaPick": true,
     "tags": ["napali-coast", "iconic", "permit-required", "beach", "cliffs", "north-shore"],
@@ -53,7 +54,8 @@
     "bookingWindow": "No permit required",
     "links": {
       "website": "https://dlnr.hawaii.gov/dsp/parks/kauai/kokee-state-park/",
-      "booking": null
+      "booking": null,
+      "alltrails": "https://www.alltrails.com/trail/hawaii/kaua-i--2/awa-awapuhi-trail"
     },
     "lilaPick": false,
     "tags": ["ridge-trail", "napali-views", "kokee", "knife-edge", "west-side"],
@@ -83,7 +85,8 @@
     "bookingWindow": "No permit required",
     "links": {
       "website": "https://dlnr.hawaii.gov/dsp/parks/kauai/kokee-state-park/",
-      "booking": null
+      "booking": null,
+      "alltrails": "https://www.alltrails.com/trail/hawaii/kaua-i--2/pihea-trail-to-alakai-swamp"
     },
     "lilaPick": false,
     "tags": ["swamp", "endemic-birds", "boardwalk", "cloud-forest", "kokee", "west-side"],
@@ -113,7 +116,8 @@
     "bookingWindow": "No permit required",
     "links": {
       "website": "https://www.gohawaii.com/islands/kauai/regions/east-side/sleeping-giant",
-      "booking": null
+      "booking": null,
+      "alltrails": "https://www.alltrails.com/trail/hawaii/kaua-i--2/sleeping-giant-nounou-mountain-east-trail"
     },
     "lilaPick": false,
     "tags": ["local-favorite", "panoramic-views", "east-shore", "kapaa", "summit"],
@@ -143,7 +147,8 @@
     "bookingWindow": "No permit required",
     "links": {
       "website": "https://dlnr.hawaii.gov/dsp/parks/kauai/waimea-canyon-state-park/",
-      "booking": null
+      "booking": null,
+      "alltrails": "https://www.alltrails.com/trail/hawaii/kaua-i--2/canyon-trail-to-waipo-o-falls"
     },
     "lilaPick": false,
     "tags": ["canyon", "waterfall", "waipoo-falls", "rim-trail", "west-side", "geology"],

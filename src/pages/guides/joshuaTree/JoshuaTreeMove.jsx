@@ -15,6 +15,7 @@ const moveContentItems = moveItems.map(m => ({
   highlights: m.highlights,
   featured: m.lilaPick,
   url: m.links?.website,
+  links: m.links,
   section: 'Move',
 }));
 

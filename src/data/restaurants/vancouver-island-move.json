@@ -20,7 +20,8 @@
     "bookingWindow": "No permit required",
     "links": {
       "website": "https://parks.canada.ca/pn-np/bc/pacificrim",
-      "booking": null
+      "booking": null,
+      "alltrails": "https://www.alltrails.com/trail/canada/british-columbia/long-beach"
     },
     "lilaPick": false,
     "tags": ["beach", "coastline", "pacific-rim", "easy", "family-friendly"],
@@ -47,7 +48,8 @@
     "bookingWindow": "No permit required",
     "links": {
       "website": "https://parks.canada.ca/pn-np/bc/pacificrim",
-      "booking": null
+      "booking": null,
+      "alltrails": "https://www.alltrails.com/trail/canada/british-columbia/rainforest-figure-eight"
     },
     "lilaPick": false,
     "tags": ["old-growth", "rainforest", "cedar", "spruce", "loop", "easy"],
@@ -74,7 +76,8 @@
     "bookingWindow": "No permit required",
     "links": {
       "website": "https://bcparks.ca/",
-      "booking": null
+      "booking": null,
+      "alltrails": "https://www.alltrails.com/trail/canada/british-columbia/ucluelets-wild-pacific-trail-lighthouse-loop"
     },
     "lilaPick": false,
     "tags": ["ucluelet", "lighthouse", "coastal", "ancient-cedars", "easy"],
@@ -101,7 +104,8 @@
     "bookingWindow": "Water taxi from Tofino waterfront — no advance permit required",
     "links": {
       "website": "https://parks.canada.ca/pn-np/bc/pacificrim",
-      "booking": null
+      "booking": null,
+      "alltrails": "https://www.alltrails.com/trail/canada/british-columbia/big-tree-trail--2"
     },
     "lilaPick": false,
     "tags": ["meares-island", "old-growth", "water-taxi", "tribal-park", "moderate"],
@@ -128,7 +132,8 @@
     "bookingWindow": "Permit required — book at reservation.pc.gc.ca, opens in January",
     "links": {
       "website": "https://parks.canada.ca/pn-np/bc/pacificrim",
-      "booking": "https://reservation.pc.gc.ca/"
+      "booking": "https://reservation.pc.gc.ca/",
+      "alltrails": "https://www.alltrails.com/trail/canada/british-columbia/west-coast-trail-north-to-south"
     },
     "lilaPick": true,
     "tags": ["multi-day", "permit-required", "technical", "coastal", "backpacking", "may-sep"],
@@ -155,7 +160,8 @@
     "bookingWindow": "No permit required",
     "links": {
       "website": "https://bcparks.ca/",
-      "booking": null
+      "booking": null,
+      "alltrails": "https://www.alltrails.com/trail/canada/british-columbia/juan-de-fuca-park"
     },
     "lilaPick": false,
     "tags": ["marine-trail", "mystic-beach", "botanical-beach", "tide-pools", "day-hike"],
@@ -182,7 +188,8 @@
     "bookingWindow": "No permit required",
     "links": {
       "website": "https://parks.canada.ca/pn-np/bc/pacificrim",
-      "booking": null
+      "booking": null,
+      "alltrails": "https://www.alltrails.com/trail/canada/british-columbia/schooner-trail"
     },
     "lilaPick": false,
     "tags": ["cove", "tide-pools", "secluded", "short-hike", "easy"],

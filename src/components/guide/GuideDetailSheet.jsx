@@ -40,6 +40,68 @@ function DirectionsSVG() {
   );
 }
 
+function GlobeIcon({ size = 13, color }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="10" /><line x1="2" y1="12" x2="22" y2="12" /><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" />
+    </svg>
+  );
+}
+
+function MountainIcon({ size = 13, color }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M4 20L12 4l8 16H4z" />
+      <path d="M8.5 14l3-4 3 4" />
+    </svg>
+  );
+}
+
+function TrailCTARow({ npsUrl, alltrailsUrl }) {
+  if (!npsUrl && !alltrailsUrl) return null;
+  const both = npsUrl && alltrailsUrl;
+  return (
+    <div style={{ display: 'flex', gap: 8, marginBottom: 18 }}>
+      {npsUrl && (
+        <a href={npsUrl} target="_blank" rel="noopener noreferrer"
+          style={{
+            flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+            gap: 3, padding: '10px 12px', textDecoration: 'none',
+            border: `1px solid ${C.darkInk}20`, transition: 'border-color 0.2s',
+          }}
+          onMouseEnter={e => e.currentTarget.style.borderColor = C.darkInk}
+          onMouseLeave={e => e.currentTarget.style.borderColor = `${C.darkInk}20`}
+        >
+          <span style={{ fontFamily: FONTS.body, fontSize: 10, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: C.darkInk, opacity: 0.45 }}>
+            Official Info
+          </span>
+          <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, fontFamily: FONTS.body, fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: C.darkInk }}>
+            <GlobeIcon size={13} color={C.darkInk} /> NPS.gov <span style={{ fontSize: 11, opacity: 0.5 }}>↗</span>
+          </span>
+        </a>
+      )}
+      {alltrailsUrl && (
+        <a href={alltrailsUrl} target="_blank" rel="noopener noreferrer"
+          style={{
+            flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+            gap: 3, padding: '10px 12px', textDecoration: 'none',
+            border: `1px solid ${C.darkInk}20`, transition: 'border-color 0.2s',
+          }}
+          onMouseEnter={e => e.currentTarget.style.borderColor = C.darkInk}
+          onMouseLeave={e => e.currentTarget.style.borderColor = `${C.darkInk}20`}
+        >
+          <span style={{ fontFamily: FONTS.body, fontSize: 10, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: C.darkInk, opacity: 0.45 }}>
+            Trail Reviews
+          </span>
+          <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, fontFamily: FONTS.body, fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: C.darkInk }}>
+            <MountainIcon size={13} color={C.darkInk} /> AllTrails <span style={{ fontSize: 11, opacity: 0.5 }}>↗</span>
+          </span>
+        </a>
+      )}
+    </div>
+  );
+}
+
 function GuideDetailSheet({ item, onClose, isMobile }) {
   const sheetRef = useRef(null);
   const dragStartY = useRef(null);
@@ -285,7 +347,13 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
         <div style={{ fontFamily: FONTS.body, fontSize: 12, color: C.oceanTeal, marginBottom: 10 }}>{item.hours}</div>
       )}
 
-      {!showSkeleton && !nps && (item.url || places.phone || mapsUrl) && (
+      {/* Trail CTA for non-NPS entries with AllTrails link */}
+      {!showSkeleton && !nps && item.links?.alltrails && (
+        <TrailCTARow npsUrl={null} alltrailsUrl={item.links.alltrails} />
+      )}
+
+      {/* Website / Phone / Directions row — hidden when trail CTA is shown */}
+      {!showSkeleton && !nps && !item.links?.alltrails && (item.url || places.phone || mapsUrl) && (
         <div style={{ display: 'flex', gap: 8, marginBottom: 16 }}>
           {item.url && (
             <a href={item.url} target="_blank" rel="noopener noreferrer"
@@ -348,24 +416,8 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
             </div>
           )}
 
-          {/* NPS Attribution */}
-          <a
-            href={nps.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2.5 py-2.5 px-3.5 mb-[18px] no-underline transition-[background] duration-200"
-            style={{ background: '#2D5F2B0D', border: '1px solid #2D5F2B18' }}
-            onMouseEnter={e => e.currentTarget.style.background = '#2D5F2B18'}
-            onMouseLeave={e => e.currentTarget.style.background = '#2D5F2B0D'}
-          >
-            <NPSArrowhead size={20} color="#2D5F2B" />
-            <div>
-              <div className="font-body text-[12px] font-medium text-[#2D5F2B] leading-[1.5]">
-                Trail information provided by the <strong>National Park Service</strong>
-              </div>
-              <div className="font-body text-[10px] font-semibold tracking-[0.12em] uppercase text-[#2D5F2B] opacity-60 mt-0.5">View on NPS.gov ↗</div>
-            </div>
-          </a>
+          {/* Trail CTA — dual pill (NPS + AllTrails) or single */}
+          <TrailCTARow npsUrl={nps.url} alltrailsUrl={item.links?.alltrails} />
 
           {/* NPS Description */}
           {(nps.longDescription || nps.shortDescription) && (
