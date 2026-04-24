@@ -68,7 +68,8 @@
     "bookingWindow": "Reservation-required; books early in summer",
     "links": {
       "website": "https://www.quileuteoceanside.com/",
-      "booking": null
+      "booking": null,
+      "bookingDotCom": "https://www.booking.com/hotel/us/quileute-oceanside-resort.html"
     },
     "seasonalNotes": "Year-round. Winter storms and summer beach walks are both worth it.",
     "lilaPick": true,
@@ -93,7 +94,8 @@
     "bookingWindow": "Reserve well in advance for summer",
     "links": {
       "website": "https://www.olympicnationalparks.com/",
-      "booking": null
+      "booking": null,
+      "bookingDotCom": "https://www.booking.com/hotel/us/lake-crescent-lodge.html"
     },
     "seasonalNotes": "Seasonal — typically May through October. Request lakeside cottage.",
     "lilaPick": true,
@@ -119,7 +121,8 @@
     "bookingWindow": "Reserve 6+ months out for summer",
     "links": {
       "website": "https://www.olympicnationalparks.com/",
-      "booking": null
+      "booking": null,
+      "bookingDotCom": "https://www.booking.com/hotel/us/kalaloch-lodge.html"
     },
     "seasonalNotes": "Year-round. Storm watching from the bluff cabins in winter is singular.",
     "lilaPick": false,
@@ -145,7 +148,8 @@
     "bookingWindow": "Book 2–3 months ahead for summer",
     "links": {
       "website": "https://www.domainemadeleine.com/",
-      "booking": null
+      "booking": null,
+      "bookingDotCom": "https://www.booking.com/hotel/us/domaine-madeleine.html"
     },
     "seasonalNotes": "Year-round. Five suites — intimate and quiet. Best for couples seeking a pause.",
     "lilaPick": true,
@@ -171,7 +175,8 @@
     "bookingWindow": "Book through olympicnationalparks.com. 4–8 weeks ahead for summer. Open late March to late October only.",
     "links": {
       "website": "https://www.olympicnationalparks.com/lodging/sol-duc-hot-springs-resort/",
-      "booking": "https://www.olympicnationalparks.com/lodging/sol-duc-hot-springs-resort/"
+      "booking": "https://www.olympicnationalparks.com/lodging/sol-duc-hot-springs-resort/",
+      "bookingDotCom": "https://www.booking.com/hotel/us/sol-duc-hot-springs-resort.html"
     },
     "seasonalNotes": "Open late March to late October only — closed in winter. No WiFi or cell service on property. Pool fee included in cabin rate.",
     "lilaPick": true,
@@ -197,7 +202,8 @@
     "bookingWindow": "Book through olympicnationalparks.com. 4–8 weeks ahead for summer. Open year-round.",
     "links": {
       "website": "https://www.olympicnationalparks.com/lake-quinault-lodge",
-      "booking": "https://www.olympicnationalparks.com/lake-quinault-lodge"
+      "booking": "https://www.olympicnationalparks.com/lake-quinault-lodge",
+      "bookingDotCom": "https://www.booking.com/hotel/us/lake-quinault-lodge.html"
     },
     "seasonalNotes": "Open year-round. No cell service or WiFi on property. Roosevelt Dining Room closes periodically — check website before travel.",
     "lilaPick": true,
@@ -223,7 +229,8 @@
     "bookingWindow": "Book 4–8 weeks ahead. Adults-only (16+). Two-person maximum per room. Check-in 4–7 PM only.",
     "links": {
       "website": "https://colettes.com/",
-      "booking": "https://colettes.com/"
+      "booking": "https://colettes.com/",
+      "bookingDotCom": "https://www.booking.com/hotel/us/colettes-bed-and-breakfast.html"
     },
     "seasonalNotes": "Open year-round. Adults-only — no children under 16. Gourmet breakfast changes daily. Summer lavender season in Sequim pairs well with a stay here.",
     "lilaPick": false,
@@ -249,7 +256,8 @@
     "bookingWindow": "Book through hohvalleycabins.com. 2–4 weeks ahead for summer. Often available midweek.",
     "links": {
       "website": "https://www.hohvalleycabins.com",
-      "booking": "https://www.hohvalleycabins.com"
+      "booking": "https://www.hohvalleycabins.com",
+      "bookingDotCom": "https://www.booking.com/hotel/us/hoh-valley-cabins-at-elk-meadows.html"
     },
     "seasonalNotes": "Open year-round. No WiFi on property. Cell service limited to Verizon. Elk most visible at dawn in fall and winter.",
     "lilaPick": false,

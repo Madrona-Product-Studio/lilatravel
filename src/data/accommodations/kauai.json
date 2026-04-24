@@ -44,7 +44,8 @@
     "bookingWindow": "Reservations through kokee.net",
     "links": {
       "website": "https://www.kokeelodge.com/",
-      "booking": null
+      "booking": null,
+      "bookingDotCom": "https://www.booking.com/hotel/us/cabins-at-kokee.html"
     },
     "seasonalNotes": "Year-round. Cool and misty — bring layers. A completely different Kauaʻi from the coast.",
     "lilaPick": true,
@@ -94,7 +95,8 @@
     "bookingWindow": "Book 3–6 months ahead for peak season",
     "links": {
       "website": "https://www.hcr.com/",
-      "booking": null
+      "booking": null,
+      "bookingDotCom": "https://www.booking.com/hotel/us/hanalei-colony-resort.html"
     },
     "seasonalNotes": "Year-round. North Shore location means bigger winter surf — summer is calmer for swimming.",
     "lilaPick": true,
@@ -144,7 +146,8 @@
     "bookingWindow": "Book 2–4 months ahead for peak season",
     "links": {
       "website": "https://www.coasthotels.com/waimea-plantation-cottages",
-      "booking": null
+      "booking": null,
+      "bookingDotCom": "https://www.booking.com/hotel/us/waimeaplantationcottages.html"
     },
     "seasonalNotes": "Year-round. No resort amenities, no crowds — just history, stillness, and the garden isle as it was.",
     "lilaPick": true,
@@ -169,7 +172,8 @@
     "bookingWindow": "Reserve well ahead for peak season",
     "links": {
       "website": "https://www.hyatt.com/grand-hyatt/en-US/kauai-grand-hyatt-kauai-resort-and-spa",
-      "booking": null
+      "booking": null,
+      "bookingDotCom": "https://www.booking.com/hotel/us/grand-hyatt-kauai-resort-amp-spa.html"
     },
     "seasonalNotes": "Year-round. Anara Spa's lomilomi and pohaku treatments are grounded in Hawaiian tradition.",
     "lilaPick": true,
@@ -194,7 +198,8 @@
     "bookingWindow": "Book 2–4 months ahead for peak season",
     "links": {
       "website": "https://www.timberskauai.com/",
-      "booking": null
+      "booking": null,
+      "bookingDotCom": "https://www.booking.com/hotel/us/timbers-kauai-ocean-club-amp-residences.html"
     },
     "seasonalNotes": "Year-round. The organic farm is a genuine differentiator — not marketing.",
     "lilaPick": true,
@@ -221,7 +226,8 @@
     "bookingWindow": "Reserve well ahead — the only full-service luxury on the North Shore",
     "links": {
       "website": "https://www.1hotels.com/hanalei-bay",
-      "booking": null
+      "booking": null,
+      "bookingDotCom": "https://www.booking.com/hotel/us/1hotel-hanalei-bay.html"
     },
     "seasonalNotes": "Year-round. The renovation brought genuine sustainability ethos, not just branding.",
     "lilaPick": true,
@@ -247,7 +253,8 @@
     "bookingWindow": "Book through individual unit owners or Parrish Collection Kauai. 2–4 weeks ahead for peak season.",
     "links": {
       "website": "https://www.hanaleibayresort.com/",
-      "booking": "https://www.parrishkauai.com/kauai-condos/hanalei-bay-resort/"
+      "booking": "https://www.parrishkauai.com/kauai-condos/hanalei-bay-resort/",
+      "bookingDotCom": "https://www.booking.com/hotel/us/hanalei-bay-resort.html"
     },
     "seasonalNotes": "Open year-round. Avoid units undergoing renovation — read individual unit reviews before booking. Summer (June–Aug) offers calm water and ideal beach conditions.",
     "lilaPick": false,

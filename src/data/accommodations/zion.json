@@ -43,7 +43,8 @@
     "bookingWindow": "2–3 months ahead for peak season (Sep–Oct, spring break). Less lead time needed in winter.",
     "links": {
       "website": "https://www.cablemountainlodge.com/",
-      "booking": null
+      "booking": null,
+      "bookingDotCom": "https://www.booking.com/hotel/us/cable-mountain-lodge.html"
     },
     "seasonalNotes": "Year-round. Great base camp in any season. AC in summer, heated in winter.",
     "lilaPick": false,
@@ -69,7 +70,8 @@
     "bookingWindow": "2–4 months ahead for peak season. Popular with returning guests.",
     "links": {
       "website": "https://www.cliffroselodge.com/",
-      "booking": null
+      "booking": null,
+      "bookingDotCom": "https://www.booking.com/hotel/us/cliffrose-springdale-curio-collection-by-hilton.html"
     },
     "seasonalNotes": "Year-round. The riverside grounds are magical in fall (cottonwood color) and spring (wildflowers).",
     "lilaPick": true,
@@ -94,7 +96,8 @@
     "bookingWindow": "2–3 months ahead for peak season.",
     "links": {
       "website": "https://flanigans.com/",
-      "booking": null
+      "booking": null,
+      "bookingDotCom": "https://www.booking.com/hotel/us/flanigan-s-inn.html"
     },
     "seasonalNotes": "Year-round. Check schedule for sound bath and yoga sessions.",
     "lilaPick": false,
@@ -120,7 +123,8 @@
     "bookingWindow": "3–6 months ahead, especially for Sep–Oct. Sells out for fall equinox window.",
     "links": {
       "website": "https://www.undercanvas.com/camps/zion/",
-      "booking": null
+      "booking": null,
+      "bookingDotCom": "https://www.booking.com/hotel/us/under-canvas-at-zion.html"
     },
     "seasonalNotes": "Seasonal: typically March–November. Closed in winter. No AC — fans only in summer (can be hot June–Aug).",
     "lilaPick": true,
@@ -170,7 +174,8 @@
     "bookingWindow": "6–12 months ahead. Extremely limited availability. Book as early as possible.",
     "links": {
       "website": "https://www.zionlodge.com/",
-      "booking": null
+      "booking": null,
+      "bookingDotCom": "https://www.booking.com/hotel/us/zion-lodge-inside-the-park-springdale.html"
     },
     "seasonalNotes": "Year-round. Winter is quieter and easier to book. Summer sells out far in advance.",
     "lilaPick": true,
@@ -248,7 +253,8 @@
     "bookingWindow": "2–4 months ahead for peak season.",
     "links": {
       "website": "https://brycecanyon.clearskyresorts.com/",
-      "booking": null
+      "booking": null,
+      "bookingDotCom": "https://www.booking.com/hotel/us/clear-sky-resorts-bryce-canyon-unique-sky-domes.html"
     },
     "seasonalNotes": "Year-round. Winter stargazing from the heated domes is exceptional.",
     "corridor": true,
@@ -274,7 +280,8 @@
     "bookingWindow": "2–4 months ahead for peak season.",
     "links": {
       "website": "https://capitolreefresort.com/",
-      "booking": null
+      "booking": null,
+      "bookingDotCom": "https://www.booking.com/hotel/us/best-western-capitol-reef-resort.html"
     },
     "seasonalNotes": "Year-round. The teepees and wagons are seasonal — check availability.",
     "corridor": true,
@@ -300,7 +307,8 @@
     "bookingWindow": "2–3 months ahead for peak season.",
     "links": {
       "website": "https://www.skyviewtorrey.com/",
-      "booking": null
+      "booking": null,
+      "bookingDotCom": "https://www.booking.com/hotel/us/skyview-torrey1.html"
     },
     "seasonalNotes": "Year-round. The dark sky designation is real — exceptional stargazing.",
     "corridor": true,

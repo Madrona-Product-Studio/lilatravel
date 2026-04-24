@@ -94,7 +94,8 @@
     "bookingWindow": "Book 3–6 months ahead for summer",
     "links": {
       "website": "https://www.pacificsands.com/",
-      "booking": null
+      "booking": null,
+      "bookingDotCom": "https://www.booking.com/hotel/ca/tofino-1421-pacific-rim-highway.html"
     },
     "seasonalNotes": "Year-round. Storm watching packages in winter. Surf is biggest September–November.",
     "lilaPick": false,
@@ -119,7 +120,8 @@
     "bookingWindow": "Book 3–6 months ahead for summer",
     "links": {
       "website": "https://www.longbeachlodgeresort.com/",
-      "booking": null
+      "booking": null,
+      "bookingDotCom": "https://www.booking.com/hotel/ca/long-beach-lodge-resort.html"
     },
     "seasonalNotes": "Year-round. Storm watching from the great room is a winter tradition.",
     "lilaPick": false,
@@ -144,7 +146,8 @@
     "bookingWindow": "Book 2–4 months ahead — only 6 rooms",
     "links": {
       "website": "https://www.pluvio.ca/",
-      "booking": null
+      "booking": null,
+      "bookingDotCom": "https://www.booking.com/hotel/ca/pluvio-restaurant-and-rooms.html"
     },
     "seasonalNotes": "Year-round. Six rooms total — intimate and hard to get. Book early.",
     "lilaPick": true,
@@ -171,7 +174,8 @@
     "bookingWindow": "Reserve 6–12 months ahead for peak season",
     "links": {
       "website": "https://www.wickinn.com/",
-      "booking": null
+      "booking": null,
+      "bookingDotCom": "https://www.booking.com/hotel/ca/wickaninnish-inn.html"
     },
     "seasonalNotes": "Year-round. Storm watching season (Nov–Mar) is as compelling as summer — book the storm packages.",
     "lilaPick": true,
@@ -197,7 +201,8 @@
     "bookingWindow": "Book 3–6 weeks ahead for peak summer and storm-watching season (Nov–Jan).",
     "links": {
       "website": "https://tinwis.ca/",
-      "booking": "https://tinwis.ca/accomodations/"
+      "booking": "https://tinwis.ca/accomodations/",
+      "bookingDotCom": "https://www.booking.com/hotel/ca/best-western-tin-wis-resort.html"
     },
     "seasonalNotes": "Open year-round. Storm-watching season Nov–Jan is special. Summer surf season brings higher rates. naaʔuu cultural events run periodically — check the website.",
     "lilaPick": false,
@@ -223,7 +228,8 @@
     "bookingWindow": "Book 4–8 weeks ahead for summer and fall. Winter rates drop significantly.",
     "links": {
       "website": "https://oceanvillageresort.com/",
-      "booking": "https://oceanvillageresort.com/"
+      "booking": "https://oceanvillageresort.com/",
+      "bookingDotCom": "https://www.booking.com/hotel/ca/tofino-555-hellesen-drive-british-columbia.html"
     },
     "seasonalNotes": "Open year-round. Summer is peak; winter is storm-watching season. Beach fires are permitted with required fire appliances.",
     "lilaPick": true,

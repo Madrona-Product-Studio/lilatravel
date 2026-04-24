@@ -44,7 +44,8 @@
     "bookingWindow": "Book 2–4 weeks ahead for weekends. Spring and fall fill fastest.",
     "links": {
       "website": "https://www.stayreset.com/",
-      "booking": "https://www.stayreset.com/rooms"
+      "booking": "https://www.stayreset.com/rooms",
+      "bookingDotCom": "https://www.booking.com/hotel/us/reset.html"
     },
     "seasonalNotes": "Open year-round. Summer pool season April–October. Winter evenings ideal for stargazing with Celestron telescopes.",
     "lilaPick": true,
@@ -119,7 +120,8 @@
     "bookingWindow": "Book 2–4 weeks ahead. Popular with returning guests — some weekends fill months out.",
     "links": {
       "website": "https://29palmsinn.com/",
-      "booking": null
+      "booking": null,
+      "bookingDotCom": "https://www.booking.com/hotel/us/29-palms-inn.html"
     },
     "seasonalNotes": "Year-round. The garden is especially beautiful in spring. On-site restaurant serves breakfast and dinner.",
     "lilaPick": true,
@@ -144,7 +146,8 @@
     "bookingWindow": "Only two rooms — book 1–2 months ahead. Sells out for full moons and spring weekends.",
     "links": {
       "website": "https://www.sacredsands.com/",
-      "booking": null
+      "booking": null,
+      "bookingDotCom": "https://www.booking.com/hotel/us/sacred-sands.html"
     },
     "seasonalNotes": "Year-round. Full moon weekends are especially popular and book far ahead.",
     "lilaPick": true,
@@ -169,7 +172,8 @@
     "bookingWindow": "Book 2–4 weeks ahead. Weekend packages sell out in spring season.",
     "links": {
       "website": "https://www.twobunchpalms.com/",
-      "booking": null
+      "booking": null,
+      "bookingDotCom": "https://www.booking.com/hotel/us/two-bunch-palms-resort.html"
     },
     "seasonalNotes": "Year-round. Summer can be extremely hot — the springs are still a draw but the surrounding heat is intense.",
     "corridor": true,
@@ -222,7 +226,8 @@
     "bookingWindow": "Book through retreat.homesteadmodern.com. 2–4 weeks ahead for weekends. Full buyout available for groups.",
     "links": {
       "website": "https://retreat.homesteadmodern.com",
-      "booking": "https://retreat.homesteadmodern.com"
+      "booking": "https://retreat.homesteadmodern.com",
+      "bookingDotCom": "https://www.booking.com/hotel/us/the-bungalows-by-homestead-modern-deluxe-studio.html"
     },
     "seasonalNotes": "Open year-round. The vegetarian Food for Thought Café is on-site. Spring and fall most pleasant.",
     "lilaPick": false,

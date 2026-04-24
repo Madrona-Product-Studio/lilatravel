@@ -121,7 +121,8 @@
     "bookingWindow": "Book 2–4 months ahead for peak season",
     "links": {
       "website": "https://www.glenoaksbigsur.com/",
-      "booking": null
+      "booking": null,
+      "bookingDotCom": "https://www.booking.com/hotel/us/glen-oaks-big-sur.html"
     },
     "seasonalNotes": "Year-round. Each cabin is unique — request details when booking.",
     "lilaPick": false,
@@ -147,7 +148,8 @@
     "bookingWindow": "Book 3–6 months ahead for peak season",
     "links": {
       "website": "https://www.bigsurlodge.com/",
-      "booking": null
+      "booking": null,
+      "bookingDotCom": "https://www.booking.com/hotel/us/big-sur-lodge.html"
     },
     "seasonalNotes": "Year-round. Basic but storied — the trailhead access is unmatched.",
     "lilaPick": false,
@@ -174,7 +176,8 @@
     "bookingWindow": "Book 1–3 months ahead",
     "links": {
       "website": "https://www.visitasilomar.com/",
-      "booking": null
+      "booking": null,
+      "bookingDotCom": "https://www.booking.com/hotel/us/asilomar-conference-grounds.html"
     },
     "seasonalNotes": "Year-round. The fireplace-and-fog atmosphere makes you stay another night.",
     "lilaPick": true,
@@ -227,7 +230,8 @@
     "bookingWindow": "Book 3–6 months ahead for peak season",
     "links": {
       "website": "https://www.hyatt.com/alila-hotels-and-resorts/en-US/sjcal-ventana-big-sur",
-      "booking": null
+      "booking": null,
+      "bookingDotCom": "https://www.booking.com/hotel/us/ventana-inn-spa.html"
     },
     "seasonalNotes": "Year-round. All-inclusive means no surprise costs — everything is in the rate.",
     "lilaPick": true,
