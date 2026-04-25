@@ -14,6 +14,7 @@ const breatheContentItems = breatheItems.map(b => ({
   highlights: b.highlights,
   featured: b.lilaPick,
   url: b.links?.website,
+  links: b.links,
   section: 'Breathe',
 }));
 

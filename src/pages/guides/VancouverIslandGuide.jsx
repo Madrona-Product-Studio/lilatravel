@@ -361,6 +361,7 @@ export default function VancouverIslandGuide() {
                   featured: a.lilaPick,
                   tier: a.stayStyle,
                   url: a.links?.website || a.links?.booking,
+                  links: a.links,
                 }))} />
 
                 <PlaceGuideCard label="Full Where to Stay Guide" descriptor="Full accommodations across Tofino, Ucluelet, Victoria & Nanaimo" bg="linear-gradient(155deg, #C4A882 0%, #4f603b 100%)" to="/destinations/vancouver-island/where-to-stay" />
@@ -386,6 +387,7 @@ export default function VancouverIslandGuide() {
                     detail: e.highlights?.[0] || '',
                     featured: e.lilaPick,
                     url: e.links?.website,
+                    links: e.links,
                   };
                 })} />
 
@@ -409,6 +411,7 @@ export default function VancouverIslandGuide() {
                   detail: m.highlights?.[0] || '',
                   featured: m.lilaPick,
                   url: m.links?.website,
+                  links: m.links,
                 }))} />
 
                 <PlaceGuideCard label="Full Hikes, Bikes, etc. Guide" descriptor="Full trail & activity guide across the island" bg="linear-gradient(155deg, #8AAA7A 0%, #4f603b 100%)" to="/destinations/vancouver-island/hikes-bikes" />
@@ -433,6 +436,7 @@ export default function VancouverIslandGuide() {
                   detail: b.highlights?.[0] || '',
                   featured: b.lilaPick,
                   url: b.links?.website,
+                  links: b.links,
                 }))} />
 
                 <PlaceGuideCard label="Full Yoga & Mindfulness Guide" descriptor="Hot springs · forest bathing · sauna · restore" bg="linear-gradient(155deg, #8AADA8 0%, #4f603b 100%)" to="/destinations/vancouver-island/yoga-mindfulness" />
@@ -457,6 +461,7 @@ export default function VancouverIslandGuide() {
                   detail: e.highlights?.[0] || '',
                   featured: e.featured || e.lilaPick,
                   url: e.links?.website,
+                  links: e.links,
                 }))} />
 
                 <PlaceGuideCard label="Full Art & Culture Guide" descriptor="First Nations art · galleries · museums · heritage" bg="linear-gradient(155deg, #B8956A 0%, #4f603b 100%)" to="/destinations/vancouver-island/arts-and-culture" />

@@ -14,6 +14,7 @@ const experienceItems = experiences.map(e => ({
   highlights: e.highlights,
   featured: e.lilaPick,
   url: e.links?.website,
+  links: e.links,
   section: 'Experience',
 }));
 

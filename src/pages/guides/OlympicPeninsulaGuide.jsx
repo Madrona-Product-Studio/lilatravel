@@ -392,6 +392,7 @@ export default function OlympicPeninsulaGuide() {
                   featured: a.lilaPick,
                   tier: a.stayStyle,
                   url: a.links?.website || a.links?.booking,
+                  links: a.links,
                   hasNPS: checkNPS(a.name),
                 }))} />
 
@@ -418,6 +419,7 @@ export default function OlympicPeninsulaGuide() {
                     detail: e.highlights?.[0] || '',
                     featured: e.lilaPick,
                     url: e.links?.website,
+                    links: e.links,
                     hasNPS: checkNPS(e.name),
                   };
                 })} />
@@ -442,6 +444,7 @@ export default function OlympicPeninsulaGuide() {
                   detail: m.highlights?.[0] || '',
                   featured: m.lilaPick,
                   url: m.links?.website,
+                  links: m.links,
                   hasNPS: checkNPS(m.name),
                 }))} />
 
@@ -467,6 +470,7 @@ export default function OlympicPeninsulaGuide() {
                   detail: b.highlights?.[0] || '',
                   featured: b.lilaPick,
                   url: b.links?.website,
+                  links: b.links,
                   hasNPS: checkNPS(b.name),
                 }))} />
 
@@ -492,6 +496,7 @@ export default function OlympicPeninsulaGuide() {
                   detail: e.highlights?.[0] || '',
                   featured: e.featured || e.lilaPick,
                   url: e.links?.website,
+                  links: e.links,
                   hasNPS: checkNPS(e.name),
                 }))} />
 

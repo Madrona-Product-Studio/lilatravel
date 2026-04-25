@@ -381,6 +381,7 @@ export default function KauaiGuide() {
                   featured: a.lilaPick,
                   tier: a.stayStyle,
                   url: a.links?.website || a.links?.booking,
+                  links: a.links,
                 }))} />
 
                 <PlaceGuideCard label="Full Where to Stay Guide" descriptor="Full accommodations across Poipu, Hanalei, Princeville & Kapaa" bg="linear-gradient(155deg, #C4A882 0%, #8A7A6A 100%)" to="/destinations/kauai/where-to-stay" />
@@ -406,6 +407,7 @@ export default function KauaiGuide() {
                     detail: e.highlights?.[0] || '',
                     featured: e.lilaPick,
                     url: e.links?.website,
+                    links: e.links,
                   };
                 })} />
 
@@ -429,6 +431,7 @@ export default function KauaiGuide() {
                   detail: m.highlights?.[0] || '',
                   featured: m.lilaPick,
                   url: m.links?.website,
+                  links: m.links,
                 }))} />
 
                 <PlaceGuideCard label="Full Hikes, Surf, etc. Guide" descriptor="Full trail & activity guide across the island" bg="linear-gradient(155deg, #8AAA7A 0%, #4A6A5A 100%)" to="/destinations/kauai/hikes-surf" />
@@ -453,6 +456,7 @@ export default function KauaiGuide() {
                   detail: b.highlights?.[0] || '',
                   featured: b.lilaPick,
                   url: b.links?.website,
+                  links: b.links,
                 }))} />
 
                 <PlaceGuideCard label="Full Yoga & Healing Guide" descriptor="Yoga \u00b7 lomilomi \u00b7 Hawaiian healing \u00b7 restore" bg="linear-gradient(155deg, #8AADA8 0%, #4A6B7A 100%)" to="/destinations/kauai/yoga-healing" />
@@ -477,6 +481,7 @@ export default function KauaiGuide() {
                   detail: e.highlights?.[0] || '',
                   featured: e.featured || e.lilaPick,
                   url: e.links?.website,
+                  links: e.links,
                 }))} />
 
                 <PlaceGuideCard label="Full Culture & Heritage Guide" descriptor="Hawaiian culture \u00b7 botanical gardens \u00b7 heritage" bg="linear-gradient(155deg, #B8956A 0%, #6A7A5A 100%)" to="/destinations/kauai/culture-heritage" />
