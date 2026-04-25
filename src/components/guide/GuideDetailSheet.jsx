@@ -188,7 +188,7 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
 
   const googlePhotos = places.photos || [];
   const heroPhoto = googlePhotos[activePhotoIdx] || googlePhotos[0];
-  const mapsUrl = places.placeId ? `https://www.google.com/maps/place/?q=place_id:${places.placeId}` : null;
+  const mapsUrl = places.placeId ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.name || '')}&query_place_id=${places.placeId}` : null;
 
   // Show skeleton while Places data is loading (only for place-type items)
   const showSkeleton = shouldFetchPlaces && places.loading;

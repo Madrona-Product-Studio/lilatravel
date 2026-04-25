@@ -1402,7 +1402,7 @@ function PlacesEnrichment({ name, location }) {
 
   const photos = places.photos || [];
   const hero = photos[photoIdx] || photos[0];
-  const mapsUrl = places.placeId ? `https://www.google.com/maps/place/?q=place_id:${places.placeId}` : null;
+  const mapsUrl = places.placeId ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(name || '')}&query_place_id=${places.placeId}` : null;
 
   if (places.loading && !hero) {
     return (
