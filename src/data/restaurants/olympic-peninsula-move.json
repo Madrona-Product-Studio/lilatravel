@@ -426,7 +426,8 @@
     "bookingWindow": "Self-guided — Makah Recreation Pass required ($20). Wilderness permit for overnight.",
     "links": {
       "website": "https://www.nps.gov/olym/planyourvisit/wilderness-trip-planner.htm",
-      "booking": null
+      "booking": null,
+      "alltrails": "https://www.alltrails.com/trail/us/washington/shi-shi-beach-trail"
     },
     "lilaPick": false,
     "tags": ["beach", "sea-stacks", "remote", "makah", "tide-dependent", "overnight", "off-beaten-path"],

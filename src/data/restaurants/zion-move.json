@@ -444,7 +444,8 @@
     "bookingWindow": "Permit required — $15/person, book at kanarrafalls.com. 150/day cap. Weekends fill 1-2 weeks ahead.",
     "links": {
       "website": "https://kanarrafalls.com/",
-      "booking": "https://kanarrafalls.com/"
+      "booking": "https://kanarrafalls.com/",
+      "alltrails": "https://www.alltrails.com/trail/us/utah/kanarra-falls"
     },
     "lilaPick": true,
     "tags": [
@@ -485,7 +486,8 @@
     "bookingWindow": "Self-guided — no permit required. Check Hole-in-the-Rock Road conditions before driving.",
     "links": {
       "website": "https://www.blm.gov/visit/grand-staircase-escalante-national-monument",
-      "booking": null
+      "booking": null,
+      "alltrails": "https://www.alltrails.com/trail/us/utah/peek-a-boo-and-spooky-slot-canyons"
     },
     "lilaPick": false,
     "corridor": true,
@@ -529,7 +531,8 @@
     "bookingWindow": "Self-guided — park entry fee applies. Scenic drive and Point Supreme viewpoint accessible without hiking.",
     "links": {
       "website": "https://www.nps.gov/cebr/planyourvisit/hike-a-trail.htm",
-      "booking": null
+      "booking": null,
+      "alltrails": "https://www.alltrails.com/trail/us/utah/spectra-point-trail-cedar-breaks-national-monument"
     },
     "lilaPick": false,
     "corridor": true,
