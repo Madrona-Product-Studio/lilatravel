@@ -180,5 +180,188 @@
     "lilaPick": false,
     "tags": ["grocery", "supermarket", "provisions", "north-entrance"],
     "months": "all"
+  },
+  {
+    "id": "kitchen-in-the-desert",
+    "name": "Kitchen in the Desert",
+    "cuisine": "Caribbean-influenced New American",
+    "location": "Twentynine Palms",
+    "priceRange": "$$",
+    "budgetTier": "moderate",
+    "groupFit": ["couple", "friends", "family"],
+    "energy": "lively",
+    "highlights": [
+      "Caribbean-influenced plates in a sprawling outdoor space with fire pits and string lights",
+      "Live music most weekends on the outdoor stage",
+      "The best patio in the high desert — a genuine gathering place",
+      "Locally owned, community-rooted"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": true,
+      "notes": "Several plant-forward plates; GF options available"
+    },
+    "hours": "Dinner Wed–Sun. Check current schedule.",
+    "reservations": "recommended",
+    "links": {
+      "website": "https://www.kitd29.com/",
+      "maps": null,
+      "openTable": "https://www.opentable.com/r/kitchen-in-the-desert-twentynine-palms"
+    },
+    "lilaPick": true,
+    "tags": ["dinner", "outdoor-dining", "fire-pits", "live-music", "caribbean", "community"],
+    "months": "all"
+  },
+  {
+    "id": "luna-bakery",
+    "name": "Luna",
+    "cuisine": "Artisan bakery & cafe",
+    "location": "Yucca Valley",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "contemplative",
+    "highlights": [
+      "Small-batch sourdough and pastries — cardamom buns, flaky croissants",
+      "A morning ritual stop on the drive through Old Town Yucca Valley",
+      "Independently owned, craft-focused, unhurried"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": true,
+      "glutenFree": false,
+      "notes": "Most items are plant-based. Sourdough is the centerpiece."
+    },
+    "hours": "Morning through early afternoon. Closed Mon–Tue.",
+    "reservations": "walk-in",
+    "links": {
+      "website": "https://www.lunayuccavalley.com/",
+      "maps": null
+    },
+    "lilaPick": true,
+    "tags": ["bakery", "sourdough", "morning", "artisan", "yucca-valley"],
+    "months": "all"
+  },
+  {
+    "id": "frontier-cafe",
+    "name": "Frontier Cafe",
+    "cuisine": "Contemporary cafe",
+    "location": "Yucca Valley",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "relaxed",
+    "highlights": [
+      "Locally beloved newer arrival on the Old Town strip",
+      "Good avocado toast, fresh bowls, solid coffee",
+      "Plant-forward without being precious about it"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": true,
+      "glutenFree": true,
+      "notes": "Plenty of plant-based and GF options"
+    },
+    "hours": "Breakfast and lunch daily.",
+    "reservations": "walk-in",
+    "links": {
+      "website": "https://www.cafefrontier.com/",
+      "maps": null
+    },
+    "lilaPick": false,
+    "tags": ["cafe", "breakfast", "lunch", "plant-forward", "yucca-valley"],
+    "months": "all"
+  },
+  {
+    "id": "spaghetti-western",
+    "name": "Spaghetti Western",
+    "cuisine": "Italian",
+    "location": "Morongo Valley",
+    "priceRange": "$$",
+    "budgetTier": "moderate",
+    "groupFit": ["couple", "friends", "family"],
+    "energy": "intimate",
+    "highlights": [
+      "Owned by Rome-born Jasmine and Lorenzo — authentic Italian in a desert saloon",
+      "Handmade pasta, wood-fired flavors, curated wine list",
+      "Open Thu–Sun only, with live music on weekends",
+      "The kind of place that exists because someone loves what they do"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": true,
+      "notes": "GF pasta available. Several vegetarian dishes."
+    },
+    "hours": "Dinner Thu–Sun, 4pm–9pm.",
+    "reservations": "recommended",
+    "links": {
+      "website": "https://www.spaghettiwesternsaloon.com/",
+      "maps": null
+    },
+    "lilaPick": true,
+    "tags": ["italian", "handmade-pasta", "dinner", "live-music", "morongo-valley", "authentic"],
+    "months": "all"
+  },
+  {
+    "id": "campbell-hill-bakery",
+    "name": "Campbell Hill Bakery",
+    "cuisine": "Artisan bakery",
+    "location": "Twentynine Palms",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple"],
+    "energy": "contemplative",
+    "highlights": [
+      "Small-batch artisan bakery open select evenings only",
+      "Handcrafted breads, pastries, tomato soup, coffee cake",
+      "Intimate, unhurried — the kind of place you stumble onto and remember"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": false,
+      "notes": "Primarily baked goods. Some savory items."
+    },
+    "hours": "Select evenings only. Check social media for schedule.",
+    "reservations": "walk-in",
+    "links": {
+      "website": null,
+      "maps": null
+    },
+    "lilaPick": false,
+    "tags": ["bakery", "evening", "artisan", "small-batch", "twentynine-palms"],
+    "months": "all"
+  },
+  {
+    "id": "joshua-tree-coffee",
+    "name": "Joshua Tree Coffee Company",
+    "cuisine": "Coffee roastery",
+    "location": "Joshua Tree town",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "relaxed",
+    "highlights": [
+      "Beans roasted on-site — the best cup in the high desert",
+      "Morning anchor before the park",
+      "Simple, independently owned, no fuss"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": true,
+      "glutenFree": true,
+      "notes": "Coffee and light items"
+    },
+    "hours": "Morning through afternoon daily.",
+    "reservations": "walk-in",
+    "links": {
+      "website": "https://www.joshuatreecoffeecompany.com/",
+      "maps": null
+    },
+    "lilaPick": false,
+    "tags": ["coffee", "roastery", "morning", "pre-hike"],
+    "months": "all"
   }
 ]

@@ -215,5 +215,192 @@
     "lilaPick": false,
     "tags": ["provisions", "smoothies", "organic", "deli", "natural-foods"],
     "months": "all"
+  },
+  {
+    "id": "eating-house-1849",
+    "name": "Eating House 1849",
+    "cuisine": "Plantation-era Hawaiian fusion",
+    "location": "Koloa (The Shops at Kukuiula)",
+    "priceRange": "$$$",
+    "budgetTier": "premium",
+    "groupFit": ["couple", "friends"],
+    "energy": "lively",
+    "highlights": [
+      "Chef Roy Yamaguchi's James Beard Award-winning restaurant",
+      "Menu shifts seasonally with what farmers, foragers, and fishermen produce",
+      "Plantation-era flavors reimagined — beef-wild boar burger, pork lumpia, cinnamon malasadas",
+      "South Shore's most interesting kitchen"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": true,
+      "notes": "Several vegetarian and GF options. Seasonal menu."
+    },
+    "hours": "Dinner nightly. Check current schedule.",
+    "reservations": "recommended",
+    "links": {
+      "website": "https://www.eatinghouse1849.com/",
+      "maps": null,
+      "openTable": "https://www.opentable.com/eating-house-1849"
+    },
+    "lilaPick": true,
+    "tags": ["dinner", "james-beard", "plantation-cuisine", "locally-sourced", "south-shore"],
+    "months": "all"
+  },
+  {
+    "id": "koloa-fish-market",
+    "name": "Koloa Fish Market",
+    "cuisine": "Poke & fresh fish",
+    "location": "Koloa",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "relaxed",
+    "highlights": [
+      "Cash-only poke counter — the real thing",
+      "Locals bring produce to the back door to trade for fish",
+      "Traditional and creative poke preparations with whatever came in that morning",
+      "No poke on Kauai is more place-rooted than this"
+    ],
+    "dietary": {
+      "vegetarian": false,
+      "vegan": false,
+      "glutenFree": true,
+      "notes": "Fish-focused. GF by nature — rice bowls."
+    },
+    "hours": "Lunch hours. Closed Sun. Cash only.",
+    "reservations": "walk-in",
+    "links": {
+      "website": null,
+      "maps": null
+    },
+    "lilaPick": true,
+    "tags": ["poke", "fish-market", "cash-only", "local-institution", "south-shore"],
+    "months": "all"
+  },
+  {
+    "id": "hukilau-lanai",
+    "name": "Hukilau Lanai",
+    "cuisine": "Hawaiian regional",
+    "location": "Kapaa",
+    "priceRange": "$$-$$$",
+    "budgetTier": "moderate",
+    "groupFit": ["couple", "friends", "family"],
+    "energy": "relaxed",
+    "highlights": [
+      "Fresh, creative island cuisine sourced from local fishermen and Kauai farms",
+      "Warm tiki-influenced setting with outdoor lanai seating",
+      "Kapaa's anchor restaurant — fills the entire East Shore gap",
+      "Named for the traditional Hawaiian fishing practice"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": true,
+      "notes": "Fish-forward menu with vegetarian and GF options"
+    },
+    "hours": "Dinner nightly. Happy hour 3–5pm.",
+    "reservations": "recommended",
+    "links": {
+      "website": "https://hukilaukauai.com/",
+      "maps": null
+    },
+    "lilaPick": true,
+    "tags": ["dinner", "hawaiian-regional", "locally-sourced", "east-shore", "kapaa"],
+    "months": "all"
+  },
+  {
+    "id": "hanalei-bread-company",
+    "name": "Hanalei Bread Company",
+    "cuisine": "Organic bakery & breakfast",
+    "location": "Hanalei",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "relaxed",
+    "highlights": [
+      "Organic bakery and morning ritual on the North Shore",
+      "Fresh-baked breads, pastries, breakfast sandwiches, strong coffee",
+      "Small, craft-focused, the kind of stop that anchors a morning"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": true,
+      "glutenFree": false,
+      "notes": "Several vegan pastry options"
+    },
+    "hours": "Morning through early afternoon.",
+    "reservations": "walk-in",
+    "links": {
+      "website": "https://www.hanaleibreadcompany.com/",
+      "maps": null
+    },
+    "lilaPick": false,
+    "tags": ["bakery", "breakfast", "morning", "organic", "north-shore"],
+    "months": "all"
+  },
+  {
+    "id": "oasis-on-the-beach",
+    "name": "Oasis on the Beach",
+    "cuisine": "Pacific Rim seafood",
+    "location": "Kapaa",
+    "priceRange": "$$-$$$",
+    "budgetTier": "moderate",
+    "groupFit": ["couple", "friends"],
+    "energy": "relaxed",
+    "highlights": [
+      "Sources 80% of ingredients from Kauai farmers and fishermen",
+      "Oceanfront setting — one of the few beachside dining rooms on the East Shore",
+      "Creative Pacific Rim menu that changes with what's available",
+      "The kind of restaurant that makes you feel the island"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": true,
+      "notes": "Seafood-forward with vegetarian and GF options"
+    },
+    "hours": "Lunch and dinner. Check current hours.",
+    "reservations": "recommended",
+    "links": {
+      "website": "https://www.oasisonthebeach.com/",
+      "maps": null,
+      "openTable": "https://www.opentable.com/oasis-on-the-beach"
+    },
+    "lilaPick": false,
+    "tags": ["oceanfront", "seafood", "locally-sourced", "east-shore", "kapaa"],
+    "months": "all"
+  },
+  {
+    "id": "postcards-cafe",
+    "name": "Postcards Cafe",
+    "cuisine": "Seafood & vegetarian",
+    "location": "Hanalei",
+    "priceRange": "$$$",
+    "budgetTier": "premium",
+    "groupFit": ["couple", "friends"],
+    "energy": "intimate",
+    "highlights": [
+      "Seafood and vegetarian fine dining in a charming plantation-era house",
+      "Strong commitment to plant-forward cooking with local fish",
+      "One of the North Shore's most intimate dinner experiences",
+      "Dietary-friendly without being dogmatic about it"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": true,
+      "glutenFree": true,
+      "notes": "Vegetarian-forward. Many vegan and GF dishes."
+    },
+    "hours": "Dinner nightly. Check seasonal hours.",
+    "reservations": "recommended",
+    "links": {
+      "website": "https://www.postcardscafe.com/",
+      "maps": null
+    },
+    "lilaPick": true,
+    "tags": ["dinner", "vegetarian-forward", "plantation-house", "intimate", "north-shore"],
+    "months": "all"
   }
 ]

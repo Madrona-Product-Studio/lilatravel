@@ -290,5 +290,172 @@
       "byway-12"
     ],
     "months": "Mar\u2013Nov"
+  },
+  {
+    "id": "wild-thyme-cafe",
+    "name": "Wild Thyme Cafe",
+    "cuisine": "Farm-to-table seasonal",
+    "location": "Kanab (also Trees Ranch near Springdale)",
+    "priceRange": "$$",
+    "budgetTier": "moderate",
+    "groupFit": [
+      "solo",
+      "couple",
+      "friends",
+      "family"
+    ],
+    "energy": "relaxed",
+    "highlights": [
+      "Four Silver medals in 2025 Best of Southern Utah \u2014 including Best All-Around Restaurant",
+      "Seasonally inspired menu with farm-to-table ingredients",
+      "Two locations: Kanab (8 years running) and Trees Ranch near Springdale",
+      "Outdoor patio, plant-forward without being exclusive about it"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": true,
+      "glutenFree": true,
+      "notes": "Strong plant-forward menu. Vegan and GF options throughout."
+    },
+    "hours": "Breakfast and lunch daily. Check seasonal hours.",
+    "reservations": "walk-in",
+    "links": {
+      "website": "https://www.wildthymecafekanab.com/",
+      "maps": null
+    },
+    "lilaPick": true,
+    "tags": [
+      "farm-to-table",
+      "breakfast",
+      "lunch",
+      "plant-forward",
+      "kanab",
+      "award-winning"
+    ],
+    "months": "all"
+  },
+  {
+    "id": "sego-kanab",
+    "name": "Sego",
+    "cuisine": "Contemporary Southwest",
+    "location": "Kanab",
+    "priceRange": "$$$",
+    "budgetTier": "premium",
+    "groupFit": [
+      "couple",
+      "friends"
+    ],
+    "energy": "intimate",
+    "highlights": [
+      "Kanab's most interesting kitchen \u2014 contemporary dishes with local desert flavors",
+      "Modern and inviting interior, thoughtful cocktail program",
+      "The dinner destination for east-entrance travelers and corridor trips",
+      "Independently owned, quality without pretension"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": true,
+      "notes": "Several vegetarian and GF options"
+    },
+    "hours": "Dinner nightly. Check seasonal hours.",
+    "reservations": "recommended",
+    "links": {
+      "website": "http://www.segokanab.com/",
+      "maps": null,
+      "tock": "https://www.exploretock.com/sego-restaurant-kanab"
+    },
+    "lilaPick": true,
+    "tags": [
+      "dinner",
+      "contemporary",
+      "southwest",
+      "kanab",
+      "cocktails"
+    ],
+    "months": "all"
+  },
+  {
+    "id": "spotted-dog-cafe",
+    "name": "Spotted Dog Cafe",
+    "cuisine": "Farm-to-table American",
+    "location": "Springdale (at Flanigan's Inn)",
+    "priceRange": "$$-$$$",
+    "budgetTier": "moderate",
+    "groupFit": [
+      "couple",
+      "friends"
+    ],
+    "energy": "relaxed",
+    "highlights": [
+      "Farm-to-table dining at Flanigan's \u2014 Springdale's most dependable fine-dining option",
+      "Award-winning wine list, seasonal menu",
+      "Patio seating with canyon views",
+      "Unpretentious quality, the restaurant locals recommend for a good dinner"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": true,
+      "notes": "Seasonal menu with vegetarian and GF options"
+    },
+    "hours": "Dinner nightly. Seasonal breakfast.",
+    "reservations": "recommended",
+    "links": {
+      "website": "https://flanigans.com/dine/",
+      "maps": null,
+      "openTable": "https://www.opentable.com/spotted-dog-cafe"
+    },
+    "lilaPick": false,
+    "tags": [
+      "dinner",
+      "farm-to-table",
+      "wine",
+      "patio",
+      "springdale"
+    ],
+    "months": "all"
+  },
+  {
+    "id": "peekaboo-kanab",
+    "name": "Peekaboo Wood Fired Kitchen",
+    "cuisine": "Wood-fired vegetarian & pizza",
+    "location": "Kanab",
+    "priceRange": "$$",
+    "budgetTier": "moderate",
+    "groupFit": [
+      "solo",
+      "couple",
+      "friends",
+      "family"
+    ],
+    "energy": "relaxed",
+    "highlights": [
+      "Wood-fired pizzas, artisanal bread, and savory vegetarian entrees",
+      "Locally sourced ingredients, charming rustic setting",
+      "The strongest vegetarian menu in the Zion corridor",
+      "The kind of place that changes what you expect from a small desert town"
+    ],
+    "dietary": {
+      "vegetarian": true,
+      "vegan": true,
+      "glutenFree": true,
+      "notes": "Vegetarian-focused. GF crust available. Many vegan dishes."
+    },
+    "hours": "Lunch and dinner. Closed Mon. Check seasonal hours.",
+    "reservations": "walk-in",
+    "links": {
+      "website": "https://www.peekabookanab.com/",
+      "maps": null
+    },
+    "lilaPick": true,
+    "tags": [
+      "wood-fired",
+      "pizza",
+      "vegetarian",
+      "kanab",
+      "locally-sourced"
+    ],
+    "months": "all"
   }
 ]
