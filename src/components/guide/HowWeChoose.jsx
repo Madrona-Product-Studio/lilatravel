@@ -6,55 +6,40 @@ export default function HowWeChoose({ section }) {
   if (!rubric) return null;
 
   return (
-    <div style={{
-      marginBottom: 32,
-      padding: '20px 24px',
-      background: G.panel,
-      border: `0.5px solid ${G.border}`,
-    }}>
+    <div style={{ marginBottom: 32 }}>
       <div style={{
-        fontFamily: FONTS.body,
-        fontSize: 9,
-        fontWeight: 700,
-        letterSpacing: '0.22em',
-        textTransform: 'uppercase',
+        fontFamily: FONTS.serif,
+        fontSize: 15,
+        fontWeight: 300,
+        fontStyle: 'italic',
         color: G.ink40,
-        marginBottom: 14,
+        marginBottom: 12,
       }}>
         {rubric.heading}
       </div>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: '1fr',
+        gap: 6,
+        paddingLeft: 1,
+      }}>
         {rubric.criteria.map((c, i) => (
-          <div key={i} style={{ display: 'flex', gap: 0 }}>
+          <p key={i} style={{
+            fontFamily: FONTS.body,
+            fontSize: 11.5,
+            fontWeight: 400,
+            lineHeight: 1.6,
+            color: G.ink25,
+            margin: 0,
+          }}>
             <span style={{
-              fontFamily: FONTS.body,
-              fontSize: 12,
-              fontWeight: 600,
-              color: G.inkDetail,
-              minWidth: 0,
-              flexShrink: 0,
-            }}>
-              {c.name}
-            </span>
-            <span style={{
-              fontFamily: FONTS.body,
-              fontSize: 12,
-              fontWeight: 400,
+              fontWeight: 500,
               color: G.ink40,
-              marginLeft: 4,
-              flexShrink: 0,
-            }}>—</span>
-            <span style={{
-              fontFamily: FONTS.body,
-              fontSize: 12,
-              fontWeight: 400,
-              lineHeight: 1.55,
-              color: G.ink40,
-              marginLeft: 4,
             }}>
-              {c.body}
+              {c.name}.
             </span>
-          </div>
+            {' '}{c.body}
+          </p>
         ))}
       </div>
     </div>
