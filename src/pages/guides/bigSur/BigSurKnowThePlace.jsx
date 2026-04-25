@@ -4,6 +4,7 @@ import SubGuideLayout from '@components/guide/SubGuideLayout';
 import { SubLabel, Prose, EditorialList, ContentList } from '@components/guide';
 import GuideDetailSheet from '@components/guide/GuideDetailSheet';
 import { PARKS, TOWNS, HIGHLIGHTS, WILDLIFE, TIMING_WINDOWS } from '@data/guides/big-sur-constants';
+import moveItems from '../../../data/restaurants/big-sur-move.json';
 
 const parkItems = PARKS.map(p => ({
   name: p.name,
@@ -19,11 +20,29 @@ const townItems = TOWNS.map(t => ({
   url: t.url,
 }));
 
-const highlightItems = HIGHLIGHTS.map(h => ({
-  name: h.name,
-  context: h.category,
-  detail: h.blurb,
-}));
+function findMoveMatch(name) {
+  const n = name.toLowerCase();
+  return moveItems.find(m => m.name.toLowerCase().includes(n) || n.includes(m.name.toLowerCase()));
+}
+
+const highlightItems = HIGHLIGHTS.map(h => {
+  const match = findMoveMatch(h.name);
+  if (match) {
+    return {
+      ...match,
+      type: 'list',
+      badge: match.moveTier ? match.moveTier.charAt(0).toUpperCase() + match.moveTier.slice(1) : h.category,
+      context: h.category,
+      detail: h.blurb,
+      highlights: match.highlights || [h.blurb],
+      featured: match.lilaPick || false,
+      url: match.links?.website || null,
+      links: match.links || {},
+      section: 'Move',
+    };
+  }
+  return { name: h.name, context: h.category, detail: h.blurb };
+});
 
 const wildlifeItems = WILDLIFE.map(w => ({
   ...w,
@@ -72,7 +91,7 @@ export default function BigSurKnowThePlace() {
         <Prose>
           The coast has a handful of moments that stop people mid-sentence. McWay Falls, Bixby Bridge, Pfeiffer Beach's purple sand. These are the ones worth seeking out.
         </Prose>
-        <EditorialList items={highlightItems} />
+        <ContentList items={highlightItems} onOpenSheet={setActiveSheet} />
 
         <SubLabel>When to Go</SubLabel>
         <Prose>

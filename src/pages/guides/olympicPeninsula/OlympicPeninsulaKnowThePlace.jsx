@@ -4,6 +4,7 @@ import SubGuideLayout from '@components/guide/SubGuideLayout';
 import { SubLabel, Prose, EditorialList, ContentList } from '@components/guide';
 import GuideDetailSheet from '@components/guide/GuideDetailSheet';
 import { PARKS, TOWNS, TIMING_WINDOWS, WILDLIFE, HIGHLIGHTS } from '@data/guides/olympic-peninsula-constants';
+import moveItems from '../../../data/restaurants/olympic-peninsula-move.json';
 
 const parkItems = PARKS.map(p => ({
   name: p.name,
@@ -28,11 +29,29 @@ const wildlifeItems = WILDLIFE.map(w => ({
   lng: -123.6,
 }));
 
-const highlightItems = HIGHLIGHTS.map(h => ({
-  name: h.name,
-  context: h.category,
-  detail: h.blurb,
-}));
+function findMoveMatch(name) {
+  const n = name.toLowerCase();
+  return moveItems.find(m => m.name.toLowerCase().includes(n) || n.includes(m.name.toLowerCase()));
+}
+
+const highlightItems = HIGHLIGHTS.map(h => {
+  const match = findMoveMatch(h.name);
+  if (match) {
+    return {
+      ...match,
+      type: 'list',
+      badge: match.moveTier ? match.moveTier.charAt(0).toUpperCase() + match.moveTier.slice(1) : h.category,
+      context: h.category,
+      detail: h.blurb,
+      highlights: match.highlights || [h.blurb],
+      featured: match.lilaPick || false,
+      url: match.links?.website || null,
+      links: match.links || {},
+      section: 'Move',
+    };
+  }
+  return { name: h.name, context: h.category, detail: h.blurb };
+});
 
 export default function OlympicPeninsulaKnowThePlace() {
   const [activeSheet, setActiveSheet] = useState(null);
@@ -78,7 +97,7 @@ export default function OlympicPeninsulaKnowThePlace() {
         <Prose>
           These are the moments that redefine the trip — the places where the peninsula shows you something you didn't know you were looking for.
         </Prose>
-        <EditorialList items={highlightItems} />
+        <ContentList items={highlightItems} onOpenSheet={setActiveSheet} />
 
         <SubLabel>Peninsula Wildlife</SubLabel>
         <Prose>

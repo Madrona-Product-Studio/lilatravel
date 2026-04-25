@@ -4,6 +4,7 @@ import SubGuideLayout from '@components/guide/SubGuideLayout';
 import { SubLabel, Prose, EditorialList, ContentList } from '@components/guide';
 import GuideDetailSheet from '@components/guide/GuideDetailSheet';
 import { PARKS, TOWNS, WILDLIFE, TIMING_WINDOWS, ISLAND_AREAS, HIGHLIGHTS } from '@data/guides/kauai-constants';
+import moveItems from '../../../data/restaurants/kauai-move.json';
 
 const parkItems = PARKS.map(p => ({
   name: p.name,
@@ -18,11 +19,29 @@ const areaItems = ISLAND_AREAS.map(a => ({
   detail: a.description,
 }));
 
-const highlightItems = HIGHLIGHTS.map(h => ({
-  name: h.name,
-  context: h.category,
-  detail: h.blurb,
-}));
+function findMoveMatch(name) {
+  const n = name.toLowerCase();
+  return moveItems.find(m => m.name.toLowerCase().includes(n) || n.includes(m.name.toLowerCase()));
+}
+
+const highlightItems = HIGHLIGHTS.map(h => {
+  const match = findMoveMatch(h.name);
+  if (match) {
+    return {
+      ...match,
+      type: 'list',
+      badge: match.moveTier ? match.moveTier.charAt(0).toUpperCase() + match.moveTier.slice(1) : h.category,
+      context: h.category,
+      detail: h.blurb,
+      highlights: match.highlights || [h.blurb],
+      featured: match.lilaPick || false,
+      url: match.links?.website || null,
+      links: match.links || {},
+      section: 'Move',
+    };
+  }
+  return { name: h.name, context: h.category, detail: h.blurb };
+});
 
 const wildlifeItems = WILDLIFE.map(w => ({
   ...w,
@@ -71,7 +90,7 @@ export default function KauaiKnowThePlace() {
         <Prose>
           These are the landmarks that define a trip to Kauai — the places you'll remember years later. Some require permits and planning. Others are visible from the road.
         </Prose>
-        <EditorialList items={highlightItems} />
+        <ContentList items={highlightItems} onOpenSheet={setActiveSheet} />
 
         <SubLabel>When to Go</SubLabel>
         <Prose>
