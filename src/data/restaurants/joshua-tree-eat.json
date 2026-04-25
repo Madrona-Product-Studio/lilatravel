@@ -6,7 +6,10 @@
     "location": "Joshua Tree town",
     "priceRange": "$$$",
     "budgetTier": "premium",
-    "groupFit": ["couple", "friends"],
+    "groupFit": [
+      "couple",
+      "friends"
+    ],
     "energy": "intimate",
     "highlights": [
       "The destination restaurant — converted house in the high desert",
@@ -27,8 +30,15 @@
       "maps": null
     },
     "lilaPick": true,
-    "tags": ["brunch", "lunch", "farm-sourced", "destination-dining", "reservations-essential"],
-    "months": "all"
+    "tags": [
+      "brunch",
+      "lunch",
+      "farm-sourced",
+      "destination-dining",
+      "reservations-essential"
+    ],
+    "months": "all",
+    "thumbnail": "/thumbnails/eat/la-copine-1.jpg"
   },
   {
     "id": "crossroads-cafe",
@@ -37,7 +47,12 @@
     "location": "Joshua Tree town",
     "priceRange": "$",
     "budgetTier": "mindful",
-    "groupFit": ["solo", "couple", "friends", "family"],
+    "groupFit": [
+      "solo",
+      "couple",
+      "friends",
+      "family"
+    ],
     "energy": "lively",
     "highlights": [
       "The local gathering spot",
@@ -57,8 +72,14 @@
       "maps": null
     },
     "lilaPick": false,
-    "tags": ["breakfast", "lunch", "local-favorite", "community-hub"],
-    "months": "all"
+    "tags": [
+      "breakfast",
+      "lunch",
+      "local-favorite",
+      "community-hub"
+    ],
+    "months": "all",
+    "thumbnail": "/thumbnails/eat/crossroads-cafe-2.jpg"
   },
   {
     "id": "natural-sisters-cafe",
@@ -67,7 +88,11 @@
     "location": "Joshua Tree town",
     "priceRange": "$",
     "budgetTier": "mindful",
-    "groupFit": ["solo", "couple", "friends"],
+    "groupFit": [
+      "solo",
+      "couple",
+      "friends"
+    ],
     "energy": "relaxed",
     "highlights": [
       "Vegetarian and vegan-friendly",
@@ -87,7 +112,14 @@
       "maps": null
     },
     "lilaPick": false,
-    "tags": ["breakfast", "lunch", "vegetarian", "vegan", "smoothies", "healthy"],
+    "tags": [
+      "breakfast",
+      "lunch",
+      "vegetarian",
+      "vegan",
+      "smoothies",
+      "healthy"
+    ],
     "months": "all"
   },
   {
@@ -97,7 +129,12 @@
     "location": "Twentynine Palms",
     "priceRange": "$$",
     "budgetTier": "moderate",
-    "groupFit": ["solo", "couple", "friends", "family"],
+    "groupFit": [
+      "solo",
+      "couple",
+      "friends",
+      "family"
+    ],
     "energy": "relaxed",
     "highlights": [
       "On the grounds of the historic inn near the north entrance",
@@ -117,8 +154,16 @@
       "maps": null
     },
     "lilaPick": true,
-    "tags": ["breakfast", "dinner", "farm-to-table", "garden", "outdoor-seating", "historic"],
-    "months": "all"
+    "tags": [
+      "breakfast",
+      "dinner",
+      "farm-to-table",
+      "garden",
+      "outdoor-seating",
+      "historic"
+    ],
+    "months": "all",
+    "thumbnail": "/thumbnails/eat/29-palms-inn-restaurant-1.jpg"
   },
   {
     "id": "pappy-and-harriets",
@@ -127,7 +172,12 @@
     "location": "Pioneertown",
     "priceRange": "$$",
     "budgetTier": "moderate",
-    "groupFit": ["solo", "couple", "friends", "family"],
+    "groupFit": [
+      "solo",
+      "couple",
+      "friends",
+      "family"
+    ],
     "energy": "lively",
     "highlights": [
       "Legendary roadhouse — part BBQ joint, part honky-tonk, part live music venue",
@@ -149,8 +199,16 @@
     },
     "corridor": true,
     "lilaPick": true,
-    "tags": ["bbq", "live-music", "honky-tonk", "pioneertown", "iconic", "destination-dining"],
-    "months": "all"
+    "tags": [
+      "bbq",
+      "live-music",
+      "honky-tonk",
+      "pioneertown",
+      "iconic",
+      "destination-dining"
+    ],
+    "months": "all",
+    "thumbnail": "/thumbnails/eat/pappy-and-harriets-1.jpg"
   },
   {
     "id": "stater-bros",
@@ -159,7 +217,12 @@
     "location": "Twentynine Palms",
     "priceRange": "$",
     "budgetTier": "mindful",
-    "groupFit": ["solo", "couple", "friends", "family"],
+    "groupFit": [
+      "solo",
+      "couple",
+      "friends",
+      "family"
+    ],
     "energy": "relaxed",
     "highlights": [
       "Largest grocery option near the north entrance",
@@ -178,7 +241,12 @@
       "maps": null
     },
     "lilaPick": false,
-    "tags": ["grocery", "supermarket", "provisions", "north-entrance"],
+    "tags": [
+      "grocery",
+      "supermarket",
+      "provisions",
+      "north-entrance"
+    ],
     "months": "all"
   },
   {
@@ -188,7 +256,11 @@
     "location": "Twentynine Palms",
     "priceRange": "$$",
     "budgetTier": "moderate",
-    "groupFit": ["couple", "friends", "family"],
+    "groupFit": [
+      "couple",
+      "friends",
+      "family"
+    ],
     "energy": "lively",
     "highlights": [
       "Caribbean-influenced plates in a sprawling outdoor space with fire pits and string lights",
@@ -210,8 +282,16 @@
       "openTable": "https://www.opentable.com/r/kitchen-in-the-desert-twentynine-palms"
     },
     "lilaPick": true,
-    "tags": ["dinner", "outdoor-dining", "fire-pits", "live-music", "caribbean", "community"],
-    "months": "all"
+    "tags": [
+      "dinner",
+      "outdoor-dining",
+      "fire-pits",
+      "live-music",
+      "caribbean",
+      "community"
+    ],
+    "months": "all",
+    "thumbnail": "/thumbnails/eat/kitchen-in-the-desert-1.jpg"
   },
   {
     "id": "luna-bakery",
@@ -220,7 +300,11 @@
     "location": "Yucca Valley",
     "priceRange": "$",
     "budgetTier": "mindful",
-    "groupFit": ["solo", "couple", "friends"],
+    "groupFit": [
+      "solo",
+      "couple",
+      "friends"
+    ],
     "energy": "contemplative",
     "highlights": [
       "Small-batch sourdough and pastries — cardamom buns, flaky croissants",
@@ -240,8 +324,15 @@
       "maps": null
     },
     "lilaPick": true,
-    "tags": ["bakery", "sourdough", "morning", "artisan", "yucca-valley"],
-    "months": "all"
+    "tags": [
+      "bakery",
+      "sourdough",
+      "morning",
+      "artisan",
+      "yucca-valley"
+    ],
+    "months": "all",
+    "thumbnail": "/thumbnails/eat/luna-bakery-1.jpg"
   },
   {
     "id": "frontier-cafe",
@@ -250,7 +341,11 @@
     "location": "Yucca Valley",
     "priceRange": "$",
     "budgetTier": "mindful",
-    "groupFit": ["solo", "couple", "friends"],
+    "groupFit": [
+      "solo",
+      "couple",
+      "friends"
+    ],
     "energy": "relaxed",
     "highlights": [
       "Locally beloved newer arrival on the Old Town strip",
@@ -270,8 +365,15 @@
       "maps": null
     },
     "lilaPick": false,
-    "tags": ["cafe", "breakfast", "lunch", "plant-forward", "yucca-valley"],
-    "months": "all"
+    "tags": [
+      "cafe",
+      "breakfast",
+      "lunch",
+      "plant-forward",
+      "yucca-valley"
+    ],
+    "months": "all",
+    "thumbnail": "/thumbnails/eat/frontier-cafe-1.jpg"
   },
   {
     "id": "spaghetti-western",
@@ -280,7 +382,11 @@
     "location": "Morongo Valley",
     "priceRange": "$$",
     "budgetTier": "moderate",
-    "groupFit": ["couple", "friends", "family"],
+    "groupFit": [
+      "couple",
+      "friends",
+      "family"
+    ],
     "energy": "intimate",
     "highlights": [
       "Owned by Rome-born Jasmine and Lorenzo — authentic Italian in a desert saloon",
@@ -301,8 +407,16 @@
       "maps": null
     },
     "lilaPick": true,
-    "tags": ["italian", "handmade-pasta", "dinner", "live-music", "morongo-valley", "authentic"],
-    "months": "all"
+    "tags": [
+      "italian",
+      "handmade-pasta",
+      "dinner",
+      "live-music",
+      "morongo-valley",
+      "authentic"
+    ],
+    "months": "all",
+    "thumbnail": "/thumbnails/eat/spaghetti-western-1.jpg"
   },
   {
     "id": "campbell-hill-bakery",
@@ -311,7 +425,10 @@
     "location": "Twentynine Palms",
     "priceRange": "$",
     "budgetTier": "mindful",
-    "groupFit": ["solo", "couple"],
+    "groupFit": [
+      "solo",
+      "couple"
+    ],
     "energy": "contemplative",
     "highlights": [
       "Small-batch artisan bakery open select evenings only",
@@ -331,8 +448,15 @@
       "maps": null
     },
     "lilaPick": false,
-    "tags": ["bakery", "evening", "artisan", "small-batch", "twentynine-palms"],
-    "months": "all"
+    "tags": [
+      "bakery",
+      "evening",
+      "artisan",
+      "small-batch",
+      "twentynine-palms"
+    ],
+    "months": "all",
+    "thumbnail": "/thumbnails/eat/campbell-hill-bakery-1.jpg"
   },
   {
     "id": "joshua-tree-coffee",
@@ -341,7 +465,11 @@
     "location": "Joshua Tree town",
     "priceRange": "$",
     "budgetTier": "mindful",
-    "groupFit": ["solo", "couple", "friends"],
+    "groupFit": [
+      "solo",
+      "couple",
+      "friends"
+    ],
     "energy": "relaxed",
     "highlights": [
       "Beans roasted on-site — the best cup in the high desert",
@@ -361,7 +489,13 @@
       "maps": null
     },
     "lilaPick": false,
-    "tags": ["coffee", "roastery", "morning", "pre-hike"],
-    "months": "all"
+    "tags": [
+      "coffee",
+      "roastery",
+      "morning",
+      "pre-hike"
+    ],
+    "months": "all",
+    "thumbnail": "/thumbnails/eat/joshua-tree-coffee-1.jpg"
   }
 ]

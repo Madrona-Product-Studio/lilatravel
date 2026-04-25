@@ -6,7 +6,12 @@
     "location": "Port Angeles",
     "priceRange": "$$",
     "budgetTier": "moderate",
-    "groupFit": ["solo", "couple", "friends", "family"],
+    "groupFit": [
+      "solo",
+      "couple",
+      "friends",
+      "family"
+    ],
     "energy": "relaxed",
     "highlights": [
       "Best dinner option in Port Angeles",
@@ -27,8 +32,14 @@
       "maps": null
     },
     "lilaPick": true,
-    "tags": ["dinner", "seafood", "wood-fired", "local-produce"],
-    "months": "all"
+    "tags": [
+      "dinner",
+      "seafood",
+      "wood-fired",
+      "local-produce"
+    ],
+    "months": "all",
+    "thumbnail": "/thumbnails/eat/kokopelli-grill-1.jpg"
   },
   {
     "id": "barhop-brewing",
@@ -37,7 +48,11 @@
     "location": "Port Angeles",
     "priceRange": "$",
     "budgetTier": "mindful",
-    "groupFit": ["solo", "couple", "friends"],
+    "groupFit": [
+      "solo",
+      "couple",
+      "friends"
+    ],
     "energy": "lively",
     "highlights": [
       "Port Angeles anchor craft brewery",
@@ -57,8 +72,15 @@
       "maps": null
     },
     "lilaPick": false,
-    "tags": ["brewery", "pub", "rooftop", "harbor-view", "casual"],
-    "months": "all"
+    "tags": [
+      "brewery",
+      "pub",
+      "rooftop",
+      "harbor-view",
+      "casual"
+    ],
+    "months": "all",
+    "thumbnail": "/thumbnails/eat/barhop-brewing-1.jpg"
   },
   {
     "id": "bonnys-bakery",
@@ -67,7 +89,10 @@
     "location": "Port Angeles",
     "priceRange": "$",
     "budgetTier": "mindful",
-    "groupFit": ["solo", "couple"],
+    "groupFit": [
+      "solo",
+      "couple"
+    ],
     "energy": "relaxed",
     "highlights": [
       "Morning pastries, strong coffee",
@@ -87,8 +112,14 @@
       "maps": null
     },
     "lilaPick": false,
-    "tags": ["breakfast", "bakery", "coffee", "morning"],
-    "months": "all"
+    "tags": [
+      "breakfast",
+      "bakery",
+      "coffee",
+      "morning"
+    ],
+    "months": "all",
+    "thumbnail": "/thumbnails/eat/bonnys-bakery-1.jpg"
   },
   {
     "id": "nourish-sequim",
@@ -97,7 +128,11 @@
     "location": "Sequim",
     "priceRange": "$$",
     "budgetTier": "moderate",
-    "groupFit": ["solo", "couple", "friends"],
+    "groupFit": [
+      "solo",
+      "couple",
+      "friends"
+    ],
     "energy": "relaxed",
     "highlights": [
       "Bright, plant-forward café",
@@ -121,8 +156,15 @@
       "tock": "https://www.exploretock.com/nourishsequim"
     },
     "lilaPick": true,
-    "tags": ["breakfast", "lunch", "farm-to-table", "vegetarian-friendly", "vegan-friendly"],
-    "months": "all"
+    "tags": [
+      "breakfast",
+      "lunch",
+      "farm-to-table",
+      "vegetarian-friendly",
+      "vegan-friendly"
+    ],
+    "months": "all",
+    "thumbnail": "/thumbnails/eat/nourish-sequim-1.jpg"
   },
   {
     "id": "alder-wood-bistro",
@@ -131,7 +173,10 @@
     "location": "Sequim",
     "priceRange": "$$$",
     "budgetTier": "premium",
-    "groupFit": ["couple", "friends"],
+    "groupFit": [
+      "couple",
+      "friends"
+    ],
     "energy": "relaxed",
     "highlights": [
       "Farm-to-table sourcing in a town that actually has farms",
@@ -152,8 +197,15 @@
       "maps": null
     },
     "lilaPick": true,
-    "tags": ["dinner", "farm-to-table", "local-sourcing", "wine-list", "oysters"],
-    "months": "all"
+    "tags": [
+      "dinner",
+      "farm-to-table",
+      "local-sourcing",
+      "wine-list",
+      "oysters"
+    ],
+    "months": "all",
+    "thumbnail": "/thumbnails/eat/alder-wood-bistro-1.jpg"
   },
   {
     "id": "finistere",
@@ -162,7 +214,10 @@
     "location": "Port Townsend",
     "priceRange": "$$$",
     "budgetTier": "premium",
-    "groupFit": ["couple", "friends"],
+    "groupFit": [
+      "couple",
+      "friends"
+    ],
     "energy": "refined",
     "highlights": [
       "Pacific Northwest cuisine in a Victorian port town",
@@ -183,8 +238,15 @@
       "maps": null
     },
     "lilaPick": true,
-    "tags": ["dinner", "fine-dining", "shellfish", "victorian-setting", "destination-dining"],
-    "months": "all"
+    "tags": [
+      "dinner",
+      "fine-dining",
+      "shellfish",
+      "victorian-setting",
+      "destination-dining"
+    ],
+    "months": "all",
+    "thumbnail": "/thumbnails/eat/finistere-1.jpg"
   },
   {
     "id": "bread-and-roses",
@@ -193,7 +255,10 @@
     "location": "Port Townsend",
     "priceRange": "$",
     "budgetTier": "mindful",
-    "groupFit": ["solo", "couple"],
+    "groupFit": [
+      "solo",
+      "couple"
+    ],
     "energy": "relaxed",
     "highlights": [
       "Sourdough, local grain, pastries that justify the trip",
@@ -212,8 +277,15 @@
       "maps": null
     },
     "lilaPick": true,
-    "tags": ["breakfast", "bakery", "sourdough", "local-grain", "community-owned"],
-    "months": "all"
+    "tags": [
+      "breakfast",
+      "bakery",
+      "sourdough",
+      "local-grain",
+      "community-owned"
+    ],
+    "months": "all",
+    "thumbnail": "/thumbnails/eat/bread-and-roses-1.jpg"
   },
   {
     "id": "in-the-woods-cafe",
@@ -222,7 +294,11 @@
     "location": "Forks",
     "priceRange": "$",
     "budgetTier": "mindful",
-    "groupFit": ["solo", "couple", "friends"],
+    "groupFit": [
+      "solo",
+      "couple",
+      "friends"
+    ],
     "energy": "relaxed",
     "highlights": [
       "Over-delivers for its setting",
@@ -244,8 +320,15 @@
       "maps": null
     },
     "lilaPick": false,
-    "tags": ["breakfast", "lunch", "cafe", "homemade", "local-find"],
-    "months": "all"
+    "tags": [
+      "breakfast",
+      "lunch",
+      "cafe",
+      "homemade",
+      "local-find"
+    ],
+    "months": "all",
+    "thumbnail": "/thumbnails/eat/in-the-woods-cafe-1.jpg"
   },
   {
     "id": "kalaloch-lodge-creekside",
@@ -254,7 +337,12 @@
     "location": "Kalaloch (US-101)",
     "priceRange": "$$",
     "budgetTier": "moderate",
-    "groupFit": ["solo", "couple", "friends", "family"],
+    "groupFit": [
+      "solo",
+      "couple",
+      "friends",
+      "family"
+    ],
     "energy": "relaxed",
     "highlights": [
       "Only sit-down restaurant on the wild coast between Forks and Lake Quinault",
@@ -276,7 +364,15 @@
       "openTable": "https://www.opentable.com/r/creekside-kalaloch"
     },
     "lilaPick": false,
-    "tags": ["breakfast", "lunch", "dinner", "ocean-view", "salmon", "sunset"],
-    "months": "all"
+    "tags": [
+      "breakfast",
+      "lunch",
+      "dinner",
+      "ocean-view",
+      "salmon",
+      "sunset"
+    ],
+    "months": "all",
+    "thumbnail": "/thumbnails/eat/kalaloch-lodge-creekside-1.jpg"
   }
 ]

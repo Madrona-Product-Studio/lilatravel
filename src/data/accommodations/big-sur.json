@@ -7,7 +7,12 @@
     "budgetTier": "mindful",
     "priceRange": "$35–50/night",
     "location": "Big Sur — Pfeiffer Big Sur State Park",
-    "groupFit": ["solo", "couple", "friends", "family"],
+    "groupFit": [
+      "solo",
+      "couple",
+      "friends",
+      "family"
+    ],
     "highlights": [
       "218 sites in a cathedral redwood grove along the Big Sur River",
       "Most popular campground in California",
@@ -15,7 +20,13 @@
       "River provides constant ambient sound",
       "Walking distance to every trailhead"
     ],
-    "amenities": ["restrooms", "showers", "fire rings", "picnic tables", "dump station"],
+    "amenities": [
+      "restrooms",
+      "showers",
+      "fire rings",
+      "picnic tables",
+      "dump station"
+    ],
     "bookingWindow": "Reservations open 6 months in advance at reservecalifornia.com — book within minutes of release",
     "links": {
       "website": "https://www.parks.ca.gov/PfeifferBigSur",
@@ -23,7 +34,14 @@
     },
     "seasonalNotes": "Year-round. Set a reservation alert — fills instantly for peak season.",
     "lilaPick": true,
-    "tags": ["inside-park", "redwood-grove", "riverside", "stargazing", "reservations-required"]
+    "tags": [
+      "inside-park",
+      "redwood-grove",
+      "riverside",
+      "stargazing",
+      "reservations-required"
+    ],
+    "thumbnail": "/thumbnails/sleep/pfeiffer-big-sur-campground-2.jpg"
   },
   {
     "id": "kirk-creek-campground",
@@ -33,7 +51,11 @@
     "budgetTier": "mindful",
     "priceRange": "$35/night",
     "location": "Big Sur — Los Padres National Forest (southern corridor)",
-    "groupFit": ["solo", "couple", "friends"],
+    "groupFit": [
+      "solo",
+      "couple",
+      "friends"
+    ],
     "highlights": [
       "Clifftop sites directly above the Pacific",
       "Most dramatic camping in California",
@@ -41,7 +63,11 @@
       "No hookups, no showers — National Forest land",
       "Among the best drive-in stargazing campgrounds in California"
     ],
-    "amenities": ["pit toilets", "fire rings", "picnic tables"],
+    "amenities": [
+      "pit toilets",
+      "fire rings",
+      "picnic tables"
+    ],
     "bookingWindow": "Reservations via recreation.gov — book 6 months out",
     "links": {
       "website": "https://www.fs.usda.gov/lpnf",
@@ -49,7 +75,14 @@
     },
     "seasonalNotes": "Year-round. 30 miles south of Pfeiffer — the southern Big Sur corridor.",
     "lilaPick": true,
-    "tags": ["clifftop", "ocean-view", "stargazing", "primitive", "bortle-2"]
+    "tags": [
+      "clifftop",
+      "ocean-view",
+      "stargazing",
+      "primitive",
+      "bortle-2"
+    ],
+    "thumbnail": "/thumbnails/sleep/kirk-creek-campground-1.jpg"
   },
   {
     "id": "ventana-glampsites",
@@ -59,14 +92,22 @@
     "budgetTier": "moderate",
     "priceRange": "$175–400/night (glampsites); $75–100/night (tent camping)",
     "location": "Big Sur — Alila Ventana Big Sur property",
-    "groupFit": ["couple", "friends"],
+    "groupFit": [
+      "couple",
+      "friends"
+    ],
     "highlights": [
       "Safari-style canvas glampsites in a 40-acre redwood canyon",
       "15 glampsites with custom mattresses, heated blankets, private fire pits",
       "Bathhouse access with teak showers and marble vanities",
       "Traditional tent camping also available in the same canyon"
     ],
-    "amenities": ["bathhouse", "fire pits", "heated blankets", "custom mattresses"],
+    "amenities": [
+      "bathhouse",
+      "fire pits",
+      "heated blankets",
+      "custom mattresses"
+    ],
     "bookingWindow": "Book well in advance for summer — limited availability",
     "links": {
       "website": "https://www.hyatt.com/alila-hotels-and-resorts/en-US/sjcal-ventana-big-sur",
@@ -74,7 +115,13 @@
     },
     "seasonalNotes": "Year-round. Glampsites are the middle path between camping and the full Alila resort.",
     "lilaPick": false,
-    "tags": ["glamping", "redwood-canyon", "fire-pit", "luxury-camping"]
+    "tags": [
+      "glamping",
+      "redwood-canyon",
+      "fire-pit",
+      "luxury-camping"
+    ],
+    "thumbnail": "/thumbnails/sleep/ventana-glampsites-1.jpg"
   },
   {
     "id": "treebones-resort",
@@ -84,14 +131,23 @@
     "budgetTier": "moderate",
     "priceRange": "$250–500/night",
     "location": "Big Sur — Southern corridor (coastal ridge)",
-    "groupFit": ["couple", "friends"],
+    "groupFit": [
+      "couple",
+      "friends"
+    ],
     "highlights": [
       "Yurt resort perched on a coastal ridge above the Pacific",
       "16 yurts with ocean views",
       "Pool, hot tub, nightly s'mores by the fire",
       "The Human Nest — a bookable sculptural outdoor sleeping structure"
     ],
-    "amenities": ["pool", "hot tub", "two restaurants", "fire pit", "Wi-Fi"],
+    "amenities": [
+      "pool",
+      "hot tub",
+      "two restaurants",
+      "fire pit",
+      "Wi-Fi"
+    ],
     "bookingWindow": "Book 3–6 months ahead for peak season",
     "links": {
       "website": "https://www.treebonesresort.com/",
@@ -99,7 +155,14 @@
     },
     "seasonalNotes": "Year-round. The Human Nest is a singular experience — book early.",
     "lilaPick": true,
-    "tags": ["yurts", "ocean-view", "pool", "human-nest", "unique"]
+    "tags": [
+      "yurts",
+      "ocean-view",
+      "pool",
+      "human-nest",
+      "unique"
+    ],
+    "thumbnail": "/thumbnails/sleep/treebones-resort-1.jpg"
   },
   {
     "id": "glen-oaks-big-sur",
@@ -109,7 +172,9 @@
     "budgetTier": "premium",
     "priceRange": "$300–600/night",
     "location": "Big Sur — Highway 1 (redwoods, riverside)",
-    "groupFit": ["couple"],
+    "groupFit": [
+      "couple"
+    ],
     "highlights": [
       "Cabins and motor lodge rooms in the redwoods alongside the Big Sur River",
       "Each unit is different — clawfoot tubs, wood-burning fireplaces",
@@ -117,7 +182,12 @@
       "Natural wool and Coyuchi organic cotton",
       "Walking distance to Big Sur Bakery and trailheads"
     ],
-    "amenities": ["fireplace", "clawfoot tub", "organic bedding", "river access"],
+    "amenities": [
+      "fireplace",
+      "clawfoot tub",
+      "organic bedding",
+      "river access"
+    ],
     "bookingWindow": "Book 2–4 months ahead for peak season",
     "links": {
       "website": "https://www.glenoaksbigsur.com/",
@@ -126,7 +196,14 @@
     },
     "seasonalNotes": "Year-round. Each cabin is unique — request details when booking.",
     "lilaPick": true,
-    "tags": ["cabins", "design-forward", "riverside", "redwoods", "sustainable"]
+    "tags": [
+      "cabins",
+      "design-forward",
+      "riverside",
+      "redwoods",
+      "sustainable"
+    ],
+    "thumbnail": "/thumbnails/sleep/glen-oaks-big-sur-1.jpg"
   },
   {
     "id": "big-sur-lodge",
@@ -136,7 +213,12 @@
     "budgetTier": "mindful",
     "priceRange": "$150–250/night",
     "location": "Big Sur — Inside Pfeiffer Big Sur State Park",
-    "groupFit": ["solo", "couple", "friends", "family"],
+    "groupFit": [
+      "solo",
+      "couple",
+      "friends",
+      "family"
+    ],
     "highlights": [
       "Operated by California State Parks",
       "Cottages inside the state park",
@@ -144,7 +226,11 @@
       "Least expensive roofed accommodation in the Big Sur corridor",
       "Most convenient for serious hikers"
     ],
-    "amenities": ["restaurant", "pool", "in-park location"],
+    "amenities": [
+      "restaurant",
+      "pool",
+      "in-park location"
+    ],
     "bookingWindow": "Book 3–6 months ahead for peak season",
     "links": {
       "website": "https://www.bigsurlodge.com/",
@@ -153,7 +239,13 @@
     },
     "seasonalNotes": "Year-round. Basic but storied — the trailhead access is unmatched.",
     "lilaPick": false,
-    "tags": ["inside-park", "budget", "hikers", "trailhead-access"]
+    "tags": [
+      "inside-park",
+      "budget",
+      "hikers",
+      "trailhead-access"
+    ],
+    "thumbnail": "/thumbnails/sleep/big-sur-lodge-1.jpg"
   },
   {
     "id": "asilomar",
@@ -163,7 +255,12 @@
     "budgetTier": "moderate",
     "priceRange": "$150–300/night",
     "location": "Pacific Grove (Monterey Peninsula)",
-    "groupFit": ["solo", "couple", "friends", "family"],
+    "groupFit": [
+      "solo",
+      "couple",
+      "friends",
+      "family"
+    ],
     "highlights": [
       "107 acres of Pacific Grove beachfront",
       "30 historic buildings designed by Julia Morgan (architect of Hearst Castle)",
@@ -172,7 +269,13 @@
       "Walking distance to Monarch Butterfly Sanctuary and 17-Mile Drive",
       "Chronically underrated"
     ],
-    "amenities": ["heated pool", "fire pits", "beach access", "conference facilities", "walking paths"],
+    "amenities": [
+      "heated pool",
+      "fire pits",
+      "beach access",
+      "conference facilities",
+      "walking paths"
+    ],
     "bookingWindow": "Book 1–3 months ahead",
     "links": {
       "website": "https://www.visitasilomar.com/",
@@ -181,7 +284,15 @@
     },
     "seasonalNotes": "Year-round. The fireplace-and-fog atmosphere makes you stay another night.",
     "lilaPick": true,
-    "tags": ["historic", "julia-morgan", "beachfront", "state-park", "no-tv", "underrated"]
+    "tags": [
+      "historic",
+      "julia-morgan",
+      "beachfront",
+      "state-park",
+      "no-tv",
+      "underrated"
+    ],
+    "thumbnail": "/thumbnails/sleep/asilomar-1.jpg"
   },
   {
     "id": "post-ranch-inn",
@@ -191,7 +302,9 @@
     "budgetTier": "luxury",
     "priceRange": "$1,200–3,500/night",
     "location": "Big Sur — Highway 1 (cliffside)",
-    "groupFit": ["couple"],
+    "groupFit": [
+      "couple"
+    ],
     "highlights": [
       "The most acclaimed hotel on the California coast",
       "40 accommodations — ocean suites, treehouses, cliff houses cantilevered 1,200 ft above the sea",
@@ -200,7 +313,15 @@
       "Sierra Mar restaurant; Three Michelin Keys (2025)",
       "#1 Top Hideaway in the US (Andrew Harper, 2 consecutive years)"
     ],
-    "amenities": ["restaurant", "yoga", "guided hikes", "stargazing", "spa", "pool", "breakfast included"],
+    "amenities": [
+      "restaurant",
+      "yoga",
+      "guided hikes",
+      "stargazing",
+      "spa",
+      "pool",
+      "breakfast included"
+    ],
     "bookingWindow": "Book 3–6 months ahead; longer for peak season",
     "links": {
       "website": "https://www.postranchinn.com/",
@@ -208,7 +329,15 @@
     },
     "seasonalNotes": "Year-round. The standard against which all similar experiences are measured.",
     "lilaPick": true,
-    "tags": ["three-michelin-keys", "treehouses", "cliff-houses", "adults-only", "no-tv", "iconic"]
+    "tags": [
+      "three-michelin-keys",
+      "treehouses",
+      "cliff-houses",
+      "adults-only",
+      "no-tv",
+      "iconic"
+    ],
+    "thumbnail": "/thumbnails/sleep/post-ranch-inn-1.jpg"
   },
   {
     "id": "alila-ventana-big-sur",
@@ -218,7 +347,9 @@
     "budgetTier": "luxury",
     "priceRange": "$1,000–2,500/night",
     "location": "Big Sur — Redwood canyon above the Pacific",
-    "groupFit": ["couple"],
+    "groupFit": [
+      "couple"
+    ],
     "highlights": [
       "Adults-only, all-inclusive resort",
       "All meals, beverages, wellness programming, Spa Alila access included",
@@ -226,7 +357,15 @@
       "Guided experiences and forest bathing walks",
       "Sur House restaurant open to non-guests"
     ],
-    "amenities": ["all-inclusive", "spa", "hot baths", "pools", "restaurant", "forest bathing", "guided experiences"],
+    "amenities": [
+      "all-inclusive",
+      "spa",
+      "hot baths",
+      "pools",
+      "restaurant",
+      "forest bathing",
+      "guided experiences"
+    ],
     "bookingWindow": "Book 3–6 months ahead for peak season",
     "links": {
       "website": "https://www.hyatt.com/alila-hotels-and-resorts/en-US/sjcal-ventana-big-sur",
@@ -235,7 +374,14 @@
     },
     "seasonalNotes": "Year-round. All-inclusive means no surprise costs — everything is in the rate.",
     "lilaPick": true,
-    "tags": ["all-inclusive", "adults-only", "spa", "japanese-baths", "redwood-canyon"]
+    "tags": [
+      "all-inclusive",
+      "adults-only",
+      "spa",
+      "japanese-baths",
+      "redwood-canyon"
+    ],
+    "thumbnail": "/thumbnails/sleep/alila-ventana-big-sur-1.jpg"
   },
   {
     "id": "deetjens-big-sur-inn",
@@ -245,14 +391,24 @@
     "budgetTier": "moderate",
     "priceRange": "$150–275/night",
     "location": "Highway 1, Big Sur — between Nepenthe and Julia Pfeiffer Burns State Park",
-    "groupFit": ["solo", "couple", "friends"],
+    "groupFit": [
+      "solo",
+      "couple",
+      "friends"
+    ],
     "highlights": [
       "Hand-built Norwegian-style cabins from the 1930s — Helmuth Deetjen built them one board at a time from salvaged redwood",
       "No locks on the doors, no TVs, no phones in the rooms. The fireplaces are real. The creaking is part of the character.",
       "Breakfast in the candlelit dining room is a Big Sur institution — one of the most atmospheric morning meals on the coast",
       "A nonprofit since 1972 — your stay directly funds preservation of one of Big Sur's most storied properties"
     ],
-    "amenities": ["fireplace", "on-site restaurant", "gardens", "no-tv", "no-phone"],
+    "amenities": [
+      "fireplace",
+      "on-site restaurant",
+      "gardens",
+      "no-tv",
+      "no-phone"
+    ],
     "bookingWindow": "Book at deetjens.com — popular weekends fill 2-4 weeks ahead. Cash or check only for rooms.",
     "links": {
       "website": "https://www.deetjens.com/",
@@ -260,6 +416,16 @@
     },
     "seasonalNotes": "Open year-round. Winter storms make the fireplaces essential. Spring wildflowers on the property.",
     "lilaPick": true,
-    "tags": ["historic", "hand-built", "1930s", "norwegian", "nonprofit", "no-tv", "fireplace", "big-sur-institution"]
+    "tags": [
+      "historic",
+      "hand-built",
+      "1930s",
+      "norwegian",
+      "nonprofit",
+      "no-tv",
+      "fireplace",
+      "big-sur-institution"
+    ],
+    "thumbnail": "/thumbnails/sleep/deetjens-big-sur-inn-1.jpg"
   }
 ]

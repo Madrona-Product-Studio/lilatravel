@@ -6,7 +6,10 @@
     "location": "Tofino",
     "priceRange": "$$$",
     "budgetTier": "premium",
-    "groupFit": ["couple", "friends"],
+    "groupFit": [
+      "couple",
+      "friends"
+    ],
     "energy": "lively",
     "highlights": [
       "The anchor restaurant of Tofino's dining scene since 2013",
@@ -14,13 +17,30 @@
       "James Beard semifinalist; consistently one of Canada's best restaurants",
       "Reserve well ahead — fills every night in summer"
     ],
-    "dietary": { "vegetarian": true, "vegan": false, "glutenFree": false, "notes": null },
+    "dietary": {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": false,
+      "notes": null
+    },
     "hours": "Dinner nightly; lunch in summer",
     "reservations": "essential",
-    "links": { "website": "https://www.wolfinthefog.com/", "maps": null, "tock": "https://www.exploretock.com/wolfinthefog" },
+    "links": {
+      "website": "https://www.wolfinthefog.com/",
+      "maps": null,
+      "tock": "https://www.exploretock.com/wolfinthefog"
+    },
     "lilaPick": true,
-    "tags": ["dinner", "farm-to-table", "seafood", "james-beard", "tofino", "reservations-essential"],
-    "months": "all"
+    "tags": [
+      "dinner",
+      "farm-to-table",
+      "seafood",
+      "james-beard",
+      "tofino",
+      "reservations-essential"
+    ],
+    "months": "all",
+    "thumbnail": "/thumbnails/eat/wolf-in-the-fog-2.jpg"
   },
   {
     "id": "pluvio-restaurant",
@@ -29,7 +49,10 @@
     "location": "Ucluelet",
     "priceRange": "$$$",
     "budgetTier": "premium",
-    "groupFit": ["couple", "friends"],
+    "groupFit": [
+      "couple",
+      "friends"
+    ],
     "energy": "intimate",
     "highlights": [
       "The best restaurant in Ucluelet — 8 tables, intimate and focused",
@@ -37,13 +60,29 @@
       "Stays upstairs make dinner a full overnight experience",
       "The counterpoint to Wolf in the Fog — quieter, more intimate, south coast"
     ],
-    "dietary": { "vegetarian": true, "vegan": false, "glutenFree": true, "notes": "GF accommodated with notice" },
+    "dietary": {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": true,
+      "notes": "GF accommodated with notice"
+    },
     "hours": "Dinner Wed–Sun; check seasonal schedule",
     "reservations": "essential",
-    "links": { "website": "https://www.pluvio.ca/", "maps": null },
+    "links": {
+      "website": "https://www.pluvio.ca/",
+      "maps": null
+    },
     "lilaPick": true,
-    "tags": ["dinner", "tasting-menu", "james-beard", "ucluelet", "intimate", "reservations-essential"],
-    "months": "all"
+    "tags": [
+      "dinner",
+      "tasting-menu",
+      "james-beard",
+      "ucluelet",
+      "intimate",
+      "reservations-essential"
+    ],
+    "months": "all",
+    "thumbnail": "/thumbnails/eat/pluvio-restaurant-1.jpg"
   },
   {
     "id": "common-loaf-bake-shop",
@@ -52,7 +91,12 @@
     "location": "Tofino",
     "priceRange": "$",
     "budgetTier": "mindful",
-    "groupFit": ["solo", "couple", "friends", "family"],
+    "groupFit": [
+      "solo",
+      "couple",
+      "friends",
+      "family"
+    ],
     "energy": "relaxed",
     "highlights": [
       "Tofino's original bakery since the 1970s — the soul of the town's food culture",
@@ -60,13 +104,29 @@
       "Arrive by 9am for the best selection — sells out daily",
       "The unhurried way to start a Tofino morning"
     ],
-    "dietary": { "vegetarian": true, "vegan": false, "glutenFree": false, "notes": "Bakery — limited GF options" },
+    "dietary": {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": false,
+      "notes": "Bakery — limited GF options"
+    },
     "hours": "Morning daily; opens 7:30am",
     "reservations": "walk-in",
-    "links": { "website": "https://www.commonloaf.com/", "maps": null },
+    "links": {
+      "website": "https://www.commonloaf.com/",
+      "maps": null
+    },
     "lilaPick": true,
-    "tags": ["breakfast", "bakery", "sourdough", "coffee", "since-1970s", "local-institution"],
-    "months": "all"
+    "tags": [
+      "breakfast",
+      "bakery",
+      "sourdough",
+      "coffee",
+      "since-1970s",
+      "local-institution"
+    ],
+    "months": "all",
+    "thumbnail": "/thumbnails/eat/common-loaf-bake-shop-1.jpg"
   },
   {
     "id": "shelter-restaurant",
@@ -75,20 +135,39 @@
     "location": "Tofino",
     "priceRange": "$$$",
     "budgetTier": "premium",
-    "groupFit": ["couple", "friends"],
+    "groupFit": [
+      "couple",
+      "friends"
+    ],
     "energy": "relaxed",
     "highlights": [
       "Consistent, warm, locally sourced — Pacific halibut, Clayoquot Sound oysters",
       "A reliable alternative when Wolf in the Fog is fully booked",
       "Cozy room with fireplace; good wine list"
     ],
-    "dietary": { "vegetarian": true, "vegan": false, "glutenFree": false, "notes": null },
+    "dietary": {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": false,
+      "notes": null
+    },
     "hours": "Dinner nightly",
     "reservations": "recommended",
-    "links": { "website": "https://www.shelterrestaurant.com/", "maps": null },
+    "links": {
+      "website": "https://www.shelterrestaurant.com/",
+      "maps": null
+    },
     "lilaPick": false,
-    "tags": ["dinner", "seafood", "oysters", "halibut", "tofino", "fireplace"],
-    "months": "all"
+    "tags": [
+      "dinner",
+      "seafood",
+      "oysters",
+      "halibut",
+      "tofino",
+      "fireplace"
+    ],
+    "months": "all",
+    "thumbnail": "/thumbnails/eat/shelter-restaurant-1.jpg"
   },
   {
     "id": "1909-kitchen",
@@ -97,20 +176,39 @@
     "location": "Tofino",
     "priceRange": "$$$",
     "budgetTier": "premium",
-    "groupFit": ["couple", "friends"],
+    "groupFit": [
+      "couple",
+      "friends"
+    ],
     "energy": "relaxed",
     "highlights": [
       "Japanese-influenced approach to local seafood — clean, precise, interesting",
       "Dock views at sunset from the dining room",
       "The most distinctive culinary perspective in Tofino"
     ],
-    "dietary": { "vegetarian": true, "vegan": false, "glutenFree": false, "notes": null },
+    "dietary": {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": false,
+      "notes": null
+    },
     "hours": "Dinner; check seasonal hours",
     "reservations": "recommended",
-    "links": { "website": "https://www.tofinoresortandmarina.com/dine/", "maps": null, "openTable": "https://www.opentable.com/r/1909-tofino-resort-and-marina-reservations-tofino" },
+    "links": {
+      "website": "https://www.tofinoresortandmarina.com/dine/",
+      "maps": null,
+      "openTable": "https://www.opentable.com/r/1909-tofino-resort-and-marina-reservations-tofino"
+    },
     "lilaPick": false,
-    "tags": ["dinner", "japanese-influenced", "seafood", "dock-views", "tofino"],
-    "months": "all"
+    "tags": [
+      "dinner",
+      "japanese-influenced",
+      "seafood",
+      "dock-views",
+      "tofino"
+    ],
+    "months": "all",
+    "thumbnail": "/thumbnails/eat/1909-kitchen-3.jpg"
   },
   {
     "id": "heartwood-kitchen",
@@ -119,20 +217,40 @@
     "location": "Ucluelet",
     "priceRange": "$$",
     "budgetTier": "moderate",
-    "groupFit": ["solo", "couple", "friends", "family"],
+    "groupFit": [
+      "solo",
+      "couple",
+      "friends",
+      "family"
+    ],
     "energy": "relaxed",
     "highlights": [
       "Daily staple for Ucluelet visitors — casual, locally sourced, consistently good",
       "Best breakfast in Ucluelet; excellent coffee",
       "The practical morning anchor before heading to the Wild Pacific Trail"
     ],
-    "dietary": { "vegetarian": true, "vegan": true, "glutenFree": false, "notes": null },
+    "dietary": {
+      "vegetarian": true,
+      "vegan": true,
+      "glutenFree": false,
+      "notes": null
+    },
     "hours": "Breakfast and lunch daily",
     "reservations": "walk-in",
-    "links": { "website": "https://heartwoodfood.com/", "maps": null },
+    "links": {
+      "website": "https://heartwoodfood.com/",
+      "maps": null
+    },
     "lilaPick": false,
-    "tags": ["breakfast", "lunch", "ucluelet", "locally-sourced", "casual"],
-    "months": "all"
+    "tags": [
+      "breakfast",
+      "lunch",
+      "ucluelet",
+      "locally-sourced",
+      "casual"
+    ],
+    "months": "all",
+    "thumbnail": "/thumbnails/eat/heartwood-kitchen-1.jpg"
   },
   {
     "id": "tofino-co-op-grocery",
@@ -141,20 +259,40 @@
     "location": "Tofino",
     "priceRange": "$",
     "budgetTier": "mindful",
-    "groupFit": ["solo", "couple", "friends", "family"],
+    "groupFit": [
+      "solo",
+      "couple",
+      "friends",
+      "family"
+    ],
     "energy": "relaxed",
     "highlights": [
       "The primary grocery store on the outer coast — essential for self-catering stays",
       "Co-op structure means it's community-owned; local products well represented",
       "Stock up here before heading to remote campgrounds or cabins"
     ],
-    "dietary": { "vegetarian": true, "vegan": true, "glutenFree": true, "notes": "Full grocery store" },
+    "dietary": {
+      "vegetarian": true,
+      "vegan": true,
+      "glutenFree": true,
+      "notes": "Full grocery store"
+    },
     "hours": "Daily",
     "reservations": "walk-in",
-    "links": { "website": "https://www.tofinocoop.com/", "maps": null },
+    "links": {
+      "website": "https://www.tofinocoop.com/",
+      "maps": null
+    },
     "lilaPick": false,
-    "tags": ["grocery", "provisions", "co-op", "self-catering", "tofino"],
-    "months": "all"
+    "tags": [
+      "grocery",
+      "provisions",
+      "co-op",
+      "self-catering",
+      "tofino"
+    ],
+    "months": "all",
+    "thumbnail": "/thumbnails/eat/tofino-co-op-grocery-1.jpg"
   },
   {
     "id": "the-pointe",
@@ -163,7 +301,9 @@
     "location": "Tofino (at Wickaninnish Inn)",
     "priceRange": "$$$$",
     "budgetTier": "luxury",
-    "groupFit": ["couple"],
+    "groupFit": [
+      "couple"
+    ],
     "energy": "contemplative",
     "highlights": [
       "Tofino's most celebrated dining room — 240-degree ocean views",
@@ -171,13 +311,30 @@
       "Award-winning wine list, floor-to-ceiling windows above Chesterman Beach",
       "The definition of place-rooted luxury dining"
     ],
-    "dietary": { "vegetarian": true, "vegan": false, "glutenFree": true, "notes": "Tasting menus accommodate dietary needs with advance notice" },
+    "dietary": {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": true,
+      "notes": "Tasting menus accommodate dietary needs with advance notice"
+    },
     "hours": "Breakfast, lunch, and dinner daily.",
     "reservations": "essential",
-    "links": { "website": "https://www.wickinn.com/dining/the-pointe-restaurant/", "maps": null, "openTable": "https://www.opentable.com/the-pointe-restaurant-wickaninnish-inn" },
+    "links": {
+      "website": "https://www.wickinn.com/dining/the-pointe-restaurant/",
+      "maps": null,
+      "openTable": "https://www.opentable.com/the-pointe-restaurant-wickaninnish-inn"
+    },
     "lilaPick": true,
-    "tags": ["fine-dining", "ocean-view", "foraged", "luxury", "tofino", "tasting-menu"],
-    "months": "all"
+    "tags": [
+      "fine-dining",
+      "ocean-view",
+      "foraged",
+      "luxury",
+      "tofino",
+      "tasting-menu"
+    ],
+    "months": "all",
+    "thumbnail": "/thumbnails/eat/the-pointe-1.jpg"
   },
   {
     "id": "tacofino",
@@ -186,7 +343,12 @@
     "location": "Tofino",
     "priceRange": "$",
     "budgetTier": "mindful",
-    "groupFit": ["solo", "couple", "friends", "family"],
+    "groupFit": [
+      "solo",
+      "couple",
+      "friends",
+      "family"
+    ],
     "energy": "lively",
     "highlights": [
       "The original food truck — now a Tofino institution",
@@ -194,13 +356,30 @@
       "No pretension, deeply place-rooted, the entire town eats here",
       "The perfect post-surf or post-hike stop"
     ],
-    "dietary": { "vegetarian": true, "vegan": false, "glutenFree": false, "notes": "Fish-forward. Some vegetarian options." },
+    "dietary": {
+      "vegetarian": true,
+      "vegan": false,
+      "glutenFree": false,
+      "notes": "Fish-forward. Some vegetarian options."
+    },
     "hours": "Lunch through early evening daily.",
     "reservations": "walk-in",
-    "links": { "website": "https://tacofino.com/", "maps": null },
+    "links": {
+      "website": "https://tacofino.com/",
+      "maps": null
+    },
     "lilaPick": true,
-    "tags": ["food-truck", "tacos", "fish", "casual", "institution", "tofino", "post-surf"],
-    "months": "all"
+    "tags": [
+      "food-truck",
+      "tacos",
+      "fish",
+      "casual",
+      "institution",
+      "tofino",
+      "post-surf"
+    ],
+    "months": "all",
+    "thumbnail": "/thumbnails/eat/tacofino-1.jpg"
   },
   {
     "id": "wildside-grill",
@@ -209,7 +388,12 @@
     "location": "Tofino",
     "priceRange": "$",
     "budgetTier": "mindful",
-    "groupFit": ["solo", "couple", "friends", "family"],
+    "groupFit": [
+      "solo",
+      "couple",
+      "friends",
+      "family"
+    ],
     "energy": "relaxed",
     "highlights": [
       "Commercial fisherman and chef partnership — as dock-to-plate as it gets",
@@ -217,12 +401,28 @@
       "Takeout window format — no pretension, maximum freshness",
       "A working expression of Tofino's fishing culture"
     ],
-    "dietary": { "vegetarian": false, "vegan": false, "glutenFree": false, "notes": "Seafood-focused. Limited vegetarian options." },
+    "dietary": {
+      "vegetarian": false,
+      "vegan": false,
+      "glutenFree": false,
+      "notes": "Seafood-focused. Limited vegetarian options."
+    },
     "hours": "Lunch daily. Seasonal hours.",
     "reservations": "walk-in",
-    "links": { "website": "https://wildsidegrill.com/", "maps": null },
+    "links": {
+      "website": "https://wildsidegrill.com/",
+      "maps": null
+    },
     "lilaPick": false,
-    "tags": ["seafood", "fish-and-chips", "dock-to-plate", "takeout", "tofino", "fisherman-owned"],
-    "months": "Mar–Oct"
+    "tags": [
+      "seafood",
+      "fish-and-chips",
+      "dock-to-plate",
+      "takeout",
+      "tofino",
+      "fisherman-owned"
+    ],
+    "months": "Mar–Oct",
+    "thumbnail": "/thumbnails/eat/wildside-grill-1.jpg"
   }
 ]

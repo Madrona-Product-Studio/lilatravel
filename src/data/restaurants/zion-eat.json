@@ -38,7 +38,8 @@
       "local-favorite",
       "weekend-wait"
     ],
-    "months": "all"
+    "months": "all",
+    "thumbnail": "/thumbnails/eat/oscars-cafe-1.jpg"
   },
   {
     "id": "deep-creek-coffee",
@@ -81,7 +82,8 @@
       "early-open",
       "pour-over"
     ],
-    "months": "all"
+    "months": "all",
+    "thumbnail": "/thumbnails/eat/deep-creek-coffee-1.jpg"
   },
   {
     "id": "bit-and-spur",
@@ -121,7 +123,8 @@
       "southwest",
       "reservations-recommended"
     ],
-    "months": "all"
+    "months": "all",
+    "thumbnail": "/thumbnails/eat/bit-and-spur-1.jpg"
   },
   {
     "id": "kings-landing-bistro",
@@ -138,7 +141,7 @@
     "highlights": [
       "The canyon's most celebrated table",
       "Seasonal, Southwest-rooted menu",
-      "Reserve ahead \u2014 fills consistently"
+      "Reserve ahead — fills consistently"
     ],
     "dietary": {
       "vegetarian": true,
@@ -160,7 +163,8 @@
       "southwest",
       "reservations-essential"
     ],
-    "months": "all"
+    "months": "all",
+    "thumbnail": "/thumbnails/eat/kings-landing-bistro-2.jpg"
   },
   {
     "id": "sol-foods-market",
@@ -185,7 +189,7 @@
       "vegetarian": true,
       "vegan": true,
       "glutenFree": true,
-      "notes": "Grocery store \u2014 wide range of options available"
+      "notes": "Grocery store — wide range of options available"
     },
     "hours": "Daytime; year-round",
     "reservations": "walk-in",
@@ -201,7 +205,8 @@
       "groceries",
       "self-catering"
     ],
-    "months": "all"
+    "months": "all",
+    "thumbnail": "/thumbnails/eat/sol-foods-market-1.jpg"
   },
   {
     "id": "bryce-canyon-lodge-restaurant",
@@ -229,7 +234,7 @@
       "glutenFree": false,
       "notes": null
     },
-    "hours": "Dinner; seasonal (Apr\u2013Nov)",
+    "hours": "Dinner; seasonal (Apr–Nov)",
     "reservations": "recommended",
     "links": {
       "website": "https://www.visitbrycecanyon.com/dining",
@@ -245,13 +250,14 @@
       "seasonal",
       "bryce-canyon"
     ],
-    "months": "Apr\u2013Nov"
+    "months": "Apr–Nov",
+    "thumbnail": "/thumbnails/eat/bryce-canyon-lodge-restaurant-1.jpg"
   },
   {
     "id": "hells-backbone-grill",
     "name": "Hell's Backbone Grill & Farm",
     "cuisine": "Farm-to-table American",
-    "location": "Boulder, UT \u2014 Scenic Byway 12",
+    "location": "Boulder, UT — Scenic Byway 12",
     "priceRange": "$$$",
     "budgetTier": "premium",
     "groupFit": [
@@ -269,7 +275,7 @@
       "vegetarian": true,
       "vegan": true,
       "glutenFree": true,
-      "notes": "Farm-sourced; accommodates most dietary needs \u2014 call ahead"
+      "notes": "Farm-sourced; accommodates most dietary needs — call ahead"
     },
     "hours": "Dinner; seasonal (mid-March through November)",
     "reservations": "required",
@@ -289,7 +295,8 @@
       "seasonal",
       "byway-12"
     ],
-    "months": "Mar\u2013Nov"
+    "months": "Mar–Nov",
+    "thumbnail": "/thumbnails/eat/hells-backbone-grill-1.jpg"
   },
   {
     "id": "wild-thyme-cafe",
@@ -306,7 +313,7 @@
     ],
     "energy": "relaxed",
     "highlights": [
-      "Four Silver medals in 2025 Best of Southern Utah \u2014 including Best All-Around Restaurant",
+      "Four Silver medals in 2025 Best of Southern Utah — including Best All-Around Restaurant",
       "Seasonally inspired menu with farm-to-table ingredients",
       "Two locations: Kanab (8 years running) and Trees Ranch near Springdale",
       "Outdoor patio, plant-forward without being exclusive about it"
@@ -332,7 +339,8 @@
       "kanab",
       "award-winning"
     ],
-    "months": "all"
+    "months": "all",
+    "thumbnail": "/thumbnails/eat/wild-thyme-cafe-1.jpg"
   },
   {
     "id": "sego-kanab",
@@ -347,7 +355,7 @@
     ],
     "energy": "intimate",
     "highlights": [
-      "Kanab's most interesting kitchen \u2014 contemporary dishes with local desert flavors",
+      "Kanab's most interesting kitchen — contemporary dishes with local desert flavors",
       "Modern and inviting interior, thoughtful cocktail program",
       "The dinner destination for east-entrance travelers and corridor trips",
       "Independently owned, quality without pretension"
@@ -373,7 +381,8 @@
       "kanab",
       "cocktails"
     ],
-    "months": "all"
+    "months": "all",
+    "thumbnail": "/thumbnails/eat/sego-kanab-1.jpg"
   },
   {
     "id": "spotted-dog-cafe",
@@ -388,7 +397,7 @@
     ],
     "energy": "relaxed",
     "highlights": [
-      "Farm-to-table dining at Flanigan's \u2014 Springdale's most dependable fine-dining option",
+      "Farm-to-table dining at Flanigan's — Springdale's most dependable fine-dining option",
       "Award-winning wine list, seasonal menu",
       "Patio seating with canyon views",
       "Unpretentious quality, the restaurant locals recommend for a good dinner"
@@ -414,7 +423,8 @@
       "patio",
       "springdale"
     ],
-    "months": "all"
+    "months": "all",
+    "thumbnail": "/thumbnails/eat/spotted-dog-cafe-1.jpg"
   },
   {
     "id": "peekaboo-kanab",
@@ -456,6 +466,7 @@
       "kanab",
       "locally-sourced"
     ],
-    "months": "all"
+    "months": "all",
+    "thumbnail": "/thumbnails/eat/peekaboo-kanab-1.jpg"
   }
 ]

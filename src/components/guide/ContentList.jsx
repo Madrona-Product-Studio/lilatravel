@@ -63,7 +63,22 @@ export default function ContentList({ items, onOpenSheet, style = {} }) {
             onMouseLeave={isClickable ? e => { e.currentTarget.style.background = 'transparent'; } : undefined}
           >
             {/* Left bar */}
-            <div style={{ width: 3, flexShrink: 0, marginRight: 18, background: barColor }} />
+            <div style={{ width: 3, flexShrink: 0, marginRight: item.thumbnail ? 12 : 18, background: barColor }} />
+
+            {/* Thumbnail */}
+            {item.thumbnail && (
+              <div style={{
+                width: 48, height: 48, flexShrink: 0, marginRight: 12, marginTop: 2,
+                overflow: 'hidden', borderRadius: 4, background: G.borderSoft,
+              }}>
+                <img
+                  src={item.thumbnail}
+                  alt=""
+                  loading="lazy"
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                />
+              </div>
+            )}
 
             {/* Content */}
             <div style={{ flex: 1, minWidth: 0 }}>

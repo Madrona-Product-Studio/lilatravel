@@ -6,7 +6,10 @@
     "location": "Hanalei (North Shore)",
     "priceRange": "$$$",
     "budgetTier": "premium",
-    "groupFit": ["couple", "friends"],
+    "groupFit": [
+      "couple",
+      "friends"
+    ],
     "energy": "lively",
     "highlights": [
       "The North Shore's finest dinner",
@@ -28,8 +31,15 @@
       "resy": "https://resy.com/cities/hanalei-hi-hi/venues/bar-acuda"
     },
     "lilaPick": true,
-    "tags": ["dinner", "tapas", "local-fish", "wine-list", "reservations-essential"],
-    "months": "all"
+    "tags": [
+      "dinner",
+      "tapas",
+      "local-fish",
+      "wine-list",
+      "reservations-essential"
+    ],
+    "months": "all",
+    "thumbnail": "/thumbnails/eat/bar-acuda-1.jpg"
   },
   {
     "id": "dolphin-restaurant",
@@ -38,7 +48,12 @@
     "location": "Hanalei (North Shore)",
     "priceRange": "$$",
     "budgetTier": "moderate",
-    "groupFit": ["solo", "couple", "friends", "family"],
+    "groupFit": [
+      "solo",
+      "couple",
+      "friends",
+      "family"
+    ],
     "energy": "relaxed",
     "highlights": [
       "Hanalei's anchor fish restaurant",
@@ -58,8 +73,15 @@
       "maps": null
     },
     "lilaPick": false,
-    "tags": ["lunch", "dinner", "seafood", "riverside", "local-catch"],
-    "months": "all"
+    "tags": [
+      "lunch",
+      "dinner",
+      "seafood",
+      "riverside",
+      "local-catch"
+    ],
+    "months": "all",
+    "thumbnail": "/thumbnails/eat/dolphin-restaurant-1.jpg"
   },
   {
     "id": "hanalei-taro-juice",
@@ -68,7 +90,12 @@
     "location": "Hanalei (North Shore)",
     "priceRange": "$",
     "budgetTier": "mindful",
-    "groupFit": ["solo", "couple", "friends", "family"],
+    "groupFit": [
+      "solo",
+      "couple",
+      "friends",
+      "family"
+    ],
     "energy": "relaxed",
     "highlights": [
       "North shore institution",
@@ -89,8 +116,16 @@
       "maps": null
     },
     "lilaPick": true,
-    "tags": ["breakfast", "lunch", "taro", "plate-lunch", "local-institution", "budget-friendly"],
-    "months": "all"
+    "tags": [
+      "breakfast",
+      "lunch",
+      "taro",
+      "plate-lunch",
+      "local-institution",
+      "budget-friendly"
+    ],
+    "months": "all",
+    "thumbnail": "/thumbnails/eat/hanalei-taro-juice-2.jpg"
   },
   {
     "id": "beach-house-restaurant",
@@ -99,7 +134,10 @@
     "location": "Poipū (South Shore)",
     "priceRange": "$$$",
     "budgetTier": "premium",
-    "groupFit": ["couple", "friends"],
+    "groupFit": [
+      "couple",
+      "friends"
+    ],
     "energy": "refined",
     "highlights": [
       "Oceanfront dining above Lāwaʻi Beach",
@@ -121,8 +159,15 @@
       "openTable": "https://www.opentable.com/r/beach-house-restaurant-kauai-koloa-2"
     },
     "lilaPick": false,
-    "tags": ["dinner", "oceanfront", "sunset", "seafood", "south-shore"],
-    "months": "all"
+    "tags": [
+      "dinner",
+      "oceanfront",
+      "sunset",
+      "seafood",
+      "south-shore"
+    ],
+    "months": "all",
+    "thumbnail": "/thumbnails/eat/beach-house-restaurant-1.jpg"
   },
   {
     "id": "kukuiula-farmers-market",
@@ -131,7 +176,12 @@
     "location": "Poipū (South Shore)",
     "priceRange": "$",
     "budgetTier": "mindful",
-    "groupFit": ["solo", "couple", "friends", "family"],
+    "groupFit": [
+      "solo",
+      "couple",
+      "friends",
+      "family"
+    ],
     "energy": "lively",
     "highlights": [
       "Every Wednesday afternoon",
@@ -151,8 +201,15 @@
       "maps": null
     },
     "lilaPick": false,
-    "tags": ["market", "farmers-market", "local-produce", "poke", "wednesday-only"],
-    "months": "all"
+    "tags": [
+      "market",
+      "farmers-market",
+      "local-produce",
+      "poke",
+      "wednesday-only"
+    ],
+    "months": "all",
+    "thumbnail": "/thumbnails/eat/kukuiula-farmers-market-1.jpg"
   },
   {
     "id": "hanapepe-cafe",
@@ -161,7 +218,10 @@
     "location": "Hanapepe (West Side)",
     "priceRange": "$$",
     "budgetTier": "moderate",
-    "groupFit": ["couple", "friends"],
+    "groupFit": [
+      "couple",
+      "friends"
+    ],
     "energy": "intimate",
     "highlights": [
       "In the small art town of Hanapepe",
@@ -182,8 +242,15 @@
       "maps": null
     },
     "lilaPick": false,
-    "tags": ["dinner", "farm-to-table", "byob", "cash-only", "art-town"],
-    "months": "all"
+    "tags": [
+      "dinner",
+      "farm-to-table",
+      "byob",
+      "cash-only",
+      "art-town"
+    ],
+    "months": "all",
+    "thumbnail": "/thumbnails/eat/hanapepe-cafe-1.jpg"
   },
   {
     "id": "healthy-hut",
@@ -192,7 +259,10 @@
     "location": "Hanalei (North Shore)",
     "priceRange": "$",
     "budgetTier": "mindful",
-    "groupFit": ["solo", "couple"],
+    "groupFit": [
+      "solo",
+      "couple"
+    ],
     "energy": "relaxed",
     "highlights": [
       "North shore's best grocery stop for quality food",
@@ -213,8 +283,15 @@
       "maps": null
     },
     "lilaPick": false,
-    "tags": ["provisions", "smoothies", "organic", "deli", "natural-foods"],
-    "months": "all"
+    "tags": [
+      "provisions",
+      "smoothies",
+      "organic",
+      "deli",
+      "natural-foods"
+    ],
+    "months": "all",
+    "thumbnail": "/thumbnails/eat/healthy-hut-3.jpg"
   },
   {
     "id": "eating-house-1849",
@@ -223,7 +300,10 @@
     "location": "Koloa (The Shops at Kukuiula)",
     "priceRange": "$$$",
     "budgetTier": "premium",
-    "groupFit": ["couple", "friends"],
+    "groupFit": [
+      "couple",
+      "friends"
+    ],
     "energy": "lively",
     "highlights": [
       "Chef Roy Yamaguchi's James Beard Award-winning restaurant",
@@ -245,8 +325,15 @@
       "openTable": "https://www.opentable.com/eating-house-1849"
     },
     "lilaPick": true,
-    "tags": ["dinner", "james-beard", "plantation-cuisine", "locally-sourced", "south-shore"],
-    "months": "all"
+    "tags": [
+      "dinner",
+      "james-beard",
+      "plantation-cuisine",
+      "locally-sourced",
+      "south-shore"
+    ],
+    "months": "all",
+    "thumbnail": "/thumbnails/eat/eating-house-1849-2.jpg"
   },
   {
     "id": "koloa-fish-market",
@@ -255,7 +342,12 @@
     "location": "Koloa",
     "priceRange": "$",
     "budgetTier": "mindful",
-    "groupFit": ["solo", "couple", "friends", "family"],
+    "groupFit": [
+      "solo",
+      "couple",
+      "friends",
+      "family"
+    ],
     "energy": "relaxed",
     "highlights": [
       "Cash-only poke counter — the real thing",
@@ -276,8 +368,15 @@
       "maps": null
     },
     "lilaPick": true,
-    "tags": ["poke", "fish-market", "cash-only", "local-institution", "south-shore"],
-    "months": "all"
+    "tags": [
+      "poke",
+      "fish-market",
+      "cash-only",
+      "local-institution",
+      "south-shore"
+    ],
+    "months": "all",
+    "thumbnail": "/thumbnails/eat/koloa-fish-market-1.jpg"
   },
   {
     "id": "hukilau-lanai",
@@ -286,7 +385,11 @@
     "location": "Kapaa",
     "priceRange": "$$-$$$",
     "budgetTier": "moderate",
-    "groupFit": ["couple", "friends", "family"],
+    "groupFit": [
+      "couple",
+      "friends",
+      "family"
+    ],
     "energy": "relaxed",
     "highlights": [
       "Fresh, creative island cuisine sourced from local fishermen and Kauai farms",
@@ -307,7 +410,13 @@
       "maps": null
     },
     "lilaPick": true,
-    "tags": ["dinner", "hawaiian-regional", "locally-sourced", "east-shore", "kapaa"],
+    "tags": [
+      "dinner",
+      "hawaiian-regional",
+      "locally-sourced",
+      "east-shore",
+      "kapaa"
+    ],
     "months": "all"
   },
   {
@@ -317,7 +426,12 @@
     "location": "Hanalei",
     "priceRange": "$",
     "budgetTier": "mindful",
-    "groupFit": ["solo", "couple", "friends", "family"],
+    "groupFit": [
+      "solo",
+      "couple",
+      "friends",
+      "family"
+    ],
     "energy": "relaxed",
     "highlights": [
       "Organic bakery and morning ritual on the North Shore",
@@ -337,8 +451,15 @@
       "maps": null
     },
     "lilaPick": false,
-    "tags": ["bakery", "breakfast", "morning", "organic", "north-shore"],
-    "months": "all"
+    "tags": [
+      "bakery",
+      "breakfast",
+      "morning",
+      "organic",
+      "north-shore"
+    ],
+    "months": "all",
+    "thumbnail": "/thumbnails/eat/hanalei-bread-company-1.jpg"
   },
   {
     "id": "oasis-on-the-beach",
@@ -347,7 +468,10 @@
     "location": "Kapaa",
     "priceRange": "$$-$$$",
     "budgetTier": "moderate",
-    "groupFit": ["couple", "friends"],
+    "groupFit": [
+      "couple",
+      "friends"
+    ],
     "energy": "relaxed",
     "highlights": [
       "Sources 80% of ingredients from Kauai farmers and fishermen",
@@ -369,8 +493,15 @@
       "openTable": "https://www.opentable.com/oasis-on-the-beach"
     },
     "lilaPick": false,
-    "tags": ["oceanfront", "seafood", "locally-sourced", "east-shore", "kapaa"],
-    "months": "all"
+    "tags": [
+      "oceanfront",
+      "seafood",
+      "locally-sourced",
+      "east-shore",
+      "kapaa"
+    ],
+    "months": "all",
+    "thumbnail": "/thumbnails/eat/oasis-on-the-beach-1.jpg"
   },
   {
     "id": "postcards-cafe",
@@ -379,7 +510,10 @@
     "location": "Hanalei",
     "priceRange": "$$$",
     "budgetTier": "premium",
-    "groupFit": ["couple", "friends"],
+    "groupFit": [
+      "couple",
+      "friends"
+    ],
     "energy": "intimate",
     "highlights": [
       "Seafood and vegetarian fine dining in a charming plantation-era house",
@@ -400,7 +534,14 @@
       "maps": null
     },
     "lilaPick": true,
-    "tags": ["dinner", "vegetarian-forward", "plantation-house", "intimate", "north-shore"],
-    "months": "all"
+    "tags": [
+      "dinner",
+      "vegetarian-forward",
+      "plantation-house",
+      "intimate",
+      "north-shore"
+    ],
+    "months": "all",
+    "thumbnail": "/thumbnails/eat/postcards-cafe-1.jpg"
   }
 ]

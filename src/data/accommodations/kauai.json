@@ -7,14 +7,22 @@
     "budgetTier": "mindful",
     "priceRange": "$18–30/night",
     "location": "Hāʻena (North Shore) — near Kalalau trailhead",
-    "groupFit": ["solo", "couple", "friends"],
+    "groupFit": [
+      "solo",
+      "couple",
+      "friends"
+    ],
     "highlights": [
       "Closest camping to the Kalalau trailhead",
       "Five campsites on the beach at Hāʻena",
       "Short walk from Ke'e Beach and Limahuli Garden",
       "One of the most atmospheric camping locations in the state"
     ],
-    "amenities": ["restrooms", "showers", "picnic tables"],
+    "amenities": [
+      "restrooms",
+      "showers",
+      "picnic tables"
+    ],
     "bookingWindow": "Reservations through Hawaii State Parks (dlnr.hawaii.gov/dsp)",
     "links": {
       "website": "https://dlnr.hawaii.gov/dsp/parks/kauai/",
@@ -22,7 +30,13 @@
     },
     "seasonalNotes": "Year-round. North shore surf is rough in winter — beach conditions change dramatically by season.",
     "lilaPick": true,
-    "tags": ["beachfront", "kalalau-trailhead", "north-shore", "atmospheric"]
+    "tags": [
+      "beachfront",
+      "kalalau-trailhead",
+      "north-shore",
+      "atmospheric"
+    ],
+    "thumbnail": "/thumbnails/sleep/haena-beach-park-2.jpg"
   },
   {
     "id": "kokee-cabins",
@@ -32,7 +46,12 @@
     "budgetTier": "mindful",
     "priceRange": "$60–100/night",
     "location": "Kōkeʻe State Park — highlands above Waimea Canyon (3,600 ft)",
-    "groupFit": ["solo", "couple", "friends", "family"],
+    "groupFit": [
+      "solo",
+      "couple",
+      "friends",
+      "family"
+    ],
     "highlights": [
       "Rustic cabins in the highlands",
       "Cool temperatures at 3,600 feet",
@@ -40,7 +59,11 @@
       "Birdsong from species found nowhere else on Earth",
       "Extremely affordable"
     ],
-    "amenities": ["kitchen", "beds", "basic furnishings"],
+    "amenities": [
+      "kitchen",
+      "beds",
+      "basic furnishings"
+    ],
     "bookingWindow": "Reservations through kokee.net",
     "links": {
       "website": "https://www.kokeelodge.com/",
@@ -49,7 +72,14 @@
     },
     "seasonalNotes": "Year-round. Cool and misty — bring layers. A completely different Kauaʻi from the coast.",
     "lilaPick": true,
-    "tags": ["highland", "rustic", "canyon-access", "endemic-birds", "budget"]
+    "tags": [
+      "highland",
+      "rustic",
+      "canyon-access",
+      "endemic-birds",
+      "budget"
+    ],
+    "thumbnail": "/thumbnails/sleep/kokee-cabins-1.jpg"
   },
   {
     "id": "polihale-camping",
@@ -59,14 +89,21 @@
     "budgetTier": "mindful",
     "priceRange": "$18–30/night",
     "location": "Polihale (West Shore) — remote, end-of-road",
-    "groupFit": ["solo", "couple", "friends"],
+    "groupFit": [
+      "solo",
+      "couple",
+      "friends"
+    ],
     "highlights": [
       "Remote camping on the westernmost beach on Kauaʻi",
       "17 miles of empty beach backed by Nā Pali cliffs",
       "Exceptional darkness for stargazing",
       "The best sunsets on the island"
     ],
-    "amenities": ["pit toilets", "basic facilities"],
+    "amenities": [
+      "pit toilets",
+      "basic facilities"
+    ],
     "bookingWindow": "Reservations through state park system",
     "links": {
       "website": "https://dlnr.hawaii.gov/dsp/parks/kauai/",
@@ -74,7 +111,14 @@
     },
     "seasonalNotes": "Year-round. Rough dirt road in — 4WD or high clearance recommended in wet conditions.",
     "lilaPick": false,
-    "tags": ["remote", "dark-sky", "sunset", "na-pali-views", "primitive"]
+    "tags": [
+      "remote",
+      "dark-sky",
+      "sunset",
+      "na-pali-views",
+      "primitive"
+    ],
+    "thumbnail": "/thumbnails/sleep/polihale-camping-1.jpg"
   },
   {
     "id": "hanalei-colony-resort",
@@ -84,14 +128,23 @@
     "budgetTier": "moderate",
     "priceRange": "$250–500/night",
     "location": "Hanalei (North Shore) — beachfront",
-    "groupFit": ["couple", "friends", "family"],
+    "groupFit": [
+      "couple",
+      "friends",
+      "family"
+    ],
     "highlights": [
       "Only true beachfront property in Hanalei",
       "No TVs, no phones in rooms",
       "Simple condos facing the beach",
       "Best base for Kalalau Trail day hikers"
     ],
-    "amenities": ["beachfront", "kitchen", "pool", "no-tv"],
+    "amenities": [
+      "beachfront",
+      "kitchen",
+      "pool",
+      "no-tv"
+    ],
     "bookingWindow": "Book 3–6 months ahead for peak season",
     "links": {
       "website": "https://www.hcr.com/",
@@ -100,7 +153,14 @@
     },
     "seasonalNotes": "Year-round. North Shore location means bigger winter surf — summer is calmer for swimming.",
     "lilaPick": true,
-    "tags": ["beachfront", "no-tv", "kalalau-base", "north-shore", "unplugged"]
+    "tags": [
+      "beachfront",
+      "no-tv",
+      "kalalau-base",
+      "north-shore",
+      "unplugged"
+    ],
+    "thumbnail": "/thumbnails/sleep/hanalei-colony-resort-1.jpg"
   },
   {
     "id": "waimea-plantation-cottages",
@@ -110,7 +170,11 @@
     "budgetTier": "moderate",
     "priceRange": "$200–400/night",
     "location": "Waimea (West Side) — coconut grove near black-sand beach",
-    "groupFit": ["couple", "friends", "family"],
+    "groupFit": [
+      "couple",
+      "friends",
+      "family"
+    ],
     "highlights": [
       "Restored plantation-era cottages from the early 1900s",
       "Spread across a coconut grove",
@@ -118,7 +182,12 @@
       "Best base for Waimea Canyon and Kōkeʻe exploration",
       "Sunsets over Niʻihau from the beach are unmatched"
     ],
-    "amenities": ["kitchen", "porch", "pool", "beach access"],
+    "amenities": [
+      "kitchen",
+      "porch",
+      "pool",
+      "beach access"
+    ],
     "bookingWindow": "Book 2–4 months ahead for peak season",
     "links": {
       "website": "https://www.coasthotels.com/waimea-plantation-cottages",
@@ -127,7 +196,14 @@
     },
     "seasonalNotes": "Year-round. No resort amenities, no crowds — just history, stillness, and the garden isle as it was.",
     "lilaPick": true,
-    "tags": ["historic", "plantation-era", "coconut-grove", "canyon-base", "sunset"]
+    "tags": [
+      "historic",
+      "plantation-era",
+      "coconut-grove",
+      "canyon-base",
+      "sunset"
+    ],
+    "thumbnail": "/thumbnails/sleep/waimea-plantation-cottages-1.jpg"
   },
   {
     "id": "grand-hyatt-kauai",
@@ -137,14 +213,25 @@
     "budgetTier": "luxury",
     "priceRange": "$500–1,200/night",
     "location": "Poipū (South Shore) — beachfront at Shipwreck Beach",
-    "groupFit": ["couple", "friends", "family"],
+    "groupFit": [
+      "couple",
+      "friends",
+      "family"
+    ],
     "highlights": [
       "The grandest property on the island",
       "Lagoon pools, full Anara Spa with Hawaiian healing traditions",
       "Beachfront access to Shipwreck Beach",
       "The south shore's most complete luxury experience"
     ],
-    "amenities": ["spa", "lagoon pools", "restaurants", "beach access", "golf", "fitness center"],
+    "amenities": [
+      "spa",
+      "lagoon pools",
+      "restaurants",
+      "beach access",
+      "golf",
+      "fitness center"
+    ],
     "bookingWindow": "Reserve well ahead for peak season",
     "links": {
       "website": "https://www.hyatt.com/grand-hyatt/en-US/kauai-grand-hyatt-kauai-resort-and-spa",
@@ -153,7 +240,14 @@
     },
     "seasonalNotes": "Year-round. Anara Spa's lomilomi and pohaku treatments are grounded in Hawaiian tradition.",
     "lilaPick": true,
-    "tags": ["luxury", "spa", "lagoon-pools", "hawaiian-healing", "beachfront"]
+    "tags": [
+      "luxury",
+      "spa",
+      "lagoon-pools",
+      "hawaiian-healing",
+      "beachfront"
+    ],
+    "thumbnail": "/thumbnails/sleep/grand-hyatt-kauai-1.jpg"
   },
   {
     "id": "timbers-kauai",
@@ -163,14 +257,23 @@
     "budgetTier": "luxury",
     "priceRange": "$600–1,500/night",
     "location": "Hōkūala, Lihue (eastern coast)",
-    "groupFit": ["couple", "friends"],
+    "groupFit": [
+      "couple",
+      "friends"
+    ],
     "highlights": [
       "Newer luxury property on a former plantation estate",
       "Organic farm on-site",
       "Direct ocean access, considered design",
       "Less crowded than Poipū — a quieter base"
     ],
-    "amenities": ["farm-to-table", "pool", "ocean access", "golf", "fitness"],
+    "amenities": [
+      "farm-to-table",
+      "pool",
+      "ocean access",
+      "golf",
+      "fitness"
+    ],
     "bookingWindow": "Book 2–4 months ahead for peak season",
     "links": {
       "website": "https://www.timberskauai.com/",
@@ -179,7 +282,14 @@
     },
     "seasonalNotes": "Year-round. The organic farm is a genuine differentiator — not marketing.",
     "lilaPick": true,
-    "tags": ["luxury", "farm-on-site", "plantation-estate", "quiet", "design"]
+    "tags": [
+      "luxury",
+      "farm-on-site",
+      "plantation-estate",
+      "quiet",
+      "design"
+    ],
+    "thumbnail": "/thumbnails/sleep/timbers-kauai-1.jpg"
   },
   {
     "id": "1-hotel-hanalei-bay",
@@ -189,7 +299,9 @@
     "budgetTier": "luxury",
     "priceRange": "$800–2,000/night",
     "location": "Princeville (North Shore) — bluff above Hanalei Bay",
-    "groupFit": ["couple"],
+    "groupFit": [
+      "couple"
+    ],
     "highlights": [
       "Former St. Regis Princeville, comprehensively renovated",
       "North Shore's defining luxury property",
@@ -198,7 +310,14 @@
       "Spa rooted in Hawaiian and plant-based practices",
       "Pū Poa Beach below — one of the best on the island"
     ],
-    "amenities": ["spa", "pool", "restaurants", "beach access", "garden", "fitness"],
+    "amenities": [
+      "spa",
+      "pool",
+      "restaurants",
+      "beach access",
+      "garden",
+      "fitness"
+    ],
     "bookingWindow": "Reserve well ahead — the only full-service luxury on the North Shore",
     "links": {
       "website": "https://www.1hotels.com/hanalei-bay",
@@ -207,7 +326,15 @@
     },
     "seasonalNotes": "Year-round. The renovation brought genuine sustainability ethos, not just branding.",
     "lilaPick": true,
-    "tags": ["luxury", "sustainability", "na-pali-views", "north-shore", "spa", "farm-to-table"]
+    "tags": [
+      "luxury",
+      "sustainability",
+      "na-pali-views",
+      "north-shore",
+      "spa",
+      "farm-to-table"
+    ],
+    "thumbnail": "/thumbnails/sleep/1-hotel-hanalei-bay-1.jpg"
   },
   {
     "id": "hanalei-bay-resort",
@@ -217,7 +344,12 @@
     "budgetTier": "moderate",
     "priceRange": "$150–350/night",
     "location": "Princeville, North Shore — shared beach with 1 Hotel Hanalei Bay",
-    "groupFit": ["solo", "couple", "friends", "family"],
+    "groupFit": [
+      "solo",
+      "couple",
+      "friends",
+      "family"
+    ],
     "highlights": [
       "22 acres of tropical gardens with cascading pools and lava rock waterfalls",
       "Steps from Puʻu Poa Beach on Hanalei Bay — one of Hawaii's most beautiful white sand beaches",
@@ -225,7 +357,15 @@
       "Lagoon-style pool with waterfall and grotto hot tub",
       "Sweeping views of Nā Pali mountains and Hanalei Bay from most units"
     ],
-    "amenities": ["two pools", "hot tub", "beach shuttle", "tennis courts", "full kitchens", "concierge", "wifi"],
+    "amenities": [
+      "two pools",
+      "hot tub",
+      "beach shuttle",
+      "tennis courts",
+      "full kitchens",
+      "concierge",
+      "wifi"
+    ],
     "bookingWindow": "Book through individual unit owners or Parrish Collection Kauai. 2–4 weeks ahead for peak season.",
     "links": {
       "website": "https://www.hanaleibayresort.com/",
@@ -234,7 +374,16 @@
     },
     "seasonalNotes": "Open year-round. Avoid units undergoing renovation — read individual unit reviews before booking. Summer (June–Aug) offers calm water and ideal beach conditions.",
     "lilaPick": false,
-    "tags": ["north-shore", "hanalei-bay", "full-kitchen", "condo", "gardens", "beach-access", "mountain-views"]
+    "tags": [
+      "north-shore",
+      "hanalei-bay",
+      "full-kitchen",
+      "condo",
+      "gardens",
+      "beach-access",
+      "mountain-views"
+    ],
+    "thumbnail": "/thumbnails/sleep/hanalei-bay-resort-3.jpg"
   },
   {
     "id": "the-palmwood",
@@ -244,7 +393,10 @@
     "budgetTier": "moderate",
     "priceRange": "$200–350/night",
     "location": "Moloaʻa Hills, North Shore — secluded 5-acre estate",
-    "groupFit": ["solo", "couple"],
+    "groupFit": [
+      "solo",
+      "couple"
+    ],
     "highlights": [
       "Intimate B&B on a secluded 5-acre estate in the Moloaʻa hills",
       "Inspired by the mountain country inns of Japan — Eastern-influenced design with warm, cozy rooms",
@@ -252,7 +404,13 @@
       "Personal touch of a genuine B&B — Auntie Eddi's breakfast is legendary among guests",
       "Quiet, off-the-resort-trail alternative on the north shore"
     ],
-    "amenities": ["breakfast included", "gardens", "wifi", "parking", "concierge"],
+    "amenities": [
+      "breakfast included",
+      "gardens",
+      "wifi",
+      "parking",
+      "concierge"
+    ],
     "bookingWindow": "Book 4–6 weeks ahead. Small property — fills quickly for winter whale season and spring.",
     "links": {
       "website": "https://www.thepalmwood.com/",
@@ -260,6 +418,15 @@
     },
     "seasonalNotes": "Open year-round. North shore road (Highway 560) can close during high surf — check conditions in winter.",
     "lilaPick": true,
-    "tags": ["japanese-inspired", "b-and-b", "secluded", "north-shore", "intimate", "5-acres", "gardens"]
+    "tags": [
+      "japanese-inspired",
+      "b-and-b",
+      "secluded",
+      "north-shore",
+      "intimate",
+      "5-acres",
+      "gardens"
+    ],
+    "thumbnail": "/thumbnails/sleep/the-palmwood-3.jpg"
   }
 ]

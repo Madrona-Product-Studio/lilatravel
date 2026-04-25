@@ -28,7 +28,7 @@ const BASE_URL = 'https://www.lilatrips.com';
 const THUMB_DIR = path.join(__dirname, '..', 'public', 'thumbnails');
 const PHOTOS_PER_ENTRY = 3;
 const PHOTO_WIDTH = 400;
-const DELAY_MS = 1200; // delay between entries to avoid rate limits
+const DELAY_MS = 5000; // delay between entries to avoid rate limits
 
 // ─── Data files ──────────────────────────────────────────────────────────────
 
@@ -94,6 +94,15 @@ async function main() {
     console.log(`\n── Eat: ${dest} (${entries.length} entries) ──`);
 
     for (const entry of entries) {
+      // Skip if already have photos
+      const existingFile = path.join(THUMB_DIR, 'eat', `${entry.id}-1.jpg`);
+      if (fs.existsSync(existingFile)) {
+        const photos = [1,2,3].map(i => `/thumbnails/eat/${entry.id}-${i}.jpg`).filter(p => fs.existsSync(path.join(__dirname, '..', 'public', p)));
+        manifest.push({ id: entry.id, name: entry.name, section: 'eat', location: entry.location, dest, photos });
+        console.log(`  ${entry.name} — cached (${photos.length} photos)`);
+        continue;
+      }
+
       console.log(`  ${entry.name}...`);
       const refs = await fetchPhotoRefs(entry.name, entry.location);
       const photos = [];
@@ -117,6 +126,15 @@ async function main() {
     console.log(`\n── Sleep: ${dest} (${entries.length} entries) ──`);
 
     for (const entry of entries) {
+      // Skip if already have photos
+      const existingFile = path.join(THUMB_DIR, 'sleep', `${entry.id}-1.jpg`);
+      if (fs.existsSync(existingFile)) {
+        const photos = [1,2,3].map(i => `/thumbnails/sleep/${entry.id}-${i}.jpg`).filter(p => fs.existsSync(path.join(__dirname, '..', 'public', p)));
+        manifest.push({ id: entry.id, name: entry.name, section: 'sleep', location: entry.location, dest, photos });
+        console.log(`  ${entry.name} — cached (${photos.length} photos)`);
+        continue;
+      }
+
       console.log(`  ${entry.name}...`);
       const refs = await fetchPhotoRefs(entry.name, entry.location);
       const photos = [];
@@ -153,7 +171,7 @@ function generatePreviewHTML(manifest) {
       ? m.photos.map((p, i) => `
         <label style="cursor:pointer; display:inline-block; margin:4px; border:3px solid transparent;" class="photo-option">
           <input type="radio" name="${m.id}" value="${p}" style="display:none" onchange="this.parentElement.style.border='3px solid #c9963a'; document.querySelectorAll('input[name=${m.id}]').forEach(r => { if(r!==this) r.parentElement.style.border='3px solid transparent'; }); updateSelection();">
-          <img src="..${p}" width="200" style="display:block; border-radius:4px;" />
+          <img src="../public${p}" width="200" style="display:block; border-radius:4px;" />
           <div style="text-align:center; font-size:11px; color:#888; margin-top:2px;">Option ${i + 1}</div>
         </label>`).join('')
       : '<span style="color:#ccc; font-style:italic;">No photos found</span>';

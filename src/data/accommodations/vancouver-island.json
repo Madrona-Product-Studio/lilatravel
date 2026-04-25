@@ -7,14 +7,25 @@
     "budgetTier": "mindful",
     "priceRange": "$28–42 CAD/night",
     "location": "Pacific Rim National Park Reserve — Long Beach unit",
-    "groupFit": ["solo", "couple", "friends", "family"],
+    "groupFit": [
+      "solo",
+      "couple",
+      "friends",
+      "family"
+    ],
     "highlights": [
       "Only campground inside the Long Beach unit",
       "Clifftop sites above the Pacific — ocean sound all night",
       "Generator-free zone",
       "Lighthouse loop 200 meters from the sites"
     ],
-    "amenities": ["restrooms", "showers", "fire rings", "picnic tables", "firewood"],
+    "amenities": [
+      "restrooms",
+      "showers",
+      "fire rings",
+      "picnic tables",
+      "firewood"
+    ],
     "bookingWindow": "Reservations open in February at pc.gc.ca — fills in hours. Plan months ahead.",
     "links": {
       "website": "https://www.pc.gc.ca/en/pn-np/bc/pacificrim",
@@ -22,7 +33,14 @@
     },
     "seasonalNotes": "Seasonal — typically May through October. Winter camping not available.",
     "lilaPick": true,
-    "tags": ["clifftop", "ocean-sound", "generator-free", "pacific-rim", "reservations-essential"]
+    "tags": [
+      "clifftop",
+      "ocean-sound",
+      "generator-free",
+      "pacific-rim",
+      "reservations-essential"
+    ],
+    "thumbnail": "/thumbnails/sleep/green-point-campground-2.jpg"
   },
   {
     "id": "wya-point-resort",
@@ -32,14 +50,24 @@
     "budgetTier": "moderate",
     "priceRange": "$100–250 CAD/night (yurts); $30–50 CAD/night (tent camping)",
     "location": "Ucluelet — Yuułuʔiłʔatḥ First Nation territory",
-    "groupFit": ["solo", "couple", "friends", "family"],
+    "groupFit": [
+      "solo",
+      "couple",
+      "friends",
+      "family"
+    ],
     "highlights": [
       "Owned and operated by the Yuułuʔiłʔatḥ First Nation",
       "Oceanfront yurts, tent camping, and rustic lodging",
       "600 acres of old-growth forest on an exclusive beach",
       "Sleeping on land cared for by the Nation for 10,000 years"
     ],
-    "amenities": ["beach access", "fire pits", "communal kitchen", "washrooms"],
+    "amenities": [
+      "beach access",
+      "fire pits",
+      "communal kitchen",
+      "washrooms"
+    ],
     "bookingWindow": "Book 2–4 months ahead for summer",
     "links": {
       "website": "https://www.wyapoint.com/",
@@ -47,7 +75,14 @@
     },
     "seasonalNotes": "Year-round. One of the most distinctive and purposeful stays on the coast.",
     "lilaPick": true,
-    "tags": ["indigenous-owned", "yurts", "old-growth", "beachfront", "first-nation"]
+    "tags": [
+      "indigenous-owned",
+      "yurts",
+      "old-growth",
+      "beachfront",
+      "first-nation"
+    ],
+    "thumbnail": "/thumbnails/sleep/wya-point-resort-1.jpg"
   },
   {
     "id": "clayoquot-wilderness-resort",
@@ -57,7 +92,9 @@
     "budgetTier": "luxury",
     "priceRange": "$2,000–5,000 CAD/night (all-inclusive)",
     "location": "Bedwell River, Clayoquot Sound — fly-in/boat-in only",
-    "groupFit": ["couple"],
+    "groupFit": [
+      "couple"
+    ],
     "highlights": [
       "Remote safari tents on the shores of Bedwell River",
       "No road access — fly-in from Tofino or boat-in",
@@ -65,7 +102,13 @@
       "Indigenous cultural experiences with Tla-o-qui-aht guides",
       "Extreme privacy, extreme nature"
     ],
-    "amenities": ["all-inclusive", "guided experiences", "spa", "dining", "wilderness access"],
+    "amenities": [
+      "all-inclusive",
+      "guided experiences",
+      "spa",
+      "dining",
+      "wilderness access"
+    ],
     "bookingWindow": "Book 6–12 months ahead",
     "links": {
       "website": "https://www.clayoquot.com/",
@@ -73,7 +116,14 @@
     },
     "seasonalNotes": "Seasonal — typically May through September. The most remote stay in the region.",
     "lilaPick": true,
-    "tags": ["fly-in", "all-inclusive", "safari-tents", "wilderness", "indigenous-cultural"]
+    "tags": [
+      "fly-in",
+      "all-inclusive",
+      "safari-tents",
+      "wilderness",
+      "indigenous-cultural"
+    ],
+    "thumbnail": "/thumbnails/sleep/clayoquot-wilderness-resort-1.jpg"
   },
   {
     "id": "pacific-sands",
@@ -83,14 +133,25 @@
     "budgetTier": "moderate",
     "priceRange": "$200–500 CAD/night",
     "location": "Tofino — Cox Bay (directly on surf break)",
-    "groupFit": ["solo", "couple", "friends", "family"],
+    "groupFit": [
+      "solo",
+      "couple",
+      "friends",
+      "family"
+    ],
     "highlights": [
       "Directly on a consistent surf break at Cox Bay",
       "Self-catering suites and cabins with fireplaces",
       "Boards available, wetsuit rinse stations",
       "Location is hard to beat for surfers"
     ],
-    "amenities": ["fireplace", "kitchen", "surf access", "wetsuit rinse", "BBQ"],
+    "amenities": [
+      "fireplace",
+      "kitchen",
+      "surf access",
+      "wetsuit rinse",
+      "BBQ"
+    ],
     "bookingWindow": "Book 3–6 months ahead for summer",
     "links": {
       "website": "https://www.pacificsands.com/",
@@ -99,7 +160,14 @@
     },
     "seasonalNotes": "Year-round. Storm watching packages in winter. Surf is biggest September–November.",
     "lilaPick": false,
-    "tags": ["surf", "beachfront", "self-catering", "fireplace", "cox-bay"]
+    "tags": [
+      "surf",
+      "beachfront",
+      "self-catering",
+      "fireplace",
+      "cox-bay"
+    ],
+    "thumbnail": "/thumbnails/sleep/pacific-sands-1.jpg"
   },
   {
     "id": "long-beach-lodge",
@@ -109,14 +177,23 @@
     "budgetTier": "premium",
     "priceRange": "$300–700 CAD/night",
     "location": "Tofino — Cox Bay",
-    "groupFit": ["couple", "friends"],
+    "groupFit": [
+      "couple",
+      "friends"
+    ],
     "highlights": [
       "Directly on the beach at Cox Bay",
       "Dedicated surf camp operation",
       "Well-regarded dining room (The Pointe Restaurant)",
       "Great room with a fireplace the size of a car and Pacific views"
     ],
-    "amenities": ["restaurant", "surf camp", "fireplace", "beach access", "lounge"],
+    "amenities": [
+      "restaurant",
+      "surf camp",
+      "fireplace",
+      "beach access",
+      "lounge"
+    ],
     "bookingWindow": "Book 3–6 months ahead for summer",
     "links": {
       "website": "https://www.longbeachlodgeresort.com/",
@@ -125,7 +202,14 @@
     },
     "seasonalNotes": "Year-round. Storm watching from the great room is a winter tradition.",
     "lilaPick": false,
-    "tags": ["beachfront", "surf-camp", "dining", "great-room", "cox-bay"]
+    "tags": [
+      "beachfront",
+      "surf-camp",
+      "dining",
+      "great-room",
+      "cox-bay"
+    ],
+    "thumbnail": "/thumbnails/sleep/long-beach-lodge-1.jpg"
   },
   {
     "id": "pluvio-rooms",
@@ -135,14 +219,19 @@
     "budgetTier": "premium",
     "priceRange": "$250–450 CAD/night",
     "location": "Ucluelet",
-    "groupFit": ["couple"],
+    "groupFit": [
+      "couple"
+    ],
     "highlights": [
       "Six rooms above the best restaurant in Ucluelet",
       "Small, thoughtfully furnished, quiet",
       "Book room + dinner as a package",
       "James Beard-nominated restaurant downstairs"
     ],
-    "amenities": ["restaurant", "quiet setting"],
+    "amenities": [
+      "restaurant",
+      "quiet setting"
+    ],
     "bookingWindow": "Book 2–4 months ahead — only 6 rooms",
     "links": {
       "website": "https://www.pluvio.ca/",
@@ -151,7 +240,14 @@
     },
     "seasonalNotes": "Year-round. Six rooms total — intimate and hard to get. Book early.",
     "lilaPick": true,
-    "tags": ["james-beard", "intimate", "restaurant-attached", "ucluelet", "6-rooms"]
+    "tags": [
+      "james-beard",
+      "intimate",
+      "restaurant-attached",
+      "ucluelet",
+      "6-rooms"
+    ],
+    "thumbnail": "/thumbnails/sleep/pluvio-rooms-1.jpg"
   },
   {
     "id": "wickaninnish-inn",
@@ -161,7 +257,9 @@
     "budgetTier": "luxury",
     "priceRange": "$500–1,500 CAD/night",
     "location": "Tofino — Chesterman Beach",
-    "groupFit": ["couple"],
+    "groupFit": [
+      "couple"
+    ],
     "highlights": [
       "Defining luxury property on the outer coast of British Columbia",
       "Every room faces the Pacific with floor-to-ceiling windows",
@@ -170,7 +268,13 @@
       "The Pointe Restaurant overlooking the ocean",
       "One of the few truly world-class lodges in Canada"
     ],
-    "amenities": ["spa", "restaurant", "beach access", "storm watching", "fireplace"],
+    "amenities": [
+      "spa",
+      "restaurant",
+      "beach access",
+      "storm watching",
+      "fireplace"
+    ],
     "bookingWindow": "Reserve 6–12 months ahead for peak season",
     "links": {
       "website": "https://www.wickinn.com/",
@@ -179,7 +283,14 @@
     },
     "seasonalNotes": "Year-round. Storm watching season (Nov–Mar) is as compelling as summer — book the storm packages.",
     "lilaPick": true,
-    "tags": ["world-class", "storm-watching", "spa", "beachfront", "floor-to-ceiling-windows"]
+    "tags": [
+      "world-class",
+      "storm-watching",
+      "spa",
+      "beachfront",
+      "floor-to-ceiling-windows"
+    ],
+    "thumbnail": "/thumbnails/sleep/wickaninnish-inn-3.jpg"
   },
   {
     "id": "tin-wis-resort",
@@ -189,7 +300,12 @@
     "budgetTier": "moderate",
     "priceRange": "$180–320 CAD/night",
     "location": "1119 Pacific Rim Hwy, Tofino — on tinwis (MacKenzie) Beach, 3km from Tofino",
-    "groupFit": ["solo", "couple", "friends", "family"],
+    "groupFit": [
+      "solo",
+      "couple",
+      "friends",
+      "family"
+    ],
     "highlights": [
       "Owned and operated by the Tla-o-qui-aht First Nation on ancestral village land occupied for tens of thousands of years",
       "Every room faces the ocean — tinwis means 'calm waters' in Tla-o-qui-aht language",
@@ -197,7 +313,15 @@
       "Connected to Tla-o-qui-aht Tribal Parks; aligned with ʔiisaak pledge for respectful stewardship",
       "Petitioning to restore the original Indigenous name tinwis to MacKenzie Beach"
     ],
-    "amenities": ["ocean-view rooms", "hot tub", "on-site restaurant", "breakfast included", "surf rentals", "wifi", "parking"],
+    "amenities": [
+      "ocean-view rooms",
+      "hot tub",
+      "on-site restaurant",
+      "breakfast included",
+      "surf rentals",
+      "wifi",
+      "parking"
+    ],
     "bookingWindow": "Book 3–6 weeks ahead for peak summer and storm-watching season (Nov–Jan).",
     "links": {
       "website": "https://tinwis.ca/",
@@ -206,7 +330,16 @@
     },
     "seasonalNotes": "Open year-round. Storm-watching season Nov–Jan is special. Summer surf season brings higher rates. naaʔuu cultural events run periodically — check the website.",
     "lilaPick": true,
-    "tags": ["first-nations-owned", "tla-o-qui-aht", "cultural-programming", "beachfront", "ocean-view", "language-revitalization", "tribal-parks"]
+    "tags": [
+      "first-nations-owned",
+      "tla-o-qui-aht",
+      "cultural-programming",
+      "beachfront",
+      "ocean-view",
+      "language-revitalization",
+      "tribal-parks"
+    ],
+    "thumbnail": "/thumbnails/sleep/tin-wis-resort-1.jpg"
   },
   {
     "id": "ocean-village-resort",
@@ -216,7 +349,12 @@
     "budgetTier": "moderate",
     "priceRange": "$150–280 CAD/night",
     "location": "MacKenzie Beach, Tofino — 5 min from town",
-    "groupFit": ["solo", "couple", "friends", "family"],
+    "groupFit": [
+      "solo",
+      "couple",
+      "friends",
+      "family"
+    ],
     "highlights": [
       "Original Tofino resort — cedar cabins built in 1976 using timber from the property",
       "Admired for their distinctive 'beehive' design and direct beachfront location",
@@ -224,7 +362,16 @@
       "Full kitchens in every unit — designed for settling in and staying a while",
       "Pet-friendly; family-oriented; the antidote to the resort experience"
     ],
-    "amenities": ["indoor heated pool", "hot tub", "full kitchens", "beach access", "BBQ", "laundry", "wifi", "parking"],
+    "amenities": [
+      "indoor heated pool",
+      "hot tub",
+      "full kitchens",
+      "beach access",
+      "BBQ",
+      "laundry",
+      "wifi",
+      "parking"
+    ],
     "bookingWindow": "Book 4–8 weeks ahead for summer and fall. Winter rates drop significantly.",
     "links": {
       "website": "https://oceanvillageresort.com/",
@@ -233,7 +380,17 @@
     },
     "seasonalNotes": "Open year-round. Summer is peak; winter is storm-watching season. Beach fires are permitted with required fire appliances.",
     "lilaPick": true,
-    "tags": ["original-tofino", "1976", "cedar-cabins", "beachfront", "beehive-design", "pet-friendly", "full-kitchen", "indoor-pool"]
+    "tags": [
+      "original-tofino",
+      "1976",
+      "cedar-cabins",
+      "beachfront",
+      "beehive-design",
+      "pet-friendly",
+      "full-kitchen",
+      "indoor-pool"
+    ],
+    "thumbnail": "/thumbnails/sleep/ocean-village-resort-1.jpg"
   },
   {
     "id": "crystal-cove-beach-resort",
@@ -243,7 +400,11 @@
     "budgetTier": "moderate",
     "priceRange": "$180–380 CAD/night",
     "location": "MacKenzie Beach, Tofino — 3km from Tofino centre",
-    "groupFit": ["couple", "friends", "family"],
+    "groupFit": [
+      "couple",
+      "friends",
+      "family"
+    ],
     "highlights": [
       "34 modern log cabins set among ancient cedars at the edge of the Pacific",
       "From beachfront cabins with private hot tubs to rainforest cottages with cedar barrel saunas",
@@ -251,7 +412,16 @@
       "Acknowledges traditional and unceded territory of the Tla-o-qui-aht First Nation",
       "The full spectrum of Tofino — beach, forest, surf, and stillness all within the property"
     ],
-    "amenities": ["private hot tubs (select cabins)", "cedar barrel saunas", "fire pits", "full kitchens", "BBQ", "adventure playground", "wifi", "parking"],
+    "amenities": [
+      "private hot tubs (select cabins)",
+      "cedar barrel saunas",
+      "fire pits",
+      "full kitchens",
+      "BBQ",
+      "adventure playground",
+      "wifi",
+      "parking"
+    ],
     "bookingWindow": "Book 6–10 weeks ahead for summer. Storm-watching winter weekends also fill early.",
     "links": {
       "website": "https://www.crystalcove.ca/",
@@ -259,7 +429,16 @@
     },
     "seasonalNotes": "Open year-round. Beachfront cabins with hot tubs book earliest. Cedar barrel sauna cabins available year-round. Glamping trailers and RV sites also available.",
     "lilaPick": false,
-    "tags": ["log-cabins", "cedar-barrel-sauna", "private-hot-tubs", "beachfront", "rainforest", "family-friendly", "mackenzie-beach"]
+    "tags": [
+      "log-cabins",
+      "cedar-barrel-sauna",
+      "private-hot-tubs",
+      "beachfront",
+      "rainforest",
+      "family-friendly",
+      "mackenzie-beach"
+    ],
+    "thumbnail": "/thumbnails/sleep/crystal-cove-beach-resort-1.jpg"
   },
   {
     "id": "free-spirit-spheres",
@@ -269,14 +448,22 @@
     "budgetTier": "moderate",
     "priceRange": "$200–350 CAD/night",
     "location": "420 Horne Lake Rd, Qualicum Beach — 2 hrs from Tofino via Highway 4",
-    "groupFit": ["solo", "couple"],
+    "groupFit": [
+      "solo",
+      "couple"
+    ],
     "highlights": [
       "Handmade wooden spheres suspended in the forest canopy — you sleep inside a sphere hung from old-growth trees, swaying gently in the wind",
       "Three spheres (Eve, Eryn, Melody), each with a different design. Built by hand by Tom Chudleigh over 15+ years from local wood and salvaged materials.",
       "No electricity in the spheres — candlelight, wood stove, and forest silence. Composting toilet. The simplicity IS the luxury.",
       "The architecture is the experience. There is nothing else like this. For corridor itineraries — 2 hrs from Tofino on Highway 4."
     ],
-    "amenities": ["wood stove", "candlelight", "composting toilet", "forest setting"],
+    "amenities": [
+      "wood stove",
+      "candlelight",
+      "composting toilet",
+      "forest setting"
+    ],
     "bookingWindow": "Book at freespiritspheres.com — fills months ahead. Minimum 2-night stay.",
     "links": {
       "website": "https://freespiritspheres.com/",
@@ -285,6 +472,16 @@
     "seasonalNotes": "Open year-round. Winter storms in the canopy are extraordinary. Summer is warmest but busiest.",
     "corridor": true,
     "lilaPick": true,
-    "tags": ["suspended-spheres", "forest-canopy", "handmade", "off-grid", "candlelight", "architecture", "corridor", "unique"]
+    "tags": [
+      "suspended-spheres",
+      "forest-canopy",
+      "handmade",
+      "off-grid",
+      "candlelight",
+      "architecture",
+      "corridor",
+      "unique"
+    ],
+    "thumbnail": "/thumbnails/sleep/free-spirit-spheres-1.jpg"
   }
 ]

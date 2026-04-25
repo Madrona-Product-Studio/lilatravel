@@ -6,7 +6,9 @@
     "location": "Big Sur (Post Ranch Inn)",
     "priceRange": "$$$$",
     "budgetTier": "luxury",
-    "groupFit": ["couple"],
+    "groupFit": [
+      "couple"
+    ],
     "energy": "refined",
     "highlights": [
       "Floor-to-ceiling glass 1,200 feet above the Pacific",
@@ -29,8 +31,15 @@
       "tock": "https://www.exploretock.com/sierramarpostranchinn"
     },
     "lilaPick": true,
-    "tags": ["fine-dining", "prix-fixe", "ocean-view", "special-occasion", "reservations-essential"],
-    "months": "all"
+    "tags": [
+      "fine-dining",
+      "prix-fixe",
+      "ocean-view",
+      "special-occasion",
+      "reservations-essential"
+    ],
+    "months": "all",
+    "thumbnail": "/thumbnails/eat/sierra-mar-2.jpg"
   },
   {
     "id": "nepenthe",
@@ -39,7 +48,12 @@
     "location": "Big Sur (Highway 1)",
     "priceRange": "$$",
     "budgetTier": "moderate",
-    "groupFit": ["solo", "couple", "friends", "family"],
+    "groupFit": [
+      "solo",
+      "couple",
+      "friends",
+      "family"
+    ],
     "energy": "lively",
     "highlights": [
       "Iconic Big Sur terrace since 1949",
@@ -60,8 +74,16 @@
       "maps": null
     },
     "lilaPick": true,
-    "tags": ["lunch", "dinner", "iconic", "ocean-view", "no-reservations", "outdoor-terrace"],
-    "months": "all"
+    "tags": [
+      "lunch",
+      "dinner",
+      "iconic",
+      "ocean-view",
+      "no-reservations",
+      "outdoor-terrace"
+    ],
+    "months": "all",
+    "thumbnail": "/thumbnails/eat/nepenthe-2.jpg"
   },
   {
     "id": "big-sur-bakery",
@@ -70,7 +92,11 @@
     "location": "Big Sur (Highway 1)",
     "priceRange": "$$",
     "budgetTier": "moderate",
-    "groupFit": ["solo", "couple", "friends"],
+    "groupFit": [
+      "solo",
+      "couple",
+      "friends"
+    ],
     "energy": "relaxed",
     "highlights": [
       "Converted house surrounded by redwoods",
@@ -92,8 +118,16 @@
       "maps": null
     },
     "lilaPick": true,
-    "tags": ["breakfast", "brunch", "bakery", "coffee", "local-favorite", "limited-days"],
-    "months": "all"
+    "tags": [
+      "breakfast",
+      "brunch",
+      "bakery",
+      "coffee",
+      "local-favorite",
+      "limited-days"
+    ],
+    "months": "all",
+    "thumbnail": "/thumbnails/eat/big-sur-bakery-1.jpg"
   },
   {
     "id": "big-sur-river-inn",
@@ -102,7 +136,12 @@
     "location": "Big Sur (Highway 1)",
     "priceRange": "$$",
     "budgetTier": "moderate",
-    "groupFit": ["solo", "couple", "friends", "family"],
+    "groupFit": [
+      "solo",
+      "couple",
+      "friends",
+      "family"
+    ],
     "energy": "lively",
     "highlights": [
       "Riverside deck over the Big Sur River",
@@ -123,8 +162,15 @@
       "maps": null
     },
     "lilaPick": true,
-    "tags": ["lunch", "dinner", "riverside", "outdoor-seating", "local-community"],
-    "months": "all"
+    "tags": [
+      "lunch",
+      "dinner",
+      "riverside",
+      "outdoor-seating",
+      "local-community"
+    ],
+    "months": "all",
+    "thumbnail": "/thumbnails/eat/big-sur-river-inn-3.jpg"
   },
   {
     "id": "aubergine",
@@ -133,7 +179,9 @@
     "location": "Carmel-by-the-Sea (L'Auberge Carmel)",
     "priceRange": "$$$$",
     "budgetTier": "luxury",
-    "groupFit": ["couple"],
+    "groupFit": [
+      "couple"
+    ],
     "energy": "refined",
     "highlights": [
       "One Michelin star",
@@ -157,8 +205,15 @@
       "tock": "https://www.exploretock.com/auberginecarmel"
     },
     "lilaPick": true,
-    "tags": ["fine-dining", "michelin-star", "tasting-menu", "special-occasion", "reservations-essential"],
-    "months": "all"
+    "tags": [
+      "fine-dining",
+      "michelin-star",
+      "tasting-menu",
+      "special-occasion",
+      "reservations-essential"
+    ],
+    "months": "all",
+    "thumbnail": "/thumbnails/eat/aubergine-2.jpg"
   },
   {
     "id": "la-bicyclette",
@@ -167,7 +222,10 @@
     "location": "Carmel-by-the-Sea",
     "priceRange": "$$$",
     "budgetTier": "premium",
-    "groupFit": ["couple", "friends"],
+    "groupFit": [
+      "couple",
+      "friends"
+    ],
     "energy": "lively",
     "highlights": [
       "Seasonal menu, wood-fired oven",
@@ -189,8 +247,15 @@
       "openTable": "https://www.opentable.com/r/la-bicyclette-carmel"
     },
     "lilaPick": false,
-    "tags": ["french", "wood-fired", "dinner", "lunch", "bar-seating"],
-    "months": "all"
+    "tags": [
+      "french",
+      "wood-fired",
+      "dinner",
+      "lunch",
+      "bar-seating"
+    ],
+    "months": "all",
+    "thumbnail": "/thumbnails/eat/la-bicyclette-1.jpg"
   },
   {
     "id": "mission-ranch",
@@ -199,7 +264,11 @@
     "location": "Carmel-by-the-Sea",
     "priceRange": "$$$",
     "budgetTier": "premium",
-    "groupFit": ["couple", "friends", "family"],
+    "groupFit": [
+      "couple",
+      "friends",
+      "family"
+    ],
     "energy": "relaxed",
     "highlights": [
       "Carmel landmark owned by Clint Eastwood since 1986",
@@ -220,8 +289,14 @@
       "maps": null
     },
     "lilaPick": false,
-    "tags": ["dinner", "scenic-view", "historic", "american"],
-    "months": "all"
+    "tags": [
+      "dinner",
+      "scenic-view",
+      "historic",
+      "american"
+    ],
+    "months": "all",
+    "thumbnail": "/thumbnails/eat/mission-ranch-1.jpg"
   },
   {
     "id": "carmel-belle",
@@ -230,7 +305,10 @@
     "location": "Carmel-by-the-Sea (Doud Craft Studios)",
     "priceRange": "$",
     "budgetTier": "mindful",
-    "groupFit": ["solo", "couple"],
+    "groupFit": [
+      "solo",
+      "couple"
+    ],
     "energy": "relaxed",
     "highlights": [
       "The morning anchor before heading south",
@@ -250,7 +328,12 @@
       "maps": null
     },
     "lilaPick": false,
-    "tags": ["breakfast", "coffee", "cafe", "provisions"],
+    "tags": [
+      "breakfast",
+      "coffee",
+      "cafe",
+      "provisions"
+    ],
     "months": "all"
   },
   {
@@ -260,7 +343,11 @@
     "location": "Big Sur (Highway 1)",
     "priceRange": "$$$",
     "budgetTier": "premium",
-    "groupFit": ["couple", "friends", "solo"],
+    "groupFit": [
+      "couple",
+      "friends",
+      "solo"
+    ],
     "energy": "refined",
     "highlights": [
       "Restaurant and cocktail lounge inside The Village Big Sur — a thoughtfully designed gathering place on Highway 1",
@@ -282,8 +369,18 @@
       "tock": "https://www.exploretock.com/solstice-big-sur"
     },
     "lilaPick": true,
-    "tags": ["brunch", "dinner", "cocktails", "village", "big-sur", "coastal", "bar", "gathering-place"],
-    "months": "all"
+    "tags": [
+      "brunch",
+      "dinner",
+      "cocktails",
+      "village",
+      "big-sur",
+      "coastal",
+      "bar",
+      "gathering-place"
+    ],
+    "months": "all",
+    "thumbnail": "/thumbnails/eat/solstice-village-1.jpg"
   },
   {
     "id": "deetjens",
@@ -292,7 +389,11 @@
     "location": "Big Sur (Highway 1)",
     "priceRange": "$$",
     "budgetTier": "moderate",
-    "groupFit": ["couple", "solo", "friends"],
+    "groupFit": [
+      "couple",
+      "solo",
+      "friends"
+    ],
     "energy": "relaxed",
     "highlights": [
       "Historic 1930s inn with an enchanting dining room — one of Big Sur's most atmospheric breakfast spots",
@@ -313,8 +414,18 @@
       "maps": null
     },
     "lilaPick": true,
-    "tags": ["breakfast", "dinner", "historic", "atmospheric", "no-wifi", "big-sur", "classic", "destination-dining"],
-    "months": "all"
+    "tags": [
+      "breakfast",
+      "dinner",
+      "historic",
+      "atmospheric",
+      "no-wifi",
+      "big-sur",
+      "classic",
+      "destination-dining"
+    ],
+    "months": "all",
+    "thumbnail": "/thumbnails/eat/deetjens-1.jpg"
   },
   {
     "id": "el-bistro-by-the-sea",
@@ -323,7 +434,11 @@
     "location": "Carmel-by-the-Sea",
     "priceRange": "$$",
     "budgetTier": "moderate",
-    "groupFit": ["couple", "friends", "family"],
+    "groupFit": [
+      "couple",
+      "friends",
+      "family"
+    ],
     "energy": "lively",
     "highlights": [
       "Refined Mexican cuisine in the heart of Carmel — handmade tortillas, fresh salsas, creative brunch",
@@ -344,7 +459,16 @@
       "maps": null
     },
     "lilaPick": true,
-    "tags": ["mexican", "brunch", "breakfast", "carmel", "handmade-tortillas", "pet-friendly", "chilaquiles"],
-    "months": "all"
+    "tags": [
+      "mexican",
+      "brunch",
+      "breakfast",
+      "carmel",
+      "handmade-tortillas",
+      "pet-friendly",
+      "chilaquiles"
+    ],
+    "months": "all",
+    "thumbnail": "/thumbnails/eat/el-bistro-by-the-sea-2.jpg"
   }
 ]
