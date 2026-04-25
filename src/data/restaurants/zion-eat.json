@@ -275,7 +275,8 @@
     "reservations": "required",
     "links": {
       "website": "https://www.hellsbackbonegrill.com/",
-      "maps": null
+      "maps": null,
+      "tock": "https://www.exploretock.com/hellsbackbonegrill"
     },
     "corridor": true,
     "lilaPick": true,

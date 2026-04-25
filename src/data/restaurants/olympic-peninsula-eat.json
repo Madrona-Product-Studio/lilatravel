@@ -116,7 +116,9 @@
     "reservations": "walk-in",
     "links": {
       "website": "https://www.nourishsequim.com/",
-      "maps": null
+      "maps": null,
+      "openTable": "https://www.opentable.com/r/nourish-sequim",
+      "tock": "https://www.exploretock.com/nourishsequim"
     },
     "lilaPick": true,
     "tags": ["breakfast", "lunch", "farm-to-table", "vegetarian-friendly", "vegan-friendly"],
@@ -270,7 +272,8 @@
     "reservations": "recommended for dinner in summer",
     "links": {
       "website": "https://www.olympicnationalparks.com/",
-      "maps": null
+      "maps": null,
+      "openTable": "https://www.opentable.com/r/creekside-kalaloch"
     },
     "lilaPick": false,
     "tags": ["breakfast", "lunch", "dinner", "ocean-view", "salmon", "sunset"],

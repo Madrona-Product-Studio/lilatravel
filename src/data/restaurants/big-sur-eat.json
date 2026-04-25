@@ -24,7 +24,9 @@
     "reservations": "essential — book weeks or months ahead",
     "links": {
       "website": "https://www.postranchinn.com/dining/",
-      "maps": null
+      "maps": null,
+      "openTable": "https://www.opentable.com/sierra-mar-post-ranch-inn",
+      "tock": "https://www.exploretock.com/sierramarpostranchinn"
     },
     "lilaPick": true,
     "tags": ["fine-dining", "prix-fixe", "ocean-view", "special-occasion", "reservations-essential"],
@@ -150,7 +152,9 @@
     "reservations": "essential",
     "links": {
       "website": "https://auberginecarmel.com/",
-      "maps": null
+      "maps": null,
+      "openTable": "https://www.opentable.com/r/aubergine-at-lauberge-carmel",
+      "tock": "https://www.exploretock.com/auberginecarmel"
     },
     "lilaPick": true,
     "tags": ["fine-dining", "michelin-star", "tasting-menu", "special-occasion", "reservations-essential"],
@@ -181,7 +185,8 @@
     "reservations": "recommended — walk-in bar seating available",
     "links": {
       "website": "https://www.labicycletterestaurant.com/",
-      "maps": null
+      "maps": null,
+      "openTable": "https://www.opentable.com/r/la-bicyclette-carmel"
     },
     "lilaPick": false,
     "tags": ["french", "wood-fired", "dinner", "lunch", "bar-seating"],
@@ -273,7 +278,8 @@
     "reservations": "Recommended — book via Exploretock",
     "links": {
       "website": "https://www.thevillagebigsur.com/",
-      "maps": null
+      "maps": null,
+      "tock": "https://www.exploretock.com/solstice-big-sur"
     },
     "lilaPick": true,
     "tags": ["brunch", "dinner", "cocktails", "village", "big-sur", "coastal", "bar", "gathering-place"],

@@ -24,7 +24,8 @@
     "reservations": "essential — reserve ahead",
     "links": {
       "website": "https://www.cudahanalei.com/",
-      "maps": null
+      "maps": null,
+      "resy": "https://resy.com/cities/hanalei-hi-hi/venues/bar-acuda"
     },
     "lilaPick": true,
     "tags": ["dinner", "tapas", "local-fish", "wine-list", "reservations-essential"],
@@ -116,7 +117,8 @@
     "reservations": "recommended",
     "links": {
       "website": "https://www.the-beach-house.com/",
-      "maps": null
+      "maps": null,
+      "openTable": "https://www.opentable.com/r/beach-house-restaurant-kauai-koloa-2"
     },
     "lilaPick": false,
     "tags": ["dinner", "oceanfront", "sunset", "seafood", "south-shore"],

@@ -17,7 +17,7 @@
     "dietary": { "vegetarian": true, "vegan": false, "glutenFree": false, "notes": null },
     "hours": "Dinner nightly; lunch in summer",
     "reservations": "essential",
-    "links": { "website": "https://www.wolfinthefog.com/", "maps": null },
+    "links": { "website": "https://www.wolfinthefog.com/", "maps": null, "tock": "https://www.exploretock.com/wolfinthefog" },
     "lilaPick": true,
     "tags": ["dinner", "farm-to-table", "seafood", "james-beard", "tofino", "reservations-essential"],
     "months": "all"
@@ -107,7 +107,7 @@
     "dietary": { "vegetarian": true, "vegan": false, "glutenFree": false, "notes": null },
     "hours": "Dinner; check seasonal hours",
     "reservations": "recommended",
-    "links": { "website": "https://www.tofinoresortandmarina.com/dine/", "maps": null },
+    "links": { "website": "https://www.tofinoresortandmarina.com/dine/", "maps": null, "openTable": "https://www.opentable.com/r/1909-tofino-resort-and-marina-reservations-tofino" },
     "lilaPick": false,
     "tags": ["dinner", "japanese-influenced", "seafood", "dock-views", "tofino"],
     "months": "all"
