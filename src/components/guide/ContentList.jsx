@@ -54,7 +54,7 @@ export default function ContentList({ items, onOpenSheet, style = {} }) {
             onClick={isClickable ? () => onOpenSheet(item) : undefined}
             style={{
               display: 'flex', alignItems: 'stretch',
-              padding: '13px 0',
+              padding: item.thumbnail ? '16px 0' : '13px 0',
               borderBottom: i < items.length - 1 ? `0.5px solid ${G.borderSoft}` : 'none',
               cursor: isClickable ? 'pointer' : 'default',
               transition: 'background 0.15s',
@@ -68,8 +68,8 @@ export default function ContentList({ items, onOpenSheet, style = {} }) {
             {/* Thumbnail */}
             {item.thumbnail && (
               <div style={{
-                width: 48, height: 48, flexShrink: 0, marginRight: 12, marginTop: 2,
-                overflow: 'hidden', borderRadius: 4, background: G.borderSoft,
+                width: 72, height: 72, flexShrink: 0, marginRight: 14, alignSelf: 'center',
+                overflow: 'hidden', borderRadius: 6, background: G.borderSoft,
               }}>
                 <img
                   src={item.thumbnail}
