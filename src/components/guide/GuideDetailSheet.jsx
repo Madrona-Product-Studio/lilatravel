@@ -113,6 +113,7 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
   const dragStartY = useRef(null);
   const dragCurrentY = useRef(0);
   const [activePhotoIdx, setActivePhotoIdx] = useState(0);
+  const [isClosing, setIsClosing] = useState(false);
 
   // Photo swipe refs
   const photoTouchStartX = useRef(null);
@@ -120,7 +121,13 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
   const photoSwiping = useRef(false);
 
   // Reset photo index when item changes
-  useEffect(() => { setActivePhotoIdx(0); }, [item?.name]);
+  useEffect(() => { setActivePhotoIdx(0); setIsClosing(false); }, [item?.name]);
+
+  // Animated close — play exit animation then unmount
+  const handleClose = () => {
+    setIsClosing(true);
+    setTimeout(() => { setIsClosing(false); onClose(); }, 250);
+  };
 
 
   // Determine fetch conditions before hooks (hooks must run unconditionally)
@@ -147,7 +154,7 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
     if (dy > 0 && sheetRef.current) sheetRef.current.style.transform = `translateY(${dy}px)`;
   };
   const onTouchEnd = () => {
-    if (dragCurrentY.current > 80) { onClose(); }
+    if (dragCurrentY.current > 80) { handleClose(); }
     else if (sheetRef.current) { sheetRef.current.style.transform = 'translateY(0)'; }
     dragStartY.current = null;
     dragCurrentY.current = 0;
@@ -410,6 +417,8 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
                 src={npsPrimaryImage.url}
                 alt={npsPrimaryImage.altText || item.name}
                 className="w-full h-[260px] object-cover block"
+                loading="lazy"
+                style={{ animation: 'fadeIn 0.3s ease' }}
               />
               {(npsPrimaryImage.caption || npsPrimaryImage.credit) && (
                 <div className="font-body text-[11px] font-normal text-[rgba(26,26,24,0.4)] leading-[1.5] px-5 py-1.5">
@@ -423,7 +432,7 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
               {npsImages.length > 1 && (
                 <div className="flex gap-[3px] px-5 overflow-x-auto" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
                   {npsImages.slice(1, 5).map((img, i) => (
-                    <img key={i} src={img.url} alt={img.altText || ''} className="w-[60px] h-[42px] object-cover opacity-80" />
+                    <img key={i} src={img.url} alt={img.altText || ''} className="w-[60px] h-[42px] object-cover opacity-80" loading="lazy" />
                   ))}
                 </div>
               )}
@@ -568,6 +577,18 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
               {wildlife.photoAttribution && (
                 <div style={{ fontFamily: FONTS.body, fontSize: 9, color: 'rgba(26,26,24,0.35)', textAlign: 'right', padding: '4px 20px 0' }}>{wildlife.photoAttribution}</div>
               )}
+            </div>
+          )}
+
+          {/* Skeleton loading state — shown while wildlife data fetches */}
+          {wildlife.loading && !wildlife.scientificName && (
+            <div style={{ animation: 'skeletonPulse 1.5s ease-in-out infinite' }}>
+              <div style={{ width: 160, height: 16, background: C.stone, marginBottom: 12 }} />
+              <div className="grid grid-cols-2 gap-x-4 gap-y-2 mb-3 py-3 border-y border-[rgba(107,128,120,0.1)]">
+                <div style={{ height: 40, background: C.stone }} />
+                <div style={{ height: 40, background: C.stone }} />
+              </div>
+              <div style={{ height: 80, background: C.stone, marginBottom: 12 }} />
             </div>
           )}
 
@@ -761,14 +782,20 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
   if (!isMobile) {
     return (
       <>
-        <style>{`
-          @keyframes guideSheetSlideIn { from { transform: translateX(100%); } to { transform: translateX(0); } }
-          @keyframes guideSheetBackdropIn { from { opacity: 0; } to { opacity: 1; } }
-        `}</style>
-        <div onClick={onClose} className="fixed inset-0 z-[249]" style={{ background: 'rgba(0,0,0,0.3)', animation: 'guideSheetBackdropIn 0.25s ease' }} />
-        <div className="fixed top-0 right-0 bottom-0 w-[440px] z-[250] bg-cream overflow-y-auto" style={{ animation: 'guideSheetSlideIn 0.3s ease', boxShadow: '-4px 0 24px rgba(0,0,0,0.08)' }}>
+        <div onClick={handleClose} className="fixed inset-0 z-[249]" style={{
+          background: 'rgba(0,0,0,0.3)',
+          opacity: isClosing ? 0 : 1,
+          transition: 'opacity 0.25s ease',
+        }} />
+        <div className="fixed top-0 right-0 bottom-0 w-[440px] z-[250] bg-cream overflow-y-auto" style={{
+          transform: isClosing ? 'translateX(100%)' : 'translateX(0)',
+          transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+          ...(!isClosing ? { animation: 'guideSheetSlideIn 0.3s ease' } : {}),
+          boxShadow: '-4px 0 24px rgba(0,0,0,0.08)',
+        }}>
+          <style>{`@keyframes guideSheetSlideIn { from { transform: translateX(100%); } to { transform: translateX(0); } }`}</style>
           <div className="sticky top-0 z-10 flex justify-end pr-3.5 pt-3">
-            <button onClick={onClose} className="w-8 h-8 flex items-center justify-center rounded-full cursor-pointer font-body text-[15px] text-[rgba(26,26,24,0.4)] leading-none" style={{ background: `${G.panel}e0`, border: `1px solid ${G.border}15`, WebkitTapHighlightColor: 'transparent', boxShadow: `0 2px 8px ${G.ink}08` }} aria-label="Close">✕</button>
+            <button onClick={handleClose} className="w-8 h-8 flex items-center justify-center rounded-full cursor-pointer font-body text-[15px] text-[rgba(26,26,24,0.4)] leading-none" style={{ background: `${G.panel}e0`, border: `1px solid ${G.border}15`, WebkitTapHighlightColor: 'transparent', boxShadow: `0 2px 8px ${G.ink}08` }} aria-label="Close">✕</button>
           </div>
           {content}
         </div>
@@ -778,15 +805,22 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
 
   return (
     <>
-      <style>{`
-        @keyframes guideSheetSlideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
-        @keyframes guideSheetBackdropIn { from { opacity: 0; } to { opacity: 1; } }
-      `}</style>
-      <div onClick={onClose} className="fixed inset-0 z-[249]" style={{ background: 'rgba(0,0,0,0.3)', animation: 'guideSheetBackdropIn 0.25s ease' }} />
-      <div ref={sheetRef} className="fixed bottom-0 left-0 right-0 z-[250] bg-cream rounded-t-2xl flex flex-col" style={{ height: isWildlife ? '96vh' : '92vh', animation: 'guideSheetSlideUp 0.3s ease', boxShadow: '0 -4px 24px rgba(0,0,0,0.1)' }}>
+      <div onClick={handleClose} className="fixed inset-0 z-[249]" style={{
+        background: 'rgba(0,0,0,0.3)',
+        opacity: isClosing ? 0 : 1,
+        transition: 'opacity 0.25s ease',
+      }} />
+      <div ref={sheetRef} className="fixed bottom-0 left-0 right-0 z-[250] bg-cream rounded-t-2xl flex flex-col" style={{
+        height: isWildlife ? '96vh' : '92vh',
+        transform: isClosing ? 'translateY(100%)' : 'translateY(0)',
+        transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+        ...(!isClosing ? { animation: 'guideSheetSlideUp 0.3s ease' } : {}),
+        boxShadow: '0 -4px 24px rgba(0,0,0,0.1)',
+      }}>
+        <style>{`@keyframes guideSheetSlideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }`}</style>
         <div onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd} className="px-3.5 pt-2.5 pb-1.5 shrink-0 relative z-10">
           <div className="w-9 h-1 rounded-sm mx-auto mb-2" style={{ background: '#7A857E30' }} />
-          <button onClick={(e) => { e.stopPropagation(); onClose(); }} className="absolute top-2 right-3.5 w-9 h-9 flex items-center justify-center rounded-full cursor-pointer font-body text-[15px] text-[rgba(26,26,24,0.4)] leading-none" style={{ background: `${G.panel}e0`, border: `1px solid #7A857E15`, WebkitTapHighlightColor: 'transparent', boxShadow: `0 2px 8px ${G.ink}08` }} aria-label="Close">✕</button>
+          <button onClick={(e) => { e.stopPropagation(); handleClose(); }} className="absolute top-2 right-3.5 w-9 h-9 flex items-center justify-center rounded-full cursor-pointer font-body text-[15px] text-[rgba(26,26,24,0.4)] leading-none" style={{ background: `${G.panel}e0`, border: `1px solid #7A857E15`, WebkitTapHighlightColor: 'transparent', boxShadow: `0 2px 8px ${G.ink}08` }} aria-label="Close">✕</button>
         </div>
         <div className="overflow-y-auto flex-1" style={{ WebkitOverflowScrolling: 'touch' }}>
           {content}

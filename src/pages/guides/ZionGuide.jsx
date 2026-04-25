@@ -308,7 +308,7 @@ export default function ZionGuide() {
 
               {/* ══ 01 TERRAIN & PARKS ════════════════════════════════════════ */}
               <div id="the-place">
-                <SectionTransition num="01" title="Terrain & Parks" />
+                <FadeIn><SectionTransition num="01" title="Terrain & Parks" /></FadeIn>
                 <div style={{ marginTop: 28 }}>
                   <Prose>
                     There are places you visit and places that visit you. Zion is the second kind.
@@ -344,7 +344,7 @@ export default function ZionGuide() {
 
               {/* ══ 02 TRAVEL LIGHTLY ═════════════════════════════════════════ */}
               <div id="responsibly">
-                <SectionTransition num="02" title="Travel Lightly" />
+                <FadeIn><SectionTransition num="02" title="Travel Lightly" /></FadeIn>
                 <div style={{ marginTop: 28 }}>
                   <Prose>
                     The canyon doesn't belong to any single story. The Paiute people called this place
@@ -374,7 +374,7 @@ export default function ZionGuide() {
 
               {/* ══ 03 WHERE TO STAY ══════════════════════════════════════════ */}
               <div id="stay">
-                <SectionTransition num="03" title="Where to Stay" />
+                <FadeIn><SectionTransition num="03" title="Where to Stay" /></FadeIn>
                 <div style={{ marginTop: 28 }}>
                   <Prose>Springdale is the move for a Zion-focused trip — you can walk to the park entrance. If you're running the full orbit, plan to split nights. The corridor towns are worth slowing down in.</Prose>
                 </div>
@@ -404,7 +404,7 @@ export default function ZionGuide() {
 
               {/* ══ 04 WHERE TO EAT ═══════════════════════════════════════════ */}
               <div id="eat">
-                <SectionTransition num="04" title="Where to Eat" />
+                <FadeIn><SectionTransition num="04" title="Where to Eat" /></FadeIn>
                 <div style={{ marginTop: 28 }}>
                   <Prose>Springdale has more good food than a town its size should. Oscar's is the local breakfast institution. Deep Creek does the coffee right. Bit & Spur is the dinner move — Southwestern with actual range. And if you make it to Boulder on Scenic Byway 12, Hell's Backbone Grill is one of the best farm-to-table restaurants in the West, full stop.</Prose>
                 </div>
@@ -430,7 +430,7 @@ export default function ZionGuide() {
 
               {/* ══ 05 HIKES, BIKES, ETC. ═════════════════════════════════════ */}
               <div id="move">
-                <SectionTransition num="05" title="Hikes, Bikes, etc." />
+                <FadeIn><SectionTransition num="05" title="Hikes, Bikes, etc." /></FadeIn>
                 <div style={{ marginTop: 28 }}>
                   <Prose>The Narrows is the signature — wading a river through slot canyon walls two thousand feet high. Angels Landing is the one everyone knows. But the orbit has more: Bryce Canyon's rim trail at dawn, Capitol Reef's desert varnish canyons, and some of the best canyoneering in the American Southwest.</Prose>
                 </div>
@@ -456,7 +456,7 @@ export default function ZionGuide() {
 
               {/* ══ 06 YOGA & MINDFULNESS ═════════════════════════════════════ */}
               <div id="breathe">
-                <SectionTransition num="06" title="Yoga & Mindfulness" />
+                <FadeIn><SectionTransition num="06" title="Yoga & Mindfulness" /></FadeIn>
                 <div style={{ marginTop: 28 }}>
                   <Prose>The canyon has a way of slowing the nervous system down. The scale of the walls, the sound of the river, the way the light changes every twenty minutes — it works on you whether you intend it to or not. These are some ways to go deeper with that.</Prose>
                 </div>
@@ -482,7 +482,7 @@ export default function ZionGuide() {
 
               {/* ══ 07 ARTS & CULTURE ═════════════════════════════════════════ */}
               <div id="experience">
-                <SectionTransition num="07" title="Arts & Culture" />
+                <FadeIn><SectionTransition num="07" title="Arts & Culture" /></FadeIn>
                 <div style={{ marginTop: 28 }}>
                   <Prose>Southern Utah has a deeper cultural life than most people expect. The landscape has attracted artists, writers, and naturalists for over a century. The towns along Scenic Byway 12 carry that history in their galleries, ghost towns, and community programs.</Prose>
                 </div>
@@ -508,7 +508,7 @@ export default function ZionGuide() {
 
               {/* ══ 08 STARS & SKY ════════════════════════════════════════════ */}
               <div id="night-sky">
-                <SectionTransition num="08" title="Stars & Sky" />
+                <FadeIn><SectionTransition num="08" title="Stars & Sky" /></FadeIn>
                 <div style={{ marginTop: 28 }}>
                   <Prose>At night, the sky opens. Zion is a certified International Dark Sky Park. On a moonless night, the Milky Way arcs directly overhead between the canyon walls — framed by two thousand feet of sandstone on either side. Bring a blanket, lie down, give yourself an hour.</Prose>
                   <Prose>Bryce Canyon is one of the darkest places in the continental United States. Capitol Reef offers Bortle Class 2 skies — almost no light pollution at all.</Prose>

@@ -298,7 +298,7 @@ export default function OlympicPeninsulaGuide() {
 
               {/* ══ 01 TERRAIN & PARKS ════════════════════════════════════════ */}
               <div id="the-place">
-                <SectionTransition num="01" title="Terrain & Parks" />
+                <FadeIn><SectionTransition num="01" title="Terrain & Parks" /></FadeIn>
                 <div style={{ marginTop: 28 }}>
                   <Prose>
                     Olympic is three parks in one, stacked against each other in ecological improbability.
@@ -341,7 +341,7 @@ export default function OlympicPeninsulaGuide() {
 
               {/* ══ 02 TRAVEL LIGHTLY ═════════════════════════════════════════ */}
               <div id="responsibly">
-                <SectionTransition num="02" title="Travel Lightly" />
+                <FadeIn><SectionTransition num="02" title="Travel Lightly" /></FadeIn>
                 <div style={{ marginTop: 28 }}>
                   <Prose>
                     One of the last temperate wildernesses in the lower 48. The Hoh Rainforest's mosses took
@@ -374,7 +374,7 @@ export default function OlympicPeninsulaGuide() {
 
               {/* ══ 03 WHERE TO STAY ══════════════════════════════════════════ */}
               <div id="stay">
-                <SectionTransition num="03" title="Where to Stay" />
+                <FadeIn><SectionTransition num="03" title="Where to Stay" /></FadeIn>
                 <div style={{ marginTop: 28 }}>
                   <Prose>Port Angeles is the most practical base — closest to Hurricane Ridge and the widest selection of food and lodging. If you're running the full peninsula, plan to split nights. Each zone rewards at least one overnight.</Prose>
                 </div>
@@ -404,7 +404,7 @@ export default function OlympicPeninsulaGuide() {
 
               {/* ══ 04 WHERE TO EAT ═══════════════════════════════════════════ */}
               <div id="eat">
-                <SectionTransition num="04" title="Where to Eat" />
+                <FadeIn><SectionTransition num="04" title="Where to Eat" /></FadeIn>
                 <div style={{ marginTop: 28 }}>
                   <Prose>Port Angeles has more good food than a town its size should. Kokopelli Grill and Next Door Gastropub are reliable. Port Townsend's food scene punches well above its weight. Forks is practical — timber-town diners and solid provisions for the rainforest.</Prose>
                 </div>
@@ -430,7 +430,7 @@ export default function OlympicPeninsulaGuide() {
 
               {/* ══ 05 HIKES, PADDLES, ETC. ═════════════════════════════════ */}
               <div id="move">
-                <SectionTransition num="05" title="Hikes, Paddles, etc." />
+                <FadeIn><SectionTransition num="05" title="Hikes, Paddles, etc." /></FadeIn>
                 <div style={{ marginTop: 28 }}>
                   <Prose>The Hall of Mosses is the signature — less than a mile through the quietest forest in the contiguous US. Hurricane Ridge delivers alpine panoramas. Rialto Beach puts you on the Pacific with sea stacks and tide pools. But the peninsula has more: Sol Duc Falls, Shi Shi Beach, and some of the best backcountry coast hiking in the American West.</Prose>
                 </div>
@@ -456,7 +456,7 @@ export default function OlympicPeninsulaGuide() {
 
               {/* ══ 06 HOT SPRINGS & STILLNESS ═════════════════════════════ */}
               <div id="breathe">
-                <SectionTransition num="06" title="Hot Springs & Stillness" />
+                <FadeIn><SectionTransition num="06" title="Hot Springs & Stillness" /></FadeIn>
                 <div style={{ marginTop: 28 }}>
                   <Prose>The peninsula has a way of slowing the nervous system down. The Hoh Rainforest has been measured as one of the quietest places in the contiguous US. Sol Duc Hot Springs lets you soak in mineral water surrounded by old-growth forest. These are some ways to go deeper with that.</Prose>
                 </div>
@@ -482,7 +482,7 @@ export default function OlympicPeninsulaGuide() {
 
               {/* ══ 07 CULTURE & HERITAGE ═══════════════════════════════════ */}
               <div id="experience">
-                <SectionTransition num="07" title="Culture & Heritage" />
+                <FadeIn><SectionTransition num="07" title="Culture & Heritage" /></FadeIn>
                 <div style={{ marginTop: 28 }}>
                   <Prose>The Olympic Peninsula has a deeper cultural life than most people expect. Nine Indigenous Nations have called this home since time immemorial. Port Townsend carries a Victorian heritage and a thriving arts community. The Makah Museum houses one of the most significant archaeological collections in North America.</Prose>
                 </div>
@@ -508,7 +508,7 @@ export default function OlympicPeninsulaGuide() {
 
               {/* ══ 08 STARS & SKY ════════════════════════════════════════════ */}
               <div id="night-sky">
-                <SectionTransition num="08" title="Stars & Sky" />
+                <FadeIn><SectionTransition num="08" title="Stars & Sky" /></FadeIn>
                 <div style={{ marginTop: 28 }}>
                   <Prose>Olympic isn't IDA-certified, but genuine darkness is available from any park campground away from Port Angeles. The rain shadow side — Sequim and Dungeness — offers the clearest skies, especially in summer when the west side is still clouded over.</Prose>
                   <Prose>Hurricane Ridge, at 5,200 feet, often sits above the cloud layer. Deer Park Campground at 5,400 feet is the highest drive-to point in the park — no water, no services, extraordinary sky. Kalaloch Beach offers remote coastal darkness under the sound of surf.</Prose>

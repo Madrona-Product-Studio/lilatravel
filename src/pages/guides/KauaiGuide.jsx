@@ -284,7 +284,7 @@ export default function KauaiGuide() {
 
               {/* == 01 TERRAIN & PARKS == */}
               <div id="the-place">
-                <SectionTransition num="01" title="Terrain & Parks" />
+                <FadeIn><SectionTransition num="01" title="Terrain & Parks" /></FadeIn>
                 <div style={{ marginTop: 28 }}>
                   <Prose>
                     Kaua&#699;i is the oldest of the main Hawaiian Islands — five million years old, worn into
@@ -332,7 +332,7 @@ export default function KauaiGuide() {
 
               {/* == 02 TRAVEL LIGHTLY == */}
               <div id="responsibly">
-                <SectionTransition num="02" title="Travel Lightly" />
+                <FadeIn><SectionTransition num="02" title="Travel Lightly" /></FadeIn>
                 <div style={{ marginTop: 28 }}>
                   <Prose>
                     Hawai&#699;i receives more visitors per resident than almost anywhere on earth. Kaua&#699;i
@@ -363,7 +363,7 @@ export default function KauaiGuide() {
 
               {/* == 03 WHERE TO STAY == */}
               <div id="stay">
-                <SectionTransition num="03" title="Where to Stay" />
+                <FadeIn><SectionTransition num="03" title="Where to Stay" /></FadeIn>
                 <div style={{ marginTop: 28 }}>
                   <Prose>Poipu is the move for sun and snorkeling. Hanalei and Princeville own the North Shore. Kapa&#699;a is the practical hub with the best local food access. Where you sleep shapes which Kaua&#699;i you meet.</Prose>
                 </div>
@@ -392,7 +392,7 @@ export default function KauaiGuide() {
 
               {/* == 04 WHERE TO EAT == */}
               <div id="eat">
-                <SectionTransition num="04" title="Where to Eat" />
+                <FadeIn><SectionTransition num="04" title="Where to Eat" /></FadeIn>
                 <div style={{ marginTop: 28 }}>
                   <Prose>Kaua&#699;i's food scene is rooted in the land and the ocean. Poke is religion. Plate lunch is infrastructure. The farm-to-table movement here draws from soil that grows year-round. The best meals are often the least formal — roadside stands, fish markets, and the places locals eat when no one's watching.</Prose>
                 </div>
@@ -417,7 +417,7 @@ export default function KauaiGuide() {
 
               {/* == 05 HIKES, SURF, ETC. == */}
               <div id="move">
-                <SectionTransition num="05" title="Hikes, Surf, etc." />
+                <FadeIn><SectionTransition num="05" title="Hikes, Surf, etc." /></FadeIn>
                 <div style={{ marginTop: 28 }}>
                   <Prose>The Kalalau Trail is the signature — eleven miles along the Na Pali Coast to a beach at the edge of the world. But the island has more: Waimea Canyon rim trails, kayaking the Wailua River, surfing Hanalei Bay, and snorkeling reefs that make the mainland look pale.</Prose>
                 </div>
@@ -442,7 +442,7 @@ export default function KauaiGuide() {
 
               {/* == 06 YOGA & HEALING == */}
               <div id="breathe">
-                <SectionTransition num="06" title="Yoga & Healing" />
+                <FadeIn><SectionTransition num="06" title="Yoga & Healing" /></FadeIn>
                 <div style={{ marginTop: 28 }}>
                   <Prose>The island has a long tradition of healing — Hawaiian la&#699;au lapa&#699;au (plant medicine), lomilomi bodywork, and a yoga community that draws serious practitioners from around the world. The landscape itself does half the work: trade winds, ocean sound, and the particular quality of light that only Kaua&#699;i has.</Prose>
                 </div>
@@ -467,7 +467,7 @@ export default function KauaiGuide() {
 
               {/* == 07 CULTURE & HERITAGE == */}
               <div id="experience">
-                <SectionTransition num="07" title="Culture & Heritage" />
+                <FadeIn><SectionTransition num="07" title="Culture & Heritage" /></FadeIn>
                 <div style={{ marginTop: 28 }}>
                   <Prose>Kaua&#699;i's cultural life runs deeper than most visitors see. The island's isolation preserved Hawaiian traditions that were disrupted elsewhere. Botanical gardens with plants the Polynesian navigators brought across the Pacific. Taro farms that have been cultivated for centuries. A film history that spans from South Pacific to Jurassic Park. The culture here is alive and ongoing.</Prose>
                 </div>
@@ -492,7 +492,7 @@ export default function KauaiGuide() {
 
               {/* == 08 STARS & SKY == */}
               <div id="night-sky">
-                <SectionTransition num="08" title="Stars & Sky" />
+                <FadeIn><SectionTransition num="08" title="Stars & Sky" /></FadeIn>
                 <div style={{ marginTop: 28 }}>
                   <Prose>Kaua&#699;i has no certified Dark Sky designation, but it doesn't need one. The building-height ordinance, low population density, and remote western beaches produce some of the darkest skies in Hawai&#699;i. Polihale State Park is Bortle Class 3 — open horizon, no development for miles. The Milky Way core is visible April through October from the south and west shores.</Prose>
                   <Prose>Whale season adds another dimension to the night sky. December through April, humpback spouts are visible by moonlight from the south shore overlooks. Combine a new moon night with peak whale season for the full experience.</Prose>

@@ -170,6 +170,8 @@ export default function App() {
       <BrowserRouter>
         <ScrollToTop />
         <Suspense fallback={<LoadingSpinner />}>
+          <style>{`@keyframes pageIn { from { opacity: 0; } to { opacity: 1; } }`}</style>
+          <div style={{ animation: 'pageIn 0.3s ease' }}>
           <Routes>
             {/* Homepage */}
             <Route path="/" element={<HomePage />} />
@@ -304,6 +306,7 @@ export default function App() {
             {/* 404 */}
             <Route path="*" element={<NotFound />} />
           </Routes>
+          </div>
         </Suspense>
       </BrowserRouter>
       </AuthProvider>

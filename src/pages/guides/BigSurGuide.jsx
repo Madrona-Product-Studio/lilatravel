@@ -287,7 +287,7 @@ export default function BigSurGuide() {
 
               {/* ══ 01 TERRAIN & PARKS ════════════════════════════════════════ */}
               <div id="the-place">
-                <SectionTransition num="01" title="Terrain & Parks" />
+                <FadeIn><SectionTransition num="01" title="Terrain & Parks" /></FadeIn>
                 <div style={{ marginTop: 28 }}>
                   <Prose>
                     Big Sur is not a town. It's a condition. Ninety miles of Highway 1 between Carmel
@@ -329,7 +329,7 @@ export default function BigSurGuide() {
 
               {/* ══ 02 TRAVEL LIGHTLY ═════════════════════════════════════════ */}
               <div id="responsibly">
-                <SectionTransition num="02" title="Travel Lightly" />
+                <FadeIn><SectionTransition num="02" title="Travel Lightly" /></FadeIn>
                 <div style={{ marginTop: 28 }}>
                   <Prose>
                     What Big Sur asks of you is presence. The road is too narrow and winding for
@@ -363,7 +363,7 @@ export default function BigSurGuide() {
 
               {/* ══ 03 WHERE TO STAY ══════════════════════════════════════════ */}
               <div id="stay">
-                <SectionTransition num="03" title="Where to Stay" />
+                <FadeIn><SectionTransition num="03" title="Where to Stay" /></FadeIn>
                 <div style={{ marginTop: 28 }}>
                   <Prose>Big Sur's lodging is as varied as the coast itself — from clifftop glamping at Treebones to the historic rusticity of Deetjen's Big Sur Inn to the world-class Post Ranch Inn. If you're running the full orbit, plan to split nights between the Big Sur corridor, Carmel, and Monterey.</Prose>
                 </div>
@@ -392,7 +392,7 @@ export default function BigSurGuide() {
 
               {/* ══ 04 WHERE TO EAT ═══════════════════════════════════════════ */}
               <div id="eat">
-                <SectionTransition num="04" title="Where to Eat" />
+                <FadeIn><SectionTransition num="04" title="Where to Eat" /></FadeIn>
                 <div style={{ marginTop: 28 }}>
                   <Prose>Nepenthe is the iconic perch — burgers on a terrace 800 feet above the ocean. Deetjen's does the candlelit dinner. Sierra Mar at Post Ranch is the splurge with a view that earns every dollar. Head north and Carmel has a food scene that punches well above its one-square-mile footprint. Monterey anchors the working end with Cannery Row and the wharf.</Prose>
                 </div>
@@ -417,7 +417,7 @@ export default function BigSurGuide() {
 
               {/* ══ 05 HIKES, BIKES, ETC. ═════════════════════════════════════ */}
               <div id="move">
-                <SectionTransition num="05" title="Hikes, Bikes, etc." />
+                <FadeIn><SectionTransition num="05" title="Hikes, Bikes, etc." /></FadeIn>
                 <div style={{ marginTop: 28 }}>
                   <Prose>Ewoldsen Trail is the signature — old-growth redwoods that open onto coastal ridge views in a single switchback. Point Lobos is the crown jewel of California's state reserves. The Ventana Wilderness offers genuine backcountry. And the coast itself — sea kayaking, surfing at Sand Dollar Beach, cycling Highway 1 — is the real activity guide.</Prose>
                 </div>
@@ -442,7 +442,7 @@ export default function BigSurGuide() {
 
               {/* ══ 06 YOGA & MINDFULNESS ═════════════════════════════════════ */}
               <div id="breathe">
-                <SectionTransition num="06" title="Yoga & Mindfulness" />
+                <FadeIn><SectionTransition num="06" title="Yoga & Mindfulness" /></FadeIn>
                 <div style={{ marginTop: 28 }}>
                   <Prose>Esalen Institute put Big Sur on the map for a reason — the hot springs on the cliff edge, the workshops, the long history of consciousness exploration. But the coast itself does the work. The sound of surf through redwoods, the fog burning off, the scale of the landscape — it recalibrates the nervous system whether you intend it to or not.</Prose>
                 </div>
@@ -467,7 +467,7 @@ export default function BigSurGuide() {
 
               {/* ══ 07 ARTS & CULTURE ═════════════════════════════════════════ */}
               <div id="experience">
-                <SectionTransition num="07" title="Arts & Culture" />
+                <FadeIn><SectionTransition num="07" title="Arts & Culture" /></FadeIn>
                 <div style={{ marginTop: 28 }}>
                   <Prose>The landscape has attracted artists, writers, and seekers for over a century. Henry Miller wrote here. Robinson Jeffers built Tor House from the granite of Carmel Point. The Henry Miller Library in Big Sur is part bookshop, part cultural center, part gathering place. Carmel's 80+ galleries and Monterey's Cannery Row carry a cultural density that surprises visitors.</Prose>
                 </div>
@@ -492,7 +492,7 @@ export default function BigSurGuide() {
 
               {/* ══ 08 STARS & SKY ════════════════════════════════════════════ */}
               <div id="night-sky">
-                <SectionTransition num="08" title="Stars & Sky" />
+                <FadeIn><SectionTransition num="08" title="Stars & Sky" /></FadeIn>
                 <div style={{ marginTop: 28 }}>
                   <Prose>Big Sur has some of the darkest skies on the California coast — Bortle 2 at Pfeiffer Beach on clear nights. The marine layer is the variable: it can roll in fast and erase the sky, or part dramatically to frame the Milky Way over the ocean.</Prose>
                   <Prose>Kirk Creek Campground offers clifftop sites with unobstructed ocean horizon. Pfeiffer Ridge rises above the marine layer when the coast is socked in. Andrew Molera's beach access opens a wide, dark sky at the river mouth.</Prose>

@@ -283,7 +283,7 @@ export default function VancouverIslandGuide() {
 
               {/* ══ 01 TERRAIN & PARKS ════════════════════════════════════════ */}
               <div id="the-place">
-                <SectionTransition num="01" title="Terrain & Parks" />
+                <FadeIn><SectionTransition num="01" title="Terrain & Parks" /></FadeIn>
                 <div style={{ marginTop: 28 }}>
                   <Prose>
                     The town is small — fewer than 2,000 residents — and for most of its history was accessible only by boat or float plane. The character here is shaped by weather. Tofino is a surf town that gets 3,000mm of rain a year. The storm season — November through March — draws a different kind of traveler than summer: people who want to watch the Pacific throw itself against the coast.
@@ -316,7 +316,7 @@ export default function VancouverIslandGuide() {
 
               {/* ══ 02 TRAVEL LIGHTLY ═════════════════════════════════════════ */}
               <div id="responsibly">
-                <SectionTransition num="02" title="Travel Lightly" />
+                <FadeIn><SectionTransition num="02" title="Travel Lightly" /></FadeIn>
                 <div style={{ marginTop: 28 }}>
                   <Prose>
                     This land has a legal and spiritual context that precedes any trail map. Much of Vancouver Island remains the unceded traditional territories of the Kwakwaka'wakw, Nuu-chah-nulth, and Coast Salish peoples — meaning it was never ceded through treaty. How you move through this place matters.
@@ -343,7 +343,7 @@ export default function VancouverIslandGuide() {
 
               {/* ══ 03 WHERE TO STAY ══════════════════════════════════════════ */}
               <div id="stay">
-                <SectionTransition num="03" title="Where to Stay" />
+                <FadeIn><SectionTransition num="03" title="Where to Stay" /></FadeIn>
                 <div style={{ marginTop: 28 }}>
                   <Prose>Tofino is the anchor for a west coast trip — storm-watching lodges, surf cabins, and forest retreats. Ucluelet offers quieter alternatives at better value. Victoria is the counterpoint when you want architecture and ceremony. Split your nights across the island for the full experience.</Prose>
                 </div>
@@ -372,7 +372,7 @@ export default function VancouverIslandGuide() {
 
               {/* ══ 04 WHERE TO EAT ═══════════════════════════════════════════ */}
               <div id="eat">
-                <SectionTransition num="04" title="Where to Eat" />
+                <FadeIn><SectionTransition num="04" title="Where to Eat" /></FadeIn>
                 <div style={{ marginTop: 28 }}>
                   <Prose>Tofino punches well above its weight for a town of 2,000. The seafood is extraordinary — spot prawns, halibut, Dungeness crab — and the dining scene has matured into something genuinely special. Ucluelet is catching up. Victoria adds heritage and refinement.</Prose>
                 </div>
@@ -397,7 +397,7 @@ export default function VancouverIslandGuide() {
 
               {/* ══ 05 HIKES, BIKES, ETC. ═════════════════════════════════════ */}
               <div id="move">
-                <SectionTransition num="05" title="Hikes, Bikes, etc." />
+                <FadeIn><SectionTransition num="05" title="Hikes, Bikes, etc." /></FadeIn>
                 <div style={{ marginTop: 28 }}>
                   <Prose>The West Coast Trail is the marquee — 75 km of wilderness coastline, ladders, cable cars, and tidal shelf. But the orbit has more: the Meares Island Big Trees boardwalk through cathedral-scale old growth, sea kayaking the Broken Group Islands, and some of the best cold-water surfing in the world at Cox Bay and Long Beach.</Prose>
                 </div>
@@ -422,7 +422,7 @@ export default function VancouverIslandGuide() {
 
               {/* ══ 06 YOGA & MINDFULNESS ═════════════════════════════════════ */}
               <div id="breathe">
-                <SectionTransition num="06" title="Yoga & Mindfulness" />
+                <FadeIn><SectionTransition num="06" title="Yoga & Mindfulness" /></FadeIn>
                 <div style={{ marginTop: 28 }}>
                   <Prose>The coast has a way of slowing the nervous system down. The sound of rain on cedar, the rhythm of the surf, the ancient scale of the forest — it works on you whether you intend it to or not. Hot Springs Cove, forest bathing on Meares Island, cedar saunas overlooking the Pacific. These are some ways to go deeper with that.</Prose>
                 </div>
@@ -447,7 +447,7 @@ export default function VancouverIslandGuide() {
 
               {/* ══ 07 ARTS & CULTURE ═════════════════════════════════════════ */}
               <div id="experience">
-                <SectionTransition num="07" title="Arts & Culture" />
+                <FadeIn><SectionTransition num="07" title="Arts & Culture" /></FadeIn>
                 <div style={{ marginTop: 28 }}>
                   <Prose>Vancouver Island has a deeper cultural life than most visitors expect. First Nations art traditions thousands of years old, a growing gallery scene in Tofino, the Royal BC Museum in Victoria, and Indigenous-led cultural tourism that connects you to the land in ways a trail map never will.</Prose>
                 </div>
@@ -472,7 +472,7 @@ export default function VancouverIslandGuide() {
 
               {/* ══ 08 STARS & SKY ════════════════════════════════════════════ */}
               <div id="night-sky">
-                <SectionTransition num="08" title="Stars & Sky" />
+                <FadeIn><SectionTransition num="08" title="Stars & Sky" /></FadeIn>
                 <div style={{ marginTop: 28 }}>
                   <Prose>Vancouver Island's west coast offers genuinely dark skies — no major cities for hundreds of kilometres in the Pacific direction. The best viewing is from Long Beach and the Wild Pacific Trail on clear winter nights. Storm season offers a different kind of sky spectacle: lightning over the open ocean, phosphorescent surf, and the Northern Lights on rare, spectacular occasions.</Prose>
                 </div>

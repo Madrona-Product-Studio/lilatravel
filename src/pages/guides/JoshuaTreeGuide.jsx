@@ -294,7 +294,7 @@ export default function JoshuaTreeGuide() {
 
               {/* ══ 01 TERRAIN & PARKS ════════════════════════════════════════ */}
               <div id="the-place">
-                <SectionTransition num="01" title="Terrain & Parks" />
+                <FadeIn><SectionTransition num="01" title="Terrain & Parks" /></FadeIn>
                 <div style={{ marginTop: 28 }}>
                   <Prose>
                     Joshua Tree sits at the convergence of two deserts — the Mojave and the Colorado — and that collision is part of what makes it singular. The high desert is cool and boulder-studded, carpeted in the alien silhouettes of Yucca brevifolia. Drop below the transition zone into the Colorado Desert and the landscape shifts: more open, more stark, warmer. The park covers 800,000 acres. Most visitors see a fraction of it.
@@ -326,7 +326,7 @@ export default function JoshuaTreeGuide() {
 
               {/* ══ 02 TRAVEL LIGHTLY ═════════════════════════════════════════ */}
               <div id="responsibly">
-                <SectionTransition num="02" title="Travel Lightly" />
+                <FadeIn><SectionTransition num="02" title="Travel Lightly" /></FadeIn>
                 <div style={{ marginTop: 28 }}>
                   <Prose>
                     The desert moves slowly. So should you. Joshua Tree is one of the most fragile landscapes in the National Park System — and one of the most visited. How you move through this place matters.
@@ -356,7 +356,7 @@ export default function JoshuaTreeGuide() {
 
               {/* ══ 03 WHERE TO STAY ══════════════════════════════════════════ */}
               <div id="stay">
-                <SectionTransition num="03" title="Where to Stay" />
+                <FadeIn><SectionTransition num="03" title="Where to Stay" /></FadeIn>
                 <div style={{ marginTop: 28 }}>
                   <Prose>The town of Joshua Tree is the most convenient base — five minutes to the north entrance. Twentynine Palms is quieter, with access to the park's eastern half. Pioneertown and Palm Springs add range if you want to split nights.</Prose>
                 </div>
@@ -386,7 +386,7 @@ export default function JoshuaTreeGuide() {
 
               {/* ══ 04 WHERE TO EAT ═══════════════════════════════════════════ */}
               <div id="eat">
-                <SectionTransition num="04" title="Where to Eat" />
+                <FadeIn><SectionTransition num="04" title="Where to Eat" /></FadeIn>
                 <div style={{ marginTop: 28 }}>
                   <Prose>The desert dining scene is better than anyone expects. Pappy & Harriet's in Pioneertown is the anchor — live music, mesquite-grilled everything. La Copine does the farm-to-table thing with real conviction. Natural Sisters Cafe is the Joshua Tree morning move. And Palm Springs has a food scene deep enough to fill a separate guide.</Prose>
                 </div>
@@ -412,7 +412,7 @@ export default function JoshuaTreeGuide() {
 
               {/* ══ 05 HIKES, BIKES, ETC. ═════════════════════════════════════ */}
               <div id="move">
-                <SectionTransition num="05" title="Hikes, Bikes, etc." />
+                <FadeIn><SectionTransition num="05" title="Hikes, Bikes, etc." /></FadeIn>
                 <div style={{ marginTop: 28 }}>
                   <Prose>The park has over 8,000 climbing routes and dozens of trails across two distinct desert ecosystems. Ryan Mountain gives you the full panorama. The Skull Rock Loop is easy and uncrowded at dawn. Keys View is the sunset move. And the boulder fields — Jumbo Rocks, Hidden Valley, Split Rock — are some of the best rock climbing in the American West.</Prose>
                 </div>
@@ -438,7 +438,7 @@ export default function JoshuaTreeGuide() {
 
               {/* ══ 06 YOGA & MINDFULNESS ═════════════════════════════════════ */}
               <div id="breathe">
-                <SectionTransition num="06" title="Yoga & Mindfulness" />
+                <FadeIn><SectionTransition num="06" title="Yoga & Mindfulness" /></FadeIn>
                 <div style={{ marginTop: 28 }}>
                   <Prose>The desert does half the work. The silence, the scale, the way the light shifts every twenty minutes — it recalibrates the nervous system whether you intend it to or not. Sound baths in Joshua Tree have become a thing for a reason. The landscape is the instrument.</Prose>
                 </div>
@@ -464,7 +464,7 @@ export default function JoshuaTreeGuide() {
 
               {/* ══ 07 ARTS & CULTURE ═════════════════════════════════════════ */}
               <div id="experience">
-                <SectionTransition num="07" title="Arts & Culture" />
+                <FadeIn><SectionTransition num="07" title="Arts & Culture" /></FadeIn>
                 <div style={{ marginTop: 28 }}>
                   <Prose>The desert has drawn artists, musicians, and seekers for decades. Noah Purifoy's outdoor sculpture museum is one of the most striking art installations in the American West. The Integratron promises acoustic healing inside a dome built on an alleged geomagnetic vortex. Pioneertown is a living film set. The creative energy here is real and specific.</Prose>
                 </div>
@@ -490,7 +490,7 @@ export default function JoshuaTreeGuide() {
 
               {/* ══ 08 STARS & SKY ════════════════════════════════════════════ */}
               <div id="night-sky">
-                <SectionTransition num="08" title="Stars & Sky" />
+                <FadeIn><SectionTransition num="08" title="Stars & Sky" /></FadeIn>
                 <div style={{ marginTop: 28 }}>
                   <Prose>At night, the sky opens. Joshua Tree is a certified International Dark Sky Park — IDA designated in 2017, Bortle Class 2–3. On a moonless night, the Milky Way arcs directly overhead, brighter and more detailed than most Americans have ever seen. Bring a blanket, lie down, give yourself an hour.</Prose>
                   <Prose>The eastern half of the park — Pinto Basin Road, Cholla Cactus Garden, Jumbo Rocks — offers the darkest skies. The volunteer-run Sky's the Limit Observatory in Twentynine Palms hosts free public star parties on Saturday nights.</Prose>

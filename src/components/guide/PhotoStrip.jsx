@@ -65,7 +65,7 @@ export default function PhotoStrip({ images, isMobile, height }) {
               onClick={() => setLightboxIndex(i)}
               style={{ flex: `0 0 ${img.width}`, position: 'relative', overflow: 'hidden', height: desktopH, cursor: 'pointer' }}
             >
-              <img src={img.src} alt={img.alt} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+              <img src={img.src} alt={img.alt} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', animation: 'fadeIn 0.3s ease' }} />
               <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '28px 14px 12px', background: 'linear-gradient(to top, rgba(10,18,26,0.65), transparent)' }}>
                 <span style={{ fontFamily: FONTS.body, fontSize: 10, fontWeight: 600, letterSpacing: '0.06em', color: 'rgba(255,255,255,0.8)' }}>{img.caption}</span>
               </div>
@@ -104,7 +104,7 @@ export default function PhotoStrip({ images, isMobile, height }) {
               height: mobileH, cursor: 'pointer',
             }}
           >
-            <img src={img.src} alt={img.alt} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+            <img src={img.src} alt={img.alt} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', animation: 'fadeIn 0.3s ease' }} />
             <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '28px 14px 12px', background: 'linear-gradient(to top, rgba(10,18,26,0.65), transparent)' }}>
               <span style={{ fontFamily: FONTS.body, fontSize: 10, fontWeight: 600, letterSpacing: '0.06em', color: 'rgba(255,255,255,0.8)' }}>{img.caption}</span>
             </div>
