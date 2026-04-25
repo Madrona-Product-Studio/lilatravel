@@ -97,7 +97,7 @@ function GuideNav({ activeSection, onNav, isMobile }) {
 
   return (
     <div ref={scrollContainerRef} style={{
-      position: 'sticky', top: 56, zIndex: 98,
+      position: 'sticky', top: 64, zIndex: 98,
       background: G.warmWhite,
       borderBottom: `0.5px solid ${G.border}`,
       display: 'flex', alignItems: 'center', justifyContent: isMobile ? 'flex-start' : 'center',
