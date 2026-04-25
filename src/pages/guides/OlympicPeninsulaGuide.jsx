@@ -90,22 +90,23 @@ function Divider() {
 
 function GuideNav({ activeSection, onNav, isMobile }) {
   const scrollContainerRef = useRef(null);
+  const activeRef = useRef(null);
 
-  // Reset scroll position to start on mobile mount
+  // Auto-scroll active tab into view on mobile
   useEffect(() => {
-    if (isMobile && scrollContainerRef.current) {
-      scrollContainerRef.current.scrollLeft = 0;
+    if (isMobile && activeRef.current && scrollContainerRef.current) {
+      activeRef.current.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
     }
-  }, [isMobile]);
+  }, [activeSection, isMobile]);
 
   return (
-    <div ref={scrollContainerRef} style={{
+    <div ref={scrollContainerRef} className="guide-nav-scroll" style={{
       position: 'sticky', top: 64, zIndex: 98,
       background: G.warmWhite,
       borderBottom: `0.5px solid ${G.border}`,
       display: 'flex', alignItems: 'center', justifyContent: isMobile ? 'flex-start' : 'center',
-      padding: isMobile ? '0 16px' : '0 52px', height: 44,
-      overflowX: 'auto',
+      padding: isMobile ? '0 12px' : '0 52px', height: isMobile ? 48 : 44,
+      overflowX: 'auto', scrollbarWidth: 'none', msOverflowStyle: 'none',
     }}>
       <style>{`.guide-nav-scroll::-webkit-scrollbar { display: none; }`}</style>
       {GUIDE_SECTIONS.map(s => {
@@ -113,12 +114,14 @@ function GuideNav({ activeSection, onNav, isMobile }) {
         return (
           <button
             key={s.id}
+            ref={active ? activeRef : undefined}
             onClick={() => onNav(s.id)}
             style={{
               fontFamily: FONTS.body, fontSize: 10, fontWeight: 600,
               letterSpacing: '0.14em', textTransform: 'uppercase',
               background: 'none', border: 'none', cursor: 'pointer',
-              padding: '0 14px', height: 44, whiteSpace: 'nowrap', flexShrink: 0,
+              padding: isMobile ? '0 16px' : '0 14px', height: isMobile ? 48 : 44,
+              whiteSpace: 'nowrap', flexShrink: 0,
               color: active ? G.oceanTeal : G.ink40,
               borderBottom: active ? `1.5px solid ${G.oceanTeal}` : '1.5px solid transparent',
               transition: 'color 0.2s, border-color 0.2s',
