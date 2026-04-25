@@ -211,32 +211,120 @@
     "months": "Oct–Apr"
   },
   {
-    "id": "queen-valley-bike-loop",
-    "name": "Queen Valley — Road Loop",
-    "type": "ride",
-    "subtype": "road-cycling",
-    "moveTier": "ride",
-    "location": "Queen Valley, Joshua Tree National Park",
+    "id": "cholla-cactus-garden",
+    "name": "Cholla Cactus Garden",
+    "type": "hike",
+    "subtype": "trail",
+    "moveTier": "hike",
+    "location": "Pinto Basin Road, Joshua Tree National Park — between the north and south entrances",
     "difficulty": "easy",
-    "duration": "1–2 hrs",
-    "distance": "6–12 miles depending on route",
-    "elevationGain": "minimal",
-    "priceRange": "free",
-    "budgetTier": "free",
+    "duration": "20-30 min",
+    "distance": "0.25 miles loop",
+    "priceRange": "$",
+    "budgetTier": "mindful",
     "groupFit": ["solo", "couple", "friends", "family"],
-    "energy": "active",
+    "energy": "contemplative",
     "highlights": [
-      "Paved park road through the heart of Joshua tree country — the namesake trees are densest here",
-      "Light vehicle traffic, multiple pull-outs, and the cleanest views of the Wonderland of Rocks from the saddle",
-      "The right choice when Geology Tour Road is too rough for road bikes"
+      "A dense garden of Teddy Bear Cholla backlit by the low desert sun — the most photographed cactus landscape in the park",
+      "Visit at sunset or sunrise when the cholla spines catch the light and glow like thousands of tiny lanterns",
+      "The garden sits in the Pinto Basin transition zone between the Mojave and Colorado deserts — you can feel the ecology shift",
+      "Short enough for anyone, distinctive enough to remember. Do not touch the cholla — the barbed spines detach and embed on contact."
     ],
-    "bookingWindow": "Self-guided — no permit required",
+    "bookingWindow": "Self-guided — free with park entry. No permit required.",
     "links": {
-      "website": "https://www.nps.gov/jotr/index.htm",
+      "website": "https://www.nps.gov/jotr/planyourvisit/cholla.htm",
+      "booking": null,
+      "alltrails": "https://www.alltrails.com/trail/us/california/cholla-cactus-garden-nature-trail"
+    },
+    "lilaPick": true,
+    "tags": ["cactus", "photography", "sunset", "easy", "pinto-basin", "iconic", "family-friendly"],
+    "months": "Oct–Apr"
+  },
+  {
+    "id": "keys-view",
+    "name": "Keys View",
+    "type": "hike",
+    "subtype": "viewpoint",
+    "moveTier": "hike",
+    "location": "Keys View Road, Joshua Tree National Park — paved road to a summit parking area",
+    "difficulty": "easy",
+    "duration": "15-30 min",
+    "distance": "0.25 miles (paved loop at the viewpoint)",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "contemplative",
+    "highlights": [
+      "The panoramic viewpoint of the park — Coachella Valley, Salton Sea, the San Andreas Fault trace, and on clear days, Signal Mountain in Mexico",
+      "5,185 feet elevation. The interpretive signs trace the fault line through the valley below — geology made visible at landscape scale.",
+      "Best at sunset or on a clear winter morning after rain has washed the desert air. Summer haze often obscures the view.",
+      "Wheelchair-accessible paved path. The most dramatic vista for the least physical effort in any of the six destinations."
+    ],
+    "bookingWindow": "Self-guided — free with park entry.",
+    "links": {
+      "website": "https://www.nps.gov/jotr/planyourvisit/keys-view.htm",
       "booking": null
     },
     "lilaPick": false,
-    "tags": ["cycling", "road", "family-friendly", "joshua-trees", "queen-valley"],
+    "tags": ["viewpoint", "panoramic", "san-andreas-fault", "salton-sea", "accessible", "sunset"],
     "months": "Oct–Apr"
+  },
+  {
+    "id": "horseback-desert",
+    "name": "Horseback Riding — High Desert",
+    "type": "ride",
+    "subtype": "horseback",
+    "moveTier": "ride",
+    "location": "Joshua Tree area — multiple ranches on the park boundary",
+    "difficulty": "easy",
+    "duration": "1-2 hrs",
+    "distance": null,
+    "priceRange": "$$",
+    "budgetTier": "moderate",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "contemplative",
+    "highlights": [
+      "Guided rides through open desert on the park boundary — Joshua trees, boulders, and desert wash at a horse's pace",
+      "The desert slows down on horseback in a way it doesn't on foot. You hear more, see more, notice the small things.",
+      "Multiple outfitters including Knob Hill Ranch and local guided operations — most offer sunset rides",
+      "No experience needed. Western saddles, well-trained horses, guides who know the terrain."
+    ],
+    "bookingWindow": "Book 2-3 days ahead through local outfitters. Sunset rides fill first.",
+    "links": {
+      "website": null,
+      "booking": null
+    },
+    "lilaPick": false,
+    "tags": ["horseback", "desert", "sunset-ride", "guided", "beginner-friendly"],
+    "months": "Oct–Apr"
+  },
+  {
+    "id": "dark-sky-stargazing",
+    "name": "Dark Sky Stargazing",
+    "type": "experience",
+    "subtype": "stargazing",
+    "moveTier": "experience",
+    "location": "Joshua Tree National Park — Gold Tier International Dark Sky Park",
+    "difficulty": "easy",
+    "duration": "1-3 hrs",
+    "distance": null,
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "contemplative",
+    "highlights": [
+      "Joshua Tree is a Gold Tier International Dark Sky Park — one of the darkest skies accessible within a few hours of a major city",
+      "The Milky Way arc is visible to the naked eye on moonless nights. Jupiter's moons resolve through a basic telescope.",
+      "Sky's The Limit Observatory in Twentynine Palms hosts free public star parties with volunteer astronomers and quality telescopes",
+      "Best spots inside the park: Skull Rock, Cap Rock, Cottonwood Spring. New moon weekends in October-March are the prime window."
+    ],
+    "bookingWindow": "Self-guided in the park — free. Sky's The Limit star parties: check skysthelimit29.org for schedule.",
+    "links": {
+      "website": "https://www.nps.gov/jotr/planyourvisit/stargazing.htm",
+      "booking": null
+    },
+    "lilaPick": true,
+    "tags": ["dark-sky", "stargazing", "milky-way", "gold-tier", "observatory", "free", "new-moon"],
+    "months": "Oct–Mar"
   }
 ]

@@ -28,34 +28,6 @@
     "months": "all"
   },
   {
-    "id": "rainforest-trail",
-    "name": "Rainforest Trail",
-    "type": "hike",
-    "subtype": "trail",
-    "moveTier": "hike",
-    "location": "Pacific Rim National Park Reserve",
-    "difficulty": "easy",
-    "duration": "30–60 min",
-    "distance": "two short loops",
-    "elevationGain": "minimal",
-    "priceRange": "free",
-    "budgetTier": "mindful",
-    "groupFit": ["solo", "couple", "friends", "family"],
-    "energy": "active",
-    "highlights": [
-      "Two short loop trails through western red cedar and Sitka spruce old-growth"
-    ],
-    "bookingWindow": "No permit required",
-    "links": {
-      "website": "https://parks.canada.ca/pn-np/bc/pacificrim",
-      "booking": null,
-      "alltrails": "https://www.alltrails.com/trail/canada/british-columbia/rainforest-figure-eight"
-    },
-    "lilaPick": false,
-    "tags": ["old-growth", "rainforest", "cedar", "spruce", "loop", "easy"],
-    "months": "all"
-  },
-  {
     "id": "wild-pacific-trail",
     "name": "Wild Pacific Trail",
     "type": "hike",
@@ -284,5 +256,122 @@
     "lilaPick": true,
     "tags": ["cycling", "bike-path", "tofino", "long-beach", "family-friendly", "flat", "e-bike-available", "sunset"],
     "months": "all"
+  },
+  {
+    "id": "whale-watching-clayoquot",
+    "name": "Whale Watching — Clayoquot Sound",
+    "type": "water",
+    "subtype": "boat-tour",
+    "moveTier": "water",
+    "location": "Tofino — multiple operators depart from the harbour",
+    "difficulty": "easy",
+    "duration": "2.5-3 hrs",
+    "distance": null,
+    "priceRange": "$$$",
+    "budgetTier": "premium",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "active",
+    "highlights": [
+      "Gray whales migrate through Clayoquot Sound March-April and feed in the area through October. Humpbacks arrive May-September. Resident orcas year-round.",
+      "Zodiac tours get closer to the water; covered boats are warmer and drier. Both work — choose based on your tolerance for cold spray.",
+      "Remote Passages, Jamie's Whaling Station, and The Whale Centre are the established operators — all have marine biologist guides",
+      "Dress for Pacific weather regardless of the forecast. Layers, waterproof outer, warm hat. You will get cold."
+    ],
+    "bookingWindow": "Book 2-3 days ahead in summer. Spring whale season (Mar-Apr) is less crowded.",
+    "links": {
+      "website": "https://www.remotepassages.com/",
+      "booking": "https://www.remotepassages.com/"
+    },
+    "lilaPick": true,
+    "tags": ["whale-watching", "gray-whales", "humpbacks", "orcas", "zodiac", "clayoquot-sound", "marine-biology"],
+    "months": "Mar–Oct"
+  },
+  {
+    "id": "hot-springs-cove",
+    "name": "Hot Springs Cove",
+    "type": "water",
+    "subtype": "hot-springs",
+    "moveTier": "water",
+    "location": "Maquinna Marine Provincial Park — 37 km north of Tofino, accessible only by boat or floatplane",
+    "difficulty": "easy-moderate",
+    "duration": "full day (including 1.5 hr boat each way + 2 km boardwalk)",
+    "distance": "2 km boardwalk from dock to springs",
+    "priceRange": "$$$",
+    "budgetTier": "premium",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "immersive",
+    "highlights": [
+      "Natural geothermal pools cascade down rock shelves directly into the Pacific — the hot-cold contrast at high tide is extraordinary",
+      "Accessible only by boat (1.5 hrs from Tofino) or floatplane (20 min). The journey through open Pacific and sheltered inlets is half the experience.",
+      "A 2-km old-growth boardwalk through Maquinna Marine Provincial Park connects the dock to the springs — Sitka spruce, nurse logs, silence",
+      "Arrive early on the first boat to have the pools before the midday tours arrive. The upper pools are hottest (50°C+); the lower pools mix with tidal Pacific."
+    ],
+    "bookingWindow": "Book boat transport through Remote Passages or Tofino Water Taxi. Reserve 2+ days ahead in summer.",
+    "links": {
+      "website": "https://bcparks.ca/maquinna-marine-park/",
+      "booking": "https://www.remotepassages.com/"
+    },
+    "lilaPick": true,
+    "tags": ["hot-springs", "geothermal", "boat-access-only", "old-growth", "tidal-contrast", "pacific", "full-day"],
+    "months": "Mar–Oct"
+  },
+  {
+    "id": "mountain-biking-cumberland",
+    "name": "Mountain Biking — Cumberland",
+    "type": "ride",
+    "subtype": "mtb",
+    "moveTier": "ride",
+    "location": "Cumberland, BC — 2.5 hrs from Tofino via Highway 4 and Highway 19",
+    "difficulty": "easy-strenuous (trail-dependent)",
+    "duration": "half-day to full day",
+    "distance": "200+ km of maintained singletrack",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "active",
+    "highlights": [
+      "World-class singletrack in a former coal mining town — Cumberland is Vancouver Island's mountain biking capital with 200+ km of trail",
+      "Trails range from smooth flowy green runs to technical black diamond — the network is deep enough for a multi-day MTB trip",
+      "The town itself is a charming village with craft breweries, cafes, and a mountain culture vibe. Riders & Rogue is the local bike shop and community hub.",
+      "For corridor itineraries only — Cumberland is 2.5 hrs from Tofino. Worth the drive for serious riders."
+    ],
+    "bookingWindow": "Self-guided — free trail access. Bike rental at Riders & Rogue in Cumberland.",
+    "corridor": true,
+    "links": {
+      "website": "https://www.cumberlandbc.org/mountain-biking",
+      "booking": null
+    },
+    "lilaPick": false,
+    "tags": ["mountain-biking", "singletrack", "cumberland", "corridor", "world-class", "coal-mining-town"],
+    "months": "Apr–Nov"
+  },
+  {
+    "id": "storm-watching",
+    "name": "Storm Watching — Pacific Winter Storms",
+    "type": "experience",
+    "subtype": "storm-watching",
+    "moveTier": "experience",
+    "location": "Tofino and Ucluelet — any west-facing beach or headland",
+    "difficulty": "easy",
+    "duration": "1-3 hrs per session",
+    "distance": null,
+    "priceRange": "free",
+    "budgetTier": "free",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "contemplative",
+    "highlights": [
+      "November through February, Pacific storms drive 20-foot swells directly into the Tofino/Ucluelet coast — the hotels were built for this",
+      "Wickaninnish Inn, Pacific Sands, and Long Beach Lodge all have storm-watching rooms with floor-to-ceiling windows facing the open Pacific",
+      "Walk the Wild Pacific Trail in Ucluelet during a storm for the full-body experience — rain gear, waterproof boots, humility before the ocean",
+      "This is not passive watching. The sound, the spray, the force of the water against the headlands is a physical experience. Dress for immersion."
+    ],
+    "bookingWindow": "No booking needed for public beaches. Storm-watching hotel packages available Nov-Feb.",
+    "links": {
+      "website": "https://www.tourismtofino.com/storm-watching",
+      "booking": null
+    },
+    "lilaPick": true,
+    "tags": ["storm-watching", "winter", "pacific-storms", "wild-pacific-trail", "elemental", "contemplative"],
+    "months": "Nov–Feb"
   }
 ]

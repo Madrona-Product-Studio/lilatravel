@@ -236,32 +236,6 @@
     "months": "all"
   },
   {
-    "id": "south-shore-trail",
-    "name": "South Shore Trail (Point Lobos)",
-    "type": "hike",
-    "subtype": "trail",
-    "moveTier": "hike",
-    "location": "Point Lobos State Natural Reserve",
-    "difficulty": "moderate",
-    "duration": null,
-    "distance": "2.6 miles round trip",
-    "priceRange": "$",
-    "budgetTier": "mindful",
-    "groupFit": ["solo", "couple", "friends", "family"],
-    "energy": "active",
-    "highlights": [
-      "Longer coastal route. Hidden Beach and Weston Beach tide pools."
-    ],
-    "links": {
-      "website": "https://www.parks.ca.gov/pointlobos",
-      "booking": null,
-      "alltrails": "https://www.alltrails.com/trail/us/california/point-lobos-south-shore-trail"
-    },
-    "lilaPick": false,
-    "tags": ["coastal", "tide-pools", "point-lobos", "moderate"],
-    "months": "all"
-  },
-  {
     "id": "kayaking-monterey-bay",
     "name": "Kayaking Monterey Bay",
     "type": "water",
@@ -321,35 +295,6 @@
     "months": "all"
   },
   {
-    "id": "sup-carmel-beach",
-    "name": "SUP & Swimming — Carmel Beach",
-    "type": "water",
-    "subtype": "sup",
-    "moveTier": "water",
-    "location": "Carmel Beach, Carmel-by-the-Sea",
-    "difficulty": "easy",
-    "duration": "1–3 hrs",
-    "distance": null,
-    "priceRange": "$",
-    "budgetTier": "mindful",
-    "groupFit": ["solo", "couple", "friends", "family"],
-    "energy": "active",
-    "highlights": [
-      "White sand, dog-friendly, bonfires permitted in the evening — the most beautiful beach in the orbit",
-      "Calm in summer; the cove provides some protection from swell",
-      "SUP rentals available in Carmel; swimming is cold but the clarity is extraordinary",
-      "Carmel River Lagoon at the south end is a separate birding and photography destination"
-    ],
-    "bookingWindow": "Self-guided — beach access free. SUP rentals from local shops.",
-    "links": {
-      "website": "https://www.carmelcalifornia.com/",
-      "booking": null
-    },
-    "lilaPick": false,
-    "tags": ["sup", "swimming", "carmel-beach", "bonfires", "dog-friendly", "white-sand"],
-    "months": "May–Oct"
-  },
-  {
     "id": "highway-1-cycling",
     "name": "Highway 1 — Road Cycling",
     "type": "ride",
@@ -407,6 +352,94 @@
     },
     "lilaPick": false,
     "tags": ["road-cycling", "17-mile-drive", "lone-cypress", "pebble-beach", "cyclists-free", "monterey-cypress"],
+    "months": "all"
+  },
+  {
+    "id": "molera-horseback",
+    "name": "Molera Horseback Tours",
+    "type": "ride",
+    "subtype": "horseback",
+    "moveTier": "ride",
+    "location": "Andrew Molera State Park, Big Sur — 22 miles south of Carmel on Highway 1",
+    "difficulty": "easy",
+    "duration": "1-2.5 hrs",
+    "distance": null,
+    "priceRange": "$$",
+    "budgetTier": "moderate",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "contemplative",
+    "highlights": [
+      "Guided horseback rides through Andrew Molera State Park — meadows, river crossings, and coastal bluffs at a horse's pace",
+      "The only horseback riding operation on the Big Sur coast. Family-owned, small groups, well-trained horses.",
+      "The 1-hour beach ride crosses the Big Sur River and follows the bluff trail to views of the Pacific — no experience needed",
+      "Book the 2.5-hour ride for the full Molera loop through redwood groves and back along the coast"
+    ],
+    "bookingWindow": "Book at molerahorsebacktours.com — 1-2 days ahead in summer. Seasonal operation.",
+    "links": {
+      "website": "https://www.molerahorsebacktours.com/",
+      "booking": "https://www.molerahorsebacktours.com/"
+    },
+    "lilaPick": true,
+    "tags": ["horseback", "andrew-molera", "coastal-bluffs", "river-crossing", "family-friendly", "guided"],
+    "months": "Apr–Nov"
+  },
+  {
+    "id": "limekiln-trail",
+    "name": "Limekiln State Park Trail",
+    "type": "hike",
+    "subtype": "trail",
+    "moveTier": "hike",
+    "location": "Limekiln State Park, Big Sur — 52 miles south of Carmel on Highway 1",
+    "difficulty": "easy",
+    "duration": "1-1.5 hrs",
+    "distance": "1 mile round trip (to limekilns); 0.5 miles to waterfall",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "contemplative",
+    "highlights": [
+      "Short trail through old-growth redwoods to four 1880s-era limekilns — massive stone furnaces slowly being reclaimed by the forest",
+      "A separate spur trail leads to Limekiln Falls, a 100-foot waterfall flowing over limestone-crusted rock face",
+      "Far less crowded than McWay or Pfeiffer Falls — this is southern Big Sur, past the tourist density",
+      "The limekilns are a rare intersection of industrial history and deep forest. Moss, ferns, and redwood roots slowly pulling the stonework apart."
+    ],
+    "bookingWindow": "Self-guided — $10 day-use parking fee. Limited spots — arrive before 10am on weekends.",
+    "links": {
+      "website": "https://www.parks.ca.gov/?page_id=577",
+      "booking": null,
+      "alltrails": "https://www.alltrails.com/trail/us/california/limekiln-trail"
+    },
+    "lilaPick": false,
+    "tags": ["redwood", "waterfall", "limekilns", "historic", "easy", "southern-big-sur", "uncrowded"],
+    "months": "all"
+  },
+  {
+    "id": "whale-watching-monterey",
+    "name": "Whale Watching — Monterey Bay",
+    "type": "water",
+    "subtype": "boat-tour",
+    "moveTier": "water",
+    "location": "Monterey Harbor, Fisherman's Wharf — boats depart daily",
+    "difficulty": "easy",
+    "duration": "3-4 hrs",
+    "distance": null,
+    "priceRange": "$$",
+    "budgetTier": "moderate",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "active",
+    "highlights": [
+      "Monterey Bay is a submarine canyon as deep as the Grand Canyon — the nutrient upwelling draws gray whales (Dec-Apr), humpbacks (Apr-Nov), and blue whales (Jul-Oct)",
+      "Year-round cetacean sightings: orcas, dolphins, and porpoises fill the gaps between whale seasons. Marine biologist narration on most boats.",
+      "Monterey Bay Whale Watch and Princess Monterey are the established operators. Smaller boats get closer; larger boats are more stable.",
+      "Dress in layers. It's 15-20°F colder on the water than on shore. Take seasickness precautions if prone — the canyon creates chop."
+    ],
+    "bookingWindow": "Book 1-2 days ahead at montereybaywhalewatching.com. Blue whale season (Jul-Oct) fills fastest.",
+    "links": {
+      "website": "https://www.montereybaywhalewatch.com/",
+      "booking": "https://www.montereybaywhalewatch.com/"
+    },
+    "lilaPick": false,
+    "tags": ["whale-watching", "gray-whales", "humpbacks", "blue-whales", "submarine-canyon", "marine-biology"],
     "months": "all"
   }
 ]
