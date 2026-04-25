@@ -29,7 +29,9 @@ export default function ContentList({ items, onOpenSheet, style = {} }) {
   return (
     <div style={{ margin: '16px 0 28px', ...style }}>
       {items.map((item, i) => {
-        const barColor = item.lilaPick ? G.goldenAmber : G.tealBorder;
+        // Tier-aware bar color for stays; lilaPick color for other sections
+        const tierColors = { elemental: G.oceanTeal, rooted: G.goldenAmber, premium: G.goldenAmber };
+        const barColor = item.tier ? (tierColors[item.tier] || G.tealBorder) : (item.lilaPick ? G.goldenAmber : G.tealBorder);
         const isClickable = !!onOpenSheet;
 
         const nameEl = isClickable ? (
@@ -71,7 +73,7 @@ export default function ContentList({ items, onOpenSheet, style = {} }) {
                   {nameEl}
                   {item.hasNPS && <NPSBadge />}
                 </div>
-                {item.lilaPick && <LilaPick />}
+                {item.lilaPick && !item.tier && <LilaPick />}
               </div>
 
               {/* Badge + context row */}

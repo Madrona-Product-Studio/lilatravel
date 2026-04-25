@@ -358,7 +358,6 @@ export default function VancouverIslandGuide() {
                   badge: a.stayStyle.charAt(0).toUpperCase() + a.stayStyle.slice(1),
                   context: a.location,
                   detail: a.highlights?.[0] || '',
-                  featured: a.lilaPick,
                   tier: a.stayStyle,
                   url: a.links?.website || a.links?.booking,
                   links: a.links,

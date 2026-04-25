@@ -21,7 +21,6 @@ const stayItems = accommodations.map(a => ({
   context: a.location,
   detail: a.highlights?.[0] || '',
   highlights: a.highlights,
-  featured: a.lilaPick,
   tier: a.stayStyle,
   url: a.links?.website || a.links?.booking,
   links: a.links,
@@ -53,8 +52,26 @@ export default function OlympicPeninsulaSleep() {
         <SubLabel>Towns</SubLabel>
         <EditorialList items={townItems} />
 
-        <SubLabel>Hotels</SubLabel>
-        <ContentList items={stayItems} onOpenSheet={setActiveSheet} />
+        {stayItems.some(s => s.tier === 'elemental') && (
+          <>
+            <SubLabel>Elemental</SubLabel>
+            <ContentList items={stayItems.filter(s => s.tier === 'elemental')} onOpenSheet={setActiveSheet} />
+          </>
+        )}
+
+        {stayItems.some(s => s.tier === 'rooted') && (
+          <>
+            <SubLabel>Rooted</SubLabel>
+            <ContentList items={stayItems.filter(s => s.tier === 'rooted')} onOpenSheet={setActiveSheet} />
+          </>
+        )}
+
+        {stayItems.some(s => s.tier === 'premium') && (
+          <>
+            <SubLabel>Premium</SubLabel>
+            <ContentList items={stayItems.filter(s => s.tier === 'premium')} onOpenSheet={setActiveSheet} />
+          </>
+        )}
       </SubGuideLayout>
       <GuideDetailSheet
         item={activeSheet}
