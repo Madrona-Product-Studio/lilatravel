@@ -103,7 +103,7 @@ function ExternalLinkButton({ variant, href }) {
           {v.wordmark}
         </div>
       </div>
-      <span style={{ fontFamily: FONTS.body, fontSize: 14, color: arrowColor, marginLeft: 'auto', flexShrink: 0 }}>↗</span>
+      <span style={{ fontFamily: FONTS.body, fontSize: 14, color: arrowColor, marginLeft: 'auto', flexShrink: 0 }}>↗︎</span>
     </a>
   );
 }
@@ -542,7 +542,7 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
               style={{ background: C.darkInk, color: C.warmWhite }}
               onMouseEnter={e => { e.currentTarget.style.opacity = '0.85'; }}
               onMouseLeave={e => { e.currentTarget.style.opacity = '1'; }}
-            >{item.operator ? item.operator : 'Visit Website'} <span className="text-[13px]">↗</span></a>
+            >{item.operator ? item.operator : 'Visit Website'} <span className="text-[13px]">↗︎</span></a>
           )}
         </>
       )}
@@ -639,14 +639,14 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
                 style={{ fontFamily: FONTS.body, fontSize: 11, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', textDecoration: 'none', color: C.darkInk, border: `1.5px solid ${C.darkInk}`, padding: '8px 16px', display: 'inline-flex', alignItems: 'center', gap: 6, transition: 'opacity 0.2s' }}
                 onMouseEnter={e => { e.currentTarget.style.opacity = '0.7'; }}
                 onMouseLeave={e => { e.currentTarget.style.opacity = '1'; }}
-              >iNaturalist ↗</a>
+              >iNaturalist ↗︎</a>
             )}
             {wildlife.wikipediaUrl && (
               <a href={wildlife.wikipediaUrl} target="_blank" rel="noopener noreferrer"
                 style={{ fontFamily: FONTS.body, fontSize: 11, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', textDecoration: 'none', color: C.oceanTeal, border: `1.5px solid ${C.oceanTeal}40`, padding: '8px 16px', display: 'inline-flex', alignItems: 'center', gap: 6, transition: 'opacity 0.2s' }}
                 onMouseEnter={e => { e.currentTarget.style.opacity = '0.7'; }}
                 onMouseLeave={e => { e.currentTarget.style.opacity = '1'; }}
-              >Wikipedia ↗</a>
+              >Wikipedia ↗︎</a>
             )}
           </div>
         </>

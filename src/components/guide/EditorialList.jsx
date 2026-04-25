@@ -20,7 +20,7 @@ export default function EditorialList({ items, style = {} }) {
                 </div>
               )}
               <div style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 14, fontWeight: 700, color: G.darkInk, lineHeight: 1.2, marginBottom: 5 }}>
-                {item.name} {hasUrl && <span style={{ fontSize: 11, opacity: 0.4 }}>↗</span>}
+                {item.name} {hasUrl && <span style={{ fontSize: 11, opacity: 0.4 }}>↗︎</span>}
               </div>
               <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 400, lineHeight: 1.6, color: G.inkDetail, margin: 0 }}>
                 {item.detail}

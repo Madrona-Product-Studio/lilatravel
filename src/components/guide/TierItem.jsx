@@ -49,7 +49,7 @@ export default function TierItem({
       onMouseEnter={e => e.target.style.borderColor = C.oceanTeal}
       onMouseLeave={e => e.target.style.borderColor = C.stone}>
       {name}
-      <span className="text-[12px] ml-1 text-[#7A857E]">{"↗"}</span>
+      <span className="text-[12px] ml-1 text-[#7A857E]">{"↗︎"}</span>
     </a>
   ) : (
     <span className="font-body text-[15px] font-semibold text-dark-ink">{name}</span>

@@ -915,7 +915,7 @@ export const MOVEMENT_DECK_L2 = [
         label: "The Pelvic Tilt Problem",
         subtitle: "Where posture begins and breaks down",
         desc: "Your pelvis is a bowl that can tip forward or backward — and whichever way it tips, your spine follows. Sitting all day locks it in one position. The muscles that should hold it steady forget how. What shows up as back pain, tight hips, or a gut that won't flatten is often this one thing: a pelvis that has lost the ability to choose.",
-        icon: "↗",
+        icon: "↗︎",
         cards: [
           {
             id: "pelvis-spine-connection",

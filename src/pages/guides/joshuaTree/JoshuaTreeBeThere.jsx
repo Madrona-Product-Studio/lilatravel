@@ -92,7 +92,7 @@ export default function JoshuaTreeBeThere() {
               rel="noopener noreferrer"
               style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 14, fontWeight: 700, color: G.darkInk, textDecoration: 'none', borderBottom: `0.5px solid ${G.ink25}` }}
             >
-              {item.name} <span style={{ fontSize: 12, color: G.ink40 }}>↗</span>
+              {item.name} <span style={{ fontSize: 12, color: G.ink40 }}>↗︎</span>
             </a>
             <p style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 13, fontWeight: 400, lineHeight: 1.6, color: G.inkDetail, margin: '6px 0 0' }}>
               {item.detail}

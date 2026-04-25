@@ -106,7 +106,7 @@ export default function IterationsPill({ isOpen, onClose, iterations = [], curre
                       cursor: 'pointer',
                     }}
                   >
-                    Open ↗
+                    Open ↗︎
                   </a>
                 )}
               </div>

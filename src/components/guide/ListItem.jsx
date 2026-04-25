@@ -19,7 +19,7 @@ function ListItem({ name, detail, note, tags, featured, url, onOpenSheet, locati
       onMouseEnter={e => { e.target.style.borderColor = G.accent; }}
       onMouseLeave={e => { e.target.style.borderColor = G.border; }}>
       {name}
-      <span className="text-[11px] ml-1" style={{ color: G.muted }}>↗</span>
+      <span className="text-[11px] ml-1" style={{ color: G.muted }}>↗︎</span>
     </a>
   ) : (
     <span className="font-body text-[14px] font-semibold" style={{ color: G.ink }}>{name}</span>
