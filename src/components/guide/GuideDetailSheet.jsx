@@ -122,13 +122,6 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
   // Reset photo index when item changes
   useEffect(() => { setActivePhotoIdx(0); }, [item?.name]);
 
-  // Lock body scroll when sheet is open
-  useEffect(() => {
-    if (item) {
-      document.body.style.overflow = 'hidden';
-    }
-    return () => { document.body.style.overflow = ''; };
-  }, [item]);
 
   // Determine fetch conditions before hooks (hooks must run unconditionally)
   const nps = item?.nps;
