@@ -46,72 +46,6 @@
     "months": "all"
   },
   {
-    "id": "napali-coast-boat-tour",
-    "name": "Nā Pali Coast — Boat Tour",
-    "type": "boat-tour",
-    "location": "Departs from Port Allen (South Shore) or Hanalei (North Shore)",
-    "priceRange": "$$$",
-    "budgetTier": "premium",
-    "groupFit": ["solo", "couple", "friends", "family"],
-    "energy": "active",
-    "highlights": [
-      "The only way to see Nā Pali's sea caves, waterfalls, and 4,000-foot cliffs from the water",
-      "Captain Andy's and Blue Dolphin are the two most established operators",
-      "Morning tours offer calmer water; afternoon tours often include dolphin pods",
-      "May–September only from the north shore; south shore tours run year-round"
-    ],
-    "hours": "Morning and afternoon departures; seasonal — check operator schedules",
-    "admission": "paid — book directly with operator",
-    "links": { "website": "https://www.napali.com/", "maps": null },
-    "lilaPick": true,
-    "tags": ["boat-tour", "napali-coast", "sea-caves", "waterfalls", "dolphins", "seasonal"],
-    "months": "all"
-  },
-  {
-    "id": "tunnels-reef-snorkeling",
-    "name": "Snorkeling — Tunnels Reef (Hāʻena)",
-    "type": "snorkel",
-    "location": "Hāʻena (North Shore) — end of Highway 560",
-    "priceRange": "free",
-    "budgetTier": "free",
-    "groupFit": ["solo", "couple", "friends", "family"],
-    "energy": "active",
-    "highlights": [
-      "One of the finest snorkel reefs in Hawaii — named for its underwater lava tube tunnels",
-      "Green sea turtles are reliably present; manta rays appear at dusk in summer",
-      "Haena State Park parking reservation required — book at gohaena.com",
-      "Best conditions June–September; can be rough and dangerous in winter"
-    ],
-    "hours": "Daytime; parking reservations required for Haena State Park",
-    "admission": "free (parking fee applies)",
-    "links": { "website": "https://gohaena.com/", "maps": null },
-    "lilaPick": true,
-    "tags": ["snorkel", "turtles", "manta-rays", "north-shore", "reservation-required", "tunnels-reef"],
-    "months": "Jun–Sep"
-  },
-  {
-    "id": "kilauea-lighthouse-wildlife-refuge",
-    "name": "Kilauea Lighthouse & Wildlife Refuge",
-    "type": "wildlife",
-    "location": "Kilauea (North Shore)",
-    "priceRange": "$",
-    "budgetTier": "mindful",
-    "groupFit": ["solo", "couple", "friends", "family"],
-    "energy": "contemplative",
-    "highlights": [
-      "Century-old lighthouse on a dramatic sea cliff; the northernmost point of the main Hawaiian islands",
-      "Nesting colonies of red-footed boobies, Laysan albatross, nene geese, and great frigatebirds",
-      "Humpback whales visible offshore November–March from the lighthouse headland",
-      "One of the best seabird viewing sites in the Pacific"
-    ],
-    "hours": "Tue–Sat 10am–4pm; closed Sun–Mon",
-    "admission": "paid (USFWS fee)",
-    "links": { "website": "https://www.fws.gov/refuge/kilauea-point", "maps": null },
-    "lilaPick": true,
-    "tags": ["lighthouse", "seabirds", "humpback-whales", "wildlife-refuge", "north-shore", "nesting-colonies"],
-    "months": "all"
-  },
-  {
     "id": "waipa-foundation",
     "name": "Waipā Foundation",
     "type": "cultural-site",
@@ -220,6 +154,34 @@
     "links": { "website": "https://ntbg.org/gardens/mcbryde/", "maps": null },
     "lilaPick": false,
     "tags": ["ntbg", "native-hawaiian-plants", "botanical-garden", "south-shore", "conservation", "tram-tour"],
+    "months": "all"
+  },
+  {
+    "id": "slack-key-guitar-concerts",
+    "name": "McMaster Slack Key Guitar Concerts",
+    "type": "music",
+    "subtype": "performance",
+    "experienceTier": "experience",
+    "location": "Hanalei Community Center, 5-5299 Kuhio Hwy, Hanalei (North Shore)",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "contemplative",
+    "highlights": [
+      "Doug and Sandy McMaster have performed traditional Hawaiian slack key guitar and steel guitar since 1999 — one of the longest-running live music traditions on the island",
+      "Slack key (ki ho'alu) is a uniquely Hawaiian guitar style passed down through families. The McMasters learned from masters and now share the tradition weekly.",
+      "Fridays at 4pm and Sundays at 3pm at the Hanalei Community Center. $20 adults, $15 keiki. The afternoon timing lets you catch golden hour on Hanalei Bay after.",
+      "Intimate, unhurried, and deeply respectful of the tradition. This is Hawaiian music played by practitioners, not performers."
+    ],
+    "bookingWindow": "Walk-in — $20/adult, $15/child. Fridays 4pm, Sundays 3pm.",
+    "hours": "Fridays 4pm, Sundays 3pm at Hanalei Community Center",
+    "links": {
+      "website": "https://www.hawaiianslackkeyguitarconcerts.com/",
+      "booking": null
+    },
+    "lilaPick": true,
+    "pickTier": "experience",
+    "tags": ["slack-key", "hawaiian-music", "live-performance", "hanalei", "tradition", "weekly", "affordable"],
     "months": "all"
   }
 ]

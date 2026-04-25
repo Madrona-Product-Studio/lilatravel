@@ -97,10 +97,10 @@
     "groupFit": ["solo", "couple", "friends"],
     "energy": "contemplative",
     "highlights": [
-      "The science and stewardship body for the Clayoquot Sound UNESCO Biosphere Reserve",
-      "Supports research, education, and conservation across the 350,000-hectare reserve",
-      "Donations fund work that protects the old-growth, marine ecosystems, and Indigenous cultural landscapes you came to experience",
-      "Educational resources and local research available through the website"
+      "The UNESCO Biosphere Reserve designation protects Clayoquot Sound's 350,000 hectares of old-growth temperate rainforest, coastline, and marine habitat",
+      "The Trust runs community programs including the Raincoast Field School, citizen science projects, and youth environmental education camps",
+      "Annual BioBlitz events invite visitors to help document species in the biosphere — a hands-on way to contribute to conservation knowledge",
+      "Visit the Tofino Botanical Gardens (operated by the Trust) for a 12-acre immersion in the biosphere's ecology: rainforest boardwalk, sculpture garden, shoreline restoration"
     ],
     "hours": "Office hours vary — engage through website",
     "admission": "free",
@@ -131,5 +131,61 @@
     "tags": ["gardens", "victoria", "national-historic-site", "former-quarry", "family-owned", "afternoon-tea"],
     "months": "all",
     "corridor": true
+  },
+  {
+    "id": "tofino-botanical-gardens",
+    "name": "Tofino Botanical Gardens",
+    "type": "garden",
+    "subtype": "botanical-garden",
+    "experienceTier": "experience",
+    "location": "1084 Pacific Rim Highway, Tofino — operated by Clayoquot Biosphere Trust",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "contemplative",
+    "highlights": [
+      "12 acres of rainforest, gardens, shoreline, and sculpture nestled between the highway and the inlet — a quieter side of Tofino most visitors miss",
+      "The gardens celebrate multiple cultural layers: Nuu-chah-nulth relationships with the land, Japanese fishing families who settled here, and the counterculture history of the coast",
+      "Rainforest boardwalk, educational greenhouses, intertidal viewing platforms, and a children's garden. Events year-round including Winterlights lantern festival.",
+      "Operated by Clayoquot Biosphere Trust — your admission supports biosphere conservation and community education"
+    ],
+    "bookingWindow": "Walk-in — admission $12 adults, $6 children. Open daily 9am-dusk.",
+    "hours": "Daily 9am-dusk. Winterlights Nov-Jan.",
+    "links": {
+      "website": "https://www.tofinobotanicalgardens.com/",
+      "booking": null
+    },
+    "lilaPick": false,
+    "pickTier": "experience",
+    "tags": ["botanical-garden", "biosphere", "sculpture", "rainforest", "nuu-chah-nulth", "japanese-heritage", "winterlights"],
+    "months": "all"
+  },
+  {
+    "id": "tashii-paddle-school",
+    "name": "T'ashii Paddle School",
+    "type": "indigenous",
+    "subtype": "indigenous-culture",
+    "experienceTier": "experience",
+    "location": "Tofino — Tla-o-qui-aht-owned, launches from Tofino harbour",
+    "priceRange": "$$",
+    "budgetTier": "moderate",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "active",
+    "highlights": [
+      "Tla-o-qui-aht-owned and operated ocean canoeing — traditional big canoe experiences on Clayoquot Sound led by Indigenous guides",
+      "The canoe is central to Nuu-chah-nulth culture: transportation, ceremony, governance, and relationship with the sea. This isn't a tour; it's an invitation into that tradition.",
+      "Sunrise and sunset paddles through the harbour and Meares Island area. Group paddling in a big canoe requires cooperation — the social dimension IS the practice.",
+      "T'ashii means 'beautiful' in the Tla-o-qui-aht language. The school is part of the broader Tribal Parks initiative to share Indigenous knowledge on Indigenous terms."
+    ],
+    "bookingWindow": "Book at tashiipaddle.com — 1-2 days ahead. Seasonal operation May-Oct.",
+    "hours": "Sunrise and sunset paddles. Check schedule.",
+    "links": {
+      "website": "https://www.tashiipaddle.com/",
+      "booking": "https://www.tashiipaddle.com/"
+    },
+    "lilaPick": true,
+    "pickTier": "experience",
+    "tags": ["indigenous", "tla-o-qui-aht", "ocean-canoe", "big-canoe", "tribal-parks", "sunrise", "sunset", "nuu-chah-nulth"],
+    "months": "May–Oct"
   }
 ]

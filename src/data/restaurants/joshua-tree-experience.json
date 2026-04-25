@@ -66,29 +66,6 @@
     "months": "all"
   },
   {
-    "id": "modernism-week",
-    "name": "Modernism Week",
-    "type": "cultural-site",
-    "location": "Palm Springs, CA — 45 min from Joshua Tree",
-    "priceRange": "$$$",
-    "budgetTier": "premium",
-    "groupFit": ["couple", "friends"],
-    "energy": "cultural",
-    "highlights": [
-      "The largest celebration of mid-century modern architecture in the world",
-      "10 days in February — tours, talks, films, and home tours throughout Palm Springs",
-      "Access to private homes and estates normally closed to the public",
-      "The lens through which Palm Springs's built environment comes fully into focus"
-    ],
-    "hours": "February only — 10-day festival; book tickets well in advance",
-    "admission": "paid (varies by event)",
-    "links": { "website": "https://www.modernismweek.com/", "maps": null },
-    "lilaPick": false,
-    "tags": ["mid-century", "architecture", "palm-springs", "february-only", "festival", "annual"],
-    "months": "Feb",
-    "corridor": true
-  },
-  {
     "id": "coyote-corner",
     "name": "Coyote Corner",
     "type": "gallery",
@@ -108,5 +85,90 @@
     "lilaPick": false,
     "tags": ["rocks", "crystals", "maps", "local-institution", "geology", "desert"],
     "months": "all"
+  },
+  {
+    "id": "noah-purifoy-museum",
+    "name": "Noah Purifoy Outdoor Desert Art Museum",
+    "type": "gallery",
+    "subtype": "outdoor-art",
+    "experienceTier": "experience",
+    "location": "63030 Blair Lane, Joshua Tree — 10-acre outdoor museum in the open desert",
+    "priceRange": "free",
+    "budgetTier": "free",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "contemplative",
+    "highlights": [
+      "100+ large-scale assemblage sculptures built from desert salvage by pioneering Black artist Noah Purifoy, who lived and worked here from 1989 until his death in 2004",
+      "The sculptures are made from what the desert discards — tires, washing machines, bicycles, road signs — transformed into commentary on race, politics, and the American landscape",
+      "Free, open daily sunrise to sunset, self-guided. The Foundation maintains the work but the desert is slowly reclaiming it — part of the art is watching that negotiation",
+      "Inducted into the National Trust's Historic Artists' Homes and Studios program in 2022. This is not a novelty roadside attraction — it's one of the most important outdoor art environments in the American West."
+    ],
+    "bookingWindow": "Self-guided — free, open daily sunrise to sunset. No reservation needed.",
+    "hours": "Daily, sunrise to sunset",
+    "links": {
+      "website": "https://www.noahpurifoy.com/",
+      "booking": null
+    },
+    "lilaPick": true,
+    "pickTier": "experience",
+    "tags": ["outdoor-art", "assemblage", "free", "noah-purifoy", "desert-salvage", "self-guided", "national-trust"],
+    "months": "all"
+  },
+  {
+    "id": "agua-caliente-cultural-plaza",
+    "name": "Agua Caliente Cultural Plaza",
+    "type": "museum",
+    "subtype": "indigenous-culture",
+    "experienceTier": "experience",
+    "location": "219 S Palm Canyon Dr, Palm Springs — 45 min from Joshua Tree",
+    "priceRange": "$$",
+    "budgetTier": "moderate",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "contemplative",
+    "highlights": [
+      "The Agua Caliente Band of Cahuilla Indians telling their own story on their own land — nearly 48,000 sq ft of first-person cultural narrative opened in 2023",
+      "The Cahuilla people have lived in this desert for thousands of years. The plaza centers their voice: language, basket weaving, songs, water management, and the sacred hot springs that give the tribe its name",
+      "The Oasis Trail connects the plaza to the tribal hot springs and Indian Canyons — the landscape IS the exhibit",
+      "45 minutes from Joshua Tree. For travelers who want to understand whose land they're walking on."
+    ],
+    "bookingWindow": "Open daily — check aguacaliente-nsn.gov for hours and admission.",
+    "hours": "Daily; check current hours",
+    "links": {
+      "website": "https://www.accmuseum.org/",
+      "booking": null
+    },
+    "lilaPick": true,
+    "pickTier": "experience",
+    "tags": ["indigenous", "cahuilla", "museum", "first-person", "palm-springs", "corridor", "opened-2023"],
+    "months": "all",
+    "corridor": true
+  },
+  {
+    "id": "friends-of-joshua-tree",
+    "name": "Friends of Joshua Tree — Volunteer Stewardship",
+    "type": "volunteer",
+    "subtype": "stewardship",
+    "experienceTier": "experience",
+    "location": "Joshua Tree National Park — various project sites",
+    "priceRange": "free",
+    "budgetTier": "free",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "active",
+    "highlights": [
+      "Habitat restoration, native plant propagation, trail maintenance, and campground rehabilitation in the park",
+      "Drop-in volunteer days and scheduled group projects — check friendsofjosh.org for the calendar",
+      "The reciprocal version of visiting: instead of taking from the desert, you leave it better than you found it",
+      "This is the Lila way to give back to a landscape you've spent days exploring"
+    ],
+    "bookingWindow": "Check friendsofjosh.org for scheduled volunteer days. Some require advance sign-up.",
+    "hours": "Varies by project — typically morning start",
+    "links": {
+      "website": "https://www.friendsofjosh.org/",
+      "booking": null
+    },
+    "lilaPick": false,
+    "pickTier": "experience",
+    "tags": ["volunteer", "stewardship", "restoration", "native-plants", "trail-work", "free", "reciprocal"],
+    "months": "Oct–Apr"
   }
 ]

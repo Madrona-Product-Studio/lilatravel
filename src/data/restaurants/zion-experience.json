@@ -9,9 +9,10 @@
     "groupFit": ["solo", "couple", "friends", "family"],
     "energy": "contemplative",
     "highlights": [
-      "Southern Paiute Tribe preserves language, oral history, and ancestral traditions",
-      "Annual Restoration Powwow held in Cedar City each June",
-      "One of the few active Indigenous cultural preservation programs in the Zion corridor"
+      "The Southern Paiute people are the original inhabitants of this canyon — the name 'Zion' is a settler name. The Paiute know it as Mukuntuweap.",
+      "The annual Restoration Gathering and Powwow (June, Cedar City) brings together Southern Paiute communities for dancing, drumming, food, and ceremony — visitors welcome",
+      "The Paiute Indian Tribe of Utah is headquartered in Cedar City. Their Cultural Resource Department leads occasional interpretive programs — check piut.org for current offerings.",
+      "Understanding Paiute presence changes how you see the canyon. The trails, the water, the alcoves — these were home, not scenery."
     ],
     "hours": "Varies — check with Paiute Indian Tribe of Utah",
     "admission": "free",
@@ -129,5 +130,31 @@
     "lilaPick": true,
     "tags": ["volunteer", "habitat-restoration", "desert-tortoise", "mojave", "native-plants"],
     "months": "Oct–Apr"
+  },
+  {
+    "id": "cedar-breaks-dark-sky",
+    "name": "Cedar Breaks — Dark Sky Stargazing",
+    "type": "experience",
+    "subtype": "dark-sky",
+    "experienceTier": "experience",
+    "location": "Cedar Breaks National Monument — 60 min from Zion via Highway 14, elevation 10,350 ft",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "contemplative",
+    "highlights": [
+      "Cedar Breaks is a certified International Dark Sky Park at 10,350 feet — the thin air and remote location create some of the darkest skies in Utah",
+      "Ranger-led star programs on summer Saturday nights with telescopes and constellation tours. The Milky Way arc is vivid enough to cast shadows.",
+      "The amphitheater rim under starlight is extraordinary — you're looking down into a natural bowl of hoodoos with the galaxy above. Both scales feel infinite.",
+      "Pair with the Spectra Point day hike (already in the Move section) for a full Cedar Breaks day-into-night experience"
+    ],
+    "bookingWindow": "Ranger programs free with park entry. Summer Saturday nights — check nps.gov/cebr for schedule.",
+    "hours": "Summer Saturday nights for ranger programs. Self-guided stargazing anytime after dark.",
+    "links": { "website": "https://www.nps.gov/cebr/planyourvisit/stargazing.htm", "booking": null },
+    "lilaPick": true,
+    "pickTier": "experience",
+    "tags": ["dark-sky", "stargazing", "milky-way", "ranger-program", "cedar-breaks", "corridor", "10350-feet"],
+    "months": "Jun–Oct",
+    "corridor": true
   }
 ]

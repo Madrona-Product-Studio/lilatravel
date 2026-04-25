@@ -89,7 +89,7 @@
   },
   {
     "id": "jamestown-sklallam-tribe",
-    "name": "Jamestown S\u02bbklallam Tribe — 7 Cedars Resort",
+    "name": "Jamestown Sʻklallam Tribe — 7 Cedars Resort",
     "type": "cultural-site",
     "location": "Sequim",
     "priceRange": "free",
@@ -97,10 +97,10 @@
     "groupFit": ["solo", "couple", "friends", "family"],
     "energy": "cultural",
     "highlights": [
-      "Tribally owned and operated resort on the Olympic Peninsula",
-      "Hand-carved totem poles by Jamestown S\u02bbklallam artists on the grounds",
-      "Cultural programming and events throughout the year — check website",
-      "Revenue from the resort funds tribal cultural and language preservation programs"
+      "The Jamestown S'klallam Tribe is the first in Washington to be entirely self-governing — 7 Cedars Casino and Resort funds cultural programs, language revitalization, and natural resource management",
+      "The House of Seven Brothers totem pole at the resort entrance was carved by master carver Dale Faulstich in collaboration with tribal elders",
+      "Annual events include the Tribal Journey Canoe Landing (July/August) — when canoe families from tribes across the Pacific Northwest arrive by traditional canoe",
+      "The Jamestown S'klallam Tribal Library and Cultural Center in Sequim hosts rotating exhibits and is open to visitors — call ahead"
     ],
     "hours": "Resort open daily; cultural programming varies",
     "admission": "free to visit grounds",
@@ -129,6 +129,56 @@
     "links": { "website": "https://enjoypt.com/", "maps": null },
     "lilaPick": false,
     "tags": ["victorian", "historic-seaport", "bookstores", "galleries", "music-festival", "port-townsend"],
+    "months": "all"
+  },
+  {
+    "id": "quileute-la-push",
+    "name": "Quileute Nation — La Push",
+    "type": "indigenous",
+    "subtype": "indigenous-culture",
+    "experienceTier": "experience",
+    "location": "La Push, WA — Quileute Reservation, western Olympic Peninsula coast",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "contemplative",
+    "highlights": [
+      "La Push sits on the Quileute Reservation — the Quileute people have lived on this coast for thousands of years, and their relationship with the ocean, rivers, and salmon defines the place",
+      "Quileute Days (mid-July) is the annual celebration: traditional salmon bake, canoe races, songs, dances, and storytelling. Open to visitors.",
+      "The Quileute Oceanside Resort is tribally owned — staying or dining there directly supports the community. First Beach is on Quileute land.",
+      "Treat La Push as a visit to someone's home. The Quileute didn't invite the tourists; they're sharing their coast. Respect the land, the signs, and the people."
+    ],
+    "bookingWindow": "Quileute Days in mid-July — no reservation needed for the public celebration. Resort at quileuteoceanside.com.",
+    "hours": "La Push accessible year-round. Quileute Days mid-July.",
+    "links": { "website": "https://quileutenation.org/", "booking": null },
+    "lilaPick": true,
+    "pickTier": "experience",
+    "tags": ["indigenous", "quileute", "la-push", "salmon", "coast", "tribally-owned", "quileute-days"],
+    "months": "all"
+  },
+  {
+    "id": "centrum-fort-worden",
+    "name": "Centrum — Fort Worden",
+    "type": "music",
+    "subtype": "performance",
+    "experienceTier": "experience",
+    "location": "Fort Worden State Park, Port Townsend — former military fort turned arts campus",
+    "priceRange": "$$",
+    "budgetTier": "moderate",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "contemplative",
+    "highlights": [
+      "Arts residency and performance center in a former coastal artillery fort — jazz, chamber music, fiddle, and writers' workshops on a bluff above the Strait of Juan de Fuca",
+      "The Festival of American Fiddle Tunes (July) and the Port Townsend Acoustic Blues Festival (August) are nationally significant — musicians come from across the country",
+      "Fort Worden itself is worth the visit: bunkers, lighthouse, officers' quarters, and the Marine Science Center. The setting gives the music a gravity that indoor venues can't.",
+      "Port Townsend is 2 hours from the Hoh — a natural first or last night on the peninsula. The town's Victorian architecture and bookstores are their own experience."
+    ],
+    "bookingWindow": "Concerts and festivals at centrum.org. Some are free, some ticketed ($15-$40).",
+    "hours": "Events year-round; summer festival season Jun-Sep",
+    "links": { "website": "https://centrum.org/", "booking": "https://centrum.org/performances/" },
+    "lilaPick": false,
+    "pickTier": "experience",
+    "tags": ["music", "performance", "fort-worden", "jazz", "fiddle", "writers", "port-townsend", "arts-residency"],
     "months": "all"
   }
 ]
