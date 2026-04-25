@@ -203,7 +203,7 @@
       "booking": "https://www.hotelwren29.com/"
     },
     "seasonalNotes": "Open year-round. 21+ only. No televisions in rooms by design. Spring wildflower season is peak.",
-    "lilaPick": false,
+    "lilaPick": true,
     "tags": ["woman-owned", "1940s-motel", "design-forward", "no-tv", "boutique", "21-plus", "intimate"]
   },
   {
@@ -232,5 +232,31 @@
     "seasonalNotes": "Open year-round. The vegetarian Food for Thought Café is on-site. Spring and fall most pleasant.",
     "lilaPick": false,
     "tags": ["lloyd-wright", "sacred-geometry", "retreat-center", "meditation", "mid-century", "vortex", "vegetarian-cafe"]
+  },
+  {
+    "id": "autocamp-joshua-tree",
+    "name": "AutoCamp Joshua Tree",
+    "type": "glamping",
+    "stayStyle": "elemental",
+    "budgetTier": "moderate",
+    "priceRange": "$179–400/night",
+    "location": "62025 29 Palms Hwy, Joshua Tree — minutes from the park's west entrance",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "highlights": [
+      "Polished Airstream trailers, modern cabins, and luxury tents on a design-forward desert campus — the lodging that put Joshua Tree glamping on the map",
+      "Each Airstream is a self-contained suite: queen bed, bathroom, kitchenette, private deck with fire pit and desert views",
+      "Pool, clubhouse, communal fire pits, and loaner bikes for riding into town. The common spaces are as considered as the rooms.",
+      "Now part of Hilton's portfolio but retains its original design identity and Airstream-specific experience — the brand didn't dilute the place"
+    ],
+    "amenities": ["pool", "fire pits", "clubhouse", "loaner bikes", "wifi", "kitchenette", "private deck"],
+    "bookingWindow": "Book 2-4 weeks ahead at autocamp.com. Weekends and spring fill fastest.",
+    "links": {
+      "website": "https://autocamp.com/joshua-tree/",
+      "booking": "https://autocamp.com/joshua-tree/",
+      "bookingDotCom": "https://www.booking.com/hotel/us/autocamp-joshua-tree.html"
+    },
+    "seasonalNotes": "Open year-round. Summer is hot — pool is essential. October through April is the sweet spot.",
+    "lilaPick": true,
+    "tags": ["airstream", "glamping", "design-forward", "pool", "fire-pits", "west-entrance", "family-friendly"]
   }
 ]

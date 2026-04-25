@@ -125,7 +125,7 @@
       "bookingDotCom": "https://www.booking.com/hotel/us/kalaloch-lodge.html"
     },
     "seasonalNotes": "Year-round. Storm watching from the bluff cabins in winter is singular.",
-    "lilaPick": false,
+    "lilaPick": true,
     "tags": ["bluff-top", "ocean-view", "historic-landmark", "cabins", "restaurant"]
   },
   {
@@ -260,7 +260,7 @@
       "bookingDotCom": "https://www.booking.com/hotel/us/hoh-valley-cabins-at-elk-meadows.html"
     },
     "seasonalNotes": "Open year-round. No WiFi on property. Cell service limited to Verizon. Elk most visible at dawn in fall and winter.",
-    "lilaPick": false,
+    "lilaPick": true,
     "tags": ["hoh-rainforest", "elk", "pioneer-family", "private-trail", "early-access", "modern-cabin", "ev-charging", "kitchenette"]
   }
 ]

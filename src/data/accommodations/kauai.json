@@ -103,30 +103,6 @@
     "tags": ["beachfront", "no-tv", "kalalau-base", "north-shore", "unplugged"]
   },
   {
-    "id": "na-pali-coast-cottages",
-    "name": "Na Pali Coast Cottages",
-    "type": "cottage",
-    "stayStyle": "rooted",
-    "budgetTier": "moderate",
-    "priceRange": "$200–400/night",
-    "location": "Hanalei area (North Shore)",
-    "groupFit": ["couple", "friends"],
-    "highlights": [
-      "Small independent cottage rentals on the north shore",
-      "Locally owned, long-established",
-      "The north shore cottage experience is a Kauaʻi original"
-    ],
-    "amenities": ["kitchen", "garden", "privacy"],
-    "bookingWindow": "Book 2–4 months ahead — varies by property",
-    "links": {
-      "website": "https://www.napalicoastcottages.com/",
-      "booking": null
-    },
-    "seasonalNotes": "Year-round. Quality and character vary — look for locally owned, long-established listings.",
-    "lilaPick": false,
-    "tags": ["cottage", "north-shore", "locally-owned", "private"]
-  },
-  {
     "id": "waimea-plantation-cottages",
     "name": "Waimea Plantation Cottages",
     "type": "cottage",
@@ -283,7 +259,7 @@
       "booking": "https://www.thepalmwood.com/"
     },
     "seasonalNotes": "Open year-round. North shore road (Highway 560) can close during high surf — check conditions in winter.",
-    "lilaPick": false,
+    "lilaPick": true,
     "tags": ["japanese-inspired", "b-and-b", "secluded", "north-shore", "intimate", "5-acres", "gardens"]
   }
 ]

@@ -187,7 +187,7 @@
     "type": "resort",
     "stayStyle": "rooted",
     "budgetTier": "moderate",
-    "priceRange": "$180–320/night",
+    "priceRange": "$180–320 CAD/night",
     "location": "1119 Pacific Rim Hwy, Tofino — on tinwis (MacKenzie) Beach, 3km from Tofino",
     "groupFit": ["solo", "couple", "friends", "family"],
     "highlights": [
@@ -205,7 +205,7 @@
       "bookingDotCom": "https://www.booking.com/hotel/ca/best-western-tin-wis-resort.html"
     },
     "seasonalNotes": "Open year-round. Storm-watching season Nov–Jan is special. Summer surf season brings higher rates. naaʔuu cultural events run periodically — check the website.",
-    "lilaPick": false,
+    "lilaPick": true,
     "tags": ["first-nations-owned", "tla-o-qui-aht", "cultural-programming", "beachfront", "ocean-view", "language-revitalization", "tribal-parks"]
   },
   {
@@ -214,7 +214,7 @@
     "type": "cabin resort",
     "stayStyle": "rooted",
     "budgetTier": "moderate",
-    "priceRange": "$150–280/night",
+    "priceRange": "$150–280 CAD/night",
     "location": "MacKenzie Beach, Tofino — 5 min from town",
     "groupFit": ["solo", "couple", "friends", "family"],
     "highlights": [
@@ -241,7 +241,7 @@
     "type": "cabin resort",
     "stayStyle": "elemental",
     "budgetTier": "moderate",
-    "priceRange": "$180–380/night",
+    "priceRange": "$180–380 CAD/night",
     "location": "MacKenzie Beach, Tofino — 3km from Tofino centre",
     "groupFit": ["couple", "friends", "family"],
     "highlights": [
@@ -260,5 +260,31 @@
     "seasonalNotes": "Open year-round. Beachfront cabins with hot tubs book earliest. Cedar barrel sauna cabins available year-round. Glamping trailers and RV sites also available.",
     "lilaPick": false,
     "tags": ["log-cabins", "cedar-barrel-sauna", "private-hot-tubs", "beachfront", "rainforest", "family-friendly", "mackenzie-beach"]
+  },
+  {
+    "id": "free-spirit-spheres",
+    "name": "Free Spirit Spheres",
+    "type": "cabin",
+    "stayStyle": "elemental",
+    "budgetTier": "moderate",
+    "priceRange": "$200–350 CAD/night",
+    "location": "420 Horne Lake Rd, Qualicum Beach — 2 hrs from Tofino via Highway 4",
+    "groupFit": ["solo", "couple"],
+    "highlights": [
+      "Handmade wooden spheres suspended in the forest canopy — you sleep inside a sphere hung from old-growth trees, swaying gently in the wind",
+      "Three spheres (Eve, Eryn, Melody), each with a different design. Built by hand by Tom Chudleigh over 15+ years from local wood and salvaged materials.",
+      "No electricity in the spheres — candlelight, wood stove, and forest silence. Composting toilet. The simplicity IS the luxury.",
+      "The architecture is the experience. There is nothing else like this. For corridor itineraries — 2 hrs from Tofino on Highway 4."
+    ],
+    "amenities": ["wood stove", "candlelight", "composting toilet", "forest setting"],
+    "bookingWindow": "Book at freespiritspheres.com — fills months ahead. Minimum 2-night stay.",
+    "links": {
+      "website": "https://freespiritspheres.com/",
+      "booking": "https://freespiritspheres.com/"
+    },
+    "seasonalNotes": "Open year-round. Winter storms in the canopy are extraordinary. Summer is warmest but busiest.",
+    "corridor": true,
+    "lilaPick": true,
+    "tags": ["suspended-spheres", "forest-canopy", "handmade", "off-grid", "candlelight", "architecture", "corridor", "unique"]
   }
 ]

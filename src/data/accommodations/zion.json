@@ -25,32 +25,6 @@
     "tags": ["inside-park", "riverside", "stargazing", "reservations-required", "immersive"]
   },
   {
-    "id": "cable-mountain-lodge",
-    "name": "Cable Mountain Lodge",
-    "type": "lodge",
-    "stayStyle": "rooted",
-    "budgetTier": "moderate",
-    "priceRange": "$150–250/night",
-    "location": "Springdale, walking distance to park entrance and shuttle",
-    "groupFit": ["solo", "couple", "friends", "family"],
-    "highlights": [
-      "Excellent location — walk to park entrance",
-      "Pool and hot tub",
-      "Best value in the rooted tier",
-      "Shuttle stop nearby"
-    ],
-    "amenities": ["pool", "hot tub", "in-room kitchen", "wifi", "parking", "shuttle access"],
-    "bookingWindow": "2–3 months ahead for peak season (Sep–Oct, spring break). Less lead time needed in winter.",
-    "links": {
-      "website": "https://www.cablemountainlodge.com/",
-      "booking": null,
-      "bookingDotCom": "https://www.booking.com/hotel/us/cable-mountain-lodge.html"
-    },
-    "seasonalNotes": "Year-round. Great base camp in any season. AC in summer, heated in winter.",
-    "lilaPick": false,
-    "tags": ["springdale", "good-value", "pool", "hot-tub", "walking-distance", "family-friendly"]
-  },
-  {
     "id": "cliffrose-lodge",
     "name": "Cliffrose Springdale",
     "type": "boutique",
@@ -231,7 +205,7 @@
     },
     "seasonalNotes": "Seasonal — typically April through October. The most atmospheric stay in the Bryce corridor.",
     "corridor": true,
-    "lilaPick": false,
+    "lilaPick": true,
     "tags": ["inside-park", "historic-lodge", "cabins", "rim-access", "no-tv", "bryce-canyon"]
   },
   {
@@ -262,33 +236,6 @@
     "tags": ["dark-sky", "geodesic-domes", "stargazing", "byway-12", "astrotourism", "bryce-canyon"]
   },
   {
-    "id": "capitol-reef-resort",
-    "name": "Capitol Reef Resort",
-    "type": "resort",
-    "stayStyle": "rooted",
-    "budgetTier": "premium",
-    "priceRange": "$200–450/night",
-    "location": "Torrey, UT — 1 mile from Capitol Reef National Park",
-    "groupFit": ["solo", "couple", "friends", "family"],
-    "highlights": [
-      "58 acres one mile from the park entrance",
-      "Luxury cabins with red cliff views and spa bathrooms",
-      "Glamping options include teepees and Conestoga wagons",
-      "On-site restaurant, pool, and llama hikes"
-    ],
-    "amenities": ["restaurant", "pool", "spa bathrooms", "glamping", "guided experiences"],
-    "bookingWindow": "2–4 months ahead for peak season.",
-    "links": {
-      "website": "https://capitolreefresort.com/",
-      "booking": null,
-      "bookingDotCom": "https://www.booking.com/hotel/us/best-western-capitol-reef-resort.html"
-    },
-    "seasonalNotes": "Year-round. The teepees and wagons are seasonal — check availability.",
-    "corridor": true,
-    "lilaPick": false,
-    "tags": ["luxury-cabins", "teepees", "wagons", "pool", "llama-hikes", "capitol-reef"]
-  },
-  {
     "id": "skyview-hotel",
     "name": "Skyview Hotel",
     "type": "hotel",
@@ -314,5 +261,30 @@
     "corridor": true,
     "lilaPick": true,
     "tags": ["dark-sky", "glamping-domes", "boutique", "minimalist", "rooftop-stargazing", "capitol-reef"]
+  },
+  {
+    "id": "zion-wildflower",
+    "name": "Zion Wildflower",
+    "type": "glamping",
+    "stayStyle": "elemental",
+    "budgetTier": "moderate",
+    "priceRange": "$143–350/night",
+    "location": "3811 UT-9, Virgin, UT — 20 min from Zion's south entrance, on the Kolob/west side",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "highlights": [
+      "Covered wagons, safari tents, and bungalows on a working-property feel — the west side of Zion, away from the Springdale main drag",
+      "Pool, cafe, fire pits, and a general store. The common spaces have a summer-camp-for-adults quality without trying too hard.",
+      "Family-friendly in a way the boutique Springdale properties aren't — kids can run, families can spread out, the pace is slower",
+      "20 minutes from the park's south entrance, 15 minutes from Kolob Canyons. The Kolob proximity is the real advantage — most Springdale stays don't offer that."
+    ],
+    "amenities": ["pool", "cafe", "fire pits", "general store", "parking", "wifi"],
+    "bookingWindow": "Book at zionwildflower.com — weekends fill 2-3 weeks ahead in spring/fall.",
+    "links": {
+      "website": "https://www.zionwildflower.com/",
+      "booking": "https://www.zionwildflower.com/"
+    },
+    "seasonalNotes": "Open year-round. Summer is hot — pool is the anchor. Spring and fall are ideal. Winter is quiet and beautiful.",
+    "lilaPick": true,
+    "tags": ["glamping", "wagons", "tents", "bungalows", "family-friendly", "kolob-side", "west-side", "pool"]
   }
 ]

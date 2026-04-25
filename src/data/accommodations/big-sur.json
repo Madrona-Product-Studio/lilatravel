@@ -125,7 +125,7 @@
       "bookingDotCom": "https://www.booking.com/hotel/us/glen-oaks-big-sur.html"
     },
     "seasonalNotes": "Year-round. Each cabin is unique — request details when booking.",
-    "lilaPick": false,
+    "lilaPick": true,
     "tags": ["cabins", "design-forward", "riverside", "redwoods", "sustainable"]
   },
   {
@@ -236,5 +236,30 @@
     "seasonalNotes": "Year-round. All-inclusive means no surprise costs — everything is in the rate.",
     "lilaPick": true,
     "tags": ["all-inclusive", "adults-only", "spa", "japanese-baths", "redwood-canyon"]
+  },
+  {
+    "id": "deetjens-big-sur-inn",
+    "name": "Deetjen's Big Sur Inn",
+    "type": "inn",
+    "stayStyle": "rooted",
+    "budgetTier": "moderate",
+    "priceRange": "$150–275/night",
+    "location": "Highway 1, Big Sur — between Nepenthe and Julia Pfeiffer Burns State Park",
+    "groupFit": ["solo", "couple", "friends"],
+    "highlights": [
+      "Hand-built Norwegian-style cabins from the 1930s — Helmuth Deetjen built them one board at a time from salvaged redwood",
+      "No locks on the doors, no TVs, no phones in the rooms. The fireplaces are real. The creaking is part of the character.",
+      "Breakfast in the candlelit dining room is a Big Sur institution — one of the most atmospheric morning meals on the coast",
+      "A nonprofit since 1972 — your stay directly funds preservation of one of Big Sur's most storied properties"
+    ],
+    "amenities": ["fireplace", "on-site restaurant", "gardens", "no-tv", "no-phone"],
+    "bookingWindow": "Book at deetjens.com — popular weekends fill 2-4 weeks ahead. Cash or check only for rooms.",
+    "links": {
+      "website": "https://www.deetjens.com/",
+      "booking": "https://www.deetjens.com/"
+    },
+    "seasonalNotes": "Open year-round. Winter storms make the fireplaces essential. Spring wildflowers on the property.",
+    "lilaPick": true,
+    "tags": ["historic", "hand-built", "1930s", "norwegian", "nonprofit", "no-tv", "fireplace", "big-sur-institution"]
   }
 ]
