@@ -96,13 +96,6 @@ The view that makes Angels Landing look small. At 6,521 feet, this is the highes
 - **Time**: 3-4 hours
 - **Note**: Requires driving to the East Mesa trailhead (outside the park, dirt road — check conditions). The canyon-bottom trail via Weeping Rock has been closed due to rockfall since 2019; check NPS for current status.
 
-### Emerald Pools (Lower, Middle, Upper)
-A series of three pools fed by waterfalls cascading down red rock walls. The lower pool is accessible and easy; the upper pool adds elevation and scrambling. A good option for afternoons or recovery days.
-- **Distance**: 1.2 mi (lower), 2.2 mi (middle), 3 mi (upper) round trip
-- **Elevation gain**: 69 ft / 150 ft / 350 ft
-- **Difficulty**: Easy (lower) to Moderate (upper)
-- **Time**: 1-3 hours depending on route
-
 ### Pa'rus Trail
 A paved, flat, riverside trail connecting the Visitor Center to Canyon Junction. Bikes allowed. Dogs allowed (only trail in Zion proper). Perfect for early morning walks, gentle movement, or a mindful start to the day.
 - **Distance**: 3.5 miles round trip
@@ -110,14 +103,97 @@ A paved, flat, riverside trail connecting the Visitor Center to Canyon Junction.
 - **Difficulty**: Easy
 - **Time**: 1-1.5 hours
 
+### Taylor Creek Trail — Kolob Canyons
+The canyon that most Zion visitors never see. The trail follows the Middle Fork of Taylor Creek through two historic homestead cabins to Double Arch Alcove — a massive natural amphitheater. Multiple creek crossings through a narrow canyon lined with cottonwood and Gambel oak. Kolob delivers canyon beauty without the shuttle, without the crowds, without the permit lottery.
+- **Distance**: 5 miles round trip
+- **Elevation gain**: 450 ft
+- **Difficulty**: Moderate
+- **Time**: 3-4 hours
+- **Permit**: Not required. Free with Zion park pass.
+- **Best timing**: Morning light in the canyon. Pair with Timber Creek Overlook for a full Kolob half-day.
+
+### Timber Creek Overlook — Kolob Canyons
+The shortest trail in the guide with one of the biggest views — Kolob's finger canyons, Pine Valley Mountains, and on clear days, the distant Mojave. Drive the 5-mile Kolob Canyons Scenic Road to the end, walk ten minutes, and stand at the edge. Sunset here is extraordinary.
+- **Distance**: 1 mile round trip
+- **Elevation gain**: 100 ft
+- **Difficulty**: Easy
+- **Time**: 30 minutes
+- **Permit**: Not required. Free with Zion park pass.
+- **Best timing**: Sunset — the finger canyons glow red from a viewpoint you'll likely have to yourself.
+
+### Kanarra Falls
+A slot canyon creek hike to a two-tier waterfall outside the park. You wade through knee-deep water between narrow red walls, then climb two metal ladders bolted into the canyon to reach the wilder upper section. A daily cap of 150 hikers keeps the experience intimate — slot canyon beauty at Narrows-level quality without the Narrows-level traffic.
+- **Distance**: 4 miles round trip
+- **Elevation gain**: 500 ft
+- **Difficulty**: Moderate
+- **Time**: 3-4 hours
+- **Permit**: Required — book at kanarrafalls.com. 150/day cap. Weekends fill 1-2 weeks ahead.
+- **Best timing**: Morning for the best light in the slot. April through October.
+
+### Keyhole Canyon Canyoneering
+The most accessible technical slot canyon in Zion. A single 30-foot rappel followed by narrows swimming and stemming through sculpted sandstone. Wetsuit essential — the pools are cold. Guided trips through Zion Guru are recommended for those new to canyoneering.
+- **Distance**: 1 mile through-canyon
+- **Difficulty**: Moderate (technical)
+- **Time**: 3-4 hours
+- **Permit**: Required — day-use canyoneering permit via recreation.gov. Limited entries per day.
+- **Best timing**: May through October. Check flash flood forecasts.
+
+### The Subway — Advanced Canyoneering
+The most celebrated slot canyon in Zion — a sculpted tube of Navajo sandstone carved by the Left Fork of North Creek on the Kolob Terrace. Multiple rappels, swims, and downclimbs through a corridor of perfect geological form. Technical route requiring prior canyoneering experience, wetsuit, and rappel gear.
+- **Distance**: 9.5 miles
+- **Difficulty**: Technical / Strenuous
+- **Time**: 6-9 hours
+- **Permit**: Required via recreation.gov lottery — highly competitive, apply 3 months ahead.
+- **Best timing**: May through October. Not for first-timers.
+
+### Zion Canyon E-Bike — Scenic Drive
+One of the great cycling experiences in any national park. The scenic drive is car-free beyond Zion Lodge during shuttle season, leaving only e-bikes and the occasional shuttle bus under 2,000-foot sandstone walls. Start on the Pa'rus Trail along the Virgin River, then ride deep into the canyon at your own pace — stop at every pull-out without a shuttle schedule.
+- **Distance**: 3.5 miles Pa'rus Trail + 6+ miles scenic drive
+- **Difficulty**: Easy
+- **Time**: Half-day or full day
+- **Permit**: Not required. E-bike rental from Zion Guru in Springdale.
+- **Best timing**: Early morning (7-10am) or late afternoon (2-5pm) for the best canyon light.
+
+### Gooseberry Mesa — Mountain Biking
+One of the top mountain bike destinations in the Southwest — slickrock riding on a volcanic mesa above the Hurricane Valley, 30 minutes from Zion's south entrance. Multiple loop options from beginner-friendly to technical, with mesa rim trails offering Zion Canyon views to the north. BLM land, free access, no permit required.
+- **Distance**: 8-15 miles depending on route
+- **Difficulty**: Moderate
+- **Time**: 2-4 hours
+- **Permit**: Not required. BLM land.
+- **Best timing**: October through May. Bring your own bike or rent in Hurricane.
+
+### Peek-a-Boo & Spooky Gulch — Grand Staircase-Escalante
+Two narrow slot canyons connected in a loop on Hole-in-the-Rock Road, about 90 minutes from Zion. Peek-a-Boo requires a 12-foot climb into the slot; Spooky narrows to shoulder-width in places. No permit, no fee, no crowds on weekdays. The road is unpaved and impassable when wet — check conditions.
+- **Distance**: 3.5 miles loop
+- **Elevation gain**: 400 ft
+- **Difficulty**: Moderate
+- **Time**: 3-4 hours
+- **Permit**: Not required.
+- **Best timing**: March through November. For flexible or nomadic itineraries — the drive makes this a half-day commitment.
+
+### Cedar Breaks — Spectra Point Trail
+A 10,350-foot natural amphitheater — like Bryce Canyon's older, quieter sibling at twice the elevation with a tenth of the visitors. The trail follows the rim through bristlecone pine forest with trees over 1,600 years old. Summer wildflower season is extraordinary — alpine meadows of columbine, lupine, and Indian paintbrush. Twenty to thirty degrees cooler than Zion's canyon floor.
+- **Distance**: 4 miles round trip
+- **Elevation gain**: 400 ft
+- **Difficulty**: Moderate
+- **Time**: 2-3 hours
+- **Permit**: Not required. Park entry fee applies.
+- **Best timing**: June through October. The ideal midday escape when the canyon floor is baking.
+
 ---
 
 ## Living Practice
 
 ### Yoga & Movement
 
-#### Zion Canyon Yoga
-Drop-in classes in Springdale, often morning flow sessions. Check seasonal schedule. Small studio with views.
+#### Zion Guru Skydeck Yoga
+Open-air deck with the Watchman as backdrop — the most distinctive yoga setting in the Zion corridor. Morning sessions catch first light on the canyon walls. Vinyasa, Restorative, Yoga Nidra, Yin, and Pranayama taught by Jennifer Goodman. Private and group sessions available; book ahead via zionguru.com.
+
+#### Cosmic Flow Yoga
+Yoga and crystal alchemy sound bath held in outdoor settings around Springdale and Zion — featured in the New York Times. The canyon walls become the studio, with crystal singing bowls tuned to specific frequencies amplified by the canyon acoustics. Small group sizes, genuinely contemplative. Book at yogainzion.com.
+
+#### Hillside Yoga at Flanigan's
+Gentle yoga with sound bath on a terrace overlooking Zion at Flanigan's Resort. Mind, body, and spirit sessions combining yoga, Wim Hof breathwork, and cold immersion. Private sessions available for groups, families, or couples. Book through Flanigan's front desk.
 
 #### Desert Yoga (Self-Guided)
 Self-guided sunrise practice at Pa'rus Trail or Canyon Junction. Bring your own mat. The flat, quiet riverside setting is ideal.
@@ -130,6 +206,9 @@ If staying at Cliffrose, the riverside lawn is a natural yoga space.
 #### Canyon Floor Morning Meditation
 The amphitheater acoustics of the canyon create natural resonance. Temple of Sinawava (shuttle stop 9) at dawn, before crowds arrive, is profoundly still.
 
+#### Sunrise Meditation at Canyon Junction
+Arrive before the shuttles. Sit at the Pine Creek bridge. Watch the canyon walls ignite one layer at a time. The most elemental meditation in the park — no programming, no instruction, just presence and stone. Best in spring and fall when first light hits the Watchman and East Temple simultaneously.
+
 #### Sunrise Breathwork
 Watchman Trail overlook or Canyon Overlook are ideal for guided breathwork with panoramic views.
 
@@ -141,21 +220,24 @@ Flat, paved, riverside. No competition for space. Early morning.
 #### River Grounding
 Wade into the Virgin River at various accessible points along the canyon floor. The cold water and river sounds create natural sensory grounding.
 
+#### Earthing on the Canyon Floor
+Take your shoes off. Stand on the Navajo sandstone. Feel 200 million years of warmth. The Pa'rus Trail provides the flattest, most accessible stretch of canyon floor for barefoot contact with the stone.
+
+#### The Narrows — Walking in Water
+The Narrows as contemplative practice. Wading chest-deep through a slot canyon with thousand-foot walls, the river is the trail and every step requires presence. Canyon acoustics amplify water and silence in equal measure — conversation falls away naturally. Go early, go slow, stop often.
+
 ### Recovery & Restoration
 
 #### Deep Creek Coffee (Recovery Stop)
 Good post-hike recovery spot. Coffee, smoothies, light fare. Springdale.
 
 #### Hot Tub / Spa at Lodging
-Cable Mountain Lodge and Cliffrose Lodge both have hot tubs available to guests.
+Cliffrose Springdale has hot tubs and the Five Petals Spa available to guests.
 
 ### Spa & Bodywork
 
 #### Deep Canyon Spa
 Massage, facials, body treatments at Flanigan's Inn. Walk-in or reservation.
-
-#### Cable Mountain Spa
-Massage and body treatments at Cable Mountain Lodge in Springdale.
 
 #### Amangiri Spa
 Luxury destination spa ~90 min from Zion. Bodywork, hydrotherapy, desert wraps in a stunning desert setting.
@@ -166,18 +248,15 @@ Sound baths, energy work, massage. Mobile practitioner serving the Springdale ar
 ### Soaking & Thermal
 
 #### Zion Canyon Hot Springs
-Soaking pools and sauna near Springdale. A perfect post-hike recovery spot.
+Naturally heated geothermal pools fed by an underground aquifer in La Verkin, 15 minutes from Zion's south entrance. Finnish dry saunas and cold plunge pools for full contrast therapy. The 21+ Premier area is where the stillness deepens — adults-only soaking with no distractions.
 
 #### True North Float
-Sensory deprivation float pods in St. George (~45 min from Zion). Deep rest and recovery.
+Sensory deprivation float tanks in St. George, 30 minutes from Zion. Ninety minutes of zero sensory input in skin-temperature saltwater. Fire and ice suite combining infrared sauna with cold plunge, plus vibroacoustic therapy. Southern Utah's most complete float and contrast therapy facility.
 
-### Additional Studios
+### Retreats & Immersions
 
-#### Cosmic Flow Yoga
-Dedicated yoga studio in Springdale. Drop-in classes, workshops, and retreats.
-
-#### Zion Yogis
-Outdoor and indoor yoga experiences near Zion. Scenic sessions with canyon views.
+#### Open Sky Zion — Wellness Programs
+Multi-day off-grid immersion on a private glamping property near Zion. Morning yoga, guided meditation, sound healing, and somatic breathwork in the desert landscape. Teachers rotate seasonally — past programs have included Kundalini, Yoga Nidra, and cacao ceremony. Requires minimum two-night stay.
 
 ---
 
@@ -201,7 +280,10 @@ Dinner destination. Southwest-inspired with a creative cocktail program. Reserva
 Best coffee in Springdale. Good pastries. Opens early for pre-hike fuel.
 
 #### King's Landing Bistro
-Upscale option at Driftwood Lodge. Good for a nicer dinner out.
+The canyon's most celebrated table, at the Driftwood Lodge. Seasonal, Southwest-rooted menu that rewards a reservation. Fills consistently — book ahead.
+
+#### Spotted Dog Cafe
+Farm-to-table dining at Flanigan's Inn — Springdale's most dependable fine-dining option. Award-winning wine list, seasonal menu, and patio seating with canyon views. The restaurant locals recommend for a good dinner.
 
 ### On the Way (Regional)
 
@@ -210,6 +292,15 @@ Boulder, UT — ~2.5 hrs from Zion. James Beard-recognized. Farm-to-table with i
 
 #### Switchback Grille
 Springdale. Steaks and American fare. Reliable.
+
+#### Wild Thyme Cafe
+Farm-to-table seasonal cooking with locations in Kanab and near Springdale at Trees Ranch. Four Silver medals in Best of Southern Utah including Best All-Around Restaurant. Strong plant-forward menu with vegan and gluten-free options throughout — the kind of place that makes you rethink what a small desert town can offer.
+
+#### Sego
+Kanab's most interesting kitchen — contemporary dishes built around local desert flavors with a thoughtful cocktail program. Modern and inviting interior, independently owned, quality without pretension. The dinner destination for east-entrance travelers and corridor trips. Reservations recommended.
+
+#### Peekaboo Wood Fired Kitchen
+Wood-fired pizzas, artisanal bread, and savory vegetarian entrees in Kanab. Locally sourced ingredients in a charming rustic setting. The strongest vegetarian menu in the Zion corridor — the kind of place that changes what you expect from a small desert town. Closed Mondays.
 
 ### Provisions & Markets
 
@@ -234,24 +325,33 @@ Inside park. Walk-in, first-come-first-served. Smaller, quieter. No reservations
 #### Zion Canyon Campground & RV Resort
 Springdale. Private campground just outside the park entrance. Showers, laundry, store.
 
+#### Under Canvas Zion
+Safari-style luxury tents on 196 acres in Virgin, about 30 minutes from the park. DarkSky certified site with Stargazer tents that have sky windows above your bed. No WiFi by design, communal fire pits, curated programming. Seasonal — typically March through November.
+
+#### Open Sky Zion
+Private and immersive luxury glamping in Virgin. Farm-to-table dining at the on-site Black Sage restaurant. Wellness is woven into every element — multi-day wellness programs available with morning yoga, meditation, and sound healing. The wellness programming is a genuine differentiator, not an add-on.
+
+#### Zion Wildflower
+Covered wagons, safari tents, and bungalows on a working-property feel on the west side of Zion, away from the Springdale main drag. Pool, cafe, fire pits, and a general store with a summer-camp-for-adults quality. Family-friendly in a way the boutique Springdale properties are not — and 15 minutes from Kolob Canyons, which most Springdale stays cannot offer.
+
 ### Rooted (Boutique, local)
 
-#### Cable Mountain Lodge
-Springdale. Excellent location, pool, hot tub. Walking distance to park entrance and shuttle. Good value.
-
-#### Cliffrose Lodge
-Springdale. Riverside setting, beautiful grounds. Walking distance to everything. Slightly more premium.
+#### Flanigan's Resort & Spa
+Springdale. A locally owned property with genuine wellness integration — Deep Canyon Spa, Spotted Dog restaurant, and hillside yoga sessions with sound bath overlooking the canyon. The best wellness-forward base in Springdale.
 
 #### Driftwood Lodge
 Springdale. Clean, well-located. Home to King's Landing Bistro.
 
+#### Zion Lodge
+The only lodge inside the park. Historic property with unmatched location — wake up on the canyon floor with no driving or shuttle needed. Book six to twelve months ahead; extremely limited availability.
+
 ### Premium (Elevated experience)
 
-#### Under Canvas Zion
-Glamping with safari-style tents. Outside the park but designed for immersive experiences.
+#### Cliffrose Springdale
+Five acres of gardens on the Virgin River with heated pools year-round. The Five Petals Spa offers riverfront treatments, and Anthera restaurant is on-site. Walking distance to park entrance and Springdale restaurants. The riverside grounds are magical in fall with cottonwood color and in spring with wildflowers.
 
-#### Zion Lodge
-Inside park. The only lodge inside the park. Historic. Book far in advance. Limited availability.
+#### Amangiri
+Thirty-four modernist suites on 900 acres at Canyon Point, about 90 minutes from Zion. Camp Sarika offers private plunge pools. Aman Spa draws on Navajo healing traditions — flotation therapy, desert clay wraps, and ceremonial treatments built into the desert rock. Via Ferrata climbing experience on-site. One of the most extraordinary hotels in the American West.
 
 ### Beyond the Canyon
 - **Torrey & Capitol Reef area** — If extending your trip, this is where the magic deepens. Quiet, dark skies, fewer crowds.
@@ -269,8 +369,26 @@ Springdale. Photography of Zion and the Southwest. Beautiful prints.
 #### Bumbleberry Inn Gift Shop
 Kitsch and charm. Bumbleberry pie is the move.
 
+#### Tribal Arts Zion
+Springdale. Native American art and jewelry sourced directly from tribal artists — Navajo, Hopi, Zuni, and other Southwest nations represented. One of the few galleries in Springdale with direct-from-artist provenance.
+
 #### Zion Human History Museum
 Inside park, shuttle stop 2. Small but thoughtful museum on the cultural history of the canyon, including Paiute heritage and early settler history.
+
+#### Paiute Cultural Heritage
+The Southern Paiute people are the original inhabitants of this canyon — the name "Zion" is a settler name; the Paiute know it as Mukuntuweap. The annual Restoration Gathering and Powwow in June in Cedar City brings together Southern Paiute communities for dancing, drumming, food, and ceremony. The Paiute Indian Tribe of Utah in Cedar City leads occasional interpretive programs — check piut.org for current offerings.
+
+#### Pipe Spring National Monument
+Jointly managed by NPS and the Kaibab Band of Paiute Indians, about 50 minutes from Zion in Moccasin, Arizona. A desert oasis with a layered story of water, sovereignty, and Indigenous land. Living history programs and ranger-led tours tell the Kaibab Paiute story — one of the most historically textured sites in the Zion corridor.
+
+#### Parowan Gap Petroglyphs
+Free open-air gallery of ancient Fremont rock art in a natural wind gap near Cedar City, about 75 minutes from Zion. Believed to function as a solar and lunar calendar by Fremont peoples. BLM-managed and roadside accessible — among the most significant petroglyph sites in southern Utah.
+
+#### Conserve Southwest Utah
+Hands-on desert habitat restoration in the Mojave near St. George, 30 minutes from Zion. Protecting desert tortoise habitat and native plant communities with over 5,000 native plants restored through volunteer programs. One-day volunteer opportunities available for visitors, October through April.
+
+#### Cedar Breaks — Dark Sky Stargazing
+Cedar Breaks National Monument at 10,350 feet is a certified International Dark Sky Park with some of the darkest skies in Utah. Ranger-led star programs on summer Saturday nights with telescopes and constellation tours — the Milky Way arc is vivid enough to cast shadows. The amphitheater rim under starlight is extraordinary. Pair with the Spectra Point day hike for a full Cedar Breaks day-into-night experience.
 
 ---
 
@@ -341,8 +459,8 @@ Use this section to tailor itineraries based on the traveler's selected month. E
 - **Character**: Deep winter quiet. The canyon belongs to you. Stunning low-angle light on the walls. Contemplative, still, spacious.
 - **Weather**: Highs 50-55°F, Lows 25-30°F. Occasional snow on upper elevations. Canyon floor stays mild. Clear skies common.
 - **Shuttle**: Not running. Private vehicles allowed in the canyon — a rare and wonderful experience.
-- **What's open**: Canyon Overlook, Watchman, Pa'rus, Emerald Pools (lower). Angels Landing open but may have ice on chains — microspikes recommended, assess conditions at trailhead.
-- **What's limited/closed**: The Narrows is closed (cold water temps). Upper Emerald Pools may be icy. East Mesa road may be impassable.
+- **What's open**: Canyon Overlook, Watchman, Pa'rus. Angels Landing open but may have ice on chains — microspikes recommended, assess conditions at trailhead.
+- **What's limited/closed**: The Narrows is closed (cold water temps). East Mesa road may be impassable.
 - **Prioritize**: Sunrise photography, solitude hikes, stargazing (longest nights of the year), scenic drives without crowds, river meditation.
 - **Wellness focus**: Walking meditation on Pa'rus (you'll have it to yourself), hot tub recovery, indoor yoga if available, contemplative journaling.
 - **Dining note**: Some Springdale restaurants have reduced winter hours. Oscar's, Deep Creek Coffee, and Bit & Spur are generally reliable year-round. Check ahead.
@@ -355,7 +473,7 @@ Use this section to tailor itineraries based on the traveler's selected month. E
 - **Character**: Late winter. Still quiet but days are noticeably lengthening. A sense of the canyon waking up. Possible snow events create magical scenery — red rock dusted white.
 - **Weather**: Highs 55-60°F, Lows 30-35°F. Variable — can get warm sunny days or snow. Pack for both.
 - **Shuttle**: Not running until March. Private vehicles in canyon.
-- **What's open**: Same as January. Canyon Overlook, Watchman, Pa'rus, Emerald Pools (lower), Angels Landing (conditions permitting).
+- **What's open**: Same as January. Canyon Overlook, Watchman, Pa'rus, Angels Landing (conditions permitting).
 - **What's limited/closed**: The Narrows still closed. Upper trails may be icy.
 - **Prioritize**: Photography after snowfall (rare and stunning), uncrowded trails, scenic drives, Kolob Canyons section (very empty).
 - **Wellness focus**: Same as January — contemplative, restorative. Self-guided practices thrive in the quiet.
@@ -368,9 +486,9 @@ Use this section to tailor itineraries based on the traveler's selected month. E
 - **Character**: Transition month. Spring begins to stir. Shuttle typically resumes mid-to-late March. Crowds start returning but still manageable. Wildflowers begin on lower trails. Waterfalls strengthen from snowmelt.
 - **Weather**: Highs 60-70°F, Lows 35-45°F. Variable — warm sunny days mixed with cool rainy ones. Wind common.
 - **Shuttle**: Resumes mid-to-late March (check NPS for exact date). Once running, private vehicles no longer allowed on Scenic Drive.
-- **What's open**: Most trails open. Angels Landing fully accessible. Emerald Pools all levels. Waterfalls at their best.
+- **What's open**: Most trails open. Angels Landing fully accessible. Waterfalls at their best.
 - **What's limited/closed**: The Narrows may still be closed due to high water from snowmelt. Check NPS flow rates.
-- **Prioritize**: Waterfall hikes (Emerald Pools, Weeping Rock area), Canyon Overlook, Angels Landing if conditions allow, wildflower spotting on lower trails.
+- **Prioritize**: Waterfall hikes (Weeping Rock area), Canyon Overlook, Angels Landing if conditions allow, wildflower spotting on lower trails, Taylor Creek Trail in Kolob.
 - **Wellness focus**: Spring equinox practices (around March 20-21). Sunrise breathwork returns as days lengthen. River is too cold for grounding but watching the snowmelt rush is its own meditation.
 - **Dining note**: Springdale restaurants return to fuller hours. Reservations become more important on weekends.
 - **Accommodation note**: Under Canvas typically opens in March. Camping becomes pleasant. Book Watchman Campground early.
@@ -473,10 +591,10 @@ Use this section to tailor itineraries based on the traveler's selected month. E
 - **Character**: Transition to winter. Crowds drop significantly. Fall color fades but the quiet deepens. Cool, crisp, beautiful. A underrated month for those who want solitude.
 - **Weather**: Highs 55-65°F, Lows 30-40°F. Cool and pleasant. Possible first snow on upper elevations. Shorter days.
 - **Shuttle**: Stops running mid-to-late November (check NPS for exact date). Once stopped, private vehicles return to canyon.
-- **What's open**: Most trails. Angels Landing (watch for ice). Canyon Overlook. Watchman. Pa'rus. Emerald Pools.
+- **What's open**: Most trails. Angels Landing (watch for ice). Canyon Overlook. Watchman. Pa'rus.
 - **What's limited/closed**: The Narrows closes as water temps drop (typically late October/November). East Mesa road may close.
 - **Prioritize**: Uncrowded canyon experience. Angels Landing without crowds (if conditions allow). Scenic drives. Stargazing (dark skies + long nights). Kolob Canyons.
-- **Wellness focus**: Contemplative practices. Walking meditation on empty trails. Hot tub recovery. Indoor yoga. Journaling.
+- **Wellness focus**: Contemplative practices. Walking meditation on empty trails. Hot tub recovery. Indoor yoga.
 - **Dining note**: Some Springdale restaurants begin winter hours. Bit & Spur, Oscar's, Deep Creek Coffee typically reliable.
 - **Accommodation note**: Under Canvas closes for season. Camping is cold but doable with gear. Lodging recommended for comfort.
 - **Pack**: Warm layers. Fleece, warm hat, gloves for morning. The temperature swing from morning to afternoon is significant.
@@ -486,7 +604,7 @@ Use this section to tailor itineraries based on the traveler's selected month. E
 - **Character**: Winter settles in. The canyon is quiet, contemplative, and achingly beautiful. Short days mean dramatic light — the walls glow at sunrise and sunset. Snow on the rim with mild canyon floor creates contrast you can't get any other time.
 - **Weather**: Highs 50-55°F, Lows 25-35°F. Cold mornings, pleasant midday. Possible snow. Clear skies common between storms.
 - **Shuttle**: Not running. Private vehicles in canyon.
-- **What's open**: Canyon Overlook, Watchman, Pa'rus, Emerald Pools (lower), Angels Landing (conditions permitting — microspikes often needed).
+- **What's open**: Canyon Overlook, Watchman, Pa'rus, Angels Landing (conditions permitting — microspikes often needed).
 - **What's limited/closed**: The Narrows is closed. Upper trails may be icy. East Mesa road closed.
 - **Prioritize**: Winter Solstice experience (December 19-22). Sunrise/sunset photography. Driving the canyon in your own car (rare treat). Stargazing (longest nights). Kolob Canyons after snow.
 - **Wellness focus**: Deep contemplative practices. Walking meditation in solitude. Hot springs/hot tub recovery. The stillness itself is the practice.
@@ -624,9 +742,6 @@ A short, steep climb from Highway 24 into a hidden canyon with hoodoos and side 
 
 #### Stays
 
-##### Capitol Reef Resort
-Luxury cabins and Conestoga glamping wagons one mile from the park entrance in Torrey. Pool, hot tub, horseback riding. The most comfortable base for Capitol Reef.
-
 ##### Skyview Hotel
 Boutique hotel in Torrey with 14 rooms and 6 glamping domes. Rooftop stargazing deck, locally crafted interiors, restaurant on-site. Torrey is Utah's first designated Dark Sky community. The best boutique option in the Capitol Reef corridor.
 
@@ -651,4 +766,3 @@ Historic pioneer orchards inside the park where you can pick fruit (cherries, ap
 - Capitol Reef Fruita Orchards → https://www.nps.gov/care/planyourvisit/orchards.htm
 - Scenic Byway 12 → https://scenicbyway12.com/
 - Skyview Hotel → https://skyviewhotel.com/
-- Capitol Reef Resort → https://capitolreefresort.com/

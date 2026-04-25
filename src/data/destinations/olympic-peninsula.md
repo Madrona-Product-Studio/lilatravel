@@ -63,10 +63,6 @@ The defining backcountry traverse in the Olympics. The loop climbs from the Sol 
 The steepest and most dramatic day hike in the park. The summit involves exposed scrambling and a rope-assisted section near the top. The reward: jaw-dropping views of Lake Crescent's turquoise water far below, framed by old-growth forest. Not for those uncomfortable with heights. One of the highest-rated trails on the peninsula.
 - **Distance**: 4.4 miles round trip · **Elevation gain**: 2,100 ft · **Difficulty**: Strenuous · **Time**: 3–4 hrs
 
-#### Marymere Falls Trail
-The classic near-Lake Crescent hike — through old-growth conifers to a 90-foot waterfall tucked into a sandstone gorge. Short enough for any level, beautiful enough to anchor a morning.
-- **Distance**: 1.8 miles round trip · **Difficulty**: Easy · **Time**: 1 hr
-
 ### Hoh Rainforest (Temperate Rainforest Zone)
 
 #### Hall of Mosses Trail
@@ -91,6 +87,18 @@ A natural sea arch carved by the surf, accessible by a 1.5-mile walk north along
 A 9-mile loop combining a beach segment with ancient cedar boardwalk trails through coastal forest. Cape Alava is the westernmost point in the contiguous United States. The beach section passes Wedding Rocks — a cluster of petroglyphs carved by the Makah people, some of the most significant ancient rock art on the peninsula. A profound walk.
 - **Distance**: 9 miles loop · **Difficulty**: Moderate · **Time**: 4–5 hrs
 
+### Quinault Rainforest
+
+#### Quinault Rain Forest Loop
+The quieter alternative to the Hoh — same ancient temperate rainforest, a fraction of the visitors. The loop passes through moss-draped bigleaf maple, massive western red cedar, and towering Douglas fir. The world's largest Sitka spruce (over 1,000 years old, 58 feet in circumference) is a short walk from the trailhead. Pair with lunch on the lakefront porch at Lake Quinault Lodge.
+- **Distance**: 3 miles loop · **Difficulty**: Easy · **Time**: 1–2 hrs
+
+### Makah Coast
+
+#### Shi Shi Beach & Point of the Arches
+The most remote and dramatic beach on the Olympic coast. A 4-mile trail through coastal forest descends to a wild beach where Point of the Arches — a cathedral of sea stacks — is accessible at low tide. Requires a Makah Recreation Pass purchased at the Makah Museum in Neah Bay. Backcountry camping is available on the beach with a wilderness permit, making it one of the great overnight experiences in the Pacific Northwest. Check tide tables carefully.
+- **Distance**: 8 miles round trip · **Difficulty**: Moderate · **Time**: Full day or overnight
+
 ### Sol Duc Falls
 A short walk through old-growth forest to a powerful three-pronged waterfall dropping into a basalt gorge. The falls are accessible year-round, photogenic in any weather, and close to the Sol Duc Hot Springs. Combine the two for one of the best half-days in the park.
 - **Distance**: 1.6 miles round trip · **Difficulty**: Easy · **Time**: 45 min
@@ -111,6 +119,17 @@ Gray whales pass the Olympic coast during their annual 10,000-mile migration fro
 Lake Crescent's glacially carved basin holds some of the clearest freshwater in the Pacific Northwest — visibility reaches 60 feet in calm conditions, and the turquoise color is extraordinary from water level. Rent kayaks or stand-up paddleboards at the Lake Crescent Lodge boat dock (single kayak $25/hr, double $35/hr, SUP $25/hr) or bring your own and launch from East Beach or Fairholme. Morning sessions are best — the lake is often glassy before noon, and afternoon winds can build. Paddle toward Barnes Point for the best views of Storm King and the surrounding old-growth slopes. No motorized boats over 10 HP.
 - **Rentals**: Lake Crescent Lodge boat dock — kayaks, SUPs, rowboats. Memorial Day–Labor Day, 9 AM–5 PM.
 - **Launch sites**: East Beach (free, NPS), Fairholme (free, NPS), Lake Crescent Lodge (guests/renters)
+
+#### Surfing — First Beach (La Push)
+Cold, consistent, and uncrowded surf at the base of sea stacks on the Quileute Reservation — one of the most atmospheric breaks in the Pacific Northwest. Water temperatures hover around 10–12°C year-round, so a 5/4mm wetsuit is mandatory. No surf school operates here; bring your own board and wetsuit. The Quileute Oceanside Resort is within walking distance of the break. Best swells run October through April.
+
+#### Hurricane Ridge Road — Cycling
+One of the great cycling ascents in the Pacific Northwest: 17 miles from sea level in Port Angeles to subalpine meadows at 5,242 feet, gaining 5,200 feet of elevation. The Strait of Juan de Fuca and Vancouver Island appear behind you as you climb; the Olympic Range unfolds ahead. Light vehicle traffic in early morning; the descent takes under an hour. Bike rental available from Sound Bikes & Kayaks in Port Angeles. Bring extra layers for the ridge.
+- **Distance**: 17 miles one way · **Elevation gain**: 5,200 ft · **Difficulty**: Strenuous · **Time**: 3–5 hrs up, 45 min down
+
+#### Olympic Discovery Trail — Cycling
+A 130-mile multi-use trail crossing the entire Olympic Peninsula from Port Townsend to La Push. The Port Townsend to Sequim section (30 miles) is the most scenic and family-accessible, passing the Dungeness National Wildlife Refuge and lavender farms in the Sequim valley. E-bike rentals are available in Port Townsend and Port Angeles. Rideable in day sections of any length you choose.
+- **Distance**: 130 miles total (rideable in sections) · **Difficulty**: Easy · **Time**: 2–6 hrs per section
 
 #### Hurricane Ridge Snowshoeing & Wildflower Walks
 Hurricane Ridge transforms by season. In winter (December–March), the ridge becomes a snowshoe destination — the Hurricane Ridge Ski & Snowboard Area rents snowshoes ($25/day) and rangers lead guided snowshoe walks on weekends at 2 PM (free with park entry, first-come-first-served). The road opens Saturdays and Sundays only in winter, weather permitting. In summer (July–August), the same meadows erupt with wildflowers — glacier lilies, lupine, paintbrush, and bistort blanket the subalpine slopes. Rangers lead wildflower walks from the visitor center on summer weekends. Both experiences use the same trails but feel like different parks entirely.
@@ -150,10 +169,22 @@ A remote soaking experience reached by a 2.5-mile hike or a 10-mile bike ride (t
 #### Hoh Rainforest — One Square Inch of Silence
 Acoustic ecologist Gordon Hempton designated a specific point on the Hoh River Trail as "One Square Inch of Silence" — maintained as a symbolic protection for natural quiet. The Hoh valley is one of the quietest places in the Western Hemisphere. Walking the Hoh with no agenda — no earbuds, no podcast, just the sound of the river and the rain on bigleaf maple — is one of the more genuinely meditative experiences available in any national park. No formal program required. Walk in, slow down, stay still.
 
+#### Elwha River — A Landscape Healing Itself
+The largest dam removal in U.S. history returned the Elwha to a free-flowing river after a century. Walk the former dam sites and witness ecological restoration in real time — former reservoir beds are now meadows, cottonwoods taking root in exposed sediment, and salmon returning to waters they haven't reached in a hundred years. This is contemplation of a different kind: a place practicing its own recovery.
+- **Access**: Olympic Hot Springs Road, Elwha Valley — park entry fee applies
+
+#### Kalaloch Lodge — Coastal Stillness
+No formal wellness programming required — the wild beach with its sea stacks and driftwood invites stillness on its own terms. The Kalaloch bluff at dawn, before any other guests are awake, is as restorative as any spa treatment. Walk south from the lodge to find isolation; the beach is miles long and almost empty outside summer. Restoration through absence — no instruction, no structure, just the Pacific.
+
 #### Hurricane Ridge — Dawn Alpine Meditation
 Arrive at Hurricane Ridge before the visitor center opens (typically 9 AM). The parking lot at the ridge faces the entire Olympic Range. At dawn, light rolls across the glaciers and meadows in waves. Marmots emerge. No interpretation needed — just a thermos and a place to sit.
 
 ### Yoga & Wellness
+
+#### Olympic Iyengar Yoga (Port Angeles)
+Founded in 2005 in a 1932 downtown building, this studio brings twenty years of Iyengar tradition to the peninsula. The method emphasizes precise alignment, prop-supported practice, and careful sequencing accessible to all levels and physical conditions. Classes include beginner, Level I and II, Recovery, and Over 55 — the most inclusive yoga offering on the peninsula. Small classes with genuine personal attention.
+- **Address**: South Lincoln Street, Port Angeles, WA
+- **Hours**: Weekday classes year-round; check olympiciyengaryoga.com for schedule
 
 #### Port Angeles and Sequim — Local Studios
 Port Angeles has a small but active wellness community. Studios rotate; search "yoga Port Angeles" for current offerings. The town is 20 minutes from Hurricane Ridge and a natural base camp. Sequim (25 min east) has a larger year-round population and additional options, particularly for Pilates and somatic work.
@@ -274,6 +305,9 @@ The Makah people reside at the northwestern tip of the peninsula, at Neah Bay �
 The largest dam removal project in U.S. history was led, in significant part, by the Lower Elwha Klallam Tribe, who campaigned for decades to restore the free-flowing Elwha River and its salmon runs. The Elwha Dam (built 1913) and Glines Canyon Dam were removed in 2012 and 2014. Sacred sites submerged for a century were re-exposed. An archaeological site revealing 8,000 years of continuous human habitation was uncovered. The project is an ongoing story of ecological and cultural renewal. Drive the Elwha River road (off Hwy 101 west of Port Angeles) and walk to the former dam sites — the river and the revegetating land are visible evidence of what restoration looks like in practice.
 - **Elwha Tribal website**: www.elwha.org
 
+#### Quileute Nation — La Push
+La Push sits on the Quileute Reservation — the Quileute people have lived on this coast for thousands of years, and their relationship with the ocean, rivers, and salmon defines the place. Quileute Days (mid-July) is the annual celebration: traditional salmon bake, canoe races, songs, dances, and storytelling, open to visitors. The Quileute Oceanside Resort is tribally owned — staying or dining there directly supports the community. Treat La Push as a visit to someone's home; the Quileute are sharing their coast.
+
 #### Jamestown S'Klallam Tribe (Sequim)
 The Jamestown S'Klallam — "The Strong People" — operate the 7 Cedars Resort near Sequim and are known for elaborately hand-carved totem poles on their campus. The newly opened Jamestown Tribal Library offers cultural programming and resources. The tribe welcomes visitors year-round.
 
@@ -297,6 +331,11 @@ The hike to the lighthouse and back is 10 miles round-trip on open beach — cha
 
 #### Port Townsend
 One of the most architecturally intact Victorian seaports in the Pacific Northwest. The historic downtown has galleries, independent bookstores, and live music (Centrum Foundation hosts major festivals including Olympic Music Festival and Festival of American Fiddle Tunes). A meaningful counterpoint to the park's wilderness.
+
+#### Centrum — Fort Worden (Port Townsend)
+An arts residency and performance center housed in a former coastal artillery fort on a bluff above the Strait of Juan de Fuca. Centrum hosts nationally significant music festivals including the Festival of American Fiddle Tunes (July) and the Port Townsend Acoustic Blues Festival (August), drawing musicians from across the country. Fort Worden itself is worth the visit — bunkers, lighthouse, officers' quarters, and the Marine Science Center. The setting gives the music a gravity that indoor venues cannot match.
+- **Location**: Fort Worden State Park, Port Townsend
+- **Events**: Year-round programming; summer festival season June–September. Tickets at centrum.org.
 
 #### Feiro Marine Life Center (Port Angeles)
 A small, excellent marine science center focused on species from the Strait of Juan de Fuca and Puget Sound. Touch tanks, knowledgeable volunteers, a good complement to the tide pool experiences at the coast.
@@ -345,6 +384,9 @@ The only campground in the park with ocean views — sites sit above a wild beac
 #### Hoh Campground
 Deep in the rainforest, at the end of Upper Hoh Road. Mossy, quiet, atmospheric. Year-round access. Walk to the Hall of Mosses before the day hikers arrive. Elk are common visitors at dawn.
 
+#### Hoh Valley Cabins
+Four modern northwest contemporary cabins in a forested meadow on Upper Hoh Road, minutes from the park entrance. Elk are regular visitors at dawn. A private hiking trail on the property leads directly into the rainforest, making this the best base for reaching the Hoh early and beating the crowds. Family-owned by descendants of area pioneers. EV charging on-site, full kitchenette, cedar deck with propane grill.
+
 #### Sol Duc Campground
 Forested campground adjacent to the hot springs resort. The hot springs are a short walk from your tent. Campfire rings, running water. One of the park's best campground-to-experience ratios.
 
@@ -352,6 +394,12 @@ Forested campground adjacent to the hot springs resort. The hot springs are a sh
 Tribally owned and operated by the Quileute Nation, directly on First Beach. Cabins, RV sites, a small motel building — the setting is the thing. Views of sea stacks from your window or from the beach ten steps away. Reservation-required; books early in summer. quileute.com
 
 ### Rooted (Boutique, local)
+
+#### Sol Duc Hot Springs Resort
+Thirty-two rustic cabins steps from three naturally heated mineral spring pools in old-growth forest. No phone service or internet by nature of the location — complete disconnection inside the park. Hiking trails depart directly from the resort, including the short walk to Sol Duc Falls. The Springs Restaurant serves Pacific Northwest cuisine for breakfast, lunch, and dinner. Open late March to late October only.
+
+#### Lake Quinault Lodge
+Built in 1926 on the shore of Lake Quinault, this historic lodge is where President Roosevelt lunched in 1937 — a visit believed to have influenced the creation of Olympic National Park. No cell service or WiFi. The Roosevelt Dining Room offers panoramic lake views, and guided rainforest tours and boat rentals depart from the lodge. On the National Register of Historic Places — one of the great park lodges of the American West.
 
 #### Lake Crescent Lodge
 A historic park lodge on the shore of Lake Crescent, operating since 1916. The main lodge rooms are modest and charming; the lakeside cottages are the ones worth requesting. Dining room serves dinner nightly. The view from the porch is unreasonable. Reserve well in advance for summer. olympicnationalparks.com
@@ -366,6 +414,9 @@ A restored Victorian hotel in the heart of Port Townsend's historic district —
 
 #### Domaine Madeleine (Port Angeles)
 Waterfront B&B on the Strait of Juan de Fuca with views to Vancouver Island. Five suites, French-influenced interiors, exceptional breakfasts, kayaks available. Boutique and quiet — a genuine sanctuary for a rest day.
+
+#### Colette's Bed & Breakfast (Port Angeles)
+Five suites on a 10-acre oceanfront estate with 400 feet of frontage facing British Columbia and the San Juan Islands. Gardens featured in Fine Gardening magazine, meticulously landscaped with winding paths and cedar groves. Multi-course gourmet Pacific Northwest breakfast included each morning. Every suite has a fireplace, two-person spa, and private entrance from the gardens. Electric bike rentals on-site for the Olympic Discovery Trail, with the trailhead less than a mile away.
 
 #### Port Townsend Inn / Manresa Castle
 Historic castle hotel above Port Townsend. Restored Victorian grandeur, views of Puget Sound. For those who want their park stay to include something architecturally distinct.

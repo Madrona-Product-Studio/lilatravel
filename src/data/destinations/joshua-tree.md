@@ -121,8 +121,23 @@ Accessible bouldering with iconic formations. Also home to Jumbo Rocks Campgroun
 #### Joshua Tree Rock Climbing School
 Established since 1988. Half and full-day instruction for all levels. The most trusted guiding operation in the area.
 
+#### Vertical Adventures
+Guiding Joshua Tree since 1983 — the longest-running AMGA-certified climbing operation in the park. Half-day and full-day guided climbs for all levels, max 5:1 ratio, all gear provided. The right choice for a first climb on JTree granite.
+
 #### Verticalife
 Local guide service and gear shop in Joshua Tree town. Good for intro clinics and gear rental.
+
+### Cycling
+
+#### Geology Tour Road — Cycling
+The most immersive way to experience the park's geology without a windshield between you and the desert. An 18-mile dirt road through alluvial fans, ancient lake beds, and open desert — low traffic, flat terrain, and the silence of the high desert. Bring your own bike or rent in Joshua Tree town. Dawn cycling before the desert heats up is one of the most elemental experiences in the park.
+- **Distance**: 18 miles round trip · **Difficulty**: Easy · **Time**: 2–3 hrs
+- **Best timing**: Oct–Apr, early morning
+
+### Horseback Riding
+
+#### Horseback Riding — High Desert
+Guided rides through open desert on the park boundary — Joshua trees, boulders, and desert wash at a horse's pace. The desert slows down on horseback in a way it doesn't on foot. Multiple outfitters including Knob Hill Ranch offer sunset rides. No experience needed, western saddles, well-trained horses. Book 2–3 days ahead; sunset rides fill first.
 
 ---
 
@@ -158,6 +173,9 @@ Palm Springs, ~45 min. One of the Coachella Valley's most respected studios. Con
 
 #### Desert Yoga Retreats
 Small-group multi-day retreats based in or near the park. Various teachers rotate through. Check current programming.
+
+#### Earth Yoga & Spa
+The most complete yoga and wellness studio in the high desert — yoga, sound baths, infrared sauna, cold plunge, massage, and acupuncture under one roof. Classes from 7am daily across Vinyasa, Yin, Restorative, sound healing, breathwork, and meditation. The infrared sauna and cold plunge contrast circuit is available without a class booking. Teacher-owned and community-rooted, in Yucca Valley, 10 minutes from Joshua Tree town.
 
 #### Desert Vibes Yoga
 Drop-in yoga studio in Joshua Tree village, walking distance from the coffee shops and galleries on Highway 62. Vinyasa, restorative, yin, and sound-infused classes in a small, community-rooted space. The schedule rotates teachers; check the website or Instagram for current class times. No membership required — single class drop-ins welcome. A practical option for travelers who want a morning practice without committing to a retreat.
@@ -222,6 +240,12 @@ Pizza by the slice, unpretentious, good. A late-afternoon hiker staple.
 #### 29 Palms Inn Restaurant
 On the grounds of the historic inn near the north entrance. Farm-to-table, uses their own garden produce. Breakfast and dinner. Sit outside if weather permits.
 
+#### Kitchen in the Desert
+Caribbean-influenced plates in a sprawling outdoor space with fire pits and string lights. Live music most weekends on the outdoor stage — the best patio in the high desert and a genuine gathering place. Locally owned and community-rooted. Dinner Wed–Sun.
+
+#### Campbell Hill Bakery
+Small-batch artisan bakery open select evenings only — handcrafted breads, pastries, tomato soup, coffee cake. Intimate and unhurried, the kind of place you stumble onto and remember. Check social media for the current schedule.
+
 #### Sunburst Cafe
 Breakfast and lunch. Portions generous, prices reasonable. Loved by locals and marines alike.
 
@@ -235,6 +259,19 @@ Legendary. A roadhouse in the truest sense — part BBQ joint, part honky-tonk, 
 
 #### Pioneertown Motel Bar
 Small, atmospheric bar connected to the motel. Good drinks, desert art on the walls, an entirely different vibe from Pappy's.
+
+### Yucca Valley
+
+#### Luna
+Small-batch sourdough and pastries — cardamom buns, flaky croissants — from an independently owned bakery in Old Town Yucca Valley. A morning ritual stop on the drive through the Highway 62 corridor. Craft-focused and unhurried. Closed Mon–Tue.
+
+#### Frontier Cafe
+Locally beloved newer arrival on the Old Town strip. Good avocado toast, fresh bowls, solid coffee — plant-forward without being precious about it. Breakfast and lunch daily.
+
+### Morongo Valley
+
+#### Spaghetti Western
+Authentic Italian in a desert saloon, owned by Rome-born Jasmine and Lorenzo. Handmade pasta, wood-fired flavors, and a curated wine list. Open Thu–Sun only, with live music on weekends — the kind of place that exists because someone loves what they do.
 
 ### Palm Springs (Orbit)
 
@@ -279,15 +316,18 @@ Joshua Tree town. The landmark local gift shop. Rocks, crystals, desert goods, m
 #### Twentynine Palms Art Gallery
 Rotating shows, often featuring work by local and regional desert artists. Run by the 29 Palms Art Gallery, a nonprofit since 1944.
 
+#### Noah Purifoy Outdoor Desert Art Museum
+Ten acres of large-scale assemblage sculptures built from desert salvage by pioneering Black artist Noah Purifoy, who lived and worked here from 1989 until his death in 2004. Over 100 works made from what the desert discards — tires, washing machines, bicycles, road signs — transformed into commentary on race, politics, and the American landscape. Free, open daily sunrise to sunset, self-guided. One of the most important outdoor art environments in the American West.
+
+#### Agua Caliente Cultural Plaza
+The Agua Caliente Band of Cahuilla Indians telling their own story on their own land — nearly 48,000 square feet of first-person cultural narrative in downtown Palm Springs, opened in 2023. The plaza centers Cahuilla voice: language, basket weaving, songs, water management, and the sacred hot springs that give the tribe its name. The Oasis Trail connects the plaza to the tribal hot springs and Indian Canyons. For travelers who want to understand whose land they're walking on.
+
 #### Palm Springs Art Museum
 World-class collection with strong desert Southwest emphasis. Architecture, photography, and modern art all represented. The building itself is striking.
 
 ### Architecture & Design (Palm Springs)
 
 Palm Springs is one of the world's greatest concentrations of mid-century modern residential architecture. If you're spending a night there:
-
-#### Modernism Week
-February. The largest event of its kind. Home tours, lectures, parties.
 
 #### The Kaufmann Desert House
 1946, Richard Neutra. Visible from the street.
@@ -350,6 +390,12 @@ A small collection of vintage-styled rooms in Joshua Tree town. Art everywhere, 
 #### Pioneertown Motel
 Basic but atmospheric. The only place to sleep in Pioneertown itself. Walking distance to Pappy's.
 
+#### Hotel Wren
+A woman-owned, design-led 12-room hideaway in a reimagined 1940s roadside motel in Twentynine Palms. No televisions — designed intentionally for presence and reflection. Hand-carved woodwork, custom millwork, and bookshelves stocked with astronomy and geology titles. Saltwater pool, hot tub, private patios, and a desert provisions bodega on-site. 21+ property.
+
+#### The Bungalows at Joshua Tree Retreat Center
+Fourteen mid-century suites on the historic Joshua Tree Retreat Center campus, in buildings designed by Lloyd Wright using sacred geometry. Access to the retreat center's meditation areas, pool, hot pool, and vegetarian cafe. Floor-to-ceiling windows, private patios, desert views in all directions. Minutes from the park's west entrance.
+
 #### Sacred Sands
 Boutique B&B in Joshua Tree town. Two rooms only. Thoughtfully appointed, meditation garden, personal attention. One mile from the west entrance — minimal light pollution, strong dark sky access.
 
@@ -385,6 +431,9 @@ Field institute offering educational programs, natural history classes, night sk
 
 #### Joshua Tree National Park Association
 The park's official nonprofit partner. Supports conservation, education, and volunteer programs. Volunteer opportunities available for trail maintenance and restoration.
+
+#### Friends of Joshua Tree
+Habitat restoration, native plant propagation, trail maintenance, and campground rehabilitation inside the park. Drop-in volunteer days and scheduled group projects throughout the season. The reciprocal version of visiting — instead of taking from the desert, you leave it better than you found it.
 
 #### Volunteers for Outdoor California
 Organizes trail restoration and invasive species removal days in and around the park.

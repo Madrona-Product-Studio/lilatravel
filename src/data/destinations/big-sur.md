@@ -133,9 +133,29 @@ One of only two remaining native Monterey cypress forests on Earth — the gnarl
 The trail to China Cove — the most photographed spot in Point Lobos. The cove is a deep emerald bowl of water framed by white cliffs. The trail also passes Pelican Point and offers long coastal views south toward Big Sur.
 - **Distance**: 0.8 miles out-and-back · **Difficulty**: Easy · **Time**: 30 min
 
-#### South Shore Trail (Point Lobos State Natural Reserve)
-The longer coastal route through the reserve, connecting Hidden Beach and Weston Beach (excellent tide pools) along a rugged south-facing shoreline. Combine with Cypress Grove for a half-day loop.
-- **Distance**: 2.6 miles out-and-back · **Difficulty**: Easy-Moderate · **Time**: 1.5 hrs
+#### Limekiln State Park Trail (Southern Big Sur)
+A short trail through old-growth redwoods to four massive 1880s-era limekilns — stone furnaces slowly being reclaimed by the forest. A separate spur leads to Limekiln Falls, a 100-foot waterfall flowing over limestone-crusted rock face. Far less crowded than McWay or Pfeiffer Falls, deep in the southern corridor past the tourist density. The limekilns are a rare intersection of industrial history and deep forest — moss, ferns, and redwood roots pulling the stonework apart.
+- **Distance**: 1 mile round trip (to limekilns); 0.5 miles to waterfall · **Difficulty**: Easy · **Time**: 1–1.5 hrs
+
+### Cycling
+
+#### Highway 1 — Road Cycling
+One of the great road rides in the world. Ninety miles of Pacific Coast Highway with the Santa Lucia Mountains on one side and open ocean on the other. Carmel to Big Sur River Inn (26 miles) is the most manageable day ride; Carmel to Nepenthe (47 miles) for the full epic. Light vehicle traffic outside summer weekends, wide shoulders on most sections, and the Bixby Creek Bridge at mile 13 as the iconic photo stop. Bike rental from Joselyn's Bicycles in Carmel or Sports Basement in Monterey.
+
+#### 17-Mile Drive — Cycling
+Cyclists enter free — one of the few advantages over drivers, who pay the toll. Wind through Del Monte Forest past Ghost Tree, Seal Rock, Bird Rock, and the Lone Cypress. Quieter by bike than by car, with the freedom to stop at every pull-out. Start from the Pacific Grove gate for a natural Monterey-to-Carmel arc.
+- **Distance**: 17 miles · **Difficulty**: Easy · **Elevation gain**: Minimal · **Time**: 2–3 hrs
+
+### Horseback
+
+#### Molera Horseback Tours (Andrew Molera State Park)
+The only horseback riding operation on the Big Sur coast. Family-owned, small groups, well-trained horses. The 1-hour beach ride crosses the Big Sur River and follows the bluff trail to views of the Pacific — no experience needed. The 2.5-hour ride covers the full Molera loop through redwood groves and back along the coast. Seasonal operation, April through November.
+- **Time**: 1–2.5 hrs · **Difficulty**: Easy · **Best timing**: April–November
+
+### Water Excursions
+
+#### Whale Watching — Monterey Bay
+Monterey Bay sits atop a submarine canyon as deep as the Grand Canyon, and the nutrient upwelling draws gray whales (December–April), humpbacks (April–November), and blue whales (July–October). Year-round cetacean sightings fill the gaps — orcas, dolphins, and porpoises. Monterey Bay Whale Watch and Princess Monterey are the established operators, departing from Fisherman's Wharf. Dress in layers; it runs 15–20 degrees colder on the water than on shore.
 
 ### Scenic Drives
 
@@ -246,8 +266,9 @@ A small gallery and overlook garden perched on the cliffs of Highway 1, original
 #### Ventana Big Sur Guided Nature Meditation Walks
 Alila Ventana Big Sur offers guided meditation walks through the resort's 40-acre redwood canyon for resort guests. Led by trained facilitators, the walks integrate mindful movement, forest bathing (shinrin-yoku), and seated meditation at natural stopping points — moss-covered nurse logs, creek crossings, and clearings in the canopy. Sessions typically run 60–90 minutes in the morning. A structured counterpart to solo practice in the canyon.
 
-#### Point Lobos Contemplative Walk & Nature Journaling
-Point Lobos State Natural Reserve offers some of the most meditative walking on the California coast — the combination of ancient Monterey cypress, crashing surf, and protected coves creates a natural rhythm for contemplative practice. The Cypress Grove and South Shore trails are particularly suited to slow, attentive walking and nature journaling. Bring a sketchbook or journal; the tide pools, lichen-covered branches, and China Cove overlook are all subjects that reward stillness. No formal programming — this is self-guided contemplation in one of the most powerful landscapes in the orbit. Arrive before 9 AM for near-solitude.
+#### New Camaldoli Hermitage
+A Camaldolese Benedictine hermitage since 1958, set on 899 acres of silence on the Big Sur coast overlooking the Pacific. Private hermitage rooms for silent retreat; the chapel is open 24 hours with chanted offices at dawn, midday, and vespers. No phones, no internet, no television — the only schedule is the bell. Open to men and women of any background or faith; the monks ask only for respect of the silence. Retreats of 2–9 nights available; popular dates fill months ahead.
+- **Address**: 62475 CA-1, Big Sur
 
 ### Soaking & Thermal
 
@@ -369,6 +390,12 @@ The most significant historical site in the Big Sur orbit. Founded in 1771 by Fa
 #### Pacific Grove Monarch Butterfly Sanctuary
 A grove of eucalyptus trees in Pacific Grove where tens of thousands of monarch butterflies overwinter. From late October through February, the trees are draped in living orange. A short walk through the grove is genuinely moving.
 
+#### Hawthorne Gallery
+A multi-generational Big Sur family gallery directly across from Nepenthe on Highway 1. Painting, sculpture, and blown glass by artists who live and work on this coast — the landscape is in the work. Free to visit, genuinely browsable, no pressure. The kind of gallery where you learn something about a place by looking at how its artists see it. Pair with lunch at Nepenthe for a full Big Sur afternoon.
+
+#### California Condor Viewing — Ventana Wildlife Society
+California condors — 9.5-foot wingspan, once down to 22 birds on Earth — soar the Big Sur thermals thanks to the Ventana Wildlife Society's recovery program since 1997. The condors are wild and free-flying, tagged with numbered wing tags whose individual histories you can look up on the Ventana WS website. Best viewing from Highway 1 pullouts between Pfeiffer Big Sur and Julia Pfeiffer Burns, especially on warm afternoons when thermals are strongest. Conservation as lived practice, not a zoo exhibit.
+
 ### Galleries (Carmel-by-the-Sea)
 
 Carmel has one of the highest concentrations of art galleries per capita in the US — over 100 within the small village. The Carmel Art Association (est. 1927) is the oldest gallery cooperative on the West Coast. Ocean Avenue is the main corridor; most galleries have no cover, no pressure, and welcome browsers.
@@ -409,6 +436,9 @@ Cabins and motor lodge rooms in the redwoods alongside the Big Sur River. Each u
 
 #### Big Sur Lodge (Pfeiffer Big Sur State Park)
 Operated by California State Parks. Basic but storied — cottages inside the state park, walking distance to every trailhead. The least expensive roofed accommodation in the Big Sur corridor and the most convenient for serious hikers.
+
+#### Deetjen's Big Sur Inn
+Hand-built Norwegian-style cabins from the 1930s — Helmuth Deetjen constructed them one board at a time from salvaged redwood before Highway 1 was even completed. No locks on the doors, no TVs, no phones in the rooms. The fireplaces are real, and the creaking is part of the character. Breakfast in the candlelit dining room is a Big Sur institution. A nonprofit since 1972 — your stay directly funds preservation of one of Big Sur's most storied properties.
 
 #### Fernwood Resort
 The full-service community hub of Big Sur — motel rooms, cabins, glamping tents, a campground, the Fernwood Tavern, and the general store. Nothing exceptional in any individual category, but the sum is more than its parts: it's the most social place to stay on the coast.

@@ -67,24 +67,34 @@ The primary canyon trail runs 3.6 miles along the rim, with a detour to the top 
 A 3.8-mile trail from the end of the highway at Puʻu o Kila Lookout into the Alaka'i Swamp — the world's highest tropical swamp (4,000 feet elevation), home to rare native birds found nowhere else on Earth (ʻapapane, ʻiʻiwi, pueo). The trailhead viewpoint overlooks the Kalalau Valley. Long and often muddy — wear gaiters.
 - **Distance**: 7.6 miles round trip · **Difficulty**: Moderate · **Time**: 3–4 hrs
 
+#### Nualolo Trail — Nā Pali Rim (Kōkeʻe State Park)
+Nā Pali cliff views with half the traffic of the Kalalau Trail — the trail ends at a vertiginous overlook 3,000 feet above the coast. Mostly downhill to the viewpoint, then a sustained uphill return, so save energy and water for the way back. Can be combined with the Nualolo Cliffs Trail for a 9-mile loop with a knife-edge ridge traverse. Start by 8 AM — afternoon clouds regularly obscure the views.
+- **Distance**: 7.5 miles round trip · **Elevation gain**: 1,500 ft · **Difficulty**: Strenuous · **Time**: 5–7 hrs · **Permit**: No
+
 ### North Shore
 
 #### Hāʻena State Park — Ke'e Beach & Reef Walk
 The beach at the end of the highway — where the road literally stops — is one of the most beautiful on the island. A calm reef lagoon in summer creates a protected snorkeling environment with excellent visibility. In winter, the water is rough and the reef is for looking, not entering. Reservations required through gohaena.com. Arrive early.
 
-#### Sleeping Giant (Nounou Mountain — East Trail)
-A local's hike above Kapa'a, reaching a ridge with panoramic views of the East Shore, Mount Waiʻaleʻale, and the Pacific. Named for the profile of the ridge, which resembles a reclining figure. Less crowded than the north shore trails, more revealing as a view of the island's interior.
-- **Distance**: 3.4 miles round trip · **Elevation gain**: 1,000 ft · **Difficulty**: Moderate · **Time**: 2–2.5 hrs
-
-#### Kuamoʻo-Nounou Trail (East Side)
-An alternative approach to the Sleeping Giant ridge from the west, connecting through a forested interior corridor along Kuamoʻo Road. The trail crosses the Nounou Mountain ridgeline with views into the Wailua River valley and out to the coast. Less trafficked than the East Trail, with more shade and a wilder feel. Can be combined with the East Trail for a through-hike with a car shuttle.
-- **Distance**: 4.0 miles round trip · **Elevation gain**: 1,100 ft · **Difficulty**: Moderate · **Time**: 2.5–3 hrs
+#### Surfing — Hanalei Bay
+The most beautiful bay in Hawaiʻi is also one of the best places to learn to surf. Summer (May-September) brings small, consistent swell with warm water and long slow rides — multiple surf schools operate from the pier end with two-hour lessons. Winter swells (November-March) make this an expert-only break; come to watch, not paddle out.
+- **Difficulty**: Easy (summer lessons) / Expert (winter) · **Time**: 2–3 hrs · **Permit**: No
 
 ### South Shore
 
 #### Māhāʻulepū Heritage Trail (South Shore)
 A coastal walk along Kauaʻi's most intact stretch of undeveloped shoreline — lithified sand dunes, tide pools, an ancient sinkhole, and views of the rugged Māhāʻulepū coastline that most visitors never see. The trail begins past the Grand Hyatt at Shipwreck Beach and follows the coast southeast past Punahoa Point to Māhāʻulepū Beach. Easy terrain on packed sand and rock. Access through CJM Country Stables gate; closes at dark.
 - **Distance**: 4 miles round trip · **Elevation gain**: minimal · **Difficulty**: Easy · **Time**: 1.5–2 hrs
+
+### East Side
+
+#### Snorkeling — Lydgate Beach
+Two protected lava rock pools create calm, clear snorkeling regardless of ocean conditions — the safest reef snorkeling on the island. Green sea turtles, reef triggerfish, parrotfish, and surgeon fish are visible in the protected pools year-round. Perfect for first-time snorkelers and families; pair with a morning paddle on the Wailua River, whose boat ramp is a five-minute drive north.
+- **Difficulty**: Easy · **Time**: 1–3 hrs · **Permit**: No
+
+#### Ke Ala Hele Makalae Coastal Path (East Shore)
+A paved multi-use coastal path stretching 16 miles from Lydgate Beach Park to Anahola with ocean views the entire way — one of the best cycling corridors in Hawaiʻi. Flat, accessible, and family-friendly, passing through Kapaʻa town and several snorkel spots. Bike rentals including e-bikes available in Kapaʻa within steps of the path. Early morning before trade winds pick up is the best window.
+- **Distance**: 16+ miles one way · **Difficulty**: Easy · **Time**: 2–4 hrs · **Permit**: No
 
 ### Interior / Cross-Island
 
@@ -99,6 +109,12 @@ The 20-mile scenic road from Waimea town to the end of Kōkeʻe State Park passe
 
 #### North Shore Road (Highway 56 / 560 to road's end)
 From Lihue to Hāʻena: 40 miles that compress the island's most dramatic coastal beauty. The road narrows past Hanalei, crosses one-lane bridges over rivers and taro fields, passes ancient ahupua'a land boundaries, and ends at Ke'e Beach. The taro fields of the Hanalei National Wildlife Refuge, visible from the valley overlook just before the descent, are extraordinary — green paddies framed by waterfalls.
+
+### Cycling
+
+#### Waimea Canyon Road — Cycling
+The road climbs 3,600 feet from sea level to the canyon rim — the Pacific Ocean visible over your shoulder the entire way. Light vehicle traffic outside peak visitor hours makes the ascent feel remote and earned. At the top: Waimea Canyon Lookout and Kōkeʻe State Park. The descent is exceptional. Road bike or hybrid required; the grade is sustained throughout.
+- **Distance**: 18 miles one way · **Elevation gain**: 3,600 ft · **Difficulty**: Strenuous · **Time**: 3–5 hrs
 
 ---
 
@@ -188,6 +204,12 @@ A north shore institution — taro smoothies, local plate lunch, shave ice done 
 #### Wishing Well Shave Ice
 The best shave ice on the island. Organic, local fruit flavors, natural syrups. Worth the stop in Hanalei town.
 
+#### Hanalei Bread Company
+Organic bakery and morning ritual on the North Shore — fresh-baked breads, pastries, breakfast sandwiches, and strong coffee. Small, craft-focused, the kind of stop that anchors a morning before heading to the trail or the beach.
+
+#### Postcards Cafe
+Seafood and vegetarian fine dining in a charming plantation-era house in Hanalei. Strong commitment to plant-forward cooking alongside local fish, with many vegan and gluten-free options. One of the North Shore's most intimate dinner experiences.
+
 ### South Shore (Poipū / Koloa)
 
 #### The Beach House Restaurant
@@ -198,6 +220,20 @@ Every Wednesday afternoon. The best local produce, prepared food, and artisan go
 
 #### Merriman's Fish House (Poipū)
 Farm-to-table Hawaiian regional cuisine from one of the state's most respected restaurant groups. Local fish, Kauaʻi-grown vegetables, excellent execution.
+
+#### Eating House 1849 (Koloa)
+Chef Roy Yamaguchi's James Beard Award-winning restaurant at The Shops at Kukuiʻula. Plantation-era Hawaiian flavors reimagined — the menu shifts seasonally with what local farmers, foragers, and fishermen produce. The south shore's most interesting kitchen.
+
+#### Koloa Fish Market
+A cash-only poke counter where locals bring produce to the back door to trade for fish. Traditional and creative poke preparations with whatever came in that morning — no poke on Kauaʻi is more place-rooted than this.
+
+### East Side (Kapaʻa / Wailua)
+
+#### Hukilau Lanai (Kapaʻa)
+Fresh, creative island cuisine sourced from local fishermen and Kauaʻi farms, served in a warm tiki-influenced setting with outdoor lanai seating. Named for the traditional Hawaiian fishing practice, Hukilau fills the entire East Shore dining gap and is Kapaʻa's anchor restaurant.
+
+#### Oasis on the Beach (Kapaʻa)
+Sources 80% of ingredients from Kauaʻi farmers and fishermen, served in one of the few beachside dining rooms on the East Shore. A creative Pacific Rim menu that changes with what is available — the kind of restaurant that makes you feel the island.
 
 ### West Side (Waimea / Hanapepe)
 
@@ -239,17 +275,8 @@ A fifth-generation Kauaʻi family has been farming this land since 1865. Today, 
 
 ### Land & Water
 
-#### Nā Pali Coast — Boat Tour
-The coast is only accessible by land for the first two miles of the Kalalau Trail; everything beyond is best seen from the water. Rigid-inflatable raft tours (6 hours, May–September) navigate into sea caves, under waterfalls, and along the base of the pali in ways the trail can't. Captain Andy's and Blue Dolphin Charters have the longest track records. Book weeks ahead for summer.
-
 #### Helicopter Flight — Waimea Canyon & Interior
 Kauaʻi's interior — the Mt. Waiʻaleʻale crater and the rivers that flow from it — is almost completely inaccessible on foot. A helicopter flight is the only way to see the inner waterfalls. Blue Hawaiian Helicopters flies doors-off tours; Jack Harter Helicopters pioneered the doors-off experience on Kauaʻi. Expensive and genuinely unlike anything else.
-
-#### Snorkeling — Tunnels Reef (Hāʻena)
-One of the finest snorkel sites in Hawaiʻi — a large lava reef system teeming with Hawaiian green sea turtles (honu), reef fish, and in summer, manta rays at dusk. Access via Hāʻena State Park reservation. Best in summer when the north shore is calm. Arrive early; parking fills fast.
-
-#### Kīlauea Lighthouse & National Wildlife Refuge
-A century-old lighthouse on a headland above the Pacific. The refuge below supports nesting colonies of red-footed boobies, frigatebirds, Laysan albatross (winter nesting), and wedge-tailed shearwaters. One of the best seabird viewing sites in the main Hawaiian Islands. Humpbacks visible offshore in winter.
 
 ### Art & Culture
 
@@ -258,6 +285,11 @@ A small former plantation town on the south shore that has become a genuine arti
 
 #### McBryde Garden (National Tropical Botanical Garden)
 The south shore companion to Limahuli — a major botanical collection with the largest assembly of native Hawaiian plants in the world, plus tropical collections from across the Pacific. Guided tours available and strongly recommended. ntbg.org
+
+### Music & Performance
+
+#### McMaster Slack Key Guitar Concerts (Hanalei)
+Doug and Sandy McMaster have performed traditional Hawaiian slack key guitar and steel guitar since 1999 — one of the longest-running live music traditions on the island. Slack key (kī hōʻalu) is a uniquely Hawaiian guitar style passed down through families, and the McMasters learned from masters and now share the tradition weekly. Fridays at 4 PM and Sundays at 3 PM at the Hanalei Community Center — intimate, unhurried, and deeply respectful of the tradition.
 
 ---
 
@@ -311,14 +343,17 @@ The only true beachfront property in Hanalei. No TVs, no phones in rooms — sim
 #### Kauaʻi Inn (Lihue)
 The most practical affordable hotel on the island — well-located in Lihue near the airport, clean and simple, operated with care. A good first and last night option. kauai-inn.com
 
-#### Na Pali Coast Cottages (Hanalei area)
-Small independent cottage rentals on the north shore. The Vacation Rental landscape on Kauaʻi is extensive — for something with character, look for VRBO/Airbnb listings that are locally owned and long-established. The north shore cottage experience is a Kauaʻi original.
-
 #### Waimea Plantation Cottages (Waimea, West Side)
 A collection of restored plantation-era cottages spread across a coconut grove on the west side, steps from the black-sand beach at Waimea. The buildings date from the early 1900s sugar plantation days — individual wooden cottages with deep porches, period details, and a pace that matches the quietest side of the island. The location is the best base for Waimea Canyon and Kōkeʻe exploration, and the sunsets over Niʻihau from the beach are unmatched. No resort amenities, no crowds — just history, stillness, and the garden isle as it was. waimea-plantation.com
 
 #### Aston at Poipū Kai (Poipū, South Shore)
 A condo-style resort set back from the coast in a 110-acre tropical setting near Brennecke's Beach and Poipū Beach Park. One- and two-bedroom units with full kitchens — practical for families and longer stays. The property is quieter and more affordable than the beachfront resorts, with pool access and walking distance to the south shore's best beaches and restaurants. A solid budget-friendly base for the south shore. astonhotels.com
+
+#### Hanalei Bay Resort (Princeville, North Shore)
+A 22-acre condo resort with cascading pools and lava rock waterfalls, steps from Puʻu Poa Beach on Hanalei Bay. Condo-style units with full kitchens make it practical for longer stays, and sweeping views of the Nā Pali mountains and Hanalei Bay come from most units. A more affordable North Shore alternative to the 1 Hotel, sharing the same beach. hanaleibayresort.com
+
+#### The Palmwood (Moloaʻa Hills, North Shore)
+An intimate B&B on a secluded five-acre estate in the Moloaʻa hills, inspired by the mountain country inns of Japan. Eastern-influenced design with warm, cozy rooms and lush grounds close to the island's finest north shore attractions. A quiet, off-the-resort-trail alternative with the personal touch of a genuine inn. thepalmwood.com
 
 ### Premium (Elevated experience)
 

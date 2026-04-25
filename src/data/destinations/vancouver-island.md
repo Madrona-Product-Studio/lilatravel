@@ -49,10 +49,6 @@ The land around Tofino has been home to the Nuu-chah-nulth peoples for over 10,0
 A 16-kilometer stretch of wild Pacific coastline — the longest beach in Canada accessible by road. The beach shifts from hard sand to tide pools to driftwood fields depending on where you walk. Surfers at one end, beachcombers at the other, old-growth forest as a backdrop on both. Walk it at low tide for the widest expanse; walk it in a storm for the full experience. Access from multiple pullouts along Pacific Rim Highway.
 - **Distance**: Up to 16 km · **Difficulty**: Easy · **Time**: 1–4 hrs depending on length
 
-#### Rainforest Trail (Pacific Rim National Park Reserve)
-Two short loop trails through a western red cedar and Sitka spruce old-growth forest. Loop A (1 km) and Loop B (1 km) feature boardwalk through a stand of trees that feel genuinely ancient — cedar root systems covering the boardwalk, nurse logs supporting entire ecosystems, filtered light coming down through the canopy. For those who want old-growth access without committing to a full day of hiking.
-- **Distance**: 1 km each loop · **Difficulty**: Easy · **Time**: 30–45 min per loop
-
 #### Wild Pacific Trail (Ucluelet)
 A 10-kilometer trail hugging the rocky headland of the Ucluth Peninsula — owned and managed in part by the Yuułuʔiłʔatḥ (Ucluelet) First Nation. The trail is divided into sections: the Lighthouse Loop (2.6 km, easy, family-friendly) circles the Amphitrite Point Lighthouse with open ocean views; the Ancient Cedars section moves into old-growth forest. Whales are visible offshore in spring and fall. The trail offers accessible coastal walking without permit or crowds.
 - **Distance**: 2.6–10 km depending on section · **Difficulty**: Easy-Moderate · **Time**: 1–4 hrs
@@ -84,6 +80,35 @@ The most demanding and celebrated multi-day trail on Vancouver Island — 75 kil
 A 47-kilometer coastal trail south of the West Coast Trail, running from Botanical Beach near Port Renfrew to China Beach near Jordan River. **Note: The full trail sustained significant storm damage and was closed through summer 2025; check bcparks.ca for current status before planning.** Individual sections — particularly the Mystic Beach access from China Beach (2.6 km, easy) and Botanical Beach (accessible year-round) — remain accessible as spectacular day hikes. Botanical Beach hosts some of the most dramatic tide pools on the island.
 - **Day hike**: Mystic Beach 2.6 km round trip · China Beach trailhead · Easy
 - **Botanical Beach**: 2.5 km round trip · Port Renfrew · Easy
+
+### Surfing
+
+#### Surfing — Cox Bay
+The beginner break at Tofino — consistent, long, forgiving waves on a wide sandy bay. Cold water (10-14 degrees Celsius year-round) and real surf culture make this an elemental practice, not a resort amenity. Multiple surf schools operate here including Pacific Surf School and Tofino Surf Adventures. A 4/3mm wetsuit is mandatory; 5/4mm in winter. September through November brings the biggest consistent swells for advancing surfers.
+
+### Cycling
+
+#### Tofino to Long Beach — Bike Path
+A separated multi-use path connecting Tofino to Long Beach through the park — the most pleasant way to move between town and the beach without a car. The route passes Cox Bay and Chesterman Beach before entering Pacific Rim National Park Reserve. E-bikes and standard bikes available from multiple Tofino operators; flat and accessible for all fitness levels. The sunset ride back into Tofino along the inlet is one of the great low-key experiences on the coast.
+- **Distance**: 12 km one way · **Difficulty**: Easy · **Time**: 1–2 hrs each way
+
+### Water Excursions
+
+#### Whale Watching — Clayoquot Sound
+Gray whales migrate through Clayoquot Sound March through April and feed in the area through October. Humpbacks arrive May through September. Resident orcas year-round. Zodiac tours get closer to the water; covered boats are warmer and drier — choose based on your tolerance for cold spray. Remote Passages, Jamie's Whaling Station, and The Whale Centre are the established operators, all with marine biologist guides. Dress for Pacific weather regardless of the forecast.
+
+#### Hot Springs Cove — By Boat
+Hot Springs Cove is also listed in the move section because the journey itself — 1.5 hours by zodiac through open Pacific and sheltered inlets — is half the experience. Natural geothermal pools cascade down rock shelves directly into the Pacific, with a hot-cold contrast at high tide that is extraordinary. A 2-kilometer old-growth boardwalk connects the dock to the springs. Arrive early on the first boat to have the pools before the midday tours.
+
+### Storm Watching
+
+#### Storm Watching — Pacific Winter Storms
+November through February, Pacific storms drive 20-foot swells directly into the Tofino and Ucluelet coast. Wickaninnish Inn, Pacific Sands, and Long Beach Lodge all have storm-watching rooms with floor-to-ceiling windows facing the open Pacific. Walk the Wild Pacific Trail in Ucluelet during a storm for the full-body experience — rain gear, waterproof boots, humility before the ocean. This is not passive watching. The sound, the spray, and the force of the water against the headlands is a physical experience.
+
+### Mountain Biking
+
+#### Mountain Biking — Cumberland
+World-class singletrack in a former coal mining town — Cumberland is Vancouver Island's mountain biking capital with over 200 kilometers of maintained trail. Trails range from smooth flowy green runs to technical black diamond, and the network is deep enough for a multi-day riding trip. The town itself is a charming village with craft breweries, cafes, and a mountain culture vibe. Riders and Rogue is the local bike shop and community hub. Cumberland is 2.5 hours from Tofino — worth the drive for serious riders.
 
 ### Scenic Drives
 
@@ -158,6 +183,15 @@ Japanese-influenced local seafood at Tofino Resort + Marina. Crisp execution. Wo
 #### Common Loaf Bake Shop
 Tofino's original bakery — sourdough, pastries, strong coffee. Community institution since the 1970s. Morning staple.
 
+#### The Pointe Restaurant (Wickaninnish Inn)
+Tofino's most celebrated dining room — 240-degree ocean views through floor-to-ceiling windows above Chesterman Beach. Refined west coast cuisine built on wild mushrooms, foraged herbs, and local seafood. The definition of place-rooted luxury dining, with an award-winning wine list. Open for breakfast, lunch, and dinner daily. Reservations essential.
+
+#### Tacofino
+The original food truck, now a Tofino institution. Straight-from-the-dock fish tacos, burritos, and churros — no pretension, deeply place-rooted, the entire town eats here. The perfect post-surf or post-hike stop.
+
+#### Wildside Grill
+A commercial fisherman and chef partnership — as dock-to-plate as it gets. Fish and chips, burgers, and whatever came off the boat that morning. Takeout window format with zero pretension and maximum freshness. A working expression of Tofino's fishing culture. Seasonal operation, March through October.
+
 #### SoBo (Soule Creek Lodge, relocated)
 Originally a food truck, now a proper restaurant in a forested setting outside Tofino. Known for fish tacos, local shellfish, and an ethos of whole-ingredient cooking. A Tofino original.
 
@@ -203,8 +237,11 @@ The Ahousaht Nation-owned tour operator — and the one to book with if you're d
 
 ### Arts & Nature
 
+#### T'ashii Paddle School
+Tla-o-qui-aht-owned and operated ocean canoeing on Clayoquot Sound. The canoe is central to Nuu-chah-nulth culture — transportation, ceremony, governance, and relationship with the sea. Sunrise and sunset paddles in a big canoe through the harbour and Meares Island area, led by Indigenous guides. Group paddling requires cooperation, and the social dimension is the practice. T'ashii means "beautiful" in the Tla-o-qui-aht language. Seasonal operation, May through October.
+
 #### Tofino Botanical Gardens
-A 12-acre coastal garden at the edge of Tofino, adjacent to a working estuary. Native plant collections, Pacific Rim ecology interpretive exhibits, and seasonal events including the popular Tofino Food and Wine Festival in October. Restful, well-curated, and undervisited.
+Twelve acres of rainforest, gardens, shoreline, and sculpture nestled between the highway and the inlet — a quieter side of Tofino most visitors miss. The gardens celebrate multiple cultural layers: Nuu-chah-nulth relationships with the land, Japanese fishing families who settled here, and the counterculture history of the coast. Rainforest boardwalk, educational greenhouses, intertidal viewing platforms, and a children's garden. Operated by the Clayoquot Biosphere Trust, so your admission supports biosphere conservation and community education. Events year-round including the Winterlights lantern festival.
 
 #### Raincoast Education Society
 A Tofino-based environmental education nonprofit running guided intertidal ecology walks, marine ecosystem programming, and naturalist-led experiences throughout the sound. Programs vary by season — check raincoast.org. One of the better ways to understand what you're looking at on the coast.
@@ -253,6 +290,15 @@ On Cox Bay, directly on a consistent surf break. Self-catering suites and cabins
 #### Long Beach Lodge Resort
 On Cox Bay, with a dedicated surf camp operation and a well-regarded dining room (the Pointe Restaurant). Directly on the beach. The great room has a fireplace the size of a car and views of the Pacific that command attention. longbeachlodgeresort.com
 
+#### Tin Wis Resort
+Owned and operated by the Tla-o-qui-aht First Nation on ancestral village land occupied for tens of thousands of years. Every room faces the ocean — tinwis means "calm waters" in the Tla-o-qui-aht language. The resort hosts naaʔuu, a cultural feast series with traditional food, art, song, and dance, with proceeds funding language revitalization. Connected to Tla-o-qui-aht Tribal Parks and aligned with the ʔiisaak pledge for respectful stewardship.
+
+#### Ocean Village Resort
+The original Tofino resort — cedar cabins built in 1976 using timber from the property, admired for their distinctive "beehive" design and direct beachfront location on MacKenzie Beach. Campfire on the beach steps from your cabin, the only indoor heated pool in Tofino, and full kitchens in every unit designed for settling in and staying a while. Pet-friendly, family-oriented, the antidote to the resort experience.
+
+#### Crystal Cove Beach Resort
+Thirty-four modern log cabins set among ancient cedars at the edge of the Pacific on MacKenzie Beach. Beachfront cabins with private hot tubs, rainforest cottages with cedar barrel saunas, fire pits, and full kitchens. The full spectrum of Tofino — beach, forest, surf, and stillness all within the property. The resort acknowledges the traditional and unceded territory of the Tla-o-qui-aht First Nation.
+
 #### Pluvio Restaurant + Rooms (Ucluelet)
 Six rooms above the best restaurant in Ucluelet. Small, thoughtfully furnished, quiet. Book room + dinner as a package. pluviorestaurant.com
 
@@ -263,6 +309,12 @@ The defining luxury property on the outer coast of British Columbia — and one 
 
 #### Clayoquot Wilderness Resort (Remote — Bedwell River)
 See above under Elemental. The most remote and most expensive stay in the region. Fly-in from Tofino. All-inclusive. The experience is defined by the depth of wilderness access.
+
+### Corridor Stay
+
+#### Free Spirit Spheres (Qualicum Beach)
+Handmade wooden spheres suspended in the forest canopy — you sleep inside a sphere hung from old-growth trees, swaying gently in the wind. Three spheres (Eve, Eryn, Melody), each with a different design, built by hand by Tom Chudleigh over 15 years from local wood and salvaged materials. No electricity — candlelight, wood stove, and forest silence. The simplicity is the luxury. Two hours from Tofino on Highway 4, making it a natural overnight on a corridor itinerary.
+- **Address**: 420 Horne Lake Rd, Qualicum Beach
 
 ---
 
