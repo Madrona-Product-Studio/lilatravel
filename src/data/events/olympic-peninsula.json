@@ -1,0 +1,155 @@
+[
+  {
+    "id": "gray-whale-migration",
+    "name": "Gray Whale Migration",
+    "type": "seasonal",
+    "description": "Gray whales pass Olympic's rugged coastline on their 10,000-mile round trip between Baja California and the Bering Sea. Northbound migration peaks March through May — viewable from Kalaloch Lodge, Cape Flattery, and beaches along the Strait of Juan de Fuca. Some gray whales are year-round residents of the strait. Cow-calf pairs pass close to shore in late spring.",
+    "timing": {
+      "months": ["february", "march", "april", "may", "june"],
+      "approximate_dates": "February through June; peak March–May",
+      "recurring": true
+    },
+    "location": "Kalaloch Beach, Cape Flattery, Shi Shi Beach, Strait of Juan de Fuca viewpoints",
+    "cost": "free",
+    "links": {
+      "website": "https://www.myolympicpark.com/things-to-do/wildlife/whale-watching/"
+    },
+    "tags": ["wildlife", "whale-watching", "migration", "natural-phenomenon", "spring"]
+  },
+  {
+    "id": "salmon-run-season",
+    "name": "Salmon Run Season",
+    "type": "seasonal",
+    "description": "Wild salmon return to Olympic Peninsula rivers to spawn in one of the Pacific Northwest's most primal natural spectacles. The Sol Duc's Salmon Cascades viewpoint is the most accessible spot — watch salmon leap waterfalls from a dedicated platform. Hoh River runs extend April through November. Peak viewing is mid-September through late October, when fall rain triggers the main push.",
+    "timing": {
+      "months": ["september", "october", "november"],
+      "approximate_dates": "Mid-September through late November; peak late September–October",
+      "recurring": true
+    },
+    "location": "Salmon Cascades (Sol Duc), Hoh River, Queets River, Bogachiel River",
+    "cost": "free",
+    "links": {
+      "website": "https://olympicnationalparklodging.com/blog/salmon-run-at-salmon-cascades/"
+    },
+    "tags": ["wildlife", "salmon", "natural-phenomenon", "fall", "rivers"]
+  },
+  {
+    "id": "hoh-rainforest-fall-color",
+    "name": "Hoh Rainforest Autumn Color & Elk Rut",
+    "type": "seasonal",
+    "description": "October in the Hoh Rain Forest is magic — bigleaf and vine maples carpet the forest floor in gold and amber against curtains of green moss and ancient conifers. Roosevelt elk bulls bugle through the mist during mating season. Over 1,400 species of mushrooms flush with the autumn rains. One of the most atmospheric fall experiences in the country.",
+    "timing": {
+      "months": ["october", "november"],
+      "approximate_dates": "Early October through mid-November; elk rut peaks September–October",
+      "recurring": true
+    },
+    "location": "Hoh Rain Forest, Lake Crescent, Sol Duc Valley, Quinault Rain Forest",
+    "cost": "free (park entrance fee)",
+    "links": {
+      "website": "https://www.myolympicpark.com/things-to-do/natural-wonders/fall-colors-olympic-national-park/"
+    },
+    "tags": ["fall-color", "elk-rut", "mushrooms", "rainforest", "photography", "autumn"]
+  },
+  {
+    "id": "sequim-lavender-festival",
+    "name": "Sequim Lavender Festival",
+    "type": "festival",
+    "description": "Sequim sits in the Olympic rain shadow and has one of the highest concentrations of lavender farms in the US. The annual festival opens farms normally closed to the public, with 150+ craft and food booths in the Festival in the Park. Free admission, free parking. The lavender fields backed by the Olympic Mountains are extraordinary.",
+    "timing": {
+      "months": ["july"],
+      "approximate_dates": "Third weekend in July (July 17–19, 2026)",
+      "recurring": true
+    },
+    "location": "Downtown Sequim and surrounding lavender farms",
+    "cost": "free",
+    "links": {
+      "website": "https://www.lavenderfestival.com/"
+    },
+    "tags": ["lavender", "farms", "festival", "summer", "free", "sequim"]
+  },
+  {
+    "id": "wooden-boat-festival",
+    "name": "Wooden Boat Festival",
+    "type": "festival",
+    "description": "North America's largest wooden boat festival, held at the Northwest Maritime Center on Port Townsend's historic waterfront. Three days of wooden boats in the water and on land, boat building demos, sailing races, live music, and maritime craft. Port Townsend's Victorian seaport character makes the whole town feel like part of the festival.",
+    "timing": {
+      "months": ["september"],
+      "approximate_dates": "Second weekend in September (September 11–13, 2026)",
+      "recurring": true
+    },
+    "location": "Northwest Maritime Center, Port Townsend waterfront",
+    "cost": "$–$$",
+    "links": {
+      "website": "https://woodenboat.org/"
+    },
+    "tags": ["maritime", "boats", "craft", "port-townsend", "fall"]
+  },
+  {
+    "id": "dungeness-crab-festival",
+    "name": "Dungeness Crab & Seafood Festival",
+    "type": "festival",
+    "description": "A free, three-day outdoor festival on the Port Angeles waterfront celebrating the region's namesake crustacean. Crab kept in live tanks and cooked on-site — whole Dungeness crab dinners with farm-fresh corn and coleslaw. Plus 75+ artisan vendors, live music, Coast Guard boat tours, and a beer garden. Rain or shine.",
+    "timing": {
+      "months": ["october"],
+      "approximate_dates": "Second weekend in October (October 9–11, 2026)",
+      "recurring": true
+    },
+    "location": "Port Angeles City Pier Park, downtown waterfront",
+    "cost": "free (admission); $ (crab dinners)",
+    "links": {
+      "website": "https://www.crabfestival.org/"
+    },
+    "tags": ["seafood", "crab", "port-angeles", "fall", "free-admission", "waterfront"]
+  },
+  {
+    "id": "olympic-music-festival",
+    "name": "Olympic Music Festival",
+    "type": "cultural",
+    "description": "World-class chamber music performed in the intimate Wheeler Theater at Fort Worden State Park in Port Townsend. Saturdays and Sundays at 2pm throughout August. Works spanning Prokofiev to Dvorak in a setting where military history meets some of the best acoustics in the Pacific Northwest.",
+    "timing": {
+      "months": ["august"],
+      "approximate_dates": "Saturdays & Sundays, August 8–30, 2026, 2:00 PM",
+      "recurring": true
+    },
+    "location": "Wheeler Theater, Fort Worden State Park, Port Townsend",
+    "cost": "$$",
+    "links": {
+      "website": "https://www.olympicmusicfestival.org"
+    },
+    "tags": ["chamber-music", "classical", "port-townsend", "summer", "fort-worden"]
+  },
+  {
+    "id": "port-townsend-farmers-market",
+    "name": "Port Townsend Farmers Market",
+    "type": "market",
+    "description": "Now in its 34th season, the Port Townsend Saturday Farmers Market brings 70+ vendors to Tyler Street in Uptown — locally grown produce, wild Alaskan salmon, smoked fish, Dungeness crab, artisan foods, and handmade goods. Opening day tradition includes a goat parade. A Wednesday market runs June through fall, 3–6pm.",
+    "timing": {
+      "months": ["april", "may", "june", "july", "august", "september", "october", "november"],
+      "approximate_dates": "Saturdays 9am–2pm, April through November; Wednesdays 3–6pm, June through fall",
+      "recurring": true
+    },
+    "location": "Tyler Street, Uptown Port Townsend",
+    "cost": "free",
+    "links": {
+      "website": "https://jcfmarkets.org/markets"
+    },
+    "tags": ["farmers-market", "local-produce", "port-townsend", "seasonal", "saturday"]
+  },
+  {
+    "id": "nps-ranger-programs",
+    "name": "NPS Ranger Programs",
+    "type": "cultural",
+    "description": "Olympic National Park offers ranger-led programs exploring its three distinct ecosystems — glacier-capped mountains, temperate rainforest, and wild Pacific coast. Summer brings daily guided walks and talks; winter programs include snowshoe walks at Hurricane Ridge and astronomy nights. A deeper way to understand one of the most ecologically diverse parks in the system.",
+    "timing": {
+      "months": ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"],
+      "approximate_dates": "Year-round; daily in summer, weekends in winter",
+      "recurring": true
+    },
+    "location": "Various locations — Hurricane Ridge, Hoh Rain Forest Visitor Center, Kalaloch, Sol Duc",
+    "cost": "free (park entrance fee required)",
+    "links": {
+      "website": "https://www.nps.gov/olym/planyourvisit/ranger-led-programs.htm"
+    },
+    "tags": ["ranger-led", "educational", "free", "year-round", "snowshoe", "astronomy"]
+  }
+]

@@ -1,0 +1,138 @@
+[
+  {
+    "id": "humpback-whale-season",
+    "name": "Humpback Whale Season",
+    "type": "seasonal",
+    "description": "Over 10,000 humpback whales migrate from Alaska to Hawaii each winter to mate, calve, and nurse in warm, shallow waters. Kauai's Na Pali Coast and south shore offer outstanding viewing — breaches, tail slaps, and mother-calf pairs visible from shore or boat. Peak abundance January through March. Morning tours get the calmest water.",
+    "timing": {
+      "months": ["november", "december", "january", "february", "march", "april"],
+      "approximate_dates": "November through April; peak January–March",
+      "recurring": true
+    },
+    "location": "Na Pali Coast, Poipu Beach, south and west shore viewpoints; boat tours from Port Allen and Kikiaola Harbor",
+    "cost": "free (shore) / $$–$$$ (boat tours)",
+    "links": {
+      "website": "https://www.holoholokauaiboattours.com/blog/whale-watching-season/"
+    },
+    "tags": ["wildlife", "whale-watching", "migration", "natural-phenomenon", "winter"]
+  },
+  {
+    "id": "prince-kuhio-day",
+    "name": "Prince Kuhio Day Celebration",
+    "type": "cultural",
+    "description": "Prince Jonah Kuhio Kalanianaole was born in Koloa on Kauai's south shore, making this state holiday especially meaningful here. Two weeks of cultural events include lei draping at the Prince Kuhio birthplace monument, hula performances, Hawaiian music, and community gatherings. Most events are free. A grounding way to connect with Hawaiian history and culture.",
+    "timing": {
+      "months": ["march"],
+      "approximate_dates": "March 15–29, centered on March 26 (state holiday)",
+      "recurring": true
+    },
+    "location": "Prince Kuhio Park and various locations in Koloa, south shore Kauai",
+    "cost": "free",
+    "links": {
+      "website": "https://kauaifestivals.com/festival/prince-kuhio-day-event/"
+    },
+    "tags": ["hawaiian-culture", "holiday", "hula", "history", "south-shore", "free"]
+  },
+  {
+    "id": "mokihana-festival",
+    "name": "Kauai Mokihana Festival",
+    "type": "cultural",
+    "description": "Kauai's premier hula competition, running for over 40 years. Originally a kane (men's) only contest, it has grown into a week-long celebration of Hawaiian arts, music, and culture with hula kahiko and auana competitions, a craft fair, and community events. Organized by the Malie Foundation. One of the most authentic cultural festivals in Hawaii.",
+    "timing": {
+      "months": ["september"],
+      "approximate_dates": "Late September (check annual schedule for exact dates)",
+      "recurring": true
+    },
+    "location": "Various venues around Lihue and east Kauai",
+    "cost": "$",
+    "links": {
+      "website": "https://www.maliefoundation.org/kaua-i-mokihana-festival"
+    },
+    "tags": ["hula", "hawaiian-culture", "competition", "arts", "fall"]
+  },
+  {
+    "id": "koloa-plantation-days",
+    "name": "Koloa Plantation Days",
+    "type": "festival",
+    "description": "A 10-day community festival commemorating Hawaii's first successful sugar plantation, founded in Koloa in 1835. Celebrates the island's multicultural plantation-era heritage with a historic parade, park celebration with live music and food, guided walking tours of Old Koloa Town, cooking demonstrations, and a family fun run in Poipu. Deeply local.",
+    "timing": {
+      "months": ["july"],
+      "approximate_dates": "Late July (July 18–27, 2026)",
+      "recurring": true
+    },
+    "location": "Koloa and Poipu, south shore Kauai",
+    "cost": "free–$",
+    "links": {
+      "website": "https://koloaplantationdays.com/"
+    },
+    "tags": ["heritage", "multicultural", "parade", "south-shore", "summer", "community"]
+  },
+  {
+    "id": "kauai-marathon",
+    "name": "Kauai Marathon & Half Marathon",
+    "type": "cultural",
+    "description": "A scenic road race starting in Poipu and following the island's south shore coastline, with mountain and ocean views the entire way. Hula dancers and taiko drum troupes line the course. The oceanfront finish is among the most beautiful in road racing. Also includes a half marathon distance.",
+    "timing": {
+      "months": ["september"],
+      "approximate_dates": "First Sunday in September (September 6, 2026)",
+      "recurring": true
+    },
+    "location": "Poipu to Lihue, south shore Kauai",
+    "cost": "$$",
+    "links": {
+      "website": "https://thekauaimarathon.com/"
+    },
+    "tags": ["running", "marathon", "coastal", "fall", "scenic"]
+  },
+  {
+    "id": "slack-key-guitar-concerts",
+    "name": "McMaster Slack Key Guitar & Ukulele Concerts",
+    "type": "cultural",
+    "description": "Doug and Sandy McMaster have presented traditional Hawaiian slack key guitar and ukulele concerts on Kauai's north shore since 1999. Intimate, acoustic, and deeply rooted in Hawaiian musical tradition. Slack key (ki ho'alu) is one of Hawaii's most distinctive art forms — relaxed, open-tuning guitar that sounds like the islands feel.",
+    "timing": {
+      "months": ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"],
+      "approximate_dates": "Year-round; Fridays 4–6pm and Sundays 3–5pm",
+      "recurring": true
+    },
+    "location": "Hanalei Community Center, north shore Kauai",
+    "cost": "$",
+    "links": {
+      "website": "https://mcmasterslackkey.com/"
+    },
+    "tags": ["live-music", "slack-key", "hawaiian-culture", "acoustic", "north-shore", "year-round"]
+  },
+  {
+    "id": "kauai-farmers-markets",
+    "name": "Kauai Farmers Markets",
+    "type": "market",
+    "description": "Island-wide farmers markets offering tropical produce, prepared foods, and local crafts. Hanalei Saturday Market (9:30am–noon) is the north shore anchor — lively, small, and surrounded by taro fields and mountains. Kilauea's Saturday market at Anaina Hou runs the same hours. Kukuiula Culinary Market in Poipu (Wednesdays 3:30–5:30pm) adds live music, a chef demo, and wine garden.",
+    "timing": {
+      "months": ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"],
+      "approximate_dates": "Year-round; Hanalei & Kilauea Sat mornings, Kukuiula Wed afternoons",
+      "recurring": true
+    },
+    "location": "Hanalei (Sat), Kilauea/Anaina Hou (Sat), Kukuiula/Poipu (Wed)",
+    "cost": "free",
+    "links": {
+      "website": "https://www.kauai.com/kauai-farmers-markets"
+    },
+    "tags": ["farmers-market", "local-produce", "year-round", "north-shore", "south-shore"]
+  },
+  {
+    "id": "keasa-stargazing",
+    "name": "KEASA Community Stargazing",
+    "type": "astronomy",
+    "description": "The Kauai Educational Association for Science and Astronomy hosts public star-watching events on the island's west side, where consistently clear skies and minimal light pollution create excellent conditions. Telescope enthusiasts share views of planets, nebulae, and deep-sky objects. Waimea Canyon and Kokee State Park at 3,600+ feet offer some of Hawaii's best naked-eye stargazing.",
+    "timing": {
+      "months": ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"],
+      "approximate_dates": "Periodic events year-round; check KEASA schedule",
+      "recurring": true
+    },
+    "location": "Kaumakani Park & Sports Pavilion (west side); Waimea Canyon and Kokee SP for self-guided",
+    "cost": "free",
+    "links": {
+      "website": "https://www.keasa.org/"
+    },
+    "tags": ["stargazing", "astronomy", "dark-sky", "west-side", "community", "free"]
+  }
+]

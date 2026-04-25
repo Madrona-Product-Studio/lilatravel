@@ -1,0 +1,172 @@
+[
+  {
+    "id": "whale-migration-season",
+    "name": "Whale Migration Season",
+    "type": "seasonal",
+    "description": "Monterey Bay's deep submarine canyon brings whales remarkably close to shore year-round. Gray whales pass December through May on their Baja-to-Alaska migration; humpbacks feed March through November; blue whales — the largest animals on Earth — appear July through October. The variety and proximity are unmatched on the California coast.",
+    "timing": {
+      "months": ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"],
+      "approximate_dates": "Gray whales Dec–May (peak Jan & Mar); humpbacks Mar–Nov; blue whales Jul–Oct",
+      "recurring": true
+    },
+    "location": "Monterey Bay — boat tours from Monterey Harbor, or shore viewing from Point Lobos and Granite Point",
+    "cost": "free (shore) / $$–$$$ (boat tours)",
+    "links": {
+      "website": "https://www.seemonterey.com/things-to-do/animals-and-wildlife/whale-watching/"
+    },
+    "tags": ["wildlife", "whale-watching", "migration", "natural-phenomenon", "year-round"]
+  },
+  {
+    "id": "coastal-wildflower-bloom",
+    "name": "Coastal Wildflower Bloom",
+    "type": "seasonal",
+    "description": "From March through May, the Big Sur and Monterey coastline erupts with California poppies, lupine, seaside daisies, and paintbrush. Point Lobos is the crown jewel for displays. Wild calla lilies bloom in a hidden valley off Highway 1 from mid-February through mid-April. Pfeiffer Big Sur State Park adds redwood-shaded wildflowers to the mix.",
+    "timing": {
+      "months": ["february", "march", "april", "may"],
+      "approximate_dates": "Mid-February through May; calla lilies peak March, poppies peak April",
+      "recurring": true
+    },
+    "location": "Point Lobos State Natural Reserve, Garrapata State Park, Calla Lily Valley (Garrapata Creek), Pfeiffer Big Sur SP",
+    "cost": "free (parking fees at state parks)",
+    "links": {
+      "website": "https://www.innsofmonterey.com/blog/spring-blooms-coastal-views-your-guide-to-the-best-wildflower-spots-in-monterey"
+    },
+    "tags": ["natural-phenomenon", "wildflowers", "spring", "photography", "point-lobos"]
+  },
+  {
+    "id": "california-condor-viewing",
+    "name": "California Condor Viewing",
+    "type": "seasonal",
+    "description": "Big Sur is one of the few places on Earth where you can see wild California condors — North America's largest flying bird, with a 9.5-foot wingspan. The Ventana Wildlife Society has been releasing captive-bred birds here since 1997. Best viewing is late morning to early afternoon on the Ewoldsen Trail at Julia Pfeiffer Burns State Park. Nesting season activates live nest cams.",
+    "timing": {
+      "months": ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"],
+      "approximate_dates": "Year-round; nesting season spring–summer; best viewing late morning to early afternoon",
+      "recurring": true
+    },
+    "location": "Julia Pfeiffer Burns State Park (Ewoldsen Trail), Big Sur coastline",
+    "cost": "free",
+    "links": {
+      "website": "https://www.ventanaws.org/condor_cam.html"
+    },
+    "tags": ["wildlife", "endangered-species", "conservation", "photography", "year-round"]
+  },
+  {
+    "id": "big-sur-international-marathon",
+    "name": "Big Sur International Marathon",
+    "type": "cultural",
+    "description": "One of the most scenic road races in the world — a point-to-point marathon run on Highway 1 from Big Sur Station to Carmel. Nearly 10,000 runners, a grand piano at Bixby Bridge, ocean views the entire way. Also includes 21-miler, 11-miler, relay, 12K, and 5K. Note: 27 miles of Highway 1 close race day.",
+    "timing": {
+      "months": ["april"],
+      "approximate_dates": "Late April (April 26, 2026); race weekend spans 3 days",
+      "recurring": true
+    },
+    "location": "Highway 1, Big Sur to Carmel-by-the-Sea",
+    "cost": "$$–$$$ (registration)",
+    "links": {
+      "website": "https://www.bigsurmarathon.org/"
+    },
+    "tags": ["running", "marathon", "highway-1", "spring", "road-closure-impact"]
+  },
+  {
+    "id": "carmel-bach-festival",
+    "name": "Carmel Bach Festival",
+    "type": "cultural",
+    "description": "A world-class, 15-day classical music celebration in Carmel-by-the-Sea, running since the 1930s. Intimate performances, art installations, lectures, and educational events in one of California's most charming villages. The 2026 season explores 'the nature of sound' with works by Vivaldi, Handel, Haydn, and Copland.",
+    "timing": {
+      "months": ["july"],
+      "approximate_dates": "Mid-to-late July (July 11–25, 2026)",
+      "recurring": true
+    },
+    "location": "Various venues in Carmel-by-the-Sea",
+    "cost": "$–$$$",
+    "links": {
+      "website": "https://bachfestival.org/"
+    },
+    "tags": ["classical-music", "festival", "carmel", "summer", "arts"]
+  },
+  {
+    "id": "monterey-jazz-festival",
+    "name": "Monterey Jazz Festival",
+    "type": "cultural",
+    "description": "The longest continuously running jazz festival in the world, founded in 1958. Three days of world-class jazz across multiple stages at the Monterey County Fairgrounds. Intimate enough to feel personal, legendary enough to attract the best musicians alive. A pilgrimage for jazz lovers.",
+    "timing": {
+      "months": ["september"],
+      "approximate_dates": "Late September (September 25–27, 2026)",
+      "recurring": true
+    },
+    "location": "Monterey County Fairgrounds, Monterey",
+    "cost": "$$–$$$",
+    "links": {
+      "website": "https://montereyjazz.org/"
+    },
+    "tags": ["jazz", "music-festival", "monterey", "fall", "legendary"]
+  },
+  {
+    "id": "big-sur-food-wine",
+    "name": "Big Sur Food & Wine Festival",
+    "type": "festival",
+    "description": "A nonprofit fundraiser celebrating artistry in food, wine, and culture — intimate and rooted in the Big Sur community. Events include hiking with stemware, a fungus face-off at Big Sur Lodge, and a wrap party at the Henry Miller Memorial Library. Proceeds support the local community. This is not a corporate food fest.",
+    "timing": {
+      "months": ["november"],
+      "approximate_dates": "Early November (November 5–7, 2026)",
+      "recurring": true
+    },
+    "location": "Various venues along Big Sur coast — Ventana, Post Ranch, Big Sur Lodge, Henry Miller Library",
+    "cost": "$$–$$$",
+    "links": {
+      "website": "https://www.bigsurfoodandwine.org/"
+    },
+    "tags": ["food-wine", "nonprofit", "big-sur", "fall", "intimate", "fundraiser"]
+  },
+  {
+    "id": "monterey-farmers-markets",
+    "name": "Monterey Peninsula Farmers Markets",
+    "type": "market",
+    "description": "The Monterey Bay Certified Farmers Markets celebrate 50 years in 2026. Pacific Grove runs Mondays 3–7pm (3–6pm winter) at Central & Grand. Carmel-by-the-Sea hosts a market at 6th & Mission, 10am–2pm. Monterey's Del Monte Center market runs Fridays 8am–12pm year-round. Fresh local produce, artisan foods, and a real sense of place.",
+    "timing": {
+      "months": ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"],
+      "approximate_dates": "Year-round; days vary by location — see description",
+      "recurring": true
+    },
+    "location": "Pacific Grove (Mon), Carmel-by-the-Sea (varied), Monterey Del Monte Center (Fri)",
+    "cost": "free",
+    "links": {
+      "website": "https://montereybayfarmers.org/"
+    },
+    "tags": ["farmers-market", "local-produce", "year-round", "pacific-grove", "carmel", "monterey"]
+  },
+  {
+    "id": "perseid-meteor-shower",
+    "name": "Perseid Meteor Shower",
+    "type": "astronomy",
+    "description": "Big Sur's remote coastline and limited light pollution make it a strong viewing location for the Perseids. Best spots are inland pullouts along Highway 1 south of the tourist corridor, or backcountry sites in the Ventana Wilderness. Up to 100 meteors per hour at peak. Pair with the sound of the Pacific.",
+    "timing": {
+      "months": ["july", "august"],
+      "approximate_dates": "July 17 – August 24, peak around August 12–13",
+      "recurring": true
+    },
+    "location": "Big Sur coastline pullouts, Pfeiffer Big Sur SP, Ventana Wilderness backcountry",
+    "cost": "free",
+    "links": {
+      "website": "https://www.nps.gov/pore/planyourvisit/night-skies.htm"
+    },
+    "tags": ["meteor-shower", "dark-sky", "summer", "night-sky", "photography"]
+  },
+  {
+    "id": "fall-coastal-color",
+    "name": "Autumn on the Coast",
+    "type": "seasonal",
+    "description": "Big Sur's fall season is arguably its best — fewer crowds, warm days, dramatic light, and subtle color. Sycamores and maples along the Big Sur River and Carmel River turn gold and amber against the evergreen redwoods. October brings comfortable temperatures (55–75F), whale activity ramping up, and the return of coastal fog patterns that make for extraordinary photography.",
+    "timing": {
+      "months": ["october", "november"],
+      "approximate_dates": "Late October through mid-November for peak color",
+      "recurring": true
+    },
+    "location": "Big Sur River valley, Carmel River, Pfeiffer Big Sur SP, Highway 1 corridor",
+    "cost": "free",
+    "links": {
+      "website": "https://www.innsofmonterey.com/blog/best-autumn-activities-and-scenic-coastal-spots"
+    },
+    "tags": ["fall-color", "autumn", "photography", "uncrowded", "mild-weather"]
+  }
+]

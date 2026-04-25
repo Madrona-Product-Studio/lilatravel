@@ -1,0 +1,155 @@
+[
+  {
+    "id": "pacific-rim-whale-festival",
+    "name": "Pacific Rim Whale Festival",
+    "type": "festival",
+    "description": "A week-long celebration of the annual gray whale migration through the waters off Tofino and Ucluelet. Events include the Parade of Whales and Wonders, the Chowder Chowdown, Maritime Kids Days, and the Baleen Bash closing party. The gray whales pass close to shore — around 20,000 migrate north from Baja to Alaska each spring.",
+    "timing": {
+      "months": ["march"],
+      "approximate_dates": "Mid-March (March 14–21, 2026)",
+      "recurring": true
+    },
+    "location": "Tofino, Ucluelet, and Pacific Rim National Park Reserve",
+    "cost": "free–$$",
+    "links": {
+      "website": "https://www.pacificrimwhalefestival.com/"
+    },
+    "tags": ["whale-watching", "gray-whale", "migration", "festival", "spring", "community"]
+  },
+  {
+    "id": "tofino-shorebird-festival",
+    "name": "Tofino Shorebird Festival",
+    "type": "seasonal",
+    "description": "Every spring, thousands of sandpipers, plovers, whimbrels, and 40+ other shorebird species pass through Tofino's mudflats and beaches on their migration from Central America to Arctic breeding grounds. The festival offers guided walks, birding paddles through Lemmens Inlet's tidal flats, and expert-led talks. One of BC's largest whimbrel concentrations is here.",
+    "timing": {
+      "months": ["april", "may"],
+      "approximate_dates": "Late April through early May (April 27 – May 1, 2026)",
+      "recurring": true
+    },
+    "location": "Tofino mudflats, Lemmens Inlet, Pacific Rim National Park Reserve",
+    "cost": "$–$$",
+    "links": {
+      "website": "https://raincoasteducation.org/shorebird-festival/"
+    },
+    "tags": ["birding", "shorebirds", "migration", "kayaking", "spring", "guided"]
+  },
+  {
+    "id": "storm-watching-season",
+    "name": "Storm Watching Season",
+    "type": "seasonal",
+    "description": "Tofino receives nearly 5 meters of annual rainfall, and the bulk of it arrives in spectacular fashion between November and February. Fifteen to twenty mega-storms per season, with winds reaching hurricane force, crashing waves, and horizontal rain. Hotels like the Wickaninnish Inn were built for this — massive windows, hot tubs, and front-row seats to the Pacific's raw power.",
+    "timing": {
+      "months": ["october", "november", "december", "january", "february", "march"],
+      "approximate_dates": "October through March; peak storms December–February",
+      "recurring": true
+    },
+    "location": "Tofino and Ucluelet beaches — Cox Bay, Chesterman Beach, Long Beach, Wickaninnish Beach",
+    "cost": "free",
+    "links": {
+      "website": "https://tourismtofino.com/activity/storm-watching/"
+    },
+    "tags": ["natural-phenomenon", "winter", "storms", "dramatic", "photography"]
+  },
+  {
+    "id": "tofino-wine-dine",
+    "name": "Tofino Wine & Dine Festival",
+    "type": "festival",
+    "description": "A two-day outdoor festival on the beachfront at Tin Wis Resort, celebrating BC's culinary and beverage scene. Up to 100 restaurants, wineries, distillers, breweries, and artisans. Two themed days — west coast seafood and wine on one day, smoked meats, spirits, and cocktails on the next. Live music throughout. Intimate and coastal.",
+    "timing": {
+      "months": ["june"],
+      "approximate_dates": "First weekend in June (June 6–7, 2026)",
+      "recurring": true
+    },
+    "location": "Best Western Plus Tin Wis Resort, Mackenzie Beach, Tofino",
+    "cost": "$$–$$$",
+    "links": {
+      "website": "https://www.tofinowinedine.com/"
+    },
+    "tags": ["food-wine", "culinary", "beachfront", "summer", "bc-food"]
+  },
+  {
+    "id": "ukee-days",
+    "name": "Ukee Days",
+    "type": "festival",
+    "description": "Ucluelet's homegrown community festival — three days of local music, food, craft vendors, and small-town west coast fun. Friday festivities at the Village Green, Saturday and Sunday at the Fairgrounds. The kind of community event where locals outnumber tourists and everyone knows the band. A window into real life on the outer coast.",
+    "timing": {
+      "months": ["july"],
+      "approximate_dates": "Last weekend in July (typically July 24–26, 2026)",
+      "recurring": true
+    },
+    "location": "Ucluelet Village Green and Fairgrounds",
+    "cost": "free–$",
+    "links": {
+      "website": "https://ukeedays.wordpress.com/"
+    },
+    "tags": ["community", "ucluelet", "summer", "music", "local"]
+  },
+  {
+    "id": "winterlights",
+    "name": "Winterlights at Tofino Botanical Gardens",
+    "type": "cultural",
+    "description": "A month-long celebration of light and art in the Tofino Botanical Gardens, running nightly through the darkest weeks of the year. Light installations, live entertainment, children's activities, and warm beverages at Darwin's Cafe. Car-free event with a free shuttle from the Village Green. Your pass is valid for the entire run — come back as many times as you like.",
+    "timing": {
+      "months": ["november", "december", "january"],
+      "approximate_dates": "Late November through early January, nightly 5–9pm",
+      "recurring": true
+    },
+    "location": "Tofino Botanical Gardens",
+    "cost": "$",
+    "links": {
+      "website": "http://www.tbgf.org/home/events/tofinowinterlights/"
+    },
+    "tags": ["light-art", "botanical-garden", "winter", "family-friendly", "car-free"]
+  },
+  {
+    "id": "tofino-market",
+    "name": "Tofino Saturday Market",
+    "type": "market",
+    "description": "Every Saturday from Victoria Day weekend through Thanksgiving, 30+ local artisans, artists, and bakers set up on the Village Green. More creators' market than produce stand — reflecting Tofino's artisan culture. Live music under the gazebo, a playground for kids, and you can cycle there or take the free summer shuttle. The market captures Tofino's creative, community spirit.",
+    "timing": {
+      "months": ["may", "june", "july", "august", "september", "october"],
+      "approximate_dates": "Saturdays, Victoria Day weekend (May) through Thanksgiving (October)",
+      "recurring": true
+    },
+    "location": "Village Green, Tofino",
+    "cost": "free",
+    "links": {
+      "website": "https://tourismtofino.com/business/tofino-market/"
+    },
+    "tags": ["market", "artisan", "local", "saturday", "summer", "cycling"]
+  },
+  {
+    "id": "gray-whale-migration",
+    "name": "Gray Whale Spring Migration",
+    "type": "seasonal",
+    "description": "Beyond the festival, the gray whale migration itself is a major natural event — around 20,000 whales pass through the waters off Tofino and Ucluelet from March through May. Some resident grays stay through summer to feed in local waters. Whale watching tours run from both towns, and whales are regularly visible from shore at Wickaninnish Beach and the Wild Pacific Trail.",
+    "timing": {
+      "months": ["march", "april", "may"],
+      "approximate_dates": "March through May; peak mid-March to mid-April",
+      "recurring": true
+    },
+    "location": "Waters off Tofino and Ucluelet; shore viewing from Wickaninnish Beach, Wild Pacific Trail",
+    "cost": "free (shore) / $$–$$$ (boat tours)",
+    "links": {
+      "website": "https://tourismtofino.com/events-festivals/pacific-rim-whale-festival-2026/"
+    },
+    "tags": ["wildlife", "whale-watching", "migration", "natural-phenomenon", "spring"]
+  },
+  {
+    "id": "dark-sky-viewing",
+    "name": "Dark Sky Viewing Season",
+    "type": "astronomy",
+    "description": "Tofino and Ucluelet benefit from minimal light pollution and their remote position on Vancouver Island's outer coast. On clear nights the Milky Way is visible from the beach, and aurora borealis sightings are possible in winter. Crisp winter nights offer the best conditions. Grab a headlamp and walk out to Cox Bay or Long Beach for a natural light show backed by the sound of surf.",
+    "timing": {
+      "months": ["october", "november", "december", "january", "february", "march"],
+      "approximate_dates": "Best October through March on clear nights; aurora possible in winter",
+      "recurring": true
+    },
+    "location": "Cox Bay, Long Beach, Chesterman Beach, Pacific Rim National Park Reserve",
+    "cost": "free",
+    "links": {
+      "website": "https://tourismtofino.com/activity/star-gazing/"
+    },
+    "tags": ["dark-sky", "stargazing", "milky-way", "aurora", "winter", "beach"]
+  }
+]
