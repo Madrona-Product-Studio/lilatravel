@@ -308,7 +308,7 @@ export default function App() {
       </BrowserRouter>
       </AuthProvider>
       <Analytics />
-      <FeedbackWidget source="Lila Trips" hideOnPaths={['/plan']} showAfterScroll={400} />
+      <FeedbackWidget source="Lila Trips" hideOnPaths={['/plan', '/destinations/']} showAfterScroll={400} />
     </div>
   );
 }
