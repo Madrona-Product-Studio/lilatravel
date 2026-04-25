@@ -1,62 +1,75 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const Diamond = () => (
-  <svg width="10" height="10" viewBox="0 0 12 12" fill="none" className="shrink-0">
-    <rect x="6" y="0.5" width="7.5" height="7.5" rx="0"
-      transform="rotate(45 6 0.5)"
-      stroke="rgba(212,168,83,0.35)" strokeWidth="1"/>
-  </svg>
-);
-
-export default function WhisperBar({ destination, label }) {
+export default function WhisperBar({ destination, label, ctaRef }) {
   const navigate = useNavigate();
   const [visible, setVisible] = useState(false);
   const [dismissed, setDismissed] = useState(false);
+  const [nearCta, setNearCta] = useState(false);
 
-  // Show after 45% scroll (one-way)
+  // Show after 35% scroll, dissolve when near the bottom CTA section
   useEffect(() => {
     if (dismissed) return;
     const onScroll = () => {
-      if (window.scrollY + window.innerHeight >= document.body.scrollHeight * 0.45) {
-        setVisible(true);
+      const scrollPct = (window.scrollY + window.innerHeight) / document.body.scrollHeight;
+      if (scrollPct >= 0.35) setVisible(true);
+
+      // Dissolve when the in-page CTA is visible
+      if (ctaRef?.current) {
+        const rect = ctaRef.current.getBoundingClientRect();
+        setNearCta(rect.top < window.innerHeight + 20);
       }
     };
     window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
     return () => window.removeEventListener('scroll', onScroll);
-  }, [dismissed]);
+  }, [dismissed, ctaRef]);
 
   if (dismissed) return null;
 
+  const shouldShow = visible && !nearCta;
+
   return (
     <div
-      className="fixed bottom-0 left-0 right-0 h-20 md:h-[72px] z-[100] bg-dark-ink border-t border-[rgba(212,168,83,0.12)] flex items-center justify-center gap-4 md:gap-5 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
-      style={{ transform: visible ? 'translateY(0)' : 'translateY(100%)' }}
+      style={{
+        position: 'fixed', bottom: 0, left: 0, right: 0,
+        height: 56, zIndex: 97,
+        background: '#1a2530',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        gap: 12,
+        transform: shouldShow ? 'translateY(0)' : 'translateY(100%)',
+        opacity: shouldShow ? 1 : 0,
+        transition: 'transform 0.45s cubic-bezier(0.16,1,0.3,1), opacity 0.35s ease',
+        pointerEvents: shouldShow ? 'auto' : 'none',
+      }}
     >
-      <Diamond />
-
-      <span className="hidden md:inline-block font-body font-normal text-sm text-[rgba(245,241,234,0.45)] tracking-[0.06em] whitespace-nowrap">
-        Feeling the pull?
-      </span>
-
-      <span className="hidden md:inline-block w-px h-5 bg-[rgba(245,241,234,0.2)] shrink-0" />
-
       <span
         role="link"
         tabIndex={0}
         onClick={() => navigate(`/plan?destination=${destination}`)}
         onKeyDown={e => { if (e.key === 'Enter') navigate(`/plan?destination=${destination}`); }}
-        className="font-body font-bold text-[10px] text-[rgba(212,168,83,0.7)] uppercase tracking-[0.22em] border-b border-[rgba(212,168,83,0.25)] cursor-pointer whitespace-nowrap"
+        style={{
+          fontFamily: "'Quicksand', sans-serif",
+          fontSize: 10, fontWeight: 700,
+          letterSpacing: '0.18em', textTransform: 'uppercase',
+          color: 'rgba(245,241,234,0.55)',
+          cursor: 'pointer', whiteSpace: 'nowrap',
+          padding: '8px 0',
+        }}
       >
-        Design your {label} trip →
+        Design your {label} trip <span style={{ marginLeft: 4 }}>→</span>
       </span>
-
-      <Diamond />
 
       <button
         onClick={() => setDismissed(true)}
         aria-label="Dismiss"
-        className="absolute right-3 md:right-6 bg-none border-none font-body text-[10px] text-[rgba(245,241,234,0.18)] cursor-pointer p-1 leading-none"
+        style={{
+          position: 'absolute', right: 16,
+          background: 'none', border: 'none',
+          fontFamily: "'Quicksand', sans-serif",
+          fontSize: 11, color: 'rgba(245,241,234,0.2)',
+          cursor: 'pointer', padding: 6, lineHeight: 1,
+        }}
       >
         ✕
       </button>

@@ -144,6 +144,7 @@ export default function KauaiGuide() {
     return () => window.removeEventListener('resize', check);
   }, []);
 
+  const ctaRef = useRef(null);
   const breathConfig = BREATH_CONFIG.kauai;
   const breathWrapperRef = useRef(null);
   const breathValueRef = useBreathCanvas(breathConfig, breathWrapperRef);
@@ -516,9 +517,9 @@ export default function KauaiGuide() {
 
 
           {/* == CTA == */}
-          <div style={{ background: G.warmWhite }}>
+          <div ref={ctaRef} style={{ background: G.warmWhite }}>
           <div style={{ padding: isMobile ? '40px 20px 60px' : '52px 52px 80px', maxWidth: 860, margin: '0 auto' }}>
-            <div style={{ background: G.darkInk, padding: '52px 48px', display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 48, flexWrap: 'wrap' }}>
+            <div style={{ background: G.darkInk, padding: '52px 48px' }}>
               <div style={{ maxWidth: 380 }}>
                 <div style={{ fontFamily: FONTS.body, fontSize: 9, fontWeight: 700, letterSpacing: '0.22em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: 16 }}>Begin</div>
                 <h3 style={{ fontFamily: FONTS.body, fontSize: 'clamp(24px, 4vw, 32px)', fontWeight: 700, color: 'white', lineHeight: 1.1, margin: '0 0 12px', letterSpacing: '-0.01em' }}>
@@ -536,16 +537,6 @@ export default function KauaiGuide() {
                   Plan a Trip &rarr;
                 </button>
               </div>
-
-              <div style={{ minWidth: 180 }}>
-                <div style={{ fontFamily: FONTS.body, fontSize: 9, fontWeight: 700, letterSpacing: '0.22em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.25)', marginBottom: 16 }}>Place Guides</div>
-                {['Terrain & Parks Guide', 'Travel Lightly Guide', 'Stay Guide', 'Eat Guide', 'Move Guide', 'Breathe Guide', 'Culture & Heritage Guide', 'Night Sky Guide'].map((g, i, arr) => (
-                  <div key={g} style={{ fontFamily: FONTS.body, fontSize: 11, fontWeight: 600, letterSpacing: '0.06em', color: 'rgba(255,255,255,0.4)', padding: '8px 0', borderBottom: i < arr.length - 1 ? '0.5px solid rgba(255,255,255,0.07)' : 'none', display: 'flex', alignItems: 'center', gap: 10 }}>
-                    <span style={{ color: 'rgba(255,255,255,0.2)', fontSize: 10 }}>{'\u2192'}</span>
-                    {g}
-                  </div>
-                ))}
-              </div>
             </div>
           </div>
           </div>
@@ -558,7 +549,7 @@ export default function KauaiGuide() {
         onClose={() => setActiveSheet(null)}
         isMobile={isMobile}
       />
-      <WhisperBar destination="kauai" label="Kaua&#699;i" />
+      <WhisperBar destination="kauai" label="Kaua&#699;i" ctaRef={ctaRef} />
       <Footer />
     </>
   );
