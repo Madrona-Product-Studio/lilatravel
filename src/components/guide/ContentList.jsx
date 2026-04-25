@@ -65,18 +65,27 @@ export default function ContentList({ items, onOpenSheet, style = {} }) {
             {/* Left bar */}
             <div style={{ width: 3, flexShrink: 0, marginRight: item.thumbnail ? 12 : 18, background: barColor }} />
 
-            {/* Thumbnail */}
-            {item.thumbnail && (
+            {/* Thumbnail or placeholder (only for sections where thumbnails are expected) */}
+            {(item.thumbnail || item.tier) && (
               <div style={{
                 width: 96, height: 96, flexShrink: 0, marginRight: 14, alignSelf: 'center',
-                overflow: 'hidden', borderRadius: 6, background: G.borderSoft,
+                overflow: 'hidden', borderRadius: 6, background: G.panel,
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
               }}>
-                <img
-                  src={item.thumbnail}
-                  alt=""
-                  loading="lazy"
-                  style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-                />
+                {item.thumbnail ? (
+                  <img
+                    src={item.thumbnail}
+                    alt=""
+                    loading="lazy"
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                  />
+                ) : (
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={G.ink25} strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="2" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <path d="M21 15l-5-5L5 21" />
+                  </svg>
+                )}
               </div>
             )}
 
