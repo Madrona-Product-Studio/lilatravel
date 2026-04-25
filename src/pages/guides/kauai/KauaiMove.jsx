@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import SubGuideLayout from '@components/guide/SubGuideLayout';
 import { SubLabel, Prose, ContentList } from '@components/guide';
 import GuideDetailSheet from '@components/guide/GuideDetailSheet';
+import HowWeChoose from '@components/guide/HowWeChoose';
 import moveItems from '../../../data/restaurants/kauai-move.json';
 
 const moveContentItems = moveItems.map(m => ({
@@ -40,6 +41,7 @@ export default function KauaiMove() {
         backPath="/destinations/kauai"
         backLabel="Kauai Guide"
       >
+        <HowWeChoose section="move" />
         <Prose>
           The Kalalau Trail is the signature — eleven miles along the Na Pali Coast to a beach at the edge of the world. But the island has more: Waimea Canyon rim trails, kayaking the Wailua River, surfing Hanalei Bay, and snorkeling reefs that make the mainland look pale. The terrain here asks you to move through it on every axis — on foot, on water, under water.
         </Prose>

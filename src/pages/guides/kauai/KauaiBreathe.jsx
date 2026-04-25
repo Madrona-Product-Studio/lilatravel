@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import SubGuideLayout from '@components/guide/SubGuideLayout';
 import { SubLabel, Prose, ContentList } from '@components/guide';
 import GuideDetailSheet from '@components/guide/GuideDetailSheet';
+import HowWeChoose from '@components/guide/HowWeChoose';
 import breatheItems from '../../../data/restaurants/kauai-breathe.json';
 
 const breatheContentItems = breatheItems.map(b => ({
@@ -40,6 +41,7 @@ export default function KauaiBreathe() {
         backPath="/destinations/kauai"
         backLabel="Kauai Guide"
       >
+        <HowWeChoose section="breathe" />
         <Prose>
           The island has a long tradition of healing — Hawaiian la'au lapa'au (plant medicine), lomilomi bodywork, and a yoga community that draws serious practitioners from around the world. The landscape itself does half the work: trade winds, ocean sound, and the particular quality of light that only Kauai has. These are the people and places that help you meet the island on a different register.
         </Prose>

@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import SubGuideLayout from '@components/guide/SubGuideLayout';
 import { SubLabel, Prose, ContentList } from '@components/guide';
 import GuideDetailSheet from '@components/guide/GuideDetailSheet';
+import HowWeChoose from '@components/guide/HowWeChoose';
 import experiences from '../../../data/restaurants/olympic-peninsula-experience.json';
 
 const experienceItems = experiences.map(e => ({
@@ -40,6 +41,7 @@ export default function OlympicPeninsulaExperience() {
         backPath="/destinations/olympic-peninsula"
         backLabel="Olympic Peninsula Guide"
       >
+        <HowWeChoose section="artsCulture" />
         <Prose>
           The Olympic Peninsula has a deeper cultural life than most people expect. Nine Indigenous Nations have called this home since time immemorial — the Makah Museum in Neah Bay houses artifacts from the Ozette archaeological site, one of the most significant finds in North America. Port Townsend carries a Victorian heritage and a thriving arts community. Fort Worden hosts residencies and festivals. This is what makes a place more than a park.
         </Prose>

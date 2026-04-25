@@ -4,6 +4,7 @@ import SubGuideLayout from '@components/guide/SubGuideLayout';
 import { SubLabel, Prose, ContentList } from '@components/guide';
 import GuideDetailSheet from '@components/guide/GuideDetailSheet';
 import { getNPSData, findNPSMatch } from '@services/npsService';
+import HowWeChoose from '@components/guide/HowWeChoose';
 import moveItems from '../../../data/restaurants/olympic-peninsula-move.json';
 import permits from '../../../data/permits/olympic-peninsula.json';
 
@@ -60,6 +61,7 @@ export default function OlympicPeninsulaMove() {
         backPath="/destinations/olympic-peninsula"
         backLabel="Olympic Peninsula Guide"
       >
+        <HowWeChoose section="move" />
         <Prose>
           Olympic is a place that asks you to move through it. On foot through old-growth rainforest, along wild Pacific coastline, into alpine meadows above the clouds. The terrain is the teacher. Some of these are easy walks to extraordinary places. Others are full-day commitments that will change how you think about your body in the landscape.
         </Prose>

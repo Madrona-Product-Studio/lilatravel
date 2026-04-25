@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import SubGuideLayout from '@components/guide/SubGuideLayout';
 import { SubLabel, Prose, ContentList, EditorialList } from '@components/guide';
 import GuideDetailSheet from '@components/guide/GuideDetailSheet';
+import HowWeChoose from '@components/guide/HowWeChoose';
 import experiences from '../../../data/restaurants/joshua-tree-experience.json';
 
 const experienceItems = experiences.map(e => ({
@@ -40,6 +41,7 @@ export default function JoshuaTreeExperience() {
         backPath="/destinations/joshua-tree"
         backLabel="Joshua Tree Guide"
       >
+        <HowWeChoose section="artsCulture" />
         <Prose>
           The desert has drawn artists, musicians, and seekers for decades. Noah Purifoy's outdoor sculpture museum is one of the most striking art installations in the American West. The Integratron promises acoustic healing inside a dome built on an alleged geomagnetic vortex. Pioneertown is a living film set. The creative energy here is real and specific.
         </Prose>

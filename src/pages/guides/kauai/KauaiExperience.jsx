@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import SubGuideLayout from '@components/guide/SubGuideLayout';
 import { SubLabel, Prose, ContentList } from '@components/guide';
 import GuideDetailSheet from '@components/guide/GuideDetailSheet';
+import HowWeChoose from '@components/guide/HowWeChoose';
 import experiences from '../../../data/restaurants/kauai-experience.json';
 
 const experienceItems = experiences.map(e => ({
@@ -40,6 +41,7 @@ export default function KauaiExperience() {
         backPath="/destinations/kauai"
         backLabel="Kauai Guide"
       >
+        <HowWeChoose section="artsCulture" />
         <Prose>
           Kauai's cultural life runs deeper than most visitors see. The island's isolation preserved Hawaiian traditions that were disrupted elsewhere. Botanical gardens with plants the Polynesian navigators brought across the Pacific. Taro farms that have been cultivated for centuries. A film history that spans from South Pacific to Jurassic Park. The culture here is alive and ongoing — not a performance for visitors but a continuation of something old and specific to this place.
         </Prose>

@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import SubGuideLayout from '@components/guide/SubGuideLayout';
 import { SubLabel, Prose, ContentList } from '@components/guide';
 import GuideDetailSheet from '@components/guide/GuideDetailSheet';
+import HowWeChoose from '@components/guide/HowWeChoose';
 import moveItems from '../../../data/restaurants/vancouver-island-move.json';
 
 const moveContentItems = moveItems.map(m => ({
@@ -40,6 +41,7 @@ export default function VancouverIslandMove() {
         backPath="/destinations/vancouver-island"
         backLabel="Vancouver Island Guide"
       >
+        <HowWeChoose section="move" />
         <Prose>
           The West Coast Trail is the marquee — 75 km of wilderness coastline, ladders, cable cars, and tidal shelf. But the island has more: the Meares Island Big Trees boardwalk through cathedral-scale old growth, sea kayaking the Broken Group Islands, and some of the best cold-water surfing in the world at Cox Bay and Long Beach. The Wild Pacific Trail in Ucluelet is the best coastal walk you can do in an afternoon.
         </Prose>

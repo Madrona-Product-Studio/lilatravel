@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import SubGuideLayout from '@components/guide/SubGuideLayout';
 import { SubLabel, Prose, EditorialList, ContentList } from '@components/guide';
 import GuideDetailSheet from '@components/guide/GuideDetailSheet';
+import HowWeChoose from '@components/guide/HowWeChoose';
 import { TOWNS } from '@data/guides/joshua-tree-constants';
 import accommodations from '../../../data/accommodations/joshua-tree.json';
 
@@ -48,6 +49,7 @@ export default function JoshuaTreeSleep() {
         backPath="/destinations/joshua-tree"
         backLabel="Joshua Tree Guide"
       >
+        <HowWeChoose section="sleep" />
         <SubLabel>Towns</SubLabel>
         <EditorialList items={townItems} />
 

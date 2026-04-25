@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import SubGuideLayout from '@components/guide/SubGuideLayout';
 import { SubLabel, Prose, ContentList } from '@components/guide';
 import GuideDetailSheet from '@components/guide/GuideDetailSheet';
+import HowWeChoose from '@components/guide/HowWeChoose';
 import restaurants from '../../../data/restaurants/vancouver-island-eat.json';
 
 const eatItems = restaurants.map(r => ({
@@ -40,6 +41,7 @@ export default function VancouverIslandEat() {
         backPath="/destinations/vancouver-island"
         backLabel="Vancouver Island Guide"
       >
+        <HowWeChoose section="eat" />
         <Prose>
           Tofino punches well above its weight for a town of 2,000. The seafood is extraordinary — spot prawns, halibut, Dungeness crab pulled from the waters you can see from the restaurant. Ucluelet is catching up. Victoria adds heritage and refinement.
         </Prose>

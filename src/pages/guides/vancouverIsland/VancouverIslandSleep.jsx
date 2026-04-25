@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import SubGuideLayout from '@components/guide/SubGuideLayout';
 import { SubLabel, Prose, EditorialList, ContentList } from '@components/guide';
 import GuideDetailSheet from '@components/guide/GuideDetailSheet';
+import HowWeChoose from '@components/guide/HowWeChoose';
 import { TOWNS } from '@data/guides/vancouver-island-constants';
 import accommodations from '../../../data/accommodations/vancouver-island.json';
 
@@ -48,6 +49,7 @@ export default function VancouverIslandSleep() {
         backPath="/destinations/vancouver-island"
         backLabel="Vancouver Island Guide"
       >
+        <HowWeChoose section="sleep" />
         <SubLabel>Towns</SubLabel>
         <EditorialList items={townItems} />
 

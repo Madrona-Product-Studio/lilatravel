@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import SubGuideLayout from '@components/guide/SubGuideLayout';
 import { SubLabel, Prose, ContentList } from '@components/guide';
 import GuideDetailSheet from '@components/guide/GuideDetailSheet';
+import HowWeChoose from '@components/guide/HowWeChoose';
 import breatheItems from '../../../data/restaurants/olympic-peninsula-breathe.json';
 
 const breatheContentItems = breatheItems.map(b => ({
@@ -40,6 +41,7 @@ export default function OlympicPeninsulaBreathe() {
         backPath="/destinations/olympic-peninsula"
         backLabel="Olympic Peninsula Guide"
       >
+        <HowWeChoose section="breathe" />
         <Prose>
           The peninsula does half the work. The Hoh Rainforest has been measured as one of the quietest places in the contiguous US. Sol Duc Hot Springs lets you soak in mineral water surrounded by old-growth forest. The sound of the Pacific at Rialto Beach, the smell of cedar after rain, the weight of moss-filtered silence — it works on you whether you intend it to or not. These are the people and places that help you go deeper with that.
         </Prose>

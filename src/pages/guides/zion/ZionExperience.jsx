@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import SubGuideLayout from '@components/guide/SubGuideLayout';
 import { SubLabel, Prose, ContentList, EditorialList } from '@components/guide';
 import GuideDetailSheet from '@components/guide/GuideDetailSheet';
+import HowWeChoose from '@components/guide/HowWeChoose';
 import experiences from '../../../data/restaurants/zion-experience.json';
 import events from '../../../data/events/zion.json';
 
@@ -47,6 +48,7 @@ export default function ZionExperience() {
         title="Art & Culture Guide"
         descriptor="Arts, culture, food, and community across the corridor."
       >
+        <HowWeChoose section="artsCulture" />
         <Prose>
           The corridor has a cultural life that surprises people. Native art traditions thousands of years old. A Tony Award-winning Shakespeare festival in Cedar City. Farm-to-table dining on Scenic Byway 12. Springdale galleries showing work directly inspired by the canyon. This is what makes a place more than a park.
         </Prose>

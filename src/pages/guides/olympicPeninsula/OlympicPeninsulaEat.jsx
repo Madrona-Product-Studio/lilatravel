@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import SubGuideLayout from '@components/guide/SubGuideLayout';
 import { SubLabel, Prose, ContentList } from '@components/guide';
 import GuideDetailSheet from '@components/guide/GuideDetailSheet';
+import HowWeChoose from '@components/guide/HowWeChoose';
 import restaurants from '../../../data/restaurants/olympic-peninsula-eat.json';
 
 const eatItems = restaurants.map(r => ({
@@ -40,6 +41,7 @@ export default function OlympicPeninsulaEat() {
         backPath="/destinations/olympic-peninsula"
         backLabel="Olympic Peninsula Guide"
       >
+        <HowWeChoose section="eat" />
         <Prose>
           Port Angeles has more good food than any gateway town its size deserves. Port Townsend punches above its weight with craft dining and waterfront spots. Forks is practical — solid provisions and timber-town diners. The peninsula food scene is small, personal, and genuinely good.
         </Prose>

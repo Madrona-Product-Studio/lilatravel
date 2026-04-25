@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import SubGuideLayout from '@components/guide/SubGuideLayout';
 import { SubLabel, Prose, ContentList } from '@components/guide';
 import GuideDetailSheet from '@components/guide/GuideDetailSheet';
+import HowWeChoose from '@components/guide/HowWeChoose';
 import breatheItems from '../../../data/restaurants/big-sur-breathe.json';
 
 const breatheContentItems = breatheItems.map(b => ({
@@ -40,6 +41,7 @@ export default function BigSurBreathe() {
         backPath="/destinations/big-sur"
         backLabel="Big Sur Guide"
       >
+        <HowWeChoose section="breathe" />
         <Prose>
           Esalen Institute put Big Sur on the map for a reason — the hot springs on the cliff edge, the workshops, the long history of consciousness exploration. But the coast itself does the work. The sound of surf through redwoods, the fog burning off, the scale of the landscape — it recalibrates the nervous system whether you intend it to or not. These are the people and places that help you meet the coast on a different register — through the body, through the breath, through stillness.
         </Prose>

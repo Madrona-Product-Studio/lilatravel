@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import SubGuideLayout from '@components/guide/SubGuideLayout';
 import { SubLabel, Prose, ContentList } from '@components/guide';
 import GuideDetailSheet from '@components/guide/GuideDetailSheet';
+import HowWeChoose from '@components/guide/HowWeChoose';
 import restaurants from '../../../data/restaurants/joshua-tree-eat.json';
 
 const eatItems = restaurants.map(r => ({
@@ -40,6 +41,7 @@ export default function JoshuaTreeEat() {
         backPath="/destinations/joshua-tree"
         backLabel="Joshua Tree Guide"
       >
+        <HowWeChoose section="eat" />
         <Prose>
           The desert dining scene is better than anyone expects. Pappy & Harriet's in Pioneertown is the anchor — live music, mesquite-grilled everything. La Copine does the farm-to-table thing with real conviction. Natural Sisters Cafe is the Joshua Tree morning move. And Palm Springs has a food scene deep enough to fill a separate guide.
         </Prose>

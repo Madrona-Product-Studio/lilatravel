@@ -4,6 +4,7 @@ import SubGuideLayout from '@components/guide/SubGuideLayout';
 import { SubLabel, Prose, ContentList } from '@components/guide';
 import GuideDetailSheet from '@components/guide/GuideDetailSheet';
 import { getNPSData, findNPSMatch } from '@services/npsService';
+import HowWeChoose from '@components/guide/HowWeChoose';
 import moveItems from '../../../data/restaurants/zion-move.json';
 import permits from '../../../data/permits/zion.json';
 
@@ -62,6 +63,7 @@ export default function ZionMove() {
         title="Hikes, Bikes, etc. Guide"
         descriptor="Every trail, hike, climb, and scenic drive across the orbit."
       >
+        <HowWeChoose section="move" />
         <Prose>
           Zion is a place that asks you to move through it. On foot, on water, on rock. The terrain is the teacher. Some of these are easy walks to extraordinary viewpoints. Others are full-day commitments that will change how you think about your body in the landscape.
         </Prose>

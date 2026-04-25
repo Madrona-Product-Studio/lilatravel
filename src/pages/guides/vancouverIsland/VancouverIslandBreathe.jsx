@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import SubGuideLayout from '@components/guide/SubGuideLayout';
 import { SubLabel, Prose, ContentList } from '@components/guide';
 import GuideDetailSheet from '@components/guide/GuideDetailSheet';
+import HowWeChoose from '@components/guide/HowWeChoose';
 import breatheItems from '../../../data/restaurants/vancouver-island-breathe.json';
 
 const breatheContentItems = breatheItems.map(b => ({
@@ -40,6 +41,7 @@ export default function VancouverIslandBreathe() {
         backPath="/destinations/vancouver-island"
         backLabel="Vancouver Island Guide"
       >
+        <HowWeChoose section="breathe" />
         <Prose>
           The coast does half the work. The sound of rain on cedar, the rhythm of the surf, the ancient scale of the forest — it works on you whether you intend it to or not. Hot Springs Cove is accessible only by boat, and the boardwalk through the forest to the thermal pools carved into coastal rock is one of the most beautiful approaches to hot water anywhere. Cedar saunas overlook the Pacific. Forest bathing on Meares Island happens among 1,500-year-old trees.
         </Prose>

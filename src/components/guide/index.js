@@ -26,3 +26,4 @@ export { default as Prose } from './Prose';
 export { default as EditorialList } from './EditorialList';
 export { default as SubGuideLayout } from './SubGuideLayout';
 export { default as PhotoStrip } from './PhotoStrip';
+export { default as HowWeChoose } from './HowWeChoose';

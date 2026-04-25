@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import SubGuideLayout from '@components/guide/SubGuideLayout';
 import { SubLabel, Prose, ContentList } from '@components/guide';
 import GuideDetailSheet from '@components/guide/GuideDetailSheet';
+import HowWeChoose from '@components/guide/HowWeChoose';
 import moveItems from '../../../data/restaurants/big-sur-move.json';
 
 const moveContentItems = moveItems.map(m => ({
@@ -40,6 +41,7 @@ export default function BigSurMove() {
         backPath="/destinations/big-sur"
         backLabel="Big Sur Guide"
       >
+        <HowWeChoose section="move" />
         <Prose>
           Ewoldsen Trail is the signature — old-growth redwoods that open onto coastal ridge views in a single switchback. Point Lobos is the crown jewel of California's state reserves. The Ventana Wilderness offers genuine backcountry. And the coast itself — sea kayaking, surfing at Sand Dollar Beach, cycling Highway 1 — is the real activity guide.
         </Prose>

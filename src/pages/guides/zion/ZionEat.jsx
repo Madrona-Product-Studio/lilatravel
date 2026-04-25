@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import SubGuideLayout from '@components/guide/SubGuideLayout';
 import { SubLabel, Prose, ContentList } from '@components/guide';
 import GuideDetailSheet from '@components/guide/GuideDetailSheet';
+import HowWeChoose from '@components/guide/HowWeChoose';
 import restaurants from '../../../data/restaurants/zion-eat.json';
 
 const eatItems = restaurants.map(r => ({
@@ -38,6 +39,7 @@ export default function ZionEat() {
         title="Where to Eat Guide"
         descriptor="Springdale, Byway 12, and a few things worth the drive."
       >
+        <HowWeChoose section="eat" />
         <Prose>
           Springdale has more good food than any gateway town its size deserves. A handful of places on Scenic Byway 12 are worth the detour. The corridor dining scene is small, personal, and genuinely good.
         </Prose>

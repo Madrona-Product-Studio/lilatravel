@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import SubGuideLayout from '@components/guide/SubGuideLayout';
 import { SubLabel, Prose, ContentList } from '@components/guide';
 import GuideDetailSheet from '@components/guide/GuideDetailSheet';
+import HowWeChoose from '@components/guide/HowWeChoose';
 import breatheItems from '../../../data/restaurants/joshua-tree-breathe.json';
 
 const breatheContentItems = breatheItems.map(b => ({
@@ -40,6 +41,7 @@ export default function JoshuaTreeBreathe() {
         backPath="/destinations/joshua-tree"
         backLabel="Joshua Tree Guide"
       >
+        <HowWeChoose section="breathe" />
         <Prose>
           The desert does half the work. The silence, the scale, the way the light shifts every twenty minutes — it recalibrates the nervous system whether you intend it to or not. Sound baths in Joshua Tree have become a thing for a reason. The landscape is the instrument. These are the people and places that help you meet the desert on a different register — through the body, through the breath, through stillness.
         </Prose>

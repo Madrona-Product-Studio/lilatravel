@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import SubGuideLayout from '@components/guide/SubGuideLayout';
 import { SubLabel, Prose, ContentList } from '@components/guide';
 import GuideDetailSheet from '@components/guide/GuideDetailSheet';
+import HowWeChoose from '@components/guide/HowWeChoose';
 import breatheItems from '../../../data/restaurants/zion-breathe.json';
 
 const breatheContentItems = breatheItems.map(b => ({
@@ -38,6 +39,7 @@ export default function ZionBreathe() {
         title="Yoga & Mindfulness Guide"
         descriptor="Yoga, bodywork, sauna, cold plunge, and restoration."
       >
+        <HowWeChoose section="breathe" />
         <Prose>
           The canyon does half the work. The sound of the river, the scale of the walls, the silence at dawn. These are the people and places that help you meet the landscape on a different register — through the body, through the breath, through stillness.
         </Prose>

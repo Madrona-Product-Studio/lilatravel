@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import SubGuideLayout from '@components/guide/SubGuideLayout';
 import { SubLabel, Prose, ContentList } from '@components/guide';
 import GuideDetailSheet from '@components/guide/GuideDetailSheet';
+import HowWeChoose from '@components/guide/HowWeChoose';
 import restaurants from '../../../data/restaurants/kauai-eat.json';
 
 const eatItems = restaurants.map(r => ({
@@ -40,6 +41,7 @@ export default function KauaiEat() {
         backPath="/destinations/kauai"
         backLabel="Kauai Guide"
       >
+        <HowWeChoose section="eat" />
         <Prose>
           Kauai's food scene is rooted in the land and the ocean. Poke is religion. Plate lunch is infrastructure. The farm-to-table movement here draws from soil that grows year-round. The best meals are often the least formal — roadside stands, fish markets, and the places locals eat when no one's watching.
         </Prose>

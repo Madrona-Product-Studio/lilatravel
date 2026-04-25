@@ -4,6 +4,7 @@ import SubGuideLayout from '@components/guide/SubGuideLayout';
 import { SubLabel, Prose, ContentList } from '@components/guide';
 import GuideDetailSheet from '@components/guide/GuideDetailSheet';
 import { getNPSData, findNPSMatch } from '@services/npsService';
+import HowWeChoose from '@components/guide/HowWeChoose';
 import moveItems from '../../../data/restaurants/joshua-tree-move.json';
 
 const moveContentItems = moveItems.map(m => ({
@@ -51,6 +52,7 @@ export default function JoshuaTreeMove() {
         backPath="/destinations/joshua-tree"
         backLabel="Joshua Tree Guide"
       >
+        <HowWeChoose section="move" />
         <Prose>
           The park has over 8,000 climbing routes and dozens of trails across two distinct desert ecosystems. Ryan Mountain gives you the full panorama. The Skull Rock Loop is easy and uncrowded at dawn. Keys View is the sunset move. And the boulder fields — Jumbo Rocks, Hidden Valley, Split Rock — are some of the best rock climbing in the American West.
         </Prose>

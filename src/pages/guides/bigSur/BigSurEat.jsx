@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import SubGuideLayout from '@components/guide/SubGuideLayout';
 import { SubLabel, Prose, ContentList } from '@components/guide';
 import GuideDetailSheet from '@components/guide/GuideDetailSheet';
+import HowWeChoose from '@components/guide/HowWeChoose';
 import restaurants from '../../../data/restaurants/big-sur-eat.json';
 
 const eatItems = restaurants.map(r => ({
@@ -40,6 +41,7 @@ export default function BigSurEat() {
         backPath="/destinations/big-sur"
         backLabel="Big Sur Guide"
       >
+        <HowWeChoose section="eat" />
         <Prose>
           Nepenthe is the iconic perch — burgers on a terrace 800 feet above the ocean. Deetjen's does the candlelit dinner. Sierra Mar at Post Ranch is the splurge with a view that earns every dollar. Head north and Carmel has a food scene that punches well above its one-square-mile footprint. Monterey anchors the working end with Cannery Row and the wharf.
         </Prose>
