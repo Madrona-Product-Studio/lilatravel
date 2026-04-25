@@ -24,6 +24,8 @@ import usePlacePhotos from '@hooks/usePlacePhotos';
 import SavePill from '@components/SavePill';
 import IterationsPill from '@components/IterationsPill';
 import ItineraryNav from '@components/ItineraryNav';
+import GuideDetailSheet from '@components/guide/GuideDetailSheet';
+import { lookupItem } from '@services/dataLookup';
 // CelestialMonthStrip consolidated into CelestialSnapshot below
 
 /*
@@ -5103,10 +5105,26 @@ export default function ItineraryResults() {
       {/* Toast */}
       <Toast message={toastMessage} onDone={() => setToastMessage(null)} />
 
-      {/* Detail panel */}
-      <DetailPanel item={activePanel} onClose={() => setActivePanel(null)}
-        lockedItems={lockedItems} onLock={handleLock} onAlternatives={handleAlternatives}
-        alternativesLoading={alternativesLoading} />
+      {/* Detail panel — use GuideDetailSheet when curated data match exists */}
+      {activePanel && (() => {
+        const matchTypes = ['activity', 'trail', 'accommodation'];
+        const itemName = activePanel?.data?.name || activePanel?.data?.title;
+        const guideMatch = matchTypes.includes(activePanel?.type) ? lookupItem(itemName) : null;
+        if (guideMatch) {
+          return (
+            <GuideDetailSheet
+              item={guideMatch}
+              onClose={() => setActivePanel(null)}
+              isMobile={window.innerWidth < 768}
+            />
+          );
+        }
+        return (
+          <DetailPanel item={activePanel} onClose={() => setActivePanel(null)}
+            lockedItems={lockedItems} onLock={handleLock} onAlternatives={handleAlternatives}
+            alternativesLoading={alternativesLoading} />
+        );
+      })()}
 
       {/* Header */}
       <ItineraryNav
