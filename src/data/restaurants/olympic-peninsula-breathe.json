@@ -62,14 +62,14 @@
     "type": "self-guided",
     "subtype": "meditation",
     "breatheTier": "restore",
-    "location": "Hoh Rainforest, Olympic National Park — 19 miles from Hoh River Visitor Center via Hoh River Trail",
+    "location": "Hoh Rainforest, Olympic National Park — 3.2 miles from Hoh Rain Forest Visitor Center via Hoh River Trail",
     "priceRange": "$",
     "budgetTier": "mindful",
     "groupFit": ["solo"],
     "energy": "contemplative",
     "highlights": [
       "Soundscape ecologist Gordon Hempton designated this the quietest place in the Western Hemisphere — a red pebble on a moss-covered log marks it",
-      "Reaching One Square Inch requires a 19-mile round-trip hike — the journey through old-growth is the practice",
+      "Reaching One Square Inch is a 6.4-mile round-trip walk through old-growth — unhurried, the journey through moss and fern is the practice",
       "The Hoh receives 140+ inches of rain per year; the acoustic environment is extraordinary — rain on moss, the river, and near-zero human noise",
       "A Lila Restore experience unlike any other in the guides: restoration through radical silence"
     ],
@@ -81,7 +81,7 @@
     },
     "lilaPick": true,
     "pickTier": "restore",
-    "tags": ["self-guided", "silence", "one-square-inch", "hoh-rainforest", "gordon-hempton", "19-mile-hike", "acoustic-quiet"],
+    "tags": ["self-guided", "silence", "one-square-inch", "hoh-rainforest", "gordon-hempton", "6-mile-hike", "acoustic-quiet"],
     "months": "May–Oct"
   },
   {
@@ -162,6 +162,34 @@
     },
     "lilaPick": false,
     "tags": ["self-guided", "coastal-stillness", "wild-coast", "sea-stacks", "dawn", "driftwood", "restoration-through-absence"],
+    "months": "all"
+  },
+  {
+    "id": "elwha-river-restoration",
+    "name": "Elwha River — A Landscape Healing Itself",
+    "type": "self-guided",
+    "subtype": "contemplative",
+    "breatheTier": "restore",
+    "location": "Elwha Valley, Olympic National Park — access from Olympic Hot Springs Road",
+    "priceRange": "free",
+    "budgetTier": "free",
+    "groupFit": ["solo", "couple"],
+    "energy": "contemplative",
+    "highlights": [
+      "The largest dam removal in US history (2011–2014) returned the Elwha to a free-flowing river after a century — the landscape is visibly regenerating",
+      "Former reservoir beds are now meadows; salmon have returned to waters they haven't reached in 100 years",
+      "Walk the former dam sites and witness ecological restoration in real time — new growth on exposed sediment, cottonwoods taking root",
+      "This is contemplation of a different kind: a place practicing its own recovery"
+    ],
+    "bookingWindow": "Self-guided — no booking required. Park entry fee applies.",
+    "hours": "Dawn to dusk; year-round access",
+    "links": {
+      "website": "https://www.nps.gov/olym/planyourvisit/visiting-the-elwha.htm",
+      "booking": null
+    },
+    "lilaPick": true,
+    "pickTier": "restore",
+    "tags": ["self-guided", "dam-removal", "ecological-restoration", "elwha-river", "salmon", "contemplative", "free"],
     "months": "all"
   }
 ]

@@ -29,6 +29,35 @@
     "months": "Mar–Nov"
   },
   {
+    "id": "cosmic-flow-yoga",
+    "name": "Cosmic Flow Yoga",
+    "type": "studio",
+    "subtype": "yoga",
+    "breatheTier": "practice",
+    "tradition": "Vinyasa + Sound Healing",
+    "location": "Various outdoor locations near Zion, Springdale area",
+    "priceRange": "$$",
+    "budgetTier": "moderate",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "contemplative",
+    "highlights": [
+      "Yoga and crystal alchemy sound bath held in outdoor settings around Springdale and Zion — featured in the New York Times",
+      "The canyon walls become the studio: sessions set against red rock, sometimes under the stars",
+      "Crystal singing bowls tuned to specific frequencies — the acoustic properties of the canyon amplify the sound healing",
+      "Small group sizes, genuinely contemplative, no performance energy"
+    ],
+    "bookingWindow": "Book at yogainzion.com — sessions fill, especially weekends",
+    "hours": "Seasonal schedule — morning and sunset sessions",
+    "links": {
+      "website": "https://www.yogainzion.com/",
+      "booking": "https://www.yogainzion.com/"
+    },
+    "lilaPick": true,
+    "pickTier": "practice",
+    "tags": ["yoga", "sound-bath", "crystal-bowls", "outdoor", "canyon", "new-york-times", "contemplative"],
+    "months": "Mar–Nov"
+  },
+  {
     "id": "hillside-yoga-flanigans",
     "name": "Hillside Yoga at Flanigan's",
     "type": "studio",
@@ -67,10 +96,10 @@
     "groupFit": ["solo", "couple", "friends"],
     "energy": "restorative",
     "highlights": [
-      "32 individual geothermal hot springs fed by a natural aquifer",
-      "Finnish dry saunas, cold plunge pools — full contrast therapy circuit",
-      "21+ Premier area for adults seeking deeper stillness",
-      "One of the largest hot spring facilities in the American Southwest"
+      "Naturally heated geothermal pools fed by an underground aquifer — each pool is private, enclosed, and quiet",
+      "Finnish dry saunas and cold plunge pools for full contrast therapy — the cycle is the practice",
+      "The 21+ Premier area is where the stillness deepens — adults-only soaking with no distractions",
+      "15 minutes from Zion's south entrance — the ideal post-canyon decompression"
     ],
     "bookingWindow": "Book online at zioncanyonhotsprings.com — weekends fill ahead",
     "hours": "Daily; check seasonal hours",
@@ -95,9 +124,10 @@
     "groupFit": ["solo", "couple", "friends"],
     "energy": "immersive",
     "highlights": [
-      "Multi-day immersive yoga, meditation, and sound healing programs off-grid",
-      "Yoga nidra, breathwork, and somatic practice in the desert landscape",
-      "Combines with glamping stay at Open Sky for a complete Lila integration experience"
+      "Multi-day off-grid immersion: morning yoga, guided meditation, sound healing sessions, and somatic breathwork in the desert landscape",
+      "Teachers rotate seasonally — past programs have included Kundalini, Yoga Nidra, and cacao ceremony",
+      "The setting is the practice: no roads, no screens, no schedule beyond the sun",
+      "Requires minimum two-night stay — this is slow-down work, not a drop-in"
     ],
     "bookingWindow": "Book through openskyhotels.com — programs require advance reservation",
     "hours": "Multi-day residential programs — check schedule",
@@ -217,29 +247,31 @@
     "months": "all"
   },
   {
-    "id": "journaling-virgin-river",
-    "name": "Journaling at the Virgin River",
+    "id": "narrows-contemplative",
+    "name": "The Narrows — Walking in Water",
     "type": "self-guided",
     "subtype": "contemplative",
-    "breatheTier": "practice",
-    "location": "Pa'rus Trail benches, Zion National Park",
-    "priceRange": "free",
-    "budgetTier": "free",
-    "groupFit": ["solo"],
-    "energy": "contemplative",
+    "breatheTier": "restore",
+    "location": "Virgin River Narrows, Zion National Park — access from Temple of Sinawava",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "immersive",
     "highlights": [
-      "Find a bench along the Pa'rus Trail. The sound of the river is its own teacher.",
-      "The integration practice for the day's hike — where the body's experience becomes language",
-      "Early morning before the shuttles start is the quietest window"
+      "Wading chest-deep through a slot canyon with 1,000-foot walls — the most immersive body-in-landscape experience in any national park",
+      "The river is the trail. Every step requires presence — this is moving meditation without calling it that.",
+      "Canyon acoustics amplify the water and silence in equal measure — conversation falls away naturally",
+      "Go early, go slow, stop often. The first mile past Wall Street is where the crowds thin and the canyon opens."
     ],
-    "bookingWindow": "Self-guided — no booking required.",
-    "hours": "Dawn to dusk",
+    "bookingWindow": "Self-guided — park entry fee applies. Check Virgin River flow levels at nps.gov/zion before entering.",
+    "hours": "Dawn to dusk; spring and fall have best water levels. Flash flood risk in monsoon season (Jul–Sep).",
     "links": {
-      "website": "https://www.nps.gov/zion/index.htm",
+      "website": "https://www.nps.gov/zion/planyourvisit/thenarrows.htm",
       "booking": null
     },
-    "lilaPick": false,
-    "tags": ["self-guided", "journaling", "virgin-river", "parus-trail", "free", "integration"],
-    "months": "all"
+    "lilaPick": true,
+    "pickTier": "restore",
+    "tags": ["self-guided", "narrows", "slot-canyon", "walking-in-water", "immersive", "canyon-acoustics"],
+    "months": "May–Oct"
   }
 ]

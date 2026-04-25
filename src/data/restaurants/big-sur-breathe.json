@@ -221,5 +221,34 @@
     "pickTier": "practice",
     "tags": ["yoga", "hatha", "flow", "sound-healing", "big-sur", "highway-1", "village", "morning-practice", "somatic"],
     "months": "all"
+  },
+  {
+    "id": "new-camaldoli-hermitage",
+    "name": "New Camaldoli Hermitage",
+    "type": "retreat",
+    "subtype": "meditation",
+    "breatheTier": "restore",
+    "tradition": "Camaldolese Benedictine",
+    "location": "62475 CA-1, Big Sur — 899-acre monastery overlooking the Pacific",
+    "priceRange": "$$",
+    "budgetTier": "moderate",
+    "groupFit": ["solo"],
+    "energy": "contemplative",
+    "highlights": [
+      "Camaldolese Benedictine hermitage since 1958 — 899 acres of silence on the Big Sur coast, overlooking the Pacific",
+      "Private hermitage rooms for silent retreat; chapel open 24 hours with chanted offices at dawn, midday, and vespers",
+      "No phones, no internet, no television — the only schedule is the bell",
+      "Open to men and women of any background or faith — the monks ask only for respect of the silence"
+    ],
+    "bookingWindow": "Book retreats at contemplation.com — 2–9 night stays available. Popular dates fill months ahead.",
+    "hours": "Hermitage office hours 9am–12pm, 1–4pm. Chapel open 24 hours.",
+    "links": {
+      "website": "https://www.contemplation.com/",
+      "booking": "https://www.contemplation.com/guestinfo/"
+    },
+    "lilaPick": true,
+    "pickTier": "restore",
+    "tags": ["monastery", "silent-retreat", "benedictine", "pacific-views", "no-phones", "chapel", "1958", "hermitage"],
+    "months": "all"
   }
 ]

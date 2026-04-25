@@ -22,7 +22,8 @@
     "hours": "Mon–Fri 7am–6:30pm, Sat 7am–11:30am, Sun 7:45am–6pm",
     "links": {
       "website": "https://www.blackcoralyoga.com/",
-      "booking": "https://www.blackcoralyoga.com/book-a-class"
+      "booking": "https://www.blackcoralyoga.com/book-a-class",
+      "momence": "https://www.momence.com/l/k8hbmbga"
     },
     "lilaPick": true,
     "pickTier": "practice",
@@ -41,10 +42,10 @@
     "groupFit": ["solo", "couple"],
     "energy": "restorative",
     "highlights": [
-      "The island's most developed spa — built around genuine Hawaiian healing traditions, not just a hotel amenity",
-      "Lomilomi massage (traditional Hawaiian bodywork using continuous flowing strokes) and pohaku hot stone therapy",
-      "Day access available for non-guests who book a treatment — one of the best spa day options on the island",
-      "Outdoor treatment hales (huts), lava rock soaking pools, and a waterfall hydrotherapy circuit"
+      "Lomilomi massage — traditional Hawaiian bodywork using continuous flowing strokes that honor the body as sacred",
+      "Pohaku hot stone therapy and botanical body treatments using island-grown ingredients",
+      "Outdoor treatment hales (huts), lava rock soaking pools, and a waterfall hydrotherapy circuit set in tropical gardens",
+      "Day access available for non-guests who book a treatment — one of the few full-service spas on the South Shore"
     ],
     "bookingWindow": "Book at hyatt.com or call directly — day access requires treatment booking",
     "hours": "Daily; check hours",
@@ -97,10 +98,10 @@
     "groupFit": ["solo", "couple", "friends", "family"],
     "energy": "active",
     "highlights": [
-      "The only navigable river in Hawaii — sacred to Native Hawaiians as a highway connecting mountain to sea",
-      "Guided kayak to Uluwehi (Secret) Falls — a two-tier waterfall accessible only by paddle and short hike",
-      "Multiple operators offer guided half-day tours; kayak rentals available for self-guided exploration",
-      "One of the most consistently rewarding half-day experiences on the island"
+      "The only navigable river in Hawaii — sacred to Native Hawaiians as a corridor connecting mountain to sea, lined with ancient heiau (temple) sites",
+      "The paddle upstream is quiet, rhythmic, and unhurried — the river narrows through a lush corridor of hau trees and hanging ferns",
+      "Guided kayak to Uluwehi (Secret) Falls — a two-tier waterfall accessible only by paddle and short hike through mud and roots",
+      "Go with a small-group guided tour rather than the large operators — Kayak Wailua and Ali'i Kayaks both keep groups intimate"
     ],
     "bookingWindow": "Book guided tours through operators like Kayak Wailua or Ali'i Kayaks",
     "hours": "Morning departures recommended; book 1–2 days ahead",
@@ -138,5 +139,62 @@
     "lilaPick": false,
     "tags": ["sup", "paddleboarding", "hanalei-bay", "sea-turtles", "summer", "flat-water"],
     "months": "May–Sep"
+  },
+  {
+    "id": "kauai-hindu-monastery",
+    "name": "Kauai Hindu Monastery — Iraivan Temple",
+    "type": "retreat",
+    "subtype": "meditation",
+    "breatheTier": "restore",
+    "tradition": "Saiva Siddhanta",
+    "location": "107 Kaholalele Rd, Kapaa (East Side) — in the Wailua River valley",
+    "priceRange": "free",
+    "budgetTier": "free",
+    "groupFit": ["solo", "couple"],
+    "energy": "contemplative",
+    "highlights": [
+      "The only hand-carved white granite Hindu temple in the Western Hemisphere — Iraivan Temple is still under construction after 30+ years of traditional stone carving",
+      "Saiva Siddhanta Church monks in residence since 1970 — genuine lineage, not a tourist attraction",
+      "Free self-guided visits to the monastery gardens, Kadavul Temple, and the San Marga Iraivan Temple grounds",
+      "The Rudraksha Forest and meditation gardens are among the most peaceful contemplative spaces on the island"
+    ],
+    "bookingWindow": "Self-guided — free, no booking required. Modest dress expected. Open daily 9am–12pm.",
+    "hours": "Daily 9am–12pm for visitors. Closed on Hindu holy days.",
+    "links": {
+      "website": "https://www.himalayanacademy.com/monastery",
+      "booking": null
+    },
+    "lilaPick": true,
+    "pickTier": "restore",
+    "tags": ["monastery", "hindu", "saiva-siddhanta", "temple", "free", "meditation", "east-side", "genuine-lineage"],
+    "months": "all"
+  },
+  {
+    "id": "waipa-foundation",
+    "name": "Waipa Foundation — Community Lo'i",
+    "type": "self-guided",
+    "subtype": "contemplative",
+    "breatheTier": "practice",
+    "location": "Waipa, Hanalei (North Shore) — between Hanalei and Wainiha",
+    "priceRange": "free",
+    "budgetTier": "free",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "active",
+    "highlights": [
+      "Community taro farming in a traditional lo'i kalo — hands in the earth, feet in the mud, working with 800 years of Hawaiian agricultural practice",
+      "Tuesday community work days are open to visitors — no experience needed, just willingness to get muddy",
+      "The lo'i is a living system: water flows from the mountain through ancient 'auwai (irrigation channels) into the taro patches",
+      "This is not a tour or a performance — it is participation in the ongoing life of a Hawaiian ahupua'a"
+    ],
+    "bookingWindow": "Tuesday community work days — show up at 9am. No reservation needed. Check waipafoundation.org for schedule.",
+    "hours": "Tuesday mornings, 9am–12pm (community work day)",
+    "links": {
+      "website": "https://waipafoundation.org/",
+      "booking": null
+    },
+    "lilaPick": true,
+    "pickTier": "practice",
+    "tags": ["lo'i", "taro", "hawaiian-agriculture", "community", "free", "north-shore", "hands-in-the-earth"],
+    "months": "all"
   }
 ]
