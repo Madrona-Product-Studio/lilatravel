@@ -6,38 +6,55 @@ export default function HowWeChoose({ section }) {
   if (!rubric) return null;
 
   return (
-    <div style={{ marginBottom: 28, paddingBottom: 24, borderBottom: `0.5px solid ${G.border}` }}>
-      <h2 style={{
-        fontFamily: FONTS.serif,
-        fontSize: 17,
-        fontWeight: 300,
-        fontStyle: 'italic',
-        color: G.ink,
-        margin: '0 0 14px',
-        letterSpacing: '0.01em',
+    <div style={{
+      marginBottom: 32,
+      padding: '20px 24px',
+      background: G.panel,
+      border: `0.5px solid ${G.border}`,
+    }}>
+      <div style={{
+        fontFamily: FONTS.body,
+        fontSize: 9,
+        fontWeight: 700,
+        letterSpacing: '0.22em',
+        textTransform: 'uppercase',
+        color: G.ink40,
+        marginBottom: 14,
       }}>
         {rubric.heading}
-      </h2>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+      </div>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
         {rubric.criteria.map((c, i) => (
-          <p key={i} style={{
-            fontFamily: FONTS.body,
-            fontSize: 13,
-            fontWeight: 400,
-            lineHeight: 1.65,
-            color: G.inkBody,
-            margin: 0,
-          }}>
+          <div key={i} style={{ display: 'flex', gap: 0 }}>
             <span style={{
-              fontFamily: FONTS.serif,
-              fontWeight: 500,
-              fontStyle: 'italic',
-              color: G.ink,
+              fontFamily: FONTS.body,
+              fontSize: 12,
+              fontWeight: 600,
+              color: G.inkDetail,
+              minWidth: 0,
+              flexShrink: 0,
             }}>
-              {c.name}.
+              {c.name}
             </span>
-            {' '}{c.body}
-          </p>
+            <span style={{
+              fontFamily: FONTS.body,
+              fontSize: 12,
+              fontWeight: 400,
+              color: G.ink40,
+              marginLeft: 4,
+              flexShrink: 0,
+            }}>—</span>
+            <span style={{
+              fontFamily: FONTS.body,
+              fontSize: 12,
+              fontWeight: 400,
+              lineHeight: 1.55,
+              color: G.ink40,
+              marginLeft: 4,
+            }}>
+              {c.body}
+            </span>
+          </div>
         ))}
       </div>
     </div>
