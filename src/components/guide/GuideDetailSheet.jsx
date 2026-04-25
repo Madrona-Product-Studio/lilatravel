@@ -122,6 +122,14 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
   // Reset photo index when item changes
   useEffect(() => { setActivePhotoIdx(0); }, [item?.name]);
 
+  // Lock body scroll when sheet is open
+  useEffect(() => {
+    if (item) {
+      document.body.style.overflow = 'hidden';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [item]);
+
   // Determine fetch conditions before hooks (hooks must run unconditionally)
   const nps = item?.nps;
   const isWildlife = item?.type === 'wildlife';
@@ -388,12 +396,13 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
             ><PhoneSVG /></a>
           )}
           {mapsUrl && (
-            <a href={mapsUrl} target="_blank" rel="noopener noreferrer"
-              style={{ width: 48, height: 48, display: 'flex', alignItems: 'center', justifyContent: 'center', textDecoration: 'none', border: `1.5px solid ${C.darkInk}20`, color: C.darkInk, transition: 'opacity 0.2s' }}
+            <button
+              onClick={() => window.open(mapsUrl, '_blank', 'noopener,noreferrer')}
+              style={{ width: 48, height: 48, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'none', border: `1.5px solid ${C.darkInk}20`, color: C.darkInk, cursor: 'pointer', transition: 'opacity 0.2s' }}
               onMouseEnter={e => { e.currentTarget.style.opacity = '0.7'; }}
               onMouseLeave={e => { e.currentTarget.style.opacity = '1'; }}
               aria-label="Directions"
-            ><DirectionsSVG /></a>
+            ><DirectionsSVG /></button>
           )}
         </div>
       )}
