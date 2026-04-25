@@ -23,6 +23,7 @@ const stayItems = accommodations.map(a => ({
   featured: a.lilaPick,
   tier: a.stayStyle,
   url: a.links?.website || a.links?.booking,
+  links: a.links,
 }));
 
 export default function ZionSleep() {

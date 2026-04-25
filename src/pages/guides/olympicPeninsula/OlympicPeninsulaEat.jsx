@@ -14,6 +14,7 @@ const eatItems = restaurants.map(r => ({
   highlights: r.highlights,
   featured: r.lilaPick,
   url: r.links?.website,
+  links: r.links,
   section: 'Eat',
 }));
 

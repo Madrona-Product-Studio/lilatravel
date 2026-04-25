@@ -40,65 +40,71 @@ function DirectionsSVG() {
   );
 }
 
-function GlobeIcon({ size = 13, color }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="12" cy="12" r="10" /><line x1="2" y1="12" x2="22" y2="12" /><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" />
-    </svg>
-  );
-}
+// ─── External Link Button — unified brand CTA ──────────────────────────────
 
-function MountainIcon({ size = 13, color }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M4 20L12 4l8 16H4z" />
-      <path d="M8.5 14l3-4 3 4" />
-    </svg>
-  );
-}
+const LINK_VARIANTS = {
+  nps: {
+    eyebrow: 'Official info',
+    wordmark: 'NPS.GOV',
+    color: '#8B4513', /* NPS brand brown — intentional exception to Lila tokens */
+  },
+  alltrails: {
+    eyebrow: 'View on',
+    wordmark: 'AllTrails',
+    color: '#1a1a1a',
+    arrowColor: '#5BDB6F', /* AllTrails brand green — intentional exception to Lila tokens */
+    dot: '#5BDB6F',
+  },
+  bookingDotCom: {
+    eyebrow: 'Book on',
+    wordmark: 'Booking.com',
+    color: '#0071C2', /* Booking.com brand blue — intentional exception to Lila tokens */
+  },
+  openTable: {
+    eyebrow: 'Reserve on',
+    wordmark: 'OpenTable',
+    color: '#DA3743', /* OpenTable brand red — intentional exception to Lila tokens */
+  },
+  resy: {
+    eyebrow: 'Reserve on',
+    wordmark: 'Resy',
+    color: '#E8412A', /* Resy brand red — intentional exception to Lila tokens */
+  },
+  tock: {
+    eyebrow: 'Reserve on',
+    wordmark: 'Tock',
+    color: '#1a1a1a',
+    arrowColor: 'rgba(26,26,26,0.4)',
+  },
+};
 
-function TrailCTARow({ npsUrl, alltrailsUrl }) {
-  if (!npsUrl && !alltrailsUrl) return null;
-  const both = npsUrl && alltrailsUrl;
+function ExternalLinkButton({ variant, href }) {
+  if (!href || !LINK_VARIANTS[variant]) return null;
+  const v = LINK_VARIANTS[variant];
+  const arrowColor = v.arrowColor || v.color;
   return (
-    <div style={{ display: 'flex', gap: 8, marginBottom: 18 }}>
-      {npsUrl && (
-        <a href={npsUrl} target="_blank" rel="noopener noreferrer"
-          style={{
-            flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-            gap: 3, padding: '10px 12px', textDecoration: 'none',
-            border: `1px solid ${C.darkInk}20`, transition: 'border-color 0.2s',
-          }}
-          onMouseEnter={e => e.currentTarget.style.borderColor = C.darkInk}
-          onMouseLeave={e => e.currentTarget.style.borderColor = `${C.darkInk}20`}
-        >
-          <span style={{ fontFamily: FONTS.body, fontSize: 10, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: C.darkInk, opacity: 0.45 }}>
-            Official Info
-          </span>
-          <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, fontFamily: FONTS.body, fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: C.darkInk }}>
-            <GlobeIcon size={13} color={C.darkInk} /> NPS.gov <span style={{ fontSize: 11, opacity: 0.5 }}>↗</span>
-          </span>
-        </a>
+    <a href={href} target="_blank" rel="noopener noreferrer"
+      style={{
+        flex: 1, display: 'flex', alignItems: 'center', height: 52,
+        padding: '0 14px', textDecoration: 'none',
+        border: '1px solid #1a1a1a', transition: 'opacity 0.2s',
+      }}
+      onMouseEnter={e => e.currentTarget.style.opacity = '0.75'}
+      onMouseLeave={e => e.currentTarget.style.opacity = '1'}
+    >
+      {v.dot && (
+        <span style={{ width: 7, height: 7, borderRadius: '50%', background: v.dot, flexShrink: 0, marginRight: 8 }} />
       )}
-      {alltrailsUrl && (
-        <a href={alltrailsUrl} target="_blank" rel="noopener noreferrer"
-          style={{
-            flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-            gap: 3, padding: '10px 12px', textDecoration: 'none',
-            border: `1px solid ${C.darkInk}20`, transition: 'border-color 0.2s',
-          }}
-          onMouseEnter={e => e.currentTarget.style.borderColor = C.darkInk}
-          onMouseLeave={e => e.currentTarget.style.borderColor = `${C.darkInk}20`}
-        >
-          <span style={{ fontFamily: FONTS.body, fontSize: 10, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: C.darkInk, opacity: 0.45 }}>
-            Trail Reviews
-          </span>
-          <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, fontFamily: FONTS.body, fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: C.darkInk }}>
-            <MountainIcon size={13} color={C.darkInk} /> AllTrails <span style={{ fontSize: 11, opacity: 0.5 }}>↗</span>
-          </span>
-        </a>
-      )}
-    </div>
+      <div style={{ flex: 1 }}>
+        <div style={{ fontFamily: FONTS.body, fontSize: 8, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(26,26,26,0.45)', lineHeight: 1 }}>
+          {v.eyebrow}
+        </div>
+        <div style={{ fontFamily: FONTS.body, fontSize: 13, fontWeight: 700, letterSpacing: '0.05em', textTransform: 'uppercase', color: v.color, lineHeight: 1, marginTop: 4 }}>
+          {v.wordmark}
+        </div>
+      </div>
+      <span style={{ fontFamily: FONTS.body, fontSize: 14, color: arrowColor, marginLeft: 'auto', flexShrink: 0 }}>↗</span>
+    </a>
   );
 }
 
@@ -347,12 +353,18 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
         <div style={{ fontFamily: FONTS.body, fontSize: 12, color: C.oceanTeal, marginBottom: 10 }}>{item.hours}</div>
       )}
 
-      {/* Trail CTA for non-NPS entries with AllTrails link */}
-      {!showSkeleton && !nps && item.links?.alltrails && (
-        <TrailCTARow npsUrl={null} alltrailsUrl={item.links.alltrails} />
+      {/* External brand CTAs for non-NPS entries */}
+      {!showSkeleton && !nps && (item.links?.alltrails || item.links?.bookingDotCom || item.links?.openTable || item.links?.resy || item.links?.tock) && (
+        <div style={{ display: 'flex', gap: 8, marginBottom: 18 }}>
+          {item.links?.alltrails && <ExternalLinkButton variant="alltrails" href={item.links.alltrails} />}
+          {item.links?.bookingDotCom && <ExternalLinkButton variant="bookingDotCom" href={item.links.bookingDotCom} />}
+          {item.links?.openTable && <ExternalLinkButton variant="openTable" href={item.links.openTable} />}
+          {item.links?.resy && <ExternalLinkButton variant="resy" href={item.links.resy} />}
+          {item.links?.tock && <ExternalLinkButton variant="tock" href={item.links.tock} />}
+        </div>
       )}
 
-      {/* Website / Phone / Directions row — hidden when trail CTA is shown */}
+      {/* Website / Phone / Directions row — hidden when brand CTA is shown for trails */}
       {!showSkeleton && !nps && !item.links?.alltrails && (item.url || places.phone || mapsUrl) && (
         <div style={{ display: 'flex', gap: 8, marginBottom: 16 }}>
           {item.url && (
@@ -416,8 +428,13 @@ function GuideDetailSheet({ item, onClose, isMobile }) {
             </div>
           )}
 
-          {/* Trail CTA — dual pill (NPS + AllTrails) or single */}
-          <TrailCTARow npsUrl={nps.url} alltrailsUrl={item.links?.alltrails} />
+          {/* Trail CTA — NPS + AllTrails side by side, or NPS solo */}
+          {(nps.url || item.links?.alltrails) && (
+            <div style={{ display: 'flex', gap: 8, marginBottom: 18 }}>
+              {nps.url && <ExternalLinkButton variant="nps" href={nps.url} />}
+              {item.links?.alltrails && <ExternalLinkButton variant="alltrails" href={item.links.alltrails} />}
+            </div>
+          )}
 
           {/* NPS Description */}
           {(nps.longDescription || nps.shortDescription) && (
