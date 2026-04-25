@@ -68,7 +68,7 @@ export default function ContentList({ items, onOpenSheet, style = {} }) {
             {/* Thumbnail */}
             {item.thumbnail && (
               <div style={{
-                width: 72, height: 72, flexShrink: 0, marginRight: 14, alignSelf: 'center',
+                width: 96, height: 96, flexShrink: 0, marginRight: 14, alignSelf: 'center',
                 overflow: 'hidden', borderRadius: 6, background: G.borderSoft,
               }}>
                 <img
