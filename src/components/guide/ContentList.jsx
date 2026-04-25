@@ -1,4 +1,4 @@
-import { G } from '@data/guides/guide-styles';
+import { G, TIER_COLORS } from '@data/guides/guide-styles';
 import Badge from './Badge';
 import LilaPick from './LilaPick';
 
@@ -30,8 +30,8 @@ export default function ContentList({ items, onOpenSheet, style = {} }) {
     <div style={{ margin: '16px 0 28px', ...style }}>
       {items.map((item, i) => {
         // Tier-aware bar color for stays; lilaPick color for other sections
-        const tierColors = { elemental: G.oceanTeal, rooted: G.goldenAmber, premium: G.goldenAmber };
-        const barColor = item.tier ? (tierColors[item.tier] || G.tealBorder) : (item.lilaPick ? G.goldenAmber : G.tealBorder);
+        const tierColor = item.tier && TIER_COLORS[item.tier];
+        const barColor = tierColor ? tierColor.color : (item.lilaPick ? G.goldenAmber : G.tealBorder);
         const isClickable = !!onOpenSheet;
 
         const nameEl = isClickable ? (
@@ -79,7 +79,7 @@ export default function ContentList({ items, onOpenSheet, style = {} }) {
               {/* Badge + context row */}
               {(item.badge || item.context) && (
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 5 }}>
-                  {item.badge && <Badge label={item.badge} />}
+                  {item.badge && <Badge label={item.badge} tier={item.tier} />}
                   {item.context && (
                     <span style={{ fontFamily: "'Quicksand', sans-serif", fontSize: 10, fontWeight: 500, color: G.ink40 }}>
                       {item.context}

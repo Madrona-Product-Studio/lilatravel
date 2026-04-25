@@ -4,6 +4,7 @@ import SubGuideLayout from '@components/guide/SubGuideLayout';
 import { SubLabel, Prose, EditorialList, ContentList } from '@components/guide';
 import GuideDetailSheet from '@components/guide/GuideDetailSheet';
 import HowWeChoose from '@components/guide/HowWeChoose';
+import { TIER_COLORS } from '@data/guides/guide-styles';
 import { TOWNS } from '@data/guides/joshua-tree-constants';
 import accommodations from '../../../data/accommodations/joshua-tree.json';
 
@@ -54,21 +55,21 @@ export default function JoshuaTreeSleep() {
 
         {stayItems.some(s => s.tier === 'elemental') && (
           <>
-            <SubLabel>Elemental</SubLabel>
+            <SubLabel color={TIER_COLORS.elemental.color}>Elemental</SubLabel>
             <ContentList items={stayItems.filter(s => s.tier === 'elemental')} onOpenSheet={setActiveSheet} />
           </>
         )}
 
         {stayItems.some(s => s.tier === 'rooted') && (
           <>
-            <SubLabel>Rooted</SubLabel>
+            <SubLabel color={TIER_COLORS.rooted.color}>Rooted</SubLabel>
             <ContentList items={stayItems.filter(s => s.tier === 'rooted')} onOpenSheet={setActiveSheet} />
           </>
         )}
 
         {stayItems.some(s => s.tier === 'premium') && (
           <>
-            <SubLabel>Premium</SubLabel>
+            <SubLabel color={TIER_COLORS.premium.color}>Premium</SubLabel>
             <ContentList items={stayItems.filter(s => s.tier === 'premium')} onOpenSheet={setActiveSheet} />
           </>
         )}

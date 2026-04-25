@@ -31,9 +31,19 @@ export const G = {
   goldenAmber: '#c9963a',
   amberFaint:  'rgba(201,150,58,0.07)',
   amberBorder: 'rgba(201,150,58,0.45)',
+  slateBlue:   '#5a7d9b',
+  slateFaint:  'rgba(90,125,155,0.06)',
+  slateBorder: 'rgba(90,125,155,0.3)',
 
   // Ghost / decorative
   ghostNum:    'rgba(28,25,23,0.10)',
+};
+
+// Stay tier colors — elemental (teal), rooted (blue), premium (gold)
+export const TIER_COLORS = {
+  elemental: { color: '#3a7d7b', border: 'rgba(58,125,123,0.3)', faint: 'rgba(58,125,123,0.06)' },
+  rooted:    { color: '#5a7d9b', border: 'rgba(90,125,155,0.3)', faint: 'rgba(90,125,155,0.06)' },
+  premium:   { color: '#c9963a', border: 'rgba(201,150,58,0.45)', faint: 'rgba(201,150,58,0.07)' },
 };
 
 export const FONTS = {
