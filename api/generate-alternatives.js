@@ -37,8 +37,8 @@ Alternatives should contrast with the primary: strenuous ↔ restorative, solita
 For early morning signature activities (before 9 AM), include a "Sleep in" alternative.
 
 **Pick alternatives** (stay, eat, gear, wellness only — NOT mindfulness):
-- Every "stay" pick MUST have at least 1 alternative.
-- Every "eat" pick MUST have at least 1 alternative.
+- Every "stay" pick MUST have at least 2 alternatives.
+- Every "eat" pick MUST have at least 3 alternatives.
 - Same structure as the pick: include name, why, vibe, and type-specific fields (priceRange, stayType, cuisine, etc.)
 - Alternative names MUST come from the destination guide.
 - "why" should contrast with the main pick in 1 sentence.

@@ -1563,13 +1563,20 @@ const accomLabel = { color: C.muted };
         ) : alternativesLoading && (
           <div style={{ marginBottom: 20 }}>
             <div className={accomLabelCls + ' mb-2.5'} style={accomLabel}>Other Options</div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '8px 0' }}>
-              <div style={{
-                width: 14, height: 14, border: `2px solid ${C.sage}30`, borderTopColor: C.sage,
-                borderRadius: '50%', animation: 'lila-spin 0.8s linear infinite',
-              }} />
-              <span className="font-body text-[13px] font-normal" style={{ color: C.muted }}>Loading alternatives...</span>
+            <div style={{ padding: '16px 0' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                {[0, 1].map(i => (
+                  <div key={i} style={{ display: 'flex', gap: 12, alignItems: 'flex-start', opacity: 0.5 - i * 0.15, animation: 'skeletonPulse 1.5s ease-in-out infinite' }}>
+                    <div style={{ width: '100%' }}>
+                      <div style={{ width: '60%', height: 14, background: C.border, marginBottom: 6 }} />
+                      <div style={{ width: '80%', height: 10, background: C.border, marginBottom: 4 }} />
+                      <div style={{ width: '40%', height: 10, background: C.border }} />
+                    </div>
+                  </div>
+                ))}
               </div>
+              <div className="font-body text-[11px] font-normal mt-3" style={{ color: C.muted }}>Finding places that fit your trip...</div>
+            </div>
           </div>
         )}
       </div>
@@ -1776,12 +1783,19 @@ const accomLabel = { color: C.muted };
       ) : alternativesLoading && (
         <div style={{ marginBottom: 20 }}>
           <div className="font-body text-[10px] font-semibold tracking-[0.1em] uppercase mb-2.5" style={{ color: C.muted }}>Other Options</div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '8px 0' }}>
-            <div style={{
-              width: 14, height: 14, border: `2px solid ${C.sage}30`, borderTopColor: C.sage,
-              borderRadius: '50%', animation: 'lila-spin 0.8s linear infinite',
-            }} />
-            <span className="font-body text-[13px] font-normal" style={{ color: C.muted }}>Loading alternatives...</span>
+          <div style={{ padding: '16px 0' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+              {[0, 1].map(i => (
+                <div key={i} style={{ display: 'flex', gap: 12, alignItems: 'flex-start', opacity: 0.5 - i * 0.15, animation: 'skeletonPulse 1.5s ease-in-out infinite' }}>
+                  <div style={{ width: '100%' }}>
+                    <div style={{ width: '55%', height: 14, background: C.border, marginBottom: 6 }} />
+                    <div style={{ width: '75%', height: 10, background: C.border, marginBottom: 4 }} />
+                    <div style={{ width: '35%', height: 10, background: C.border }} />
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="font-body text-[11px] font-normal mt-3" style={{ color: C.muted }}>Finding places that fit your trip...</div>
           </div>
         </div>
       )}
@@ -3822,13 +3836,17 @@ function SwapModal({ isOpen, onClose, activityTitle, alternatives, onConfirm, al
               </div>
             );
           }) : alternativesLoading ? (
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '12px 0' }}>
-              <div style={{
-                width: 16, height: 16, border: `2px solid ${C.sage}30`, borderTopColor: C.sage,
-                borderRadius: '50%', animation: 'lila-spin 0.8s linear infinite',
-              }} />
-              <span className="font-body text-[13px] font-normal" style={{ color: C.muted }}>Loading alternatives...</span>
+            <div style={{ padding: '8px 0' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+                {[0, 1, 2].map(i => (
+                  <div key={i} style={{ padding: '12px 14px', borderRadius: 8, border: `1.5px solid ${C.border}`, opacity: 0.5 - i * 0.12, animation: 'skeletonPulse 1.5s ease-in-out infinite' }}>
+                    <div style={{ width: '50%', height: 14, background: C.border, marginBottom: 6 }} />
+                    <div style={{ width: '85%', height: 10, background: C.border }} />
+                  </div>
+                ))}
               </div>
+              <div className="font-body text-[11px] font-normal mt-3" style={{ color: C.muted }}>Finding alternatives for your trip...</div>
+            </div>
           ) : (
             <div className="font-body text-[13px] font-normal leading-[1.6] py-2" style={{ color: C.muted }}>
               No alternatives available — your feedback will be noted in the next refinement.
