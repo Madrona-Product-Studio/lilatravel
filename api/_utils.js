@@ -19,7 +19,7 @@ const RATE_LIMITS = {
   'send-trip-email':         { maxRequests: 10, windowMs: 60 * 60 * 1000 },  // 10/hour
   'send-contact-email':      { maxRequests: 5,  windowMs: 60 * 60 * 1000 },  // 5/hour
   'places-search':           { maxRequests: 60, windowMs: 60 * 60 * 1000 },  // 60/hour
-  'place-photo':             { maxRequests: 120, windowMs: 60 * 60 * 1000 }, // 120/hour
+  'place-photo':             { maxRequests: 500, windowMs: 60 * 60 * 1000 }, // 500/hour (bumped for thumbnail fetch)
   'wildlife-lookup':         { maxRequests: 60, windowMs: 60 * 60 * 1000 },  // 60/hour
   'astronomy':               { maxRequests: 30, windowMs: 60 * 60 * 1000 },  // 30/hour
 };
