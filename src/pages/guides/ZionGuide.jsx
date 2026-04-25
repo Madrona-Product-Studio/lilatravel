@@ -107,7 +107,7 @@ function GuideNav({ activeSection, onNav, isMobile }) {
   // Auto-scroll active tab into view on mobile
   useEffect(() => {
     if (isMobile && activeRef.current && scrollContainerRef.current) {
-      activeRef.current.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+      const container = scrollContainerRef.current; const el = activeRef.current; if (container && el) { container.scrollTo({ left: el.offsetLeft - 12, behavior: 'smooth' }); }
     }
   }, [activeSection, isMobile]);
 
