@@ -15,7 +15,10 @@
     "groupFit": ["solo", "couple", "friends", "family"],
     "energy": "active",
     "highlights": [
-      "Finest panoramic summit accessible by trail"
+      "3.2 miles round trip, 700 feet of gain on a paved trail to a 5,757-foot summit — the most accessible panoramic viewpoint in the park",
+      "The full Olympic Range spreads south, the Strait of Juan de Fuca glows north, and on clear days Vancouver Island floats on the horizon",
+      "July and August wildflower season transforms the subalpine meadows — lupine, paintbrush, glacier lily",
+      "Start before 10am to beat the clouds that often build by afternoon — wind is persistent at the summit, bring a layer"
     ],
     "links": {
       "website": "https://www.nps.gov/olym/index.htm",
@@ -41,7 +44,10 @@
     "groupFit": ["solo", "couple", "friends", "family"],
     "energy": "active",
     "highlights": [
-      "Rainforest's most iconic walk; cathedral canopy of moss-draped maples"
+      "0.8-mile loop through the most photographed temperate rainforest in North America — bigleaf maples draped in club moss and licorice fern",
+      "The Hoh receives 140+ inches of rain annually. The air is thick, green, and quiet in a way that resets your nervous system.",
+      "Arrive before 9am or after 4pm — the parking lot fills by 10am in summer and the trail loses its magic when crowded",
+      "Combine with the Spruce Nature Trail (1.2 mi) along the Hoh River for a full morning"
     ],
     "links": {
       "website": "https://www.nps.gov/olym/index.htm",
@@ -93,7 +99,10 @@
     "groupFit": ["solo", "couple", "friends", "family"],
     "energy": "active",
     "highlights": [
-      "Defining Olympic coast experience; black sand and sea stacks"
+      "0.7-mile trail through old-growth to one of the most dramatic beaches in North America — sea stacks, tide pools, crashing surf",
+      "Sunset faces due west over the Pacific. The sea stacks silhouette against the sky — bring a camera and a headlamp for the walk out.",
+      "Check tide tables before going — low tide exposes tide pools around the base of the sea stacks with anemones, sea stars, and chitons",
+      "Backcountry camping available on the beach with a permit — falling asleep to Pacific surf against sea stacks"
     ],
     "links": {
       "website": "https://www.nps.gov/olym/index.htm",
@@ -145,7 +154,10 @@
     "groupFit": ["solo", "couple", "friends", "family"],
     "energy": "active",
     "highlights": [
-      "Three-pronged waterfall into basalt gorge"
+      "1.6 miles round trip to a three-pronged waterfall plunging 50 feet into a basalt gorge — one of the easiest rewarding hikes in the park",
+      "The trail passes through old-growth western hemlock and Douglas fir. Moss-covered nurse logs line the path.",
+      "Pair with Sol Duc Hot Springs after the hike — the mineral pools are a 5-minute drive back toward the resort",
+      "Continue past the falls to Deer Lake (5.8 mi one-way) for a longer day if the short hike leaves you wanting more"
     ],
     "links": {
       "website": "https://www.nps.gov/olym/index.htm",
@@ -154,32 +166,6 @@
     },
     "lilaPick": false,
     "tags": ["waterfall", "basalt", "sol-duc", "easy"],
-    "months": "all"
-  },
-  {
-    "id": "marymere-falls",
-    "name": "Marymere Falls Trail",
-    "type": "hike",
-    "subtype": "trail",
-    "moveTier": "hike",
-    "location": "Lake Crescent, Olympic National Park",
-    "difficulty": "easy",
-    "duration": null,
-    "distance": "1.8 miles round trip",
-    "priceRange": "$",
-    "budgetTier": "mindful",
-    "groupFit": ["solo", "couple", "friends", "family"],
-    "energy": "active",
-    "highlights": [
-      "Old-growth conifers to a 90-foot waterfall"
-    ],
-    "links": {
-      "website": "https://www.nps.gov/olym/index.htm",
-      "booking": null,
-      "alltrails": "https://www.alltrails.com/trail/us/washington/marymere-falls-trail"
-    },
-    "lilaPick": false,
-    "tags": ["waterfall", "old-growth", "lake-crescent", "easy"],
     "months": "all"
   },
   {
@@ -194,10 +180,13 @@
     "distance": "scramble",
     "priceRange": "$",
     "budgetTier": "mindful",
-    "groupFit": ["solo", "couple", "friends", "family"],
+    "groupFit": ["solo", "couple", "friends"],
     "energy": "active",
     "highlights": [
-      "Steepest and most dramatic day hike; exposed scrambling, rope-assisted"
+      "The most dramatic viewpoint on the peninsula — Lake Crescent 1,000 feet directly below, framed by old-growth Douglas fir and the Bailey Range",
+      "4 miles round trip, 2,000+ feet of elevation gain. The final third involves exposed scrambling with rope-assisted sections — do not attempt in wet conditions",
+      "This is a serious scramble, not a family hike. People have died here. Turn back at the rope section if you're uncertain.",
+      "Start early — the summit heats up by midday and the descent on loose scree requires focus"
     ],
     "links": {
       "website": "https://www.nps.gov/olym/index.htm",
@@ -325,5 +314,122 @@
     "lilaPick": false,
     "tags": ["cycling", "multi-use-trail", "port-townsend", "sequim", "dungeness-valley", "e-bike-available", "family-friendly"],
     "months": "all"
+  },
+  {
+    "id": "sol-duc-hot-springs-soak",
+    "name": "Sol Duc Hot Springs — Day Soak",
+    "type": "hot-springs",
+    "subtype": "thermal",
+    "moveTier": "soak",
+    "location": "Sol Duc Valley, Olympic National Park — 12 miles from Highway 101",
+    "difficulty": "easy",
+    "duration": "1-3 hrs",
+    "distance": "No hike required — pools are at the resort",
+    "priceRange": "$$",
+    "budgetTier": "moderate",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "restorative",
+    "highlights": [
+      "Three naturally heated mineral pools (98-107°F) surrounded by old-growth forest — operational since 1912",
+      "No phone service or internet by nature of the location — complete disconnection inside the park",
+      "Day access $19/adult, no reservation needed. Bring a book and cycle through hot-cold-rest.",
+      "Pair with the Sol Duc Falls hike (1.6 mi RT) for the best half-day in the park"
+    ],
+    "bookingWindow": "Walk-in day access. Cabins at olympicnationalparks.com.",
+    "links": {
+      "website": "https://www.olympicnationalparks.com/sol-duc-hot-springs-resort",
+      "booking": null
+    },
+    "lilaPick": true,
+    "tags": ["hot-springs", "mineral-pools", "no-wifi", "old-growth", "day-access", "since-1912"],
+    "months": "late Mar–late Oct"
+  },
+  {
+    "id": "sea-kayaking-lake-crescent",
+    "name": "Kayaking Lake Crescent",
+    "type": "water",
+    "subtype": "kayak",
+    "moveTier": "water",
+    "location": "Lake Crescent, Olympic National Park — launch from Log Cabin Resort or Fairholme",
+    "difficulty": "easy",
+    "duration": "2-4 hrs",
+    "distance": null,
+    "priceRange": "$$",
+    "budgetTier": "moderate",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "active",
+    "highlights": [
+      "Glacially carved lake with 60+ feet of visibility — the water is so clear it plays tricks on depth perception",
+      "Paddle along the north shore for views of Storm King rising straight from the waterline, old-growth reflecting in the surface",
+      "Rental kayaks available at Log Cabin Resort and Fairholme. Guided tours through local outfitters.",
+      "Morning is glassiest — afternoon winds can pick up from the west. Bring layers; the lake stays cold."
+    ],
+    "bookingWindow": "Rentals available walk-in at Log Cabin Resort. Guided tours book 1-2 days ahead.",
+    "links": {
+      "website": "https://www.olympicnationalparks.com/things-to-do/water-sports/",
+      "booking": null
+    },
+    "lilaPick": false,
+    "tags": ["kayaking", "glacial-lake", "crystal-clear", "lake-crescent", "rentals", "morning"],
+    "months": "May–Oct"
+  },
+  {
+    "id": "quinault-rain-forest",
+    "name": "Quinault Rain Forest Loop",
+    "type": "hike",
+    "subtype": "trail",
+    "moveTier": "hike",
+    "location": "Quinault Rain Forest, Olympic National Park — south shore of Lake Quinault",
+    "difficulty": "easy",
+    "duration": "1-2 hrs",
+    "distance": "3 miles (Rain Forest Loop Trail + Cascading Terraces)",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "contemplative",
+    "highlights": [
+      "The quieter alternative to the Hoh — same ancient temperate rainforest, a fraction of the visitors",
+      "World's largest Sitka spruce (1,000+ years old, 58 feet in circumference) is a short walk from the trailhead",
+      "The loop passes through moss-draped bigleaf maple, massive western red cedar, and towering Douglas fir",
+      "Lake Quinault Lodge is a 5-minute drive — pair the hike with lunch on the lodge's lakefront porch"
+    ],
+    "bookingWindow": "Self-guided — free, no permit required.",
+    "links": {
+      "website": "https://www.nps.gov/olym/planyourvisit/visiting-quinault.htm",
+      "booking": null,
+      "alltrails": "https://www.alltrails.com/trail/us/washington/quinault-rain-forest-nature-trail"
+    },
+    "lilaPick": true,
+    "tags": ["rainforest", "old-growth", "sitka-spruce", "quiet", "family-friendly", "quinault", "load-spreader"],
+    "months": "all"
+  },
+  {
+    "id": "shi-shi-beach",
+    "name": "Shi Shi Beach & Point of the Arches",
+    "type": "hike",
+    "subtype": "trail",
+    "moveTier": "hike",
+    "location": "Northwestern tip of Olympic Peninsula — access via Makah Reservation (Neah Bay)",
+    "difficulty": "moderate",
+    "duration": "full day or overnight",
+    "distance": "8 miles round trip",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "immersive",
+    "highlights": [
+      "The most remote and dramatic beach on the Olympic coast — Point of the Arches is a cathedral of sea stacks at low tide",
+      "4 miles through coastal forest, then a descent to the beach. Requires Makah Recreation Pass ($20) from the Makah Museum in Neah Bay.",
+      "Tide-dependent — the Point of the Arches is only accessible at low tide. Check tide tables and plan your visit around the window.",
+      "Backcountry camping available on the beach — one of the great overnight experiences in the Pacific Northwest"
+    ],
+    "bookingWindow": "Self-guided — Makah Recreation Pass required ($20). Wilderness permit for overnight.",
+    "links": {
+      "website": "https://www.nps.gov/olym/planyourvisit/wilderness-trip-planner.htm",
+      "booking": null
+    },
+    "lilaPick": false,
+    "tags": ["beach", "sea-stacks", "remote", "makah", "tide-dependent", "overnight", "off-beaten-path"],
+    "months": "May–Oct"
   }
 ]

@@ -7,7 +7,7 @@
     "moveTier": "hike",
     "location": "Zion Canyon, Zion National Park",
     "difficulty": "strenuous",
-    "duration": "4\u20135 hrs",
+    "duration": "4–5 hrs",
     "distance": "5.4 miles round trip",
     "elevationGain": "1,488 ft",
     "priceRange": "$",
@@ -19,12 +19,12 @@
     ],
     "energy": "active",
     "highlights": [
-      "The defining Zion hike \u2014 chain-assisted scramble to a rock fin suspended above the canyon",
+      "The defining Zion hike — chain-assisted scramble to a rock fin suspended above the canyon",
       "Walter's Wiggles: 21 tight switchbacks cut directly into the cliff, a feat of 1920s trail engineering",
-      "The final half-mile requires a permit (Angels Landing permit lottery \u2014 apply in advance at recreation.gov)",
+      "The final half-mile requires a permit (Angels Landing permit lottery — apply in advance at recreation.gov)",
       "The view from the summit looking down both forks of Zion Canyon is unrepeatable"
     ],
-    "bookingWindow": "Permit required for the final chain section \u2014 apply via recreation.gov lottery",
+    "bookingWindow": "Permit required for the final chain section — apply via recreation.gov lottery",
     "links": {
       "website": "https://www.nps.gov/zion/planyourvisit/angels-landing-hiking-permits.htm",
       "booking": "https://www.recreation.gov/",
@@ -39,7 +39,7 @@
       "walters-wiggles",
       "iconic"
     ],
-    "months": "Mar\u2013Nov"
+    "months": "Mar–Nov"
   },
   {
     "id": "the-narrows",
@@ -47,9 +47,9 @@
     "type": "hike",
     "subtype": "trail",
     "moveTier": "hike",
-    "location": "Virgin River, Zion National Park \u2014 from Temple of Sinawava",
+    "location": "Virgin River, Zion National Park — from Temple of Sinawava",
     "difficulty": "moderate",
-    "duration": "3\u20138 hrs depending on depth",
+    "duration": "3–8 hrs depending on depth",
     "distance": "Up to 9.5 miles one way",
     "priceRange": "$$",
     "budgetTier": "moderate",
@@ -61,9 +61,9 @@
     "energy": "active",
     "highlights": [
       "Hiking in the Virgin River through a slot canyon up to 2,000 feet deep and 20 feet wide",
-      "The most distinctive hike in the American Southwest \u2014 no trail, the river is the trail",
-      "Neoprene socks, waterproof pants, and a walking stick are essential \u2014 rent from Zion Guru",
-      "The Narrows can close with little warning due to flash flood risk \u2014 always check conditions"
+      "The most distinctive hike in the American Southwest — no trail, the river is the trail",
+      "Neoprene socks, waterproof pants, and a walking stick are essential — rent from Zion Guru",
+      "The Narrows can close with little warning due to flash flood risk — always check conditions"
     ],
     "operator": "Zion Guru (gear rental)",
     "bookingWindow": "No permit for day hike from bottom; gear rental from Zion Guru recommended",
@@ -80,7 +80,7 @@
       "flash-flood-risk",
       "iconic"
     ],
-    "months": "May\u2013Oct"
+    "months": "May–Oct"
   },
   {
     "id": "observation-point",
@@ -90,7 +90,7 @@
     "moveTier": "hike",
     "location": "East Mesa / Weeping Rock, Zion National Park",
     "difficulty": "strenuous",
-    "duration": "5\u20136 hrs",
+    "duration": "5–6 hrs",
     "distance": "8 miles round trip",
     "elevationGain": "2,148 ft",
     "priceRange": "$",
@@ -102,12 +102,12 @@
     ],
     "energy": "active",
     "highlights": [
-      "The highest viewpoint in Zion \u2014 Angels Landing is visible 1,000 feet below",
+      "The highest viewpoint in Zion — Angels Landing is visible 1,000 feet below",
       "No permit required (unlike Angels Landing) with equivalent or superior views",
       "East Mesa approach (via the east entrance) is a gentler alternative to the Weeping Rock route",
       "The secret local choice when Angels Landing permits are unavailable"
     ],
-    "bookingWindow": "No permit required \u2014 early start recommended",
+    "bookingWindow": "No permit required — early start recommended",
     "links": {
       "website": "https://www.nps.gov/zion/index.htm",
       "booking": null,
@@ -121,7 +121,7 @@
       "strenuous",
       "best-views-in-zion"
     ],
-    "months": "Mar\u2013Nov"
+    "months": "Mar–Nov"
   },
   {
     "id": "canyon-overlook-trail",
@@ -144,12 +144,12 @@
     ],
     "energy": "active",
     "highlights": [
-      "The best short hike in Zion \u2014 exposed ledge trail above Pine Creek Canyon with full canyon views",
-      "No shuttle required \u2014 trailhead is on the Zion-Mount Carmel Highway just east of the tunnel",
-      "Morning light from this direction is exceptional \u2014 the canyon glows",
+      "The best short hike in Zion — exposed ledge trail above Pine Creek Canyon with full canyon views",
+      "No shuttle required — trailhead is on the Zion-Mount Carmel Highway just east of the tunnel",
+      "Morning light from this direction is exceptional — the canyon glows",
       "Accessible for most fitness levels; some narrow ledge sections with drop-offs"
     ],
-    "bookingWindow": "No permit required \u2014 roadside trailhead, limited parking",
+    "bookingWindow": "No permit required — roadside trailhead, limited parking",
     "links": {
       "website": "https://www.nps.gov/zion/index.htm",
       "booking": null,
@@ -166,54 +166,12 @@
     "months": "all"
   },
   {
-    "id": "emerald-pools",
-    "name": "Emerald Pools Trail",
-    "type": "hike",
-    "subtype": "trail",
-    "moveTier": "hike",
-    "location": "Zion Canyon, Zion National Park",
-    "difficulty": "easy",
-    "duration": "1\u20133 hrs depending on pools visited",
-    "distance": "1.2\u20133 miles depending on pools visited",
-    "elevationGain": "69\u2013350 ft",
-    "priceRange": "$",
-    "budgetTier": "mindful",
-    "groupFit": [
-      "solo",
-      "couple",
-      "friends",
-      "family"
-    ],
-    "energy": "active",
-    "highlights": [
-      "Three tiered pools fed by waterfalls \u2014 Lower, Middle, and Upper Pools each offer a different experience",
-      "Lower Pool is wheelchair accessible and family-friendly; Upper Pool rewards the full climb",
-      "Spring (March\u2013May) offers the highest waterfall flow; summer the warmest pools",
-      "A good half-day complement to a morning on Angels Landing or the Narrows"
-    ],
-    "bookingWindow": "No permit required \u2014 shuttle stop 5 (The Grotto)",
-    "links": {
-      "website": "https://www.nps.gov/zion/index.htm",
-      "booking": null,
-      "alltrails": "https://www.alltrails.com/trail/us/utah/emerald-pools-trail"
-    },
-    "lilaPick": false,
-    "tags": [
-      "waterfall",
-      "family-friendly",
-      "tiered-pools",
-      "accessible",
-      "shuttle-stop-5"
-    ],
-    "months": "all"
-  },
-  {
     "id": "zion-canyon-ebike",
-    "name": "Zion Canyon E-Bike \u2014 Scenic Drive",
+    "name": "Zion Canyon E-Bike — Scenic Drive",
     "type": "ride",
     "subtype": "e-bike",
     "moveTier": "ride",
-    "location": "Pa'rus Trail \u2192 Zion Canyon Scenic Drive \u2192 Temple of Sinawava",
+    "location": "Pa'rus Trail → Zion Canyon Scenic Drive → Temple of Sinawava",
     "difficulty": "easy",
     "duration": "half-day or full day",
     "distance": "3.5 miles Pa'rus Trail + 6+ miles scenic drive",
@@ -227,13 +185,13 @@
     ],
     "energy": "active",
     "highlights": [
-      "One of the great cycling experiences in any national park \u2014 the scenic drive is car-free beyond Zion Lodge, leaving only e-bikes and the occasional shuttle bus under 2,000-foot sandstone walls",
+      "One of the great cycling experiences in any national park — the scenic drive is car-free beyond Zion Lodge, leaving only e-bikes and the occasional shuttle bus under 2,000-foot sandstone walls",
       "Start on the Pa'rus Trail along the Virgin River, then turn onto the scenic drive and ride 6+ miles deep into the canyon at your own pace",
-      "Stop at every pull-out: Court of the Patriarchs, The Grotto, Weeping Rock, Temple of Sinawava \u2014 no shuttle schedule, no waiting",
-      "Early morning (7\u201310am) or late afternoon (2\u20135pm) for the best canyon light and thinnest crowds"
+      "Stop at every pull-out: Court of the Patriarchs, The Grotto, Weeping Rock, Temple of Sinawava — no shuttle schedule, no waiting",
+      "Early morning (7–10am) or late afternoon (2–5pm) for the best canyon light and thinnest crowds"
     ],
     "operator": "Zion Guru",
-    "bookingWindow": "Book at zionguru.com \u2014 guided tours and self-guided rentals both available",
+    "bookingWindow": "Book at zionguru.com — guided tours and self-guided rentals both available",
     "links": {
       "website": "https://www.zionguru.com/rentals/electric-bikes",
       "booking": "https://www.zionguru.com/rentals/electric-bikes"
@@ -248,18 +206,18 @@
       "family-friendly",
       "zion-guru"
     ],
-    "months": "Mar\u2013Nov"
+    "months": "Mar–Nov"
   },
   {
     "id": "gooseberry-mesa-mtb",
-    "name": "Gooseberry Mesa \u2014 Mountain Biking",
+    "name": "Gooseberry Mesa — Mountain Biking",
     "type": "ride",
     "subtype": "mtb",
     "moveTier": "ride",
-    "location": "Hurricane, UT \u2014 30 min from Zion's south entrance",
+    "location": "Hurricane, UT — 30 min from Zion's south entrance",
     "difficulty": "moderate",
-    "duration": "2\u20134 hrs",
-    "distance": "8\u201315 miles depending on route",
+    "duration": "2–4 hrs",
+    "distance": "8–15 miles depending on route",
     "priceRange": "free",
     "budgetTier": "free",
     "groupFit": [
@@ -269,11 +227,11 @@
     ],
     "energy": "active",
     "highlights": [
-      "One of the top mountain bike destinations in the Southwest \u2014 slickrock riding on a volcanic mesa above the Hurricane Valley",
+      "One of the top mountain bike destinations in the Southwest — slickrock riding on a volcanic mesa above the Hurricane Valley",
       "Multiple loop options from beginner-friendly to technical; the mesa rim trail offers Zion Canyon views to the north",
-      "BLM land \u2014 free, no permit required. Bring your own bike or rent in Hurricane."
+      "BLM land — free, no permit required. Bring your own bike or rent in Hurricane."
     ],
-    "bookingWindow": "Self-guided \u2014 no booking. BLM land, free access.",
+    "bookingWindow": "Self-guided — no booking. BLM land, free access.",
     "links": {
       "website": "https://www.blm.gov/programs/recreation/mountainbike/Gooseberry-Mesa-and-Hurricane-Cliffs",
       "booking": null
@@ -288,7 +246,7 @@
       "hurricane",
       "southwest-classic"
     ],
-    "months": "Oct\u2013May"
+    "months": "Oct–May"
   },
   {
     "id": "keyhole-canyon-canyoneering",
@@ -298,7 +256,7 @@
     "moveTier": "climb",
     "location": "Zion-Mount Carmel Highway, Zion National Park",
     "difficulty": "moderate",
-    "duration": "3\u20134 hrs",
+    "duration": "3–4 hrs",
     "distance": "1 mile through-canyon",
     "priceRange": "$$$",
     "budgetTier": "premium",
@@ -309,10 +267,10 @@
     ],
     "energy": "active",
     "highlights": [
-      "The most accessible technical slot canyon in Zion \u2014 a single rappel (30 ft) followed by narrows swimming and stemming",
-      "Permit required (day-use canyoneering permit via recreation.gov) \u2014 limited entries per day",
-      "Wetsuit essential \u2014 the pools are cold. Full wetsuit and rappel gear available from Zion Guru.",
-      "A guided introduction to canyoneering for those new to the discipline \u2014 Zion Guru guided trips recommended"
+      "The most accessible technical slot canyon in Zion — a single rappel (30 ft) followed by narrows swimming and stemming",
+      "Permit required (day-use canyoneering permit via recreation.gov) — limited entries per day",
+      "Wetsuit essential — the pools are cold. Full wetsuit and rappel gear available from Zion Guru.",
+      "A guided introduction to canyoneering for those new to the discipline — Zion Guru guided trips recommended"
     ],
     "operator": "Zion Guru (guided option or gear rental)",
     "bookingWindow": "Permit required at recreation.gov. Guided trips via zionguru.com.",
@@ -329,17 +287,17 @@
       "wetsuit",
       "guided-available"
     ],
-    "months": "May\u2013Oct"
+    "months": "May–Oct"
   },
   {
     "id": "subway-canyoneering",
-    "name": "The Subway \u2014 Advanced Canyoneering",
+    "name": "The Subway — Advanced Canyoneering",
     "type": "climb",
     "subtype": "canyoneering",
     "moveTier": "climb",
     "location": "Kolob Terrace, Zion National Park",
     "difficulty": "technical",
-    "duration": "6\u20139 hrs",
+    "duration": "6–9 hrs",
     "distance": "9.5 miles",
     "priceRange": "$",
     "budgetTier": "mindful",
@@ -349,12 +307,12 @@
     ],
     "energy": "active",
     "highlights": [
-      "The most celebrated slot canyon in Zion \u2014 a sculpted tube of Navajo sandstone carved by the Left Fork of North Creek",
+      "The most celebrated slot canyon in Zion — a sculpted tube of Navajo sandstone carved by the Left Fork of North Creek",
       "Multiple rappels, swims, and downclimbs through a corridor of perfect geological form",
-      "Permit required and highly competitive \u2014 apply 3 months in advance at recreation.gov",
-      "Technical route requiring prior canyoneering experience, wetsuit, and rappel gear \u2014 not for first-timers"
+      "Permit required and highly competitive — apply 3 months in advance at recreation.gov",
+      "Technical route requiring prior canyoneering experience, wetsuit, and rappel gear — not for first-timers"
     ],
-    "bookingWindow": "Permit required via recreation.gov lottery \u2014 highly competitive, apply 3 months ahead",
+    "bookingWindow": "Permit required via recreation.gov lottery — highly competitive, apply 3 months ahead",
     "links": {
       "website": "https://www.nps.gov/zion/planyourvisit/thesubway.htm",
       "booking": "https://www.recreation.gov/"
@@ -369,6 +327,221 @@
       "subway",
       "competitive-permit"
     ],
-    "months": "May\u2013Oct"
+    "months": "May–Oct"
+  },
+  {
+    "id": "taylor-creek-trail",
+    "name": "Taylor Creek Trail — Kolob Canyons",
+    "type": "hike",
+    "subtype": "trail",
+    "moveTier": "hike",
+    "location": "Kolob Canyons district, Zion National Park — separate entrance off I-15, Exit 40",
+    "difficulty": "moderate",
+    "duration": "3-4 hrs",
+    "distance": "5 miles round trip",
+    "elevationGain": "450 ft",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": [
+      "solo",
+      "couple",
+      "friends",
+      "family"
+    ],
+    "energy": "contemplative",
+    "highlights": [
+      "The canyon that most Zion visitors never see — Kolob Canyons has its own entrance, its own visitor center, and a fraction of the main canyon’s traffic",
+      "The trail follows the Middle Fork of Taylor Creek through two historic homestead cabins to Double Arch Alcove — a massive natural amphitheater",
+      "Multiple creek crossings (ankle-deep in spring, often dry by late summer) through a narrow canyon with cottonwood and Gambel oak",
+      "The load-spreader Zion needs — Kolob delivers canyon beauty without the shuttle, without the crowds, without the permit lottery"
+    ],
+    "bookingWindow": "Self-guided — no permit required. Free with Zion park pass. Kolob Canyons Visitor Center open daily.",
+    "links": {
+      "website": "https://www.nps.gov/zion/planyourvisit/kolob-canyons-wilderness-hiking-trails.htm",
+      "booking": null,
+      "alltrails": "https://www.alltrails.com/trail/us/utah/taylor-creek-trail"
+    },
+    "lilaPick": true,
+    "tags": [
+      "kolob",
+      "canyon",
+      "creek-crossings",
+      "homestead",
+      "double-arch",
+      "load-spreader",
+      "quiet"
+    ],
+    "months": "Mar–Nov"
+  },
+  {
+    "id": "timber-creek-overlook",
+    "name": "Timber Creek Overlook — Kolob Canyons",
+    "type": "hike",
+    "subtype": "trail",
+    "moveTier": "hike",
+    "location": "End of Kolob Canyons Road, Zion National Park",
+    "difficulty": "easy",
+    "duration": "30 min",
+    "distance": "1 mile round trip",
+    "elevationGain": "100 ft",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": [
+      "solo",
+      "couple",
+      "friends",
+      "family"
+    ],
+    "energy": "contemplative",
+    "highlights": [
+      "The shortest trail in the guide delivers one of the biggest views — Kolob’s finger canyons, Pine Valley Mountains, and on clear days, the distant Mojave",
+      "Drive the 5-mile Kolob Canyons Scenic Road to the end, walk 10 minutes, and stand at the edge",
+      "Sunset here is extraordinary — the finger canyons glow red from a viewpoint you’ll likely have to yourself",
+      "Pair with Taylor Creek for a full Kolob half-day. You’ll wonder why you spent three days in the main canyon shuttle line."
+    ],
+    "bookingWindow": "Self-guided — free with Zion park pass.",
+    "links": {
+      "website": "https://www.nps.gov/zion/planyourvisit/kolob-canyons-wilderness-hiking-trails.htm",
+      "booking": null,
+      "alltrails": "https://www.alltrails.com/trail/us/utah/timber-creek-overlook-trail"
+    },
+    "lilaPick": false,
+    "tags": [
+      "kolob",
+      "overlook",
+      "easy",
+      "sunset",
+      "finger-canyons",
+      "family-friendly"
+    ],
+    "months": "Mar–Nov"
+  },
+  {
+    "id": "kanarra-falls",
+    "name": "Kanarra Falls",
+    "type": "hike",
+    "subtype": "trail",
+    "moveTier": "hike",
+    "location": "Kanarraville, UT — 45 min from Zion’s south entrance via I-15",
+    "difficulty": "moderate",
+    "duration": "3-4 hrs",
+    "distance": "4 miles round trip",
+    "elevationGain": "500 ft",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": [
+      "solo",
+      "couple",
+      "friends"
+    ],
+    "energy": "active",
+    "highlights": [
+      "A slot canyon creek hike to a two-tier waterfall — you wade through knee-deep water between narrow red walls to reach the falls",
+      "Permit required ($15/person, 150 hikers per day) — the cap keeps the experience intimate. Book at kanarrafalls.com.",
+      "Two metal ladders bolted into the canyon wall provide access past the first falls to the upper canyon — the upper section is wilder and less visited",
+      "The Zion corridor’s best-kept open secret: slot canyon beauty at Narrows-level quality without the Narrows-level traffic"
+    ],
+    "bookingWindow": "Permit required — $15/person, book at kanarrafalls.com. 150/day cap. Weekends fill 1-2 weeks ahead.",
+    "links": {
+      "website": "https://kanarrafalls.com/",
+      "booking": "https://kanarrafalls.com/"
+    },
+    "lilaPick": true,
+    "tags": [
+      "slot-canyon",
+      "waterfall",
+      "creek-hike",
+      "permit",
+      "off-beaten-path",
+      "corridor"
+    ],
+    "months": "Apr–Oct"
+  },
+  {
+    "id": "peek-a-boo-spooky",
+    "name": "Peek-a-Boo & Spooky Gulch — Grand Staircase-Escalante",
+    "type": "hike",
+    "subtype": "trail",
+    "moveTier": "hike",
+    "location": "Hole-in-the-Rock Road, Grand Staircase-Escalante National Monument — 90 min from Zion via Mt. Carmel Junction",
+    "difficulty": "moderate",
+    "duration": "3-4 hrs",
+    "distance": "3.5 miles loop",
+    "elevationGain": "400 ft",
+    "priceRange": "free",
+    "budgetTier": "free",
+    "groupFit": [
+      "solo",
+      "couple",
+      "friends"
+    ],
+    "energy": "active",
+    "highlights": [
+      "Two narrow slot canyons connected in a loop — Peek-a-Boo requires a 12-foot climb into the slot, Spooky narrows to shoulder-width in places",
+      "No permit required, no fee, no crowds (on weekdays). The most accessible slot canyon combo in southern Utah.",
+      "Hole-in-the-Rock Road is unpaved — passable in a passenger car when dry, impassable when wet. Check conditions.",
+      "For flexible or nomadic itineraries only — the 90-minute drive from Zion makes this a half-day commitment. Worth every mile."
+    ],
+    "bookingWindow": "Self-guided — no permit required. Check Hole-in-the-Rock Road conditions before driving.",
+    "links": {
+      "website": "https://www.blm.gov/visit/grand-staircase-escalante-national-monument",
+      "booking": null
+    },
+    "lilaPick": false,
+    "corridor": true,
+    "tags": [
+      "slot-canyon",
+      "grand-staircase",
+      "no-permit",
+      "free",
+      "corridor",
+      "off-beaten-path",
+      "dirt-road"
+    ],
+    "months": "Mar–Nov"
+  },
+  {
+    "id": "cedar-breaks-spectra-point",
+    "name": "Cedar Breaks — Spectra Point Trail",
+    "type": "hike",
+    "subtype": "trail",
+    "moveTier": "hike",
+    "location": "Cedar Breaks National Monument — 60 min from Zion via Highway 14",
+    "difficulty": "moderate",
+    "duration": "2-3 hrs",
+    "distance": "4 miles round trip",
+    "elevationGain": "400 ft",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": [
+      "solo",
+      "couple",
+      "friends",
+      "family"
+    ],
+    "energy": "active",
+    "highlights": [
+      "A 10,350-foot natural amphitheater — like Bryce Canyon’s older, quieter sibling at twice the elevation with a tenth of the visitors",
+      "Spectra Point follows the rim through bristlecone pine forest (some trees 1,600+ years old) with views into the painted bowl of hoodoos below",
+      "Summer wildflower season (Jul-Aug) is extraordinary — alpine meadows of columbine, lupine, and Indian paintbrush at 10,000 feet",
+      "The elevation makes Cedar Breaks 20-30°F cooler than Zion — the ideal midday escape when the canyon floor is baking"
+    ],
+    "bookingWindow": "Self-guided — park entry fee applies. Scenic drive and Point Supreme viewpoint accessible without hiking.",
+    "links": {
+      "website": "https://www.nps.gov/cebr/planyourvisit/hike-a-trail.htm",
+      "booking": null
+    },
+    "lilaPick": false,
+    "corridor": true,
+    "tags": [
+      "amphitheater",
+      "bristlecone-pine",
+      "wildflowers",
+      "elevation-escape",
+      "corridor",
+      "quiet",
+      "cedar-breaks"
+    ],
+    "months": "Jun–Oct"
   }
 ]

@@ -93,37 +93,6 @@
     "months": "all"
   },
   {
-    "id": "sleeping-giant",
-    "name": "Sleeping Giant (Nounou Mountain)",
-    "type": "hike",
-    "subtype": "trail",
-    "moveTier": "hike",
-    "location": "Kapaa, East Shore",
-    "difficulty": "moderate",
-    "duration": "2–3 hrs",
-    "distance": "3.3 miles round trip",
-    "elevationGain": "1,000 ft",
-    "priceRange": "$",
-    "budgetTier": "mindful",
-    "groupFit": ["solo", "couple", "friends", "family"],
-    "energy": "active",
-    "highlights": [
-      "Local's hike above Kapaa; panoramic views; less crowded than north shore trails",
-      "Summit views stretch from the ocean to the interior mountains",
-      "Three trailhead options (east, west, Kuamoo) — east side is most popular",
-      "Best done early morning before the trade winds and heat build"
-    ],
-    "bookingWindow": "No permit required",
-    "links": {
-      "website": "https://www.gohawaii.com/islands/kauai/regions/east-side/sleeping-giant",
-      "booking": null,
-      "alltrails": "https://www.alltrails.com/trail/hawaii/kaua-i--2/sleeping-giant-nounou-mountain-east-trail"
-    },
-    "lilaPick": false,
-    "tags": ["local-favorite", "panoramic-views", "east-shore", "kapaa", "summit"],
-    "months": "all"
-  },
-  {
     "id": "waimea-canyon-trail",
     "name": "Waimea Canyon Trail",
     "type": "hike",
@@ -272,6 +241,125 @@
     },
     "lilaPick": false,
     "tags": ["road-cycling", "waimea-canyon", "3600ft-climb", "ocean-views", "strenuous", "descent"],
+    "months": "all"
+  },
+  {
+    "id": "wailua-river-kayak",
+    "name": "Wailua River Kayak to Secret Falls",
+    "type": "water",
+    "subtype": "kayak",
+    "moveTier": "water",
+    "location": "Wailua River, East Side — launch from Wailua River State Park boat ramp",
+    "difficulty": "easy-moderate",
+    "duration": "4-5 hrs (guided half-day)",
+    "distance": "5 miles paddling + 1 mile hiking",
+    "priceRange": "$$",
+    "budgetTier": "moderate",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "active",
+    "highlights": [
+      "Kayak Hawaii's only navigable river upstream through a lush corridor of hau trees and hanging ferns to Uluwehi (Secret) Falls — a 120-foot cascade",
+      "The river was sacred to Native Hawaiians as a corridor connecting mountain to sea, lined with ancient heiau (temple) sites",
+      "The 1-mile hike from the river to the falls is muddy, root-tangled, and completely worth it — wear shoes you don't mind ruining",
+      "Go with a small-group guide (Kayak Wailua or Ali'i Kayaks) rather than the large operators — intimate groups find a quieter falls"
+    ],
+    "bookingWindow": "Book guided tours 2-3 days ahead at kayakwailua.com or aliikayaks.com. Morning departures recommended.",
+    "links": {
+      "website": "https://www.kayakwailua.com/",
+      "booking": "https://www.kayakwailua.com/"
+    },
+    "lilaPick": true,
+    "tags": ["kayaking", "river", "waterfall", "sacred", "guided", "east-side", "half-day"],
+    "months": "all"
+  },
+  {
+    "id": "snorkeling-lydgate-beach",
+    "name": "Snorkeling — Lydgate Beach",
+    "type": "water",
+    "subtype": "snorkel",
+    "moveTier": "water",
+    "location": "Lydgate Beach Park, Wailua (East Side) — protected by a lava rock seawall",
+    "difficulty": "easy",
+    "duration": "1-3 hrs",
+    "distance": null,
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "active",
+    "highlights": [
+      "Two protected lava rock pools create calm, clear snorkeling regardless of ocean conditions — the safest reef snorkeling on the island",
+      "Green sea turtles (honu), humuhumunukunukuāpua'a (reef triggerfish), parrotfish, and surgeon fish in the protected pools year-round",
+      "Perfect for first-time snorkelers and families — the seawall eliminates currents and waves. Gear rental available at the park.",
+      "Pair with a morning paddle on the Wailua River — the boat ramp is a 5-minute drive north"
+    ],
+    "bookingWindow": "Self-guided — free, no reservation needed. Gear rental at the park or bring your own.",
+    "links": {
+      "website": "https://www.kauai.com/lydgate-beach-park",
+      "booking": null
+    },
+    "lilaPick": true,
+    "tags": ["snorkeling", "reef", "protected", "sea-turtles", "family-friendly", "east-side", "beginner"],
+    "months": "all"
+  },
+  {
+    "id": "mahaulepu-heritage-trail",
+    "name": "Maha'ulepu Heritage Trail",
+    "type": "hike",
+    "subtype": "trail",
+    "moveTier": "hike",
+    "location": "South Shore — trailhead at Shipwreck Beach (Grand Hyatt) to Maha'ulepu Beach",
+    "difficulty": "easy-moderate",
+    "duration": "2-3 hrs",
+    "distance": "4 miles round trip",
+    "priceRange": "free",
+    "budgetTier": "free",
+    "groupFit": ["solo", "couple", "friends", "family"],
+    "energy": "active",
+    "highlights": [
+      "Coastal trail through lithified sand dunes, fossil reef, and tide pools to one of Kauai's last undeveloped beaches",
+      "Hawaiian monk seals haul out on Maha'ulepu Beach — keep 50 feet of distance. Spinner dolphins visible offshore in the morning.",
+      "The lithified dunes are 100,000+ years of compressed sand — the geology is visible in cross-section where the coast has eroded",
+      "The south shore's answer to the Na Pali coast hikes — dramatic, uncrowded, and free"
+    ],
+    "bookingWindow": "Self-guided — free, no permit required. Gate access at CJM Stables (open 7:30am-6pm, closed Sun).",
+    "links": {
+      "website": "https://www.kauai.com/mahaulepu-beach-trail",
+      "booking": null,
+      "alltrails": "https://www.alltrails.com/trail/us/hawaii/mahaulepu-heritage-trail"
+    },
+    "lilaPick": true,
+    "tags": ["coastal", "fossil-dunes", "monk-seals", "south-shore", "free", "uncrowded", "heritage"],
+    "months": "all"
+  },
+  {
+    "id": "nualolo-trail",
+    "name": "Nualolo Trail — Na Pali Rim",
+    "type": "hike",
+    "subtype": "trail",
+    "moveTier": "hike",
+    "location": "Koke'e State Park, West Side — trailhead near Koke'e Museum",
+    "difficulty": "strenuous",
+    "duration": "5-7 hrs",
+    "distance": "7.5 miles round trip",
+    "elevationGain": "1,500 ft (mostly downhill out, uphill return)",
+    "priceRange": "$",
+    "budgetTier": "mindful",
+    "groupFit": ["solo", "couple", "friends"],
+    "energy": "active",
+    "highlights": [
+      "Na Pali cliff views with half the traffic of Kalalau — the trail ends at a vertiginous overlook 3,000 feet above the coast",
+      "The hike is mostly downhill to the viewpoint (deceptively easy going out) then a sustained uphill return — save energy and water for the way back",
+      "Can be combined with Nualolo Cliffs Trail for a 9-mile loop that adds a knife-edge ridge traverse — experienced hikers only",
+      "Start by 8am — afternoon clouds regularly obscure the Na Pali views. Clear mornings are the window."
+    ],
+    "bookingWindow": "Self-guided — free with Koke'e parking pass. Trail can be muddy — check conditions.",
+    "links": {
+      "website": "https://dlnr.hawaii.gov/dsp/parks/kauai/kokee-state-park/",
+      "booking": null,
+      "alltrails": "https://www.alltrails.com/trail/us/hawaii/nualolo-trail"
+    },
+    "lilaPick": false,
+    "tags": ["na-pali", "rim-views", "strenuous", "off-beaten-path", "west-side", "load-spreader"],
     "months": "all"
   }
 ]
