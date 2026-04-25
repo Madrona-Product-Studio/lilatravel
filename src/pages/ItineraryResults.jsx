@@ -4516,94 +4516,9 @@ export default function ItineraryResults() {
     }
   }, [isStructured, itinerary, formData]);
 
-  // Pass 2: Fetch alternatives in the background after itinerary renders
-  const hasRequestedAlts = useRef(false);
-  const altsAbortRef = useRef(null);
-  useEffect(() => {
-    // Need the API-slug destination (e.g. 'big-sur', not 'bigSur')
-    const destSlug = metadata?.destination || formData?.destination;
-    if (!isStructured || !rawItinerary || !destSlug || alternativesLoaded || alternativesLoading || hasRequestedAlts.current) return;
-    hasRequestedAlts.current = true;
-    setAlternativesLoading(true);
-
-    // Abort any stale in-flight request (e.g. from pre-refinement itinerary)
-    if (altsAbortRef.current) altsAbortRef.current.abort();
-    const controller = new AbortController();
-    altsAbortRef.current = controller;
-
-    fetch('/api/generate-alternatives', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        destination: destSlug,
-        preferences: formData,
-        itinerary: rawItinerary,
-      }),
-      signal: controller.signal,
-    })
-      .then(res => safeJson(res))
-      .then(({ ok, data: result }) => {
-        if (!ok || !result?.success || !result.alternatives?.days) {
-          console.warn('[Alternatives] No valid response:', result.error || 'unknown');
-          setAlternativesLoading(false);
-          return;
-        }
-        // Merge alternatives into enrichedDays
-        setEnrichedDays(prev => {
-          const updated = prev.map((day, di) => {
-            const altDay = result.alternatives.days[di];
-            if (!altDay) return day;
-
-            const newDay = { ...day };
-
-            // Merge timeline alternatives
-            if (altDay.timelineAlts?.length && newDay.timeline) {
-              newDay.timeline = [...newDay.timeline];
-              for (const ta of altDay.timelineAlts) {
-                if (ta.itemIndex < newDay.timeline.length && ta.alternatives?.length) {
-                  newDay.timeline[ta.itemIndex] = {
-                    ...newDay.timeline[ta.itemIndex],
-                    alternatives: ta.alternatives,
-                  };
-                }
-              }
-            }
-
-            // Merge pick alternatives
-            if (altDay.pickAlts?.length && newDay.picks) {
-              newDay.picks = [...newDay.picks];
-              for (const pa of altDay.pickAlts) {
-                if (pa.pickIndex < newDay.picks.length && pa.alternatives?.length) {
-                  const oldPick = newDay.picks[pa.pickIndex];
-                  newDay.picks[pa.pickIndex] = {
-                    ...oldPick,
-                    alternatives: pa.alternatives,
-                    pick: oldPick.pick ? { ...oldPick.pick, alternatives: pa.alternatives } : oldPick.pick,
-                  };
-                }
-              }
-            }
-
-            return newDay;
-          });
-          return updated;
-        });
-        setAlternativesLoaded(true);
-        setAlternativesLoading(false);
-      })
-      .catch(err => {
-        if (err.name === 'AbortError') return; // expected on refinement
-        console.error('[Alternatives] Fetch failed:', err);
-        setAlternativesLoading(false);
-      });
-
-    return () => controller.abort();
-  }, [isStructured, rawItinerary, formData]);
-
-  // Reset alternatives ref when itinerary changes (refinement)
-  useEffect(() => {
-    hasRequestedAlts.current = false;
-  }, [rawItinerary]);
+  // Alternatives are now fully on-demand — no background Pass 2.
+  // When the user clicks "swap" on an item, alternatives are fetched
+  // for just that item via handleAlternatives / handleLoadMore.
 
   // Keep swapModal alternatives in sync when enrichedDays updates (e.g. pass-2 fetch completes)
   useEffect(() => {
@@ -4742,11 +4657,14 @@ export default function ItineraryResults() {
       for (let ti = 0; ti < day.timeline.length; ti++) {
         const thumbId = `day_${di}_timeline_${ti}`;
         if (thumbId === id) {
+          const alts = day.timeline[ti].alternatives || [];
           setSwapModal({
             dayIndex: di, itemIndex: ti, thumbId,
             activityTitle: day.timeline[ti].title,
-            alternatives: day.timeline[ti].alternatives || [],
+            alternatives: alts,
           });
+          // Auto-fetch if no alternatives exist yet
+          if (alts.length === 0) handleLoadMore(thumbId);
           return;
         }
       }
@@ -4756,11 +4674,14 @@ export default function ItineraryResults() {
           const thumbId = `day_${di}_pick_${pi}`;
           if (thumbId === id) {
             const pick = day.picks[pi];
+            const alts = pick?.pick?.alternatives || [];
             setSwapModal({
               dayIndex: di, itemIndex: pi, thumbId,
               activityTitle: pick?.pick?.name || pick?.category || 'this pick',
-              alternatives: pick?.pick?.alternatives || [],
+              alternatives: alts,
             });
+            // Auto-fetch if no alternatives exist yet
+            if (alts.length === 0) handleLoadMore(thumbId);
             return;
           }
         }
