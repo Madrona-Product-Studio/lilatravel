@@ -281,7 +281,8 @@
     "bookingWindow": "Book at zionwildflower.com — weekends fill 2-3 weeks ahead in spring/fall.",
     "links": {
       "website": "https://www.zionwildflower.com/",
-      "booking": "https://www.zionwildflower.com/"
+      "booking": "https://www.zionwildflower.com/",
+      "bookingDotCom": "https://www.booking.com/hotel/us/zion-wildflower.html"
     },
     "seasonalNotes": "Open year-round. Summer is hot — pool is the anchor. Spring and fall are ideal. Winter is quiet and beautiful.",
     "lilaPick": true,
