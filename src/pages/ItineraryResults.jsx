@@ -5107,7 +5107,8 @@ export default function ItineraryResults() {
 
       {/* Detail panel — use GuideDetailSheet when curated data match exists */}
       {activePanel && (() => {
-        const matchTypes = ['activity', 'trail', 'accommodation'];
+        // Only use GuideDetailSheet for activity/trail — not accommodation (which needs alternatives UI)
+        const matchTypes = ['activity', 'trail'];
         const itemName = activePanel?.data?.name || activePanel?.data?.title;
         const guideMatch = matchTypes.includes(activePanel?.type) ? lookupItem(itemName) : null;
         if (guideMatch) {
