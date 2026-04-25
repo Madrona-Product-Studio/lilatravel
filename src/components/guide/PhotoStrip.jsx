@@ -112,20 +112,6 @@ export default function PhotoStrip({ images, isMobile, height }) {
         ))}
       </div>
 
-      {/* Dot indicators */}
-      <div style={{ display: 'flex', justifyContent: 'center', gap: 6, padding: '10px 0 0' }}>
-        {images.map((_, i) => (
-          <div
-            key={i}
-            style={{
-              width: 6, height: 6, borderRadius: '50%',
-              background: i === activeDot ? G.ink40 : G.borderSoft,
-              transition: 'background 0.2s',
-            }}
-          />
-        ))}
-      </div>
-
       {lightboxOpen && <Lightbox images={images} index={lightboxIndex} onClose={closeLightbox} />}
     </>
   );
