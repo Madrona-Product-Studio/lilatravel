@@ -13,7 +13,7 @@ export default function HowWeChoose({ section }) {
         fontWeight: 700,
         letterSpacing: '0.18em',
         textTransform: 'uppercase',
-        color: G.ink40,
+        color: G.oceanTeal,
         marginBottom: 14,
       }}>
         {rubric.heading}
