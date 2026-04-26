@@ -4,6 +4,8 @@ import SubGuideLayout from '@components/guide/SubGuideLayout';
 import { SubLabel, Prose, ContentList } from '@components/guide';
 import GuideDetailSheet from '@components/guide/GuideDetailSheet';
 import HowWeChoose from '@components/guide/HowWeChoose';
+import MapView from '@components/guide/MapView';
+import ViewToggle from '@components/guide/ViewToggle';
 import restaurants from '../../../data/restaurants/joshua-tree-eat.json';
 
 const eatItems = restaurants.map(r => ({
@@ -22,6 +24,7 @@ const eatItems = restaurants.map(r => ({
 export default function JoshuaTreeEat() {
   const [activeSheet, setActiveSheet] = useState(null);
   const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth <= 768);
+  const [view, setView] = useState('list');
 
   useEffect(() => {
     const onResize = () => setIsMobile(window.innerWidth <= 768);
@@ -45,7 +48,12 @@ export default function JoshuaTreeEat() {
         <Prose>
           The desert dining scene is better than anyone expects. Pappy & Harriet's in Pioneertown is the anchor — live music, mesquite-grilled everything. La Copine does the farm-to-table thing with real conviction. Natural Sisters Cafe is the Joshua Tree morning move. And Palm Springs has a food scene deep enough to fill a separate guide.
         </Prose>
-        <ContentList items={eatItems} onOpenSheet={setActiveSheet} />
+        <ViewToggle view={view} onToggle={setView} />
+        {view === 'list' ? (
+          <ContentList items={eatItems} onOpenSheet={setActiveSheet} />
+        ) : (
+          <MapView items={eatItems} onSelectItem={setActiveSheet} />
+        )}
       </SubGuideLayout>
       <GuideDetailSheet
         item={activeSheet}

@@ -39,7 +39,9 @@
       "local-produce"
     ],
     "months": "all",
-    "thumbnail": "/thumbnails/eat/kokopelli-grill-1.jpg"
+    "thumbnail": "/thumbnails/eat/kokopelli-grill-1.jpg",
+    "lat": 48.1192512,
+    "lng": -123.4304809
   },
   {
     "id": "barhop-brewing",
@@ -80,7 +82,9 @@
       "casual"
     ],
     "months": "all",
-    "thumbnail": "/thumbnails/eat/barhop-brewing-1.jpg"
+    "thumbnail": "/thumbnails/eat/barhop-brewing-1.jpg",
+    "lat": 48.12108629999999,
+    "lng": -123.4331647
   },
   {
     "id": "bonnys-bakery",
@@ -119,7 +123,9 @@
       "morning"
     ],
     "months": "all",
-    "thumbnail": "/thumbnails/eat/bonnys-bakery-1.jpg"
+    "thumbnail": "/thumbnails/eat/bonnys-bakery-1.jpg",
+    "lat": 48.10548559999999,
+    "lng": -123.430504
   },
   {
     "id": "nourish-sequim",
@@ -164,7 +170,9 @@
       "vegan-friendly"
     ],
     "months": "all",
-    "thumbnail": "/thumbnails/eat/nourish-sequim-1.jpg"
+    "thumbnail": "/thumbnails/eat/nourish-sequim-1.jpg",
+    "lat": 48.0686608,
+    "lng": -123.1031381
   },
   {
     "id": "alder-wood-bistro",
@@ -205,7 +213,9 @@
       "oysters"
     ],
     "months": "all",
-    "thumbnail": "/thumbnails/eat/alder-wood-bistro-1.jpg"
+    "thumbnail": "/thumbnails/eat/alder-wood-bistro-1.jpg",
+    "lat": 48.08208219999999,
+    "lng": -123.1032771
   },
   {
     "id": "finistere",
@@ -246,7 +256,9 @@
       "destination-dining"
     ],
     "months": "all",
-    "thumbnail": "/thumbnails/eat/finistere-1.jpg"
+    "thumbnail": "/thumbnails/eat/finistere-1.jpg",
+    "lat": 48.11706520000001,
+    "lng": -122.7611239
   },
   {
     "id": "bread-and-roses",
@@ -285,7 +297,9 @@
       "community-owned"
     ],
     "months": "all",
-    "thumbnail": "/thumbnails/eat/bread-and-roses-1.jpg"
+    "thumbnail": "/thumbnails/eat/bread-and-roses-1.jpg",
+    "lat": 47.6125063,
+    "lng": -122.3022823
   },
   {
     "id": "in-the-woods-cafe",
@@ -328,7 +342,9 @@
       "local-find"
     ],
     "months": "all",
-    "thumbnail": "/thumbnails/eat/in-the-woods-cafe-1.jpg"
+    "thumbnail": "/thumbnails/eat/in-the-woods-cafe-1.jpg",
+    "lat": 47.95109249999999,
+    "lng": -124.3850248
   },
   {
     "id": "kalaloch-lodge-creekside",
@@ -373,6 +389,8 @@
       "sunset"
     ],
     "months": "all",
-    "thumbnail": "/thumbnails/eat/kalaloch-lodge-creekside-1.jpg"
+    "thumbnail": "/thumbnails/eat/kalaloch-lodge-creekside-1.jpg",
+    "lat": 47.6057421,
+    "lng": -124.3713834
   }
 ]

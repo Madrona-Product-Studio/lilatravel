@@ -39,7 +39,9 @@
       "reservations-essential"
     ],
     "months": "all",
-    "thumbnail": "/thumbnails/eat/bar-acuda-1.jpg"
+    "thumbnail": "/thumbnails/eat/bar-acuda-1.jpg",
+    "lat": 22.2023778,
+    "lng": -159.4965705
   },
   {
     "id": "dolphin-restaurant",
@@ -81,7 +83,9 @@
       "local-catch"
     ],
     "months": "all",
-    "thumbnail": "/thumbnails/eat/dolphin-restaurant-1.jpg"
+    "thumbnail": "/thumbnails/eat/dolphin-restaurant-1.jpg",
+    "lat": 22.2043254,
+    "lng": -159.4917576
   },
   {
     "id": "hanalei-taro-juice",
@@ -125,7 +129,9 @@
       "budget-friendly"
     ],
     "months": "all",
-    "thumbnail": "/thumbnails/eat/hanalei-taro-juice-2.jpg"
+    "thumbnail": "/thumbnails/eat/hanalei-taro-juice-2.jpg",
+    "lat": 22.2040652,
+    "lng": -159.4929685
   },
   {
     "id": "beach-house-restaurant",
@@ -167,7 +173,9 @@
       "south-shore"
     ],
     "months": "all",
-    "thumbnail": "/thumbnails/eat/beach-house-restaurant-1.jpg"
+    "thumbnail": "/thumbnails/eat/beach-house-restaurant-1.jpg",
+    "lat": 21.881202,
+    "lng": -159.475446
   },
   {
     "id": "kukuiula-farmers-market",
@@ -209,7 +217,9 @@
       "wednesday-only"
     ],
     "months": "all",
-    "thumbnail": "/thumbnails/eat/kukuiula-farmers-market-1.jpg"
+    "thumbnail": "/thumbnails/eat/kukuiula-farmers-market-1.jpg",
+    "lat": 21.8834644,
+    "lng": -159.4692216
   },
   {
     "id": "hanapepe-cafe",
@@ -250,7 +260,9 @@
       "art-town"
     ],
     "months": "all",
-    "thumbnail": "/thumbnails/eat/hanapepe-cafe-1.jpg"
+    "thumbnail": "/thumbnails/eat/hanapepe-cafe-1.jpg",
+    "lat": 21.9102617,
+    "lng": -159.5889266
   },
   {
     "id": "healthy-hut",
@@ -291,7 +303,9 @@
       "natural-foods"
     ],
     "months": "all",
-    "thumbnail": "/thumbnails/eat/healthy-hut-3.jpg"
+    "thumbnail": "/thumbnails/eat/healthy-hut-3.jpg",
+    "lat": 22.2031102,
+    "lng": -159.4078301
   },
   {
     "id": "eating-house-1849",
@@ -333,7 +347,9 @@
       "south-shore"
     ],
     "months": "all",
-    "thumbnail": "/thumbnails/eat/eating-house-1849-2.jpg"
+    "thumbnail": "/thumbnails/eat/eating-house-1849-2.jpg",
+    "lat": 21.8840216,
+    "lng": -159.4698106
   },
   {
     "id": "koloa-fish-market",
@@ -376,7 +392,9 @@
       "south-shore"
     ],
     "months": "all",
-    "thumbnail": "/thumbnails/eat/koloa-fish-market-1.jpg"
+    "thumbnail": "/thumbnails/eat/koloa-fish-market-1.jpg",
+    "lat": 21.9020461,
+    "lng": -159.4662426
   },
   {
     "id": "hukilau-lanai",
@@ -417,7 +435,9 @@
       "east-shore",
       "kapaa"
     ],
-    "months": "all"
+    "months": "all",
+    "lat": 22.0546437,
+    "lng": -159.3271422
   },
   {
     "id": "hanalei-bread-company",
@@ -459,7 +479,9 @@
       "north-shore"
     ],
     "months": "all",
-    "thumbnail": "/thumbnails/eat/hanalei-bread-company-1.jpg"
+    "thumbnail": "/thumbnails/eat/hanalei-bread-company-1.jpg",
+    "lat": 22.2026966,
+    "lng": -159.4963313
   },
   {
     "id": "oasis-on-the-beach",
@@ -501,7 +523,9 @@
       "kapaa"
     ],
     "months": "all",
-    "thumbnail": "/thumbnails/eat/oasis-on-the-beach-1.jpg"
+    "thumbnail": "/thumbnails/eat/oasis-on-the-beach-1.jpg",
+    "lat": 22.060901,
+    "lng": -159.318965
   },
   {
     "id": "postcards-cafe",
@@ -542,6 +566,8 @@
       "north-shore"
     ],
     "months": "all",
-    "thumbnail": "/thumbnails/eat/postcards-cafe-1.jpg"
+    "thumbnail": "/thumbnails/eat/postcards-cafe-1.jpg",
+    "lat": 22.2037294,
+    "lng": -159.4925365
   }
 ]

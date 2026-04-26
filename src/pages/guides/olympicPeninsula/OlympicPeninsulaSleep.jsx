@@ -4,6 +4,8 @@ import SubGuideLayout from '@components/guide/SubGuideLayout';
 import { SubLabel, Prose, EditorialList, ContentList } from '@components/guide';
 import GuideDetailSheet from '@components/guide/GuideDetailSheet';
 import HowWeChoose from '@components/guide/HowWeChoose';
+import MapView from '@components/guide/MapView';
+import ViewToggle from '@components/guide/ViewToggle';
 import { TIER_COLORS } from '@data/guides/guide-styles';
 import { TOWNS } from '@data/guides/olympic-peninsula-constants';
 import accommodations from '../../../data/accommodations/olympic-peninsula.json';
@@ -30,6 +32,7 @@ const stayItems = accommodations.map(a => ({
 export default function OlympicPeninsulaSleep() {
   const [activeSheet, setActiveSheet] = useState(null);
   const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth <= 768);
+  const [view, setView] = useState('list');
 
   useEffect(() => {
     const onResize = () => setIsMobile(window.innerWidth <= 768);
@@ -53,25 +56,32 @@ export default function OlympicPeninsulaSleep() {
         <SubLabel>Towns</SubLabel>
         <EditorialList items={townItems} />
 
-        {stayItems.some(s => s.tier === 'elemental') && (
+        <ViewToggle view={view} onToggle={setView} />
+        {view === 'list' ? (
           <>
-            <SubLabel color={TIER_COLORS.elemental.color}>Elemental</SubLabel>
-            <ContentList items={stayItems.filter(s => s.tier === 'elemental')} onOpenSheet={setActiveSheet} />
-          </>
-        )}
+            {stayItems.some(s => s.tier === 'elemental') && (
+              <>
+                <SubLabel color={TIER_COLORS.elemental.color}>Elemental</SubLabel>
+                <ContentList items={stayItems.filter(s => s.tier === 'elemental')} onOpenSheet={setActiveSheet} />
+              </>
+            )}
 
-        {stayItems.some(s => s.tier === 'rooted') && (
-          <>
-            <SubLabel color={TIER_COLORS.rooted.color}>Rooted</SubLabel>
-            <ContentList items={stayItems.filter(s => s.tier === 'rooted')} onOpenSheet={setActiveSheet} />
-          </>
-        )}
+            {stayItems.some(s => s.tier === 'rooted') && (
+              <>
+                <SubLabel color={TIER_COLORS.rooted.color}>Rooted</SubLabel>
+                <ContentList items={stayItems.filter(s => s.tier === 'rooted')} onOpenSheet={setActiveSheet} />
+              </>
+            )}
 
-        {stayItems.some(s => s.tier === 'premium') && (
-          <>
-            <SubLabel color={TIER_COLORS.premium.color}>Premium</SubLabel>
-            <ContentList items={stayItems.filter(s => s.tier === 'premium')} onOpenSheet={setActiveSheet} />
+            {stayItems.some(s => s.tier === 'premium') && (
+              <>
+                <SubLabel color={TIER_COLORS.premium.color}>Premium</SubLabel>
+                <ContentList items={stayItems.filter(s => s.tier === 'premium')} onOpenSheet={setActiveSheet} />
+              </>
+            )}
           </>
+        ) : (
+          <MapView items={stayItems} onSelectItem={setActiveSheet} />
         )}
       </SubGuideLayout>
       <GuideDetailSheet

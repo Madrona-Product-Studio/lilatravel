@@ -39,7 +39,9 @@
       "reservations-essential"
     ],
     "months": "all",
-    "thumbnail": "/thumbnails/eat/sierra-mar-2.jpg"
+    "thumbnail": "/thumbnails/eat/sierra-mar-2.jpg",
+    "lat": 36.2298911,
+    "lng": -121.7651322
   },
   {
     "id": "nepenthe",
@@ -83,7 +85,9 @@
       "outdoor-terrace"
     ],
     "months": "all",
-    "thumbnail": "/thumbnails/eat/nepenthe-2.jpg"
+    "thumbnail": "/thumbnails/eat/nepenthe-2.jpg",
+    "lat": 36.22183649999999,
+    "lng": -121.7592895
   },
   {
     "id": "big-sur-bakery",
@@ -127,7 +131,9 @@
       "limited-days"
     ],
     "months": "all",
-    "thumbnail": "/thumbnails/eat/big-sur-bakery-1.jpg"
+    "thumbnail": "/thumbnails/eat/big-sur-bakery-1.jpg",
+    "lat": 36.2358767,
+    "lng": -121.7690896
   },
   {
     "id": "big-sur-river-inn",
@@ -170,7 +176,9 @@
       "local-community"
     ],
     "months": "all",
-    "thumbnail": "/thumbnails/eat/big-sur-river-inn-3.jpg"
+    "thumbnail": "/thumbnails/eat/big-sur-river-inn-3.jpg",
+    "lat": 36.2705801,
+    "lng": -121.8084533
   },
   {
     "id": "aubergine",
@@ -213,7 +221,9 @@
       "reservations-essential"
     ],
     "months": "all",
-    "thumbnail": "/thumbnails/eat/aubergine-2.jpg"
+    "thumbnail": "/thumbnails/eat/aubergine-2.jpg",
+    "lat": 36.5541303,
+    "lng": -121.9241968
   },
   {
     "id": "la-bicyclette",
@@ -255,7 +265,9 @@
       "bar-seating"
     ],
     "months": "all",
-    "thumbnail": "/thumbnails/eat/la-bicyclette-1.jpg"
+    "thumbnail": "/thumbnails/eat/la-bicyclette-1.jpg",
+    "lat": 36.5538689,
+    "lng": -121.9227902
   },
   {
     "id": "mission-ranch",
@@ -296,7 +308,9 @@
       "american"
     ],
     "months": "all",
-    "thumbnail": "/thumbnails/eat/mission-ranch-1.jpg"
+    "thumbnail": "/thumbnails/eat/mission-ranch-1.jpg",
+    "lat": 36.5422776,
+    "lng": -121.9230303
   },
   {
     "id": "carmel-belle",
@@ -334,7 +348,9 @@
       "cafe",
       "provisions"
     ],
-    "months": "all"
+    "months": "all",
+    "lat": 36.5545261,
+    "lng": -121.9219637
   },
   {
     "id": "solstice-village",
@@ -380,7 +396,9 @@
       "gathering-place"
     ],
     "months": "all",
-    "thumbnail": "/thumbnails/eat/solstice-village-1.jpg"
+    "thumbnail": "/thumbnails/eat/solstice-village-1.jpg",
+    "lat": 36.2697483,
+    "lng": -121.8079596
   },
   {
     "id": "deetjens",
@@ -425,7 +443,9 @@
       "destination-dining"
     ],
     "months": "all",
-    "thumbnail": "/thumbnails/eat/deetjens-1.jpg"
+    "thumbnail": "/thumbnails/eat/deetjens-1.jpg",
+    "lat": 36.2174425,
+    "lng": -121.7508222
   },
   {
     "id": "el-bistro-by-the-sea",
@@ -469,6 +489,8 @@
       "chilaquiles"
     ],
     "months": "all",
-    "thumbnail": "/thumbnails/eat/el-bistro-by-the-sea-2.jpg"
+    "thumbnail": "/thumbnails/eat/el-bistro-by-the-sea-2.jpg",
+    "lat": 36.5565224,
+    "lng": -121.9210887
   }
 ]

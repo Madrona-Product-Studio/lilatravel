@@ -4,6 +4,8 @@ import SubGuideLayout from '@components/guide/SubGuideLayout';
 import { SubLabel, Prose, ContentList } from '@components/guide';
 import GuideDetailSheet from '@components/guide/GuideDetailSheet';
 import HowWeChoose from '@components/guide/HowWeChoose';
+import MapView from '@components/guide/MapView';
+import ViewToggle from '@components/guide/ViewToggle';
 import restaurants from '../../../data/restaurants/big-sur-eat.json';
 
 const eatItems = restaurants.map(r => ({
@@ -22,6 +24,7 @@ const eatItems = restaurants.map(r => ({
 export default function BigSurEat() {
   const [activeSheet, setActiveSheet] = useState(null);
   const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth <= 768);
+  const [view, setView] = useState('list');
 
   useEffect(() => {
     const onResize = () => setIsMobile(window.innerWidth <= 768);
@@ -45,7 +48,12 @@ export default function BigSurEat() {
         <Prose>
           Nepenthe is the iconic perch — burgers on a terrace 800 feet above the ocean. Deetjen's does the candlelit dinner. Sierra Mar at Post Ranch is the splurge with a view that earns every dollar. Head north and Carmel has a food scene that punches well above its one-square-mile footprint. Monterey anchors the working end with Cannery Row and the wharf.
         </Prose>
-        <ContentList items={eatItems} onOpenSheet={setActiveSheet} />
+        <ViewToggle view={view} onToggle={setView} />
+        {view === 'list' ? (
+          <ContentList items={eatItems} onOpenSheet={setActiveSheet} />
+        ) : (
+          <MapView items={eatItems} onSelectItem={setActiveSheet} />
+        )}
       </SubGuideLayout>
       <GuideDetailSheet
         item={activeSheet}

@@ -4,6 +4,8 @@ import SubGuideLayout from '@components/guide/SubGuideLayout';
 import { SubLabel, Prose, ContentList } from '@components/guide';
 import GuideDetailSheet from '@components/guide/GuideDetailSheet';
 import HowWeChoose from '@components/guide/HowWeChoose';
+import MapView from '@components/guide/MapView';
+import ViewToggle from '@components/guide/ViewToggle';
 import restaurants from '../../../data/restaurants/vancouver-island-eat.json';
 
 const eatItems = restaurants.map(r => ({
@@ -22,6 +24,7 @@ const eatItems = restaurants.map(r => ({
 export default function VancouverIslandEat() {
   const [activeSheet, setActiveSheet] = useState(null);
   const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth <= 768);
+  const [view, setView] = useState('list');
 
   useEffect(() => {
     const onResize = () => setIsMobile(window.innerWidth <= 768);
@@ -45,7 +48,12 @@ export default function VancouverIslandEat() {
         <Prose>
           Tofino punches well above its weight for a town of 2,000. The seafood is extraordinary — spot prawns, halibut, Dungeness crab pulled from the waters you can see from the restaurant. Ucluelet is catching up. Victoria adds heritage and refinement.
         </Prose>
-        <ContentList items={eatItems} onOpenSheet={setActiveSheet} />
+        <ViewToggle view={view} onToggle={setView} />
+        {view === 'list' ? (
+          <ContentList items={eatItems} onOpenSheet={setActiveSheet} />
+        ) : (
+          <MapView items={eatItems} onSelectItem={setActiveSheet} />
+        )}
       </SubGuideLayout>
       <GuideDetailSheet
         item={activeSheet}

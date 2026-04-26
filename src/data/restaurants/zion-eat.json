@@ -39,7 +39,9 @@
       "weekend-wait"
     ],
     "months": "all",
-    "thumbnail": "/thumbnails/eat/oscars-cafe-1.jpg"
+    "thumbnail": "/thumbnails/eat/oscars-cafe-1.jpg",
+    "lat": 37.1890109,
+    "lng": -113.0002479
   },
   {
     "id": "deep-creek-coffee",
@@ -83,7 +85,9 @@
       "pour-over"
     ],
     "months": "all",
-    "thumbnail": "/thumbnails/eat/deep-creek-coffee-1.jpg"
+    "thumbnail": "/thumbnails/eat/deep-creek-coffee-1.jpg",
+    "lat": 37.1889901,
+    "lng": -112.9999561
   },
   {
     "id": "bit-and-spur",
@@ -124,7 +128,9 @@
       "reservations-recommended"
     ],
     "months": "all",
-    "thumbnail": "/thumbnails/eat/bit-and-spur-1.jpg"
+    "thumbnail": "/thumbnails/eat/bit-and-spur-1.jpg",
+    "lat": 37.1846748,
+    "lng": -113.0030923
   },
   {
     "id": "kings-landing-bistro",
@@ -164,7 +170,9 @@
       "reservations-essential"
     ],
     "months": "all",
-    "thumbnail": "/thumbnails/eat/kings-landing-bistro-2.jpg"
+    "thumbnail": "/thumbnails/eat/kings-landing-bistro-2.jpg",
+    "lat": 37.1801358,
+    "lng": -113.0061011
   },
   {
     "id": "sol-foods-market",
@@ -206,7 +214,9 @@
       "self-catering"
     ],
     "months": "all",
-    "thumbnail": "/thumbnails/eat/sol-foods-market-1.jpg"
+    "thumbnail": "/thumbnails/eat/sol-foods-market-1.jpg",
+    "lat": 37.1880484,
+    "lng": -113.0006248
   },
   {
     "id": "bryce-canyon-lodge-restaurant",

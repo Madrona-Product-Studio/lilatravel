@@ -40,7 +40,9 @@
       "reservations-essential"
     ],
     "months": "all",
-    "thumbnail": "/thumbnails/eat/wolf-in-the-fog-2.jpg"
+    "thumbnail": "/thumbnails/eat/wolf-in-the-fog-2.jpg",
+    "lat": 49.1521806,
+    "lng": -125.9024972
   },
   {
     "id": "pluvio-restaurant",
@@ -82,7 +84,9 @@
       "reservations-essential"
     ],
     "months": "all",
-    "thumbnail": "/thumbnails/eat/pluvio-restaurant-1.jpg"
+    "thumbnail": "/thumbnails/eat/pluvio-restaurant-1.jpg",
+    "lat": 48.9427177,
+    "lng": -125.5490615
   },
   {
     "id": "common-loaf-bake-shop",
@@ -126,7 +130,9 @@
       "local-institution"
     ],
     "months": "all",
-    "thumbnail": "/thumbnails/eat/common-loaf-bake-shop-1.jpg"
+    "thumbnail": "/thumbnails/eat/common-loaf-bake-shop-1.jpg",
+    "lat": 49.1521963,
+    "lng": -125.9080354
   },
   {
     "id": "shelter-restaurant",
@@ -167,7 +173,9 @@
       "fireplace"
     ],
     "months": "all",
-    "thumbnail": "/thumbnails/eat/shelter-restaurant-1.jpg"
+    "thumbnail": "/thumbnails/eat/shelter-restaurant-1.jpg",
+    "lat": 49.1508362,
+    "lng": -125.8950691
   },
   {
     "id": "1909-kitchen",
@@ -208,7 +216,9 @@
       "tofino"
     ],
     "months": "all",
-    "thumbnail": "/thumbnails/eat/1909-kitchen-3.jpg"
+    "thumbnail": "/thumbnails/eat/1909-kitchen-3.jpg",
+    "lat": 49.1508362,
+    "lng": -125.8950691
   },
   {
     "id": "heartwood-kitchen",
@@ -250,7 +260,9 @@
       "casual"
     ],
     "months": "all",
-    "thumbnail": "/thumbnails/eat/heartwood-kitchen-1.jpg"
+    "thumbnail": "/thumbnails/eat/heartwood-kitchen-1.jpg",
+    "lat": 48.942524,
+    "lng": -125.5487179
   },
   {
     "id": "tofino-co-op-grocery",
@@ -292,7 +304,9 @@
       "tofino"
     ],
     "months": "all",
-    "thumbnail": "/thumbnails/eat/tofino-co-op-grocery-1.jpg"
+    "thumbnail": "/thumbnails/eat/tofino-co-op-grocery-1.jpg",
+    "lat": 49.153025,
+    "lng": -125.9082439
   },
   {
     "id": "the-pointe",
@@ -334,7 +348,9 @@
       "tasting-menu"
     ],
     "months": "all",
-    "thumbnail": "/thumbnails/eat/the-pointe-1.jpg"
+    "thumbnail": "/thumbnails/eat/the-pointe-1.jpg",
+    "lat": 49.1228132,
+    "lng": -125.9014712
   },
   {
     "id": "tacofino",
@@ -379,7 +395,9 @@
       "post-surf"
     ],
     "months": "all",
-    "thumbnail": "/thumbnails/eat/tacofino-1.jpg"
+    "thumbnail": "/thumbnails/eat/tacofino-1.jpg",
+    "lat": 49.1266231,
+    "lng": -125.8924108
   },
   {
     "id": "wildside-grill",
@@ -423,6 +441,8 @@
       "fisherman-owned"
     ],
     "months": "Mar–Oct",
-    "thumbnail": "/thumbnails/eat/wildside-grill-1.jpg"
+    "thumbnail": "/thumbnails/eat/wildside-grill-1.jpg",
+    "lat": 49.1270263,
+    "lng": -125.8936623
   }
 ]

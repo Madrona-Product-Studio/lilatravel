@@ -38,7 +38,9 @@
       "reservations-essential"
     ],
     "months": "all",
-    "thumbnail": "/thumbnails/eat/la-copine-1.jpg"
+    "thumbnail": "/thumbnails/eat/la-copine-1.jpg",
+    "lat": 34.2383405,
+    "lng": -116.4399609
   },
   {
     "id": "crossroads-cafe",
@@ -79,7 +81,9 @@
       "community-hub"
     ],
     "months": "all",
-    "thumbnail": "/thumbnails/eat/crossroads-cafe-2.jpg"
+    "thumbnail": "/thumbnails/eat/crossroads-cafe-2.jpg",
+    "lat": 34.134704,
+    "lng": -116.3169832
   },
   {
     "id": "natural-sisters-cafe",
@@ -120,7 +124,9 @@
       "smoothies",
       "healthy"
     ],
-    "months": "all"
+    "months": "all",
+    "lat": 34.0983773,
+    "lng": -116.3144796
   },
   {
     "id": "29-palms-inn-restaurant",
@@ -163,7 +169,9 @@
       "historic"
     ],
     "months": "all",
-    "thumbnail": "/thumbnails/eat/29-palms-inn-restaurant-1.jpg"
+    "thumbnail": "/thumbnails/eat/29-palms-inn-restaurant-1.jpg",
+    "lat": 34.1294522,
+    "lng": -116.0487982
   },
   {
     "id": "pappy-and-harriets",
@@ -208,7 +216,9 @@
       "destination-dining"
     ],
     "months": "all",
-    "thumbnail": "/thumbnails/eat/pappy-and-harriets-1.jpg"
+    "thumbnail": "/thumbnails/eat/pappy-and-harriets-1.jpg",
+    "lat": 34.1563658,
+    "lng": -116.4930925
   },
   {
     "id": "stater-bros",
@@ -247,7 +257,9 @@
       "provisions",
       "north-entrance"
     ],
-    "months": "all"
+    "months": "all",
+    "lat": 34.1341651,
+    "lng": -116.0972577
   },
   {
     "id": "kitchen-in-the-desert",
@@ -291,7 +303,9 @@
       "community"
     ],
     "months": "all",
-    "thumbnail": "/thumbnails/eat/kitchen-in-the-desert-1.jpg"
+    "thumbnail": "/thumbnails/eat/kitchen-in-the-desert-1.jpg",
+    "lat": 34.1370293,
+    "lng": -116.0513035
   },
   {
     "id": "luna-bakery",
@@ -332,7 +346,9 @@
       "yucca-valley"
     ],
     "months": "all",
-    "thumbnail": "/thumbnails/eat/luna-bakery-1.jpg"
+    "thumbnail": "/thumbnails/eat/luna-bakery-1.jpg",
+    "lat": 34.1191653,
+    "lng": -116.4482075
   },
   {
     "id": "frontier-cafe",
@@ -373,7 +389,9 @@
       "yucca-valley"
     ],
     "months": "all",
-    "thumbnail": "/thumbnails/eat/frontier-cafe-1.jpg"
+    "thumbnail": "/thumbnails/eat/frontier-cafe-1.jpg",
+    "lat": 34.1195952,
+    "lng": -116.4461483
   },
   {
     "id": "spaghetti-western",
@@ -416,7 +434,9 @@
       "authentic"
     ],
     "months": "all",
-    "thumbnail": "/thumbnails/eat/spaghetti-western-1.jpg"
+    "thumbnail": "/thumbnails/eat/spaghetti-western-1.jpg",
+    "lat": 34.0543151,
+    "lng": -116.5734727
   },
   {
     "id": "campbell-hill-bakery",
@@ -456,7 +476,9 @@
       "twentynine-palms"
     ],
     "months": "all",
-    "thumbnail": "/thumbnails/eat/campbell-hill-bakery-1.jpg"
+    "thumbnail": "/thumbnails/eat/campbell-hill-bakery-1.jpg",
+    "lat": 34.1354115,
+    "lng": -116.0586585
   },
   {
     "id": "joshua-tree-coffee",
@@ -496,6 +518,8 @@
       "pre-hike"
     ],
     "months": "all",
-    "thumbnail": "/thumbnails/eat/joshua-tree-coffee-1.jpg"
+    "thumbnail": "/thumbnails/eat/joshua-tree-coffee-1.jpg",
+    "lat": 34.1353198,
+    "lng": -116.3165029
   }
 ]

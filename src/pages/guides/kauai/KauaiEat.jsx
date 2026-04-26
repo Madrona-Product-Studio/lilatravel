@@ -4,6 +4,8 @@ import SubGuideLayout from '@components/guide/SubGuideLayout';
 import { SubLabel, Prose, ContentList } from '@components/guide';
 import GuideDetailSheet from '@components/guide/GuideDetailSheet';
 import HowWeChoose from '@components/guide/HowWeChoose';
+import MapView from '@components/guide/MapView';
+import ViewToggle from '@components/guide/ViewToggle';
 import restaurants from '../../../data/restaurants/kauai-eat.json';
 
 const eatItems = restaurants.map(r => ({
@@ -22,6 +24,7 @@ const eatItems = restaurants.map(r => ({
 export default function KauaiEat() {
   const [activeSheet, setActiveSheet] = useState(null);
   const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth <= 768);
+  const [view, setView] = useState('list');
 
   useEffect(() => {
     const onResize = () => setIsMobile(window.innerWidth <= 768);
@@ -45,7 +48,12 @@ export default function KauaiEat() {
         <Prose>
           Kauai's food scene is rooted in the land and the ocean. Poke is religion. Plate lunch is infrastructure. The farm-to-table movement here draws from soil that grows year-round. The best meals are often the least formal — roadside stands, fish markets, and the places locals eat when no one's watching.
         </Prose>
-        <ContentList items={eatItems} onOpenSheet={setActiveSheet} />
+        <ViewToggle view={view} onToggle={setView} />
+        {view === 'list' ? (
+          <ContentList items={eatItems} onOpenSheet={setActiveSheet} />
+        ) : (
+          <MapView items={eatItems} onSelectItem={setActiveSheet} />
+        )}
       </SubGuideLayout>
       <GuideDetailSheet
         item={activeSheet}
