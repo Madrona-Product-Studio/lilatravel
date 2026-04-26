@@ -5,7 +5,7 @@
     "type": "camping",
     "stayStyle": "elemental",
     "budgetTier": "mindful",
-    "priceRange": "$15–25/night",
+    "priceRange": "$15\u201325/night",
     "location": "Inside Joshua Tree National Park, high desert",
     "groupFit": [
       "solo",
@@ -17,19 +17,19 @@
       "124 sites set among massive boulder formations",
       "The most immersive camping experience in the park",
       "Excellent dark sky conditions",
-      "First-come, first-served — no reservations"
+      "First-come, first-served \u2014 no reservations"
     ],
     "amenities": [
       "vault toilets",
       "picnic tables",
       "fire grates"
     ],
-    "bookingWindow": "No reservations — first-come, first-served. Arrive early on weekends, especially spring and fall.",
+    "bookingWindow": "No reservations \u2014 first-come, first-served. Arrive early on weekends, especially spring and fall.",
     "links": {
       "website": "https://www.nps.gov/jotr/planyourvisit/campgrounds.htm",
       "booking": null
     },
-    "seasonalNotes": "Open year-round. No water — bring your own. Cold winter nights can drop below freezing.",
+    "seasonalNotes": "Open year-round. No water \u2014 bring your own. Cold winter nights can drop below freezing.",
     "lilaPick": true,
     "tags": [
       "inside-park",
@@ -48,8 +48,8 @@
     "type": "boutique hotel",
     "stayStyle": "premium",
     "budgetTier": "premium",
-    "priceRange": "$250–450/night",
-    "location": "7000 Split Rock Ave, Twentynine Palms — 5 min from north park entrance",
+    "priceRange": "$250\u2013450/night",
+    "location": "7000 Split Rock Ave, Twentynine Palms \u2014 5 min from north park entrance",
     "groupFit": [
       "solo",
       "couple",
@@ -57,7 +57,7 @@
     ],
     "highlights": [
       "First new-build hotel in the Morongo Basin in 15 years",
-      "65 rooms on 180 acres — 170 acres left deliberately undeveloped",
+      "65 rooms on 180 acres \u2014 170 acres left deliberately undeveloped",
       "Every room has a private patio with Solo Stove fire pit and desert views",
       "Cedar sauna, cold plunge, saltwater pool, Celestron telescope for stargazing",
       "Designed around the question: what would a hotel on Mars look like, built in connection to nature"
@@ -71,13 +71,13 @@
       "wifi",
       "EV charging"
     ],
-    "bookingWindow": "Book 2–4 weeks ahead for weekends. Spring and fall fill fastest.",
+    "bookingWindow": "Book 2\u20134 weeks ahead for weekends. Spring and fall fill fastest.",
     "links": {
       "website": "https://www.stayreset.com/",
       "booking": "https://www.stayreset.com/rooms",
       "bookingDotCom": "https://www.booking.com/hotel/us/reset.html"
     },
-    "seasonalNotes": "Open year-round. Summer pool season April–October. Winter evenings ideal for stargazing with Celestron telescopes.",
+    "seasonalNotes": "Open year-round. Summer pool season April\u2013October. Winter evenings ideal for stargazing with Celestron telescopes.",
     "lilaPick": true,
     "tags": [
       "new-build",
@@ -99,7 +99,7 @@
     "type": "camping",
     "stayStyle": "elemental",
     "budgetTier": "mindful",
-    "priceRange": "$15–25/night",
+    "priceRange": "$15\u201325/night",
     "location": "Inside Joshua Tree National Park, high desert",
     "groupFit": [
       "solo",
@@ -117,7 +117,7 @@
       "picnic tables",
       "fire grates"
     ],
-    "bookingWindow": "No reservations — first-come, first-served. Arrive before noon on weekends.",
+    "bookingWindow": "No reservations \u2014 first-come, first-served. Arrive before noon on weekends.",
     "links": {
       "website": "https://www.nps.gov/jotr/planyourvisit/campgrounds.htm",
       "booking": null
@@ -141,7 +141,7 @@
     "type": "cabin",
     "stayStyle": "elemental",
     "budgetTier": "moderate",
-    "priceRange": "$150–300/night",
+    "priceRange": "$150\u2013300/night",
     "location": "Near the park's north edge, Twentynine Palms",
     "groupFit": [
       "solo",
@@ -161,7 +161,7 @@
       "kitchen",
       "wifi"
     ],
-    "bookingWindow": "Book 2–4 weeks ahead for weekends. Easier midweek.",
+    "bookingWindow": "Book 2\u20134 weeks ahead for weekends. Easier midweek.",
     "links": {
       "website": "https://www.skylightjoshuatree.com/",
       "booking": null
@@ -174,7 +174,9 @@
       "off-grid-feel",
       "outdoor-tub",
       "dark-sky"
-    ]
+    ],
+    "lat": 34.1456,
+    "lng": -116.3131
   },
   {
     "id": "29-palms-inn",
@@ -182,7 +184,7 @@
     "type": "inn",
     "stayStyle": "rooted",
     "budgetTier": "moderate",
-    "priceRange": "$120–250/night",
+    "priceRange": "$120\u2013250/night",
     "location": "Twentynine Palms, near the north entrance",
     "groupFit": [
       "solo",
@@ -203,7 +205,7 @@
       "wifi",
       "parking"
     ],
-    "bookingWindow": "Book 2–4 weeks ahead. Popular with returning guests — some weekends fill months out.",
+    "bookingWindow": "Book 2\u20134 weeks ahead. Popular with returning guests \u2014 some weekends fill months out.",
     "links": {
       "website": "https://29palmsinn.com/",
       "booking": null,
@@ -229,14 +231,14 @@
     "type": "boutique",
     "stayStyle": "rooted",
     "budgetTier": "moderate",
-    "priceRange": "$200–350/night",
+    "priceRange": "$200\u2013350/night",
     "location": "Joshua Tree town",
     "groupFit": [
       "solo",
       "couple"
     ],
     "highlights": [
-      "Boutique B&B — two rooms only",
+      "Boutique B&B \u2014 two rooms only",
       "Thoughtfully appointed, meditation garden",
       "Personal attention from the owners",
       "360-degree desert views"
@@ -247,7 +249,7 @@
       "breakfast included",
       "wifi"
     ],
-    "bookingWindow": "Only two rooms — book 1–2 months ahead. Sells out for full moons and spring weekends.",
+    "bookingWindow": "Only two rooms \u2014 book 1\u20132 months ahead. Sells out for full moons and spring weekends.",
     "links": {
       "website": "https://www.sacredsands.com/",
       "booking": null,
@@ -272,7 +274,7 @@
     "type": "resort",
     "stayStyle": "premium",
     "budgetTier": "premium",
-    "priceRange": "$300–600/night",
+    "priceRange": "$300\u2013600/night",
     "location": "Desert Hot Springs, ~45 min from Joshua Tree",
     "groupFit": [
       "solo",
@@ -282,7 +284,7 @@
       "Historic mineral hot springs spa since 1930",
       "Fed by a natural geothermal aquifer",
       "Grotto pools, couples treatments, serious relaxation",
-      "Long a Hollywood hideaway — the counterpoint to a strenuous park day"
+      "Long a Hollywood hideaway \u2014 the counterpoint to a strenuous park day"
     ],
     "amenities": [
       "mineral hot springs",
@@ -292,13 +294,13 @@
       "yoga",
       "wifi"
     ],
-    "bookingWindow": "Book 2–4 weeks ahead. Weekend packages sell out in spring season.",
+    "bookingWindow": "Book 2\u20134 weeks ahead. Weekend packages sell out in spring season.",
     "links": {
       "website": "https://www.twobunchpalms.com/",
       "booking": null,
       "bookingDotCom": "https://www.booking.com/hotel/us/two-bunch-palms-resort.html"
     },
-    "seasonalNotes": "Year-round. Summer can be extremely hot — the springs are still a draw but the surrounding heat is intense.",
+    "seasonalNotes": "Year-round. Summer can be extremely hot \u2014 the springs are still a draw but the surrounding heat is intense.",
     "corridor": true,
     "lilaPick": true,
     "tags": [
@@ -319,18 +321,18 @@
     "type": "boutique hotel",
     "stayStyle": "rooted",
     "budgetTier": "moderate",
-    "priceRange": "$275–450/night",
-    "location": "Twentynine Palms — 10 min from north park entrance",
+    "priceRange": "$275\u2013450/night",
+    "location": "Twentynine Palms \u2014 10 min from north park entrance",
     "groupFit": [
       "solo",
       "couple"
     ],
     "highlights": [
       "Woman-owned, design-led 12-room hideaway in a reimagined 1940s roadside motel",
-      "No televisions — designed intentionally for presence and reflection",
+      "No televisions \u2014 designed intentionally for presence and reflection",
       "Hand-carved woodwork, custom millwork, bookshelves with astronomy and geology titles",
       "Saltwater pool and hot tub, private patios, Windsong desert provisions bodega on-site",
-      "21+ property — a quiet, considered retreat"
+      "21+ property \u2014 a quiet, considered retreat"
     ],
     "amenities": [
       "saltwater pool",
@@ -341,7 +343,7 @@
       "wifi",
       "EV charging"
     ],
-    "bookingWindow": "Book 3–6 weeks ahead. Only 12 rooms — fills quickly for full moon weekends and spring.",
+    "bookingWindow": "Book 3\u20136 weeks ahead. Only 12 rooms \u2014 fills quickly for full moon weekends and spring.",
     "links": {
       "website": "https://www.hotelwren29.com/",
       "booking": "https://www.hotelwren29.com/"
@@ -367,8 +369,8 @@
     "type": "retreat",
     "stayStyle": "rooted",
     "budgetTier": "moderate",
-    "priceRange": "$150–350/night",
-    "location": "59700 29 Palms Highway, Joshua Tree — minutes from the park's west entrance",
+    "priceRange": "$150\u2013350/night",
+    "location": "59700 29 Palms Highway, Joshua Tree \u2014 minutes from the park's west entrance",
     "groupFit": [
       "solo",
       "couple",
@@ -377,26 +379,26 @@
     "highlights": [
       "14 mid-century suites on the historic Joshua Tree Retreat Center campus",
       "Buildings designed by Lloyd Wright (Frank Lloyd Wright's son) using sacred geometry",
-      "Access to retreat center's meditation areas, pool, hot pool, and vegetarian café",
-      "On-site vortex energy sites — the reason this land was selected in the 1940s",
+      "Access to retreat center's meditation areas, pool, hot pool, and vegetarian caf\u00e9",
+      "On-site vortex energy sites \u2014 the reason this land was selected in the 1940s",
       "Floor-to-ceiling windows, private patios, desert views in all directions"
     ],
     "amenities": [
       "pool",
       "hot pool",
       "meditation areas",
-      "on-site café",
+      "on-site caf\u00e9",
       "fire pits",
       "wifi",
       "kitchenette"
     ],
-    "bookingWindow": "Book through retreat.homesteadmodern.com. 2–4 weeks ahead for weekends. Full buyout available for groups.",
+    "bookingWindow": "Book through retreat.homesteadmodern.com. 2\u20134 weeks ahead for weekends. Full buyout available for groups.",
     "links": {
       "website": "https://retreat.homesteadmodern.com",
       "booking": "https://retreat.homesteadmodern.com",
       "bookingDotCom": "https://www.booking.com/hotel/us/the-bungalows-by-homestead-modern-deluxe-studio.html"
     },
-    "seasonalNotes": "Open year-round. The vegetarian Food for Thought Café is on-site. Spring and fall most pleasant.",
+    "seasonalNotes": "Open year-round. The vegetarian Food for Thought Caf\u00e9 is on-site. Spring and fall most pleasant.",
     "lilaPick": false,
     "tags": [
       "lloyd-wright",
@@ -417,8 +419,8 @@
     "type": "glamping",
     "stayStyle": "elemental",
     "budgetTier": "moderate",
-    "priceRange": "$179–400/night",
-    "location": "62025 29 Palms Hwy, Joshua Tree — minutes from the park's west entrance",
+    "priceRange": "$179\u2013400/night",
+    "location": "62025 29 Palms Hwy, Joshua Tree \u2014 minutes from the park's west entrance",
     "groupFit": [
       "solo",
       "couple",
@@ -426,10 +428,10 @@
       "family"
     ],
     "highlights": [
-      "Polished Airstream trailers, modern cabins, and luxury tents on a design-forward desert campus — the lodging that put Joshua Tree glamping on the map",
+      "Polished Airstream trailers, modern cabins, and luxury tents on a design-forward desert campus \u2014 the lodging that put Joshua Tree glamping on the map",
       "Each Airstream is a self-contained suite: queen bed, bathroom, kitchenette, private deck with fire pit and desert views",
       "Pool, clubhouse, communal fire pits, and loaner bikes for riding into town. The common spaces are as considered as the rooms.",
-      "Now part of Hilton's portfolio but retains its original design identity and Airstream-specific experience — the brand didn't dilute the place"
+      "Now part of Hilton's portfolio but retains its original design identity and Airstream-specific experience \u2014 the brand didn't dilute the place"
     ],
     "amenities": [
       "pool",
@@ -446,7 +448,7 @@
       "booking": "https://autocamp.com/joshua-tree/",
       "bookingDotCom": "https://www.booking.com/hotel/us/autocamp-joshua-tree.html"
     },
-    "seasonalNotes": "Open year-round. Summer is hot — pool is essential. October through April is the sweet spot.",
+    "seasonalNotes": "Open year-round. Summer is hot \u2014 pool is essential. October through April is the sweet spot.",
     "lilaPick": true,
     "tags": [
       "airstream",

@@ -5,7 +5,7 @@
     "type": "camping",
     "stayStyle": "elemental",
     "budgetTier": "mindful",
-    "priceRange": "$20–30/night",
+    "priceRange": "$20\u201330/night",
     "location": "Inside Zion National Park, near Visitor Center",
     "groupFit": [
       "solo",
@@ -14,7 +14,7 @@
       "family"
     ],
     "highlights": [
-      "The most immersive option — you wake up in the canyon",
+      "The most immersive option \u2014 you wake up in the canyon",
       "190 sites, some riverside",
       "Walking distance to Visitor Center and shuttle",
       "Excellent stargazing from campground"
@@ -27,12 +27,12 @@
       "dump station",
       "some electric hookups"
     ],
-    "bookingWindow": "Book at recreation.gov as soon as available — fills fast in peak season (Mar–Oct)",
+    "bookingWindow": "Book at recreation.gov as soon as available \u2014 fills fast in peak season (Mar\u2013Oct)",
     "links": {
       "website": "https://www.nps.gov/zion/planyourvisit/campgrounds-in-zion.htm",
       "booking": "https://www.recreation.gov/camping/campgrounds/232445"
     },
-    "seasonalNotes": "Year-round. Cold winter nights (25–35°F) — bring warm gear. Summer is hot — shade is limited.",
+    "seasonalNotes": "Year-round. Cold winter nights (25\u201335\u00b0F) \u2014 bring warm gear. Summer is hot \u2014 shade is limited.",
     "lilaPick": false,
     "tags": [
       "inside-park",
@@ -51,8 +51,8 @@
     "type": "boutique",
     "stayStyle": "premium",
     "budgetTier": "moderate",
-    "priceRange": "$200–350/night",
-    "location": "Springdale, riverside — five acres of gardens on the Virgin River",
+    "priceRange": "$200\u2013350/night",
+    "location": "Springdale, riverside \u2014 five acres of gardens on the Virgin River",
     "groupFit": [
       "solo",
       "couple",
@@ -63,7 +63,7 @@
       "Five acres of gardens on the Virgin River",
       "Heated pools year-round",
       "Anthera restaurant on-site",
-      "Five Petals Spa — riverfront treatments",
+      "Five Petals Spa \u2014 riverfront treatments",
       "Walking distance to park and Springdale restaurants"
     ],
     "amenities": [
@@ -77,7 +77,7 @@
       "parking",
       "shuttle access"
     ],
-    "bookingWindow": "2–4 months ahead for peak season. Popular with returning guests.",
+    "bookingWindow": "2\u20134 months ahead for peak season. Popular with returning guests.",
     "links": {
       "website": "https://www.cliffroselodge.com/",
       "booking": null,
@@ -104,7 +104,7 @@
     "type": "resort",
     "stayStyle": "rooted",
     "budgetTier": "moderate",
-    "priceRange": "$180–350/night",
+    "priceRange": "$180\u2013350/night",
     "location": "Springdale",
     "groupFit": [
       "solo",
@@ -126,7 +126,7 @@
       "parking",
       "shuttle access"
     ],
-    "bookingWindow": "2–3 months ahead for peak season.",
+    "bookingWindow": "2\u20133 months ahead for peak season.",
     "links": {
       "website": "https://flanigans.com/",
       "booking": null,
@@ -141,7 +141,9 @@
       "restaurant",
       "wellness"
     ],
-    "thumbnail": "/thumbnails/sleep/flanigans-resort-1.jpg"
+    "thumbnail": "/thumbnails/sleep/flanigans-resort-1.jpg",
+    "lat": 37.1945216,
+    "lng": -112.993399
   },
   {
     "id": "under-canvas-zion",
@@ -149,8 +151,8 @@
     "type": "glamping",
     "stayStyle": "elemental",
     "budgetTier": "premium",
-    "priceRange": "$300–600/night",
-    "location": "Virgin, UT — 196 acres, ~30 min drive from park",
+    "priceRange": "$300\u2013600/night",
+    "location": "Virgin, UT \u2014 196 acres, ~30 min drive from park",
     "groupFit": [
       "solo",
       "couple",
@@ -160,7 +162,7 @@
       "Safari-style luxury tents on 196 acres",
       "DarkSky certified site",
       "Stargazer tents with sky windows above your bed",
-      "No WiFi — by design",
+      "No WiFi \u2014 by design",
       "Communal fire pits and curated programming"
     ],
     "amenities": [
@@ -170,13 +172,13 @@
       "on-site dining",
       "adventure concierge"
     ],
-    "bookingWindow": "3–6 months ahead, especially for Sep–Oct. Sells out for fall equinox window.",
+    "bookingWindow": "3\u20136 months ahead, especially for Sep\u2013Oct. Sells out for fall equinox window.",
     "links": {
       "website": "https://www.undercanvas.com/camps/zion/",
       "booking": null,
       "bookingDotCom": "https://www.booking.com/hotel/us/under-canvas-at-zion.html"
     },
-    "seasonalNotes": "Seasonal: typically March–November. Closed in winter. No AC — fans only in summer (can be hot June–Aug).",
+    "seasonalNotes": "Seasonal: typically March\u2013November. Closed in winter. No AC \u2014 fans only in summer (can be hot June\u2013Aug).",
     "lilaPick": true,
     "tags": [
       "glamping",
@@ -187,7 +189,9 @@
       "seasonal",
       "signature-stay"
     ],
-    "thumbnail": "/thumbnails/sleep/under-canvas-zion-1.jpg"
+    "thumbnail": "/thumbnails/sleep/under-canvas-zion-1.jpg",
+    "lat": 37.2682087,
+    "lng": -113.1147972
   },
   {
     "id": "open-sky-zion",
@@ -195,7 +199,7 @@
     "type": "glamping",
     "stayStyle": "elemental",
     "budgetTier": "premium",
-    "priceRange": "$350–700/night",
+    "priceRange": "$350\u2013700/night",
     "location": "Virgin, UT",
     "groupFit": [
       "solo",
@@ -213,12 +217,12 @@
       "private tents",
       "fire pits"
     ],
-    "bookingWindow": "2–4 months ahead for peak season.",
+    "bookingWindow": "2\u20134 months ahead for peak season.",
     "links": {
       "website": "https://www.stayopensky.com/",
       "booking": null
     },
-    "seasonalNotes": "Year-round. The wellness programming is a genuine differentiator — not an add-on.",
+    "seasonalNotes": "Year-round. The wellness programming is a genuine differentiator \u2014 not an add-on.",
     "lilaPick": true,
     "tags": [
       "luxury-glamping",
@@ -227,7 +231,9 @@
       "immersive",
       "private"
     ],
-    "thumbnail": "/thumbnails/sleep/open-sky-zion-1.jpg"
+    "thumbnail": "/thumbnails/sleep/open-sky-zion-1.jpg",
+    "lat": 37.2258991,
+    "lng": -113.1244091
   },
   {
     "id": "zion-lodge",
@@ -235,8 +241,8 @@
     "type": "lodge",
     "stayStyle": "rooted",
     "budgetTier": "premium",
-    "priceRange": "$250–400/night",
-    "location": "Inside Zion National Park — the only in-park lodge",
+    "priceRange": "$250\u2013400/night",
+    "location": "Inside Zion National Park \u2014 the only in-park lodge",
     "groupFit": [
       "solo",
       "couple",
@@ -247,7 +253,7 @@
       "The only lodge inside the park",
       "Historic property with unmatched location",
       "Wake up on the canyon floor",
-      "No driving or shuttle needed — you're already there"
+      "No driving or shuttle needed \u2014 you're already there"
     ],
     "amenities": [
       "on-site restaurant",
@@ -256,7 +262,7 @@
       "trailhead access",
       "parking"
     ],
-    "bookingWindow": "6–12 months ahead. Extremely limited availability. Book as early as possible.",
+    "bookingWindow": "6\u201312 months ahead. Extremely limited availability. Book as early as possible.",
     "links": {
       "website": "https://www.zionlodge.com/",
       "booking": null,
@@ -271,7 +277,9 @@
       "book-early",
       "iconic"
     ],
-    "thumbnail": "/thumbnails/sleep/zion-lodge-1.jpg"
+    "thumbnail": "/thumbnails/sleep/zion-lodge-1.jpg",
+    "lat": 37.2501838,
+    "lng": -112.9565103
   },
   {
     "id": "amangiri",
@@ -279,8 +287,8 @@
     "type": "resort",
     "stayStyle": "premium",
     "budgetTier": "luxury",
-    "priceRange": "$2,000–5,000/night",
-    "location": "Canyon Point, UT — 90 minutes from Zion",
+    "priceRange": "$2,000\u20135,000/night",
+    "location": "Canyon Point, UT \u2014 90 minutes from Zion",
     "groupFit": [
       "couple"
     ],
@@ -299,7 +307,7 @@
       "private plunge pools",
       "guided desert experiences"
     ],
-    "bookingWindow": "3–6 months ahead. Camp Sarika books further out.",
+    "bookingWindow": "3\u20136 months ahead. Camp Sarika books further out.",
     "links": {
       "website": "https://www.aman.com/hotels/amangiri",
       "booking": null
@@ -314,7 +322,9 @@
       "navajo-traditions",
       "iconic"
     ],
-    "thumbnail": "/thumbnails/sleep/amangiri-1.jpg"
+    "thumbnail": "/thumbnails/sleep/amangiri-1.jpg",
+    "lat": 37.0146225,
+    "lng": -111.6111213
   },
   {
     "id": "lodge-at-bryce-canyon",
@@ -322,7 +332,7 @@
     "type": "lodge",
     "stayStyle": "rooted",
     "budgetTier": "moderate",
-    "priceRange": "$150–300/night",
+    "priceRange": "$150\u2013300/night",
     "location": "Inside Bryce Canyon National Park",
     "groupFit": [
       "solo",
@@ -344,12 +354,12 @@
       "fireplace",
       "trailhead access"
     ],
-    "bookingWindow": "3–6 months ahead for summer. Book as early as possible.",
+    "bookingWindow": "3\u20136 months ahead for summer. Book as early as possible.",
     "links": {
       "website": "https://www.visitbrycecanyon.com/lodging/the-lodge-at-bryce-canyon",
       "booking": null
     },
-    "seasonalNotes": "Seasonal — typically April through October. The most atmospheric stay in the Bryce corridor.",
+    "seasonalNotes": "Seasonal \u2014 typically April through October. The most atmospheric stay in the Bryce corridor.",
     "corridor": true,
     "lilaPick": true,
     "tags": [
@@ -360,7 +370,9 @@
       "no-tv",
       "bryce-canyon"
     ],
-    "thumbnail": "/thumbnails/sleep/lodge-at-bryce-canyon-1.jpg"
+    "thumbnail": "/thumbnails/sleep/lodge-at-bryce-canyon-1.jpg",
+    "lat": 37.62708629999999,
+    "lng": -112.1682495
   },
   {
     "id": "clear-sky-resorts",
@@ -368,8 +380,8 @@
     "type": "glamping",
     "stayStyle": "elemental",
     "budgetTier": "premium",
-    "priceRange": "$250–500/night",
-    "location": "Cannonville, UT — Scenic Byway 12, 15 min from Bryce Canyon",
+    "priceRange": "$250\u2013500/night",
+    "location": "Cannonville, UT \u2014 Scenic Byway 12, 15 min from Bryce Canyon",
     "groupFit": [
       "couple",
       "friends"
@@ -386,7 +398,7 @@
       "climate control",
       "fire pit"
     ],
-    "bookingWindow": "2–4 months ahead for peak season.",
+    "bookingWindow": "2\u20134 months ahead for peak season.",
     "links": {
       "website": "https://brycecanyon.clearskyresorts.com/",
       "booking": null,
@@ -402,7 +414,9 @@
       "byway-12",
       "astrotourism",
       "bryce-canyon"
-    ]
+    ],
+    "lat": 37.6753,
+    "lng": -112.1561
   },
   {
     "id": "skyview-hotel",
@@ -410,8 +424,8 @@
     "type": "hotel",
     "stayStyle": "elemental",
     "budgetTier": "moderate",
-    "priceRange": "$150–280/night",
-    "location": "Torrey, UT — first Dark Sky designated community in Utah",
+    "priceRange": "$150\u2013280/night",
+    "location": "Torrey, UT \u2014 first Dark Sky designated community in Utah",
     "groupFit": [
       "solo",
       "couple",
@@ -429,13 +443,13 @@
       "wifi",
       "parking"
     ],
-    "bookingWindow": "2–3 months ahead for peak season.",
+    "bookingWindow": "2\u20133 months ahead for peak season.",
     "links": {
       "website": "https://www.skyviewtorrey.com/",
       "booking": null,
       "bookingDotCom": "https://www.booking.com/hotel/us/skyview-torrey1.html"
     },
-    "seasonalNotes": "Year-round. The dark sky designation is real — exceptional stargazing.",
+    "seasonalNotes": "Year-round. The dark sky designation is real \u2014 exceptional stargazing.",
     "corridor": true,
     "lilaPick": true,
     "tags": [
@@ -456,8 +470,8 @@
     "type": "glamping",
     "stayStyle": "elemental",
     "budgetTier": "moderate",
-    "priceRange": "$143–350/night",
-    "location": "3811 UT-9, Virgin, UT — 20 min from Zion's south entrance, on the Kolob/west side",
+    "priceRange": "$143\u2013350/night",
+    "location": "3811 UT-9, Virgin, UT \u2014 20 min from Zion's south entrance, on the Kolob/west side",
     "groupFit": [
       "solo",
       "couple",
@@ -465,10 +479,10 @@
       "family"
     ],
     "highlights": [
-      "Covered wagons, safari tents, and bungalows on a working-property feel — the west side of Zion, away from the Springdale main drag",
+      "Covered wagons, safari tents, and bungalows on a working-property feel \u2014 the west side of Zion, away from the Springdale main drag",
       "Pool, cafe, fire pits, and a general store. The common spaces have a summer-camp-for-adults quality without trying too hard.",
-      "Family-friendly in a way the boutique Springdale properties aren't — kids can run, families can spread out, the pace is slower",
-      "20 minutes from the park's south entrance, 15 minutes from Kolob Canyons. The Kolob proximity is the real advantage — most Springdale stays don't offer that."
+      "Family-friendly in a way the boutique Springdale properties aren't \u2014 kids can run, families can spread out, the pace is slower",
+      "20 minutes from the park's south entrance, 15 minutes from Kolob Canyons. The Kolob proximity is the real advantage \u2014 most Springdale stays don't offer that."
     ],
     "amenities": [
       "pool",
@@ -478,13 +492,13 @@
       "parking",
       "wifi"
     ],
-    "bookingWindow": "Book at zionwildflower.com — weekends fill 2-3 weeks ahead in spring/fall.",
+    "bookingWindow": "Book at zionwildflower.com \u2014 weekends fill 2-3 weeks ahead in spring/fall.",
     "links": {
       "website": "https://www.zionwildflower.com/",
       "booking": "https://www.zionwildflower.com/",
       "bookingDotCom": "https://www.booking.com/hotel/us/zion-wildflower.html"
     },
-    "seasonalNotes": "Open year-round. Summer is hot — pool is the anchor. Spring and fall are ideal. Winter is quiet and beautiful.",
+    "seasonalNotes": "Open year-round. Summer is hot \u2014 pool is the anchor. Spring and fall are ideal. Winter is quiet and beautiful.",
     "lilaPick": true,
     "tags": [
       "glamping",
