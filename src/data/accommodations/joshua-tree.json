@@ -38,7 +38,9 @@
       "dark-sky",
       "no-water"
     ],
-    "thumbnail": "/thumbnails/sleep/jumbo-rocks-campground-1.jpg"
+    "thumbnail": "/thumbnails/sleep/jumbo-rocks-campground-1.jpg",
+    "lat": 33.9916855,
+    "lng": -116.0628417
   },
   {
     "id": "reset-hotel",
@@ -87,7 +89,9 @@
       "minimalist",
       "180-acres"
     ],
-    "thumbnail": "/thumbnails/sleep/reset-hotel-1.jpg"
+    "thumbnail": "/thumbnails/sleep/reset-hotel-1.jpg",
+    "lat": 34.1255977,
+    "lng": -116.0602096
   },
   {
     "id": "hidden-valley-campground",
@@ -127,7 +131,9 @@
       "bouldering",
       "no-water"
     ],
-    "thumbnail": "/thumbnails/sleep/hidden-valley-campground-1.jpg"
+    "thumbnail": "/thumbnails/sleep/hidden-valley-campground-1.jpg",
+    "lat": 34.017166,
+    "lng": -116.1617824
   },
   {
     "id": "skylight-joshua-tree",
@@ -213,7 +219,9 @@
       "timeless",
       "north-entrance"
     ],
-    "thumbnail": "/thumbnails/sleep/29-palms-inn-1.jpg"
+    "thumbnail": "/thumbnails/sleep/29-palms-inn-1.jpg",
+    "lat": 34.1294522,
+    "lng": -116.0487982
   },
   {
     "id": "sacred-sands",
@@ -254,7 +262,9 @@
       "intimate",
       "desert-views"
     ],
-    "thumbnail": "/thumbnails/sleep/sacred-sands-1.jpg"
+    "thumbnail": "/thumbnails/sleep/sacred-sands-1.jpg",
+    "lat": 34.0934028,
+    "lng": -116.2871932
   },
   {
     "id": "two-bunch-palms",
@@ -299,7 +309,9 @@
       "hollywood-hideaway",
       "decompression"
     ],
-    "thumbnail": "/thumbnails/sleep/two-bunch-palms-2.jpg"
+    "thumbnail": "/thumbnails/sleep/two-bunch-palms-2.jpg",
+    "lat": 33.9485163,
+    "lng": -116.4883381
   },
   {
     "id": "hotel-wren",
@@ -345,7 +357,9 @@
       "21-plus",
       "intimate"
     ],
-    "thumbnail": "/thumbnails/sleep/hotel-wren-1.jpg"
+    "thumbnail": "/thumbnails/sleep/hotel-wren-1.jpg",
+    "lat": 34.1382138,
+    "lng": -116.0818603
   },
   {
     "id": "bungalows-joshua-tree-retreat-center",
@@ -393,7 +407,9 @@
       "vortex",
       "vegetarian-cafe"
     ],
-    "thumbnail": "/thumbnails/sleep/bungalows-joshua-tree-retreat-center-1.jpg"
+    "thumbnail": "/thumbnails/sleep/bungalows-joshua-tree-retreat-center-1.jpg",
+    "lat": 34.1369476,
+    "lng": -116.362412
   },
   {
     "id": "autocamp-joshua-tree",
@@ -441,6 +457,8 @@
       "west-entrance",
       "family-friendly"
     ],
-    "thumbnail": "/thumbnails/sleep/autocamp-joshua-tree-1.jpg"
+    "thumbnail": "/thumbnails/sleep/autocamp-joshua-tree-1.jpg",
+    "lat": 34.1381859,
+    "lng": -116.3066403
   }
 ]

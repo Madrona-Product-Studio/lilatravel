@@ -36,7 +36,9 @@
       "north-shore",
       "atmospheric"
     ],
-    "thumbnail": "/thumbnails/sleep/haena-beach-park-2.jpg"
+    "thumbnail": "/thumbnails/sleep/haena-beach-park-2.jpg",
+    "lat": 22.2205851,
+    "lng": -159.5774698
   },
   {
     "id": "kokee-cabins",
@@ -79,7 +81,9 @@
       "endemic-birds",
       "budget"
     ],
-    "thumbnail": "/thumbnails/sleep/kokee-cabins-1.jpg"
+    "thumbnail": "/thumbnails/sleep/kokee-cabins-1.jpg",
+    "lat": 21.9572077,
+    "lng": -159.6730508
   },
   {
     "id": "polihale-camping",
@@ -118,7 +122,9 @@
       "na-pali-views",
       "primitive"
     ],
-    "thumbnail": "/thumbnails/sleep/polihale-camping-1.jpg"
+    "thumbnail": "/thumbnails/sleep/polihale-camping-1.jpg",
+    "lat": 22.0913431,
+    "lng": -159.7500857
   },
   {
     "id": "hanalei-colony-resort",
@@ -160,7 +166,9 @@
       "north-shore",
       "unplugged"
     ],
-    "thumbnail": "/thumbnails/sleep/hanalei-colony-resort-1.jpg"
+    "thumbnail": "/thumbnails/sleep/hanalei-colony-resort-1.jpg",
+    "lat": 22.2214807,
+    "lng": -159.5452306
   },
   {
     "id": "waimea-plantation-cottages",
@@ -203,7 +211,9 @@
       "canyon-base",
       "sunset"
     ],
-    "thumbnail": "/thumbnails/sleep/waimea-plantation-cottages-1.jpg"
+    "thumbnail": "/thumbnails/sleep/waimea-plantation-cottages-1.jpg",
+    "lat": 21.9588755,
+    "lng": -159.675757
   },
   {
     "id": "grand-hyatt-kauai",
@@ -247,7 +257,9 @@
       "hawaiian-healing",
       "beachfront"
     ],
-    "thumbnail": "/thumbnails/sleep/grand-hyatt-kauai-1.jpg"
+    "thumbnail": "/thumbnails/sleep/grand-hyatt-kauai-1.jpg",
+    "lat": 21.8763069,
+    "lng": -159.439324
   },
   {
     "id": "timbers-kauai",
@@ -289,7 +301,9 @@
       "quiet",
       "design"
     ],
-    "thumbnail": "/thumbnails/sleep/timbers-kauai-1.jpg"
+    "thumbnail": "/thumbnails/sleep/timbers-kauai-1.jpg",
+    "lat": 21.9582565,
+    "lng": -159.3451185
   },
   {
     "id": "1-hotel-hanalei-bay",
@@ -334,7 +348,9 @@
       "spa",
       "farm-to-table"
     ],
-    "thumbnail": "/thumbnails/sleep/1-hotel-hanalei-bay-1.jpg"
+    "thumbnail": "/thumbnails/sleep/1-hotel-hanalei-bay-1.jpg",
+    "lat": 22.2206331,
+    "lng": -159.4972352
   },
   {
     "id": "hanalei-bay-resort",
@@ -383,7 +399,9 @@
       "beach-access",
       "mountain-views"
     ],
-    "thumbnail": "/thumbnails/sleep/hanalei-bay-resort-3.jpg"
+    "thumbnail": "/thumbnails/sleep/hanalei-bay-resort-3.jpg",
+    "lat": 22.2206331,
+    "lng": -159.4972352
   },
   {
     "id": "the-palmwood",
@@ -427,6 +445,8 @@
       "5-acres",
       "gardens"
     ],
-    "thumbnail": "/thumbnails/sleep/the-palmwood-3.jpg"
+    "thumbnail": "/thumbnails/sleep/the-palmwood-3.jpg",
+    "lat": 22.188498,
+    "lng": -159.343288
   }
 ]

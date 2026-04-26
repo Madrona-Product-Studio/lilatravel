@@ -40,7 +40,9 @@
       "pacific-rim",
       "reservations-essential"
     ],
-    "thumbnail": "/thumbnails/sleep/green-point-campground-2.jpg"
+    "thumbnail": "/thumbnails/sleep/green-point-campground-2.jpg",
+    "lat": 49.0683049,
+    "lng": -125.7532646
   },
   {
     "id": "wya-point-resort",
@@ -82,7 +84,9 @@
       "beachfront",
       "first-nation"
     ],
-    "thumbnail": "/thumbnails/sleep/wya-point-resort-1.jpg"
+    "thumbnail": "/thumbnails/sleep/wya-point-resort-1.jpg",
+    "lat": 48.9756025,
+    "lng": -125.5937208
   },
   {
     "id": "clayoquot-wilderness-resort",
@@ -123,7 +127,9 @@
       "wilderness",
       "indigenous-cultural"
     ],
-    "thumbnail": "/thumbnails/sleep/clayoquot-wilderness-resort-1.jpg"
+    "thumbnail": "/thumbnails/sleep/clayoquot-wilderness-resort-1.jpg",
+    "lat": 49.3663737,
+    "lng": -125.7776638
   },
   {
     "id": "pacific-sands",
@@ -167,7 +173,9 @@
       "fireplace",
       "cox-bay"
     ],
-    "thumbnail": "/thumbnails/sleep/pacific-sands-1.jpg"
+    "thumbnail": "/thumbnails/sleep/pacific-sands-1.jpg",
+    "lat": 49.1064668,
+    "lng": -125.8724816
   },
   {
     "id": "long-beach-lodge",
@@ -209,7 +217,9 @@
       "great-room",
       "cox-bay"
     ],
-    "thumbnail": "/thumbnails/sleep/long-beach-lodge-1.jpg"
+    "thumbnail": "/thumbnails/sleep/long-beach-lodge-1.jpg",
+    "lat": 49.1048193,
+    "lng": -125.8723559
   },
   {
     "id": "pluvio-rooms",
@@ -247,7 +257,9 @@
       "ucluelet",
       "6-rooms"
     ],
-    "thumbnail": "/thumbnails/sleep/pluvio-rooms-1.jpg"
+    "thumbnail": "/thumbnails/sleep/pluvio-rooms-1.jpg",
+    "lat": 48.9427177,
+    "lng": -125.5490615
   },
   {
     "id": "wickaninnish-inn",
@@ -290,7 +302,9 @@
       "beachfront",
       "floor-to-ceiling-windows"
     ],
-    "thumbnail": "/thumbnails/sleep/wickaninnish-inn-3.jpg"
+    "thumbnail": "/thumbnails/sleep/wickaninnish-inn-3.jpg",
+    "lat": 49.1231997,
+    "lng": -125.9015579
   },
   {
     "id": "tin-wis-resort",
@@ -339,7 +353,9 @@
       "language-revitalization",
       "tribal-parks"
     ],
-    "thumbnail": "/thumbnails/sleep/tin-wis-resort-1.jpg"
+    "thumbnail": "/thumbnails/sleep/tin-wis-resort-1.jpg",
+    "lat": 49.1310223,
+    "lng": -125.9010465
   },
   {
     "id": "ocean-village-resort",
@@ -390,7 +406,9 @@
       "full-kitchen",
       "indoor-pool"
     ],
-    "thumbnail": "/thumbnails/sleep/ocean-village-resort-1.jpg"
+    "thumbnail": "/thumbnails/sleep/ocean-village-resort-1.jpg",
+    "lat": 49.1289793,
+    "lng": -125.8999139
   },
   {
     "id": "crystal-cove-beach-resort",
@@ -438,7 +456,9 @@
       "family-friendly",
       "mackenzie-beach"
     ],
-    "thumbnail": "/thumbnails/sleep/crystal-cove-beach-resort-1.jpg"
+    "thumbnail": "/thumbnails/sleep/crystal-cove-beach-resort-1.jpg",
+    "lat": 49.12724619999999,
+    "lng": -125.9017323
   },
   {
     "id": "free-spirit-spheres",
@@ -482,6 +502,8 @@
       "corridor",
       "unique"
     ],
-    "thumbnail": "/thumbnails/sleep/free-spirit-spheres-1.jpg"
+    "thumbnail": "/thumbnails/sleep/free-spirit-spheres-1.jpg",
+    "lat": 49.3820201,
+    "lng": -124.6140924
   }
 ]

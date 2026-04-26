@@ -41,7 +41,9 @@
       "reservations-required",
       "immersive"
     ],
-    "thumbnail": "/thumbnails/sleep/watchman-campground-3.jpg"
+    "thumbnail": "/thumbnails/sleep/watchman-campground-3.jpg",
+    "lat": 37.1963511,
+    "lng": -112.9875623
   },
   {
     "id": "cliffrose-lodge",
@@ -92,7 +94,9 @@
       "spa",
       "restaurant"
     ],
-    "thumbnail": "/thumbnails/sleep/cliffrose-lodge-3.jpg"
+    "thumbnail": "/thumbnails/sleep/cliffrose-lodge-3.jpg",
+    "lat": 37.1970946,
+    "lng": -112.9917417
   },
   {
     "id": "flanigans-resort",
@@ -442,7 +446,9 @@
       "rooftop-stargazing",
       "capitol-reef"
     ],
-    "thumbnail": "/thumbnails/sleep/skyview-hotel-2.jpg"
+    "thumbnail": "/thumbnails/sleep/skyview-hotel-2.jpg",
+    "lat": 38.3006935,
+    "lng": -111.4399795
   },
   {
     "id": "zion-wildflower",
@@ -490,6 +496,8 @@
       "west-side",
       "pool"
     ],
-    "thumbnail": "/thumbnails/sleep/zion-wildflower-1.jpg"
+    "thumbnail": "/thumbnails/sleep/zion-wildflower-1.jpg",
+    "lat": 37.2025204,
+    "lng": -113.1699343
   }
 ]

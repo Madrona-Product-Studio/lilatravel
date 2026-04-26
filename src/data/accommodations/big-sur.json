@@ -41,7 +41,9 @@
       "stargazing",
       "reservations-required"
     ],
-    "thumbnail": "/thumbnails/sleep/pfeiffer-big-sur-campground-2.jpg"
+    "thumbnail": "/thumbnails/sleep/pfeiffer-big-sur-campground-2.jpg",
+    "lat": 36.2424281,
+    "lng": -121.7744665
   },
   {
     "id": "kirk-creek-campground",
@@ -82,7 +84,9 @@
       "primitive",
       "bortle-2"
     ],
-    "thumbnail": "/thumbnails/sleep/kirk-creek-campground-1.jpg"
+    "thumbnail": "/thumbnails/sleep/kirk-creek-campground-1.jpg",
+    "lat": 35.989993,
+    "lng": -121.495721
   },
   {
     "id": "ventana-glampsites",
@@ -121,7 +125,9 @@
       "fire-pit",
       "luxury-camping"
     ],
-    "thumbnail": "/thumbnails/sleep/ventana-glampsites-1.jpg"
+    "thumbnail": "/thumbnails/sleep/ventana-glampsites-1.jpg",
+    "lat": 36.2322286,
+    "lng": -121.7628639
   },
   {
     "id": "treebones-resort",
@@ -162,7 +168,9 @@
       "human-nest",
       "unique"
     ],
-    "thumbnail": "/thumbnails/sleep/treebones-resort-1.jpg"
+    "thumbnail": "/thumbnails/sleep/treebones-resort-1.jpg",
+    "lat": 35.8841921,
+    "lng": -121.4552679
   },
   {
     "id": "glen-oaks-big-sur",
@@ -203,7 +211,9 @@
       "redwoods",
       "sustainable"
     ],
-    "thumbnail": "/thumbnails/sleep/glen-oaks-big-sur-1.jpg"
+    "thumbnail": "/thumbnails/sleep/glen-oaks-big-sur-1.jpg",
+    "lat": 36.2645364,
+    "lng": -121.8009389
   },
   {
     "id": "big-sur-lodge",
@@ -245,7 +255,9 @@
       "hikers",
       "trailhead-access"
     ],
-    "thumbnail": "/thumbnails/sleep/big-sur-lodge-1.jpg"
+    "thumbnail": "/thumbnails/sleep/big-sur-lodge-1.jpg",
+    "lat": 36.2506879,
+    "lng": -121.7862112
   },
   {
     "id": "asilomar",
@@ -292,7 +304,9 @@
       "no-tv",
       "underrated"
     ],
-    "thumbnail": "/thumbnails/sleep/asilomar-1.jpg"
+    "thumbnail": "/thumbnails/sleep/asilomar-1.jpg",
+    "lat": 36.6191335,
+    "lng": -121.9375932
   },
   {
     "id": "post-ranch-inn",
@@ -337,7 +351,9 @@
       "no-tv",
       "iconic"
     ],
-    "thumbnail": "/thumbnails/sleep/post-ranch-inn-1.jpg"
+    "thumbnail": "/thumbnails/sleep/post-ranch-inn-1.jpg",
+    "lat": 36.2302565,
+    "lng": -121.7718118
   },
   {
     "id": "alila-ventana-big-sur",
@@ -381,7 +397,9 @@
       "japanese-baths",
       "redwood-canyon"
     ],
-    "thumbnail": "/thumbnails/sleep/alila-ventana-big-sur-1.jpg"
+    "thumbnail": "/thumbnails/sleep/alila-ventana-big-sur-1.jpg",
+    "lat": 36.2291297,
+    "lng": -121.760384
   },
   {
     "id": "deetjens-big-sur-inn",
@@ -426,6 +444,8 @@
       "fireplace",
       "big-sur-institution"
     ],
-    "thumbnail": "/thumbnails/sleep/deetjens-big-sur-inn-1.jpg"
+    "thumbnail": "/thumbnails/sleep/deetjens-big-sur-inn-1.jpg",
+    "lat": 36.2174425,
+    "lng": -121.7508222
   }
 ]

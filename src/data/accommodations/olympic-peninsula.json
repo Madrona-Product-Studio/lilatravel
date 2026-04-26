@@ -39,7 +39,9 @@
       "first-come",
       "surf-sound"
     ],
-    "thumbnail": "/thumbnails/sleep/kalaloch-campground-2.jpg"
+    "thumbnail": "/thumbnails/sleep/kalaloch-campground-2.jpg",
+    "lat": 47.6130311,
+    "lng": -124.3760789
   },
   {
     "id": "hoh-campground",
@@ -80,7 +82,9 @@
       "quiet",
       "immersive"
     ],
-    "thumbnail": "/thumbnails/sleep/hoh-campground-2.jpg"
+    "thumbnail": "/thumbnails/sleep/hoh-campground-2.jpg",
+    "lat": 47.858525,
+    "lng": -123.9358
   },
   {
     "id": "quileute-oceanside-resort",
@@ -122,7 +126,9 @@
       "first-beach",
       "quileute"
     ],
-    "thumbnail": "/thumbnails/sleep/quileute-oceanside-resort-3.jpg"
+    "thumbnail": "/thumbnails/sleep/quileute-oceanside-resort-3.jpg",
+    "lat": 47.9060406,
+    "lng": -124.632074
   },
   {
     "id": "lake-crescent-lodge",
@@ -165,7 +171,9 @@
       "cottages",
       "dining"
     ],
-    "thumbnail": "/thumbnails/sleep/lake-crescent-lodge-3.jpg"
+    "thumbnail": "/thumbnails/sleep/lake-crescent-lodge-3.jpg",
+    "lat": 48.0569623,
+    "lng": -123.8000995
   },
   {
     "id": "kalaloch-lodge",
@@ -209,7 +217,9 @@
       "cabins",
       "restaurant"
     ],
-    "thumbnail": "/thumbnails/sleep/kalaloch-lodge-1.jpg"
+    "thumbnail": "/thumbnails/sleep/kalaloch-lodge-1.jpg",
+    "lat": 47.60571909999999,
+    "lng": -124.3713934
   },
   {
     "id": "domaine-madeleine",
@@ -251,7 +261,9 @@
       "views-to-canada",
       "intimate"
     ],
-    "thumbnail": "/thumbnails/sleep/domaine-madeleine-1.jpg"
+    "thumbnail": "/thumbnails/sleep/domaine-madeleine-1.jpg",
+    "lat": 48.1153968,
+    "lng": -123.2701249
   },
   {
     "id": "sol-duc-hot-springs-resort",
@@ -300,7 +312,9 @@
       "sol-duc-valley",
       "seasonal"
     ],
-    "thumbnail": "/thumbnails/sleep/sol-duc-hot-springs-resort-1.jpg"
+    "thumbnail": "/thumbnails/sleep/sol-duc-hot-springs-resort-1.jpg",
+    "lat": 47.9689467,
+    "lng": -123.8631747
   },
   {
     "id": "lake-quinault-lodge",
@@ -350,7 +364,9 @@
       "national-register",
       "inside-forest"
     ],
-    "thumbnail": "/thumbnails/sleep/lake-quinault-lodge-1.jpg"
+    "thumbnail": "/thumbnails/sleep/lake-quinault-lodge-1.jpg",
+    "lat": 47.46689780000001,
+    "lng": -123.8482146
   },
   {
     "id": "colettes-bed-breakfast",
@@ -397,7 +413,9 @@
       "strait-views",
       "electric-bikes"
     ],
-    "thumbnail": "/thumbnails/sleep/colettes-bed-breakfast-1.jpg"
+    "thumbnail": "/thumbnails/sleep/colettes-bed-breakfast-1.jpg",
+    "lat": 48.1126253,
+    "lng": -123.2687969
   },
   {
     "id": "hoh-valley-cabins",
@@ -447,6 +465,8 @@
       "ev-charging",
       "kitchenette"
     ],
-    "thumbnail": "/thumbnails/sleep/hoh-valley-cabins-1.jpg"
+    "thumbnail": "/thumbnails/sleep/hoh-valley-cabins-1.jpg",
+    "lat": 47.8176983,
+    "lng": -124.1519292
   }
 ]
