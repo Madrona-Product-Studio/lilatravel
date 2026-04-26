@@ -48,6 +48,7 @@ export const TOWNS = [
     description: "A single-street town pressed against the canyon mouth. Walk to the park entrance. Restaurants, gear shops, and galleries line the half-mile stretch — all of it sandstone red and cottonwood green.",
     url: "https://www.zionpark.com/",
     accent: C.sunSalmon,
+    lat: 37.1899, lng: -112.9991,
   },
   {
     name: "Kanab",
@@ -55,6 +56,7 @@ export const TOWNS = [
     description: "An hour south of Zion on the Utah–Arizona line. Old Western film sets, a growing food scene, and the staging point for permits to The Wave, White Pocket, and Buckskin Gulch.",
     url: "https://visitsouthernutah.com/kanab/",
     accent: C.goldenAmber,
+    lat: 37.0475, lng: -112.5263,
   },
   {
     name: "Escalante",
@@ -62,6 +64,7 @@ export const TOWNS = [
     description: "A one-stoplight town on Scenic Byway 12 that punches above its weight. Slot canyons, petrified forests, and the kind of solitude that the main parks can't offer. Stock up here — services are sparse beyond.",
     url: "https://www.escalante.cc/",
     accent: C.oceanTeal,
+    lat: 37.7703, lng: -111.6021,
   },
   {
     name: "Torrey",
@@ -69,6 +72,7 @@ export const TOWNS = [
     description: "A handful of buildings at the edge of the Waterpocket Fold. The nearest services to Capitol Reef. Rim Rock Inn and the Torrey Schoolhouse serve as base camp for the park. The orchards start just down the road.",
     url: "https://www.capitolreefcountry.com/",
     accent: C.seaGlass,
+    lat: 38.2972, lng: -111.4197,
   },
 ];
 

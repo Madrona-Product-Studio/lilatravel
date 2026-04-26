@@ -66,6 +66,7 @@ export const TOWNS = [
     description: "Not a town so much as a state of mind. Sixty miles of coast between Carmel and San Simeon with no traffic lights. Nepenthe, Deetjen's, and the Henry Miller Library are the landmarks.",
     url: "https://www.bigsurcalifornia.org/",
     accent: C.sunSalmon,
+    lat: 36.2704, lng: -121.8081,
   },
   {
     name: "Carmel-by-the-Sea",
@@ -73,6 +74,7 @@ export const TOWNS = [
     description: "A one-square-mile village with no street addresses, no chain restaurants, and more than 80 art galleries. The beach at the bottom of Ocean Avenue is one of the most beautiful in California.",
     url: "https://www.carmelcalifornia.com/",
     accent: C.seaGlass,
+    lat: 36.5554, lng: -121.9233,
   },
   {
     name: "Monterey",
@@ -80,6 +82,7 @@ export const TOWNS = [
     description: "Steinbeck's old fishing town, now anchored by the Monterey Bay Aquarium. The wharf, the coastal trail, and Pacific Grove's Victorian neighborhoods are all walkable from downtown.",
     url: "https://www.seemonterey.com/",
     accent: C.oceanTeal,
+    lat: 36.6002, lng: -121.8947,
   },
   {
     name: "Cambria & San Simeon",
@@ -87,6 +90,7 @@ export const TOWNS = [
     description: "The quiet end of the coast. Elephant seal rookery at Piedras Blancas, Hearst Castle above the fog line, and Cambria's East Village art scene.",
     url: "https://www.visitcambria.com/",
     accent: C.goldenAmber,
+    lat: 35.5641, lng: -121.0893,
   },
 ];
 

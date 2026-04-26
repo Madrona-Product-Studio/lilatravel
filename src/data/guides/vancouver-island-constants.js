@@ -36,6 +36,7 @@ export const TOWNS = [
     description: "Fewer than 2,000 residents at the end of the road. World-class surf at Cox Bay, old-growth forest on Meares Island, and storm watching from November through March. The Wickaninnish Inn set the standard.",
     url: "https://tourismtofino.com/",
     accent: C.oceanTeal,
+    lat: 49.1530, lng: -125.9066,
   },
   {
     name: "Ucluelet",
@@ -43,6 +44,7 @@ export const TOWNS = [
     description: "Forty minutes south of Tofino, quieter and more weathered. The Wild Pacific Trail along the lighthouse peninsula is the best coastal walk on the island. Better value, equal beauty.",
     url: "https://visitucluelet.ca/",
     accent: C.seaGlass,
+    lat: 48.9427, lng: -125.5466,
   },
   {
     name: "Victoria",
@@ -50,6 +52,7 @@ export const TOWNS = [
     description: "The counterpoint to the west coast. Inner Harbour, the Royal BC Museum, afternoon tea at the Empress. Architectural, ceremonial, and the ferry gateway from Vancouver. A different kind of island experience.",
     url: "https://www.tourismvictoria.com/",
     accent: C.sunSalmon,
+    lat: 48.4284, lng: -123.3656,
   },
   {
     name: "Nanaimo",
@@ -57,6 +60,7 @@ export const TOWNS = [
     description: "The second-largest city on the island and a major ferry terminal from the mainland. Old Quarter walkable, harbour seaplane access, and the gateway north to the wilder parts of the island.",
     url: "https://www.tourismnanaimo.com/",
     accent: C.goldenAmber,
+    lat: 49.1659, lng: -123.9401,
   },
 ];
 

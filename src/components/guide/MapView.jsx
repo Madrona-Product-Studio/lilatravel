@@ -26,7 +26,7 @@ function getPinColor(item) {
   return G.oceanTeal;
 }
 
-export default function MapView({ items, onSelectItem }) {
+export default function MapView({ items, onSelectItem, contextPoints = [] }) {
   const mapRef = useRef(null);
   const mapInstance = useRef(null);
   const markersRef = useRef([]);
@@ -61,6 +61,8 @@ export default function MapView({ items, onSelectItem }) {
 
     const bounds = new window.google.maps.LatLngBounds();
     mappableItems.forEach(item => bounds.extend({ lat: item.lat, lng: item.lng }));
+    const mappableContext = contextPoints.filter(p => p.lat && p.lng);
+    mappableContext.forEach(p => bounds.extend({ lat: p.lat, lng: p.lng }));
 
     const map = new window.google.maps.Map(mapRef.current, {
       center: bounds.getCenter(),
@@ -102,10 +104,32 @@ export default function MapView({ items, onSelectItem }) {
       return { marker, item };
     });
 
+    // Town/context labels
+    const townMarkers = mappableContext.map(p => {
+      return new window.google.maps.Marker({
+        position: { lat: p.lat, lng: p.lng },
+        map,
+        title: p.name,
+        icon: {
+          path: window.google.maps.SymbolPath.CIRCLE,
+          scale: 0, // invisible dot — label only
+        },
+        label: {
+          text: p.name,
+          fontSize: '10px',
+          fontWeight: '700',
+          fontFamily: "'Quicksand', sans-serif",
+          color: '#8a8278',
+          className: 'map-town-label',
+        },
+      });
+    });
+
     markersRef.current = markers;
 
     return () => {
       markers.forEach(({ marker }) => marker.setMap(null));
+      townMarkers.forEach(m => m.setMap(null));
     };
   }, [mapsLoaded, mappableItems.length]);
 

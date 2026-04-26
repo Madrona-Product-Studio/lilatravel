@@ -36,6 +36,7 @@ export const TOWNS = [
     description: "The main gateway to Olympic. Hurricane Ridge is a 45-minute drive from downtown. Solid food scene for a town this size — Kokopelli Grill and Next Door Gastropub are reliable.",
     url: "https://www.portangeles.org/",
     accent: C.skyBlue,
+    lat: 48.1185, lng: -123.4307,
   },
   {
     name: "Sequim",
@@ -43,6 +44,7 @@ export const TOWNS = [
     description: "In the rain shadow of the Olympics — gets 16 inches of rain while the Hoh gets 170. Lavender farms, the Olympic Discovery Trail, and the driest skies on the peninsula.",
     url: "https://www.visitsunnysequim.com/",
     accent: C.goldenAmber,
+    lat: 48.0795, lng: -123.1015,
   },
   {
     name: "Forks",
@@ -50,6 +52,7 @@ export const TOWNS = [
     description: "Timber town turned trailhead. The closest services to the Hoh Rainforest and Rialto Beach. Small, practical, and surrounded by some of the most productive temperate rainforest on Earth.",
     url: "https://forkswa.com/",
     accent: C.seaGlass,
+    lat: 47.9504, lng: -124.3855,
   },
   {
     name: "Port Townsend",
@@ -57,6 +60,7 @@ export const TOWNS = [
     description: "A 19th-century seaport town with more Victorian buildings per capita than anywhere in the US. Fort Worden, the marine science center, and a strong arts community. The civilized end of the peninsula.",
     url: "https://www.enjoypt.com/",
     accent: C.oceanTeal,
+    lat: 48.1170, lng: -122.7604,
   },
 ];
 

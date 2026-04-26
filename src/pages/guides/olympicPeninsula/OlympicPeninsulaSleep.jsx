@@ -81,7 +81,7 @@ export default function OlympicPeninsulaSleep() {
             )}
           </>
         ) : (
-          <MapView items={stayItems} onSelectItem={setActiveSheet} />
+          <MapView items={stayItems} onSelectItem={setActiveSheet} contextPoints={TOWNS} />
         )}
       </SubGuideLayout>
       <GuideDetailSheet

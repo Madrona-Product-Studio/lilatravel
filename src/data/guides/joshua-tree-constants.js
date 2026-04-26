@@ -25,6 +25,7 @@ export const TOWNS = [
     description: "A small desert town with a disproportionate creative scene. Art galleries, natural food co-ops, and a Saturday farmers market. The north entrance to the park is a five-minute drive.",
     url: "https://www.joshuatree.org/",
     accent: C.goldenAmber,
+    lat: 34.1347, lng: -116.3131,
   },
   {
     name: "Twentynine Palms",
@@ -32,12 +33,14 @@ export const TOWNS = [
     description: "The park's main visitor center and administrative hub. Quieter than Joshua Tree town, with easy access to the Oasis of Mara and the park's less-visited eastern half.",
     url: "https://visit29.org/",
     accent: C.sunSalmon,
+    lat: 34.1356, lng: -116.0542,
   },
   {
     name: "Pioneertown",
     context: "1940s Film Set, Still Standing",
     description: "Built in 1946 as a living Old West movie set. Pappy & Harriet's is the reason most people come — live music in a desert honky-tonk. The Mane Street walk is worth the detour.",
     accent: C.oceanTeal,
+    lat: 34.1581, lng: -116.4970,
   },
   {
     name: "Palm Springs",
@@ -45,6 +48,7 @@ export const TOWNS = [
     description: "Mid-century architecture, hot springs, and the aerial tramway to the top of San Jacinto. A different kind of desert experience — polished where Joshua Tree is raw.",
     url: "https://visitpalmsprings.com/",
     accent: C.seaGlass,
+    lat: 33.8303, lng: -116.5453,
   },
 ];
 

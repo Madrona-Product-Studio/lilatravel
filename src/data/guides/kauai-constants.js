@@ -53,6 +53,7 @@ export const TOWNS = [
     description: "The population center and airport town. The coastal path from Kapaʻa north is the island's best bike ride. Lihue has the best poke and plate lunch options. Practical but not without charm.",
     url: "https://www.gohawaii.com/islands/kauai/regions/lihue",
     accent: C.seaGlass,
+    lat: 21.9811, lng: -159.3711,
   },
   {
     name: "Poipu",
@@ -60,6 +61,7 @@ export const TOWNS = [
     description: "The dry side of the island. Poipu Beach is consistently rated among Hawaii's best. Spouting Horn blowhole, the McBryde and Allerton botanical gardens, and the best snorkeling conditions on Kauai.",
     url: "https://www.poipubeach.org/",
     accent: C.sunSalmon,
+    lat: 21.8808, lng: -159.4612,
   },
   {
     name: "Hanalei",
@@ -67,6 +69,7 @@ export const TOWNS = [
     description: "Hanalei Bay is the postcard. But the North Shore is also the gateway to the Na Pali Coast — the Kalalau trailhead starts at Ke'e Beach. Princeville sits above it all on a bluff with views that never get old.",
     url: "https://www.gohawaii.com/islands/kauai/regions/north-shore",
     accent: C.oceanTeal,
+    lat: 22.2046, lng: -159.5025,
   },
   {
     name: "Kapaa",
@@ -74,6 +77,7 @@ export const TOWNS = [
     description: "A walkable strip of local restaurants, shops, and the island's best coastal bike path. The population center that feels most like a real town — less resort, more community.",
     url: "https://www.gohawaii.com/islands/kauai/regions/east-side",
     accent: C.goldenAmber,
+    lat: 22.0752, lng: -159.3190,
   },
   {
     name: "Princeville",
@@ -81,6 +85,7 @@ export const TOWNS = [
     description: "Perched on a bluff overlooking Hanalei Bay and the Na Pali Coast. Golf, luxury rentals, and some of the best sunset views on the island. Quieter and more manicured than Hanalei below.",
     url: "https://www.princeville.com/",
     accent: C.skyBlue,
+    lat: 22.2175, lng: -159.4763,
   },
 ];
 
