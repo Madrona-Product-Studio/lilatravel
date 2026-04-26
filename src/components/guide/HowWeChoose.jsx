@@ -8,11 +8,12 @@ export default function HowWeChoose({ section }) {
   return (
     <div style={{ marginBottom: 32 }}>
       <div style={{
-        fontFamily: FONTS.serif,
-        fontSize: 17,
-        fontWeight: 300,
-        fontStyle: 'italic',
-        color: G.inkDetail,
+        fontFamily: FONTS.body,
+        fontSize: 10,
+        fontWeight: 700,
+        letterSpacing: '0.18em',
+        textTransform: 'uppercase',
+        color: G.ink40,
         marginBottom: 14,
       }}>
         {rubric.heading}
