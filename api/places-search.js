@@ -62,6 +62,8 @@ export default async function handler(req, res) {
       rating: candidate.rating,
       userRatingsTotal: candidate.user_ratings_total,
       address: candidate.formatted_address,
+      lat: candidate.geometry?.location?.lat || null,
+      lng: candidate.geometry?.location?.lng || null,
       phone,
       photoRefs,
     });
