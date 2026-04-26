@@ -65,8 +65,8 @@ export default function ContentList({ items, onOpenSheet, style = {} }) {
             {/* Left bar */}
             <div style={{ width: 3, flexShrink: 0, marginRight: item.thumbnail ? 12 : 18, background: barColor }} />
 
-            {/* Thumbnail or placeholder (only for sections where thumbnails are expected) */}
-            {(item.thumbnail || item.tier) && (
+            {/* Thumbnail or placeholder (eat + sleep sections) */}
+            {(item.thumbnail || item.tier || item.cuisine) && (
               <div style={{
                 width: 96, height: 96, flexShrink: 0, marginRight: 14, alignSelf: 'center',
                 overflow: 'hidden', borderRadius: 6, background: G.panel,
